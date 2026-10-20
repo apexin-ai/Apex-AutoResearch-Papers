@@ -1,0 +1,1367 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-280_Q8",
+    "problem": "The bald eagle needs the mouse. The bald eagle sees the mouse. The cow is red. The cow is rough. The cow sees the bald eagle. The cow sees the mouse. The dog eats the bald eagle. The dog is cold. The dog is rough. The dog needs the bald eagle. The mouse eats the bald eagle. The mouse eats the dog. The mouse is red. The mouse is rough. The mouse is young. The mouse sees the cow. If something is young then it needs the dog. If something eats the cow then the cow is kind. If something is young then it sees the bald eagle. If something is cold and it needs the dog then it eats the mouse. If something needs the bald eagle and it is red then it is young. If something eats the mouse then it needs the mouse. If something eats the bald eagle then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not need the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nSees(BaldEagle, Mouse, True) ::: The bald eagle sees the mouse.\nRed(Cow, True) ::: The cow is red.\nRough(Cow, True) ::: The cow is rough.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nSees(Cow, Mouse, True) ::: The cow sees the mouse.\nEats(Dog, BaldEagle, True) ::: The dog eats the bald eagle.\nCold(Dog, True) ::: The dog is cold.\nRough(Dog, True) ::: The dog is rough.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\nEats(Mouse, BaldEagle, True) ::: The mouse eats the bald eagle.\nEats(Mouse, Dog, True) ::: The mouse eats the dog.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nYoung(Mouse, True) ::: The mouse is young.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\n\nRules:\nYoung($x, True) >>> Needs($x, Dog, True) ::: If something is young then it needs the dog.\nEats($x, Cow, True) >>> Kind(Cow, True) ::: If something eats the cow then the cow is kind.\nYoung($x, True) >>> Sees($x, BaldEagle, True) ::: If something is young then it sees the bald eagle.\nCold($x, True) && Needs($x, Dog, True) >>> Eats($x, Mouse, True) ::: If something is cold and it needs the dog then it eats the mouse.\nNeeds($x, BaldEagle, True) && Red($x, True) >>> Young($x, True) ::: If something needs the bald eagle and it is red then it is young.\nEats($x, Mouse, True) >>> Needs($x, Mouse, True) ::: If something eats the mouse then it needs the mouse.\nEats($x, BaldEagle, True) >>> Red($x, True) ::: If something eats the bald eagle then it is red.\n\nQuery:\nNeeds(Dog, Dog, False) ::: The dog does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 31.0,
+      "True": 133.5,
+      "Unknown": 164.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements to deduce the relationships between the entities (bald eagle, mouse, cow, dog) and their characteristics. \n\nGiven Statements:\n1. The bald eagle needs the mouse.\n2. The bald eagle sees the mouse.\n3. The cow is red.\n4. The cow is rough.\n5. The cow sees the bald eagle.\n6. The cow sees the mouse.\n7. The dog eats the bald eagle.\n8. The dog is cold.\n9. The dog is rough.\n10. The dog needs the bald eagle.\n11. The mouse eats the bald eagle.\n12. The mouse eats the dog.\n13. The mouse is red.\n14. The mouse is rough.\n15. The mouse is young.\n16. The mouse sees the cow.\n17. If something is young then it needs the dog.\n18. If something eats the cow then the cow is kind.\n19. If something is young then it sees the bald eagle.\n20. If something is cold and it needs the dog then it eats the mouse.\n21. If something needs the bald eagle and it is red then it is young.\n22. If something eats the mouse then it needs the mouse.\n23. If something eats the bald eagle then it is red.\n\nNow, to determine the truth value of the statement \"The dog does not need the dog,\" we need to evaluate the given statements and their implications.\n\nFrom statement 10, we know that the dog needs the bald eagle. \n\nFrom statement 21, since the dog is not mentioned as red, we cannot conclude that the dog is young or that the dog is red.\n\nHowever, the statement \"The dog does not need the dog\" is not directly related to the other statements about the dog needing the bald eagle or the mouse.\n\nThe only statement that might be relevant is statement 20: \"If something is cold and it needs the dog then it eats the mouse.\" The dog is cold, so this statement could potentially apply to the dog.\n\nHowever, the dog eats the bald eagle (statement 7), which makes it red (statement 23). Since the dog is red, it doesn't satisfy the condition of being cold in statement 20. \n\nWe can't determine if the dog needs the dog because none of the statements directly address this relationship.\n\nTherefore, the truth value of the statement \"The dog does not need the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFirst, let's establish the known information about each entity:\n\n- The dog is cold.\n- The dog is rough.\n- The dog eats the bald eagle.\n- The mouse eats the bald eagle.\n- The mouse eats the dog.\n- The mouse is red.\n- The mouse is rough.\n- The mouse is young.\n- The mouse sees the cow.\n- The cow is red.\n- The cow is rough.\n- The cow sees the bald eagle.\n- The cow sees the mouse.\n\nNow, let's apply the given logical rules:\n\n1. If something is young then it needs the dog. \n   Since the mouse is young, it needs the dog.\n\n2. If something eats the cow then the cow is kind.\n   Since the cow sees the mouse and the mouse is not mentioned to eat the cow, this rule is not applicable in this scenario.\n\n3. If something is young then it sees the bald eagle.\n   Since the mouse is young, it sees the bald eagle.\n\n4. If something is cold and it needs the dog then it eats the mouse.\n   Since the dog is cold and it needs the dog, it does not directly relate to this rule. However, the dog is not cold and needs the dog (which is a contradictory statement) and it does eat the bald eagle, which is red. \n\n5. If something needs the bald eagle and it is red then it is young.\n   Since the dog eats the bald eagle and the dog is red (this can be derived from the rule that if something eats the bald eagle then it is red), the dog is young.\n\n6. If something eats the mouse then it needs the mouse.\n   Since the dog eats the mouse, the dog needs the mouse.\n\nNow, we need to analyze the statement \"The dog does not need the dog.\"\n\nBased on the information we've gathered:\n\n- The dog is young (rule 5).\n- The dog needs the mouse (rule 6).\n\nThis means the statement \"The dog does not need the dog\" can be considered false, as it contradicts the established fact that the dog needs the mouse, and the mouse is young, implying the dog is young as well.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and the rules to determine the truth value of the statement \"The dog does not need the dog.\"\n\n1. The given statements:\n   - The bald eagle needs the mouse.\n   - The bald eagle sees the mouse.\n   - The cow is red.\n   - The cow is rough.\n   - The cow sees the bald eagle.\n   - The cow sees the mouse.\n   - The dog eats the bald eagle.\n   - The dog is cold.\n   - The dog is rough.\n   - The dog needs the bald eagle.\n   - The mouse eats the bald eagle.\n   - The mouse eats the dog.\n   - The mouse is red.\n   - The mouse is rough.\n   - The mouse is young.\n   - The mouse sees the cow.\n\n2. The given rules:\n   - If something is young then it needs the dog.\n   - If something eats the cow then the cow is kind.\n   - If something is young then it sees the bald eagle.\n   - If something is cold and it needs the dog then it eats the mouse.\n   - If something needs the bald eagle and it is red then it is young.\n   - If something eats the mouse then it needs the mouse.\n   - If something eats the bald eagle then it is red.\n\nNow, let's break down the given statements and rules to determine the truth value of the statement \"The dog does not need the dog.\"\n\nFrom the given statements, we know that:\n- The dog eats the bald eagle.\n- The dog is cold.\n- The dog is rough.\n- The dog needs the bald eagle.\n\nUsing the rules, we can analyze the dog's situation:\n\n- Since the dog is cold and it needs the dog (itself), we need to check if it eats the mouse (rule 4). However, the dog eating the mouse is not directly stated. \n- The rule 4 says if something is cold and it needs the dog then it eats the mouse. Since this rule does not apply directly to the dog itself, we cannot conclude that the dog eats the mouse using this rule.\n\nHowever, if we consider the statement \"The dog eats the mouse\" is implied by rule 4, it is indeed implied that the dog eats the mouse. \n\nThus, from rule 6 (If something eats the mouse then it needs the mouse.), we know that the dog needs the mouse.\n\nNow, we need to determine the relationship between the dog needing the dog and the dog needing the mouse.\n\n- The dog needs the bald eagle (given statement).\n- The dog is red is not stated, so we cannot directly apply rule 5.\n- However, since the dog needs the mouse and the mouse eats the dog, this creates a contradiction.\n\nUsing the rules, we cannot directly determine if the dog is young or not, but we can use the information about the mouse and the dog's relationship.\n\nSince the mouse eats the dog, and the mouse is young, it implies that the dog is not young. \n\nHowever, we know that the mouse is young and it sees the bald eagle (rule 3). Since the mouse is young, it implies that the mouse needs the dog (rule 1).\n\nConsidering the relationships between the mouse and the dog, we can see that there is a contradiction between the statements. \n\nHowever, we can use the information that the dog needs the mouse and the mouse eats the dog to conclude that the dog needs itself indirectly. \n\nGiven the complexity of the relationships and the fact that we cannot directly conclude the truth value using the given rules, we'll need to analyze the given statements again.\n\nUpon reviewing the given statements, we can see that the statement \"The dog does not need the dog\" is true, but this is based on the fact that the dog eats the mouse and the mouse eats the dog, creating a paradoxical situation where the dog indirectly needs itself.\n\nHowever, based on the rules and the given statements, we can conclude that the statement \"The dog does not need the dog\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The dog does not need the dog' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog eats the bald eagle.\n2. The dog is cold.\n3. The dog is rough.\n4. The dog needs the bald eagle.\n\nFrom the statement 'If something eats the mouse then it needs the mouse', we cannot directly conclude the dog needs the mouse, so we'll ignore it for now.\n\nFrom the statement 'If something is young then it sees the bald eagle', we cannot directly conclude that the dog is young. We'll look into it later.\n\nFrom the statement 'If something is young then it needs the dog', we cannot directly conclude that the dog is young. We'll look into it later.\n\nFrom the statement 'If something is cold and it needs the dog then it eats the mouse', we cannot directly conclude that the dog eats the mouse. However, since the dog is cold and it needs the bald eagle (statement 4), we cannot directly conclude that the dog eats the mouse. However, we can look at the other statements to see if the dog eats the mouse.\n\nFrom the statement 'If something needs the bald eagle and it is red then it is young', we cannot directly conclude that the dog is young because it needs the bald eagle but is not red.\n\nNow let's look at the statement 'If something eats the bald eagle then it is red'. We know that the dog eats the bald eagle (statement 1). However, it does not make the dog red. \n\nHowever, we know that the mouse eats the bald eagle (statement 8), so the mouse is red (statement 10). We also know that the mouse sees the dog (statement 13). Now, we can look at the statement 'The mouse sees the cow'. We cannot directly conclude anything from this.\n\nHowever, we know that the cow sees the mouse (statement 6) and that the cow is red (statement 3). We also know that the mouse is red (statement 10), so we cannot conclude anything from this.\n\nNow, let's look at the statement 'The dog is rough'. We know that the cow is rough (statement 4), but we cannot conclude anything from this.\n\nNow, let's look at the statement 'The dog is cold'. We know that the mouse is rough (statement 11), but we cannot conclude anything from this.\n\nNow, let's look at the statement 'The dog needs the bald eagle'. We know that the mouse eats the bald eagle (statement 8), so the mouse needs the bald eagle (statement 9). We also know that the mouse eats the dog (statement 10), so we cannot conclude anything from this.\n\nNow, let's look at the statement 'The dog eats the bald eagle'. We know that the mouse eats the bald eagle (statement 8), so we cannot conclude anything from this.\n\nHowever, we know that the mouse is young (statement 12), and we also know that the mouse needs the mouse (statement 9). Now, let's look at the statement 'If something is young then it needs the dog'. We cannot directly conclude that the mouse needs the dog.\n\nHowever, we know that the mouse sees the cow (statement 13), and the cow is kind (statement 2). Now, let's look at the statement 'If something eats the cow then the cow is kind'. We cannot conclude anything from this.\n\nHowever, we know that the mouse eats the cow (no), the dog eats the bald eagle (no), the mouse eats the dog (no), the mouse eats the bald eagle (no). However, we know that the dog sees the mouse (no), the dog sees the bald eagle (no), the mouse sees the cow (no), the cow sees the mouse (no), the cow sees the bald eagle (no), the mouse sees the dog (no), the dog sees the cow (no).\n\nHowever, we know that the dog needs the bald eagle (statement 4), the mouse is young (statement 12), the mouse is rough (statement 11), the mouse is red (statement 10), the mouse is cold (no), the mouse is young (statement 12), the mouse sees the cow (statement 13), the mouse eats the dog (statement 10), the mouse needs the mouse (statement 9), the mouse eats the bald eagle (statement 8), the mouse is rough (statement 11), the mouse sees the dog (no), the dog sees the mouse (no), the dog sees the cow (no), the cow sees the mouse (no), the cow sees the bald eagle (no).\n\nNow, let's look at the statement 'The dog does not need the dog'. We cannot conclude anything from the statements provided.\n\nHowever, since we know that the mouse is young (statement 12), we can look at the statement 'If something is young then it needs the dog'. We cannot conclude that the mouse needs the dog.\n\nHowever, we know that the mouse is young (statement 12) and the mouse eats the dog (statement 10), and the mouse sees the dog (no). We also know that the dog sees the mouse (no). However, we know that the mouse is young (statement 12), the mouse is rough (statement 11), the mouse is red (statement 10), the mouse is cold (no), the mouse sees the cow (statement 13), the mouse eats the dog (statement 10), the mouse needs the mouse (statement 9), the mouse eats the bald eagle (statement 8), the mouse is rough (statement 11), the mouse sees the dog (no), the dog sees the mouse (no), the dog sees the cow (no), the cow sees the mouse (no), the cow sees the bald eagle (no).\n\nHowever, we know that the mouse is young (statement 12) and the mouse eats the dog (statement 10). We also know that the dog eats the bald eagle (statement 1) and the dog is cold (statement 2), but we cannot conclude that the dog eats the mouse.\n\nHowever, we know that the mouse is young (statement 12) and the mouse eats the dog (statement 10), and the mouse sees the dog (no). However, we know that the mouse is young (statement 12), the mouse is rough (statement 11), the mouse is red (statement 10), the mouse is cold (no), the mouse sees the cow (statement 13), the mouse eats the dog (statement 10), the mouse needs the mouse (statement 9), the mouse eats the bald eagle (statement 8), the mouse is rough (statement 11), the mouse sees the dog (no), the dog sees the mouse (no), the dog sees the cow (no), the cow sees the mouse (no), the cow sees the bald eagle (no).\n\nHowever, we know that the dog needs the bald eagle (statement 4) and the dog is cold (statement 2). However, we cannot conclude that the dog eats the mouse.\n\nNow, let's look at the statement 'If something eats the mouse then it needs the mouse'. We know that the mouse eats the dog (statement 10), so the mouse needs the mouse (statement 9).\n\nHowever, we know that the dog needs the bald eagle (statement 4). However, we cannot conclude that the dog needs the mouse.\n\nHowever, we know that the mouse eats the bald eagle (statement 8), and the mouse is young (statement 12), and the mouse is rough (statement 11), and the mouse is red (statement 10), and the mouse sees the cow (statement 13), and the mouse eats the dog (statement 10), and the mouse needs the mouse (statement 9). However, we cannot conclude that the mouse eats the mouse.\n\nHowever, we know that the dog eats the bald eagle (statement 1). However, we cannot conclude that the dog eats the mouse.\n\nHowever, we know that the dog eats the bald eagle (statement 1), and the dog is cold (statement 2), and the dog is rough (statement 3). However, we cannot conclude that the dog eats the mouse.\n\nHowever, we know that the mouse eats the bald eagle (statement 8), and the mouse is young (statement 12), and the mouse is rough (statement 11), and the mouse is red (statement 10), and the mouse sees the cow (statement 13), and the mouse eats the dog (statement 10), and the mouse needs the mouse (statement 9). However, we cannot conclude that the mouse eats the mouse.\n\nHowever, we know that the mouse is young (statement 12), the mouse is rough (statement 11), the mouse is red (statement 10), the mouse is cold (no), the mouse sees the cow (statement 13), the mouse eats the dog (statement 10), the mouse needs the mouse (statement 9), the mouse eats the bald eagle (statement 8), the mouse is rough (statement 11), the mouse sees the dog (no), the dog sees the mouse (no), the dog sees the cow (no), the cow sees the mouse (no), the cow sees the bald eagle (no).\n\nHowever, we know that the dog eats the bald eagle (statement 1). However, we know that the dog is cold (statement 2), and the dog is rough (statement 3). However, we cannot conclude that the dog eats the mouse.\n\nHowever, we know that the mouse is young (statement 12), the mouse is rough (statement 11), the mouse is red (statement 10), the mouse is cold (no), the mouse sees the cow (statement 13), the mouse eats the dog (statement 10), the mouse needs the mouse (",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to determine the properties of each object in the given statements and then apply the given conditions to find the truth value of the statement.\n\nFirst, let's list the given statements:\n\n1. The bald eagle needs the mouse.\n2. The bald eagle sees the mouse.\n3. The cow is red.\n4. The cow is rough.\n5. The cow sees the bald eagle.\n6. The cow sees the mouse.\n7. The dog eats the bald eagle.\n8. The dog is cold.\n9. The dog is rough.\n10. The dog needs the bald eagle.\n11. The mouse eats the bald eagle.\n12. The mouse eats the dog.\n13. The mouse is red.\n14. The mouse is rough.\n15. The mouse is young.\n16. The mouse sees the cow.\n17. If something is young then it needs the dog.\n18. If something eats the cow then the cow is kind.\n19. If something is young then it sees the bald eagle.\n20. If something is cold and it needs the dog then it eats the mouse.\n21. If something needs the bald eagle and it is red then it is young.\n22. If something eats the mouse then it needs the mouse.\n23. If something eats the bald eagle then it is red.\n\nNow, let's determine the properties of each object based on the given statements:\n\n- The bald eagle: needs the mouse, sees the mouse.\n- The cow: is red, is rough, is kind (because it is eaten by the mouse, and the mouse sees the cow), sees the bald eagle, sees the mouse.\n- The dog: eats the bald eagle, is cold, is rough, needs the bald eagle.\n- The mouse: eats the bald eagle, eats the dog, is red, is rough, is young, sees the cow.\n\nNow, let's determine the truth value of the statement \"The dog does not need the dog.\"\n\nWe can apply the condition (17) which states that \"If something is young then it needs the dog.\" Since the mouse is young, it needs the dog.\n\nHowever, we can also apply the condition (22) which states that \"If something eats the mouse then it needs the mouse.\" Since the dog eats the mouse, the dog needs the mouse.\n\nWe can't conclude that the dog does not need the dog. We can't conclude that the dog needs the dog either.\n\nTherefore, the truth value of the statement is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The dog does not need the dog,\" we need to gather information from the given statements and apply logical reasoning.\n\n1. The mouse eats the dog. (Statement 8)\n2. The dog needs the bald eagle. (Statement 7)\n3. The mouse eats the bald eagle. (Statement 10)\n4. If something eats the bald eagle then it is red. (Statement 13)\n   From statement 3 and 4, the mouse is red.\n5. The mouse is red. (Statement 12)\n   From statements 3 and 5, the mouse is both red and eats the bald eagle, which makes it true that the mouse is red. However, this statement alone does not imply the mouse's redness.\n6. The mouse sees the cow. (Statement 14)\n7. If something is red then it sees the cow. (This is an implication that can be derived from statements 4 and 6)\n   Since the mouse is red (from statement 4 and 3), it sees the cow.\n8. The dog is cold. (Statement 9)\n9. The dog is rough. (Statement 10)\n10. The dog needs the bald eagle. (Statement 7)\n11. If something is cold and it needs the dog then it eats the mouse. (Statement 12)\n    The dog is cold (statement 8), but this statement alone does not imply the dog's condition of needing the dog. However, the statement also states that if the dog is cold and it needs the dog, then it eats the mouse.\n12. The mouse eats the dog. (Statement 8)\n13. The mouse is red. (Statement 12)\n14. The mouse is rough. (Statement 11)\n15. The mouse is young. (Statement 13)\n16. The mouse sees the cow. (Statement 14)\n17. If something sees the bald eagle then it is young. (Statement 11)\n    The mouse sees the bald eagle (this can be inferred from the statements 1, 2, and 3), making it true that the mouse is young.\n18. If something is young then it needs the dog. (Statement 2)\n    Since the mouse is young (from statement 17), it needs the dog.\n\nNow we can determine the statement \"The dog does not need the dog.\"\n\nThe given statements imply that the mouse needs the dog. However, the statements do not provide any information about whether the dog needs the dog. The only statements related to the dog's needs are that the dog needs the bald eagle and that if something is cold and it needs the dog then it eats the mouse. \n\nSince the dog is cold and it needs the bald eagle, and there is no information about the dog needing the dog, we can't determine whether the dog does not need the dog based on the given statements.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statement is: The dog does not need the dog.\n2. We know that if something is young then it needs the dog. However, this information is not directly relevant to the given statement.\n3. We also know that if something eats the mouse then it needs the mouse. Since the dog eats the mouse, the dog needs the mouse (from this rule).\n4. The statement in question is the dog not needing the dog. If the dog needs the mouse, and it is the case that something that needs the mouse is not the same as needing itself, we can't infer this from the given rules directly. However, we also know that if something needs the bald eagle and it is red then it is young.\n\n5. Let's analyze the given rules to infer more information about the dog and the mouse. From rule 7, we know that the mouse is young. Also, from rule 3, we know that the mouse eats the cow. Then from rule 2, we can infer that the cow is kind.\n\n6. Now let's look at the dog. The dog eats the bald eagle (from rule 5). So from rule 8, the dog is red.\n\n7. Now we need to determine whether the dog is young. If the dog needs the bald eagle and it is red then it is young (from rule 4). Since the dog is red (from step 6), we need to check if the dog needs the bald eagle.\n\n8. We know that if something is cold and it needs the dog then it eats the mouse (from rule 5). However, we don't know if the dog is cold, so we can't use this information to infer that the dog needs the mouse. But, we do know that the dog eats the mouse. We also know that the mouse eats the dog (from rule 6). If something needs the mouse, it eats the mouse. Since the dog eats the mouse and the mouse eats the dog, we can't directly infer if the dog needs the mouse from the given rules.\n\nHowever, the given rules are not sufficient to determine the dog's need for itself directly. The given rules provide enough information to determine some of the properties of the dog and the mouse, but they do not provide enough information to directly determine whether the dog needs the dog or not.\n\nTherefore, we can conclude that the given statement is unknown.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nFrom the given information, we have:\n- The mouse is young. (From \"The mouse is young\")\n- If something is young then it needs the dog. (From \"If something is young then it needs the dog\")\n- The mouse needs the dog. (Conclusion from the above two statements)\n\nNow, let's try to apply the given information to the statement \"The dog does not need the dog\". We can see that the statement is about the dog needing the dog. \n\nHowever, there is no direct information given about the dog needing or not needing the dog. The only information related to the dog needing something is that the mouse needs the dog (since the mouse is young), and the mouse eats the dog.\n\nLet's check if the information about the mouse eating the dog can be related to the statement. \n\nFrom the given information:\n- The mouse eats the dog. (From \"The mouse eats the dog\")\n- If something eats the mouse then it needs the mouse. (From \"If something eats the mouse then it needs the mouse\")\n- The mouse needs the mouse. (Conclusion from the above two statements)\n\nHowever, we cannot use the information about the mouse needing the mouse to infer whether the dog needs the dog or not. \n\nSince there is no information directly related to the dog needing the dog, the statement is unknown.\n\nHowever, to determine the status of the statement, let's look at the statements that tell us the relationship between an animal and itself needing or eating that animal.\n\nThe statement \"The dog eats the bald eagle\" tells us that the dog eats an animal and that the animal is red. The statement \"If something eats the bald eagle then it is red\" tells us that the dog is red.\n\nThe statement \"The mouse eats the dog\" tells us that the mouse eats an animal and that the animal is rough. The statement \"If something is rough then it needs the bald eagle\" is not present, but \"The dog is rough\" and \"If something is rough then it is cold\" is not present either. However, \"The dog is cold\" is present, but it does not tell us that the dog is rough. \n\nHowever, the statement \"The mouse is rough\" and \"The mouse sees the cow\" tells us that the mouse is rough and the mouse sees the cow. The statement \"If something eats the cow then the cow is kind\" tells us that the cow is kind. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"If something needs the bald eagle and it is red then it is young\" tells us that the dog is red and the dog needs the bald eagle, but it does not tell us that the dog needs the dog. The statement \"The mouse is young\" and \"The mouse needs the dog\" tells us that the mouse is young and the mouse needs the dog. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is red\" and \"The dog needs the bald eagle\" tells us that the dog is red and the dog needs the bald eagle, but it does not tell us that the dog needs the dog. \n\nHowever, the statement \"The mouse sees the bald eagle\" tells us that the mouse sees the bald eagle. The statement \"If something is young then it sees the bald eagle\" tells us that the mouse is young and the mouse sees the bald eagle. The statement \"The mouse is young\" tells us that the mouse is young. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The mouse eats the bald eagle\" tells us that the mouse eats the bald eagle. The statement \"If something eats the bald eagle then it is red\" tells us that the mouse is red. The statement \"The mouse is red\" tells us that the mouse is red. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog eats the bald eagle\" tells us that the dog eats the bald eagle. The statement \"If something eats the bald eagle then it is red\" tells us that the dog is red. The statement \"The dog is red\" tells us that the dog is red. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"If something is cold and it needs the dog then it eats the mouse\" tells us that the dog is cold and the dog needs the dog. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is cold\" tells us that the dog is cold. The statement \"If something is cold and it needs the dog then it eats the mouse\" tells us that the dog is cold and the dog needs the dog. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog needs the bald eagle\" tells us that the dog needs the bald eagle. The statement \"If something needs the bald eagle and it is red then it is young\" tells us that the dog is red and the dog needs the bald eagle. The statement \"The dog is red\" tells us that the dog is red. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog needs the bald eagle\" tells us that the dog needs the bald eagle. The statement \"The mouse eats the dog\" tells us that the mouse eats the dog. The statement \"If something eats the mouse then it needs the mouse\" tells us that the mouse needs the mouse. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is red\" tells us that the dog is red. The statement \"The dog needs the bald eagle\" tells us that the dog needs the bald eagle. The statement \"If something needs the bald eagle and it is red then it is young\" tells us that the dog is red and the dog needs the bald eagle. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog eats the bald eagle\" tells us that the dog eats the bald eagle. The statement \"If something eats the bald eagle then it is red\" tells us that the dog is red. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The mouse sees the bald eagle\" tells us that the mouse sees the bald eagle. The statement \"If something is young then it sees the bald eagle\" tells us that the mouse is young and the mouse sees the bald eagle. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is rough\" tells us that the dog is rough. The statement \"The dog is cold\" tells us that the dog is cold. The statement \"If something is cold and it needs the dog then it eats the mouse\" tells us that the dog is cold and the dog needs the dog. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is red\" tells us that the dog is red. The statement \"The dog is rough\" tells us that the dog is rough. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The mouse eats the dog\" tells us that the mouse eats the dog. The statement \"If something eats the mouse then it needs the mouse\" tells us that the mouse needs the mouse. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The mouse is young\" tells us that the mouse is young. The statement \"The mouse sees the bald eagle\" tells us that the mouse sees the bald eagle. The statement \"If something is young then it sees the bald eagle\" tells us that the mouse is young and the mouse sees the bald eagle. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog sees the mouse\" is not present. However, the statement \"The cow sees the mouse\" tells us that the cow sees the mouse. The statement \"The cow sees the bald eagle\" tells us that the cow sees the bald eagle. The statement \"The cow is rough\" tells us that the cow is rough. The statement \"The cow is red\" tells us that the cow is red. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog is red\" tells us that the dog is red. The statement \"The dog is rough\" tells us that the dog is rough. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever, the statement \"The dog sees the cow\" is not present. However, the statement \"The cow sees the mouse\" tells us that the cow sees the mouse. The statement \"The cow is rough\" tells us that the cow is rough. However, we cannot use this information to determine the status of the statement \"The dog does not need the dog\".\n\nHowever,",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and substitution based on the given statements.\n\n1. The mouse is young. (From: The mouse is young)\n2. If something is young then it needs the dog. \n   So, the mouse needs the dog. (From: The mouse is young)\n\n3. If something eats the mouse then it needs the mouse. \n   Since the dog eats the mouse, the dog needs the mouse. (From: The mouse eats the dog)\n\n4. If something is cold and it needs the dog then it eats the mouse. \n   The dog is cold, and it needs the dog (from step 2), so the dog eats the mouse. (From: The dog is cold)\n\nThis seems to be a contradiction. However, let's look at the statement we're trying to evaluate: \nThe dog does not need the dog.\n\nFrom step 2, the mouse needs the dog. \nFrom step 3, the dog needs the mouse. \nBut from the statement we're given, there is no direct relationship between the dog needing the dog.\n\nTo evaluate the statement \"The dog does not need the dog,\" we must see if there's a contradiction or if we can conclude that the statement is true or false.\n\nFrom the information given, we can conclude the following: \nThe dog needs the mouse. \nThe mouse is young and needs the dog.\n\nHowever, there's no information to directly conclude whether the dog needs the dog or not.\n\nSo, let's analyze the information given about the dog needing the dog.\n\nIf something is cold and it needs the dog then it eats the mouse. \nThe dog is cold and it needs the dog. However, there is no information that the dog is the subject of this rule.\n\nHowever, if the dog needs the dog, then it implies that the dog is not the subject of the rule that states something is cold and it needs the dog then it eats the mouse.\n\nIf the dog needs the dog, then it implies that the dog is not the subject of this rule because if it were, then the dog would eat the mouse.\n\nHowever, if the dog needs the mouse, then it eats the mouse. \n\nSo, if the dog needs the dog, then the dog eats the mouse. However, this seems to be a contradiction because we already know that the dog eats the mouse.\n\nHowever, let's examine the statement again: The dog does not need the dog.\n\nWe can't directly determine whether the dog needs the dog or not.\n\nThe statement \"The dog does not need the dog\" is actually unknown because we can't directly conclude whether the dog needs the dog or not from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to find the relationship between the dog and the statement \"The dog does not need the dog.\"\n\nFrom the given statements:\n\n1. The dog eats the bald eagle.\n2. The dog is cold.\n3. The dog is rough.\n4. The dog needs the bald eagle.\n\nFrom statement 4, we know the dog needs the bald eagle. \n\nFrom statement 2, we know the dog is cold. \n\nFrom the given rules:\n- If something is cold and it needs the dog then it eats the mouse.\n- This rule does not apply here, but we know from the rules given the dog eats the mouse is not a requirement to be cold and to need the dog.\n\nHowever, there is a rule that states: \n- If something needs the bald eagle and it is red then it is young.\nThis rule does not apply to the dog since the dog is not red.\n\nBut there is another rule that states:\n- If something eats the mouse then it needs the mouse.\nThis rule applies to the mouse eating the dog.\n\nFrom the statements:\n- The mouse eats the dog.\n- The mouse eats the bald eagle.\n- The mouse is red.\n- The mouse is rough.\n- The mouse is young.\n\nGiven the rule \"If something eats the mouse then it needs the mouse,\" we know that the mouse needs the mouse.\n\nNow, we need to find a relationship between the dog and the statement \"The dog does not need the dog.\"\n\nFrom the statements and the rules, we know the following:\n- The mouse sees the cow.\n- The cow is red.\n- The cow is rough.\n- The cow sees the bald eagle.\n- The cow sees the mouse.\n- The dog eats the bald eagle.\n\nFrom the rules, we know that the cow is kind because it is eaten by the mouse.\n\nBut there is no rule or statement that directly states the relationship between the dog and the statement \"The dog does not need the dog.\"\n\nHowever, from the rule \"If something needs the bald eagle and it is red then it is young,\" we know that the mouse is young because it needs the bald eagle (from statement 1) and is red (from statement 5).\n\nBut we also know from the rule \"If something eats the mouse then it needs the mouse\" that the dog needs the mouse because it eats the mouse.\n\nHowever, we do not know if the dog is red.\n\nBut we do know that the mouse is young, and from the rule \"If something is young then it sees the bald eagle,\" the mouse sees the bald eagle.\n\nHowever, the statement \"The mouse sees the bald eagle\" does not tell us anything about the dog and the statement \"The dog does not need the dog.\"\n\nBut we do know that the dog eats the mouse, and from the rule \"If something eats the mouse then it needs the mouse,\" the dog needs the mouse.\n\nNow, let's try to find a connection between the dog and the statement \"The dog does not need the dog.\"\n\nHowever, we cannot deduce if the dog does or does not need the dog from the given statements and rules.\n\nTherefore, we have to conclude that the relationship between the dog and the statement \"The dog does not need the dog\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given premises and the rules to determine the properties of the objects mentioned. \n\nFrom the given premises:\n\n1. The mouse eats the bald eagle.\n2. The mouse eats the dog.\n3. The mouse is red.\n4. The mouse is rough.\n5. The mouse is young.\n6. The mouse sees the cow.\n7. The dog eats the bald eagle.\n8. The dog is cold.\n9. The dog is rough.\n10. The dog needs the bald eagle.\n\nWe need to determine whether the dog needs the dog.\n\nTo do this, let's first try to infer more properties using the given rules:\n\n1. If something is young then it needs the dog.\n   - Since the mouse is young, it needs the dog. (rule 1)\n\n2. If something eats the cow then the cow is kind.\n   - We don't know if the mouse eats the cow, so we cannot conclude this.\n\n3. If something is young then it sees the bald eagle.\n   - Since the mouse is young, it sees the bald eagle. (rule 3)\n\n4. If something is cold and it needs the dog then it eats the mouse.\n   - Since the dog is cold and it needs the dog, we cannot directly conclude this rule. However, we will come back to this.\n\n5. If something needs the bald eagle and it is red then it is young.\n   - The mouse needs the bald eagle (because it eats the bald eagle, rule 5), and the mouse is red (given premise 3). Therefore, the mouse is young. (rule 5)\n\n6. If something eats the mouse then it needs the mouse.\n   - The dog eats the mouse (given premise 2), so the dog needs the mouse.\n\n7. If something eats the bald eagle then it is red.\n   - The dog and the mouse both eat the bald eagle. According to this rule, both the dog and the mouse are red. However, we already know the mouse is red, so this rule confirms the dog is red.\n\nNow, let's go back to rule 4: \"If something is cold and it needs the dog then it eats the mouse.\"\n\n- The dog is cold (given premise 8).\n- The dog needs the dog (this is what we are trying to determine).\n\nSince the dog is cold and it needs the dog, according to rule 4, the dog should eat the mouse. However, we already know the dog eats the mouse (given premise 2).\n\nBut we also know that the dog sees the mouse (because the mouse is young and sees the bald eagle, rule 3 and premise 5). If the dog sees the mouse, it implies that the dog does not need the mouse. This is because if the dog sees the mouse, it implies that the dog has access to the mouse, and thus it does not need the mouse. \n\nHowever, we initially concluded that the dog needs the mouse because the dog eats the mouse. This seems to be a contradiction. But the reason we concluded that the dog needs the mouse initially is because we assumed that the dog eats the mouse. However, rule 4 states that if something is cold and it needs the dog, then it eats the mouse. \n\nSince the dog is cold, according to rule 4, it should eat the mouse. But this implies that the dog does not see the mouse, which in turn implies that the dog needs the mouse.\n\nHowever, the reason we concluded that the dog needs the mouse initially is because the dog eats the mouse. If the dog eats the mouse, then it implies that the dog sees the mouse. If the dog sees the mouse, then it implies that the dog does not need the mouse.\n\nThus, we have a contradiction in our previous conclusions. We initially concluded that the dog needs the mouse because the dog eats the mouse. However, if the dog eats the mouse, then it implies that the dog sees the mouse, and thus the dog does not need the mouse.\n\nThis implies that our initial conclusion that the dog needs the mouse was incorrect.\n\nTherefore, the correct conclusion is that the dog does not need the mouse.\n\nThis implies that the dog does not need the dog.\n\nSo, the statement \"The dog does not need the dog\" is true.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and determine the truth value of the statement \"The dog does not need the dog.\"\n\nLet's break down the given statements:\n\n1. If something is young then it needs the dog. \n2. If something eats the cow then the cow is kind. \n3. If something is young then it sees the bald eagle. \n4. If something is cold and it needs the dog then it eats the mouse. \n5. If something needs the bald eagle and it is red then it is young. \n6. If something eats the mouse then it needs the mouse. \n7. If something eats the bald eagle then it is red.\n\nNow, let's analyze the statement \"The dog does not need the dog.\"\n\nTo determine this, we need to check if the dog is young or if it needs the dog.\n\nFrom the statements, we know that:\n- The mouse is young (statement 6: If something eats the mouse then it needs the mouse. Then from the statement 5 we can conclude that mouse is young because mouse eats the cow, which makes cow kind. But we don't have any information about the mouse being young before. So this is incorrect, we can't conclude that mouse is young using statement 5 and statement 6).\n- The mouse needs the mouse (statement 6: If something eats the mouse then it needs the mouse.).\n\nHowever, we have more information about the dog and the mouse from other statements:\n- The dog eats the bald eagle (statement 7: If something eats the bald eagle then it is red. So, the dog is red).\n- The dog is red (statement 7: If something eats the bald eagle then it is red.).\n- The dog is red (This is the same as the previous statement).\n- The dog is rough (statement 3: The dog is rough).\n- The dog needs the bald eagle (statement 7: If something eats the bald eagle then it is red.).\n\nNow, let's apply the given statements to the dog:\n- The dog is red (statement 7: If something eats the bald eagle then it is red.).\n- The dog needs the bald eagle (statement 7: If something eats the bald eagle then it is red.).\n- If something needs the bald eagle and it is red then it is young (statement 5: If something needs the bald eagle and it is red then it is young.).\n\nFrom the statement 5, we can conclude that the dog is young because the dog needs the bald eagle and it is red.\n\nNow that we know the dog is young, let's check the statement \"The dog does not need the dog.\"\n\nAccording to statement 1: If something is young then it needs the dog. Since the dog is young, it needs the dog.\n\nTherefore, the statement \"The dog does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_dog, needs_dog_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_bald_eagle, red_dog), young_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, red_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(eats_cow_eagle, kind_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, eagle)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_eagle, red_dog), young_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(eats_X_cow, kind_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_bald_eagle, red_dog), young_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_X, needs_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_X, needs_X_dog), eats_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, mouse)",
+          "z3_formula": "needs_mouse_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, mouse)",
+          "z3_formula": "needs_mouse_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == False",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(eats_mouse_cow, kind_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_bald_eagle, red_dog), young_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, red_dog)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, eagle)",
+          "z3_formula": "needs_dog_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> red(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, red_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, eagle)",
+          "z3_formula": "needs_dog_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> young(X)",
+          "z3_formula": "Implies(sees_mouse_eagle, young_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_dog, needs_dog_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & not(X == mouse) -> not(needs(X, X))",
+          "z3_formula": "Implies(And(needs_dog_mouse, Not(needs_dog_mouse == needs_dog_dog)), Not(needs_dog_dog))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cow) -> young(cow)",
+          "z3_formula": "Implies(eats_mouse_cow, young_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_dog, young_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> eats(X, mouse)",
+          "z3_formula": "Implies(needs_dog_mouse, eats_dog_mouse)",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(eats_mouse_dog, needs_mouse_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, mouse)",
+          "z3_formula": "eats_dog_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, mouse)",
+          "z3_formula": "eats_dog_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "Not(needs_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog) == False | needs(dog, mouse)",
+          "z3_formula": "Or(Not(needs_dog_dog), needs_dog_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, eagle)",
+          "z3_formula": "needs_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, eagle) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_eagle), eats_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_eagle, red_dog), young_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, mouse)",
+          "z3_formula": "needs_mouse_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, eagle)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, eagle)",
+          "z3_formula": "sees_mouse_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(eats_mouse_cow, kind_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, red_mouse), young_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, red_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, mouse)",
+          "z3_formula": "Not(needs_dog_mouse) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "Not(needs_dog_dog) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, dog)",
+          "z3_formula": "Implies(young_dog, needs_dog_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(eats_dog_cow, kind_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_dog, sees_dog_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, dog) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(cold_dog, needs_dog_dog), eats_dog_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_dog_bald_eagle, red_dog), young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(eats_dog_mouse, needs_dog_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, red_dog)",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 206,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 3,
+      "total_weight": 200,
+      "solve_time_ms": 1.6602249816060066
+    },
+    "timing": {
+      "trace_gen_s": 24.816,
+      "extraction_s": 40.698,
+      "dedup_s": 2.314,
+      "maxsat_s": 0.005,
+      "total_s": 67.832
+    }
+  }
+}

@@ -1,0 +1,3137 @@
+# review analysis tex consistency
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_review_analysis-tex-consistency_20260519T042945.log`
+- **Structured JSON:** [`a86a92c5a6257e91c3d2.json`](../../sessions/a8/a86a92c5a6257e91c3d2.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7dc12e50-aba1-430e-8586-aa7dd949844b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779178800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f7f8479c-7c19-4a67-a857-450129ff6424",
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the necessary files in parallel to gather all the data needed for this audit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "61a6ab5e-70d8-4f3f-b475-5c755caad2cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCJ47URdiLb3sH7jeY5AaS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13171
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll read the analysis.tex, registry, and unified κ data in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "e3b093c5-c48c-4b51-bd1d-f9f81754b1e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCJ47URdiLb3sH7jeY5AaS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13171
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YTFcTrLTYeh1QFHZv1Etzx`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "01869138-caf0-4d77-95d1-4fa7b84eb00f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCJ47URdiLb3sH7jeY5AaS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13171
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T04:29:56.046Z_
+
+<details><summary>↩ Tool result · `toolu_01YTFcTrLTYeh1QFHZv1Etzx`</summary>
+
+```text
+1	\section{Analysis}
+2	\label{sec:analysis}
+3	
+4	The regime-dependent pattern in \S\ref{sec:main-results} and the failure modes in \S\ref{sec:failure-modes} establish \emph{where} SICA succeeds and fails. This section investigates \emph{why}, through six quantitative lenses: trace correlation (\S\ref{sec:effective-k}), extraction quality (\S\ref{sec:extraction-taxonomy}), hyperparameter sensitivity (\S\ref{sec:k-sensitivity}, \S\ref{sec:t-sensitivity}), the entropy structure of gains (\S\ref{sec:entropy}), solver contribution (\S\ref{sec:ablation}), and remediation failure (\S\ref{sec:remediation}).
+5	
+6	\subsection{Condorcet Effective-K}
+7	\label{sec:effective-k}
+8	
+9	Table~\ref{tab:independence} reports Fleiss' $\kappa$ and the resulting Effective-K (Eq.~\ref{eq:effk}) across model-dataset conditions with $K = 12$ traces. $\kappa$ ranges from 0.21 to 0.82, and the resulting $K_{\text{eff}}$ spans $1.20\text{--}3.63$. The strongest model-dataset pair (Qwen2.5-14B on LogiQA, $\kappa = 0.82$) retains $K_{\text{eff}} = 1.20$: twelve traces carry barely more information than a single sample. Mistral-7B on FOLIO produces moderate agreement ($\kappa = 0.50$ for seed 42, $K_{\text{eff}} = 1.85$), consistent with its position in the Goldilocks zone. Mistral-7B on ProofWriter has the lowest agreement ($\kappa = 0.21$, $K_{\text{eff}} = 3.63$), yet SICA hurts ($\Delta = -2.83$\,pp) because trace quality is too low (SC $= 39.33\%$). High $K_{\text{eff}}$ alone does not guarantee improvement; the model must also produce sufficiently accurate traces. Qwen2.5-14B on FOLIO reaches 58.3\% unanimous problems and 63.0\% on LogiQA; Mistral-7B on FOLIO has only 14.2\%. Unanimous problems leave zero room for constraint-based reranking, and models with high unanimity rates offer SICA a vanishingly small operating window.
+10	
+11	\begin{table}[t]
+12	\centering
+13	\small
+14	\caption{Trace independence metrics ($K = 12$). $\kappa$: Fleiss' Kappa. $K_{\text{eff}}$: Effective-K (Eq.~\ref{eq:effk}). Unan.: unanimous-answer fraction (\%). $\Delta$: SICA $-$ SC (pp). Mistral s42/s123/s456 are separate random seeds on the same evaluation set. Mistral = Mistral-7B; Qwen2.5 = Qwen2.5-14B; Qwen3 = Qwen3-14B.}
+15	\label{tab:independence}
+16	\begin{tabular}{@{}llcccr@{}}
+17	\toprule
+18	Model & Domain & $\kappa$ & $K_{\text{eff}}$ & Unan. & $\Delta$ \\
+19	\midrule
+20	Mistral (s42) & FOLIO & 0.50 & 1.85 & 18.6 & $\mathbf{+4.90}$ \\
+21	Mistral (s123) & FOLIO & 0.41 & 2.17 & 14.2 & $+$3.43 \\
+22	Mistral (s456) & FOLIO & 0.40 & 2.22 & 14.2 & $-$0.49 \\
+23	Mistral & PW-D5 & 0.21 & 3.63 & & $-$2.83 \\
+24	Mistral & LogiQA & 0.50 & 1.84 & 20.5 & $+$0.50 \\
+25	\addlinespace
+26	Qwen2.5 (ICL) & FOLIO & 0.39 & 2.25 & & $+$0.50 \\
+27	Qwen2.5 & FOLIO & 0.74 & 1.31 & 58.3 & $-$0.49 \\
+28	Qwen2.5 & LogiQA & 0.82 & 1.20 & 63.0 & $-$0.50 \\
+29	Qwen2.5 & PW-D5 & 0.62 & 1.53 & & \\
+30	\addlinespace
+31	Qwen3 & PW-D5 & 0.77 & 1.27 & & \\
+32	\bottomrule
+33	\end{tabular}
+34	\end{table}
+35	
+36	Cross-seed comparison reveals the limits of $K_{\text{eff}}$ as a predictor. Mistral-7B's three FOLIO seeds produce $\kappa = 0.50$, $0.41$, $0.40$ ($K_{\text{eff}} = 1.85$, $2.17$, $2.22$), yet $\Delta$ is non-monotonic: the seed with the lowest $K_{\text{eff}}$ (s42, $1.85$) produces the largest gain ($+4.90$\,pp), while s456 ($K_{\text{eff}} = 2.22$) shows $\Delta = -0.49$\,pp. This non-monotonicity indicates that seed-level sampling variance, not trace independence alone, determines whether the constraint pool happens to contain discriminative information. Two conditions are jointly necessary: sufficient $K_{\text{eff}}$ (the Qwen conditions with $K_{\text{eff}} \leq 1.31$ never show positive $\Delta$) and sufficient SC accuracy (exp-046 with the highest $K_{\text{eff}} = 3.63$ but SC $= 39\%$ produces significant harm). The SC plateau remains explained by the correlation floor: beyond $K_{\text{eff}}$, additional traces are redundant.
+37	
+38	\subsection{Extraction Error Taxonomy}
+39	\label{sec:extraction-taxonomy}
+40	
+41	Constraints must discriminate between candidate answers for MAX-SAT to produce a ranking different from majority vote. We measure discriminative power at two levels on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). At the source-trace level, 39.2\% of total constraint weight originates from traces whose answer differs from the plurality, but only 12.1\% of individual constraints fall into this minority category. At the Z3 semantic level, the picture is worse: only 8.2\% of constraints [95\% CI: 7.6, 8.8] are discriminative, producing different satisfiability outcomes when evaluated against different candidate answers.
+42	
+43	The primary mechanism behind this collapse is variable naming inconsistency. Each trace produces constraints with its own variable names, so Z3 treats identically-intended propositions as unrelated symbols. Among cross-answer constraint pairs, 56.4\% share zero Z3 variables, and the solver cannot detect logical relationships when constraints use disjoint symbol sets. Even when we filter the constraint pool to retain only the 8.2\% discriminative subset, accuracy does not improve. The discriminative constraints are too sparse and too weakly correlated with correctness to shift the MAX-SAT solution. The non-discriminative majority does not merely dilute the signal; the discriminative minority itself lacks the coherence to overcome noise.
+44	
+45	\subsection{K Sensitivity}
+46	\label{sec:k-sensitivity}
+47	
+48	Figure~\ref{fig:k-sensitivity} shows SICA $\Delta$ as a function of the number of sampled traces $K$ for Mistral-7B on FOLIO ($n = 204$, seed 42). The relationship follows an inverted-U curve: $K = 4$ yields $\Delta = -1.47$\,pp, $K = 8$ yields $\Delta = -0.98$\,pp, $K = 12$ reaches the peak at $\Delta = +4.90$\,pp, and $K = 16$ drops to $\Delta = +1.47$\,pp. At low $K$, the constraint pool lacks diversity and MAX-SAT has too few clauses to produce a ranking different from SC. At high $K$, diminishing returns from non-independent traces (Eq.~\ref{eq:effk}) add redundant constraints without new discriminative information. The $K = 12$ peak reflects a transient balance between constraint diversity and trace independence, but even this optimum captures only 34.5\% of the oracle ceiling ($+14.22$\,pp). The narrow peak further constrains practical applicability: the best $K$ depends on the model-dataset condition and cannot be determined without labeled data.
+49	
+50	\begin{figure}[t]
+51	\centering
+52	\includegraphics[width=\columnwidth]{f3_k_sensitivity}
+53	\caption{SICA $\Delta$ (pp) vs.\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, seed 42, $T = 0.7$). The inverted-U curve peaks at $K = 12$. Error bars: 95\% bootstrap CI.}
+54	\label{fig:k-sensitivity}
+55	\end{figure}
+56	
+57	\subsection{Temperature Sensitivity}
+58	\label{sec:t-sensitivity}
+59	
+60	Raising the sampling temperature from $T = 0.7$ to $T = 1.0$ on Mistral-7B FOLIO ($n = 204$) collapses the SICA gain from $\Delta = +4.90$\,pp to $\Delta = +0.49$\,pp (SC $= 54.9\%$, SICA $= 55.4\%$, $p = 0.739$). Higher temperature increases output diversity but degrades trace quality. The net effect is that noisier traces produce noisier formalizations, and the quality loss outweighs any independence gain.
+61	
+62	\subsection{Entropy-Conditioned Mechanism}
+63	\label{sec:entropy}
+64	
+65	Per-problem answer entropy (computed from the $K = 12$ trace answer distribution) reveals that SICA's aggregate $\Delta$ is driven by a specific subpopulation. On Mistral-7B FOLIO, the relationship is monotonic: low-entropy problems show $\Delta = 0$\,pp, medium-entropy problems show $\Delta \approx +4.5$\,pp, and high-entropy problems show $\Delta = +9.6$\,pp (full breakdown in Appendix Table~\ref{tab:entropy_conditioned}). SICA helps most where traces disagree most. The proportion of high-entropy problems determines the aggregate effect. Mistral-7B FOLIO has 35.8\% high-entropy problems, and the aggregate $\Delta = +4.90$\,pp. Qwen2.5-14B FOLIO has only 10.3\% high-entropy problems; SICA achieves $\Delta = +4.8$\,pp within that subgroup, but the aggregate $\Delta = -0.49$\,pp because the subpopulation is too small to shift overall accuracy. Qwen2.5-14B on LogiQA represents the extreme case: only 8.0\% of problems are high-entropy (75.0\% are low-entropy), and SICA produces $\Delta = +0.0$\,pp even within the high-entropy bin.
+66	
+67	This pattern explains the model-strength dependence observed in \S\ref{sec:main-results}. Stronger models produce more consistent traces, which compresses answer entropy, which shrinks the subpopulation where SICA can operate. The causal chain (strong model $\to$ consistent traces $\to$ low entropy $\to$ redundant constraints $\to$ no gain) bounds SICA's ceiling for high-accuracy models independent of extraction quality.
+68	
+69	\subsection{Constraint Ablation}
+70	\label{sec:ablation}
+71	
+72	To test whether the Z3 solver contributes beyond simple vote counting, we compare four scoring methods on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). MAX-SAT achieves 76.49\% (615/804). Count-only (sum constraint weights per candidate without invoking Z3) achieves 76.62\% (616/804). Random-weight MAX-SAT achieves 75.87\% (610/804). The SC baseline achieves 76.24\% (613/804). MAX-SAT and count-only agree on 803 of 804 predictions. The Z3 solver adds nothing over simple counting. This confirms the degeneration in Eq.~\ref{eq:degenerate}: when only ${\sim}8$\% of constraints are semantically discriminative (\S\ref{sec:extraction-taxonomy}), the MAX-SAT objective reduces to a weighted vote count and SICA collapses to SC.
+73	
+74	\subsection{Remediation Analysis}
+75	\label{sec:remediation}
+76	\label{sec:interventions}
+77	
+78	We test nine remediation strategies spanning six intervention dimensions (full results in Appendix Table~\ref{tab:remediation}). \emph{Prompting}: contrastive prompting reduces the discriminative rate from 8.2\% to 6.0\% ($\Delta = -1.1$\,pp), and filtering to retain only discriminative constraints yields zero gain. \emph{Architecture}: cross-model extraction produces 0\% discriminative constraints ($\Delta = 0$\,pp). \emph{Capability}: generational scaling with Qwen3-14B yields $\Delta = +0.49$\,pp (n.s.). \emph{Verification}: Z3 feedback loops trigger UNSAT on only 0.9\% of problems with no real accuracy impact; cross-trace UNSAT checking finds 56.4\% of constraint pairs share zero variables, so logical verification is vacuous. \emph{Diversity}: raising temperature to $T = 1.0$ collapses $\Delta$ from $+4.90$\,pp to $+0.49$\,pp (\S\ref{sec:t-sensitivity}); multi-temperature sampling ($n = 204$) produces $\Delta = 0.00$\,pp (SC $= 57.84\%$, SICA $= 57.84\%$). \emph{Filtering}: consistency filtering (retaining constraints in $\geq 4$ traces) prunes aggressively (1.8 constraints per problem at threshold 4, 0.3 at threshold 8) and reverts to SC. All six dimensions fail. The independence bottleneck is structural: it cannot be resolved by prompt engineering, solver refinements, or diversity manipulations within the same-model self-extraction paradigm.
+79	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "d69510e5-c9bc-4ad1-a1ad-9e02e7bb0919",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+      "content": "\\section{Analysis}\n\\label{sec:analysis}\n\nThe regime-dependent pattern in \\S\\ref{sec:main-results} and the failure modes in \\S\\ref{sec:failure-modes} establish \\emph{where} SICA succeeds and fails. This section investigates \\emph{why}, through six quantitative lenses: trace correlation (\\S\\ref{sec:effective-k}), extraction quality (\\S\\ref{sec:extraction-taxonomy}), hyperparameter sensitivity (\\S\\ref{sec:k-sensitivity}, \\S\\ref{sec:t-sensitivity}), the entropy structure of gains (\\S\\ref{sec:entropy}), solver contribution (\\S\\ref{sec:ablation}), and remediation failure (\\S\\ref{sec:remediation}).\n\n\\subsection{Condorcet Effective-K}\n\\label{sec:effective-k}\n\nTable~\\ref{tab:independence} reports Fleiss' $\\kappa$ and the resulting Effective-K (Eq.~\\ref{eq:effk}) across model-dataset conditions with $K = 12$ traces. $\\kappa$ ranges from 0.21 to 0.82, and the resulting $K_{\\text{eff}}$ spans $1.20\\text{--}3.63$. The strongest model-dataset pair (Qwen2.5-14B on LogiQA, $\\kappa = 0.82$) retains $K_{\\text{eff}} = 1.20$: twelve traces carry barely more information than a single sample. Mistral-7B on FOLIO produces moderate agreement ($\\kappa = 0.50$ for seed 42, $K_{\\text{eff}} = 1.85$), consistent with its position in the Goldilocks zone. Mistral-7B on ProofWriter has the lowest agreement ($\\kappa = 0.21$, $K_{\\text{eff}} = 3.63$), yet SICA hurts ($\\Delta = -2.83$\\,pp) because trace quality is too low (SC $= 39.33\\%$). High $K_{\\text{eff}}$ alone does not guarantee improvement; the model must also produce sufficiently accurate traces. Qwen2.5-14B on FOLIO reaches 58.3\\% unanimous problems and 63.0\\% on LogiQA; Mistral-7B on FOLIO has only 14.2\\%. Unanimous problems leave zero room for constraint-based reranking, and models with high unanimity rates offer SICA a vanishingly small operating window.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Trace independence metrics ($K = 12$). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). Unan.: unanimous-answer fraction (\\%). $\\Delta$: SICA $-$ SC (pp). Mistral s42/s123/s456 are separate random seeds on the same evaluation set. Mistral = Mistral-7B; Qwen2.5 = Qwen2.5-14B; Qwen3 = Qwen3-14B.}\n\\label{tab:independence}\n\\begin{tabular}{@{}llcccr@{}}\n\\toprule\nModel & Domain & $\\kappa$ & $K_{\\text{eff}}$ & Unan. & $\\Delta$ \\\\\n\\midrule\nMistral (s42) & FOLIO & 0.50 & 1.85 & 18.6 & $\\mathbf{+4.90}$ \\\\\nMistral (s123) & FOLIO & 0.41 & 2.17 & 14.2 & $+$3.43 \\\\\nMistral (s456) & FOLIO & 0.40 & 2.22 & 14.2 & $-$0.49 \\\\\nMistral & PW-D5 & 0.21 & 3.63 & & $-$2.83 \\\\\nMistral & LogiQA & 0.50 & 1.84 & 20.5 & $+$0.50 \\\\\n\\addlinespace\nQwen2.5 (ICL) & FOLIO & 0.39 & 2.25 & & $+$0.50 \\\\\nQwen2.5 & FOLIO & 0.74 & 1.31 & 58.3 & $-$0.49 \\\\\nQwen2.5 & LogiQA & 0.82 & 1.20 & 63.0 & $-$0.50 \\\\\nQwen2.5 & PW-D5 & 0.62 & 1.53 & & \\\\\n\\addlinespace\nQwen3 & PW-D5 & 0.77 & 1.27 & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nCross-seed comparison reveals the limits of $K_{\\text{eff}}$ as a predictor. Mistral-7B's three FOLIO seeds produce $\\kappa = 0.50$, $0.41$, $0.40$ ($K_{\\text{eff}} = 1.85$, $2.17$, $2.22$), yet $\\Delta$ is non-monotonic: the seed with the lowest $K_{\\text{eff}}$ (s42, $1.85$) produces the largest gain ($+4.90$\\,pp), while s456 ($K_{\\text{eff}} = 2.22$) shows $\\Delta = -0.49$\\,pp. This non-monotonicity indicates that seed-level sampling variance, not trace independence alone, determines whether the constraint pool happens to contain discriminative information. Two conditions are jointly necessary: sufficient $K_{\\text{eff}}$ (the Qwen conditions with $K_{\\text{eff}} \\leq 1.31$ never show positive $\\Delta$) and sufficient SC accuracy (exp-046 with the highest $K_{\\text{eff}} = 3.63$ but SC $= 39\\%$ produces significant harm). The SC plateau remains explained by the correlation floor: beyond $K_{\\text{eff}}$, additional traces are redundant.\n\n\\subsection{Extraction Error Taxonomy}\n\\label{sec:extraction-taxonomy}\n\nConstraints must discriminate between candidate answers for MAX-SAT to produce a ranking different from majority vote. We measure discriminative power at two levels on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). At the source-trace level, 39.2\\% of total constraint weight originates from traces whose answer differs from the plurality, but only 12.1\\% of individual constraints fall into this minority category. At the Z3 semantic level, the picture is worse: only 8.2\\% of constraints [95\\% CI: 7.6, 8.8] are discriminative, producing different satisfiability outcomes when evaluated against different candidate answers.\n\nThe primary mechanism behind this collapse is variable naming inconsistency. Each trace produces constraints with its own variable names, so Z3 treats identically-intended propositions as unrelated symbols. Among cross-answer constraint pairs, 56.4\\% share zero Z3 variables, and the solver cannot detect logical relationships when constraints use disjoint symbol sets. Even when we filter the constraint pool to retain only the 8.2\\% discriminative subset, accuracy does not improve. The discriminative constraints are too sparse and too weakly correlated with correctness to shift the MAX-SAT solution. The non-discriminative majority does not merely dilute the signal; the discriminative minority itself lacks the coherence to overcome noise.\n\n\\subsection{K Sensitivity}\n\\label{sec:k-sensitivity}\n\nFigure~\\ref{fig:k-sensitivity} shows SICA $\\Delta$ as a function of the number of sampled traces $K$ for Mistral-7B on FOLIO ($n = 204$, seed 42). The relationship follows an inverted-U curve: $K = 4$ yields $\\Delta = -1.47$\\,pp, $K = 8$ yields $\\Delta = -0.98$\\,pp, $K = 12$ reaches the peak at $\\Delta = +4.90$\\,pp, and $K = 16$ drops to $\\Delta = +1.47$\\,pp. At low $K$, the constraint pool lacks diversity and MAX-SAT has too few clauses to produce a ranking different from SC. At high $K$, diminishing returns from non-independent traces (Eq.~\\ref{eq:effk}) add redundant constraints without new discriminative information. The $K = 12$ peak reflects a transient balance between constraint diversity and trace independence, but even this optimum captures only 34.5\\% of the oracle ceiling ($+14.22$\\,pp). The narrow peak further constrains practical applicability: the best $K$ depends on the model-dataset condition and cannot be determined without labeled data.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{f3_k_sensitivity}\n\\caption{SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, seed 42, $T = 0.7$). The inverted-U curve peaks at $K = 12$. Error bars: 95\\% bootstrap CI.}\n\\label{fig:k-sensitivity}\n\\end{figure}\n\n\\subsection{Temperature Sensitivity}\n\\label{sec:t-sensitivity}\n\nRaising the sampling temperature from $T = 0.7$ to $T = 1.0$ on Mistral-7B FOLIO ($n = 204$) collapses the SICA gain from $\\Delta = +4.90$\\,pp to $\\Delta = +0.49$\\,pp (SC $= 54.9\\%$, SICA $= 55.4\\%$, $p = 0.739$). Higher temperature increases output diversity but degrades trace quality. The net effect is that noisier traces produce noisier formalizations, and the quality loss outweighs any independence gain.\n\n\\subsection{Entropy-Conditioned Mechanism}\n\\label{sec:entropy}\n\nPer-problem answer entropy (computed from the $K = 12$ trace answer distribution) reveals that SICA's aggregate $\\Delta$ is driven by a specific subpopulation. On Mistral-7B FOLIO, the relationship is monotonic: low-entropy problems show $\\Delta = 0$\\,pp, medium-entropy problems show $\\Delta \\approx +4.5$\\,pp, and high-entropy problems show $\\Delta = +9.6$\\,pp (full breakdown in Appendix Table~\\ref{tab:entropy_conditioned}). SICA helps most where traces disagree most. The proportion of high-entropy problems determines the aggregate effect. Mistral-7B FOLIO has 35.8\\% high-entropy problems, and the aggregate $\\Delta = +4.90$\\,pp. Qwen2.5-14B FOLIO has only 10.3\\% high-entropy problems; SICA achieves $\\Delta = +4.8$\\,pp within that subgroup, but the aggregate $\\Delta = -0.49$\\,pp because the subpopulation is too small to shift overall accuracy. Qwen2.5-14B on LogiQA represents the extreme case: only 8.0\\% of problems are high-entropy (75.0\\% are low-entropy), and SICA produces $\\Delta = +0.0$\\,pp even within the high-entropy bin.\n\nThis pattern explains the model-strength dependence observed in \\S\\ref{sec:main-results}. Stronger models produce more consistent traces, which compresses answer entropy, which shrinks the subpopulation where SICA can operate. The causal chain (strong model $\\to$ consistent traces $\\to$ low entropy $\\to$ redundant constraints $\\to$ no gain) bounds SICA's ceiling for high-accuracy models independent of extraction quality.\n\n\\subsection{Constraint Ablation}\n\\label{sec:ablation}\n\nTo test whether the Z3 solver contributes beyond simple vote counting, we compare four scoring methods on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). MAX-SAT achieves 76.49\\% (615/804). Count-only (sum constraint weights per candidate without invoking Z3) achieves 76.62\\% (616/804). Random-weight MAX-SAT achieves 75.87\\% (610/804). The SC baseline achieves 76.24\\% (613/804). MAX-SAT and count-only agree on 803 of 804 predictions. The Z3 solver adds nothing over simple counting. This confirms the degeneration in Eq.~\\ref{eq:degenerate}: when only ${\\sim}8$\\% of constraints are semantically discriminative (\\S\\ref{sec:extraction-taxonomy}), the MAX-SAT objective reduces to a weighted vote count and SICA collapses to SC.\n\n\\subsection{Remediation Analysis}\n\\label{sec:remediation}\n\\label{sec:interventions}\n\nWe test nine remediation strategies spanning six intervention dimensions (full results in Appendix Table~\\ref{tab:remediation}). \\emph{Prompting}: contrastive prompting reduces the discriminative rate from 8.2\\% to 6.0\\% ($\\Delta = -1.1$\\,pp), and filtering to retain only discriminative constraints yields zero gain. \\emph{Architecture}: cross-model extraction produces 0\\% discriminative constraints ($\\Delta = 0$\\,pp). \\emph{Capability}: generational scaling with Qwen3-14B yields $\\Delta = +0.49$\\,pp (n.s.). \\emph{Verification}: Z3 feedback loops trigger UNSAT on only 0.9\\% of problems with no real accuracy impact; cross-trace UNSAT checking finds 56.4\\% of constraint pairs share zero variables, so logical verification is vacuous. \\emph{Diversity}: raising temperature to $T = 1.0$ collapses $\\Delta$ from $+4.90$\\,pp to $+0.49$\\,pp (\\S\\ref{sec:t-sensitivity}); multi-temperature sampling ($n = 204$) produces $\\Delta = 0.00$\\,pp (SC $= 57.84\\%$, SICA $= 57.84\\%$). \\emph{Filtering}: consistency filtering (retaining constraints in $\\geq 4$ traces) prunes aggressively (1.8 constraints per problem at threshold 4, 0.3 at threshold 8) and reverts to SC. All six dimensions fail. The independence bottleneck is structural: it cannot be resolved by prompt engineering, solver refinements, or diversity manipulations within the same-model self-extraction paradigm.\n",
+      "numLines": 79,
+      "startLine": 1,
+      "totalLines": 79
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Wgddyom9Dfoo8dQxGYme4r`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "104a7fae-3dcc-42b3-b915-04a4a808ee73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCJ47URdiLb3sH7jeY5AaS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13171
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T04:29:57.028Z_
+
+<details><summary>↩ Tool result · `toolu_01Wgddyom9Dfoo8dQxGYme4r`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "8546916b-a4a0-46fd-9af9-db36b4b523f8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01K3K9MSxeFS4j4q8knc5f8j`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/fleiss_kappa_unified_merged.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "856d00e7-2150-44b8-99ea-03ff6f0aa663",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCJ47URdiLb3sH7jeY5AaS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13171,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13171
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T04:29:57.495Z_
+
+<details><summary>↩ Tool result · `toolu_01K3K9MSxeFS4j4q8knc5f8j`</summary>
+
+```text
+1	{
+2	  "formula": "Eff-K = K / (1 + (K-1) * kappa), K=12",
+3	  "answer_normalization": "non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded",
+4	  "note": "exp-026/041 not found on either server. folio_204_14b on westd-25068 may be an earlier unnumbered run.",
+5	  "table3_experiments": [
+6	    {
+7	      "exp_id": "exp-027",
+8	      "exp_dir": "exp027_qwen3_14b_nonthinking",
+9	      "server": "westd-25068",
+10	      "model": "Qwen3-14B",
+11	      "dataset": "FOLIO-204",
+12	      "kappa": 0.7730,
+13	      "eff_k": 1.26,
+14	      "sc_accuracy": 85.29,
+15	      "sica_accuracy": 84.31,
+16	      "delta_pp": -0.98,
+17	      "n_problems": 204,
+18	      "n_valid_votes": 2447,
+19	      "n_total_votes": 2448,
+20	      "valid_vote_rate": 0.9996,
+21	      "n_excluded_empty": 1,
+22	      "n_nonstandard_mapped": 1
+23	    },
+24	    {
+25	      "exp_id": "exp-033",
+26	      "exp_dir": "exp033_mistral_7b_folio204",
+27	      "server": "westd-25068",
+28	      "model": "Mistral-7B-Instruct-v0.3",
+29	      "dataset": "FOLIO-204",
+30	      "kappa": 0.4598,
+31	      "eff_k": 1.98,
+32	      "sc_accuracy": 55.88,
+33	      "sica_accuracy": 59.31,
+34	      "delta_pp": 3.43,
+35	      "n_problems": 204,
+36	      "n_valid_votes": 2144,
+37	      "n_total_votes": 2448,
+38	      "valid_vote_rate": 0.8758,
+39	      "n_excluded_empty": 304,
+40	      "n_nonstandard_mapped": 102
+41	    },
+42	    {
+43	      "exp_id": "exp-035",
+44	      "exp_dir": "exp035_qwen25_7b_folio204",
+45	      "server": "westd-25068",
+46	      "model": "Qwen2.5-7B-Instruct",
+47	      "dataset": "FOLIO-204",
+48	      "kappa": 0.6581,
+49	      "eff_k": 1.46,
+50	      "sc_accuracy": 77.45,
+51	      "sica_accuracy": 76.47,
+52	      "delta_pp": -0.98,
+53	      "n_problems": 204,
+54	      "n_valid_votes": 2447,
+55	      "n_total_votes": 2448,
+56	      "valid_vote_rate": 0.9996,
+57	      "n_excluded_empty": 1,
+58	      "n_nonstandard_mapped": 1
+59	    },
+60	    {
+61	      "exp_id": "exp-036",
+62	      "exp_dir": "exp036_qwen25_14b_folio204",
+63	      "server": "westd-16639",
+64	      "model": "Qwen2.5-14B-Instruct",
+65	      "dataset": "FOLIO-204",
+66	      "kappa": 0.7442,
+67	      "eff_k": 1.31,
+68	      "sc_accuracy": 76.47,
+69	      "sica_accuracy": 75.49,
+70	      "delta_pp": -0.98,
+71	      "n_problems": 204,
+72	      "n_valid_votes": 2448,
+73	      "n_total_votes": 2448,
+74	      "valid_vote_rate": 1.0,
+75	      "n_excluded_empty": 0,
+76	      "n_nonstandard_mapped": 2
+77	    },
+78	    {
+79	      "exp_id": "exp-038",
+80	      "exp_dir": "exp038_qwen25_14b_logiqa200",
+81	      "server": "westd-16639",
+82	      "model": "Qwen2.5-14B-Instruct",
+83	      "dataset": "LogiQA-200",
+84	      "kappa": 0.8210,
+85	      "eff_k": 1.20,
+86	      "sc_accuracy": 79.00,
+87	      "sica_accuracy": 78.00,
+88	      "delta_pp": -1.00,
+89	      "n_problems": 200,
+90	      "n_valid_votes": 2400,
+91	      "n_total_votes": 2400,
+92	      "valid_vote_rate": 1.0,
+93	      "n_excluded_empty": 0,
+94	      "n_nonstandard_mapped": 0
+95	    },
+96	    {
+97	      "exp_id": "exp-046",
+98	      "exp_dir": "exp046_mistral_7b_pw600",
+99	      "server": "westd-25068",
+100	      "model": "Mistral-7B-Instruct-v0.3",
+101	      "dataset": "PW-600",
+102	      "kappa": 0.1996,
+103	      "eff_k": 3.76,
+104	      "sc_accuracy": 38.33,
+105	      "sica_accuracy": 36.67,
+106	      "delta_pp": -1.67,
+107	      "n_problems": 600,
+108	      "n_valid_votes": 6045,
+109	      "n_total_votes": 7200,
+110	      "valid_vote_rate": 0.8396,
+111	      "n_excluded_empty": 1155,
+112	      "n_nonstandard_mapped": 359
+113	    },
+114	    {
+115	      "exp_id": "exp-052",
+116	      "exp_dir": "exp052_mistral_folio204_seed123",
+117	      "server": "westd-16639",
+118	      "model": "Mistral-7B-Instruct-v0.3",
+119	      "dataset": "FOLIO-204",
+120	      "kappa": 0.4572,
+121	      "eff_k": 1.99,
+122	      "sc_accuracy": 54.41,
+123	      "sica_accuracy": 57.35,
+124	      "delta_pp": 2.94,
+125	      "n_problems": 204,
+126	      "n_valid_votes": 2132,
+127	      "n_total_votes": 2448,
+128	      "valid_vote_rate": 0.8709,
+129	      "n_excluded_empty": 316,
+130	      "n_nonstandard_mapped": 111
+131	    },
+132	    {
+133	      "exp_id": "exp-053",
+134	      "exp_dir": "exp053_mistral_folio204_seed456",
+135	      "server": "westd-16639",
+136	      "model": "Mistral-7B-Instruct-v0.3",
+137	      "dataset": "FOLIO-204",
+138	      "kappa": 0.4565,
+139	      "eff_k": 1.99,
+140	      "sc_accuracy": 54.41,
+141	      "sica_accuracy": 55.88,
+142	      "delta_pp": 1.47,
+143	      "n_problems": 204,
+144	      "n_valid_votes": 2133,
+145	      "n_total_votes": 2448,
+146	      "valid_vote_rate": 0.8713,
+147	      "n_excluded_empty": 315,
+148	      "n_nonstandard_mapped": 137
+149	    },
+150	    {
+151	      "exp_id": "exp-055",
+152	      "exp_dir": "exp055_multitemp_mistral_folio",
+153	      "server": "westd-16639",
+154	      "model": "Mistral-7B-Instruct-v0.3",
+155	      "dataset": "FOLIO-204",
+156	      "kappa": 0.4272,
+157	      "eff_k": 2.11,
+158	      "sc_accuracy": 57.35,
+159	      "sica_accuracy": 57.84,
+160	      "delta_pp": 0.49,
+161	      "n_problems": 204,
+162	      "n_valid_votes": 2095,
+163	      "n_total_votes": 2448,
+164	      "valid_vote_rate": 0.8558,
+165	      "n_excluded_empty": 353,
+166	      "n_nonstandard_mapped": 159
+167	    }
+168	  ],
+169	  "supplementary_experiments": [
+170	    {
+171	      "exp_id": "exp-028b",
+172	      "exp_dir": "exp028b_qwen3_thinking_folio204",
+173	      "server": "westd-25068",
+174	      "model": "Qwen3-14B (thinking)",
+175	      "dataset": "FOLIO-166",
+176	      "kappa": 0.9130,
+177	      "eff_k": 1.09,
+178	      "sc_accuracy": 83.13,
+179	      "sica_accuracy": 84.34,
+180	      "delta_pp": 1.20
+181	    },
+182	    {
+183	      "exp_id": "exp-032",
+184	      "exp_dir": "exp032_qwen25_14b_pw600",
+185	      "server": "westd-16639",
+186	      "model": "Qwen2.5-14B-Instruct",
+187	      "dataset": "PW-571",
+188	      "kappa": 0.6170,
+189	      "eff_k": 1.54,
+190	      "sc_accuracy": 73.56,
+191	      "sica_accuracy": 71.28,
+192	      "delta_pp": -2.28
+193	    },
+194	    {
+195	      "exp_id": "exp-034",
+196	      "exp_dir": "exp034_qwen25_14b_proofwriter",
+197	      "server": "westd-25068",
+198	      "model": "Qwen2.5-14B-Instruct",
+199	      "dataset": "PW-547",
+200	      "kappa": 0.6134,
+201	      "eff_k": 1.55,
+202	      "sc_accuracy": 71.48,
+203	      "sica_accuracy": 71.30,
+204	      "delta_pp": -0.18
+205	    },
+206	    {
+207	      "exp_id": "exp-048",
+208	      "exp_dir": "exp048_llama8b_pw600",
+209	      "server": "westd-16639",
+210	      "model": "Llama-3.1-8B-Instruct",
+211	      "dataset": "PW-87",
+212	      "kappa": 0.3515,
+213	      "eff_k": 2.47,
+214	      "sc_accuracy": 70.11,
+215	      "sica_accuracy": 65.52,
+216	      "delta_pp": -4.60
+217	    },
+218	    {
+219	      "exp_id": "exp-049b",
+220	      "exp_dir": "exp049b_mistral_logiqa200",
+221	      "server": "westd-16639",
+222	      "model": "Mistral-7B-Instruct-v0.3",
+223	      "dataset": "LogiQA-200",
+224	      "kappa": 0.5116,
+225	      "eff_k": 1.81,
+226	      "sc_accuracy": 52.00,
+227	      "sica_accuracy": 51.50,
+228	      "delta_pp": -0.50
+229	    },
+230	    {
+231	      "exp_id": "exp-054",
+232	      "exp_dir": "exp054_mistral_folio204_t10",
+233	      "server": "westd-25068",
+234	      "model": "Mistral-7B-Instruct-v0.3",
+235	      "dataset": "FOLIO-204 (T=1.0)",
+236	      "kappa": 0.3938,
+237	      "eff_k": 2.25,
+238	      "sc_accuracy": 54.41,
+239	      "sica_accuracy": 55.39,
+240	      "delta_pp": 0.98
+241	    },
+242	    {
+243	      "exp_id": "exp-057",
+244	      "exp_dir": "exp057_mistral_folio204_t03",
+245	      "server": "westd-25068",
+246	      "model": "Mistral-7B-Instruct-v0.3",
+247	      "dataset": "FOLIO-204 (T=0.3)",
+248	      "kappa": 0.5023,
+249	      "eff_k": 1.84,
+250	      "sc_accuracy": 55.88,
+251	      "sica_accuracy": 56.86,
+252	      "delta_pp": 0.98
+253	    },
+254	    {
+255	      "exp_id": "exp-058",
+256	      "exp_dir": "exp058_mistral_folio204_t05",
+257	      "server": "westd-25068",
+258	      "model": "Mistral-7B-Instruct-v0.3",
+259	      "dataset": "FOLIO-152 (T=0.5, partial)",
+260	      "kappa": 0.4743,
+261	      "eff_k": 1.93,
+262	      "sc_accuracy": 59.21,
+263	      "sica_accuracy": 59.21,
+264	      "delta_pp": 0.00
+265	    }
+266	  ],
+267	  "k_sensitivity_experiments_note": "Eff-K uses each experiment's own K, not K=12",
+268	  "k_sensitivity_experiments": [
+269	    {
+270	      "exp_id": "exp-051-k4",
+271	      "server": "westd-25068",
+272	      "model": "Mistral-7B-Instruct-v0.3",
+273	      "dataset": "FOLIO-204",
+274	      "K": 4,
+275	      "kappa": 0.3954,
+276	      "eff_k": 1.83,
+277	      "sc_accuracy": 54.90,
+278	      "sica_accuracy": 53.92,
+279	      "delta_pp": -0.98
+280	    },
+281	    {
+282	      "exp_id": "exp-051-k8",
+283	      "server": "westd-25068",
+284	      "model": "Mistral-7B-Instruct-v0.3",
+285	      "dataset": "FOLIO-204",
+286	      "K": 8,
+287	      "kappa": 0.4574,
+288	      "eff_k": 1.90,
+289	      "sc_accuracy": 59.80,
+290	      "sica_accuracy": 56.86,
+291	      "delta_pp": -2.94
+292	    },
+293	    {
+294	      "exp_id": "exp-051-k16",
+295	      "server": "westd-25068",
+296	      "model": "Mistral-7B-Instruct-v0.3",
+297	      "dataset": "FOLIO-204",
+298	      "K": 16,
+299	      "kappa": 0.4457,
+300	      "eff_k": 2.08,
+301	      "sc_accuracy": 56.86,
+302	      "sica_accuracy": 57.35,
+303	      "delta_pp": 0.49
+304	    },
+305	    {
+306	      "exp_id": "exp-051-k20",
+307	      "server": "westd-25068",
+308	      "model": "Mistral-7B-Instruct-v0.3",
+309	      "dataset": "FOLIO-204",
+310	      "K": 20,
+311	      "kappa": 0.4209,
+312	      "eff_k": 2.22,
+313	      "sc_accuracy": 55.75,
+314	      "sica_accuracy": 60.34,
+315	      "delta_pp": 4.60
+316	    }
+317	  ]
+318	}
+319	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "0980c748-1cbb-4701-869c-404700c2337d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/fleiss_kappa_unified_merged.json",
+      "content": "{\n  \"formula\": \"Eff-K = K / (1 + (K-1) * kappa), K=12\",\n  \"answer_normalization\": \"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\",\n  \"note\": \"exp-026/041 not found on either server. folio_204_14b on westd-25068 may be an earlier unnumbered run.\",\n  \"table3_experiments\": [\n    {\n      \"exp_id\": \"exp-027\",\n      \"exp_dir\": \"exp027_qwen3_14b_nonthinking\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Qwen3-14B\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.7730,\n      \"eff_k\": 1.26,\n      \"sc_accuracy\": 85.29,\n      \"sica_accuracy\": 84.31,\n      \"delta_pp\": -0.98,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2447,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.9996,\n      \"n_excluded_empty\": 1,\n      \"n_nonstandard_mapped\": 1\n    },\n    {\n      \"exp_id\": \"exp-033\",\n      \"exp_dir\": \"exp033_mistral_7b_folio204\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.4598,\n      \"eff_k\": 1.98,\n      \"sc_accuracy\": 55.88,\n      \"sica_accuracy\": 59.31,\n      \"delta_pp\": 3.43,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2144,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.8758,\n      \"n_excluded_empty\": 304,\n      \"n_nonstandard_mapped\": 102\n    },\n    {\n      \"exp_id\": \"exp-035\",\n      \"exp_dir\": \"exp035_qwen25_7b_folio204\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Qwen2.5-7B-Instruct\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.6581,\n      \"eff_k\": 1.46,\n      \"sc_accuracy\": 77.45,\n      \"sica_accuracy\": 76.47,\n      \"delta_pp\": -0.98,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2447,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.9996,\n      \"n_excluded_empty\": 1,\n      \"n_nonstandard_mapped\": 1\n    },\n    {\n      \"exp_id\": \"exp-036\",\n      \"exp_dir\": \"exp036_qwen25_14b_folio204\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Qwen2.5-14B-Instruct\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.7442,\n      \"eff_k\": 1.31,\n      \"sc_accuracy\": 76.47,\n      \"sica_accuracy\": 75.49,\n      \"delta_pp\": -0.98,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2448,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 1.0,\n      \"n_excluded_empty\": 0,\n      \"n_nonstandard_mapped\": 2\n    },\n    {\n      \"exp_id\": \"exp-038\",\n      \"exp_dir\": \"exp038_qwen25_14b_logiqa200\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Qwen2.5-14B-Instruct\",\n      \"dataset\": \"LogiQA-200\",\n      \"kappa\": 0.8210,\n      \"eff_k\": 1.20,\n      \"sc_accuracy\": 79.00,\n      \"sica_accuracy\": 78.00,\n      \"delta_pp\": -1.00,\n      \"n_problems\": 200,\n      \"n_valid_votes\": 2400,\n      \"n_total_votes\": 2400,\n      \"valid_vote_rate\": 1.0,\n      \"n_excluded_empty\": 0,\n      \"n_nonstandard_mapped\": 0\n    },\n    {\n      \"exp_id\": \"exp-046\",\n      \"exp_dir\": \"exp046_mistral_7b_pw600\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"PW-600\",\n      \"kappa\": 0.1996,\n      \"eff_k\": 3.76,\n      \"sc_accuracy\": 38.33,\n      \"sica_accuracy\": 36.67,\n      \"delta_pp\": -1.67,\n      \"n_problems\": 600,\n      \"n_valid_votes\": 6045,\n      \"n_total_votes\": 7200,\n      \"valid_vote_rate\": 0.8396,\n      \"n_excluded_empty\": 1155,\n      \"n_nonstandard_mapped\": 359\n    },\n    {\n      \"exp_id\": \"exp-052\",\n      \"exp_dir\": \"exp052_mistral_folio204_seed123\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.4572,\n      \"eff_k\": 1.99,\n      \"sc_accuracy\": 54.41,\n      \"sica_accuracy\": 57.35,\n      \"delta_pp\": 2.94,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2132,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.8709,\n      \"n_excluded_empty\": 316,\n      \"n_nonstandard_mapped\": 111\n    },\n    {\n      \"exp_id\": \"exp-053\",\n      \"exp_dir\": \"exp053_mistral_folio204_seed456\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.4565,\n      \"eff_k\": 1.99,\n      \"sc_accuracy\": 54.41,\n      \"sica_accuracy\": 55.88,\n      \"delta_pp\": 1.47,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2133,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.8713,\n      \"n_excluded_empty\": 315,\n      \"n_nonstandard_mapped\": 137\n    },\n    {\n      \"exp_id\": \"exp-055\",\n      \"exp_dir\": \"exp055_multitemp_mistral_folio\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"kappa\": 0.4272,\n      \"eff_k\": 2.11,\n      \"sc_accuracy\": 57.35,\n      \"sica_accuracy\": 57.84,\n      \"delta_pp\": 0.49,\n      \"n_problems\": 204,\n      \"n_valid_votes\": 2095,\n      \"n_total_votes\": 2448,\n      \"valid_vote_rate\": 0.8558,\n      \"n_excluded_empty\": 353,\n      \"n_nonstandard_mapped\": 159\n    }\n  ],\n  \"supplementary_experiments\": [\n    {\n      \"exp_id\": \"exp-028b\",\n      \"exp_dir\": \"exp028b_qwen3_thinking_folio204\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Qwen3-14B (thinking)\",\n      \"dataset\": \"FOLIO-166\",\n      \"kappa\": 0.9130,\n      \"eff_k\": 1.09,\n      \"sc_accuracy\": 83.13,\n      \"sica_accuracy\": 84.34,\n      \"delta_pp\": 1.20\n    },\n    {\n      \"exp_id\": \"exp-032\",\n      \"exp_dir\": \"exp032_qwen25_14b_pw600\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Qwen2.5-14B-Instruct\",\n      \"dataset\": \"PW-571\",\n      \"kappa\": 0.6170,\n      \"eff_k\": 1.54,\n      \"sc_accuracy\": 73.56,\n      \"sica_accuracy\": 71.28,\n      \"delta_pp\": -2.28\n    },\n    {\n      \"exp_id\": \"exp-034\",\n      \"exp_dir\": \"exp034_qwen25_14b_proofwriter\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Qwen2.5-14B-Instruct\",\n      \"dataset\": \"PW-547\",\n      \"kappa\": 0.6134,\n      \"eff_k\": 1.55,\n      \"sc_accuracy\": 71.48,\n      \"sica_accuracy\": 71.30,\n      \"delta_pp\": -0.18\n    },\n    {\n      \"exp_id\": \"exp-048\",\n      \"exp_dir\": \"exp048_llama8b_pw600\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Llama-3.1-8B-Instruct\",\n      \"dataset\": \"PW-87\",\n      \"kappa\": 0.3515,\n      \"eff_k\": 2.47,\n      \"sc_accuracy\": 70.11,\n      \"sica_accuracy\": 65.52,\n      \"delta_pp\": -4.60\n    },\n    {\n      \"exp_id\": \"exp-049b\",\n      \"exp_dir\": \"exp049b_mistral_logiqa200\",\n      \"server\": \"westd-16639\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"LogiQA-200\",\n      \"kappa\": 0.5116,\n      \"eff_k\": 1.81,\n      \"sc_accuracy\": 52.00,\n      \"sica_accuracy\": 51.50,\n      \"delta_pp\": -0.50\n    },\n    {\n      \"exp_id\": \"exp-054\",\n      \"exp_dir\": \"exp054_mistral_folio204_t10\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204 (T=1.0)\",\n      \"kappa\": 0.3938,\n      \"eff_k\": 2.25,\n      \"sc_accuracy\": 54.41,\n      \"sica_accuracy\": 55.39,\n      \"delta_pp\": 0.98\n    },\n    {\n      \"exp_id\": \"exp-057\",\n      \"exp_dir\": \"exp057_mistral_folio204_t03\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204 (T=0.3)\",\n      \"kappa\": 0.5023,\n      \"eff_k\": 1.84,\n      \"sc_accuracy\": 55.88,\n      \"sica_accuracy\": 56.86,\n      \"delta_pp\": 0.98\n    },\n    {\n      \"exp_id\": \"exp-058\",\n      \"exp_dir\": \"exp058_mistral_folio204_t05\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-152 (T=0.5, partial)\",\n      \"kappa\": 0.4743,\n      \"eff_k\": 1.93,\n      \"sc_accuracy\": 59.21,\n      \"sica_accuracy\": 59.21,\n      \"delta_pp\": 0.00\n    }\n  ],\n  \"k_sensitivity_experiments_note\": \"Eff-K uses each experiment's own K, not K=12\",\n  \"k_sensitivity_experiments\": [\n    {\n      \"exp_id\": \"exp-051-k4\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"K\": 4,\n      \"kappa\": 0.3954,\n      \"eff_k\": 1.83,\n      \"sc_accuracy\": 54.90,\n      \"sica_accuracy\": 53.92,\n      \"delta_pp\": -0.98\n    },\n    {\n      \"exp_id\": \"exp-051-k8\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"K\": 8,\n      \"kappa\": 0.4574,\n      \"eff_k\": 1.90,\n      \"sc_accuracy\": 59.80,\n      \"sica_accuracy\": 56.86,\n      \"delta_pp\": -2.94\n    },\n    {\n      \"exp_id\": \"exp-051-k16\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"K\": 16,\n      \"kappa\": 0.4457,\n      \"eff_k\": 2.08,\n      \"sc_accuracy\": 56.86,\n      \"sica_accuracy\": 57.35,\n      \"delta_pp\": 0.49\n    },\n    {\n      \"exp_id\": \"exp-051-k20\",\n      \"server\": \"westd-25068\",\n      \"model\": \"Mistral-7B-Instruct-v0.3\",\n      \"dataset\": \"FOLIO-204\",\n      \"K\": 20,\n      \"kappa\": 0.4209,\n      \"eff_k\": 2.22,\n      \"sc_accuracy\": 55.75,\n      \"sica_accuracy\": 60.34,\n      \"delta_pp\": 4.60\n    }\n  ]\n}\n",
+      "numLines": 319,
+      "startLine": 1,
+      "totalLines": 319
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the registry for the specific experiments mentioned in the task. Let me fetch the registry data for exp-033, exp-052, exp-053, exp-054, exp-057, exp-055.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "2370bf74-9f36-45f4-a0ce-7b5ffab4d8cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now let me fetch the registry entries for the specific experiments mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "01759919-99d4-4868-baaf-900ecfd3dd26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01NNsYHeHi8nFvwzap6qjpe7`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-033"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "3aa10723-8e4e-4a6a-9f71-1b4c80c6b19d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T04:30:04.934Z_
+
+<details><summary>↩ Tool result · `toolu_01NNsYHeHi8nFvwzap6qjpe7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3419}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "cc918bad-8d60-4d17-a0ae-19a2098d52b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3419}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3419}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01U9dZen9QvFFCBAaEuzfMwg`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-052"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "9d440436-dc94-46c8-b6a9-a20caa835afd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T04:30:05.782Z_
+
+<details><summary>↩ Tool result · `toolu_01U9dZen9QvFFCBAaEuzfMwg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2453}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "06dc8c5c-4f8b-44e4-8b94-42ef53ad8e0b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2453}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2453}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FkhoFiKQBdeShRhBg3khrR`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-053"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "712b5491-f1fa-4536-950d-87e0ea3543ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T04:30:06.249Z_
+
+<details><summary>↩ Tool result · `toolu_01FkhoFiKQBdeShRhBg3khrR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2348}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "5c412577-249e-49bc-ac10-cbb1ca97dbdc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2348}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2348}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PFpa2YwMsPAhkdvEWM1Mp6`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-054"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "06a65fcb-ebad-4466-a721-346dec4293e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T04:30:07.207Z_
+
+<details><summary>↩ Tool result · `toolu_01PFpa2YwMsPAhkdvEWM1Mp6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2442}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "629e8ee5-18c5-492b-82cc-d4df3ab4624b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2442}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2442}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Soz9hEMQjKs2NAiysrHhjY`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-055"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "dd8c6e00-0390-40d4-9f72-5e84074a6968",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T04:30:07.702Z_
+
+<details><summary>↩ Tool result · `toolu_01Soz9hEMQjKs2NAiysrHhjY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2656}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "e27f4861-0693-49d8-bc91-b783c5b6542b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2656}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2656}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BBNp4kLMMXbaWedEhW8W5J`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-057"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "f9fd4d77-25fa-44b9-9f8a-25dab124373d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012S5N7sYoi5D2tVDYmabcur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9094,
+      "cache_read_input_tokens": 25012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9094
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T04:30:08.172Z_
+
+<details><summary>↩ Tool result · `toolu_01BBNp4kLMMXbaWedEhW8W5J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2481}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "bdf101d1-2745-4e1c-93cf-3e3f3553b8fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2481}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2481}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry queries returned empty results when filtering by exp_id. The unified κ JSON file already has all the data I need though. Let me try reading the registry without filters to see what format the data is in.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "5a08c7c9-31c5-4e3b-9335-d76a8640557f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119MPHGJnkV621d33yTcAXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1381,
+      "cache_read_input_tokens": 34106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Registry queries by exp_id returned empty. Let me try fetching the full registry to check the data format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "2b45ad48-2309-4a30-a87e-d501b9a37935",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119MPHGJnkV621d33yTcAXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1381,
+      "cache_read_input_tokens": 34106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FQffb2NGDTUNLVya2f8eWA`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 5,
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "af33aba9-7204-49db-8468-4d9b8ed6800a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119MPHGJnkV621d33yTcAXg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1381,
+      "cache_read_input_tokens": 34106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T04:30:13.235Z_
+
+<details><summary>↩ Tool result · `toolu_01FQffb2NGDTUNLVya2f8eWA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-057-mistral-folio204-t03\": {\"status\": \"DONE\"}, \"exp-055-multitemp-mistral-folio\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 57.84, \"sica_accuracy\": 57.84, \"delta_pp\": 0, \"discordant_b\": 5, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"agreement_rate\": 0.951, \"wall_time_min\": 83.2, \"temperatures\": \"0.3,0.7,1.2\", \"k_per_temp\": \"4,4,4\"}}, \"exp-028b-qwen3-thinking-folio204\": {\"status\": \"DONE\"}, \"exp-058-mistral-folio204-t05\": {\"status\": \"RUNNING\"}, \"exp-052\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 53.9, \"sica_accuracy\": 57.4, \"sc_correct\": 110, \"sica_correct\": 117, \"delta_pp\": 3.43, \"discordant_b\": 8, \"discordant_c\": 1, \"extraction_rate\": 0.971, \"contradiction_rate\": 0.034, \"wall_time_min\": 81.9, \"mcnemar_p\": 0.0391, \"significant\": true}}}, \"count\": 5, \"total\": 85, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2341}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "4d58d75a-b961-47f1-b14b-ad601ddd696b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-057-mistral-folio204-t03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp-055-multitemp-mistral-folio\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 57.84, \\\"sica_accuracy\\\": 57.84, \\\"delta_pp\\\": 0, \\\"discordant_b\\\": 5, \\\"discordant_c\\\": 5, \\\"mcnemar_p\\\": 1, \\\"significant\\\": false, \\\"agreement_rate\\\": 0.951, \\\"wall_time_min\\\": 83.2, \\\"temperatures\\\": \\\"0.3,0.7,1.2\\\", \\\"k_per_temp\\\": \\\"4,4,4\\\"}}, \\\"exp-028b-qwen3-thinking-folio204\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp-058-mistral-folio204-t05\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp-052\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 53.9, \\\"sica_accuracy\\\": 57.4, \\\"sc_correct\\\": 110, \\\"sica_correct\\\": 117, \\\"delta_pp\\\": 3.43, \\\"discordant_b\\\": 8, \\\"discordant_c\\\": 1, \\\"extraction_rate\\\": 0.971, \\\"contradiction_rate\\\": 0.034, \\\"wall_time_min\\\": 81.9, \\\"mcnemar_p\\\": 0.0391, \\\"significant\\\": true}}}, \\\"count\\\": 5, \\\"total\\\": 85, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2341}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-057-mistral-folio204-t03\": {\"status\": \"DONE\"}, \"exp-055-multitemp-mistral-folio\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 57.84, \"sica_accuracy\": 57.84, \"delta_pp\": 0, \"discordant_b\": 5, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"agreement_rate\": 0.951, \"wall_time_min\": 83.2, \"temperatures\": \"0.3,0.7,1.2\", \"k_per_temp\": \"4,4,4\"}}, \"exp-028b-qwen3-thinking-folio204\": {\"status\": \"DONE\"}, \"exp-058-mistral-folio204-t05\": {\"status\": \"RUNNING\"}, \"exp-052\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 53.9, \"sica_accuracy\": 57.4, \"sc_correct\": 110, \"sica_correct\": 117, \"delta_pp\": 3.43, \"discordant_b\": 8, \"discordant_c\": 1, \"extraction_rate\": 0.971, \"contradiction_rate\": 0.034, \"wall_time_min\": 81.9, \"mcnemar_p\": 0.0391, \"significant\": true}}}, \"count\": 5, \"total\": 85, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2341}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the registry format. Let me fetch more data for the specific experiments. Let me search for exp-033, exp-053, exp-054, exp-057.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "461b7faf-ebe6-4bde-b249-548394b465c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPWsfo7kNc3x6kiFAn4iBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 678,
+      "cache_read_input_tokens": 35487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01VvWP59yFnDuKCcSWCuBXCQ`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "metrics",
+    "conclusion"
+  ],
+  "filters": {
+    "status": "DONE"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "f65d357f-fa9d-4249-b922-e5ec210f71b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPWsfo7kNc3x6kiFAn4iBK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 678,
+      "cache_read_input_tokens": 35487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T04:30:18.093Z_
+
+<details><summary>↩ Tool result · `toolu_01VvWP59yFnDuKCcSWCuBXCQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-057-mistral-folio204-t03\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-055-multitemp-mistral-folio\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 57.84, \"sica_accuracy\": 57.84, \"delta_pp\": 0, \"discordant_b\": 5, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"agreement_rate\": 0.951, \"wall_time_min\": 83.2, \"temperatures\": \"0.3,0.7,1.2\", \"k_per_temp\": \"4,4,4\"}}, \"exp-028b-qwen3-thinking-folio204\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-052\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 53.9, \"sica_accuracy\": 57.4, \"sc_correct\": 110, \"sica_correct\": 117, \"delta_pp\": 3.43, \"discordant_b\": 8, \"discordant_c\": 1, \"extraction_rate\": 0.971, \"contradiction_rate\": 0.034, \"wall_time_min\": 81.9, \"mcnemar_p\": 0.0391, \"significant\": true}, \"conclusion\": \"success\"}, \"exp-054-mistral-folio204-t10\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 54.9, \"sica_accuracy\": 55.4, \"delta_pp\": 0.49, \"discordant_b\": 5, \"discordant_c\": 4, \"mcnemar_chi2\": 0.1111, \"mcnemar_p\": 0.7389, \"extraction_rate\": 97.3, \"contradiction_rate\": 3, \"wall_time_min\": 83}}, \"exp-046-mistral-pw600\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 600, \"sc_accuracy\": 39.33, \"sica_accuracy\": 36.5, \"delta_pp\": -2.83, \"sc_wins\": 30, \"sica_wins\": 13, \"mcnemar_p\": 0.0095, \"significant\": true, \"dataset\": \"ProofWriter-D5-600\", \"model\": \"Mistral-7B-Instruct-v0.3\"}}, \"exp-053\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 56.37, \"sica_accuracy\": 55.88, \"sc_correct\": 115, \"sica_correct\": 114, \"delta_pp\": -0.49, \"discordant_b\": 2, \"discordant_c\": 3, \"extraction_rate\": 0.97, \"contradiction_rate\": 0.033, \"wall_time_min\": 80.8, \"mcnemar_p\": 1.0, \"significant\": false}, \"conclusion\": \"negative\"}, \"exp-050b-mistral-icl-oracle\": {\"status\": \"DONE\", \"metrics\": {\"n\": 199, \"sc_accuracy\": 57.79, \"sica_accuracy\": 54.27, \"delta_pp\": -3.52, \"sc_correct\": 115, \"sica_correct\": 108, \"discordant_b\": 6, \"discordant_c\": 13, \"mcnemar_p\": 0.167, \"significant\": false, \"wall_time_min\": 93.8, \"extraction_success\": 2333, \"extraction_fail\": 55, \"per_answer\": {\"True\": {\"n\": 70, \"sica_acc\": 50, \"sc_acc\": 54.29}, \"False\": {\"n\": 61, \"sica_acc\": 36.07, \"sc_acc\": 44.26}, \"Unknown\": {\"n\": 68, \"sica_acc\": 75, \"sc_acc\": 73.53}}}, \"conclusion\": \"negative\"}, \"exp-050-mistral-icl-oracle-folio199\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-049b-mistral-logiqa200\": {\"status\": \"DONE\", \"metrics\": {\"n\": 200, \"sc_accuracy\": 51, \"sica_accuracy\": 51.5, \"delta_pp\": 0.5, \"sc_correct\": 102, \"sica_correct\": 103, \"discordant_b\": 6, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"wall_time_min\": 78.6, \"extraction_rate\": 0.9725, \"total_constraints\": 10659, \"unique_constraints\": 8934, \"contradiction_rate\": 0.0196}, \"conclusion\": \"negative\"}, \"exp-044b-icl-oracle\": {\"status\": \"DONE\", \"metrics\": {\"n\": 199, \"dataset\": \"FOLIO-199\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 74.87, \"sc_accuracy\": 74.37, \"delta_pp\": 0.5, \"sica_correct\": 149, \"sc_correct\": 148, \"icl_examples\": 5, \"extraction_failure_rate\": 0.008}, \"conclusion\": \"negative\"}, \"exp-049-mistral-logiqa200\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-041-14b-folio204-16639\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"dataset\": \"FOLIO-204\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 75.49, \"sc_accuracy\": 77.45, \"delta_pp\": -1.96, \"sica_correct\": 154, \"sc_correct\": 158, \"mcnemar_discordant_b\": 0, \"mcnemar_discordant_c\": 4, \"mcnemar_p_value\": 0.125, \"extraction_rate\": 0.98, \"contradiction_rate\": 0.0097}}, \"exp-045b-backward-verify\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-045-backward-verification\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp-038-14b-logiqa200-16639\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 200, \"dataset\": \"LogiQA-200\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 78, \"sc_accuracy\": 78.5, \"delta_pp\": -0.5, \"mcnemar_p\": 1, \"sica_correct\": 156, \"sc_correct\": 157, \"discordant_b\": 1, \"discordant_c\": 2, \"both_correct\": 155, \"both_wrong\": 42, \"extraction_rate\": 0.864, \"fail_empty_rate\": 0.122, \"avg_unique_constraints\": 26.7, \"contradiction_rate\": 0.008, \"wall_time_min\": 126.8}}, \"exp-033\": {\"status\": \"DONE\", \"metrics\": {\"n_problems\": 204, \"sica_accuracy\": 59.31, \"sc_accuracy\": 54.41, \"delta_pp\": 4.9, \"sica_correct\": 121, \"sc_correct\": 111, \"mcnemar_discordant_b\": 12, \"mcnemar_discordant_c\": 2, \"mcnemar_p_value\": 0.0129, \"c0_non_unanimous_rate\": 0.8137, \"avg_majority_frac\": 0.7515, \"extraction_rate\": 97.14, \"contradiction_rate\": 3.5, \"problems_with_contradictions\": 128, \"avg_unique_constraints\": 39.3, \"maxsat_mean_sat_ratio\": 0.9609, \"total_constraints\": 14042, \"unique_constraints\": 8021, \"wall_time_min\": 81.4, \"k\": 12}, \"conclusion\": \"success\"}, \"exp-042b-premise-formal\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-044-icl-oracle\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-035\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n_problems\": 203, \"sc_accuracy\": 77.34, \"sica_accuracy\": 76.85, \"delta_pp\": -0.49, \"sica_correct\": 156, \"sc_correct\": 157, \"mcnemar_discordant_b\": 1, \"mcnemar_discordant_c\": 2, \"mcnemar_p_value\": 1, \"c0_non_unanimous_rate\": 0.5517, \"extraction_rate\": 98.19, \"contradiction_rate\": 1.58, \"problems_with_contradictions\": 60, \"total_constraints\": 12950, \"unique_constraints\": 6515, \"dedup_ratio\": 50.3, \"wall_time_min\": 78.2, \"avg_per_problem_s\": 23.1}}, \"exp-036b-cross-trace-unsat\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"cross_unsat_rate_pair\": 0.087, \"cross_unsat_rate_problem\": 0.107, \"within_trace_unsat_rate\": 0.009, \"unsat_pairs\": 11, \"total_pairs\": 126, \"problems_with_unsat\": 9, \"multi_answer_problems\": 84, \"single_answer_skip\": 120, \"zero_shared_var_pairs_pct\": 0.564, \"avg_shared_vars\": 2.7, \"false_true_unsat_rate\": 0.467, \"sica_cross_ut_accuracy\": 0.745, \"sc_accuracy\": 0.75, \"accuracy_impact\": 0}}, \"exp-042-premise-formalization\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-043-consistency-filtering\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"sc_accuracy\": 0.75, \"sica_t1_all\": 0.7794, \"sica_t4\": 0.75, \"sica_t6\": 0.7549, \"sica_t8\": 0.7549, \"avg_unique_constraints\": 13.2, \"avg_filtered_t4\": 1.8, \"avg_filtered_t6\": 0.8, \"avg_filtered_t8\": 0.3}}, \"exp-036-z3-feedback-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"z3fb_sica_accuracy\": 0.775, \"vanilla_sica_accuracy\": 0.745, \"sc_accuracy\": 0.75, \"z3fb_vs_vanilla_delta\": 0.03, \"unsat_traces\": 22, \"total_traces\": 2448, \"unsat_rate\": 0.009, \"unsat_resolve_rate\": 0.864, \"problems_flipped\": 0, \"real_impact\": 0}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-033-qwen3-pw600-nonthinking\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-004-qwen7b-rerun\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-007-qwen72b-awq\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.8431, \"sc_accuracy\": 0.8382, \"delta_pp\": 0.49, \"extraction_rate\": 0.995, \"contradiction_rate\": 0.0283, \"problems_with_contradictions\": 69, \"total_constraints\": 16153, \"unique_constraints\": 7031, \"wall_time_s\": 11017, \"model\": \"Qwen3-14B\", \"dataset\": \"FOLIO-204\", \"mode\": \"non-thinking\"}}, \"exp-030-crossmodel-mistral-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"k\": 12, \"crossmodel_sica_accuracy\": 0.75, \"sc_accuracy\": 0.75, \"delta_pp\": 0, \"discriminative_rate\": 0, \"recovery_rate\": 0, \"model_extraction\": \"Mistral-7B-Instruct-v0.3\", \"model_traces\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\"}}, \"exp-031-oracle-folio-regen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"oracle_sica_accuracy\": 0.8971, \"sc_accuracy\": 0.7549, \"sica_self_accuracy\": 0.7451, \"oracle_vs_sc_delta_pp\": 14.22, \"oracle_vs_sica_delta_pp\": 15.2, \"mcnemar_p_oracle_vs_sc\": 2.0024e-07, \"mcnemar_b_c\": {\"b_oracle_right_sc_wrong\": 29, \"c_oracle_wrong_sc_right\": 0}, \"z3_gold_agreement\": 0.951, \"z3_gold_agree_n\": 194, \"z3_in_candidates_n\": 178, \"fol_parse_success\": 1, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"constraint_source\": \"gold FOL annotations\", \"traces_source\": \"exp-026-folio204-trace-regen\"}}, \"exp-029-contrastive-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"contrastive_accuracy\": 0.7253, \"sc_accuracy\": 0.7363, \"delta_pp\": -1.1, \"discriminative_rate\": 0.0604, \"discriminative_count\": 11, \"n\": 182, \"recovery_rate_pct\": -8.3, \"mcnemar_chi2\": 0.1, \"mcnemar_p\": 0.7518, \"cont_only_correct\": 4, \"sc_only_correct\": 6, \"both_correct\": 128, \"both_wrong\": 44, \"supporting_pct\": 43.2, \"opposing_pct\": 56.8, \"avg_constraints_per_problem\": 24.4, \"avg_unique_per_problem\": 10.4, \"wall_time_min\": 47.2}}, \"exp-026-folio204-trace-regen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.7451, \"sc_accuracy\": 0.75, \"delta_pp\": -0.49, \"extraction_rate\": 0.9853, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"temperature_trace\": 0.7, \"temperature_extraction\": 0.3, \"wall_time_h\": 2.5}}, \"exp-023-discriminative-rate\": {\"status\": \"DONE\", \"metrics\": {\"n_total\": 804, \"n_multi_candidate\": 307, \"source_disc_rate_weight\": 0.392, \"source_disc_rate_weight_ci95\": [0.387, 0.398], \"source_disc_rate_count_est\": 0.121, \"source_disc_rate_count_ci95\": [0.12, 0.123], \"z3_semantic_disc_rate\": 0.082, \"z3_semantic_disc_ci95\": [0.076, 0.088], \"problems_with_disc\": 289, \"problems_with_disc_rate\": 0.941, \"pw_source_disc_weight\": 0.364, \"folio_source_disc_weight\": 0.54, \"pw_n_multi\": 235, \"folio_n_multi\": 72, \"pilot_rate_reported_count\": 0.115, \"pilot_rate_reported_weight\": 0.372, \"pilot_validation_weight\": 0.376, \"pilot_delta_pp\": 0.38, \"z3_answer_assertions\": 642, \"z3_total_unique_constraints\": 7844, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO+ProofWriter-804\"}, \"conclusion\": \"success\"}, \"exp-022-oracle-proofwriter\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 600, \"k\": 12, \"oracle_sica_accuracy\": 0.8667, \"sc_accuracy\": 0.7517, \"sica_self_accuracy\": 0.755, \"oracle_vs_sc_delta_pp\": 11.5, \"mcnemar_p_oracle_vs_sc\": 9.21e-15, \"z3_gold_agreement\": 0.9714, \"z3_gold_agree_n\": 577, \"z3_gold_total\": 594, \"parse_errors\": 6, \"parse_error_rate\": 0.01, \"solver_errors\": 0, \"solver_total\": 7128, \"relneg_oracle\": 0.7786, \"relneg_sc\": 0.6, \"relneg_delta_pp\": 17.86, \"relnoneg_oracle\": 0.7945, \"relnoneg_sc\": 0.6644, \"relnoneg_delta_pp\": 13.01, \"attnoneg_oracle\": 0.961, \"attnoneg_sc\": 0.8701, \"attnoneg_delta_pp\": 9.09, \"attneg_oracle\": 0.9188, \"attneg_sc\": 0.85, \"attneg_delta_pp\": 6.87, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"ProofWriter-OWA-D5-600\", \"constraint_source\": \"gold DSL (raw_logic_programs)\"}}, \"temperature-ablation-t07\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7167, \"sc_accuracy\": 0.75, \"delta_pp\": -3.33, \"multi_candidate_rate\": 0.4, \"extraction_rate\": 0.9208, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 2, \"truncated_traces\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.7, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.7, \"proofwriter_n\": 30, \"folio_sica\": 0.8, \"folio_sc\": 0.8, \"folio_n\": 30, \"wall_time_s\": 3498.3}, \"conclusion\": \"negative\"}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7587, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"maxsat_correct\": 615, \"count_only_correct\": 616, \"random_weight_correct\": 610, \"sc_correct\": 613, \"agreement_maxsat_vs_countonly\": \"803/804\", \"agreement_maxsat_vs_randomwt\": \"785/804\", \"agreement_maxsat_vs_sc\": \"773/804\", \"agreement_countonly_vs_randomwt\": \"786/804\", \"agreement_countonly_vs_sc\": \"774/804\", \"agreement_randomwt_vs_sc\": \"764/804\", \"mcnemar_p_all_gt_0.7\": true}}, \"exp-004-qwen7b\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6833, \"sc_accuracy\": 0.6833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.433, \"extraction_rate\": 0.9417, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0274, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"wall_time_s\": 1838, \"truncated_traces\": 0, \"model\": \"Qwen2.5-7B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.7, \"folio_sica\": 0.7667, \"folio_sc\": 0.7333, \"folio_n\": 30, \"proofwriter_sica\": 0.6, \"proofwriter_sc\": 0.6333, \"proofwriter_n\": 30}}, \"temperature-ablation-t10\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.75, \"sc_accuracy\": 0.75, \"delta_pp\": 0, \"multi_candidate_rate\": 0.433, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 1}, \"conclusion\": \"negative\"}, \"exp-012-gsm8k-pilot\": {\"status\": \"DONE\", \"metrics\": {\"n\": 30, \"k\": 12, \"sica_accuracy\": 0.9667, \"sc_accuracy\": 0.9667, \"delta_pp\": 0, \"multi_candidate_rate\": 0.133, \"extraction_success_rate\": 0.147, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"GSM8K\", \"temperature\": 0.7}, \"conclusion\": \"negative\"}, \"exp-021-oracle-folio\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"oracle_sica_accuracy\": 0.8824, \"sc_accuracy\": 0.7941, \"sica_self_accuracy\": 0.7941, \"oracle_vs_sc_delta_pp\": 8.82, \"oracle_vs_sica_delta_pp\": 8.82, \"mcnemar_p_oracle_vs_sc\": 6.15e-05, \"z3_gold_agreement\": 0.946, \"fol_parse_success\": 1, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"constraint_source\": \"gold FOL annotations\"}}, \"temperature-ablation-t05\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7667, \"sc_accuracy\": 0.7667, \"delta_pp\": 0, \"multi_candidate_rate\": 0.383, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.5}, \"conclusion\": \"negative\"}, \"temperature-ablation-t03\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7333, \"delta_pp\": 0, \"multi_candidate_rate\": 0.3, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.3}, \"conclusion\": \"negative\"}, \"exp-014-deepseek-r1-7b\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6833, \"sc_accuracy\": 0.7167, \"delta_pp\": -3.33, \"multi_candidate_rate\": 0.583, \"extraction_rate\": 0.839, \"answer_extraction_rate\": 0.939, \"truncated_traces\": 72, \"contradiction_rate\": 0.037, \"wall_time_min\": 100.3, \"mcnemar_p\": 0.4795, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 2, \"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\"}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\"}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\"}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}}, \"exp-009-overhead-analysis\": {\"status\": \"DONE\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668, \"bootstrap_ci_95\": [-5.88, 0.98], \"bootstrap_p_sica_ge_sc\": 0.1, \"discordant_sica_wins\": 4, \"discordant_sc_wins\": 9, \"discordant_total\": 13, \"discordant_rate\": 0.064, \"multi_candidate_rate\": 0.618, \"extraction_rate\": 0.942, \"answer_extraction_rate\": 0.951, \"contradiction_rate\": 0.062, \"both_wrong\": 71, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"FOLIO-204\", \"wall_time_min\": 131.7}, \"conclusion\": \"negative\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}}, \"exp-010-mistral-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"pilot-constraint-filtering\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa-v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}}, \"exp-017-strategyqa-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-010-mistral\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"sica_temp_diversity\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}}, \"sica_d012_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}}, \"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}}, \"exp-011-llama8b\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}}, \"exp-005\": {\"status\": \"DONE\", \"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}, \"conclusion\": \"negative\"}, \"sica_folio30\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}, \"conclusion\": \"success\"}, \"sica_proofwriter30_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_proofwriter30\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}, \"conclusion\": \"killed\"}, \"sica_aime30_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}}, \"sica_aime30_t07\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_math50_t07\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_smoke_5q\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"crd_folio_main\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 76, \"total\": 76, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2479}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "650b5ae1-49c7-4385-bd77-7d7b92a221a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-057-mistral-folio204-t03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-055-multitemp-mistral-folio\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 57.84, \\\"sica_accuracy\\\": 57.84, \\\"delta_pp\\\": 0, \\\"discordant_b\\\": 5, \\\"discordant_c\\\": 5, \\\"mcnemar_p\\\": 1, \\\"significant\\\": false, \\\"agreement_rate\\\": 0.951, \\\"wall_time_min\\\": 83.2, \\\"temperatures\\\": \\\"0.3,0.7,1.2\\\", \\\"k_per_temp\\\": \\\"4,4,4\\\"}}, \\\"exp-028b-qwen3-thinking-folio204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-052\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 53.9, \\\"sica_accuracy\\\": 57.4, \\\"sc_correct\\\": 110, \\\"sica_correct\\\": 117, \\\"delta_pp\\\": 3.43, \\\"discordant_b\\\": 8, \\\"discordant_c\\\": 1, \\\"extraction_rate\\\": 0.971, \\\"contradiction_rate\\\": 0.034, \\\"wall_time_min\\\": 81.9, \\\"mcnemar_p\\\": 0.0391, \\\"significant\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-054-mistral-folio204-t10\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 54.9, \\\"sica_accuracy\\\": 55.4, \\\"delta_pp\\\": 0.49, \\\"discordant_b\\\": 5, \\\"discordant_c\\\": 4, \\\"mcnemar_chi2\\\": 0.1111, \\\"mcnemar_p\\\": 0.7389, \\\"extraction_rate\\\": 97.3, \\\"contradiction_rate\\\": 3, \\\"wall_time_min\\\": 83}}, \\\"exp-046-mistral-pw600\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 600, \\\"sc_accuracy\\\": 39.33, \\\"sica_accuracy\\\": 36.5, \\\"delta_pp\\\": -2.83, \\\"sc_wins\\\": 30, \\\"sica_wins\\\": 13, \\\"mcnemar_p\\\": 0.0095, \\\"significant\\\": true, \\\"dataset\\\": \\\"ProofWriter-D5-600\\\", \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\"}}, \\\"exp-053\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 56.37, \\\"sica_accuracy\\\": 55.88, \\\"sc_correct\\\": 115, \\\"sica_correct\\\": 114, \\\"delta_pp\\\": -0.49, \\\"discordant_b\\\": 2, \\\"discordant_c\\\": 3, \\\"extraction_rate\\\": 0.97, \\\"contradiction_rate\\\": 0.033, \\\"wall_time_min\\\": 80.8, \\\"mcnemar_p\\\": 1.0, \\\"significant\\\": false}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-050b-mistral-icl-oracle\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 199, \\\"sc_accuracy\\\": 57.79, \\\"sica_accuracy\\\": 54.27, \\\"delta_pp\\\": -3.52, \\\"sc_correct\\\": 115, \\\"sica_correct\\\": 108, \\\"discordant_b\\\": 6, \\\"discordant_c\\\": 13, \\\"mcnemar_p\\\": 0.167, \\\"significant\\\": false, \\\"wall_time_min\\\": 93.8, \\\"extraction_success\\\": 2333, \\\"extraction_fail\\\": 55, \\\"per_answer\\\": {\\\"True\\\": {\\\"n\\\": 70, \\\"sica_acc\\\": 50, \\\"sc_acc\\\": 54.29}, \\\"False\\\": {\\\"n\\\": 61, \\\"sica_acc\\\": 36.07, \\\"sc_acc\\\": 44.26}, \\\"Unknown\\\": {\\\"n\\\": 68, \\\"sica_acc\\\": 75, \\\"sc_acc\\\": 73.53}}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-050-mistral-icl-oracle-folio199\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-049b-mistral-logiqa200\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 200, \\\"sc_accuracy\\\": 51, \\\"sica_accuracy\\\": 51.5, \\\"delta_pp\\\": 0.5, \\\"sc_correct\\\": 102, \\\"sica_correct\\\": 103, \\\"discordant_b\\\": 6, \\\"discordant_c\\\": 5, \\\"mcnemar_p\\\": 1, \\\"significant\\\": false, \\\"wall_time_min\\\": 78.6, \\\"extraction_rate\\\": 0.9725, \\\"total_constraints\\\": 10659, \\\"unique_constraints\\\": 8934, \\\"contradiction_rate\\\": 0.0196}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-044b-icl-oracle\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 199, \\\"dataset\\\": \\\"FOLIO-199\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"k\\\": 12, \\\"sica_accuracy\\\": 74.87, \\\"sc_accuracy\\\": 74.37, \\\"delta_pp\\\": 0.5, \\\"sica_correct\\\": 149, \\\"sc_correct\\\": 148, \\\"icl_examples\\\": 5, \\\"extraction_failure_rate\\\": 0.008}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-049-mistral-logiqa200\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-041-14b-folio204-16639\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"k\\\": 12, \\\"sica_accuracy\\\": 75.49, \\\"sc_accuracy\\\": 77.45, \\\"delta_pp\\\": -1.96, \\\"sica_correct\\\": 154, \\\"sc_correct\\\": 158, \\\"mcnemar_discordant_b\\\": 0, \\\"mcnemar_discordant_c\\\": 4, \\\"mcnemar_p_value\\\": 0.125, \\\"extraction_rate\\\": 0.98, \\\"contradiction_rate\\\": 0.0097}}, \\\"exp-045b-backward-verify\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-045-backward-verification\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-038-14b-logiqa200-16639\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 200, \\\"dataset\\\": \\\"LogiQA-200\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"k\\\": 12, \\\"sica_accuracy\\\": 78, \\\"sc_accuracy\\\": 78.5, \\\"delta_pp\\\": -0.5, \\\"mcnemar_p\\\": 1, \\\"sica_correct\\\": 156, \\\"sc_correct\\\": 157, \\\"discordant_b\\\": 1, \\\"discordant_c\\\": 2, \\\"both_correct\\\": 155, \\\"both_wrong\\\": 42, \\\"extraction_rate\\\": 0.864, \\\"fail_empty_rate\\\": 0.122, \\\"avg_unique_constraints\\\": 26.7, \\\"contradiction_rate\\\": 0.008, \\\"wall_time_min\\\": 126.8}}, \\\"exp-033\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_problems\\\": 204, \\\"sica_accuracy\\\": 59.31, \\\"sc_accuracy\\\": 54.41, \\\"delta_pp\\\": 4.9, \\\"sica_correct\\\": 121, \\\"sc_correct\\\": 111, \\\"mcnemar_discordant_b\\\": 12, \\\"mcnemar_discordant_c\\\": 2, \\\"mcnemar_p_value\\\": 0.0129, \\\"c0_non_unanimous_rate\\\": 0.8137, \\\"avg_majority_frac\\\": 0.7515, \\\"extraction_rate\\\": 97.14, \\\"contradiction_rate\\\": 3.5, \\\"problems_with_contradictions\\\": 128, \\\"avg_unique_constraints\\\": 39.3, \\\"maxsat_mean_sat_ratio\\\": 0.9609, \\\"total_constraints\\\": 14042, \\\"unique_constraints\\\": 8021, \\\"wall_time_min\\\": 81.4, \\\"k\\\": 12}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-042b-premise-formal\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-044-icl-oracle\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-035\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n_problems\\\": 203, \\\"sc_accuracy\\\": 77.34, \\\"sica_accuracy\\\": 76.85, \\\"delta_pp\\\": -0.49, \\\"sica_correct\\\": 156, \\\"sc_correct\\\": 157, \\\"mcnemar_discordant_b\\\": 1, \\\"mcnemar_discordant_c\\\": 2, \\\"mcnemar_p_value\\\": 1, \\\"c0_non_unanimous_rate\\\": 0.5517, \\\"extraction_rate\\\": 98.19, \\\"contradiction_rate\\\": 1.58, \\\"problems_with_contradictions\\\": 60, \\\"total_constraints\\\": 12950, \\\"unique_constraints\\\": 6515, \\\"dedup_ratio\\\": 50.3, \\\"wall_time_min\\\": 78.2, \\\"avg_per_problem_s\\\": 23.1}}, \\\"exp-036b-cross-trace-unsat\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"cross_unsat_rate_pair\\\": 0.087, \\\"cross_unsat_rate_problem\\\": 0.107, \\\"within_trace_unsat_rate\\\": 0.009, \\\"unsat_pairs\\\": 11, \\\"total_pairs\\\": 126, \\\"problems_with_unsat\\\": 9, \\\"multi_answer_problems\\\": 84, \\\"single_answer_skip\\\": 120, \\\"zero_shared_var_pairs_pct\\\": 0.564, \\\"avg_shared_vars\\\": 2.7, \\\"false_true_unsat_rate\\\": 0.467, \\\"sica_cross_ut_accuracy\\\": 0.745, \\\"sc_accuracy\\\": 0.75, \\\"accuracy_impact\\\": 0}}, \\\"exp-042-premise-formalization\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-043-consistency-filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"sc_accuracy\\\": 0.75, \\\"sica_t1_all\\\": 0.7794, \\\"sica_t4\\\": 0.75, \\\"sica_t6\\\": 0.7549, \\\"sica_t8\\\": 0.7549, \\\"avg_unique_constraints\\\": 13.2, \\\"avg_filtered_t4\\\": 1.8, \\\"avg_filtered_t6\\\": 0.8, \\\"avg_filtered_t8\\\": 0.3}}, \\\"exp-036-z3-feedback-folio204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"z3fb_sica_accuracy\\\": 0.775, \\\"vanilla_sica_accuracy\\\": 0.745, \\\"sc_accuracy\\\": 0.75, \\\"z3fb_vs_vanilla_delta\\\": 0.03, \\\"unsat_traces\\\": 22, \\\"total_traces\\\": 2448, \\\"unsat_rate\\\": 0.009, \\\"unsat_resolve_rate\\\": 0.864, \\\"problems_flipped\\\": 0, \\\"real_impact\\\": 0}}, \\\"exp-028-qwen3-14b-thinking\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-033-qwen3-pw600-nonthinking\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-004-qwen7b-rerun\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-007-qwen72b-awq\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-027-qwen3-14b-non-thinking\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.8431, \\\"sc_accuracy\\\": 0.8382, \\\"delta_pp\\\": 0.49, \\\"extraction_rate\\\": 0.995, \\\"contradiction_rate\\\": 0.0283, \\\"problems_with_contradictions\\\": 69, \\\"total_constraints\\\": 16153, \\\"unique_constraints\\\": 7031, \\\"wall_time_s\\\": 11017, \\\"model\\\": \\\"Qwen3-14B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"mode\\\": \\\"non-thinking\\\"}}, \\\"exp-030-crossmodel-mistral-folio204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"crossmodel_sica_accuracy\\\": 0.75, \\\"sc_accuracy\\\": 0.75, \\\"delta_pp\\\": 0, \\\"discriminative_rate\\\": 0, \\\"recovery_rate\\\": 0, \\\"model_extraction\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"model_traces\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"}}, \\\"exp-031-oracle-folio-regen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"oracle_sica_accuracy\\\": 0.8971, \\\"sc_accuracy\\\": 0.7549, \\\"sica_self_accuracy\\\": 0.7451, \\\"oracle_vs_sc_delta_pp\\\": 14.22, \\\"oracle_vs_sica_delta_pp\\\": 15.2, \\\"mcnemar_p_oracle_vs_sc\\\": 2.0024e-07, \\\"mcnemar_b_c\\\": {\\\"b_oracle_right_sc_wrong\\\": 29, \\\"c_oracle_wrong_sc_right\\\": 0}, \\\"z3_gold_agreement\\\": 0.951, \\\"z3_gold_agree_n\\\": 194, \\\"z3_in_candidates_n\\\": 178, \\\"fol_parse_success\\\": 1, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"constraint_source\\\": \\\"gold FOL annotations\\\", \\\"traces_source\\\": \\\"exp-026-folio204-trace-regen\\\"}}, \\\"exp-029-contrastive-folio204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"contrastive_accuracy\\\": 0.7253, \\\"sc_accuracy\\\": 0.7363, \\\"delta_pp\\\": -1.1, \\\"discriminative_rate\\\": 0.0604, \\\"discriminative_count\\\": 11, \\\"n\\\": 182, \\\"recovery_rate_pct\\\": -8.3, \\\"mcnemar_chi2\\\": 0.1, \\\"mcnemar_p\\\": 0.7518, \\\"cont_only_correct\\\": 4, \\\"sc_only_correct\\\": 6, \\\"both_correct\\\": 128, \\\"both_wrong\\\": 44, \\\"supporting_pct\\\": 43.2, \\\"opposing_pct\\\": 56.8, \\\"avg_constraints_per_problem\\\": 24.4, \\\"avg_unique_per_problem\\\": 10.4, \\\"wall_time_min\\\": 47.2}}, \\\"exp-026-folio204-trace-regen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.7451, \\\"sc_accuracy\\\": 0.75, \\\"delta_pp\\\": -0.49, \\\"extraction_rate\\\": 0.9853, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"temperature_trace\\\": 0.7, \\\"temperature_extraction\\\": 0.3, \\\"wall_time_h\\\": 2.5}}, \\\"exp-023-discriminative-rate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n_total\\\": 804, \\\"n_multi_candidate\\\": 307, \\\"source_disc_rate_weight\\\": 0.392, \\\"source_disc_rate_weight_ci95\\\": [0.387, 0.398], \\\"source_disc_rate_count_est\\\": 0.121, \\\"source_disc_rate_count_ci95\\\": [0.12, 0.123], \\\"z3_semantic_disc_rate\\\": 0.082, \\\"z3_semantic_disc_ci95\\\": [0.076, 0.088], \\\"problems_with_disc\\\": 289, \\\"problems_with_disc_rate\\\": 0.941, \\\"pw_source_disc_weight\\\": 0.364, \\\"folio_source_disc_weight\\\": 0.54, \\\"pw_n_multi\\\": 235, \\\"folio_n_multi\\\": 72, \\\"pilot_rate_reported_count\\\": 0.115, \\\"pilot_rate_reported_weight\\\": 0.372, \\\"pilot_validation_weight\\\": 0.376, \\\"pilot_delta_pp\\\": 0.38, \\\"z3_answer_assertions\\\": 642, \\\"z3_total_unique_constraints\\\": 7844, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO+ProofWriter-804\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-022-oracle-proofwriter\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 600, \\\"k\\\": 12, \\\"oracle_sica_accuracy\\\": 0.8667, \\\"sc_accuracy\\\": 0.7517, \\\"sica_self_accuracy\\\": 0.755, \\\"oracle_vs_sc_delta_pp\\\": 11.5, \\\"mcnemar_p_oracle_vs_sc\\\": 9.21e-15, \\\"z3_gold_agreement\\\": 0.9714, \\\"z3_gold_agree_n\\\": 577, \\\"z3_gold_total\\\": 594, \\\"parse_errors\\\": 6, \\\"parse_error_rate\\\": 0.01, \\\"solver_errors\\\": 0, \\\"solver_total\\\": 7128, \\\"relneg_oracle\\\": 0.7786, \\\"relneg_sc\\\": 0.6, \\\"relneg_delta_pp\\\": 17.86, \\\"relnoneg_oracle\\\": 0.7945, \\\"relnoneg_sc\\\": 0.6644, \\\"relnoneg_delta_pp\\\": 13.01, \\\"attnoneg_oracle\\\": 0.961, \\\"attnoneg_sc\\\": 0.8701, \\\"attnoneg_delta_pp\\\": 9.09, \\\"attneg_oracle\\\": 0.9188, \\\"attneg_sc\\\": 0.85, \\\"attneg_delta_pp\\\": 6.87, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"ProofWriter-OWA-D5-600\\\", \\\"constraint_source\\\": \\\"gold DSL (raw_logic_programs)\\\"}}, \\\"temperature-ablation-t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.7167, \\\"sc_accuracy\\\": 0.75, \\\"delta_pp\\\": -3.33, \\\"multi_candidate_rate\\\": 0.4, \\\"extraction_rate\\\": 0.9208, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 2, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"temperature\\\": 0.7, \\\"proofwriter_sica\\\": 0.6333, \\\"proofwriter_sc\\\": 0.7, \\\"proofwriter_n\\\": 30, \\\"folio_sica\\\": 0.8, \\\"folio_sc\\\": 0.8, \\\"folio_n\\\": 30, \\\"wall_time_s\\\": 3498.3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sica_constraint_ablation_013\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"maxsat_accuracy\\\": 0.7649, \\\"count_only_accuracy\\\": 0.7662, \\\"random_weight_accuracy\\\": 0.7587, \\\"sc_baseline_accuracy\\\": 0.7624, \\\"n_problems\\\": 804, \\\"maxsat_correct\\\": 615, \\\"count_only_correct\\\": 616, \\\"random_weight_correct\\\": 610, \\\"sc_correct\\\": 613, \\\"agreement_maxsat_vs_countonly\\\": \\\"803/804\\\", \\\"agreement_maxsat_vs_randomwt\\\": \\\"785/804\\\", \\\"agreement_maxsat_vs_sc\\\": \\\"773/804\\\", \\\"agreement_countonly_vs_randomwt\\\": \\\"786/804\\\", \\\"agreement_countonly_vs_sc\\\": \\\"774/804\\\", \\\"agreement_randomwt_vs_sc\\\": \\\"764/804\\\", \\\"mcnemar_p_all_gt_0.7\\\": true}}, \\\"exp-004-qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.6833, \\\"sc_accuracy\\\": 0.6833, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.433, \\\"extraction_rate\\\": 0.9417, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.0274, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 2, \\\"mcnemar_p\\\": 1, \\\"wall_time_s\\\": 1838, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"temperature\\\": 0.7, \\\"folio_sica\\\": 0.7667, \\\"folio_sc\\\": 0.7333, \\\"folio_n\\\": 30, \\\"proofwriter_sica\\\": 0.6, \\\"proofwriter_sc\\\": 0.6333, \\\"proofwriter_n\\\": 30}}, \\\"temperature-ablation-t10\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.75, \\\"sc_accuracy\\\": 0.75, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.433, \\\"discordant_total\\\": 0, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"temperature\\\": 1}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-012-gsm8k-pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 30, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.9667, \\\"sc_accuracy\\\": 0.9667, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.133, \\\"extraction_success_rate\\\": 0.147, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"GSM8K\\\", \\\"temperature\\\": 0.7}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-021-oracle-folio\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"oracle_sica_accuracy\\\": 0.8824, \\\"sc_accuracy\\\": 0.7941, \\\"sica_self_accuracy\\\": 0.7941, \\\"oracle_vs_sc_delta_pp\\\": 8.82, \\\"oracle_vs_sica_delta_pp\\\": 8.82, \\\"mcnemar_p_oracle_vs_sc\\\": 6.15e-05, \\\"z3_gold_agreement\\\": 0.946, \\\"fol_parse_success\\\": 1, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"constraint_source\\\": \\\"gold FOL annotations\\\"}}, \\\"temperature-ablation-t05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.7667, \\\"sc_accuracy\\\": 0.7667, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.383, \\\"discordant_total\\\": 0, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"temperature\\\": 0.5}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"temperature-ablation-t03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.7333, \\\"sc_accuracy\\\": 0.7333, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.3, \\\"discordant_total\\\": 0, \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"temperature\\\": 0.3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-014-deepseek-r1-7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.6833, \\\"sc_accuracy\\\": 0.7167, \\\"delta_pp\\\": -3.33, \\\"multi_candidate_rate\\\": 0.583, \\\"extraction_rate\\\": 0.839, \\\"answer_extraction_rate\\\": 0.939, \\\"truncated_traces\\\": 72, \\\"contradiction_rate\\\": 0.037, \\\"wall_time_min\\\": 100.3, \\\"mcnemar_p\\\": 0.4795, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 2, \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"dataset\\\": \\\"D012\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.4833, \\\"sc_accuracy\\\": 0.4833, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.5, \\\"extraction_rate\\\": 0.8819, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.0562, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 2, \\\"mcnemar_p\\\": 1, \\\"proofwriter_sica\\\": 0.4, \\\"proofwriter_sc\\\": 0.4, \\\"proofwriter_delta_pp\\\": 0, \\\"folio_sica\\\": 0.5667, \\\"folio_sc\\\": 0.5667, \\\"folio_delta_pp\\\": 0, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"dataset\\\": \\\"D012\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sica_expanded_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.765, \\\"sc_accuracy\\\": 0.762, \\\"sica_sc_gap_pp\\\": 0.3, \\\"n_problems\\\": 804, \\\"multi_candidate_rate\\\": 0.3818, \\\"folio_sica\\\": 0.794, \\\"folio_sc\\\": 0.794, \\\"folio_gap_pp\\\": 0, \\\"folio_n\\\": 204, \\\"proofwriter_sica\\\": 0.755, \\\"proofwriter_sc\\\": 0.752, \\\"proofwriter_gap_pp\\\": 0.3, \\\"proofwriter_n\\\": 600, \\\"extraction_rate\\\": 0.89, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"problems_with_contradictions\\\": 331, \\\"truncated_traces\\\": 0, \\\"wall_time_min\\\": 826}}, \\\"exp-019-llama8b-strategyqa-200\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 200, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.74, \\\"sc_accuracy\\\": 0.72, \\\"delta_pp\\\": 2, \\\"multi_candidate_rate\\\": 0.41, \\\"mcnemar_p\\\": 0.424, \\\"bootstrap_ci_95\\\": [-1.5, 5.5], \\\"bootstrap_p_delta_le_0\\\": 0.12, \\\"discordant_sica_wins\\\": 9, \\\"discordant_sc_wins\\\": 5, \\\"discordant_total\\\": 14, \\\"discordant_rate\\\": 0.07, \\\"sc_unanimous_rate\\\": 0.545, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"StrategyQA\\\", \\\"wall_time_min\\\": 52}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-018-arc-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.95, \\\"sc_accuracy\\\": 0.9667, \\\"delta_pp\\\": -1.67, \\\"multi_candidate_rate\\\": 0.05, \\\"extraction_rate\\\": 1, \\\"contradiction_detected\\\": 3, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 1, \\\"dataset\\\": \\\"ARC-Challenge\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\"}}, \\\"exp-009-overhead-analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 804, \\\"mean_total_wall_s\\\": 61.6, \\\"mean_trace_gen_s\\\": 31.6, \\\"trace_gen_pct\\\": 51.3, \\\"mean_extract_s\\\": 29, \\\"extract_pct\\\": 47, \\\"mean_dedup_s\\\": 1, \\\"dedup_pct\\\": 1.6, \\\"mean_maxsat_s\\\": 0.003, \\\"maxsat_pct\\\": 0.005, \\\"sica_overhead_s\\\": 30, \\\"sica_overhead_pct\\\": 48.7, \\\"pw_overhead_pct\\\": 51.3, \\\"folio_overhead_pct\\\": 38.6, \\\"p50_overhead_pct\\\": 48.9, \\\"p90_overhead_pct\\\": 57.6}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-020-llama8b-folio-204\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.608, \\\"sc_accuracy\\\": 0.632, \\\"delta_pp\\\": -2.45, \\\"mcnemar_p\\\": 0.2668, \\\"bootstrap_ci_95\\\": [-5.88, 0.98], \\\"bootstrap_p_sica_ge_sc\\\": 0.1, \\\"discordant_sica_wins\\\": 4, \\\"discordant_sc_wins\\\": 9, \\\"discordant_total\\\": 13, \\\"discordant_rate\\\": 0.064, \\\"multi_candidate_rate\\\": 0.618, \\\"extraction_rate\\\": 0.942, \\\"answer_extraction_rate\\\": 0.951, \\\"contradiction_rate\\\": 0.062, \\\"both_wrong\\\": 71, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"wall_time_min\\\": 131.7}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"pilot-contrastive-prompt\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-011-llama8b-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.6667, \\\"sc_accuracy\\\": 0.6, \\\"delta_pp\\\": 6.67, \\\"multi_candidate_rate\\\": 0.6167, \\\"extraction_rate\\\": 0.8556, \\\"answer_extraction_rate\\\": 0.8958, \\\"contradiction_rate\\\": 0.0527, \\\"problems_with_contradictions\\\": 43, \\\"truncated_traces\\\": 44, \\\"discordant_sica_wins\\\": 5, \\\"discordant_sc_wins\\\": 1, \\\"mcnemar_p\\\": 0.2188, \\\"proofwriter_sica\\\": 0.6333, \\\"proofwriter_sc\\\": 0.6, \\\"proofwriter_delta_pp\\\": 3.33, \\\"folio_sica\\\": 0.7, \\\"folio_sc\\\": 0.6, \\\"folio_delta_pp\\\": 10, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"wall_time_min\\\": 66.4}}, \\\"exp-010-mistral-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"pilot-constraint-filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n\\\": 43, \\\"thresholds_tested\\\": [1, 2, 3, 5, 7], \\\"best_gap_pp\\\": 2.33, \\\"best_T\\\": 1, \\\"sica_T1\\\": 0.7674, \\\"sc\\\": 0.7442, \\\"T5_gap\\\": 0, \\\"T7_gap\\\": 0, \\\"discriminative_ratio_count\\\": 0.115, \\\"discriminative_ratio_weight\\\": 0.372, \\\"effective_flip_rate\\\": 0.174, \\\"multi_answer_problems\\\": 23, \\\"unanimous_problems\\\": 20, \\\"problems_disc_favors_different\\\": 4}}, \\\"exp-018-arc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-017-strategyqa-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.5667, \\\"sc_accuracy\\\": 0.5333, \\\"delta_pp\\\": 3.33, \\\"mcnemar_chi2\\\": 0.5, \\\"mcnemar_p\\\": \\\"n.s.\\\", \\\"bootstrap_ci_95\\\": [0, 8.33], \\\"bootstrap_p_delta_le_0\\\": 0.1346, \\\"multi_candidate_rate\\\": 0.1, \\\"contradiction_detected\\\": 5, \\\"extraction_rate_problem\\\": 1, \\\"extraction_rate_trace\\\": 0.704, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 0}}, \\\"exp-017-strategyqa-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-017-strategyqa\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-010-mistral\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-011-llama8b-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sica_temp_diversity\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"temperatures_tested\\\": [0.7, 0.9, 1], \\\"problems_tested\\\": 3, \\\"problems_with_divergence\\\": 0, \\\"finding\\\": \\\"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\\\", \\\"max_tokens_issue\\\": \\\"4096 tokens insufficient for some L5 problems (truncation)\\\", \\\"recommendation\\\": \\\"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\\\"}}, \\\"sica_d012_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7333, \\\"sc_accuracy\\\": 0.7, \\\"sica_sc_gap_pp\\\": 3.3, \\\"c0_multi_candidate_rate\\\": 0.5333, \\\"c1_extraction_rate\\\": 1, \\\"c2_contradiction_problems\\\": 34, \\\"c3_gap_pp\\\": 3.3, \\\"bootstrap_p\\\": 0.2261, \\\"proofwriter_sica\\\": 0.6667, \\\"proofwriter_sc\\\": 0.6667, \\\"folio_sica\\\": 0.8, \\\"folio_sc\\\": 0.7333, \\\"total_constraints_raw\\\": 5849, \\\"total_constraints_unique\\\": 1735, \\\"maxsat_exclusion_rate\\\": 0.0259, \\\"wall_time_min\\\": 58.3, \\\"d012_verdict\\\": \\\"ALL_PASS\\\"}}, \\\"sica_k_sensitivity_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K6_sica\\\": 0.733, \\\"K6_sc\\\": 0.733, \\\"K6_gap_pp\\\": 0, \\\"K8_sica\\\": 0.733, \\\"K8_sc\\\": 0.75, \\\"K8_gap_pp\\\": -1.7, \\\"K11_sica\\\": 0.733, \\\"K11_sc\\\": 0.733, \\\"K11_gap_pp\\\": 0, \\\"K12_sica\\\": 0.7, \\\"K12_sc\\\": 0.75, \\\"K12_gap_pp\\\": -5, \\\"K16_sica\\\": 0.717, \\\"K16_sc\\\": 0.75, \\\"K16_gap_pp\\\": -3.3, \\\"K20_sica\\\": 0.7, \\\"K20_sc\\\": 0.733, \\\"K20_gap_pp\\\": -3.3, \\\"all_K_sica_leq_sc\\\": true, \\\"larger_K_degrades_sica\\\": true}}, \\\"exp-011-llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-016-weighted-sc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7649, \\\"sc_uniform_accuracy\\\": 0.7624, \\\"inv_length_accuracy\\\": 0.7674, \\\"length_weighted_accuracy\\\": 0.7525, \\\"constraint_count_accuracy\\\": 0.7525, \\\"inv_length_vs_sc_p\\\": 0.453, \\\"length_vs_sc_p\\\": 0.153, \\\"inv_length_vs_sica_p\\\": 0.864, \\\"length_vs_sica_p\\\": 0.066, \\\"n_problems\\\": 804, \\\"all_nonsignificant\\\": true}}, \\\"exp-005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"qwq_aggregate_c0_nominal_pct\\\": 10.3, \\\"qwq_aggregate_c0_effective_pct\\\": 2.6, \\\"qwen14b_c0_pct\\\": 46, \\\"diversity_ratio_effective\\\": 17.7, \\\"aime_delta_pp\\\": 0, \\\"proofwriter_delta_pp\\\": -5.9, \\\"aime_n\\\": 22, \\\"proofwriter_n\\\": 17, \\\"temp_diversity_n\\\": 5, \\\"folio_n\\\": 2, \\\"total_problems\\\": 46, \\\"c0_threshold\\\": 20, \\\"qwq_below_threshold\\\": true}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sica_folio30\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_d016_c0_precheck\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"multi_candidate_rate_combined\\\": 0.46, \\\"multi_candidate_rate_folio\\\": 0.4, \\\"multi_candidate_rate_proofwriter\\\": 0.5, \\\"sc_accuracy_combined\\\": 0.73, \\\"sc_accuracy_folio\\\": 0.8, \\\"sc_accuracy_proofwriter\\\": 0.69, \\\"n_problems\\\": 26, \\\"n_folio\\\": 10, \\\"n_proofwriter\\\": 16, \\\"K\\\": 6, \\\"T\\\": 0.7, \\\"total_time_s\\\": 280, \\\"c0_gate\\\": \\\"PASS (46% >= 20%)\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"vllm_gpu_mem_gib\\\": 27.6, \\\"smoke_test\\\": \\\"2 problems end-to-end OK, constraints 21-26 per problem\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"sica_proofwriter30_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_proofwriter30\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_constraints\\\": 0, \\\"maxsat_satisfied\\\": 0, \\\"maxsat_excluded\\\": 0, \\\"multi_candidate_rate\\\": \\\"N/A (no traces generated)\\\", \\\"vote_diversity\\\": \\\"N/A\\\", \\\"z3_errors\\\": 0, \\\"z3_timeouts\\\": 0, \\\"problems_with_contradiction\\\": 0, \\\"problems_with_votes\\\": 0, \\\"failure_mode\\\": \\\"ALL_400_BAD_REQUEST\\\", \\\"failure_count\\\": \\\"30/30\\\", \\\"root_cause\\\": \\\"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\\\"}}, \\\"sica_aime30_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"22/30\\\", \\\"sica_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sc_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"avg_time_per_problem_s\\\": 645.9, \\\"runtime_h\\\": 5.9, \\\"remaining_problems\\\": 8, \\\"vote_diversity_analysis\\\": {\\\"valid_problems\\\": 16, \\\"total_problems\\\": 22, \\\"multi_candidate_rate\\\": 0, \\\"zero_vote_problems\\\": 6, \\\"zero_vote_indices\\\": [1, 7, 8, 10, 13, 14], \\\"constraints_extracted\\\": \\\"19/22\\\", \\\"exclusion_rate\\\": 0.387, \\\"conclusion\\\": \\\"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\\\"}, \\\"process_status\\\": \\\"gone (cron miss 1/5)\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_aime30_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"4/30\\\", \\\"sica_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"sc_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"avg_time_per_problem_s\\\": 557, \\\"p2_z3_error\\\": \\\"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\\\", \\\"p5_vllm_stuck\\\": \\\"vLLM timeout since ~22:11, retried multiple rounds\\\", \\\"issue\\\": \\\"vLLM service likely crashed or OOM at Problem 5\\\", \\\"analysis_contradiction_rate_aime\\\": \\\"50% (2/4)\\\", \\\"analysis_contradiction_rate_math\\\": \\\"20% (1/5)\\\", \\\"analysis_unique_constraints_per_problem_aime\\\": 18.7, \\\"analysis_exclusion_rate\\\": \\\"10.7%\\\", \\\"analysis_sica_sc_agreement\\\": \\\"9/9 (100%)\\\", \\\"analysis_signal\\\": \\\"weak positive - mechanism works but SC too unanimous to flip\\\", \\\"analysis_p2_failure\\\": \\\"0 constraints, 0 votes - answer extraction failure\\\"}}, \\\"sica_aime30_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_math50_t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sica_smoke_5q\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.8, \\\"sc_accuracy\\\": 0.8, \\\"extraction_rate\\\": 1, \\\"problems_with_contradictions\\\": 1, \\\"total_problems\\\": 5, \\\"total_time_s\\\": 3505, \\\"avg_time_per_problem_s\\\": 701, \\\"per_problem\\\": [{\\\"id\\\": \\\"algebra/2470\\\", \\\"level\\\": 1, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 27, \\\"unique\\\": 9, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"prealgebra/65\\\", \\\"level\\\": 2, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 26, \\\"unique\\\": 2, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"number_theory/847\\\", \\\"level\\\": 3, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 21, \\\"unique\\\": 11, \\\"excluded\\\": 0, \\\"note\\\": \\\"14 JSON parse failures, 1693s\\\"}, {\\\"id\\\": \\\"precalculus/1199\\\", \\\"level\\\": 4, \\\"sica_correct\\\": false, \\\"sc_correct\\\": false, \\\"constraints\\\": 35, \\\"unique\\\": 6, \\\"excluded\\\": 0, \\\"note\\\": \\\"graph-reading problem, model cannot see image\\\"}, {\\\"id\\\": \\\"algebra/2277\\\", \\\"level\\\": 5, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 60, \\\"unique\\\": 6, \\\"satisfied\\\": 3, \\\"excluded\\\": 3}]}}, \\\"crd_folio_main\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"divergence_rate\\\": 0.422, \\\"diagnosis_rate\\\": 0.872, \\\"error_types\\\": 4, \\\"directed_advantage_pp\\\": 4.7, \\\"directed_p_value\\\": 0.63, \\\"localization_accuracy\\\": 0.946, \\\"fol_accuracy\\\": 0.789, \\\"code_accuracy\\\": 0.598, \\\"oracle_accuracy\\\": 0.878, \\\"pipeline_accuracy\\\": 0.814, \\\"baseline_accuracy\\\": 0.74, \\\"cost_multiplier\\\": 5.76, \\\"dataset\\\": \\\"FOLIO\\\", \\\"n\\\": 204}}}, \\\"count\\\": 76, \\\"total\\\": 76, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2479}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-057-mistral-folio204-t03\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-055-multitemp-mistral-folio\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 57.84, \"sica_accuracy\": 57.84, \"delta_pp\": 0, \"discordant_b\": 5, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"agreement_rate\": 0.951, \"wall_time_min\": 83.2, \"temperatures\": \"0.3,0.7,1.2\", \"k_per_temp\": \"4,4,4\"}}, \"exp-028b-qwen3-thinking-folio204\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-052\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 53.9, \"sica_accuracy\": 57.4, \"sc_correct\": 110, \"sica_correct\": 117, \"delta_pp\": 3.43, \"discordant_b\": 8, \"discordant_c\": 1, \"extraction_rate\": 0.971, \"contradiction_rate\": 0.034, \"wall_time_min\": 81.9, \"mcnemar_p\": 0.0391, \"significant\": true}, \"conclusion\": \"success\"}, \"exp-054-mistral-folio204-t10\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 54.9, \"sica_accuracy\": 55.4, \"delta_pp\": 0.49, \"discordant_b\": 5, \"discordant_c\": 4, \"mcnemar_chi2\": 0.1111, \"mcnemar_p\": 0.7389, \"extraction_rate\": 97.3, \"contradiction_rate\": 3, \"wall_time_min\": 83}}, \"exp-046-mistral-pw600\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 600, \"sc_accuracy\": 39.33, \"sica_accuracy\": 36.5, \"delta_pp\": -2.83, \"sc_wins\": 30, \"sica_wins\": 13, \"mcnemar_p\": 0.0095, \"significant\": true, \"dataset\": \"ProofWriter-D5-600\", \"model\": \"Mistral-7B-Instruct-v0.3\"}}, \"exp-053\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 56.37, \"sica_accuracy\": 55.88, \"sc_correct\": 115, \"sica_correct\": 114, \"delta_pp\": -0.49, \"discordant_b\": 2, \"discordant_c\": 3, \"extraction_rate\": 0.97, \"contradiction_rate\": 0.033, \"wall_time_min\": 80.8, \"mcnemar_p\": 1.0, \"significant\": false}, \"conclusion\": \"negative\"}, \"exp-050b-mistral-icl-oracle\": {\"status\": \"DONE\", \"metrics\": {\"n\": 199, \"sc_accuracy\": 57.79, \"sica_accuracy\": 54.27, \"delta_pp\": -3.52, \"sc_correct\": 115, \"sica_correct\": 108, \"discordant_b\": 6, \"discordant_c\": 13, \"mcnemar_p\": 0.167, \"significant\": false, \"wall_time_min\": 93.8, \"extraction_success\": 2333, \"extraction_fail\": 55, \"per_answer\": {\"True\": {\"n\": 70, \"sica_acc\": 50, \"sc_acc\": 54.29}, \"False\": {\"n\": 61, \"sica_acc\": 36.07, \"sc_acc\": 44.26}, \"Unknown\": {\"n\": 68, \"sica_acc\": 75, \"sc_acc\": 73.53}}}, \"conclusion\": \"negative\"}, \"exp-050-mistral-icl-oracle-folio199\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-049b-mistral-logiqa200\": {\"status\": \"DONE\", \"metrics\": {\"n\": 200, \"sc_accuracy\": 51, \"sica_accuracy\": 51.5, \"delta_pp\": 0.5, \"sc_correct\": 102, \"sica_correct\": 103, \"discordant_b\": 6, \"discordant_c\": 5, \"mcnemar_p\": 1, \"significant\": false, \"wall_time_min\": 78.6, \"extraction_rate\": 0.9725, \"total_constraints\": 10659, \"unique_constraints\": 8934, \"contradiction_rate\": 0.0196}, \"conclusion\": \"negative\"}, \"exp-044b-icl-oracle\": {\"status\": \"DONE\", \"metrics\": {\"n\": 199, \"dataset\": \"FOLIO-199\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 74.87, \"sc_accuracy\": 74.37, \"delta_pp\": 0.5, \"sica_correct\": 149, \"sc_correct\": 148, \"icl_examples\": 5, \"extraction_failure_rate\": 0.008}, \"conclusion\": \"negative\"}, \"exp-049-mistral-logiqa200\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-041-14b-folio204-16639\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"dataset\": \"FOLIO-204\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 75.49, \"sc_accuracy\": 77.45, \"delta_pp\": -1.96, \"sica_correct\": 154, \"sc_correct\": 158, \"mcnemar_discordant_b\": 0, \"mcnemar_discordant_c\": 4, \"mcnemar_p_value\": 0.125, \"extraction_rate\": 0.98, \"contradiction_rate\": 0.0097}}, \"exp-045b-backward-verify\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-045-backward-verification\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"exp-038-14b-logiqa200-16639\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 200, \"dataset\": \"LogiQA-200\", \"model\": \"Qwen2.5-14B-Instruct\", \"k\": 12, \"sica_accuracy\": 78, \"sc_accuracy\": 78.5, \"delta_pp\": -0.5, \"mcnemar_p\": 1, \"sica_correct\": 156, \"sc_correct\": 157, \"discordant_b\": 1, \"discordant_c\": 2, \"both_correct\": 155, \"both_wrong\": 42, \"extraction_rate\": 0.864, \"fail_empty_rate\": 0.122, \"avg_unique_constraints\": 26.7, \"contradiction_rate\": 0.008, \"wall_time_min\": 126.8}}, \"exp-033\": {\"status\": \"DONE\", \"metrics\": {\"n_problems\": 204, \"sica_accuracy\": 59.31, \"sc_accuracy\": 54.41, \"delta_pp\": 4.9, \"sica_correct\": 121, \"sc_correct\": 111, \"mcnemar_discordant_b\": 12, \"mcnemar_discordant_c\": 2, \"mcnemar_p_value\": 0.0129, \"c0_non_unanimous_rate\": 0.8137, \"avg_majority_frac\": 0.7515, \"extraction_rate\": 97.14, \"contradiction_rate\": 3.5, \"problems_with_contradictions\": 128, \"avg_unique_constraints\": 39.3, \"maxsat_mean_sat_ratio\": 0.9609, \"total_constraints\": 14042, \"unique_constraints\": 8021, \"wall_time_min\": 81.4, \"k\": 12}, \"conclusion\": \"success\"}, \"exp-042b-premise-formal\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-044-icl-oracle\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-035\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n_problems\": 203, \"sc_accuracy\": 77.34, \"sica_accuracy\": 76.85, \"delta_pp\": -0.49, \"sica_correct\": 156, \"sc_correct\": 157, \"mcnemar_discordant_b\": 1, \"mcnemar_discordant_c\": 2, \"mcnemar_p_value\": 1, \"c0_non_unanimous_rate\": 0.5517, \"extraction_rate\": 98.19, \"contradiction_rate\": 1.58, \"problems_with_contradictions\": 60, \"total_constraints\": 12950, \"unique_constraints\": 6515, \"dedup_ratio\": 50.3, \"wall_time_min\": 78.2, \"avg_per_problem_s\": 23.1}}, \"exp-036b-cross-trace-unsat\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"cross_unsat_rate_pair\": 0.087, \"cross_unsat_rate_problem\": 0.107, \"within_trace_unsat_rate\": 0.009, \"unsat_pairs\": 11, \"total_pairs\": 126, \"problems_with_unsat\": 9, \"multi_answer_problems\": 84, \"single_answer_skip\": 120, \"zero_shared_var_pairs_pct\": 0.564, \"avg_shared_vars\": 2.7, \"false_true_unsat_rate\": 0.467, \"sica_cross_ut_accuracy\": 0.745, \"sc_accuracy\": 0.75, \"accuracy_impact\": 0}}, \"exp-042-premise-formalization\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-043-consistency-filtering\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"sc_accuracy\": 0.75, \"sica_t1_all\": 0.7794, \"sica_t4\": 0.75, \"sica_t6\": 0.7549, \"sica_t8\": 0.7549, \"avg_unique_constraints\": 13.2, \"avg_filtered_t4\": 1.8, \"avg_filtered_t6\": 0.8, \"avg_filtered_t8\": 0.3}}, \"exp-036-z3-feedback-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"z3fb_sica_accuracy\": 0.775, \"vanilla_sica_accuracy\": 0.745, \"sc_accuracy\": 0.75, \"z3fb_vs_vanilla_delta\": 0.03, \"unsat_traces\": 22, \"total_traces\": 2448, \"unsat_rate\": 0.009, \"unsat_resolve_rate\": 0.864, \"problems_flipped\": 0, \"real_impact\": 0}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp-033-qwen3-pw600-nonthinking\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-004-qwen7b-rerun\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-007-qwen72b-awq\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.8431, \"sc_accuracy\": 0.8382, \"delta_pp\": 0.49, \"extraction_rate\": 0.995, \"contradiction_rate\": 0.0283, \"problems_with_contradictions\": 69, \"total_constraints\": 16153, \"unique_constraints\": 7031, \"wall_time_s\": 11017, \"model\": \"Qwen3-14B\", \"dataset\": \"FOLIO-204\", \"mode\": \"non-thinking\"}}, \"exp-030-crossmodel-mistral-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"k\": 12, \"crossmodel_sica_accuracy\": 0.75, \"sc_accuracy\": 0.75, \"delta_pp\": 0, \"discriminative_rate\": 0, \"recovery_rate\": 0, \"model_extraction\": \"Mistral-7B-Instruct-v0.3\", \"model_traces\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\"}}, \"exp-031-oracle-folio-regen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"oracle_sica_accuracy\": 0.8971, \"sc_accuracy\": 0.7549, \"sica_self_accuracy\": 0.7451, \"oracle_vs_sc_delta_pp\": 14.22, \"oracle_vs_sica_delta_pp\": 15.2, \"mcnemar_p_oracle_vs_sc\": 2.0024e-07, \"mcnemar_b_c\": {\"b_oracle_right_sc_wrong\": 29, \"c_oracle_wrong_sc_right\": 0}, \"z3_gold_agreement\": 0.951, \"z3_gold_agree_n\": 194, \"z3_in_candidates_n\": 178, \"fol_parse_success\": 1, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"constraint_source\": \"gold FOL annotations\", \"traces_source\": \"exp-026-folio204-trace-regen\"}}, \"exp-029-contrastive-folio204\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"contrastive_accuracy\": 0.7253, \"sc_accuracy\": 0.7363, \"delta_pp\": -1.1, \"discriminative_rate\": 0.0604, \"discriminative_count\": 11, \"n\": 182, \"recovery_rate_pct\": -8.3, \"mcnemar_chi2\": 0.1, \"mcnemar_p\": 0.7518, \"cont_only_correct\": 4, \"sc_only_correct\": 6, \"both_correct\": 128, \"both_wrong\": 44, \"supporting_pct\": 43.2, \"opposing_pct\": 56.8, \"avg_constraints_per_problem\": 24.4, \"avg_unique_per_problem\": 10.4, \"wall_time_min\": 47.2}}, \"exp-026-folio204-trace-regen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.7451, \"sc_accuracy\": 0.75, \"delta_pp\": -0.49, \"extraction_rate\": 0.9853, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"temperature_trace\": 0.7, \"temperature_extraction\": 0.3, \"wall_time_h\": 2.5}}, \"exp-023-discriminative-rate\": {\"status\": \"DONE\", \"metrics\": {\"n_total\": 804, \"n_multi_candidate\": 307, \"source_disc_rate_weight\": 0.392, \"source_disc_rate_weight_ci95\": [0.387, 0.398], \"source_disc_rate_count_est\": 0.121, \"source_disc_rate_count_ci95\": [0.12, 0.123], \"z3_semantic_disc_rate\": 0.082, \"z3_semantic_disc_ci95\": [0.076, 0.088], \"problems_with_disc\": 289, \"problems_with_disc_rate\": 0.941, \"pw_source_disc_weight\": 0.364, \"folio_source_disc_weight\": 0.54, \"pw_n_multi\": 235, \"folio_n_multi\": 72, \"pilot_rate_reported_count\": 0.115, \"pilot_rate_reported_weight\": 0.372, \"pilot_validation_weight\": 0.376, \"pilot_delta_pp\": 0.38, \"z3_answer_assertions\": 642, \"z3_total_unique_constraints\": 7844, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO+ProofWriter-804\"}, \"conclusion\": \"success\"}, \"exp-022-oracle-proofwriter\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 600, \"k\": 12, \"oracle_sica_accuracy\": 0.8667, \"sc_accuracy\": 0.7517, \"sica_self_accuracy\": 0.755, \"oracle_vs_sc_delta_pp\": 11.5, \"mcnemar_p_oracle_vs_sc\": 9.21e-15, \"z3_gold_agreement\": 0.9714, \"z3_gold_agree_n\": 577, \"z3_gold_total\": 594, \"parse_errors\": 6, \"parse_error_rate\": 0.01, \"solver_errors\": 0, \"solver_total\": 7128, \"relneg_oracle\": 0.7786, \"relneg_sc\": 0.6, \"relneg_delta_pp\": 17.86, \"relnoneg_oracle\": 0.7945, \"relnoneg_sc\": 0.6644, \"relnoneg_delta_pp\": 13.01, \"attnoneg_oracle\": 0.961, \"attnoneg_sc\": 0.8701, \"attnoneg_delta_pp\": 9.09, \"attneg_oracle\": 0.9188, \"attneg_sc\": 0.85, \"attneg_delta_pp\": 6.87, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"ProofWriter-OWA-D5-600\", \"constraint_source\": \"gold DSL (raw_logic_programs)\"}}, \"temperature-ablation-t07\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7167, \"sc_accuracy\": 0.75, \"delta_pp\": -3.33, \"multi_candidate_rate\": 0.4, \"extraction_rate\": 0.9208, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 2, \"truncated_traces\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.7, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.7, \"proofwriter_n\": 30, \"folio_sica\": 0.8, \"folio_sc\": 0.8, \"folio_n\": 30, \"wall_time_s\": 3498.3}, \"conclusion\": \"negative\"}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7587, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"maxsat_correct\": 615, \"count_only_correct\": 616, \"random_weight_correct\": 610, \"sc_correct\": 613, \"agreement_maxsat_vs_countonly\": \"803/804\", \"agreement_maxsat_vs_randomwt\": \"785/804\", \"agreement_maxsat_vs_sc\": \"773/804\", \"agreement_countonly_vs_randomwt\": \"786/804\", \"agreement_countonly_vs_sc\": \"774/804\", \"agreement_randomwt_vs_sc\": \"764/804\", \"mcnemar_p_all_gt_0.7\": true}}, \"exp-004-qwen7b\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6833, \"sc_accuracy\": 0.6833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.433, \"extraction_rate\": 0.9417, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0274, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"wall_time_s\": 1838, \"truncated_traces\": 0, \"model\": \"Qwen2.5-7B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.7, \"folio_sica\": 0.7667, \"folio_sc\": 0.7333, \"folio_n\": 30, \"proofwriter_sica\": 0.6, \"proofwriter_sc\": 0.6333, \"proofwriter_n\": 30}}, \"temperature-ablation-t10\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.75, \"sc_accuracy\": 0.75, \"delta_pp\": 0, \"multi_candidate_rate\": 0.433, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 1}, \"conclusion\": \"negative\"}, \"exp-012-gsm8k-pilot\": {\"status\": \"DONE\", \"metrics\": {\"n\": 30, \"k\": 12, \"sica_accuracy\": 0.9667, \"sc_accuracy\": 0.9667, \"delta_pp\": 0, \"multi_candidate_rate\": 0.133, \"extraction_success_rate\": 0.147, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"GSM8K\", \"temperature\": 0.7}, \"conclusion\": \"negative\"}, \"exp-021-oracle-folio\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"k\": 12, \"oracle_sica_accuracy\": 0.8824, \"sc_accuracy\": 0.7941, \"sica_self_accuracy\": 0.7941, \"oracle_vs_sc_delta_pp\": 8.82, \"oracle_vs_sica_delta_pp\": 8.82, \"mcnemar_p_oracle_vs_sc\": 6.15e-05, \"z3_gold_agreement\": 0.946, \"fol_parse_success\": 1, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"FOLIO-204\", \"constraint_source\": \"gold FOL annotations\"}}, \"temperature-ablation-t05\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7667, \"sc_accuracy\": 0.7667, \"delta_pp\": 0, \"multi_candidate_rate\": 0.383, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.5}, \"conclusion\": \"negative\"}, \"temperature-ablation-t03\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7333, \"delta_pp\": 0, \"multi_candidate_rate\": 0.3, \"discordant_total\": 0, \"model\": \"Qwen2.5-14B-Instruct\", \"dataset\": \"D012\", \"temperature\": 0.3}, \"conclusion\": \"negative\"}, \"exp-014-deepseek-r1-7b\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6833, \"sc_accuracy\": 0.7167, \"delta_pp\": -3.33, \"multi_candidate_rate\": 0.583, \"extraction_rate\": 0.839, \"answer_extraction_rate\": 0.939, \"truncated_traces\": 72, \"contradiction_rate\": 0.037, \"wall_time_min\": 100.3, \"mcnemar_p\": 0.4795, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 2, \"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\"}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\"}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\"}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}}, \"exp-009-overhead-analysis\": {\"status\": \"DONE\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"DONE\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668, \"bootstrap_ci_95\": [-5.88, 0.98], \"bootstrap_p_sica_ge_sc\": 0.1, \"discordant_sica_wins\": 4, \"discordant_sc_wins\": 9, \"discordant_total\": 13, \"discordant_rate\": 0.064, \"multi_candidate_rate\": 0.618, \"extraction_rate\": 0.942, \"answer_extraction_rate\": 0.951, \"contradiction_rate\": 0.062, \"both_wrong\": 71, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"FOLIO-204\", \"wall_time_min\": 131.7}, \"conclusion\": \"negative\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}}, \"exp-010-mistral-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"pilot-constraint-filtering\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa-v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}}, \"exp-017-strategyqa-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-017-strategyqa\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-010-mistral\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-011-llama8b-v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"sica_temp_diversity\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}}, \"sica_d012_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}}, \"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}}, \"exp-011-llama8b\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}}, \"exp-005\": {\"status\": \"DONE\", \"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}, \"conclusion\": \"negative\"}, \"sica_folio30\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}, \"conclusion\": \"success\"}, \"sica_proofwriter30_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_proofwriter30\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"status\": \"DONE\", \"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}, \"conclusion\": \"killed\"}, \"sica_aime30_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}}, \"sica_aime30_t07\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_math50_t07\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sica_smoke_5q\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"crd_folio_main\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 76, \"total\": 76, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2479}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me systematically compare the analysis.tex content against the unified κ data and registry.
+
+## Key data sources:
+
+### Unified κ data (`fleiss_kappa_unified_merged.json`):
+Table3 experiments:
+- exp-033 (Mistral s42 FOLIO): κ=0.4598, eff_k=1.98, SC=55.88, SICA=59.31, δ=3.43
+- exp-052 (Mistral s123 FOLIO): κ=0.4572, eff_k=1.99, SC=54.41, SICA=57.35, δ=2.94
+
+
+- exp-053 (Mistral s456 FOLIO): κ=0.4565, eff_k=1.99, SC=54.41, SICA=55.88, δ=1.47
+- exp-036 (Qwen2.5 FOLIO): κ=0.7442, eff_k=1.31, SC=76.47, SICA=75.49, δ=-0.98
+- exp-038 (Qwen2.5 LogiQA): κ=0.8210, eff_k=1.20, SC=79.00, SICA=78.00, δ=-1.00
+
+I'm continuing through the remaining experiments in the table to capture all the κ values and their associated metrics. Now I'm looking at how the K parameter affects performance, with K=8 showing the highest SC score at 59.80 but introducing a larger divergence between metrics. I'm also cross-referencing these results against the registry data to validate the patterns I'm seeing.
+
+Comparing the analysis.tex table against the unified κ data reveals a discrepancy—the κ value for Mistral on FOLIO rounds to 0.4598 in the unified data, but the tex file shows 0.50, and the registry experiment exp-033 reports δ=4.90 while the unified data shows δ=3.43. I'm realizing the unified JSON data shows different values than what's in the tex file—the unified data has κ=0.4598 for exp-033, but the tex lists κ=0.50 for Mistral (s42). The delta values also diverge: the registry shows 4.90pp while the unified JSON shows 3.43, which suggests the unified data may have been recalculated with a different answer normalization approach. I need to figure out which source is authoritative here, especially since the valid vote counts differ between the two datasets. I'm noticing significant discrepancies between the tex table values and the unified JSON data—the κ coefficients differ by roughly 0.04-0.10 across all three runs, and the delta values for s123 and s456 are also misaligned, though s42's delta matches the registry. This suggests either the tex was generated from a different experimental run or there's been a data inconsistency between sources. I need to figure out which source the κ value comes from—it's not matching between the registry and unified JSON. Let me trace through the experiment directories more carefully to see if s42 actually maps to exp-033 or if there's a mismatch in how the table was constructed.
+
+Looking at exp-049b for Mistral on LogiQA, I'm noticing something odd: the unified data shows δ=-0.50, but the tex table has +0.50—that's a sign flip. The κ values are close (0.5116 vs 0.50), so maybe there's a systematic error in how the deltas were transcribed or calculated. There's a discrepancy between the registry and unified JSON data—the registry shows δ=0.5 but the unified data has δ=-0.50 with slightly different SC and SICA values, likely due to answer normalization. I need to systematically verify whether Table 3's κ and Eff-K values match the unified data specifically, starting with the Mistral experiments. Now I'm seeing the core issue: the tex values consistently show different κ parameters than the unified data, and I need to determine which source is actually correct. Looking at the Mistral examples, the tex values are internally self-consistent—their κ and K_eff match the formula—but they diverge significantly from the unified parameters, suggesting a systematic difference in how these values were derived or reported. differs by 0.06, K_eff differs by 0.23
+- Check: 12/(1+11×0.40) = 12/5.4 = 2.22 ✓ (internally consistent in tex)
+
+**Mistral PW-D5 = exp-046:**
+- tex: κ=0.21, K_eff=3.63
+- unified: κ=0.1996, K_eff=3.76
+- **MISMATCH**: κ close (0.21 vs 0.20), K_eff differs (3.63 vs 3.76)
+- Check: 12/(1+11×0.21) = 12/3.31 = 3.63 ✓ (internally consistent in tex)
+- Check: 12/(1+11×0.1996) = 12/3.1956 = 3.755 ≈ 3.76 ✓ (unified internally consistent)
+
+**Mistral LogiQA = exp-049b:**
+- tex: κ=0.50, K_eff=1.84
+- unified: κ=0.5116, K_eff=1.81
+- **MINOR MISMATCH**: close but different
+- Check: 12/(1+11×0.50) = 12/6.5 = 1.846 ≈ 1.84 ✓ (internally consistent in tex)
+
+**Qwen2.5 (ICL) FOLIO:**
+- tex: κ=0.39, K_eff=2.25
+- This doesn't seem to have a direct entry in the unified table3 section. But I see it might not be from the standard experiments.
+- Actually, this might be a different experiment not in the unified JSON.
+
+Wait, the unified JSON doesn't have a Qwen2.5 ICL entry. Let me check if there's an ICL experiment...
+
+Looking at registry: exp-044b-icl-oracle has SC=74.37, SICA=74.87, δ=0.5 on FOLIO-199. But the tex says δ=+0.50 with Qwen2.5 (ICL). This might match but the κ is not in the unified JSON.
+
+**Qwen2.5 FOLIO = exp-036:**
+- tex: κ=0.74, K_eff=1.31
+- unified: κ=0.7442, K_eff=1.31
+- **MATCH**: κ=0.74
+
+I'm tracking down which experiments correspond to which entries. The Qwen2.5 ICL variant on FOLIO doesn't appear in the unified JSON—it might be from a separate experiment run. But I found a match for the standard Qwen2.5 FOLIO setup where the κ and K_eff values align perfectly.
+
+Now checking LogiQA and PW-D5: the LogiQA metrics match cleanly with exp-038, but for PW-D5 I'm seeing two possible candidates in the unified data with slightly different κ values, so I need to determine which one is the correct mapping. (PW-547)
+- **CLOSE**: κ=0.62 ≈ 0.617, but K_eff=1.53 vs 1.54
+- Check: 12/(1+11×0.62) = 12/7.82 = 1.534 ≈ 1.53 ✓ (internally consistent in tex)
+
+**Qwen3 PW-D5 = exp-027:**
+- tex: κ=0.77, K_eff=1.27
+- unified exp-027: κ=0.7730, K_eff=1.26
+- **CLOSE**: κ=0.77 ≈ 0.773, but K_eff=1.27 vs 1.26
+- Check: 12/(1+11×0.77) = 12/9.47 = 1.267 ≈ 1.27 ✓ (internally consistent in tex)
+
+The unified data rounds differently—with κ=0.773, I get 12/(1+11×0.773) = 1.263 ≈ 1.26. But wait, I'm realizing exp-027 in the unified JSON is actually Qwen3-14B on FOLIO-204, not PW-D5, so there's a mismatch in what I thought was the corresponding experiment. I'm noticing a discrepancy between what the unified JSON shows for Qwen3 (FOLIO-204) and what the tex file lists (PW-D5 with scores 0.77 and 1.27). Either the tex is pulling from a different Qwen3 experiment that isn't in the unified data, or there's an error in one of the sources. Let me check the delta values to see if that helps clarify which dataset is actually being referenced.
+
+Looking at the delta comparisons across the three experiments, the registry values match the tex perfectly, but the unified JSON consistently shows different deltas—exp-033 is off by 1.47, exp-052 by 0.49, and exp-053 has the sign flipped entirely. The registry data for exp-053 confirms SC=56.37 and SICA=55.88 giving δ=-0.49, which aligns with the tex, but the unified JSON appears to have different values. The tex is pulling κ values from the unified JSON for Mistral but δ values from the registry, which creates a mismatch since those were computed with different answer normalizations. Now I need to verify the Eff-K formula in the equation to make sure it's using the correct form.
+
+Checking the K_eff calculations against the formula K/(1+(K-1)×κ), and they all check out—the values in the tex are internally consistent with this formula, so that part is correct.
+
+Now I'm noticing a discrepancy: the κ values themselves don't align between the tex and the unified JSON. I also verified they're not using the simpler K×(1-κ) formula. Looking at the K sensitivity experiments, the tex shows different Δ values than what's listed in the JSON for the same K parameters, which suggests the underlying data sources might be different or there's been a change in how the experiments were run. Now I'm verifying the K-sensitivity calculations by checking the SC and SICA values against the deltas—K=4 gives -0.98, K=8 gives -2.94, and K=16 gives +0.49. Moving to the T-sensitivity check, the tex shows a shift from T=0.7 to T=1.0 with deltas changing from +4.90 to +0.49, and I'm cross-referencing this against registry exp-054 which has matching SC and SICA percentages.
+
+I'm noticing a discrepancy: the tex values align with the registry data, but the unified JSON is reporting different deltas and SC values for the same experiments—specifically, exp-055 shows δ=0 in the registry but δ=0.49 in the unified file, suggesting the tex and registry are consistent with each other while the unified data diverges.
+
+Looking at the broader pattern, there's a systematic mismatch in the κ values for the Mistral experiments across Table 3—the tex values are consistently lower than what the unified JSON reports. I'm noticing the K=16 sensitivity value also diverges between the tex and unified versions, and now I'm seeing a pattern where the tex document pulls from the registry for delta values, which sometimes differ from the unified JSON. For the Mistral PW-D5 SC metric specifically, there's a discrepancy where the registry and tex both show 39.33% but the unified version shows 38.33%. So the tex values are pulling from the registry data, not the unified dataset—that's the core problem here. The Mistral experiments show consistent mismatches: the tex reports κ=0.50 and K_eff=1.85 for FOLIO, but unified has κ=0.4598 and K_eff=1.98, which are notably different. This suggests Table 3 isn't actually using the unified data as the task requires me to verify. I'm noticing the Mistral-7B FOLIO results are inconsistent across sources—the table shows 14.2% for two seeds but 18.6% for another, while the text doesn't specify which seed it's referencing. Looking further down, the κ values and K_eff metrics for Mistral-7B's three seeds don't align with the unified data either, and the claim about s42 having the lowest K_eff contradicts what I'm seeing in the unified dataset where all three seeds cluster around 1.98-1.99.
+
+There's a critical discrepancy with s456: the registry shows δ = −0.49 pp with SC = 56.37, but the unified JSON has δ = +1.47 pp with SC = 54.41, even though SICA matches at 55.88 in both sources. This is a substantial difference that needs to be resolved before I can determine which values are correct.
+
+Looking at the other entries, I'm seeing similar inconsistencies across the board—exp-046 has different K_eff values (3.63 vs 3.76) and SC percentages (39% vs 38.33%), and exp-054 shows divergent SC, SICA, and δ values between the two datasets. The unified JSON appears to be using different calculations or source data than the registry, which means I need to identify which version is authoritative before finalizing any claims about monotonicity or the patterns in the results.
+
+Now I'm checking the writing style for formatting issues—specifically looking for proper em-dashes and en-dashes throughout the document to ensure consistency. I'm verifying the paragraph structure throughout the section—checking that §5.1 through §5.7 don't have excessive breaks, and they all look appropriately formatted with either single paragraphs or two paragraphs plus figures or tables where needed.
+
+Now I'm scanning for transition words to ensure they're not overused, and checking against a blacklist of jargon-heavy terms like "leverage" or "paradigm shift"—none of those appear.
+
+I'm also tracing through the cross-references to make sure all the citations to tables, figures, and other sections are properly formatted with LaTeX references.
+
+Wait, there's a discrepancy I'm noticing: the introduction claims six quantitative lenses, but when I count the actual subsections—trace correlation, extraction quality, K-sensitivity, T-sensitivity, entropy structure, solver contribution, and remediation failure—that's seven distinct analyses. I need to figure out whether K-sensitivity and T-sensitivity should be grouped as a single lens or if the opening count is just off.
+
+Actually, looking more carefully at how it's written, "hyperparameter sensitivity" is the umbrella term that encompasses both K-sensitivity and T-sensitivity as one conceptual lens, even though they each get their own subsection. So the six lenses are: trace correlation, extraction quality, hyperparameter sensitivity (covering both K and T), entropy structure, solver contribution, and remediation failure. That resolves the apparent mismatch—the structure is internally consistent.
+
+Now I'm checking the specific numerical claims. The paper states K=4 gives Δ=-1.47 pp and K=8 gives Δ=-0.98 pp, but when I look at the unified data, K=4 shows SC=54.90 and SICA=53, which doesn't match those delta values. The numbers might be from a different analysis or there could be a transcription issue here. I'm noticing the K-sensitivity values in the tex file don't match what's in the unified JSON—the deltas are shifted or different entirely. Looking at the registry, there's an earlier K-sensitivity experiment for Qwen2.5-14B, but the unified data is specifically for Mistral-7B on FOLIO-204, which should match the tex. Let me convert these percentage points to actual problem counts to see if there's a pattern: -1.47pp equals about 3 problems, -0.98pp is 2 problems, and so on, which helps me understand the magnitude of these differences. I'm noticing some serious discrepancies between the task description, registry values, unified data, and what's in the tex file—the numbers just don't align consistently across sources. Let me systematically document these mismatches and then track down where the Eff-K formula is actually defined in the tex to verify the calculations.
+
+Now I'm cross-referencing specific claims from the paper against the registry data. The constraint weight and discriminative rate numbers from §5.2 are checking out so far—the registry shows matching values for the source discrimination rates and Z3 semantic discrimination metrics with their confidence intervals.
+
+For §5.6, I'm verifying the ablation study results where MAX-SAT, count-only, random-weight, and SC baseline all achieve similar performance around 76%, with the registry confirming all four accuracy values and their corresponding constraint counts. The agreement between MAX-SAT and count-only approaches 803 out of 804 cases.
+
+Moving into §5.7, I'm checking the contrastive prompting experiments where the discriminative rate drops from 8.2% to 6.0%, a reduction of 1.1 percentage points, which the registry confirms. Cross-model extraction eliminates discriminative constraints entirely, and Z3 feedback loops only trigger unsatisfiability on less than 1% of problems. Now I'm verifying the cross-trace UNSAT checking results...
+
+56.4% of constraint pairs share zero variables, which matches the registry data. The Qwen3-14B model shows a modest improvement of 0.49 percentage points, and consistency filtering produces 1.8 constraints per problem at the lower threshold and 0.3 at the higher one. I'm also tracking the temperature sensitivity where raising T to 1.0 significantly degrades performance from a 4.90 percentage point gain down to 0.49 percentage points.
+
+Now I'm checking the T=0.3 results mentioned in the task—exp-057 supposedly shows a delta of -0.49pp, but the unified data reports +0.98pp instead. The registry shows exp-057 as completed but marked failed with no metrics recorded, though the supplementary JSON does have accuracy scores around 55-56% for that experiment.
+
+I'm also noticing a similar discrepancy with the Mistral LogiQA results: the tex document reports a positive delta of +0.50, the registry confirms this, but the unified data shows it as negative -0.50. These inconsistencies suggest either the unified data has sign errors or there's a systematic difference in how deltas are being calculated across sources.
+
+Let me search through the tex file for any problematic dashes—I'm checking for em-dashes or irregular spacing that might indicate formatting issues. So far I'm only seeing standard LaTeX range dashes which are fine.
+
+Now I'm going through the unanimous values listed in Table 3 to see what's there for each model and dataset combination.
+
+Looking at the remaining entries, I notice several of these values don't appear in the unified JSON or registry, so I can't cross-reference them to verify accuracy. I'm also seeing some significant discrepancies between what's reported in the table versus what's in the unified data—for instance, Mistral's FOLIO results show different κ and K_eff values depending on the source. Now I'm seeing significant divergences between the tex and unified implementations across different K values and experimental conditions—the tex version consistently matches the registry values while unified produces different deltas, particularly noticeable in the temperature and multi-temperature experiments where the discrepancies flip sign or double in magnitude.
+
+Beyond the delta mismatches, there are also some dataset attribution issues to clarify: the Mistral-7B performance figure cited in the text applies to specific seeds rather than the broader s42 condition, and there's a conflict between the Qwen3 row showing PW-D5 in tex versus FOLIO-204 in the unified data that needs verification.
+
+I should verify the Mistral seed mapping against the task specification to ensure exp-033 is correctly attributed to the FOLIO-204 dataset with the stated parameters. Looking at the tex table values, they're consistently pulling from the registry data for delta. Now I'm examining the kappa discrepancies—the unified JSON used normalized answers with empty votes excluded, which changes the sample size and affects the kappa calculation. The exp-033 entry shows 2144 valid votes out of 2448 total, suggesting the difference comes down to which votes are actually included in each computation.
+
+Since the unified JSON was created as the authoritative source for these metrics, I should update the tex values to match it rather than keep the divergent calculations. title specifically says "审查 analysis.tex 与 registry 数据一致性". So I should flag the inconsistencies and propose fixes to align with the unified data.
+
+However, I need to be careful: if I update κ and Eff-K to match the unified data, should I also update the delta values? The unified JSON has different deltas because of answer normalization. But the tex seems to intentionally use registry delta values.
+
+Actually, looking at this more carefully, there's a fundamental issue: the unified κ JSON was computed using normalized answers (excluding empty votes, mapping non-standard), but the SC/SICA accuracy in the registry was computed differently. If we use unified κ values in Table 3 but registry delta values, the table would be mixing data from two different answer normalization approaches for the same experiments.
+
+The safe approach: flag all inconsistencies, fix the κ/Eff-K values to match the unified data (since that's what the task asked about), and note the delta discrepancies for the user to decide.
+
+But actually, the delta values in the unified JSON are also provided. So maybe all Table 3 values should come from the unified JSON for consistency.
+
+Let me re-read the task more carefully: "逐项检查: Table 3 中的 κ 和 Eff-K 值是否与 unified 数据一致" and "所有 SC/SICA/delta 数字是否与 registry 一致"
+
+So the task wants κ and Eff-K to match unified data, while SC/SICA/delta should match registry. This intentional split makes sense if κ comes from standardized analysis while accuracy metrics come from the original experiments. But I need to verify whether the current tex actually follows this pattern or if there are misalignments.
+
+The κ values in the tex don't match the unified data, so I need to recalculate them. I'm working through the Mistral entries, computing κ rounded to 2 decimal places and then calculating the effective K values using the formula K_eff = K/(1 + (K-1)×κ).
+
+For the Mistral PW-D5 entry, I'm noticing a discrepancy: the unified data shows K_eff=3.76, which appears to use the unrounded κ value of 0.1996 rather than the rounded 0.20. I need to decide whether to use the rounded or unrounded κ values for consistency across the table.
+
+Looking at the pattern across all entries, the unified JSON already has K_eff calculated from the precise unrounded κ values, so I should just pull those K_eff values directly rather than recalculating from rounded numbers.
+
+But there's a narrative issue here—the original text suggests κ varies across the Mistral FOLIO seeds, yet the unified data shows them all converging to κ=0.46, which flattens the story about the range from 0.40 to 0.50. I'm also noticing the Qwen experiments appear consistent, though the data cuts off mid-entry. I'm trying to figure out which experiment matches the Qwen2.5 PW-D5 row—exp-032 with K_eff=1.54 is closer to the tex value of 1.53 than exp-034's 1.55. But there's a bigger problem: the Qwen3 row claims PW-D5 in the tex, yet exp-027 is actually for FOLIO-204 according to both the registry and unified JSON, so one of these sources has the dataset wrong.
+
+Looking through the supplementary experiments and registry, there's no successful Qwen3 PW-D5 experiment—exp-033 failed. So the tex's Qwen3 row should probably reference FOLIO instead, which would give κ=0.77 and K_eff=1.26, matching the unified data, though the delta value in the tex appears incomplete.
+
+I'm realizing this is a significant labeling error: the Qwen3 entry with κ=0.77 is actually from exp-027 (FOLIO-204) but mislabeled as PW-D5 in the table. Now I need to decide which inconsistencies are worth fixing—the task says to directly edit numerical errors, so I should focus on the key data mismatches like the Mistral κ and K_eff values that don't align with the unified data.
+
+But here's the thing: updating those Mistral values would fundamentally change the narrative. The current tex shows variation across seeds (κ=0.50, 0.41, 0.40) while the unified data shows they're nearly identical (κ=0.46, 0.46, 0.46). The K-sensitivity values are also completely different, which would undermine the inverted-U curve narrative. These aren't simple corrections—they'd require rewriting the entire analysis. I should flag these for the user rather than blindly fixing them, unless the unified JSON is using a different κ calculation method than what's in the tex.
+
+Looking at the unified JSON more closely, it explicitly excludes empty votes and maps non-standard answers, which would change how Fleiss' κ is computed. If the tex calculated κ on all 2448 votes (treating empty as a separate category) while the unified JSON only used the 2144 valid votes, that would explain the discrepancies. Given this ambiguity, I definitely shouldn't auto-correct without understanding which approach is right.
+
+Now I'll search for the dash inconsistencies and compile the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "5e33d090-48bb-4ed6-b208-e29bfbfdcd49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUV8anoYzBVMmfXQaDvfZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 36165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Now I have all the data needed. Let me run the writing style checks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "307b68a2-fbf7-4727-bf8a-236e1f23805d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUV8anoYzBVMmfXQaDvfZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 36165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015VoDoicCZbTmQi7t95JqdW`</summary>
+
+```json
+{
+  "pattern": "—",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "1e1f110f-00ab-4758-8e8f-844ebe3ea288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUV8anoYzBVMmfXQaDvfZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 36165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T04:35:34.333Z_
+
+<details><summary>↩ Tool result · `toolu_015VoDoicCZbTmQi7t95JqdW`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "20d4dc92-8881-4ad7-b8dc-56d5fe606bf5",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01HUNNMLPQWdXFsiDjvzhmYq`</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "31bb7d99-beec-438f-bd40-1cc5c1921e97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUV8anoYzBVMmfXQaDvfZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 36165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T04:35:35.260Z_
+
+<details><summary>↩ Tool result · `toolu_01HUNNMLPQWdXFsiDjvzhmYq`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "1b847b64-d7d5-4486-b5a9-5a02610d1649",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AoRydsqpa57vW5noBQJBGL`</summary>
+
+```json
+{
+  "pattern": "ing,|ing\\.",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "e4b6336b-66d8-4249-b2c7-18a287c640de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUV8anoYzBVMmfXQaDvfZC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13040,
+      "cache_read_input_tokens": 36165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T04:35:35.954Z_
+
+<details><summary>↩ Tool result · `toolu_01AoRydsqpa57vW5noBQJBGL`</summary>
+
+```text
+9:[Omitted long matching line]
+72:[Omitted long matching line]
+78:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "21e5f9e5-b5a0-4ab3-86ae-95f496dcc00c",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "9:[Omitted long matching line]\n72:[Omitted long matching line]\n78:[Omitted long matching line]",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01BHCdGYp5JvdUV7YCDVg1dZ`</summary>
+
+```json
+{
+  "pattern": "ing,|ing\\.",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+  "output_mode": "content",
+  "-n": true,
+  "context": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "f4be8bb6-79af-4aaa-8fa7-3e480110def0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019B3s7sTKmNKi2E1hM9eqb8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16958,
+      "cache_read_input_tokens": 49205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16958
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T04:35:39.376Z_
+
+<details><summary>↩ Tool result · `toolu_01BHCdGYp5JvdUV7YCDVg1dZ`</summary>
+
+```text
+9:[Omitted long matching line]
+72:[Omitted long matching line]
+78:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "0998a260-6cd8-4b18-bc15-7be2e9ebabd3",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "9:[Omitted long matching line]\n72:[Omitted long matching line]\n78:[Omitted long matching line]",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the specific lines. The grep matched `ing,` and `ing.` but many of these are in normal words like "resulting," "ranking," etc. I need to specifically look for -ing participial phrase endings like "..., highlighting..." or "..., demonstrating...".
+
+Let me re-read the relevant lines from the file I already read:
+
+Line 9: "...consistent with its position in the Goldilocks zone. Mistral-7B on ProofWriter has the lowest agreement ($\kappa = 0.21$, $K_{\text{eff}} = 3.63$), yet SICA hurts ($\Delta = -2.83$\,pp) because trace quality is too low (SC $= 39.33\%$). 
+
+Now looking at the next section, I see the matches for `ing,` are "reranking," and "operating" — but these are embedded in noun phrases rather than functioning as participial clause endings. The text discusses how high $K_{\text{eff}}$ values don't guarantee improvement without accurate traces, and how models with high unanimity rates severely limit SICA's effectiveness. Line 72 appears to be cut off mid-sentence with "To test".
+
+Continuing from there, the thinking examines whether the Z3 solver adds value beyond simple vote counting by comparing scoring methods. The gerund "counting," is correctly used as the object of a preposition. Further down, "engineering," appears as a gerund functioning as a noun in the context of prompt engineering. No problematic -ing phrase endings have been identified so far.
+
+Now I need to locate where the Eff-K formula is defined to verify it matches the expected form K/(1+(K-1)×κ) rather than K×(1-κ), and then compile the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "f78ff69d-8b5b-4adf-abcc-00a8bb32e0b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LSq46g5ADDfJuLFUtPqge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 204,
+      "cache_read_input_tokens": 66163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 204
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Let me find where Eq. effk is defined in the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "f6989eb4-79bf-4e36-b148-7711b953081b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LSq46g5ADDfJuLFUtPqge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 204,
+      "cache_read_input_tokens": 66163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 204
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01YCocRqBQo8Pp1NjYFceiDB`</summary>
+
+```json
+{
+  "pattern": "eq:effk|effk|Effective-K|effective.k",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "context": 2,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "d68b1d6c-2e7f-428e-85c7-9f0f6f92f7a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LSq46g5ADDfJuLFUtPqge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 204,
+      "cache_read_input_tokens": 66163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 204
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T04:35:59.141Z_
+
+<details><summary>↩ Tool result · `toolu_01YCocRqBQo8Pp1NjYFceiDB`</summary>
+
+```text
+docs/paper/analysis.tex-2-\label{sec:analysis}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-3-
+docs/paper/analysis.tex:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-5-
+docs/paper/analysis.tex:6:\subsection{Condorcet Effective-K}
+docs/paper/analysis.tex:7:\label{sec:effective-k}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-8-
+docs/paper/analysis.tex:9:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-10-
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-11-\begin{table}[t]
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-12-\centering
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-13-\small
+docs/paper/analysis.tex:14:\caption{Trace independence metrics ($K = 12$). $\kappa$: Fleiss' Kappa. $K_{\text{eff}}$: Effective-K (Eq.~\ref{eq:effk}). Unan.: unanimous-answer fraction (\%). $\Delta$: SICA $-$ SC (pp). Mistral s42/s123/s456 are separate random seeds on the same evaluation set. Mistral = Mistral-7B; Qwen2.5 = Qwen2.5-14B; Qwen3 = Qwen3-14B.}
+docs/paper/analysis.tex-15-\label{tab:independence}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-16-\begin{tabular}{@{}llcccr@{}}
+--
+docs/paper/analysis.tex-46-\label{sec:k-sensitivity}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-47-
+docs/paper/analysis.tex:48:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-49-
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-50-\begin{figure}[t]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-9-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-10-\begin{equation}
+docs/paper/method.tex:11:\label{eq:effk}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-12-K_{\text{eff}} = \frac{K}{1 + (K - 1) \cdot \kappa}.
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-13-\end{equation}
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-14-
+docs/paper/method.tex:15:In our experiments (\S\ref{sec:effective-k}), $\kappa$ ranges from 0.21 to 0.82 across model-dataset pairs, yielding $K_{\text{eff}} \approx 1.2\text{--}3.6$ for $K = 12$. At $K_{\text{eff}} \approx 1$, additional traces provide almost no new information, and the CJT guarantee collapses. This \emph{independence bottleneck} motivates our investigation: can structured constraint extraction recover discriminative signal that majority voting cannot?
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-16-
+/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-17-\subsection{SICA Pipeline}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "9e6de9d8-82ce-4e56-a9cd-28294ed0d9f0",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/analysis.tex-2-\\label{sec:analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-3-\ndocs/paper/analysis.tex:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-5-\ndocs/paper/analysis.tex:6:\\subsection{Condorcet Effective-K}\ndocs/paper/analysis.tex:7:\\label{sec:effective-k}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-8-\ndocs/paper/analysis.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-10-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-11-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-12-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-13-\\small\ndocs/paper/analysis.tex:14:\\caption{Trace independence metrics ($K = 12$). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). Unan.: unanimous-answer fraction (\\%). $\\Delta$: SICA $-$ SC (pp). Mistral s42/s123/s456 are separate random seeds on the same evaluation set. Mistral = Mistral-7B; Qwen2.5 = Qwen2.5-14B; Qwen3 = Qwen3-14B.}\ndocs/paper/analysis.tex-15-\\label{tab:independence}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-16-\\begin{tabular}{@{}llcccr@{}}\n--\ndocs/paper/analysis.tex-46-\\label{sec:k-sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-47-\ndocs/paper/analysis.tex:48:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-49-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-50-\\begin{figure}[t]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-9-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-10-\\begin{equation}\ndocs/paper/method.tex:11:\\label{eq:effk}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-12-K_{\\text{eff}} = \\frac{K}{1 + (K - 1) \\cdot \\kappa}.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-13-\\end{equation}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-14-\ndocs/paper/method.tex:15:In our experiments (\\S\\ref{sec:effective-k}), $\\kappa$ ranges from 0.21 to 0.82 across model-dataset pairs, yielding $K_{\\text{eff}} \\approx 1.2\\text{--}3.6$ for $K = 12$. At $K_{\\text{eff}} \\approx 1$, additional traces provide almost no new information, and the CJT guarantee collapses. This \\emph{independence bottleneck} motivates our investigation: can structured constraint extraction recover discriminative signal that majority voting cannot?\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-16-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-17-\\subsection{SICA Pipeline}",
+    "numLines": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The Eff-K formula in method.tex (line 12) is:
+K_eff = K / (1 + (K-1) * κ)
+
+This is the correct formula, NOT K×(1-κ). ✓
+
+Also, method.tex line 15 says: "κ ranges from 0.21 to 0.82" - this matches the tex analysis.tex line 9 claim. But if we update the κ values to match unified data, the range would change. Specifically, 0.21 would become 0.20, and 0.82 stays 0.82. 
+
+The Mistral seed values are another concern I need to address. Let me pull together the final report now that I have everything I need - I'll organize this around the critical inconsistencies with the unified κ data, K-sensitivity issues, whether the delta and SC values match the registry, the writing style, and any other problems. Before I finalize though, I should verify that Qwen2.5 (ICL) entry from the tex file, which shows up in the table but doesn't appear in the unified JSON data.
+
+Looking at the registry, I found exp-044b-icl-oracle with SC=74.37 and SICA=74.87, giving δ=+0.50 which matches the tex. The κ=0.39 and K_eff=2.25 values aren't in the unified data since there's no ICL entry there. When I calculate K_eff using the formula with κ=0.39, I get approximately 2.27, which is close to but not exactly 2.25 - there's a small discrepancy in the rounding. I'm seeing a rounding inconsistency where κ=0.39 should give K_eff=2.27, but the table shows 2.25, which would require κ≈0.394. It's a minor discrepancy that doesn't warrant further investigation. Now I need to move on to compiling the report and verify a few remaining details—checking whether the Qwen entries have delta values in the registry and confirming the Mistral PW-D5 row data matches between the body text and table.
+
+The Mistral LogiQA delta shows +0.50 in the tex and matches the registry, but the unified dataset has a different sign (δ=-0.50) due to answer normalization changing the SC value, which flipped the delta's sign. The tex aligns with the registry version, so that's consistent.
+
+For Mistral PW-D, the Unan column is empty in the tex table and there's no unanimous data in the registry or unified datasets either, so that's expected.
+
+Now I'm ready to compile the comprehensive audit report with all these discrepancies documented.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "a9634f88-d5a1-4c04-8ab8-41f5133b96a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LtbqkVQcYx7HW5UDQ369jE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 66367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2163
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+Eff-K formula in method.tex is `K/(1+(K-1)·κ)` — correct. Now let me compile the full audit.
+
+---
+
+## 审查报告：analysis.tex 与数据源一致性
+
+### 1. Table 3 κ / Eff-K vs unified κ JSON — **严重不一致**
+
+所有 Mistral 行的 κ 和 K_eff 与 unified 数据不匹配：
+
+| Row | tex κ | unified κ | tex K_eff | unified K_eff |
+|-----|-------|-----------|-----------|---------------|
+| Mistral (s42) FOLIO | 0.50 | 0.4598 | 1.85 | 1.98 |
+| Mistral (s123) FOLIO | 0.41 | 0.4572 | 2.17 | 1.99 |
+| Mistral (s456) FOLIO | 0.40 | 0.4565 | 2.22 | 1.99 |
+| Mistral PW-D5 | 0.21 | 0.1996 | 3.63 | 3.76 |
+| Mistral LogiQA | 0.50 | 0.5116 | 1.84 | 1.81 |
+| Qwen2.5 FOLIO | 0.74 | 0.7442 | 1.31 | 1.31 | ✓
+| Qwen2.5 LogiQA | 0.82 | 0.8210 | 1.20 | 1.20 | ✓
+| Qwen2.5 PW-D5 | 0.62 | 0.6170 | 1.53 | 1.54 | ~OK
+| Qwen3 (see #6) | 0.77 | 0.7730 | 1.27 | 1.26 | ~OK
+
+关键问题：unified 中三个 Mistral FOLIO seeds 的 κ 几乎相同（0.46/0.46/0.46），但 tex 写的是 0.50/0.41/0.40（差异很大）。这直接影响 §5.1 cross-seed 叙事："κ ranges from 0.40 to 0.50" 在 unified 数据下不成立。
+
+**原因推测**：unified JSON 排除了 empty votes（exp-033 有 304/2448 empty），tex 可能使用了包含 empty 的旧计算。
+
+### 2. Table 3 Δ vs registry — 匹配
+
+| Row | tex Δ | registry Δ | unified Δ |
+|-----|-------|------------|-----------|
+| s42 (exp-033) | +4.90 | +4.90 ✓ | +3.43 ✗ |
+| s123 (exp-052) | +3.43 | +3.43 ✓ | +2.94 ✗ |
+| s456 (exp-053) | -0.49 | -0.49 ✓ | +1.47 ✗ |
+| PW-D5 (exp-046) | -2.83 | -2.83 ✓ | -1.67 ✗ |
+| LogiQA (exp-049b) | +0.50 | +0.50 ✓ | -0.50 ✗ |
+| Qwen2.5 FOLIO (exp-036) | -0.49 | -0.98 ✗ | -0.98 ✗ |
+| Qwen2.5 LogiQA (exp-038) | -0.50 | -0.50 ✓ | -1.00 ✗ |
+
+**注意**：exp-036 (Qwen2.5 FOLIO) tex Δ=-0.49 但 registry 和 unified 均为 -0.98。
+
+### 3. K-sensitivity (§5.3) — **严重不一致**
+
+| K | tex Δ | unified Δ |
+|---|-------|-----------|
+| 4 | -1.47 | -0.98 |
+| 8 | -0.98 | -2.94 |
+| 12 | +4.90 | +3.43 |
+| 16 | +1.47 | +0.49 |
+
+四个值全部不匹配。tex 中的 "inverted-U curve" 叙事在 unified 数据下变为单调递增（-0.98 → -2.94 → +3.43 → +0.49），不再是 inverted-U。
+
+### 4. T-sensitivity (§5.4) — registry 匹配
+
+- T=1.0: tex "SC=54.9%, SICA=55.4%, Δ=+0.49, p=0.739" — registry exp-054 ✓
+- T=0.3 (exp-057): 未在 §5.4 直接引用，registry 无 metrics
+
+### 5. Multi-temp (§5.7) — registry 匹配
+
+tex "SC=57.84%, SICA=57.84%, Δ=0.00" — registry exp-055: SC=57.84, SICA=57.84, δ=0 ✓
+（unified 不匹配：SC=57.35, δ=0.49）
+
+### 6. Qwen3 行数据集标签错误
+
+Table 3 最后一行写 "Qwen3 & PW-D5"，但 exp-027（unified JSON table3_experiments 中唯一的 Qwen3 条目）是 **FOLIO-204** 数据集，不是 PW-D5。Registry 中 "exp-033-qwen3-pw600-nonthinking" 状态为 failed，无成功的 Qwen3 PW 实验。
+
+### 7. §5.2 / §5.6 / §5.7 数字 — 全部正确
+
+从 registry 验证：
+- 8.2% discriminative rate [CI: 7.6, 8.8] ✓ (exp-023)
+- 39.2% source disc weight, 12.1% count ✓
+- 56.4% zero shared vars ✓ (exp-036b)
+- MAX-SAT 76.49% (615/804), count-only 76.62% (616/804) ✓
+- Contrastive 6.0%, Δ=-1.1pp ✓ (exp-029)
+- Cross-model 0% disc, Δ=0 ✓ (exp-030)
+- Z3 UNSAT 0.9% ✓ (exp-036)
+- Consistency filtering 1.8/0.3 constraints ✓ (exp-043)
+
+### 8. Eff-K 公式 — 正确
+
+method.tex line 12: `K_eff = K / (1 + (K-1)·κ)` ✓（不是 K×(1-κ)）
+
+### 9. 写作风格 — 通过
+
+- em-dash (—): 0处 ✓
+- 解释性 en-dash ( – ): 0处 ✓
+- -ing 分词短语结尾: 0处 ✓
+- 过度分段: 无 ✓
+- 黑名单词汇: 无 ✓
+
+### 10. 其他问题
+
+- **Line 9**: "Mistral-7B on FOLIO has only 14.2%" 指代不明。Table 3 中 s123 和 s456 都是 14.2%，但 s42 是 18.6%。应明确是哪个 seed 或说 "as low as 14.2%"。
+- **method.tex line 15**: "κ ranges from 0.21 to 0.82" 如果 Table 3 的 κ 更新为 unified 值，此句也需同步修改。
+- **Qwen2.5 (ICL) 行**: κ=0.39 对应 K_eff=2.27（rounded），但 table 写 2.25。内部轻微不一致。
+
+---
+
+### 建议行动
+
+**不自动修复**，因为存在根本性的数据源选择问题：
+
+1. **κ/K_eff 数据源冲突**：unified JSON（排除 empty votes 后重新计算）与 tex 当前值（来源不明）差异大。如果采用 unified κ，三个 Mistral FOLIO seeds 的 κ 几乎相同（全部~0.46），§5.1 的 cross-seed 比较叙事需要重写。
+
+2. **Δ 数据源冲突**：tex 使用 registry 原始 Δ，unified JSON 因 answer normalization 得到不同 Δ。两者不应混用——如果 κ 用 unified 值（排除 empty votes），Δ 也应用 unified 值才能自洽。
+
+3. **K-sensitivity 数据完全不匹配**：需要确认 tex 中 K=4/8/16 的数据来源。unified JSON 有明确的 exp-051-kX 条目，tex 值与之完全不同。
+
+**建议**：确定一个权威数据源（unified JSON 或 registry），全文统一使用。如果选 unified JSON，Table 3、§5.1 叙事、§5.3 K-sensitivity、method.tex line 15 均需更新。
+
+**可直接修复的确定性错误**：
+- Qwen3 行 "PW-D5" → "FOLIO"（exp-027 是 FOLIO-204）
+- Qwen2.5 FOLIO Δ=-0.49 → Δ=-0.98（registry 和 unified 均为 -0.98）
+
+需要确认是否先修复这两项？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "uuid": "5d67e3a5-0b3d-4f62-892f-29a4708843e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LtbqkVQcYx7HW5UDQ369jE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 66367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2163
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+Eff-K formula in method.tex is `K/(1+(K-1)·κ)` — correct. Now let me compile the full audit.
+
+---
+
+## 审查报告：analysis.tex 与数据源一致性
+
+### 1. Table 3 κ / Eff-K vs unified κ JSON — **严重不一致**
+
+所有 Mistral 行的 κ 和 K_eff 与 unified 数据不匹配：
+
+| Row | tex κ | unified κ | tex K_eff | unified K_eff |
+|-----|-------|-----------|-----------|---------------|
+| Mistral (s42) FOLIO | 0.50 | 0.4598 | 1.85 | 1.98 |
+| Mistral (s123) FOLIO | 0.41 | 0.4572 | 2.17 | 1.99 |
+| Mistral (s456) FOLIO | 0.40 | 0.4565 | 2.22 | 1.99 |
+| Mistral PW-D5 | 0.21 | 0.1996 | 3.63 | 3.76 |
+| Mistral LogiQA | 0.50 | 0.5116 | 1.84 | 1.81 |
+| Qwen2.5 FOLIO | 0.74 | 0.7442 | 1.31 | 1.31 | ✓
+| Qwen2.5 LogiQA | 0.82 | 0.8210 | 1.20 | 1.20 | ✓
+| Qwen2.5 PW-D5 | 0.62 | 0.6170 | 1.53 | 1.54 | ~OK
+| Qwen3 (see #6) | 0.77 | 0.7730 | 1.27 | 1.26 | ~OK
+
+关键问题：unified 中三个 Mistral FOLIO seeds 的 κ 几乎相同（0.46/0.46/0.46），但 tex 写的是 0.50/0.41/0.40（差异很大）。这直接影响 §5.1 cross-seed 叙事："κ ranges from 0.40 to 0.50" 在 unified 数据下不成立。
+
+**原因推测**：unified JSON 排除了 empty votes（exp-033 有 304/2448 empty），tex 可能使用了包含 empty 的旧计算。
+
+### 2. Table 3 Δ vs registry — 匹配
+
+| Row | tex Δ | registry Δ | unified Δ |
+|-----|-------|------------|-----------|
+| s42 (exp-033) | +4.90 | +4.90 ✓ | +3.43 ✗ |
+| s123 (exp-052) | +3.43 | +3.43 ✓ | +2.94 ✗ |
+| s456 (exp-053) | -0.49 | -0.49 ✓ | +1.47 ✗ |
+| PW-D5 (exp-046) | -2.83 | -2.83 ✓ | -1.67 ✗ |
+| LogiQA (exp-049b) | +0.50 | +0.50 ✓ | -0.50 ✗ |
+| Qwen2.5 FOLIO (exp-036) | -0.49 | -0.98 ✗ | -0.98 ✗ |
+| Qwen2.5 LogiQA (exp-038) | -0.50 | -0.50 ✓ | -1.00 ✗ |
+
+**注意**：exp-036 (Qwen2.5 FOLIO) tex Δ=-0.49 但 registry 和 unified 均为 -0.98。
+
+### 3. K-sensitivity (§5.3) — **严重不一致**
+
+| K | tex Δ | unified Δ |
+|---|-------|-----------|
+| 4 | -1.47 | -0.98 |
+| 8 | -0.98 | -2.94 |
+| 12 | +4.90 | +3.43 |
+| 16 | +1.47 | +0.49 |
+
+四个值全部不匹配。tex 中的 "inverted-U curve" 叙事在 unified 数据下变为单调递增（-0.98 → -2.94 → +3.43 → +0.49），不再是 inverted-U。
+
+### 4. T-sensitivity (§5.4) — registry 匹配
+
+- T=1.0: tex "SC=54.9%, SICA=55.4%, Δ=+0.49, p=0.739" — registry exp-054 ✓
+- T=0.3 (exp-057): 未在 §5.4 直接引用，registry 无 metrics
+
+### 5. Multi-temp (§5.7) — registry 匹配
+
+tex "SC=57.84%, SICA=57.84%, Δ=0.00" — registry exp-055: SC=57.84, SICA=57.84, δ=0 ✓
+（unified 不匹配：SC=57.35, δ=0.49）
+
+### 6. Qwen3 行数据集标签错误
+
+Table 3 最后一行写 "Qwen3 & PW-D5"，但 exp-027（unified JSON table3_experiments 中唯一的 Qwen3 条目）是 **FOLIO-204** 数据集，不是 PW-D5。Registry 中 "exp-033-qwen3-pw600-nonthinking" 状态为 failed，无成功的 Qwen3 PW 实验。
+
+### 7. §5.2 / §5.6 / §5.7 数字 — 全部正确
+
+从 registry 验证：
+- 8.2% discriminative rate [CI: 7.6, 8.8] ✓ (exp-023)
+- 39.2% source disc weight, 12.1% count ✓
+- 56.4% zero shared vars ✓ (exp-036b)
+- MAX-SAT 76.49% (615/804), count-only 76.62% (616/804) ✓
+- Contrastive 6.0%, Δ=-1.1pp ✓ (exp-029)
+- Cross-model 0% disc, Δ=0 ✓ (exp-030)
+- Z3 UNSAT 0.9% ✓ (exp-036)
+- Consistency filtering 1.8/0.3 constraints ✓ (exp-043)
+
+### 8. Eff-K 公式 — 正确
+
+method.tex line 12: `K_eff = K / (1 + (K-1)·κ)` ✓（不是 K×(1-κ)）
+
+### 9. 写作风格 — 通过
+
+- em-dash (—): 0处 ✓
+- 解释性 en-dash ( – ): 0处 ✓
+- -ing 分词短语结尾: 0处 ✓
+- 过度分段: 无 ✓
+- 黑名单词汇: 无 ✓
+
+### 10. 其他问题
+
+- **Line 9**: "Mistral-7B on FOLIO has only 14.2%" 指代不明。Table 3 中 s123 和 s456 都是 14.2%，但 s42 是 18.6%。应明确是哪个 seed 或说 "as low as 14.2%"。
+- **method.tex line 15**: "κ ranges from 0.21 to 0.82" 如果 Table 3 的 κ 更新为 unified 值，此句也需同步修改。
+- **Qwen2.5 (ICL) 行**: κ=0.39 对应 K_eff=2.27（rounded），但 table 写 2.25。内部轻微不一致。
+
+---
+
+### 建议行动
+
+**不自动修复**，因为存在根本性的数据源选择问题：
+
+1. **κ/K_eff 数据源冲突**：unified JSON（排除 empty votes 后重新计算）与 tex 当前值（来源不明）差异大。如果采用 unified κ，三个 Mistral FOLIO seeds 的 κ 几乎相同（全部~0.46），§5.1 的 cross-seed 比较叙事需要重写。
+
+2. **Δ 数据源冲突**：tex 使用 registry 原始 Δ，unified JSON 因 answer normalization 得到不同 Δ。两者不应混用——如果 κ 用 unified 值（排除 empty votes），Δ 也应用 unified 值才能自洽。
+
+3. **K-sensitivity 数据完全不匹配**：需要确认 tex 中 K=4/8/16 的数据来源。unified JSON 有明确的 exp-051-kX 条目，tex 值与之完全不同。
+
+**建议**：确定一个权威数据源（unified JSON 或 registry），全文统一使用。如果选 unified JSON，Table 3、§5.1 叙事、§5.3 K-sensitivity、method.tex line 15 均需更新。
+
+**可直接修复的确定性错误**：
+- Qwen3 行 "PW-D5" → "FOLIO"（exp-027 是 FOLIO-204）
+- Qwen2.5 FOLIO Δ=-0.49 → Δ=-0.98（registry 和 unified 均为 -0.98）
+
+需要确认是否先修复这两项？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 451988,
+  "duration_api_ms": 452413,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "99e9977f-8b87-4336-96e6-5a0dbc740ef9",
+  "total_cost_usd": 1.09316825,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 56689,
+    "cache_read_input_tokens": 324346,
+    "output_tokens": 23004,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56689,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3893,
+        "cache_read_input_tokens": 66367,
+        "cache_creation_input_tokens": 2163,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2163
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1449,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001529,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 23004,
+      "cacheReadInputTokens": 324346,
+      "cacheCreationInputTokens": 56689,
+      "webSearchRequests": 0,
+      "costUSD": 1.0916392499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8c7a1bc9-9ede-42ab-b8f1-bd553469c485"
+}
+```
+
+</details>
+
+---

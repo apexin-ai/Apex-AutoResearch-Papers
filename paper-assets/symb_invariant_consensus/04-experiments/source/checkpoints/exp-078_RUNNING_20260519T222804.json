@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-078",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:27:35.893Z",
+    "updated_at": "2026-05-19T22:28:04.154Z",
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.5,
+      "debate_accuracy": 0.27,
+      "delta": -0.23,
+      "n_samples": 200,
+      "fallbacks": 16,
+      "wall_time_min": 211.5
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp078_debate_mistral_logiqa200/results.json",
+    "log_path": "/tmp/exp078_debate_logiqa.log",
+    "spec": {
+      "command": "python run_debate.py --dataset logiqa --n 200",
+      "server": "westd-16639",
+      "data_path": "logiqa",
+      "data_count": 200,
+      "model_name": "mistral-7b",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-19T22:28:04.372692+00:00",
+  "trigger": "update_registry"
+}

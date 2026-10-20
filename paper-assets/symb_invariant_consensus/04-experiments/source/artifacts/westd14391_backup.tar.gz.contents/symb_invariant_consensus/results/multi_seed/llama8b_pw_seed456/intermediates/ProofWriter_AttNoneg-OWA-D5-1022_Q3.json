@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1022_Q3",
+    "problem": "Dave is green. Dave is kind. Erin is cold. Erin is furry. Fiona is big. Fiona is furry. Gary is big. All kind people are cold. Green, smart people are rough. If Fiona is cold and Fiona is kind then Fiona is green. If someone is furry then they are smart. All furry, green people are smart. If someone is green and cold then they are big. If someone is furry and rough then they are big. All furry people are smart. Big, cold people are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, True) ::: Fiona is furry.\nBig(Gary, True) ::: Gary is big.\n\nRules:\nKind($x, True) >>> Cold($x, True) ::: All kind people are cold.\nGreen($x, True) && Smart($x, True) >>> Rough($x, True) ::: Green, smart people are rough.\nCold(Fiona, True) && Kind(Fiona, True) >>> Green(Fiona, True) ::: If Fiona is cold and Fiona is kind then Fiona is green.\nFurry($x, True) >>> Smart($x, True) ::: If someone is furry then they are smart.\nFurry($x, True) && Green($x, True) >>> Smart($x, True) ::: All furry, green people are smart.\nGreen($x, True) && Cold($x, True) >>> Big($x, True) ::: If someone is green and cold then they are big.\nFurry($x, True) && Rough($x, True) >>> Big($x, True) ::: If someone is furry and rough then they are big.\nFurry($x, True) >>> Smart($x, True) ::: All furry people are smart.\nBig($x, True) && Cold($x, True) >>> Furry($x, True) ::: Big, cold people are furry.\n\nQuery:\nSmart(Erin, True) ::: Erin is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

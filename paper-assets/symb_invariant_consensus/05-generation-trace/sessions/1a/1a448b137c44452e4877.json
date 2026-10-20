@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a448b137c44452e4877",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix cross model w5 table",
+  "task_key": "worker_fix_cross-model-w5-table_20260523T165502",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cross-model-w5-table_20260523T165502_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "3f6fe6ee50d0cda4f52d556fc3d35af371ff3d69dc5c492592d564521afdef1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已更新。变更：\n\n1. **添加 $w$ 列**，tabular 从 6 列扩展到 7 列\n2. **每个 cross-model voter 组合添加 w=5 行**（multirow 包裹 voter 名称），NLI 行保持 w=3\n3. **Caption 更新**：`$w{=}3$` → `$w \\in \\{3,5\\}$`，补充说明 NLI 使用 w=3，增加\"worsening at higher $w$\"的观察\n4. **关键数据确认**：Qwen3-14B → Qwen2.5-14B w=5 = 83.33%, −2.50pp, p=.006，与 solutions.tex 引用一致\n\nsolutions.tex 无需修改（选项 A 成功）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cross-model-w5-table.md"
+}

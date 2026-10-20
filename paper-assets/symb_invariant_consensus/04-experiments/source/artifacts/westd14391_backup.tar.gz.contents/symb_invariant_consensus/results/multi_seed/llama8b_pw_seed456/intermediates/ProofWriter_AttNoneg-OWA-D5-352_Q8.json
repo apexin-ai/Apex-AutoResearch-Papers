@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-352_Q8",
+    "problem": "Charlie is furry. Charlie is green. Charlie is white. Dave is blue. Dave is cold. Gary is cold. Gary is rough. Harry is blue. Harry is furry. Harry is rough. Harry is white. Nice, cold people are green. Rough people are green. Green people are blue. If someone is blue then they are nice. Furry, green people are rough. Green, nice people are furry. White people are nice. Cold people are blue. All rough, nice people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nWhite(Charlie, True) ::: Charlie is white.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nCold(Gary, True) ::: Gary is cold.\nRough(Gary, True) ::: Gary is rough.\nBlue(Harry, True) ::: Harry is blue.\nFurry(Harry, True) ::: Harry is furry.\nRough(Harry, True) ::: Harry is rough.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nNice($x, True) && Cold($x, True) >>> Green($x, True) ::: Nice, cold people are green.\nRough($x, True) >>> Green($x, True) ::: Rough people are green.\nGreen($x, True) >>> Blue($x, True) ::: Green people are blue.\nBlue($x, True) >>> Nice($x, True) ::: If someone is blue then they are nice.\nFurry($x, True) && Green($x, True) >>> Rough($x, True) ::: Furry, green people are rough.\nGreen($x, True) && Nice($x, True) >>> Furry($x, True) ::: Green, nice people are furry.\nWhite($x, True) >>> Nice($x, True) ::: White people are nice.\nCold($x, True) >>> Blue($x, True) ::: Cold people are blue.\nRough($x, True) && Nice($x, True) >>> White($x, True) ::: All rough, nice people are white.\n\nQuery:\nFurry(Dave, False) ::: Dave is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

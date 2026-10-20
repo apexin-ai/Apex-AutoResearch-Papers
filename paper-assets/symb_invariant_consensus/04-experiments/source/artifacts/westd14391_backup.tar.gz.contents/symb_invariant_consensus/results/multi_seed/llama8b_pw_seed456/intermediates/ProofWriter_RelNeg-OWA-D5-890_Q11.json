@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-890_Q11",
+    "problem": "The bald eagle needs the cow. The bald eagle needs the mouse. The cow is round. The mouse does not visit the rabbit. The rabbit is green. The rabbit needs the bald eagle. The rabbit visits the bald eagle. If someone visits the mouse then they like the cow. If someone likes the mouse and they are blue then the mouse needs the rabbit. If someone needs the bald eagle then the bald eagle likes the rabbit. If someone needs the bald eagle then the bald eagle likes the mouse. If someone likes the cow then they are blue. If someone is red and they visit the cow then the cow is green. If someone visits the mouse then they do not visit the bald eagle. If someone is round and they need the bald eagle then the bald eagle is round. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse needs the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nRound(Cow, True) ::: The cow is round.\nVisits(Mouse, Rabbit, False) ::: The mouse does not visit the rabbit.\nGreen(Rabbit, True) ::: The rabbit is green.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nVisits($x, Mouse, True) >>> Likes($x, Cow, True) ::: If someone visits the mouse then they like the cow.\nLikes($x, Mouse, True) && Blue($x, True) >>> Needs(Mouse, Rabbit, True) ::: If someone likes the mouse and they are blue then the mouse needs the rabbit.\nNeeds($x, BaldEagle, True) >>> Likes(BaldEagle, Rabbit, True) ::: If someone needs the bald eagle then the bald eagle likes the rabbit.\nNeeds($x, BaldEagle, True) >>> Likes(BaldEagle, Mouse, True) ::: If someone needs the bald eagle then the bald eagle likes the mouse.\nLikes($x, Cow, True) >>> Blue($x, True) ::: If someone likes the cow then they are blue.\nRed($x, True) && Visits($x, Cow, True) >>> Green(Cow, True) ::: If someone is red and they visit the cow then the cow is green.\nVisits($x, Mouse, True) >>> Visits($x, BaldEagle, False) ::: If someone visits the mouse then they do not visit the bald eagle.\nRound($x, True) && Needs($x, BaldEagle, True) >>> Round(BaldEagle, True) ::: If someone is round and they need the bald eagle then the bald eagle is round.\nVisits($x, BaldEagle, True) && Likes(BaldEagle, Rabbit, True) >>> Visits(BaldEagle, Mouse, True) ::: If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nQuery:\nNeeds(Mouse, Rabbit, True) ::: The mouse needs the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

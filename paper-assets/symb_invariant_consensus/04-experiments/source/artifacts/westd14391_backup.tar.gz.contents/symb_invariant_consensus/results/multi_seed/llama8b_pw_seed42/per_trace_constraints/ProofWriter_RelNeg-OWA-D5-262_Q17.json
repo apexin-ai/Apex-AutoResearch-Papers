@@ -1,0 +1,1518 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-262_Q17",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow, chases_cow_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_cat, chases_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_cat, visits_cat_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit, sees_rabbit_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_cat, sees_cat_cow), chases_cow_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit, chases_rabbit), chases_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == False",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(sees_cat_rabbit, chases_rabbit_cat), chases_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(X, cat)",
+          "z3_formula": "Implies(And(chases_cow_cat, sees_cow_squirrel), chases_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, rabbit)",
+          "z3_formula": "Not(chases_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, rabbit)",
+          "z3_formula": "Not(chases_cow_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat) & sees(rabbit, cow)",
+          "z3_formula": "And(chases_rabbit_cat, sees_rabbit_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow_cat, chases_cat_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_cow_squirrel, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_squirrel_rabbit, sees_squirrel_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, sees_cow_squirrel), chases_cow_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_squirrel_rabbit, chases_squirrel_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "Not(big_cat) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(cow, cat) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_cow_cat), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, rabbit)",
+          "z3_formula": "Not(chases_cat_rabbit) == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, cat)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, sees_cat_cow), chases_cow_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_rabbit_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(X, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == False",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow_cat, chases_cat_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_rabbit_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_rabbit_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, sees_cat_cow), chases_cow_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_squirrel_rabbit, chases_rabbit_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == Unknown",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ]
+    }
+  ]
+}

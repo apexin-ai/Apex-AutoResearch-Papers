@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1304_Q8",
+    "problem": "Anne is quiet. Anne is rough. Erin is nice. Erin is rough. Erin is round. Fiona is big. Fiona is furry. Fiona is nice. Fiona is quiet. Fiona is red. Fiona is rough. Fiona is round. Harry is red. Harry is rough. All nice, big people are quiet. Quiet people are round. Rough, big people are furry. Big people are rough. If someone is furry then they are nice. If someone is rough then they are big. If Harry is round then Harry is big.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nRound(Erin, True) ::: Erin is round.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, True) ::: Fiona is furry.\nNice(Fiona, True) ::: Fiona is nice.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\nRed(Harry, True) ::: Harry is red.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nNice($x, True) && Big($x, True) >>> Quiet($x, True) ::: All nice, big people are quiet.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nRough($x, True) && Big($x, True) >>> Furry($x, True) ::: Rough, big people are furry.\nBig($x, True) >>> Rough($x, True) ::: Big people are rough.\nFurry($x, True) >>> Nice($x, True) ::: If someone is furry then they are nice.\nRough($x, True) >>> Big($x, True) ::: If someone is rough then they are big.\nRound(Harry, True) >>> Big(Harry, True) ::: If Harry is round then Harry is big.\n\nQuery:\nNice(Harry, False) ::: Harry is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

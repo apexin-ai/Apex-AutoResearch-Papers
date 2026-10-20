@@ -1,0 +1,42 @@
+{
+  "exp_id": "sica_proofwriter30",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:08:42.831Z",
+    "updated_at": "2026-05-15T22:12:04.797Z",
+    "hypothesis": "逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性",
+    "parent": "sica_aime30_v3",
+    "spec": {
+      "command": "python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "153924",
+      "log_path": "/root/runs/symb_invariant_consensus/proofwriter30.log",
+      "submitted_at": "2026-05-15T22:11:44.644Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "method": "SICA",
+      "model_name": "QwQ-32B",
+      "data_path": "/root/symb_invariant_consensus/data/proofwriter_subset.json",
+      "data_count": 30,
+      "seed": 42,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 16384,
+      "domain": "logic",
+      "extraction_prompt": "LOGIC_EXTRACTION_PROMPT",
+      "z3_timeout_s": 60,
+      "checkpoint_source": "N/A (not eval - new SICA logic domain experiment)",
+      "eval_data": "ProofWriter D5 30 problems (T:10 F:10 U:10)"
+    }
+  },
+  "timestamp": "2026-05-15T22:12:04.821196+00:00",
+  "trigger": "update_registry"
+}

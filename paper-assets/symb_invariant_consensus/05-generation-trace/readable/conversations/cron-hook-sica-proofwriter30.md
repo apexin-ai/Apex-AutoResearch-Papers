@@ -1,0 +1,1330 @@
+# cron hook sica proofwriter30
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/cron_hook_sica_proofwriter30.jsonl`
+- **Structured JSON:** [`2ff808b723e4e1a0858c.json`](../../sessions/2f/2ff808b723e4e1a0858c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T04:41:53.991969+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **只能用 westd-32608:cuda:0**，gpu_ids=[0]，白名单外的 GPU 一律 push back
+- **max_tokens ≤ 4096 (14B 模型)**：max_model_len=8192，超过会 400 错误（QwQ-32B 时代用 10240/12288，14B 不适用）
+- **sica_folio30 (QUEUED) 已废弃**：spec 里写的 QwQ-32B + max_tokens=12288，不可直接启动，需要更新 spec 或作废
+- **vLLM 独占**：实验运行期间禁止其他进程向 port 8000 发请求
+- **May 19 UTC 是 EMNLP 生死线**：D012 MVP 未 pass → 放弃 EMNLP，切 AAAI 2027 (Aug 1)
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-32608, root@, 工作目录 `/root/symb_invariant_consensus`
+- **Python**: `/root/miniconda3/bin/python` (conda base), 激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: Qwen2.5-14B-Instruct @ `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`
+- **vLLM**: PID 174291, port 8000, max_model_len=8192, gpu_mem_util=0.85, 27.6 GiB
+- **QwQ-32B** (已停用): `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`
+- **数据**: `data/proofwriter_30.json` (30q) + `data/folio_30.json` (30q)
+- **活跃进程**: sica_d012_14b PID 177178, tmux session=sica_d012_14b, cuda:0
+- **⚠️ 无 cron 注册**: sica_d012_14b 没有 cron 监控，需要手动 poll 或注册 cron
+- **磁盘**: 根分区 16GB free, /root/autodl-tmp 232GB free
+
+### 3. 📊 当前状态
+**刚完成**: D016 C0 预检 (sica_d016_c0_precheck) SUCCESS — Qwen2.5-14B-Instruct 多候选率 46% (FOLIO 40%, PW 50%)，远超 20% 阈值，SC accuracy 73%。Director 批准了全量 D012 评估。
+
+**正在运行**: `sica_d012_14b` — 全量 D012 MVP 评估，ProofWriter-30 + FOLIO-30 合并 60 题，K=12，Qwen2.5-14B-Instruct。用 `run_full_mvp.py --mode vllm` 跑。提交时间 04:05 UTC。**没有 cron 监控**，这是第一优先修复项。
+
+**QUEUED 但废弃**: `sica_folio30` — QwQ-32B spec，不再适用，应标记 killed 或更新。
+
+**Worker 池**: 0 个运行中 Worker（失职状态，但当前只有 1 GPU 且在跑实验，非 GPU 任务应该铺起来）。
+
+### 4. 📋 待办（条件触发式）
+- **立即** → 为 sica_d012_14b 注册 cron 监控（或手动 poll 确认进程存活）
+- **立即** → sica_folio30 标记 killed（spec 过时，已被 sica_d012_14b 覆盖）
+- **sica_d012_14b 完成 → 结果分析**:
+  - C0 ≥ 20% 且 C1 ≥ 50% 且 C2 ≥ 5 且 C3 ≥ SC+2pp → **D012 PASS**，向 Director 汇报 success，开始铺论文写作
+  - 任一 FAIL → 按 red-section 产 Framing 调整提案，汇报 Director，**不默默跑下一个**
+- **D012 PASS → 铺论文骨架** → spawn writer workers（intro/method/experiments 并行）
+- **D012 FAIL + C0 still high but C3 < SC+2pp → 检查是否 72B-AWQ 能救**（memory.md 提到的备选）
+- **非 GPU 并行任务可以现在铺**: 文献扫描 (literature-scan)、论文 framing 更新、experiment plan 整理
+
+### 5. 🎯 战略上下文
+**核心决策链**: D010(AIME 0pp)→D011(MATH预判同)→D012(逻辑域MVP标准)→D013(MaxSAT结构失效)→D014(根因=缺answer assertion)→D015(FOLIO也0%多候选)→D016(模型pivot到14B)→C0 PASS(46%)→**现在: 全量D012评估中**
+
+**项目命运取决于 sica_d012_14b 这一个实验**。QwQ-32B 已全域 FAIL，14B 是最后的 pivot。C0 已 PASS (46% >> 20%)，关键看 C3 (SICA > SC+2pp)。
+
+**易错点**:
+- 不要把 sica_folio30 (QwQ-32B, QUEUED) 当成待启动实验——它已被 sica_d012_14b 覆盖
+- 14B 的 max_tokens=4096，不是 QwQ 时代的 10240/12288
+- sica_d012_14b 用的 `run_full_mvp.py` 同时跑 PW+FOLIO，不需要分开启动
+- 如果 vLLM (PID 174291) 挂了，实验会持续 400 报错但进程不退出——需要检查 vLLM 健康
+- **D012 的 4 个指标全部要 PASS**，不是只看 accuracy gap
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息 (2026-05-16)
+- **服务器**: westd-32608, 账号 root
+- **GPU**: NVIDIA RTX PRO 6000 Blackwell Server Edition, 98GB VRAM, cuda:0（已分配）
+- **CUDA**: 12.8 (nvcc V12.8.93)
+- **Python**: 3.12.3 via conda (/root/miniconda3, base 环境)
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **关键包**: torch 2.11.0+cu130, vllm 0.20.2, z3-solver 4.15.4, sympy 1.14.0, datasets 4.8.4, math_verify 0.9.0
+- **磁盘**: 根分区 16GB free, 数据盘 /root/autodl-tmp 232GB free
+
+## 可查的历史
+前 7 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sica_proofwriter30",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T04:42:05.204899+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T04:42:05.205371+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T04:42:07.968030+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T04:42:08.420687+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:42:08.424087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sica_d012_14b\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:02:41.309Z\", \"updated_at\": \"2026-05-16T04:06:57.741Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --math-data /tmp/empty_math.json --pw-data data/proofwriter_30.json --folio-data data/folio_30.json --output results/sica_d012_14b.json --save-intermediates 2>&1 | tee /tmp/sica_d012_14b.log\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"177178\", \"log_path\": \"~/runs/symb_invariant_consensus/sica_d012_14b.log\", \"submitted_at\": \"2026-05-16T04:05:23.888Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:00:14.192Z\", \"updated_at\": \"2026-05-16T04:01:11.163Z\", \"hypothesis\": \"D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）\", \"parent\": \"sica_proofwriter30_v2\", \"spec\": {\"command\": \"python sica_pipeline.py --data folio_subset.json+proofwriter_subset.json --K 6 --T 0.7 --max-tokens 4096 --model Qwen2.5-14B-Instruct\", \"server\": \"westd-32608\", \"data_path\": \"data/folio_subset.json (10q) + data/proofwriter_subset.json (16q)\", \"data_count\": 26, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"model_path\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"hyperparams\": {\"K\": 6, \"T\": 0.7, \"max_tokens\": 4096, \"max_model_len\": 8192}, \"checkpoint_source\": \"N/A (inference-only, no checkpoint)\", \"eval_data\": \"FOLIO-1
+…[truncated 17433 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T04:42:08.826061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 405
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T04:42:08.826510+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T04:42:08.826751+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:42:08.878181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| sica_d012_14b | — | — | — | — |\\n\\n## 待处理\\n- sica_folio30: 逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景（排队等待 GPU）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **sica_d016_c0_precheck** (success): D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%） ← 基于 sica_proofwriter30_v2\\n- **sica_proofwriter30_v2** (killed): 逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复） ← 基于 sica_proofwriter30\\n- **sica_proofwriter30** (failed): 逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性 ← 基于 sica_aime30_v3\\n\\n## 趋势\\n成功 3 / 负向 1 / 失败 1 / 共 10\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n\", \"total_chars\": 1048, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T04:42:08.878773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-16 02:51 UTC | 更新原因: D016 模型 pivot：QwQ-32B FAIL，切 Qwen2.5-14B-Instruct\\n\\n## 核心方向\\nSymbolic Invariant Consensus Aggregation (SICA)：从多条 LLM 推理路径中提取符号约束，通过加权 partial MAX-SAT 找到全局一致的约束子集，替代统计共识方法（SC/CRAFT），提供可解释的形式化验证信号。\\n\\n## 当前阶段\\n**MVP 验证（模型 pivot D016）** — QwQ-32B 全域 C0=3.6%（~83题仅3题多候选），D012 FAIL。模型级自一致性使 SICA≡SC。正在 pivot 到 Qwen2.5-14B-Instruct（非 reasoning model），验证 SICA 在有多样性输入时是否有效。\\n\\n## 关键 Checkpoint\\n**May 19 UTC 前模型 pivot MVP 未 pass → 放弃 EMNLP May 25，切 AAAI 2027 (Aug 1) 为主目标。**\\n\\n## 逻辑域 MVP 标准（D012，适用于新模型）\\n\\n**范围**：ProofWriter-30 + FOLIO-30，合并 60 题判定。\\n\\n**PASS（全部满足）**：\\n1. C0（前置）：多候选率 ≥ 20%（≥12/60 题有 >1 unique candidate）\\n2. C1：约束提取率 ≥ 50%\\n3. C2：跨路径矛盾检出 ≥ 5 题（绝对数）\\n4. C3：SICA accuracy ≥ SC + 2pp，或 paired bootstrap p < 0.1\\n\\n**FAIL（任一触发）**：C0 < 20% / C1 < 30% / C2 < 3 / C3 < SC\\n\\n## QwQ-32B 结论（已锁定）\\n- 数学域（AIME 22 + MATH 10）：0% 多候选，0pp gap\\n- 逻辑域（ProofWriter 16）：18.75% 多候选（3/16）\\n- 逻辑域（FOLIO 10）：0% 多候选\\n- **全域合计**：3/83 = 3.6%，D012 C0 FAIL\\n- **结论**：QwQ-32B 自一致性是模型级特征，SICA≡SC\\n\\n## 模型 Pivot 计划（D016）\\n1. [x] Agent 完成 5 题 FOLIO 验证（pipeline 机制数据）\\n2. [ ] 下载 + 部署 Qwen2.5-14B-Instruct via vLLM\\n3. [ ] C0 预检（10 FOLIO + 16 ProofWriter, K=6）→ 快速判定多候选率\\n4. [ ] C0 ≥ 20% → 完整 D012 评估（60 题, K=12）\\n5. [ ] C0 < 20% → MVP FAIL，核心假设不成立\\n\\n## 近期任务\\n- [ ] 模型 pivot：Qwen2.5-14B-Instruct 部署 + C0 预检（~1h）\\n- [ ] 如 C0 pass：完整 D012 评估（~4h）\\n- [ ] 逻辑域 MVP 最终判定\\n\\n## GPU 预算\\n- westd-32608: 1× NVIDIA RTX PRO 6000 Blackwell (98GB), cuda:0\\n- 当前：QwQ-32B vLLM → 将切换到 Qwen2.5-14B-Instruct\\n\\n## 目标投稿\\n- 主目标：EMNLP 2026（ARR May 25）— May 19 checkpoint\\n- 后备：AAAI 2027（Aug 1）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D016 | 2026-05-16 | D016: QwQ-32B MVP FAIL，模型 pivot 到 Qwen2.5-
+…[truncated 1104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T04:42:22.456654+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:42:22.507380+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T04:42:28.989210+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "sica_d012_14b",
+  "server": "westd-32608",
+  "pid": "177178",
+  "log_path": "/tmp/sica_d012_14b.log",
+  "interval_seconds": "120",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "sica_d012_14b",
+    "server": "westd-32608",
+    "pid": "177178",
+    "log_path": "/tmp/sica_d012_14b.log",
+    "interval_seconds": "120",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T04:42:29.391679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"sica_d012_14b\", \"server\": \"westd-32608\", \"pid\": \"177178\", \"wandb_run_id\": null, \"log_path\": \"/tmp/sica_d012_14b.log\", \"interval_seconds\": 120, \"project\": \"symb_invariant_consensus\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-16T04:42:28.981Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T04:42:29.944479+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sica_folio30",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sica_folio30",
+    "field": "status",
+    "value": "DONE",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T04:42:30.045625+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0467}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T04:42:30.046112+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T04:42:30.096659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_check_sica_d012_14b_status_20260516T044207\", \"task_type\": \"check:sica_d012_14b_status\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-16T04:42:08.054843+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T04:42:36.137539+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sica_folio30",
+  "field": "conclusion",
+  "value": "killed",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sica_folio30",
+    "field": "conclusion",
+    "value": "killed",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T04:42:36.442938+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sica_folio30\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:36.131Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"hypothesis\": \"FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12\", \"dataset\": \"FOLIO (yale-nlp/FOLIO validation subset)\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_subset.json\", \"data_count\": 30, \"label_distribution\": {\"True\": 10, \"False\": 10, \"Unknown\": 10}, \"has_fol_annotations\": true, \"model_name\": \"QwQ-32B\", \"server\": \"westd-32608\", \"command\": \"python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json\", \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 12288, \"seed\": 42, \"eval_script\": \"/root/symb_invariant_consensus/eval_folio.py\", \"dry_run_passed\": true, \"live_test_passed\": true, \"live_test_result\": \"2/2 correct (SICA=100%, SC=100%), pipeline all stages functional\"}, \"notes\": \"启动命令必须用 --max-tokens 12288（不是 16384）。vLLM max_model_len=16384，max_tokens=16384 会导致 400 错误。\", \"conclusion\": \"killed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0948}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 305
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T04:42:36.443570+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_check_sica_d012_14b_status_20260516T044207",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_check_sica_d012_14b_status_20260516T044207",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:42:36.594510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_sica_d012_14b_status_20260516T044207\", \"status\": \"running\", \"task_type\": \"check:sica_d012_14b_status\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-16T04:42:08.054843+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"重试，去掉 shell 元字符。\", \"turn_count\": 12}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T04:42:50.689523+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sica_folio30",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sica_folio30",
+    "field": "status",
+    "value": "DONE",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T04:42:50.991316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sica_folio30\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:50.714Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"hypothesis\": \"FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12\", \"dataset\": \"FOLIO (yale-nlp/FOLIO validation subset)\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_subset.json\", \"data_count\": 30, \"label_distribution\": {\"True\": 10, \"False\": 10, \"Unknown\": 10}, \"has_fol_annotations\": true, \"model_name\": \"QwQ-32B\", \"server\": \"westd-32608\", \"command\": \"python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json\", \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 12288, \"seed\": 42, \"eval_script\": \"/root/symb_invariant_consensus/eval_folio.py\", \"dry_run_passed\": true, \"live_test_passed\": true, \"live_test_result\": \"2/2 correct (SICA=100%, SC=100%), pipeline all stages functional\"}, \"notes\": \"启动命令必须用 --max-tokens 12288（不是 16384）。vLLM max_model_len=16384，max_tokens=16384 会导致 400 错误。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T04:42:50.715Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2205}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T04:42:53.502751+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sica_folio30",
+  "field": "notes",
+  "value": "废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sica_folio30",
+    "field": "notes",
+    "value": "废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T04:42:53.604077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sica_folio30\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:53.530Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"hypothesis\": \"FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12\", \"dataset\": \"FOLIO (yale-nlp/FOLIO validation subset)\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_subset.json\", \"data_count\": 30, \"label_distribution\": {\"True\": 10, \"False\": 10, \"Unknown\": 10}, \"has_fol_annotations\": true, \"model_name\": \"QwQ-32B\", \"server\": \"westd-32608\", \"command\": \"python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json\", \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 12288, \"seed\": 42, \"eval_script\": \"/root/symb_invariant_consensus/eval_folio.py\", \"dry_run_passed\": true, \"live_test_passed\": true, \"live_test_result\": \"2/2 correct (SICA=100%, SC=100%), pipeline all stages functional\"}, \"notes\": \"废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T04:42:50.715Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0921}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T04:43:06.113097+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T04:43:06.164046+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_51bea81b.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T04:43:08.677505+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T04:43:08.728234+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T04:43:11.239593+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T04:43:11.395739+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Glob",
+  "elapsed_ms": 156
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T04:43:14.065087+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T04:43:14.115964+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T04:43:43.353397+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:literature-readiness-check",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：D012 结果前文献就绪度检查\n\n### 背景\nSICA (Symbolic Invariant Consensus Aggregation) 项目正在跑关键 MVP 实验 (sica_d012_14b)，用 Qwen2.5-14B-Instruct 在 ProofWriter-30 + FOLIO-30 上评估。结果将决定是否推进 EMNLP 2026 投稿（May 19 deadline）。\n\n核心方法：从多条 LLM 推理路径中提取符号约束（FOL），通过加权 partial MAX-SAT 找到全局一致的约束子集，替代 Self-Consistency (SC) 等统计共识方法。\n\n### 你的任务\n1. 读 `literature_map.yaml` 了解当前文献覆盖\n2. 检查以下维度是否有缺失：\n   - Self-Consistency (SC) 及其变体（最新 2025-2026 的改进）\n   - 符号推理 + LLM 结合的方法\n   - MAX-SAT / 约束满足在 NLP 中的应用\n   - FOLIO / ProofWriter 数据集上的 SOTA 方法\n   - Reasoning model vs non-reasoning model 的 trace 多样性差异（我们发现 QwQ-32B 自一致性极高导致 SICA≡SC，这个发现需要文献支持）\n3. 对每个缺失维度，用 WebSearch 搜索 2-3 篇关键论文\n4. 将发现写入 `literature_map.yaml` 补全\n5. 产出一份简短报告（200 字内）说明补了什么、还缺什么\n\n### 产出\n- 更新后的 `literature_map.yaml`\n- 简短文献就绪度评估",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:literature-readiness-check",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：D012 结果前文献就绪度检查\n\n### 背景\nSICA (Symbolic Invariant Consensus Aggregation) 项目正在跑关键 MVP 实验 (sica_d012_14b)，用 Qwen2.5-14B-Instruct 在 ProofWriter-30 + FOLIO-30 上评估。结果将决定是否推进 EMNLP 2026 投稿（May 19 deadline）。\n\n核心方法：从多条 LLM 推理路径中提取符号约束（FOL），通过加权 partial MAX-SAT 找到全局一致的约束子集，替代 Self-Consistency (SC) 等统计共识方法。\n\n### 你的任务\n1. 读 `literature_map.yaml` 了解当前文献覆盖\n2. 检查以下维度是否有缺失：\n   - Self-Consistency (SC) 及其变体（最新 2025-2026 的改进）\n   - 符号推理 + LLM 结合的方法\n   - MAX-SAT / 约束满足在 NLP 中的应用\n   - FOLIO / ProofWriter 数据集上的 SOTA 方法\n   - Reasoning model vs non-reasoning model 的 trace 多样性差异（我们发现 QwQ-32B 自一致性极高导致 SICA≡SC，这个发现需要文献支持）\n3. 对每个缺失维度，用 WebSearch 搜索 2-3 篇关键论文\n4. 将发现写入 `literature_map.yaml` 补全\n5. 产出一份简短报告（200 字内）说明补了什么、还缺什么\n\n### 产出\n- 更新后的 `literature_map.yaml`\n- 简短文献就绪度评估",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T04:43:46.067222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_literature-readiness-check_20260516T044343\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_research_literature-readiness-check_20260516T044343.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_literature-readiness-check_20260516T044343 started. Use get_worker_status('worker_research_literature-readiness-check_20260516T044343') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2713
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T04:44:01.748631+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 1 / 实际在跑 1 (cuda:0 sica_d012_14b) | Worker 池 2 (GPU 0 / CPU 2: 实验状态检查 + 文献就绪度扫描)\n\n**Session #6 启动汇报**\n\n**关键实验 sica_d012_14b RUNNING**：\n- Qwen2.5-14B-Instruct, PW-30 + FOLIO-30 合 60 题, K=12\n- 提交 04:05 UTC，已运行 ~40 min，预估总时长 1-2h\n- ✅ 已补注册 cron 监控（之前缺失）\n- 1 Worker 正在 SSH 检查进程存活和进度\n\n**清理**：sica_folio30（QwQ-32B spec）已标记 killed，被 sica_d012_14b 覆盖。\n\n**并行铺设**：文献就绪度检查 Worker 已派发，扫描 SC 变体、符号推理+LLM、MAX-SAT in NLP、FOLIO/PW SOTA、reasoning model 自一致性等维度，为 D012 结果后快速写论文做准备。\n\n**等待**：D012 结果出来后立即分析并汇报（C0/C1/C2/C3 四项判定）。",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 1 / 实际在跑 1 (cuda:0 sica_d012_14b) | Worker 池 2 (GPU 0 / CPU 2: 实验状态检查 + 文献就绪度扫描)\n\n**Session #6 启动汇报**\n\n**关键实验 sica_d012_14b RUNNING**：\n- Qwen2.5-14B-Instruct, PW-30 + FOLIO-30 合 60 题, K=12\n- 提交 04:05 UTC，已运行 ~40 min，预估总时长 1-2h\n- ✅ 已补注册 cron 监控（之前缺失）\n- 1 Worker 正在 SSH 检查进程存活和进度\n\n**清理**：sica_folio30（QwQ-32B spec）已标记 killed，被 sica_d012_14b 覆盖。\n\n**并行铺设**：文献就绪度检查 Worker 已派发，扫描 SC 变体、符号推理+LLM、MAX-SAT in NLP、FOLIO/PW SOTA、reasoning model 自一致性等维度，为 D012 结果后快速写论文做准备。\n\n**等待**：D012 结果出来后立即分析并汇报（C0/C1/C2/C3 四项判定）。",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T04:44:02.100891+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T04:44:05.721214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3972
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T04:44:05.721708+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_proofwriter30",
+  "tool": "ToolSearch",
+  "elapsed_ms": 3620
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-16T04:44:19.671811+00:00_
+
+Session #6 初始化完成。
+
+**已执行**：
+- Registry 读取确认 sica_d012_14b RUNNING（PID 177178, 04:05 UTC 提交）
+- 为 sica_d012_14b 注册 cron 监控（120s 间隔）
+- sica_folio30 标记 killed（QwQ-32B spec 废弃）
+- Worker 池补到 2：1 个检查实验进度 + 1 个文献就绪度扫描
+- 已向 Director 汇报当前状态
+
+**等待中**：
+- sica_d012_14b 完成回调（预估还需 1-2h）→ 触发 D012 四项判定
+- 文献 Worker 回调 → 整合到 literature_map.yaml
+- 实验检查 Worker 回调 → 确认进程存活和进度
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sica_proofwriter30"
+}
+```
+
+</details>
+
+---

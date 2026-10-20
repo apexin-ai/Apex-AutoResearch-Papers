@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-direction-a-prove",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:50.909Z",
+    "updated_at": "2026-05-20T08:55:14.926Z",
+    "hypothesis": "PROVE: LLM-generated verification code (verify() functions) can serve as external verifiers to rerank SC candidates, bypassing the self-extraction bottleneck.",
+    "spec": {
+      "command": "python direction_a_prove.py",
+      "server": "westd-25068",
+      "data_path": "FOLIO-204",
+      "data_count": 204,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "code_gen_rate": 0.152,
+      "conclusive_rate": 0.078,
+      "conclusive_accuracy": 0.5,
+      "prove_fallback_accuracy": 0.716,
+      "sc_baseline": 0.735,
+      "delta_pp": -1.9
+    },
+    "checkpoint_path": "westd-25068:/root/symb_invariant_consensus/results/direction_a_prove/results.json",
+    "log_path": "worker_experiment_direction-a-prove_20260520T074330",
+    "completed_at": "2026-05-20T08:55:14.926Z"
+  },
+  "timestamp": "2026-05-20T08:55:15.206493+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a2eab317a3486d8da09",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu temp ablation t07",
+  "task_key": "worker_gpu_temp-ablation-t07_20260517T180330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_temp-ablation-t07_20260517T180330_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "34b72ca74f9d48a338f65f994083ac0793aa0f916fd6f5926aefa19ac76abb0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并确认运行中：\n\n- **tmux session**: `temperature-ablation-t07`\n- **GPU**: 88,453 MiB / 97,887 MiB，100% utilization，vLLM 已加载 Qwen2.5-14B-Instruct\n- **进度**: 已开始推理（ProofWriter D5 问题，generating traces 1-4 of 12）\n- **配置**: T=0.7, K=12, seed=42, D012 (30PW+30FOLIO)，与 T=0.3/0.5/1.0 完全一致\n- **输出**: `results/temperature_ablation/temperature_ablation_T0.7_results.json`\n- **日志**: `/tmp/temperature_ablation_t07_run.log`\n\n预计 ~1 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-temp-ablation-t07.md"
+}

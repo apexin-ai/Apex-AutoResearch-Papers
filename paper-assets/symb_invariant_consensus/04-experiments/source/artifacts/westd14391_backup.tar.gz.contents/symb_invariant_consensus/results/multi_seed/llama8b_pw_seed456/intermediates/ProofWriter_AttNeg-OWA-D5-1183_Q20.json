@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1183_Q20",
+    "problem": "Bob is round. Bob is smart. Charlie is not smart. Fiona is young. Gary is nice. Gary is smart. Gary is white. If someone is young then they are smart. If Fiona is young then Fiona is smart. If someone is green and young then they are white. If someone is smart then they are green. If someone is quiet then they are round. If someone is round and not smart then they are not quiet. If someone is nice then they are quiet. If someone is white then they are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nNotSmart($x, bool) ::: Is x not smart?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nSmart(Bob, True) ::: Bob is smart.\nNotSmart(Charlie, True) ::: Charlie is not smart.\nYoung(Fiona, True) ::: Fiona is young.\nNice(Gary, True) ::: Gary is nice.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nYoung($x, True) >>> Smart($x, True) ::: If someone is young then they are smart.\nYoung(Fiona, True) >>> Smart(Fiona, True) ::: If Fiona is young then Fiona is smart.\nGreen($x, True) && Young($x, True) >>> White($x, True) ::: If someone is green and young then they are white.\nSmart($x, True) >>> Green($x, True) ::: If someone is smart then they are green.\nQuiet($x, True) >>> Round($x, True) ::: If someone is quiet then they are round.\nRound($x, True) && NotSmart($x, True) >>> Quiet($x, False) ::: If someone is round and not smart then they are not quiet.\nNice($x, True) >>> Quiet($x, True) ::: If someone is nice then they are quiet.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\n\nQuery:\nYoung(Bob, True) ::: Bob is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

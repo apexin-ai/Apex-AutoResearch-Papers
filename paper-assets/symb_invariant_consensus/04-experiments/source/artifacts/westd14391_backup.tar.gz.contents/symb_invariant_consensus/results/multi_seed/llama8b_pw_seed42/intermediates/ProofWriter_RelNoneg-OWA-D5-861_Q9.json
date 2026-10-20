@@ -1,0 +1,1079 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-861_Q9",
+    "problem": "The cat needs the dog. The dog is kind. The dog needs the rabbit. The rabbit eats the dog. The rabbit is green. The tiger chases the rabbit. The tiger is big. If something is nice and it eats the tiger then it needs the dog. If something chases the cat then it eats the cat. If the dog chases the tiger then the tiger needs the rabbit. If the rabbit chases the tiger then the rabbit chases the cat. If something chases the cat then the cat is kind. If something eats the dog then it chases the cat. If something is rough then it eats the dog. If something is kind then it is rough. If something eats the rabbit and the rabbit is big then it is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat eats the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\nChases($x, $y, bool) ::: Does x chase y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nKind(Dog, True) ::: The dog is kind.\nNeeds(Dog, Rabbit, True) ::: The dog needs the rabbit.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nGreen(Rabbit, True) ::: The rabbit is green.\nChases(Tiger, Rabbit, True) ::: The tiger chases the rabbit.\nBig(Tiger, True) ::: The tiger is big.\n\nRules:\nNice($x, True) && Eats($x, Tiger, True) >>> Needs($x, Dog, True) ::: If something is nice and it eats the tiger then it needs the dog.\nChases($x, Cat, True) >>> Eats($x, Cat, True) ::: If something chases the cat then it eats the cat.\nChases(Dog, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If the dog chases the tiger then the tiger needs the rabbit.\nChases(Rabbit, Tiger, True) >>> Chases(Rabbit, Cat, True) ::: If the rabbit chases the tiger then the rabbit chases the cat.\nChases($x, Cat, True) >>> Kind(Cat, True) ::: If something chases the cat then the cat is kind.\nEats($x, Dog, True) >>> Chases($x, Cat, True) ::: If something eats the dog then it chases the cat.\nRough($x, True) >>> Eats($x, Dog, True) ::: If something is rough then it eats the dog.\nKind($x, True) >>> Rough($x, True) ::: If something is kind then it is rough.\nEats($x, Rabbit, True) && Big(Rabbit, True) >>> Kind($x, True) ::: If something eats the rabbit and the rabbit is big then it is kind.\n\nQuery:\nEats(Cat, Dog, True) ::: The cat eats the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 33.0,
+      "True": 92.0,
+      "Unknown": 146.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 2,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. The cat needs the dog. (Given)\n2. The dog is kind. (Given)\n3. The dog needs the rabbit. (Given)\n4. The rabbit eats the dog. (Given)\n5. The rabbit is green. (Given)\n6. The tiger chases the rabbit. (Given)\n7. The tiger is big. (Given)\n\nWe need to analyze the following rules:\n\n1. If something is nice and it eats the tiger then it needs the dog.\n2. If something chases the cat then it eats the cat.\n3. If the dog chases the tiger then the tiger needs the rabbit.\n4. If the rabbit chases the tiger then the rabbit chases the cat.\n5. If something chases the cat then it eats the cat.\n6. If something eats the dog then it chases the cat.\n7. If something is rough then it eats the dog.\n8. If something is kind then it is rough.\n9. If something eats the rabbit and the rabbit is big then it is kind.\n\nNow, let's determine the properties of the cat, dog, and other animals based on these rules.\n\n- From rule 8, the dog is kind, so the dog is rough. (Dog is rough)\n- From rule 7, if something is rough, then it eats the dog. Since the dog is rough, it eats the dog. However, this is a paradox since we already know the rabbit eats the dog. We will ignore this paradox for now.\n- From rule 4, if the rabbit chases the tiger then the rabbit chases the cat. However, we don't know if the rabbit chases the tiger or not. So, we can't conclude that the rabbit chases the cat.\n- From rule 2, if something chases the cat then it eats the cat. However, we don't have any information about the cat being chased or not.\n\nSince we don't have enough information to conclude whether the cat eats the dog or not, we can't determine the truth of the statement.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog. (Given)\n2. The dog is kind. (Given)\n3. If something is nice and it eats the tiger then it needs the dog. \n   We can infer that the dog is nice because it is kind. However, we don't have information about the dog eating the tiger.\n\n4. The dog needs the rabbit. (Given)\n5. The rabbit eats the dog. (Given)\n   This implies that the rabbit is nice, as it eats the tiger (tiger is big) and needs the dog. However, we cannot directly infer the cat's behavior from this information.\n\n6. The rabbit is green. (Given)\n7. The tiger chases the rabbit. (Given)\n8. The tiger is big. (Given)\n9. If something chases the cat then it eats the cat. \n   We don't have information about the tiger or rabbit chasing the cat.\n\n10. If the dog chases the tiger then the tiger needs the rabbit. \n    We don't have information about the dog chasing the tiger.\n\n11. If the rabbit chases the tiger then the rabbit chases the cat. \n    We don't have information about the rabbit chasing the tiger.\n\n12. If something chases the cat then the cat is kind. \n    We can infer that the cat is kind because it needs the dog, but we don't know if it chases the dog or the tiger.\n\n13. If something eats the dog then it chases the cat. \n    We don't have information about something eating the dog.\n\n14. If something is rough then it eats the dog. \n    We don't have information about something being rough.\n\n15. If something is kind then it is rough. \n    We know the dog is kind, so it might be rough, but we cannot directly infer the cat's behavior from this information.\n\n16. If something eats the rabbit and the rabbit is big then it is kind. \n    We don't have information about something eating the rabbit.\n\nGiven the provided information, we cannot directly determine whether the cat eats the dog. The information about the cat's behavior is limited to it needing the dog and being kind, but we don't have enough information to conclude that it eats the dog.\n\nTherefore, the statement \"The cat eats the dog\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog.\n   - This statement does not provide any information about the cat eating the dog.\n\n2. The dog is kind.\n   - This statement does not provide any information about the cat eating the dog.\n\n3. The dog needs the rabbit.\n   - This statement does not provide any information about the cat eating the dog.\n\n4. The rabbit eats the dog.\n   - This statement provides a possible reason for the dog being eaten, but we don't know yet whether the cat is the one that eats the dog.\n\n5. The rabbit is green.\n   - This statement does not provide any information about the cat eating the dog.\n\n6. The tiger chases the rabbit.\n   - This statement does not provide any information about the cat eating the dog.\n\n7. The tiger is big.\n   - This statement does not provide any information about the cat eating the dog.\n\nNow let's analyze the given rules:\n\n1. If something is nice and it eats the tiger then it needs the dog.\n   - This rule is not applicable here as it is related to the tiger, not the cat and the dog.\n\n2. If something chases the cat then it eats the cat.\n   - This rule does not provide any information about the cat eating the dog.\n\n3. If the dog chases the tiger then the tiger needs the rabbit.\n   - This rule does not provide any information about the cat eating the dog.\n\n4. If the rabbit chases the tiger then the rabbit chases the cat.\n   - This rule does not provide any information about the cat eating the dog.\n\n5. If something chases the cat then the cat is kind.\n   - This rule does not provide any information about the cat eating the dog.\n\n6. If something eats the dog then it chases the cat.\n   - We can use this rule to analyze the statement \"The rabbit eats the dog.\" Let's say the cat eats the dog, then this rule would be used to determine whether the cat chases the cat or not. However, this rule alone does not provide enough information to determine whether the cat eats the dog.\n\n7. If something is rough then it eats the dog.\n   - We can use this rule to analyze the statement \"The cat eats the dog.\" Let's say the cat eats the dog, then we need to determine whether the cat is rough or not.\n\n8. If something is kind then it is rough.\n   - We can use this rule to analyze the statement \"The dog is kind.\" Since the dog is kind, it is also rough according to this rule.\n\n9. If something eats the rabbit and the rabbit is big then it is kind.\n   - This rule does not provide any information about the cat eating the dog.\n\nNow we need to find out whether the cat is rough or not. If the cat is rough, then it eats the dog according to rule 7. If the cat is rough, then it is also kind according to rule 8.\n\nThe only rule that can help us determine whether the cat is rough or not is rule 5. If something chases the cat then the cat is kind. Let's assume that the rabbit chases the cat. Then according to rule 4, the rabbit chases the cat, the rabbit chases the tiger, the tiger needs the rabbit. Now the rabbit eats the dog according to statement 4. Since the rabbit eats the dog, it chases the cat according to rule 6. Now according to rule 5, the cat is kind. Since the cat is kind, it is rough according to rule 8.\n\nNow we have found that the cat is rough. Since the cat is rough, it eats the dog according to rule 7.\n\nTherefore, the statement \"The cat eats the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given rules to determine the relationship between the cat and the dog.\n\n1. The cat needs the dog. (Rule: No specific rule, just a statement)\n\n2. The dog is kind. (Rule: No specific rule, just a statement)\n\n3. The dog needs the rabbit. (Rule: No specific rule, just a statement)\n\n4. The rabbit eats the dog. (Rule: No specific rule, just a statement)\n\n5. The rabbit is green. (Rule: No specific rule, just a statement)\n\n6. The tiger chases the rabbit. (Rule: No specific rule, just a statement)\n\n7. The tiger is big. (Rule: No specific rule, just a statement)\n\n8. If something is nice and it eats the tiger then it needs the dog. (Rule: This rule applies to the tiger and the rabbit, but we don't know if the tiger is nice yet.)\n\n9. If something chases the cat then it eats the cat. (Rule: This rule applies to the tiger, but we don't know if the tiger chases the cat yet.)\n\n10. If the dog chases the tiger then the tiger needs the rabbit. (Rule: This rule applies to the dog, but we don't know if the dog chases the tiger yet.)\n\n11. If the rabbit chases the tiger then the rabbit chases the cat. (Rule: This rule applies to the rabbit, but we don't know if the rabbit chases the tiger yet.)\n\n12. If something chases the cat then the cat is kind. (Rule: This rule applies to the dog, but we don't know if the dog chases the cat yet.)\n\n13. If something eats the dog then it chases the cat. (Rule: This rule applies to the rabbit, but we don't know if the rabbit eats the dog yet.)\n\n14. If something is rough then it eats the dog. (Rule: This rule applies to the rabbit, but we don't know if the rabbit is rough yet.)\n\n15. If something is kind then it is rough. (Rule: This rule applies to the dog, but we don't know if the dog is kind yet.)\n\n16. If something eats the rabbit and the rabbit is big then it is kind. (Rule: This rule applies to the tiger, but we don't know if the tiger eats the rabbit yet.)\n\nNow, let's start analyzing the given rules step by step:\n\n- The rabbit eats the dog (Rule 4).\n- The rabbit is green (Rule 5).\n- The tiger chases the rabbit (Rule 6).\n\nSince the rabbit is green (Rule 5), and it eats the dog (Rule 4), we can use Rule 16: If something eats the rabbit and the rabbit is big then it is kind. However, we need to determine if the rabbit is big. \n\n- The tiger is big (Rule 7).\n\nSince the tiger is big (Rule 7) and it chases the rabbit (Rule 6), we can use Rule 16: If something eats the rabbit and the rabbit is big then it is kind. However, the rabbit is not eating the tiger; it's the other way around. \n\n- The rabbit eats the dog (Rule 4).\n\nSince the rabbit eats the dog (Rule 4), we can use Rule 13: If something eats the dog then it chases the cat. So the rabbit chases the cat.\n\n- The rabbit chases the cat (Rule 13).\n- The rabbit is green (Rule 5).\n- The tiger chases the rabbit (Rule 6).\n- The tiger is big (Rule 7).\n\nNow, let's determine if the tiger is nice or not. \n\n- The tiger chases the rabbit (Rule 6).\n- The rabbit is green (Rule 5).\n\nSince the rabbit is green (Rule 5), we can use Rule 8: If something is nice and it eats the tiger then it needs the dog. However, the tiger is not eating the rabbit; it's the other way around. \n\n- The tiger is big (Rule 7).\n- The rabbit eats the dog (Rule 4).\n\nSince the rabbit eats the dog (Rule 4), we can use Rule 14: If something is rough then it eats the dog. \n\n- The rabbit eats the dog (Rule 4).\n- The rabbit is green (Rule 5).\n\nSince the rabbit is green (Rule 5) and it eats the dog (Rule 4), we can use Rule 14: If something is rough then it eats the dog. However, the rabbit is not rough yet. \n\n- The rabbit is green (Rule 5).\n- The tiger chases the rabbit (Rule 6).\n\nSince the rabbit is green (Rule 5), we can use Rule 15: If something is kind then it is rough. However, the rabbit is not rough yet. \n\n- The rabbit eats the dog (Rule 4).\n- The rabbit is green (Rule 5).\n\nSince the rabbit is green (Rule 5) and it eats the dog (Rule 4), we can use Rule 15: If something is kind then it is rough. However, the rabbit is not rough yet. \n\n- The rabbit is green (Rule 5).\n- The rabbit chases the cat (Rule 13).\n\nSince the rabbit is green (Rule 5), we can use Rule 11: If the rabbit chases the tiger then the rabbit chases the cat. However, the rabbit is not chasing the tiger; it's the other way around.\n\nNow, let's analyze the cat and the dog.\n\n- The cat needs the dog (Rule 1).\n\nSince the cat needs the dog (Rule 1), we can use Rule 2: The dog is kind. \n\n- The dog is kind (Rule 2).\n\nSince the dog is kind (Rule 2), we can use Rule 15: If something is kind then it is rough. However, the dog is not rough yet. \n\n- The dog is kind (Rule 2).\n- The rabbit eats the dog (Rule 4).\n\nSince the dog is kind (Rule 2), we can use Rule 13: If something eats the dog then it chases the cat. So the rabbit chases the cat.\n\n- The rabbit chases the cat (Rule 13).\n- The rabbit is green (Rule 5).\n- The dog is kind (Rule 2).\n\nNow, let's determine if the dog chases the tiger.\n\n- The tiger chases the rabbit (Rule 6).\n- The rabbit eats the dog (Rule 4).\n\nSince the rabbit eats the dog (Rule 4), we can use Rule 10: If the dog chases the tiger then the tiger needs the rabbit. However, the dog is not chasing the tiger; it's the other way around.\n\n- The tiger is big (Rule 7).\n\nSince the tiger is big (Rule 7) and it chases the rabbit (Rule 6), we can use Rule 11: If the rabbit chases the tiger then the rabbit chases the cat. However, the rabbit is not chasing the tiger; it's the other way around.\n\nNow, let's analyze the statement \"The cat eats the dog.\"\n\n- The cat needs the dog (Rule 1).\n\nSince the cat needs the dog (Rule 1), we can use Rule 2: The dog is kind. \n\n- The dog is kind (Rule 2).\n\nSince the dog is kind (Rule 2), we can use Rule 13: If something eats the dog then it chases the cat. So the rabbit chases the cat.\n\n- The rabbit chases the cat (Rule 13).\n- The rabbit is green (Rule 5).\n- The dog is kind (Rule 2).\n\nSince the rabbit is green (Rule 5) and it eats the dog (Rule 4), we can use Rule 14: If something is rough then it eats the dog. However, the rabbit is not rough yet. \n\n- The rabbit is green (Rule 5).\n- The rabbit chases the cat (Rule 13).\n\nSince the rabbit is green (Rule 5), we can use Rule 15: If something is kind then it is rough. However, the rabbit is not rough yet. \n\nSince the rabbit is not rough (Rule 14), we can't determine if the rabbit eats the dog (Rule 4) based on Rule 14. \n\nHowever, we can use Rule 16: If something eats the rabbit and the rabbit is big then it is kind. However, the rabbit is not big yet.\n\nSince the tiger is big (Rule 7), we can use Rule 16: If something eats the rabbit and the rabbit is big then it is kind. However, the tiger is not eating the rabbit; it's the other way around. \n\nSince the tiger is not eating the rabbit, we can't determine if the tiger is kind based on Rule 16. \n\nSince the rabbit is not rough (Rule 14) and we can't determine if the rabbit is kind based on Rule 15, we can't determine if the rabbit is eating the dog (Rule 4) based on Rule 14 and Rule 15. \n\nHowever, we can use Rule 8: If something is nice and it eats the tiger then it needs the dog. However, we don't know if the tiger is nice yet.\n\nSince the tiger is big (Rule 7), we can use Rule 16: If something eats the rabbit and the rabbit is big then it is kind. However, the tiger is not eating the rabbit; it's the other way around. \n\nSince the tiger is not eating the rabbit, we can't determine if the tiger is kind based on Rule 16. \n\nSince the rabbit is not rough (Rule ",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog. (Statement 1)\n2. The dog is kind. (Statement 2)\n3. The dog needs the rabbit. (Statement 3)\n4. The rabbit eats the dog. (Statement 4)\n5. The rabbit is green. (Statement 5)\n6. The tiger chases the rabbit. (Statement 6)\n7. The tiger is big. (Statement 7)\n8. If something is nice and it eats the tiger then it needs the dog. (Rule 1)\n9. If something chases the cat then it eats the cat. (Rule 2)\n10. If the dog chases the tiger then the tiger needs the rabbit. (Rule 3)\n11. If the rabbit chases the tiger then the rabbit chases the cat. (Rule 4)\n12. If something chases the cat then it eats the cat. (Rule 5)\n13. If something eats the dog then it chases the cat. (Rule 6)\n14. If something is rough then it eats the dog. (Rule 7)\n15. If something is kind then it is rough. (Rule 8)\n16. If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n\nNow, let's analyze the given statements to see if we can find any connection to the statement \"The cat eats the dog.\"\n\nFrom Statement 4, we know that the rabbit eats the dog. However, this statement alone doesn't tell us about the cat.\n\nFrom Statement 1, we know that the cat needs the dog. This suggests a connection between the cat and the dog, but it doesn't necessarily imply that the cat eats the dog.\n\nFrom Rule 2, we know that if something chases the cat then it eats the cat. However, we don't know if the cat is being chased by anything, so we can't conclude that the cat eats the dog from this rule.\n\nFrom Statement 2, we know that the dog is kind. From Rule 8, we know that if something is kind then it is rough. Therefore, the dog is rough (Rule 7).\n\nFrom Rule 7, we know that if something is rough then it eats the dog. However, this rule doesn't tell us about the cat.\n\nFrom Rule 6, we know that if something eats the dog then it chases the cat. However, this rule doesn't tell us if the cat eats the dog.\n\nFrom Statement 3, we know that the dog needs the rabbit. From Statement 4, we know that the rabbit eats the dog. This suggests a connection between the dog and the rabbit, but it doesn't necessarily imply that the cat eats the dog.\n\nFrom Rule 9, we know that if something eats the rabbit and the rabbit is big then it is kind. However, the rabbit is green (Statement 5), not big.\n\nFrom Rule 3, we know that if the dog chases the tiger then the tiger needs the rabbit. However, we don't know if the dog chases the tiger, so we can't conclude that the cat eats the dog from this rule.\n\nFrom Rule 4, we know that if the rabbit chases the tiger then the rabbit chases the cat. However, we don't know if the rabbit chases the tiger, so we can't conclude that the cat eats the dog from this rule.\n\nFrom Rule 5, we know that if something chases the cat then it eats the cat. However, we don't know if the cat is being chased by anything, so we can't conclude that the cat eats the dog from this rule.\n\nFrom Rule 1, we know that if something is nice and it eats the tiger then it needs the dog. However, the tiger is big (Statement 7), not eaten by anything that is nice.\n\nIn conclusion, we can't find any direct connection between the cat and the dog based on the given information. Therefore, the statement \"The cat eats the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog. (Given)\n2. The dog is kind. (Given)\n3. The dog needs the rabbit. (Given)\n4. The rabbit eats the dog. (Given)\n5. The rabbit is green. (Given)\n6. The tiger chases the rabbit. (Given)\n7. The tiger is big. (Given)\n\nFrom the given information, we also have the following rules:\n\n1. If something is nice and it eats the tiger then it needs the dog.\n2. If something chases the cat then it eats the cat.\n3. If the dog chases the tiger then the tiger needs the rabbit.\n4. If the rabbit chases the tiger then the rabbit chases the cat.\n5. If something chases the cat then it eats the cat.\n6. If something eats the dog then it chases the cat.\n7. If something is rough then it eats the dog.\n8. If something is kind then it is rough.\n9. If something eats the rabbit and the rabbit is big then it is kind.\n\nNow, let's analyze the statement \"The cat eats the dog\" using these rules.\n\nFrom rule 1, we have: The cat needs the dog. (Given)\n\nFrom rule 5, we have: If something chases the cat then it eats the cat.\n\nNow, let's analyze the given information to find out if the cat chases anything. We can see that:\n\n- The tiger chases the rabbit (Given)\n- The rabbit eats the dog (Given)\n- The dog is kind (Given)\n- The cat needs the dog (Given)\n\nWe can see that the rabbit eats the dog, which means the rabbit eats the tiger (because the dog is kind, and if the dog is kind, then it is rough, and if something is rough, then it eats the dog, which implies that the rabbit eats the dog, and therefore the rabbit eats the tiger). \n\nNow, since the tiger chases the rabbit and the rabbit eats the tiger, we can apply rule 4: If the rabbit chases the tiger then the rabbit chases the cat.\n\nHowever, we cannot conclude that the cat chases anything from the given information. \n\nBut we can see that the dog is kind (Given), which implies that the dog is rough (rule 8). \n\nSince the dog is rough, and if something is rough then it eats the dog (rule 7), we can conclude that the dog eats the cat (rule 6).\n\nHowever, we cannot conclude that the cat eats the dog from the given information.\n\nTherefore, we cannot determine whether the statement \"The cat eats the dog\" is true, false, or unknown from the given information.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog.\n   This information alone does not tell us whether the cat eats the dog or not. So, it's unknown.\n\n2. The dog is kind.\n   We know that the dog is kind, but we don't know if it's rough or not. If it's rough, it eats the dog (from rule 7).\n\n3. The dog needs the rabbit.\n   This information alone does not tell us whether the cat eats the dog or not. So, it's unknown.\n\n4. The rabbit eats the dog.\n   If the rabbit eats the dog, then the cat needs the dog (from rule 1). This tells us that the cat needs the dog because the rabbit ate it. This information doesn't tell us whether the cat eats the dog or not, so it's still unknown.\n\n5. The rabbit is green.\n   This information is irrelevant to the problem of whether the cat eats the dog.\n\n6. The tiger chases the rabbit.\n   This information is also irrelevant to the problem of whether the cat eats the dog.\n\n7. The tiger is big.\n   This information is irrelevant to the problem of whether the cat eats the dog.\n\n8. If something is nice and it eats the tiger then it needs the dog.\n   This rule is irrelevant to the problem of whether the cat eats the dog.\n\n9. If something chases the cat then it eats the cat.\n   This rule is irrelevant to the problem of whether the cat eats the dog.\n\n10. If the dog chases the tiger then the tiger needs the rabbit.\n    This rule is irrelevant to the problem of whether the cat eats the dog.\n\n11. If the rabbit chases the tiger then the rabbit chases the cat.\n    This rule is irrelevant to the problem of whether the cat eats the dog.\n\n12. If something chases the cat then the cat is kind.\n    This rule is irrelevant to the problem of whether the cat eats the dog.\n\n13. If something eats the dog then it chases the cat.\n    This rule is irrelevant to the problem of whether the cat eats the dog.\n\n14. If something is rough then it eats the dog.\n    We know that the dog is kind (rule 2). According to rule 15, if something is kind then it is rough. Therefore, the dog is rough.\n\n15. If something is kind then it is rough.\n    As we've already established, the dog is rough.\n\n16. If something eats the rabbit and the rabbit is big then it is kind.\n    This rule is irrelevant to the problem of whether the cat eats the dog.\n\nNow that we have the dog as rough, we can go back to rule 14: If something is rough then it eats the dog. Therefore, the dog eats the dog. But this doesn't tell us whether the cat eats the dog or not.\n\nWe need to go back to rule 1: The cat needs the dog. This implies that the cat eats the dog. \n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The cat needs the dog.\nThis statement alone does not provide any information about the relationship between the cat and the dog in terms of eating or being eaten.\n\n2. The dog is kind.\nThis statement does not directly relate to the cat eating the dog.\n\n3. The dog needs the rabbit.\nThis statement also does not provide any information about the cat eating the dog.\n\n4. The rabbit eats the dog.\nThis statement provides a relationship between the rabbit and the dog, but it does not directly relate to the cat eating the dog.\n\n5. The rabbit is green.\nThis statement is irrelevant to the relationship between the cat and the dog.\n\n6. The tiger chases the rabbit.\nThis statement also does not provide any information about the cat eating the dog.\n\n7. The tiger is big.\nThis statement is irrelevant to the relationship between the cat and the dog.\n\nNow, let's analyze the given rules:\n\n1. If something is nice and it eats the tiger then it needs the dog.\nThis rule does not apply to the cat and the dog.\n\n2. If something chases the cat then it eats the cat.\nThis rule implies that the cat is being chased, which might be related to the statement \"The cat eats the dog\". However, it does not provide any information about the cat eating the dog directly.\n\n3. If the dog chases the tiger then the tiger needs the rabbit.\nThis rule does not apply to the cat eating the dog.\n\n4. If the rabbit chases the tiger then the rabbit chases the cat.\nThis rule implies that the rabbit is chasing the cat, but it does not provide any information about the cat eating the dog.\n\n5. If something chases the cat then the cat is kind.\nThis rule implies that the cat is being chased, but it does not provide any information about the cat eating the dog.\n\n6. If something eats the dog then it chases the cat.\nThis rule implies that the dog is being eaten, but it does not provide any information about the cat eating the dog.\n\n7. If something is rough then it eats the dog.\nThis rule implies that the dog is being eaten, but it does not provide any information about the cat eating the dog.\n\n8. If something is kind then it is rough.\nThis rule implies that the dog is rough, but it does not provide any information about the cat eating the dog.\n\n9. If something eats the rabbit and the rabbit is big then it is kind.\nThis rule does not apply to the cat and the dog.\n\nNow, let's analyze the given statements and rules in a different order to find a connection between the cat and the dog:\n\n- The cat is kind (rule 5).\n- If something is kind then it is rough (rule 8).\n- If something is rough then it eats the dog (rule 7).\n- The cat eats the dog.\n\nHowever, we must verify the initial assumption that the cat is kind.\n\n- The cat needs the dog (statement 1).\n- The dog is kind (statement 2).\n- If something needs the dog and the dog is kind then the dog is rough (unknown rule).\n- The cat is kind (unknown rule).\n\nHowever, we cannot verify the unknown rule using the given statements and rules. Therefore, we cannot determine whether the cat is kind or not.\n\nHowever, we can use a different approach:\n\n- The cat is being chased (unknown rule).\n- If something chases the cat then it eats the cat (rule 2).\n- The cat eats the dog.\n\nHowever, we must verify the initial assumption that the cat is being chased.\n\n- The rabbit is green (statement 5).\n- The tiger chases the rabbit (statement 6).\n- If something chases the rabbit then it is big (unknown rule).\n- The tiger is big (statement 7).\n- The rabbit is big (unknown rule).\n\nHowever, we cannot verify the unknown rule using the given statements and rules. Therefore, we cannot determine whether the cat is being chased or not.\n\nIn conclusion, we cannot determine whether the cat eats the dog or not using the given statements and rules.\n\nSo, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat needs the dog. (Given)\n2. The dog is kind. (Given)\n3. If something is kind, then it is rough. (Given)\n   From this rule, we can conclude that the dog is rough.\n\n4. If something is rough, then it eats the dog. (Given)\n   Since we already concluded that the dog is rough, we can apply this rule. Therefore, the dog eats the dog, which is a contradiction.\n\nHowever, we are interested in whether the cat eats the dog, not the dog itself.\n\n5. If the dog eats the dog, we can't directly conclude the cat eats the dog. But from rule 4, we can conclude that the dog eats the dog. This indicates an issue with the dog's actions. Since the dog is eating itself, we can't conclude the dog's actions towards the cat.\n\n6. The cat chases the dog implies the cat eats the dog. (Not directly given, but the problem implies we can use this rule with the information we have)\n   If we can conclude that the cat chases the dog, then we can conclude the cat eats the dog.\n\n7. If something is nice and it eats the tiger then it needs the dog. (Given)\n   We don't have enough information to conclude that the cat is nice or that the cat eats the tiger. However, we do know that the tiger chases the rabbit and the tiger is big.\n\n8. The rabbit eats the dog. (Given)\n   This contradicts the previous conclusion that the dog eats the dog. However, this doesn't help us determine whether the cat eats the dog.\n\n9. If the dog chases the tiger, then the tiger needs the rabbit. (Given)\n   We don't have enough information to conclude that the dog chases the tiger.\n\n10. The rabbit is green and the rabbit eats the dog. (Given)\n    This information is already used in step 8.\n\n11. If something chases the cat then it eats the cat. (Given)\n    This is a general rule and doesn't provide specific information about the cat or the dog.\n\n12. If the dog chases the tiger, then the tiger needs the rabbit. (Given)\n    We don't have enough information to conclude that the dog chases the tiger.\n\n13. If the rabbit chases the tiger, then the rabbit chases the cat. (Given)\n    We don't have enough information to conclude that the rabbit chases the tiger.\n\n14. If something chases the cat then the cat is kind. (Given)\n    We don't have enough information to conclude that something chases the cat.\n\n15. If something eats the dog then it chases the cat. (Given)\n    We know that the rabbit eats the dog, but we can't conclude that the rabbit chases the cat.\n\n16. If something is rough then it eats the dog. (Given)\n    We already concluded that the dog is rough and eats the dog.\n\n17. If the rabbit eats the dog and the rabbit is big, then it is kind. (Given)\n    We know that the rabbit eats the dog, but we don't have enough information to conclude whether the rabbit is big.\n\n18. The tiger chases the rabbit and the tiger is big. (Given)\n    We don't have enough information to conclude that the tiger chases the rabbit.\n\n19. Since we can't determine the relationship between the cat and the dog directly from the given information, we need to look for a conclusion that leads to the cat eating the dog.\n\nFrom the given information, we can conclude the following:\n- The dog is rough.\n- The dog eats the dog (which is a contradiction).\n- The cat needs the dog.\n- The rabbit eats the dog.\n\nHowever, we are interested in the cat eating the dog.\n\nSince we can't directly conclude whether the cat eats the dog from the given information, we have to consider all possible relationships between the cat and the dog.\n\nThe problem states that \"If something chases the cat then it eats the cat.\" However, it doesn't provide enough information to conclude that the cat is being chased by something.\n\nThe problem also states that \"The cat needs the dog,\" which implies that the cat has some relationship with the dog. However, we can't conclude the nature of this relationship from the given information.\n\nGiven the information provided, we can't determine whether the cat eats the dog. Therefore, the statement is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cat needs the dog. (Given)\n2. The dog is kind. (Given)\n3. The dog needs the rabbit. (Given)\n4. The rabbit eats the dog. (Given)\n5. The rabbit is green. (Given)\n6. The tiger chases the rabbit. (Given)\n7. The tiger is big. (Given)\n\nWe have the following rules:\n\n- If something is nice and it eats the tiger then it needs the dog.\n- If something chases the cat then it eats the cat.\n- If the dog chases the tiger then the tiger needs the rabbit.\n- If the rabbit chases the tiger then the rabbit chases the cat.\n- If something chases the cat then it eats the cat.\n- If something eats the dog then it chases the cat.\n- If something is rough then it eats the dog.\n- If something is kind then it is rough.\n- If something eats the rabbit and the rabbit is big then it is kind.\n\nFrom (4), we know the rabbit eats the dog. Since the rabbit is green (5), we can't directly conclude anything from this rule. However, we can't conclude that the rabbit is big either.\n\nFrom (7), we know the tiger is big.\n\nFrom (1), we know the cat needs the dog.\n\nFrom (8), if something is kind and it eats the tiger, then it needs the dog. We don't know if the tiger is nice, but we know the tiger is big (7), and we also know the rabbit is green (5), so we cannot directly apply this rule.\n\nFrom (6), the tiger chases the rabbit. We don't know if the tiger is kind or not, but we know the rabbit eats the dog (4).\n\nFrom (3), we know the dog needs the rabbit.\n\nNow we will try to find a relationship between the cat and the dog. If the dog chases the tiger (which we don't know), then the tiger needs the rabbit (rule 3). But we know the rabbit eats the dog (4), so this chain doesn't lead to anything conclusive about the cat and the dog.\n\nFrom (2), we know the dog is kind. From (9), if something is kind then it is rough. So the dog is rough.\n\nFrom (10), if something is rough then it eats the dog. Since the dog is rough, this means the dog eats the dog. But we already know the rabbit eats the dog (4).\n\nNow we will try to find a relationship between the cat and the dog using rule (5): If something eats the dog then it chases the cat. We know the rabbit eats the dog (4), so the rabbit chases the cat. But from (6), the tiger chases the rabbit. This means the tiger eats the rabbit (rule 5), and since the rabbit is green (5), we can't conclude anything from this rule. However, if the tiger eats the rabbit and the rabbit is big, then it is kind (rule 9). But we know the rabbit is green (5), not big.\n\nHowever, we know the dog is rough (11), and the rabbit eats the dog (4), so the rabbit chases the cat (rule 5). From (6), the tiger chases the rabbit, and we know the rabbit eats the dog (4), which means the rabbit is not big, so we can't conclude that the tiger is kind from rule (8). However, if the tiger is big (7) and it chases the rabbit (6), we can't conclude anything.\n\nNow let's analyze the relationship between the cat and the dog. We know the cat needs the dog (1). If the cat chases the tiger, then the cat eats the tiger (rule 2). But we don't know if the cat is nice or not. However, if the cat chases the tiger, then the cat is kind (rule 6). If the cat is kind, then the cat is rough (rule 9). If the cat is rough, then the cat eats the dog (rule 10).\n\nHowever, from (1), the cat needs the dog. If the cat eats the dog, then the cat is kind (rule 6), and since the cat is kind, the cat is rough (rule 9). If the cat is rough, then the cat eats the dog (rule 10), which is the same conclusion we reached earlier. But we cannot conclude that the cat eats the dog.\n\nTherefore, the statement \"The cat eats the dog\" is **unknown**.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The cat needs the dog\" is given. This doesn't provide any information about whether the cat eats the dog, so we move on.\n\n2. The statement \"The dog is kind\" is given. Being kind doesn't provide any information about whether the dog is eaten or not, so we move on.\n\n3. The statement \"The dog needs the rabbit\" is given. This also doesn't provide any information about whether the cat eats the dog, so we move on.\n\n4. The statement \"The rabbit eats the dog\" is given. However, this statement directly contradicts the statement \"The cat eats the dog.\" Since one of these statements must be true, and we have a direct contradiction, we can conclude that the statement \"The cat eats the dog\" is false.\n\nTherefore, the statement \"The cat eats the dog\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given information and use logical reasoning to determine the relationship between the cat and the dog.\n\n1. The cat needs the dog.\n   - This statement alone does not provide any information about whether the cat eats the dog or not.\n\n2. The dog is kind.\n   - We know that something is kind and it eats the tiger then it needs the dog. But we don't have any information about the dog eating the tiger.\n\n3. The dog needs the rabbit.\n   - This statement alone does not provide any information about whether the cat eats the dog or not.\n\n4. The rabbit eats the dog.\n   - This statement directly contradicts our goal of determining whether the cat eats the dog.\n\n5. The rabbit is green.\n   - The color of the rabbit is not relevant to our goal.\n\n6. The tiger chases the rabbit.\n   - This statement alone does not provide any information about whether the cat eats the dog or not.\n\n7. The tiger is big.\n   - The size of the tiger is not relevant to our goal.\n\nNow, let's analyze the given rules:\n\n- If something is nice and it eats the tiger then it needs the dog. \n  - We don't have any information about something eating the tiger.\n\n- If something chases the cat then it eats the cat. \n  - We need to find out if something chases the cat.\n\n- If the dog chases the tiger then the tiger needs the rabbit. \n  - We don't have any information about the dog chasing the tiger.\n\n- If the rabbit chases the tiger then the rabbit chases the cat. \n  - We need to find out if the rabbit chases the tiger.\n\n- If something chases the cat then the cat is kind. \n  - We need to find out if something chases the cat.\n\n- If something eats the dog then it chases the cat. \n  - We need to find out if something eats the dog.\n\n- If something is rough then it eats the dog. \n  - We need to find out if something is rough.\n\n- If something is kind then it is rough. \n  - Since the dog is kind, it is rough.\n\n- If something eats the rabbit and the rabbit is big then it is kind. \n  - We don't have any information about something eating the rabbit.\n\nNow, let's analyze the given statements again:\n\n- The cat needs the dog. (Statement 1)\n- The dog is kind (Statement 2)\n- Since the dog is kind, it is rough (Rule 8)\n- If something is rough then it eats the dog. (Rule 7)\n- This means the dog eats the dog, which is a contradiction.\n\nHowever, let's find out if the rabbit chases the tiger, and if the rabbit chases the cat.\n\n- The tiger chases the rabbit. (Statement 6)\n- If the rabbit chases the tiger then the rabbit chases the cat. (Rule 4)\n- Since the tiger chases the rabbit, it is possible that the rabbit chases the tiger, and thus the rabbit chases the cat.\n\nNow, let's find out if something chases the cat.\n\n- If the rabbit chases the cat then the cat is kind. (Rule 5)\n- Since the rabbit chases the cat, the cat is kind. (Statement 7)\n\nNow, let's find out if something eats the dog.\n\n- The dog is rough. (Rule 8)\n- If something is rough then it eats the dog. (Rule 7)\n- This means the dog eats the dog, which is a contradiction.\n\nHowever, let's analyze the statement again.\n\n- The cat needs the dog. (Statement 1)\n- The dog is rough. (Rule 8)\n- If something is rough then it eats the dog. (Rule 7)\n- However, if something eats the dog then it chases the cat. (Rule 6)\n- This means the dog eats the dog, which is a contradiction.\n\nBut, we can have a situation where the rabbit eats the dog.\n\n- The rabbit eats the dog. (Statement 4)\n- Since the rabbit eats the dog, it chases the cat. (Rule 6)\n- But, this contradicts the fact that the rabbit chases the cat. \n\nHowever, this situation is not possible because if the rabbit eats the dog, it would chase the cat, and the cat is kind, which means it is rough, and something that is rough eats the dog, but it cannot eat the dog because it already eats the dog.\n\nHowever, let's assume that the cat eats the dog.\n\n- If the cat eats the dog then it needs the rabbit. (Rule 3)\n- But, this is not possible because if the cat eats the dog, it would be rough, and something that is rough eats the dog, and it would chase the cat, but the cat is kind, which means it is not rough.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit is not big.\n\n- If the rabbit is not big then it is not kind. (Rule 9)\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the rabbit is not big.\n- However, this is not possible because we know that the rabbit is big.\n\nHowever, we can have a situation where the cat eats the dog if the tiger is not big.\n\n- If the tiger is not big then it is not kind. (Rule 9)\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the tiger is not big.\n- However, this is not possible because we know that the tiger is big.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit chases the tiger.\n\n- The tiger chases the rabbit. (Statement 6)\n- If the rabbit chases the tiger then the rabbit chases the cat. (Rule 4)\n- If the rabbit chases the cat then the cat is kind. (Rule 5)\n- This means the rabbit chases the tiger.\n- However, this is not possible because we know that the tiger chases the rabbit.\n\nHowever, we can have a situation where the cat eats the dog if the tiger eats the rabbit.\n\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the tiger eats the rabbit.\n- However, this is not possible because we know that the rabbit eats the dog.\n\nHowever, we can have a situation where the cat eats the dog if the dog chases the tiger.\n\n- If the dog chases the tiger then the tiger needs the rabbit. (Rule 3)\n- But, this is not possible because if the dog chases the tiger, it would be rough, and something that is rough eats the dog.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit is not green.\n\n- The rabbit is green. (Statement 5)\n- However, this is not possible because we know that the rabbit is green.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit is not big.\n\n- If the rabbit is not big then it is not kind. (Rule 9)\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the rabbit is not big.\n- However, this is not possible because we know that the rabbit is big.\n\nHowever, we can have a situation where the cat eats the dog if the dog is not rough.\n\n- The dog is rough. (Rule 8)\n- If something is rough then it eats the dog. (Rule 7)\n- This means the dog eats the dog, which is a contradiction.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit does not eat the dog.\n\n- The rabbit eats the dog. (Statement 4)\n- However, this is not possible because we know that the rabbit eats the dog.\n\nHowever, we can have a situation where the cat eats the dog if the tiger does not chase the rabbit.\n\n- The tiger chases the rabbit. (Statement 6)\n- However, this is not possible because we know that the tiger chases the rabbit.\n\nHowever, we can have a situation where the cat eats the dog if the dog does not chase the tiger.\n\n- If the dog chases the tiger then the tiger needs the rabbit. (Rule 3)\n- However, this is not possible because if the dog chases the tiger, it would be rough, and something that is rough eats the dog.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit is not kind.\n\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the rabbit is kind.\n- However, this is not possible because we know that the rabbit is big.\n\nHowever, we can have a situation where the cat eats the dog if the tiger is not big.\n\n- If the tiger is not big then it is not kind. (Rule 9)\n- If something eats the rabbit and the rabbit is big then it is kind. (Rule 9)\n- This means the tiger is not big.\n- However, this is not possible because we know that the tiger is big.\n\nHowever, we can have a situation where the cat eats the dog if the rabbit chases the tiger.\n\n- The tiger chases the rabbit. (Statement 6)\n- If the rabbit chases the tiger then the rabbit chases the cat. (Rule 4)\n- If the rabbit chases the cat then the cat is kind. (Rule 5)\n- This means the rabbit chases the tiger.\n- However, this is not possible because we know",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_X, eats_X_tiger), needs_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_dog_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, tiger) -> chases(rabbit, cat)",
+          "z3_formula": "Implies(chases_rabbit_tiger, chases_rabbit_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, chases_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_X, eats_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, big_rabbit), kind_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_dog, eats_dog_tiger), needs_cat_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & needs(X, dog) -> nice(X)",
+          "z3_formula": "Implies(And(eats_rabbit_tiger, needs_dog_rabbit), nice_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, chases_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_X, eats_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_dog, rough_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, big_rabbit), kind_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_tiger), needs_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> kind(cat)",
+          "z3_formula": "Implies(chases_cat_cat, kind_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(X, rabbit)",
+          "z3_formula": "Implies(chases_tiger_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_cat_cat, chases_cat_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_cat_dog, chases_cat_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_cat, eats_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_cat, rough_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_X, eats_X_tiger), needs_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_dog_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, tiger) -> chases(rabbit, cat)",
+          "z3_formula": "Implies(chases_rabbit_tiger, chases_rabbit_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> kind(X)",
+          "z3_formula": "Implies(chases_X_cat, kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, chases_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_X, eats_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, big_rabbit), kind_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_X, eats_X_tiger), needs_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "dog(chases, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(dog_chases_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(chases, tiger) -> rabbit(chases, cat)",
+          "z3_formula": "Implies(rabbit_chases_tiger, rabbit_chases_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, chases_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_X, eats_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, big_rabbit), kind_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_X, eats_X_tiger), needs_X_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(X, rabbit)",
+          "z3_formula": "Implies(chases_X_tiger, needs_X_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_rabbit, chases_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, chases_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_X, eats_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, big_rabbit), kind_X)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_dog, rough_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_dog, eats_dog_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(needs_cat_dog, eats_cat_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & kind(dog) -> rough(dog)",
+          "z3_formula": "Implies(And(needs_cat_dog, kind_dog), rough_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_dog, eats_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_cat, eats_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_tiger_rabbit, big_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_tiger_rabbit, big_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_dog, rough_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_dog, eats_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & nice(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(eats_tiger_tiger, nice_cat), needs_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(X, rabbit)",
+          "z3_formula": "Implies(chases_tiger_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> kind(X)",
+          "z3_formula": "Implies(chases_cat_cat, kind_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_dog_dog, chases_cat_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_dog, eats_dog_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(eats_rabbit_dog, big_rabbit), kind_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_dog_dog, chases_cat_cat)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, tiger) -> needs(X, dog)",
+          "z3_formula": "Implies(And(nice_tiger, eats_tiger_tiger), needs_tiger_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_dog_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, tiger) -> chases(rabbit, cat)",
+          "z3_formula": "Implies(chases_rabbit_tiger, chases_rabbit_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_dog_dog, chases_dog_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> eats(X, dog)",
+          "z3_formula": "Implies(rough_dog, eats_dog_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_dog, rough_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & big(rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, big_rabbit), kind_dog)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 4
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 158,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 0,
+      "total_weight": 157,
+      "solve_time_ms": 1.168890856206417
+    },
+    "timing": {
+      "trace_gen_s": 24.87,
+      "extraction_s": 46.813,
+      "dedup_s": 1.44,
+      "maxsat_s": 0.004,
+      "total_s": 73.127
+    }
+  }
+}

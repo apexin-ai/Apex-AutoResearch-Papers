@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-296_Q13",
+    "problem": "Anne is green. Charlie is big. Charlie is quiet. Charlie is round. Erin is green. Erin is kind. Erin is nice. Erin is quiet. Fiona is blue. Fiona is kind. Fiona is quiet. If something is kind then it is nice. If something is round and quiet then it is blue. If Charlie is kind then Charlie is big. All big, blue things are kind. Nice things are quiet. All green things are big. Quiet things are kind. Big things are kind. If Anne is green then Anne is round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBig(Charlie, True) ::: Charlie is big.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRound(Charlie, True) ::: Charlie is round.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nBlue(Fiona, True) ::: Fiona is blue.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nKind($x, True) >>> Nice($x, True) ::: If something is kind then it is nice.\nRound($x, True) && Quiet($x, True) >>> Blue($x, True) ::: If something is round and quiet then it is blue.\nKind(Charlie, True) >>> Big(Charlie, True) ::: If Charlie is kind then Charlie is big.\nBig($x, True) && Blue($x, True) >>> Kind($x, True) ::: All big, blue things are kind.\nNice($x, True) >>> Quiet($x, True) ::: Nice things are quiet.\nGreen($x, True) >>> Big($x, True) ::: All green things are big.\nQuiet($x, True) >>> Kind($x, True) ::: Quiet things are kind.\nBig($x, True) >>> Kind($x, True) ::: Big things are kind.\nGreen(Anne, True) >>> Round(Anne, True) ::: If Anne is green then Anne is round.\n\nQuery:\nBlue(Erin, False) ::: Erin is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

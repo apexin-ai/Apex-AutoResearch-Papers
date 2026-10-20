@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-multi-seed-qwen25",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:45:39.066Z",
+    "updated_at": "2026-05-22T03:45:39.066Z"
+  },
+  "timestamp": "2026-05-22T03:45:39.349479+00:00",
+  "trigger": "update_registry"
+}

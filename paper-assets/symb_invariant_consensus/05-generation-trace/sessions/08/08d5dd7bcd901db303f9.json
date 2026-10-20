@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08d5dd7bcd901db303f9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix all seeds tiebreaking audit",
+  "task_key": "worker_fix_all-seeds-tiebreaking-audit_20260523T184334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_all-seeds-tiebreaking-audit_20260523T184334_result.json",
+    "occurrence": 1,
+    "bytes": 2660,
+    "sha256": "d7bd0ca56d6c2a7c76f8136a39b02acf0504d044cc16c253f2afd936bf878b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n---\n\n## Tiebreaking 审计结果\n\n### 1. SC Tiebreaking: 全部 OK\n\n所有 8 个多种子实验的 SC 答案与 alphabetical tiebreaking 重算结果**完全一致**（0 mismatches）。seeds 123/456/789 的实验脚本已正确使用 alphabetical tiebreaking。**无需修复。**\n\n### 2. SICA Tiebreaking: 微小差异\n\n每个实验有 2-5 个 SICA tie（MaxSAT 分数相同），存储的 SICA 答案使用了 dict 插入序（倾向 \"Unknown\"），与 alphabetical 有微小偏差。精度变化在 ±0.33pp 以内。\n\n### 3. 修正后完整多种子汇总表（alphabetical tiebreaking）\n\n**Mistral-7B PW-600** (4 seeds)\n\n| Seed | SC% | SICA% | Δ(pp) | McNemar p |\n|------|-------|-------|--------|-----------|\n| 42 | 39.33 | 36.50 | −2.83 | (Table 1) |\n| 123 | 40.83 | 37.50 | −3.33 | 0.0091 |\n| 456 | 39.83 | 38.50 | −1.33 | 0.3222 |\n| 789 | 38.83 | 37.17 | −1.67 | 0.1839 |\n| **Mean±Std** | **39.70±0.85** | **37.42±0.83** | **−2.29±0.95** | |\n\n**LLaMA-3.1-8B PW-600** (3 seeds, seed456 still running)\n\n| Seed | SC% | SICA% | Δ(pp) | McNemar p |\n|------|-------|-------|--------|-----------|\n| 42 | 72.50 | 65.00 | −7.50 | 6.27e-08 |\n| 123 | 71.33 | 64.00 | −7.33 | 5.0e-06 |\n| 789 | 71.17 | 66.50 | −4.67 | 0.0009 |\n| **Mean±Std** | **71.67±0.73** | **65.17±1.26** | **−6.50±1.59** | |\n\n**Qwen2.5-14B PW-600** (4 seeds)\n\n| Seed | SC% | SICA% | Δ(pp) | McNemar p |\n|------|-------|-------|--------|-----------|\n| 42 | 74.00 | 71.50 | −2.50 | (Table 1) |\n| 123 | 72.33 | 70.83 | −1.50 | 0.1877 |\n| 456 | 73.00 | 72.33 | −0.67 | 0.5716 |\n| 789 | 73.67 | 71.83 | −1.83 | 0.0895 |\n| **Mean±Std** | **73.25±0.74** | **71.62±0.63** | **−1.63±0.76** | |\n\n### 4. SICA 修正详情\n\nSICA 修正幅度（stored → alphabetical）：\n\n| Experiment | Stored SICA% | Alpha SICA% | Diff |\n|---|---|---|---|\n| mistral_seed123 | 37.50 | 37.50 | 0 |\n| mistral_seed456 | 38.67 | 38.50 | −0.17pp |\n| mistral_seed789 | 37.17 | 37.17 | 0 |\n| llama8b_seed123 | 64.17 | 64.00 | −0.17pp |\n| llama8b_seed789 | 66.17 | 66.50 | +0.33pp |\n| qwen25_seed123 | 71.17 | 70.83 | −0.33pp |\n| qwen25_seed456 | 72.17 | 72.33 | +0.17pp |\n| qwen25_seed789 | 71.67 | 71.83 | +0.17pp |\n\n### 结论\n\n1. **SC: 无需修复**，所有 seeds 已使用 alphabetical tiebreaking\n2. **SICA: 存在微小差异**（最大 ±0.33pp），汇总表中已用 alphabetical 修正值\n3. **seed42: 使用 Table 1 canonical 值**（已确认正确）\n4. **llama8b_seed456: 仅完成 184/600**（30973 上运行中），未纳入汇总"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-all-seeds-tiebreaking-audit.md"
+}

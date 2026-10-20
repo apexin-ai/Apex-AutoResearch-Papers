@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-370_Q2",
+    "problem": "Anne is kind. Anne is nice. Anne is quiet. Anne is round. Erin is cold. Erin is nice. Erin is rough. Erin is smart. Fiona is kind. Fiona is nice. Harry is kind. Harry is nice. Harry is quiet. Harry is rough. Harry is round. Harry is smart. If someone is rough then they are cold. If someone is quiet and nice then they are round. If Harry is cold then Harry is rough. Rough people are quiet. Quiet people are round. Kind, nice people are quiet. If someone is round then they are rough. All cold people are nice. All kind, cold people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, True) ::: Anne is round.\nCold(Erin, True) ::: Erin is cold.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nKind(Fiona, True) ::: Fiona is kind.\nNice(Fiona, True) ::: Fiona is nice.\nKind(Harry, True) ::: Harry is kind.\nNice(Harry, True) ::: Harry is nice.\nQuiet(Harry, True) ::: Harry is quiet.\nRough(Harry, True) ::: Harry is rough.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRough($x, True) >>> Cold($x, True) ::: If someone is rough then they are cold.\nQuiet($x, True) && Nice($x, True) >>> Round($x, True) ::: If someone is quiet and nice then they are round.\nCold(Harry, True) >>> Rough(Harry, True) ::: If Harry is cold then Harry is rough.\nRough($x, True) >>> Quiet($x, True) ::: Rough people are quiet.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nKind($x, True) && Nice($x, True) >>> Quiet($x, True) ::: Kind, nice people are quiet.\nRound($x, True) >>> Rough($x, True) ::: If someone is round then they are rough.\nCold($x, True) >>> Nice($x, True) ::: All cold people are nice.\nKind($x, True) && Cold($x, True) >>> Smart($x, True) ::: All kind, cold people are smart.\n\nQuery:\nQuiet(Harry, False) ::: Harry is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

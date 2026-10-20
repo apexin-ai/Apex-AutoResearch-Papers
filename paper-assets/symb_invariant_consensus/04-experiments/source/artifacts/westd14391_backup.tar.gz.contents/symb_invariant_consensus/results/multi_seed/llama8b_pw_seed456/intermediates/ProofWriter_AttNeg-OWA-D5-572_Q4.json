@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-572_Q4",
+    "problem": "Anne is nice. Anne is white. Anne is young. Dave is cold. Dave is nice. Dave is smart. Erin is cold. Erin is not kind. Erin is not nice. Erin is smart. Erin is young. Fiona is kind. Smart people are white. Kind, cold people are smart. Kind people are big. If Fiona is cold and Fiona is big then Fiona is nice. If someone is nice and big then they are cold. If someone is young and white then they are cold. If Anne is nice then Anne is cold. Big, young people are nice. Big people are young.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nWhite(Anne, True) ::: Anne is white.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nNice(Dave, True) ::: Dave is nice.\nSmart(Dave, True) ::: Dave is smart.\nCold(Erin, True) ::: Erin is cold.\nKind(Erin, False) ::: Erin is not kind.\nNice(Erin, False) ::: Erin is not nice.\nSmart(Erin, True) ::: Erin is smart.\nYoung(Erin, True) ::: Erin is young.\nKind(Fiona, True) ::: Fiona is kind.\n\nRules:\nSmart($x, True) >>> White($x, True) ::: Smart people are white.\nKind($x, True) && Cold($x, True) >>> Smart($x, True) ::: Kind, cold people are smart.\nKind($x, True) >>> Big($x, True) ::: Kind people are big.\nCold(Fiona, True) && Big(Fiona, True) >>> Nice(Fiona, True) ::: If Fiona is cold and Fiona is big then Fiona is nice.\nNice($x, True) && Big($x, True) >>> Cold($x, True) ::: If someone is nice and big then they are cold.\nYoung($x, True) && White($x, True) >>> Cold($x, True) ::: If someone is young and white then they are cold.\nNice(Anne, True) >>> Cold(Anne, True) ::: If Anne is nice then Anne is cold.\nBig($x, True) && Young($x, True) >>> Nice($x, True) ::: Big, young people are nice.\nBig($x, True) >>> Young($x, True) ::: Big people are young.\n\nQuery:\nBig(Fiona, False) ::: Fiona is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

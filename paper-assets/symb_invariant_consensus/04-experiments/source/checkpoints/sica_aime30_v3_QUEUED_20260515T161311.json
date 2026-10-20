@@ -1,0 +1,15 @@
+{
+  "exp_id": "sica_aime30_v3",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:13:04.296Z",
+    "updated_at": "2026-05-15T16:13:10.997Z",
+    "hypothesis": "AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）"
+  },
+  "timestamp": "2026-05-15T16:13:11.032254+00:00",
+  "trigger": "update_registry"
+}

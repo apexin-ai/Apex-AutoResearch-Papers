@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-770_Q3",
+    "problem": "The bald eagle chases the cat. The bald eagle does not chase the mouse. The bald eagle is young. The cat does not chase the bald eagle. The cat does not eat the bald eagle. The cat is rough. The cat is young. The cat sees the bald eagle. The lion chases the bald eagle. The lion chases the cat. The lion eats the bald eagle. The lion eats the cat. The mouse chases the bald eagle. The mouse chases the lion. The mouse eats the bald eagle. The mouse is young. If something is kind then it is round. If something chases the bald eagle then it is round. If something is round then it sees the bald eagle. If something chases the cat and the cat chases the bald eagle then it eats the bald eagle. If something chases the cat then the cat sees the lion. If something sees the cat then it chases the bald eagle. If the bald eagle is young and the bald eagle chases the lion then the bald eagle sees the lion. If the mouse eats the cat and the mouse eats the bald eagle then the bald eagle eats the cat. If something sees the bald eagle and it chases the cat then the bald eagle sees the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat sees the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nChases(BaldEagle, Mouse, False) ::: The bald eagle does not chase the mouse.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nChases(Cat, BaldEagle, False) ::: The cat does not chase the bald eagle.\nEats(Cat, BaldEagle, False) ::: The cat does not eat the bald eagle.\nRough(Cat, True) ::: The cat is rough.\nYoung(Cat, True) ::: The cat is young.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nChases(Lion, BaldEagle, True) ::: The lion chases the bald eagle.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nEats(Lion, BaldEagle, True) ::: The lion eats the bald eagle.\nEats(Lion, Cat, True) ::: The lion eats the cat.\nChases(Mouse, BaldEagle, True) ::: The mouse chases the bald eagle.\nChases(Mouse, Lion, True) ::: The mouse chases the lion.\nEats(Mouse, BaldEagle, True) ::: The mouse eats the bald eagle.\nYoung(Mouse, True) ::: The mouse is young.\n\nRules:\nKind($x, True) >>> Round($x, True) ::: If something is kind then it is round.\nChases($x, BaldEagle, True) >>> Round($x, True) ::: If something chases the bald eagle then it is round.\nRound($x, True) >>> Sees($x, BaldEagle, True) ::: If something is round then it sees the bald eagle.\nChases($x, Cat, True) && Chases(Cat, BaldEagle, True) >>> Eats($x, BaldEagle, True) ::: If something chases the cat and the cat chases the bald eagle then it eats the bald eagle.\nChases($x, Cat, True) >>> Sees(Cat, Lion, True) ::: If something chases the cat then the cat sees the lion.\nSees($x, Cat, True) >>> Chases($x, BaldEagle, True) ::: If something sees the cat then it chases the bald eagle.\nYoung(BaldEagle, True) && Chases(BaldEagle, Lion, True) >>> Sees(BaldEagle, Lion, True) ::: If the bald eagle is young and the bald eagle chases the lion then the bald eagle sees the lion.\nEats(Mouse, Cat, True) && Eats(Mouse, BaldEagle, True) >>> Eats(BaldEagle, Cat, True) ::: If the mouse eats the cat and the mouse eats the bald eagle then the bald eagle eats the cat.\nSees($x, BaldEagle, True) && Chases($x, Cat, True) >>> Sees(BaldEagle, Cat, True) ::: If something sees the bald eagle and it chases the cat then the bald eagle sees the cat.\n\nQuery:\nSees(Cat, Lion, True) ::: The cat sees the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

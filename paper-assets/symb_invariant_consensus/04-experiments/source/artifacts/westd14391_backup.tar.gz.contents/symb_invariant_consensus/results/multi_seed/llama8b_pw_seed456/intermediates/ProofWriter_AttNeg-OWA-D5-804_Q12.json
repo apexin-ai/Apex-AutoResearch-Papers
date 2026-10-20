@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-804_Q12",
+    "problem": "Anne is kind. Charlie is not big. Charlie is not green. Charlie is white. Erin is big. Erin is green. Erin is white. Fiona is green. Fiona is kind. Fiona is quiet. Fiona is red. Fiona is white. If Erin is big and Erin is red then Erin is kind. All rough things are green. If something is kind then it is green. Quiet, green things are big. If something is rough and green then it is red. If something is green then it is rough. If Erin is red then Erin is green. All red, rough things are quiet. If something is quiet and not red then it is not white.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nBig(Charlie, False) ::: Charlie is not big.\nGreen(Charlie, False) ::: Charlie is not green.\nWhite(Charlie, True) ::: Charlie is white.\nBig(Erin, True) ::: Erin is big.\nGreen(Erin, True) ::: Erin is green.\nWhite(Erin, True) ::: Erin is white.\nGreen(Fiona, True) ::: Fiona is green.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nWhite(Fiona, True) ::: Fiona is white.\n\nRules:\nBig(Erin, True) && Red(Erin, True) >>> Kind(Erin, True) ::: If Erin is big and Erin is red then Erin is kind.\nRough($x, True) >>> Green($x, True) ::: All rough things are green.\nKind($x, True) >>> Green($x, True) ::: If something is kind then it is green.\nQuiet($x, True) && Green($x, True) >>> Big($x, True) ::: Quiet, green things are big.\nRough($x, True) && Green($x, True) >>> Red($x, True) ::: If something is rough and green then it is red.\nGreen($x, True) >>> Rough($x, True) ::: If something is green then it is rough.\nRed(Erin, True) >>> Green(Erin, True) ::: If Erin is red then Erin is green.\nRed($x, True) && Rough($x, True) >>> Quiet($x, True) ::: All red, rough things are quiet.\nQuiet($x, True) && Red($x, False) >>> White($x, False) ::: If something is quiet and not red then it is not white.\n\nQuery:\nBig(Anne, False) ::: Anne is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

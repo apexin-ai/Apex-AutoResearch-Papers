@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-347_Q14",
+    "problem": "Anne is big. Anne is kind. Charlie is big. Erin is big. Erin is blue. Erin is not kind. Erin is not young. Harry is big. Harry is nice. Harry is white. Harry is young. All kind, big things are blue. If something is young and kind then it is nice. Blue, cold things are nice. White things are cold. White, big things are cold. If Erin is blue and Erin is white then Erin is nice. All cold, nice things are young. All kind, blue things are white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nKind(Anne, True) ::: Anne is kind.\nBig(Charlie, True) ::: Charlie is big.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, False) ::: Erin is not kind.\nYoung(Erin, False) ::: Erin is not young.\nBig(Harry, True) ::: Harry is big.\nNice(Harry, True) ::: Harry is nice.\nWhite(Harry, True) ::: Harry is white.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nKind($x, True) && Big($x, True) >>> Blue($x, True) ::: All kind, big things are blue.\nYoung($x, True) && Kind($x, True) >>> Nice($x, True) ::: If something is young and kind then it is nice.\nBlue($x, True) && Cold($x, True) >>> Nice($x, True) ::: Blue, cold things are nice.\nWhite($x, True) >>> Cold($x, True) ::: White things are cold.\nBig($x, True) && White($x, True) >>> Cold($x, True) ::: White, big things are cold.\nBlue(Erin, True) && White(Erin, True) >>> Nice(Erin, True) ::: If Erin is blue and Erin is white then Erin is nice.\nCold($x, True) && Nice($x, True) >>> Young($x, True) ::: All cold, nice things are young.\nKind($x, True) && Blue($x, True) >>> White($x, True) ::: All kind, blue things are white.\n\nQuery:\nYoung(Charlie, True) ::: Charlie is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-410_Q24",
+    "problem": "The bald eagle is green. The bald eagle needs the lion. The bald eagle sees the cat. The bald eagle sees the lion. The cat sees the bald eagle. The cow sees the bald eagle. The lion needs the bald eagle. If someone sees the cat and the cat is green then they visit the cat. If someone needs the cat and the cat needs the bald eagle then they are blue. If someone is blue and they need the lion then they see the lion. If someone sees the cow then the cow needs the bald eagle. If someone needs the bald eagle then they see the lion. If someone needs the cat then the cat is blue. If someone visits the lion and they are nice then the lion visits the cat. If someone needs the bald eagle and they see the lion then they see the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\n\nRules:\nSees($x, Cat, True) && Green(Cat, True) >>> Visits($x, Cat, True) ::: If someone sees the cat and the cat is green then they visit the cat.\nNeeds($x, Cat, True) && Needs(Cat, BaldEagle, True) >>> Blue($x, True) ::: If someone needs the cat and the cat needs the bald eagle then they are blue.\nBlue($x, True) && Needs($x, Lion, True) >>> Sees($x, Lion, True) ::: If someone is blue and they need the lion then they see the lion.\nSees($x, Cow, True) >>> Needs(Cow, BaldEagle, True) ::: If someone sees the cow then the cow needs the bald eagle.\nNeeds($x, BaldEagle, True) >>> Sees($x, Lion, True) ::: If someone needs the bald eagle then they see the lion.\nNeeds($x, Cat, True) >>> Blue(Cat, True) ::: If someone needs the cat then the cat is blue.\nVisits($x, Lion, True) && Nice($x, True) >>> Visits(Lion, Cat, True) ::: If someone visits the lion and they are nice then the lion visits the cat.\nNeeds($x, BaldEagle, True) && Sees($x, Lion, True) >>> Sees($x, Cow, True) ::: If someone needs the bald eagle and they see the lion then they see the cow.\n\nQuery:\nKind(Lion, True) ::: The lion is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

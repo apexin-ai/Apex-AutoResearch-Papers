@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "162f7605ca7c69492e5a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kappa table sc",
+  "task_key": "worker_fix_kappa-table-sc_20260522T220738",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kappa-table-sc_20260522T220738_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "4ee34d2b83d87e89eabefc13e9659b9c865bbcb7ecde94bf930df9cd18dea2f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**修改对比：**\n- L718: `39.17` → `39.33`（kappa 分析表，within-model）\n- L743: `39.17` → `39.33`（cross-model kappa 表）\n\n**验证：** 其余 4 处 `39.17`（L875, L892, L948, L965, L1001）均为 DRC 表 / multi-NLI 表 / capability gap 标注，使用 seed42 traces，未被改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kappa-table-sc.md"
+}

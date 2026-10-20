@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-649_Q12",
+    "problem": "The bald eagle is nice. The bald eagle is rough. The bald eagle needs the mouse. The bald eagle needs the squirrel. The mouse is kind. The mouse is young. The mouse likes the tiger. The mouse sees the bald eagle. The squirrel is kind. The squirrel is nice. The squirrel needs the bald eagle. The tiger is kind. If someone likes the bald eagle then they are rough. If someone is blue and they see the tiger then the tiger needs the squirrel. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. If the mouse needs the squirrel then the squirrel likes the mouse. If someone is rough then they see the mouse. If someone needs the tiger and the tiger is kind then they like the bald eagle. If someone sees the mouse then they need the squirrel. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not need the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nNice(BaldEagle, True) ::: The bald eagle is nice.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nNeeds(BaldEagle, Squirrel, True) ::: The bald eagle needs the squirrel.\nKind(Mouse, True) ::: The mouse is kind.\nYoung(Mouse, True) ::: The mouse is young.\nLikes(Mouse, Tiger, True) ::: The mouse likes the tiger.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nKind(Squirrel, True) ::: The squirrel is kind.\nNice(Squirrel, True) ::: The squirrel is nice.\nNeeds(Squirrel, BaldEagle, True) ::: The squirrel needs the bald eagle.\nKind(Tiger, True) ::: The tiger is kind.\n\nRules:\nLikes($x, BaldEagle, True) >>> Rough($x, True) ::: If someone likes the bald eagle then they are rough.\nBlue($x, True) && Sees($x, Tiger, True) >>> Needs(Tiger, Squirrel, True) ::: If someone is blue and they see the tiger then the tiger needs the squirrel.\nNeeds(Mouse, BaldEagle, True) && Likes(BaldEagle, Mouse, True) >>> Rough(BaldEagle, True) ::: If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\nNeeds(Mouse, Squirrel, True) >>> Likes(Squirrel, Mouse, True) ::: If the mouse needs the squirrel then the squirrel likes the mouse.\nRough($x, True) >>> Sees($x, Mouse, True) ::: If someone is rough then they see the mouse.\nNeeds($x, Tiger, True) && Kind(Tiger, True) >>> Likes($x, BaldEagle, True) ::: If someone needs the tiger and the tiger is kind then they like the bald eagle.\nSees($x, Mouse, True) >>> Needs($x, Squirrel, True) ::: If someone sees the mouse then they need the squirrel.\nNeeds($x, Squirrel, True) && Nice(Squirrel, True) >>> Needs(Squirrel, Tiger, True) ::: If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nQuery:\nNeeds(Squirrel, Squirrel, False) ::: The squirrel does not need the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

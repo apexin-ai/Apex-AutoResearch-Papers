@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f72dc00a1353bc36185",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 075b 076b contrastive debate",
+  "task_key": "worker_deploy_exp-075b-076b-contrastive-debate_20260519T174515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-075b-076b-contrastive-debate_20260519T174515_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "9ddfc1b155f58effb98cf5154fb7cfa28c9a201ed7d2bbdca545ecb1618681ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-075 和 exp-076 正在服务器上活跃运行：**\n\n- **exp-075 (Contrastive)**: 进度 [17/204]，ETA ~170 分钟，输出到 `results/exp075_contrastive_mistral_folio/`，vLLM 在 port 8002 (GPU 2)\n- **exp-076 (Debate)**: 正在处理中，输出到 `results/exp076_debate_mistral_folio/`，vLLM 在 port 8003 (GPU 3)\n- **exp-074**: 也在运行，port 8000 (GPU 0)\n\n这些 sessions 是今天 01:29-01:39 创建的，看起来已经被重启过了。\n\nGPU 2 和 3 当前被这些实验占用。要部署 exp-075b/076b，需要先 kill 当前运行的 exp-075/076。要继续吗？还是等当前实验跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-075b-076b-contrastive-debate.md"
+}

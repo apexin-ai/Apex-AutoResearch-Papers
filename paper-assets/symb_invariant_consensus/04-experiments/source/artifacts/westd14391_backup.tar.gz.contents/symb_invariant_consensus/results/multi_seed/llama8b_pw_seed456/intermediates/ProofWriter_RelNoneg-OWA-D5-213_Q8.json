@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-213_Q8",
+    "problem": "The cat chases the dog. The cat is rough. The cat is young. The dog likes the squirrel. The dog sees the tiger. The squirrel chases the tiger. The squirrel is big. The squirrel is green. The squirrel likes the dog. The squirrel sees the dog. The tiger chases the cat. The tiger is green. The tiger likes the dog. The tiger likes the squirrel. If something likes the dog then it chases the tiger. If something is big and it chases the cat then the cat likes the squirrel. If something sees the cat then the cat is big. If something likes the squirrel then it sees the dog. If something is cold and it chases the cat then it sees the cat. If something sees the tiger then the tiger is big. Green, big things are young. Big things are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not see the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nChases(Cat, Dog, True) ::: The cat chases the dog.\nRough(Cat, True) ::: The cat is rough.\nYoung(Cat, True) ::: The cat is young.\nLikes(Dog, Squirrel, True) ::: The dog likes the squirrel.\nSees(Dog, Tiger, True) ::: The dog sees the tiger.\nChases(Squirrel, Tiger, True) ::: The squirrel chases the tiger.\nBig(Squirrel, True) ::: The squirrel is big.\nGreen(Squirrel, True) ::: The squirrel is green.\nLikes(Squirrel, Dog, True) ::: The squirrel likes the dog.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nGreen(Tiger, True) ::: The tiger is green.\nLikes(Tiger, Dog, True) ::: The tiger likes the dog.\nLikes(Tiger, Squirrel, True) ::: The tiger likes the squirrel.\n\nRules:\nLikes($x, Dog, True) >>> Chases($x, Tiger, True) ::: If something likes the dog then it chases the tiger.\nBig($x, True) && Chases($x, Cat, True) >>> Likes(Cat, Squirrel, True) ::: If something is big and it chases the cat then the cat likes the squirrel.\nSees($x, Cat, True) >>> Big(Cat, True) ::: If something sees the cat then the cat is big.\nLikes($x, Squirrel, True) >>> Sees($x, Dog, True) ::: If something likes the squirrel then it sees the dog.\nCold($x, True) && Chases($x, Cat, True) >>> Sees($x, Cat, True) ::: If something is cold and it chases the cat then it sees the cat.\nSees($x, Tiger, True) >>> Big(Tiger, True) ::: If something sees the tiger then the tiger is big.\nGreen($x, True) && Big($x, True) >>> Young($x, True) ::: Green, big things are young.\nBig($x, True) >>> Cold($x, True) ::: Big things are cold.\n\nQuery:\nSees(Tiger, Cat, False) ::: The tiger does not see the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

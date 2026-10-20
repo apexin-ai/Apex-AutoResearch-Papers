@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1228fedbef086cfc4f3c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio 789 harvest final",
+  "task_key": "worker_analysis_mistral-folio-789-harvest-final_20260522T113235",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-789-harvest-final_20260522T113235_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "d039d8bd827ba34cc3d316dc496ac7de6bd1bac62330471b2f063cbea14d2dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Mistral FOLIO seed=789（PID 576938）\n**仍在运行**（elapsed 44min），vLLM port 8004 活跃（最后请求 19:33:11）。results.json 已有中间结果：\n\n| 指标 | 值 |\n|------|-----|\n| 已完成 | **110/204** 题（~54%） |\n| SC accuracy | **59.09%** (65/110) |\n| SICA accuracy | **54.55%** (60/110) |\n| Δ (SICA-SC) | **-4.55pp** |\n| Wall time | 2626s (~44min) |\n\nSICA 目前落后于 SC 4.55pp，最终结果需等全部 204 题跑完。\n\n### 其他 GPU 实验（均已完成，有 results.json）\n\n| GPU | 实验 | N | SC | SICA | Δ |\n|-----|------|---|-----|------|---|\n| cuda:0 | Qwen2.5 PW seed123 | 214 | **76.17%** | **75.70%** | -0.47pp |\n| cuda:1 | LLaMA-8B FOLIO seed123 | 43 | **79.07%** | **79.07%** | 0.00pp |\n| cuda:2 | Mistral PW seed123 | 375 | **40.80%** | **38.93%** | -1.87pp |\n\n### cuda:3 vLLM 状态\n**运行中**，port 8004 持续响应 HTTP 200。Mistral FOLIO seed=789 预计还需 ~40min 完成剩余 94 题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-789-harvest-final.md"
+}

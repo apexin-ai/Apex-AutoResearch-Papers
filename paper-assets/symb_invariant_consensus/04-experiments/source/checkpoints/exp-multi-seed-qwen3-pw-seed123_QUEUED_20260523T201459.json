@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-multi-seed-qwen3-pw-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:14:46.739Z",
+    "updated_at": "2026-05-23T20:14:59.332Z",
+    "hypothesis": "Qwen3-14B non-thinking PW seed123 多种子复制。验证 SCB 在 ProofWriter 上跨 seed 稳定性（Δ(SICA-SC)≤0）。配合 seed42 组成多 seed 覆盖。",
+    "parent": "exp-027-qwen3-14b-non-thinking"
+  },
+  "timestamp": "2026-05-23T20:14:59.640284+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-76_Q8",
+    "problem": "The bear eats the cow. The bear is blue. The cow eats the squirrel. The cow is young. The cow visits the lion. The lion is red. The lion is young. The lion visits the cow. The squirrel sees the bear. The squirrel visits the bear. If something sees the cow and the cow eats the squirrel then the cow is red. If the cow eats the bear and the bear sees the cow then the bear is blue. If something is blue and it sees the squirrel then the squirrel is round. If something sees the squirrel then the squirrel eats the cow. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel. If something is red then it eats the lion. If the bear visits the squirrel and the bear is round then the bear sees the cow. If something eats the lion then it sees the cow. If something is young and cold then it eats the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(Bear, Cow, True) ::: The bear eats the cow.\nBlue(Bear, True) ::: The bear is blue.\nEats(Cow, Squirrel, True) ::: The cow eats the squirrel.\nYoung(Cow, True) ::: The cow is young.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nRed(Lion, True) ::: The lion is red.\nYoung(Lion, True) ::: The lion is young.\nVisits(Lion, Cow, True) ::: The lion visits the cow.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\nVisits(Squirrel, Bear, True) ::: The squirrel visits the bear.\n\nRules:\nSees($x, Cow, True) && Eats(Cow, Squirrel, True) >>> Red(Cow, True) ::: If something sees the cow and the cow eats the squirrel then the cow is red.\nEats(Cow, Bear, True) && Sees(Bear, Cow, True) >>> Blue(Bear, True) ::: If the cow eats the bear and the bear sees the cow then the bear is blue.\nBlue($x, True) && Sees($x, Squirrel, True) >>> Round(Squirrel, True) ::: If something is blue and it sees the squirrel then the squirrel is round.\nSees($x, Squirrel, True) >>> Eats(Squirrel, Cow, True) ::: If something sees the squirrel then the squirrel eats the cow.\nSees(Lion, Cow, True) && Visits(Cow, Squirrel, True) >>> Eats(Cow, Squirrel, True) ::: If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\nRed($x, True) >>> Eats($x, Lion, True) ::: If something is red then it eats the lion.\nVisits(Bear, Squirrel, True) && Round(Bear, True) >>> Sees(Bear, Cow, True) ::: If the bear visits the squirrel and the bear is round then the bear sees the cow.\nEats($x, Lion, True) >>> Sees($x, Cow, True) ::: If something eats the lion then it sees the cow.\nYoung($x, True) && Cold($x, True) >>> Eats($x, Cow, True) ::: If something is young and cold then it eats the cow.\n\nQuery:\nRed(Cow, False) ::: The cow is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

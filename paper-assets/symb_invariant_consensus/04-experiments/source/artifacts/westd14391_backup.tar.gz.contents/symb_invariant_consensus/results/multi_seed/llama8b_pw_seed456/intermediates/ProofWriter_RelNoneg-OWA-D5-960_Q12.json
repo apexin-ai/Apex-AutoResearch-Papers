@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-960_Q12",
+    "problem": "The dog is round. The dog needs the tiger. The lion chases the dog. The lion chases the mouse. The lion needs the dog. The lion sees the dog. The mouse is red. The mouse sees the tiger. The tiger is blue. The tiger is red. The tiger is round. The tiger sees the lion. If something chases the mouse and it is round then the mouse is kind. If the mouse sees the tiger and the tiger is red then the tiger is kind. If something chases the mouse then it sees the mouse. If something chases the lion and the lion sees the tiger then the tiger chases the lion. If something is round then it needs the tiger. If something chases the dog then it is round. If something is round then it sees the lion. If something is kind then it chases the dog. If something needs the lion then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not see the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRound(dog, True) ::: The dog is round.\nNeeds(dog, tiger, True) ::: The dog needs the tiger.\nChases(lion, dog, True) ::: The lion chases the dog.\nChases(lion, mouse, True) ::: The lion chases the mouse.\nNeeds(lion, dog, True) ::: The lion needs the dog.\nSees(lion, dog, True) ::: The lion sees the dog.\nRed(mouse, True) ::: The mouse is red.\nSees(mouse, tiger, True) ::: The mouse sees the tiger.\nBlue(tiger, True) ::: The tiger is blue.\nRed(tiger, True) ::: The tiger is red.\nRound(tiger, True) ::: The tiger is round.\nSees(tiger, lion, True) ::: The tiger sees the lion.\n\nRules:\nChases($x, mouse, True) && Round($x, True) >>> Kind(mouse, True) ::: If something chases the mouse and it is round then the mouse is kind.\nSees(mouse, tiger, True) && Red(tiger, True) >>> Kind(tiger, True) ::: If the mouse sees the tiger and the tiger is red then the tiger is kind.\nChases($x, mouse, True) >>> Sees($x, mouse, True) ::: If something chases the mouse then it sees the mouse.\nChases($x, lion, True) && Sees(lion, tiger, True) >>> Chases(tiger, lion, True) ::: If something chases the lion and the lion sees the tiger then the tiger chases the lion.\nRound($x, True) >>> Needs($x, tiger, True) ::: If something is round then it needs the tiger.\nChases($x, dog, True) >>> Round($x, True) ::: If something chases the dog then it is round.\nRound($x, True) >>> Sees($x, lion, True) ::: If something is round then it sees the lion.\nKind($x, True) >>> Chases($x, dog, True) ::: If something is kind then it chases the dog.\nNeeds($x, lion, True) >>> Round($x, True) ::: If something needs the lion then it is round.\n\nQuery:\nSees(mouse, lion, False) ::: The mouse does not see the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,827 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-585_Q19",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> furry(X)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(bob) & big(bob) -> furry(bob)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(bob) -> Not(round(bob))",
+          "z3_formula": "Implies(red_bob, Not(round_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(fiona) -> red(fiona)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(fiona) & white(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(And(red_fiona, white_fiona), smart_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(bob))",
+          "z3_formula": "Not(round_bob) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(bob))",
+          "z3_formula": "Not(furry_bob) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(bob))",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> furry(X)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), big_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_bob, smart_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == furry(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_fiona, Not(fiona)), red_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == red(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, white_fiona), smart_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == big(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), furry_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == white(X) -> furry(X)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_bob, rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> furry(X)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_X, smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(fiona) -> red(fiona)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(bob) & big(bob) -> furry(bob)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(fiona) & white(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(And(red_fiona, white_fiona), smart_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(bob) & big(bob) -> furry(bob)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> furry(X)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_bob, rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, white_fiona), smart_fiona)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(bob) -> furry(bob)",
+          "z3_formula": "Implies(white_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_bob, rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), big_bob)",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

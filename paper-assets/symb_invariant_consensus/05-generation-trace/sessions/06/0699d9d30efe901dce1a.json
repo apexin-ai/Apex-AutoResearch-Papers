@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0699d9d30efe901dce1a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops cleanup 25068 cuda1 vllm",
+  "task_key": "worker_ops_cleanup-25068-cuda1-vllm_20260519T135955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup-25068-cuda1-vllm_20260519T135955_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "6b27f4d85954c57d25464199513bb2d21c323db32dfeb3e72120238dfabe87f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 项目 | 结果 |\n|------|------|\n| PID 211709 | 已不存在（自行退出） |\n| tmux exp069_vllm | 已清理 |\n| tmux exp-069-mistral-logiqa200 | 已不存在 |\n| **cuda:1 显存** | **0 MiB 占用，97251 MiB 空闲** |\n\n```json\n{\n  \"killed_pid\": \"211709 (already exited, cleaned tmux session)\",\n  \"freed_gpu\": \"cuda:1\",\n  \"freed_memory_gb\": 97,\n  \"remaining_experiments\": [\"exp-065 cuda:0 (88301 MiB, 96% util)\", \"exp-062 cuda:3 (88115 MiB, 96% util)\"],\n  \"gpu_status_after\": \"GPU0: 88301/97251 MiB (96%) | GPU1: 0/97251 MiB (0%) | GPU2: 0/97251 MiB (0%) | GPU3: 88115/97251 MiB (96%)\"\n}\n```\n\ncuda:1 和 cuda:2 均空闲可用。exp-065 (cuda:0) 和 exp-062 (cuda:3) 正常运行未受影响。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "killed_pid": "211709 (already exited, cleaned tmux session)",
+              "freed_gpu": "cuda:1",
+              "freed_memory_gb": 97,
+              "remaining_experiments": [
+                "exp-065 cuda:0 (88301 MiB, 96% util)",
+                "exp-062 cuda:3 (88115 MiB, 96% util)"
+              ],
+              "gpu_status_after": "GPU0: 88301/97251 MiB (96%) | GPU1: 0/97251 MiB (0%) | GPU2: 0/97251 MiB (0%) | GPU3: 88115/97251 MiB (96%)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-25068-cuda1-vllm.md"
+}

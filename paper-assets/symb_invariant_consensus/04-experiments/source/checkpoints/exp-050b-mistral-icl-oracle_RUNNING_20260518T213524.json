@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-050b-mistral-icl-oracle",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:31:50.554Z",
+    "updated_at": "2026-05-18T21:35:24.508Z",
+    "hypothesis": "Increasing vLLM max_model_len from 8192 to 16384 will resolve the context length overflow (input ~4400 + max_tokens 4096 > 8192) that caused 86% failure in exp-050, allowing Mistral-7B ICL Oracle with 5 gold FOL examples to complete evaluation on all 199 FOLIO problems.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 16384 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager && python -u run_icl_oracle.py --api-base http://localhost:8002/v1 --model auto --k 12 --data data/folio_full.json --output results/exp050b_mistral_icl_oracle/exp050b_results.json --seed 42 --save-intermediates --temperature 0.7 --max-tokens 4096",
+      "server": "westd-16639",
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "data_path": "data/folio_full.json",
+      "data_count": 199,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+      "eval_data": "data/folio_full.json"
+    }
+  },
+  "timestamp": "2026-05-18T21:35:24.813980+00:00",
+  "trigger": "update_registry"
+}

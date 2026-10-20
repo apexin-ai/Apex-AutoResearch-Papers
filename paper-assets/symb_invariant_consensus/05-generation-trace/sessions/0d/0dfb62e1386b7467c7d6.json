@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dfb62e1386b7467c7d6",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check exp001 and downloads",
+  "task_key": "worker_check_exp001-and-downloads_20260516T182527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp001-and-downloads_20260516T182527_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "cb6db371bc1c9653526f8be3c2c8eff07b311d07b08181ae86247b709cf84c28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## exp-001 进度\n\n| 指标 | 值 |\n|------|-----|\n| PID | 181491 ✅ 存活 |\n| 运行时间 | 13h 10m |\n| ProofWriter | **600/600** ✅ 完成 |\n| FOLIO | **159/204** 进行中 |\n| 总进度 | **759/804 (94.4%)** |\n| ETA | ~45 题剩余，按当前速率约 1-2h 完成 |\n\n## 模型下载状态\n\n| 模型 | 状态 | 路径 | 备注 |\n|------|------|------|------|\n| **Mistral-7B-Instruct-v0.3** | ✅ 完整 | `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/mistralai/Mistral-7B-Instruct-v0___3` | 3 shards (11GB), vocab=32768, tokenizer OK. 有一个空 `._____temp` 目录（无害） |\n| **LLaMA-3.1-8B-Instruct** | ✅ 完整 | `/root/autodl-tmp/models/Llama-3.1-8B-Instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct` | 4 shards (14GB), vocab=128000, tokenizer OK, 无 temp 文件 |\n| **DeepSeek-R1-Distill-LLaMA-8B** | ✅ 完整 | `/root/autodl-tmp/models/DeepSeek-R1-Distill-Llama-8B/` | 2 shards (15GB) |\n\n## vLLM 脚本\n\n`scripts/start_vllm_mistral_7b.sh` ✅ 已存在，路径正确，端口 8001，配置合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp001-and-downloads.md"
+}

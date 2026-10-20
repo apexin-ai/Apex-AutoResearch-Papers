@@ -1,0 +1,789 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-902_Q5",
+    "problem": "The lion chases the mouse. The mouse is cold. The mouse needs the rabbit. The rabbit chases the squirrel. The rabbit sees the lion. The rabbit sees the squirrel. The squirrel chases the lion. If something is cold then it sees the rabbit. If something sees the rabbit then it sees the squirrel. If something is cold and it sees the squirrel then the squirrel is cold. If something chases the squirrel then it needs the squirrel. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse sees the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nChases(Lion, Mouse, True) ::: The lion chases the mouse.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, Rabbit, True) ::: The mouse needs the rabbit.\nChases(Rabbit, Squirrel, True) ::: The rabbit chases the squirrel.\nSees(Rabbit, Lion, True) ::: The rabbit sees the lion.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\n\nRules:\nCold($x, True) >>> Sees($x, Rabbit, True) ::: If something is cold then it sees the rabbit.\nSees($x, Rabbit, True) >>> Sees($x, Squirrel, True) ::: If something sees the rabbit then it sees the squirrel.\nCold($x, True) && Sees($x, Squirrel, True) >>> Cold(Squirrel, True) ::: If something is cold and it sees the squirrel then the squirrel is cold.\nChases($x, Squirrel, True) >>> Needs($x, Squirrel, True) ::: If something chases the squirrel then it needs the squirrel.\nChases($x, Squirrel, True) && Cold($x, False) >>> Chases(Squirrel, Rabbit, False) ::: If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\nSees(Rabbit, Squirrel, True) && Chases(Squirrel, Rabbit, True) >>> Chases(Rabbit, Squirrel, False) ::: If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel.\nChases(Rabbit, Squirrel, True) && Chases(Squirrel, Rabbit, False) >>> Needs(Squirrel, Mouse, True) ::: If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n\nQuery:\nSees(Mouse, Squirrel, True) ::: The mouse sees the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 101.0,
+      "Unknown": 48.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "Let's break down the given statements and analyze them step by step to determine the relationship between the mouse and the squirrel.\n\n1. The mouse is cold.\n   - From statement 1, we know the mouse is cold.\n\n2. The mouse needs the rabbit.\n   - We can infer that the mouse needs the rabbit because it is cold.\n\n3. The rabbit chases the squirrel.\n   - This statement is given in the problem.\n\n4. The rabbit sees the squirrel.\n   - We can infer this from statement 3, as the rabbit chases the squirrel, it must see the squirrel.\n\n5. The squirrel chases the lion.\n   - This statement is given in the problem.\n\n6. The squirrel is cold.\n   - From statement 1, we know that if something is cold and it sees the squirrel, then the squirrel is cold. But we don't know if something is cold and sees the squirrel. However, we do know that the rabbit sees the squirrel (statement 4), but it is not given that the rabbit is cold.\n\n7. The squirrel needs the mouse.\n   - We can't determine this directly from the given statements.\n\nNow, let's examine the statements that are relevant to the mouse and the squirrel:\n\n- The mouse is cold (statement 1).\n- The mouse needs the rabbit (statement 2).\n- The rabbit sees the squirrel (statement 4).\n- If something is cold, then it sees the rabbit (this is an inference from statement 1).\n\nFrom statement 1 and the inference above, we can conclude that the mouse is cold and therefore sees the rabbit. \n\nSince the mouse sees the rabbit (from the inference above) and the rabbit sees the squirrel (statement 4), we can infer that the mouse sees the squirrel (using the rule \"if something sees the rabbit then it sees the squirrel\").\n\nHowever, we must consider the implications of the rule \"if the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\" Since the rabbit chases the squirrel (statement 3), but it is not given that the squirrel does not chase the rabbit, we can't directly apply this rule. \n\nConsidering the rule \"If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel,\" we know the rabbit sees the squirrel (statement 4), but we don't know if the squirrel chases the rabbit.\n\nHowever, we know that the rabbit chases the squirrel (statement 3). We can't directly apply the rule to determine if the squirrel needs the mouse. But we can use the rule \"If something chases the squirrel then it needs the squirrel. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\" Since the rabbit chases the squirrel (statement 3), we can infer that the rabbit needs the squirrel.\n\nHowever, we know that the rabbit sees the squirrel (statement 4). We also know that if the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel. Since the rabbit chases the squirrel (statement 3), we can infer that the squirrel does not chase the rabbit. \n\nFrom the rule \"If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit,\" we can infer that the squirrel does not chase the rabbit.\n\nNow, considering the rule \"If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel,\" we know the rabbit sees the squirrel (statement 4), but we know that the squirrel does not chase the rabbit.\n\nFrom the rule \"If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse,\" we can infer that the squirrel needs the mouse.\n\nConsidering all the inferences and rules, we have the following:\n\n- The mouse is cold (statement 1).\n- The mouse sees the rabbit (inference from statement 1).\n- The rabbit sees the squirrel (statement 4).\n- The rabbit chases the squirrel (statement 3).\n- The squirrel does not chase the rabbit (inference from the rule \"If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit\").\n- The squirrel needs the mouse (inference from the rule \"If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse\").\n\nHowever, we also know that if something sees the rabbit then it sees the squirrel (rule), so the mouse sees the squirrel.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is cold. (Given)\n2. If something is cold then it sees the rabbit. (Given)\n   From statement 1, the mouse sees the rabbit. (Using rule 2)\n\n3. The rabbit chases the squirrel. (Given)\n4. The rabbit sees the squirrel. (Given)\n5. If something sees the rabbit then it sees the squirrel. (Given)\n   From statement 4, the squirrel sees the rabbit. (Using rule 5)\n   From statement 3, the squirrel sees the rabbit. (Using statement 4)\n   The statement in rule 5 is satisfied, but we can't conclude that the mouse sees the squirrel yet. We have two possible reasons for the statement in rule 5 to be satisfied.\n\n6. If something is cold and it sees the squirrel then the squirrel is cold. (Given)\n   From statement 1, the mouse is cold. (Using statement 1)\n   If the mouse sees the squirrel then the squirrel is cold. (Using rule 6)\n   However, we still can't conclude that the mouse sees the squirrel.\n\n7. If something chases the squirrel then it needs the squirrel. (Given)\n   However, we don't have any information about the mouse chasing the squirrel yet.\n\n8. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit. (Given)\n   However, we don't have any information about the mouse chasing the squirrel and not being cold yet.\n\n9. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel. (Given)\n   However, we don't have any information about the squirrel chasing the rabbit yet.\n\n10. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse. (Given)\n    However, we don't have any information about the squirrel not chasing the rabbit yet.\n\nNow, we need to analyze the statements again from the beginning to see if we missed anything.\n\n1. The mouse is cold. (Given)\n2. If something is cold then it sees the rabbit. (Given)\n   From statement 1, the mouse sees the rabbit. (Using rule 2)\n3. The rabbit chases the squirrel. (Given)\n4. The rabbit sees the squirrel. (Given)\n5. If something sees the rabbit then it sees the squirrel. (Given)\n   From statement 4, the squirrel sees the rabbit. (Using rule 5)\n\nNow, let's try to find a path from the mouse to the squirrel.\n\nFrom statement 2, the mouse sees the rabbit. (Using rule 2)\nFrom statement 5, the rabbit sees the squirrel. (Using statement 4)\nFrom rule 5, since the rabbit sees the squirrel, the mouse sees the squirrel. (Using the transitive property)\n\nSo, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The mouse sees the squirrel\" is true, false, or unknown, we need to analyze the given conditions and apply them to the mouse and the squirrel.\n\n1. The mouse is cold. (Given)\n2. If something is cold then it sees the rabbit. (Given)\n   - The mouse is cold, so the mouse sees the rabbit. (From step 2)\n\n3. The rabbit chases the squirrel. (Given)\n4. If something chases the squirrel then it needs the squirrel. (Given)\n   - The rabbit chases the squirrel, so the rabbit needs the squirrel. (From step 4)\n5. The rabbit sees the squirrel. (Given)\n6. If something sees the rabbit then it sees the squirrel. (Given)\n   - Since the rabbit sees the squirrel, the mouse sees the squirrel (because the mouse sees the rabbit). (From step 6)\n\nTherefore, based on the given conditions, we can conclude that the statement \"The mouse sees the squirrel\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the mouse sees the squirrel, we need to break down the given information and use logical deductions.\n\n1. The mouse is cold.\n2. If something is cold then it sees the rabbit. \n   From 1 and 2, we can deduce that the mouse sees the rabbit.\n\n3. If something sees the rabbit then it sees the squirrel. \n   From 2, we know the mouse sees the rabbit. \n   So, the mouse sees the squirrel. \n\nHowever, we must also consider other statements that could affect this conclusion. \n\n4. The rabbit chases the squirrel.\n5. The rabbit sees the squirrel.\n6. The squirrel chases the lion.\n\nWe need to examine the implications of these statements.\n\n7. If the rabbit chases the squirrel (4), then the squirrel needs the mouse (from the given condition).\n8. If the rabbit sees the squirrel (5), and the squirrel chases the rabbit (which is not the case here), then the rabbit does not chase the squirrel (from the given condition).\n9. The rabbit sees the squirrel (5) and the squirrel chases the lion (6), which does not imply that the squirrel chases the rabbit.\n\nWe still have not found any information that contradicts the initial conclusion that the mouse sees the squirrel.\n\nHowever, we should also examine the condition where the squirrel is cold and its implications.\n\n10. The lion chases the mouse.\n11. The mouse is cold (1).\n12. If something is cold and it sees the squirrel then the squirrel is cold.\n   From 11 and 12, we cannot directly deduce that the squirrel is cold because we do not know if the mouse sees the squirrel.\n\n13. The mouse sees the rabbit (2) and the rabbit sees the squirrel (5).\n14. If something sees the rabbit then it sees the squirrel (3).\n   From 13 and 14, the rabbit sees the squirrel (5).\n\n15. If something chases the squirrel then it needs the squirrel.\n   The rabbit chases the squirrel (4), so the rabbit needs the squirrel.\n\n16. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\n   The rabbit chases the squirrel (4), but it is cold because it needs the squirrel (15), so this condition does not apply.\n\n17. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel.\n   The rabbit sees the squirrel (5) but the squirrel does not chase the rabbit (because it chases the lion, 6).\n\n18. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n   The rabbit chases the squirrel (4), and the squirrel does not chase the rabbit (6), so the squirrel needs the mouse.\n\n19. The squirrel needs the mouse (18) and the mouse is cold (1).\n20. If something chases the mouse then it sees the mouse.\n   The lion chases the mouse (10), so the lion sees the mouse.\n21. The lion sees the mouse (20) and the mouse sees the rabbit (2), but we do not know if the lion sees the squirrel.\n\nHowever, we can still examine the condition where the lion sees the squirrel.\n\n22. If the lion sees the squirrel then the mouse sees the squirrel.\n   However, the mouse does not see the squirrel (because it is not possible to directly conclude from the given information).\n\nBut we know the mouse sees the rabbit (2), and the rabbit sees the squirrel (5), and the rabbit chases the squirrel (4). \n\nSo, we can say that the mouse indirectly sees the squirrel because the rabbit is in the middle.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is cold.\n2. If something is cold, then it sees the rabbit. (From statement 1, the mouse sees the rabbit.)\n3. If something sees the rabbit, then it sees the squirrel. (Since the mouse sees the rabbit, it sees the squirrel.)\n\nFrom the above steps, we can conclude that the mouse sees the squirrel. \n\nTherefore, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is cold. (Given)\n2. If something is cold then it sees the rabbit. (Rule 1)\n   => The mouse sees the rabbit. (From Rule 1)\n\n3. The mouse sees the rabbit. (From Step 2)\n4. If something sees the rabbit then it sees the squirrel. (Rule 2)\n   => The mouse sees the squirrel. (From Rule 2)\n\nBased on the given information and the rules, we can conclude that the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and use the given information to find the solution.\n\nFrom the given information:\n1. The mouse is cold.\n2. If something is cold then it sees the rabbit. \nSince the mouse is cold, the mouse sees the rabbit.\n\n3. The rabbit chases the squirrel.\n4. If something sees the rabbit then it sees the squirrel. \nSince the mouse sees the rabbit, the mouse sees the squirrel.\n\nTherefore, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the mouse sees the squirrel, let's analyze the given information step by step:\n\n1. The mouse is cold. (From the problem statement)\n2. If something is cold then it sees the rabbit. (From the problem statement)\n   - Therefore, the mouse sees the rabbit. \n\n3. The rabbit chases the squirrel. (From the problem statement)\n   - The rabbit sees the squirrel. (From the problem statement)\n\n4. If something sees the rabbit then it sees the squirrel. (From the problem statement)\n   - Therefore, the mouse sees the squirrel.\n\nSo, based on the given information, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step.\n\n1. The mouse is cold.\nFrom the given information, we know that the mouse is cold.\n\n2. The mouse needs the rabbit.\nWe have a direct statement that the mouse needs the rabbit.\n\n3. The rabbit chases the squirrel.\nWe are given that the rabbit chases the squirrel.\n\n4. The rabbit sees the squirrel.\nSince the rabbit chases the squirrel, we can conclude that the rabbit sees the squirrel.\n\n5. The squirrel sees the rabbit.\nWe know that the rabbit sees the squirrel, and we also know that if something sees the rabbit, then it sees the squirrel. However, this does not directly apply to the squirrel itself, but rather to something that sees the rabbit. So we cannot conclude that the squirrel sees the rabbit.\n\n6. The squirrel chases the lion.\nWe are given that the squirrel chases the lion.\n\n7. The lion sees the rabbit.\nWe are given that the lion sees the rabbit.\n\n8. The lion sees the squirrel.\nSince the lion sees the rabbit, and the rabbit sees the squirrel, we can conclude that the lion sees the squirrel.\n\n9. The lion is not cold.\nWe have no information that the lion is cold. Therefore, we cannot conclude anything about the lion's temperature.\n\n10. The squirrel does not chase the rabbit.\nWe know that the rabbit chases the squirrel, and we also know that the lion sees the squirrel. However, we cannot conclude that the squirrel is cold or that the rabbit is not cold. If the rabbit is not cold, then the squirrel does not chase the rabbit. We still cannot conclude that the rabbit is not cold. However, we know that the lion sees the squirrel and the rabbit chases the squirrel, then the squirrel does not chase the rabbit.\n\n11. The squirrel does not need the mouse.\nWe have no information that the squirrel needs the mouse.\n\n12. The rabbit sees the squirrel.\nWe know that the rabbit chases the squirrel, so the rabbit sees the squirrel.\n\n13. The squirrel sees the mouse.\nWe know that the rabbit sees the squirrel, the rabbit sees the mouse, and if something sees the rabbit then it sees the squirrel. However, this does not directly apply to the squirrel itself, but rather to something that sees the rabbit. So we cannot conclude that the squirrel sees the mouse.\n\n14. The mouse sees the squirrel.\nWe know that the mouse is cold and we know that if something is cold, then it sees the rabbit. However, this does not directly apply to the mouse seeing the squirrel. We know that the rabbit sees the squirrel and if the mouse is cold, then the mouse sees the rabbit. Therefore the mouse sees the rabbit, but we cannot conclude that the mouse sees the squirrel.\n\nFrom the given information and our conclusions, we cannot directly conclude that the mouse sees the squirrel. We know that the mouse is cold, the mouse needs the rabbit, the rabbit chases the squirrel, the rabbit sees the squirrel, the squirrel chases the lion, the lion sees the squirrel, the squirrel does not chase the rabbit, the rabbit sees the squirrel, the squirrel does not need the mouse, and the rabbit sees the squirrel. We cannot conclude that the mouse sees the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the mouse sees the squirrel, we need to analyze the given information step by step.\n\nFrom the given information, we have the following statements:\n\n1. The lion chases the mouse. \n2. The mouse is cold.\n3. The mouse needs the rabbit.\n4. The rabbit chases the squirrel.\n5. The rabbit sees the lion.\n6. The rabbit sees the squirrel.\n7. The squirrel chases the lion.\n8. If something is cold then it sees the rabbit. \n9. If something sees the rabbit then it sees the squirrel.\n10. If something is cold and it sees the squirrel then the squirrel is cold.\n11. If something chases the squirrel then it needs the squirrel.\n12. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\n13. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel.\n14. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n\nNow, we need to find a relationship between the mouse and the squirrel. \n\nFrom statement 2, we know the mouse is cold. From statement 8, if something is cold then it sees the rabbit. So, the mouse sees the rabbit.\n\nFrom statement 9, if something sees the rabbit then it sees the squirrel. Therefore, since the mouse sees the rabbit, the mouse sees the squirrel.\n\nBased on the given information, the mouse sees the squirrel.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "Let's analyze the given information and the conditions step by step to determine whether the mouse sees the squirrel.\n\nGiven information:\n1. The lion chases the mouse.\n2. The mouse is cold.\n3. The mouse needs the rabbit.\n4. The rabbit chases the squirrel.\n5. The rabbit sees the lion.\n6. The rabbit sees the squirrel.\n7. The squirrel chases the lion.\n8. If something is cold then it sees the rabbit.\n9. If something sees the rabbit then it sees the squirrel.\n10. If something is cold and it sees the squirrel then the squirrel is cold.\n11. If something chases the squirrel then it needs the squirrel.\n12. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\n13. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel.\n14. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n\nNow, let's try to find the relationship between the mouse and the squirrel using the given conditions.\n\nFrom condition 8, we know that since the mouse is cold (condition 2), the mouse sees the rabbit (condition 8).\n\nFrom condition 9, if the mouse sees the rabbit, then the mouse sees the squirrel (condition 6).\n\nSo, the mouse sees the squirrel.\n\nTherefore, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and analyze each statement.\n\nGiven statements:\n1. The lion chases the mouse.\n2. The mouse is cold.\n3. The mouse needs the rabbit.\n4. The rabbit chases the squirrel.\n5. The rabbit sees the lion.\n6. The rabbit sees the squirrel.\n7. The squirrel chases the lion.\n8. If something is cold then it sees the rabbit.\n9. If something sees the rabbit then it sees the squirrel.\n10. If something is cold and it sees the squirrel then the squirrel is cold.\n11. If something chases the squirrel then it needs the squirrel.\n12. If something chases the squirrel and it is not cold then the squirrel does not chase the rabbit.\n13. If the rabbit sees the squirrel and the squirrel chases the rabbit then the rabbit does not chase the squirrel.\n14. If the rabbit chases the squirrel and the squirrel does not chase the rabbit then the squirrel needs the mouse.\n\nWe need to determine whether the statement \"The mouse sees the squirrel\" is true, false, or unknown.\n\nLet's start by analyzing statement 8: \"If something is cold then it sees the rabbit.\" Since the mouse is cold (statement 2), it must see the rabbit (by statement 8). \n\nNow, let's analyze statement 9: \"If something sees the rabbit then it sees the squirrel.\" Since the mouse sees the rabbit (from statement 8), it must see the squirrel (by statement 9).\n\nTherefore, the statement \"The mouse sees the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & not(chases(squirrel, X)) -> needs(squirrel, X)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(chases_squirrel_rabbit)), needs_squirrel_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & not(cold(X)) -> not(chases(squirrel, X))",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(cold_rabbit)), Not(chases_squirrel_rabbit))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, sees_mouse_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_squirrel), cold_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & Not(cold(X)) -> Not(chases(squirrel, rabbit))",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(cold_rabbit)), Not(chases_squirrel_rabbit))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & Not(chases(squirrel, rabbit)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(chases_squirrel_rabbit)), needs_rabbit_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, sees_mouse_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, squirrel)",
+          "z3_formula": "sees_lion_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(lion))",
+          "z3_formula": "Not(cold_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(squirrel, rabbit))",
+          "z3_formula": "Not(chases_squirrel_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(squirrel, mouse))",
+          "z3_formula": "Not(needs_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(squirrel, mouse))",
+          "z3_formula": "Not(sees_squirrel_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(mouse, squirrel))",
+          "z3_formula": "Not(sees_mouse_squirrel)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_squirrel), cold_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, squirrel)",
+          "z3_formula": "Implies(chases_mouse_squirrel, needs_mouse_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & Not(cold(X)) -> Not(chases(squirrel, rabbit))",
+          "z3_formula": "Implies(And(chases_mouse_squirrel, Not(cold_mouse)), Not(chases_squirrel_rabbit))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, squirrel) & chases(squirrel, rabbit) -> Not(chases(rabbit, squirrel))",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, chases_squirrel_rabbit), Not(chases_rabbit_squirrel))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, squirrel) & Not(chases(squirrel, rabbit)) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(chases_squirrel_rabbit)), needs_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_squirrel), cold_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & Not(cold(X)) -> Not(chases(squirrel, rabbit))",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(cold_rabbit)), Not(chases_squirrel_rabbit))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, squirrel) & chases(squirrel, rabbit) -> Not(chases(rabbit, squirrel))",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, chases_squirrel_rabbit), Not(chases_rabbit_squirrel))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, squirrel) & Not(chases(squirrel, rabbit)) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, Not(chases_squirrel_rabbit)), needs_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_mouse, sees_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 110,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 31
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 2,
+      "total_weight": 108,
+      "solve_time_ms": 1.1556046083569527
+    },
+    "timing": {
+      "trace_gen_s": 11.286,
+      "extraction_s": 23.431,
+      "dedup_s": 0.663,
+      "maxsat_s": 0.003,
+      "total_s": 35.383
+    }
+  }
+}

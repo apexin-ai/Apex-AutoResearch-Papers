@@ -1,0 +1,1599 @@
+# analysis exp019 final stats
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_analysis_exp019-final-stats_20260517T091335.log`
+- **Structured JSON:** [`5dca9453533af16b7e60.json`](../../sessions/5d/5dca9453533af16b7e60.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "33a8c979-b7fa-404c-b5ca-9ac16bf85bea",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779022800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7a3e44a4-61fa-459f-b84a-443cf7344eb6",
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to the server and run a Python script to compute statistics for experiment exp-019.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "622dfdaa-50d9-4432-97dc-af7179799898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qnn6jJiX3VqQM5F69MBX9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13513,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13513
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017RYwdfiZS8Ba1rHnf5EsvB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "ab2cacdc-29e1-44b7-b9be-e928a5146384",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qnn6jJiX3VqQM5F69MBX9A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13513,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13513
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T09:13:48.089Z_
+
+<details><summary>↩ Tool result · `toolu_017RYwdfiZS8Ba1rHnf5EsvB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "78ecd7cf-773c-43f2-93a3-d91cd06f5211",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018Za8jkpoRUkQFka3gJkyrx`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json, numpy as np\n\n# Load results\nd = json.load(open('results/exp019_strategyqa_200/exp019_results.json'))\nn = len(d)\nprint(f'Total problems: {n}')\n\n# Basic accuracy\nsica_arr = np.array([x.get('sica_correct', False) for x in d])\nsc_arr = np.array([x.get('sc_correct', False) for x in d])\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\n# Discordant pairs\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\n\n# McNemar exact (binomial test)\nfrom scipy.stats import binom_test\ntotal_disc = sica_wins + sc_wins\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\n\n# Bootstrap CI for delta\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(np.array(boot_deltas) <= 0)\n\n# Check available fields\nkeys = list(d[0].keys()) if d else []\nprint(f'Available keys: {keys}')\n\n# Multi-candidate rate\nif 'num_candidates' in keys:\n    multi = sum(1 for x in d if x.get('num_candidates', 0) > 1)\n    multi_rate = multi / n\nelif 'sica_answer' in keys:\n    multi = sum(1 for x in d if x.get('sica_answer') != x.get('sc_answer'))\n    multi_rate = multi / n\nelse:\n    multi = None\n    multi_rate = None\n\n# Truncation\ntrunc = sum(1 for x in d if x.get('truncated_traces', 0) > 0) if 'truncated_traces' in keys else None\n\n# Wall time\nif 'wall_time_s' in keys:\n    total_time = sum(x.get('wall_time_s', 0) for x in d)\n    avg_time = total_time / n\nelse:\n    total_time = avg_time = None\n\n# Print comprehensive report\nprint()\nprint('=== exp-019 COMPLETE STATS ===')\nprint(f'n: {n}')\nprint(f'sica_accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'sc_accuracy: {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'delta_pp: {100*delta:+.2f}pp')\nprint(f'mcnemar_p: {p_mcnemar:.4f} (discordant: {sica_wins} SICA wins, {sc_wins} SC wins, {total_disc} total)')\nprint(f'bootstrap_ci_95: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'bootstrap_p_delta_le_0: {boot_p:.4f}')\nif multi_rate is not None:\n    print(f'multi_candidate_rate: {100*multi_rate:.1f}% ({multi}/{n})')\nelse:\n    print('multi_candidate_rate: N/A')\nprint(f'truncated_problems: {trunc}')\nif avg_time is not None:\n    print(f'avg_wall_time_s: {avg_time:.1f}')\n    print(f'total_wall_time_min: {total_time/60:.1f}')\nelse:\n    print('avg_wall_time_s: N/A')\n    print('total_wall_time_min: N/A')\n\n# Per-category breakdown\nif 'category' in keys or 'domain' in keys:\n    cat_key = 'category' if 'category' in keys else 'domain'\n    categories = set(x.get(cat_key, 'unknown') for x in d)\n    print()\n    print('Per-category breakdown:')\n    for cat in sorted(categories):\n        cat_data = [x for x in d if x.get(cat_key) == cat]\n        cat_sica = sum(1 for x in cat_data if x.get('sica_correct'))\n        cat_sc = sum(1 for x in cat_data if x.get('sc_correct'))\n        cat_n = len(cat_data)\n        print(f'  {cat}: SICA {100*cat_sica/cat_n:.1f}% vs SC {100*cat_sc/cat_n:.1f}% (n={cat_n}, delta={100*(cat_sica-cat_sc)/cat_n:+.1f}pp)')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "9a6ec24f-d68e-4d51-bb63-ca3fabb70580",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011f4GwtjPGhH9ruqB61S1xZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 384,
+      "cache_read_input_tokens": 25354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 384
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T09:14:12.989Z_
+
+<details><summary>↩ Tool result · `toolu_018Za8jkpoRUkQFka3gJkyrx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 11.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "f55badba-5ccd-4f1a-bacd-438824b9070e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 11.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013bSNrxEzXa4JhzfGvgKgWe`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "which python && python --version",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "65164252-c4ba-4d4c-9592-d58c0ca810ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2gWXAYS85ixJR22GXRcpy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1550,
+      "cache_read_input_tokens": 25738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1550
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T09:14:17.587Z_
+
+<details><summary>↩ Tool result · `toolu_013bSNrxEzXa4JhzfGvgKgWe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "5132d7d6-3e14-434c-9a78-d0585914661b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WgyTAk5fUyBGG8V4dqtEBf`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "ls /root/symb_invariant_consensus/results/exp019_strategyqa_200/ && find / -maxdepth 4 -name \"python*\" -type f 2>/dev/null | head -10",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "72521569-7b6d-4645-a9e0-222837ac8dee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BK9NMTdekv5gx2v9zq3uT3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 27288,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T09:14:22.883Z_
+
+<details><summary>↩ Tool result · `toolu_01WgyTAk5fUyBGG8V4dqtEBf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp019_results.json\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "e70dcfc8-2b8f-4476-bc9d-1712abd55816",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp019_results.json\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp019_results.json\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+结果文件存在，Python 在 miniconda3。运行统计脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "ec00f879-b5e7-4d84-9136-ea338cb3ea02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yau7BwGSpdDYCJLsXR1KND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 27488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016kUPyDMsJih6zLhPNzTsrN`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\n\nd = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nn = len(d)\nprint(f'Total problems: {n}')\n\nsica_arr = np.array([x.get('sica_correct', False) for x in d])\nsc_arr = np.array([x.get('sc_correct', False) for x in d])\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nsica_wins = int(((sica_arr == True) & (sc_arr == False)).sum())\nsc_wins = int(((sc_arr == True) & (sica_arr == False)).sum())\n\nfrom scipy.stats import binom_test\ntotal_disc = sica_wins + sc_wins\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\n\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(np.array(boot_deltas) <= 0)\n\nkeys = list(d[0].keys()) if d else []\nprint(f'Available keys: {keys}')\n\nif 'num_candidates' in keys:\n    multi = sum(1 for x in d if x.get('num_candidates', 0) > 1)\n    multi_rate = multi / n\nelif 'sica_answer' in keys:\n    multi = sum(1 for x in d if x.get('sica_answer') != x.get('sc_answer'))\n    multi_rate = multi / n\nelse:\n    multi = None\n    multi_rate = None\n\ntrunc = sum(1 for x in d if x.get('truncated_traces', 0) > 0) if 'truncated_traces' in keys else None\n\nif 'wall_time_s' in keys:\n    total_time = sum(x.get('wall_time_s', 0) for x in d)\n    avg_time = total_time / n\nelse:\n    total_time = avg_time = None\n\nprint()\nprint('=== exp-019 COMPLETE STATS ===')\nprint(f'n: {n}')\nprint(f'sica_accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'sc_accuracy: {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'delta_pp: {100*delta:+.2f}pp')\nprint(f'mcnemar_p: {p_mcnemar:.6f} (discordant: {sica_wins} SICA wins, {sc_wins} SC wins, {total_disc} total)')\nprint(f'bootstrap_ci_95: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'bootstrap_p_delta_le_0: {boot_p:.4f}')\nif multi_rate is not None:\n    print(f'multi_candidate_rate: {100*multi_rate:.1f}% ({multi}/{n})')\nelse:\n    print('multi_candidate_rate: N/A')\nprint(f'truncated_problems: {trunc}')\nif avg_time is not None:\n    print(f'avg_wall_time_s: {avg_time:.1f}')\n    print(f'total_wall_time_min: {total_time/60:.1f}')\nelse:\n    print('avg_wall_time_s: N/A')\n    print('total_wall_time_min: N/A')\n\nif 'category' in keys or 'domain' in keys:\n    cat_key = 'category' if 'category' in keys else 'domain'\n    categories = set(x.get(cat_key, 'unknown') for x in d)\n    print()\n    print('Per-category breakdown:')\n    for cat in sorted(categories):\n        cat_data = [x for x in d if x.get(cat_key) == cat]\n        cat_sica = sum(1 for x in cat_data if x.get('sica_correct'))\n        cat_sc = sum(1 for x in cat_data if x.get('sc_correct'))\n        cat_n = len(cat_data)\n        print(f'  {cat}: SICA {100*cat_sica/cat_n:.1f}% vs SC {100*cat_sc/cat_n:.1f}% (n={cat_n}, delta={100*(cat_sica-cat_sc)/cat_n:+.1f}pp)')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "e00f30bf-4f02-4919-aa3c-88450dde48a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yau7BwGSpdDYCJLsXR1KND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 27488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T09:14:38.142Z_
+
+<details><summary>↩ Tool result · `toolu_016kUPyDMsJih6zLhPNzTsrN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Total problems: 2\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 8, in &lt;module>\\nAttributeError: 'str' object has no attribute 'get'\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "27354ae4-65e5-429b-affa-f384d161f750",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Total problems: 2\\\\n\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 8, in &lt;module>\\\\nAttributeError: 'str' object has no attribute 'get'\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"Total problems: 2\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 8, in &lt;module>\\nAttributeError: 'str' object has no attribute 'get'\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Only 2 entries and the data structure is different from expected. Let me inspect the JSON structure first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "c3e59055-79a5-4b69-8a39-13bef9f3e590",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KnNYAtq6ogLZUguk5ZLJ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1561,
+      "cache_read_input_tokens": 27835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TNqSRUgL7zxrLfNnbQs9tt`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nprint(f'Type: {type(d)}')\nif isinstance(d, dict):\n    print(f'Top-level keys: {list(d.keys())[:20]}')\n    for k in list(d.keys())[:3]:\n        v = d[k]\n        print(f'  key={k}, type={type(v)}')\n        if isinstance(v, dict):\n            print(f'    sub-keys: {list(v.keys())[:15]}')\n            for sk in list(v.keys())[:3]:\n                print(f'      {sk}: {repr(v[sk])[:200]}')\n        elif isinstance(v, list):\n            print(f'    len={len(v)}, first={repr(v[0])[:200] if v else None}')\n        else:\n            print(f'    value={repr(v)[:300]}')\nelif isinstance(d, list):\n    print(f'Length: {len(d)}')\n    print(f'First element type: {type(d[0])}')\n    print(f'First element: {repr(d[0])[:500]}')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "05c691fc-8dcf-4cc1-9306-25886b8ad613",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KnNYAtq6ogLZUguk5ZLJ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1561,
+      "cache_read_input_tokens": 27835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T09:14:46.631Z_
+
+<details><summary>↩ Tool result · `toolu_01TNqSRUgL7zxrLfNnbQs9tt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Type: &lt;class 'dict'>\\nTop-level keys: ['summary', 'results']\\n  key=summary, type=&lt;class 'dict'>\\n    sub-keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'delta', 'k', 'mode', 'temperature', 'total_wall_time_s']\\n      n_problems: 200\\n      sica_accuracy: 0.74\\n      sc_accuracy: 0.72\\n  key=results, type=&lt;class 'list'>\\n    len=200, first={'problem_idx': 0, 'problem_id': 'strategyqa_000', 'problem': 'Is Guitar Hero Beatles inappropriate for a US third grader?', 'dataset': 'strategyqa', 'ground_truth': 'No', 'sica_answer': 'Yes', 'sica_\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "ba615f74-beeb-4e76-ae92-63179b6803a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Type: &lt;class 'dict'>\\\\nTop-level keys: ['summary', 'results']\\\\n  key=summary, type=&lt;class 'dict'>\\\\n    sub-keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'delta', 'k', 'mode', 'temperature', 'total_wall_time_s']\\\\n      n_problems: 200\\\\n      sica_accuracy: 0.74\\\\n      sc_accuracy: 0.72\\\\n  key=results, type=&lt;class 'list'>\\\\n    len=200, first={'problem_idx': 0, 'problem_id': 'strategyqa_000', 'problem': 'Is Guitar Hero Beatles inappropriate for a US third grader?', 'dataset': 'strategyqa', 'ground_truth': 'No', 'sica_answer': 'Yes', 'sica_\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Type: &lt;class 'dict'>\\nTop-level keys: ['summary', 'results']\\n  key=summary, type=&lt;class 'dict'>\\n    sub-keys: ['n_problems', 'sica_accuracy', 'sc_accuracy', 'sica_correct', 'sc_correct', 'delta', 'k', 'mode', 'temperature', 'total_wall_time_s']\\n      n_problems: 200\\n      sica_accuracy: 0.74\\n      sc_accuracy: 0.72\\n  key=results, type=&lt;class 'list'>\\n    len=200, first={'problem_idx': 0, 'problem_id': 'strategyqa_000', 'problem': 'Is Guitar Hero Beatles inappropriate for a US third grader?', 'dataset': 'strategyqa', 'ground_truth': 'No', 'sica_answer': 'Yes', 'sica_\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+JSON is a dict with `summary` and `results` keys. Let me adapt the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "0946596b-1e38-423b-978b-52edfeef2f81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nyfe7yxUw4aoHcgNsgtVcY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 29396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dug8FT3dMhiSaPkQ8bhG7G`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\n\nraw = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nsummary = raw['summary']\nd = raw['results']\nn = len(d)\n\n# Print summary keys\nprint(f'Summary: {summary}')\nprint(f'n: {n}')\n\n# Print first result keys\nkeys = list(d[0].keys())\nprint(f'Per-result keys: {keys}')\nprint(f'First result sample: {json.dumps(d[0], indent=2)[:800]}')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "2f0ecde7-4d06-4741-bf07-cc373ebb7690",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nyfe7yxUw4aoHcgNsgtVcY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 29396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T09:14:54.315Z_
+
+<details><summary>↩ Tool result · `toolu_01Dug8FT3dMhiSaPkQ8bhG7G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Summary: {'n_problems': 200, 'sica_accuracy': 0.74, 'sc_accuracy': 0.72, 'sica_correct': 148, 'sc_correct': 144, 'delta': 0.02, 'k': 12, 'mode': 'vllm', 'temperature': 0.7, 'total_wall_time_s': 3023.3}\\nn: 200\\nPer-result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'ground_truth', 'sica_answer', 'sica_correct', 'sc_answer', 'sc_correct', 'sc_vote_distribution', 'constraints_stats', 'maxsat_stats', 'wall_time_s']\\nFirst result sample: {\\n  \\\"problem_idx\\\": 0,\\n  \\\"problem_id\\\": \\\"strategyqa_000\\\",\\n  \\\"problem\\\": \\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\",\\n  \\\"dataset\\\": \\\"strategyqa\\\",\\n  \\\"ground_truth\\\": \\\"No\\\",\\n  \\\"sica_answer\\\": \\\"Yes\\\",\\n  \\\"sica_correct\\\": false,\\n  \\\"sc_answer\\\": \\\"Yes\\\",\\n  \\\"sc_correct\\\": false,\\n  \\\"sc_vote_distribution\\\": {\\n    \\\"Yes\\\": 6\\n  },\\n  \\\"constraints_stats\\\": {\\n    \\\"total_extracted\\\": 10,\\n    \\\"traces_with_constraints\\\": 6,\\n    \\\"unique_after_dedup\\\": 4\\n  },\\n  \\\"maxsat_stats\\\": {\\n    \\\"satisfied\\\": 2,\\n    \\\"excluded\\\": 2,\\n    \\\"total_weight\\\": 8,\\n    \\\"solve_time_ms\\\": 3.0803328845649958\\n  },\\n  \\\"wall_time_s\\\": 10.28\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "946c89e9-0d7d-42d3-9b91-fded56522a3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Summary: {'n_problems': 200, 'sica_accuracy': 0.74, 'sc_accuracy': 0.72, 'sica_correct': 148, 'sc_correct': 144, 'delta': 0.02, 'k': 12, 'mode': 'vllm', 'temperature': 0.7, 'total_wall_time_s': 3023.3}\\\\nn: 200\\\\nPer-result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'ground_truth', 'sica_answer', 'sica_correct', 'sc_answer', 'sc_correct', 'sc_vote_distribution', 'constraints_stats', 'maxsat_stats', 'wall_time_s']\\\\nFirst result sample: {\\\\n  \\\\\\\"problem_idx\\\\\\\": 0,\\\\n  \\\\\\\"problem_id\\\\\\\": \\\\\\\"strategyqa_000\\\\\\\",\\\\n  \\\\\\\"problem\\\\\\\": \\\\\\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"strategyqa\\\\\\\",\\\\n  \\\\\\\"ground_truth\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n  \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Yes\\\\\\\",\\\\n  \\\\\\\"sica_correct\\\\\\\": false,\\\\n  \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Yes\\\\\\\",\\\\n  \\\\\\\"sc_correct\\\\\\\": false,\\\\n  \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n    \\\\\\\"Yes\\\\\\\": 6\\\\n  },\\\\n  \\\\\\\"constraints_stats\\\\\\\": {\\\\n    \\\\\\\"total_extracted\\\\\\\": 10,\\\\n    \\\\\\\"traces_with_constraints\\\\\\\": 6,\\\\n    \\\\\\\"unique_after_dedup\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"maxsat_stats\\\\\\\": {\\\\n    \\\\\\\"satisfied\\\\\\\": 2,\\\\n    \\\\\\\"excluded\\\\\\\": 2,\\\\n    \\\\\\\"total_weight\\\\\\\": 8,\\\\n    \\\\\\\"solve_time_ms\\\\\\\": 3.0803328845649958\\\\n  },\\\\n  \\\\\\\"wall_time_s\\\\\\\": 10.28\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Summary: {'n_problems': 200, 'sica_accuracy': 0.74, 'sc_accuracy': 0.72, 'sica_correct': 148, 'sc_correct': 144, 'delta': 0.02, 'k': 12, 'mode': 'vllm', 'temperature': 0.7, 'total_wall_time_s': 3023.3}\\nn: 200\\nPer-result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'ground_truth', 'sica_answer', 'sica_correct', 'sc_answer', 'sc_correct', 'sc_vote_distribution', 'constraints_stats', 'maxsat_stats', 'wall_time_s']\\nFirst result sample: {\\n  \\\"problem_idx\\\": 0,\\n  \\\"problem_id\\\": \\\"strategyqa_000\\\",\\n  \\\"problem\\\": \\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\",\\n  \\\"dataset\\\": \\\"strategyqa\\\",\\n  \\\"ground_truth\\\": \\\"No\\\",\\n  \\\"sica_answer\\\": \\\"Yes\\\",\\n  \\\"sica_correct\\\": false,\\n  \\\"sc_answer\\\": \\\"Yes\\\",\\n  \\\"sc_correct\\\": false,\\n  \\\"sc_vote_distribution\\\": {\\n    \\\"Yes\\\": 6\\n  },\\n  \\\"constraints_stats\\\": {\\n    \\\"total_extracted\\\": 10,\\n    \\\"traces_with_constraints\\\": 6,\\n    \\\"unique_after_dedup\\\": 4\\n  },\\n  \\\"maxsat_stats\\\": {\\n    \\\"satisfied\\\": 2,\\n    \\\"excluded\\\": 2,\\n    \\\"total_weight\\\": 8,\\n    \\\"solve_time_ms\\\": 3.0803328845649958\\n  },\\n  \\\"wall_time_s\\\": 10.28\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Good, now I have the full structure. Let me run the complete statistics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "db288ae9-6b82-458b-9952-a093a39e4e7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ferj1FFB5cA2apDKL5PDgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1059
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UKmbyj9CyYzJdMahda9Jt5`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\n\nraw = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nd = raw['results']\nn = len(d)\n\nsica_arr = np.array([x['sica_correct'] for x in d], dtype=bool)\nsc_arr = np.array([x['sc_correct'] for x in d], dtype=bool)\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nsica_wins = int(((sica_arr) & (~sc_arr)).sum())\nsc_wins = int(((sc_arr) & (~sica_arr)).sum())\ntotal_disc = sica_wins + sc_wins\n\nfrom scipy.stats import binom_test\np_mcnemar = binom_test(sica_wins, total_disc, 0.5) if total_disc > 0 else 1.0\n\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\n\n# Multi-candidate: SICA answer differs from SC answer\nmulti = sum(1 for x in d if x['sica_answer'] != x['sc_answer'])\nmulti_rate = multi / n\n\n# Wall time\ntotal_time = sum(x['wall_time_s'] for x in d)\navg_time = total_time / n\n\n# Constraints stats\ntotal_constraints = [x['constraints_stats']['total_extracted'] for x in d]\nunique_constraints = [x['constraints_stats']['unique_after_dedup'] for x in d]\ntraces_with = [x['constraints_stats']['traces_with_constraints'] for x in d]\n\n# MaxSAT stats\nsatisfied = [x['maxsat_stats']['satisfied'] for x in d]\nexcluded = [x['maxsat_stats']['excluded'] for x in d]\nsolve_times = [x['maxsat_stats']['solve_time_ms'] for x in d]\n\n# SC vote distribution analysis\nsc_margin = []\nfor x in d:\n    votes = x['sc_vote_distribution']\n    vals = sorted(votes.values(), reverse=True)\n    top = vals[0]\n    second = vals[1] if len(vals) > 1 else 0\n    sc_margin.append((top - second) / sum(vals))\n\nprint('=== exp-019 COMPLETE STATS ===')\nprint(f'n: {n}')\nprint(f'sica_accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'sc_accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'delta_pp: {100*delta:+.2f}pp')\nprint()\nprint(f'mcnemar_p: {p_mcnemar:.6f}')\nprint(f'  discordant: {sica_wins} SICA-wins, {sc_wins} SC-wins, {total_disc} total')\nprint(f'bootstrap_ci_95: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'bootstrap_p(delta<=0): {boot_p:.4f}')\nprint()\nprint(f'multi_candidate_rate: {100*multi_rate:.1f}% ({multi}/{n})')\nprint()\nprint(f'wall_time: total={total_time:.1f}s ({total_time/60:.1f}min), avg={avg_time:.2f}s/problem')\nprint()\nprint(f'constraints_extracted: mean={np.mean(total_constraints):.1f}, median={np.median(total_constraints):.0f}')\nprint(f'constraints_unique:    mean={np.mean(unique_constraints):.1f}, median={np.median(unique_constraints):.0f}')\nprint(f'traces_with_constraints: mean={np.mean(traces_with):.1f}/{12}')\nprint()\nprint(f'maxsat_satisfied: mean={np.mean(satisfied):.1f}, median={np.median(satisfied):.0f}')\nprint(f'maxsat_excluded:  mean={np.mean(excluded):.1f}, median={np.median(excluded):.0f}')\nprint(f'maxsat_solve_ms:  mean={np.mean(solve_times):.2f}, max={np.max(solve_times):.2f}')\nprint()\nprint(f'sc_vote_margin: mean={np.mean(sc_margin):.3f}, median={np.median(sc_margin):.3f}')\n\n# Breakdown: where SICA flips SC\nprint()\nprint('=== FLIP ANALYSIS ===')\nsica_flip_right = [d[i] for i in range(n) if sica_arr[i] and not sc_arr[i]]\nsc_flip_right = [d[i] for i in range(n) if sc_arr[i] and not sica_arr[i]]\nboth_right = int((sica_arr & sc_arr).sum())\nboth_wrong = int((~sica_arr & ~sc_arr).sum())\nprint(f'both_correct: {both_right}')\nprint(f'both_wrong: {both_wrong}')\nprint(f'sica_only_correct: {sica_wins}')\nprint(f'sc_only_correct: {sc_wins}')\nprint(f'net_flip: {sica_wins - sc_wins}')\n\n# Low-margin SC: SICA performance when SC is uncertain\nprint()\nprint('=== LOW-MARGIN SC SUBSET ===')\nfor threshold in [0.2, 0.34, 0.5]:\n    low_idx = [i for i in range(n) if sc_margin[i] <= threshold]\n    if low_idx:\n        sub_sica = sica_arr[low_idx].mean()\n        sub_sc = sc_arr[low_idx].mean()\n        sub_delta = sub_sica - sub_sc\n        print(f'margin<={threshold:.2f}: n={len(low_idx)}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*sub_delta:+.1f}pp')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "db233bca-7671-4f74-8304-de0337bc765e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ferj1FFB5cA2apDKL5PDgj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1059
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T09:15:18.815Z_
+
+<details><summary>↩ Tool result · `toolu_01UKmbyj9CyYzJdMahda9Jt5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 18, in &lt;module>\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "57c98340-94d2-40c3-b00d-63db5a7c5b54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 18, in &lt;module>\\\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 18, in &lt;module>\\nImportError: cannot import name 'binom_test' from 'scipy.stats' (/root/miniconda3/lib/python3.12/site-packages/scipy/stats/__init__.py). Did you mean: 'binomtest'?\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+`binom_test` renamed to `binomtest` in newer scipy. Fixing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "8ef7307b-8dfa-432d-8908-8050fbb7acc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCTXZf2Z8uJDJjKZbDQR2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2011,
+      "cache_read_input_tokens": 31234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2011
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KLzP8HSS5qJpoo42CwVNPW`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\n\nraw = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nd = raw['results']\nn = len(d)\n\nsica_arr = np.array([x['sica_correct'] for x in d], dtype=bool)\nsc_arr = np.array([x['sc_correct'] for x in d], dtype=bool)\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nsica_wins = int(((sica_arr) & (~sc_arr)).sum())\nsc_wins = int(((sc_arr) & (~sica_arr)).sum())\ntotal_disc = sica_wins + sc_wins\n\nfrom scipy.stats import binomtest\nif total_disc > 0:\n    res = binomtest(sica_wins, total_disc, 0.5)\n    p_mcnemar = res.pvalue\nelse:\n    p_mcnemar = 1.0\n\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\n\nmulti = sum(1 for x in d if x['sica_answer'] != x['sc_answer'])\nmulti_rate = multi / n\n\ntotal_time = sum(x['wall_time_s'] for x in d)\navg_time = total_time / n\n\ntotal_constraints = [x['constraints_stats']['total_extracted'] for x in d]\nunique_constraints = [x['constraints_stats']['unique_after_dedup'] for x in d]\ntraces_with = [x['constraints_stats']['traces_with_constraints'] for x in d]\n\nsatisfied = [x['maxsat_stats']['satisfied'] for x in d]\nexcluded = [x['maxsat_stats']['excluded'] for x in d]\nsolve_times = [x['maxsat_stats']['solve_time_ms'] for x in d]\n\nsc_margin = []\nfor x in d:\n    votes = x['sc_vote_distribution']\n    vals = sorted(votes.values(), reverse=True)\n    top = vals[0]\n    second = vals[1] if len(vals) > 1 else 0\n    sc_margin.append((top - second) / sum(vals))\n\nprint('=== exp-019 COMPLETE STATS ===')\nprint(f'n: {n}')\nprint(f'sica_accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'sc_accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'delta_pp: {100*delta:+.2f}pp')\nprint()\nprint(f'mcnemar_p: {p_mcnemar:.6f}')\nprint(f'  discordant: {sica_wins} SICA-wins, {sc_wins} SC-wins, {total_disc} total')\nprint(f'bootstrap_ci_95: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'bootstrap_p(delta<=0): {boot_p:.4f}')\nprint()\nprint(f'multi_candidate_rate: {100*multi_rate:.1f}% ({multi}/{n})')\nprint()\nprint(f'wall_time: total={total_time:.1f}s ({total_time/60:.1f}min), avg={avg_time:.2f}s/problem')\nprint()\nprint(f'constraints_extracted: mean={np.mean(total_constraints):.1f}, median={np.median(total_constraints):.0f}')\nprint(f'constraints_unique:    mean={np.mean(unique_constraints):.1f}, median={np.median(unique_constraints):.0f}')\nprint(f'traces_with_constraints: mean={np.mean(traces_with):.1f}/{12}')\nprint()\nprint(f'maxsat_satisfied: mean={np.mean(satisfied):.1f}, median={np.median(satisfied):.0f}')\nprint(f'maxsat_excluded:  mean={np.mean(excluded):.1f}, median={np.median(excluded):.0f}')\nprint(f'maxsat_solve_ms:  mean={np.mean(solve_times):.2f}, max={np.max(solve_times):.2f}')\nprint()\nprint(f'sc_vote_margin: mean={np.mean(sc_margin):.3f}, median={np.median(sc_margin):.3f}')\n\nprint()\nprint('=== FLIP ANALYSIS ===')\nboth_right = int((sica_arr & sc_arr).sum())\nboth_wrong = int((~sica_arr & ~sc_arr).sum())\nprint(f'both_correct: {both_right}')\nprint(f'both_wrong: {both_wrong}')\nprint(f'sica_only_correct: {sica_wins}')\nprint(f'sc_only_correct: {sc_wins}')\nprint(f'net_flip: {sica_wins - sc_wins}')\n\nprint()\nprint('=== LOW-MARGIN SC SUBSET ===')\nfor threshold in [0.2, 0.34, 0.5]:\n    low_idx = [i for i in range(n) if sc_margin[i] <= threshold]\n    if low_idx:\n        sub_sica = sica_arr[low_idx].mean()\n        sub_sc = sc_arr[low_idx].mean()\n        sub_delta = sub_sica - sub_sc\n        print(f'margin<={threshold:.2f}: n={len(low_idx)}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*sub_delta:+.1f}pp')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "c23e9b6d-d9ed-48ff-80ae-60991b0e83ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCTXZf2Z8uJDJjKZbDQR2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2011,
+      "cache_read_input_tokens": 31234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2011
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T09:15:37.113Z_
+
+<details><summary>↩ Tool result · `toolu_01KLzP8HSS5qJpoo42CwVNPW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 52, in &lt;module>\\nIndexError: list index out of range\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "0fa570fd-a948-4d94-82c9-4771265834c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 52, in &lt;module>\\\\nIndexError: list index out of range\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 52, in &lt;module>\\nIndexError: list index out of range\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Edge case in sc_vote_distribution — likely some entries have empty distribution. Let me fix that.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "f35cb298-5506-4a5a-97c6-3d6d1ef3208e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YxGxTgQqcrfetcXYXzEhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 33245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Q9x1GKhoypYSbRwtszEiVP`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "account": "root",
+  "command": "/root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\n\nraw = json.load(open('/root/symb_invariant_consensus/results/exp019_strategyqa_200/exp019_results.json'))\nd = raw['results']\nn = len(d)\n\nsica_arr = np.array([x['sica_correct'] for x in d], dtype=bool)\nsc_arr = np.array([x['sc_correct'] for x in d], dtype=bool)\nsica_acc = sica_arr.mean()\nsc_acc = sc_arr.mean()\ndelta = sica_acc - sc_acc\n\nsica_wins = int(((sica_arr) & (~sc_arr)).sum())\nsc_wins = int(((sc_arr) & (~sica_arr)).sum())\ntotal_disc = sica_wins + sc_wins\n\nfrom scipy.stats import binomtest\nif total_disc > 0:\n    p_mcnemar = binomtest(sica_wins, total_disc, 0.5).pvalue\nelse:\n    p_mcnemar = 1.0\n\nnp.random.seed(42)\nboot_deltas = []\nfor _ in range(10000):\n    idx = np.random.choice(n, n, replace=True)\n    boot_deltas.append(sica_arr[idx].mean() - sc_arr[idx].mean())\nboot_deltas = np.array(boot_deltas)\nci = np.percentile(boot_deltas, [2.5, 97.5])\nboot_p = np.mean(boot_deltas <= 0)\n\nmulti = sum(1 for x in d if x['sica_answer'] != x['sc_answer'])\nmulti_rate = multi / n\n\ntotal_time = sum(x['wall_time_s'] for x in d)\navg_time = total_time / n\n\ntotal_constraints = [x['constraints_stats']['total_extracted'] for x in d]\nunique_constraints = [x['constraints_stats']['unique_after_dedup'] for x in d]\ntraces_with = [x['constraints_stats']['traces_with_constraints'] for x in d]\n\nsatisfied = [x['maxsat_stats']['satisfied'] for x in d]\nexcluded_arr = [x['maxsat_stats']['excluded'] for x in d]\nsolve_times = [x['maxsat_stats']['solve_time_ms'] for x in d]\n\nsc_margin = []\nfor x in d:\n    votes = x.get('sc_vote_distribution', {})\n    vals = sorted(votes.values(), reverse=True) if votes else [0]\n    top = vals[0] if vals else 0\n    second = vals[1] if len(vals) > 1 else 0\n    total_v = sum(vals) if vals else 1\n    sc_margin.append((top - second) / max(total_v, 1))\n\nprint('=== exp-019 COMPLETE STATS ===')\nprint(f'n: {n}')\nprint(f'sica_accuracy: {100*sica_acc:.2f}% ({int(sica_arr.sum())}/{n})')\nprint(f'sc_accuracy:   {100*sc_acc:.2f}% ({int(sc_arr.sum())}/{n})')\nprint(f'delta_pp: {100*delta:+.2f}pp')\nprint()\nprint(f'mcnemar_p: {p_mcnemar:.6f}')\nprint(f'  discordant: {sica_wins} SICA-wins, {sc_wins} SC-wins, {total_disc} total')\nprint(f'bootstrap_ci_95: [{100*ci[0]:.2f}, {100*ci[1]:.2f}]')\nprint(f'bootstrap_p(delta<=0): {boot_p:.4f}')\nprint()\nprint(f'multi_candidate_rate: {100*multi_rate:.1f}% ({multi}/{n})')\nprint()\nprint(f'wall_time: total={total_time:.1f}s ({total_time/60:.1f}min), avg={avg_time:.2f}s/problem')\nprint()\nprint(f'constraints_extracted: mean={np.mean(total_constraints):.1f}, median={np.median(total_constraints):.0f}')\nprint(f'constraints_unique:    mean={np.mean(unique_constraints):.1f}, median={np.median(unique_constraints):.0f}')\nprint(f'traces_with_constraints: mean={np.mean(traces_with):.1f}/{12}')\nprint()\nprint(f'maxsat_satisfied: mean={np.mean(satisfied):.1f}, median={np.median(satisfied):.0f}')\nprint(f'maxsat_excluded:  mean={np.mean(excluded_arr):.1f}, median={np.median(excluded_arr):.0f}')\nprint(f'maxsat_solve_ms:  mean={np.mean(solve_times):.2f}, max={np.max(solve_times):.2f}')\nprint()\nprint(f'sc_vote_margin: mean={np.mean(sc_margin):.3f}, median={np.median(sc_margin):.3f}')\n\nprint()\nprint('=== FLIP ANALYSIS ===')\nboth_right = int((sica_arr & sc_arr).sum())\nboth_wrong = int((~sica_arr & ~sc_arr).sum())\nprint(f'both_correct: {both_right}')\nprint(f'both_wrong: {both_wrong}')\nprint(f'sica_only_correct: {sica_wins}')\nprint(f'sc_only_correct: {sc_wins}')\nprint(f'net_flip: {sica_wins - sc_wins}')\n\nprint()\nprint('=== LOW-MARGIN SC SUBSET ===')\nsc_margin_arr = np.array(sc_margin)\nfor threshold in [0.2, 0.34, 0.5]:\n    low_idx = np.where(sc_margin_arr <= threshold)[0]\n    if len(low_idx) > 0:\n        sub_sica = sica_arr[low_idx].mean()\n        sub_sc = sc_arr[low_idx].mean()\n        sub_delta = sub_sica - sub_sc\n        print(f'margin<={threshold:.2f}: n={len(low_idx)}, SICA={100*sub_sica:.1f}%, SC={100*sub_sc:.1f}%, delta={100*sub_delta:+.1f}pp')\n    else:\n        print(f'margin<={threshold:.2f}: n=0')\n\n# Unanimous SC subset\nprint()\nprint('=== UNANIMOUS vs NON-UNANIMOUS SC ===')\nunanimous_idx = np.where(sc_margin_arr >= 1.0)[0]\nnon_unan_idx = np.where(sc_margin_arr < 1.0)[0]\nif len(unanimous_idx) > 0:\n    print(f'unanimous (margin=1.0): n={len(unanimous_idx)}, SICA={100*sica_arr[unanimous_idx].mean():.1f}%, SC={100*sc_arr[unanimous_idx].mean():.1f}%, delta={100*(sica_arr[unanimous_idx].mean()-sc_arr[unanimous_idx].mean()):+.1f}pp')\nif len(non_unan_idx) > 0:\n    print(f'non-unanimous (margin<1): n={len(non_unan_idx)}, SICA={100*sica_arr[non_unan_idx].mean():.1f}%, SC={100*sc_arr[non_unan_idx].mean():.1f}%, delta={100*(sica_arr[non_unan_idx].mean()-sc_arr[non_unan_idx].mean()):+.1f}pp')\n\"\n",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "7335dff0-5c3e-4d33-b33e-2e2867ab006a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YxGxTgQqcrfetcXYXzEhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 33245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T09:16:02.255Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9x1GKhoypYSbRwtszEiVP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== exp-019 COMPLETE STATS ===\\nn: 200\\nsica_accuracy: 74.00% (148/200)\\nsc_accuracy:   72.00% (144/200)\\ndelta_pp: +2.00pp\\n\\nmcnemar_p: 0.423950\\n  discordant: 9 SICA-wins, 5 SC-wins, 14 total\\nbootstrap_ci_95: [-1.50, 5.50]\\nbootstrap_p(delta<=0): 0.1724\\n\\nmulti_candidate_rate: 7.0% (14/200)\\n\\nwall_time: total=3022.4s (50.4min), avg=15.11s/problem\\n\\nconstraints_extracted: mean=19.9, median=15\\nconstraints_unique:    mean=6.2, median=3\\ntraces_with_constraints: mean=9.6/12\\n\\nmaxsat_satisfied: mean=5.4, median=3\\nmaxsat_excluded:  mean=0.9, median=1\\nmaxsat_solve_ms:  mean=1.58, max=37.50\\n\\nsc_vote_margin: mean=0.696, median=1.000\\n\\n=== FLIP ANALYSIS ===\\nboth_correct: 139\\nboth_wrong: 47\\nsica_only_correct: 9\\nsc_only_correct: 5\\nnet_flip: 4\\n\\n=== LOW-MARGIN SC SUBSET ===\\nmargin<=0.20: n=33, SICA=45.5%, SC=33.3%, delta=+12.1pp\\nmargin<=0.34: n=51, SICA=43.1%, SC=35.3%, delta=+7.8pp\\nmargin<=0.50: n=78, SICA=56.4%, SC=51.3%, delta=+5.1pp\\n\\n=== UNANIMOUS vs NON-UNANIMOUS SC ===\\nunanimous (margin=1.0): n=109, SICA=86.2%, SC=86.2%, delta=+0.0pp\\nnon-unanimous (margin<1): n=91, SICA=59.3%, SC=54.9%, delta=+4.4pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "5b1f2b03-2da5-48b3-8f6c-ef6ab3fbb6e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== exp-019 COMPLETE STATS ===\\\\nn: 200\\\\nsica_accuracy: 74.00% (148/200)\\\\nsc_accuracy:   72.00% (144/200)\\\\ndelta_pp: +2.00pp\\\\n\\\\nmcnemar_p: 0.423950\\\\n  discordant: 9 SICA-wins, 5 SC-wins, 14 total\\\\nbootstrap_ci_95: [-1.50, 5.50]\\\\nbootstrap_p(delta<=0): 0.1724\\\\n\\\\nmulti_candidate_rate: 7.0% (14/200)\\\\n\\\\nwall_time: total=3022.4s (50.4min), avg=15.11s/problem\\\\n\\\\nconstraints_extracted: mean=19.9, median=15\\\\nconstraints_unique:    mean=6.2, median=3\\\\ntraces_with_constraints: mean=9.6/12\\\\n\\\\nmaxsat_satisfied: mean=5.4, median=3\\\\nmaxsat_excluded:  mean=0.9, median=1\\\\nmaxsat_solve_ms:  mean=1.58, max=37.50\\\\n\\\\nsc_vote_margin: mean=0.696, median=1.000\\\\n\\\\n=== FLIP ANALYSIS ===\\\\nboth_correct: 139\\\\nboth_wrong: 47\\\\nsica_only_correct: 9\\\\nsc_only_correct: 5\\\\nnet_flip: 4\\\\n\\\\n=== LOW-MARGIN SC SUBSET ===\\\\nmargin<=0.20: n=33, SICA=45.5%, SC=33.3%, delta=+12.1pp\\\\nmargin<=0.34: n=51, SICA=43.1%, SC=35.3%, delta=+7.8pp\\\\nmargin<=0.50: n=78, SICA=56.4%, SC=51.3%, delta=+5.1pp\\\\n\\\\n=== UNANIMOUS vs NON-UNANIMOUS SC ===\\\\nunanimous (margin=1.0): n=109, SICA=86.2%, SC=86.2%, delta=+0.0pp\\\\nnon-unanimous (margin<1): n=91, SICA=59.3%, SC=54.9%, delta=+4.4pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== exp-019 COMPLETE STATS ===\\nn: 200\\nsica_accuracy: 74.00% (148/200)\\nsc_accuracy:   72.00% (144/200)\\ndelta_pp: +2.00pp\\n\\nmcnemar_p: 0.423950\\n  discordant: 9 SICA-wins, 5 SC-wins, 14 total\\nbootstrap_ci_95: [-1.50, 5.50]\\nbootstrap_p(delta<=0): 0.1724\\n\\nmulti_candidate_rate: 7.0% (14/200)\\n\\nwall_time: total=3022.4s (50.4min), avg=15.11s/problem\\n\\nconstraints_extracted: mean=19.9, median=15\\nconstraints_unique:    mean=6.2, median=3\\ntraces_with_constraints: mean=9.6/12\\n\\nmaxsat_satisfied: mean=5.4, median=3\\nmaxsat_excluded:  mean=0.9, median=1\\nmaxsat_solve_ms:  mean=1.58, max=37.50\\n\\nsc_vote_margin: mean=0.696, median=1.000\\n\\n=== FLIP ANALYSIS ===\\nboth_correct: 139\\nboth_wrong: 47\\nsica_only_correct: 9\\nsc_only_correct: 5\\nnet_flip: 4\\n\\n=== LOW-MARGIN SC SUBSET ===\\nmargin<=0.20: n=33, SICA=45.5%, SC=33.3%, delta=+12.1pp\\nmargin<=0.34: n=51, SICA=43.1%, SC=35.3%, delta=+7.8pp\\nmargin<=0.50: n=78, SICA=56.4%, SC=51.3%, delta=+5.1pp\\n\\n=== UNANIMOUS vs NON-UNANIMOUS SC ===\\nunanimous (margin=1.0): n=109, SICA=86.2%, SC=86.2%, delta=+0.0pp\\nnon-unanimous (margin<1): n=91, SICA=59.3%, SC=54.9%, delta=+4.4pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+## exp-019 完整统计结果
+
+### 核心指标
+
+| 指标 | 值 |
+|---|---|
+| n | 200 |
+| SICA accuracy | **74.00%** (148/200) |
+| SC accuracy | 72.00% (144/200) |
+| Delta | **+2.00pp** |
+
+### 统计显著性
+
+| 检验 | 结果 |
+|---|---|
+| McNemar p-value | **0.4240** (不显著) |
+| Discordant pairs | 14 total: 9 SICA-wins, 5 SC-wins |
+| Bootstrap 95% CI | **[-1.50, +5.50]** (包含 0) |
+| Bootstrap P(delta≤0) | 0.1724 |
+
+### Pipeline 统计
+
+| 指标 | 值 |
+|---|---|
+| Multi-candidate rate | 7.0% (14/200) |
+| Constraints extracted (mean) | 19.9, unique after dedup: 6.2 |
+| Traces with constraints | 9.6/12 |
+| MaxSAT satisfied (mean) | 5.4, excluded: 0.9 |
+| MaxSAT solve time | mean 1.58ms, max 37.50ms |
+| Wall time | 50.4 min total, 15.1s/problem |
+
+### Flip 分析
+
+| 类别 | 数量 |
+|---|---|
+| Both correct | 139 |
+| Both wrong | 47 |
+| SICA only correct | 9 |
+| SC only correct | 5 |
+| Net flip | +4 |
+
+### 低置信度子集（SICA 优势集中区域）
+
+| SC margin | n | SICA | SC | Delta |
+|---|---|---|---|---|
+| ≤ 0.20 | 33 | 45.5% | 33.3% | **+12.1pp** |
+| ≤ 0.34 | 51 | 43.1% | 35.3% | **+7.8pp** |
+| ≤ 0.50 | 78 | 56.4% | 51.3% | **+5.1pp** |
+| Unanimous (=1.0) | 109 | 86.2% | 86.2% | 0.0pp |
+| Non-unanimous (<1) | 91 | 59.3% | 54.9% | **+4.4pp** |
+
+### 结论
+
+**结果未达统计显著**。McNemar p=0.424 远高于 0.05，Bootstrap CI [-1.50, +5.50] 包含 0。核心原因：discordant pairs 仅 14 对（7%），统计功效不足。
+
+但子集分析显示 SICA 的优势集中在 SC 低置信度区域：当 SC vote margin ≤ 0.20 时，SICA 领先 +12.1pp (33 题)。Unanimous 子集上两者完全一致（86.2%），说明 SICA 只在 SC 不确定时介入并改善结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "uuid": "8d9d8080-39b6-49d5-b651-754bc607d65c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9Tuke6HqGCaPUUsDsGbLY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2765,
+      "cache_read_input_tokens": 35092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+## exp-019 完整统计结果
+
+### 核心指标
+
+| 指标 | 值 |
+|---|---|
+| n | 200 |
+| SICA accuracy | **74.00%** (148/200) |
+| SC accuracy | 72.00% (144/200) |
+| Delta | **+2.00pp** |
+
+### 统计显著性
+
+| 检验 | 结果 |
+|---|---|
+| McNemar p-value | **0.4240** (不显著) |
+| Discordant pairs | 14 total: 9 SICA-wins, 5 SC-wins |
+| Bootstrap 95% CI | **[-1.50, +5.50]** (包含 0) |
+| Bootstrap P(delta≤0) | 0.1724 |
+
+### Pipeline 统计
+
+| 指标 | 值 |
+|---|---|
+| Multi-candidate rate | 7.0% (14/200) |
+| Constraints extracted (mean) | 19.9, unique after dedup: 6.2 |
+| Traces with constraints | 9.6/12 |
+| MaxSAT satisfied (mean) | 5.4, excluded: 0.9 |
+| MaxSAT solve time | mean 1.58ms, max 37.50ms |
+| Wall time | 50.4 min total, 15.1s/problem |
+
+### Flip 分析
+
+| 类别 | 数量 |
+|---|---|
+| Both correct | 139 |
+| Both wrong | 47 |
+| SICA only correct | 9 |
+| SC only correct | 5 |
+| Net flip | +4 |
+
+### 低置信度子集（SICA 优势集中区域）
+
+| SC margin | n | SICA | SC | Delta |
+|---|---|---|---|---|
+| ≤ 0.20 | 33 | 45.5% | 33.3% | **+12.1pp** |
+| ≤ 0.34 | 51 | 43.1% | 35.3% | **+7.8pp** |
+| ≤ 0.50 | 78 | 56.4% | 51.3% | **+5.1pp** |
+| Unanimous (=1.0) | 109 | 86.2% | 86.2% | 0.0pp |
+| Non-unanimous (<1) | 91 | 59.3% | 54.9% | **+4.4pp** |
+
+### 结论
+
+**结果未达统计显著**。McNemar p=0.424 远高于 0.05，Bootstrap CI [-1.50, +5.50] 包含 0。核心原因：discordant pairs 仅 14 对（7%），统计功效不足。
+
+但子集分析显示 SICA 的优势集中在 SC 低置信度区域：当 SC vote margin ≤ 0.20 时，SICA 领先 +12.1pp (33 题)。Unanimous 子集上两者完全一致（86.2%），说明 SICA 只在 SC 不确定时介入并改善结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 150767,
+  "duration_api_ms": 118244,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "ec041d4b-3b23-4c00-a005-0465554783e8",
+  "total_cost_usd": 0.5818430000000001,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 26016,
+    "cache_read_input_tokens": 304686,
+    "output_tokens": 10585,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26016,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 830,
+        "cache_read_input_tokens": 35092,
+        "cache_creation_input_tokens": 2765,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2765
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2105,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0022,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 10585,
+      "cacheReadInputTokens": 304686,
+      "cacheCreationInputTokens": 26016,
+      "webSearchRequests": 0,
+      "costUSD": 0.5796430000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "85fcb9fb-c1fb-4b6e-b474-0bb044692b62"
+}
+```
+
+</details>
+
+---

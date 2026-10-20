@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-585_Q19",
+    "problem": "Anne is round. Bob is red. Bob is smart. Erin is furry. Erin is red. Erin is rough. Erin is smart. Fiona is big. Fiona is furry. Fiona is smart. All smart things are furry. All furry things are red. All round things are rough. If Bob is white then Bob is furry. All red, rough things are big. All rough things are smart. If Fiona is furry then Fiona is red. If Bob is round and Bob is big then Bob is furry. If Fiona is red and Fiona is white then Fiona is smart.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nRed(Bob, True) ::: Bob is red.\nSmart(Bob, True) ::: Bob is smart.\nFurry(Erin, True) ::: Erin is furry.\nRed(Erin, True) ::: Erin is red.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, True) ::: Fiona is furry.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nSmart($x, True) >>> Furry($x, True) ::: All smart things are furry.\nFurry($x, True) >>> Red($x, True) ::: All furry things are red.\nRound($x, True) >>> Rough($x, True) ::: All round things are rough.\nWhite(Bob, True) >>> Furry(Bob, True) ::: If Bob is white then Bob is furry.\nRed($x, True) && Rough($x, True) >>> Big($x, True) ::: All red, rough things are big.\nRough($x, True) >>> Smart($x, True) ::: All rough things are smart.\nFurry(Fiona, True) >>> Red(Fiona, True) ::: If Fiona is furry then Fiona is red.\nRound(Bob, True) && Big(Bob, True) >>> Furry(Bob, True) ::: If Bob is round and Bob is big then Bob is furry.\nRed(Fiona, True) && White(Fiona, True) >>> Smart(Fiona, True) ::: If Fiona is red and Fiona is white then Fiona is smart.\n\nQuery:\nWhite(Bob, False) ::: Bob is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

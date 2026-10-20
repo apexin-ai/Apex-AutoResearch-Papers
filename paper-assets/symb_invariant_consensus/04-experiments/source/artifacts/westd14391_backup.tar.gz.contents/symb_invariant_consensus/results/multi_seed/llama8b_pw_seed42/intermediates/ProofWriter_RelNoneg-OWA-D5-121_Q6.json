@@ -1,0 +1,1083 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-121_Q6",
+    "problem": "The bald eagle needs the cow. The bald eagle needs the tiger. The bald eagle sees the cow. The cow is big. The cow needs the bald eagle. The cow needs the tiger. The mouse eats the cow. The mouse is blue. The mouse is cold. The mouse needs the bald eagle. The mouse sees the cow. The mouse sees the tiger. The tiger eats the cow. The tiger needs the bald eagle. The tiger needs the cow. The tiger needs the mouse. If someone needs the tiger then they are red. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow. If the cow needs the mouse and the mouse sees the cow then the mouse is big. If someone eats the mouse then they see the cow. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger. If someone is big then they see the bald eagle. If someone is big and they see the bald eagle then they need the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not need the mouse.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nSees(BaldEagle, Cow, True) ::: The bald eagle sees the cow.\nBig(Cow, True) ::: The cow is big.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nNeeds(Cow, Tiger, True) ::: The cow needs the tiger.\nEats(Mouse, Cow, True) ::: The mouse eats the cow.\nBlue(Mouse, True) ::: The mouse is blue.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, BaldEagle, True) ::: The mouse needs the bald eagle.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nEats(Tiger, Cow, True) ::: The tiger eats the cow.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Cow, True) ::: The tiger needs the cow.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\n\nRules:\nNeeds($x, Tiger, True) >>> Red($x, True) ::: If someone needs the tiger then they are red.\nNeeds(Mouse, BaldEagle, True) && Needs(BaldEagle, Cow, True) >>> Needs(Mouse, Cow, True) ::: If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\nNeeds(Cow, Mouse, True) && Sees(Mouse, Cow, True) >>> Big(Mouse, True) ::: If the cow needs the mouse and the mouse sees the cow then the mouse is big.\nEats($x, Mouse, True) >>> Sees($x, Cow, True) ::: If someone eats the mouse then they see the cow.\nSees($x, Mouse, True) && Sees($x, BaldEagle, True) >>> Needs(BaldEagle, Tiger, True) ::: If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\nBig($x, True) >>> Sees($x, BaldEagle, True) ::: If someone is big then they see the bald eagle.\nBig($x, True) && Sees($x, BaldEagle, True) >>> Needs($x, Mouse, True) ::: If someone is big and they see the bald eagle then they need the mouse.\n\nQuery:\nNeeds(Cow, Mouse, False) ::: The cow does not need the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 156.0,
+      "Unknown": 109.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a series of logical deductions based on the given statements. \n\n1. The cow is big. \n   From the statement: If someone is big then they see the bald eagle.\n   So, the cow sees the bald eagle.\n\n2. The cow sees the bald eagle.\n   From the statement: If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\n   So, the cow needs the tiger.\n\n3. The cow needs the tiger.\n   From the statement: If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\n   But the mouse needs the bald eagle. So we have to first determine if the bald eagle needs the cow.\n\n4. The mouse sees the cow.\n   From the statement: If someone eats the mouse then they see the cow.\n   But we don't know if someone eats the mouse yet. \n\n5. The mouse sees the bald eagle.\n   From the statement: If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\n   So, the bald eagle needs the tiger.\n\n6. The bald eagle needs the tiger.\n   From the statement: If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\n   We know the mouse needs the bald eagle. And the bald eagle needs the cow.\n   So, the mouse needs the cow.\n\n7. The mouse needs the cow.\n   From the statement: The cow needs the mouse.\n   So, the cow needs the mouse.\n\nTherefore, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger needs the mouse. (This statement is given in the problem)\n2. If someone needs the tiger then they are red. (This statement is given in the problem)\n3. This implies that the tiger is red (from statement 2), but we don't know the color of the tiger from the given information, so we can't determine the color of the tiger yet.\n\n4. The tiger eats the cow. (This statement is given in the problem)\n5. The cow sees the tiger. (This statement is given in the problem)\n6. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger. (This statement is given in the problem)\n7. We don't know if the cow sees the mouse or the bald eagle. However, since the cow sees the tiger (from statement 5), we can't determine if the cow sees the mouse or the bald eagle yet.\n\n8. The mouse sees the cow. (This statement is given in the problem)\n9. The mouse is cold. (This statement is given in the problem)\n10. The mouse eats the cow. (This statement is given in the problem)\n11. The mouse needs the bald eagle. (This statement is given in the problem)\n12. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow. (This statement is given in the problem)\n13. The bald eagle needs the cow. (This statement is given in the problem)\n14. The cow needs the bald eagle. (This statement is given in the problem)\n15. The cow needs the tiger. (This statement is given in the problem)\n16. The tiger needs the cow. (This statement is given in the problem)\n17. The tiger needs the mouse. (This statement is given in the problem, from statement 1)\n18. If the cow needs the mouse and the mouse sees the cow then the mouse is big. (This statement is given in the problem)\n19. We know that the mouse sees the cow (from statement 8).\n20. We also know that the mouse eats the cow (from statement 10), but we don't know if the cow needs the mouse yet.\n\nHowever, we can use the information from statements 8 and 20 to check if the cow needs the mouse. If the cow needs the mouse, then the cow would need the mouse because the mouse eats the cow (from statement 10). But we already know that the tiger eats the cow (from statement 4) and the tiger needs the mouse (from statement 17). So, the cow needs the tiger and the tiger needs the mouse.\n\nNow, we can conclude that the cow needs the mouse because the tiger eats the cow and the tiger needs the mouse.\n\nTherefore, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow needs the bald eagle. \n2. The mouse eats the cow. \n3. The tiger eats the cow. \n4. The mouse needs the bald eagle. \n5. The tiger needs the bald eagle. \n6. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow. \n7. The tiger needs the mouse. \n\nFrom the information given, we cannot directly conclude that the cow needs the mouse. However, we can infer some relationships between the animals.\n\nLet's analyze the relationships between the animals:\n\n- The mouse eats the cow, which implies that the mouse has some effect on the cow. However, this does not necessarily mean that the cow needs the mouse.\n- The tiger eats the cow, which implies that the tiger has some effect on the cow. However, this does not necessarily mean that the cow needs the tiger.\n- The tiger needs the mouse, which implies that the tiger has some need for the mouse. However, this does not necessarily mean that the cow needs the mouse.\n\nHowever, there is a condition that says \"If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\" This condition can be used to determine whether the cow needs the mouse.\n\nFrom the information given, we know that the mouse needs the bald eagle and the bald eagle needs the cow. Therefore, according to the condition, the mouse needs the cow.\n\nNow, let's analyze the relationships between the mouse and the cow:\n\n- The mouse eats the cow. \n- The mouse needs the cow.\n\nFrom the information given, we can conclude that the mouse needs the cow, and the mouse eats the cow. This implies that the cow is affected by the mouse, either positively or negatively.\n\nHowever, the statement \"The cow does not need the mouse\" is being evaluated. If the cow is being affected by the mouse in any way, either positively or negatively, then the cow needs the mouse.\n\nFrom the information given, we know that the mouse needs the cow and the mouse eats the cow. Therefore, we can conclude that the cow needs the mouse.\n\nSince the cow needs the mouse, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the mouse\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the information given:\n- The cow needs the bald eagle.\n- The mouse needs the bald eagle.\n- If the mouse needs the bald eagle and the bald eagle needs the cow, then the mouse needs the cow.\n- The cow needs the mouse.\n\nHowever, there is no direct information about whether the cow needs the mouse. But we can infer that the cow needs the mouse based on the information given.\n\nNow, let's analyze the rules:\n- If the cow needs the mouse and the mouse sees the cow, then the mouse is big. \n- If the mouse is big then they see the bald eagle.\n- If someone sees the bald eagle and they are big, then they need the mouse.\n\nFrom the information given:\n- The mouse sees the cow.\n- The mouse is blue.\n- The mouse is cold.\n- The mouse needs the bald eagle.\n\nThe only thing we know about the mouse is that it needs the bald eagle, but we don't know if the cow needs the mouse. However, we can infer that the mouse needs the cow based on the rule that if the mouse needs the bald eagle and the bald eagle needs the cow, then the mouse needs the cow.\n\nBut the cow needs the mouse, not the other way around. \n\nBased on the given information, we can't directly say that the cow needs the mouse, but we can conclude that the mouse needs the cow.\n\nHowever, there is no rule that directly states that if the mouse needs the cow then the cow needs the mouse. But if the mouse needs the cow, we can infer that the cow might need the mouse based on the fact that the mouse sees the cow and the mouse is big.\n\nHowever, we can't conclude that the cow needs the mouse based on the given information.\n\nBut we can conclude that the statement \"The cow does not need the mouse\" is false.\n\nThe statement \"The cow does not need the mouse\" can be written as: \n\u223c(C needs M)\n\nC needs M is false if and only if the cow needs the mouse is false.\nThe cow needs the mouse is true if and only if the mouse needs the cow and the mouse sees the cow.\nThe mouse needs the cow is true if and only if the mouse needs the bald eagle and the bald eagle needs the cow.\n\nThe mouse needs the bald eagle and the bald eagle needs the cow is true.\nThe mouse needs the cow is true.\nThe mouse sees the cow is true.\n\nC needs M is true.\n\n\u223c(C needs M) is false.\n\nTherefore, \nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller parts and analyze the given information step by step.\n\n1. The bald eagle sees the cow. \n   Given information: The cow is big.\n\nFrom this, we cannot directly conclude anything, so we'll move on to the next piece of information.\n\n2. The cow is big.\n   Given information: The cow needs the bald eagle.\n\nHowever, this is a circular statement, as we already know that the cow is big, and being big does not necessarily imply that the cow needs the bald eagle. We'll continue.\n\n3. The cow needs the bald eagle.\n   Given information: The bald eagle needs the tiger.\n\nWe still cannot conclude anything from this, so we'll move on.\n\n4. The bald eagle needs the tiger.\n   Given information: The tiger needs the cow.\n\nNow we have a connection between the bald eagle, the tiger, and the cow. We still cannot conclude anything about the relationship between the cow and the mouse.\n\n5. The tiger needs the cow.\n   Given information: The tiger needs the mouse.\n\nThis statement implies that the tiger needs the mouse, but it doesn't provide any information about the cow needing the mouse.\n\n6. If someone needs the tiger then they are red.\n   Given information: The tiger needs the mouse.\n\nThis statement only provides information about color and doesn't help us determine the relationship between the cow and the mouse.\n\n7. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\n   Given information: The mouse needs the bald eagle and the bald eagle needs the cow.\n\nThis statement directly implies that the mouse needs the cow.\n\n8. If the cow needs the mouse and the mouse sees the cow then the mouse is big.\n   Given information: The cow needs the mouse and the mouse sees the cow.\n\nHowever, we already know that the cow is big, and seeing the cow does not necessarily imply that the mouse is big. This statement is not directly related to the relationship between the cow and the mouse.\n\n9. If someone eats the mouse then they see the cow.\n   Given information: The tiger eats the mouse.\n\nThis statement only provides information about the tiger seeing the cow, not about the relationship between the cow and the mouse.\n\n10. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\n    Given information: The mouse sees the cow and the bald eagle sees the cow.\n\nThis statement only provides information about the bald eagle needing the tiger, which we already know.\n\n11. If someone is big then they see the bald eagle.\n    Given information: The cow is big.\n\nThis statement implies that the cow sees the bald eagle, but we already know that.\n\n12. If someone is big and they see the bald eagle then they need the mouse.\n    Given information: The cow is big and the cow sees the bald eagle.\n\nThis statement implies that the cow needs the mouse, but we still need to consider the information about the cow needing the mouse.\n\nNow, let's re-examine the original information:\n- The cow needs the bald eagle.\n- The bald eagle needs the tiger.\n- The tiger needs the mouse.\n- The mouse sees the cow.\n- The tiger eats the mouse.\n\nFrom these statements, we can conclude that the mouse is eaten by the tiger, which means the tiger sees the cow (from statement 9).\n\nWe also know that the cow needs the mouse, and the mouse sees the cow. However, the mouse does not need the cow (from statement 7), but the mouse sees the cow, and the cow is big.\n\nHowever, the most critical piece of information is the last one:\n- If the cow needs the mouse and the mouse sees the cow then the mouse is big.\n\nThis statement implies that the mouse is not necessarily big, but we can conclude that the cow needs the mouse.\n\nTherefore, based on the given information, we can conclude that the cow does need the mouse.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the information given, we can deduce the following:\n\n1. The mouse sees the cow.\n2. The mouse needs the bald eagle.\n3. The bald eagle needs the cow.\n4. The mouse eats the cow. (However, this statement contradicts the fact that the mouse sees the cow, as the mouse is eating the cow. This information will be ignored for now, as it might be irrelevant to the statement being analyzed.)\n\nHowever, the crucial point is that the cow needs the mouse. This is stated in the information: \"The cow needs the mouse.\"\n\nConsidering the information given, we cannot conclude that the cow does not need the mouse. In fact, we have a statement that explicitly states the cow needs the mouse.\n\nTherefore, based on the given information, we cannot determine that the statement \"The cow does not need the mouse\" is true or false, as there is contradictory information. The correct answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle needs the cow. \n2. The cow is big.\n3. The cow needs the bald eagle.\n4. The cow needs the tiger.\n5. The mouse eats the cow.\n6. The mouse is blue.\n7. The mouse is cold.\n8. The mouse needs the bald eagle.\n9. The mouse sees the cow.\n10. The mouse sees the tiger.\n11. The tiger eats the cow.\n12. The tiger needs the bald eagle.\n13. The tiger needs the cow.\n14. The tiger needs the mouse.\n\nNow, let's analyze the given rules:\n\n1. If someone needs the tiger then they are red. \nWe don't know if the cow needs the tiger, so we cannot determine if the cow is red or not.\n\n2. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\nFrom statement 1, the bald eagle needs the cow. From statement 8, the mouse needs the bald eagle. So, the mouse needs the cow.\n\n3. If the cow needs the mouse and the mouse sees the cow then the mouse is big.\nFrom statement 5, the mouse eats the cow, which means the cow needs the mouse. From statement 9, the mouse sees the cow. Therefore, the mouse is big.\n\n4. If someone eats the mouse then they see the cow.\nFrom statement 5, the mouse eats the cow. From statement 9, the mouse sees the cow, and from statement 11, the tiger eats the cow. Therefore, the tiger sees the cow.\n\n5. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\nFrom statement 9, the mouse sees the cow, and from statement 1, the bald eagle sees the cow. So, the bald eagle needs the tiger.\n\n6. If someone is big then they see the bald eagle.\nFrom statement 2, the cow is big. Therefore, the cow sees the bald eagle.\n\n7. If someone is big and they see the bald eagle then they need the mouse.\nFrom statement 2, the cow is big. From statement 6, the cow sees the bald eagle. Therefore, the cow needs the mouse.\n\nNow, we have found that the cow needs the mouse (statement 7), which contradicts the given statement \"The cow does not need the mouse.\"\n\nTherefore, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle needs the cow.\n2. The bald eagle sees the cow.\n3. The cow is big.\n4. The cow needs the bald eagle.\n5. The cow needs the tiger.\n6. The mouse eats the cow.\n7. The mouse is blue.\n8. The mouse is cold.\n9. The mouse needs the bald eagle.\n10. The mouse sees the cow.\n11. The mouse sees the tiger.\n12. The tiger eats the cow.\n13. The tiger needs the bald eagle.\n14. The tiger needs the cow.\n15. The tiger needs the mouse.\n\nFrom statements 6 and 12, we know that either the mouse or the tiger eats the cow. However, statement 10 also implies that the mouse sees the cow, but statement 8 says the mouse is cold. From the given statements we cannot determine whether the cow sees the mouse. However, we can infer that the mouse sees the cow and the cow is big from statements 3 and 10.\n\nWe need to determine whether the cow needs the mouse. Given the following statement:\n\"If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\"\nThis statement is applicable in this case because the bald eagle needs the cow (statement 1) and the mouse needs the bald eagle (statement 9). Therefore, the mouse needs the cow.\n\nHowever, we are given another statement:\n\"If the cow needs the mouse and the mouse sees the cow then the mouse is big.\"\nFrom statement 3, we know that the cow is big. But we cannot determine whether the cow needs the mouse from the given statements.\n\nStatement 16 says: \"If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\" We can use this statement to conclude that the mouse needs the cow. However, we cannot determine whether the cow needs the mouse using the given statements.\n\nNow let's analyze the statement: \"The cow needs the mouse.\"\nFrom statement 4, we know that the cow needs the bald eagle. However, we have already concluded that the mouse needs the cow, but we cannot determine whether the cow needs the mouse.\n\nSince we cannot determine whether the cow needs the mouse from the given statements, we conclude that the statement is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger eats the cow (Given)\n2. The tiger needs the cow (Given)\n3. The tiger needs the mouse (Given)\n4. If someone eats the mouse then they see the cow (Given)\n   - This implies the tiger sees the cow.\n5. The tiger sees the cow (From 4)\n6. The mouse sees the cow (Given)\n7. The cow is big (Given)\n8. If someone is big then they see the bald eagle (Given)\n   - This implies the cow sees the bald eagle.\n9. The bald eagle sees the cow (Given)\n10. The bald eagle needs the tiger (Given)\n11. The bald eagle needs the cow (Given)\n12. The mouse needs the bald eagle (Given)\n13. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow (Given)\n   - This implies the mouse needs the cow.\n14. The mouse eats the cow (Given)\n15. The cow needs the mouse (Given)\n16. If the cow needs the mouse and the mouse sees the cow then the mouse is big (Given)\n   - This implies the mouse is big.\n\nNow, to determine whether the cow needs the mouse, we need to analyze the given information that is related to the cow and the mouse. From steps 15 and 16, we know that the cow needs the mouse and the mouse is big because it sees the cow.\n\nThe statement \"The cow does not need the mouse\" is directly contradicted by the information in step 15, which states that the cow needs the mouse.\n\nTherefore, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger eats the cow. This statement is given.\n2. If someone eats the mouse then they see the cow. We don't know if the tiger eats the mouse, but we do know that the tiger eats the cow. Therefore, this statement is not directly relevant to determining if the cow needs the mouse.\n3. The mouse sees the tiger and the tiger eats the cow. This statement is given.\n4. The mouse needs the tiger. This statement is given.\n5. The tiger needs the bald eagle. This statement is given.\n6. The bald eagle needs the cow. This statement is given.\n7. The cow is big. This statement is given.\n8. If someone is big then they see the bald eagle. The cow is big, so the cow sees the bald eagle.\n9. If someone is big and they see the bald eagle then they need the mouse. The cow is big, the cow sees the bald eagle, and therefore the cow needs the mouse.\n\nFrom the above analysis, we can see that the cow needs the mouse.\n\nSince the statement is that the cow does not need the mouse, but our analysis shows that the cow does need the mouse, the statement is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n\n1. The cow is big. \n2. If the cow is big then it sees the bald eagle. \n   - Since the cow is big, we can conclude that the cow sees the bald eagle.\n\n3. The bald eagle needs the tiger. \n4. The bald eagle sees the cow. \n\n5. The mouse sees the cow. \n6. The mouse is cold. \n\n7. The mouse needs the bald eagle. \n\n8. The mouse eats the cow. \n\nFrom these points, we can see that the mouse eats the cow, and the mouse needs the bald eagle. However, the information does not directly state that the cow needs the mouse. \n\nHowever, we also know that the tiger needs the mouse. \nSince the tiger needs the mouse and the tiger sees the cow, we can deduce that the tiger eats the cow.\n\nNow, looking at the information that the cow is big and sees the bald eagle, we can conclude that the cow needs the mouse. This is because if someone is big and they see the bald eagle, then they need the mouse.\n\nTherefore, the statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow needs the bald eagle.\n2. The bald eagle sees the cow. However, this doesn't provide any information about the relationship between the cow and the bald eagle, so we move on.\n3. The cow is big. However, being big doesn't provide any information about the cow's needs, so we move on.\n4. The cow needs the bald eagle. This statement is already given in point 1, so we move on.\n5. The cow needs the tiger. This statement is new and is something we will consider later.\n6. The mouse eats the cow. This statement implies that the mouse and the cow have a relationship.\n7. The mouse is blue. This doesn't provide any information about the relationship between the mouse and the cow or the mouse and the other animals, so we move on.\n8. The mouse is cold. This doesn't provide any information about the relationship between the mouse and the cow or the mouse and the other animals, so we move on.\n9. The mouse needs the bald eagle. This statement is new and is something we will consider later.\n10. The mouse sees the cow. This statement implies that the mouse and the cow have a relationship.\n11. The mouse sees the tiger. This statement implies that the mouse and the tiger have a relationship.\n12. The tiger eats the cow. This statement implies that the tiger and the cow have a relationship.\n13. The tiger needs the bald eagle. This statement is new and is something we will consider later.\n14. The tiger needs the cow. This statement is new and is something we will consider later.\n15. The tiger needs the mouse. This statement is new and is something we will consider later.\n16. If someone needs the tiger then they are red. This doesn't provide any information about the relationship between the tiger and the cow or the mouse, so we move on.\n17. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow. This statement implies that the mouse might need the cow if the bald eagle needs the cow and the mouse needs the bald eagle.\n18. If the cow needs the mouse and the mouse sees the cow then the mouse is big. However, we know that the mouse is blue from point 7, and being big doesn't mean the mouse is blue, so we can't conclude that the mouse is big if the cow needs the mouse and the mouse sees the cow.\n19. If someone eats the mouse then they see the cow. This statement implies that the cow and the mouse have a relationship through the tiger (since the tiger eats the mouse).\n20. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger. This statement implies that the bald eagle and the tiger have a relationship through the mouse.\n21. If someone is big then they see the bald eagle. However, we know that the cow is big (point 3), but the cow doesn't see the bald eagle. This statement doesn't provide any useful information.\n22. If someone is big and they see the bald eagle then they need the mouse. However, we know that the cow is big (point 3) and the cow sees the bald eagle (point 5). This statement implies that the cow needs the mouse.\n\nNow, we can conclude that the cow needs the mouse.\n\nThe statement \"The cow does not need the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & sees(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_cow_mouse, sees_cow_bald_eagle), needs_cow_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & needs(bald_eagle, cow) -> needs(mouse, cow)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, mouse)",
+          "z3_formula": "Not(needs_cow_mouse)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_tiger_mouse, red_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, tiger)",
+          "z3_formula": "sees_cow_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & sees(X, bald_eagle) -> needs(bald_eagle, tiger)",
+          "z3_formula": "Implies(And(sees_cow_mouse, sees_cow_bald_eagle), needs_bald_eagle_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, mouse) | sees(cow, bald_eagle)",
+          "z3_formula": "Or(sees_cow_mouse, sees_cow_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & needs(bald_eagle, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & sees(mouse, X) -> big(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, sees_mouse_cow), big_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & needs(bald_eagle, cow) -> needs(mouse, cow)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cow_needs_bald_eagle",
+          "z3_formula": "cow_needs_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bald_eagle_needs_tiger",
+          "z3_formula": "bald_eagle_needs_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_needs_mouse",
+          "z3_formula": "tiger_needs_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_sees_cow",
+          "z3_formula": "mouse_sees_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_eats_mouse",
+          "z3_formula": "tiger_eats_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Z)",
+          "z3_formula": "Implies(tiger_eats_mouse, sees_tiger_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, Z) -> big(X)",
+          "z3_formula": "Implies(And(cow_needs_mouse, mouse_sees_cow), big_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, Z)",
+          "z3_formula": "Implies(cow_needs_bald_eagle, bald_eagle_needs_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, Z)",
+          "z3_formula": "Implies(bald_eagle_needs_tiger, tiger_needs_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(cow_needs_mouse, mouse_sees_cow), cow_needs_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cow_needs_mouse",
+          "z3_formula": "cow_needs_mouse == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_cow_tiger, red_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & needs(bald_eagle, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(X, Y) -> big(X)",
+          "z3_formula": "Implies(And(needs_cow_mouse, sees_mouse_cow), big_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_tiger_cow, sees_tiger_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & sees(X, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(sees_cow_bald_eagle, sees_cow_bald_eagle), needs_cow_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, bald_eagle) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(big_cow, sees_cow_bald_eagle), needs_cow_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, mouse)",
+          "z3_formula": "Not(needs_cow_mouse) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(X, Y) -> big(Y)",
+          "z3_formula": "Implies(And(needs_cow_mouse, sees_mouse_cow), big_mouse)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_tiger_mouse, sees_tiger_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, X) -> big(Y)",
+          "z3_formula": "Implies(And(needs_cow_mouse, sees_mouse_cow), big_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_tiger_mouse, sees_tiger_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger) & eats(tiger, cow)",
+          "z3_formula": "And(sees_mouse_tiger, eats_tiger_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, tiger)",
+          "z3_formula": "needs_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, bald_eagle) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(big_cow, sees_cow_bald_eagle), needs_cow_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, bald_eagle) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(big_cow, sees_cow_bald_eagle), needs_cow_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_tiger_mouse, red_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & needs(bald_eagle, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, needs_bald_eagle_cow), needs_mouse_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & sees(X, cow) -> big(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, sees_mouse_cow), big_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_tiger_mouse, sees_tiger_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & sees(X, bald_eagle) -> needs(bald_eagle, tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, sees_mouse_bald_eagle), needs_bald_eagle_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cow, sees_cow_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, bald_eagle) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(big_cow, sees_cow_bald_eagle), needs_cow_mouse)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 23
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 159,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 1,
+      "total_weight": 157,
+      "solve_time_ms": 1.2148311361670494
+    },
+    "timing": {
+      "trace_gen_s": 9.907,
+      "extraction_s": 38.859,
+      "dedup_s": 1.746,
+      "maxsat_s": 0.004,
+      "total_s": 50.517
+    }
+  }
+}

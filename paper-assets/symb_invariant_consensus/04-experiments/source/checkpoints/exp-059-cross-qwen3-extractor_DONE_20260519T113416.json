@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-059-cross-qwen3-extractor",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:45:04.278Z",
+    "updated_at": "2026-05-19T11:34:15.561Z",
+    "hypothesis": "Qwen3-14B cross-model extraction should produce higher quality FOL constraints than Mistral-7B self-extraction (breaking confirmation bias), leading to higher SICA discriminative rate and accuracy delta over SC baseline.",
+    "parent": "exp-033",
+    "spec": {
+      "command": "python scripts/cross_model_extract.py --traces-dir results/exp033_mistral_7b_folio204/intermediates --output results/exp059_cross_qwen3_extractor/exp059_results.json --qwen3-nothink --temperature 0.3",
+      "server": "westd-25068",
+      "data_path": "/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates",
+      "data_count": 204,
+      "model_name": "Qwen3-14B (extractor) + Mistral-7B (trace generator)",
+      "seed": "n/a",
+      "checkpoint_source": "Qwen/Qwen3-14B from /root/autodl-tmp/models/Qwen3-14B",
+      "eval_data": "FOLIO-204 validation set (Mistral-7B K=12 traces from exp-033)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 204,
+      "cross_sica_accuracy": 0.6029,
+      "orig_sica_accuracy": 0.5931,
+      "sc_accuracy": 0.5588,
+      "delta_cross_vs_sc_pp": 4.41,
+      "delta_cross_vs_orig_pp": 0.98
+    },
+    "checkpoint_path": "results/exp059_cross_qwen3_extractor/exp059_results.json",
+    "log_path": "results/exp059_cross_qwen3_extractor/",
+    "completed_at": "2026-05-19T11:18:35.259Z"
+  },
+  "timestamp": "2026-05-19T11:34:16.100015+00:00",
+  "trigger": "update_registry"
+}

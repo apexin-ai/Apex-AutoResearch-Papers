@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-622_Q13",
+    "problem": "Anne is nice. Anne is red. Bob is smart. Bob is young. Erin is red. Erin is round. Fiona is kind. Fiona is nice. Fiona is red. Fiona is smart. If something is round then it is nice. Nice things are round. If Bob is kind then Bob is furry. All smart, kind things are nice. All kind, young things are round. If something is young and smart then it is round. Red things are kind. If Anne is furry then Anne is red. If something is nice then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not furry.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nRed(Anne, True) ::: Anne is red.\nSmart(Bob, True) ::: Bob is smart.\nYoung(Bob, True) ::: Bob is young.\nRed(Erin, True) ::: Erin is red.\nRound(Erin, True) ::: Erin is round.\nKind(Fiona, True) ::: Fiona is kind.\nNice(Fiona, True) ::: Fiona is nice.\nRed(Fiona, True) ::: Fiona is red.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: If something is round then it is nice.\nNice($x, True) >>> Round($x, True) ::: Nice things are round.\nKind(Bob, True) >>> Furry(Bob, True) ::: If Bob is kind then Bob is furry.\nSmart($x, True) && Kind($x, True) >>> Nice($x, True) ::: All smart, kind things are nice.\nKind($x, True) && Young($x, True) >>> Round($x, True) ::: All kind, young things are round.\nYoung($x, True) && Smart($x, True) >>> Round($x, True) ::: If something is young and smart then it is round.\nRed($x, True) >>> Kind($x, True) ::: Red things are kind.\nFurry(Anne, True) >>> Red(Anne, True) ::: If Anne is furry then Anne is red.\nNice($x, True) >>> Red($x, True) ::: If something is nice then it is red.\n\nQuery:\nFurry(Erin, False) ::: Erin is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

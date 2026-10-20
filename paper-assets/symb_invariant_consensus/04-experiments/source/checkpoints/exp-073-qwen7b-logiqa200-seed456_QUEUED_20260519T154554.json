@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-073-qwen7b-logiqa200-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:21:57.207Z",
+    "updated_at": "2026-05-19T15:45:53.929Z",
+    "hypothesis": "Qwen2.5-7B LogiQA seed=456 第三组 seed replication。exp-070 (seed=42) SC=68.5% Δ=+2.5pp, exp-071 (seed=123) 进行中。seed=456 加固第二个 Goldilocks 数据点。如果 3 seeds 方向一致，累积证据支持 Qwen2.5-7B 在 LogiQA 上处于 Goldilocks regime。",
+    "parent": "exp-070-qwen7b-logiqa200"
+  },
+  "timestamp": "2026-05-19T15:45:54.130283+00:00",
+  "trigger": "update_registry"
+}

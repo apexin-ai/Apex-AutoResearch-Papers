@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp-010-mistral",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:04:36.900Z",
+    "updated_at": "2026-05-17T03:37:29.439Z",
+    "hypothesis": "Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化",
+    "parent": "sica_expanded_14b",
+    "notes": "模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T03:22:52.734Z",
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T03:37:29.116Z",
+      "training_hours": 0.24
+    },
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "270100",
+      "log_path": "~/runs/symb_invariant_consensus/exp-010-mistral.log",
+      "submitted_at": "2026-05-17T03:22:54.245Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 875.2,
+      "gpu_hours": 0.24
+    },
+    "pid": "270100",
+    "log_path": "~/runs/symb_invariant_consensus/exp-010-mistral.log",
+    "conclusion": "failed",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T03:37:29.439Z"
+  },
+  "timestamp": "2026-05-17T03:37:29.519705+00:00",
+  "trigger": "update_registry"
+}

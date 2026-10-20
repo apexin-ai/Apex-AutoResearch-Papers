@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-866_Q17",
+    "problem": "Anne is furry. Anne is rough. Anne is round. Anne is smart. Anne is white. Dave is furry. Erin is big. Erin is white. Gary is quiet. Gary is round. Gary is smart. Gary is white. Rough, furry things are smart. If something is rough and round then it is smart. If Dave is smart then Dave is white. If something is furry then it is rough. Round, rough things are smart. White, furry things are round. All white, big things are round. All rough, big things are smart. If something is round then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nRound(Anne, True) ::: Anne is round.\nSmart(Anne, True) ::: Anne is smart.\nWhite(Anne, True) ::: Anne is white.\nFurry(Dave, True) ::: Dave is furry.\nBig(Erin, True) ::: Erin is big.\nWhite(Erin, True) ::: Erin is white.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nRough($x, True) && Furry($x, True) >>> Smart($x, True) ::: Rough, furry things are smart.\nRough($x, True) && Round($x, True) >>> Smart($x, True) ::: If something is rough and round then it is smart.\nSmart(Dave, True) >>> White(Dave, True) ::: If Dave is smart then Dave is white.\nFurry($x, True) >>> Rough($x, True) ::: If something is furry then it is rough.\nRound($x, True) && Rough($x, True) >>> Smart($x, True) ::: Round, rough things are smart.\nWhite($x, True) && Furry($x, True) >>> Round($x, True) ::: White, furry things are round.\nWhite($x, True) && Big($x, True) >>> Round($x, True) ::: All white, big things are round.\nRough($x, True) && Big($x, True) >>> Smart($x, True) ::: All rough, big things are smart.\nRound($x, True) >>> Big($x, True) ::: If something is round then it is big.\n\nQuery:\nQuiet(Dave, False) ::: Dave is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

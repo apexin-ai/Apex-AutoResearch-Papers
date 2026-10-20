@@ -1,0 +1,1067 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-127_Q2",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(Y) -> green(bear)",
+          "z3_formula": "Implies(And(sees_bear_bear, cold_Y), green_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_cow_rabbit, needs_rabbit_cow), red_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(tiger, cow) -> needs(cow, bear)",
+          "z3_formula": "Implies(And(needs_bear_tiger, sees_tiger_cow), needs_cow_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(Y, bear) -> sees(Y, cow)",
+          "z3_formula": "Implies(And(sees_bear_bear, needs_bear_bear), sees_bear_cow)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, tiger)",
+          "z3_formula": "Implies(visits_bear_rabbit, needs_rabbit_tiger)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_bear_bear, visits_bear_tiger), sees_bear_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 26
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, needs_rabbit_X), red_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == False",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(Y, bear) & cold(Y) -> green(bear)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, cold_rabbit), green_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear) & cold(rabbit)",
+          "z3_formula": "And(sees_rabbit_bear, cold_rabbit) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_rabbit_bear, visits_bear_tiger), sees_rabbit_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear) & visits(bear, tiger)",
+          "z3_formula": "And(needs_rabbit_bear, visits_bear_tiger) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> needs(X, bear)",
+          "z3_formula": "Implies(needs_rabbit_tiger, needs_rabbit_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow) & sees(tiger, cow)",
+          "z3_formula": "And(needs_tiger_cow, sees_tiger_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_rabbit_bear, visits_bear_tiger), sees_rabbit_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_cow_rabbit, needs_rabbit_cow), red_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, rabbit) & needs(rabbit, cow)",
+          "z3_formula": "And(needs_cow_rabbit, needs_rabbit_cow) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, needs_rabbit_bear), sees_rabbit_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear) & needs(rabbit, bear)",
+          "z3_formula": "And(sees_rabbit_bear, needs_rabbit_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_rabbit_tiger, needs_rabbit_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> needs(X, bear)",
+          "z3_formula": "Implies(needs_rabbit_tiger, needs_rabbit_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cow) & sees(tiger, cow)",
+          "z3_formula": "And(needs_tiger_cow, sees_tiger_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_bear, Not(blue_bear))",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not green(X)",
+          "z3_formula": "Implies(blue_bear, Not(green_bear))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & cold(Y) -> green(X)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, cold_bear), green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & needs(X, Y) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, needs_bear_rabbit), sees_bear_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> red(Y)",
+          "z3_formula": "Implies(visits_tiger_bear, red_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> red(X)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> Y needs X",
+          "z3_formula": "Implies(visits_tiger_rabbit, rabbit_needs_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & needs(X, Y) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, needs_bear_rabbit), sees_bear_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear) | green(bear)",
+          "z3_formula": "Or(blue_bear, green_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & cold(Y) -> green(X)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, cold_rabbit), green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> red(Y)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(Y) -> not blue(X)",
+          "z3_formula": "Implies(red_rabbit, Not(blue_bear))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> green(X)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, red_rabbit), green_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> red(Y)",
+          "z3_formula": "Implies(visits_tiger_bear, red_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & needs(X, Y) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_bear), sees_tiger_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_tiger_cow), needs_tiger_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & needs(Y, X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_bear_tiger), sees_tiger_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & needs(Y, X) -> needs(X, cow)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_bear_tiger), needs_tiger_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, needs_rabbit_X), red_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, cow)",
+          "z3_formula": "needs_bear_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, needs_rabbit_X), red_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, needs_X_bear), sees_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_X, visits_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(tiger, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_tiger_cow), needs_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(X, bear)",
+          "z3_formula": "Not(needs_X_bear) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(X, tiger)",
+          "z3_formula": "Not(needs_X_tiger) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(X, bear)",
+          "z3_formula": "Not(sees_X_bear) == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(X, tiger)",
+          "z3_formula": "Not(needs_X_tiger) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear) == False",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, cold_rabbit), green_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_cow_tiger, red_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & sees(bear, X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_bear_tiger), sees_tiger_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, tiger)",
+          "z3_formula": "Implies(visits_cow_rabbit, needs_rabbit_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

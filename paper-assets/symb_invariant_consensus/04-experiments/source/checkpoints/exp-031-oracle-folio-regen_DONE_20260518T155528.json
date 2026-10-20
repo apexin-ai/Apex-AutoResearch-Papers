@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp-031-oracle-folio-regen",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:48:41.292Z",
+    "updated_at": "2026-05-18T15:55:28.070Z",
+    "hypothesis": "Oracle SICA with gold FOL annotations on exp-026 regenerated traces (post normalization-fix): if constraint quality is the bottleneck, replacing self-extracted constraints with gold FOL + Z3 entailment should significantly outperform SC and SICA(self), replicating exp-021's finding on fixed code.",
+    "spec": {
+      "command": "python scripts/run_exp031_oracle_folio_regen.py",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json + results/folio_204_14b/intermediates/",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct (traces) + Z3 (oracle constraints)",
+      "seed": 42,
+      "checkpoint_path": "results/oracle_folio_regen/exp031_results.json",
+      "log_path": "results/oracle_folio_regen/exp031_summary.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 204,
+      "k": 12,
+      "oracle_sica_accuracy": 0.8971,
+      "sc_accuracy": 0.7549,
+      "sica_self_accuracy": 0.7451,
+      "oracle_vs_sc_delta_pp": 14.22,
+      "oracle_vs_sica_delta_pp": 15.2,
+      "mcnemar_p_oracle_vs_sc": 2.0024e-07,
+      "mcnemar_b_c": {
+        "b_oracle_right_sc_wrong": 29,
+        "c_oracle_wrong_sc_right": 0
+      },
+      "z3_gold_agreement": 0.951,
+      "z3_gold_agree_n": 194,
+      "z3_in_candidates_n": 178,
+      "fol_parse_success": 1,
+      "model": "Qwen2.5-14B-Instruct",
+      "dataset": "FOLIO-204",
+      "constraint_source": "gold FOL annotations",
+      "traces_source": "exp-026-folio204-trace-regen"
+    },
+    "completed_at": "2026-05-18T15:49:32.164Z",
+    "notes": "KEY RESULT. Oracle-SICA (gold FOL + Z3 entailment + consistency-weighted voting) 89.71% vs SC 75.49% vs SICA(self) 74.51%, +14.22pp over SC, McNemar p=2.0e-07 极显著, b=29 c=0 (oracle 从未输给 SC)。Z3 gold agreement 95.10% (194/204), FOL parser 204/204 全成功。Per-type: True 97.2% (+4.1pp), False 93.6% (+6.3pp), Unknown 78.3% (+31.9pp)。与 exp-021 (88.24%, 旧 traces) 对比：oracle 准确率从 88.24% 提升至 89.71%（+1.47pp），delta 从 +8.82pp 增至 +14.22pp。差异来源：(1) exp-026 traces 的 SC baseline 更低 (75.49% vs 79.41%)；(2) Z3 agreement 从 94.6% 提升至 95.1%。结论与 exp-021 一致：MAX-SAT 聚合机制有效——瓶颈在约束提取质量。"
+  },
+  "timestamp": "2026-05-18T15:55:28.191351+00:00",
+  "trigger": "update_registry"
+}

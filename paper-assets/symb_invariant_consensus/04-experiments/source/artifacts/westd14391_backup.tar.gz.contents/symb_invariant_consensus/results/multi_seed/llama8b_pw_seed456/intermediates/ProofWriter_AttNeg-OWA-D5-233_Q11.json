@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-233_Q11",
+    "problem": "Dave is furry. Dave is green. Dave is kind. Dave is smart. Erin is rough. Gary is furry. Gary is green. Gary is kind. Harry is not furry. Harry is kind. Harry is white. All furry, big things are green. If something is big and furry then it is green. If something is white and rough then it is furry. If something is smart then it is white. All big, rough things are white. If something is big and furry then it is white. Rough things are big. If something is big then it is rough. All green, furry things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nFurry(Dave, True) ::: Dave is furry.\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nRough(Erin, True) ::: Erin is rough.\nFurry(Gary, True) ::: Gary is furry.\nGreen(Gary, True) ::: Gary is green.\nKind(Gary, True) ::: Gary is kind.\nFurry(Harry, False) ::: Harry is not furry.\nKind(Harry, True) ::: Harry is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nFurry($x, True) && Big($x, True) >>> Green($x, True) ::: All furry, big things are green.\nBig($x, True) && Furry($x, True) >>> Green($x, True) ::: If something is big and furry then it is green.\nWhite($x, True) && Rough($x, True) >>> Furry($x, True) ::: If something is white and rough then it is furry.\nSmart($x, True) >>> White($x, True) ::: If something is smart then it is white.\nBig($x, True) && Rough($x, True) >>> White($x, True) ::: All big, rough things are white.\nBig($x, True) && Furry($x, True) >>> White($x, True) ::: If something is big and furry then it is white.\nRough($x, True) >>> Big($x, True) ::: Rough things are big.\nBig($x, True) >>> Rough($x, True) ::: If something is big then it is rough.\nGreen($x, True) && Furry($x, True) >>> Kind($x, True) ::: All green, furry things are kind.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

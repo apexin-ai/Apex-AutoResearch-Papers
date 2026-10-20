@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp-cross-model-phase1",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:53:03.574Z",
+    "updated_at": "2026-05-20T08:55:24.052Z",
+    "hypothesis": "Cross-model aggregation: Mixing traces from different model families (Mistral/LLaMA/Qwen) will reduce inter-trace κ below the same-model ceiling of 0.41, increasing effective sample size.",
+    "spec": {
+      "command": "python cross_model_kappa.py",
+      "server": "westd-25068",
+      "data_path": "Mistral+LLaMA+Qwen traces FOLIO-204",
+      "data_count": 204,
+      "model_name": "multi-model",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "kappa_cross": 0.422,
+      "kappa_within": 0.532,
+      "eff_k_cross": 2.11,
+      "eff_k_within": 1.52,
+      "accuracy_gain": 0
+    },
+    "checkpoint_path": "N/A (analysis experiment)",
+    "log_path": "worker_analysis_cross-model-kappa-phase1",
+    "completed_at": "2026-05-20T08:55:24.052Z"
+  },
+  "timestamp": "2026-05-20T08:55:24.348737+00:00",
+  "trigger": "update_registry"
+}

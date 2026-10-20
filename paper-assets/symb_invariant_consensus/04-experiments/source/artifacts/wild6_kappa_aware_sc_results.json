@@ -1,0 +1,368 @@
+{
+  "wild6_kappa_aware_sc": {
+    "description": "kappa-aware adaptive SC threshold analysis across 11 experiments, 5 models, 2 datasets",
+    "conclusion": "NEGATIVE RESULT: No adaptive threshold strategy beats standard SC. Accuracy monotonically increases with agreement level across all experiments.",
+    "key_findings": [
+      "Accuracy is monotonically increasing with majority fraction in ALL 11 experiments",
+      "No groupthink effect observed: unanimous consensus = highest accuracy (70-93%)",
+      "Weak agreement regime has lowest accuracy (25-60%)",
+      "Anti-groupthink strategies (abstaining on high-agreement) always hurt accuracy",
+      "Confidence thresholds only trade coverage for conditional accuracy, never improve overall accuracy",
+      "This validates the CJT assumption underlying SC: higher agreement -> higher correctness"
+    ],
+    "n_experiments": 11,
+    "models": [
+      "Mistral-7B",
+      "Qwen2.5-7B",
+      "Qwen2.5-14B",
+      "Gemma2-27B",
+      "LLaMA-3.1-8B"
+    ],
+    "datasets": [
+      "FOLIO-204",
+      "LogiQA-200"
+    ],
+    "K": 12
+  },
+  "summary_table": [
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO-204",
+      "exp": "exp033",
+      "seed": 42,
+      "n": 204,
+      "standard_sc": 0.5588,
+      "best_adaptive": 0.5588,
+      "delta": 0.0
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO-204",
+      "exp": "exp067",
+      "seed": 789,
+      "n": 204,
+      "standard_sc": 0.5441,
+      "best_adaptive": 0.5441,
+      "delta": 0.0
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO-204",
+      "exp": "exp052",
+      "seed": 123,
+      "n": 204,
+      "standard_sc": 0.5441,
+      "best_adaptive": 0.5441,
+      "delta": 0.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "dataset": "FOLIO-204",
+      "exp": "exp061",
+      "seed": 42,
+      "n": 204,
+      "standard_sc": 0.7598,
+      "best_adaptive": 0.7598,
+      "delta": 0.0
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO-204",
+      "exp": "exp066",
+      "seed": 123,
+      "n": 204,
+      "standard_sc": 0.7451,
+      "best_adaptive": 0.7451,
+      "delta": 0.0
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO-204",
+      "exp": "exp036",
+      "seed": 42,
+      "n": 204,
+      "standard_sc": 0.7598,
+      "best_adaptive": 0.7598,
+      "delta": 0.0
+    },
+    {
+      "model": "Gemma2-27B",
+      "dataset": "FOLIO-204",
+      "exp": "exp062",
+      "seed": 42,
+      "n": 204,
+      "standard_sc": 0.8088,
+      "best_adaptive": 0.8088,
+      "delta": 0.0
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "FOLIO-204",
+      "exp": "exp063",
+      "seed": 42,
+      "n": 204,
+      "standard_sc": 0.6618,
+      "best_adaptive": 0.6618,
+      "delta": 0.0
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "LogiQA-200",
+      "exp": "exp069m",
+      "seed": 42,
+      "n": 200,
+      "standard_sc": 0.485,
+      "best_adaptive": 0.485,
+      "delta": 0.0
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "dataset": "LogiQA-200",
+      "exp": "exp070",
+      "seed": 42,
+      "n": 200,
+      "standard_sc": 0.685,
+      "best_adaptive": 0.685,
+      "delta": 0.0
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "LogiQA-200",
+      "exp": "exp069l",
+      "seed": 42,
+      "n": 200,
+      "standard_sc": 0.61,
+      "best_adaptive": 0.61,
+      "delta": 0.0
+    }
+  ],
+  "per_regime_analysis": {
+    "FOLIO-204": {
+      "Mistral-7B (exp033)": {
+        "unanimous": {
+          "n": 38,
+          "acc": 0.789
+        },
+        "strong": {
+          "n": 71,
+          "acc": 0.634
+        },
+        "moderate": {
+          "n": 60,
+          "acc": 0.367
+        },
+        "weak": {
+          "n": 35,
+          "acc": 0.486
+        }
+      },
+      "Mistral-7B s789": {
+        "unanimous": {
+          "n": 34,
+          "acc": 0.735
+        },
+        "strong": {
+          "n": 68,
+          "acc": 0.647
+        },
+        "moderate": {
+          "n": 64,
+          "acc": 0.453
+        },
+        "weak": {
+          "n": 38,
+          "acc": 0.342
+        }
+      },
+      "Mistral-7B s123": {
+        "unanimous": {
+          "n": 33,
+          "acc": 0.697
+        },
+        "strong": {
+          "n": 78,
+          "acc": 0.654
+        },
+        "moderate": {
+          "n": 71,
+          "acc": 0.408
+        },
+        "weak": {
+          "n": 22,
+          "acc": 0.364
+        }
+      },
+      "Qwen2.5-7B": {
+        "unanimous": {
+          "n": 83,
+          "acc": 0.928
+        },
+        "strong": {
+          "n": 70,
+          "acc": 0.757
+        },
+        "moderate": {
+          "n": 32,
+          "acc": 0.625
+        },
+        "weak": {
+          "n": 19,
+          "acc": 0.263
+        }
+      },
+      "Qwen2.5-14B s123": {
+        "unanimous": {
+          "n": 117,
+          "acc": 0.872
+        },
+        "strong": {
+          "n": 56,
+          "acc": 0.661
+        },
+        "moderate": {
+          "n": 23,
+          "acc": 0.478
+        },
+        "weak": {
+          "n": 8,
+          "acc": 0.25
+        }
+      },
+      "Qwen2.5-14B": {
+        "unanimous": {
+          "n": 119,
+          "acc": 0.891
+        },
+        "strong": {
+          "n": 48,
+          "acc": 0.646
+        },
+        "moderate": {
+          "n": 22,
+          "acc": 0.591
+        },
+        "weak": {
+          "n": 15,
+          "acc": 0.333
+        }
+      },
+      "Gemma2-27B": {
+        "unanimous": {
+          "n": 124,
+          "acc": 0.895
+        },
+        "strong": {
+          "n": 52,
+          "acc": 0.731
+        },
+        "moderate": {
+          "n": 24,
+          "acc": 0.583
+        },
+        "weak": {
+          "n": 4,
+          "acc": 0.5
+        }
+      },
+      "LLaMA-3.1-8B": {
+        "unanimous": {
+          "n": 44,
+          "acc": 0.909
+        },
+        "strong": {
+          "n": 65,
+          "acc": 0.662
+        },
+        "moderate": {
+          "n": 80,
+          "acc": 0.538
+        },
+        "weak": {
+          "n": 15,
+          "acc": 0.6
+        }
+      }
+    },
+    "LogiQA-200": {
+      "Mistral-7B": {
+        "unanimous": {
+          "n": 16,
+          "acc": 0.875
+        },
+        "strong": {
+          "n": 50,
+          "acc": 0.54
+        },
+        "moderate": {
+          "n": 58,
+          "acc": 0.483
+        },
+        "weak": {
+          "n": 76,
+          "acc": 0.368
+        }
+      },
+      "Qwen2.5-7B": {
+        "unanimous": {
+          "n": 100,
+          "acc": 0.82
+        },
+        "strong": {
+          "n": 54,
+          "acc": 0.704
+        },
+        "moderate": {
+          "n": 18,
+          "acc": 0.444
+        },
+        "weak": {
+          "n": 28,
+          "acc": 0.321
+        }
+      },
+      "LLaMA-3.1-8B": {
+        "unanimous": {
+          "n": 74,
+          "acc": 0.824
+        },
+        "strong": {
+          "n": 58,
+          "acc": 0.5
+        },
+        "moderate": {
+          "n": 41,
+          "acc": 0.488
+        },
+        "weak": {
+          "n": 27,
+          "acc": 0.444
+        }
+      }
+    }
+  },
+  "strategies_tested": {
+    "standard_sc": "Majority vote (baseline)",
+    "threshold_sweep": "Only answer when majority_frac >= theta (10 thresholds from 0.4 to 1.0)",
+    "adaptive_forward": "Three-zone: high->trust, medium->need supermajority, low->trust (3 configs)",
+    "antigroupthink": "Abstain on high-agreement questions (4 thresholds)",
+    "second_answer_flip": "Replace majority with 2nd answer when agreement >= theta (4 thresholds)",
+    "entropy_adaptive": "Low entropy -> require higher majority_frac (9 configs)"
+  },
+  "data_sources": {
+    "westd-25068": [
+      "exp033",
+      "exp067",
+      "exp061",
+      "exp066",
+      "exp062",
+      "exp069m",
+      "exp070"
+    ],
+    "westd-16639": [
+      "exp052",
+      "exp036",
+      "exp063",
+      "exp069l"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-242_Q7",
+    "problem": "The bald eagle chases the cow. The bald eagle is not kind. The bald eagle is round. The bear chases the tiger. The cow is red. The cow is round. The tiger sees the cow. If someone is young and they see the bald eagle then they see the bear. If someone chases the bear then the bear is young. If someone chases the tiger then they are rough. If someone chases the tiger then the tiger eats the bear. If the tiger is round and the tiger is kind then the tiger chases the bear. If someone is young then they see the bald eagle. If someone chases the cow then they chase the bear. If someone sees the bear then the bear chases the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear sees the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nChases(BaldEagle, Cow, True) ::: The bald eagle chases the cow.\nKind(BaldEagle, False) ::: The bald eagle is not kind.\nRound(BaldEagle, True) ::: The bald eagle is round.\nChases(Bear, Tiger, True) ::: The bear chases the tiger.\nRed(Cow, True) ::: The cow is red.\nRound(Cow, True) ::: The cow is round.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nYoung($x, True) && Sees($x, BaldEagle, True) >>> Sees($x, Bear, True) ::: If someone is young and they see the bald eagle then they see the bear.\nChases($x, Bear, True) >>> Young(Bear, True) ::: If someone chases the bear then the bear is young.\nChases($x, Tiger, True) >>> Rough($x, True) ::: If someone chases the tiger then they are rough.\nChases($x, Tiger, True) >>> Eats(Tiger, Bear, True) ::: If someone chases the tiger then the tiger eats the bear.\nRound(Tiger, True) && Kind(Tiger, True) >>> Chases(Tiger, Bear, True) ::: If the tiger is round and the tiger is kind then the tiger chases the bear.\nYoung($x, True) >>> Sees($x, BaldEagle, True) ::: If someone is young then they see the bald eagle.\nChases($x, Cow, True) >>> Chases($x, Bear, True) ::: If someone chases the cow then they chase the bear.\nSees($x, Bear, True) >>> Chases(Bear, Cow, True) ::: If someone sees the bear then the bear chases the cow.\n\nQuery:\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

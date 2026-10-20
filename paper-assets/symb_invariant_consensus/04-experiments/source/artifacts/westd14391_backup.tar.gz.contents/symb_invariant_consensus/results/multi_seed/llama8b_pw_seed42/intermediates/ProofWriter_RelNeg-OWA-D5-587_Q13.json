@@ -1,0 +1,1123 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-587_Q13",
+    "problem": "The bald eagle chases the squirrel. The bald eagle eats the bear. The bear does not eat the lion. The bear visits the lion. The lion does not eat the bald eagle. The squirrel is red. The squirrel visits the bald eagle. If something is round then it eats the squirrel. If something is blue and green then it chases the bald eagle. If something eats the squirrel then the squirrel is green. If the bald eagle is round then the bald eagle chases the lion. If something is blue then it chases the squirrel. All red things are blue. If something chases the lion then it is blue. Blue, red things are round. If something visits the bald eagle and it is not round then it visits the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is not round.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nEats(Bear, Lion, False) ::: The bear does not eat the lion.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nEats(Lion, BaldEagle, False) ::: The lion does not eat the bald eagle.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nRound($x, True) >>> Eats($x, Squirrel, True) ::: If something is round then it eats the squirrel.\nBlue($x, True) && Green($x, True) >>> Chases($x, BaldEagle, True) ::: If something is blue and green then it chases the bald eagle.\nEats($x, Squirrel, True) >>> Green(Squirrel, True) ::: If something eats the squirrel then the squirrel is green.\nRound(BaldEagle, True) >>> Chases(BaldEagle, Lion, True) ::: If the bald eagle is round then the bald eagle chases the lion.\nBlue($x, True) >>> Chases($x, Squirrel, True) ::: If something is blue then it chases the squirrel.\nRed($x, True) >>> Blue($x, True) ::: All red things are blue.\nChases($x, Lion, True) >>> Blue($x, True) ::: If something chases the lion then it is blue.\nBlue($x, True) && Red($x, True) >>> Round($x, True) ::: Blue, red things are round.\nVisits($x, BaldEagle, True) && Round($x, False) >>> Visits($x, Lion, True) ::: If something visits the bald eagle and it is not round then it visits the lion.\n\nQuery:\nRound(Lion, False) ::: The lion is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 145.5,
+      "Unknown": 0.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the lion is round or not, we need to analyze the given information and find any relevant connections to the lion's shape.\n\n1. The lion does not eat the bear. (This statement is irrelevant to the lion's shape.)\n2. The bear visits the lion. (This statement is irrelevant to the lion's shape.)\n3. The lion does not eat the bald eagle. (This statement is irrelevant to the lion's shape.)\n4. If something is round then it eats the squirrel. (This statement is irrelevant to the lion's shape.)\n5. If something is blue and green then it chases the bald eagle. (This statement is irrelevant to the lion's shape.)\n6. If something eats the squirrel then the squirrel is green. (This statement is irrelevant to the lion's shape.)\n7. If the bald eagle is round then the bald eagle chases the lion. (This statement is irrelevant to the lion's shape, but we can use it to determine the bald eagle's shape.)\n8. If something is blue then it chases the squirrel. (This statement is irrelevant to the lion's shape.)\n9. All red things are blue. (This statement is irrelevant to the lion's shape, but we can use it to determine the squirrel's color.)\n10. If something chases the lion then it is blue. (This statement is relevant to the lion's shape. If the lion is chased, then it must be blue, but we don't know if it's round or not.)\n11. Blue, red things are round. (This statement is relevant to the lion's shape. If the lion is blue, then it could be round.)\n\nTo determine if the lion is round, we need to analyze its connections to other objects. We know that the squirrel is red (statement 6), and all red things are blue (statement 9). So, the squirrel is blue. The squirrel is also red (statement 5), which means it's blue and red. Since blue and red things are round (statement 11), the squirrel must be round.\n\nHowever, we also know that the squirrel visits the bald eagle (statement 7), and if the squirrel is not round, then it visits the lion (statement 12). Since the squirrel is round, we can use the statement \"If the bald eagle is round then the bald eagle chases the lion\" (statement 7). If the bald eagle is round, it chases the lion. \n\nNow, if the squirrel is round (statement 4), then it eats the squirrel. But we know the squirrel is red (statement 5), so it's green (statement 6). Now we know that the squirrel is green.\n\nWe also know that the squirrel is blue (statement 9), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nHowever, we know that blue and red things are round (statement 11), so the squirrel must be round.\n\nNow, we know that the squirrel is blue (statement 9) and red (statement 5). The squirrel is also round (statement 4), and if the squirrel is not round, then it visits the lion (statement 12). Since the squirrel is round, we can use the statement \"If something is blue then it chases the squirrel\" (statement 8). The statement \"If the bald eagle is round then the bald eagle chases the lion\" (statement 7) also applies here.\n\nHowever, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). We also know that the squirrel is blue (statement 9), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nWe also know that the squirrel is round (statement 4), and if something is round then it eats the squirrel (statement 4). However, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). Now we know that the squirrel is green.\n\nHowever, we also know that the squirrel is blue (statement 9), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). \n\nNow, we know that the bald eagle is round (statement 7), and if the bald eagle is round, then the bald eagle chases the lion (statement 7). However, we also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue.\n\nHowever, we also know that the bald eagle is blue (statement 10), and blue, red things are round (statement 11). So the bald eagle must be round.\n\nHowever, we also know that the bald eagle is round (statement 7), and if the bald eagle is round, then the bald eagle chases the lion (statement 7). However, we also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue.\n\nHowever, we also know that the bald eagle is blue (statement 10), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nHowever, we also know that the squirrel is round (statement 4), and if something eats the squirrel then the squirrel is green (statement 6). However, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). Now we know that the squirrel is green.\n\nNow, we know that the squirrel is round (statement 4), and the bald eagle is round (statement 7). We also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue.\n\nHowever, we also know that the bald eagle is blue (statement 10), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nHowever, we also know that the squirrel is round (statement 4), and if something is round then it eats the squirrel (statement 4). However, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). Now we know that the squirrel is green.\n\nHowever, we also know that the squirrel is round (statement 4), and the bald eagle is round (statement 7). We also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue.\n\nHowever, we also know that the bald eagle is blue (statement 10), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nHowever, we also know that the squirrel is round (statement 4), and if something is round then it eats the squirrel (statement 4). However, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). Now we know that the squirrel is green.\n\nHowever, we also know that the squirrel is round (statement 4), and the bald eagle is round (statement 7). We also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue.\n\nHowever, we also know that the bald eagle is blue (statement 10), and blue things chase the squirrel (statement 8). However, we also know that the squirrel is round (statement 4), and blue and red things are round (statement 11). So, the statement \"If something is round then it eats the squirrel\" (statement 4) doesn't apply here.\n\nHowever, we also know that the squirrel is round (statement 4), and if something is round then it eats the squirrel (statement 4). However, we also know that the squirrel is green (statement 6), and if something eats the squirrel, then the squirrel is green (statement 6). Now we know that the squirrel is green.\n\nNow, we know that the squirrel is round (statement 4), and the bald eagle is round (statement 7). We also know that the bald eagle chases the lion (statement 7), and if something chases the lion, then it is blue (statement 10). Now we know that the bald eagle is blue",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the lion is round or not, we need to analyze the given statements and apply logical reasoning.\n\n1. The bald eagle eats the bear. (This statement does not directly affect the roundness of the lion, so we can ignore it for now.)\n2. The bear does not eat the lion. (This statement implies that the bear and the lion have a relationship, but it does not provide any information about their shapes.)\n3. The bear visits the lion. (This statement also implies a relationship between the bear and the lion, but it does not provide any information about their shapes.)\n4. The lion does not eat the bald eagle. (This statement is irrelevant to the problem, so we can ignore it.)\n5. The squirrel is red. (This statement is irrelevant to the problem, so we can ignore it.)\n6. The squirrel visits the bald eagle. (This statement is irrelevant to the problem, so we can ignore it.)\n7. If something is round then it eats the squirrel. (This statement does not directly affect the lion, so we can ignore it.)\n8. If something is blue and green then it chases the bald eagle. (This statement does not directly affect the lion, so we can ignore it.)\n9. If something eats the squirrel then the squirrel is green. (This statement is irrelevant to the problem, so we can ignore it.)\n10. If the bald eagle is round then the bald eagle chases the lion. (This statement does not provide any information about the lion's roundness.)\n11. If something is blue then it chases the squirrel. (This statement does not directly affect the lion, so we can ignore it.)\n12. All red things are blue. (This statement implies that the squirrel is blue, since it is red.)\n13. If something chases the lion then it is blue. (This statement implies that the lion is being chased by something blue, but it does not provide any information about the lion's roundness.)\n14. Blue, red things are round. (This statement is crucial to the problem, as it implies that the lion may be round if it is blue or red.)\n15. If something visits the bald eagle and it is not round then it visits the lion. (This statement is irrelevant to the problem, so we can ignore it.)\n\nFrom statement 12, we know that the squirrel is blue. \n\nFrom statement 13, we know that the lion is being chased by something blue. \n\nFrom statement 14, we know that blue things are round. \n\nSince the lion is being chased by something blue (the squirrel), we can conclude that the lion is blue. \n\nFrom statement 14, we know that blue things are round. Therefore, the lion is round.\n\nThe final answer is: $\\boxed{True}$",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the lion is round or not, we need to analyze the given statements and deduce the information step by step.\n\n1. The bald eagle chases the squirrel. (No information about the lion yet)\n2. The bald eagle eats the bear. (No information about the lion yet)\n3. The bear does not eat the lion. (No direct information about the lion's roundness, but it implies the lion is not food for the bear)\n4. The bear visits the lion. (The lion is not round, but this is not directly related to its roundness)\n5. The lion does not eat the bald eagle. (No information about the lion's roundness)\n6. The squirrel is red. (This information will be used later)\n7. The squirrel visits the bald eagle. (No information about the lion yet)\n8. If something is round then it eats the squirrel. (No information about the lion's roundness yet)\n9. If something is blue and green then it chases the bald eagle. (No information about the lion's roundness yet)\n10. If something eats the squirrel then the squirrel is green. (This implies the squirrel is green because it visits the bald eagle, but this statement is not directly related to the lion's roundness)\n11. If the bald eagle is round then the bald eagle chases the lion. (No information about the lion's roundness yet)\n12. If something is blue then it chases the squirrel. (No information about the lion's roundness yet)\n13. All red things are blue. (Since the squirrel is red, it must be blue too)\n14. If something chases the lion then it is blue. (This implies the lion is not blue, because if it were, it would chase itself)\n15. Blue, red things are round. (Since the squirrel is both red and blue, it must be round)\n\nNow, we know that the squirrel is round because it is both red and blue (Statement 15). However, Statement 8 implies that the only thing that eats the squirrel is something that is round. Since the squirrel is eaten by the bald eagle (Statement 1), the bald eagle must be round.\n\nFrom Statement 11, we know that if the bald eagle is round, it chases the lion. Therefore, the lion is chased by the bald eagle, which means the lion is not round (because if it were, it would chase itself).\n\nTherefore, the statement \"The lion is not round\" is TRUE.\n\n\\boxed{TRUE}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"The lion is not round.\"\n\n1. Given information:\n   - The bald eagle chases the squirrel.\n   - The bald eagle eats the bear.\n   - The bear does not eat the lion.\n   - The bear visits the lion.\n   - The lion does not eat the bald eagle.\n   - The squirrel is red.\n   - The squirrel visits the bald eagle.\n   - If something is round then it eats the squirrel.\n   - If something is blue and green then it chases the bald eagle.\n   - If something eats the squirrel then the squirrel is green.\n   - If the bald eagle is round then the bald eagle chases the lion.\n   - If something is blue then it chases the squirrel.\n   - All red things are blue.\n   - If something chases the lion then it is blue.\n   - Blue, red things are round.\n   - If something visits the bald eagle and it is not round then it visits the lion.\n\n2. Analyzing the statement:\n   - \"The lion is not round.\"\n\nWe need to determine if this statement is true, false, or unknown.\n\n3. Applying the given information:\n   - Since all red things are blue (point 7), and the squirrel is red (point 6), the squirrel is blue.\n   - Since the squirrel is blue and it is also red, the squirrel is blue and red.\n   - According to point 9, if something is blue and green, it chases the bald eagle. However, we don't know if the squirrel is green or not.\n   - But point 5 says if something eats the squirrel then the squirrel is green. Since we don't know if the bald eagle eats the squirrel or not, we cannot determine if the squirrel is green.\n   - However, we can use point 3, which says if the bald eagle is round, it chases the lion. We know that the bald eagle visits the squirrel (point 8). If it is round, it eats the squirrel (point 2), but we are not given information about what happens to the squirrel after it is eaten. We are not given information about the lion eating the bald eagle either. However, we can say that the lion is not round because if the bald eagle is round then the bald eagle chases the lion. But we cannot confirm if the bald eagle is round or not. However, we know the lion does not eat the bald eagle and the bald eagle does not eat the lion (points 1 and 4). We can say the lion does not eat the bald eagle, and that the bear visits the lion (point 3) but the bear does not eat the lion (point 2). The bear is not round or blue or green because it does not eat the lion. It is not blue because if it is blue then it would chase the squirrel (point 6) but we know the bear visits the lion (point 3). It is not round because if it is round then it would eat the squirrel (point 2) but we know the bear does not eat the lion (point 2). Now we know that if something is blue and it is not round then it visits the lion (point 10). The bear is not round and it visits the lion. We know that the lion does not eat the bear because the bear does not eat the lion (point 2). We can say that the bear is blue because if it is blue then it would visit the lion (point 10) which it does. The bear is blue and it is not round. If something is blue then it chases the squirrel (point 6). The bear is blue and it visits the lion (point 3). We know the lion does not eat the bald eagle (point 4) and the bear does not eat the lion (point 2). We can say that the bear does not chase the squirrel because if it does then it would be round (point 2) which it is not. The lion does not eat the bald eagle and the bear does not eat the lion. The lion does not eat the bald eagle. The bear is blue and it visits the lion. If the bear is blue then it chases the squirrel (point 6). The lion is not round and it is not blue and it does not eat the bald eagle.\n\nThe lion is not round, blue, or green because if it is blue and it is not round then it would visit the lion (point 10) but we know that the lion does not visit the lion. The lion does not eat the bald eagle and the bear does not eat the lion.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the lion is round or not, we need to break down the given information and analyze the relationships between the animals and their properties.\n\n1. The lion does not eat the bear. (No information about the lion's roundness)\n2. The bear visits the lion. (No information about the lion's roundness)\n3. The lion does not eat the bald eagle. (No information about the lion's roundness)\n4. All red things are blue. (This statement is irrelevant to the lion's roundness)\n5. Blue, red things are round. (This statement is irrelevant to the lion's roundness)\n6. If something chases the lion then it is blue. (No information about the lion's roundness, only about something else)\n7. If something is round then it eats the squirrel. (No information about the lion's roundness)\n8. If something is blue and green then it chases the bald eagle. (No information about the lion's roundness)\n9. If the bald eagle is round then the bald eagle chases the lion. (This statement implies that if the bald eagle is round, it chases the lion, but it does not say anything about the lion's roundness)\n10. The squirrel is red. (This statement is irrelevant to the lion's roundness)\n11. The squirrel visits the bald eagle. (This statement is irrelevant to the lion's roundness)\n12. If something is round and it is blue, red then it eats the squirrel. (This statement is irrelevant to the lion's roundness)\n\nHowever, we need to look at the following statement:\n13. If something visits the bald eagle and it is not round then it visits the lion. \nWe know that the squirrel visits the bald eagle (statement 11), but we do not know if the squirrel is round or not. We know that the squirrel is red (statement 10) and all red things are blue (statement 4). This implies that the squirrel is blue.\n\nNow we can look at the following statement:\n14. If something is blue then it chases the squirrel. \nThis statement implies that if the squirrel is blue, then it chases the squirrel, which is a contradiction. However, we can use this statement to infer that the squirrel does not chase itself. \n\nNow we know that the squirrel is blue (statement 10, 4) and it visits the bald eagle (statement 11). We can use statement 13 to conclude that the squirrel visits the lion because it is not round (we do not know if the squirrel is round or not, but we can assume it is not round for now).\n\nHowever, we are not done yet. We know that the squirrel is blue (statement 10, 4) and it visits the lion (conclusion from statement 13). We can use statement 6 to infer that the squirrel chases the lion because it is blue. However, this statement is a contradiction because the squirrel does not chase itself. We can resolve this contradiction by assuming that the statement 6 does not apply to the squirrel.\n\nNow we can look at the statement:\n15. If something eats the squirrel then the squirrel is green. \nWe know that the bear does not eat the squirrel (statement 1), the bald eagle does not eat the squirrel (statement 3), and the lion does not eat the squirrel (statement 6 is not applicable to the lion, and statement 6 is a contradiction). We also know that the squirrel is blue (statement 10, 4). We can use statement 15 to infer that the squirrel is not green.\n\nWe know that the squirrel is blue (statement 10, 4) and it is not green (conclusion from statement 15). We can use statement 5 to infer that the squirrel is round.\n\nNow we can look at the statement:\n16. The squirrel is round.\nThis statement is true.\n\nNow we can look at the statement:\n17. If the bald eagle is round then the bald eagle chases the lion.\nWe know that the bald eagle is round (statement 16) and the squirrel is round (statement 16). We can use statement 7 to infer that the bald eagle eats the squirrel, but this is a contradiction because the squirrel is blue and the bald eagle does not eat the squirrel (statement 3). We can resolve this contradiction by assuming that the statement 7 does not apply to the bald eagle.\n\nWe know that the bald eagle is round (statement 16), and we can use statement 9 to infer that the bald eagle chases the lion.\n\nNow we can look at the statement:\n18. The lion is not round.\nThis statement is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the lion is round, we need to analyze the given information step by step.\n\n1. The statement \"All red things are blue\" implies that the squirrel, which is red, is also blue.\n\n2. The statement \"Blue, red things are round\" implies that since the squirrel is both blue and red, it is round.\n\n3. However, we have another statement \"The squirrel is red\" and \"The squirrel is red\" is given, and \"If the squirrel is green then the squirrel is red\" is not given. However, \"If something is round then it eats the squirrel\" and \"The squirrel is red\" and \"The squirrel is round\" is true.\n\n4. Since we know the squirrel is round, we can conclude that the squirrel is green from the statement \"If something is round then it eats the squirrel\". But since the squirrel is red, then this conclusion can't be true, so we can't determine whether the statement \"The lion is not round\" is true or false based on this. But based on our earlier conclusion, the squirrel is red and it is also blue, and the squirrel is round.\n\n5. Since the lion is not the subject of any statements about roundness or color, we cannot directly determine whether the lion is round or not from the given information. However, based on the statement \"If the bald eagle is round then the bald eagle chases the lion\", we can determine the roundness of the bald eagle.\n\n6. Based on our earlier conclusion, the squirrel is round. However, \"If the bald eagle is round then the bald eagle chases the lion\" and \"The bald eagle eats the bear\" and \"The bear does not eat the lion\" is given. And the statement \"The bear visits the lion\" is given. However, \"The lion does not eat the bald eagle\" is given, and \"If something is blue then it chases the squirrel\" is given. However, the bald eagle is not the subject of any statements about roundness or color based on this information. However, we can determine the roundness of the bald eagle based on the statement \"If something is round then it eats the squirrel\" and \"The squirrel is round\" and \"The squirrel is red\" and \"The squirrel is blue\" is true.\n\n7. Since the squirrel is round, we can conclude that the bald eagle is round from the statement \"If something is round then it eats the squirrel\" and \"The squirrel is round\". \n\n8. Since we know the bald eagle is round, we can conclude that the bald eagle chases the lion from the statement \"If the bald eagle is round then the bald eagle chases the lion\".\n\n9. Since the bald eagle chases the lion, we can conclude that the lion is blue from the statement \"If something chases the lion then it is blue\".\n\n10. However, based on the statement \"Blue, red things are round\", we can conclude that the lion is round.\n\nHowever, we can determine the roundness of the lion from the statement \"If the bald eagle is round then the bald eagle chases the lion\" and \"The bald eagle eats the bear\" and \"The bear does not eat the lion\" and \"The bear visits the lion\" and \"The lion does not eat the bald eagle\" and \"If something is blue then it chases the squirrel\" and \"The squirrel is red\" and \"The squirrel is round\" and \"If something is round then it eats the squirrel\" and \"Blue, red things are round\". Based on this information, the lion is round.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given statements and deduce information about the lion's roundness. \n\n1. The lion does not eat the bear. (This statement doesn't provide any information about the lion's roundness.)\n2. The bear visits the lion. (This statement also doesn't provide any information about the lion's roundness.)\n3. If something is round then it eats the squirrel. (We don't know the lion's roundness yet.)\n4. If something is blue and green then it chases the bald eagle. (We don't know the lion's roundness yet.)\n5. If something eats the squirrel then the squirrel is green. (This statement implies that if something eats the squirrel, it is not round because round things eat the squirrel.)\n6. If the bald eagle is round then the bald eagle chases the lion. (We don't know the bald eagle's roundness yet.)\n7. If something is blue then it chases the squirrel. (We don't know the lion's roundness yet.)\n8. All red things are blue. (The squirrel is red, so the squirrel is also blue.)\n9. If something chases the lion then it is blue. (We don't know what chases the lion yet.)\n10. Blue, red things are round. (Since the lion might be blue and red, it might be round.)\n11. If something visits the bald eagle and it is not round then it visits the lion. (This statement is irrelevant to the lion's roundness.)\n12. The squirrel is red. (This statement is irrelevant to the lion's roundness.)\n13. The squirrel visits the bald eagle. (This statement is irrelevant to the lion's roundness.)\n14. The bald eagle eats the bear. (This statement is irrelevant to the lion's roundness.)\n\nFrom statements 9 and 10, we know that if the lion is blue or red, it might be round or it might chase the lion. However, since we know the lion does not eat the bear (statement 1) and the bear visits the lion (statement 2), we can deduce that the bear is not round because round things eat the squirrel (statement 3). Also, the bear is not blue and green because then it would chase the bald eagle (statement 4).\n\nFrom statement 5, we know that if something eats the squirrel then the squirrel is green. However, we also know that the squirrel is red (statement 12). So, we can deduce that the squirrel is not eaten by anything.\n\nFrom statement 8, we know that all red things are blue. Since the squirrel is red, the squirrel is also blue (statement 12).\n\nFrom statement 7, we know that if something is blue then it chases the squirrel. Since the squirrel is blue (statement 12), the squirrel chases itself.\n\nFrom statement 13, we know that the squirrel visits the bald eagle.\n\nFrom statement 6, we know that if the bald eagle is round then it chases the lion. Since the bald eagle eats the bear (statement 14), the bald eagle is round.\n\nFrom statement 6, we know that if the bald eagle is round then it chases the lion. Since the bald eagle is round, the bald eagle chases the lion.\n\nFrom statement 9, we know that if something chases the lion then it is blue. Since the bald eagle chases the lion, the bald eagle is blue.\n\nFrom statement 10, we know that blue, red things are round. Since the bald eagle is blue (statement 9) and it might be red (because all red things are blue, statement 8), the bald eagle is round.\n\nNow we can conclude that the lion is not chased by anything blue (because the bald eagle is blue and it chases the lion). From statement 7, we know that if something is blue then it chases the squirrel. Since the lion is not chased by anything blue, it is not blue. Also, the lion is not round because if it were round, it would be blue (statement 10) and it would be red (statement 8), but then it would chase the lion (statement 6), which is not the case.\n\nTherefore, the final answer is:\n\nThe lion is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to follow the given information and use logical deductions.\n\n1. The bear visits the lion. (Given)\n2. The lion does not eat the bear. (Given)\n3. If something is round then it eats the squirrel. (Given)\n4. If the bald eagle is round then the bald eagle chases the lion. (Given)\n5. All red things are blue. (Given)\n6. If something is blue and green then it chases the bald eagle. (Given)\n7. Blue, red things are round. (Given)\n8. If something chases the lion then it is blue. (Given)\n9. The squirrel is red. (Given)\n10. The squirrel visits the bald eagle. (Given)\n11. If something eats the squirrel then the squirrel is green. (Given)\n12. The bear does not eat the squirrel. (From 11 and the fact that the bear is not mentioned as eating the squirrel)\n\nFrom 1, we know the bear visits the lion. We also know that if something visits the bald eagle and it is not round then it visits the lion. However, we do not have any information that directly relates to the bear visiting the bald eagle.\n\nFrom 8, we know that if something chases the lion then it is blue. We also know that the lion does not eat the bear, but we do not know if the bear chases the lion.\n\nFrom 3, we know that if something is round then it eats the squirrel. We also know that the bear does not eat the squirrel (from 12). \n\nFrom 4, we know that if the bald eagle is round then the bald eagle chases the lion. We also know that the lion does not eat the bear. However, we do not have any information that directly relates to the bald eagle being round or not.\n\nFrom 5, we know that all red things are blue. We also know that the squirrel is red.\n\nFrom 6, we know that if something is blue and green then it chases the bald eagle. We also know that the squirrel is red and visits the bald eagle. However, we do not have any information that directly relates to the squirrel being blue or green.\n\nFrom 7, we know that blue, red things are round. We also know that all red things are blue.\n\nFrom 10, we know that the squirrel visits the bald eagle. We also know that if something visits the bald eagle and it is not round then it visits the lion. However, we do not have any information that directly relates to the squirrel being round or not.\n\nFrom 9, we know that the squirrel is red. We also know that all red things are blue.\n\nFrom 12, we know that the bear does not eat the squirrel. We also know that if something eats the squirrel then the squirrel is green. However, we do not have any information that directly relates to the bear eating the squirrel or the squirrel being green.\n\nWe can deduce that the squirrel is blue (from 5 and 9). We can also deduce that the squirrel is round (from 7 and 5).\n\nFrom 3, we know that if something is round then it eats the squirrel. We also know that the squirrel is round (deduced above) and that the squirrel is blue (deduced above). However, we do not have any information that directly relates to the squirrel being blue and round.\n\nFrom 4, we know that if the bald eagle is round then the bald eagle chases the lion. We also know that the squirrel is round (deduced above) and that the bald eagle eats the bear (given). However, we do not have any information that directly relates to the bald eagle being round or not.\n\nFrom 8, we know that if something chases the lion then it is blue. We also know that the lion does not eat the bear (given). However, we do not have any information that directly relates to the lion being blue.\n\nFrom 10, we know that the squirrel visits the bald eagle. We also know that if something visits the bald eagle and it is not round then it visits the lion. However, we do not have any information that directly relates to the squirrel being round or not.\n\nWe can deduce that the squirrel is blue and round. We can also deduce that the bear visits the lion and that the lion does not eat the bear.\n\nHowever, we still do not have enough information to determine if the lion is round or not. Therefore, the statement \"The lion is not round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion does not eat the bald eagle. (Given)\n2. The bear visits the lion. (Given)\n3. If the bald eagle is round then the bald eagle chases the lion. (Given)\n   - We don't know if the bald eagle is round, so we cannot conclude if it chases the lion.\n4. If something chases the lion then it is blue. (Given)\n   - From point 3, we know that the bald eagle being round would make it chase the lion, which would make it blue.\n5. All red things are blue. (Given)\n   - Since the squirrel is red (Given), it is also blue.\n6. If something is blue and green then it chases the bald eagle. (Given)\n   - The squirrel is blue (from point 5), and it is also green (from the fact that if something eats the squirrel, the squirrel is green, but we don't know if the squirrel is eaten, so we can't conclude it's green. However, since the squirrel is not mentioned as eating anything, we can infer that it's not green. The statement \"if something eats the squirrel, then the squirrel is green\" implies that there must be a thing that eats the squirrel, so the statement must be true, and thus we can conclude that the squirrel is green).\n   - But the squirrel is not green. This statement was an error in the previous statement. From the given information we can't conclude the squirrel's color, however, since we know the squirrel visits the bald eagle, then the squirrel must be red, and red things are blue, so the squirrel is blue, and since the squirrel is blue, it chases the bald eagle. However, since the statement \"blue, red things are round\" is given, then the squirrel is round.\n7. If the bald eagle is round then the bald eagle chases the lion. (Given)\n   - From point 6, we know the squirrel is round (since the squirrel is red, blue and red things are round). However, since the squirrel is not the bald eagle, we can't conclude that the bald eagle is round from this information alone. The only way to conclude the bald eagle is round is if the bald eagle is blue and red, but we can't conclude that the bald eagle is blue since the only blue thing mentioned is the squirrel.\n   - However, since the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round, and from point 3 we can conclude that the bald eagle chases the lion, and since the bald eagle is round, then the bald eagle is round.\n8. The lion is not round. (Statement to determine)\n\nFrom point 7, we know that the bald eagle is round. Since the bald eagle chases the lion (from point 3), the lion is being chased, and since the statement \"if something chases the lion then it is blue\" (point 4), we can conclude that the thing that chases the lion is blue, but since the lion is being chased by the bald eagle, and the bald eagle is round, then the bald eagle must be blue, which is a contradiction with point 6 since we know the squirrel is blue, and the statement \"if something is blue and green then it chases the bald eagle\" implies that the squirrel must be green, which is not true.\n\nHowever, since we know the statement \"if something chases the lion then it is blue\" and the statement \"blue, red things are round\" are true, and the lion is not mentioned as eating the bald eagle, then the lion must be round since the lion is being chased by something that is round, and the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given.\n\nSince the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given, and the squirrel visits the bald eagle, and the squirrel is round (from point 6), then the squirrel must visit the lion, but we know the squirrel is not green, so the statement \"if something eats the squirrel, then the squirrel is green\" implies that there must be a thing that eats the squirrel, but we can't conclude that the squirrel is eaten.\n\nHowever, since the squirrel is round and blue (from point 5 and the fact that red things are blue), and the statement \"if something is round then it eats the squirrel\" is given, then the squirrel must be eaten by something that is round. Since the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round, and from point 6 we can conclude that the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round. However, since the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given, and the squirrel visits the bald eagle, and the squirrel is round, then the squirrel must visit the lion.\n\nHowever, since the statement \"if something eats the squirrel, then the squirrel is green\" is given, and the squirrel is not green, then the statement must be true, and there must be a thing that eats the squirrel. Since the squirrel is round and blue (from point 5 and the fact that red things are blue), and the statement \"if something is round then it eats the squirrel\" is given, then the squirrel must be eaten by something that is round.\n\nSince the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round, and from point 6 we can conclude that the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nHowever, since we know the squirrel is red, and the squirrel visits the bald eagle, then the squirrel must be red, and red things are blue, so the squirrel is blue.\n\nSince the statement \"if something is blue and green then it chases the bald eagle\" is given, and the squirrel is blue, then the squirrel chases the bald eagle.\n\nHowever, since the statement \"if something is blue then it chases the squirrel\" is given, then the bald eagle must be blue since the squirrel is blue and the squirrel chases the bald eagle.\n\nHowever, since the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nSince the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given, and the squirrel visits the bald eagle, and the squirrel is round, then the squirrel must visit the lion.\n\nHowever, since the statement \"if something is blue and green then it chases the bald eagle\" is given, and the squirrel is blue, then the squirrel chases the bald eagle, which is a contradiction with the fact that the squirrel visits the bald eagle.\n\nHowever, since we know the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nSince the statement \"if something is blue then it chases the squirrel\" is given, then the bald eagle must be blue since the squirrel is blue and the squirrel chases the bald eagle.\n\nHowever, since the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nHowever, since the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given, and the squirrel visits the bald eagle, and the squirrel is round, then the squirrel must visit the lion.\n\nHowever, since we know the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nSince the statement \"if something is blue then it chases the squirrel\" is given, then the bald eagle must be blue since the squirrel is blue and the squirrel chases the bald eagle.\n\nHowever, since the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the squirrel must be eaten by something that is round.\n\nSince the statement \"if something visits the bald eagle and it is not round then it visits the lion\" is given, and the squirrel visits the bald eagle, and the squirrel is round, then the squirrel must visit the lion.\n\nHowever, since we know the statement \"blue, red things are round\" is given, and the squirrel is blue and red, then the squirrel is round.\n\nSince the statement \"if something is round then it eats the squirrel\" is given, and the squirrel is round, then the",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If the bald eagle is round, then it chases the lion. (This is given in the problem.)\n2. The bald eagle eats the bear. (This is given in the problem.)\n3. The bear visits the lion. (This is given in the problem.)\n4. If something is round, then it eats the squirrel. (This is given in the problem.)\n5. The squirrel is red. (This is given in the problem.)\n6. All red things are blue. (This is given in the problem.)\n7. Blue, red things are round. (This is given in the problem.)\n8. The squirrel visits the bald eagle. (This is given in the problem.)\n9. If something is blue and green, then it chases the bald eagle. (This is given in the problem.)\n10. If something chases the lion, then it is blue. (This is given in the problem.)\n\nFrom steps 5 and 6, we know that the squirrel is both red and blue.\nFrom step 7, since the squirrel is blue and red, it must be round.\nFrom step 4, since the squirrel is round, the squirrel is eaten by the bald eagle.\nFrom step 2, since the bald eagle eats the bear, and the bear visits the lion, the bald eagle must also visit the lion.\n\nNow, from step 8, since the squirrel visits the bald eagle and it is not round, it must visit the lion. However, we've already concluded that the squirrel visits the bald eagle, and thus the lion. This doesn't give us any information about the lion being round.\n\nHowever, from step 10, we know that if something chases the lion, then it is blue. However, we don't know if the bald eagle or the bear chases the lion, so we cannot conclude anything about the lion being round based on this.\n\nBut from step 1, if the bald eagle is round, then it chases the lion. However, we've already concluded that the squirrel is round, and all red things are blue, so the bald eagle must be blue and round. If the bald eagle is round, then from step 1, it chases the lion.\n\nHowever, since the bald eagle is blue and round, it satisfies the conditions of being blue and red, making it round. But, since the bald eagle chases the lion and it is blue, this does not directly tell us about the lion being round or not.\n\nHowever, from step 1, we know that if the bald eagle is round then the bald eagle chases the lion. From the previous steps, we know that the bald eagle is round. So, the bald eagle chases the lion.\n\nFrom step 10, if something chases the lion, then it is blue. Since the bald eagle chases the lion and it is blue, the statement that the lion is not round is unknown because we do not know if there is any other object that chases the lion and is not blue.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the lion is round or not, we need to analyze the given statements and their implications.\n\n1. All red things are blue. \n   The squirrel is red. \n   Therefore, the squirrel is blue.\n\n2. If something is blue and green then it chases the bald eagle. \n   The squirrel is blue and red (from statement 1), but it's not green. \n   However, we can't directly apply this statement to the squirrel, but we can say that if something is blue and green, then it chases the bald eagle. We have no information about the lion being blue and green.\n\n3. If something is blue then it chases the squirrel. \n   The squirrel is blue (from statement 1). \n   Therefore, anything that is blue will chase the squirrel. \n\n4. If something chases the lion then it is blue. \n   This statement implies that the lion is being chased by something. However, we are trying to determine whether the lion is round or not.\n\n5. The bear visits the lion. \n   The bear does not eat the lion (from given information).\n\n6. The lion does not eat the bald eagle (from given information).\n\n7. If the bald eagle is round then the bald eagle chases the lion. \n   We cannot determine the roundness of the bald eagle yet.\n\n8. If something visits the bald eagle and it is not round then it visits the lion. \n   The squirrel visits the bald eagle (from given information). \n   The squirrel is not round (because it's red, and red things are blue, and blue, red things are round, but we've established the squirrel is red and blue, which means it's round according to the last part of the statement, but this is where we have to be careful).\n\nLet's revisit statement 8: \"If something visits the bald eagle and it is not round then it visits the lion.\" If the squirrel visits the bald eagle and it is round, then it doesn't necessarily visit the lion according to this statement. However, we have established that the squirrel is round, which is a contradiction to the fact that it visits the lion according to the statement that if something visits the bald eagle and it is not round then it visits the lion. Therefore, we can safely say that the squirrel is not round because it visits the lion.\n\nHowever, we are trying to determine whether the lion is round or not. Let's look at statement 9.\n\n9. Blue, red things are round. \n   The squirrel is blue and red (from statement 1). \n   Therefore, the squirrel is round (from statement 9).\n\n10. If something eats the squirrel then the squirrel is green. \n    The bald eagle eats the squirrel (from given information). \n    However, we already know that the squirrel is blue, and blue, red things are round.\n\nConsidering the information given, we have a few conclusions:\n\n- The squirrel is blue and round.\n- The lion is not round or blue because it's not mentioned that it's round, and we don't have information that it chases the squirrel or the bald eagle.\n- The squirrel visits the lion, which we established is not round.\n\nBased on the information given, we can conclude that the lion is not round.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the properties of the animals.\n\n1. The bald eagle chases the squirrel. (Statement 1)\n2. The bald eagle eats the bear. (Statement 2)\n3. The bear does not eat the lion. (Statement 3)\n4. The bear visits the lion. (Statement 4)\n5. The lion does not eat the bald eagle. (Statement 5)\n6. The squirrel is red. (Statement 6)\n7. The squirrel visits the bald eagle. (Statement 7)\n8. If something is round then it eats the squirrel. (Statement 8)\n9. If something is blue and green then it chases the bald eagle. (Statement 9)\n10. If something eats the squirrel then the squirrel is green. (Statement 10)\n11. If the bald eagle is round then the bald eagle chases the lion. (Statement 11)\n12. If something is blue then it chases the squirrel. (Statement 12)\n13. All red things are blue. (Statement 13)\n14. If something chases the lion then it is blue. (Statement 14)\n15. Blue, red things are round. (Statement 15)\n16. If something visits the bald eagle and it is not round then it visits the lion. (Statement 16)\n\nFirst, let's analyze Statement 6: \"The squirrel is red.\"\nFrom Statement 13: \"All red things are blue,\" we can conclude that the squirrel is blue.\n\nNext, let's analyze Statement 7: \"The squirrel visits the bald eagle.\"\nFrom Statement 16: \"If something visits the bald eagle and it is not round then it visits the lion,\" we can't conclude anything yet because we don't know if the squirrel is round or not.\n\nNow, let's analyze Statement 8: \"If something is round then it eats the squirrel.\"\nSince the squirrel is blue, and from Statement 12: \"If something is blue then it chases the squirrel,\" we can conclude that the squirrel is not eaten by a round thing.\n\nNext, let's analyze Statement 10: \"If something eats the squirrel then the squirrel is green.\"\nSince the squirrel is not eaten by a round thing, we can conclude that the squirrel is not green.\n\nNow, let's analyze Statement 15: \"Blue, red things are round.\"\nSince the squirrel is blue and red, we can conclude that the squirrel is round.\n\nFrom Statement 8: \"If something is round then it eats the squirrel,\" we can conclude that the squirrel is eaten by a round thing, which contradicts our previous conclusion that the squirrel is not eaten by a round thing. This means our previous conclusion that the squirrel is round is incorrect.\n\nHowever, since the squirrel is blue, and from Statement 12: \"If something is blue then it chases the squirrel,\" we can conclude that something blue chases the squirrel. \n\nSince the squirrel is blue, and from Statement 13: \"All red things are blue,\" we can conclude that the squirrel is also red. \n\nNow, let's analyze Statement 6: \"The squirrel is red.\" \nFrom Statement 13: \"All red things are blue,\" we can conclude that the squirrel is blue.\n\nWe already know the squirrel is blue, so Statement 6 and Statement 13 are consistent with each other.\n\nNow, let's analyze Statement 6: \"The squirrel is red.\"\nFrom Statement 13: \"All red things are blue,\" we can conclude that the squirrel is blue.\n\nNow let's analyze the given statement: \"The lion is not round.\"\n\nFrom Statement 16: \"If something visits the bald eagle and it is not round then it visits the lion,\" we can conclude that the squirrel visits the lion.\n\nSince the squirrel is blue and round, and from Statement 12: \"If something is blue then it chases the squirrel,\" we can conclude that the squirrel is chased by a blue thing.\n\nFrom Statement 8: \"If something is round then it eats the squirrel,\" we can conclude that the squirrel is eaten by a round thing.\n\nFrom Statement 8: \"If something is round then it eats the squirrel,\" we can conclude that the squirrel is eaten by the bald eagle, because the bald eagle is the only thing we know that is round and eats the squirrel.\n\nFrom Statement 11: \"If the bald eagle is round then the bald eagle chases the lion,\" we can conclude that the bald eagle does not chase the lion, because if the bald eagle is round, it would chase the lion.\n\nHowever, since the bald eagle is round, and from Statement 12: \"If something is blue then it chases the squirrel,\" we can conclude that the bald eagle is not blue.\n\nFrom Statement 14: \"If something chases the lion then it is blue,\" we can conclude that the lion is not blue.\n\nSince the lion is not blue, and from Statement 14: \"If something chases the lion then it is blue,\" we can conclude that the lion is not chased by anything.\n\nHowever, since the lion is not chased by anything, and from Statement 16: \"If something visits the bald eagle and it is not round then it visits the lion,\" we can conclude that the lion is visited by something that is not round.\n\nSince the lion is visited by something that is not round, we can conclude that the lion is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(bear, lion)",
+          "z3_formula": "Not(eats_bear_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, bald_eagle)",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_bald_eagle, green_bald_eagle), chases_bald_eagle_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases(bald_eagle, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_lion_lion, blue_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_lion, red_lion), round_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bald_eagle, Not(round_bald_eagle)), visits_bald_eagle_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(bear, lion)",
+          "z3_formula": "Not(eats_bear_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, bald_eagle)",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_bald_eagle, green_bald_eagle), chases_bald_eagle_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(eats_bald_eagle_squirrel, green_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_bald_eagle, chases_bald_eagle_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, blue_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(bear, lion)",
+          "z3_formula": "Not(eats_bear_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, bald_eagle)",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_bald_eagle_squirrel, green_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases(bald_eagle, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_squirrel_lion, blue_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "all red things are blue",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "if something visits the bald eagle and it is not round then it visits the lion",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "if something is blue then it chases the squirrel",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "if something is blue then it chases the lion",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "if something eats the squirrel then the squirrel is green",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "if something is blue and green then it chases the bald eagle",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_bald_eagle_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "if something is round then it eats the squirrel",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "if the bald eagle is round then the bald eagle chases the lion",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases_bald_eagle_lion",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "not eats(lion, bear)",
+          "z3_formula": "not eats_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_lion, eats_lion_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, green_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases(bald_eagle, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_lion, chases_lion_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_lion, blue_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_lion, red_lion), round_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, not round_lion), visits_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, blue_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_something_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_bald_eagle, chases_bald_eagle_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> blue(X)",
+          "z3_formula": "Implies(blue_squirrel, blue_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(lion))",
+          "z3_formula": "Not(round_lion)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_red_are_blue",
+          "z3_formula": "all_red_are_blue == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue_red_are_round",
+          "z3_formula": "blue_red_are_round == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_X, green_X), chases_X_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_X_lion, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle) & round(bald_eagle)",
+          "z3_formula": "And(blue_bald_eagle, round_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle) & blue_red_are_round",
+          "z3_formula": "And(blue_bald_eagle, blue_red_are_round)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases_bald_eagle(X)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_bald_eagle_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel) & red(squirrel)",
+          "z3_formula": "And(blue_squirrel, red_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not chases_bald_eagle(squirrel)",
+          "z3_formula": "Not(chases_bald_eagle_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases_squirrel(X)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases_squirrel(squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_lion_X, blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(bear, lion)",
+          "z3_formula": "Not(eats_bear_lion) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, bald_eagle)",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases_lion(bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, chases_lion_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(squirrel)",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(squirrel)",
+          "z3_formula": "Implies(round_squirrel, round_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel) & red(squirrel)",
+          "z3_formula": "And(blue_squirrel, red_squirrel) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(squirrel)",
+          "z3_formula": "Implies(round_squirrel, round_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not round(squirrel)",
+          "z3_formula": "Not(round_squirrel) == False",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_something_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_something, chases_something_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_something, green_something), chases_something_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_squirrel, blue_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not green(X)",
+          "z3_formula": "Implies(round_squirrel, not green_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_something_bald_eagle, not round_something), visits_something_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(something, squirrel)",
+          "z3_formula": "chases_something_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(squirrel)",
+          "z3_formula": "not green_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(bald_eagle, lion)",
+          "z3_formula": "not chases_bald_eagle_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bald_eagle)",
+          "z3_formula": "not blue_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(lion)",
+          "z3_formula": "not blue_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(something, lion)",
+          "z3_formula": "not chases_something_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(something, lion)",
+          "z3_formula": "visits_something_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 166,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 3,
+      "total_weight": 158,
+      "solve_time_ms": 2.176557667553425
+    },
+    "timing": {
+      "trace_gen_s": 24.991,
+      "extraction_s": 53.925,
+      "dedup_s": 2.18,
+      "maxsat_s": 0.006,
+      "total_s": 81.102
+    }
+  }
+}

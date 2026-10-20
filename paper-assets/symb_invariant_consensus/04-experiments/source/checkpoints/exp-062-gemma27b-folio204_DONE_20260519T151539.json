@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-062-gemma27b-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:41:54.628Z",
+    "updated_at": "2026-05-19T15:15:39.621Z",
+    "hypothesis": "Gemma-3-27B-IT (Google 架构) FOLIO-204 SICA vs SC。跨模型家族验证 regime-dependent pattern。27B 能力预计在 Qwen2.5-14B (~75% SC) 和 Qwen3-14B (~85% SC) 之间。",
+    "spec": {
+      "server": "westd-25068",
+      "gpu": "cuda:3",
+      "model_name": "gemma-3-27b-it",
+      "data_count": 204,
+      "seed": 42,
+      "command": "python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8003/v1 --model auto --folio-data data/folio_full.json --math-data data/empty.json --pw-data data/empty.json --output results/exp062_gemma27b_folio204/exp062_results.json --save-intermediates",
+      "data_path": "data/folio_full.json",
+      "tmux_session": "exp062_run",
+      "vllm_session": "exp062_vllm",
+      "vllm_max_model_len": 8192
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T15:09:43.653Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T15:09:44.959Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T15:09:47.893526+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T15:15:39.895471+00:00",
+  "trigger": "update_registry"
+}

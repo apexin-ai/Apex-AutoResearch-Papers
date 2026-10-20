@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-680_Q14",
+    "problem": "Bob is kind. Charlie is cold. Charlie is kind. Charlie is nice. Charlie is quiet. Charlie is smart. Fiona is quiet. Fiona is smart. Gary is nice. Gary is quiet. Gary is white. If Fiona is cold then Fiona is nice. All nice things are white. If something is white then it is nice. Nice, white things are quiet. White, smart things are rough. Smart, kind things are rough. All cold things are white. If Bob is kind then Bob is white. Quiet, kind things are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nCold(Charlie, True) ::: Charlie is cold.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nQuiet(Charlie, True) ::: Charlie is quiet.\nSmart(Charlie, True) ::: Charlie is smart.\nQuiet(Fiona, True) ::: Fiona is quiet.\nSmart(Fiona, True) ::: Fiona is smart.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nCold(Fiona, True) >>> Nice(Fiona, True) ::: If Fiona is cold then Fiona is nice.\nNice($x, True) >>> White($x, True) ::: All nice things are white.\nWhite($x, True) >>> Nice($x, True) ::: If something is white then it is nice.\nNice($x, True) && White($x, True) >>> Quiet($x, True) ::: Nice, white things are quiet.\nWhite($x, True) && Smart($x, True) >>> Rough($x, True) ::: White, smart things are rough.\nSmart($x, True) && Kind($x, True) >>> Rough($x, True) ::: Smart, kind things are rough.\nCold($x, True) >>> White($x, True) ::: All cold things are white.\nKind(Bob, True) >>> White(Bob, True) ::: If Bob is kind then Bob is white.\nQuiet($x, True) && Kind($x, True) >>> Smart($x, True) ::: Quiet, kind things are smart.\n\nQuery:\nRough(Fiona, True) ::: Fiona is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

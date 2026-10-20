@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-489_Q2",
+    "problem": "Bob is green. Bob is not nice. Dave is furry. Erin is furry. Erin is nice. Fiona is big. Fiona is not furry. Kind things are young. Young, big things are green. If something is young then it is green. If something is big and rough then it is not nice. If something is big then it is nice. If Bob is furry then Bob is young. If something is furry then it is big. If something is nice then it is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nFurry($x, bool) ::: Is x furry?\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, False) ::: Bob is not nice.\nFurry(Dave, True) ::: Dave is furry.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, False) ::: Fiona is not furry.\n\nRules:\nKind($x, True) >>> Young($x, True) ::: Kind things are young.\nYoung($x, True) && Big($x, True) >>> Green($x, True) ::: Young, big things are green.\nYoung($x, True) >>> Green($x, True) ::: If something is young then it is green.\nBig($x, True) && Rough($x, True) >>> Nice($x, False) ::: If something is big and rough then it is not nice.\nBig($x, True) >>> Nice($x, True) ::: If something is big then it is nice.\nFurry(Bob, True) >>> Young(Bob, True) ::: If Bob is furry then Bob is young.\nFurry($x, True) >>> Big($x, True) ::: If something is furry then it is big.\nNice($x, True) >>> Kind($x, True) ::: If something is nice then it is kind.\n\nQuery:\nGreen(Bob, False) ::: Bob is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

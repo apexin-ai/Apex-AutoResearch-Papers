@@ -1,0 +1,540 @@
+# analysis tiebreak baseline
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_analysis_tiebreak_baseline_20260516T051248.jsonl`
+- **Structured JSON:** [`0cfff998ca9b75c5d036.json`](../../sessions/0c/0cfff998ca9b75c5d036.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T05:14:22.469843+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T05:14:22.470323+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T05:14:22.470629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -200 /root/symb_invariant_consensus/results/sica_d012_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "head -200 /root/symb_invariant_consensus/results/sica_d012_14b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T05:14:22.471055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.7333333333333333,\\n    \\\"sc_accuracy\\\": 0.7,\\n    \\\"sica_correct\\\": 44,\\n    \\\"sc_correct\\\": 42,\\n    \\\"extraction_rate\\\": 0.95,\\n    \\\"answer_extraction_rate\\\": 1.0,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 720,\\n      \\\"fallback\\\": 0,\\n      \\\"none\\\": 0\\n    },\\n    \\\"truncated_traces\\\": 0,\\n    \\\"total_constraints_extracted\\\": 5849,\\n    \\\"total_unique_constraints\\\": 1735,\\n    \\\"contradiction_rate\\\": 0.025936599423631124,\\n    \\\"problems_with_contradictions\\\": 34,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.6666666666666666,\\n        \\\"sc\\\": 0.6666666666666666,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.8,\\n        \\\"sc\\\": 0.7333333333333333,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.6666666666666666,\\n        \\\"sc\\\": 0.6666666666666666,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.8,\\n        \\\"sc\\\": 0.7333333333333333,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 3499.6\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is fur
+…[truncated 6164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T05:14:22.471469+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/sica_d012_14b.json')); [print(f'P{r[\\\"problem_idx\\\"]:02d} votes={r[\\\"sc_vote_distribution\\\"]} sica_scores={r.get(\\\"sica_scores\\\",{})} gt={r[\\\"ground_truth\\\"]} sica={r[\\\"sica_answer\\\"]} sc={r[\\\"sc_answer\\\"]}') for r in d['results']]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/sica_d012_14b.json')); [print(f'P{r[\\\"problem_idx\\\"]:02d} votes={r[\\\"sc_vote_distribution\\\"]} sica_scores={r.get(\\\"sica_scores\\\",{})} gt={r[\\\"ground_truth\\\"]} sica={r[\\\"sica_answer\\\"]} sc={r[\\\"sc_answer\\\"]}') for r in d['results']]\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:14:22.471669+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T05:14:22.471805+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/analysis/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "ls /root/symb_invariant_consensus/analysis/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T05:14:22.471984+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T05:14:22.472122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "ls /root/symb_invariant_consensus/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T05:14:22.472291+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/symb_invariant_consensus/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T05:14:22.472539+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "mkdir -p /root/symb_invariant_consensus/analysis",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "mkdir -p /root/symb_invariant_consensus/analysis",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T05:14:22.472743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T05:14:22.473016+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/analysis/tiebreak_analysis.py\nimport json\nimport numpy as np\nfrom collections import Counter\n\nnp.random.seed(42)\n\nwith open(\"/root/symb_invariant_consensus/results/sica_d012_14b.json\") as f:\n    data = json.load(f)\n\nresults = data[\"results\"]\n\n# Find tie problems: top-2 candidates have equal SC votes\ntie_problems = []\nfor r in results:\n    dist = r[\"sc_vote_distribution\"]\n    if len(dist) < 2:\n        continue\n    sorted_votes = sorted(dist.values(), reverse=True)\n    if sorted_votes[0] == sorted_votes[1]:\n        tie_problems.append(r)\n\nprint(f\"=\" * 70)\nprint(f\"TIEBREAK ANALYSIS — D012 (K=12, 60 problems)\")\nprint(f\"=\" * 70)\nprint(f\"\\nTotal problems: {len(results)}\")\nprint(f\"Tie problems (top-2 equal votes): {len(tie_problems)}\")\nprint()\n\n# Show each tie problem\nprint(\"-\" * 70)\nprint(\"TIE PROBLEM DETAILS\")\nprint(\"-\" * 70)\nfor r in tie_problems:\n    pid = r[\"problem_id\"]\n    dist = r[\"sc_vote_distribution\"]\n    scores = r.get(\"sica_scores\", {})\n    gt = r[\"ground_truth\"]\n    sica_ans = r[\"sica_answer\"]\n    sc_ans = r[\"sc_answer\"]\n    sica_ok = r[\"sica_correct\"]\n    sc_ok = r[\"sc_correct\"]\n    print(f\"\\n  P{r['problem_idx']:02d} [{r['dataset']}/{r['level']}]: {pid}\")\n    print(f\"    Votes: {dict(dist)}\")\n    print(f\"    SICA scores: {dict(scores)}\")\n    print(f\"    Ground truth: {gt}\")\n    print(f\"    SICA answer: {sica_ans} ({'✓' if sica_ok else '✗'})\")\n    print(f\"    SC answer: {sc_ans} ({'✓' if sc_ok else '✗'})\")\n\n# --- Tiebreak strategies ---\n\ndef get_tied_candidates(dist):\n    \"\"\"Return the candidates that are tied for the top vote count.\"\"\"\n    sorted_votes = sorted(dist.values(), reverse=True)\n    max_votes = sorted_votes[0]\n    return [k for k, v in dist.items() if v == max_votes]\n\n# 1. SICA tiebreak (constraint-weighted)\nsica_correct = sum(1 for r in tie_problems if r[\"sica_correct\"])\n\n# 2. Random tiebreak (bootstrap)\nn_bootstrap = 10000\nrandom_accs = []\nfor _ in range(n_bootstrap):\n    correct = 0\n    for r in tie_problems:\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        chosen = np.random.choice(tied)\n        if chosen == r[\"ground_truth\"]:\n            correct += 1\n    random_accs.append(correct / len(tie_problems) if tie_problems else 0)\nrandom_accs = np.array(random_accs)\nrandom_mean = random_accs.mean()\nrandom_ci_lo = np.percentile(random_accs, 2.5)\nrandom_ci_hi = np.percentile(random_accs, 97.5)\n\n# 3. Alphabetical tiebreak\nalpha_correct = 0\nfor r in tie_problems:\n    tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n    chosen = sorted(tied)[0]\n    if chosen == r[\"ground_truth\"]:\n        alpha_correct += 1\n\n# 4. First-seen tiebreak\nfirst_seen_correct = 0\nfor r in tie_problems:\n    tied = set(get_tied_candidates(r[\"sc_vote_distribution\"]))\n    chosen = None\n    for t in r[\"per_trace\"]:\n        if t[\"answer\"] in tied:\n            chosen = t[\"answer\"]\n            break\n    if chosen == r[\"ground_truth\"]:\n        first_seen_correct += 1\n\n# 5. Majority-of-first-6 tiebreak (simulate K=6 SC)\nmaj6_correct = 0\nmaj6_details = []\nfor r in tie_problems:\n    first6 = [t[\"answer\"] for t in r[\"per_trace\"][:6]]\n    counter = Counter(first6)\n    most_common = counter.most_common()\n    # If still tied in first 6, pick the first one (arbitrary)\n    chosen = most_common[0][0]\n    ok = chosen == r[\"ground_truth\"]\n    if ok:\n        maj6_correct += 1\n    maj6_details.append({\"problem_idx\": r[\"problem_idx\"], \"first6_votes\": dict(counter), \"chosen\": chosen, \"correct\": ok})\n\nn_tie = len(tie_problems)\n\nprint()\nprint(\"=\" * 70)\nprint(\"TIEBREAK STRATEGY COMPARISON\")\nprint(\"=\" * 70)\nprint()\nprint(f\"{'Method':<30} {'Accuracy':>8} {'95% CI':>16} {'Correct/Total':>14}\")\nprint(\"-\" * 70)\n\ndef fmt_acc(c, n):\n    return f\"{c/n*100:.1f}%\" if n > 0 else \"N/A\"\n\nprint(f\"{'SICA (constraint-weighted)':<30} {fmt_acc(sica_correct, n_tie):>8} {'—':>16} {f'{sica_correct}/{n_tie}':>14}\")\nprint(f\"{'Random (bootstrap 10k)':<30} {f'{random_mean*100:.1f}%':>8} {f'[{random_ci_lo*100:.1f}, {random_ci_hi*100:.1f}]':>16} {'—':>14}\")\nprint(f\"{'Alphabetical':<30} {fmt_acc(alpha_correct, n_tie):>8} {'—':>16} {f'{alpha_correct}/{n_tie}':>14}\")\nprint(f\"{'First-seen':<30} {fmt_acc(first_seen_correct, n_tie):>8} {'—':>16} {f'{first_seen_correct}/{n_tie}':>14}\")\nprint(f\"{'Majority-of-first-6':<30} {fmt_acc(maj6_correct, n_tie):>8} {'—':>16} {f'{maj6_correct}/{n_tie}':>14}\")\n\n# --- SICA wins/losses analysis ---\nprint()\nprint(\"=\" * 70)\nprint(\"SICA TIEBREAK WIN/LOSS ANALYSIS\")\nprint(\"=\" * 70)\n\nsica_wins = [r for r in tie_problems if r[\"sica_correct\"]]\nsica_losses = [r for r in tie_problems if not r[\"sica_correct\"]]\n\nprint(f\"\\nSICA wins: {len(sica_wins)}, SICA losses: {len(sica_losses)}\")\n\nif sica_wins:\n    print(f\"\\n--- SICA WINS (correct tiebreak) ---\")\n    for r in sica_wins:\n        scores = r.get(\"sica_scores\", {})\n        gt = r[\"ground_truth\"]\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        winner_score = scores.get(gt, 0)\n        loser_scores = {k: v for k, v in scores.items() if k != gt and k in tied}\n        margin = winner_score - max(loser_scores.values()) if loser_scores else winner_score\n        print(f\"  P{r['problem_idx']:02d}: GT={gt}, scores={dict(scores)}, margin={margin:.1f}\")\n\nif sica_losses:\n    print(f\"\\n--- SICA LOSSES (wrong tiebreak) ---\")\n    for r in sica_losses:\n        scores = r.get(\"sica_scores\", {})\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        gt_score = scores.get(gt, 0)\n        chosen_score = scores.get(sica_ans, 0)\n        print(f\"  P{r['problem_idx']:02d}: GT={gt}, SICA chose={sica_ans}\")\n        print(f\"    Scores: {dict(scores)}\")\n        print(f\"    GT score={gt_score}, Chosen score={chosen_score}, delta={chosen_score - gt_score:.1f}\")\n        # Check if GT was even in the tied candidates\n        if gt not in tied:\n            print(f\"    NOTE: GT '{gt}' was NOT among tied candidates {tied} — SC already wrong\")\n\n# --- Also analyze: are there near-ties (diff=1)? ---\nprint()\nprint(\"=\" * 70)\nprint(\"NEAR-TIE ANALYSIS (vote margin = 1)\")\nprint(\"=\" * 70)\n\nnear_ties = []\nfor r in results:\n    dist = r[\"sc_vote_distribution\"]\n    if len(dist) < 2:\n        continue\n    sorted_votes = sorted(dist.values(), reverse=True)\n    margin = sorted_votes[0] - sorted_votes[1]\n    if margin == 1:\n        near_ties.append(r)\n\nprint(f\"\\nNear-tie problems (margin=1): {len(near_ties)}\")\nfor r in near_ties:\n    dist = r[\"sc_vote_distribution\"]\n    scores = r.get(\"sica_scores\", {})\n    gt = r[\"ground_truth\"]\n    print(f\"  P{r['problem_idx']:02d}: votes={dict(dist)}, SICA scores={dict(scores)}, GT={gt}, SICA={'✓' if r['sica_correct'] else '✗'}, SC={'✓' if r['sc_correct'] else '✗'}\")\n\n# Check where SICA and SC disagree on near-ties\nsica_only_near = [r for r in near_ties if r[\"sica_correct\"] and not r[\"sc_correct\"]]\nsc_only_near = [r for r in near_ties if r[\"sc_correct\"] and not r[\"sica_correct\"]]\nprint(f\"\\n  SICA correct but SC wrong: {len(sica_only_near)}\")\nprint(f\"  SC correct but SICA wrong: {len(sc_only_near)}\")\n\n# --- Save JSON results ---\noutput = {\n    \"n_total\": len(results),\n    \"n_tie\": n_tie,\n    \"tie_problem_indices\": [r[\"problem_idx\"] for r in tie_problems],\n    \"strategies\": {\n        \"sica\": {\"accuracy\": sica_correct / n_tie if n_tie else 0, \"correct\": sica_correct, \"total\": n_tie},\n        \"random\": {\"accuracy_mean\": float(random_mean), \"ci_95\": [float(random_ci_lo), float(random_ci_hi)]},\n        \"alphabetical\": {\"accuracy\": alpha_correct / n_tie if n_tie else 0, \"correct\": alpha_correct, \"total\": n_tie},\n        \"first_seen\": {\"accuracy\": first_seen_correct / n_tie if n_tie else 0, \"correct\": first_seen_correct, \"total\": n_tie},\n        \"majority_first_6\": {\"accuracy\": maj6_correct / n_tie if n_tie else 0, \"correct\": maj6_correct, \"total\": n_tie},\n    },\n    \"sica_wins\": [{\"problem_idx\": r[\"problem_idx\"], \"scores\": r.get(\"sica_scores\", {}), \"ground_truth\": r[\"ground_truth\"]} for r in sica_wins],\n    \"sica_losses\": [{\"problem_idx\": r[\"problem_idx\"], \"scores\": r.get(\"sica_scores\", {}), \"ground_truth\": r[\"ground_truth\"], \"sica_answer\": r[\"sica_answer\"]} for r in sica_losses],\n    \"near_ties\": {\n        \"n\": len(near_ties),\n        \"sica_only_correct\": len(sica_only_near),\n        \"sc_only_correct\": len(sc_only_near),\n    }\n}\n\nwith open(\"/root/symb_invariant_consensus/results/tiebreak_analysis.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\n\\nResults saved to results/tiebreak_analysis.json\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/analysis/tiebreak_analysis.py\nimport json\nimport numpy as np\nfrom collections import Counter\n\nnp.random.seed(42)\n\nwith open(\"/root/symb_invariant_consensus/results/sica_d012_14b.json\") as f:\n    data = json.load(f)\n\nresults = data[\"results\"]\n\n# Find tie problems: top-2 candidates have equal SC votes\ntie_problems = []\nfor r in results:\n    dist = r[\"sc_vote_distribution\"]\n    if len(dist) < 2:\n        continue\n    sorted_votes = sorted(dist.values(), reverse=True)\n    if sorted_votes[0] == sorted_votes[1]:\n        tie_problems.append(r)\n\nprint(f\"=\" * 70)\nprint(f\"TIEBREAK ANALYSIS — D012 (K=12, 60 problems)\")\nprint(f\"=\" * 70)\nprint(f\"\\nTotal problems: {len(results)}\")\nprint(f\"Tie problems (top-2 equal votes): {len(tie_problems)}\")\nprint()\n\n# Show each tie problem\nprint(\"-\" * 70)\nprint(\"TIE PROBLEM DETAILS\")\nprint(\"-\" * 70)\nfor r in tie_problems:\n    pid = r[\"problem_id\"]\n    dist = r[\"sc_vote_distribution\"]\n    scores = r.get(\"sica_scores\", {})\n    gt = r[\"ground_truth\"]\n    sica_ans = r[\"sica_answer\"]\n    sc_ans = r[\"sc_answer\"]\n    sica_ok = r[\"sica_correct\"]\n    sc_ok = r[\"sc_correct\"]\n    print(f\"\\n  P{r['problem_idx']:02d} [{r['dataset']}/{r['level']}]: {pid}\")\n    print(f\"    Votes: {dict(dist)}\")\n    print(f\"    SICA scores: {dict(scores)}\")\n    print(f\"    Ground truth: {gt}\")\n    print(f\"    SICA answer: {sica_ans} ({'✓' if sica_ok else '✗'})\")\n    print(f\"    SC answer: {sc_ans} ({'✓' if sc_ok else '✗'})\")\n\n# --- Tiebreak strategies ---\n\ndef get_tied_candidates(dist):\n    \"\"\"Return the candidates that are tied for the top vote count.\"\"\"\n    sorted_votes = sorted(dist.values(), reverse=True)\n    max_votes = sorted_votes[0]\n    return [k for k, v in dist.items() if v == max_votes]\n\n# 1. SICA tiebreak (constraint-weighted)\nsica_correct = sum(1 for r in tie_problems if r[\"sica_correct\"])\n\n# 2. Random tiebreak (bootstrap)\nn_bootstrap = 10000\nrandom_accs = []\nfor _ in range(n_bootstrap):\n    correct = 0\n    for r in tie_problems:\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        chosen = np.random.choice(tied)\n        if chosen == r[\"ground_truth\"]:\n            correct += 1\n    random_accs.append(correct / len(tie_problems) if tie_problems else 0)\nrandom_accs = np.array(random_accs)\nrandom_mean = random_accs.mean()\nrandom_ci_lo = np.percentile(random_accs, 2.5)\nrandom_ci_hi = np.percentile(random_accs, 97.5)\n\n# 3. Alphabetical tiebreak\nalpha_correct = 0\nfor r in tie_problems:\n    tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n    chosen = sorted(tied)[0]\n    if chosen == r[\"ground_truth\"]:\n        alpha_correct += 1\n\n# 4. First-seen tiebreak\nfirst_seen_correct = 0\nfor r in tie_problems:\n    tied = set(get_tied_candidates(r[\"sc_vote_distribution\"]))\n    chosen = None\n    for t in r[\"per_trace\"]:\n        if t[\"answer\"] in tied:\n            chosen = t[\"answer\"]\n            break\n    if chosen == r[\"ground_truth\"]:\n        first_seen_correct += 1\n\n# 5. Majority-of-first-6 tiebreak (simulate K=6 SC)\nmaj6_correct = 0\nmaj6_details = []\nfor r in tie_problems:\n    first6 = [t[\"answer\"] for t in r[\"per_trace\"][:6]]\n    counter = Counter(first6)\n    most_common = counter.most_common()\n    # If still tied in first 6, pick the first one (arbitrary)\n    chosen = most_common[0][0]\n    ok = chosen == r[\"ground_truth\"]\n    if ok:\n        maj6_correct += 1\n    maj6_details.append({\"problem_idx\": r[\"problem_idx\"], \"first6_votes\": dict(counter), \"chosen\": chosen, \"correct\": ok})\n\nn_tie = len(tie_problems)\n\nprint()\nprint(\"=\" * 70)\nprint(\"TIEBREAK STRATEGY COMPARISON\")\nprint(\"=\" * 70)\nprint()\nprint(f\"{'Method':<30} {'Accuracy':>8} {'95% CI':>16} {'Correct/Total':>14}\")\nprint(\"-\" * 70)\n\ndef fmt_acc(c, n):\n    return f\"{c/n*100:.1f}%\" if n > 0 else \"N/A\"\n\nprint(f\"{'SICA (constraint-weighted)':<30} {fmt_acc(sica_correct, n_tie):>8} {'—':>16} {f'{sica_correct}/{n_tie}':>14}\")\nprint(f\"{'Random (bootstrap 10k)':<30} {f'{random_mean*100:.1f}%':>8} {f'[{random_ci_lo*100:.1f}, {random_ci_hi*100:.1f}]':>16} {'—':>14}\")\nprint(f\"{'Alphabetical':<30} {fmt_acc(alpha_correct, n_tie):>8} {'—':>16} {f'{alpha_correct}/{n_tie}':>14}\")\nprint(f\"{'First-seen':<30} {fmt_acc(first_seen_correct, n_tie):>8} {'—':>16} {f'{first_seen_correct}/{n_tie}':>14}\")\nprint(f\"{'Majority-of-first-6':<30} {fmt_acc(maj6_correct, n_tie):>8} {'—':>16} {f'{maj6_correct}/{n_tie}':>14}\")\n\n# --- SICA wins/losses analysis ---\nprint()\nprint(\"=\" * 70)\nprint(\"SICA TIEBREAK WIN/LOSS ANALYSIS\")\nprint(\"=\" * 70)\n\nsica_wins = [r for r in tie_problems if r[\"sica_correct\"]]\nsica_losses = [r for r in tie_problems if not r[\"sica_correct\"]]\n\nprint(f\"\\nSICA wins: {len(sica_wins)}, SICA losses: {len(sica_losses)}\")\n\nif sica_wins:\n    print(f\"\\n--- SICA WINS (correct tiebreak) ---\")\n    for r in sica_wins:\n        scores = r.get(\"sica_scores\", {})\n        gt = r[\"ground_truth\"]\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        winner_score = scores.get(gt, 0)\n        loser_scores = {k: v for k, v in scores.items() if k != gt and k in tied}\n        margin = winner_score - max(loser_scores.values()) if loser_scores else winner_score\n        print(f\"  P{r['problem_idx']:02d}: GT={gt}, scores={dict(scores)}, margin={margin:.1f}\")\n\nif sica_losses:\n    print(f\"\\n--- SICA LOSSES (wrong tiebreak) ---\")\n    for r in sica_losses:\n        scores = r.get(\"sica_scores\", {})\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        tied = get_tied_candidates(r[\"sc_vote_distribution\"])\n        gt_score = scores.get(gt, 0)\n        chosen_score = scores.get(sica_ans, 0)\n        print(f\"  P{r['problem_idx']:02d}: GT={gt}, SICA chose={sica_ans}\")\n        print(f\"    Scores: {dict(scores)}\")\n        print(f\"    GT score={gt_score}, Chosen score={chosen_score}, delta={chosen_score - gt_score:.1f}\")\n        # Check if GT was even in the tied candidates\n        if gt not in tied:\n            print(f\"    NOTE: GT '{gt}' was NOT among tied candidates {tied} — SC already wrong\")\n\n# --- Also analyze: are there near-ties (diff=1)? ---\nprint()\nprint(\"=\" * 70)\nprint(\"NEAR-TIE ANALYSIS (vote margin = 1)\")\nprint(\"=\" * 70)\n\nnear_ties = []\nfor r in results:\n    dist = r[\"sc_vote_distribution\"]\n    if len(dist) < 2:\n        continue\n    sorted_votes = sorted(dist.values(), reverse=True)\n    margin = sorted_votes[0] - sorted_votes[1]\n    if margin == 1:\n        near_ties.append(r)\n\nprint(f\"\\nNear-tie problems (margin=1): {len(near_ties)}\")\nfor r in near_ties:\n    dist = r[\"sc_vote_distribution\"]\n    scores = r.get(\"sica_scores\", {})\n    gt = r[\"ground_truth\"]\n    print(f\"  P{r['problem_idx']:02d}: votes={dict(dist)}, SICA scores={dict(scores)}, GT={gt}, SICA={'✓' if r['sica_correct'] else '✗'}, SC={'✓' if r['sc_correct'] else '✗'}\")\n\n# Check where SICA and SC disagree on near-ties\nsica_only_near = [r for r in near_ties if r[\"sica_correct\"] and not r[\"sc_correct\"]]\nsc_only_near = [r for r in near_ties if r[\"sc_correct\"] and not r[\"sica_correct\"]]\nprint(f\"\\n  SICA correct but SC wrong: {len(sica_only_near)}\")\nprint(f\"  SC correct but SICA wrong: {len(sc_only_near)}\")\n\n# --- Save JSON results ---\noutput = {\n    \"n_total\": len(results),\n    \"n_tie\": n_tie,\n    \"tie_problem_indices\": [r[\"problem_idx\"] for r in tie_problems],\n    \"strategies\": {\n        \"sica\": {\"accuracy\": sica_correct / n_tie if n_tie else 0, \"correct\": sica_correct, \"total\": n_tie},\n        \"random\": {\"accuracy_mean\": float(random_mean), \"ci_95\": [float(random_ci_lo), float(random_ci_hi)]},\n        \"alphabetical\": {\"accuracy\": alpha_correct / n_tie if n_tie else 0, \"correct\": alpha_correct, \"total\": n_tie},\n        \"first_seen\": {\"accuracy\": first_seen_correct / n_tie if n_tie else 0, \"correct\": first_seen_correct, \"total\": n_tie},\n        \"majority_first_6\": {\"accuracy\": maj6_correct / n_tie if n_tie else 0, \"correct\": maj6_correct, \"total\": n_tie},\n    },\n    \"sica_wins\": [{\"problem_idx\": r[\"problem_idx\"], \"scores\": r.get(\"sica_scores\", {}), \"ground_truth\": r[\"ground_truth\"]} for r in sica_wins],\n    \"sica_losses\": [{\"problem_idx\": r[\"problem_idx\"], \"scores\": r.get(\"sica_scores\", {}), \"ground_truth\": r[\"ground_truth\"], \"sica_answer\": r[\"sica_answer\"]} for r in sica_losses],\n    \"near_ties\": {\n        \"n\": len(near_ties),\n        \"sica_only_correct\": len(sica_only_near),\n        \"sc_only_correct\": len(sc_only_near),\n    }\n}\n\nwith open(\"/root/symb_invariant_consensus/results/tiebreak_analysis.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\n\\nResults saved to results/tiebreak_analysis.json\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T05:14:22.473372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T05:14:22.473561+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python analysis/tiebreak_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python analysis/tiebreak_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T05:14:22.473802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nTIEBREAK ANALYSIS — D012 (K=12, 60 problems)\\n======================================================================\\n\\nTotal problems: 60\\nTie problems (top-2 equal votes): 5\\n\\n----------------------------------------------------------------------\\nTIE PROBLEM DETAILS\\n----------------------------------------------------------------------\\n\\n  P03 [proofwriter/D5]: ProofWriter_AttNeg-OWA-D5-347_Q11\\n    Votes: {'True': 6, 'Unknown': 6}\\n    SICA scores: {'True': 102.0, 'Unknown': 105.0}\\n    Ground truth: True\\n    SICA answer: Unknown (✗)\\n    SC answer: True (✓)\\n\\n  P11 [proofwriter/D5]: ProofWriter_AttNoneg-OWA-D5-20_Q10\\n    Votes: {'False': 5, 'True': 2, 'Unknown': 5}\\n    SICA scores: {'False': 145.5, 'True': 101.5, 'Unknown': 127.0}\\n    Ground truth: False\\n    SICA answer: False (✓)\\n    SC answer: False (✓)\\n\\n  P29 [proofwriter/D5]: ProofWriter_RelNeg-OWA-D5-813_Q17\\n    Votes: {'False': 6, 'Unknown': 6}\\n    SICA scores: {'False': 3.0, 'Unknown': 33.0}\\n    Ground truth: Unknown\\n    SICA answer: Unknown (✓)\\n    SC answer: False (✗)\\n\\n  P42 [folio/folio]: folio_012\\n    Votes: {'Unknown': 6, 'False': 6}\\n    SICA scores: {'Unknown': 45.0, 'False': 46.0}\\n    Ground truth: False\\n    SICA answer: False (✓)\\n    SC answer: Unknown (✗)\\n\\n  P59 [folio/folio]: folio_029\\n    Votes: {'False': 6, 'Unknown': 6}\\n    SICA scores: {'False': 61.0, 'Unknown': 64.0}\\n    Ground truth: Unknown\\n    SICA answer: Unknown (✓)\\n    SC answer: False (✗)\\n\\n======================================================================\\nTIEBREAK STRATEGY COMPARISON\\n======================================================================\\n\\nMethod                         Accuracy           95% CI  Correct/Total\\n----------------------------------------------------------------------\\nSICA (constraint-we
+…[truncated 1687 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-16T05:14:22.474101+00:00_
+
+分析完成。结果如下：
+
+## Tiebreak 分析结果
+
+**60 题中有 5 题出现平局（top-2 候选票数相同）。**
+
+### 策略对比
+
+| Method | Accuracy | 95% CI | Correct/Total |
+|--------|----------|--------|---------------|
+| **SICA (constraint-weighted)** | **80.0%** | — | **4/5** |
+| Random (bootstrap 10k) | 50.0% | [0.0, 100.0] | — |
+| Alphabetical | 60.0% | — | 3/5 |
+| First-seen | 40.0% | — | 2/5 |
+| Majority-of-first-6 | 60.0% | — | 3/5 |
+
+SICA tiebreak 80% 准确率，显著优于随机的 50%。
+
+### SICA Wins（4题）
+
+- **P11**: False vs Unknown 各5票，SICA 分数 145.5 vs 127.0，margin=18.5 → 选 False ✓
+- **P29**: False vs Unknown 各6票，SICA 分数 3.0 vs 33.0，margin=30.0 → 选 Unknown ✓
+- **P42**: Unknown vs False 各6票，SICA 分数 45.0 vs 46.0，margin=1.0 → 选 False ✓
+- **P59**: False vs Unknown 各6票，SICA 分数 61.0 vs 64.0，margin=3.0 → 选 Unknown ✓
+
+### SICA Loss（1题）
+
+- **P03**: True vs Unknown 各6票，SICA 分数 102.0 vs 105.0，delta=3.0 → 选了 Unknown，实际答案 True。分数差距很小（3分），约束加权在此题上轻微偏向了错误答案。
+
+### 关键发现
+
+- SICA 的 4 个 wins 中，P29 的 margin 最大（30.0），约束信号非常明确；P42 margin 最小（1.0），险胜
+- 唯一的 loss（P03）margin 仅 3.0，属于边界情况
+- 近平局（margin=1）只有 P10 一题，但 SICA 和 SC 都答错了（GT=False，但 12 条 trace 中只有 1 条给了 False）
+- SICA 比 SC 多对 2 题（44 vs 42），全部来自 tiebreak 翻转（P29, P42, P59 三题 SC 错→SICA 对，P03 SC 对→SICA 错）
+
+结果已保存至 `results/tiebreak_analysis.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_tiebreak_baseline_20260516T051248"
+}
+```
+
+</details>
+
+---

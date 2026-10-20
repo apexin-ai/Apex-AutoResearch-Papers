@@ -1,0 +1,176 @@
+dreams:
+  dream_20260516T051642:
+    dream_id: dream_20260516T051642
+    project: symb_invariant_consensus
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key tension: SICA''s gain is entirely from principled tiebreaking (4/60
+      questions, all 6:6 ties). Reviewers will attack statistical significance (p=0.317)
+      and question overhead vs benefit. The operating regime characterization (reasoning
+      vs instruction model) is the primary intellectual contribution. Expanded 200+
+      question results and K ablation are planned but not yet available. ProofWriter
+      shows 0pp gain — domain generalization is a weakness.'
+    what_if: []
+    pid: null
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6f4b956188a0c322619ecc0a74b
+    started_at: '2026-05-16T05:16:42+00:00'
+    updated_at: '2026-05-16T05:40:40+00:00'
+    stages_completed:
+    - imagine
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 0865d10b8af2401bdd3f18f20824cadd2cfc5d7b32b718e3c70d63bfa3f4c943
+  dream_20260516T054054:
+    dream_id: dream_20260516T054054
+    project: symb_invariant_consensus
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key tension: SICA''s gain is entirely from principled tiebreaking (4/60
+      questions, all 6:6 ties). Reviewers will attack statistical significance (p=0.317)
+      and question overhead vs benefit. The operating regime characterization (reasoning
+      vs instruction model) is the primary intellectual contribution. Expanded 200+
+      question results and K ablation are planned but not yet available. ProofWriter
+      shows 0pp gain — domain generalization is a weakness.'
+    what_if: []
+    pid: 358766
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6fb478bf28b8c217162dfdb0fa3
+    started_at: '2026-05-16T05:40:54+00:00'
+    updated_at: '2026-05-16T06:31:24+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 1094a711ef3df37eae9a75db2c7510457ccd7d53226e700c17ac51071783a9a3
+  dream_20260516T124139:
+    dream_id: dream_20260516T124139
+    project: symb_invariant_consensus
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 403728
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6fb22ef3a508c38773aa2e4663a
+    started_at: '2026-05-16T12:41:39+00:00'
+    updated_at: '2026-05-16T13:20:17+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 664dbcb5f2068e46c7ef175b8352727211ff442412d103f8e0cb379cd6a13db7
+  dream_20260516T155754:
+    dream_id: dream_20260516T155754
+    project: symb_invariant_consensus
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 416535
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6fbd0ee710a4c3495a5755fe080
+    started_at: '2026-05-16T15:57:54+00:00'
+    updated_at: '2026-05-16T16:32:36+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 664dbcb5f2068e46c7ef175b8352727211ff442412d103f8e0cb379cd6a13db7
+  dream_20260517T144412:
+    dream_id: dream_20260517T144412
+    project: symb_invariant_consensus
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '验证更新后的 capability trap framing: 机制从"diversity-quality inverse correlation"精确化为"constraints
+      lack discriminative power regardless of diversity level"。新增 DeepSeek-R1-Distill-7B
+      作为第四个 instruction-scale 模型。F2 hero figure 现有 per-problem 数据 (n=307, vote_entropy
+      vs exclusion_rate)。'
+    what_if:
+    - name: temperature_ablation_t03_t05_t10
+      claim: Claim 1 (Capability Trap)
+      description: T=0.3/0.5/1.0 on Qwen-14B D012 60题。预期 T↑→C0↑ 但 gap 不变，证明 diversity
+        增加不改善 SICA。
+      estimated_gpu_hours: 3.0
+    - name: gsm8k_pilot_30q
+      claim: Claim 2 (Operating Regime Empty)
+      description: Qwen-14B GSM8K 30题 pilot。数学推理域覆盖。预期 C0 低（14B 在 GSM8K 上 accuracy>80%）。
+      estimated_gpu_hours: 1.0
+    pid: 561603
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6fa90d0ac8a0c210608ed7885f3
+    started_at: '2026-05-17T14:44:12+00:00'
+    updated_at: '2026-05-17T16:04:30+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b84f08a7433ea936af7624a731118030baff5612153372928f82fe01153c0199
+  dream_20260517T165032:
+    dream_id: dream_20260517T165032
+    project: symb_invariant_consensus
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Oracle experiment (exp-021) is the key new result: gold FOL + MAX-SAT
+      = +8.82pp over SC (p<0.001), while self-extracted SICA = SC. This causally separates
+      extraction failure from aggregation failure. Title/claims now scoped to self-extracted
+      constraints (not symbolic consensus broadly). Temperature ablation shows C0
+      varies 30-43% but gap stays 0. Paper now has constructive direction (better
+      extraction unlocks +8.82pp potential).'
+    what_if: []
+    pid: 576480
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6fab535e08a0c219dc3ad47a877
+    started_at: '2026-05-17T16:50:32+00:00'
+    updated_at: '2026-05-17T17:37:35+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5263be539ea2221e4c064d620f33e9597094ec7b374f27d4040c382b2ab5c603
+  dream_20260519T034058:
+    dream_id: dream_20260519T034058
+    project: symb_invariant_consensus
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: D060 纯 Analysis paper — Dual Bottleneck (Independence + Quality) framing。重点审查：1)
+      Condorcet Eff-K 作为跨模型预测器是否有说服力（seed 内部非单调问题）；2) 9 种修复失败作为 structural bottleneck
+      证据是否充分；3) K/T sensitivity ablation 的 inverted-U 是否足够 clean；4) Analysis paper
+      在 EMNLP 2026 的竞争力（≥3.0 Findings 可达性）
+    what_if: []
+    pid: 894821
+    chat_id: oc_970d5ea3f54df81296b97321fcded892
+    card_message_id: om_x100b6f89f27e10b4c4a3d1b3be00fc2
+    started_at: '2026-05-19T03:40:58+00:00'
+    updated_at: '2026-05-19T04:55:01+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 77d9263052d0953ac528397ccd220d142b5a1d6db211ac45ca0daa5e158fcdb1

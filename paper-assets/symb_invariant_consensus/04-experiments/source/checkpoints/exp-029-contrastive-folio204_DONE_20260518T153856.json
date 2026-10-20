@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:22:03.513Z",
+    "updated_at": "2026-05-18T15:38:55.924Z",
+    "hypothesis": "Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.",
+    "parent": "exp-026-folio204-trace-regen",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "42353",
+      "log_path": "/root/symb_invariant_consensus/results/exp-029-contrastive-folio204/run.log",
+      "submitted_at": "2026-05-18T14:24:26.683Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/symb_invariant_consensus/results/folio_204_14b/intermediates/",
+      "data_count": 181,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "exp-026-folio204-trace-regen",
+      "eval_data": "FOLIO-204",
+      "wall_clock_seconds": 4354.6,
+      "gpu_hours": 1.21,
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp-029-contrastive-folio204/contrastive_results.json"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "results/exp-029-contrastive-folio204/contrastive_results.json",
+    "log_path": "~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log",
+    "completed_at": "2026-05-18T15:37:01.319Z"
+  },
+  "timestamp": "2026-05-18T15:38:56.069993+00:00",
+  "trigger": "update_registry"
+}

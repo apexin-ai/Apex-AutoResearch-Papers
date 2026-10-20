@@ -1,0 +1,1002 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-789_Q21",
+    "problem": "The bald eagle eats the lion. The bald eagle is cold. The bald eagle sees the cat. The cat eats the lion. The cat is round. The cat sees the bald eagle. The lion chases the cat. The lion eats the cat. The lion eats the squirrel. The squirrel chases the bald eagle. The squirrel chases the lion. The squirrel eats the lion. The squirrel is cold. The squirrel is kind. If something is round then it sees the cat. If something chases the cat and the cat is cold then the cat eats the squirrel. If something chases the cat and it is kind then it is round. If the lion eats the squirrel and the lion sees the cat then the lion is young. If something is cold then it chases the cat. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. If something chases the bald eagle and it is young then it chases the squirrel. If something eats the squirrel and it eats the cat then the squirrel chases the cat. If something is round then it eats the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Lion, True) ::: The bald eagle eats the lion.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nEats(Cat, Lion, True) ::: The cat eats the lion.\nRound(Cat, True) ::: The cat is round.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nEats(Lion, Cat, True) ::: The lion eats the cat.\nEats(Lion, Squirrel, True) ::: The lion eats the squirrel.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\nEats(Squirrel, Lion, True) ::: The squirrel eats the lion.\nCold(Squirrel, True) ::: The squirrel is cold.\nKind(Squirrel, True) ::: The squirrel is kind.\n\nRules:\nRound($x, True) >>> Sees($x, Cat, True) ::: If something is round then it sees the cat.\nChases($x, Cat, True) && Cold(Cat, True) >>> Eats(Cat, Squirrel, True) ::: If something chases the cat and the cat is cold then the cat eats the squirrel.\nChases($x, Cat, True) && Kind($x, True) >>> Round($x, True) ::: If something chases the cat and it is kind then it is round.\nEats(Lion, Squirrel, True) && Sees(Lion, Cat, True) >>> Young(Lion, True) ::: If the lion eats the squirrel and the lion sees the cat then the lion is young.\nCold($x, True) >>> Chases($x, Cat, True) ::: If something is cold then it chases the cat.\nEats(Squirrel, BaldEagle, True) && Cold(BaldEagle, True) >>> Round(BaldEagle, True) ::: If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\nChases($x, BaldEagle, True) && Young($x, True) >>> Chases($x, Squirrel, True) ::: If something chases the bald eagle and it is young then it chases the squirrel.\nEats($x, Squirrel, True) && Eats($x, Cat, True) >>> Chases(Squirrel, Cat, True) ::: If something eats the squirrel and it eats the cat then the squirrel chases the cat.\nRound($x, True) >>> Eats($x, BaldEagle, True) ::: If something is round then it eats the bald eagle.\n\nQuery:\nRed(Squirrel, False) ::: The squirrel is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 142.5
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information, we know that \"The squirrel is kind\" and \"The squirrel is cold.\" However, there is no information about the squirrel's color.\n\nNow, let's analyze the provided rules:\n\n1. If something is round then it sees the cat. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel being round.)\n2. If something chases the cat and the cat is cold then the cat eats the squirrel. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel chasing the cat.)\n3. If something chases the cat and it is kind then it is round. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel chasing the cat.)\n4. If the lion eats the squirrel and the lion sees the cat then the lion is young. (This rule doesn't apply to the squirrel, as it doesn't mention the lion eating the squirrel.)\n5. If something is cold then it chases the cat. (This rule applies to the squirrel, as it is cold. So, the squirrel chases the cat.)\n6. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel eating the bald eagle.)\n7. If something chases the bald eagle and it is young then it chases the squirrel. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel being young.)\n8. If something eats the squirrel and it eats the cat then the squirrel chases the cat. (This rule doesn't apply to the squirrel, as it doesn't mention something eating the squirrel.)\n9. If something is round then it eats the bald eagle. (This rule doesn't apply to the squirrel, as it doesn't mention the squirrel being round.)\n\nHowever, rule 5 tells us that the squirrel, being cold, chases the cat. Rule 3 tells us that if something chases the cat and it is kind then it is round. But there is no information that suggests the squirrel chases the cat because it is kind. Instead, we know the squirrel chases the cat because it is cold (rule 5). \n\nHowever, if we assume that the squirrel chases the cat because it is kind (as rule 3 suggests), then it would be round. But rule 5 tells us that something that is cold chases the cat, not something that is kind. \n\nHowever, we know that the squirrel is not cold because of the cat (there is no rule that suggests the cat's coldness affects the squirrel's coldness). The rules that affect the squirrel being round or cold are not directly related to the squirrel's color. \n\nHowever, we also know that the squirrel eats the lion (from the given information), and the lion eats the cat (from the given information). \n\nGiven the information and the rules, we don't have enough information to determine the squirrel's color. We can't find any rule that is directly related to the squirrel's color or the fact that the squirrel is not red. \n\nTherefore, the statement \"The squirrel is not red\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nLet's break down the information given:\n\n1. The squirrel is kind.\n2. The squirrel is cold.\n3. The squirrel chases the lion.\n4. The squirrel eats the lion.\n5. The squirrel chases the bald eagle.\n\nNow, let's examine the conditions:\n\n1. If something is cold then it chases the cat. (This condition does not directly apply to the squirrel, but it gives us a hint about the behavior of cold animals.)\n2. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. (This condition is not directly relevant to the statement we are trying to evaluate.)\n3. If the squirrel eats the lion and the lion sees the cat then the lion is young. (This condition does not directly apply to the statement we are trying to evaluate.)\n4. If something chases the cat and it is kind then it is round. (This condition does not directly apply to the squirrel, but it gives us a hint about the behavior of kind animals.)\n5. If something eats the squirrel and it eats the cat then the squirrel chases the cat. (This condition does not directly apply to the statement we are trying to evaluate.)\n6. If something is round then it eats the bald eagle. (This condition does not directly apply to the squirrel, but it gives us a hint about the behavior of round animals.)\n7. If the lion eats the squirrel and the lion sees the cat then the lion is young. (This condition does not directly apply to the statement we are trying to evaluate.)\n8. If something is round then it sees the cat. (This condition does not directly apply to the squirrel, but it gives us a hint about the behavior of round animals.)\n\nFrom the given information, we can conclude that the squirrel is cold and kind, but we do not have any information about its color. However, we can use the given conditions to draw a conclusion.\n\nSince the squirrel is cold, we can apply the first condition, which states that if something is cold then it chases the cat. However, this condition does not directly apply to the squirrel. But we know that the squirrel is cold, and we have another condition that states if the squirrel eats the lion and the lion sees the cat then the lion is young. \n\nThe statement does not directly apply to the information given. However, if we follow the squirrel eats the lion, and the lion sees the cat, we can infer nothing about the squirrel's color.\n\nNow let's look at the statement \"The squirrel is not red\" and see if we can find any information that contradicts it.\n\nThe statement that something is round then it sees the cat is irrelevant to the color of the squirrel. \n\nHowever, if we look at the condition that if the lion eats the squirrel and the lion sees the cat then the lion is young. This is also irrelevant to the color of the squirrel.\n\nThe only condition that is relevant is that the squirrel is cold. The condition that if something is cold then it chases the cat is not directly relevant to the color of the squirrel.\n\nThe condition that if the squirrel eats the lion then it chases the lion is also irrelevant to the color of the squirrel.\n\nThe condition that if something eats the squirrel and it eats the cat then the squirrel chases the cat is also irrelevant to the color of the squirrel.\n\nThe condition that if something is round then it eats the bald eagle is also irrelevant to the color of the squirrel.\n\nThe condition that if the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round is also irrelevant to the color of the squirrel.\n\nThe condition that if something chases the cat and it is kind then it is round is also irrelevant to the color of the squirrel.\n\nSince none of these conditions provide any information about the color of the squirrel, we cannot conclude whether the statement \"The squirrel is not red\" is true, false, or unknown based on the given information.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\nFrom the given information, we know the following:\n- The cat is round.\n- The cat sees the bald eagle.\n- The lion eats the cat.\n- The lion chases the cat.\n- The lion eats the squirrel.\n- The squirrel chases the lion.\n- The squirrel eats the lion.\n- The squirrel is cold.\n- The squirrel is kind.\n\nNow, let's analyze the logical rules provided:\n1. If something is round then it sees the cat.\n- Since the cat is round, this rule does not apply to the cat.\n- We cannot determine if the squirrel is round yet.\n\n2. If something chases the cat and the cat is cold then the cat eats the squirrel.\n- We don't know if the squirrel chases the cat.\n\n3. If something chases the cat and it is kind then it is round.\n- The squirrel is kind, but we don't know if it chases the cat.\n\n4. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n- The lion eats the squirrel, but we don't know if the lion sees the cat.\n\n5. If something is cold then it chases the cat.\n- The squirrel is cold, so this rule applies to the squirrel. However, we don't know if the squirrel chases the cat.\n\n6. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n- We don't know if the squirrel eats the bald eagle.\n\n7. If something chases the bald eagle and it is young then it chases the squirrel.\n- We don't know if the lion is young.\n\n8. If something eats the squirrel and it eats the cat then the squirrel chases the cat.\n- This rule cannot be applied because we don't know who eats the squirrel and the cat.\n\n9. If something is round then it eats the bald eagle.\n- We don't know if the squirrel is round.\n\nNow, let's analyze the given statement: \"The squirrel is not red.\"\n\nWe don't have any information about the color of the squirrel. However, we do know that the squirrel is cold and kind.\n\nLet's try to derive a conclusion from the given information and logical rules.\n\nFrom rule 5, if something is cold then it chases the cat. Since the squirrel is cold, we can conclude that the squirrel chases the cat.\n\nNow, let's analyze rule 3, if something chases the cat and it is kind then it is round. Since the squirrel is kind and chases the cat, we can conclude that the squirrel is round.\n\nNow, let's analyze rule 9, if something is round then it eats the bald eagle. Since the squirrel is round, we can conclude that the squirrel eats the bald eagle.\n\nFrom the given information, we know the squirrel eats the bald eagle. Now we have two conclusions: the squirrel eats the bald eagle, and the squirrel eats the bald eagle because it is round.\n\nHowever, we still can't conclude the color of the squirrel. We can't say if the squirrel is red or not.\n\nTherefore, the statement \"The squirrel is not red\" is unknown because we don't have enough information to determine the color of the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information step by step and find the relevant information about the squirrel.\n\n1. The lion chases the cat.\n2. The lion eats the cat.\n3. The lion eats the squirrel.\n4. If the lion eats the squirrel and the lion sees the cat then the lion is young. (This doesn't give us any information about the squirrel yet.)\n\n5. The lion sees the cat. (From statement 1)\n6. The lion is young. (From statement 4, because it ate the squirrel and it sees the cat)\n7. The cat sees the bald eagle.\n8. The cat is round.\n9. If something is round then it sees the cat. (This is true for the cat, but we don't have any information about the squirrel being round yet.)\n\n10. The squirrel chases the lion.\n11. The squirrel eats the lion.\n12. The squirrel chases the bald eagle.\n13. The squirrel is cold.\n14. The squirrel is kind.\n\n15. If the lion eats the squirrel and the lion sees the cat then the lion is young. (This is already known from statement 6)\n16. If something is cold then it chases the cat. (This doesn't give us any information about the squirrel yet.)\n\n17. The lion eats the squirrel. (From statement 3)\n18. The lion sees the cat. (From statement 5)\n19. The lion is young. (From statement 6)\n20. The squirrel chases the lion. (From statement 10)\n21. The squirrel is cold. (From statement 13)\n\n22. The squirrel chases the cat. (From statement 10 and 20, because the squirrel chases the lion and the lion chases the cat, but this is not enough to conclude that the squirrel chases the cat, as there is also statement 16)\n23. The squirrel eats the lion. (From statement 11)\n24. If something eats the squirrel and it eats the cat then the squirrel chases the cat. (This is true for the squirrel, because it eats the lion and the lion eats the cat)\n25. The squirrel chases the cat. (From statement 24)\n\n26. The squirrel is kind. (From statement 14)\n27. If something chases the cat and it is kind then it is round. (This doesn't give us any information about the squirrel yet.)\n\n28. The squirrel sees the cat. (From statement 27, because the squirrel chases the cat and it is kind)\n29. The squirrel is round. (From statement 27, because the squirrel chases the cat and it is kind)\n\n30. If something is round then it eats the bald eagle. (This is true for the squirrel, because it is round)\n\n31. The squirrel eats the bald eagle. (From statement 30)\n\n32. The squirrel is cold. (From statement 13)\n\n33. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. (This is true for the squirrel, because it eats the bald eagle and the bald eagle is cold)\n\n34. The squirrel eats the bald eagle. (From statement 31)\n35. The bald eagle is cold. (From statement 1)\n36. The bald eagle is round. (From statement 33)\n\n37. The squirrel chases the lion. (From statement 10)\n38. The lion sees the cat. (From statement 5)\n39. The lion is young. (From statement 6)\n\n40. The squirrel is not red is unknown because there is no information given about the color of the squirrel.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and the provided rules. Since there is no information about the color of the squirrel, we can't directly conclude its color. However, we can use the given rules to find any information related to the squirrel.\n\nFrom the given rules, we have the following information about the squirrel:\n\n1. The squirrel chases the bald eagle.\n2. The squirrel chases the lion.\n3. The squirrel eats the lion.\n4. The squirrel is cold.\n5. The squirrel is kind.\n6. If something eats the squirrel and it eats the cat then the squirrel chases the cat. (This rule is not applicable here.)\n7. If something is cold then it chases the cat. (This rule is not applicable here.)\n8. If something is round then it eats the bald eagle. (This rule is not applicable here.)\n\nWe also have the following information about the other animals:\n\n1. The lion eats the squirrel.\n2. The lion sees the cat.\n3. The lion is young. (From rule 4: If the lion eats the squirrel and the lion sees the cat then the lion is young.)\n4. The lion chases the cat.\n5. The cat sees the bald eagle.\n6. The cat is round.\n7. The cat eats the lion.\n8. The bald eagle is cold.\n9. The bald eagle eats the lion.\n10. The bald eagle sees the cat.\n\nFrom rule 7: If the lion eats the squirrel and the lion sees the cat then the lion is young. We already have information that the lion sees the cat, so we can conclude that the lion eats the squirrel.\n\nNow, we have two possible scenarios:\n\nScenario 1: The squirrel eats the lion.\nScenario 2: The lion eats the squirrel.\n\nIn scenario 1, we have a rule that states: If something eats the squirrel and it eats the cat then the squirrel chases the cat. Since the lion eats the squirrel and the cat eats the lion, this rule is not applicable.\n\nIn scenario 2, we have the rule: If the lion eats the squirrel and the lion sees the cat then the lion is young. We already know that the lion sees the cat and is young. This rule is applicable.\n\nNow, we can determine the truth value of the statement \"The squirrel is not red.\" Since we have two possible scenarios, we can analyze each scenario separately.\n\nIn scenario 1, we have the rule: If something is round then it sees the cat. The cat is round, so we can conclude that the cat sees the squirrel. However, we don't have any information about the color of the squirrel.\n\nIn scenario 2, we have the rule: If something is cold then it chases the cat. The squirrel is cold, so we can conclude that the squirrel chases the cat. However, we don't have any information about the color of the squirrel.\n\nBased on the given rules and information, we can't determine the color of the squirrel in either scenario. Therefore, the truth value of the statement \"The squirrel is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and the provided rules. However, there is no information about the color of the squirrel, red or otherwise.\n\nGiven rules:\n1. The bald eagle eats the lion. \n2. The bald eagle is cold. \n3. The bald eagle sees the cat. \n4. The cat eats the lion. \n5. The cat is round. \n6. The cat sees the bald eagle. \n7. The lion chases the cat. \n8. The lion eats the cat. \n9. The lion eats the squirrel. \n10. The squirrel chases the bald eagle. \n11. The squirrel chases the lion. \n12. The squirrel eats the lion. \n13. The squirrel is cold. \n14. The squirrel is kind. \n15. If something is round then it sees the cat. \n16. If something chases the cat and the cat is cold then the cat eats the squirrel. \n17. If something chases the cat and it is kind then it is round. \n18. If the lion eats the squirrel and the lion sees the cat then the lion is young. \n19. If something is cold then it chases the cat. \n20. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. \n21. If something chases the bald eagle and it is young then it chases the squirrel. \n22. If something eats the squirrel and it eats the cat then the squirrel chases the cat. \n23. If something is round then it eats the bald eagle.\n\nFrom the given information, there is no direct rule or statement about the color of the squirrel. There is also no information about the color of the squirrel that can be derived from the given statements. \n\nHowever, rule 14 states that \"The squirrel is kind.\" Since there is no statement about the color of the squirrel, we cannot conclude whether the statement \"The squirrel is not red\" is true, false, or unknown.\n\nSince we cannot determine the color of the squirrel from the given information, we cannot determine whether the statement is true or false. Therefore, our answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the statement \"The squirrel is kind,\" we cannot directly conclude anything about the color of the squirrel. So, we cannot determine if the statement \"The squirrel is not red\" is true or false.\n\n2. Since we cannot find any information directly related to the color of the squirrel, let's look for any possible information that could be used to determine if the squirrel is red or not.\n\n3. From the statement \"If something eats the squirrel and it eats the cat then the squirrel chases the cat,\" we can conclude that the squirrel does not eat the cat. This is because if the squirrel eats the cat, then it would not chase the cat, which is a contradictory statement.\n\n4. The statement \"The cat eats the lion\" does not provide any direct information about the color of the squirrel. We cannot find any other information that is related to the color of the squirrel.\n\n5. The statement \"The squirrel is cold\" does not provide any direct information about the color of the squirrel. We cannot find any other information that is related to the color of the squirrel.\n\n6. Since we cannot find any information that directly relates to the color of the squirrel, we cannot determine if the statement \"The squirrel is not red\" is true or false.\n\nTherefore, based on the given information and logical deductions, we cannot determine whether the statement \"The squirrel is not red\" is true, false, or unknown. However, since we can't find any information to contradict the statement, we can consider it as \"unknown\" since we can't conclude if the squirrel is red or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided in the problem and find any relevant information about the color of the squirrel.\n\nFrom the information given, we can see the following relevant statements:\n\n1. The squirrel chases the bald eagle.\n2. The squirrel chases the lion.\n3. The squirrel eats the lion.\n4. The squirrel is cold.\n5. The squirrel is kind.\n\nThere is no information about the color of the squirrel in the given statements. We cannot determine if the squirrel is red or not based on the given information.\n\nHowever, we can use some of the given statements to find the color of the cat, which might be related to the squirrel:\n\n1. The cat is round.\n2. If something is round then it sees the cat.\n\nThis implies that the cat sees itself. However, it doesn't provide any information about the color of the cat.\n\nTo find the color of the squirrel, let's examine the statements involving the squirrel and the cat:\n\n1. The squirrel eats the lion.\n2. The lion chases the cat.\n3. The lion eats the cat.\n\nThis doesn't provide any information about the color of the squirrel or the cat.\n\nHowever, let's look at the statement involving the lion and the cat again:\n\n1. The lion chases the cat.\n2. If something chases the cat and the cat is cold then the cat eats the squirrel.\n\nThis implies that the cat eats the squirrel because the lion chases the cat and the cat is cold. \n\nHowever, there is another statement:\n\n1. If something chases the cat and it is kind then it is round.\n\nThis implies that the squirrel is round because it chases the cat and is kind. \n\nNow let's look at another statement:\n\n1. If something is round then it sees the cat.\n\nThis implies that the squirrel sees the cat because it is round.\n\nNow let's look at another statement:\n\n1. The cat eats the lion.\n\nNow we can use the statements involving the lion and the cat to find the color of the lion:\n\n1. The lion chases the cat.\n2. If something chases the cat and the cat is cold then the cat eats the squirrel.\n\nThis implies that the cat eats the squirrel because the lion chases the cat and the cat is cold.\n\nHowever, there is another statement:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n\nThis implies that the lion is young because it eats the squirrel and sees the cat.\n\nHowever, we have another statement:\n\n1. The lion eats the cat.\n\nNow we can use the statements involving the lion and the cat to find the color of the cat:\n\n1. The lion eats the cat.\n2. The cat is round.\n3. If something is round then it sees the cat.\n\nThis implies that the cat sees itself.\n\nNow let's look at another statement:\n\n1. If something is round then it eats the bald eagle.\n\nThis implies that the cat eats the bald eagle because it is round.\n\nHowever, there is another statement:\n\n1. The bald eagle sees the cat.\n\nThis implies that the cat sees the bald eagle.\n\nNow let's look at another statement:\n\n1. The bald eagle eats the lion.\n\nHowever, there is another statement:\n\n1. The lion chases the cat.\n\nThis implies that the lion is not eating the cat.\n\nHowever, there is another statement:\n\n1. The lion eats the cat.\n\nThis implies that the cat is not round.\n\nHowever, there is another statement:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n\nThis implies that the lion is not young.\n\nHowever, there is another statement:\n\n1. If something is cold then it chases the cat.\n\nThis implies that the lion is not cold.\n\nHowever, there is another statement:\n\n1. The lion eats the squirrel.\n\nThis implies that the squirrel is not cold.\n\nHowever, there is another statement:\n\n1. The squirrel is cold.\n\nThis implies that the squirrel is cold.\n\nNow we have a contradiction. The lion eats the squirrel, but the squirrel is cold. This means that the lion is not cold.\n\nHowever, there is another statement:\n\n1. If something is cold then it chases the cat.\n\nThis implies that the lion is not cold.\n\nHowever, there is another statement:\n\n1. The lion is not cold.\n\nThis implies that the lion does not chase the cat.\n\nHowever, there is another statement:\n\n1. The lion chases the cat.\n\nThis implies that the lion is cold.\n\nHowever, there is another statement:\n\n1. If something is cold then it chases the cat.\n\nThis implies that the lion is cold.\n\nNow let's look at another statement:\n\n1. The lion eats the cat.\n\nThis implies that the cat is not round.\n\nHowever, there is another statement:\n\n1. The cat is round.\n\nThis implies that the cat is round.\n\nNow we have a contradiction. The cat is round, but it is not round. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is kind.\n2. If something chases the cat and it is kind then it is round.\n\nThis implies that the squirrel is round because it chases the cat and is kind.\n\nHowever, we have another statement:\n\n1. If something is round then it sees the cat.\n\nThis implies that the squirrel sees the cat because it is round.\n\nNow let's look at another statement:\n\n1. The squirrel eats the lion.\n\nThis implies that the lion is not round.\n\nHowever, there is another statement:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n\nThis implies that the lion is young because it eats the squirrel and sees the cat.\n\nHowever, we have another statement:\n\n1. The lion eats the cat.\n\nThis implies that the cat is not round.\n\nHowever, there is another statement:\n\n1. The cat is round.\n\nThis implies that the cat is round.\n\nNow we have a contradiction. The cat is round, but it is not round. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is cold.\n2. The squirrel is kind.\n3. If something is round then it eats the bald eagle.\n\nHowever, there is another statement:\n\n1. The squirrel eats the bald eagle.\n\nThis implies that the squirrel eats the bald eagle.\n\nHowever, we have another statement:\n\n1. If something eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n\nThis implies that the bald eagle is round because it is cold.\n\nHowever, we have another statement:\n\n1. The bald eagle eats the lion.\n\nThis implies that the lion is not round.\n\nHowever, there is another statement:\n\n1. If something chases the cat and the cat is cold then the cat eats the squirrel.\n\nThis implies that the cat eats the squirrel because the lion chases the cat and the cat is cold.\n\nHowever, we have another statement:\n\n1. The lion is young.\n\nThis implies that the lion is young.\n\nHowever, we have another statement:\n\n1. The lion eats the cat.\n\nThis implies that the cat is not round.\n\nHowever, there is another statement:\n\n1. The cat is round.\n\nThis implies that the cat is round.\n\nNow we have a contradiction. The cat is round, but it is not round. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is cold.\n2. If something is cold then it chases the cat.\n\nThis implies that the squirrel chases the cat because it is cold.\n\nHowever, we have another statement:\n\n1. The squirrel eats the lion.\n\nThis implies that the squirrel does not chase the cat.\n\nHowever, we have another statement:\n\n1. The lion is young.\n\nThis implies that the lion is young.\n\nHowever, we have another statement:\n\n1. The lion chases the cat.\n\nThis implies that the squirrel chases the cat.\n\nNow we have a contradiction. The squirrel chases the cat, but it does not chase the cat. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is cold.\n2. The squirrel is kind.\n3. If something is cold then it chases the cat.\n\nHowever, we have another statement:\n\n1. The squirrel eats the lion.\n\nThis implies that the squirrel does not chase the cat.\n\nHowever, we have another statement:\n\n1. The lion is young.\n\nThis implies that the lion is young.\n\nHowever, we have another statement:\n\n1. The lion chases the cat.\n\nThis implies that the squirrel chases the cat.\n\nNow we have a contradiction. The squirrel chases the cat, but it does not chase the cat. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is kind.\n2. If something chases the cat and it is kind then it is round.\n\nHowever, we have another statement:\n\n1. The squirrel eats the lion.\n\nThis implies that the squirrel does not chase the cat.\n\nHowever, we have another statement:\n\n1. The lion is young.\n\nThis implies that the lion is young.\n\nHowever, we have another statement:\n\n1. The lion chases the cat.\n\nThis implies that the squirrel chases the cat.\n\nNow we have a contradiction. The squirrel chases the cat, but it does not chase the cat. This means that the given statements are inconsistent.\n\nHowever, we can still try to find the color of the squirrel. We have the following statements:\n\n1. The squirrel is cold.\n2. The squirrel is kind.\n3. If",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not red\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The squirrel chases the bald eagle.\n2. The squirrel chases the lion.\n3. The squirrel eats the lion.\n4. The squirrel is cold.\n5. The squirrel is kind.\n\nFrom the rules:\n\n1. If something is cold then it chases the cat.\n   - However, the squirrel does not chase the cat; instead, it chases the bald eagle and the lion.\n   - So, this rule does not apply directly to the squirrel.\n\n2. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We do not have any information about the bald eagle's temperature, so this rule is not relevant to the statement.\n\n3. If the squirrel eats the lion and the lion sees the cat then the lion is young.\n   - We are not given any information about the lion's age, so this rule is not relevant to the statement.\n\n4. If something chases the cat and it is kind then it is round.\n   - This rule does not apply to the squirrel because it does not chase the cat; it chases the bald eagle and the lion.\n\n5. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n6. If something chases the bald eagle and it is young then it chases the squirrel.\n   - This rule does not apply to the lion because it does not chase the bald eagle; instead, it chases the squirrel.\n\n7. If something is round then it eats the bald eagle.\n   - This rule is relevant to the statement because we need to determine whether the squirrel is round or not.\n\n8. The cat is round.\n   - This information is given, and it is used in the following rule.\n\n9. If something is round then it sees the cat.\n   - This rule implies that the cat is seen by all round objects. Since the cat is round, it sees itself.\n\nHowever, we cannot directly apply rule 7 to the squirrel because we do not know whether it is round or not. To determine whether the squirrel is round, we need to analyze the following rules:\n\n10. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We do not have any information about the bald eagle's temperature, so this rule is not relevant to the statement.\n\n11. If something eats the squirrel and it eats the cat then the squirrel chases the cat.\n   - This rule does not provide any information about the squirrel's shape.\n\nSince we cannot determine whether the squirrel is round or not, we cannot apply rule 7 directly to the statement. However, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it sees the cat.\n2. The cat is round.\n\nThis implies that the cat sees itself.\n\nHowever, we need to find another object that sees the cat and is round. Since the cat sees itself, we can look for an object that sees the cat and is round.\n\nFrom the rules:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n2. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We do not have any information about the bald eagle's temperature, so this rule is not relevant to the statement.\n\n3. If the lion eats the squirrel and the squirrel is round then the lion is young.\n   - This rule does not provide any information about the lion's age.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it eats the bald eagle.\n   - This implies that there is a round object that eats the bald eagle.\n\n2. The bald eagle eats the lion.\n   - This implies that the lion is eaten by the bald eagle.\n\nHowever, we cannot determine whether the lion is round or not. We need to analyze the following rules:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n2. If the lion sees the cat then it is not round.\n   - This rule is not given in the original list, but it can be inferred from the following rule.\n\n3. If the lion eats the squirrel and the squirrel is round then the lion is young.\n   - We do not have any information about the squirrel's shape.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it eats the bald eagle.\n   - This implies that there is a round object that eats the bald eagle.\n\n2. The bald eagle eats the lion.\n   - This implies that the lion is eaten by the bald eagle.\n\nHowever, we cannot determine whether the lion is round or not. We need to analyze the following rules:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n2. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We do not have any information about the bald eagle's temperature, so this rule is not relevant to the statement.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it sees the cat.\n2. The cat is round.\n   - This implies that the cat sees itself.\n\nHowever, we need to find another object that sees the cat and is round.\n\nFrom the rules:\n\n1. If something is round then it eats the bald eagle.\n   - This implies that there is a round object that eats the bald eagle.\n\n2. The bald eagle eats the lion.\n   - This implies that the lion is eaten by the bald eagle.\n\nHowever, we cannot determine whether the lion is round or not. We need to analyze the following rules:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n2. If the lion sees the cat then it is not round.\n   - This rule is not given in the original list, but it can be inferred from the following rule.\n\n3. If the lion eats the squirrel and the squirrel is round then the lion is young.\n   - We do not have any information about the squirrel's shape.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it eats the bald eagle.\n   - This implies that there is a round object that eats the bald eagle.\n\n2. The bald eagle eats the lion.\n   - This implies that the lion is eaten by the bald eagle.\n\nHowever, we cannot determine whether the lion is round or not. We need to analyze the following rules:\n\n1. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We do not have any information about the lion's age, so this rule is not relevant to the statement.\n\n2. If the lion sees the cat then it is not round.\n   - This rule is not given in the original list, but it can be inferred from the following rule.\n\n3. If the lion eats the squirrel and the squirrel is round then the lion is young.\n   - We do not have any information about the squirrel's shape.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it sees the cat.\n2. The cat is round.\n   - This implies that the cat sees itself.\n\nHowever, we need to find another object that sees the cat and is round.\n\nFrom the rules:\n\n1. If something is round then it eats the bald eagle.\n   - This implies that there is a round object that eats the bald eagle.\n\nHowever, we cannot determine whether the squirrel is round or not. We need to analyze the following rules:\n\n1. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We do not have any information about the bald eagle's temperature, so this rule is not relevant to the statement.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it sees the cat.\n2. The cat is round.\n   - This implies that the cat sees itself.\n\nHowever, we need to find another object that sees the cat and is round.\n\nFrom the rules:\n\n1. If the lion eats the squirrel and the squirrel is round then the lion is young.\n   - We do not have any information about the squirrel's shape.\n\nHowever, we can try to find a round object that sees the cat and is not the cat itself.\n\nFrom the rules:\n\n1. If something is round then it sees the cat.\n2. The cat is round.\n   - This implies that the cat sees itself.\n\nHowever, we need to find another object that sees the cat and is round.\n\nFrom the rules:\n\n1. If the lion eats the squirrel and the lion sees the",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to deduce the properties of the entities (bald eagle, lion, cat, squirrel). We will then check if the statement \"The squirrel is not red\" is true, false, or unknown.\n\n1. The bald eagle eats the lion.\n   - No information about the color of the bald eagle or the lion.\n\n2. The bald eagle is cold.\n   - From this, we can conclude that the bald eagle chases the cat (Rule 5).\n   - The bald eagle sees the cat.\n\n3. The bald eagle sees the cat.\n   - Already concluded from statement 2.\n\n4. The cat eats the lion.\n   - No information about the color of the cat or the lion.\n\n5. The cat is round.\n   - We can conclude that the cat sees the bald eagle (Rule 1).\n   - From statement 5, we can conclude that the cat chases the squirrel (Rule 3 and Rule 6).\n\n6. The cat sees the bald eagle.\n   - Already concluded from statement 5.\n\n7. The lion chases the cat.\n   - From this, we can conclude that the cat eats the squirrel (Rule 2 and Rule 3).\n\n8. The lion eats the cat.\n   - No information about the color of the lion or the cat.\n\n9. The lion eats the squirrel.\n   - No information about the color of the lion or the squirrel.\n\n10. The squirrel chases the bald eagle.\n    - From this, we can conclude that the squirrel eats the lion (Rule 8).\n    - The squirrel chases the lion.\n\n11. The squirrel chases the lion.\n    - Already concluded from statement 10.\n\n12. The squirrel eats the lion.\n    - Already concluded from statement 10.\n\n13. The squirrel is cold.\n    - We can conclude that the squirrel chases the cat (Rule 5).\n\n14. The squirrel is kind.\n    - No relation to the statement we are checking.\n\n15. If something is round then it sees the cat.\n   - The cat is round, so we can conclude that the cat sees the bald eagle (Rule 1).\n\n16. If something chases the cat and the cat is cold then the cat eats the squirrel.\n   - We cannot conclude this because we don't know if the cat is cold.\n\n17. If something chases the cat and it is kind then it is round.\n   - The squirrel chases the cat, and the squirrel is kind, so we can conclude that the squirrel is round.\n\n18. If the lion eats the squirrel and the lion sees the cat then the lion is young.\n   - We cannot conclude this because we don't know if the lion sees the cat.\n\n19. If something is cold then it chases the cat.\n   - The squirrel is cold, so we can conclude that the squirrel chases the cat (Rule 13).\n\n20. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n   - We cannot conclude this because we don't know if the squirrel eats the bald eagle.\n\n21. If something chases the bald eagle and it is young then it chases the squirrel.\n   - We cannot conclude this because we don't know if something chases the bald eagle and is young.\n\n22. If something eats the squirrel and it eats the cat then the squirrel chases the cat.\n   - The lion eats the squirrel, and the lion eats the cat, so we can conclude that the squirrel chases the cat (Rule 7).\n\n23. If something is round then it eats the bald eagle.\n   - The cat is round, but we cannot conclude that the cat eats the bald eagle.\n\nFrom the given rules and statements, we can conclude the following properties:\n\n- The bald eagle is cold.\n- The bald eagle chases the cat.\n- The cat is round.\n- The cat sees the bald eagle.\n- The cat eats the squirrel.\n- The squirrel is cold.\n- The squirrel chases the cat.\n- The squirrel is kind.\n- The squirrel is round.\n- The squirrel chases the lion.\n- The squirrel eats the lion.\n\nWe cannot conclude the color of the squirrel from the given statements. Therefore, the statement \"The squirrel is not red\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to find out if the statement \"The squirrel is not red\" is true, false, or unknown based on the given information. However, there is no information provided about the color of the squirrel. The only information we have is related to the actions and characteristics of the animals.\n\nWe can analyze the given statements and find any information that could be related to the color of the squirrel:\n\n1. The squirrel chases the bald eagle.\n2. The squirrel chases the lion.\n3. The squirrel eats the lion.\n4. The squirrel is cold.\n5. The squirrel is kind.\n\nSince there is no information provided about the color of the squirrel, we cannot determine if the statement \"The squirrel is not red\" is true, false, or unknown. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The squirrel is not red,\" we need to use the given statements to infer information about the squirrel.\n\nGiven statements:\n\n1. The bald eagle eats the lion. \n2. The bald eagle is cold. \n3. The bald eagle sees the cat. \n4. The cat eats the lion. \n5. The cat is round. \n6. The cat sees the bald eagle. \n7. The lion chases the cat. \n8. The lion eats the cat. \n9. The lion eats the squirrel. \n10. The squirrel chases the bald eagle. \n11. The squirrel chases the lion. \n12. The squirrel eats the lion. \n13. The squirrel is cold. \n14. The squirrel is kind. \n15. If something is round then it sees the cat. \n16. If something chases the cat and the cat is cold then the cat eats the squirrel. \n17. If something chases the cat and it is kind then it is round. \n18. If the lion eats the squirrel and the lion sees the cat then the lion is young. \n19. If something is cold then it chases the cat. \n20. If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round. \n21. If something chases the bald eagle and it is young then it chases the squirrel. \n22. If something eats the squirrel and it eats the cat then the squirrel chases the cat. \n23. If something is round then it eats the bald eagle.\n\nTo infer the color of the squirrel, let's analyze the statements:\n\nFrom statement 14: The squirrel is kind.\n\nStatement 17: If something chases the cat and it is kind then it is round.\n\nWe can deduce that the squirrel chases the cat (from statement 10 and 11), and it is kind (from statement 14). Therefore, the squirrel is round (from statement 17).\n\nNow, statement 23: If something is round then it eats the bald eagle.\n\nWe know the squirrel is round, so it eats the bald eagle (from statement 23).\n\nStatement 20: If the squirrel eats the bald eagle and the bald eagle is cold then the bald eagle is round.\n\nSince we already know the squirrel eats the bald eagle, and the bald eagle is cold (from statement 2), we can conclude that the bald eagle is round (from statement 20).\n\nThere is no given statement that implies the squirrel is red or any other color. However, since the squirrel is round, we can use statement 15: If something is round then it sees the cat.\n\nStatement 5: The cat is round.\n\nSince the squirrel is round, it sees the cat (from statement 15).\n\nStatement 22: If something eats the squirrel and it eats the cat then the squirrel chases the cat.\n\nSince the lion eats the squirrel (from statement 9) and the lion eats the cat (from statement 8), the squirrel chases the cat (from statement 22).\n\nStatement 16: If something chases the cat and the cat is cold then the cat eats the squirrel.\n\nThere is no statement that the cat is cold, so we cannot conclude this.\n\nStatement 19: If something is cold then it chases the cat.\n\nWe know the squirrel is cold (from statement 13), so the squirrel chases the cat (from statement 19).\n\nHowever, we are trying to determine if the squirrel is not red. Since there is no statement that implies the squirrel is red or any other color, we can conclude that the truth value of the statement \"The squirrel is not red\" is unknown because there is no evidence to support or refute it.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, kind_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & sees(lion, cat) -> young(lion)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, sees_lion_cat), young_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, kind_squirrel), round_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cat) -> chases(squirrel, cat)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_X_cat), chases_squirrel_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & cold(bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(eats_squirrel_bald_eagle, cold_bald_eagle), round_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(lion, squirrel) & sees(lion, cat) -> young(lion)",
+          "z3_formula": "Implies(And(eats_lion_squirrel, sees_lion_cat), young_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, cat)",
+          "z3_formula": "Implies(round_squirrel, sees_squirrel_cat)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, cat)",
+          "z3_formula": "Implies(round_cat, sees_cat_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(chases_lion_cat, cold_lion), eats_lion_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, kind_squirrel), round_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(lion, squirrel) & sees(lion, cat) -> young(lion)",
+          "z3_formula": "Implies(And(eats_lion_squirrel, sees_lion_cat), young_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(eats_squirrel_bald_eagle, eats_squirrel_cat), chases_squirrel_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, bald_eagle)",
+          "z3_formula": "eats_squirrel_bald_eagle == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & sees(X, cat) -> young(X)",
+          "z3_formula": "Implies(And(eats_lion_squirrel, sees_lion_cat), young_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, cat)",
+          "z3_formula": "Implies(round_cat, sees_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & sees(X, cat) -> young(X)",
+          "z3_formula": "Implies(And(eats_lion_squirrel, sees_lion_cat), young_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cat) -> chases(X, cat)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, eats_lion_cat), chases_squirrel_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, kind_squirrel), round_squirrel)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_bald_eagle)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, bald_eagle)",
+          "z3_formula": "eats_squirrel_bald_eagle == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(eats_squirrel_bald_eagle, cold_squirrel), round_bald_eagle)",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(round_squirrel | Not(round_squirrel))",
+          "source_step": 38
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cat) -> chases(squirrel, cat)",
+          "z3_formula": "Implies(And(eats_squirrel_cat, eats_squirrel_cat), chases_squirrel_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cat) -> chases(squirrel, cat)",
+          "z3_formula": "Implies(And(eats_lion_cat, eats_lion_cat), chases_squirrel_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_lion, chases_lion_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, cat)",
+          "z3_formula": "Implies(round_cat, sees_cat_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == Unknown",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, cat)",
+          "z3_formula": "chases_squirrel_cat == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not red(squirrel)",
+          "z3_formula": "not red_squirrel == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees_cat(X)",
+          "z3_formula": "Implies(round_squirrel, sees_cat_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases_cat(X) & cold_cat -> eats_squirrel(X)",
+          "z3_formula": "Implies(And(chases_cat_squirrel, cold_cat), eats_squirrel_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases_cat(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_cat_squirrel, kind_squirrel), round_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats_squirrel(lion) & sees_cat(lion) -> young(lion)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, sees_cat_lion), young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases_cat(X)",
+          "z3_formula": "Implies(cold_squirrel, chases_cat_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats_bald_eagle(squirrel) & cold_bald_eagle -> round_bald_eagle",
+          "z3_formula": "Implies(And(eats_bald_eagle_squirrel, cold_bald_eagle), round_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases_bald_eagle(X) & young(X) -> chases_squirrel(X)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, young_squirrel), chases_squirrel_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats_squirrel(X) & eats_cat(X) -> chases_cat(X)",
+          "z3_formula": "Implies(And(eats_squirrel_squirrel, eats_cat_squirrel), chases_cat_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats_bald_eagle(X)",
+          "z3_formula": "Implies(round_squirrel, eats_bald_eagle_squirrel)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cat) -> not(chases(squirrel, cat))",
+          "z3_formula": "Implies(And(eats_squirrel_cat, eats_squirrel_cat), not(chases_squirrel_cat))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 5
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, chases_squirrel_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & cold(bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(eats_squirrel_bald_eagle, cold_bald_eagle), round_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & sees(lion, cat) -> young(lion)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, sees_lion_cat), young_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, kind_squirrel), round_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, cat)",
+          "z3_formula": "Implies(round_squirrel, sees_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(round(X))",
+          "z3_formula": "Implies(round_lion, Not(round_lion))",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases_cat(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_cat_squirrel, kind_squirrel), round_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats_bald_eagle(X)",
+          "z3_formula": "Implies(round_squirrel, eats_bald_eagle_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats_bald_eagle(squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats_bald_eagle(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(eats_bald_eagle_squirrel, cold_bald_eagle), round_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees_cat(X)",
+          "z3_formula": "Implies(round_squirrel, sees_cat_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees_cat(squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats_squirrel(X) & eats_cat(X) -> chases_cat(X)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, eats_cat_lion), chases_cat_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "chases_cat(squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "chases_cat(X) & cold(X) -> eats_squirrel(X)",
+          "z3_formula": "Implies(And(chases_cat_squirrel, cold_squirrel), eats_squirrel_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "eats_squirrel(squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases_cat(squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not red(squirrel)",
+          "z3_formula": "Not(red_squirrel) == True",
+          "source_step": 27
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 146,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 1,
+      "total_weight": 144,
+      "solve_time_ms": 1.346692442893982
+    },
+    "timing": {
+      "trace_gen_s": 24.962,
+      "extraction_s": 43.357,
+      "dedup_s": 1.584,
+      "maxsat_s": 0.005,
+      "total_s": 69.907
+    }
+  }
+}

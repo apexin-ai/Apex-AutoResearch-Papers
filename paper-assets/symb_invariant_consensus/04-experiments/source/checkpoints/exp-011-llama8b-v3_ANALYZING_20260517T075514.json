@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp-011-llama8b-v3",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:15:02.161Z",
+    "updated_at": "2026-05-17T07:55:14.528Z",
+    "hypothesis": "Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T06:45:47.789Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\"",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T07:55:14.227Z",
+      "training_hours": 1.16
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\"",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "292780",
+      "log_path": "~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log",
+      "submitted_at": "2026-05-17T06:45:49.636Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "292780",
+    "log_path": "~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log"
+  },
+  "timestamp": "2026-05-17T07:55:14.601172+00:00",
+  "trigger": "update_registry"
+}

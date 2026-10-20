@@ -1,0 +1,27 @@
+{
+  "exp_id": "sica_expanded_14b",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:12:00.374Z",
+    "updated_at": "2026-05-16T05:12:00.374Z",
+    "spec": {
+      "hypothesis": "扩展题数评估：Qwen2.5-14B-Instruct 在 ProofWriter 全量 + FOLIO 全量 (目标≥200题) 上 SICA 能否达到统计显著的 C3 优势",
+      "parent": "sica_d012_14b",
+      "model_name": "Qwen2.5-14B-Instruct",
+      "data_path": "ProofWriter-D5 全量 + FOLIO 全量",
+      "server": "westd-32608",
+      "seed": 42,
+      "hyperparams": {
+        "K": 12,
+        "temperature": 0.7,
+        "max_tokens": 4096
+      }
+    }
+  },
+  "timestamp": "2026-05-16T05:12:00.496186+00:00",
+  "trigger": "update_registry"
+}

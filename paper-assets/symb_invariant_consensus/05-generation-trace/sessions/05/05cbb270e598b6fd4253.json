@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05cbb270e598b6fd4253",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code pilot constraint filtering",
+  "task_key": "worker_code_pilot-constraint-filtering_20260517T042721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pilot-constraint-filtering_20260517T042721_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "153973f06c9969639d9b3062cc1161a49a31a6d8cde83159cce4cf7b716a3b67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n**脚本路径**:\n- `scripts/pilot_constraint_filtering.py` — 主逻辑\n- `scripts/run_pilot_constraint_filtering.sh` — 入口脚本\n\n**Dry-run 结果**:\n- `--help` 通过\n- `--dry-run` 端到端通过（43 题，5 个阈值，SC baseline 74.4%）\n- Phase 2 (dedup+filter): 24.4s\n- Phase 3 (MaxSAT+scoring): 0.4s\n- Mock 约束无矛盾，所以 gap=0 是预期行为；真实约束会有分化\n\n**预估运行时间**（真实 extraction）:\n- Phase 1: 43 题 × 20 traces = 860 次 LLM 调用。以 batch_call(max_workers=6) 并发，单次 ~2-3s → 约 **25-35 分钟**\n- Phase 2: ~30s（Z3 equivalence checking 43×dedup）\n- Phase 3: <1s\n- **总计约 30-40 分钟**\n\n**API 兼容性**: 无问题。直接复用 `sica.constraint_extractor.VLLMBackend`（与 exp-017 同模型同端口 8000），`domain=\"logic\"` 使用 ProofWriter 专用 extraction prompt。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pilot-constraint-filtering.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-063",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:40:39.276Z",
+    "updated_at": "2026-05-19T07:40:53.644Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct FOLIO-204 SICA vs SC（Meta 架构覆盖）。exp-020 旧数据 SC=63.2% delta=-2.45pp，本实验用修正 tie-breaking 重跑。parent=exp-020",
+    "parent": "exp-020"
+  },
+  "timestamp": "2026-05-19T07:40:53.851410+00:00",
+  "trigger": "update_registry"
+}

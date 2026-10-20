@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-177_Q5",
+    "problem": "Anne is furry. Anne is smart. Bob is kind. Bob is nice. Charlie is big. Charlie is green. Charlie is nice. Charlie is young. Gary is furry. Gary is kind. Gary is nice. Gary is young. If something is young then it is nice. If Anne is green then Anne is big. Smart things are nice. All smart, kind things are green. Young, big things are kind. Kind, smart things are furry. If something is nice and big then it is young. All nice things are kind. If Anne is young and Anne is big then Anne is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nSmart(Anne, True) ::: Anne is smart.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nBig(Charlie, True) ::: Charlie is big.\nGreen(Charlie, True) ::: Charlie is green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Gary, True) ::: Gary is furry.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nYoung($x, True) >>> Nice($x, True) ::: If something is young then it is nice.\nGreen(Anne, True) >>> Big(Anne, True) ::: If Anne is green then Anne is big.\nSmart($x, True) >>> Nice($x, True) ::: Smart things are nice.\nSmart($x, True) && Kind($x, True) >>> Green($x, True) ::: All smart, kind things are green.\nYoung($x, True) && Big($x, True) >>> Kind($x, True) ::: Young, big things are kind.\nKind($x, True) && Smart($x, True) >>> Furry($x, True) ::: Kind, smart things are furry.\nNice($x, True) && Big($x, True) >>> Young($x, True) ::: If something is nice and big then it is young.\nNice($x, True) >>> Kind($x, True) ::: All nice things are kind.\nYoung(Anne, True) && Big(Anne, True) >>> Nice(Anne, True) ::: If Anne is young and Anne is big then Anne is nice.\n\nQuery:\nKind(Anne, True) ::: Anne is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

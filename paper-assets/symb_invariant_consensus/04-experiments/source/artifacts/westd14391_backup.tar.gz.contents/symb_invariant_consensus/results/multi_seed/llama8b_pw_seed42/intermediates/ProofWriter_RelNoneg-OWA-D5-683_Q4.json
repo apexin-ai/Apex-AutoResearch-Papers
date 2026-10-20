@@ -1,0 +1,1199 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-683_Q4",
+    "problem": "The bear chases the cat. The bear chases the cow. The bear likes the cat. The bear likes the lion. The bear visits the cat. The cat is red. The cat visits the bear. The cat visits the cow. The cow visits the lion. The lion chases the cat. The lion is nice. If something likes the bear and it visits the lion then it is green. If something likes the lion and the lion is nice then it chases the lion. If something is green and it chases the cow then the cow is cold. Cold things are green. If something chases the lion and the lion chases the cat then it is cold. If the lion likes the cat and the cat chases the lion then the lion is nice. If something likes the cat then it likes the lion. If something likes the cat then it likes the lion. If something chases the lion then the lion visits the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not chase the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nChases(Bear, Cat, True) ::: The bear chases the cat.\nChases(Bear, Cow, True) ::: The bear chases the cow.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Bear, Lion, True) ::: The bear likes the lion.\nVisits(Bear, Cat, True) ::: The bear visits the cat.\nRed(Cat, True) ::: The cat is red.\nVisits(Cat, Bear, True) ::: The cat visits the bear.\nVisits(Cat, Cow, True) ::: The cat visits the cow.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nNice(Lion, True) ::: The lion is nice.\n\nRules:\nLikes($x, Bear, True) && Visits($x, Lion, True) >>> Green($x, True) ::: If something likes the bear and it visits the lion then it is green.\nLikes($x, Lion, True) && Nice(Lion, True) >>> Chases($x, Lion, True) ::: If something likes the lion and the lion is nice then it chases the lion.\nGreen($x, True) && Chases($x, Cow, True) >>> Cold(Cow, True) ::: If something is green and it chases the cow then the cow is cold.\nCold($x, True) >>> Green($x, True) ::: Cold things are green.\nChases($x, Lion, True) && Chases(Lion, Cat, True) >>> Cold($x, True) ::: If something chases the lion and the lion chases the cat then it is cold.\nLikes(Lion, Cat, True) && Chases(Cat, Lion, True) >>> Nice(Lion, True) ::: If the lion likes the cat and the cat chases the lion then the lion is nice.\nLikes($x, Cat, True) >>> Likes($x, Lion, True) ::: If something likes the cat then it likes the lion.\nChases($x, Lion, True) >>> Visits(Lion, Bear, True) ::: If something chases the lion then the lion visits the bear.\n\nQuery:\nChases(Bear, Lion, False) ::: The bear does not chase the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 114.0,
+      "True": 131.5,
+      "Unknown": 157.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 1,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the cat. (Statement 3)\n2. The bear likes the lion. (Statement 4)\n3. If something likes the bear and it visits the lion then it is green. (Statement 5)\n   - We don't have enough information to determine if the bear is green.\n\n4. The bear visits the cat. (Statement 5)\n   - Since the bear likes the cat (Statement 3), it follows that the bear likes the lion (Statement 4).\n\n5. The cat is red. (Statement 6)\n   - This does not affect the statement we are trying to evaluate.\n\n6. The cat visits the bear. (Statement 7)\n   - This does not affect the statement we are trying to evaluate.\n\n7. The cat visits the cow. (Statement 8)\n   - This does not affect the statement we are trying to evaluate.\n\n8. The cow visits the lion. (Statement 9)\n   - This does not affect the statement we are trying to evaluate.\n\n9. The lion chases the cat. (Statement 10)\n   - We know the lion likes the cat (from Statement 10), and it also likes the bear (Statement 4).\n\n10. The lion is nice. (Statement 11)\n    - We know that the lion likes the cat, and the cat chases the lion, but we don't know if the lion is nice yet.\n\n11. If something likes the lion and the lion is nice then it chases the lion. (Statement 12)\n    - We know the lion is nice (Statement 11), but we don't know if anything likes the lion.\n\n12. If the lion likes the cat and the cat chases the lion then the lion is nice. (Statement 14)\n    - We already know the lion likes the cat (from Statement 10), and it is also nice (Statement 11).\n\n13. The lion is nice. (Statement 11)\n    - This is already known.\n\n14. The bear does not chase the lion or it does.\n   - We know the bear likes the lion (Statement 4), but we don't have enough information to determine if the bear chases the lion or not.\n\nSince we don't have enough information to determine whether the bear chases the lion or not, the statement \"The bear does not chase the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and find any information that can lead us to determine whether the bear chases the lion or not.\n\n1. The bear chases the cat.\n2. The bear likes the cat.\n3. The bear likes the lion.\n4. The bear visits the cat.\n5. The cat is red.\n6. The cat visits the bear.\n7. The cat visits the cow.\n8. The cow visits the lion.\n9. The lion chases the cat.\n10. The lion is nice.\n11. If something likes the bear and it visits the lion then it is green.\n12. If something likes the lion and the lion is nice then it chases the lion.\n13. If something is green and it chases the cow then the cow is cold.\n14. Cold things are green.\n15. If something chases the lion and the lion chases the cat then it is cold.\n16. If the lion likes the cat and the cat chases the lion then the lion is nice.\n17. If something likes the cat then it likes the lion.\n18. If something chases the lion then the lion visits the bear.\n\nFrom statement 9, we know that the lion chases the cat. \n\nStatement 16 does not provide any new information, it's just a repetition of statement 10.\n\nNow, let's analyze the given statements to determine whether the bear likes the lion and whether the lion is nice, which can help us determine whether the bear chases the lion.\n\nFrom statement 3, we know that the bear likes the lion.\n\nFrom statement 10, we know that the lion is nice.\n\nSince the bear likes the lion and the lion is nice, we can use statement 12 to conclude that the bear chases the lion.\n\nHowever, statement 12 says that if something likes the lion and the lion is nice then it chases the lion. This statement does not explicitly state that the bear chases the lion, it only states that something chases the lion. Therefore, we cannot conclude that the bear chases the lion directly from this statement.\n\nWe need to look for more information. \n\nFrom statement 3, we know that the bear likes the lion.\n\nFrom statement 17, we know that if something likes the cat then it likes the lion. However, this statement does not provide any new information in this case.\n\nFrom statement 1, we know that the bear chases the cat.\n\nFrom statement 18, we know that if something chases the lion then the lion visits the bear.\n\nFrom statement 9, we know that the lion chases the cat.\n\nNow, let's look at statement 14: Cold things are green.\n\nThis statement does not provide any new information that can help us determine whether the bear chases the lion.\n\nHowever, statement 15 says that if something chases the lion and the lion chases the cat then it is cold. \n\nWe do not know whether the lion chases the cat. \n\nHowever, statement 9 says that the lion chases the cat. \n\nTherefore, we can use statement 15 to conclude that the bear is cold.\n\nStatement 15 also says that if something chases the lion and the lion chases the cat then it is cold. \n\nFrom statement 1, we know that the bear chases the cat.\n\nFrom statement 9, we know that the lion chases the cat.\n\nTherefore, we can use statement 15 to conclude that the bear is cold.\n\nFrom statement 13, we know that if something is green and it chases the cow then the cow is cold. \n\nWe do not know whether the bear chases the cow.\n\nHowever, statement 7 says that the cat visits the cow.\n\nFrom statement 1, we know that the bear chases the cat.\n\nFrom statement 18, we know that if something chases the lion then the lion visits the bear.\n\nWe do not know whether the bear chases the lion. \n\nHowever, statement 3 says that the bear likes the lion.\n\nFrom statement 10, we know that the lion is nice.\n\nFrom statement 17, we know that if something likes the cat then it likes the lion.\n\nHowever, statement 17 does not provide any new information in this case.\n\nFrom statement 9, we know that the lion chases the cat.\n\nFrom statement 1, we know that the bear chases the cat.\n\nFrom statement 18, we know that if something chases the lion then the lion visits the bear.\n\nSince we know that the bear chases the cat and the lion chases the cat, we can conclude that the bear chases the lion.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use a process of elimination to determine the relationship between the bear and the lion.\n\n1. The bear chases the cat.\n2. The bear likes the cat.\n3. The bear likes the lion.\n4. The bear visits the cat.\n5. The cat is red.\n6. The cat visits the bear.\n7. The cat visits the cow.\n8. The cow visits the lion.\n9. The lion chases the cat.\n10. The lion is nice.\n11. If something likes the bear and it visits the lion then it is green.\n12. If something likes the lion and the lion is nice then it chases the lion.\n13. If something is green and it chases the cow then the cow is cold.\n14. Cold things are green.\n15. If something chases the lion and the lion chases the cat then it is cold.\n16. If the lion likes the cat and the cat chases the lion then the lion is nice.\n17. If something likes the cat then it likes the lion.\n18. If something chases the lion then the lion visits the bear.\n\nFrom statement 9, we know that the lion chases the cat.\n\nFrom statement 17, we know that if something likes the cat, then it likes the lion. Since the bear likes the cat (statement 2), it implies that the bear likes the lion.\n\nHowever, we cannot directly determine if the bear chases the lion. So, we need to look for any other statements that might help us determine the relationship between the bear and the lion.\n\nFrom statement 18, we know that if something chases the lion, then the lion visits the bear. But this does not directly tell us if the bear chases the lion or not.\n\nFrom statement 12, we know that if something likes the lion and the lion is nice, then it chases the lion. However, we do not know if the bear likes the lion (it likes the lion, but not necessarily that the bear likes the lion because the lion is nice). We also do not know if the lion is nice in the context of the bear liking the lion.\n\nHowever, we can conclude that since the bear likes the lion (statement 3), and the lion is nice (statement 10), then the bear would chase the lion if it likes the lion because the lion is nice (statement 12). \n\nHowever, there is no statement that directly says the bear likes the lion because the lion is nice. It only says the bear likes the lion. Therefore, we cannot conclude that the bear chases the lion based on this information.\n\nTherefore, the statement is unknown because we do not have enough information to determine if the bear chases the lion or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given information and the conditions that lead to certain conclusions.\n\n1. The bear chases the cat.\n2. The bear chases the cow.\n3. The bear likes the cat.\n4. The bear likes the lion.\n5. The bear visits the cat.\n6. The cat is red.\n7. The cat visits the bear.\n8. The cat visits the cow.\n9. The cow visits the lion.\n10. The lion chases the cat.\n11. The lion is nice.\n12. If something likes the bear and it visits the lion then it is green.\n13. If something likes the lion and the lion is nice then it chases the lion.\n14. If something is green and it chases the cow then the cow is cold.\n15. Cold things are green.\n16. If something chases the lion and the lion chases the cat then it is cold.\n17. If the lion likes the cat and the cat chases the lion then the lion is nice.\n18. If something likes the cat then it likes the lion.\n19. If something chases the lion then the lion visits the bear.\n\nNow, let's evaluate the statement \"The bear does not chase the lion.\"\n\nTo do this, we need to determine if there is any information that leads to a conclusion that the bear does chase the lion.\n\nFrom the given information:\n\n- There is no direct statement that the bear chases the lion.\n- There is no information that would lead to the conclusion that the bear chases the lion.\n\nHowever, we can use the information in statement 19: \"If something chases the lion then the lion visits the bear.\"\n\nIf we assume that the bear chases the lion, then according to statement 19, the lion visits the bear.\n\nNow, let's analyze the bear's behavior and the conditions that lead to certain conclusions:\n\n- The bear likes the lion (statement 4).\n- The lion is nice (statement 11).\n\nUsing statement 13, if something likes the lion and the lion is nice, then it chases the lion. However, this does not apply to the bear because the bear likes the lion and the lion is nice, but we are trying to determine if the bear chases the lion.\n\nHowever, we can look at the information in statement 12: \"If something likes the bear and it visits the lion then it is green.\"\n\nThe bear likes the cat (statement 3) and the cat visits the lion (statement 7). According to statement 12, this means the cat is green.\n\nNow, let's look at the information in statement 16: \"If something chases the lion and the lion chases the cat then it is cold.\"\n\nWe know that the lion chases the cat (statement 10). If the lion visits the bear (as determined earlier), then it implies that the bear chases the lion (using statement 19).\n\nNow we have the information that the bear chases the lion, the lion chases the cat, and the cat is green.\n\nUsing statement 14, if something is green and it chases the cow then the cow is cold. However, we are trying to determine if the bear chases the lion.\n\nNow we look at the information in statement 15: \"Cold things are green.\"\n\nThis statement is a tautology and does not provide any new information.\n\nHowever, the cat is red (statement 6) but that does not necessarily apply to our current analysis.\n\nNow we look at the information in statement 18: \"If something likes the cat then it likes the lion.\"\n\nThe bear likes the cat (statement 3). Therefore, according to statement 18, the bear likes the lion.\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nHowever, we can look at the information in statement 19: \"If something chases the lion then the lion visits the bear.\"\n\nAs we determined earlier, if the bear chases the lion, then the lion visits the bear.\n\nThe bear likes the lion (statement 4). However, we have not found any information that would lead us to conclude that the bear does not chase the lion.\n\nHowever, we can look at the information in statement 17: \"If the lion likes the cat and the cat chases the lion then the lion is nice.\"\n\nThe lion likes the cat (statement 5). However, the cat does not chase the lion. The lion chases the cat (statement 10).\n\nTherefore, statement 17 does not apply to our current analysis.\n\nHowever, we can look at the information in statement 13: \"If something likes the lion and the lion is nice then it chases the lion.\"\n\nThe bear likes the lion (statement 4). However, the lion is nice (statement 11).\n\nThis does not tell us anything about the bear chasing the lion.\n\nHowever, we can look at the information in statement 1: \"The bear chases the cat.\"\n\nThe bear likes the cat (statement 3). This means that the bear likes the lion (using statement 18).\n\nHowever, this does not tell us anything about the bear chasing the lion.\n\nHowever, we can look at the information in statement 2: \"The bear chases the cow.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 9: \"The cow visits the lion.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 8: \"The cat visits the cow.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 7: \"The cat visits the bear.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 6: \"The cat is red.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 5: \"The bear likes the cat.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 4: \"The bear likes the lion.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 3: \"The bear likes the cat.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 2: \"The bear chases the cow.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nNow, we can look at the information in statement 1: \"The bear chases the cat.\"\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nHowever, we determined that if the bear chases the lion, then the lion visits the bear (statement 19).\n\nIf the bear likes the lion (statement 4), then the bear likes the cat (statement 3).\n\nThe cat is red (statement 6), but we have not used this information yet.\n\nNow we look at the information in statement 10: \"The lion chases the cat.\"\n\nWe can look at the information in statement 16: \"If something chases the lion and the lion chases the cat then it is cold.\"\n\nHowever, we are trying to determine if the bear chases the lion.\n\nNow we look at the information in statement 14: \"If something is green and it chases the cow then the cow is cold.\"\n\nWe know that the cat is green (as determined earlier) and the cat visits the cow (statement 8).\n\nHowever, we are trying to determine if the bear chases the lion.\n\nNow we look at the information in statement 15: \"Cold things are green.\"\n\nThis statement is a tautology and does not provide any new information.\n\nHowever, the cat is red (statement 6) but that does not necessarily apply to our current analysis.\n\nNow we look at the information in statement 17: \"If the lion likes the cat and the cat chases the lion then the lion is nice.\"\n\nThe lion likes the cat (statement 5). However, the cat does not chase the lion. The lion chases the cat (statement 10).\n\nTherefore, statement 17 does not apply to our current analysis.\n\nNow we look at the information in statement 18: \"If something likes the cat then it likes the lion.\"\n\nThe bear likes the cat (statement 3). Therefore, according to statement 18, the bear likes the lion.\n\nThis statement does not tell us anything about the bear chasing the lion.\n\nHowever, we determined that if the bear chases the lion, then the lion visits the bear (statement 19).\n\nThe bear likes the lion (statement 4). However, we have not found any information that would lead us to conclude that the bear does not chase the lion.\n\nNow we look at the information in statement 13: \"If something likes the lion and the lion is nice then it chases the lion.\"\n\nThe bear likes the lion (statement 4). However, the lion is nice (statement 11).\n\nThis does not tell us anything about the bear chasing the lion.\n\nHowever, we can look at the information in statement 19: \"If something chases the lion then the lion visits the bear.\"\n\nAs we determined earlier, if the bear chases the lion, then the lion visits the bear.\n\nThe bear likes the lion (statement 4). However, we have not found any information that would lead us to conclude that the bear does not chase the lion.\n\nHowever, we can look at the information in statement 1: \"The bear chases the cat.\"\n\nThe bear likes the cat (statement 3). This means that the bear likes the lion (using statement 18).\n\nHowever, this does not tell us anything about the bear chasing the lion",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat. \n2. The bear likes the cat.\n3. The bear likes the lion.\n4. The bear visits the cat.\n5. The cat is red.\n6. The cat visits the bear.\n7. The cat visits the cow.\n8. The cow visits the lion.\n9. The lion chases the cat.\n10. The lion is nice.\n11. If something likes the bear and it visits the lion then it is green. (This rule is not relevant to the statement we are evaluating.)\n12. If something likes the lion and the lion is nice then it chases the lion. (This rule is not relevant to the statement we are evaluating.)\n13. If something is green and it chases the cow then the cow is cold. (This rule is not relevant to the statement we are evaluating.)\n14. Cold things are green. (This rule is not relevant to the statement we are evaluating.)\n15. If something chases the lion and the lion chases the cat then it is cold. (This rule is not relevant to the statement we are evaluating.)\n16. If the lion likes the cat and the cat chases the lion then the lion is nice. (This rule is not relevant to the statement we are evaluating.)\n17. If something likes the cat then it likes the lion. (This rule is not relevant to the statement we are evaluating.)\n18. If something chases the lion then the lion visits the bear. \n\nFrom the given rules and statements, we can deduce the following information:\n- The bear chases the cat (rule 1).\n- The lion chases the cat (rule 9).\n- The lion visits the bear (rule 18).\n- There is no rule or statement that directly indicates whether the bear chases the lion or not.\n\nHowever, based on rule 9 and rule 18, we can conclude that if the bear chases the lion, then the lion visits the bear. But we cannot determine if the bear does chase the lion or not. \n\nTherefore, the statement \"The bear does not chase the lion\" is unknown because we cannot determine with certainty whether the bear chases the lion or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and the rules into smaller parts.\n\nGiven information:\n1. The bear chases the cat.\n2. The bear chases the cow.\n3. The bear likes the cat.\n4. The bear likes the lion.\n5. The bear visits the cat.\n6. The cat is red.\n7. The cat visits the bear.\n8. The cat visits the cow.\n9. The cow visits the lion.\n10. The lion chases the cat.\n11. The lion is nice.\n12. If something likes the bear and it visits the lion then it is green.\n13. If something likes the lion and the lion is nice then it chases the lion.\n14. If something is green and it chases the cow then the cow is cold.\n15. Cold things are green.\n16. If something chases the lion and the lion chases the cat then it is cold.\n17. If the lion likes the cat and the cat chases the lion then the lion is nice.\n18. If something likes the cat then it likes the lion.\n19. If something chases the lion then the lion visits the bear.\n\nWe are trying to determine if the statement \"The bear does not chase the lion\" is true, false, or unknown.\n\nFrom rule 1, we know that the bear chases the cat.\nFrom rule 10, we know that the lion chases the cat.\n\nNow, we need to check if the bear chases the lion. \n\nThere is no direct rule that says the bear chases the lion. However, from rule 1, we know that the bear chases the cat, and from rule 10, we know that the lion chases the cat. We can use rule 16 to determine if the bear is cold.\n\nFrom rule 16, if something chases the lion and the lion chases the cat then it is cold. Since the bear chases the lion (from rule 1, the bear chases the cat and from rule 10, the lion chases the cat) and the lion chases the cat, the bear is cold. \n\nNow, we need to check if the bear is green. \n\nFrom rule 15, we know that cold things are green. Since the bear is cold (from step 1), the bear is green.\n\nNow, we need to check if the bear visits the lion. \n\nFrom rule 2, we know that the bear chases the cow. From rule 14, if something is green and it chases the cow then the cow is cold. Since the bear is green (from step 2) and it chases the cow (from rule 2), the cow is cold. \n\nFrom rule 15, we know that cold things are green. Since the cow is cold (from step 1), the cow is green. \n\nFrom rule 4, we know that the bear likes the lion. From rule 12, if something likes the bear and it visits the lion then it is green. Since the bear likes the lion (from rule 4) and we are trying to determine if the bear visits the lion, if the bear visits the lion, it will be green.\n\nHowever, we already know that the bear is green (from step 2). \n\nFrom rule 4, we know that the bear likes the lion. From rule 5, we know that the bear visits the cat.\n\nNow, we can conclude that the bear visits the lion. \n\nSince we have determined that the bear visits the lion, we can now determine if the bear chases the lion.\n\nFrom rule 12, if something likes the bear and it visits the lion then it is green. We have already determined that the bear is green (from step 2). \n\nHowever, from rule 13, if something likes the lion and the lion is nice then it chases the lion. We know that the bear likes the lion (from rule 4) and the lion is nice (from rule 11). Therefore, the bear should chase the lion.\n\nHowever, from rule 19, if something chases the lion then the lion visits the bear. If the bear chases the lion, then the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 9, we know that the cow visits the lion. From rule 8, we know that the cat visits the cow.\n\nNow, we can conclude that the cat visits the lion.\n\nFrom rule 8, we know that the cat visits the cow. From rule 9, we know that the cow visits the lion.\n\nNow, we can conclude that the cat visits the lion.\n\nFrom rule 18, if something likes the cat then it likes the lion. We know that the bear likes the cat (from rule 3). Therefore, the bear likes the lion.\n\nHowever, from rule 13, if something likes the lion and the lion is nice then it chases the lion. We know that the bear likes the lion (from rule 4) and the lion is nice (from rule 11). Therefore, the bear should chase the lion.\n\nHowever, we have already determined that the bear visits the lion (from step 5). \n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the lion visits the bear.\n\nFrom rule 10, we know that the lion chases the cat. From rule 7, we know that the cat visits the bear.\n\nNow, we can conclude that the",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat.\n2. The bear chases the cow.\n3. The bear likes the cat.\n4. The bear likes the lion.\n5. The bear visits the cat.\n6. The cat is red.\n7. The cat visits the bear.\n8. The cat visits the cow.\n9. The cow visits the lion.\n10. The lion chases the cat.\n11. The lion is nice.\n12. If something likes the bear and it visits the lion then it is green.\n13. If something likes the lion and the lion is nice then it chases the lion.\n14. If something is green and it chases the cow then the cow is cold.\n15. Cold things are green.\n16. If something chases the lion and the lion chases the cat then it is cold.\n17. If the lion likes the cat and the cat chases the lion then the lion is nice.\n18. If something likes the cat then it likes the lion.\n19. If something chases the lion then the lion visits the bear.\n\nNow, let's examine the statement \"The bear does not chase the lion.\" To determine its truth value, we can look for any information that directly or indirectly supports or contradicts this statement.\n\nFrom the given information, we know that:\n- The bear chases the cat (statement 1).\n- The bear chases the cow (statement 2).\n- The bear likes the lion (statement 4).\n- The lion chases the cat (statement 10).\n\nHowever, there is no direct information that states the bear chases the lion. Instead, we can use the information in statement 19: \"If something chases the lion then the lion visits the bear.\" Since the lion chases the cat (statement 10), we can infer that the lion visits the bear.\n\nUsing the information in statement 4, we know that the bear likes the lion. Now, let's examine the information in statement 12: \"If something likes the bear and it visits the lion then it is green.\" Since the bear likes the lion, and we have no information that contradicts this, we can conclude that the bear is green.\n\nHowever, we are not given any information that links the bear's color (green) to its behavior towards the lion. We do have information in statement 16: \"If something chases the lion and the lion chases the cat then it is cold.\" However, since we have no information that the bear chases the lion, we cannot determine if this statement applies.\n\nWe have not found any information that directly or indirectly supports or contradicts the statement \"The bear does not chase the lion.\" Therefore, the truth value of this statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat.  // We know the bear chases the cat.\n2. The bear likes the cat.  // We know the bear likes the cat.\n3. The bear likes the lion.  // We know the bear likes the lion.\n4. The bear visits the cat.  // We know the bear visits the cat.\n5. The cat is red.  // This information is irrelevant.\n6. The cat visits the bear.  // This information is irrelevant.\n7. The cat visits the cow.  // This information is irrelevant.\n8. The cow visits the lion.  // This information is irrelevant.\n9. The lion chases the cat.  // We know the lion chases the cat.\n10. The lion is nice.  // We know the lion is nice.\n11. If something likes the bear and it visits the lion then it is green.  // This rule is irrelevant for now.\n12. If something likes the lion and the lion is nice then it chases the lion.  // This rule is irrelevant for now.\n13. If something is green and it chases the cow then the cow is cold.  // This rule is irrelevant for now.\n14. Cold things are green.  // This rule is irrelevant for now.\n15. If something chases the lion and the lion chases the cat then it is cold.  // We can use this rule to determine if the bear is cold.\n16. If the lion likes the cat and the cat chases the lion then the lion is nice.  // We already know the lion is nice, so this rule is irrelevant.\n17. If something likes the cat then it likes the lion.  // We already know the bear likes the lion, so this rule is relevant.\n18. If something chases the lion then the lion visits the bear.  // We can use this rule to determine if the lion visits the bear.\n\nNow, we can analyze the statement \"The bear does not chase the lion.\" We know from rule 18 that if something chases the lion then the lion visits the bear. However, we do not know if the bear chases the lion.\n\nHowever, we can find information that might help us determine if the bear chases the lion. From rule 17, we know that if something likes the cat then it likes the lion. We already know that the bear likes the cat. Therefore, the bear likes the lion.\n\nWe also know from rule 12 that if something likes the lion and the lion is nice then it chases the lion. However, we do not know if the bear likes the lion and the lion is nice. We do know that the lion is nice, but we do not know if the bear likes the lion.\n\nHowever, we can use rule 18 to find more information. We know that if something chases the lion then the lion visits the bear. But we also know that the bear likes the lion (from rule 17), and the lion likes the cat (because we know that the lion chases the cat, and from rule 17, we know that if something likes the cat then it likes the lion).\n\nNow, we can use rule 17 again. We know that the bear likes the cat. Therefore, the bear likes the lion. We also know that the lion likes the cat. Therefore, the lion likes the bear (from rule 17).\n\nNow, we can use rule 11. We know that the bear likes the lion, and we know that the lion likes the bear. Therefore, the bear visits the lion (from rule 11).\n\nNow, we can use rule 18. We know that the bear visits the lion. Therefore, the lion visits the bear (from rule 18).\n\nNow, we can use rule 15. We know that the bear chases the cat, and the cat chases the lion. Therefore, the bear is cold (from rule 15).\n\nNow, we can use rule 13. We know that the bear is cold, and we know that the bear chases the cow. Therefore, the cow is cold (from rule 13).\n\nNow, we can use rule 14. We know that the cow is cold. Therefore, the cow is green (from rule 14).\n\nNow, we can use rule 11 again. We know that the cow is green, and we know that the cow visits the lion. Therefore, the cow visits the lion and it is green (from rule 11).\n\nNow, we can use rule 12 again. We know that the cow likes the lion (because we know that the cow visits the lion and it is green, and from rule 11, we know that if something likes the bear and it visits the lion then it is green), and the lion is nice. Therefore, the cow chases the lion (from rule 12).\n\nHowever, we know from rule 18 that if something chases the lion then the lion visits the bear. But we already know that the lion visits the bear.\n\nTherefore, we have found a contradiction. We know that the cow chases the lion, but we also know that the lion visits the bear.\n\nHowever, we can use rule 18 again. We know that the cow chases the lion, and the lion visits the bear. Therefore, the bear visits the lion (from rule 18).\n\nNow, we can use rule 18 again. We know that the bear visits the lion, and we know that the lion visits the bear. Therefore, the bear chases the lion (from rule 18).\n\nHowever, this is a contradiction. We know that the bear does not chase the lion.\n\nTherefore, the statement \"The bear does not chase the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat. \n2. The bear likes the cat. \n3. The bear likes the lion.\n4. The bear visits the cat. \n5. The cat is red.\n6. The cat visits the bear.\n7. The cat visits the cow.\n8. The cow visits the lion.\n9. The lion chases the cat.\n10. The lion is nice.\n11. If something likes the bear and it visits the lion then it is green.\n12. If something likes the lion and the lion is nice then it chases the lion.\n13. If something is green and it chases the cow then the cow is cold.\n14. Cold things are green.\n15. If something chases the lion and the lion chases the cat then it is cold.\n16. If the lion likes the cat and the cat chases the lion then the lion is nice.\n17. If something likes the cat then it likes the lion.\n18. If something chases the lion then the lion visits the bear.\n\nFrom the information given, we know that the bear likes the lion (statement 3) and the lion is nice (statement 10). Since the bear likes the lion and the lion is nice, we can use rule 12 to conclude that the bear chases the lion.\n\nHowever, we need to verify this conclusion. From statement 3, we know the bear likes the lion. Statement 18 says that if something chases the lion then the lion visits the bear. Since the bear likes the lion, it implies that the bear does not chase the lion (if it did, the lion would visit the bear). But we know that the bear likes the lion. Therefore, the statement \"The bear likes the lion\" is crucial for determining the relationship between the bear and the lion.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat.\n2. The bear chases the cow.\n3. The bear likes the cat.\n4. The bear likes the lion.\n5. The bear visits the cat.\n6. The cat is red.\n7. The cat visits the bear.\n8. The cat visits the cow.\n9. The cow visits the lion.\n10. The lion chases the cat.\n11. The lion is nice.\n12. If something likes the bear and it visits the lion then it is green.\n13. If something likes the lion and the lion is nice then it chases the lion.\n14. If something is green and it chases the cow then the cow is cold.\n15. Cold things are green.\n16. If something chases the lion and the lion chases the cat then it is cold.\n17. If the lion likes the cat and the cat chases the lion then the lion is nice.\n18. If something likes the cat then it likes the lion.\n19. If something chases the lion then the lion visits the bear.\n\nWe can start by looking at the statement we want to determine: \"The bear does not chase the lion.\"\n\nFrom the given information (steps 1 and 10), we know the bear chases the cat, and the lion chases the cat. This does not directly tell us if the bear chases the lion or not.\n\nHowever, we can analyze the information given in steps 18 and 19:\n\n- If something likes the cat then it likes the lion.\n- If something chases the lion then the lion visits the bear.\n\nFrom step 3, we know the bear likes the cat, so using the first point, we can conclude the bear likes the lion.\n\nWe can also use the fact that the bear likes the lion and the lion is nice (step 11) to apply the rule in step 13:\n\n- If something likes the lion and the lion is nice then it chases the lion.\n\nHowever, this does not directly tell us if the bear chases the lion or not.\n\nNow, let's look at the information given in step 4: The bear likes the lion.\n\nWe can use this information along with the information in step 19:\n\n- If something chases the lion then the lion visits the bear.\n\nThis means that if the bear chases the lion, then the lion visits the bear. However, there is no information that directly says the bear chases the lion.\n\nHowever, we can look at the information in step 4: The bear likes the lion. And from step 19, we can see that if the bear chases the lion then the lion visits the bear, which we know the lion does (from the bear likes the lion). This implies that we can't determine if the bear chases the lion or not using the information we have.\n\nBut we can use the information from steps 3 and 4 to see if the bear visits the lion or not. If the bear likes the lion and it visits the lion then it is green. However, we do not know if the bear visits the lion or not.\n\nWe can use the information given in steps 12 and 16 to see if the bear is green or not. If the bear visits the lion then it is green. However, we do not know if the bear visits the lion or not.\n\nBut we can use the information given in steps 13 and 14 to see if the bear chases the lion or not. If something likes the lion and the lion is nice then it chases the lion. However, we do not know if the bear chases the lion or not.\n\nHowever, we can use the information given in steps 1 and 10 to see if the bear and the lion are related or not. The bear chases the cat, and the lion chases the cat.\n\nWe can use the information given in steps 15 and 16 to see if the bear is cold or not. Cold things are green. However, we do not know if the bear is cold or not.\n\nBut we can use the information given in steps 16 and 17 to see if the lion is nice or not. If the lion likes the cat and the cat chases the lion then the lion is nice. However, we do not know if the lion likes the cat or not.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice. However, we do not know if the lion likes the cat or not.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion likes the cat or not. The lion chases the cat, and the lion is nice.\n\nWe can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nNow, let's look at the information given in step 4: The bear likes the lion.\n\nWe can use this information along with the information in step 19:\n\n- If something chases the lion then the lion visits the bear.\n\nThis means that if the bear chases the lion, then the lion visits the bear. However, there is no information that directly says the bear chases the lion.\n\nHowever, we can look at the information in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion likes the cat or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion likes the cat or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 19 to see if the lion visits the bear or not. The lion chases the cat, and if something chases the lion then the lion visits the bear.\n\nHowever, we can use the information given in steps 10, 16, and 17 to see if the lion is nice or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps 10 and 17 to see if the lion likes the cat or not. The lion chases the cat, and the lion is nice.\n\nHowever, we can use the information given in steps ",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information \"The bear likes the lion,\" we cannot directly conclude whether the bear chases the lion or not.\n\n2. We also know that \"If something likes the lion and the lion is nice then it chases the lion.\" However, the lion's niceness is not explicitly stated as a fact, so we cannot use this rule to conclude the bear's action.\n\n3. Another rule states, \"If something chases the lion and the lion chases the cat then it is cold.\" But we do not have enough information to determine whether the bear chases the lion or not.\n\n4. The rule \"If something chases the lion then the lion visits the bear\" does not provide any information about the bear's action towards the lion.\n\n5. We can conclude the bear's action towards the cat and the cow, but there is no direct information about the bear's action towards the lion.\n\nGiven the information, we cannot determine whether the bear chases the lion or not. Therefore, the statement \"The bear does not chase the lion\" is also unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cat.\n2. The bear likes the cat.\n3. The bear likes the lion.\n4. The bear visits the cat.\n5. The cat is red.\n6. The cat visits the bear.\n7. The cat visits the cow.\n8. The cow visits the lion.\n9. The lion chases the cat.\n10. The lion is nice.\n\nFrom the given statements, we know that the bear likes the lion (statement 3) and the lion is nice (statement 10). However, we cannot directly determine whether the bear chases the lion or not from the given information.\n\nHowever, we can use some of the additional rules to make an inference about the bear and the lion.\n\nIf something likes the lion and the lion is nice then it chases the lion. However, the bear likes the lion (statement 3) but we do not know if the lion is nice is known by the bear. The lion is nice (statement 10), but we do not know if the bear knows this.\n\nBut we also have the following rule: If something chases the lion and the lion chases the cat then it is cold. If something is green and it chases the cow then the cow is cold. Cold things are green. From statement 9, we know that the lion chases the cat. We do not have any information about the bear chases the lion or not, however we can say that the lion chases the cat (statement 9).\n\nUsing the rule that if something chases the lion and the lion chases the cat then it is cold, we cannot say that the bear is cold, because we do not know if the bear chases the lion or not.\n\nHowever, we have the following rule: If the lion likes the cat and the cat chases the lion then the lion is nice. This rule is similar to the rule if something likes the lion and the lion is nice then it chases the lion. This rule is a bit different, because it says that the lion is nice if the lion likes the cat and the cat chases the lion. From statement 9 we know that the lion chases the cat. We also know that the lion likes the cat (because the bear likes the lion and if something likes the cat then it likes the lion, see statement 3 and the rule), however we do not know if the cat chases the lion.\n\nWe know that the cat visits the bear (statement 6), and the bear visits the cat (statement 4), and the cat visits the cow (statement 7) and the cow visits the lion (statement 8). If the bear visits the cat, then the cat is red (because the cat is red, statement 5). We also know that the cat likes the bear (because the bear likes the cat and if something likes the cat then it likes the lion, see statement 3 and the rule).\n\nFrom the rule: If something likes the lion and the lion is nice then it chases the lion, we know that the bear does not chase the lion, because the bear likes the lion (statement 3) and the lion is nice (statement 10).\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_cat, visits_bear_lion), green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_bear_cat, likes_bear_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_bear, nice_lion), chases_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & chases(cat, lion) -> nice(lion)",
+          "z3_formula": "Implies(And(likes_lion_cat, chases_cat_lion), nice_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, lion) or not chases(bear, lion)",
+          "z3_formula": "Or(chases_bear_lion, Not(chases_bear_lion))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_lion), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, nice_lion), chases_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_lion), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, nice_lion), chases_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(X)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, bear)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_cat_bear, visits_cat_lion), green_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bear_lion, nice_lion), chases_bear_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_cat, chases_cat_cow), cold_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold -> green",
+          "z3_formula": "Implies(cold, green)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_bear_lion, chases_lion_cat), cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_cat_lion, likes_bear_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(chases_bear_lion, visits_lion_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold_bear",
+          "z3_formula": "cold_bear == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_lion), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, nice_lion), chases_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) == green(X)",
+          "z3_formula": "cold_X == green_X",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, bear)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_bear)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_X, visits_X_lion), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_X, nice_lion), chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold -> green",
+          "z3_formula": "Implies(cold, green)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(lion, cat) & chases(cat, lion) -> nice(lion)",
+          "z3_formula": "Implies(And(likes_lion_cat, chases_cat_lion), nice_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_lion, visits_lion_bear), green_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_lion, nice_lion), chases_lion_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_bear, chases_bear_cow), cold_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) == green(X)",
+          "z3_formula": "cold_bear == green_bear",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_lion_cat, chases_lion_cat), cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_lion_cat, likes_lion_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, bear)",
+          "z3_formula": "Implies(chases_lion_bear, visits_lion_bear)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_X, visits_X_lion), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_X, nice_lion), chases_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, bear)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & visits(X, lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(green_X, visits_X_lion), likes_X_lion)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_lion), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, nice_lion), chases_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> cold(cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), cold_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) == green(X)",
+          "z3_formula": "cold_X == green_X",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_X_lion, chases_lion_cat), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(chases_X_lion, visits_lion_X)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bear_lion, nice_lion), chases_bear_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> cold(X)",
+          "z3_formula": "Implies(And(chases_bear_lion, chases_lion_cat), cold_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(chases_bear_lion, visits_lion_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(chases(bear, lion))",
+          "z3_formula": "Not(chases_bear_lion) | Not(Not(chases_bear_lion))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bear_lion, nice_lion), chases_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, Y) -> cold(X)",
+          "z3_formula": "Implies(And(chases_bear_lion, chases_lion_cat), cold_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_bear_lion, likes_bear_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_bear_cat, likes_bear_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & nice(lion) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bear_lion, nice_lion), chases_bear_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, cat) & chases(cat, X) -> nice(X)",
+          "z3_formula": "Implies(And(And(likes_bear_lion, likes_bear_cat), chases_cat_bear), nice_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bear, lion))",
+          "z3_formula": "Not(chases_bear_lion) == True",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 178,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 1,
+      "total_weight": 177,
+      "solve_time_ms": 2.8442665934562683
+    },
+    "timing": {
+      "trace_gen_s": 25.059,
+      "extraction_s": 47.493,
+      "dedup_s": 1.814,
+      "maxsat_s": 0.006,
+      "total_s": 74.372
+    }
+  }
+}

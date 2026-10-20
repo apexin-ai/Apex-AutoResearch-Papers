@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1032_Q6",
+    "problem": "Bob is big. Bob is green. Dave is kind. Dave is white. Erin is green. Erin is kind. Erin is smart. Fiona is big. Fiona is blue. Fiona is furry. White, blue things are furry. All big, white things are smart. Furry things are green. Kind things are blue. All green things are furry. Green things are big.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nGreen(Bob, True) ::: Bob is green.\nKind(Dave, True) ::: Dave is kind.\nWhite(Dave, True) ::: Dave is white.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\n\nRules:\nWhite($x, True) && Blue($x, True) >>> Furry($x, True) ::: White, blue things are furry.\nBig($x, True) && White($x, True) >>> Smart($x, True) ::: All big, white things are smart.\nFurry($x, True) >>> Green($x, True) ::: Furry things are green.\nKind($x, True) >>> Blue($x, True) ::: Kind things are blue.\nGreen($x, True) >>> Furry($x, True) ::: All green things are furry.\nGreen($x, True) >>> Big($x, True) ::: Green things are big.\n\nQuery:\nFurry(Dave, False) ::: Dave is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

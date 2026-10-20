@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-073b-qwen7b-logiqa200-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:28.317Z",
+    "updated_at": "2026-05-19T17:48:29.280Z",
+    "hypothesis": "Qwen2.5-7B LogiQA seed=456 第三组 seed replication（重跑）。exp-073 因 session crash 失败。exp-070 (seed=42) SC=68.5% Δ=+2.5pp, exp-071 (seed=123) SC=69% Δ=-0.5pp。seed=456 是 Goldilocks tie-breaker。",
+    "parent": "exp-070-qwen7b-logiqa200"
+  },
+  "timestamp": "2026-05-19T17:48:29.471018+00:00",
+  "trigger": "update_registry"
+}

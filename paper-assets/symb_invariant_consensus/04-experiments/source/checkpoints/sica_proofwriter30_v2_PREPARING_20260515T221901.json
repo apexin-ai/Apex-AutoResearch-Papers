@@ -1,0 +1,14 @@
+{
+  "exp_id": "sica_proofwriter30_v2",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:19:01.325Z",
+    "updated_at": "2026-05-15T22:19:01.326Z"
+  },
+  "timestamp": "2026-05-15T22:19:01.358090+00:00",
+  "trigger": "update_registry"
+}

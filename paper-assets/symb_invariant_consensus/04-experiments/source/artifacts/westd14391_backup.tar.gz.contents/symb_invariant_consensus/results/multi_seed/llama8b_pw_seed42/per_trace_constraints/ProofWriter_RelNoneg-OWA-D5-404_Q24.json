@@ -1,0 +1,1169 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-404_Q24",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, red_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(lion, X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_X, chases_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(lion, X)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, Y) -> green(Y)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_rabbit), green_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_bear, chases_squirrel_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & likes(Y, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_bear_rabbit), visits_bear_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, Y) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_rabbit, likes_bear_rabbit), green_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_lion, chases_squirrel_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_squirrel, likes_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(squirrel, bear) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_rabbit, likes_squirrel_bear), green_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(squirrel, rabbit) & likes(squirrel, bear) -> visits(bear, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_squirrel_bear), visits_bear_squirrel)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_lion, chases_squirrel_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_squirrel, likes_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(bear)",
+          "z3_formula": "Implies(And(likes_squirrel_bear, likes_bear_rabbit), green_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_rabbit_bear, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_lion, chases_squirrel_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(bear)",
+          "z3_formula": "Implies(And(likes_bear_bear, likes_bear_rabbit), green_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == Unknown",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_bear, chases_bear_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(bear)",
+          "z3_formula": "Implies(And(likes_bear_bear, likes_bear_rabbit), green_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_squirrel, likes_X_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes_bear_rabbit -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_rabbit), green_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(X, bear) -> visits_bear_X",
+          "z3_formula": "Implies(And(visits_X_rabbit, likes_X_bear), visits_bear_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, lion)",
+          "z3_formula": "Not(likes_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, bear)",
+          "z3_formula": "Not(chases_squirrel_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear) & chases(bear, lion)",
+          "z3_formula": "And(nice_bear, chases_bear_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "lion_red == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(lion_red, lion_likes_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "lion_likes_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "squirrel_likes_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(squirrel_likes_lion, squirrel_chases_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "squirrel_chases_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "squirrel_chases_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(squirrel_chases_squirrel, squirrel_red)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "squirrel_green == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "rabbit_chases_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "bear_visits_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "bear_nice == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "bear_cold == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(bear_nice, bear_chases_lion), bear_likes_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "squirrel_chases_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "squirrel_likes_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(bear)",
+          "z3_formula": "Implies(And(squirrel_likes_bear, bear_likes_rabbit), bear_green)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "squirrel_visits_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "squirrel_green == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "rabbit_green == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_bear, chases_squirrel_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_squirrel, likes_lion_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_rabbit_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_squirrel_bear, likes_bear_rabbit), green_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & likes(Y, bear) -> visits(Y, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_bear_rabbit), visits_bear_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, lion)",
+          "z3_formula": "Not(likes_rabbit_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(squirrel, lion)",
+          "z3_formula": "Not(likes_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, squirrel)",
+          "z3_formula": "Not(chases_squirrel_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not red(squirrel)",
+          "z3_formula": "Not(red_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(rabbit)",
+          "z3_formula": "Not(green_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "Not(visits_rabbit_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, bear)",
+          "z3_formula": "Not(likes_rabbit_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, bear)",
+          "z3_formula": "Not(likes_rabbit_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green(rabbit)",
+          "z3_formula": "Not(green_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, bear)",
+          "z3_formula": "Not(likes_rabbit_bear)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

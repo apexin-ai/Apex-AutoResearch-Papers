@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "015f32221309c08348e2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "eval exp 027 qwen3 non thinking",
+  "task_key": "worker_eval_exp-027-qwen3-non-thinking_20260518T140417",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_exp-027-qwen3-non-thinking_20260518T140417_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "957a0f27f7da15d2e7ed7e69fc9668b85ae0fc54fdfcec93cb92c1e47ee605ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验运行正常。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **Qwen3-14B 模型** | `/root/autodl-tmp/models/Qwen3-14B`，8/8 shards，完整 |\n| **脚本路径** | `/root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh` |\n| **PID** | 38106（tmux session: `exp-027-qwen3-14b-non-thinking`） |\n| **vLLM** | 端口 8001，GPU 1（88281/97887 MiB，97% util），已成功启动 |\n| **SICA pipeline** | 正在运行，已开始处理 folio_0（1/204） |\n\n**修复记录**: 首次启动因 FlashInfer sampler 不兼容 Blackwell GPU (sm_100+) 失败（`RuntimeError: FlashInfer requires GPUs with sm75 or higher`）。添加 `VLLM_USE_FLASHINFER_SAMPLER=0` 环境变量后成功启动，使用 PyTorch-native sampler 替代。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-027-qwen3-non-thinking.md"
+}

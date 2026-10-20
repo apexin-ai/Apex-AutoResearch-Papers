@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-398_Q21",
+    "problem": "The bald eagle is blue. The bald eagle is cold. The bald eagle needs the rabbit. The bear visits the lion. The lion is nice. The lion likes the bald eagle. The lion needs the bald eagle. The lion needs the rabbit. The lion visits the rabbit. The rabbit likes the bear. The rabbit needs the bald eagle. The rabbit needs the lion. The rabbit visits the bald eagle. The rabbit visits the bear. If someone visits the rabbit then they need the bear. If someone needs the rabbit then the rabbit likes the bear. If someone visits the bear and the bear needs the rabbit then they need the bear. If someone needs the bear then they need the rabbit. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. If someone likes the bear then the bear visits the rabbit. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. If the rabbit likes the bear then the bear visits the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not like the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nNeeds(BaldEagle, Rabbit, True) ::: The bald eagle needs the rabbit.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nNice(Lion, True) ::: The lion is nice.\nLikes(Lion, BaldEagle, True) ::: The lion likes the bald eagle.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nLikes(Rabbit, Bear, True) ::: The rabbit likes the bear.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\nVisits(Rabbit, Bear, True) ::: The rabbit visits the bear.\n\nRules:\nVisits($x, Rabbit, True) >>> Needs($x, Bear, True) ::: If someone visits the rabbit then they need the bear.\nNeeds($x, Rabbit, True) >>> Likes(Rabbit, Bear, True) ::: If someone needs the rabbit then the rabbit likes the bear.\nVisits($x, Bear, True) && Needs(Bear, Rabbit, True) >>> Needs($x, Bear, True) ::: If someone visits the bear and the bear needs the rabbit then they need the bear.\nNeeds($x, Bear, True) >>> Needs($x, Rabbit, True) ::: If someone needs the bear then they need the rabbit.\nNeeds(Bear, Lion, True) && Likes(Bear, BaldEagle, True) >>> Visits(Bear, BaldEagle, True) ::: If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\nBlue($x, True) && Likes($x, BaldEagle, True) >>> Needs(BaldEagle, Rabbit, True) ::: If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\nLikes($x, Bear, True) >>> Visits(Bear, Rabbit, True) ::: If someone likes the bear then the bear visits the rabbit.\nLikes(BaldEagle, Rabbit, True) && Visits(BaldEagle, Rabbit, True) >>> Needs(BaldEagle, Bear, True) ::: If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\nLikes(Rabbit, Bear, True) >>> Visits(Bear, BaldEagle, True) ::: If the rabbit likes the bear then the bear visits the bald eagle.\n\nQuery:\nLikes(Bear, BaldEagle, False) ::: The bear does not like the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

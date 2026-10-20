@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1118_Q22",
+    "problem": "Bob is kind. Charlie is green. Charlie is kind. Charlie is young. Dave is young. Erin is big. Erin is young. All white, green people are young. All rough, kind people are big. If someone is green then they are young. Young people are rough. Big, rough people are furry. Kind people are green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nGreen(Charlie, True) ::: Charlie is green.\nKind(Charlie, True) ::: Charlie is kind.\nYoung(Charlie, True) ::: Charlie is young.\nYoung(Dave, True) ::: Dave is young.\nBig(Erin, True) ::: Erin is big.\nYoung(Erin, True) ::: Erin is young.\n\nRules:\nWhite($x, True) && Green($x, True) >>> Young($x, True) ::: All white, green people are young.\nRough($x, True) && Kind($x, True) >>> Big($x, True) ::: All rough, kind people are big.\nGreen($x, True) >>> Young($x, True) ::: If someone is green then they are young.\nYoung($x, True) >>> Rough($x, True) ::: Young people are rough.\nBig($x, True) && Rough($x, True) >>> Furry($x, True) ::: Big, rough people are furry.\nKind($x, True) >>> Green($x, True) ::: Kind people are green.\n\nQuery:\nKind(Dave, True) ::: Dave is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

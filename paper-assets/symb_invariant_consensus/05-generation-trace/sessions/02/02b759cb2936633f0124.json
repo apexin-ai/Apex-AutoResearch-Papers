@@ -1,0 +1,1301 @@
+{
+  "schema_version": "1.0",
+  "id": "02b759cb2936633f0124",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "analysis exp051 k16 interim",
+  "task_key": "worker_analysis_exp051-k16-interim_20260519T021809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analysis_exp051-k16-interim_20260519T021809.jsonl",
+    "occurrence": 1,
+    "bytes": 66727,
+    "sha256": "0460c8a75ed72822fa9d7f6b8f1106ffa44f72e587b649e580eca28a68405ea2"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "tool_call": 32,
+      "tool_result": 32,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T02:23:34.952148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T02:23:34.952664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T02:23:34.952956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/ | grep exp051"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T02:23:34.953189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T02:23:34.953397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "find /root/symb_invariant_consensus/results/ -maxdepth 1 -name \"exp051*\" -type d"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T02:23:34.953599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T02:23:34.953792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T02:23:34.954024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"k16\\\\nk20\\\\nk4\\\\nk8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T02:23:34.954261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/ "
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T02:23:34.954556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"folio_0.json\\\\nfolio_1.json\\\\nfolio_10.json\\\\nfolio_100.json\\\\nfolio_101.json\\\\nfolio_102.json\\\\nfolio_103.json\\\\nfolio_104.json\\\\nfolio_105.json\\\\nfolio_106.json\\\\nfolio_107.json\\\\nfolio_108.json\\\\nfolio_109.json\\\\nfolio_11.json\\\\nfolio_110.json\\\\nfolio_111.json\\\\nfolio_112.json\\\\nfolio_113.json\\\\nfolio_114.json\\\\nfolio_115.json\\\\nfolio_116.json\\\\nfolio_117.json\\\\nfolio_118.json\\\\nfolio_119.json\\\\nfolio_12.json\\\\nfolio_120.json\\\\nfolio_121.json\\\\nfolio_122.json\\\\nfolio_123.json\\\\nfolio_124.json\\\\nfolio_125.json\\\\nfolio_126.json\\\\nfolio_127.json\\\\nfolio_128.json\\\\nfolio_129.json\\\\nfolio_13.json\\\\nfolio_130.json\\\\nfolio_131.json\\\\nfolio_132.json\\\\nfolio_133.json\\\\nfolio_134.json\\\\nfolio_135.json\\\\nfolio_136.json\\\\nfolio_137.json\\\\nfolio_138.json\\\\nfolio_139.json\\\\nfolio_14.json\\\\nfolio_140.json\\\\nfolio_141.json\\\\nfolio_142.json\\\\nfolio_143.json\\\\nfolio_144.json\\\\nfolio_145.json\\\\nfolio_146.json\\\\nfolio_147.json\\\\nfolio_148.json\\\\nfolio_149.json\\\\nfolio_15.json\\\\nfolio_150.json\\\\nfolio_151.json\\\\nfolio_152.json\\\\nfolio_153.json\\\\nfolio_154.json\\\\nfolio_155.json\\\\nfolio_156.json\\\\nfolio_157.json\\\\nfolio_158.json\\\\nfolio_159.json\\\\nfolio_16.json\\\\nfolio_160.json\\\\nfolio_161.json\\\\nfolio_162.json\\\\nfolio_163.json\\\\nfolio_164.json\\\\nfolio_165.json\\\\nfolio_166.json\\\\nfolio_167.json\\\\nfolio_168.json\\\\nfolio_169.json\\\\nfolio_17.json\\\\nfolio_170.json\\\\nfolio_171.json\\\\nfolio_172.json\\\\nfolio_173.json\\\\nfolio_174.json\\\\nfolio_175.json\\\\nfolio_176.json\\\\nfolio_177.json\\\\nfolio_178.json\\\\nfolio_179.json\\\\nfolio_18.json\\\\nfolio_180.json\\\\nfolio_181.json\\\\nfolio_182.json\\\\nfolio_183.json\\\\nfolio_184.json\\\\nfolio_185.json\\\\nfolio_186.json\\\\nfolio_187.json\\\\nfolio_188.json\\\\nfolio_189.json\\\\nfolio_19.json\\\\nfolio_190.json\\\\nfolio_191.json\\\\nfolio_192.json\\\\nfolio_193.json\\\\nfolio_194.json\\\\nfolio_195.json\\\\nfolio_196.json\\\\nfolio_197.json\\\\nfolio_198.json\\\\nfolio_199.json\\\\nfolio_2.json\\\\nfolio_20.json\\\\nfolio_200.json\\\\nfolio_\n…[truncated 1518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T02:23:34.954816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k8/intermediates/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T02:23:34.955158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"folio_0.json\\\\nfolio_1.json\\\\nfolio_10.json\\\\nfolio_100.json\\\\nfolio_101.json\\\\nfolio_102.json\\\\nfolio_103.json\\\\nfolio_104.json\\\\nfolio_105.json\\\\nfolio_106.json\\\\nfolio_107.json\\\\nfolio_108.json\\\\nfolio_109.json\\\\nfolio_11.json\\\\nfolio_110.json\\\\nfolio_111.json\\\\nfolio_112.json\\\\nfolio_113.json\\\\nfolio_114.json\\\\nfolio_115.json\\\\nfolio_116.json\\\\nfolio_117.json\\\\nfolio_118.json\\\\nfolio_119.json\\\\nfolio_12.json\\\\nfolio_120.json\\\\nfolio_121.json\\\\nfolio_122.json\\\\nfolio_123.json\\\\nfolio_124.json\\\\nfolio_125.json\\\\nfolio_126.json\\\\nfolio_127.json\\\\nfolio_128.json\\\\nfolio_129.json\\\\nfolio_13.json\\\\nfolio_130.json\\\\nfolio_131.json\\\\nfolio_132.json\\\\nfolio_133.json\\\\nfolio_134.json\\\\nfolio_135.json\\\\nfolio_136.json\\\\nfolio_137.json\\\\nfolio_138.json\\\\nfolio_139.json\\\\nfolio_14.json\\\\nfolio_140.json\\\\nfolio_141.json\\\\nfolio_142.json\\\\nfolio_143.json\\\\nfolio_144.json\\\\nfolio_145.json\\\\nfolio_146.json\\\\nfolio_147.json\\\\nfolio_148.json\\\\nfolio_149.json\\\\nfolio_15.json\\\\nfolio_150.json\\\\nfolio_151.json\\\\nfolio_152.json\\\\nfolio_153.json\\\\nfolio_154.json\\\\nfolio_155.json\\\\nfolio_156.json\\\\nfolio_157.json\\\\nfolio_158.json\\\\nfolio_159.json\\\\nfolio_16.json\\\\nfolio_160.json\\\\nfolio_161.json\\\\nfolio_162.json\\\\nfolio_163.json\\\\nfolio_164.json\\\\nfolio_165.json\\\\nfolio_166.json\\\\nfolio_167.json\\\\nfolio_168.json\\\\nfolio_169.json\\\\nfolio_17.json\\\\nfolio_170.json\\\\nfolio_171.json\\\\nfolio_172.json\\\\nfolio_173.json\\\\nfolio_174.json\\\\nfolio_175.json\\\\nfolio_176.json\\\\nfolio_177.json\\\\nfolio_178.json\\\\nfolio_179.json\\\\nfolio_18.json\\\\nfolio_180.json\\\\nfolio_181.json\\\\nfolio_182.json\\\\nfolio_183.json\\\\nfolio_184.json\\\\nfolio_185.json\\\\nfolio_186.json\\\\nfolio_187.json\\\\nfolio_188.json\\\\nfolio_189.json\\\\nfolio_19.json\\\\nfolio_190.json\\\\nfolio_191.json\\\\nfolio_192.json\\\\nfolio_193.json\\\\nfolio_194.json\\\\nfolio_195.json\\\\nfolio_196.json\\\\nfolio_197.json\\\\nfolio_198.json\\\\nfolio_199.json\\\\nfolio_2.json\\\\nfolio_20.json\\\\nfolio_200.json\\\\nfolio_\n…[truncated 1518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T02:23:34.955416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T02:23:34.955614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k20/intermediates/"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T02:23:34.955906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"folio_0.json\\\\nfolio_1.json\\\\nfolio_10.json\\\\nfolio_100.json\\\\nfolio_101.json\\\\nfolio_102.json\\\\nfolio_103.json\\\\nfolio_104.json\\\\nfolio_105.json\\\\nfolio_106.json\\\\nfolio_107.json\\\\nfolio_108.json\\\\nfolio_109.json\\\\nfolio_11.json\\\\nfolio_110.json\\\\nfolio_111.json\\\\nfolio_112.json\\\\nfolio_113.json\\\\nfolio_114.json\\\\nfolio_115.json\\\\nfolio_116.json\\\\nfolio_117.json\\\\nfolio_118.json\\\\nfolio_119.json\\\\nfolio_12.json\\\\nfolio_120.json\\\\nfolio_121.json\\\\nfolio_122.json\\\\nfolio_123.json\\\\nfolio_124.json\\\\nfolio_125.json\\\\nfolio_126.json\\\\nfolio_127.json\\\\nfolio_128.json\\\\nfolio_129.json\\\\nfolio_13.json\\\\nfolio_130.json\\\\nfolio_131.json\\\\nfolio_132.json\\\\nfolio_133.json\\\\nfolio_134.json\\\\nfolio_135.json\\\\nfolio_136.json\\\\nfolio_137.json\\\\nfolio_138.json\\\\nfolio_139.json\\\\nfolio_14.json\\\\nfolio_140.json\\\\nfolio_141.json\\\\nfolio_142.json\\\\nfolio_143.json\\\\nfolio_144.json\\\\nfolio_145.json\\\\nfolio_146.json\\\\nfolio_147.json\\\\nfolio_148.json\\\\nfolio_149.json\\\\nfolio_15.json\\\\nfolio_150.json\\\\nfolio_151.json\\\\nfolio_152.json\\\\nfolio_153.json\\\\nfolio_154.json\\\\nfolio_155.json\\\\nfolio_156.json\\\\nfolio_157.json\\\\nfolio_158.json\\\\nfolio_159.json\\\\nfolio_16.json\\\\nfolio_160.json\\\\nfolio_161.json\\\\nfolio_162.json\\\\nfolio_163.json\\\\nfolio_164.json\\\\nfolio_165.json\\\\nfolio_166.json\\\\nfolio_167.json\\\\nfolio_168.json\\\\nfolio_169.json\\\\nfolio_17.json\\\\nfolio_170.json\\\\nfolio_171.json\\\\nfolio_172.json\\\\nfolio_173.json\\\\nfolio_174.json\\\\nfolio_175.json\\\\nfolio_176.json\\\\nfolio_177.json\\\\nfolio_178.json\\\\nfolio_179.json\\\\nfolio_18.json\\\\nfolio_180.json\\\\nfolio_181.json\\\\nfolio_182.json\\\\nfolio_183.json\\\\nfolio_184.json\\\\nfolio_185.json\\\\nfolio_19.json\\\\nfolio_2.json\\\\nfolio_20.json\\\\nfolio_21.json\\\\nfolio_22.json\\\\nfolio_23.json\\\\nfolio_24.json\\\\nfolio_25.json\\\\nfolio_26.json\\\\nfolio_27.json\\\\nfolio_28.json\\\\nfolio_29.json\\\\nfolio_3.json\\\\nfolio_30.json\\\\nfolio_31.json\\\\nfolio_32.json\\\\nfolio_33.json\\\\nfolio_34.json\\\\nfolio_35.json\\\\nfolio_\n…[truncated 1212 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T02:23:34.956166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k20/intermediates/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T02:23:34.956450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "find /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/ -name \"folio_*.json\" -type f"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T02:23:34.956657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k20/"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T02:23:34.957014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_0.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_1.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_2.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_3.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_4.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_5.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_6.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_7.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_8.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_9.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_10.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_11.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_12.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_13.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_14.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_15.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_16.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_17.json\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/folio_18.json\\\\n/root/symb_invar\n…[truncated 6362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T02:23:34.957359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T02:23:34.957631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T02:23:34.957835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T02:23:34.958056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "echo \"K=4: $(ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/ | wc -l)/204\"; echo \"K=8: $(ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k8/intermediates/ | wc -l)/204\"; echo \"K=16: $(ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k16/intermediates/ | wc -l)/204\"; echo \"K=20: $(ls /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k20/intermediates/ 2>/dev/null | wc -l)/204\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T02:23:34.958280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"K=4: 204/204\\\\nK=8: 204/204\\\\nK=16: 188/204\\\\nK=20: 0/204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T02:23:34.958535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "cat /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/folio_0.json | python3 -c \"import sys,json; d=json.load(sys.stdin); print(json.dumps(list(d.keys()))); [print(f'{k}: {type(v).__name__} = {v}') if not isinstance(v,(list,dict)) else print(f'{k}: {type(v).__name__}, len={len(v)}') for k,v in d.items()]\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T02:23:34.958755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat /root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/folio_0.json | python3 -c \\\\\\\"import sys,json; d=json.load(sys.stdin); print(json.dumps(list(d.keys()))); [print(f\\\\\\\\'{k}: {type(v).__name__} = {v}\\\\\\\\') if not isinstance(v,(list,dict)) else print(f\\\\\\\\'{k}: {type(v).__name__}, len={len(v)}\\\\\\\\') for k,v in d.items()]\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T02:23:34.958987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/folio_0.json'))\nfor k,v in d.items():\n    if isinstance(v, (list,dict)):\n        print(f'{k}: {type(v).__name__}, len={len(v)}')\n    else:\n        print(f'{k}: {v}')\n\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T02:23:34.959220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"problem: dict, len=8\\\\nsica_result: dict, len=8\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T02:23:34.959422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/folio_0.json'))\nprint('=== problem keys ===')\nfor k,v in d['problem'].items():\n    if isinstance(v, str) and len(v) > 80:\n        print(f'{k}: str, len={len(v)}')\n    else:\n        print(f'{k}: {v}')\nprint()\nprint('=== sica_result keys ===')\nfor k,v in d['sica_result'].items():\n    if isinstance(v, (list,dict)):\n        print(f'{k}: {type(v).__name__}, len={len(v)}')\n    elif isinstance(v, str) and len(v) > 80:\n        print(f'{k}: str, len={len(v)}')\n    else:\n        print(f'{k}: {v}')\n\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T02:23:34.959670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== problem keys ===\\\\nid: folio_0\\\\nproblem: str, len=913\\\\nsolution: \\\\nanswer: Unknown\\\\nlevel: validation\\\\npremises_fol: ['∀x (TalentShows(x) → Engaged(x))', '∀x (TalentShows(x) ∨ Inactive(x))', '∀x (Chaperone(x) → ¬Students(x))', '∀x (Inactive(x) → Chaperone(x))', '∀x (AcademicCareer(x) → Students(x))', '(Engaged(bonnie) ∧ Students(bonnie)) ⊕ (¬Engaged(bonnie) ∧ ¬Students(bonnie))']\\\\nconclusion_fol: Engaged(bonnie)\\\\ndataset: folio\\\\n\\\\n=== sica_result keys ===\\\\nanswer: Unknown\\\\nscores: dict, len=2\\\\nanswer_counts: dict, len=2\\\\ntraces: list, len=4\\\\nper_trace_constraints: list, len=4\\\\nconstraints_stats: dict, len=3\\\\nmaxsat_stats: dict, len=4\\\\ntiming: dict, len=5\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T02:23:34.959943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/intermediates/folio_0.json'))\nr = d['sica_result']\nprint('scores:', r['scores'])\nprint('answer_counts:', r['answer_counts'])\nprint('answer:', r['answer'])\nprint('ground_truth:', d['problem']['answer'])\nprint()\nprint('constraints_stats:', r['constraints_stats'])\nprint('maxsat_stats:', r['maxsat_stats'])\nprint('timing:', r['timing'])\n\""
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T02:23:34.960188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scores: {'Bonnie performs in school talent shows often.': 8.0, 'Unknown': 15.5}\\\\nanswer_counts: {'Unknown': 3, 'Bonnie performs in school talent shows often.': 1}\\\\nanswer: Unknown\\\\nground_truth: Unknown\\\\n\\\\nconstraints_stats: {'total_extracted': 26, 'traces_with_constraints': 4, 'unique_after_dedup': 22}\\\\nmaxsat_stats: {'satisfied': 21, 'excluded': 1, 'total_weight': 22, 'solve_time_ms': 0.878860242664814}\\\\ntiming: {'trace_gen_s': 6.968, 'extraction_s': 10.422, 'dedup_s': 0.124, 'maxsat_s': 0.002, 'total_s': 17.516}\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T02:23:34.960496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python << 'PYEOF'\nimport json, os, glob\nfrom collections import Counter\n\nbase = \"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\"\nlabel_map = {\"True\": \"True\", \"False\": \"False\", \"Unknown\": \"Unknown\"}\n\ndef normalize(ans):\n    ans = str(ans).strip()\n    if ans.lower() in (\"true\", \"yes\"):\n        return \"True\"\n    elif ans.lower() in (\"false\", \"no\"):\n        return \"False\"\n    elif ans.lower() in (\"unknown\", \"uncertain\"):\n        return \"Unknown\"\n    return ans\n\ndef sc_answer(answer_counts):\n    \"\"\"Majority vote from raw counts\"\"\"\n    if not answer_counts:\n        return None\n    best = max(answer_counts, key=lambda k: answer_counts[k])\n    return best\n\ndef analyze_k(k_dir, k_val):\n    files = sorted(glob.glob(os.path.join(k_dir, \"intermediates\", \"folio_*.json\")))\n    n = len(files)\n    \n    sc_correct = 0\n    sica_correct = 0\n    both_correct = 0\n    sc_only = 0\n    sica_only = 0\n    both_wrong = 0\n    \n    label_dist = Counter()\n    sc_pred_dist = Counter()\n    sica_pred_dist = Counter()\n    \n    for f in files:\n        d = json.load(open(f))\n        gt = normalize(d[\"problem\"][\"answer\"])\n        \n        sica_ans = normalize(d[\"sica_result\"][\"answer\"])\n        \n        # SC: majority vote from answer_counts\n        # answer_counts maps full-text answers, need to figure out mapping\n        ac = d[\"sica_result\"][\"answer_counts\"]\n        # The keys might be full text or labels; let's check scores keys too\n        scores = d[\"sica_result\"][\"scores\"]\n        \n        # SC majority = key with max count\n        sc_raw = sc_answer(ac)\n        \n        # Need to map raw answer to True/False/Unknown\n        # Check if sica_result.answer is already normalized\n        # Let's check: if gt is \"True\"/\"False\"/\"Unknown\" and sica_ans matches,\n        # the scores/answer_counts keys might be full text\n        # We need to figure out the mapping from full text to label\n        \n        # Strategy: sica_result.answer is already the label, so\n        # we need to find which label sc_raw maps to\n        # Look at all answers in scores and find matching label\n        # Actually, the SICA answer is the label with highest score\n        # For SC, we need the label with highest count\n        \n        # The answer_counts keys are the same as scores keys (full text or labels)\n        # And sica_result.answer is derived from scores\n        # Let me just compare the SC raw answer to SICA raw answer\n        # and check if they match ground truth through same normalization\n        \n        sc_norm = normalize(sc_raw) if sc_raw else None\n        \n        # But sc_raw might be a full sentence, not a label\n        # Let's check if sica_ans is in the scores keys\n        # Actually sica_result.answer seems to already be the final label\n        # For SC, we need to find which label got most votes\n        \n        # Let me look at answer_counts more carefully\n        # If keys are full text, we need the label mapping\n        # But sica_result.answer is the final label - this means the system\n        # already maps full text to labels internally\n        \n        # For SC: we need to aggregate counts by label\n        # The traces have answers, and sica maps them to labels\n        # Let me aggregate answer_counts by checking which label each key maps to\n        \n        # Simple approach: check if sica_result has a sc_answer or similar field\n        # Otherwise, use the per_trace answers\n        \n        traces = d[\"sica_result\"].get(\"traces\", [])\n        trace_labels = []\n        for t in traces:\n            if isinstance(t, dict):\n                ta = t.get(\"answer\", t.get(\"final_answer\", \"\"))\n                trace_labels.append(normalize(ta))\n            elif isinstance(t, str):\n                trace_labels.append(normalize(t))\n        \n        if trace_labels:\n            label_counts = Counter(trace_labels)\n            sc_label = label_counts.most_common(1)[0][0]\n        else:\n            sc_label = sc_norm\n        \n        label_dist[gt] += 1\n        sc_pred_dist[sc_label] += 1\n        sica_pred_dist[sica_ans] += 1\n        \n        sc_ok = (sc_label == gt)\n        sica_ok = (sica_ans == gt)\n        \n        if sc_ok:\n            sc_correct += 1\n        if sica_ok:\n            sica_correct += 1\n        if sc_ok and sica_ok:\n            both_correct += 1\n        elif sc_ok and not sica_ok:\n            sc_only += 1\n        elif not sc_ok and sica_ok:\n            sica_only += 1\n        else:\n            both_wrong += 1\n    \n    sc_acc = sc_correct / n * 100\n    sica_acc = sica_correct / n * 100\n    delta = sica_acc - sc_acc\n    \n    print(f\"\\n{'='*60}\")\n    print(f\"K={k_val}  ({n}/204 completed)\")\n    print(f\"{'='*60}\")\n    print(f\"SC accuracy:   {sc_correct}/{n} = {sc_acc:.2f}%\")\n    print(f\"SICA accuracy: {sica_correct}/{n} = {sica_acc:.2f}%\")\n    print(f\"Delta (SICA-SC): {delta:+.2f}pp\")\n    print(f\"\\nDiscordant pairs:\")\n    print(f\"  b (SC wrong, SICA right): {sica_only}\")\n    print(f\"  c (SC right, SICA wrong): {sc_only}\")\n    print(f\"  Both correct: {both_correct}\")\n    print(f\"  Both wrong:   {both_wrong}\")\n    print(f\"\\nLabel distribution: {dict(label_dist)}\")\n    print(f\"SC predictions:    {dict(sc_pred_dist)}\")\n    print(f\"SICA predictions:  {dict(sica_pred_dist)}\")\n\nfor k in [4, 8, 16, 20]:\n    k_dir = os.path.join(base, f\"k{k}\")\n    inter_dir = os.path.join(k_dir, \"intermediates\")\n    if os.path.exists(inter_dir) and len(os.listdir(inter_dir)) > 0:\n        analyze_k(k_dir, k)\n    else:\n        print(f\"\\nK={k}: no data yet\")\nPYEOF"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T02:23:34.960857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nK=4  (204/204 completed)\\\\n============================================================\\\\nSC accuracy:   102/204 = 50.00%\\\\nSICA accuracy: 108/204 = 52.94%\\\\nDelta (SICA-SC): +2.94pp\\\\n\\\\nDiscordant pairs:\\\\n  b (SC wrong, SICA right): 12\\\\n  c (SC right, SICA wrong): 6\\\\n  Both correct: 96\\\\n  Both wrong:   90\\\\n\\\\nLabel distribution: {'Unknown': 69, 'True': 72, 'False': 63}\\\\nSC predictions:    {'Unknown': 94, 'True': 43, 'False (certain)': 1, 'False': 40, '': 20, 'True (but uncertain about other relationships)': 1, 'Tom is not a grumpy person and mean to animals': 1, 'Marvin is an alien.': 1, 'True (for Yale University)': 1, 'True (but uncertain if proven within the given premises)': 1, 'Harry is smarter than before.': 1}\\\\nSICA predictions:  {'Unknown': 97, 'True': 48, 'Ocellated wild turkey': 1, 'True (only for Case 1) and Uncertain (for Case 2)': 1, 'Luke is neither a twin nor triplet nor complains often about annoying siblings.': 1, 'The conclusion is uncertain.': 1, 'U': 1, 'False': 46, \\\\\\\"If Rock is not both a turtle and a squirrel, then Rock is not cute (because it's not a rabbit) and Rock is not skittish (because it's not a squirrel).\\\\\\\": 1, 'True for Scenario B. Uncertain for Scenarios A and C as the given information does not allow us to confirm or deny this for those scenarios.': 1, 'The conclusion is false, and the statement about Rock being cute is uncertain.': 1, 'Uncertain, but likely true if Karen has watched \\\\\\\"Stranger Things\\\\\\\".': 1, 'Marvin is an alien.': 1, 'Most likely true': 1, 'Not from Istanbul': 1, 'Harry is smarter than before.': 1}\\\\n\\\\n============================================================\\\\nK=8  (204/204 completed)\\\\n============================================================\\\\nSC accuracy:   113/204 = 55.39%\\\\nSICA accuracy: 115/204 = 56.37%\\\\nDelta (SICA-SC): +0.98pp\\\\n\\\\nDiscordant pairs:\\\\n  b (SC w\n…[truncated 1219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T02:23:34.961203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python << 'PYEOF'\nimport json\n\n# Check trace structure for a few examples\nfor k in [4, 8, 16]:\n    f = f\"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k{k}/intermediates/folio_0.json\"\n    d = json.load(open(f))\n    traces = d[\"sica_result\"][\"traces\"]\n    print(f\"\\n=== K={k}, folio_0: {len(traces)} traces ===\")\n    for i, t in enumerate(traces[:2]):\n        if isinstance(t, dict):\n            print(f\"  trace {i} keys: {list(t.keys())}\")\n            if \"answer\" in t:\n                print(f\"  trace {i} answer: {t['answer']}\")\n            if \"final_answer\" in t:\n                print(f\"  trace {i} final_answer: {t['final_answer']}\")\n        else:\n            print(f\"  trace {i}: type={type(t).__name__}, val={str(t)[:100]}\")\n    print(f\"  answer_counts: {d['sica_result']['answer_counts']}\")\n    print(f\"  scores: {d['sica_result']['scores']}\")\nPYEOF"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T02:23:34.961461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== K=4, folio_0: 4 traces ===\\\\n  trace 0 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 0 answer: Unknown\\\\n  trace 1 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 1 answer: Unknown\\\\n  answer_counts: {'Unknown': 3, 'Bonnie performs in school talent shows often.': 1}\\\\n  scores: {'Bonnie performs in school talent shows often.': 8.0, 'Unknown': 15.5}\\\\n\\\\n=== K=8, folio_0: 8 traces ===\\\\n  trace 0 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 0 answer: Unknown\\\\n  trace 1 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 1 answer: Unknown\\\\n  answer_counts: {'Unknown': 5, 'True': 1, 'The conclusion is uncertain.': 1}\\\\n  scores: {'The conclusion is uncertain.': 6.0, 'True': 6.5, 'Unknown': 25.5}\\\\n\\\\n=== K=16, folio_0: 16 traces ===\\\\n  trace 0 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 0 answer: Unknown\\\\n  trace 1 keys: ['trace', 'answer', 'trace_idx']\\\\n  trace 1 answer: \\\\n  answer_counts: {'Unknown': 11, 'True': 2, 'True (Probable)': 1}\\\\n  scores: {'True': 21.5, 'True (Probable)': 10.0, 'Unknown': 74.0}\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T02:23:34.961793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python << 'PYEOF'\nimport json, os, glob, re\nfrom collections import Counter\n\nbase = \"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\"\n\ndef normalize_label(ans):\n    \"\"\"Normalize answer to True/False/Unknown. Return None if unrecognizable.\"\"\"\n    if ans is None:\n        return None\n    ans = str(ans).strip()\n    if not ans:\n        return None\n    al = ans.lower()\n    \n    # Direct matches\n    if al in (\"true\", \"yes\", \"true.\", \"yes.\"):\n        return \"True\"\n    if al in (\"false\", \"no\", \"false.\", \"no.\"):\n        return \"False\"\n    if al in (\"unknown\", \"uncertain\", \"unknown.\", \"uncertain.\"):\n        return \"Unknown\"\n    \n    # Prefix matches: \"True (but ...)\", \"False (certain)\", \"Unknown (...)\"\n    if re.match(r'^true\\b', al):\n        return \"True\"\n    if re.match(r'^false\\b', al):\n        return \"False\"\n    if re.match(r'^unknown\\b', al) or re.match(r'^uncertain\\b', al):\n        return \"Unknown\"\n    \n    # Phrases that indicate Unknown\n    if \"uncertain\" in al or \"cannot be determined\" in al or \"not enough information\" in al:\n        return \"Unknown\"\n    if \"the conclusion is uncertain\" in al or \"the conclusion is unknown\" in al:\n        return \"Unknown\"\n    \n    return None  # Unrecognizable\n\ndef sc_from_traces(traces):\n    \"\"\"Get SC answer from majority vote of trace answers.\"\"\"\n    labels = []\n    for t in traces:\n        if isinstance(t, dict):\n            raw = t.get(\"answer\", \"\")\n        else:\n            raw = str(t)\n        norm = normalize_label(raw)\n        if norm is not None:\n            labels.append(norm)\n    \n    if not labels:\n        return None\n    counts = Counter(labels)\n    return counts.most_common(1)[0][0]\n\ndef sica_from_result(sica_result):\n    \"\"\"Get SICA answer - the system already returns a label, but normalize it.\"\"\"\n    raw = sica_result.get(\"answer\", \"\")\n    norm = normalize_label(raw)\n    if norm is not None:\n        return norm\n    \n    # If SICA answer itself is non-standard, try scores\n    scores = sica_result.get(\"scores\", {})\n    if scores:\n        # Find best scoring label\n        best_label = None\n        best_score = -1\n        for k, v in scores.items():\n            nl = normalize_label(k)\n            if nl is not None and v > best_score:\n                best_score = v\n                best_label = nl\n        if best_label:\n            return best_label\n    \n    return None\n\ndef analyze_k(k_dir, k_val):\n    files = sorted(glob.glob(os.path.join(k_dir, \"intermediates\", \"folio_*.json\")))\n    n = len(files)\n    \n    sc_correct = 0\n    sica_correct = 0\n    both_correct = 0\n    sc_only = 0   # c: SC right, SICA wrong\n    sica_only = 0 # b: SC wrong, SICA right\n    both_wrong = 0\n    sc_none = 0\n    sica_none = 0\n    \n    for f in files:\n        d = json.load(open(f))\n        gt = normalize_label(d[\"problem\"][\"answer\"])\n        if gt is None:\n            continue\n        \n        sc_ans = sc_from_traces(d[\"sica_result\"][\"traces\"])\n        sica_ans = sica_from_result(d[\"sica_result\"])\n        \n        if sc_ans is None:\n            sc_none += 1\n        if sica_ans is None:\n            sica_none += 1\n        \n        sc_ok = (sc_ans == gt)\n        sica_ok = (sica_ans == gt)\n        \n        if sc_ok: sc_correct += 1\n        if sica_ok: sica_correct += 1\n        \n        if sc_ok and sica_ok: both_correct += 1\n        elif sc_ok and not sica_ok: sc_only += 1\n        elif not sc_ok and sica_ok: sica_only += 1\n        else: both_wrong += 1\n    \n    sc_acc = sc_correct / n * 100\n    sica_acc = sica_correct / n * 100\n    delta = sica_acc - sc_acc\n    \n    print(f\"\\nK={k_val}  ({n}/204)\")\n    print(f\"  SC:   {sc_correct}/{n} = {sc_acc:.2f}%\")\n    print(f\"  SICA: {sica_correct}/{n} = {sica_acc:.2f}%\")\n    print(f\"  Delta: {delta:+.2f}pp\")\n    print(f\"  Discordant: b={sica_only} (SC wrong,SICA right)  c={sc_only} (SC right,SICA wrong)\")\n    print(f\"  Both correct: {both_correct}  Both wrong: {both_wrong}\")\n    if sc_none or sica_none:\n        print(f\"  Unrecognized answers: SC={sc_none}, SICA={sica_none}\")\n    \n    return {\"k\": k_val, \"n\": n, \"sc_acc\": sc_acc, \"sica_acc\": sica_acc, \n            \"delta\": delta, \"b\": sica_only, \"c\": sc_only}\n\nresults = []\nfor k in [4, 8, 16, 20]:\n    k_dir = os.path.join(base, f\"k{k}\")\n    inter_dir = os.path.join(k_dir, \"intermediates\")\n    if os.path.exists(inter_dir) and len(os.listdir(inter_dir)) > 0:\n        r = analyze_k(k_dir, k)\n        results.append(r)\n    else:\n        print(f\"\\nK={k}: no data\")\n\n# Add K=12 from exp-033\nprint(\"\\n\" + \"=\"*60)\nprint(\"K SENSITIVITY SUMMARY (including K=12 from exp-033)\")\nprint(\"=\"*60)\nprint(f\"{'K':>4} | {'n':>5} | {'SC%':>7} | {'SICA%':>7} | {'delta':>8} | {'b':>3} | {'c':>3}\")\nprint(\"-\"*55)\nfor r in results:\n    if r[\"k\"] == 16:\n        note = \" (interim)\"\n    else:\n        note = \"\"\n    print(f\"{r['k']:>4} | {r['n']:>5} | {r['sc_acc']:>6.2f}% | {r['sica_acc']:>6.2f}% | {r['delta']:>+7.2f}pp | {r['b']:>3} | {r['c']:>3}{note}\")\n\n# Insert K=12 from exp-033\nprint(f\"  12 |   204 |  54.41% |  59.31% |  +4.90pp |   ? |   ? (exp-033)\")\n\nprint(f\"\\nK=20: not started\")\nPYEOF"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T02:23:34.962141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nK=4  (204/204)\\\\n  SC:   115/204 = 56.37%\\\\n  SICA: 111/204 = 54.41%\\\\n  Delta: -1.96pp\\\\n  Discordant: b=5 (SC wrong,SICA right)  c=9 (SC right,SICA wrong)\\\\n  Both correct: 106  Both wrong: 84\\\\n  Unrecognized answers: SC=1, SICA=1\\\\n\\\\nK=8  (204/204)\\\\n  SC:   119/204 = 58.33%\\\\n  SICA: 116/204 = 56.86%\\\\n  Delta: -1.47pp\\\\n  Discordant: b=3 (SC wrong,SICA right)  c=6 (SC right,SICA wrong)\\\\n  Both correct: 113  Both wrong: 82\\\\n\\\\nK=16  (192/204)\\\\n  SC:   105/192 = 54.69%\\\\n  SICA: 110/192 = 57.29%\\\\n  Delta: +2.60pp\\\\n  Discordant: b=11 (SC wrong,SICA right)  c=6 (SC right,SICA wrong)\\\\n  Both correct: 99  Both wrong: 76\\\\n\\\\nK=20: no data\\\\n\\\\n============================================================\\\\nK SENSITIVITY SUMMARY (including K=12 from exp-033)\\\\n============================================================\\\\n   K |     n |     SC% |   SICA% |    delta |   b |   c\\\\n-------------------------------------------------------\\\\n   4 |   204 |  56.37% |  54.41% |   -1.96pp |   5 |   9\\\\n   8 |   204 |  58.33% |  56.86% |   -1.47pp |   3 |   6\\\\n  16 |   192 |  54.69% |  57.29% |   +2.60pp |  11 |   6 (interim)\\\\n  12 |   204 |  54.41% |  59.31% |  +4.90pp |   ? |   ? (exp-033)\\\\n\\\\nK=20: not started\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T02:23:34.962472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "find /root/symb_invariant_consensus -maxdepth 2 -name \"*.py\" -type f | head -30"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T02:23:34.962683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "ls /root/symb_invariant_consensus/results/ | grep exp033"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T02:23:34.962922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/cross_model_extract.py\\\\n/root/symb_invariant_consensus/scripts/postprocess_case_study.py\\\\n/root/symb_invariant_consensus/scripts/run_exp031_oracle_folio_regen.py\\\\n/root/symb_invariant_consensus/scripts/extract_exp033_per_problem.py\\\\n/root/symb_invariant_consensus/scripts/track_discordant_pairs.py\\\\n/root/symb_invariant_consensus/scripts/summarize_k_sensitivity.py\\\\n/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\\\n/root/symb_invariant_consensus/scripts/discriminative_filter.py\\\\n/root/symb_invariant_consensus/sica/__init__.py\\\\n/root/symb_invariant_consensus/sica/scorer.py\\\\n/root/symb_invariant_consensus/sica/pipeline.py\\\\n/root/symb_invariant_consensus/sica/z3_maxsat.py\\\\n/root/symb_invariant_consensus/sica/trace_generator.py\\\\n/root/symb_invariant_consensus/sica/constraint_extractor.py\\\\n/root/symb_invariant_consensus/sica/z3_feedback.py\\\\n/root/symb_invariant_consensus/baselines/__init__.py\\\\n/root/symb_invariant_consensus/baselines/self_consistency.py\\\\n/root/symb_invariant_consensus/utils/__init__.py\\\\n/root/symb_invariant_consensus/utils/math_equiv.py\\\\n/root/symb_invariant_consensus/data/prepare_folio.py\\\\n/root/symb_invariant_consensus/data/explore_proofwriter.py\\\\n/root/symb_invariant_consensus/data/explore_pw.py\\\\n/root/symb_invariant_consensus/data/explore_pw2.py\\\\n/root/symb_invariant_consensus/data/explore_pw3.py\\\\n/root/symb_invariant_consensus/data/prepare_proofwriter.py\\\\n/root/symb_invariant_consensus/data/prepare_logiqa.py\\\\n/root/symb_invariant_consensus/prepare_proofwriter.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T02:23:34.963181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"discriminative_filter_exp033_test.json\\\\nexp033_mistral_7b_folio204\\\\nexp033_per_problem_analysis.json\\\\nexp033_per_problem_analysis_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T02:23:34.963385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "cat /root/symb_invariant_consensus/scripts/summarize_k_sensitivity.py"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T02:23:34.963586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "cat /root/symb_invariant_consensus/sica/scorer.py"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T02:23:34.964103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Summarize K sensitivity results from exp-051 (Mistral-7B, FOLIO-204, T=0.7).\\\\n\\\\nScans k4/, k8/, k16/, k20/ subdirectories and computes SC, SICA, delta,\\\\ndiscordant pairs, McNemar p-value for each K. Includes K=12 reference from exp-033.\\\\n\\\\nInput:\\\\n  results/exp051_mistral_k_sensitivity/ (with k4/, k8/, k16/, k20/ subdirs)\\\\n  results/exp033_mistral_7b_folio204/exp033_results.json (optional, for K=12 reference)\\\\n\\\\nOutput:\\\\n  - Console table comparing all K values\\\\n  - results/k_sensitivity_summary.json\\\\n\\\\nUsage:\\\\n  python scripts/summarize_k_sensitivity.py [--results-dir /path/to/results]\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\ntry:\\\\n    from scipy.stats import binomtest\\\\nexcept ImportError:\\\\n    binomtest = None\\\\n\\\\n\\\\nVALID_ANSWERS = {\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"}\\\\n\\\\nK12_REFERENCE = {\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"n\\\\\\\": 204,\\\\n    \\\\\\\"sc_pct\\\\\\\": 54.41,\\\\n    \\\\\\\"sica_pct\\\\\\\": 59.31,\\\\n    \\\\\\\"delta\\\\\\\": 4.90,\\\\n    \\\\\\\"b\\\\\\\": 12,\\\\n    \\\\\\\"c\\\\\\\": 2,\\\\n    \\\\\\\"p_value\\\\\\\": 0.013,\\\\n    \\\\\\\"status\\\\\\\": \\\\\\\"done (exp-033)\\\\\\\",\\\\n    \\\\\\\"source\\\\\\\": \\\\\\\"hardcoded\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef normalize_answer(ans):\\\\n    if not isinstance(ans, str):\\\\n        return None\\\\n    a = ans.strip().lower()\\\\n    if a in (\\\\\\\"true\\\\\\\", \\\\\\\"yes\\\\\\\"):\\\\n        return \\\\\\\"True\\\\\\\"\\\\n    if a in (\\\\\\\"false\\\\\\\", \\\\\\\"no\\\\\\\"):\\\\n        return \\\\\\\"False\\\\\\\"\\\\n    if a in (\\\\\\\"unknown\\\\\\\", \\\\\\\"uncertain\\\\\\\", \\\\\\\"undetermined\\\\\\\"):\\\\n        return \\\\\\\"Unknown\\\\\\\"\\\\n    return None\\\\n\\\\n\\\\ndef load_results_json(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    results = []\\\\n    for r in data[\\\\\\\"results\\\\\\\"]:\\\\n        results.append({\\\\n            \\\\\\\"problem_id\\\\\\\": r[\\\\\\\"problem_id\\\\\\\"],\\\\n            \\\\\\\"ground_truth\\\\\\\": r[\\\\\\\"ground_truth\\\\\\\"],\\\\n            \\\\\\\"sica_co\n…[truncated 7608 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T02:23:34.964478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nInvariant consensus scorer with A+C improvement:\\\\n  A (normal mode): score = positive_weight - alpha * negative_weight\\\\n  C (fallback mode): when satisfied_ratio < threshold, score = -excluded_exposure\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport logging\\\\nfrom collections import Counter\\\\n\\\\nfrom .z3_maxsat import MaxSATResult\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nclass InvariantScorer:\\\\n\\\\n    def __init__(self, alpha: float = 0.5, fallback_threshold: float = 0.2):\\\\n        self.alpha = alpha\\\\n        self.fallback_threshold = fallback_threshold\\\\n\\\\n    def score(\\\\n        self,\\\\n        maxsat_result: MaxSATResult,\\\\n        traces: list[dict],\\\\n        candidates: list[str],\\\\n    ) -> dict[str, float]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Score each candidate answer using A+C strategy.\\\\n\\\\n        Normal mode (A): score = Σw(satisfied ∩ traces) - α·Σw(excluded ∩ traces)\\\\n        Fallback mode (C): score = -Σw(excluded ∩ traces)\\\\n        Switches to fallback when satisfied_ratio < fallback_threshold.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        answer_traces: dict[str, set[int]] = {}\\\\n        for t in traces:\\\\n            ans = str(t.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\")).strip()\\\\n            idx = t.get(\\\\\\\"trace_idx\\\\\\\", 0)\\\\n            answer_traces.setdefault(ans, set()).add(idx)\\\\n\\\\n        n_satisfied = len(maxsat_result.satisfied)\\\\n        n_excluded = len(maxsat_result.excluded)\\\\n        n_total = n_satisfied + n_excluded\\\\n\\\\n        if n_total == 0:\\\\n            return {str(c).strip(): 0.0 for c in candidates}\\\\n\\\\n        satisfied_ratio = n_satisfied / n_total\\\\n        fallback = satisfied_ratio < self.fallback_threshold\\\\n\\\\n        logger.info(\\\\n            \\\\\\\"Scorer mode=%s  satisfied_ratio=%.3f (%d/%d)  alpha=%.2f  threshold=%.2f\\\\\\\",\\\\n            \\\\\\\"FALLBACK\\\\\\\" if fallback else \\\\\\\"NORMAL\\\\\\\",\\\\n            satisfied_ratio, n_satisfied, n_total,\\\\n      \n…[truncated 1825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T02:23:34.964797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/summarize_k_sensitivity.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T02:23:34.965058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nK Sensitivity (FOLIO-204, Mistral-7B, T=0.7)\\\\n====================================================================================================\\\\n   K |     n |     SC% |   SICA% |   delta |   b |   c |  p-value |               status\\\\n----------------------------------------------------------------------------------------------------\\\\n   4 |   204 |   54.41 |   52.94 |   -1.47 |   7 |  10 |   0.6291 |                 done\\\\n   8 |   204 |   57.35 |   56.37 |   -0.98 |   4 |   6 |   0.7539 |                 done\\\\n  12 |   204 |   54.41 |   59.31 |   +4.90 |  12 |   2 |   0.0129 |       done (exp-033)\\\\n  16 |   194 |   55.67 |   57.22 |   +1.55 |  10 |   7 |   0.6291 |    running (194/204)\\\\n  20 |     - |       - |       - |       - |   - |   - |        - |              pending\\\\n\\\\nSaved to /root/symb_invariant_consensus/results/k_sensitivity_summary.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T02:23:34.965345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && tmux list-sessions 2>/dev/null"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T02:23:34.965564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp028b: 1 windows (created Tue May 19 04:34:16 2026)\\\\nexp033_run: 1 windows (created Tue May 19 01:48:33 2026)\\\\nexp034_run: 1 windows (created Tue May 19 01:48:35 2026)\\\\nexp035_run: 1 windows (created Tue May 19 01:48:36 2026)\\\\nexp051: 1 windows (created Tue May 19 07:00:39 2026)\\\\nexp054_run: 1 windows (created Tue May 19 09:19:07 2026)\\\\nmodel_dl_25068: 1 windows (created Tue May 19 01:02:46 2026)\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T02:23:34.965769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux capture-pane -t exp051 -p -S -40"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T02:23:34.966066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"GT: False\\\\n2026-05-19 10:21:57,248 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,312 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,412 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,436 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,586 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,744 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,769 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:57,878 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:58,312 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:58,358 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:58,382 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:58,394 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:58,961 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:59,470 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:59,564 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:21:59,915 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\\\nmpletions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 10:22:04,832 INFO\n…[truncated 1864 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T02:23:34.966338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux capture-pane -t exp051 -p -S -200 | grep -E \"(folio_|K=|Processing|Running|k16|k20)\" | tail -20"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T02:23:34.966550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ID: folio_193 | Dataset: folio | Level: validation\\\\nID: folio_194 | Dataset: folio | Level: validation\\\\nID: folio_195 | Dataset: folio | Level: validation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T02:23:34.966747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux capture-pane -t exp051 -p -S -500 | grep -E \"(=== K|k4|k8|k16|k20|Starting|Finished|completed)\" | tail -20"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T02:23:34.966971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T02:23:34.967192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux capture-pane -t exp051 -p -S -500 | grep -E \"SICA|sc_correct|Problem|folio_19\" | tail -10"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T02:23:34.967404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SICA: Unknown (X)\\\\nID: folio_191 | Dataset: folio | Level: validation\\\\nSICA: Unknown (X)\\\\nID: folio_192 | Dataset: folio | Level: validation\\\\nSICA: Unknown (X)\\\\nID: folio_193 | Dataset: folio | Level: validation\\\\nSICA: False (V)\\\\nID: folio_194 | Dataset: folio | Level: validation\\\\nSICA: True (X)\\\\nID: folio_195 | Dataset: folio | Level: validation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T02:23:34.967670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "tmux capture-pane -t exp051 -p -S -3000 | grep -E \"(k4|k8|k16|k20|for k|K =|batch|script)\" | head -10"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T02:23:34.967896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T02:23:34.968103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "find /root/symb_invariant_consensus -name \"run_exp051*\" -o -name \"exp051*run*\" -o -name \"exp051*.sh\" | head -10"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T02:23:34.968312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/run_exp051_k_sensitivity.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T02:23:34.968511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-25068",
+              "command": "cat /root/symb_invariant_consensus/scripts/run_exp051_k_sensitivity.sh"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T02:23:34.968756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\ncd /root/symb_invariant_consensus\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\n\\\\n# Kill any existing vLLM on port 8000\\\\npkill -f \\\\\\\"port 8000\\\\\\\" || true\\\\nsleep 5\\\\n\\\\n# Start Mistral-7B vLLM\\\\nCUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server \\\\\\\\\\\\n  --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 \\\\\\\\\\\\n  --max-model-len 8192 \\\\\\\\\\\\n  --gpu-memory-utilization 0.90 \\\\\\\\\\\\n  --port 8000 \\\\\\\\\\\\n  --dtype auto \\\\\\\\\\\\n  --trust-remote-code \\\\\\\\\\\\n  --enforce-eager > /tmp/vllm_exp051.log 2>&1 &\\\\n\\\\necho \\\\\\\"Waiting 120s for vLLM to load...\\\\\\\"\\\\nsleep 120\\\\n\\\\n# Verify model loaded\\\\ncurl -s http://localhost:8000/v1/models || { echo \\\\\\\"vLLM failed to start\\\\\\\"; cat /tmp/vllm_exp051.log; exit 1; }\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\nfor K in 4 8 16 20; do\\\\n  echo \\\\\\\"========== Running K=$K ==========\\\\\\\"\\\\n  python -u run_full_mvp.py \\\\\\\\\\\\n    --mode vllm \\\\\\\\\\\\n    --k $K \\\\\\\\\\\\n    --temperature 0.7 \\\\\\\\\\\\n    --max-tokens 4096 \\\\\\\\\\\\n    --api-base http://localhost:8000/v1 \\\\\\\\\\\\n    --model auto \\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\n    --math-data data/empty.json \\\\\\\\\\\\n    --pw-data data/empty.json \\\\\\\\\\\\n    --strategyqa-data data/empty.json \\\\\\\\\\\\n    --folio-data data/folio_full.json \\\\\\\\\\\\n    --output results/exp051_mistral_k_sensitivity/k${K}/results.json \\\\\\\\\\\\n    --save-intermediates \\\\\\\\\\\\n    2>&1 | tee results/exp051_mistral_k_sensitivity/k${K}/k${K}.log\\\\n  echo \\\\\\\"========== K=$K DONE ==========\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"All K values completed!\\\\\\\"\\\\n# Kill vLLM after all done\\\\npkill -f \\\\\\\"port 8000\\\\\\\" || true\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T02:23:34.969229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Exp-051 K Sensitivity Interim 分析\n\n### 进度\n\n| K | 完成 | 状态 |\n|---|------|------|\n| 4 | 204/204 | ✅ done |\n| 8 | 204/204 | ✅ done |\n| 12 | 204/204 | ✅ done (exp-033) |\n| 16 | 194/204 | ⏳ running, folio_195 |\n| 20 | 0/204 | pending (K=16完成后自动开始) |\n\n### K Sensitivity 结果\n\n```\n   K |     n |    SC% |  SICA% |   delta |   b |   c | p-value\n-----+---------+--------+--------+---------+-----+-----+---------\n   4 |   204 |  54.41 |  52.94 |  -1.47  |   7 |  10 |  0.6291\n   8 |   204 |  57.35 |  56.37 |  -0.98  |   4 |   6 |  0.7539\n  12 |   204 |  54.41 |  59.31 |  +4.90  |  12 |   2 |  0.0129 *\n  16 |   194 |  55.67 |  57.22 |  +1.55  |  10 |   7 |  0.6291  (interim)\n  20 |     - |      - |      - |       - |   - |   - |       -\n```\n\n### 趋势\n\n1. **K=4, K=8: SICA 反而降低准确率**（-1.47pp, -0.98pp），均不显著。trace 太少，约束提取信号不足，反而引入噪声。\n2. **K=12 是最佳点**：delta +4.90pp，唯一统计显著 (p=0.013)。discordant pair 极度不对称（b=12 vs c=2），说明约束有效纠错。\n3. **K=16 (interim): SICA 有帮助但弱于 K=12**（+1.55pp），不显著。b/c=10/7，不对称性远弱于 K=12。\n\n呈**倒 U 型**趋势：SICA 增益随 K 先升后降，K=12 处峰值。K=16 和 K=20 完成后可确认下降趋势。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp051-k16-interim_20260519T021809"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp051-k16-interim.md"
+}

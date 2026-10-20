@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-726_Q6",
+    "problem": "The bear visits the tiger. The cat is kind. The mouse is green. The mouse is kind. The mouse sees the tiger. The tiger is rough. The tiger visits the cat. If something visits the bear then it sees the bear. If something sees the bear then the bear likes the cat. If something visits the cat then the cat visits the bear. If something sees the bear and the bear likes the cat then it is cold. Cold things are rough. If something is green and it likes the tiger then the tiger visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not see the bear.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nVisits($x, $y, bool) ::: Does x visit y?\nKind($x, bool) ::: Is x kind?\nGreen($x, bool) ::: Is x green?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nKind(Cat, True) ::: The cat is kind.\nGreen(Mouse, True) ::: The mouse is green.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nRough(Tiger, True) ::: The tiger is rough.\nVisits(Tiger, Cat, True) ::: The tiger visits the cat.\n\nRules:\nVisits($x, Bear, True) >>> Sees($x, Bear, True) ::: If something visits the bear then it sees the bear.\nSees($x, Bear, True) >>> Likes(Bear, Cat, True) ::: If something sees the bear then the bear likes the cat.\nVisits($x, Cat, True) >>> Visits(Cat, Bear, True) ::: If something visits the cat then the cat visits the bear.\nSees($x, Bear, True) && Likes(Bear, Cat, True) >>> Cold($x, True) ::: If something sees the bear and the bear likes the cat then it is cold.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\nGreen($x, True) && Likes($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If something is green and it likes the tiger then the tiger visits the mouse.\n\nQuery:\nSees(Cat, Bear, False) ::: The cat does not see the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

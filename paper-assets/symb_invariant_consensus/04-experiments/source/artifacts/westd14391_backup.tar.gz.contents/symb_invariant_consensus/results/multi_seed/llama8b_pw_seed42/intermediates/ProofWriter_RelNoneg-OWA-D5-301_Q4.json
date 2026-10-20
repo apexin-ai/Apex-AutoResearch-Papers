@@ -1,0 +1,1311 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-301_Q4",
+    "problem": "The cat eats the dog. The cat is young. The cat needs the rabbit. The dog is young. The dog needs the rabbit. The lion is green. The lion needs the cat. The rabbit chases the cat. The rabbit chases the dog. The rabbit eats the cat. The rabbit needs the cat. The rabbit needs the lion. All green things are red. If something is red and young then it eats the lion. If something eats the cat then the cat is green. If something is blue and it eats the cat then the cat chases the dog. If something eats the rabbit and it needs the lion then the rabbit is red. If something eats the lion then the lion is young. If something is big then it eats the cat. If something eats the rabbit then the rabbit eats the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(Cat, Dog, True) ::: The cat eats the dog.\nYoung(Cat, True) ::: The cat is young.\nNeeds(Cat, Rabbit, True) ::: The cat needs the rabbit.\nYoung(Dog, True) ::: The dog is young.\nNeeds(Dog, Rabbit, True) ::: The dog needs the rabbit.\nGreen(Lion, True) ::: The lion is green.\nNeeds(Lion, Cat, True) ::: The lion needs the cat.\nChases(Rabbit, Cat, True) ::: The rabbit chases the cat.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nEats(Rabbit, Cat, True) ::: The rabbit eats the cat.\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\n\nRules:\nGreen($x, True) >>> Red($x, True) ::: All green things are red.\nRed($x, True) && Young($x, True) >>> Eats($x, Lion, True) ::: If something is red and young then it eats the lion.\nEats($x, Cat, True) >>> Green(Cat, True) ::: If something eats the cat then the cat is green.\nBlue($x, True) && Eats($x, Cat, True) >>> Chases(Cat, Dog, True) ::: If something is blue and it eats the cat then the cat chases the dog.\nEats($x, Rabbit, True) && Needs($x, Lion, True) >>> Red(Rabbit, True) ::: If something eats the rabbit and it needs the lion then the rabbit is red.\nEats($x, Lion, True) >>> Young(Lion, True) ::: If something eats the lion then the lion is young.\nBig($x, True) >>> Eats($x, Cat, True) ::: If something is big then it eats the cat.\nEats($x, Rabbit, True) >>> Eats(Rabbit, Dog, True) ::: If something eats the rabbit then the rabbit eats the dog.\n\nQuery:\nGreen(Cat, False) ::: The cat is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 192.5,
+      "The statement is false.": 179.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "The statement is false.": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a combination of logical deductions and given information.\n\nGiven information:\n- The cat eats the dog.\n- The cat is young.\n- The cat needs the rabbit.\n- The dog is young.\n- The dog needs the rabbit.\n- The lion is green.\n- The lion needs the cat.\n- The rabbit chases the cat.\n- The rabbit chases the dog.\n- The rabbit eats the cat.\n- The rabbit needs the cat.\n- The rabbit needs the lion.\n- All green things are red.\n- If something is red and young then it eats the lion.\n- If something eats the cat then the cat is green.\n- If something is blue and it eats the cat then the cat chases the dog.\n- If something eats the rabbit and it needs the lion then the rabbit is red.\n- If something eats the lion then the lion is young.\n- If something is big then it eats the cat.\n- If something eats the rabbit then the rabbit eats the dog.\n\nTo determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given information, we have:\n- The rabbit eats the cat.\n- If something eats the cat then the cat is green.\n\nSince the rabbit eats the cat, we can conclude that the cat is green. \n\nTherefore, the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog.\n2. The cat is young.\n3. The cat needs the rabbit.\n4. The dog is young.\n5. The dog needs the rabbit.\n6. The lion is green.\n7. The lion needs the cat.\n8. The rabbit chases the cat.\n9. The rabbit chases the dog.\n10. The rabbit eats the cat.\n11. The rabbit needs the cat.\n12. The rabbit needs the lion.\n13. All green things are red.\n14. If something is red and young then it eats the lion.\n15. If something eats the cat then the cat is green.\n16. If something is blue and it eats the cat then the cat chases the dog.\n17. If something eats the rabbit and it needs the lion then the rabbit is red.\n18. If something eats the lion then the lion is young.\n19. If something is big then it eats the cat.\n20. If something eats the rabbit then the rabbit eats the dog.\n\nFrom statement 13, we know that all green things are red. Since the lion is green (statement 6), we can conclude that the lion is red.\n\nNow, let's analyze statement 15: If something eats the cat then the cat is green. From statement 10, we know that the rabbit eats the cat. Therefore, according to statement 15, the cat is green.\n\nHowever, statement 15 also tells us that if something eats the cat then the cat is green. But we already know from statement 13 that the lion is red because it is green. This does not help us determine the color of the cat.\n\nFrom statement 10, we know that the rabbit eats the cat. This also implies that the rabbit eats the cat and the rabbit needs the lion. Now, let's analyze statement 17: If something eats the rabbit and it needs the lion then the rabbit is red. Since the rabbit eats the cat and the rabbit needs the lion, we can conclude that the rabbit is red.\n\nHowever, statement 13 tells us that all green things are red. Since the rabbit is red (from the previous conclusion), we can conclude that the rabbit is also green.\n\nNow we have a contradiction: the rabbit cannot be both red and green. We have to go back to the original statements and analyze them again.\n\nWe already concluded that the rabbit is red from statement 13 and the fact that the rabbit eats the cat and needs the lion. We also know that the rabbit is green from statement 10.\n\nHowever, we can resolve this contradiction by re-reading the statements. From statement 10, we know that the rabbit eats the cat. From statement 13, we know that all green things are red. This means that the cat must be red because it is green.\n\nHowever, we also know that the cat is young (statement 2). Now, let's analyze statement 14: If something is red and young then it eats the lion. Since the cat is red and young, we can conclude that the cat eats the lion.\n\nHowever, this conclusion contradicts statement 7, which states that the lion needs the cat. We also know from statement 8 that the rabbit chases the cat, and from statement 9 that the rabbit chases the dog.\n\nHowever, we can resolve this contradiction by re-reading the statements. From statement 10, we know that the rabbit eats the cat. This means that the rabbit chases the cat and eats it.\n\nHowever, we also know that the cat eats the dog (statement 1). This means that the cat chases the dog and eats it. However, statement 10 also tells us that the rabbit eats the cat, which means that the rabbit chases the cat and eats it.\n\nNow, let's analyze statement 19: If something is big then it eats the cat. However, we do not know whether the cat is big or not.\n\nHowever, we can resolve this contradiction by re-reading the statements. From statement 1, we know that the cat eats the dog. This means that the cat is big because it eats the dog. \n\nHowever, we also know that the cat is young (statement 2). Now, let's analyze statement 14: If something is red and young then it eats the lion. Since the cat is red and young, we can conclude that the cat eats the lion.\n\nHowever, this conclusion contradicts statement 7, which states that the lion needs the cat. We also know from statement 8 that the rabbit chases the cat, and from statement 9 that the rabbit chases the dog.\n\nHowever, we can resolve this contradiction by re-reading the statements. From statement 10, we know that the rabbit eats the cat. This means that the rabbit chases the cat and eats it.\n\nHowever, we also know that the cat eats the dog (statement 1). This means that the cat chases the dog and eats it. However, statement 10 also tells us that the rabbit eats the cat, which means that the rabbit chases the cat and eats it.\n\nNow, let's analyze statement 21 which we don't have. Instead we have statement 20 which says If something eats the rabbit then the rabbit eats the dog. Since the cat eats the rabbit (statement 10), we can conclude that the rabbit eats the dog.\n\nHowever, we cannot conclude that the cat is not green from the previous analysis. Therefore, the statement \"The cat is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use them to derive information about the cat.\n\n1. The cat eats the dog.\n2. The cat is young.\n3. The cat needs the rabbit.\n4. The dog is young.\n5. The dog needs the rabbit.\n6. The lion is green.\n7. The lion needs the cat.\n8. The rabbit chases the cat.\n9. The rabbit chases the dog.\n10. The rabbit eats the cat.\n11. The rabbit needs the cat.\n12. The rabbit needs the lion.\n13. All green things are red.\n14. If something is red and young then it eats the lion.\n15. If something eats the cat then the cat is green.\n16. If something is blue and it eats the cat then the cat chases the dog.\n17. If something eats the rabbit and it needs the lion then the rabbit is red.\n18. If something eats the lion then the lion is young.\n19. If something is big then it eats the cat.\n20. If something eats the rabbit then the rabbit eats the dog.\n\nFrom statement 10, we know that the rabbit eats the cat. \nFrom statement 15, we can conclude that the cat is green.\n\nTherefore, the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog. (This statement does not provide any information about the color of the cat.)\n\n2. The cat is young. (This statement does not provide any information about the color of the cat.)\n\n3. The cat needs the rabbit. (This statement does not provide any information about the color of the cat.)\n\n4. The dog is young. (This statement does not provide any information about the color of the dog or the cat.)\n\n5. The dog needs the rabbit. (This statement does not provide any information about the color of the dog or the cat.)\n\n6. The lion is green. (This statement does not provide any information about the color of the cat.)\n\n7. The lion needs the cat. (This statement does not provide any information about the color of the cat.)\n\n8. The rabbit chases the cat. (This statement does not provide any information about the color of the cat.)\n\n9. The rabbit chases the dog. (This statement does not provide any information about the color of the dog or the cat.)\n\n10. The rabbit eats the cat. (This statement does not provide any information about the color of the cat.)\n\n11. The rabbit needs the cat. (This statement does not provide any information about the color of the cat.)\n\n12. The rabbit needs the lion. (This statement does not provide any information about the color of the rabbit.)\n\n13. All green things are red. (This statement is crucial. It implies that if something is green, it must be red. However, it does not provide any information about the color of the cat.)\n\n14. If something is red and young then it eats the lion. (This statement does not provide any information about the cat.)\n\n15. If something eats the cat then the cat is green. (This is the crucial statement that might affect the color of the cat.)\n\n16. If something is blue and it eats the cat then the cat chases the dog. (This statement does not provide any information about the color of the cat.)\n\n17. If something eats the rabbit and it needs the lion then the rabbit is red. (This statement does not provide any information about the color of the cat.)\n\n18. If something eats the lion then the lion is young. (This statement does not provide any information about the cat.)\n\n19. If something is big then it eats the cat. (This statement does not provide any information about the color of the cat.)\n\n20. If something eats the rabbit then the rabbit eats the dog. (This statement does not provide any information about the color of the rabbit or the cat.)\n\nNow, let's analyze the statements that might affect the color of the cat.\n\n- The cat eats the dog (statement 1) does not provide any information about the color of the cat.\n- The rabbit eats the cat (statement 10) does not provide any information about the color of the cat.\n- If something eats the cat then the cat is green (statement 15). However, we do not know if the rabbit is considered \"something\" in this context.\n\nFrom statement 15, if the rabbit eats the cat, then the cat is green. However, from statement 10, we know that the rabbit eats the cat. Therefore, according to statement 15, the cat is green.\n\nNow, let's determine whether the statement \"The cat is not green\" is true, false, or unknown.\n\nBased on the analysis above, we found that the cat is green because the rabbit eats the cat, and if something eats the cat then the cat is green. Therefore, the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"If something eats the cat then the cat is green.\" \nWe have the statement that \"The rabbit eats the cat.\" However, we also have another statement \"The rabbit needs the cat.\" This information alone is insufficient to determine the color of the cat.\n\n2. \"The rabbit chases the cat. The rabbit chases the dog.\" \nThis statement tells us that the rabbit has an action towards the cat and the dog but doesn't provide any information about the color of the cat.\n\n3. \"The rabbit eats the cat. The rabbit needs the cat. The rabbit needs the lion.\"\nNow we have two conflicting statements - one that says the rabbit eats the cat, and another that says the rabbit needs the cat. Given the first statement, we can apply the rule \"If something eats the cat then the cat is green.\" So, the cat is green.\n\n4. \"The cat is young.\"\nThis statement tells us the age of the cat, but we already know the cat is green based on the previous statement.\n\nTherefore, the statement \"The cat is not green\" is false because the cat is indeed green based on the rule.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog. (This statement does not provide any information about the color of the cat.)\n2. The cat is young. (This statement does not provide any information about the color of the cat.)\n3. The cat needs the rabbit. (This statement does not provide any information about the color of the cat.)\n4. The dog is young. (This statement does not provide any information about the color of the dog.)\n5. The dog needs the rabbit. (This statement does not provide any information about the color of the dog.)\n6. The lion is green. (This statement does not provide any information about the cat's color.)\n7. The lion needs the cat. (This statement does not provide any information about the cat's color.)\n8. The rabbit chases the cat. (This statement does not provide any information about the color of the cat.)\n9. The rabbit chases the dog. (This statement does not provide any information about the color of the dog.)\n10. The rabbit eats the cat. (This statement implies that something eats the cat, which we will consider later.)\n11. The rabbit needs the cat. (This statement does not provide any information about the color of the cat.)\n12. The rabbit needs the lion. (This statement does not provide any information about the color of the rabbit.)\n13. All green things are red. (This statement implies that if something is green, then it is red, but it does not provide any information about the color of the cat.)\n14. If something is red and young then it eats the lion. (This statement does not provide any information about the color of the cat.)\n15. If something eats the cat then the cat is green. (This statement directly implies that we need to consider the color of the cat based on what eats it.)\n16. If something is blue and it eats the cat then the cat chases the dog. (This statement does not provide any information about the color of the cat.)\n17. If something eats the rabbit and it needs the lion then the rabbit is red. (This statement does not provide any information about the color of the cat.)\n18. If something eats the lion then the lion is young. (This statement does not provide any information about the color of the cat.)\n19. If something is big then it eats the cat. (This statement does not provide any information about the color of the cat.)\n20. If something eats the rabbit then the rabbit eats the dog. (This statement does not provide any information about the color of the cat.)\n\nFrom statement 10, we know that the rabbit eats the cat. Now we need to consider statement 15, which states that if something eats the cat then the cat is green. \n\nTherefore, based on the information provided, we can conclude that the cat is green.\n\nNow, let's analyze the statement \"The cat is not green.\" \n\nSince we have concluded that the cat is green based on the given information, the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement that \"If something eats the cat then the cat is green\" can be represented as:\n   If (X eats the cat) then (the cat is green)\n\n2. From the given information, we know that the rabbit eats the cat. \n   - We can represent this as: \n   - The rabbit eats the cat\n   - This implies that the cat is green, as per the above rule.\n\n3. The statement that \"If something is red and young then it eats the lion\" is not directly relevant to the color of the cat.\n\n4. The statement that \"If something eats the cat and it is blue then the cat chases the dog\" is not directly relevant to the color of the cat.\n\n5. The statement that \"If something eats the rabbit and it needs the lion then the rabbit is red\" is not directly relevant to the color of the cat.\n\n6. The statement that \"If something eats the lion then the lion is young\" is not directly relevant to the color of the cat.\n\n7. The statement that \"If something is big then it eats the cat\" is not directly relevant to the color of the cat.\n\n8. The statement that \"If something eats the rabbit then the rabbit eats the dog\" is not directly relevant to the color of the cat.\n\n9. The given statement that \"The lion is green\" can be represented as:\n   - The lion is green\n\n10. The given statement that \"All green things are red\" can be represented as:\n    - If (something is green) then (it is red)\n\n11. From the given statement that \"The lion is green\", we can deduce that:\n    - The lion is red, as per the above rule.\n\n12. The given statement that \"The cat needs the rabbit\" does not provide any information about the color of the cat.\n\n13. The given statement that \"The cat is young\" does not provide any information about the color of the cat.\n\n14. However, we already established that the cat is green.\n\nTherefore, the statement \"The cat is not green\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to determine whether the cat is green or not.\n\n1. The cat eats the dog.\n2. The cat is young.\n3. The cat needs the rabbit.\n4. The dog is young.\n5. The dog needs the rabbit.\n6. The lion is green.\n7. The lion needs the cat.\n8. The rabbit chases the cat.\n9. The rabbit chases the dog.\n10. The rabbit eats the cat.\n11. The rabbit needs the cat.\n12. The rabbit needs the lion.\n13. All green things are red.\n14. If something is red and young then it eats the lion.\n15. If something eats the cat then the cat is green.\n16. If something is blue and it eats the cat then the cat chases the dog.\n17. If something eats the rabbit and it needs the lion then the rabbit is red.\n18. If something eats the lion then the lion is young.\n19. If something is big then it eats the cat.\n20. If something eats the rabbit then the rabbit eats the dog.\n\nFrom statement 10, we know that the rabbit eats the cat. Now, we will use statement 15 to determine whether the cat is green.\n\nStatement 15: If something eats the cat then the cat is green.\n\nSince the rabbit eats the cat, we can conclude that the cat is green. This directly contradicts the statement we want to evaluate, which is \"The cat is not green.\"\n\nTherefore, based on the given statements and the logical deductions, we can conclude that:\n\n\\boxed{The statement is false.}",
+        "answer": "The statement is false.",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog. (This statement alone does not provide any information about the color of the cat.)\n2. The cat is young. (This statement alone does not provide any information about the color of the cat.)\n3. The cat needs the rabbit. (This statement alone does not provide any information about the color of the cat.)\n4. The dog is young. (This statement alone does not provide any information about the color of the cat.)\n5. The dog needs the rabbit. (This statement alone does not provide any information about the color of the cat.)\n6. The lion is green. (This statement alone does not provide any information about the color of the cat.)\n7. The lion needs the cat. (This statement alone does not provide any information about the color of the cat.)\n8. The rabbit chases the cat. (This statement alone does not provide any information about the color of the cat.)\n9. The rabbit chases the dog. (This statement alone does not provide any information about the color of the cat.)\n10. The rabbit eats the cat. (This statement alone does not provide any information about the color of the cat.)\n11. The rabbit needs the cat. (This statement alone does not provide any information about the color of the cat.)\n12. The rabbit needs the lion. (This statement alone does not provide any information about the color of the cat.)\n13. All green things are red. (This is the first statement that can be used to determine the color of the cat.)\n14. If something is red and young then it eats the lion. (This statement alone does not provide any information about the color of the cat.)\n15. If something eats the cat then the cat is green. (This is a crucial statement that can be used to determine the color of the cat.)\n16. If something is blue and it eats the cat then the cat chases the dog. (This statement alone does not provide any information about the color of the cat.)\n17. If something eats the rabbit and it needs the lion then the rabbit is red. (This statement alone does not provide any information about the color of the cat.)\n18. If something eats the lion then the lion is young. (This statement alone does not provide any information about the color of the cat.)\n19. If something is big then it eats the cat. (This statement alone does not provide any information about the color of the cat.)\n20. If something eats the rabbit then the rabbit eats the dog. (This statement alone does not provide any information about the color of the cat.)\n\nNow, we have statements 13 and 15 that can be used to determine the color of the cat. Statement 13 says \"All green things are red,\" but it does not provide any information about the cat. Statement 15 says \"If something eats the cat then the cat is green.\" Since the rabbit eats the cat (statement 10), we can use this statement to determine the color of the cat.\n\nAccording to statement 15, since the rabbit eats the cat, the cat is green.\n\nNow, we can evaluate the statement \"The cat is not green.\" Since we determined that the cat is green, this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog.\n   - This statement doesn't provide any information about the color or age of the cat.\n\n2. The cat is young.\n   - This statement provides information about the age of the cat, but we don't know if it's related to the color.\n\n3. The cat needs the rabbit.\n   - This statement doesn't provide any information about the color or age of the cat.\n\n4. The dog is young.\n   - This statement provides information about the age of the dog, but we don't know if it's related to the color.\n\n5. The dog needs the rabbit.\n   - This statement doesn't provide any information about the color or age of the dog.\n\n6. The lion is green.\n   - This statement provides information about the color of the lion, but we don't know if it's related to the cat.\n\n7. The lion needs the cat.\n   - This statement doesn't provide any information about the color or age of the lion.\n\n8. The rabbit chases the cat.\n   - This statement doesn't provide any information about the color or age of the rabbit.\n\n9. The rabbit chases the dog.\n   - This statement doesn't provide any information about the color or age of the rabbit.\n\n10. The rabbit eats the cat.\n   - This statement is a crucial piece of information, as it implies that the cat is green (according to the rule: If something eats the cat then the cat is green).\n\nFrom statement 10, we can conclude that the cat is green.\n\nNow, we need to consider all the rules that might affect the color of the cat. \n\n11. If something is red and young then it eats the lion.\n   - This rule doesn't provide any information about the cat's color.\n\n12. If something eats the cat then the cat is green.\n   - This rule is already satisfied (the rabbit eats the cat, so the cat is green).\n\n13. If something is blue and it eats the cat then the cat chases the dog.\n   - This rule doesn't provide any information about the cat's color.\n\n14. If something eats the rabbit and it needs the lion then the rabbit is red.\n   - This rule doesn't provide any information about the cat's color.\n\n15. If something eats the lion then the lion is young.\n   - This rule doesn't provide any information about the cat's color.\n\n16. If something is big then it eats the cat.\n   - This rule doesn't provide any information about the cat's color.\n\n17. If something eats the rabbit then the rabbit eats the dog.\n   - This rule doesn't provide any information about the cat's color.\n\nConsidering all the rules, we can conclude that the cat is green, and the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog.\n2. The cat is young.\n3. The cat needs the rabbit.\n4. The dog is young.\n5. The dog needs the rabbit.\n6. The lion is green.\n7. The lion needs the cat.\n8. The rabbit chases the cat.\n9. The rabbit chases the dog.\n10. The rabbit eats the cat.\n11. The rabbit needs the cat.\n12. The rabbit needs the lion.\n\nNow, let's analyze the given conditions:\n\n- If something is red and young then it eats the lion. (No direct relation to the cat)\n- If something eats the cat then the cat is green. (We need to check this condition)\n- If something is blue and it eats the cat then the cat chases the dog. (No direct relation to the cat's color)\n- If something eats the rabbit and it needs the lion then the rabbit is red. (We don't have enough information to determine this condition)\n- If something eats the lion then the lion is young. (No direct relation to the cat's color)\n- If something is big then it eats the cat. (No direct relation to the cat's color)\n- If something eats the rabbit then the rabbit eats the dog. (We don't have enough information to determine this condition)\n\nFrom the given information, we have two relevant conditions to determine whether the cat is green:\n\n- The rabbit eats the cat. (Statement 10)\n- If something eats the cat then the cat is green. (Condition)\n\nSince the rabbit eats the cat, we can conclude that the cat is green.\n\nTherefore, the statement \"The cat is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not green\" is true, false, or unknown, we need to analyze the given information and rules.\n\n1. The cat is young. (Given)\n2. The cat needs the rabbit. (Given)\n3. If something is red and young then it eats the lion. (Rule)\n4. If something eats the cat then the cat is green. (Rule)\n5. The rabbit chases the cat. (Given)\n6. The rabbit eats the cat. (Given)\n7. The rabbit needs the lion. (Given)\n8. All green things are red. (Rule)\n\nFrom statement 6, we know that the rabbit eats the cat. Using rule 4, we can conclude that the cat is green.\n\nHowever, we cannot directly determine whether the statement \"The cat is not green\" is true or false, because we have conflicting information.\n\nStatement 6 says the cat is green, but there is no rule that directly states that a young cat cannot be green. Therefore, we have to consider other possibilities.\n\nFrom statement 5, we know that the rabbit chases the cat. This implies that the rabbit and the cat have a relationship that can be analyzed using the given rules.\n\nHowever, we cannot directly determine the color of the cat from the information in statements 5 and 6.\n\nNow let's consider the lion. \nThe lion needs the cat. (Given)\nThe lion is green. (Given)\n\nFrom rule 3, if the lion is green then it is red. But we know the lion is green. So, this rule cannot be applied here.\n\nFrom rule 8, all green things are red. But the lion is green, so it cannot be red.\n\nHowever, from rule 8, we know that all green things are red. So the lion cannot be green and red at the same time.\n\nNow let's consider rule 1, which says that the cat is young. We know the cat is green from rule 4.\n\nWe cannot apply rule 8 here because the cat is not green in the context of the rule, it is green because of rule 4.\n\nNow we have to consider rule 7, which says that if something eats the rabbit and it needs the lion then the rabbit is red. \n\nWe cannot apply rule 7 here because we don't know whether the rabbit eats the cat or not.\n\nHowever, we know the cat eats the rabbit from statement 6 and rule 10, which says that if something eats the rabbit then the rabbit eats the dog.\n\nFrom rule 9, we know that if something eats the rabbit and it needs the lion then the rabbit is red.\n\nWe can now apply rule 9 here because we know the cat eats the rabbit and the cat needs the lion.\n\nFrom rule 9, we know that the rabbit is red. However, we cannot apply this rule here because we are analyzing the cat, not the rabbit.\n\nNow let's consider rule 10, which says that if something eats the rabbit then the rabbit eats the dog.\n\nWe know the cat eats the rabbit from statement 6. Therefore, the rabbit eats the dog from rule 10.\n\nHowever, we cannot apply this rule here because we are analyzing the cat, not the rabbit.\n\nFrom rule 1, we know that the cat is young.\n\nNow let's consider rule 6, which says that if something eats the cat then the cat is green.\n\nWe know the rabbit eats the cat from statement 6.\n\nHowever, we cannot apply this rule here because we are analyzing the cat, not the rabbit.\n\nNow let's consider rule 5, which says that if something is blue and it eats the cat then the cat chases the dog.\n\nWe cannot apply rule 5 here because we don't know whether the cat chases the dog or not.\n\nNow let's consider rule 3, which says that if something is red and young then it eats the lion.\n\nWe cannot apply rule 3 here because we don't know whether the cat is red or not.\n\nHowever, we know the cat is green from rule 4.\n\nNow let's consider rule 2, which says that the cat needs the rabbit.\n\nWe cannot apply rule 2 here because we are analyzing the cat, not the rabbit.\n\nNow let's consider rule 11, which says that if something is big then it eats the cat.\n\nWe cannot apply rule 11 here because we don't know whether the cat is big or not.\n\nNow let's consider rule 8, which says that all green things are red.\n\nWe cannot apply rule 8 here because we don't know whether the cat is red or not.\n\nHowever, we know the cat is green from rule 4.\n\nWe cannot directly determine whether the statement \"The cat is not green\" is true or false because we have conflicting information.\n\nHowever, we can conclude that the statement \"The cat is not green\" is false because we know the cat is green from rule 4.\n\nTherefore, our final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_lion, young_lion), eats_lion_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_rabbit_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(cat, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_cat_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(X)",
+          "z3_formula": "Implies(eats_lion_lion, young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(X)",
+          "z3_formula": "Implies(eats_X_lion, young_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not green(cat)",
+          "z3_formula": "Not(green_cat) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(lion)",
+          "z3_formula": "Implies(eats_X_lion, young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_rabbit_cat, green_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(lion)",
+          "z3_formula": "Implies(eats_X_lion, young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_rabbit_cat, green_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(X)",
+          "z3_formula": "Implies(eats_X_lion, young_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_lion, red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(lion)",
+          "z3_formula": "Implies(eats_X_lion, young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not green(cat)",
+          "z3_formula": "Not(green_cat) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(lion)",
+          "z3_formula": "Implies(eats_X_lion, young_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, young_X), eats_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(blue_X, eats_X_cat), chases_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> young(X)",
+          "z3_formula": "Implies(eats_X_lion, young_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, cat)",
+          "z3_formula": "Implies(big_X, eats_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_cat, young_cat), eats_cat_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(cat)",
+          "z3_formula": "Implies(eats_X_cat, green_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & needs(X, lion) -> red(rabbit)",
+          "z3_formula": "Implies(And(eats_X_rabbit, needs_X_lion), red_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(rabbit, dog)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_rabbit_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green_cat",
+          "z3_formula": "Not(green_cat) == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 197,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 1,
+      "total_weight": 194,
+      "solve_time_ms": 0.959211029112339
+    },
+    "timing": {
+      "trace_gen_s": 13.929,
+      "extraction_s": 38.204,
+      "dedup_s": 1.494,
+      "maxsat_s": 0.003,
+      "total_s": 53.63
+    }
+  }
+}

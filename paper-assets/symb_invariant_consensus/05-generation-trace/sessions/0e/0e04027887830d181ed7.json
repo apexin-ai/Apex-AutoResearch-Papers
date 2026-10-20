@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e04027887830d181ed7",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment qwen14b pw nli combo",
+  "task_key": "worker_experiment_qwen14b-pw-nli-combo_20260520T213827",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_qwen14b-pw-nli-combo_20260520T213827_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "e7a7e3d1c6700c0613b7e7f09b65904ee05225ed73a251200c5fa321bbbd7e29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n| Metric | Value |\n|--------|-------|\n| SC baseline (Qwen2.5-14B) | 73.50% |\n| DeBERTa-large standalone | 55.00% |\n| **Capability gap** | **-18.50pp** |\n| Combo w=1 | 74.17% (+0.67pp, p=0.344) |\n| Combo w=3 | 74.33% (+0.83pp, p=0.405) |\n| Combo w=5 | **75.33% (+1.83pp, p=0.144)** |\n\nCapability Gap 叙事验证：gap = -18.50pp 介于 Qwen3 (-30pp, gain=+1.83) 和 Mistral (+15.67pp, gain=+10.67) 之间，对应 combo gain 也在两者之间（+0.67 ~ +1.83pp），支撑单调递减趋势。\n\n结果已写入 `/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-qwen14b-pw-nli-combo.md"
+}

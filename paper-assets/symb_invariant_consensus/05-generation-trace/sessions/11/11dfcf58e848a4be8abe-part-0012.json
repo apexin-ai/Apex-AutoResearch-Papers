@@ -1,0 +1,1426 @@
+{
+  "schema_version": "1.0",
+  "session_id": "11dfcf58e848a4be8abe",
+  "rounds": [
+    {
+      "number": 45,
+      "messages": [
+        {
+          "source_line": 1981,
+          "timestamp": "2026-05-25T21:16:46.235399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 659
+          },
+          "id": "event-001981"
+        },
+        {
+          "source_line": 1982,
+          "timestamp": "2026-05-25T21:16:46.235897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-001982"
+        },
+        {
+          "source_line": 1983,
+          "timestamp": "2026-05-25T21:16:46.989942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 754
+          },
+          "id": "event-001983"
+        },
+        {
+          "source_line": 1984,
+          "timestamp": "2026-05-25T21:16:47.140928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p19.png"
+            }
+          },
+          "id": "event-001984"
+        },
+        {
+          "source_line": 1985,
+          "timestamp": "2026-05-25T21:16:47.191780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p20.png"
+            }
+          },
+          "id": "event-001985"
+        },
+        {
+          "source_line": 1986,
+          "timestamp": "2026-05-25T21:16:48.198009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1057
+          },
+          "id": "event-001986"
+        },
+        {
+          "source_line": 1987,
+          "timestamp": "2026-05-25T21:16:48.349701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1157
+          },
+          "id": "event-001987"
+        },
+        {
+          "source_line": 1988,
+          "timestamp": "2026-05-25T21:16:54.227051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/submitted.pdf",
+              "pages": "21-30",
+              "project": "symb_invariant_consensus",
+              "dpi": "150"
+            }
+          },
+          "id": "event-001988"
+        },
+        {
+          "source_line": 1989,
+          "timestamp": "2026-05-25T21:16:57.000162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 509.1}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 489.9}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 472.2}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 511.5}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 384.1}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 480.3}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 516.8}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 448.7}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submit\n…[truncated 533 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 2773
+          },
+          "id": "event-001989"
+        },
+        {
+          "source_line": 1990,
+          "timestamp": "2026-05-25T21:17:01.125122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p21.png"
+            }
+          },
+          "id": "event-001990"
+        },
+        {
+          "source_line": 1991,
+          "timestamp": "2026-05-25T21:17:01.627959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p22.png"
+            }
+          },
+          "id": "event-001991"
+        },
+        {
+          "source_line": 1992,
+          "timestamp": "2026-05-25T21:17:02.721052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1595
+          },
+          "id": "event-001992"
+        },
+        {
+          "source_line": 1993,
+          "timestamp": "2026-05-25T21:17:02.722157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1094
+          },
+          "id": "event-001993"
+        },
+        {
+          "source_line": 1994,
+          "timestamp": "2026-05-25T21:17:02.776060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p23.png"
+            }
+          },
+          "id": "event-001994"
+        },
+        {
+          "source_line": 1995,
+          "timestamp": "2026-05-25T21:17:03.127653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p24.png"
+            }
+          },
+          "id": "event-001995"
+        },
+        {
+          "source_line": 1996,
+          "timestamp": "2026-05-25T21:17:03.430746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p25.png"
+            }
+          },
+          "id": "event-001996"
+        },
+        {
+          "source_line": 1997,
+          "timestamp": "2026-05-25T21:17:03.733905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 957
+          },
+          "id": "event-001997"
+        },
+        {
+          "source_line": 1998,
+          "timestamp": "2026-05-25T21:17:04.238199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1110
+          },
+          "id": "event-001998"
+        },
+        {
+          "source_line": 1999,
+          "timestamp": "2026-05-25T21:17:04.340310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 909
+          },
+          "id": "event-001999"
+        },
+        {
+          "source_line": 2000,
+          "timestamp": "2026-05-25T21:17:10.063930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p26.png"
+            }
+          },
+          "id": "event-002000"
+        },
+        {
+          "source_line": 2001,
+          "timestamp": "2026-05-25T21:17:10.515923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p27.png"
+            }
+          },
+          "id": "event-002001"
+        },
+        {
+          "source_line": 2002,
+          "timestamp": "2026-05-25T21:17:10.969769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 905
+          },
+          "id": "event-002002"
+        },
+        {
+          "source_line": 2003,
+          "timestamp": "2026-05-25T21:17:11.170912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p28.png"
+            }
+          },
+          "id": "event-002003"
+        },
+        {
+          "source_line": 2004,
+          "timestamp": "2026-05-25T21:17:11.174138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 658
+          },
+          "id": "event-002004"
+        },
+        {
+          "source_line": 2005,
+          "timestamp": "2026-05-25T21:17:11.778694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 607
+          },
+          "id": "event-002005"
+        },
+        {
+          "source_line": 2006,
+          "timestamp": "2026-05-25T21:17:11.779196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p29.png"
+            }
+          },
+          "id": "event-002006"
+        },
+        {
+          "source_line": 2007,
+          "timestamp": "2026-05-25T21:17:11.980550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p30.png"
+            }
+          },
+          "id": "event-002007"
+        },
+        {
+          "source_line": 2008,
+          "timestamp": "2026-05-25T21:17:12.134325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 153
+          },
+          "id": "event-002008"
+        },
+        {
+          "source_line": 2009,
+          "timestamp": "2026-05-25T21:17:12.388813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 609
+          },
+          "id": "event-002009"
+        },
+        {
+          "source_line": 2010,
+          "timestamp": "2026-05-25T21:17:21.832172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-002010"
+        },
+        {
+          "source_line": 2011,
+          "timestamp": "2026-05-25T21:17:21.882789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t% \\usepackage{inconsolata} % removed: not available in this TeX distribution\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{amsthm}\n13\t% tcolorbox removed: unused in content\n14\t\\usepackage{booktabs}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{enumitem}\n18\t% pifont removed: no longer used\n19\t\\usepackage{subcaption}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{positioning,shapes.geometric,arrows.meta}\n22\t\\usepackage{listings}\n23\t\\usepackage{algorithm}\n24\t\\usepackage{algpseudocode}\n25\t% hyperref loaded by acl.sty; cleveref unused\n26\t\n27\t\\lstset{\n28\t  basicstyle=\\small\\ttfamily,\n29\t  breaklines=true,\n30\t  frame=tb,\n31\t  framerule=0.4pt,\n32\t  rulecolor=\\color{gray},\n33\t  backgroundcolor=\\color{gray!5},\n34\t  xleftmargin=1em,\n35\t  xrightmargin=1em,\n36\t  aboveskip=0.8em,\n37\t  belowskip=1.2em,\n38\t}\n39\t\n40\t\\graphicspath{{../figures/paper/}{figures/}}\n41\t\n42\t\\title{Beyond Self-Consistency: Self-Extracted Constraints\\\\Reduce to Majority Voting under Zero-Shot Extraction}\n43\t\n44\t\\author{Anonymous}\n45\t\n46\t\\begin{document}\n47\t\\maketitle\n48\t\n49\t% Tighten spacing for 8-page budget\n50\t\\setlength{\\textfloatsep}{5pt plus 2pt minus 4pt}\n51\t\\setlength{\\dbltextfloatsep}{5pt plus 2pt minus 4pt}\n52\t\\setlength{\\floatsep}{3pt plus 2pt minus 2pt}\n53\t\\setlength{\\dblfloatsep}{3pt plus 2pt minus 2pt}\n54\t\\setlength{\\abovecaptionskip}{2pt}\n55\t\\setlength{\\belowcaptionskip}{0pt}\n56\t\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 2pt}\n57\t\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 2pt}\n58\t\\setlength{\\intextsep}{5pt plus 1pt minus 2pt}\n59\t\n60\t\\input{abstract}\n61\t\n62\t\\input{introduction}\n63\t\n64\t\\input{related_work}\n65\t\n66\t\\input{method}\n67\t\n68\t\\input{experiments}\n69\t\n70\t\\input{analysis}\n71\t\n72\t\\input{solutions}\n73\t\n74\t\\input{discussion}\n75\t\n76\t\\section*{Limita\n…[truncated 133 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002011"
+        },
+        {
+          "source_line": 2012,
+          "timestamp": "2026-05-25T21:17:25.697782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/*.tex"
+            }
+          },
+          "id": "event-002012"
+        },
+        {
+          "source_line": 2013,
+          "timestamp": "2026-05-25T21:17:25.748754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/fig3_causal_dag_v11.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/diagnosis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-002013"
+        },
+        {
+          "source_line": 2014,
+          "timestamp": "2026-05-25T21:17:30.109118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex"
+            }
+          },
+          "id": "event-002014"
+        },
+        {
+          "source_line": 2015,
+          "timestamp": "2026-05-25T21:17:30.410812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\\label{sec:pipeline}\n4\t\\label{sec:condorcet}\n5\t\\label{sec:effective-k}\n6\t\n7\tSelf-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. Under correlated traces (Fleiss' $\\kappa$ \\citep{fleiss1971kappa}), the effective ensemble size $K_\\text{eff}$ is\n8\t\\begin{equation}\n9\t\\label{eq:effk}\n10\tK_{\\text{eff}} = K \\,/\\, [1 + (K{-}1) \\cdot \\kappa]\n11\t\\end{equation}\n12\t(following \\citet{ladha1992correlated}). Intuitively, $K_\\text{eff}$ measures how many effectively independent votes $K$ correlated traces contribute; e.g., $K{=}12$ traces with $\\kappa{=}0.69$ yield $K_\\text{eff} \\approx 1.4$, meaning twelve correlated traces carry no more independent information than 1.4 uncorrelated ones. This motivates constraint-based aggregation.\n13\t\n14\tSymbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\n15\t\n16\t\\begin{table*}[t]\n17\t\\centering\n18\t\\small\n19\t\\caption{SICA vs.\\ SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show significant degradation after BH correction ($m{=}6$ confirmatory; remaining exploratory); no condition shows a significant gain. $\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\textbf{bold}: $p < 0.05$; {*}\\,BH adj.\\ $p = 0.042$; $^{3s}$\\,3-seed aggregate; $^{4s}$\\,4-seed confirmatory aggregate; $^\\dagger$\\,4-seed replication in Table~\\ref{tab:multi-seed} (unmarked: single-seed exploratory; s123/s456/s789 are individual seed runs). All conditions have McNemar power $< 80\\%$ for $|\\Delta| = 2$\\,pp (Appendix~\\ref{app:power}). Degenerate conditions ($C_0 < 5\\%$: QwQ-32B AIME$^\\ddagger$ $n{=}22$, Qwen2.5-14B GSM8K$^\\ddagger$ $n{=}30$) yield $\\Delta = 0$ and are reported separately in Appendix~\\ref{app:oracle}. $^\\ddagger$Pilot conditions ($n{\\leq}30$); included for coverage, not confirmatory eviden\n…[truncated 5187 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-002015"
+        },
+        {
+          "source_line": 2016,
+          "timestamp": "2026-05-25T21:17:30.512073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+            }
+          },
+          "id": "event-002016"
+        },
+        {
+          "source_line": 2017,
+          "timestamp": "2026-05-25T21:17:30.763911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer (bias ratio $4.97\\times$; Table~\\ref{tab:cross-model-bias}), and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on ${\\geq}99\\%$ of problems (Table~\\ref{tab:alpha-ablation}); the formal verification layer is thus vacuous (Eq.~\\ref{eq:degenerate}). A permutation test confirms BR reflects trace-count geometry, not extraction bias (Appendix~\\ref{app:br-permutation}); controls rule out answer leakage (Appendix~\\ref{app:per-trace-separation}).\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\small\n12\t\\caption{Symbolic confirmation bias across nine models on FOLIO ($n{=}204$). BR: mean per-problem bias ratio. All models exhibit $\\text{BR} > 1$. Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n{=}95$). $^\\dagger$$n{=}196$ (8 API failures excluded). $^\\ddagger$$n{=}161$ (43 API failures excluded).}\n13\t\\label{tab:frontier-scb}\n14\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrr@{}}\n15\t\\toprule\n16\tModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n17\t\\midrule\n18\tMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\n19\tLLaMA-3.1-8B & $^a$ & --- & --- & 3.87 & --- \\\\\n20\tQwen2.5-14B & $^a$ & 75.98 & 49 & 3.93 & $-$0.49 \\\\\n21\t\\addlinespace\n22\tR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\n23\tgpt-4o$^\\ddagger$ & $^a$ & 73.91 & 42 & 2.94 & $-$1.86 \\\\\n24\tgpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\n25\tgpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\n26\to3$^\\dagger$ & $^b$ & 82.65 & 34 & 1.66 & 0.00 \\\\\n27\tGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.05 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}}\n30\t\\end{table}\n31\t\n32\t\\looseness=\n…[truncated 10377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-002017"
+        },
+        {
+          "source_line": 2018,
+          "timestamp": "2026-05-25T21:17:30.764271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-002018"
+        },
+        {
+          "source_line": 2019,
+          "timestamp": "2026-05-25T21:17:30.814691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC) improves large language model (LLM) reasoning by majority voting over chain-of-thought traces. A natural extension extracts formal logical constraints from traces and aggregates them with a symbolic solver, but we show this is a \\emph{symbolic mirage}. We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints under zero-shot prompting and solves weighted partial MAX-SAT. Self-extracted constraints systematically confirm their source trace's answer rather than providing independent verification, a phenomenon we term \\emph{symbolic confirmation bias} (SCB). Formally, when nearly all constraints pass satisfiability checking, constraint-based aggregation degenerates to majority voting. This bias persists across nine models from 7B to frontier scale, with bias ratios of $1.66$--$4.97\\times$. Twenty-seven training-free remediation strategies fail to break this bottleneck; a persistent independence--accuracy trade-off emerges where methods that reduce trace correlation also destroy accuracy. Among training-free approaches, only a structurally independent cross-architecture verifier restores corrective signal; the bottleneck lies in self-extraction itself, not model capability. We provide three lightweight diagnostics that predict failure modes from a pilot run\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/symb_invariant_consensus-2E1F/}.}.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002019"
+        },
+        {
+          "source_line": 2020,
+          "timestamp": "2026-05-25T21:17:36.085620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-002020"
+        },
+        {
+          "source_line": 2021,
+          "timestamp": "2026-05-25T21:17:36.588174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:results}\n3\t\\label{sec:main-results}\n4\t\n5\t\\begin{figure}[t]\n6\t\\centering\n7\t\\includegraphics[width=\\columnwidth]{f2_regime_scatter_v2}\n8\t\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Color: model family; shape: dataset (\\scalebox{0.7}{$\\blacksquare$}\\,PW, \\scalebox{0.7}{$\\blacktriangle$}\\,FOLIO, \\scalebox{0.7}{$\\bullet$}\\,LogiQA). Circled: significant ($p < .05$). Grey band: $\\pm 2$\\,pp equivalence zone. Three regimes emerge: Type~C (error amplification), intermediate, and Type~A (confirmation bias).}\n9\t\\label{fig:regime-scatter}\n10\t\\end{figure}\n11\t\n12\t\\subsection{Experimental Setup}\n13\t\\label{sec:exp-setup}\n14\t\n15\t\\looseness=-1\n16\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We also evaluate the universality of symbolic confirmation bias on six additional models: gpt-4o uses self-extraction via API; four frontier models (gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro) use cross-model extraction where Mistral-7B extracts constraints from target traces; DeepSeek-R1-Distill-Qwen-8B likewise uses Mistral-7B cross-extraction (Table~\\ref{tab:frontier-scb}).\n17\t\n18\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$), StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$). GSM8K ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n19\t\n20\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s (K-sensitivity and extraction-temperature analysis in Appendix~\\ref{app:sensitivity}). McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples; Appendix~\\ref{app:bootstrap}) for $n \\geq 200$. SICA incurs\n…[truncated 3588 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-002021"
+        },
+        {
+          "source_line": 2022,
+          "timestamp": "2026-05-25T21:17:36.588635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
+            }
+          },
+          "id": "event-002022"
+        },
+        {
+          "source_line": 2023,
+          "timestamp": "2026-05-25T21:17:37.090853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Cross-architecture escape content merged into analysis.tex §5.4\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-002023"
+        },
+        {
+          "source_line": 2024,
+          "timestamp": "2026-05-25T21:17:37.091226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-002024"
+        },
+        {
+          "source_line": 2025,
+          "timestamp": "2026-05-25T21:17:37.543417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-1\n6\tFormal verification's value depends on the \\emph{independence} of its inputs, not the soundness of its logic. SICA reduces to majority vote under source-attribution scoring (Observation~1), and 27 training-free variants fail to escape; symbolic confirmation bias holds across nine models (7B to frontier). Three lightweight diagnostics predict failure from a $K{=}12$ pilot (\\S\\ref{sec:diagnostic-framework}).\n7\t\n8\t\\looseness=-1\n9\tFor the broader neuro-symbolic community, our results expose a structural limitation of self-extraction pipelines: when the same model generates both reasoning and formal constraints, the symbolic layer inherits the model's distributional prior rather than providing an independent check. This limitation is not specific to logical constraint extraction; it applies to any self-verification paradigm where the verifier shares the generator's knowledge boundary \\citep{huang2024selfcorrect}.\n10\t\n11\t\\begin{figure}[t]\n12\t\\centering\n13\t\\includegraphics[width=\\columnwidth]{figures/f6_kappa_accuracy_scatter}\n14\t\\caption{Independence--accuracy trade-off across 27 remediation strategies on FOLIO ($n = 204$). Dashed line: Mistral-7B SC baseline.}\n15\t\\label{fig:kappa-accuracy}\n16\t\\end{figure}\n17\t\n18\t\\looseness=-1\n19\tWe formalize the link between these findings via the \\emph{Conditional Correction Ratio}: $\\text{CCR}(V, G) = \\log \\frac{P(V \\text{ correct} \\mid G \\text{ wrong})}{P(V \\text{ correct} \\mid G \\text{ correct})}$. All same-model SICA conditions yield $\\text{CCR} < 0$ (shared bias), while cross-architecture NLI pairs achieve $\\text{CCR} > 0$ (preferential error correction); CCR correlates with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n20\t\n21\t\\looseness=-1\n22\tCross-architecture verification escapes only when the verifier exceeds generator accuracy (\\S\\ref{sec:cross-arch}); this points to \\emph{architectural diversity} ove\n…[truncated 744 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-002025"
+        },
+        {
+          "source_line": 2026,
+          "timestamp": "2026-05-25T21:17:37.594055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/limitations_content.tex"
+            }
+          },
+          "id": "event-002026"
+        },
+        {
+          "source_line": 2027,
+          "timestamp": "2026-05-25T21:17:37.645518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\looseness=-1 Our locally-run models range from 7B to 32B; frontier coverage relies on cross-model extraction, so we cannot confirm identical SCB patterns at frontier scale. All benchmarks are English logical reasoning; FOLIO and ProofWriter represent a best-case for symbolic verification, and the observed bias ratios likely represent a lower bound on SCB in less structured domains. We do not evaluate trained extractors or few-shot extraction, which could potentially break the self-extraction bound by introducing external signal. Our separation of SCB from trace-level unfaithfulness relies on indirect controls rather than a direct experimental isolation.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002027"
+        },
+        {
+          "source_line": 2028,
+          "timestamp": "2026-05-25T21:17:44.271743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-002028"
+        },
+        {
+          "source_line": 2029,
+          "timestamp": "2026-05-25T21:17:44.372666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\t\\looseness=-1\n4\tSelf-Consistency (SC) \\citep{wang2023sc} selects the majority answer across $K$ chain-of-thought traces, a strategy grounded in the Condorcet Jury Theorem: independent voters converge to truth \\citep{condorcet1785, ladha1992correlated}. In practice, SC's gains plateau for strong models \\citep{loo2025reevaluating, byerly2025selfconsistency}, and correlated LLM errors \\citep{kim2025correlated} reduce the effective ensemble size \\citep{dietterich2000ensemble}. A natural remedy is to move beyond simple vote-counting: extract logical constraints from the traces, as in neuro-symbolic approaches \\citep{pan2023logiclm, olausson2023linc, ye2024satlm}, and let a provably sound solver adjudicate. If the solver can filter contradictions and enforce logical consistency, it should recover information that raw majority voting discards.\n5\t\n6\t\\begin{figure*}[t!]\n7\t\\centering\n8\t\\includegraphics[width=0.88\\textwidth]{figures/fig1_pipeline_v11.pdf}\n9\t\\caption{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}\n10\t\\label{fig:pipeline}\n11\t\\end{figure*}\n12\t\n13\t\\looseness=-1\n14\tWe test this intuition through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces, deduplicates them, and selects answers via weighted partial MAX-SAT (\\S\\ref{sec:pipeline}; Figure~\\ref{fig:pipeline}). Across six models (7B--32B), four benchmarks, and multi-seed replication, SICA produces answers identical to majority voting on most problems; no condition shows a significant positive effect after FDR control (Table~\\ref{tab:main_results}). The failure lies not in the solver but in the constraints it operates on: self-extracted constraints systematically support the model's majority answer, a robust empirical regular\n…[truncated 3390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002029"
+        },
+        {
+          "source_line": 2030,
+          "timestamp": "2026-05-25T21:20:47.781449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the key reviewer guidelines, particularly about how to evaluate negative results, experimental papers, and what constitutes a strong/weak review. Also extract any guidance on scoring dimensions."
+            }
+          },
+          "id": "event-002030"
+        },
+        {
+          "source_line": 2031,
+          "timestamp": "2026-05-25T21:20:54.004097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines: Key Evaluation Principles\n\n## Evaluating Negative Results\n\nThe guidelines explicitly counter publication bias by noting: **\"The bias towards publishing only positive results is a known problem in many fields\"** (H6). Negative results where expected methods fail are valuable contributions the community needs to understand.\n\n## Experimental Papers & Common Pitfalls\n\nReviewers should avoid these problematic critiques:\n\n- **\"Results aren't surprising\"** (H1): Findings appearing obvious retrospectively doesn't mean the community already knows them empirically.\n- **\"Results lack novelty\"** (H3): Must provide specific prior references; reproducibility and analysis papers deserve fair evaluation.\n- **\"Method is too simple\"** (H7): **\"The goal is to solve the problem, not to solve it in a complex way\"** — simpler solutions are preferable.\n- **\"Missing extra experiments\"** (H13): Papers need only sufficient evidence for their stated claims, not every possible validation.\n\n## Scoring Dimensions (as of February 2025)\n\nReviewers provide three scores:\n\n1. **Soundness**: Must align with review text; low scores require substantial justification\n2. **Excitement**: Separate from soundness; reflects personal interest/taste\n3. **Overall Assessment**: Composite recommendation balancing soundness, novelty, and potential impact\n\n## Strong Review Characteristics\n\n- **Specific and actionable**: Name missing references, identify which sections lack clarity\n- **Professional tone**: **\"Write the review you would like to get yourself\"** — avoid sarcasm or dismissiveness\n- **Acknowledge author responses**: Update scores when concerns are addressed\n- **Avoid unconscious bias**: Read papers twice (skim, then in-depth) before forming judgments"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 6222
+          },
+          "id": "event-002031"
+        },
+        {
+          "source_line": 2032,
+          "timestamp": "2026-05-25T21:22:52.423500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 1 审稿意见：方法严谨性与实验有效性\n\n### Paper Summary\n\n本文研究自一致性（Self-Consistency, SC）的自然扩展——从 LLM chain-of-thought traces 中提取形式逻辑约束并用 MAX-SAT 求解器聚合（SICA pipeline）。核心发现为负面结果：自提取的约束系统性地确认其来源 trace 的答案（\"symbolic confirmation bias\"），导致 SICA 在实践中退化为多数投票。论文在 9 个模型（7B 至 frontier）、4 个数据集上验证了这一现象，测试了 27 种训练无关的修复策略（均失败），并发现只有结构独立的跨架构验证器（NLI fine-tuned 模型）能打破瓶颈。\n\n---\n\n## 总体评分\n**Overall**: 3.5 / 5（Borderline Conference）\n**一句话总结**: 实验覆盖全面、统计方法规范的重要负面结果，但核心理论观察（Observation 1）在给定 SICA 设计选择下近乎同义反复，且 n=6 的 capability-gap pattern 作为三大贡献之一分量不足。\n\n## 官方维度打分（来自 ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 核心实验设计扎实，统计方法规范（McNemar + BH 校正 + TOST + bootstrap CI），但 Observation 1 的论证有循环性，且大部分条件统计功效不足 |\n| Excitement | 3/5 | 负面结果对 neuro-symbolic 社区有价值，但核心 insight 在理解 variable isolation 机制后可预测性较高 |\n| Reproducibility | 4/5 | 提供匿名代码和数据链接，实验参数完整，prompt templates 在附录中给出 |\n| Confidence | 4/5 | 我仔细阅读了全文30页（含全部附录），熟悉 self-consistency、neuro-symbolic reasoning 和统计检验方法 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Observation 1（Argmax Preservation）在 SICA 设计选择下近乎同义反复\n- 具体位置：§5.1（analysis.tex L35-37）；method.tex L64-69（Eq. 3 scoring function）\n- 问题：Observation 1 声称在三个条件下 SICA 退化为多数投票：(i) |C\\| ≈ 0（几乎无约束被 Z3 拒绝），(ii) source-attribution scoring σ(c,a)=1 iff c 来自产生答案 a 的 trace，(iii) 近似均匀的每 trace 约束产出。但条件 (ii) 是 SICA 评分函数的**设计选择**——σ 完全基于 provenance 而非逻辑内容。在 variable isolation 导致跨 trace 约束无法交叉引用的情况下（§5.2, \"56.4% share zero Z3 variables\"），这一退化是 scoring 设计的直接后果而非关于 self-extraction 的 surprising discovery。论文应当：(a) 明确讨论基于内容的评分替代方案（如变量名规范化后用 Z3 检查逻辑蕴含）并解释为何不可行，或 (b) 重新定位 Observation 1 为 SICA 特定设计的分析结论而非自提取范式的普遍性质。当前的表述让读者误以为这是关于 self-extraction 的深层发现，但实际上它高度依赖于 source-attribution scoring 这一特定设计。\n- 为什么影响接收：这是论文的核心理论贡献，如果论证有循环性，则削弱了论文的 intellectual contribution。\n- 建议修改方向：(1) 在 §3 中增加对 content-based scoring 替代方案的讨论和实验（即使是负面结果也有价值）；(2) 在 §5.2 明确说明 variable normalization/canonicalization 是否能打破 variable isolation，如不可行需解释原因；(3) 调整 Observation 1 的 framing 以反映其对 SICA 设计的依赖性。\n\n**N2** [critical] Cross-architecture escape 的 capability-gap pattern 基于 n=6，作为三大贡献之一证据不足\n- 具体位置：§5.4（analysis.tex L104）；Introduction L28（Contribution 3）\n- 问题：Capability-gap pattern 报告 ρ=1.0, p=0.003，但仅基于 n=6 个 generator-verifier 对。虽然论文标注为 \"exploratory\"，但将其列为三大贡献之一（Introduction: \"Cross-architecture escape. Preliminary evidence (n=6)...\"），并在 Discussion 中以此为基础推导 test-time compute scaling 的 implications。6 个数据点的完美 Spearman 相关对任何微小扰动都不稳健。附录 W 扩展到更多条件（BH correction across 15 conditions, 10 survive），但主文的 n=6 framing 过于突出。\n- 为什么影响接收：作为三大贡献之一，n=6 的 evidence base 不匹配其在论文叙事中的重要性，可能导致读者过度解读。\n- 建议修改方向：(1) 将 capability-gap pattern 降级为 observation 而非 contribution；(2) 在主文中引用附录 W 的 15-condition 扩展结果以增强证据；(3) 在 Discussion 中对基于 n=6 pattern 推导出的 implications 加更多 hedging。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] 结构独立性与外部监督信号的混淆\n- 具体位置：§5.4；Discussion §6（discussion.tex L22）\n- 问题：NLI verifiers（DeBERTa, RoBERTa, BART）都在 MultiNLI 上 fine-tuned，提供了外部监督训练信号。论文将 escape 归因于 \"structural independence\"，但跨模型 LLM 投票（也具有结构独立性，但无 NLI 训练信号）并不奏效（§5.2）。这表明关键因素不是 \"structural independence\" 本身，而是 \"structural independence + task-relevant supervised signal\" 的组合。当前 framing 过度强调前者。Discussion 中 \"our NLI escape instantiates this principle without task-specific training (+6.67 pp)\" 的表述也值得商榷——MultiNLI 虽非 FOLIO/ProofWriter 专门训练数据，但与逻辑推理任务高度相关。\n- 建议：在 §5.4 和 Discussion 中明确 escape 需要两个条件（结构独立 + 验证器在目标任务上有足够能力），而非仅强调结构独立性。\n\n**W2** [warning] 大部分实验条件统计功效不足以支撑等价性声明\n- 具体位置：§4.2（experiments.tex L24-35）；Appendix D（p.14, Table 6）\n- 问题：论文自身的功效分析显示 MDE 在 80% power 下为 4.6-4.8 pp，而 SICA 的典型 |Δ| ≤ 2 pp。11 个条件中仅 4 个通过 TOST 等价性检验。对于负面结果论文，证明零假设需要比证明替代假设更高的统计功效。当前 n=200-600 的样本量对于检测 2 pp 以内的效应明显不足。论文虽然诚实地报告了这一限制，但在 abstract 和 Introduction 中 \"no condition shows a significant positive effect\" 的 framing 可能暗示了比统计证据支持的更强的结论。\n- 建议：(1) 在 abstract/Introduction 的措辞中区分 \"no significant effect detected\"（描述结果）和 \"SICA is equivalent to SC\"（需要功效支持的声明）；(2) 在 main results 的讨论中更显著地呈现功效限制。\n\n**W3** [warning] \"Symbolic Confirmation Bias\" 命名可能有误导性\n- 具体位置：§5.1；Appendix BR-permutation（p.29）\n- 问题：论文自己的排列检验（Appendix BR-permutation）确认 BR 反映的是 trace-count geometry 而非 extraction bias——\"the observed bias ratio is fully explained by trace-count geometry under source-attribution scoring (Observation 1)\"。这意味着约束并非 *actively biased*（如认知确认偏见），而是 *not independently informative*——它们如实反映了 trace 分布，但没有提供额外的纠错信号。\"Symbolic redundancy\" 或 \"symbolic degeneracy\" 可能比 \"confirmation bias\" 更准确。当前命名借用了认知心理学的 \"confirmation bias\" 概念，但机制完全不同。\n- 建议：(1) 在 §5.1 首次引入术语时明确区分 \"constraints inheriting trace distribution\"（实际机制）与 \"cognitive confirmation bias\"（不同机制）；(2) 考虑使用更精确的术语如 \"symbolic distributional coupling\"。\n\n**W4** [warning] Variable isolation 是根本原因但最直接的修复（变量规范化）未被测试\n- 具体位置：§5.2（analysis.tex L61）\n- 问题：论文将 variable isolation 识别为退化的根本原因——不同 trace 使用不同变量名，Z3 将它们视为不相关符号。27 种修复策略中没有一种直接尝试变量名规范化/标准化。如果在 Z3 求解前将所有 trace 的变量映射到统一命名空间（如基于问题实体的规范名称），Z3 就能真正进行跨 trace 约束推理。论文提到 syntactic deduplication（46% 去重率）和 Z3-based semantic deduplication（额外去除约 10%），但这些是去重步骤而非评分层面的改进。\n- 建议：至少讨论为何变量规范化不可行或在已测试的策略中是否有类似尝试，如果没有则明确列为 future work。\n\n**W5** [warning] Confirmatory vs. exploratory 条件的划分标准不够清晰\n- 具体位置：§4.2（experiments.tex L24）\n- 问题：\"Two confirmatory conditions show significant degradation after BH FDR control (m=6)\" ——但 m=6 指的是哪 6 个条件？Table 1 的标注系统（3s, 4s, †, ‡）虽然有定义，但 confirmatory 集合的选择标准（是否预注册？基于什么原则？）没有在正文中明确说明。对于强调统计严格性的论文，这是一个需要透明化的关键设计决策。\n- 建议：在 §4.1 或 §4.2 开头明确定义 confirmatory 条件的选择标准。\n\n---\n\n## 小问题（不影响接收）\n\n1. **Abstract 中 \"nine models\" 的范围**：9 个模型的 BR 数据在 Table 2 中给出，但仅 6 个模型有完整 SICA 精度对比。Abstract 表述准确（\"This bias persists across nine models\" 指 BR），但可能引起误解。\n2. **Figure 2（p.5）regime scatter plot**：circled points 标注 \"significant (p < .05)\" 但未标注是否经 BH 校正后仍然显著。\n3. **Eq. 2 (MAX-SAT objective)**：argmax over S ⊆ C 的符号使用合理，但实际实现（Algorithm 1, Appendix B）使用 iterative soft-clause removal，这与 Eq. 2 的 formulation 有微妙差异（Algorithm 1 找到的不一定是全局最优的 max-weight satisfiable subset）。正文未提及这一 gap。\n4. **§3 中 \"K_eff\" 的引用**：Eq. 1 引用 Ladha (1992)，但 K_eff 的具体公式形式（K / [1 + (K-1)·κ]）是否来自 Ladha 原文？这看起来更像是对 effective sample size 公式的改写，建议验证引用准确性。\n5. **Page budget**：正文结束于第 8 页中部（Discussion and Conclusion），Limitations 占约 8 行。格式合规。\n\n---\n\n## 主要优势\n\n1. **重要的负面结果**：系统性地证明 self-extracted constraints 在零样本提取下无法超越多数投票，对 neuro-symbolic reasoning 社区有直接指导意义。ARR guidelines 明确支持发表严谨的负面结果（H6）。\n\n2. **实验方法论的高标准**：McNemar 检验 + Benjamini-Hochberg 校正 + TOST 等价性检验 + bootstrap CI + 显式功效分析 + 多种子复制，这一组合在 NLP 实证研究中罕见且值得推广。\n\n3. **诊断框架的实用性**：C₀、K_eff 和 BR 三个诊断指标从 K=12 pilot run 即可计算，为从业者提供了 a priori failure-mode 预测工具，实践价值高。\n\n4. **全面的修复策略探索**：27 种训练无关方法覆盖 prompt diversity、constraint filtering、multi-agent debate 和 cross-model extraction 四大类，independence-accuracy trade-off 的发现具有普遍意义。\n\n5. **诚实的 limitations 报告**：论文对 exploratory vs. confirmatory、统计功效不足、frontier 模型覆盖依赖 cross-model extraction 等限制的报告坦诚且准确。\n\n6. **附录质量高**：20 页附录包含完整的 prompt templates、详细的消融实验、case studies、per-subtype 分析等，大幅增强了可复现性和可验证性。\n",
+              "reviewer_id": "1",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002032"
+        },
+        {
+          "source_line": 2033,
+          "timestamp": "2026-05-25T21:22:57.056623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 4633
+          },
+          "id": "event-002033"
+        },
+        {
+          "source_line": 2034,
+          "timestamp": "2026-05-25T21:23:10.870315+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n总结：我以 Reviewer 1 身份完成了对本文方法严谨性和实验有效性的审查，给出 **Overall 3.5（Borderline Conference）**。\n\n核心发现：\n- **2个 Must-Fix**：Observation 1 在 SICA 的 source-attribution scoring 设计下近乎同义反复（需讨论 content-based scoring 替代方案）；capability-gap pattern 基于 n=6 作为三大贡献之一证据不足\n- **5个 Should-Fix**：结构独立性与外部监督信号混淆、统计功效不足以支撑等价性声明、\"confirmation bias\" 命名有误导性、variable normalization 未被测试、confirmatory/exploratory 划分标准不清晰\n- **6个优势**：重要负面结果、高标准统计方法、实用诊断框架、全面修复策略探索、诚实 limitations、高质量附录"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1"
+          },
+          "id": "event-002034"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "messages": [
+        {
+          "source_line": 2035,
+          "timestamp": "2026-05-25T21:24:20.077487+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见，请逐条回应。对每一个 Must-Fix 和 Should-Fix 问题，用 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 审稿意见（完整原文）\n\n### Overall: 3.5（Borderline Conference）\n\n### Must-Fix 问题\n\n**N1** [critical] 核心发现新颖性有限——\"post-hoc extraction inherits bias\" 较为可预期\n- SCB 的核心机制可从已有文献推出——Huang et al. (2024) 已证明 LLM 无法通过自身反馈自纠正推理，Kamoi et al. (2024) 系统总结了 intrinsic self-correction 的失败模式。Observation 1 的代数推导本身较为直接。真正有价值的是经验发现退化在实践中普遍发生，但这一贡献的定位不够清晰。\n\n**N2** [critical] Benchmark 范围过窄，generalizability 存疑\n- 主要评估仅用 FOLIO (n=204) 和 ProofWriter (n=600)。GSM8K 和 AIME 仅用作退化区域探针。论文对 SCB 的 claim 涵盖 \"self-extraction pipeline\"，但实验仅覆盖模板化逻辑推理。以下场景未被讨论：代码生成（约束可以是单元测试）、数学推理（更丰富的约束语言）、更大规模 benchmark、非演绎推理。\n\n### Should-Fix 问题\n\n**W1** [warning] 跨架构逃逸的正面贡献与负面发现不对称\n- 负面发现基于 9 个模型 × 4 个 benchmark，但正面贡献仅在 ProofWriter depth-5 上用 3 个 NLI 架构测试。Table 3 显示 combo gain 随 generator capability 单调递减，frontier 模型上 NLI combo 是否仍有意义未被充分讨论。\n\n**W2** [warning] Related Work 缺少 test-time compute scaling 范式讨论\n- 论文引用了 Snell et al. 2024 但未涉及 o1/o3、DeepSeek-R1 通过扩展内部推理链的范式转变。这些模型通过 learned verification 而非 self-extraction 实现 reasoning improvement。\n\n**W3** [warning] 约束提取质量过浅，可能限制了结论的适用性\n- 99.0% 的提取约束为命题级别，仅 1.0% 使用真量词。系统 prompt 限制约束为单一比较表达式。更丰富的约束语言是否会改变 SCB 的表现？\n\n**W4** [warning] 部分近期相关工作缺失\n- 缺失：\"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory\" (2026)、\"Adaptive LLM-Symbolic Reasoning via Dynamic Logical\" (EACL 2026)、DeepSeek-R1/o1/o3、Process Reward Models 文献。\n\n**W5** [warning] Observation 1 在\"近退化\"条件下的适用性\n- Observation 1 形式化了精确退化条件下的归约，但实践中大多数条件是\"近退化\"。BR 从 1.0 到接近 1.0，SICA 的行为变化是连续的还是存在相变？\n\n---\n\n请对以上每个问题（N1, N2, W1-W5）逐条给出 [AGREE] 或 [REBUT] 回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002035"
+        },
+        {
+          "source_line": 2036,
+          "timestamp": "2026-05-25T21:25:01.210287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-002036"
+        },
+        {
+          "source_line": 2037,
+          "timestamp": "2026-05-25T21:25:01.511931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\looseness=-1\n5\t\\paragraph{Self-consistency and ensemble theory.}\n6\tSelf-consistency (SC) selects the majority answer across chain-of-thought traces \\citep{wang2023sc}, with extensions for free-form generation \\citep{chen2024usc}, confidence weighting \\citep{taubenfeld2025cisc}, diverse prompting \\citep{li2023diverse}, and reasoning-aware filtering \\citep{wan2024rasc, toh2024notallvotes, kim2026reasc}. SC gains plateau early \\citep{loo2025reevaluating, byerly2025selfconsistency}. The Condorcet Jury Theorem \\citep{condorcet1785} guarantees majority-vote convergence under independence; ensemble theory \\citep{dietterich2000ensemble, krogh1994neural} requires error diversity. \\citet{ladha1992correlated} show correlated voters reduce effective ensemble size; our $K_\\text{eff}$ adapts Fleiss' $\\kappa$ from diversity metrics \\citep{kuncheva2003measures, brown2005diversity} to quantify this (\\S\\ref{sec:pipeline}). \\citet{kim2025correlated} demonstrate correlated LLM errors; \\citet{kuai2026independent} propose cross-model independence auditing.\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Neuro-symbolic reasoning.}\n10\tThree paradigms exist: \\emph{specification-generation} \\citep{pan2023logiclm, olausson2023linc, ye2024satlm} and \\emph{program-generation} \\citep{gao2023pal, chen2023program, lyu2023faithful} formalize before answer generation; \\emph{trace-extraction} (this work) operates post-hoc, inheriting confirmation bias (\\S\\ref{sec:confirmation-bias}). Recent work extends symbolic planning and verified reasoning \\citep{ryu2025clover, xu2026dylos, xu2025aristotle, pei2025fover, singh2026verge, luo2025logicagent, miya2025eidoku}; \\citet{amonkar2025realitycheck} show formalization quality degrades with complexity; \\citet{chan2026position} argue logical soundness alone is unreliable. Prior studies note high formalization error rates but treat them as quality problems; we show they are \\emph{systematically biased} toward the model's\n…[truncated 2301 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-002037"
+        },
+        {
+          "source_line": 2038,
+          "timestamp": "2026-05-25T21:25:01.512388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-002038"
+        },
+        {
+          "source_line": 2039,
+          "timestamp": "2026-05-25T21:25:01.613143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Prompt Templates}\n2\t\\label{app:prompts}\n3\t\n4\tSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n5\t\n6\t\\paragraph{System Prompt.}\\leavevmode\n7\t\n8\t\\begin{lstlisting}\n9\tYou are a constraint extraction tool. Output ONLY valid JSON. Do NOT solve problems, reason about correctness, or think step-by-step. Extract constraints from the given trace exactly as stated.\n10\t\\end{lstlisting}\n11\t\n12\t\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n13\t\n14\tUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n15\t\n16\t\\begin{lstlisting}\n17\tExtract mathematical constraints from this reasoning trace as a JSON object.\n18\t\n19\tRules:\n20\t- type: \"equation\", \"inequality\", or \"predicate\"\n21\t- expression: human-readable, e.g. \"x + y == 14\"\n22\t- z3_formula: a single comparison expression in Python Z3 syntax\n23\t- source_step: step number where the constraint appears\n24\t- Use variable names from the trace\n25\t\n26\tz3_formula MUST follow these rules:\n27\t- Allowed operators: ==, !=, <, >, <=, >=, +, -, *, /, **, %\n28\t- Use individual named variables: a1, a2, a3... NOT arrays a[1] or sets A\n29\t- Expand all sums explicitly: \"a1 + a2 + a3 == 55\" NOT \"sum([a1,a2,a3])\"\n30\t- NO Python builtins: sum(), len(), max(), min(), list(), set(), range(), int()\n31\t- Each z3_formula must be exactly ONE comparison (==, !=, <, >, <=, >=)\n32\t- For multiple values, write separate constraints for each\n33\t\n34\tOutput ONLY the JSON below, nothing else:\n35\t{\"constraints\": [{\"type\": \"equation\", \"expression\": \"x + y == 14\", \"z3_formula\": \"x + y == 14\", \"source_step\": 1}], \"\n…[truncated 2446 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002039"
+        },
+        {
+          "source_line": 2040,
+          "timestamp": "2026-05-25T21:25:08.217795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-002040"
+        },
+        {
+          "source_line": 2041,
+          "timestamp": "2026-05-25T21:25:08.569470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_reviewer_1_aeac74cf."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-002041"
+        },
+        {
+          "source_line": 2042,
+          "timestamp": "2026-05-25T21:25:08.569976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-002042"
+        },
+        {
+          "source_line": 2043,
+          "timestamp": "2026-05-25T21:25:08.720812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_reviewer_1_aeac74cf."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-002043"
+        },
+        {
+          "source_line": 2044,
+          "timestamp": "2026-05-25T21:25:13.036690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/submitted.pdf",
+              "pages": "11,14,16",
+              "project": "symb_invariant_consensus",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002044"
+        },
+        {
+          "source_line": 2045,
+          "timestamp": "2026-05-25T21:25:13.591574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 537.5}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.0}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 463.5}], \\\"total_pages\\\": 30, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 554
+          },
+          "id": "event-002045"
+        },
+        {
+          "source_line": 2046,
+          "timestamp": "2026-05-25T21:25:15.903615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-002046"
+        },
+        {
+          "source_line": 2047,
+          "timestamp": "2026-05-25T21:25:16.407055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-002047"
+        },
+        {
+          "source_line": 2048,
+          "timestamp": "2026-05-25T21:25:16.960665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 1057
+          },
+          "id": "event-002048"
+        },
+        {
+          "source_line": 2049,
+          "timestamp": "2026-05-25T21:25:16.961169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_round_21/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-002049"
+        },
+        {
+          "source_line": 2050,
+          "timestamp": "2026-05-25T21:25:17.115107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 708
+          },
+          "id": "event-002050"
+        },
+        {
+          "source_line": 2051,
+          "timestamp": "2026-05-25T21:25:17.618043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 656
+          },
+          "id": "event-002051"
+        },
+        {
+          "source_line": 2052,
+          "timestamp": "2026-05-25T21:27:22.166376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n## Reviewer 1 对 Reviewer 2 意见的逐条回应\n\n---\n\n### N1: 核心发现新颖性有限——\"post-hoc extraction inherits bias\" 较为可预期\n\n[AGREE] R2-Issue-N1（部分同意，但对\"证据不足以支撑接收\"的隐含结论持保留）\n\nR2 指出 Observation 1 的代数推导在给定前提下较为直接，这与我自己的 N1 一致（我认为 Observation 1 在 SICA 的 source-attribution scoring 设计下近乎同义反复）。R2 正确引用了 Huang et al. (2024) 和 Kamoi et al. (2024) 作为先验知识。\n\n但我认为 R2 低估了三个方面的贡献：\n1. **机制的具体化**：论文提供了 M→T→(A,C) 因果结构（Figure 3）和 variable isolation 的具体机制（§5.2: \"56.4% share zero Z3 variables\"），这比 Huang et al. 的一般性结论 \"LLMs cannot self-correct\" 更有操作意义。论文 Related Work §2 明确讨论了与这些工作的关系，并指出 SCB 与 CoT-level confirmation bias (Turpin et al. 2023, Wan et al. 2025) 机制不同。\n2. **经验广度**：9 个模型 × 4 个基准 × 27 种修复策略的系统性覆盖在该子领域无先例。\n3. **实用诊断工具**：C₀/K_eff/BR 三诊断指标（§5.3）是直接可用的实践指导，这超越了\"发现问题\"的层面。\n\nR2 说 \"真正有价值的是经验发现…但这一贡献的定位不够清晰\" ——我同意这个 repositioning 建议。论文应将重心从理论贡献（Observation 1）转向经验发现和诊断框架。\n\nARR reviewer guidelines (H1) 明确指出 \"results appearing obvious retrospectively doesn't mean the community already knows them empirically\"。在 neuro-symbolic reasoning 文献中，LogicLM (Pan et al. 2023)、LINC (Olausson et al. 2023)、SatLM (Ye et al. 2024) 均假设形式化约束提供独立信号——本文的系统性反证有发表价值。\n\n**结论**：同意 framing 需要调整，但不同意贡献不足以支撑发表。\n\n---\n\n### N2: Benchmark 范围过窄，generalizability 存疑\n\n[AGREE] R2-Issue-N2（部分同意，但认为 critical 定级过高）\n\nR2 指出主要评估集中在 FOLIO 和 ProofWriter（模板化逻辑推理），这是事实。但有几个缓解因素：\n\n1. **Best-case argument**：论文 Limitations 明确指出 \"FOLIO and ProofWriter represent a best-case for symbolic verification, and the observed bias ratios likely represent a lower bound on SCB in less structured domains.\" 如果在约束提取最自然的任务上都失败，在结构化更弱的任务上更不可能成功。\n2. **已有额外覆盖**：StrategyQA (n=200) 和 LogiQA (n=200) 不是模板化逻辑推理——StrategyQA 是开放域常识推理，LogiQA 是考试题。GSM8K/AIME 是数学推理（虽然 C₀ < 5% 导致退化）。\n3. **Variable isolation 的普遍性**：§5.2 识别的根本原因（不同 trace 使用不同变量名）不依赖于特定 benchmark——只要 LLM 以自然语言思考然后提取形式约束，这一问题就存在。\n\n但我同意 R2 提出的两个重要场景确实未被覆盖：\n- **代码生成**（约束 = 单元测试）：这是一个根本不同的范式，单元测试可以被执行而非仅做可满足性检查，可能不受 variable isolation 影响。\n- **数学推理**（更丰富的约束语言）：GSM8K 仅 n=30 且 C₀ < 5%，不足以评估 SCB 在数学场景的表现。\n\n**结论**：benchmark 范围确实有限，但 best-case argument 和 variable isolation 的普遍性部分缓解了这一问题。建议降级为 should-fix。\n\n---\n\n### W1: 跨架构逃逸的正面贡献与负面发现不对称\n\n[AGREE] R2-Issue-W1\n\n完全同意。这与我自己的 N2 高度一致。负面发现有 9 模型 × 4 benchmark 支撑，但正面 escape 主要基于 ProofWriter (n=600) 上的 3 个 NLI 架构，且 capability-gap pattern 仅 n=6 数据点（ρ=1.0, p=0.003）。\n\n补充一个 R2 未提及的具体问题：Table 3 (§5.4) 显示 combo gain 随 generator capability 单调递减（Mistral-7B: +6.67 pp → Qwen3-14B: +0.50 pp）。对于 frontier 模型（SC ≥ 85%），NLI combo 几乎无意义。论文在 §5.4 末尾承认 \"Fine-tuning extends gains to generators with SC up to ~72%\"——但这意味着 escape 仅对弱到中等模型有效，进一步限制了其实用价值。\n\n论文的 Discussion 中基于这 n=6 pattern 推导 test-time compute scaling 的 implications 显得过于冒进。\n\n---\n\n### W2: Related Work 缺少 test-time compute scaling 范式讨论\n\n[REBUT] R2-Issue-W2\n\nR2 的这一批评部分不准确。查看 Related Work §2 的 \"Verification and test-time scaling\" 段落：\n- **DeepSeek-R1**：已引用 \"extended reasoning (Guo et al., 2025)\" 即 DeepSeek-R1 论文\n- **QwQ**：已引用 \"(Qwen Team, 2024)\"\n- **o3**：Table 2 (§5.1) 实际测试了 o3 的 SCB（BR=1.66），且在 experiments §4.1 明确列出\n- **PRM**：Related Work §2 引用了 Lightman et al. 2024, Wang et al. 2024 (Math-Shepherd), Cobbe et al. 2021\n- **RL-based self-verification**：引用了 Zeng et al. 2025 (S2R)\n\n论文还在 Related Work 末尾对比了 SICA 和 PRM/ORM 的 failure modes：\"SICA's bottleneck is extraction fidelity, whereas PRM/ORM's is reward model generalization.\"\n\nR2 可能期望更深入的 paradigm-level 讨论（为什么 o1/R1 的 learned verification 成功而 self-extraction 失败），这确实可以加强论文。但 \"缺失\" 的定性不准确——这些工作已被引用和讨论。\n\n---\n\n### W3: 约束提取质量过浅，可能限制了结论的适用性\n\n[AGREE] R2-Issue-W3（部分同意）\n\nR2 正确指出 99.0% 的约束为命题级别（§3, method.tex L55），且 extraction prompt 限制 z3_formula 为单一比较表达式（Appendix A, 数学 prompt 的 \"each z3_formula must be exactly ONE comparison\"）。这是一个合理的设计关注。\n\n但我认为更丰富的约束语言**不太可能**改变核心结论，原因是：\n1. **Variable isolation 不依赖于约束复杂度**：即使提取带量词的一阶逻辑约束，每个 trace 仍使用自己的变量名。更复杂的约束反而可能加剧 variable isolation（更多变量 → 更难跨 trace 对齐）。\n2. **经验证据**：逻辑 prompt（Appendix A）允许 Implies, And, Or, Not 等复杂操作符，不限制为单一比较。只有数学 prompt 有 \"exactly ONE comparison\" 限制。FOLIO 上的约束使用了 Implies 和 And 等复合结构，仍然表现出 SCB。\n3. **Z3 rejection rate 极低**（3.4%），说明即使是复合约束也几乎都通过了可满足性检查——这正是退化的核心。\n\n不过，R2 提出了一个论文应当讨论的 interesting question：如果约束被设计为**跨 trace 可比较的**格式（如统一本体），SCB 是否会改变？这与我自己的 W4（variable normalization）一致。\n\n---\n\n### W4: 部分近期相关工作缺失\n\n[REBUT] R2-Issue-W4（部分反驳）\n\n逐条检查：\n- **DeepSeek-R1/o1/o3**：如上 W2 回应所述，DeepSeek-R1 (Guo et al., 2025)、QwQ、o3 均已被引用或测试。\n- **Process Reward Models**：Related Work §2 已引用 Lightman et al. 2024, Wang et al. 2024, Cobbe et al. 2021。\n- **\"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory\" (2026)**：无法验证此引用是否真实存在。如果存在，应当补充。\n- **\"Adaptive LLM-Symbolic Reasoning via Dynamic Logical\" (EACL 2026)**：Related Work §2 已引用 \"Xu et al. 2026 (DyLoS)\"，标题为 \"Adaptive LLM-Symbolic reasoning via dynamic logical solver construction\"——这很可能就是 R2 所指的论文。如果是同一篇，则 R2 的批评不成立。\n\n**结论**：R2 列出的 4 类缺失引用中，至少 3 类已被覆盖。建议 R2 核实后再确认。\n\n---\n\n### W5: Observation 1 在 \"近退化\" 条件下的适用性\n\n[AGREE] R2-Issue-W5\n\n这是一个有价值的理论问题。Observation 1 形式化了 |C\\| ≈ 0 的精确退化，但实际条件是连续的。论文提供了部分经验证据但未做形式化分析：\n\n1. **三区域分类**（§5.3, Figure 2）显示 SICA Δ 与 SC 基线的关系呈现三段结构（Type C / intermediate / Type A），暗示**非相变**的连续过渡。\n2. **Entropy decomposition**（Appendix M）显示低熵问题（majority ≥ 9/12）上 Δ ≈ 0 pp，高熵问题上效应方向取决于 SC regime——这提供了连续性的经验证据。\n3. **α 消融**（Table 11, p.16）显示 SICA 与 count-only aggregation 在 ≥ 99% 问题上一致，BR 从 4.97（自提取）到 ~1.0（近退化边界）是连续的。\n\n但 R2 正确指出论文缺少对**过渡区间行为**的形式化刻画。在 intermediate regime (SC 50-60%) 中，SICA 显示正向趋势但不显著——这恰好是 \"近退化\" 的有趣区域。是否存在某个 |C\\|/|C| 阈值，超过该阈值 SICA 开始提供真正的纠错信号？这个问题值得在 Discussion 或 Appendix 中讨论。\n",
+              "reviewer_id": "1",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002052"
+        },
+        {
+          "source_line": 2053,
+          "timestamp": "2026-05-25T21:27:25.835739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3669
+          },
+          "id": "event-002053"
+        },
+        {
+          "source_line": 2054,
+          "timestamp": "2026-05-25T21:27:36.626087+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交对 Reviewer 2 全部 7 个问题的逐条回应。总结：\n\n- **N1**（新颖性有限）：[AGREE] 同意 framing 需调整，但认为经验贡献和诊断框架仍有发表价值\n- **N2**（benchmark 窄）：[AGREE] 部分同意，但 best-case argument 和 variable isolation 的普遍性是有效缓解因素，建议降级为 should-fix\n- **W1**（正负不对称）：[AGREE] 完全同意，与我自己的 N2 一致\n- **W2**（缺 test-time scaling 讨论）：[REBUT] DeepSeek-R1/QwQ/o3/PRM 均已被引用或测试，R2 批评部分不准确\n- **W3**（约束浅）：[AGREE] 部分同意设计关注，但 variable isolation 不依赖约束复杂度\n- **W4**（缺引用）：[REBUT] 4 类中至少 3 类已被覆盖，DyLoS 可能就是 R2 所指论文\n- **W5**（近退化适用性）：[AGREE] 有价值的理论问题，论文确实缺少过渡区间的形式化刻画"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1"
+          },
+          "id": "event-002054"
+        }
+      ]
+    }
+  ]
+}

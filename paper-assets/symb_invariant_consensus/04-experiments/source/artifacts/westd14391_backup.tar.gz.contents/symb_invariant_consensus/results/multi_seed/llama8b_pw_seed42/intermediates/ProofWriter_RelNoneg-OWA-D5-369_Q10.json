@@ -1,0 +1,1198 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-369_Q10",
+    "problem": "The cow chases the lion. The cow chases the squirrel. The cow eats the rabbit. The cow is nice. The cow likes the rabbit. The cow likes the squirrel. The lion chases the rabbit. The lion eats the rabbit. The lion likes the squirrel. The rabbit chases the squirrel. The rabbit is blue. The rabbit is nice. The rabbit likes the lion. The squirrel eats the cow. The squirrel eats the lion. The squirrel is rough. If something is nice and it eats the cow then it is kind. If something chases the squirrel then it eats the lion. If something likes the lion and it likes the rabbit then the lion chases the squirrel. If something chases the squirrel and the squirrel is nice then the squirrel is kind. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel. If something eats the lion then it likes the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not eat the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(cow, lion, True) ::: The cow chases the lion.\nChases(cow, squirrel, True) ::: The cow chases the squirrel.\nEats(cow, rabbit, True) ::: The cow eats the rabbit.\nNice(cow, True) ::: The cow is nice.\nLikes(cow, rabbit, True) ::: The cow likes the rabbit.\nLikes(cow, squirrel, True) ::: The cow likes the squirrel.\nChases(lion, rabbit, True) ::: The lion chases the rabbit.\nEats(lion, rabbit, True) ::: The lion eats the rabbit.\nLikes(lion, squirrel, True) ::: The lion likes the squirrel.\nChases(rabbit, squirrel, True) ::: The rabbit chases the squirrel.\nBlue(rabbit, True) ::: The rabbit is blue.\nNice(rabbit, True) ::: The rabbit is nice.\nLikes(rabbit, lion, True) ::: The rabbit likes the lion.\nEats(squirrel, cow, True) ::: The squirrel eats the cow.\nEats(squirrel, lion, True) ::: The squirrel eats the lion.\nRough(squirrel, True) ::: The squirrel is rough.\n\nRules:\nNice($x, True) && Eats($x, cow, True) >>> Kind($x, True) ::: If something is nice and it eats the cow then it is kind.\nChases($x, squirrel, True) >>> Eats($x, lion, True) ::: If something chases the squirrel then it eats the lion.\nLikes($x, lion, True) && Likes($x, rabbit, True) >>> Chases(lion, squirrel, True) ::: If something likes the lion and it likes the rabbit then the lion chases the squirrel.\nChases($x, squirrel, True) && Nice(squirrel, True) >>> Kind(squirrel, True) ::: If something chases the squirrel and the squirrel is nice then the squirrel is kind.\nLikes($x, squirrel, True) && Likes(squirrel, cow, True) >>> Likes(cow, squirrel, True) ::: If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\nEats($x, lion, True) >>> Likes($x, rabbit, True) ::: If something eats the lion then it likes the rabbit.\n\nQuery:\nEats(lion, lion, False) ::: The lion does not eat the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 82.5,
+      "Unknown": 144.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The lion eats the rabbit. (Given)\n2. If something likes the lion and it likes the rabbit, then the lion chases the squirrel. (Rule 4)\n   - From the given statements, we know the rabbit likes the lion, and we have to find the connection between the rabbit and the lion to the squirrel. The rabbit is also nice (Given) and likes the lion (Given), and the lion likes the rabbit (Given), so according to rule 4, the lion chases the squirrel. (This is not directly relevant but helps us to understand the lion's behavior)\n3. If something chases the squirrel, then it eats the lion. (Rule 2)\n   - This rule doesn't directly apply to the lion because the lion is not chasing the squirrel. The rule is more about the consequence of chasing the squirrel. However, we have a rule that says \"If something eats the lion then it likes the rabbit\" (Rule 6), and another rule that says \"If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel\" (Rule 5), which are not relevant to our current analysis.\n\n4. From the given statement, \"The squirrel eats the lion\" (Given)\n   - According to rule 6, since the squirrel eats the lion, the squirrel likes the rabbit.\n\n5. Now we know the squirrel likes the rabbit and the squirrel likes the cow. \n   - According to rule 5, since the squirrel likes the squirrel (it likes itself) and the squirrel likes the cow, the cow likes the squirrel.\n\nHowever, we're looking for the relationship between the lion and the lion eating the lion, not the squirrel and the cow.\n\nWe have to go back to the original question: \"The lion does not eat the lion\". To solve this, we need to analyze the rules and statements related to the lion eating the lion.\n\n- We know that \"The lion eats the rabbit\" (Given)\n- We don't have any information about the lion eating the lion directly from the given statements.\n\nHowever, we can use rule 3, which states that \"If something chases the squirrel, then it eats the lion.\" We need to find a connection between the lion and the squirrel.\n\n- The lion likes the squirrel (Given)\n- We don't have any information about the lion chasing the squirrel directly from the given statements.\n\nBut we do have rule 4, which states that \"If something likes the lion and it likes the rabbit, then the lion chases the squirrel.\" However, we cannot apply this rule directly to the lion because it's not about the lion's behavior towards the rabbit.\n\nSince we cannot directly apply any rule to the lion eating the lion, the statement \"The lion does not eat the lion\" is unknown because we don't have any information about the lion eating the lion from the given statements.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to determine the relationships between the animals and use the given rules to find out if the lion eats the lion.\n\n1. The lion eats the rabbit. (Given)\n2. The rabbit likes the lion. (Given)\n3. The rabbit is blue. (Given)\n4. The rabbit is nice. (Given)\n5. The rabbit chases the squirrel. (Given)\n6. The rabbit is nice. (Repeated, can be ignored)\n7. If something chases the squirrel then it eats the lion. (Rule 3)\n   Since the rabbit chases the squirrel, the rabbit eats the lion. (Rule 3)\n   But we already know that the lion eats the rabbit (Rule 1), so this creates a contradiction.\n\nSince we have a contradiction, we cannot conclude whether the lion eats the lion or not. However, according to the rules and given statements, there is no direct rule that can be applied to the statement \"The lion does not eat the lion.\" Therefore, we can conclude that the truth of this statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller statements and use the given conditions to determine the relationship between the lion and the lion.\n\nGiven conditions:\n\n1. The lion eats the rabbit. (Statement 8)\n2. If something eats the lion then it likes the rabbit. (Condition 9)\n3. The lion likes the squirrel. (Statement 10)\n4. The squirrel eats the lion. (Statement 13)\n5. If something eats the lion then it likes the rabbit. (Condition 9) implies the squirrel likes the rabbit because the squirrel eats the lion.\n\nHowever, we need to determine if the lion eats the lion. Let's consider the statement \"The lion does not eat the lion.\"\n\nIf the lion does not eat the lion, then it implies the lion likes the lion because the condition \"If something eats the lion then it likes the rabbit\" does not apply here. \n\nHowever, the condition \"If something likes the lion and it likes the rabbit then the lion chases the squirrel.\" (Condition 5) does not apply here as well because the statement does not explicitly mention the lion likes the rabbit.\n\nNow let's consider the condition \"If something chases the squirrel then it eats the lion.\" (Condition 2). This condition implies that the rabbit eats the lion because the rabbit chases the squirrel. However, it is given that the squirrel eats the lion. This condition is irrelevant to the current problem.\n\nHowever, the condition \"If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\" (Condition 6) does not apply here.\n\nNow, let's consider the condition \"If something is nice and it eats the cow then it is kind.\" (Condition 1). We know the squirrel eats the cow, but it is given that the squirrel is rough, not nice.\n\nNow, let's consider the condition \"If something chases the squirrel and the squirrel is nice then the squirrel is kind.\" (Condition 4). The rabbit chases the squirrel, and the squirrel is nice. This implies the squirrel is kind because the rabbit chases the squirrel and the squirrel is nice.\n\nNow, let's consider the condition \"If something likes the lion and it likes the rabbit then the lion chases the squirrel.\" (Condition 5). The squirrel likes the lion and the squirrel likes the cow. This implies the cow likes the squirrel because the squirrel likes the cow.\n\nNow, let's consider the statement \"The lion does not eat the lion.\"\n\nThe statement \"The lion does not eat the lion\" implies the lion likes the lion. However, the condition \"If something eats the lion then it likes the rabbit.\" (Condition 9) does not apply here.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce the conclusion step by step.\n\n1. The lion chases the rabbit. (Statement 7)\n2. The lion eats the rabbit. (Statement 8)\n3. The lion likes the squirrel. (Statement 10)\n4. The lion does not eat the lion. (The statement we need to determine)\n\nFrom statement 8, we know that the lion eats the rabbit. Now, let's analyze the given rules:\n\n- If something is nice and it eats the cow then it is kind. (Rule 1)\n- If something chases the squirrel then it eats the lion. (Rule 2)\n- If something likes the lion and it likes the rabbit then the lion chases the squirrel. (Rule 3)\n- If something chases the squirrel and the squirrel is nice then the squirrel is kind. (Rule 4)\n- If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel. (Rule 5)\n- If something eats the lion then it likes the rabbit. (Rule 6)\n\nNow, let's apply these rules to the given statements:\n\n- The lion eats the rabbit. (Statement 8)\n- The rabbit chases the squirrel. (Statement 9)\n- The rabbit is blue. (Statement 11)\n- The rabbit is nice. (Statement 12)\n- The rabbit likes the lion. (Statement 13)\n- The squirrel is rough. (Statement 15)\n\nFrom statement 9, the rabbit chases the squirrel. Since the squirrel is not mentioned as nice in statement 15, we cannot determine its kind or niceness directly.\n\nHowever, we can analyze the relationship between the lion and the squirrel:\n\n- The lion likes the squirrel. (Statement 10)\n- The rabbit likes the lion. (Statement 13)\n- The rabbit likes the squirrel is not directly given, but we can infer that the rabbit likes the squirrel because the squirrel likes the cow. (Rule 5 and Statement 3)\n\nNow, let's examine the rule: \"If something likes the lion and it likes the rabbit then the lion chases the squirrel.\" (Rule 3)\n\n- The lion likes the squirrel. (Statement 10)\n- The rabbit likes the lion. (Statement 13)\n- The rabbit likes the squirrel. (Inferred from Rule 5 and Statement 3)\n- According to Rule 3, the lion should chase the squirrel. However, this is not the case; the lion does not chase the squirrel.\n\nHowever, we cannot directly determine that the lion does not eat the lion from the given statements. \n\nThe statement \"The lion does not eat the lion\" is true for all cases because there is no statement in the problem that says the lion eats the lion. \n\nHowever, since there is no statement that says the lion eats the lion or the lion does not eat the lion, and since the lion does not eat the lion is true for all cases (the statement that says the lion eats the lion is not provided), we cannot be 100% sure that this statement is true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the rabbit. (Given)\n2. The lion eats the rabbit. (Given)\n3. If something chases the rabbit, then it eats the rabbit. (Given)\n   However, this statement is not directly applicable here as it's already established that the lion eats the rabbit.\n4. The lion likes the squirrel. (Given)\n5. The rabbit likes the lion. (Given)\n6. If something likes the lion and it likes the rabbit, then the lion chases the squirrel. (Given)\n   This statement implies that the lion chases the squirrel, but it does not provide information about whether the lion eats the squirrel or not.\n\n7. The squirrel eats the lion. (Given)\n   This statement provides a direct contradiction to the statement we are trying to evaluate, which is \"The lion does not eat the lion.\"\n\nHowever, we are still missing the information whether the lion eats the lion or not directly from the premises. \n\nThe statement \"The lion does not eat the lion\" is directly related to the information about the lion eating other animals, which is the rabbit. But there's no information that directly states that the lion eats the lion or not. However, the information about the squirrel eating the lion is given, which does not directly relate to the statement \"The lion does not eat the lion.\"\n\nHowever, there's a different rule given in the statement: \n\"If something eats the lion then it likes the rabbit.\" (Given)\nWe can apply this rule to the information given: \nThe squirrel eats the lion. (Given)\nSo, according to this rule, the squirrel likes the rabbit. (Derived)\n\nHowever, the information about the lion eating the lion is still unknown.\n\nSince there is no direct information about the lion eating the lion, we cannot determine whether the statement \"The lion does not eat the lion\" is true or false based on the given premises.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the rabbit. \n   This implies that the lion likes the rabbit because it chases the rabbit.\n\n2. The lion eats the rabbit. \n   This implies that the rabbit is not nice and does not like the lion, because if it were, it wouldn't be eaten.\n\n3. The rabbit is blue. \n   This does not provide any relevant information.\n\n4. The rabbit is nice. \n   This contradicts the information in step 2. However, we will consider both possibilities.\n\n5. The rabbit likes the lion. \n   This contradicts the information in step 2. However, we will consider both possibilities.\n\n6. The squirrel eats the lion. \n   This implies that the squirrel likes the rabbit, based on the rule \"If something eats the lion then it likes the rabbit.\"\n\n7. The squirrel is rough. \n   This does not provide any relevant information.\n\n8. The squirrel is nice. \n   This is a contradiction to the information in step 7.\n\n9. The squirrel likes the lion. \n   This is a contradiction to the information in step 8.\n\n10. The squirrel eats the cow. \n    This implies that the cow is nice and it is kind because it is nice and it eats the cow.\n\n11. The cow is nice. \n    This is consistent with the information in step 10.\n\n12. The cow likes the squirrel. \n    This is consistent with the information in step 10 and the rule \"If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\"\n\n13. The cow likes the rabbit. \n    This implies that the rabbit is nice, based on the rule \"If something likes the rabbit then it is nice.\"\n\n14. The lion chases the squirrel. \n    This implies that the lion likes the squirrel, based on the rule \"If something chases the squirrel then it eats the lion.\" However, this is a contradiction to the information in step 6, that the squirrel eats the lion.\n\nBased on the analysis, we have a contradiction between steps 14 and 6. However, the given information does not directly state whether the lion eats the lion, so we need to analyze it based on the given rules.\n\nThe statement \"The lion does not eat the lion\" is not directly related to the rules provided. However, the information that the lion chases the squirrel (step 14) implies that the lion eats the lion (based on the rule \"If something chases the squirrel then it eats the lion\"). This is a contradiction to the statement \"The lion does not eat the lion.\"\n\nTherefore, the statement \"The lion does not eat the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the rabbit. (Statement 7)\n2. The lion eats the rabbit. (Statement 8)\nFrom statement 2, we can conclude that the lion eats the rabbit, but there is no information about the lion eating itself.\n\nNow, let's analyze the given conditions:\n\n1. If something is nice and it eats the cow then it is kind. (No relevant information)\n2. If something chases the squirrel then it eats the lion. (No relevant information)\n3. If something likes the lion and it likes the rabbit then the lion chases the squirrel. (No relevant information)\n4. If something chases the squirrel and the squirrel is nice then the squirrel is kind. (No relevant information)\n5. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel. (No relevant information)\n6. If something eats the lion then it likes the rabbit. (This condition is relevant, but we don't know if the lion eats itself)\n\nFrom the conditions, we can conclude that there is no direct information about the lion eating itself. However, we can also conclude that if the lion eats itself, it will like the rabbit. But we already know that the lion likes the rabbit (Statement 9), so the lion does not have to eat itself to like the rabbit.\n\nSince there is no information about the lion eating itself, and the conditions don't provide any additional information about self-eating, we can't determine whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to use the given information and the provided rules.\n\n1. The lion eats the rabbit. (Given)\n2. If something eats the lion then it likes the rabbit. (Rule)\n   However, we cannot directly apply this rule to the lion because it is eating the rabbit, not the lion. But we can use another rule to find out what we need.\n\n3. If something likes the lion and it likes the rabbit then the lion chases the squirrel. (Rule)\n   We already know the lion eats the rabbit, but this rule doesn't help us find the relationship between the lion and eating itself.\n\n4. The lion likes the squirrel. (Given)\n5. The lion chases the squirrel. (Given)\n6. The squirrel eats the lion. (Given)\n   We can use this information to apply another rule.\n\n7. If something chases the squirrel then it eats the lion. (Rule)\n   This rule directly applies to the lion because it chases the squirrel.\n\nNow, since the lion chases the squirrel, it must eat the lion, according to the rule. This creates a contradiction because we know the lion eats the lion (from the initial information) and it also eats the lion (from the rule applied to the lion's actions).\n\nHowever, we need to check if there's any rule that directly states \"If something is an animal then it does not eat itself\". There is no such rule.\n\nWe can conclude that the lion eats the lion is true. \n\nTherefore, the statement \"The lion does not eat the lion\" is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven Information:\n1. The lion chases the rabbit.\n2. The lion eats the rabbit.\n3. The lion likes the squirrel.\n4. The rabbit chases the squirrel.\n5. The rabbit is blue.\n6. The rabbit is nice.\n7. The rabbit likes the lion.\n8. The squirrel eats the lion.\n9. The squirrel eats the cow.\n10. The squirrel is rough.\n11. The cow chases the lion.\n12. The cow chases the squirrel.\n13. The cow eats the rabbit.\n14. The cow is nice.\n15. The cow likes the rabbit.\n16. The cow likes the squirrel.\n\nRules:\n1. If something is nice and it eats the cow then it is kind. \n   - This rule is not directly applicable to our problem.\n2. If something chases the squirrel then it eats the lion. \n   - This rule is not directly applicable to our problem.\n3. If something likes the lion and it likes the rabbit then the lion chases the squirrel. \n   - This rule is not directly applicable to our problem.\n4. If something chases the squirrel and the squirrel is nice then the squirrel is kind. \n   - This rule is not directly applicable to our problem.\n5. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel. \n   - This rule is not directly applicable to our problem.\n6. If something eats the lion then it likes the rabbit. \n   - This rule is relevant because it involves the statement we are analyzing.\n\nNow, let's apply the relevant rule to our problem:\n- The squirrel eats the lion (Rule 6).\n- Therefore, the squirrel likes the rabbit (by Rule 6).\n\nHowever, the statement we are analyzing is \"The lion does not eat the lion.\"\nTo check if this statement is true or false, we need to analyze the information given in the problem.\n\nFrom the problem, we know that the lion eats the rabbit (Statement 2).\nThere is no information in the problem that the lion eats itself.\n\nTherefore, we cannot determine if the lion eats the lion or not, based on the information given in the problem. Hence, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and analyze the given statements step by step.\n\n1. The cow chases the lion.  (Statement 1)\n2. The cow chases the squirrel.  (Statement 2)\n3. The cow eats the rabbit.  (Statement 3)\n4. The cow is nice.  (Statement 4)\n5. The cow likes the rabbit.  (Statement 5)\n6. The cow likes the squirrel.  (Statement 6)\n7. The lion chases the rabbit.  (Statement 7)\n8. The lion eats the rabbit.  (Statement 8)\n9. The lion likes the squirrel.  (Statement 9)\n10. The rabbit chases the squirrel.  (Statement 10)\n11. The rabbit is blue.  (Statement 11)\n12. The rabbit is nice.  (Statement 12)\n13. The rabbit likes the lion.  (Statement 13)\n14. The squirrel eats the cow.  (Statement 14)\n15. The squirrel eats the lion.  (Statement 15)\n16. The squirrel is rough.  (Statement 16)\n\nNow, let's analyze the given conditions:\n\n1. If something is nice and it eats the cow then it is kind. \n   Since the cow is nice (Statement 4) and the squirrel eats the cow (Statement 14), the squirrel is kind.\n\n2. If something chases the squirrel then it eats the lion.\n   Since the rabbit chases the squirrel (Statement 10), the rabbit eats the lion. But this contradicts Statement 8, which says the lion eats the rabbit. So, this condition is not applicable.\n\n3. If something likes the lion and it likes the rabbit then the lion chases the squirrel.\n   Since the lion likes the squirrel (Statement 9) and the rabbit likes the lion (Statement 13), the lion chases the squirrel. But this contradicts Statement 1, which says the cow chases the lion. So, this condition is not applicable.\n\n4. If something chases the squirrel and the squirrel is nice then the squirrel is kind.\n   Since the rabbit chases the squirrel (Statement 10) and the squirrel is nice (this cannot be determined directly, but we know the squirrel eats the lion and is rough, so it is not nice), this condition is not applicable.\n\n5. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\n   Since the rabbit likes the squirrel (Statement 13) and the squirrel likes the cow (Statement 6), the cow likes the squirrel.\n\n6. If something eats the lion then it likes the rabbit.\n   Since the squirrel eats the lion (Statement 15), the squirrel likes the rabbit.\n\nNow, let's analyze the statement \"The lion does not eat the lion.\"\n\nFrom Statement 8, we know that the lion eats the rabbit. However, from Statement 15, we know that the squirrel eats the lion. But we don't know if the lion eats the lion because there is no information that directly supports or contradicts this statement.\n\nTherefore, the statement \"The lion does not eat the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown.\n\n1. The lion chases the rabbit. (Statement 7)\n2. The lion eats the rabbit. (Statement 8)\n3. The lion likes the squirrel. (Statement 10)\n4. The rabbit is blue. (Statement 9)\n5. The rabbit is nice. (Statement 10)\n6. The rabbit likes the lion. (Statement 11)\n7. The squirrel eats the cow. (Statement 13)\n8. The squirrel eats the lion. (Statement 14)\n9. The squirrel is rough. (Statement 15)\n\nWe are given several conditional statements:\n\n1. If something is nice and it eats the cow then it is kind.\n2. If something chases the squirrel then it eats the lion.\n3. If something likes the lion and it likes the rabbit then the lion chases the squirrel.\n4. If something chases the squirrel and the squirrel is nice then the squirrel is kind.\n5. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\n6. If something eats the lion then it likes the rabbit.\n\nWe are asked to determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown.\n\nLet's start by using statement 2: \"The lion eats the rabbit.\" This statement implies that the lion eats another animal (the rabbit). Now, let's consider statement 6: \"If something eats the lion then it likes the rabbit.\" Since the lion eats the rabbit, we can conclude that the lion likes the rabbit. This satisfies the condition of statement 6.\n\nNow, let's examine statement 3: \"If something likes the lion and it likes the rabbit then the lion chases the squirrel.\" We have already established that the lion likes the rabbit. However, we do not have any information about the lion liking the squirrel. Therefore, we cannot conclude that the lion chases the squirrel based on statement 3.\n\nStatement 2 also implies that the lion eats another animal, which means it satisfies the condition of statement 2: \"If something chases the squirrel then it eats the lion.\" However, we do not have any information about the lion chasing the squirrel.\n\nStatement 8 states that the squirrel eats the lion, and statement 14 states that the squirrel eats the cow. However, statement 7 states that the cow eats the rabbit, and statement 2 states that the lion eats the rabbit. We cannot determine the relationship between the lion and the squirrel based on these statements.\n\nSince we cannot determine the relationship between the lion and the squirrel, we cannot conclude whether the lion eats the lion or not. Therefore, the statement \"The lion does not eat the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The lion eats the rabbit. (Given statement)\n2. If something eats the lion then it likes the rabbit. (Rule 8)\n   However, we are not given any information about something eating the lion. Therefore, we cannot conclude anything using this rule.\n\n3. The lion likes the squirrel. (Given statement)\n4. The squirrel eats the lion. (Given statement)\n\nUsing rule 8, since the squirrel eats the lion, it likes the rabbit. However, this does not relate to the statement about the lion eating the lion.\n\nNow, let's analyze the statement we want to determine: \"The lion does not eat the lion.\"\n\nTo determine this, we need to know whether the lion eats the lion. If it does, then the statement is false. If it does not, then the statement is true.\n\nWe are given that the squirrel eats the lion. However, we do not know whether the lion eats the lion based on the given information.\n\nTherefore, we cannot conclude whether the statement is true or false using the given information.\n\nSince we do not have enough information to determine whether the lion eats the lion, the answer is: unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> likes(lion, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_rabbit_lion), likes_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(X, Y) -> likes(Y, X)",
+          "z3_formula": "Implies(And(likes_squirrel_cow, likes_cow_squirrel), likes_cow_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, eats_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, lion)",
+          "z3_formula": "eats_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, lion)",
+          "z3_formula": "eats_lion_lion == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, lion)",
+          "z3_formula": "eats_lion_lion == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, lion)",
+          "z3_formula": "Implies(Not(eats_lion_lion), likes_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_lion, likes_lion_rabbit), chases_lion_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(squirrel, Y) -> likes(Y, squirrel)",
+          "z3_formula": "Implies(And(likes_squirrel_lion, likes_squirrel_cow), likes_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, cow) -> kind(X)",
+          "z3_formula": "Implies(And(nice_squirrel, eats_squirrel_cow), kind_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_squirrel, cold_squirrel), white_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(squirrel)",
+          "z3_formula": "quiet_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> kind(squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, nice_squirrel), kind_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_lion, likes_lion_rabbit), chases_lion_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_squirrel_lion, likes_squirrel_rabbit), chases_squirrel_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, lion)",
+          "z3_formula": "eats_lion_lion == False",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, lion)",
+          "z3_formula": "Implies(Not(eats_lion_lion), likes_lion_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_lion, likes_lion_rabbit), chases_lion_squirrel)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, cow)",
+          "z3_formula": "likes_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, cow) -> kind(X)",
+          "z3_formula": "Implies(And(nice_rabbit, eats_lion_cow), kind_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_squirrel, eats_lion_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_squirrel, likes_rabbit_lion), chases_lion_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> kind(squirrel)",
+          "z3_formula": "Implies(And(chases_lion_squirrel, nice_squirrel), kind_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(squirrel, cow) -> likes(cow, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_squirrel, likes_squirrel_cow), likes_cow_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_lion, likes_lion_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(lion, lion)",
+          "z3_formula": "Not(eats_lion_lion)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_lion_rabbit, eats_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(And(likes_rabbit_lion, likes_lion_squirrel), chases_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(chases_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> Not(nice(Y)) & Not(likes(Y, X))",
+          "z3_formula": "Implies(eats_lion_rabbit, And(Not(nice_rabbit), Not(likes_rabbit_lion)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> nice(Y) & kind(Y)",
+          "z3_formula": "Implies(eats_squirrel_cow, And(nice_cow, kind_cow))",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, X) -> likes(X, Y)",
+          "z3_formula": "Implies(And(likes_cow_squirrel, likes_squirrel_cow), likes_cow_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> nice(Y)",
+          "z3_formula": "Implies(likes_cow_rabbit, nice_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_squirrel, eats_lion_lion)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_lion, likes_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_lion_squirrel), chases_lion_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_squirrel, eats_lion_lion)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, lion)",
+          "z3_formula": "chases_cow_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, rabbit)",
+          "z3_formula": "eats_cow_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, rabbit)",
+          "z3_formula": "likes_cow_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, squirrel)",
+          "z3_formula": "likes_cow_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, cow) -> kind(X)",
+          "z3_formula": "Implies(And(nice_X, eats_X_cow), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> lion_chases_squirrel",
+          "z3_formula": "Implies(And(likes_X_lion, likes_X_rabbit), lion_chases_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> kind(squirrel)",
+          "z3_formula": "Implies(And(chases_X_squirrel, nice_squirrel), kind_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(squirrel, cow) -> likes(cow, squirrel)",
+          "z3_formula": "Implies(And(likes_X_squirrel, likes_squirrel_cow), likes_cow_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_X_lion, likes_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "lion_chases_squirrel",
+          "z3_formula": "lion_chases_squirrel == False",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == False",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == False",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == False",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "lion_chases_squirrel",
+          "z3_formula": "lion_chases_squirrel == False",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, lion)",
+          "z3_formula": "eats_lion_lion == Unknown",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cow, lion)",
+          "z3_formula": "chases_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, rabbit)",
+          "z3_formula": "eats_cow_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, rabbit)",
+          "z3_formula": "likes_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, squirrel)",
+          "z3_formula": "likes_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, cow) -> kind(X)",
+          "z3_formula": "Implies(And(nice_cow, eats_squirrel_cow), kind_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, eats_rabbit_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_squirrel, likes_rabbit_lion), chases_lion_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> kind(squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, nice_squirrel), kind_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(squirrel, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, likes_squirrel_cow), likes_rabbit_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats_rabbit_lion == False",
+          "z3_formula": "Not(eats_rabbit_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases_lion_squirrel == False",
+          "z3_formula": "Not(chases_lion_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind_squirrel == True",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "likes_rabbit_cow == True",
+          "z3_formula": "likes_rabbit_cow == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "likes_squirrel_rabbit == True",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(lion, lion)",
+          "z3_formula": "Not(eats_lion_lion)",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_lion_squirrel), chases_lion_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_squirrel, eats_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_squirrel_cow, likes_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, rabbit)",
+          "z3_formula": "eats_cow_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_cow_rabbit, likes_cow_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, rabbit)",
+          "z3_formula": "likes_cow_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, squirrel)",
+          "z3_formula": "likes_squirrel_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, squirrel)",
+          "z3_formula": "likes_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, lion)",
+          "z3_formula": "eats_lion_lion == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_lion_squirrel, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, lion)",
+          "z3_formula": "Not(eats_lion_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(eats_lion_lion) | eats_lion_lion",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 178,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 72
+    },
+    "maxsat_stats": {
+      "satisfied": 66,
+      "excluded": 6,
+      "total_weight": 169,
+      "solve_time_ms": 2.654772251844406
+    },
+    "timing": {
+      "trace_gen_s": 8.13,
+      "extraction_s": 32.591,
+      "dedup_s": 2.671,
+      "maxsat_s": 0.007,
+      "total_s": 43.398
+    }
+  }
+}

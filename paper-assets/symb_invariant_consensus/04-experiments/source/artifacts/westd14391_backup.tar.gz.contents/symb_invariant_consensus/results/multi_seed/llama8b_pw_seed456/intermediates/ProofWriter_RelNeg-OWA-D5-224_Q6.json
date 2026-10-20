@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-224_Q6",
+    "problem": "The dog chases the lion. The dog is nice. The lion does not eat the tiger. The lion is not big. The lion visits the tiger. The mouse does not chase the tiger. The mouse is nice. The tiger chases the lion. The tiger eats the dog. The tiger does not eat the mouse. The tiger visits the lion. If something visits the dog and it is kind then it visits the mouse. If something chases the dog then it is not red. If something chases the lion and it visits the dog then it chases the dog. If something chases the lion then it is big. If something eats the lion then it is not cold. If something is big then it visits the dog. If something visits the mouse then the mouse is red. If the tiger visits the dog and the dog is not big then the dog chases the mouse. If something visits the tiger and the tiger is not red then it is not nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not visit the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNice($x, bool) ::: Is x nice?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(Dog, Lion, True) ::: The dog chases the lion.\nNice(Dog, True) ::: The dog is nice.\nEats(Lion, Tiger, False) ::: The lion does not eat the tiger.\nBig(Lion, False) ::: The lion is not big.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nChases(Mouse, Tiger, False) ::: The mouse does not chase the tiger.\nNice(Mouse, True) ::: The mouse is nice.\nChases(Tiger, Lion, True) ::: The tiger chases the lion.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nEats(Tiger, Mouse, False) ::: The tiger does not eat the mouse.\nVisits(Tiger, Lion, True) ::: The tiger visits the lion.\n\nRules:\nVisits($x, Dog, True) && Kind($x, True) >>> Visits($x, Mouse, True) ::: If something visits the dog and it is kind then it visits the mouse.\nChases($x, Dog, True) >>> Red($x, False) ::: If something chases the dog then it is not red.\nChases($x, Lion, True) && Visits($x, Dog, True) >>> Chases($x, Dog, True) ::: If something chases the lion and it visits the dog then it chases the dog.\nChases($x, Lion, True) >>> Big($x, True) ::: If something chases the lion then it is big.\nEats($x, Lion, True) >>> Cold($x, False) ::: If something eats the lion then it is not cold.\nBig($x, True) >>> Visits($x, Dog, True) ::: If something is big then it visits the dog.\nVisits($x, Mouse, True) >>> Red(Mouse, True) ::: If something visits the mouse then the mouse is red.\nVisits(Tiger, Dog, True) && Big(Dog, False) >>> Chases(Dog, Mouse, True) ::: If the tiger visits the dog and the dog is not big then the dog chases the mouse.\nVisits($x, Tiger, True) && Red(Tiger, False) >>> Nice($x, False) ::: If something visits the tiger and the tiger is not red then it is not nice.\n\nQuery:\nVisits(Dog, Dog, False) ::: The dog does not visit the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

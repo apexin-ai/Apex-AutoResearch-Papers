@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-975_Q22",
+    "problem": "The lion is kind. The mouse chases the lion. The rabbit is blue. The rabbit is round. The tiger is blue. The tiger is cold. The tiger is young. If something sees the rabbit then the rabbit is cold. If something sees the tiger then the tiger is kind. If something is round then it is kind. If the rabbit sees the lion and the rabbit sees the mouse then the mouse sees the tiger. If something is kind then it sees the mouse. If something is blue and kind then it sees the rabbit. If something chases the lion and the lion chases the rabbit then the rabbit chases the mouse. If something is kind and it sees the mouse then it sees the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse chases the mouse.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nKind(Lion, True) ::: The lion is kind.\nChases(Mouse, Lion, True) ::: The mouse chases the lion.\nBlue(Rabbit, True) ::: The rabbit is blue.\nRound(Rabbit, True) ::: The rabbit is round.\nBlue(Tiger, True) ::: The tiger is blue.\nCold(Tiger, True) ::: The tiger is cold.\nYoung(Tiger, True) ::: The tiger is young.\n\nRules:\nSees($x, Rabbit, True) >>> Cold(Rabbit, True) ::: If something sees the rabbit then the rabbit is cold.\nSees($x, Tiger, True) >>> Kind(Tiger, True) ::: If something sees the tiger then the tiger is kind.\nRound($x, True) >>> Kind($x, True) ::: If something is round then it is kind.\nSees(Rabbit, Lion, True) && Sees(Rabbit, Mouse, True) >>> Sees(Mouse, Tiger, True) ::: If the rabbit sees the lion and the rabbit sees the mouse then the mouse sees the tiger.\nKind($x, True) >>> Sees($x, Mouse, True) ::: If something is kind then it sees the mouse.\nBlue($x, True) && Kind($x, True) >>> Sees($x, Rabbit, True) ::: If something is blue and kind then it sees the rabbit.\nChases($x, Lion, True) && Chases(Lion, Rabbit, True) >>> Chases(Rabbit, Mouse, True) ::: If something chases the lion and the lion chases the rabbit then the rabbit chases the mouse.\nKind($x, True) && Sees($x, Mouse, True) >>> Sees($x, Lion, True) ::: If something is kind and it sees the mouse then it sees the lion.\n\nQuery:\nChases(Mouse, Mouse, True) ::: The mouse chases the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

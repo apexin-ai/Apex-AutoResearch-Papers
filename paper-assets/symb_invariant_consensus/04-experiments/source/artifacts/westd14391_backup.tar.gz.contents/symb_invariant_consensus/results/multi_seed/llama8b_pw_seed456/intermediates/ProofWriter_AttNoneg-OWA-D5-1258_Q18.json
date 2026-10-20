@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1258_Q18",
+    "problem": "Dave is blue. Erin is red. Erin is round. Erin is smart. Erin is white. Fiona is rough. Fiona is round. Harry is red. Harry is rough. Harry is smart. All smart, round people are blue. If Fiona is round then Fiona is red. If someone is red then they are young. If Harry is young and Harry is round then Harry is rough. If someone is young and smart then they are blue. White people are smart. Young people are round. If someone is young then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBlue(Dave, True) ::: Dave is blue.\nRed(Erin, True) ::: Erin is red.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\nRed(Harry, True) ::: Harry is red.\nRough(Harry, True) ::: Harry is rough.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart($x, True) && Round($x, True) >>> Blue($x, True) ::: All smart, round people are blue.\nRound(Fiona, True) >>> Red(Fiona, True) ::: If Fiona is round then Fiona is red.\nRed($x, True) >>> Young($x, True) ::: If someone is red then they are young.\nYoung(Harry, True) && Round(Harry, True) >>> Rough(Harry, True) ::: If Harry is young and Harry is round then Harry is rough.\nYoung($x, True) && Smart($x, True) >>> Blue($x, True) ::: If someone is young and smart then they are blue.\nWhite($x, True) >>> Smart($x, True) ::: White people are smart.\nYoung($x, True) >>> Round($x, True) ::: Young people are round.\nYoung($x, True) >>> White($x, True) ::: If someone is young then they are white.\n\nQuery:\nRed(Dave, True) ::: Dave is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

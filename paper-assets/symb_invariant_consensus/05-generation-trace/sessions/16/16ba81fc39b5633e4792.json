@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16ba81fc39b5633e4792",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis o3 data cleaning",
+  "task_key": "worker_analysis_o3-data-cleaning_20260521T175447",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_o3-data-cleaning_20260521T175447_result.json",
+    "occurrence": 1,
+    "bytes": 1379,
+    "sha256": "52f6c196872678fc0824f98374dadf97edc44fe339e40055fdd009ab0d20760d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## o3 FOLIO 数据清洗报告\n\n| 指标 | 值 |\n|---|---|\n| 总题数 | 204 |\n| 有效题数 (n_valid>0) | **196** |\n| 排除题数 (n_valid=0) | **8** |\n| SC@K_effective accuracy | **0.8265 (162/196)** |\n| 有效 trace 数 min | 1 |\n| 有效 trace 数 max | 12 |\n| 有效 trace 数 mean | 9.88 |\n| 有效 trace 数 median | 12.0 |\n| 有效 trace 数 stdev | 3.16 |\n\n**有效 trace 数分布：**\n\n| n_valid | 题数 |\n|---|---|\n| 1 | 4 |\n| 2 | 5 |\n| 3 | 6 |\n| 4 | 5 |\n| 5 | 4 |\n| 6 | 10 |\n| 7 | 9 |\n| 8 | 6 |\n| 9 | 11 |\n| 10 | 10 |\n| 11 | 17 |\n| 12 | 109 (55.6%) |\n\n**Trace 级别统计：**\n- 总 API 调用：2448 (204×12)\n- 有效 trace：1937\n- 空 trace：511 (20.87%)\n\n**排除题的 gold 分布：** True×5, False×3, Unknown×0 — 排除偏向 True/False，Unknown 未受影响。\n\n**Per-label accuracy (effective 196题)：**\n- True: 52/67 = 77.6%\n- False: 46/60 = 76.7%\n- Unknown: 64/69 = 92.8%\n\n**论文 clean 数据描述建议：** 我方验证的 SC accuracy = 0.8265 与 results.json header 一致，说明原始计算已正确排除了 n_valid=0 的题目。论文中可报告为 \"SC@12 on 196/204 questions (8 excluded due to all-empty API responses) = 82.65%\"，并注明空 trace 率 20.87%。109/196 (55.6%) 的题拿到了满 12 条有效 trace，数据质量整体可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-o3-data-cleaning.md"
+}

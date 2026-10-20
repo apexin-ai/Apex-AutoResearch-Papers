@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-999_Q1",
+    "problem": "Anne is big. Anne is furry. Bob is blue. Bob is green. Bob is young. Charlie is furry. Charlie is green. Charlie is red. Gary is furry. Gary is green. Gary is young. Furry, green things are blue. All big things are green. Red, furry things are blue. All big, blue things are nice. If Bob is nice and Bob is big then Bob is red. If Gary is furry then Gary is blue. All nice, big things are young. All nice things are young. Blue, young things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nBlue(Bob, True) ::: Bob is blue.\nGreen(Bob, True) ::: Bob is green.\nYoung(Bob, True) ::: Bob is young.\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nRed(Charlie, True) ::: Charlie is red.\nFurry(Gary, True) ::: Gary is furry.\nGreen(Gary, True) ::: Gary is green.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nFurry($x, True) && Green($x, True) >>> Blue($x, True) ::: Furry, green things are blue.\nBig($x, True) >>> Green($x, True) ::: All big things are green.\nRed($x, True) && Furry($x, True) >>> Blue($x, True) ::: Red, furry things are blue.\nBig($x, True) && Blue($x, True) >>> Nice($x, True) ::: All big, blue things are nice.\nNice(Bob, True) && Big(Bob, True) >>> Red(Bob, True) ::: If Bob is nice and Bob is big then Bob is red.\nFurry(Gary, True) >>> Blue(Gary, True) ::: If Gary is furry then Gary is blue.\nNice($x, True) && Big($x, True) >>> Young($x, True) ::: All nice, big things are young.\nNice($x, True) >>> Young($x, True) ::: All nice things are young.\nBlue($x, True) && Young($x, True) >>> Red($x, True) ::: Blue, young things are red.\n\nQuery:\nFurry(Gary, True) ::: Gary is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

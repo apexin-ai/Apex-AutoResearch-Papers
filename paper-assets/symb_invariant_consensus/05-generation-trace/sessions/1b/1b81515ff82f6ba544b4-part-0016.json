@@ -1,0 +1,3540 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1b81515ff82f6ba544b4",
+  "rounds": [
+    {
+      "number": 248,
+      "messages": [
+        {
+          "source_line": 2701,
+          "timestamp": "2026-05-19T04:20:23.600421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__delete_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002701"
+        },
+        {
+          "source_line": 2702,
+          "timestamp": "2026-05-19T04:20:23.600898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002702"
+        },
+        {
+          "source_line": 2703,
+          "timestamp": "2026-05-19T04:20:29.872044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "delete cron",
+              "max_results": "3"
+            }
+          },
+          "id": "event-002703"
+        },
+        {
+          "source_line": 2704,
+          "timestamp": "2026-05-19T04:20:29.922570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002704"
+        },
+        {
+          "source_line": 2705,
+          "timestamp": "2026-05-19T04:20:33.237072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-002705"
+        },
+        {
+          "source_line": 2706,
+          "timestamp": "2026-05-19T04:20:55.444106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 7, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-039-14b-pw600-16639\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp032)\\\"]}, {\\\"exp_id\\\": \\\"exp-040-qwen3-pw600-16639\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp033)\\\"]}, {\\\"exp_id\\\": \\\"exp-051-mistral-k-sensitivity\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp051)\\\"]}, {\\\"exp_id\\\": \\\"exp-048-llama8b-pw600\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp048_run)\\\"]}, {\\\"exp_id\\\": \\\"exp-057-mistral-folio204-t03\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process dead 5× with no signal → auto-resolved DONE(failed)\\\"]}, {\\\"exp_id\\\": \\\"exp-058-mistral-folio204-t05\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp058_run)\\\"]}, {\\\"exp_id\\\": \\\"exp-028b-qwen3-thinking-folio204\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp028b_run)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 22207
+          },
+          "id": "event-002706"
+        },
+        {
+          "source_line": 2707,
+          "timestamp": "2026-05-19T04:21:20.094574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp-057-mistral-folio204-t03:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "output_mode": "content",
+              "-A": "8"
+            }
+          },
+          "id": "event-002707"
+        },
+        {
+          "source_line": 2708,
+          "timestamp": "2026-05-19T04:21:20.195192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3780:  exp-057-mistral-folio204-t03:\n3781-    status: DONE\n3782-    retry_count: 0\n3783-    created_at: '2026-05-19T02:49:57.330Z'\n3784-    updated_at: '2026-05-19T04:20:44.783Z'\n3785-    hypothesis: T=0.3 低温 traces 更确定性更一致，SICA delta < T=0.7 的 +4.90pp。与 exp-054 (T=1.0,\n3786-      +0.49pp) 共同形成 T sensitivity ablation curve。parent=exp-033, D060 analysis paper\n3787-    parent: exp-033\n3788-    spec:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-002708"
+        },
+        {
+          "source_line": 2709,
+          "timestamp": "2026-05-19T04:21:24.159282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "conclusion:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "output_mode": "content",
+              "-B": "1",
+              "offset": "3780",
+              "head_limit": "5"
+            }
+          },
+          "id": "event-002709"
+        },
+        {
+          "source_line": 2710,
+          "timestamp": "2026-05-19T04:21:24.211074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found\n\n[Showing results with pagination = offset: 3780]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-002710"
+        },
+        {
+          "source_line": 2711,
+          "timestamp": "2026-05-19T04:21:27.671018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "offset": "3795",
+              "limit": "30"
+            }
+          },
+          "id": "event-002711"
+        },
+        {
+          "source_line": 2712,
+          "timestamp": "2026-05-19T04:21:27.721609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3795\t      data_count: 204\n3796\t      model_name: Mistral-7B-Instruct-v0.3\n3797\t      seed: 42\n3798\t      checkpoint_source: n/a\n3799\t      eval_data: data/folio_full.json\n3800\t    reproduce:\n3801\t      finished_at: '2026-05-19T04:20:43.571Z'\n3802\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n3803\t    conclusion: failed\n3804\t    completed_at: '2026-05-19T04:20:44.783Z'\n3805\t    extra:\n3806\t      hook_events:\n3807\t      - event: on_failed\n3808\t        action: agent\n3809\t        ts: '2026-05-19T04:20:49.931597+00:00'\n3810\t  exp-058-mistral-folio204-t05:\n3811\t    status: RUNNING\n3812\t    retry_count: 0\n3813\t    created_at: '2026-05-19T03:10:13.574Z'\n3814\t    updated_at: '2026-05-19T03:14:17.961Z'\n3815\t    hypothesis: T=0.5 delta 介于 T=0.3 和 T=0.7 之间，形成温度-SICA delta 曲线。与 exp-033 (T=0.7,\n3816\t      +4.90pp) 和 exp-054 (T=1.0, +0.49pp) 共同构成 4 点 T sensitivity ablation。parent=exp-033,\n3817\t      D060 analysis paper\n3818\t    parent: exp-033\n3819\t    spec:\n3820\t      command: python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.5 --max-tokens\n3821\t        4096 --api-base http://localhost:8003/v1 --model auto --seed 42 --folio-data\n3822\t        data/folio_full.json --math-data data/empty.json --pw-data data/empty.json\n3823\t        --output results/exp058_mistral_folio204_t05/exp058_results.json --save-intermediates\n3824\t      server: westd-25068"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002712"
+        },
+        {
+          "source_line": 2713,
+          "timestamp": "2026-05-19T04:24:06.150975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002713"
+        },
+        {
+          "source_line": 2714,
+          "timestamp": "2026-05-19T04:24:06.201412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002714"
+        },
+        {
+          "source_line": 2715,
+          "timestamp": "2026-05-19T04:24:11.428012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'model', 'dataset', 'server', 'gpu', 'hypothesis']"
+            }
+          },
+          "id": "event-002715"
+        },
+        {
+          "source_line": 2716,
+          "timestamp": "2026-05-19T04:24:11.428394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-002716"
+        },
+        {
+          "source_line": 2717,
+          "timestamp": "2026-05-19T04:24:11.781027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-014-deepseek-r1-7b\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0143}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-002717"
+        },
+        {
+          "source_line": 2718,
+          "timestamp": "2026-05-19T04:24:11.781405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "report.md"
+            }
+          },
+          "id": "event-002718"
+        },
+        {
+          "source_line": 2719,
+          "timestamp": "2026-05-19T04:24:23.990504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 6, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-039-14b-pw600-16639\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp032)\\\"]}, {\\\"exp_id\\\": \\\"exp-040-qwen3-pw600-16639\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp033)\\\"]}, {\\\"exp_id\\\": \\\"exp-051-mistral-k-sensitivity\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp051)\\\"]}, {\\\"exp_id\\\": \\\"exp-048-llama8b-pw600\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp048_run)\\\"]}, {\\\"exp_id\\\": \\\"exp-058-mistral-folio204-t05\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp058_run)\\\"]}, {\\\"exp_id\\\": \\\"exp-028b-qwen3-thinking-folio204\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=exp028b_run)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 12562
+          },
+          "id": "event-002719"
+        },
+        {
+          "source_line": 2720,
+          "timestamp": "2026-05-19T04:24:23.991207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T04:20:46Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 85 个实验 — DEPLOYED 1, DONE 76, PREPARING 1, QUEUED 2, RUNNING 5\\\\n**DONE 分布**: failed 18, killed 9, negative 29, success 20\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 1 张 — westd-16639:cuda:3(exp-048-llama8b-pw600)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-25068**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 435G/879G 可用（已用 48%）\\\\n- **westd-16639**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/usr/bin/nvidia-smi`: 502G/879G 可用（已用 40%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp-039-14b-pw600-16639` | westd-16639 | ? | ? | `—` |\\\\n| `exp-040-qwen3-pw600-16639` | westd-16639 | ? | ? | `—` |\\\\n| `exp-048-llama8b-pw600` | westd-16639 | cuda:3 | ? | `—` |\\\\n| `exp-051-mistral-k-sensitivity` | westd-25068 | ? | ? | `—` |\\\\n| `exp-058-mistral-folio204-t05` | westd-25068 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-057-mistral-folio204-t03` [failed] — 2026-05-19T04:20:44 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp-055-multitemp-mistral-folio` [negative] — 2026-05-19T03:53:56\\\\n- `exp-028b-qwen3-thinking-folio204` [killed] — 2026-05-19T03:34:08 — cuda:3 回收给 exp-058 T sensitivity ablation（资源冲突，非 OOM）。166/204 已完成，待 exp-058 完成后 \\\\n- `exp-052` [success] — 2026-05-19T02:47:07\\\\n- `exp-054-mistral-folio204-t10` [negative] — 2026-05-19T02:44:50\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp-057-mistral-folio204-t03`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp-028b-qwen3-thinking-folio204`: cuda:3 回收给 exp-058 T sensitivity ablation（资源冲突，非 OOM）。166/204 已完成，待 exp-058 完成后 resu\n…[truncated 3562 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 12209
+          },
+          "id": "event-002720"
+        },
+        {
+          "source_line": 2721,
+          "timestamp": "2026-05-19T04:24:52.897104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-057-mistral-folio204-t03",
+              "field": "conclusion",
+              "value": "negative"
+            }
+          },
+          "id": "event-002721"
+        },
+        {
+          "source_line": 2722,
+          "timestamp": "2026-05-19T04:24:52.897476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002722"
+        },
+        {
+          "source_line": 2723,
+          "timestamp": "2026-05-19T04:24:52.948000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-057-mistral-folio204-t03\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:16:40.283Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:24:52.909Z\\\", \\\"hypothesis\\\": \\\"Mistral-7B on FOLIO-204 at T=0.3 (low temperature): SICA≈SC because low diversity limits constraint extraction gains, confirming capability trap mechanism where trace homogeneity prevents SICA from outperforming majority vote\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp_experiment.py --config exp057\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"data_path\\\": \\\"FOLIO-204\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"n/a\\\", \\\"eval_data\\\": \\\"n/a\\\"}, \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03/exp057_results.json\\\", \\\"log_path\\\": \\\"/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03/exp057.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-19T04:17:52.210Z\\\", \\\"metrics\\\": {\\\"n\\\": 204, \\\"sc_accuracy\\\": 0.5735, \\\"sica_accuracy\\\": 0.5686, \\\"delta_pp\\\": -0.49, \\\"discordant_b\\\": 5, \\\"discordant_c\\\": 6, \\\"mcnemar_p\\\": 1, \\\"significant\\\": false, \\\"k\\\": 12, \\\"temperature\\\": 0.3, \\\"extraction_rate\\\": 0.98, \\\"contradiction_rate\\\": 0.033, \\\"wall_time_min\\\": 79.7}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.028}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-002723"
+        },
+        {
+          "source_line": 2724,
+          "timestamp": "2026-05-19T04:24:52.998631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-014-deepseek-r1-7b\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:57:23.633Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:57:43.837Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/proofwriter_30.json + folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"324400\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0126}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 101
+          },
+          "id": "event-002724"
+        },
+        {
+          "source_line": 2725,
+          "timestamp": "2026-05-19T04:25:05.994190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-039-14b-pw600-16639'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu']"
+            }
+          },
+          "id": "event-002725"
+        },
+        {
+          "source_line": 2726,
+          "timestamp": "2026-05-19T04:25:06.095092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0129}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-002726"
+        },
+        {
+          "source_line": 2727,
+          "timestamp": "2026-05-19T04:25:06.496170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-058-mistral-folio204-t05'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu']"
+            }
+          },
+          "id": "event-002727"
+        },
+        {
+          "source_line": 2728,
+          "timestamp": "2026-05-19T04:25:06.947220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0156}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-002728"
+        },
+        {
+          "source_line": 2729,
+          "timestamp": "2026-05-19T04:25:07.448998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-028b-qwen3-thinking-folio204'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu']"
+            }
+          },
+          "id": "event-002729"
+        },
+        {
+          "source_line": 2730,
+          "timestamp": "2026-05-19T04:25:07.900720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0141}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-002730"
+        },
+        {
+          "source_line": 2731,
+          "timestamp": "2026-05-19T04:25:08.053069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp-051-mistral-k-sensitivity'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu']"
+            }
+          },
+          "id": "event-002731"
+        },
+        {
+          "source_line": 2732,
+          "timestamp": "2026-05-19T04:25:08.103650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0162}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-002732"
+        },
+        {
+          "source_line": 2733,
+          "timestamp": "2026-05-19T04:25:15.837038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "10",
+              "fields": "['exp_id', 'status', 'conclusion', 'server', 'gpu']"
+            }
+          },
+          "id": "event-002733"
+        },
+        {
+          "source_line": 2734,
+          "timestamp": "2026-05-19T04:25:15.837450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-057-mistral-folio204-t03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-045-backward-verification\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-024-mistral-strategyqa\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-004-qwen7b-scaling\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-012-gsm8k-pilot\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-023-temp-ablation-t10\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-022-temp-ablation-t05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-021-temp-ablation-t03\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp-015-logic-lm-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-014-deepseek-r1-7b\\\": {\\\"status\\\": \\\"RUNNING\\\"}}, \\\"count\\\": 10, \\\"total\\\": 11, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0115}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-002734"
+        },
+        {
+          "source_line": 2735,
+          "timestamp": "2026-05-19T04:25:26.418087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-002735"
+        },
+        {
+          "source_line": 2736,
+          "timestamp": "2026-05-19T04:25:26.468667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  crd_folio_main:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-15T09:35:42.037Z'\n7\t    updated_at: '2026-05-15T09:36:24.832Z'\n8\t    spec:\n9\t      command: python run_pipeline.py (CRD dual-representation pipeline)\n10\t      server: westd-32608\n11\t      data_path: /root/autodl-tmp/crdd/results/mvp_v4_full.jsonl\n12\t      data_count: 204\n13\t      model_name: Qwen3-32B-AWQ\n14\t      seed: 42\n15\t      method: CRD\n16\t      checkpoint_path: N/A\n17\t      log_path: /root/autodl-tmp/crdd/results/\n18\t    conclusion: success\n19\t    completed_at: '2026-05-15T09:36:03.793Z'\n20\t    hypothesis: 'CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）'\n21\t    metrics:\n22\t      divergence_rate: 0.422\n23\t      diagnosis_rate: 0.872\n24\t      error_types: 4\n25\t      directed_advantage_pp: 4.7\n26\t      directed_p_value: 0.63\n27\t      localization_accuracy: 0.946\n28\t      fol_accuracy: 0.789\n29\t      code_accuracy: 0.598\n30\t      oracle_accuracy: 0.878\n31\t      pipeline_accuracy: 0.814\n32\t      baseline_accuracy: 0.74\n33\t      cost_multiplier: 5.76\n34\t      dataset: FOLIO\n35\t      n: 204\n36\t  smoke-test-5q:\n37\t    status: PREPARING\n38\t    retry_count: 0\n39\t    created_at: '2026-05-15T11:22:09.665Z'\n40\t    updated_at: '2026-05-15T11:22:09.666Z'\n41\t    conclusion: failed\n42\t  sica_smoke_5q:\n43\t    status: DONE\n44\t    retry_count: 0\n45\t    created_at: '2026-05-15T11:38:43.996Z'\n46\t    updated_at: '2026-05-15T11:39:13.456Z'\n47\t    spec:\n48\t      command: python3 smoke_test_5q.py (nohup)\n49\t      server: westd-32608\n50\t      data_path: /root/symb_invariant_consensus/data/math500_subset.json\n51\t      data_count: 5\n52\t      model_name: QwQ-32B\n53\t      seed: 42\n54\t      method: SICA\n55\t      checkpoint_path: N/A\n56\t      log_path: /tmp/smoke_test_5q.log\n57\t    hypothesis: 'SICA smoke test: 验证端到端 pipeline 可行性（5题 MATH-500, K=12, QwQ-32B）'\n58\t    conclusion: success\n59\t    completed_at: '2026-05-15T11:39:07.006Z'\n60\t    metrics:\n61\t      sica_accuracy: 0\n…[truncated 1091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002736"
+        },
+        {
+          "source_line": 2737,
+          "timestamp": "2026-05-19T04:25:31.288051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "description": "Count registry lines"
+            }
+          },
+          "id": "event-002737"
+        },
+        {
+          "source_line": 2738,
+          "timestamp": "2026-05-19T04:25:31.790767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3830 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-002738"
+        },
+        {
+          "source_line": 2739,
+          "timestamp": "2026-05-19T04:25:31.941443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c \"^  exp-\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml",
+              "description": "Count experiment entries"
+            }
+          },
+          "id": "event-002739"
+        },
+        {
+          "source_line": 2740,
+          "timestamp": "2026-05-19T04:25:31.992239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "63"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002740"
+        },
+        {
+          "source_line": 2741,
+          "timestamp": "2026-05-19T04:25:41.505105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-039-14b-pw600-16639:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-039 status"
+            }
+          },
+          "id": "event-002741"
+        },
+        {
+          "source_line": 2742,
+          "timestamp": "2026-05-19T04:25:42.458972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-039-14b-pw600-16639:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 953
+          },
+          "id": "event-002742"
+        },
+        {
+          "source_line": 2743,
+          "timestamp": "2026-05-19T04:25:42.961397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-040-qwen3-pw600-16639:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-040 status"
+            }
+          },
+          "id": "event-002743"
+        },
+        {
+          "source_line": 2744,
+          "timestamp": "2026-05-19T04:25:43.512889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-040-qwen3-pw600-16639:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 551
+          },
+          "id": "event-002744"
+        },
+        {
+          "source_line": 2745,
+          "timestamp": "2026-05-19T04:25:43.914541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-048-llama8b-pw600:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-048 status"
+            }
+          },
+          "id": "event-002745"
+        },
+        {
+          "source_line": 2746,
+          "timestamp": "2026-05-19T04:25:44.368075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-048-llama8b-pw600:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 453
+          },
+          "id": "event-002746"
+        },
+        {
+          "source_line": 2747,
+          "timestamp": "2026-05-19T04:25:44.871112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-051-mistral-k-sensitivity:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-051 status"
+            }
+          },
+          "id": "event-002747"
+        },
+        {
+          "source_line": 2748,
+          "timestamp": "2026-05-19T04:25:45.823846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-051-mistral-k-sensitivity:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 952
+          },
+          "id": "event-002748"
+        },
+        {
+          "source_line": 2749,
+          "timestamp": "2026-05-19T04:25:45.874358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-058-mistral-folio204-t05:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-058 status"
+            }
+          },
+          "id": "event-002749"
+        },
+        {
+          "source_line": 2750,
+          "timestamp": "2026-05-19T04:25:46.777778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-058-mistral-folio204-t05:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-002750"
+        },
+        {
+          "source_line": 2751,
+          "timestamp": "2026-05-19T04:25:46.928670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A1 \"exp-028b-qwen3-thinking-folio204:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -2",
+              "description": "Check exp-028b status"
+            }
+          },
+          "id": "event-002751"
+        },
+        {
+          "source_line": 2752,
+          "timestamp": "2026-05-19T04:25:47.030152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-028b-qwen3-thinking-folio204:\n    status: DONE"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002752"
+        },
+        {
+          "source_line": 2753,
+          "timestamp": "2026-05-19T04:26:08.040540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002753"
+        },
+        {
+          "source_line": 2754,
+          "timestamp": "2026-05-19T04:26:08.090994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002754"
+        },
+        {
+          "source_line": 2755,
+          "timestamp": "2026-05-19T04:26:13.079034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "status": "running"
+            }
+          },
+          "id": "event-002755"
+        },
+        {
+          "source_line": 2756,
+          "timestamp": "2026-05-19T04:26:13.129619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002756"
+        },
+        {
+          "source_line": 2757,
+          "timestamp": "2026-05-19T04:26:13.129992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-002757"
+        },
+        {
+          "source_line": 2758,
+          "timestamp": "2026-05-19T04:26:13.430922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-16639\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"exp-048-llama8b-pw600\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"exp-048-llama8b-pw600\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 1 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 301
+          },
+          "id": "event-002758"
+        },
+        {
+          "source_line": 2759,
+          "timestamp": "2026-05-19T04:26:30.009563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "status": "done",
+              "limit": "5"
+            }
+          },
+          "id": "event-002759"
+        },
+        {
+          "source_line": 2760,
+          "timestamp": "2026-05-19T04:26:30.184143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260519T035923\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-19T03:59:23.606376+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:07:38.538463+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_computation_fleiss-kappa-unified_20260519T040611\\\", \\\"task_type\\\": \\\"computation:fleiss-kappa-unified\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-19T04:06:11.785556+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:17:39.510413+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_writing_analysis_20260519T041251\\\", \\\"task_type\\\": \\\"paper_writing_analysis\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-19T04:12:52.015175+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:20:37.449370+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diag_exp057-exit-check_20260519T041402\\\", \\\"task_type\\\": \\\"diag:exp057-exit-check\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-19T04:14:02.592778+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:18:39.652409+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diag_table1-sc-inconsistency_20260519T041626\\\", \\\"task_type\\\": \\\"diag:table1-sc-inconsistency\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-19T04:16:27.013061+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:21:09.933947+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 174
+          },
+          "id": "event-002760"
+        },
+        {
+          "source_line": 2761,
+          "timestamp": "2026-05-19T04:26:36.462011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_table1-sc-inconsistency_20260519T041626",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002761"
+        },
+        {
+          "source_line": 2762,
+          "timestamp": "2026-05-19T04:26:36.562764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_table1-sc-inconsistency_20260519T041626\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:table1-sc-inconsistency\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:16:27.013061+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:21:09.933947+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"根因找到了。对比两处 SC tie-breaking 实现：\\\\n\\\\n**exp-026** (`baselines/self_consistency.py:21`):\\\\n```python\\\\nbest_answer = max(groups, key=lambda k: len(groups[k]))\\\\n```\\\\n平局时返回 dict 中**第一个出现的 key**（取决于 traces 中答案出现顺序）。\\\\n\\\\n**exp-031** (`scripts/run_exp031_oracle_folio_regen.py:353-354`):\\\\n```python\\\\ncandidates = sorted(answer_counts.keys())   # 字母序\\\\nsc_answer = max(candidates, key=lambda a: answer_counts[a])\\\\n```\\\\n平局时返回**字母序最小的**（False < True < Unknown）。\\\\n\\\\n验证 4 个平局题：\\\\n\\\\n| 题目 | 票型 | exp-026 (首次出现序) | exp-031 (字母序) | GT |\\\\n|------|------|---------------------|-----------------|-----|\\\\n| folio_0 | 4:4:4 (F/T/U) | True | **False** | Unknown |\\\\n| folio_123 | 6:6 (U/F) | Unknown | **False** | **False** |\\\\n| folio_41 | 6:6 (U/T) | Unknown | **True** | False |\\\\n| folio_84 | 6:6 (T/F) | True | **False** | Unknown |\\\\n\\\\nfolio_123 正是造成差异的题：exp-031 字母序 tie-break 碰巧选中正确答案 False，exp-026 没有。\\\\n\\\\n---\\\\n\\\\n**产出总结：**\\\\n\\\\n1. **exp-026 精确 SC**: 153/204 = 75.00%\\\\n2. **exp-031 精确 SC**: 154/204 = 75.49%\\\\n3. **差异原因**: tie-breaking 实现不同。`self_consistency.py` 按 trace 出现顺序 break tie，`run_exp031_oracle_folio_regen.py` 按字母序 break tie。4 个平局题中 folio_123 (Unknown vs False, gt=False) 导致 1 题之差。\\\\n4. **建议统一值**: 应统一 tie-breaking 为字母序（deterministic、可复现），Table 1 中 Qwen2.5-14B FOLIO-204 SC 报 **75.49% (154/204)** 或 **75.00% (153/204)** 取决于选哪种策略，但两种策略的结果都应一致。推荐修复 `self_consistency.py` 中的 `max(groups, ...)` 为 `max(sorted(groups.keys()), key=...)` 后统一为 **75.49%**，或者更严谨地报 **75.00%**（原始实验跑出的值），并在 exp-031 重跑 SC 以保持一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-002762"
+        },
+        {
+          "source_line": 2763,
+          "timestamp": "2026-05-19T04:26:57.853187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "ROADMAP.md"
+            }
+          },
+          "id": "event-002763"
+        },
+        {
+          "source_line": 2764,
+          "timestamp": "2026-05-19T04:26:58.105187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 02:54 UTC | 更新原因: exp-054 DONE + exp-057/058 T sensitivity 部署 + cuda:3 vLLM kill + 43%/8% 澄清\\\\n\\\\n> D060: 纯 Analysis paper + T/K sensitivity ablation\\\\n\\\\n## 核心方向\\\\n**纯 Analysis Paper — Independence Bottleneck**。SICA 效应 real but fragile (2/3 seeds significant: p=0.013, p=0.039)。Condorcet Eff-K 框架 + oracle gap + 9 种修复全失败 + K/T sensitivity inverted-U + constraint discrimination paradox。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Paper Writing + 最后 ablation 实验\\\\n- **论文**: EMNLP 2026 ARR May 25（~6 天）\\\\n- **Paper Agent**: writing_plan.yaml 审批通过（D060 修正），进入 Step 2\\\\n- **exp-052 p-value 修正**: p=0.039（之前误记 0.09）→ 2/3 seeds 均 α=0.05 显著\\\\n\\\\n## K Sensitivity (inverted U, 论文核心 ablation)\\\\n| K | SC% | SICA% | Δpp | p-value | Status |\\\\n|---|-----|-------|-----|---------|--------|\\\\n| 4 | 54.41 | 52.94 | -1.47 | 0.629 | ✅ |\\\\n| 8 | 57.35 | 56.37 | -0.98 | 0.754 | ✅ |\\\\n| 12 | 54.41 | 59.31 | **+4.90** | **0.013** | ✅ |\\\\n| 16 | 55.88 | 57.35 | +1.47 | 0.629 | ✅ |\\\\n| 20 | — | — | — | — | 12/204 |\\\\n\\\\n## T Sensitivity (fragility evidence, 4-point curve building)\\\\n| T | Δpp | p-value | Status |\\\\n|---|-----|---------|--------|\\\\n| 0.3 | — | — | exp-057 deploying cuda:2@westd-25068 |\\\\n| 0.5 | — | — | exp-058 deploying cuda:3@westd-25068 |\\\\n| 0.7 | +4.90 | 0.013 | ✅ exp-033 |\\\\n| 1.0 | +0.49 | 0.739 | ✅ exp-054 DONE |\\\\n\\\\n## 运行中实验\\\\n| Server | GPU | Experiment | Progress |\\\\n|--------|-----|------------|----------|\\\\n| westd-25068 | cuda:0 | exp-051 K=20 | 12/204 |\\\\n| westd-25068 | cuda:1 | exp-034 Qwen-14B PW-600 | ~461/600 |\\\\n| westd-25068 | cuda:2 | exp-057 Mistral T=0.3 | deploying |\\\\n| westd-25068 | cuda:3 | exp-058 Mistral T=0.5 | deploying (kill 遗留 vLLM 先) |\\\\n| westd-16639 | cuda:0 | exp-039 Qwen-14B PW-600 | ~480/600 |\\\\n| westd-16639 | cuda:1 | exp-0\n…[truncated 2378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 251
+          },
+          "id": "event-002764"
+        },
+        {
+          "source_line": 2765,
+          "timestamp": "2026-05-19T04:26:58.105567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_analysis_20260519T041251",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002765"
+        },
+        {
+          "source_line": 2766,
+          "timestamp": "2026-05-19T04:26:58.156828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_analysis_20260519T041251\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing_analysis\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:12:52.015175+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:20:37.449370+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"All style checks pass: no em-dashes, no explanatory en-dashes, no banned words, and the one participial -ing phrase is fixed. The file is written to `docs/paper/analysis.tex` with all seven subsections (5.1 through 5.7), Table 3 (`tab:independence`), Figure 3 (`fig:k-sensitivity`), and cross-references consistent with method.tex and experiments.tex. The `sec:interventions` alias label is included so the existing reference in discussion.tex resolves correctly.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-002766"
+        },
+        {
+          "source_line": 2767,
+          "timestamp": "2026-05-19T04:27:21.150348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A5 \"exp-028b-qwen3-thinking-folio204:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -6",
+              "description": "Check exp-028b registry details"
+            }
+          },
+          "id": "event-002767"
+        },
+        {
+          "source_line": 2768,
+          "timestamp": "2026-05-19T04:27:21.200999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-028b-qwen3-thinking-folio204:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-18T20:30:30.635Z'\n    updated_at: '2026-05-19T03:34:08.736Z'\n    hypothesis: Qwen3-14B thinking mode (enable_thinking=True, 32K context) 在 FOLIO-204"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002768"
+        },
+        {
+          "source_line": 2769,
+          "timestamp": "2026-05-19T04:27:24.814595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A2 \"conclusion:\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | grep -A2 \"exp-028b\" | head -3",
+              "description": "Check exp-028b conclusion"
+            }
+          },
+          "id": "event-002769"
+        },
+        {
+          "source_line": 2770,
+          "timestamp": "2026-05-19T04:27:24.865224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002770"
+        },
+        {
+          "source_line": 2771,
+          "timestamp": "2026-05-19T04:27:36.575521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -n '/exp-028b-qwen3-thinking-folio204:/,/^  [a-z]/p' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -30",
+              "description": "Read exp-028b full entry"
+            }
+          },
+          "id": "event-002771"
+        },
+        {
+          "source_line": 2772,
+          "timestamp": "2026-05-19T04:27:36.626182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-028b-qwen3-thinking-folio204:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-18T20:30:30.635Z'\n    updated_at: '2026-05-19T03:34:08.736Z'\n    hypothesis: Qwen3-14B thinking mode (enable_thinking=True, 32K context) 在 FOLIO-204\n      上 SICA vs SC。D028 pilot (35/204, delta=+2.86pp) 被 kill。thinking mode 产生更 diverse+higher-quality\n      reasoning traces，如果同时提升 trace quality 和 diversity，可能打破 14B 级别的 capability trap。parent=exp-028\n    spec:\n      command: 'bash run_exp028b.sh (tmux session: exp028b)'\n      server: westd-25068\n      gpu_ids:\n      - cuda:3\n      data_path: data/folio_full.json\n      data_count: 204\n      model_name: Qwen3-14B\n      seed: 42\n      port: 8003\n      max_model_len: 32768\n      max_tokens: 16384\n      temperature: 0.7\n      k: 12\n      mode: thinking\n    reproduce:\n      finished_at: '2026-05-19T03:19:42.424Z'\n    failure_reason: cuda:3 回收给 exp-058 T sensitivity ablation（资源冲突，非 OOM）。166/204\n      已完成，待 exp-058 完成后 resume。\n    conclusion: killed\n    completed_at: '2026-05-19T03:19:44.303Z'\n    extra:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002772"
+        },
+        {
+          "source_line": 2773,
+          "timestamp": "2026-05-19T04:27:57.897034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A3 \"exp-034\" /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | head -4",
+              "description": "Check exp-034 status"
+            }
+          },
+          "id": "event-002773"
+        },
+        {
+          "source_line": 2774,
+          "timestamp": "2026-05-19T04:27:58.298518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-034:\n    status: DEPLOYED\n    retry_count: 0\n    created_at: '2026-05-18T16:15:24.666Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Bash",
+            "elapsed_ms": 401
+          },
+          "id": "event-002774"
+        },
+        {
+          "source_line": 2775,
+          "timestamp": "2026-05-19T04:28:32.428722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 8 / 实际在跑 6 (exp-039/040/048/051/058/028b-resume) | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-25068 48% (435G 可用) / westd-16639 40% (502G 可用)\n\n## Session 恢复汇报\n\n### 1. Table 1 SC 不一致根因（已解决）\n\n**根因: tie-breaking 实现不同。**\n\nexp-026 (`baselines/self_consistency.py`): 平局时返回 dict 中第一个出现的 key（依赖 trace 顺序，不可复现）\nexp-031 (`run_exp031_oracle_folio_regen.py`): 平局时返回字母序最小的（deterministic）\n\n4 个平局题中 folio_123 (6:6 Unknown vs False, gt=False) 导致 1 题之差：\n- exp-026 SC: 153/204 = 75.00%\n- exp-031 SC: 154/204 = 75.49%\n\n**建议**: Table 1 统一使用 deterministic 字母序 tie-breaking (75.49%)，并修复 `self_consistency.py`。或选保守方案报 75.00%（原始实验值）。请 Director 决策。\n\n### 2. exp-057 Registry 修复\n\nCron auto-resolution 将 exp-057 覆盖为 DONE/failed。已手动修复回 DONE/negative，metrics 已恢复 (SC=57.35%, SICA=56.86%, delta=-0.49pp)。\n\nT sensitivity 曲线当前 3/4 完成:\n| T | Δpp | Status |\n|---|-----|--------|\n| 0.3 | -0.49 | ✅ exp-057 |\n| 0.5 | — | 🔄 exp-058 running |\n| 0.7 | +4.90 | ✅ exp-033 |\n| 1.0 | +0.49 | ✅ exp-054 |\n\n### 3. analysis.tex 完成（回调丢失）\n\nWorker 已完成 `docs/paper/analysis.tex`，7 个子章节 (§5.1-5.7)，含 Table 3 (independence metrics) 和 Figure 3 (K-sensitivity)。Style checks 通过。\n\n### 4. 当前实验状态\n\n| Server | GPU | Exp | 说明 |\n|--------|-----|-----|------|\n| westd-25068 | cuda:0 | exp-051 | K=20 |\n| westd-25068 | cuda:1 | exp-034 | Qwen-14B PW-600 (DEPLOYED, 无 cron) |\n| westd-25068 | cuda:2 | — | **空闲** (exp-057 已完成) |\n| westd-25068 | cuda:3 | exp-058 | T=0.5 |\n| westd-16639 | cuda:0 | exp-039 | Qwen-14B PW-600 |\n| westd-16639 | cuda:1 | exp-040 | Qwen3 PW-600 |\n| westd-16639 | cuda:2 | exp-028b | resume (38 remaining) |\n| westd-16639 | cuda:3 | exp-048 | LLaMA-8B PW-600 |\n\n**注意**: exp-034 状态 DEPLOYED 且无 cron 监控。westd-25068 cuda:2 空闲。Worker 池 = 0。\n\n### 5. 待 Director 决策\n1. Table 1 SC tie-breaking: 统一字母序 (75.49%) 还是保留原始值 (75.00%)?\n2. westd-25068 cuda:2 空闲，建议部署 exp-052/053 seed replication（当前 QUEUED）或其他实验\n3. exp-034 无 cron，是否需要派 Worker 检查并补注册 cron?",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002775"
+        },
+        {
+          "source_line": 2776,
+          "timestamp": "2026-05-19T04:28:33.683645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1254
+          },
+          "id": "event-002776"
+        },
+        {
+          "source_line": 2777,
+          "timestamp": "2026-05-19T04:28:47.399773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-002777"
+        },
+        {
+          "source_line": 2778,
+          "timestamp": "2026-05-19T04:28:47.450554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\\\", \\\"content\\\": \\\"# symb_invariant_consensus — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 02:54 UTC | 更新原因: exp-054 DONE + exp-057/058 T sensitivity 部署 + cuda:3 vLLM kill + 43%/8% 澄清\\\\n\\\\n> D060: 纯 Analysis paper + T/K sensitivity ablation\\\\n\\\\n## 核心方向\\\\n**纯 Analysis Paper — Independence Bottleneck**。SICA 效应 real but fragile (2/3 seeds significant: p=0.013, p=0.039)。Condorcet Eff-K 框架 + oracle gap + 9 种修复全失败 + K/T sensitivity inverted-U + constraint discrimination paradox。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Paper Writing + 最后 ablation 实验\\\\n- **论文**: EMNLP 2026 ARR May 25（~6 天）\\\\n- **Paper Agent**: writing_plan.yaml 审批通过（D060 修正），进入 Step 2\\\\n- **exp-052 p-value 修正**: p=0.039（之前误记 0.09）→ 2/3 seeds 均 α=0.05 显著\\\\n\\\\n## K Sensitivity (inverted U, 论文核心 ablation)\\\\n| K | SC% | SICA% | Δpp | p-value | Status |\\\\n|---|-----|-------|-----|---------|--------|\\\\n| 4 | 54.41 | 52.94 | -1.47 | 0.629 | ✅ |\\\\n| 8 | 57.35 | 56.37 | -0.98 | 0.754 | ✅ |\\\\n| 12 | 54.41 | 59.31 | **+4.90** | **0.013** | ✅ |\\\\n| 16 | 55.88 | 57.35 | +1.47 | 0.629 | ✅ |\\\\n| 20 | — | — | — | — | 12/204 |\\\\n\\\\n## T Sensitivity (fragility evidence, 4-point curve building)\\\\n| T | Δpp | p-value | Status |\\\\n|---|-----|---------|--------|\\\\n| 0.3 | — | — | exp-057 deploying cuda:2@westd-25068 |\\\\n| 0.5 | — | — | exp-058 deploying cuda:3@westd-25068 |\\\\n| 0.7 | +4.90 | 0.013 | ✅ exp-033 |\\\\n| 1.0 | +0.49 | 0.739 | ✅ exp-054 DONE |\\\\n\\\\n## 运行中实验\\\\n| Server | GPU | Experiment | Progress |\\\\n|--------|-----|------------|----------|\\\\n| westd-25068 | cuda:0 | exp-051 K=20 | 12/204 |\\\\n| westd-25068 | cuda:1 | exp-034 Qwen-14B PW-600 | ~461/600 |\\\\n| westd-25068 | cuda:2 | exp-057 Mistral T=0.3 | deploying |\\\\n| westd-25068 | cuda:3 | exp-058 Mistral T=0.5 | deploying (kill 遗留 vLLM 先) |\\\\n| westd-16639 | cuda:0 | exp-039 Qwen-14B PW-600 | ~480/600 |\\\\n| westd-16639 | cuda:1 | exp-0\n…[truncated 2378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-002778"
+        },
+        {
+          "source_line": 2779,
+          "timestamp": "2026-05-19T04:28:51.414401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002779"
+        },
+        {
+          "source_line": 2780,
+          "timestamp": "2026-05-19T04:28:51.515054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-002780"
+        },
+        {
+          "source_line": 2781,
+          "timestamp": "2026-05-19T04:28:54.427583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002781"
+        },
+        {
+          "source_line": 2782,
+          "timestamp": "2026-05-19T04:28:54.528324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-002782"
+        },
+        {
+          "source_line": 2783,
+          "timestamp": "2026-05-19T04:29:28.799204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:exp034-status-cron",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：诊断 exp-034 并注册 cron 监控\n\n### 背景\nexp-034 (Qwen2.5-14B on ProofWriter-600) 在 registry 中状态为 DEPLOYED，但没有 cron 监控。服务器 westd-25068 cuda:1。ROADMAP 上次显示进度约 461/600。\n\n### 步骤\n\n1. SSH 到 westd-25068，检查 exp-034 相关进程：\n   - `tmux ls` 查看是否有 exp034 相关的 tmux session\n   - 如果有，`tmux capture-pane -t <session> -p` 查看最新输出\n   - `nvidia-smi` 确认 cuda:1 是否有进程在跑\n   - 查找结果文件：`ls -la /root/symb_invariant_consensus/results/exp034*/` 或类似路径\n\n2. 如果进程还在跑：\n   - 确认当前进度（已完成多少/600）\n   - 使用 `register_cron` 注册监控（需要 tmux session name 作为 pid）\n   - 使用 `update_registry` 将状态从 DEPLOYED 更新为 RUNNING，补充 spec 信息\n\n3. 如果进程已完成：\n   - 找到结果文件，提取 SC/SICA/delta metrics\n   - 使用 `update_registry` 更新状态为 DONE，填入 conclusion 和 metrics\n   - 记录 checkpoint_path 和 log_path\n\n4. 如果进程已死：\n   - 检查日志找失败原因\n   - 更新 registry 状态\n\n### 产出\n- Registry 更新\n- 如果在跑：cron 已注册\n- 向 Agent 汇报当前状态和进度",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['register_cron']"
+            }
+          },
+          "id": "event-002783"
+        },
+        {
+          "source_line": 2784,
+          "timestamp": "2026-05-19T04:29:45.511485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp034-status-cron_20260519T042929\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diag_exp034-status-cron_20260519T042929.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_exp034-status-cron_20260519T042929 started. Use get_worker_status('worker_diag_exp034-status-cron_20260519T042929') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 16712
+          },
+          "id": "event-002784"
+        },
+        {
+          "source_line": 2785,
+          "timestamp": "2026-05-19T04:29:45.664168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "review:analysis-tex-consistency",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：审查 analysis.tex 与 registry 数据一致性\n\n### 背景\n`docs/paper/analysis.tex` 刚由 Worker 完成，包含 7 个子章节 (§5.1-5.7)、Table 3 (independence metrics) 和 Figure 3 (K-sensitivity)。需要确认所有数字与 registry / unified κ 数据一致。\n\n### 审查项\n\n1. 读取 `docs/paper/analysis.tex` 全文（在本地项目目录 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex`）\n\n2. 读取 registry 获取关键实验 metrics（用 read_registry）：\n   - exp-033 (Mistral-7B FOLIO-204 K=12 T=0.7, delta=+4.90pp)\n   - exp-052 (seed=123 replication)\n   - exp-053 (seed=456 replication)\n   - exp-054 (T=1.0, delta=+0.49pp)\n   - exp-057 (T=0.3, delta=-0.49pp)\n   - exp-055 (multi-temp, delta=0.00pp)\n\n3. 读取 unified κ 数据：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/fleiss_kappa_unified_merged.json`\n\n4. 逐项检查：\n   - Table 3 中的 κ 和 Eff-K 值是否与 unified 数据一致\n   - Eff-K 公式是否正确使用 K/(1+(K-1)×κ)，**不是** K×(1-κ)\n   - 所有 SC/SICA/delta 数字是否与 registry 一致\n   - K sensitivity 数据 (K=4,8,12,16) 是否正确\n   - T sensitivity 数据 (T=0.3,0.7,1.0) 是否正确\n   - 交叉引用：§5 中引用的 table/figure 编号是否正确\n\n5. 写作风格检查（按 paper-writing-norms）：\n   - `grep \"—\"` 检查 em-dash\n   - `grep \" – \"` 检查解释性 en-dash\n   - 检查 -ing 短语结尾\n   - 检查过度分段\n\n### 产出\n- 不一致项列表（如有）\n- 修复建议\n- 如果发现数字错误，直接用 Edit 修复（附修改说明）",
+              "tool_groups": "['registry', 'knowledge']"
+            }
+          },
+          "id": "event-002785"
+        },
+        {
+          "source_line": 2786,
+          "timestamp": "2026-05-19T04:29:48.849232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_review_analysis-tex-consistency_20260519T042945\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_review_analysis-tex-consistency_20260519T042945.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_review_analysis-tex-consistency_20260519T042945 started. Use get_worker_status('worker_review_analysis-tex-consistency_20260519T042945') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3185
+          },
+          "id": "event-002786"
+        },
+        {
+          "source_line": 2787,
+          "timestamp": "2026-05-19T04:30:07.875430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__auto_build_provenance",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002787"
+        },
+        {
+          "source_line": 2788,
+          "timestamp": "2026-05-19T04:30:07.927946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-002788"
+        },
+        {
+          "source_line": 2789,
+          "timestamp": "2026-05-19T04:30:10.787563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md"
+            }
+          },
+          "id": "event-002789"
+        },
+        {
+          "source_line": 2790,
+          "timestamp": "2026-05-19T04:30:10.838899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# symb_invariant_consensus — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-19 02:54 UTC | 更新原因: exp-054 DONE + exp-057/058 T sensitivity 部署 + cuda:3 vLLM kill + 43%/8% 澄清\n4\t\n5\t> D060: 纯 Analysis paper + T/K sensitivity ablation\n6\t\n7\t## 核心方向\n8\t**纯 Analysis Paper — Independence Bottleneck**。SICA 效应 real but fragile (2/3 seeds significant: p=0.013, p=0.039)。Condorcet Eff-K 框架 + oracle gap + 9 种修复全失败 + K/T sensitivity inverted-U + constraint discrimination paradox。\n9\t\n10\t## 当前进展\n11\t- **阶段**: Paper Writing + 最后 ablation 实验\n12\t- **论文**: EMNLP 2026 ARR May 25（~6 天）\n13\t- **Paper Agent**: writing_plan.yaml 审批通过（D060 修正），进入 Step 2\n14\t- **exp-052 p-value 修正**: p=0.039（之前误记 0.09）→ 2/3 seeds 均 α=0.05 显著\n15\t\n16\t## K Sensitivity (inverted U, 论文核心 ablation)\n17\t| K | SC% | SICA% | Δpp | p-value | Status |\n18\t|---|-----|-------|-----|---------|--------|\n19\t| 4 | 54.41 | 52.94 | -1.47 | 0.629 | ✅ |\n20\t| 8 | 57.35 | 56.37 | -0.98 | 0.754 | ✅ |\n21\t| 12 | 54.41 | 59.31 | **+4.90** | **0.013** | ✅ |\n22\t| 16 | 55.88 | 57.35 | +1.47 | 0.629 | ✅ |\n23\t| 20 | — | — | — | — | 12/204 |\n24\t\n25\t## T Sensitivity (fragility evidence, 4-point curve building)\n26\t| T | Δpp | p-value | Status |\n27\t|---|-----|---------|--------|\n28\t| 0.3 | — | — | exp-057 deploying cuda:2@westd-25068 |\n29\t| 0.5 | — | — | exp-058 deploying cuda:3@westd-25068 |\n30\t| 0.7 | +4.90 | 0.013 | ✅ exp-033 |\n31\t| 1.0 | +0.49 | 0.739 | ✅ exp-054 DONE |\n32\t\n33\t## 运行中实验\n34\t| Server | GPU | Experiment | Progress |\n35\t|--------|-----|------------|----------|\n36\t| westd-25068 | cuda:0 | exp-051 K=20 | 12/204 |\n37\t| westd-25068 | cuda:1 | exp-034 Qwen-14B PW-600 | ~461/600 |\n38\t| westd-25068 | cuda:2 | exp-057 Mistral T=0.3 | deploying |\n39\t| westd-25068 | cuda:3 | exp-058 Mistral T=0.5 | deploying (kill 遗留 vLLM 先) |\n40\t| westd-16639 | cuda:0 | exp-039 Qwen-14B PW-600 | ~480/600 |\n41\t| westd-16639 | cuda:1 | exp-040 Qwen3 PW-600 | ~306/600 |\n42\t| westd-16639 | cuda:2 | exp-055 Multi-Temp Mistral | ~28/204 |\n43\t| westd-16639 | cuda:3 | exp-048\n…[truncated 2189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002790"
+        },
+        {
+          "source_line": 2791,
+          "timestamp": "2026-05-19T04:30:25.558967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md",
+              "old_string": "> 最后更新: 2026-05-19 02:54 UTC | 更新原因: exp-054 DONE + exp-057/058 T sensitivity 部署 + cuda:3 vLLM kill + 43%/8% 澄清",
+              "new_string": "> 最后更新: 2026-05-19 04:30 UTC | 更新原因: exp-057 DONE/negative + Table 1 SC 根因 + analysis.tex 完成 + exp-028b resume"
+            }
+          },
+          "id": "event-002791"
+        },
+        {
+          "source_line": 2792,
+          "timestamp": "2026-05-19T04:30:25.659782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002792"
+        },
+        {
+          "source_line": 2793,
+          "timestamp": "2026-05-19T04:30:37.857294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md",
+              "old_string": "## T Sensitivity (fragility evidence, 4-point curve building)\n| T | Δpp | p-value | Status |\n|---|-----|---------|--------|\n| 0.3 | — | — | exp-057 deploying cuda:2@westd-25068 |\n| 0.5 | — | — | exp-058 deploying cuda:3@westd-25068 |\n| 0.7 | +4.90 | 0.013 | ✅ exp-033 |\n| 1.0 | +0.49 | 0.739 | ✅ exp-054 DONE |",
+              "new_string": "## T Sensitivity (fragility evidence, 4-point curve building)\n| T | SC% | SICA% | Δpp | p-value | Status |\n|---|-----|-------|-----|---------|--------|\n| 0.3 | 57.35 | 56.86 | -0.49 | 1.000 | ✅ exp-057 DONE |\n| 0.5 | — | — | — | — | 🔄 exp-058 running |\n| 0.7 | 54.41 | 59.31 | **+4.90** | **0.013** | ✅ exp-033 |\n| 1.0 | 55.39 | 55.88 | +0.49 | 0.739 | ✅ exp-054 DONE |"
+            }
+          },
+          "id": "event-002793"
+        },
+        {
+          "source_line": 2794,
+          "timestamp": "2026-05-19T04:30:37.857846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002794"
+        },
+        {
+          "source_line": 2795,
+          "timestamp": "2026-05-19T04:30:49.253966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md",
+              "old_string": "## 运行中实验\n| Server | GPU | Experiment | Progress |\n|--------|-----|------------|----------|\n| westd-25068 | cuda:0 | exp-051 K=20 | 12/204 |\n| westd-25068 | cuda:1 | exp-034 Qwen-14B PW-600 | ~461/600 |\n| westd-25068 | cuda:2 | exp-057 Mistral T=0.3 | deploying |\n| westd-25068 | cuda:3 | exp-058 Mistral T=0.5 | deploying (kill 遗留 vLLM 先) |\n| westd-16639 | cuda:0 | exp-039 Qwen-14B PW-600 | ~480/600 |\n| westd-16639 | cuda:1 | exp-040 Qwen3 PW-600 | ~306/600 |\n| westd-16639 | cuda:2 | exp-055 Multi-Temp Mistral | ~28/204 |\n| westd-16639 | cuda:3 | exp-048 LLaMA-8B PW-600 | ~11/600 |",
+              "new_string": "## 运行中实验\n| Server | GPU | Experiment | Progress |\n|--------|-----|------------|----------|\n| westd-25068 | cuda:0 | exp-051 K=20 | running |\n| westd-25068 | cuda:1 | exp-034 Qwen-14B PW-600 | DEPLOYED 无 cron (Worker 诊断中) |\n| westd-25068 | cuda:2 | — | **空闲** (exp-057 完成) |\n| westd-25068 | cuda:3 | exp-058 Mistral T=0.5 | running |\n| westd-16639 | cuda:0 | exp-039 Qwen-14B PW-600 | running |\n| westd-16639 | cuda:1 | exp-040 Qwen3 PW-600 | running |\n| westd-16639 | cuda:2 | exp-028b resume | running (38 remaining) |\n| westd-16639 | cuda:3 | exp-048 LLaMA-8B PW-600 | running |"
+            }
+          },
+          "id": "event-002795"
+        },
+        {
+          "source_line": 2796,
+          "timestamp": "2026-05-19T04:30:49.254345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-002796"
+        },
+        {
+          "source_line": 2797,
+          "timestamp": "2026-05-19T04:31:03.675066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md",
+              "old_string": "- [ ] exp-057/058 部署 → T sensitivity 4 点曲线\n- [ ] cuda:3 遗留 vLLM kill\n- [ ] exp-051 K=20 完成 → 倒 U 型最终确认\n- [ ] Paper Agent Step 2: Plot Generation\n- [ ] PW-600 系列完成（exp-034 vs exp-039 矛盾分析）\n- [ ] Fleiss' κ / Eff-K Worker 计算验证\n- [ ] Submit to Review team",
+              "new_string": "- [x] exp-057 DONE (T=0.3, delta=-0.49pp, negative)\n- [x] cuda:3 遗留 vLLM kill\n- [x] Fleiss' κ / Eff-K 统一计算完成 (artifacts/fleiss_kappa_unified_merged.json)\n- [x] analysis.tex 完成 (§5.1-5.7, Table 3, Figure 3)\n- [x] Table 1 SC 不一致根因：tie-breaking 实现差异 (75.00% vs 75.49%)\n- [ ] exp-058 T=0.5 完成 → T sensitivity 4 点曲线\n- [ ] exp-051 K=20 完成 → 倒 U 型最终确认\n- [ ] exp-028b resume 完成 → 合并 166+38，计算 thinking mode κ\n- [ ] Table 1 SC tie-breaking 统一（待 Director 决策）\n- [ ] Paper Agent Step 2: Plot Generation\n- [ ] PW-600 系列完成（exp-034 vs exp-039 矛盾分析）\n- [ ] Submit to Review team"
+            }
+          },
+          "id": "event-002797"
+        },
+        {
+          "source_line": 2798,
+          "timestamp": "2026-05-19T04:31:03.725712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002798"
+        },
+        {
+          "source_line": 2799,
+          "timestamp": "2026-05-19T04:31:08.852667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-002799"
+        },
+        {
+          "source_line": 2800,
+          "timestamp": "2026-05-19T04:31:08.903484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"content\\\": \\\"# Memory — symb_invariant_consensus\\\\n\\\\n## 项目核心发现\\\\n\\\\n### Regime-Dependent Capability Trap\\\\n- SICA 在 SC 准确率 50-60% 区间（Mistral-7B）可能有效，但不稳定\\\\n- SC > 75%（Qwen2.5-14B, Qwen3-14B）时 SICA 几乎无效或负向\\\\n- Oracle FOL (exp-031) delta=+14.22pp 证明上限存在，但 LLM extraction 质量是瓶颈\\\\n\\\\n### Fleiss' κ / Effective K 完整数据（2026-05-19）\\\\n\\\\n**公式：Eff-K = K / (1 + (K-1) × κ)**\\\\n\\\\n| Exp | Model | Dataset | κ | Eff-K | SICA Δpp | p |\\\\n|-----|-------|---------|---|-------|----------|---|\\\\n| exp-033 | Mistral-7B | FOLIO-204 s42 | 0.5006 | **1.84** | +4.90 | 0.013 |\\\\n| exp-052 | Mistral-7B | FOLIO-204 s123 | 0.4122 | **2.17** | +3.43 | 0.039 |\\\\n| exp-053 | Mistral-7B | FOLIO-204 s456 | 0.4013 | **2.22** | -0.49 | 1.0 |\\\\n| exp-046 | Mistral-7B | PW-600 | 0.2102 | **3.62** | -2.83 | 0.010 |\\\\n| exp-026/041 | Qwen-14B | FOLIO-204 | 0.7440 | **1.31** | +0.25 | n.s. |\\\\n| exp-038 | Qwen-14B | LogiQA-200 | 0.8210 | **1.20** | -0.50 | n.s. |\\\\n\\\\n**叙事**：Eff-K 是跨模型的必要条件（Qwen Eff-K≈1.2-1.3 → ~0 gain），但 seed 内部 variance 仍主导。exp-046 Eff-K=3.62（最高）但 SC=39% → delta=-2.83pp，证明需要 sufficient Eff-K AND sufficient SC。\\\\n\\\\n### Seed Replication 结论（2026-05-19）\\\\n- exp-033 (seed=42): delta=+4.90pp, p=0.013 ✅\\\\n- exp-052 (seed=123): delta=+3.43pp, p=0.039 ✅\\\\n- exp-053 (seed=456): delta=-0.49pp, p=1.0 ❌\\\\n- 3 seeds 中 2 positive 1 negative，Pearson r(SC%, delta)=-0.8973\\\\n- 结论：SICA 效果与 SC 水平强负相关，seed=456 的 SC=56.37% 已接近 SICA 失效边界\\\\n\\\\n### Adaptive SICA 验证失败（2026-05-19）\\\\n- 测试 entropy-gated 策略（low entropy→SC, high entropy→SICA）\\\\n- 8/19 实验 Adaptive SICA < SC，没有任何 entropy threshold 能 universally work\\\\n- Method contribution 路径关闭——无法 claim SICA 是一个可用的方法\\\\n\\\\n### D059/D060 分析结果摘要（2026-05-19）\\\\n- **Condorcet Independence**: Effective K 极低（traces 高度相关），majority voting 前提假设被违反\\\\n- **Extraction Error Taxonomy**: Oracle gap 30.4pp，extraction 错误是主要瓶颈\\\\n- **K Sens\n…[truncated 2373 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-002800"
+        },
+        {
+          "source_line": 2801,
+          "timestamp": "2026-05-19T04:32:02.284164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "symb_invariant_consensus",
+              "file": "memory.md",
+              "content": "# Memory — symb_invariant_consensus\n\n## 项目核心发现\n\n### Regime-Dependent Capability Trap\n- SICA 在 SC 准确率 50-60% 区间（Mistral-7B）可能有效，但不稳定\n- SC > 75%（Qwen2.5-14B, Qwen3-14B）时 SICA 几乎无效或负向\n- Oracle FOL (exp-031) delta=+14.22pp 证明上限存在，但 LLM extraction 质量是瓶颈\n\n### Fleiss' κ / Effective K 完整数据（2026-05-19）\n\n**公式：Eff-K = K / (1 + (K-1) × κ)**\n\n| Exp | Model | Dataset | κ | Eff-K | SICA Δpp | p |\n|-----|-------|---------|---|-------|----------|---|\n| exp-033 | Mistral-7B | FOLIO-204 s42 | 0.5006 | **1.84** | +4.90 | 0.013 |\n| exp-052 | Mistral-7B | FOLIO-204 s123 | 0.4122 | **2.17** | +3.43 | 0.039 |\n| exp-053 | Mistral-7B | FOLIO-204 s456 | 0.4013 | **2.22** | -0.49 | 1.0 |\n| exp-046 | Mistral-7B | PW-600 | 0.2102 | **3.62** | -2.83 | 0.010 |\n| exp-026/041 | Qwen-14B | FOLIO-204 | 0.7440 | **1.31** | +0.25 | n.s. |\n| exp-038 | Qwen-14B | LogiQA-200 | 0.8210 | **1.20** | -0.50 | n.s. |\n\n**叙事**：Eff-K 是跨模型的必要条件（Qwen Eff-K≈1.2-1.3 → ~0 gain），但 seed 内部 variance 仍主导。exp-046 Eff-K=3.62（最高）但 SC=39% → delta=-2.83pp，证明需要 sufficient Eff-K AND sufficient SC。\n\n### Seed Replication 结论（2026-05-19）\n- exp-033 (seed=42): delta=+4.90pp, p=0.013 ✅\n- exp-052 (seed=123): delta=+3.43pp, p=0.039 ✅\n- exp-053 (seed=456): delta=-0.49pp, p=1.0 ❌\n- 3 seeds 中 2 positive 1 negative，Pearson r(SC%, delta)=-0.8973\n- 结论：SICA 效果与 SC 水平强负相关，seed=456 的 SC=56.37% 已接近 SICA 失效边界\n\n### Adaptive SICA 验证失败（2026-05-19）\n- 测试 entropy-gated 策略（low entropy→SC, high entropy→SICA）\n- 8/19 实验 Adaptive SICA < SC，没有任何 entropy threshold 能 universally work\n- Method contribution 路径关闭——无法 claim SICA 是一个可用的方法\n\n### D059/D060 分析结果摘要（2026-05-19）\n- **Condorcet Independence**: Effective K 极低（traces 高度相关），majority voting 前提假设被违反\n- **Extraction Error Taxonomy**: Oracle gap 30.4pp，extraction 错误是主要瓶颈\n- **K Sensitivity**: K=12 是 sweet spot（倒 U 型：K=4 -1.47, K=8 -0.98, K=12 +4.90, K=16 +1.55）\n- **Discriminative Filtering**: 0 gains，trivially satisfied 约束过滤无效\n- **D060**: 转为纯 Analysis paper，method improvement 三路失败\n\n### 温度敏感性（2026-05-19 更新）\n- T=0.3 (exp-057): SC=57.35%, SICA=56.86%, delta=-0.49pp, p=1.0 (低温 traces 太确定性)\n- T=0.7 (exp-033): SC=54.41%, SICA=59.31%, delta=+4.90pp, p=0.013 ✅\n- T=1.0 (exp-054): SC=55.39%, SICA=55.88%, delta=+0.49pp, p=0.739 (高温噪声抹平优势)\n- T=0.5 (exp-058): running，完成后形成 4 点温度曲线\n- 倒 U 型：T=0.7 是唯一显著正向点\n\n### exp-046 负向结果（2026-05-19）\n- Mistral-7B ProofWriter-600: SC=39.33%, delta=-2.83pp, p=0.0095 (significant negative)\n- SC 太低(39%) → extraction quality 也差，SICA 反而引入噪声\n\n### Table 1 SC Tie-Breaking 不一致根因（2026-05-19）\n- exp-026 `baselines/self_consistency.py`: `max(groups, key=...)` 平局返回 dict 首个 key（不确定性）\n- exp-031 `run_exp031_oracle_folio_regen.py`: `max(sorted(candidates), key=...)` 平局返回字母序最小\n- 4 个平局题中 folio_123 (6:6 Unknown vs False, gt=False) 导致 1 题差异\n- exp-026 SC: 153/204 = 75.00%, exp-031 SC: 154/204 = 75.49%\n- 待 Director 决策统一方案\n\n## 硬规则\n\n### 部署 dry-run 硬规则（2026-05-19 Director 指令，立即生效）\n- **所有新实验部署前必须先 dry-run（n=3 或 n=5）**\n- 确认：输出格式正确、无 OOM、无 crash、结果文件正常写入\n- dry-run 通过后再启动全量\n- dry-run 失败 → 修复后重新 dry-run，不要直接启全量\n- 适用于所有后续新实验，包括 exp-028b resume\n\n## 服务器环境\n\n### westd-25068\n- 4× RTX PRO 6000 Blackwell\n- conda base 环境，/root/miniconda3\n- 项目目录: /root/symb_invariant_consensus\n- 模型缓存: /root/autodl-tmp/models/\n- vLLM 需要: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n\n### westd-16639\n- 4× RTX PRO 6000 Blackwell\n- 同上环境配置\n- 项目目录: /root/symb_invariant_consensus\n\n## 已验证的模型版本\n- Mistral-7B-Instruct-v0.3: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\n- Qwen2.5-14B-Instruct: /root/autodl-tmp/models/Qwen2.5-14B-Instruct (cached)\n- Qwen3-14B: Qwen/Qwen3-14B (cached, enable_thinking=false for non-thinking)\n- Meta-Llama-3.1-8B-Instruct: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\n\n## 经验教训\n\n### 部署\n- vLLM 启动和 python 实验必须分两步（先启 vLLM、curl 验证、再启实验），不要用 && 链\n- tmux session 名必须和 cron 注册的 pid 一致，否则 cron 会误判进程退出\n- Registry 状态机不允许回退（DONE→RUNNING 不行），卡住时需直接编辑 YAML\n- DEPLOYED 是死胡同状态，不要用\n- **部署新实验前必须确认目标 GPU 和端口无冲突**（exp-028b 被 exp-058 覆盖的教训）\n\n### 实验设计\n- McNemar exact test 在 discordant pairs < 20 时必须用 binomial test\n- Pipeline determinism: list(set(...))→sorted(set(...)), Z3 seed fixed\n- K=12 是当前最优，K=4/8 不够，K=16/20 边际递减\n- 温度 T=0.7 是标准配置，T=1.0 几乎无效\n\n### 数值计算\n- **派 Worker 做数值计算必须在指令中明确写出公式**（M027 教训）\n- Eff-K 正确公式: Eff-K = K / (1 + (K-1) × κ)，不是 K × (1 - κ)\n\n### 流程\n- read_registry API 最多返回 10 条，需要直接 Read registry.yaml 获取完整数据\n- Worker 部署时必须明确指定 server 名，否则可能连到错误服务器\n- exp-034 状态卡在 DEPLOYED（状态机限制），实际 v4 在跑，tmux=exp034_run\n"
+            }
+          },
+          "id": "event-002801"
+        },
+        {
+          "source_line": 2802,
+          "timestamp": "2026-05-19T04:32:02.335448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-002802"
+        },
+        {
+          "source_line": 2803,
+          "timestamp": "2026-05-19T04:32:23.220000+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 初始化完成。当前状态：\n\n**实验**: 6 个 GPU 任务在跑（exp-039/040/048/051/058/028b-resume），westd-25068 cuda:2 空闲\n**Worker 池**: 2 个 CPU Worker（exp-034 诊断 + analysis.tex 审查）\n**已完成**: exp-057 registry 修复、Table 1 SC 根因确认、ROADMAP/memory.md 更新\n**待 Director 决策**: Table 1 tie-breaking 统一方案、cuda:2 空闲 GPU 分配\n\n等待 Worker 回调和 Director 指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002803"
+        }
+      ]
+    },
+    {
+      "number": 249,
+      "messages": [
+        {
+          "source_line": 2804,
+          "timestamp": "2026-05-19T04:32:23.705538+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **紧急：GPU 利用率核实**\n\nauto-facts 显示只有 1 张 GPU 确认在跑（exp-048 on westd-16639:cuda:3），其余 4 个 RUNNING 实验全是 `?`（无 PID/GPU 信息）。GPU health 两台服务器都返回 stale。\n\n**立即执行**（在处理其他任何事之前）：\n\n1. SSH 到 westd-25068，运行 `nvidia-smi` + `ps aux | grep python` 确认：\n   - exp-051 K=20 是否在跑？哪个 GPU？进度？\n   - exp-058 T=0.5 是否在跑？哪个 GPU？进度？\n   - exp-034 Qwen-14B PW-600 状态？（ROADMAP 显示 cuda:1 ~461/600，但 overview 完全没有它）\n   - cuda:2 是否空闲？（exp-057 已 failed）\n\n2. SSH 到 westd-16639，运行 `nvidia-smi` + `ps aux | grep python` 确认：\n   - exp-039 14B PW-600 是否在跑？\n   - exp-040 Qwen3 PW-600 是否在跑？\n   - exp-048 LLaMA PW-600 是否在跑？\n   - exp-028b resume 状态？（166/204 完成，需要 resume）\n\n3. 每个实验如果在跑，报告进度（已完成/总数）。如果挂了，报告原因（OOM/crash/进程不存在）。\n\n4. **空闲 GPU 立即报告**，我分配新任务。\n\nDDL 6天，不能有 GPU 空转。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-002804"
+        },
+        {
+          "source_line": 2805,
+          "timestamp": "2026-05-19T04:32:47.926404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:gpu-check-westd25068",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 紧急任务：westd-25068 GPU 利用率全面核实\n\n### 背景\nDirector 要求立即确认所有 GPU 实际状态。DDL 6 天，不能有 GPU 空转。\n\n### 步骤\n\n1. SSH 到 westd-25068，运行以下命令：\n\n```bash\nnvidia-smi\n```\n\n```bash\nps aux | grep python\n```\n\n```bash\ntmux ls\n```\n\n2. 逐个 GPU 确认：\n\n**cuda:0 — 预期: exp-051 K=20 (Mistral-7B FOLIO-204 K sensitivity)**\n- 是否有 python 进程在跑？PID？\n- 如果有 tmux session（可能叫 exp051 相关），capture-pane 查看最新输出和进度\n- 检查结果文件: `ls -la /root/symb_invariant_consensus/results/exp051*/ 2>/dev/null` 或 `find /root/symb_invariant_consensus -name \"*exp051*\" -newer /root/symb_invariant_consensus/results/ 2>/dev/null`\n- 确认进度: 已完成多少题/204\n\n**cuda:1 — 预期: exp-034 Qwen-14B PW-600**\n- 是否有 python 进程在跑？PID？\n- tmux session 可能叫 exp034_run，capture-pane 查看\n- 检查结果文件: `ls -la /root/symb_invariant_consensus/results/exp034*/`\n- 确认进度: 已完成多少题/600\n\n**cuda:2 — 预期: 空闲（exp-057 已完成）**\n- 确认是否真的空闲\n- 如果有进程在跑，报告是什么\n\n**cuda:3 — 预期: exp-058 T=0.5 (Mistral-7B FOLIO-204 temperature sensitivity)**\n- 是否有 python 进程在跑？PID？\n- tmux session 可能叫 exp058 相关，capture-pane 查看\n- 检查结果文件\n- 确认进度: 已完成多少题/204\n\n3. 额外检查：\n- `df -h /root` 报告磁盘使用\n- 检查是否有 vLLM 进程在跑: `ps aux | grep vllm`\n\n### 产出格式\n```\n## westd-25068 GPU 状态\n| GPU | 预期实验 | 实际状态 | PID | 进度 | 备注 |\n|-----|---------|---------|-----|------|------|\n| cuda:0 | exp-051 | ? | ? | ?/204 | |\n| cuda:1 | exp-034 | ? | ? | ?/600 | |\n| cuda:2 | 空闲 | ? | — | — | |\n| cuda:3 | exp-058 | ? | ? | ?/204 | |\n\n磁盘: ?\nvLLM 进程: ?\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-002805"
+        },
+        {
+          "source_line": 2806,
+          "timestamp": "2026-05-19T04:32:56.068545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd25068_20260519T043248\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diag_gpu-check-westd25068_20260519T043248.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_gpu-check-westd25068_20260519T043248 started. Use get_worker_status('worker_diag_gpu-check-westd25068_20260519T043248') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 8142
+          },
+          "id": "event-002806"
+        },
+        {
+          "source_line": 2807,
+          "timestamp": "2026-05-19T04:32:56.875030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:gpu-check-westd16639",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 紧急任务：westd-16639 GPU 利用率全面核实\n\n### 背景\nDirector 要求立即确认所有 GPU 实际状态。DDL 6 天，不能有 GPU 空转。\n\n### 步骤\n\n1. SSH 到 westd-16639，运行以下命令：\n\n```bash\nnvidia-smi\n```\n\n```bash\nps aux | grep python\n```\n\n```bash\ntmux ls\n```\n\n2. 逐个 GPU 确认：\n\n**cuda:0 — 预期: exp-039 Qwen2.5-14B PW-600**\n- 是否有 python 进程在跑？PID？\n- tmux session 查看，capture-pane 获取最新输出和进度\n- 检查结果文件: `ls -la /root/symb_invariant_consensus/results/exp039*/`\n- 确认进度: 已完成多少题/600\n\n**cuda:1 — 预期: exp-040 Qwen3 PW-600**\n- 是否有 python 进程在跑？PID？\n- tmux session 查看\n- 检查结果文件: `ls -la /root/symb_invariant_consensus/results/exp040*/`\n- 确认进度: 已完成多少题/600\n\n**cuda:2 — 预期: exp-028b resume (Qwen3-14B thinking FOLIO-204, 38 remaining questions)**\n- 是否有 python 进程在跑？PID？\n- tmux session 可能叫 exp028b_run 或 exp028b_resume\n- 检查结果文件\n- 确认进度: 多少已完成/204（原有 166 + resume 部分）\n\n**cuda:3 — 预期: exp-048 LLaMA-8B PW-600**\n- 是否有 python 进程在跑？PID？\n- tmux session 查看\n- 检查结果文件\n- 确认进度: 已完成多少题/600\n\n3. 额外检查：\n- `df -h /root` 报告磁盘使用\n- 检查是否有 vLLM 进程在跑: `ps aux | grep vllm`\n\n### 产出格式\n```\n## westd-16639 GPU 状态\n| GPU | 预期实验 | 实际状态 | PID | 进度 | 备注 |\n|-----|---------|---------|-----|------|------|\n| cuda:0 | exp-039 | ? | ? | ?/600 | |\n| cuda:1 | exp-040 | ? | ? | ?/600 | |\n| cuda:2 | exp-028b | ? | ? | ?/204 | |\n| cuda:3 | exp-048 | ? | ? | ?/600 | |\n\n磁盘: ?\nvLLM 进程: ?\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-002807"
+        },
+        {
+          "source_line": 2808,
+          "timestamp": "2026-05-19T04:33:00.160015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd16639_20260519T043257\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diag_gpu-check-westd16639_20260519T043257.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_gpu-check-westd16639_20260519T043257 started. Use get_worker_status('worker_diag_gpu-check-westd16639_20260519T043257') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3284
+          },
+          "id": "event-002808"
+        },
+        {
+          "source_line": 2809,
+          "timestamp": "2026-05-19T04:33:12.026450+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 诊断 Worker 已并行派出（westd-25068 + westd-16639），每个都会运行 `nvidia-smi` + `ps aux | grep python` + `tmux ls` 逐 GPU 核实。Worker 完成后立即汇报结果。\n\n当前 Worker 池 = 4（2 GPU 诊断 + 1 exp-034 cron 诊断 + 1 analysis.tex 审查）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002809"
+        }
+      ]
+    },
+    {
+      "number": 250,
+      "messages": [
+        {
+          "source_line": 2810,
+          "timestamp": "2026-05-19T04:33:12.036486+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_writing_analysis_20260519T041251 已完成（status=done）。用 `get_worker_status('worker_paper_writing_analysis_20260519T041251')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_analysis_20260519T041251\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002810"
+        },
+        {
+          "source_line": 2811,
+          "timestamp": "2026-05-19T04:33:25.993818+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 session 初始化时处理过此 Worker 结果——analysis.tex 已完成（§5.1-5.7, Table 3, Figure 3），style checks 通过。已在 ROADMAP 标记完成并向 Director 汇报。无需重复处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002811"
+        }
+      ]
+    },
+    {
+      "number": 251,
+      "messages": [
+        {
+          "source_line": 2812,
+          "timestamp": "2026-05-19T04:33:26.574428+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_table1-sc-inconsistency_20260519T041626 已完成（status=done）。用 `get_worker_status('worker_diag_table1-sc-inconsistency_20260519T041626')` 读取结果，然后处理。\n\n- worker_id: worker_diag_table1-sc-inconsistency_20260519T041626\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002812"
+        },
+        {
+          "source_line": 2813,
+          "timestamp": "2026-05-19T04:33:36.468800+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这两个 Worker 的结果在 session 初始化时已经读取和处理过了：\n\n1. **worker_paper_writing_analysis**: analysis.tex 完成（§5.1-5.7, Table 3, Figure 3），style checks 通过。已在 Director 汇报中提及。\n\n2. **worker_diag_table1-sc-inconsistency**: Table 1 SC 根因已找到（tie-breaking 实现差异，75.00% vs 75.49%）。已汇报 Director 并写入 memory.md，等待 Director 决策统一方案。\n\n不需要重复处理。当前等待两个 GPU 诊断 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002813"
+        }
+      ]
+    },
+    {
+      "number": 252,
+      "messages": [
+        {
+          "source_line": 2814,
+          "timestamp": "2026-05-19T04:33:37.114524+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令]\n\n1. exp-057 T=0.3 结果收到。T sensitivity 倒 U 型 3/4 确认（T=0.3:-0.49, T=0.7:+4.90, T=1.0:+0.49），等 exp-058 完成。\n\n2. cuda:2@westd-25068 — 做以下之一（按优先级）：\n   a) 如果有快速 CPU 分析任务（如验证 high-entropy +9.6pp n=73 的数据来源，Reviewer 问了），不需要 GPU 但可以用这台服务器\n   b) 等 exp-058 完成后此卡转给 exp-028b 思考模式 or 其他\n   c) 不必强行找实验——核心 ablation 数据已齐，剩余是论文写作窗口\n\n3. Table 1 SC 排查有结果了吗？（exp-026 SC=75.00% vs exp-031 SC=75.49%）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-002814"
+        },
+        {
+          "source_line": 2815,
+          "timestamp": "2026-05-19T04:34:07.686624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 8 / 实际在跑 6+1待确认 | Worker 4 (GPU 0 / CPU 4: 2×GPU诊断 + exp034诊断 + analysis审查) | 磁盘: westd-25068 48% (435G) / westd-16639 40% (502G)\n\n## 回复 Director 三项\n\n### 1. T sensitivity 确认\n收到。3/4 倒 U 型已确认，等 exp-058 (T=0.5)。\n\n### 2. cuda:2@westd-25068\n收到优先级。当前不强行铺实验。可以用来跑 CPU 分析任务——high-entropy +9.6pp n=73 数据来源验证是好的候选。需要 Director 确认：这个 +9.6pp 数据来自哪个实验？是 exp-033 的 entropy-conditioned 子集分析吗？我去 registry 查证后派 Worker 验证。\n\n### 3. Table 1 SC 根因（已解决）\n\n**根因：tie-breaking 实现不同。**\n\n- exp-026 `baselines/self_consistency.py:21`: `max(groups, key=lambda k: len(groups[k]))` — 平局返回 dict 中第一个出现的 key（依赖 trace 顺序，不可复现）\n- exp-031 `run_exp031_oracle_folio_regen.py:353`: `max(sorted(candidates), key=lambda a: answer_counts[a])` — 平局返回字母序最小（deterministic）\n\n具体差异：4 个平局题，其中 folio_123 (6:6 Unknown vs False, gt=False) 导致 1 题之差：\n- exp-026: 153/204 = 75.00%\n- exp-031: 154/204 = 75.49%\n\n**请 Director 决策**：Table 1 中 Qwen2.5-14B FOLIO-204 的 SC 报哪个？\n- A) 75.49% — 统一字母序 tie-breaking（deterministic，可复现）\n- B) 75.00% — 保留原始实验值（保守）\n- C) 其他方案\n\n建议 A，因为字母序 tie-breaking 是 deterministic 的，且 exp-031 是后续 oracle 实验的基准。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002815"
+        },
+        {
+          "source_line": 2816,
+          "timestamp": "2026-05-19T04:34:11.374372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3687
+          },
+          "id": "event-002816"
+        },
+        {
+          "source_line": 2817,
+          "timestamp": "2026-05-19T04:34:19.952903+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已回复 Director。等待 GPU 诊断 Worker 回调和 Director 决策。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002817"
+        }
+      ]
+    },
+    {
+      "number": 253,
+      "messages": [
+        {
+          "source_line": 2818,
+          "timestamp": "2026-05-19T04:34:20.412958+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_exp034-status-cron_20260519T042929 已完成（status=done）。用 `get_worker_status('worker_diag_exp034-status-cron_20260519T042929')` 读取结果，然后处理。\n\n- worker_id: worker_diag_exp034-status-cron_20260519T042929\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002818"
+        },
+        {
+          "source_line": 2819,
+          "timestamp": "2026-05-19T04:34:29.499526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_exp034-status-cron_20260519T042929",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002819"
+        },
+        {
+          "source_line": 2820,
+          "timestamp": "2026-05-19T04:34:29.550354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp034-status-cron_20260519T042929\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:exp034-status-cron\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:29:29.314924+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:31:02.171585+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"汇报：\\\\n\\\\n**exp-034 状态：正常运行中**\\\\n- 进度：**562/600** (93.7%)，剩余 39 题\\\\n- ETA：~45 分钟（avg 68.6s/prob）\\\\n- tmux session：`exp034_run`，VLLM PID=68846，cuda:1，port 8001\\\\n- Cron 监控：**已注册**（120s 间隔）\\\\n- Registry 状态：仍为 DEPLOYED（状态机不允许 DEPLOYED→RUNNING 转换），notes 已更新为实际运行状态\\\\n- 早期 93 题 partial metrics：SICA=77.42% vs SC=74.19%, delta=+3.23pp（待全量完成后更新）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002820"
+        },
+        {
+          "source_line": 2821,
+          "timestamp": "2026-05-19T04:34:38.779324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_gpu-check-westd25068_20260519T043248",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002821"
+        },
+        {
+          "source_line": 2822,
+          "timestamp": "2026-05-19T04:34:39.181123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd25068_20260519T043248\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diag:gpu-check-westd25068\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:32:48.501571+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"## westd-25068 GPU 状态\\\\n\\\\n| GPU | 预期实验 | 实际状态 | PID | 进度 | 备注 |\\\\n|-----|---------|---------|-----|------|------|\\\\n| cuda:0 | exp-051 K=20 | **空闲 (已完成)** | — | 204/204 (全部K值完成) | k4/k8/k16/k20 均 204/204，k20 耗时 124.3min，日志显示 FULL_MVP_DONE |\\\\n| cuda:1 | exp-034 Qwen-14B PW-600 | **运行中** 97% | 69808 (runner) \\\", \\\"turn_count\\\": 26}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 401
+          },
+          "id": "event-002822"
+        },
+        {
+          "source_line": 2823,
+          "timestamp": "2026-05-19T04:34:39.181634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_gpu-check-westd16639_20260519T043257",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002823"
+        },
+        {
+          "source_line": 2824,
+          "timestamp": "2026-05-19T04:34:39.233103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd16639_20260519T043257\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diag:gpu-check-westd16639\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:32:57.353603+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 4}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-002824"
+        },
+        {
+          "source_line": 2825,
+          "timestamp": "2026-05-19T04:34:49.878192+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "重要发现：westd-25068 Worker 进展显示 **exp-051 K=20 已完成** (204/204, FULL_MVP_DONE)！cuda:0 也空闲了。等两个 Worker 完成后汇总汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002825"
+        }
+      ]
+    },
+    {
+      "number": 254,
+      "messages": [
+        {
+          "source_line": 2826,
+          "timestamp": "2026-05-19T04:34:50.459612+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp-051-mistral-k-sensitivity** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-25068 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp-051-mistral-k-sensitivity')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "cron"
+          },
+          "id": "event-002826"
+        },
+        {
+          "source_line": 2827,
+          "timestamp": "2026-05-19T04:35:23.403589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:exp051-completion",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：exp-051 K sensitivity 实验完成处理\n\n### 背景\nexp-051-mistral-k-sensitivity 进程已退出，cron 触发回调。GPU 诊断已确认 k4/k8/k16/k20 均 204/204 完成，日志显示 FULL_MVP_DONE。\n\n这个实验是 Mistral-7B 在 FOLIO-204 上的 K sensitivity ablation，测试 K=4/8/16/20（K=12 已有 exp-033 结果 delta=+4.90pp）。\n\n### 步骤\n\n1. SSH 到 westd-25068，找到 exp-051 结果文件：\n   ```bash\n   find /root/symb_invariant_consensus/results -name \"*exp051*\" -o -name \"*k_sensitivity*\" -o -name \"*k20*\" | head -20\n   ls -la /root/symb_invariant_consensus/results/exp051*/\n   ```\n\n2. 提取每个 K 值的 metrics（SC accuracy, SICA accuracy, delta, McNemar p-value）：\n   - K=4: SC%, SICA%, delta\n   - K=8: SC%, SICA%, delta\n   - K=16: SC%, SICA%, delta\n   - K=20: SC%, SICA%, delta（这是新数据点，最重要）\n   \n   结果可能在 JSON 文件或日志中。查找 pattern 如 \"sc_accuracy\", \"sica_accuracy\", \"mcnemar\"。\n\n3. 特别关注 K=20 的结果——这完成了 K sensitivity 倒 U 型曲线：\n   - 已知：K=4 (-1.47pp), K=8 (-0.98pp), K=12 (+4.90pp), K=16 (+1.47pp)\n   - K=20 预期：如果倒 U 型成立，应该 <= K=16 的 +1.47pp\n\n4. 用 update_registry 更新 exp-051：\n   - status: DONE\n   - conclusion: 根据结果判断（如果 K=20 delta 符合预期趋势 → success；如果异常 → 按实际判断）\n   - metrics: 包含所有 K 值的完整数据\n   - checkpoint_path: 结果文件路径\n   - log_path: 日志路径\n\n5. 删除 cron：调用 delete_cron('exp-051-mistral-k-sensitivity')\n\n6. 检查结果文件中的 McNemar test 数据（discordant pairs b, c），如果没有自动计算，手动从结果中提取。\n\n### 产出\n- 完整的 K sensitivity 数据表（K=4/8/12/16/20 五个点）\n- Registry 已更新\n- Cron 已删除\n- K=20 结果分析：是否确认倒 U 型",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['delete_cron']"
+            }
+          },
+          "id": "event-002827"
+        },
+        {
+          "source_line": 2828,
+          "timestamp": "2026-05-19T04:35:29.077162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp051-completion_20260519T043523\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diag_exp051-completion_20260519T043523.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_exp051-completion_20260519T043523 started. Use get_worker_status('worker_diag_exp051-completion_20260519T043523') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5673
+          },
+          "id": "event-002828"
+        },
+        {
+          "source_line": 2829,
+          "timestamp": "2026-05-19T04:35:32.328194+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出处理 exp-051 完成。等待回调后汇报 Director K sensitivity 完整 5 点曲线。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002829"
+        }
+      ]
+    },
+    {
+      "number": 255,
+      "messages": [
+        {
+          "source_line": 2830,
+          "timestamp": "2026-05-19T04:35:32.343096+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_gpu-check-westd25068_20260519T043248 已完成（status=done）。用 `get_worker_status('worker_diag_gpu-check-westd25068_20260519T043248')` 读取结果，然后处理。\n\n- worker_id: worker_diag_gpu-check-westd25068_20260519T043248\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002830"
+        },
+        {
+          "source_line": 2831,
+          "timestamp": "2026-05-19T04:35:40.406042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_gpu-check-westd25068_20260519T043248",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002831"
+        },
+        {
+          "source_line": 2832,
+          "timestamp": "2026-05-19T04:35:40.457941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd25068_20260519T043248\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:gpu-check-westd25068\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:32:48.501571+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:34:41.544032+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## westd-25068 GPU 状态\\\\n\\\\n| GPU | 预期实验 | 实际状态 | PID | 进度 | 备注 |\\\\n|-----|---------|---------|-----|------|------|\\\\n| cuda:0 | exp-051 K=20 | **空闲 (已完成)** | — | 204/204 (全部K值完成) | k4/k8/k16/k20 均 204/204，k20 耗时 124.3min，日志显示 FULL_MVP_DONE |\\\\n| cuda:1 | exp-034 Qwen-14B PW-600 | **运行中** 97% | 69808 (runner) / 68555 (vLLM:8001) | ~565/600 | Qwen2.5-14B-Instruct, 01:44 启动，估计很快完成 |\\\\n| cuda:2 | 空闲 | **空闲** | — | — | 确认空闲 |\\\\n| cuda:3 | exp-058 T=0.5 | **运行中** 97% | 150540 (runner) / 149633 (vLLM:8003) | ~203/204 | Mistral-7B FOLIO-204 T=0.5, 11:13 启动，即将完成 |\\\\n\\\\n**磁盘**: 12G/30G (39%)\\\\n**vLLM 进程**: 2 个 (port 8001 = Qwen2.5-14B for exp034, port 8003 = Mistral-7B for exp058)\\\\n**tmux sessions**: exp033_run, exp034_run, exp035_run, exp058_run, exp058_vllm, model_dl_25068\\\\n\\\\n**关键发现: cuda:0 和 cuda:2 均空闲，可立即部署新实验。** exp-051 已全部完成（4 个 K 值各 204 题），exp-034 和 exp-058 均接近尾声。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-002832"
+        },
+        {
+          "source_line": 2833,
+          "timestamp": "2026-05-19T04:35:50.776364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_gpu-check-westd16639_20260519T043257",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002833"
+        },
+        {
+          "source_line": 2834,
+          "timestamp": "2026-05-19T04:35:50.877257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_gpu-check-westd16639_20260519T043257\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:gpu-check-westd16639\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:32:57.353603+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:35:11.646996+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## westd-16639 GPU 状态\\\\n\\\\n| GPU | 预期实验 | 实际实验 | PID | 进度 | ETA | 备注 |\\\\n|-----|---------|---------|-----|------|-----|------|\\\\n| cuda:0 | exp-039 Qwen2.5-14B | **exp-032** Qwen2.5-14B-Instruct PW-600 | 6584 (vLLM) / 7244 (run) | **590/600** | ~12 min | 即将完成 |\\\\n| cuda:1 | exp-040 Qwen3 | **exp-033** Qwen3-14B PW-600 (non-thinking) | 7589 (vLLM) / 8432 (run) | **375/600** | ~390 min (~6.5h) | 正常运行，avg 103.6s/prob |\\\\n| cuda:2 | exp-028b resume | **exp-028b** Qwen3-14B thinking FOLIO remaining 38 | 91144 (vLLM) / 92739 (run) | **9/38** | ~83 min (~1.4h) | 正常运行，avg 165.2s/prob |\\\\n| cuda:3 | exp-048 LLaMA-8B | **exp-048** LLaMA-3.1-8B-Instruct PW-600 | 76474 (vLLM) / 77064 (run) | **104/600** | ~640 min (~10.7h) | **有 context length 溢出错误** |\\\\n\\\\n**磁盘**: 30G 总量，13G 已用，18G 可用 (44%) — 充足\\\\n\\\\n**vLLM 进程**: 4 个，分别在 port 8000/8001/8002/8003，全部活跃\\\\n\\\\n**tmux sessions**: exp032, exp033, exp028b_vllm, exp028b_run, exp048_vllm, exp048_run (共 6 个)\\\\n\\\\n---\\\\n\\\\n### 关键发现\\\\n\\\\n1. **cuda:0/cuda:1 实验名不匹配预期**: 实际跑的是 exp-032/exp-033，不是 exp-039/exp-040。模型相同（Qwen2.5-14B / Qwen3-14B），任务相同（PW-600），但实验编号不同。\\\\n\\\\n2. **exp-048 (cuda:3) 有 context length 溢出问题**: LLaMA-8B max-model-len=8192，当 input prompt >= 4097 tokens 时，加上 max-tokens=4096 会超限。日志显示 retry 2/2 后仍 400 Bad Request，这些题会失败跳过。按当前速度还需约 10.7 小时。\\\\n\\\\n3. **exp-032 (cuda:0) 即将完成**: 仅剩 11 题，约 12 分钟后完成。**cuda:0 即将空闲，需安排下一个实验。**\\\\n\\\\n4. **4 GPU 全部满载运行**，GPU-Util 97-100%，无空转。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-002834"
+        },
+        {
+          "source_line": 2835,
+          "timestamp": "2026-05-19T04:36:37.192048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 8 / 实际在跑 6 / 空闲 2 (westd-25068 cuda:0,2) | Worker 3 (GPU 0 / CPU 3: exp051完成处理 + analysis审查 + 本汇报) | 磁盘: westd-25068 39% (12G/30G) / westd-16639 44% (18G/30G)\n\n## GPU 利用率核实结果（紧急回复）\n\n### westd-25068\n| GPU | 实验 | 状态 | PID | 进度 | ETA |\n|-----|------|------|-----|------|-----|\n| cuda:0 | exp-051 K sensitivity | **已完成** ✅ | — | 204/204 (k4/k8/k16/k20 全完) | — |\n| cuda:1 | exp-034 Qwen2.5-14B PW-600 | **运行中** | 69808 | ~565/600 (94%) | ~30min |\n| cuda:2 | — | **空闲** | — | — | — |\n| cuda:3 | exp-058 Mistral T=0.5 | **运行中** | 150540 | 203/204 (99.5%) | 即将完成 |\n\n**空闲: cuda:0, cuda:2。** exp-058 几分钟内完成后 cuda:3 也空。\n\n### westd-16639\n| GPU | 预期实验 | 实际实验 | PID | 进度 | ETA |\n|-----|---------|---------|-----|------|-----|\n| cuda:0 | exp-039 | **exp-032** Qwen2.5-14B PW-600 | 7244 | 590/600 (98%) | ~12min |\n| cuda:1 | exp-040 | **exp-033** Qwen3-14B PW-600 | 8432 | 375/600 (63%) | ~6.5h |\n| cuda:2 | exp-028b | exp-028b thinking resume | 92739 | 9/38 | ~83min |\n| cuda:3 | exp-048 | exp-048 LLaMA-8B PW-600 | 77064 | 104/600 (17%) | ~10.7h |\n\n**4 GPU 满载，GPU-Util 97-100%。** cuda:0 即将空闲（~12min）。\n\n### 关键问题\n\n1. **实验编号不匹配**: westd-16639 cuda:0/cuda:1 实际跑的是 exp-032/exp-033 tmux session，不是 exp-039/exp-040。模型和任务相同（Qwen2.5-14B/Qwen3-14B on PW-600），可能是 tmux session 命名与 registry 不一致。需要 Director 确认：这些是 exp-039/040 的实际部署，只是 tmux 命名沿用了旧编号？\n\n2. **exp-048 context length 溢出**: LLaMA-8B max-model-len=8192，部分 PW-600 题目 prompt ≥ 4097 tokens + max-tokens=4096 超限。这些题 retry 2/2 后 400 Bad Request 被跳过。最终结果会有缺失题目。\n\n3. **即将释放的 GPU**:\n   - westd-25068 cuda:0 — 已空\n   - westd-25068 cuda:2 — 已空\n   - westd-25068 cuda:3 — 分钟内空（exp-058）\n   - westd-16639 cuda:0 — ~12min 空（exp-032/039）\n   \n   **短期内 4 GPU 即将空闲，请 Director 分配任务。**\n\n### exp-051 K=20 已完成\nWorker 正在提取完整 metrics。k4/k8/k16/k20 各 204/204 全部完成，日志显示 FULL_MVP_DONE。结果稍后汇报。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002835"
+        },
+        {
+          "source_line": 2836,
+          "timestamp": "2026-05-19T04:36:40.705021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3512
+          },
+          "id": "event-002836"
+        },
+        {
+          "source_line": 2837,
+          "timestamp": "2026-05-19T04:36:42.923791+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器 GPU 状态全部确认。关键发现：westd-16639 实验编号不匹配预期，exp-048 有 context length 问题。立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002837"
+        }
+      ]
+    },
+    {
+      "number": 256,
+      "messages": [
+        {
+          "source_line": 2838,
+          "timestamp": "2026-05-19T04:36:43.534550+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp-051-mistral-k-sensitivity** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-25068 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp-051-mistral-k-sensitivity')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "cron"
+          },
+          "id": "event-002838"
+        },
+        {
+          "source_line": 2839,
+          "timestamp": "2026-05-19T04:36:52.210727+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有 Worker (worker_diag_exp051-completion) 在处理 exp-051 的完成诊断、registry 更新和 cron 删除。无需重复派发。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002839"
+        }
+      ]
+    },
+    {
+      "number": 257,
+      "messages": [
+        {
+          "source_line": 2840,
+          "timestamp": "2026-05-19T04:36:52.216804+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_gpu-check-westd16639_20260519T043257 已完成（status=done）。用 `get_worker_status('worker_diag_gpu-check-westd16639_20260519T043257')` 读取结果，然后处理。\n\n- worker_id: worker_diag_gpu-check-westd16639_20260519T043257\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002840"
+        },
+        {
+          "source_line": 2841,
+          "timestamp": "2026-05-19T04:37:01.498011+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在之前读取过该 Worker 结果并汇报 Director。无需重复处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002841"
+        }
+      ]
+    },
+    {
+      "number": 258,
+      "messages": [
+        {
+          "source_line": 2842,
+          "timestamp": "2026-05-19T04:37:02.072278+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **exp-058-mistral-folio204-t05** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-25068 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('exp-058-mistral-folio204-t05')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "cron"
+          },
+          "id": "event-002842"
+        },
+        {
+          "source_line": 2843,
+          "timestamp": "2026-05-19T04:37:22.582976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:exp058-completion",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：exp-058 T=0.5 实验完成处理\n\n### 背景\nexp-058-mistral-folio204-t05 进程已退出，cron 触发回调。GPU 诊断已确认进度 203/204 (99.5%)，应该是全部完成了。\n\n这是 Mistral-7B 在 FOLIO-204 上 T=0.5 的 temperature sensitivity 实验。完成后形成 4 点 T sensitivity 曲线：\n- T=0.3 (exp-057): delta=-0.49pp\n- T=0.5 (exp-058): 本实验\n- T=0.7 (exp-033): delta=+4.90pp\n- T=1.0 (exp-054): delta=+0.49pp\n\n### 步骤\n\n1. SSH 到 westd-25068，找到 exp-058 结果文件：\n   ```bash\n   find /root/symb_invariant_consensus/results -name \"*exp058*\" -o -name \"*t05*\" -o -name \"*t0.5*\" | head -20\n   ls -la /root/symb_invariant_consensus/results/exp058*/\n   ```\n   也检查 tmux session:\n   ```bash\n   tmux capture-pane -t exp058_run -p | tail -50\n   ```\n\n2. 提取 metrics:\n   - SC accuracy (%)\n   - SICA accuracy (%)\n   - delta (pp)\n   - McNemar test: discordant pairs (b, c), p-value\n   - 总题数 / 成功完成题数\n\n3. 用 update_registry 更新 exp-058-mistral-folio204-t05:\n   - status: DONE\n   - conclusion: 根据 delta 判断（positive significant → success, positive not significant 或 negative → negative）\n   - metrics: SC%, SICA%, delta, mcnemar_p, discordant_b, discordant_c\n   - checkpoint_path: 结果文件路径\n   - log_path: 日志路径\n\n4. 删除 cron: delete_cron('exp-058-mistral-folio204-t05')\n\n### 产出\n- 完整的 T=0.5 metrics\n- Registry 已更新\n- Cron 已删除",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['delete_cron']"
+            }
+          },
+          "id": "event-002843"
+        },
+        {
+          "source_line": 2844,
+          "timestamp": "2026-05-19T04:37:28.630168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp058-completion_20260519T043723\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diag_exp058-completion_20260519T043723.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_exp058-completion_20260519T043723 started. Use get_worker_status('worker_diag_exp058-completion_20260519T043723') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6047
+          },
+          "id": "event-002844"
+        },
+        {
+          "source_line": 2845,
+          "timestamp": "2026-05-19T04:37:36.350605+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出处理 exp-058 完成。exp-051 和 exp-058 两个完成处理 Worker 并行运行中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002845"
+        }
+      ]
+    },
+    {
+      "number": 259,
+      "messages": [
+        {
+          "source_line": 2846,
+          "timestamp": "2026-05-19T04:37:36.360351+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令]\n\n**1. Table 1 SC 决策：选 A — 统一字母序 75.49%**\n\n已记录为 D061。修复 `baselines/self_consistency.py` 的 tie-breaking 为字母序。Qwen-14B FOLIO delta 从 -0.49pp 变为 -0.98pp，不影响结论（Type A 区域不显著）。\n\n**2. Entropy +9.6pp 数据来源**\n\n是 exp-033 的 entropy-conditioned 子集分析（post-processing）。对 exp-033 的 204 个问题按 12-trace answer distribution 的 Shannon entropy 分组：high-entropy（≥ threshold）子集 n=73，Δ=+9.6pp。数据应在 exp-033 的 artifacts 目录下。验证并确保 artifact 路径可追溯。\n\n**3. 等 GPU 诊断 Worker 回来后一起汇报**\n\nexp-034 状态 + exp-051 CRON 判定结果也一并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-002846"
+        },
+        {
+          "source_line": 2847,
+          "timestamp": "2026-05-19T04:38:05.562190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "fix:sc-tiebreaking",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：修复 self_consistency.py tie-breaking 为字母序\n\n### 背景\nDirector 决策 D061：Table 1 SC 统一为字母序 tie-breaking (75.49%)。\n\n根因：`baselines/self_consistency.py` 第 21 行附近的 tie-breaking 实现为：\n```python\nbest_answer = max(groups, key=lambda k: len(groups[k]))\n```\n平局时返回 dict 中第一个出现的 key（不确定性，依赖 trace 顺序）。\n\n需要修改为字母序 tie-breaking（与 exp-031 `run_exp031_oracle_folio_regen.py:353` 一致）：\n```python\nbest_answer = max(sorted(groups.keys()), key=lambda k: len(groups[k]))\n```\n\n### 步骤\n\n1. SSH 到 westd-25068，读取文件：\n   ```bash\n   cat /root/symb_invariant_consensus/baselines/self_consistency.py\n   ```\n\n2. 找到 tie-breaking 代码行，确认当前实现\n\n3. 修改为字母序 tie-breaking：将 `max(groups, key=...)` 改为 `max(sorted(groups.keys()), key=...)`\n\n4. 验证修改：运行文件确认无语法错误\n   ```bash\n   python -c \"import ast; ast.parse(open('/root/symb_invariant_consensus/baselines/self_consistency.py').read()); print('syntax OK')\"\n   ```\n\n5. 同样修复 westd-16639 上的副本（如果存在）：\n   ```bash\n   ssh westd-16639 \"cat /root/symb_invariant_consensus/baselines/self_consistency.py\" 2>/dev/null\n   ```\n   如果存在，同样修复。\n\n### 产出\n- 两台服务器上的 self_consistency.py 已修复\n- 确认修改内容",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-002847"
+        },
+        {
+          "source_line": 2848,
+          "timestamp": "2026-05-19T04:38:16.340946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_sc-tiebreaking_20260519T043806\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_fix_sc-tiebreaking_20260519T043806.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_fix_sc-tiebreaking_20260519T043806 started. Use get_worker_status('worker_fix_sc-tiebreaking_20260519T043806') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 10778
+          },
+          "id": "event-002848"
+        },
+        {
+          "source_line": 2849,
+          "timestamp": "2026-05-19T04:38:19.751893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "verify:entropy-artifact-exp033",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：验证 exp-033 entropy-conditioned +9.6pp 数据来源\n\n### 背景\n论文中引用了 exp-033 的 entropy-conditioned 子集分析：high-entropy (≥ threshold) 子集 n=73，Δ=+9.6pp。Director 要求验证数据来源并确保 artifact 路径可追溯。\n\n### 步骤\n\n1. SSH 到 westd-25068，查找 exp-033 相关 artifacts：\n   ```bash\n   find /root/symb_invariant_consensus -path \"*exp033*\" -o -path \"*exp-033*\" | head -30\n   find /root/symb_invariant_consensus -name \"*entropy*\" | head -20\n   find /root/symb_invariant_consensus/results -name \"*entropy*\" -o -name \"*conditioned*\" | head -20\n   ```\n\n2. 查找 entropy 分析脚本：\n   ```bash\n   find /root/symb_invariant_consensus -name \"*entropy*\" -name \"*.py\" | head -10\n   grep -rl \"entropy\" /root/symb_invariant_consensus/scripts/ 2>/dev/null | head -10\n   grep -rl \"9.6\" /root/symb_invariant_consensus/results/ 2>/dev/null | head -10\n   ```\n\n3. 找到 artifact 后，验证内容：\n   - 确认 n=73（high-entropy 子集样本量）\n   - 确认 Δ=+9.6pp（SICA vs SC 在该子集上的差异）\n   - 确认 entropy threshold 值\n   - 确认数据来自 exp-033（seed=42, Mistral-7B, FOLIO-204, K=12, T=0.7）\n\n4. 如果找到 artifact，记录完整路径。如果没找到，检查本地 artifacts 目录：\n   ```bash\n   ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/ | grep -i entropy\n   ```\n\n5. 同时检查 registry 中是否有 entropy 分析相关的记录。\n\n### 产出\n- Artifact 路径（远程 + 本地如果有）\n- 数据验证结果（n=73, Δ=+9.6pp 是否正确）\n- entropy threshold 值\n- 如果找不到 artifact，报告缺失情况",
+              "tool_groups": "['ssh', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-002849"
+        },
+        {
+          "source_line": 2850,
+          "timestamp": "2026-05-19T04:57:36.573922+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到。并行处理：1) 修复 tie-breaking，2) 验证 entropy +9.6pp artifact。GPU 诊断结果已汇报（上一条消息），等 exp-051/exp-058 完成 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002850"
+        }
+      ]
+    },
+    {
+      "number": 260,
+      "messages": [
+        {
+          "source_line": 2851,
+          "timestamp": "2026-05-19T04:57:37.055771+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] **D062 — κ 数据管线重大决策，覆盖之前的 unified κ 指令**\n\nReviewer 发现 Table 1 (registry Δ) 和 Table 3 (unified κ with T/F/U normalization) 来自不同数据管线。同一张表内不能混用。\n\n**决策：Option C — 在 raw answers 上重新计算 κ**\n\n具体做法：\n1. **修改 compute_fleiss_kappa_unified.py**，添加 `--no-normalize` 或 `--raw` flag，跳过 T/F/U 归一化步骤（即保留非标准答案原样，不映射为 Unknown）\n2. 用修改后的脚本**重新计算所有条件的 κ**（包括 Mistral 三 seed、Qwen 全系、PW-600、LogiQA、T sensitivity 各条件）\n3. 这些 \"raw κ\" 值与 registry Δ 使用相同的答案分布\n4. 新 κ 值替换之前发给 Paper Agent 的 unified κ 值\n\n**注意**：\n- 之前我让你用 unified 脚本计算 K sensitivity 和 T=0.5 的 κ — **那条指令作废**。等 raw κ 脚本修改完成后，用 raw 版本计算。\n- Raw κ 下 Mistral 三 seed 可能不再收敛（之前 unified 收敛到 0.457-0.460 是归一化的结果）。这没问题——真实数据就是有 spread。\n- Qwen 模型 100% valid 答案，raw 和 unified 结果应该相同。\n\n**同时修正**：\n- analysis.tex Table 3: Qwen3 数据集标签 \"PW-D5\" → **\"FOLIO-204\"**（exp-027 是 FOLIO，不是 PW）\n- analysis.tex Table 3: Qwen2.5-14B FOLIO Δ = **-0.98pp**（registry exp-036 值，不是 -0.49）\n\n**优先级最高**。κ 重新计算完成后立即汇报完整结果表（所有条件的 raw κ / Eff-K），我发给 Paper Agent 更新 Table 3。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "director"
+          },
+          "id": "event-002851"
+        },
+        {
+          "source_line": 2852,
+          "timestamp": "2026-05-19T04:58:12.235064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "computation:raw-kappa-recompute",
+              "project": "symb_invariant_consensus",
+              "task_prompt": "## 任务：D062 — 在 raw answers 上重新计算所有条件的 Fleiss' κ（最高优先级）\n\n### 背景\nDirector D062 决策：Table 1 (registry Δ) 和 Table 3 (unified κ) 来自不同数据管线（unified 做了 T/F/U 归一化），不能混用。需要在 raw answers（与 registry 相同的答案分布）上重新计算 κ。\n\n### 步骤\n\n#### Step 1: 修改 compute_fleiss_kappa_unified.py\nSSH 到 westd-25068，读取当前脚本：\n```bash\ncat /root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\n```\n\n添加 `--no-normalize` 或 `--raw` flag：\n- 当该 flag 开启时，**跳过** T/F/U 归一化步骤（即保留非标准答案原样，不映射为 Unknown）\n- 其他逻辑不变（仍排除 None/empty，仍用 variable N method B，仍用 Eff-K = K/(1+(K-1)×κ)）\n- 默认行为不变（不加 flag 时仍做归一化），向后兼容\n\n#### Step 2: 用 raw 模式重新计算所有条件\n对以下每个实验/条件运行 `--raw` 模式：\n\n**Mistral-7B FOLIO-204 三 seed:**\n- exp-033 (seed=42, K=12, T=0.7)\n- exp-052 (seed=123)\n- exp-053 (seed=456)\n\n**Temperature sensitivity (Mistral-7B FOLIO-204 K=12):**\n- exp-057 (T=0.3)\n- exp-054 (T=1.0)\n- exp-055 (multi-temp)\n\n**K sensitivity (Mistral-7B FOLIO-204 T=0.7):**\n- exp-051 的 K=4, K=8, K=16, K=20 结果（结果在 /root/symb_invariant_consensus/results/exp051*/ 目录下，每个 K 值有独立的 traces 文件）\n\n**Qwen 系列:**\n- exp-027 (Qwen3-14B FOLIO-204)\n- exp-035 (Qwen2.5-7B FOLIO-204)\n- exp-036 (Qwen2.5-14B FOLIO-204)\n- exp-038 (Qwen2.5-14B LogiQA-200)\n\n**PW-600:**\n- exp-046 (Mistral-7B PW-600)\n\n**注意**：Qwen 模型 100% valid 答案（True/False/Unknown 标准格式），raw 和 unified 结果应相同。Mistral 有非标准答案，raw κ 可能与 unified 不同——这是预期行为。\n\n#### Step 3: 计算每个条件的完整数据\n对每个条件输出：\n- κ (Fleiss' kappa)\n- Eff-K = K / (1 + (K-1) × κ)，K=12（除非该实验用了不同的 K）\n- Valid rate（有效答案比例）\n- N（题目数）\n\n#### Step 4: 汇总结果\n输出完整结果表，格式：\n\n| Exp | Model | Dataset | Seed/T/K | raw_κ | Eff-K | Valid% | N | Notes |\n|-----|-------|---------|----------|-------|-------|--------|---|-------|\n\n将结果保存为 JSON 到本地项目 artifacts 目录：\n`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/fleiss_kappa_raw_all.json`\n\n用 register_artifact 注册。\n\n### 关键公式（必须严格遵守，M027 教训）\n**Eff-K = K / (1 + (K-1) × κ)**\n不是 K × (1 - κ)！\n\n### 数据文件位置\n实验 traces 文件通常在：\n- `/root/symb_invariant_consensus/results/{exp_id}/` 下的 JSON 文件\n- 每个题目包含 K 条 traces，每条 trace 有 final_answer 字段\n- 用 `find /root/symb_invariant_consensus/results -name \"*.json\" | head -30` 探索\n\n如果某些实验的 traces 在 westd-16639 而非 westd-25068，SSH 到 westd-16639 获取。",
+              "tool_groups": "['ssh', 'registry', 'knowledge']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-002852"
+        },
+        {
+          "source_line": 2853,
+          "timestamp": "2026-05-19T04:58:17.773118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_computation_raw-kappa-recompute_20260519T045812\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_computation_raw-kappa-recompute_20260519T045812.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_computation_raw-kappa-recompute_20260519T045812 started. Use get_worker_status('worker_computation_raw-kappa-recompute_20260519T045812') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5538
+          },
+          "id": "event-002853"
+        },
+        {
+          "source_line": 2854,
+          "timestamp": "2026-05-19T04:58:29.320747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "limit": "200"
+            }
+          },
+          "id": "event-002854"
+        },
+        {
+          "source_line": 2855,
+          "timestamp": "2026-05-19T04:58:29.321198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\tThe regime-dependent pattern in \\S\\ref{sec:main-results} and the failure modes in \\S\\ref{sec:failure-modes} establish \\emph{where} SICA succeeds and fails. This section investigates \\emph{why}, through six quantitative lenses: trace correlation (\\S\\ref{sec:effective-k}), extraction quality (\\S\\ref{sec:extraction-taxonomy}), hyperparameter sensitivity (\\S\\ref{sec:k-sensitivity}, \\S\\ref{sec:t-sensitivity}), the entropy structure of gains (\\S\\ref{sec:entropy}), solver contribution (\\S\\ref{sec:ablation}), and remediation failure (\\S\\ref{sec:remediation}).\n5\t\n6\t\\subsection{Condorcet Effective-K}\n7\t\\label{sec:effective-k}\n8\t\n9\tTable~\\ref{tab:independence} reports Fleiss' $\\kappa$ and the resulting Effective-K (Eq.~\\ref{eq:effk}) across model-dataset conditions with $K = 12$ traces. $\\kappa$ ranges from 0.21 to 0.82, and the resulting $K_{\\text{eff}}$ spans $1.20\\text{--}3.63$. The strongest model-dataset pair (Qwen2.5-14B on LogiQA, $\\kappa = 0.82$) retains $K_{\\text{eff}} = 1.20$: twelve traces carry barely more information than a single sample. Mistral-7B on FOLIO produces moderate agreement ($\\kappa = 0.50$ for seed 42, $K_{\\text{eff}} = 1.85$), consistent with its position in the Goldilocks zone. Mistral-7B on ProofWriter has the lowest agreement ($\\kappa = 0.21$, $K_{\\text{eff}} = 3.63$), yet SICA hurts ($\\Delta = -2.83$\\,pp) because trace quality is too low (SC $= 39.33\\%$). High $K_{\\text{eff}}$ alone does not guarantee improvement; the model must also produce sufficiently accurate traces. Qwen2.5-14B on FOLIO reaches 58.3\\% unanimous problems and 63.0\\% on LogiQA; Mistral-7B on FOLIO has only 14.2\\%. Unanimous problems leave zero room for constraint-based reranking, and models with high unanimity rates offer SICA a vanishingly small operating window.\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\small\n14\t\\caption{Trace independence metrics ($K = 12$). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:e\n…[truncated 9111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002855"
+        },
+        {
+          "source_line": 2856,
+          "timestamp": "2026-05-19T04:58:52.957254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "Qwen2.5 & FOLIO & 0.74 & 1.31 & 58.3 & $-$0.49 \\\\",
+              "new_string": "Qwen2.5 & FOLIO & 0.74 & 1.31 & 58.3 & $-$0.98 \\\\"
+            }
+          },
+          "id": "event-002856"
+        },
+        {
+          "source_line": 2857,
+          "timestamp": "2026-05-19T04:58:53.057942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002857"
+        },
+        {
+          "source_line": 2858,
+          "timestamp": "2026-05-19T04:58:56.868182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "old_string": "Qwen3 & PW-D5 & 0.77 & 1.27 & & \\\\",
+              "new_string": "Qwen3 & FOLIO & 0.77 & 1.27 & & \\\\"
+            }
+          },
+          "id": "event-002858"
+        },
+        {
+          "source_line": 2859,
+          "timestamp": "2026-05-19T04:58:56.918890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002859"
+        },
+        {
+          "source_line": 2860,
+          "timestamp": "2026-05-19T04:59:15.802806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 8 / 实际在跑 4 (westd-25068 cuda:1 exp-034, westd-16639 cuda:0-3) / 空闲 3 (westd-25068 cuda:0,2,3) | Worker 5 (GPU 0 / CPU 5: raw-κ重算 + exp051完成 + exp058完成 + SC-tiebreak修复 + analysis审查)\n\n## D062 执行状态\n\n1. **Raw κ 重算 Worker 已启动**（最高优先级）。修改 compute_fleiss_kappa_unified.py 添加 --raw flag，跳过 T/F/U 归一化，重算所有条件。完成后立即汇报完整结果表。\n\n2. **analysis.tex 两处已修复**：\n   - Qwen2.5-14B FOLIO Δ: -0.49pp → **-0.98pp**（registry exp-036 值）\n   - Qwen3 数据集标签: PW-D5 → **FOLIO**（exp-027 是 FOLIO-204）\n\n3. **Table 1 SC tie-breaking 修复 Worker 运行中**（D061，字母序统一）\n\n4. **exp-051 K=20 已完成**，Worker 正在提取 metrics（k4/k8/k16/k20 各 204/204）\n5. **exp-058 T=0.5 已完成**，Worker 正在提取 metrics\n\n注意：raw κ 完成后，之前发给 Paper Agent 的 unified κ 值全部作废，需要用 raw κ 替换 Table 3。",
+              "project": "symb_invariant_consensus"
+            }
+          },
+          "id": "event-002860"
+        },
+        {
+          "source_line": 2861,
+          "timestamp": "2026-05-19T04:59:17.056834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1254
+          },
+          "id": "event-002861"
+        },
+        {
+          "source_line": 2862,
+          "timestamp": "2026-05-19T04:59:21.634991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "analysis.tex 两处修复完成：Qwen2.5 FOLIO Δ=-0.49→-0.98，Qwen3 PW-D5→FOLIO。\n\nRaw κ 重算 Worker 正在执行（最高优先级），完成后立即汇报完整结果表。exp-051/exp-058 完成处理 Worker 也在跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002862"
+        }
+      ]
+    },
+    {
+      "number": 261,
+      "messages": [
+        {
+          "source_line": 2863,
+          "timestamp": "2026-05-19T04:59:21.643350+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_review_analysis-tex-consistency_20260519T042945 已完成（status=done）。用 `get_worker_status('worker_review_analysis-tex-consistency_20260519T042945')` 读取结果，然后处理。\n\n- worker_id: worker_review_analysis-tex-consistency_20260519T042945\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002863"
+        },
+        {
+          "source_line": 2864,
+          "timestamp": "2026-05-19T04:59:30.976809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_review_analysis-tex-consistency_20260519T042945",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002864"
+        },
+        {
+          "source_line": 2865,
+          "timestamp": "2026-05-19T04:59:31.128017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_review_analysis-tex-consistency_20260519T042945\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"review:analysis-tex-consistency\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:29:46.053907+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:37:41.832662+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Eff-K formula in method.tex is `K/(1+(K-1)·κ)` — correct. Now let me compile the full audit.\\\\n\\\\n---\\\\n\\\\n## 审查报告：analysis.tex 与数据源一致性\\\\n\\\\n### 1. Table 3 κ / Eff-K vs unified κ JSON — **严重不一致**\\\\n\\\\n所有 Mistral 行的 κ 和 K_eff 与 unified 数据不匹配：\\\\n\\\\n| Row | tex κ | unified κ | tex K_eff | unified K_eff |\\\\n|-----|-------|-----------|-----------|---------------|\\\\n| Mistral (s42) FOLIO | 0.50 | 0.4598 | 1.85 | 1.98 |\\\\n| Mistral (s123) FOLIO | 0.41 | 0.4572 | 2.17 | 1.99 |\\\\n| Mistral (s456) FOLIO | 0.40 | 0.4565 | 2.22 | 1.99 |\\\\n| Mistral PW-D5 | 0.21 | 0.1996 | 3.63 | 3.76 |\\\\n| Mistral LogiQA | 0.50 | 0.5116 | 1.84 | 1.81 |\\\\n| Qwen2.5 FOLIO | 0.74 | 0.7442 | 1.31 | 1.31 | ✓\\\\n| Qwen2.5 LogiQA | 0.82 | 0.8210 | 1.20 | 1.20 | ✓\\\\n| Qwen2.5 PW-D5 | 0.62 | 0.6170 | 1.53 | 1.54 | ~OK\\\\n| Qwen3 (see #6) | 0.77 | 0.7730 | 1.27 | 1.26 | ~OK\\\\n\\\\n关键问题：unified 中三个 Mistral FOLIO seeds 的 κ 几乎相同（0.46/0.46/0.46），但 tex 写的是 0.50/0.41/0.40（差异很大）。这直接影响 §5.1 cross-seed 叙事：\\\\\\\"κ ranges from 0.40 to 0.50\\\\\\\" 在 unified 数据下不成立。\\\\n\\\\n**原因推测**：unified JSON 排除了 empty votes（exp-033 有 304/2448 empty），tex 可能使用了包含 empty 的旧计算。\\\\n\\\\n### 2. Table 3 Δ vs registry — 匹配\\\\n\\\\n| Row | tex Δ | registry Δ | unified Δ |\\\\n|-----|-------|------------|-----------|\\\\n| s42 (exp-033) | +4.90 | +4.90 ✓ | +3.43 ✗ |\\\\n| s123 (exp-052) | +3.43 | +3.43 ✓ | +2.94 ✗ |\\\\n| s456 (exp-053) | -0.49 | -0.49 ✓ | +1.47 ✗ |\\\\n| PW-D5 (exp-046) | -2.83 | -2.83 ✓ | -1.67 ✗ |\\\\n| LogiQA (exp-049b) | +0.50 | +0.50 ✓ | -0.50 ✗ |\\\\n| Qwen2.5 FOLIO (exp-036) | -0.49 | -0.98 ✗ | -0.98 ✗ |\\\\n| Qwen2.5 LogiQA (exp-038) |\n…[truncated 2830 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-002865"
+        },
+        {
+          "source_line": 2866,
+          "timestamp": "2026-05-19T04:59:59.904134+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查发现的核心问题（κ/Eff-K 数据源不一致）已被 D062 覆盖——raw κ 重算完成后将统一所有值。两个确定性错误（Qwen3 标签、Qwen2.5 Δ）已修复。\n\n需要注意的后续修改（等 raw κ 结果后执行）：\n- Table 3 所有 Mistral κ/Eff-K 值需更新\n- §5.1 cross-seed 叙事可能需要调整（取决于 raw κ 下三 seed 的 spread）\n- Qwen2.5 (ICL) 行 Eff-K 轻微不一致 (2.25 vs 2.27)\n- §5.3 K-sensitivity 已有的 Δ 值与 registry 一致，仅 κ 需更新"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002866"
+        }
+      ]
+    },
+    {
+      "number": 262,
+      "messages": [
+        {
+          "source_line": 2867,
+          "timestamp": "2026-05-19T05:00:00.493732+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_paper_writing_related_work_20260519T043455 已完成（status=done）。用 `get_worker_status('worker_paper_writing_related_work_20260519T043455')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_related_work_20260519T043455\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002867"
+        },
+        {
+          "source_line": 2868,
+          "timestamp": "2026-05-19T05:00:07.222891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_writing_related_work_20260519T043455",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002868"
+        },
+        {
+          "source_line": 2869,
+          "timestamp": "2026-05-19T05:00:07.274037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_related_work_20260519T043455\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing_related_work\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:34:55.366969+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:38:05.199217+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"The `ing,`/`ing.` matches are all nouns in titles or noun phrases (\\\\\\\"Reasoning.\\\\\\\", \\\\\\\"Reranking.\\\\\\\", \\\\\\\"grounding.\\\\\\\"), not participial clause endings. No style violations.\\\\n\\\\nWritten `related_work.tex` with 5 clusters (~630 words, well under 800 budget), 25 citations all verified against `references.bib`. Each paragraph ends with clear positioning against SICA. Cross-references to `\\\\\\\\S\\\\\\\\ref{sec:effective-k}`, `\\\\\\\\S\\\\\\\\ref{sec:oracle-design}`, `\\\\\\\\S\\\\\\\\ref{sec:condorcet}`, and `\\\\\\\\S\\\\\\\\ref{sec:remediation}` match the existing section labels.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-002869"
+        },
+        {
+          "source_line": 2870,
+          "timestamp": "2026-05-19T05:00:22.019071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related work section 完成：5 个 cluster，~630 words，25 citations 全部 verified，style checks 通过。产出文件 `related_work.tex`。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002870"
+        }
+      ]
+    },
+    {
+      "number": 263,
+      "messages": [
+        {
+          "source_line": 2871,
+          "timestamp": "2026-05-19T05:00:22.879394+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diag_exp051-completion_20260519T043523 已完成（status=done）。用 `get_worker_status('worker_diag_exp051-completion_20260519T043523')` 读取结果，然后处理。\n\n- worker_id: worker_diag_exp051-completion_20260519T043523\n- project: symb_invariant_consensus\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "source": "worker:done"
+          },
+          "id": "event-002871"
+        },
+        {
+          "source_line": 2872,
+          "timestamp": "2026-05-19T05:00:29.307058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_exp051-completion_20260519T043523",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002872"
+        },
+        {
+          "source_line": 2873,
+          "timestamp": "2026-05-19T05:00:29.357764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp051-completion_20260519T043523\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:exp051-completion\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:35:24.025522+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:38:11.874998+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"全部完成。以下是完整 K sensitivity 数据表：\\\\n\\\\n## Mistral-7B K Sensitivity on FOLIO-204 (T=0.7)\\\\n\\\\n| K | SC% | SICA% | Delta (pp) | b | c | McNemar p |\\\\n|---|-----|-------|------------|---|---|-----------|\\\\n| 4 | 54.41 | 52.94 | **-1.47** | 7 | 10 | 0.629 |\\\\n| 8 | 57.35 | 56.37 | **-0.98** | 4 | 6 | 0.754 |\\\\n| **12** | **54.41** | **59.31** | **+4.90** | **12** | **2** | **0.013** |\\\\n| 16 | 55.88 | 57.35 | **+1.47** | 10 | 7 | 0.629 |\\\\n| 20 | 57.35 | 59.31 | **+1.96** | 5 | 1 | 0.219 |\\\\n\\\\n### K=20 分析\\\\n\\\\nK=20 delta = +1.96pp，高于 K=16 的 +1.47pp 但远低于 K=12 的 +4.90pp。曲线不是严格倒 U 型（K=20 略高于 K=16），但整体呈 **peaked 曲线**：\\\\n- K<12：SICA 负效果（constraints 不足以纠正投票）\\\\n- **K=12：唯一显著正效果**（p=0.013，b=12 vs c=2）\\\\n- K>12：正效果但不显著，且大幅衰减（可能因 contradiction_rate 上升稀释信号）\\\\n\\\\nK=20 的 b=5, c=1 比例很倾斜但样本太小无法达到显著性。contradiction_rate 从 K=12 的 3.5% 升至 K=20 的 3.9%，符合预期。\\\\n\\\\n### 完成清单\\\\n- Registry: `exp-051-mistral-k-sensitivity` → DONE (success)\\\\n- Cron: 已删除\\\\n- 五点数据齐全，可直接用于论文 K ablation 图表\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-002873"
+        },
+        {
+          "source_line": 2874,
+          "timestamp": "2026-05-19T05:00:41.617964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md",
+              "limit": "35"
+            }
+          },
+          "id": "event-002874"
+        },
+        {
+          "source_line": 2875,
+          "timestamp": "2026-05-19T05:00:41.668566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# symb_invariant_consensus — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-19 04:44 UTC | 更新原因: K/T sensitivity 全部完成 + SC confound 发现 + K=20 数据 + GPU 状态更新\n4\t\n5\t> D060: 纯 Analysis paper — Dual Bottleneck (Independence + Quality)\n6\t\n7\t## 核心方向\n8\t**纯 Analysis Paper — Dual Bottleneck Framework**。SICA 效应 real but fragile (2/3 seeds significant)。Condorcet Eff-K + oracle gap + 9 种修复全失败 + K/T sensitivity + SC-confound 洞察。详见 paper_framing.md。\n9\t\n10\t## 当前进展\n11\t- **阶段**: Paper Writing (Step 3 Draft) + κ 批量计算\n12\t- **论文**: EMNLP 2026 ARR May 25（~6 天）\n13\t- **K sensitivity ✅ 完成**: 5 点，peak at K=12 (+4.90pp)，非 inverted-U（K=20 回升至 +1.96pp）\n14\t- **T sensitivity ✅ 完成**: 4 点，T=0.7 孤立尖峰 (+4.90pp)，其余 3 点 noise level\n15\t- **κ 统一 ✅ 完成**: 13 条件 + exp-058 T=0.5 待计算\n16\t- **SC confound**: K=12 和 T=0.7 都是 SC 最低 (54.41%) → SICA \"最佳超参\"可能反映 entropy 效应\n17\t- **Dream**: dream_20260519T034058 reviewing 阶段，即将完成\n18\t- **Paper Agent**: Step 3 Draft + 多个修正 patch（队列深度 11）\n19\t\n20\t## K Sensitivity (non-monotonic, peak K=12) ✅\n21\t| K | SC% | SICA% | Δpp |\n22\t|---|-----|-------|-----|\n23\t| 4 | 54.41 | 52.94 | -1.47 |\n24\t| 8 | 57.35 | 56.37 | -0.98 |\n25\t| 12 | 54.41 | 59.31 | **+4.90** |\n26\t| 16 | 55.88 | 57.35 | +1.47 |\n27\t| 20 | 57.35 | 59.31 | +1.96 |\n28\t\n29\t## T Sensitivity (isolated peak T=0.7) ✅\n30\t| T | SC% | SICA% | Δpp |\n31\t|---|-----|-------|-----|\n32\t| 0.3 | 57.35 | 56.86 | -0.49 |\n33\t| 0.5 | 57.84 | 57.35 | -0.49 |\n34\t| 0.7 | 54.41 | 59.31 | **+4.90** |\n35\t| 1.0 | 54.95 | 55.49 | +0.49 |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002875"
+        },
+        {
+          "source_line": 2876,
+          "timestamp": "2026-05-19T05:00:52.011795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diag_exp058-completion_20260519T043723",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002876"
+        },
+        {
+          "source_line": 2877,
+          "timestamp": "2026-05-19T05:00:52.314171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_exp058-completion_20260519T043723\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diag:exp058-completion\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:37:23.211436+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:39:11.961009+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"exp-058 处理完毕。\\\\n\\\\n**exp-058 T=0.5 结果：**\\\\n| 指标 | 值 |\\\\n|---|---|\\\\n| SC accuracy | 57.84% (118/204) |\\\\n| SICA accuracy | 57.35% (117/204) |\\\\n| delta | **-0.49pp** |\\\\n| McNemar | b=3, c=2, p=1.0000 (不显著) |\\\\n| 完成度 | 204/204 |\\\\n\\\\n**完整 T sensitivity 曲线 (Mistral-7B, FOLIO-204, k=12)：**\\\\n\\\\n| T | delta (pp) | 方向 |\\\\n|---|---|---|\\\\n| 0.3 | -0.49 | 微负 |\\\\n| **0.5** | **-0.49** | **微负** |\\\\n| 0.7 | +4.90 | 正（最佳） |\\\\n| 1.0 | +0.49 | 微正 |\\\\n\\\\nT=0.5 和 T=0.3 的 delta 完全相同（-0.49pp），discordant pairs 极少（b=3, c=2），说明低温下 SC 和 SICA 行为几乎一致。SICA 的优势集中在 T=0.7，符合「需要足够多样性才能让约束聚合发挥作用」的预期。\\\\n\\\\nRegistry 已更新为 DONE (negative)，cron 已删除。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 302
+          },
+          "id": "event-002877"
+        },
+        {
+          "source_line": 2878,
+          "timestamp": "2026-05-19T05:00:52.314621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_fix_sc-tiebreaking_20260519T043806",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002878"
+        },
+        {
+          "source_line": 2879,
+          "timestamp": "2026-05-19T05:00:52.415459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_sc-tiebreaking_20260519T043806\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"fix:sc-tiebreaking\\\", \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"started_at\\\": \\\"2026-05-19T04:38:06.271248+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T04:38:39.998395+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两台服务器均已修复，语法验证通过。\\\\n\\\\n修改内容：\\\\n```\\\\n- best_answer = max(groups, key=lambda k: len(groups[k]))\\\\n+ best_answer = max(sorted(groups.keys()), key=lambda k: len(groups[k]))\\\\n```\\\\n\\\\n- **westd-25068**: 已修复 ✓\\\\n- **westd-16639**: 已修复 ✓\\\\n\\\\n平局时现在按字母序选择，与 exp-031 一致（SC = 75.49%）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-002879"
+        },
+        {
+          "source_line": 2880,
+          "timestamp": "2026-05-19T05:01:18.164241+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-058 完成 (delta=-0.49pp, negative)，SC tie-breaking 两台服务器已修复。K/T sensitivity 曲线全部完成。\n\nanalysis.tex 审查发现了 κ/Δ 数据源冲突问题，但 D062 raw κ 重算将统一解决。等 raw κ Worker 完成后一并汇报 Director 完整结果表。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_319977a04ca60b6c4c69a2a8d4141a75"
+          },
+          "id": "event-002880"
+        }
+      ]
+    }
+  ]
+}

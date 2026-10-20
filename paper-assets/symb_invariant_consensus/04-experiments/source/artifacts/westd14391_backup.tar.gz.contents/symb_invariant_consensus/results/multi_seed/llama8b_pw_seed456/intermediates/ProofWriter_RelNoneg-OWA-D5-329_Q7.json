@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-329_Q7",
+    "problem": "The bald eagle is cold. The bald eagle is rough. The bald eagle needs the tiger. The bald eagle visits the squirrel. The lion is cold. The lion is kind. The lion needs the tiger. The squirrel chases the bald eagle. The squirrel chases the tiger. The squirrel visits the tiger. The tiger is red. If someone needs the squirrel then they chase the tiger. If someone is rough and they chase the squirrel then the squirrel visits the lion. If someone visits the tiger and they visit the lion then the lion needs the bald eagle. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. If someone is red then they chase the lion. If someone chases the lion and they visit the bald eagle then they need the bald eagle. If someone visits the bald eagle then they need the bald eagle. If someone chases the lion then they visit the bald eagle. If someone chases the tiger then the tiger chases the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle chases the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nVisits(BaldEagle, Squirrel, True) ::: The bald eagle visits the squirrel.\nCold(Lion, True) ::: The lion is cold.\nKind(Lion, True) ::: The lion is kind.\nNeeds(Lion, Tiger, True) ::: The lion needs the tiger.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nChases(Squirrel, Tiger, True) ::: The squirrel chases the tiger.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nRed(Tiger, True) ::: The tiger is red.\n\nRules:\nNeeds($x, Squirrel, True) >>> Chases($x, Tiger, True) ::: If someone needs the squirrel then they chase the tiger.\nRough($x, True) && Chases($x, Squirrel, True) >>> Visits(Squirrel, Lion, True) ::: If someone is rough and they chase the squirrel then the squirrel visits the lion.\nVisits($x, Tiger, True) && Visits($x, Lion, True) >>> Needs(Lion, BaldEagle, True) ::: If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\nVisits($x, BaldEagle, True) && Visits(BaldEagle, Squirrel, True) >>> Chases(BaldEagle, Squirrel, True) ::: If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\nRed($x, True) >>> Chases($x, Lion, True) ::: If someone is red then they chase the lion.\nChases($x, Lion, True) && Visits($x, BaldEagle, True) >>> Needs($x, BaldEagle, True) ::: If someone chases the lion and they visit the bald eagle then they need the bald eagle.\nVisits($x, BaldEagle, True) >>> Needs($x, BaldEagle, True) ::: If someone visits the bald eagle then they need the bald eagle.\nChases($x, Lion, True) >>> Visits($x, BaldEagle, True) ::: If someone chases the lion then they visit the bald eagle.\nChases($x, Tiger, True) >>> Chases(Tiger, BaldEagle, True) ::: If someone chases the tiger then the tiger chases the bald eagle.\n\nQuery:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

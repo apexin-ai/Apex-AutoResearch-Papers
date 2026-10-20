@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-040-qwen3-pw600-16639",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:01:31.954Z",
+    "updated_at": "2026-05-18T18:52:27.955Z",
+    "hypothesis": "Qwen3-14B non-thinking 在 ProofWriter-600 全量上 SICA vs SC：跨模型代际验证 capability trap 在 PW 数据集上是否持续。与 exp-039 (Qwen2.5-14B PW-600) 对比代际差异。"
+  },
+  "timestamp": "2026-05-18T18:52:28.081337+00:00",
+  "trigger": "update_registry"
+}

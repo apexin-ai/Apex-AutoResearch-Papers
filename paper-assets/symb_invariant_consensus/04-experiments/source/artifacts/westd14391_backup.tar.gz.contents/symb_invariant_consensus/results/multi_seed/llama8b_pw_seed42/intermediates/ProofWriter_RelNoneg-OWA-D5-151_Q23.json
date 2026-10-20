@@ -1,0 +1,932 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-151_Q23",
+    "problem": "The cat chases the tiger. The cat is red. The lion is nice. The lion is red. The lion sees the cat. The lion sees the rabbit. The lion sees the tiger. The rabbit chases the tiger. The rabbit sees the tiger. The tiger chases the cat. The tiger chases the rabbit. The tiger is nice. If someone is red and they eat the rabbit then they are blue. If the lion eats the cat and the lion chases the rabbit then the cat is kind. If the rabbit eats the tiger then the tiger is nice. If someone is rough then they see the cat. If someone is nice and they chase the rabbit then the rabbit is nice. If someone eats the cat and they are kind then they see the tiger. If someone is nice and they chase the tiger then they are blue. If someone is blue then they eat the cat. If someone eats the cat then the cat is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not eat the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(Cat, Tiger, True) ::: The cat chases the tiger.\nRed(Cat, True) ::: The cat is red.\nNice(Lion, True) ::: The lion is nice.\nRed(Lion, True) ::: The lion is red.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nSees(Lion, Rabbit, True) ::: The lion sees the rabbit.\nSees(Lion, Tiger, True) ::: The lion sees the tiger.\nChases(Rabbit, Tiger, True) ::: The rabbit chases the tiger.\nSees(Rabbit, Tiger, True) ::: The rabbit sees the tiger.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nChases(Tiger, Rabbit, True) ::: The tiger chases the rabbit.\nNice(Tiger, True) ::: The tiger is nice.\n\nRules:\nRed($x, True) && Eats($x, Rabbit, True) >>> Blue($x, True) ::: If someone is red and they eat the rabbit then they are blue.\nEats(Lion, Cat, True) && Chases(Lion, Rabbit, True) >>> Kind(Cat, True) ::: If the lion eats the cat and the lion chases the rabbit then the cat is kind.\nEats(Rabbit, Tiger, True) >>> Nice(Tiger, True) ::: If the rabbit eats the tiger then the tiger is nice.\nRough($x, True) >>> Sees($x, Cat, True) ::: If someone is rough then they see the cat.\nNice($x, True) && Chases($x, Rabbit, True) >>> Nice(Rabbit, True) ::: If someone is nice and they chase the rabbit then the rabbit is nice.\nEats($x, Cat, True) && Kind($x, True) >>> Sees($x, Tiger, True) ::: If someone eats the cat and they are kind then they see the tiger.\nNice($x, True) && Chases($x, Tiger, True) >>> Blue($x, True) ::: If someone is nice and they chase the tiger then they are blue.\nBlue($x, True) >>> Eats($x, Cat, True) ::: If someone is blue then they eat the cat.\nEats($x, Cat, True) >>> Blue(Cat, True) ::: If someone eats the cat then the cat is blue.\n\nQuery:\nEats(Lion, Tiger, False) ::: The lion does not eat the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 58.0,
+      "Unknown": 130.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the tiger\" is true, false, or unknown, we need to analyze the given information and the conditions that lead to the lion eating the tiger.\n\nFrom the given information, we know the following:\n\n1. The lion is red.\n2. If someone is red and they eat the rabbit, then they are blue. (This information is not relevant to the lion eating the tiger, but it's good to know.)\n3. The lion sees the cat, the rabbit, and the tiger.\n4. The tiger chases the cat and the rabbit.\n5. The tiger is nice.\n6. If someone is nice and they chase the rabbit, then the rabbit is nice. (This information is not relevant to the lion eating the tiger, but it's good to know.)\n7. The lion does not have any direct condition related to eating the tiger.\n\nHowever, we need to analyze the information from the perspective of the lion's potential actions and their effects on other animals. There is no information that directly states the lion eats the tiger or does not eat the tiger.\n\nHowever, there is a condition that if the lion eats the cat and the lion chases the rabbit, then the cat is kind. This condition is not relevant to the lion eating the tiger. \n\nSo, we can't conclude whether the lion eats the tiger or not from the given information.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the tiger\" is true, false, or unknown, we need to follow the given rules and analyze the information step by step.\n\n1. The lion is red. (Given)\n2. The lion is nice. (Given)\n3. If the lion eats the cat and the lion chases the rabbit then the cat is kind. (Given)\n   - We don't have enough information to determine if the lion eats the cat or chases the rabbit. We can't conclude that the cat is kind.\n\n4. If someone is red and they eat the rabbit then they are blue. (Given)\n   - We don't have enough information to determine if someone who is red eats the rabbit. We can't conclude that anyone is blue.\n\n5. The lion sees the cat, the rabbit, and the tiger. (Given)\n   - This rule does not provide any information about the lion eating the tiger or not.\n\n6. The rabbit chases the tiger. (Given)\n   - This rule does not provide any information about the lion eating the tiger or not.\n\n7. The tiger chases the cat. (Given)\n   - This rule does not provide any information about the lion eating the tiger or not.\n\n8. If someone eats the cat and they are kind then they see the tiger. (Given)\n   - We don't have enough information to determine if someone eats the cat and is kind. We can't conclude that they see the tiger.\n\n9. If someone is nice and they chase the tiger then they are blue. (Given)\n   - We don't have enough information to determine if someone is nice and chases the tiger. We can't conclude that they are blue.\n\n10. If someone is blue then they eat the cat. (Given)\n    - We don't have enough information to determine if someone is blue. We can't conclude that they eat the cat.\n\n11. If someone eats the cat then the cat is blue. (Given)\n    - This rule does not provide any information about the lion eating the tiger or not.\n\nNow, we have analyzed all the given rules, and none of them directly state or imply that the lion eats the tiger. However, we can use the rules to try to find a possible conclusion.\n\nFrom rule 1, we know the lion is red. From rule 4, we know that if someone is red and eats the rabbit, they are blue. However, we don't have enough information to determine if the lion eats the rabbit.\n\nFrom rule 2, we know the lion is nice. From rule 5, we know the lion sees the rabbit. However, we don't have enough information to determine if the lion chases the rabbit.\n\nFrom rule 6, we know the rabbit chases the tiger. From rule 9, we know that if someone is nice and chases the tiger, they are blue. However, we don't have enough information to determine if the rabbit is nice or not.\n\nNow, let's consider the statement \"The lion does not eat the tiger.\" To determine if this statement is true, false, or unknown, we need to check if it contradicts any of the given rules.\n\nFrom rule 1, we know the lion is red. From rule 4, we know that if someone is red and eats the rabbit, they are blue. However, we don't have enough information to determine if the lion eats the rabbit.\n\nFrom rule 2, we know the lion is nice. From rule 5, we know the lion sees the rabbit. However, we don't have enough information to determine if the lion chases the rabbit.\n\nFrom rule 6, we know the rabbit chases the tiger. From rule 9, we know that if someone is nice and chases the tiger, they are blue. However, we don't have enough information to determine if the rabbit is nice or not.\n\nThe statement \"The lion does not eat the tiger\" does not contradict any of the given rules. However, we can't conclude that the lion does not eat the tiger either.\n\nTherefore, the statement \"The lion does not eat the tiger\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine the relationship between the lion and the tiger.\n\nFrom the statements, we have the following information:\n\n1. The lion is nice. \n2. The lion sees the cat, the rabbit, and the tiger. \n3. The rabbit chases the tiger.\n4. If someone is red and they eat the rabbit then they are blue. \n5. The lion is red.\n6. If the lion eats the cat and the lion chases the rabbit then the cat is kind. \n7. If the rabbit eats the tiger then the tiger is nice.\n8. If someone is rough then they see the cat.\n9. If someone is nice and they chase the rabbit then the rabbit is nice.\n10. If someone eats the cat and they are kind then they see the tiger.\n11. If someone is nice and they chase the tiger then they are blue.\n12. If someone is blue then they eat the cat.\n13. If someone eats the cat then the cat is blue.\n\nNow, let's apply the rules to determine whether the lion eats the tiger.\n\nWe know that the lion is nice (rule 1) and red (rule 5). We also know that the lion sees the tiger (rule 2).\n\nHowever, there is no direct information that the lion eats the tiger. To determine this, let's analyze the possible scenarios:\n\nScenario 1: The lion eats the cat.\nIf the lion eats the cat and the lion chases the rabbit (rule 6), then the cat is kind. However, there is no information that the lion chases the rabbit. \n\nScenario 2: The rabbit eats the tiger.\nIf the rabbit eats the tiger (rule 7), then the tiger is nice. However, there is no information that the rabbit eats the tiger.\n\nScenario 3: The lion chases the tiger.\nIf someone is nice and they chase the tiger (rule 11), then they are blue. However, the lion is not blue, so it is unlikely that the lion chases the tiger.\n\nScenario 4: The lion sees the cat, the rabbit, and the tiger.\nThis rule does not provide any information about the lion eating the tiger.\n\nBased on the given rules and information, we cannot determine whether the lion eats the tiger or not. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and their implications.\n\n1. The cat is red.\n2. The lion is nice.\n3. The lion is red.\n4. The lion sees the cat.\n5. The lion sees the rabbit.\n6. The lion sees the tiger.\n7. The rabbit chases the tiger.\n8. The rabbit sees the tiger.\n9. The tiger chases the cat.\n10. The tiger chases the rabbit.\n11. The tiger is nice.\n12. If someone is red and they eat the rabbit then they are blue.\n13. If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n14. If the rabbit eats the tiger then the tiger is nice.\n15. If someone is rough then they see the cat.\n16. If someone is nice and they chase the rabbit then the rabbit is nice.\n17. If someone eats the cat and they are kind then they see the tiger.\n18. If someone is nice and they chase the tiger then they are blue.\n19. If someone is blue then they eat the cat.\n20. If someone eats the cat then the cat is blue.\n\nFrom statement 19, if someone is blue then they eat the cat. Also, from statement 20, if someone eats the cat then the cat is blue. Therefore, if the lion is blue, then the lion eats the cat.\n\nWe need to find out if the lion eats the tiger. To do this, we can use the information given in the problem.\n\nFrom statement 4, the lion sees the cat. This does not directly tell us if the lion eats the cat or not, but it gives us information about the lion's behavior.\n\nFrom statement 3, the lion is red. This means that the lion cannot be blue because from statement 12, if someone is red and they eat the rabbit then they are blue.\n\nFrom statement 2, the lion is nice. Now we can use statement 16 to determine if the rabbit is nice or not. From statement 16, if someone is nice and they chase the rabbit then the rabbit is nice. But we do not know if the lion chases the rabbit or not.\n\nFrom statement 10, the tiger chases the rabbit. We also know from statement 8 that the rabbit sees the tiger. This information can be used to determine if the rabbit is nice or not.\n\nFrom statement 11, the tiger is nice. Now we can use statement 18 to determine if the lion is blue or not. From statement 18, if someone is nice and they chase the tiger then they are blue. But the tiger is not being chased by the lion.\n\nFrom statement 7, the rabbit chases the tiger. We know that the tiger is nice, so the rabbit is not nice because from statement 16, if someone is nice and they chase the rabbit then the rabbit is nice.\n\nFrom statement 6, the lion sees the tiger. The lion is also nice, but we do not know if the lion chases the tiger or not.\n\nFrom statement 10, the tiger chases the rabbit. We also know that the rabbit is not nice, and the tiger is nice. This information can be used to determine if the lion eats the tiger or not.\n\nFrom statement 14, if the rabbit eats the tiger then the tiger is nice. But the tiger is already nice.\n\nFrom statement 17, if someone eats the cat and they are kind then they see the tiger. We do not know if the lion eats the cat or not.\n\nFrom statement 13, if the lion eats the cat and the lion chases the rabbit then the cat is kind. But we do not know if the lion eats the cat or not.\n\nFrom statement 15, if someone is rough then they see the cat. We do not know if the lion is rough or not.\n\nWe can see that we have a lot of information, but we still do not know if the lion eats the tiger or not. However, we can use the information given in the problem to determine if the lion eats the tiger or not.\n\nFrom statement 11, the tiger is nice. Now we can use statement 18 to determine if the lion is blue or not. But the lion is not chasing the tiger.\n\nFrom statement 6, the lion sees the tiger. The lion is also nice, but we do not know if the lion chases the tiger or not.\n\nFrom statement 14, if the rabbit eats the tiger then the tiger is nice. But the rabbit is not nice, and the tiger is already nice.\n\nFrom statement 10, the tiger chases the rabbit. We also know that the rabbit is not nice, and the tiger is nice.\n\nFrom statement 19, if someone is blue then they eat the cat. We do not know if the lion is blue or not.\n\nWe can see that we still do not know if the lion eats the tiger or not. However, we can use the information given in the problem to determine if the lion eats the tiger or not.\n\nFrom statement 11, the tiger is nice. Now we can use statement 18 to determine if the lion is blue or not. But the lion is not chasing the tiger.\n\nFrom statement 6, the lion sees the tiger. The lion is also nice, but we do not know if the lion chases the tiger or not.\n\nFrom statement 10, the tiger chases the rabbit. We also know that the rabbit is not nice, and the tiger is nice.\n\nWe can see that we still do not know if the lion eats the tiger or not. However, we can use the information given in the problem to determine if the lion eats the tiger or not.\n\nFrom statement 10, the tiger chases the rabbit. We also know that the rabbit is not nice, and the tiger is nice.\n\nFrom statement 7, the rabbit chases the tiger. We also know that the tiger is nice, and the rabbit is not nice.\n\nWe can see that the rabbit and the tiger are chasing each other. Therefore, the lion does not eat the tiger because the lion is not involved in the chase between the rabbit and the tiger.\n\nThe lion is nice, and it sees the tiger, but the lion does not chase the tiger.\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information and the rules into a set of statements and a set of conditions.\n\nGiven Information:\n1. The cat is red.\n2. The lion is nice.\n3. The lion is red.\n4. The lion sees the cat, the rabbit, and the tiger.\n5. The rabbit chases the tiger.\n6. The rabbit sees the tiger.\n7. The tiger chases the cat and the rabbit.\n8. The tiger is nice.\n9. If someone is red and they eat the rabbit then they are blue.\n10. If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n11. If the rabbit eats the tiger then the tiger is nice.\n12. If someone is rough then they see the cat.\n13. If someone is nice and they chase the rabbit then the rabbit is nice.\n14. If someone eats the cat and they are kind then they see the tiger.\n15. If someone is nice and they chase the tiger then they are blue.\n16. If someone is blue then they eat the cat.\n17. If someone eats the cat then the cat is blue.\n\nStatement to be evaluated: The lion does not eat the tiger.\n\nTo evaluate this statement, we need to check the conditions.\n\nCondition 1: If someone is blue then they eat the cat.\nCondition 2: If someone is blue then they eat the cat.\n\nHowever, there is a condition that might conflict with the statement:\nCondition 3: If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n\nIf the lion eats the cat, then the cat is blue (Condition 1 and Condition 2).\nIf the lion eats the cat and is kind, then it sees the tiger (Condition 4).\nHowever, there is no condition that directly states the lion eats the tiger.\n\nFrom the given information, we can conclude that the lion does not eat the rabbit. The lion is nice, so if it chases the rabbit, the rabbit is nice (Condition 13).\n\nThe only information we have about the lion eating is that it does not eat the rabbit. We cannot find any information that the lion eats the tiger.\n\nConclusion: The lion does not eat the tiger. Therefore, the statement is TRUE.\n\n\\boxed{TRUE}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is nice. (Given)\n2. If the lion chases the rabbit, then the rabbit is nice. However, we cannot conclude this yet because we do not have enough information about the lion chasing the rabbit.\n3. The lion sees the tiger. (Given)\n4. The lion sees the cat. (Given)\n5. If someone is red and they eat the rabbit then they are blue. However, this does not apply to the lion, as we have not established that the lion is red or that the lion eats the rabbit.\n6. If the lion eats the cat and the lion chases the rabbit then the cat is kind. However, we cannot conclude this yet because we do not have enough information about the lion eating the cat.\n7. The lion is red. (Given)\n8. If someone is red and they eat the rabbit then they are blue. However, this does not apply to the lion because the lion is not eating the rabbit.\n9. The rabbit chases the tiger. (Given)\n10. The rabbit sees the tiger. (Given)\n11. The tiger is nice. (Given)\n12. If someone eats the cat and they are kind then they see the tiger. However, we cannot conclude this yet because we do not have enough information about someone eating the cat.\n13. If someone is rough then they see the cat. However, we cannot conclude this yet because we do not have enough information about someone being rough.\n14. The tiger chases the cat. (Given)\n15. The tiger chases the rabbit. (Given)\n\nNow, let's analyze the possibilities for the lion eating the tiger.\n\n- If the lion eats the tiger, then we can deduce the following:\n  - The tiger is blue (because the lion is red and ate the tiger).\n  - The rabbit is nice (because the tiger, which chases the rabbit, is blue, but we cannot conclude this because we do not have enough information about the rabbit).\n  - The lion sees the tiger (given).\n\n- If the lion does not eat the tiger, then we can deduce the following:\n  - The tiger is nice (given).\n  - The rabbit is nice (because the tiger, which chases the rabbit, is nice).\n\nHowever, we cannot conclude whether the lion eats the tiger or not from the given information. Therefore, we cannot determine whether the statement \"The lion does not eat the tiger\" is true or false.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, let's analyze the given statements and the conditions provided.\n\nGiven Statements:\n1. The cat chases the tiger.\n2. The cat is red.\n3. The lion is nice.\n4. The lion is red.\n5. The lion sees the cat.\n6. The lion sees the rabbit.\n7. The lion sees the tiger.\n8. The rabbit chases the tiger.\n9. The rabbit sees the tiger.\n10. The tiger chases the cat.\n11. The tiger chases the rabbit.\n12. The tiger is nice.\n13. If someone is red and they eat the rabbit then they are blue.\n14. If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n15. If the rabbit eats the tiger then the tiger is nice.\n16. If someone is rough then they see the cat.\n17. If someone is nice and they chase the rabbit then the rabbit is nice.\n18. If someone eats the cat and they are kind then they see the tiger.\n19. If someone is nice and they chase the tiger then they are blue.\n20. If someone is blue then they eat the cat.\n21. If someone eats the cat then the cat is blue.\n\nThe statement we need to evaluate is:\nThe lion does not eat the tiger.\n\nFrom statement 3, we know that the lion is nice.\n\nFrom statement 12, we know that the tiger is nice.\n\nNow, we need to analyze the conditions where someone eats the cat or the rabbit and their color or behavior is affected.\n\nFrom statement 20, if someone is blue then they eat the cat. However, this statement does not provide information about eating the tiger.\n\nFrom statement 21, if someone eats the cat then the cat is blue. This statement also does not provide information about eating the tiger.\n\nFrom statement 13, if someone is red and they eat the rabbit then they are blue. However, this statement does not provide information about eating the tiger.\n\nFrom statement 19, if someone is nice and they chase the tiger then they are blue. This statement implies that the tiger is being chased, but it does not provide information about the lion eating the tiger.\n\nWe cannot directly determine if the lion eats the tiger or not using the given information. Therefore, we cannot conclude that the lion does or does not eat the tiger.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is red.\n2. The lion is nice.\n3. The lion sees the cat.\n4. The lion sees the rabbit.\n5. The lion sees the tiger.\n\nFrom these statements, we can't directly determine whether the lion eats the tiger or not.\n\nHowever, we need to look at the given conditions:\n\n1. If someone is red and they eat the rabbit then they are blue. (This doesn't apply to our situation.)\n2. If the lion eats the cat and the lion chases the rabbit then the cat is kind. (This doesn't apply to our situation.)\n3. If the rabbit eats the tiger then the tiger is nice. (This doesn't apply to our situation.)\n4. If someone is rough then they see the cat. (We don't have any information about the lion being rough.)\n5. If someone is nice and they chase the rabbit then the rabbit is nice. (The lion is nice, but this statement doesn't apply to our situation.)\n6. If someone eats the cat and they are kind then they see the tiger. (We don't have any information about the lion being kind.)\n7. If someone is nice and they chase the tiger then they are blue. (The lion is nice, but this statement doesn't apply to our situation.)\n8. If someone is blue then they eat the cat. (We don't know if the lion is blue or not.)\n9. If someone eats the cat then the cat is blue. (This statement doesn't apply to our situation.)\n\nSince none of the given conditions directly state that the lion eats the tiger, we can't determine the statement's truth value using the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals. \n\nFrom the given statements:\n\n1. The lion is nice.\n2. The lion sees the cat, the rabbit, and the tiger.\n3. The rabbit chases the tiger.\n4. The rabbit sees the tiger.\n5. The tiger chases the cat and the rabbit.\n6. The tiger is nice.\n7. If someone is red and they eat the rabbit then they are blue.\n8. If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n9. If the rabbit eats the tiger then the tiger is nice.\n10. If someone is rough then they see the cat.\n11. If someone is nice and they chase the rabbit then the rabbit is nice.\n12. If someone eats the cat and they are kind then they see the tiger.\n13. If someone is nice and they chase the tiger then they are blue.\n14. If someone is blue then they eat the cat.\n15. If someone eats the cat then the cat is blue.\n\nFrom statement 1, we know that the lion is nice.\n\nFrom statement 2, we know that the lion sees the cat, the rabbit, and the tiger.\n\nFrom statement 7, we know that if someone is red and they eat the rabbit then they are blue. However, there is no statement that says the lion eats the rabbit, so we cannot conclude the color of the lion from this statement.\n\nFrom statement 14, we know that if someone is blue then they eat the cat. However, we do not have enough information to determine if the lion is blue or not.\n\nFrom statement 15, we know that if someone eats the cat then the cat is blue. We do not have enough information to determine if the lion eats the cat or not.\n\nFrom statement 8, we know that if the lion eats the cat and the lion chases the rabbit then the cat is kind. However, we do not have enough information to determine if the lion eats the cat or not.\n\nFrom statement 13, we know that if someone is nice and they chase the tiger then they are blue. The lion is nice (from statement 1) and sees the tiger (from statement 2), but we do not have enough information to determine if the lion chases the tiger or not.\n\nFrom statement 3, we know that the rabbit chases the tiger.\n\nFrom statement 9, we know that if the rabbit eats the tiger then the tiger is nice. We do not have enough information to determine if the rabbit eats the tiger or not.\n\nFrom statement 11, we know that if someone is nice and they chase the rabbit then the rabbit is nice. The lion is nice (from statement 1) but we do not have enough information to determine if the lion chases the rabbit or not.\n\nFrom statement 5, we know that the tiger chases the cat and the rabbit.\n\nFrom statement 6, we know that the tiger is nice.\n\nFrom statement 10, we know that if someone is rough then they see the cat. However, we do not have enough information to determine if the lion or the tiger is rough.\n\nFrom statement 12, we know that if someone eats the cat and they are kind then they see the tiger. We do not have enough information to determine if the lion eats the cat or not.\n\nFrom statement 16 is not given but we can look at statement 16 as the given problem statement which is not there. So we will ignore it.\n\nNow let's analyze the statement \"The lion does not eat the tiger.\"\n\nWe do not have enough information to determine if the lion eats the tiger or not. We can analyze the statements and try to find a path that leads to a conclusion. However, the information given is not sufficient to determine the relationship between the lion and the tiger.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and create a set of logical deductions. We will break down the information into the following variables:\n\n- C: The cat is red.\n- L: The lion is nice.\n- R: The lion is red.\n- M1: The lion sees the cat.\n- M2: The lion sees the rabbit.\n- M3: The lion sees the tiger.\n- E1: The rabbit chases the tiger.\n- E2: The rabbit sees the tiger.\n- E3: The tiger chases the cat.\n- E4: The tiger chases the rabbit.\n- N1: The tiger is nice.\n- N2: If someone is red and they eat the rabbit then they are blue.\n- N3: If the lion eats the cat and the lion chases the rabbit then the cat is kind.\n- N4: If the rabbit eats the tiger then the tiger is nice.\n- N5: If someone is rough then they see the cat.\n- N6: If someone is nice and they chase the rabbit then the rabbit is nice.\n- N7: If someone eats the cat and they are kind then they see the tiger.\n- N8: If someone is nice and they chase the tiger then they are blue.\n- N9: If someone is blue then they eat the cat.\n- N10: If someone eats the cat then the cat is blue.\n\nWe are asked to determine whether the following statement is true, false, or unknown: The lion does not eat the tiger.\n\nFrom the given information, we have:\n- L (The lion is nice)\n- R (The lion is red)\n- M3 (The lion sees the tiger)\n- N1 (The tiger is nice)\n- N4 (If the rabbit eats the tiger then the tiger is nice)\n\nWe also have the following information that can be inferred from the given statements:\n- Since the lion sees the tiger (M3) and the lion is nice (L), it does not necessarily imply that the lion eats the tiger. However, we can use this information to derive other statements.\n\nUsing the information given, we can create the following logical deductions:\n\n1. If someone is red and they eat the rabbit, then they are blue. We do not have any information about the lion eating the rabbit, so we cannot conclude that the lion is blue.\n\n2. If the lion eats the cat and the lion chases the rabbit, then the cat is kind. However, we do not have any information about the lion eating the cat or chasing the rabbit, so we cannot conclude that the cat is kind.\n\n3. If someone eats the cat and they are kind, then they see the tiger. We do not have any information about the lion being kind or eating the cat, so we cannot conclude that the lion sees the tiger.\n\n4. If someone is nice and they chase the tiger, then they are blue. We do not have any information about the lion chasing the tiger, so we cannot conclude that the lion is blue.\n\n5. If someone is blue then they eat the cat. We do not have any information about the lion being blue or eating the cat, so we cannot conclude that the lion eats the cat.\n\n6. If someone eats the cat, then the cat is blue. We do not have any information about the lion eating the cat, so we cannot conclude that the cat is blue.\n\nHowever, we can analyze the following sequence of statements:\n- The lion sees the tiger (M3).\n- The tiger is nice (N1).\n- The rabbit chases the tiger (E1).\n- The tiger chases the cat (E3).\n- The tiger chases the rabbit (E4).\n\nFrom these statements, we can conclude that the tiger is being chased by the rabbit, and the tiger is also chasing the cat. However, this does not provide any direct information about the lion eating the tiger.\n\nBased on the given information, we cannot conclude that the lion does or does not eat the tiger. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not eat the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is nice. (Given)\n2. If someone is nice and they chase the tiger then they are blue. (Given)\n   - Since the lion is nice, we need to check if it chases the tiger.\n   - We do not know if the lion chases the tiger, so we cannot determine if it is blue or not.\n\n3. If someone is red and they eat the rabbit then they are blue. (Given)\n   - This information is not directly related to our current analysis, so we can ignore it for now.\n\n4. The lion sees the tiger. (Given)\n   - This information is also not directly related to our current analysis.\n\n5. If the lion eats the cat and the lion chases the rabbit then the cat is kind. (Given)\n   - This information is also not directly related to our current analysis.\n\n6. If someone eats the cat and they are kind then they see the tiger. (Given)\n   - This information is also not directly related to our current analysis.\n\n7. The tiger is nice. (Given)\n   - This information is also not directly related to our current analysis.\n\n8. The rabbit chases the tiger. (Given)\n   - We do not know if the lion chases the tiger, so we cannot determine if the rabbit is nice or not.\n\n9. The tiger chases the cat. (Given)\n   - We do not know if the lion eats the tiger, but we can analyze the statement \"The lion does not eat the tiger\" separately.\n\n10. If someone is blue then they eat the cat. (Given)\n    - This information is related to our current analysis, but we cannot determine if the lion is blue or not.\n\n11. If the rabbit eats the tiger then the tiger is nice. (Given)\n    - This information is also not directly related to our current analysis.\n\n12. If someone is rough then they see the cat. (Given)\n    - This information is also not directly related to our current analysis.\n\n13. If someone is nice and they chase the rabbit then the rabbit is nice. (Given)\n    - This information is also not directly related to our current analysis.\n\n14. The lion is red. (Given)\n    - This information is also not directly related to our current analysis.\n\nHowever, we can analyze the statement \"The lion does not eat the tiger\" separately by considering all the information given.\n\nIf we assume that the lion eats the tiger, then we can check if it leads to any contradictions. \n\nIf the lion eats the tiger, then the tiger is nice (from statement 11). However, we do not know if the lion chases the rabbit or not. \n\nIf the lion chases the rabbit, then the rabbit is nice (from statement 13), but we do not have enough information to determine if the rabbit is nice or not.\n\nIf the lion does not chase the rabbit, then we do not have enough information to determine if the rabbit is nice or not.\n\nHowever, if the lion does not eat the tiger, then we cannot derive any contradictions.\n\nTherefore, based on the given information, we cannot determine whether the lion eats the tiger or not. Hence, the statement \"The lion does not eat the tiger\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information, we know:\n- The lion is red.\n- The lion sees the tiger.\n- The tiger chases the cat.\n- The tiger chases the rabbit.\n\nNow, let's consider the rules:\n- If someone is red and they eat the rabbit then they are blue. (This rule is not applicable here.)\n- If the lion eats the cat and the lion chases the rabbit then the cat is kind. (This rule is not applicable here.)\n- If the rabbit eats the tiger then the tiger is nice. (This rule is not applicable here.)\n- If someone is rough then they see the cat. (This rule is not applicable here.)\n- If someone is nice and they chase the rabbit then the rabbit is nice. (This rule is not applicable here.)\n- If someone eats the cat and they are kind then they see the tiger. (This rule is not applicable here.)\n- If someone is nice and they chase the tiger then they are blue. (This rule is not applicable here.)\n- If someone is blue then they eat the cat. (This rule is not applicable here.)\n- If someone eats the cat then the cat is blue.\n\nWe need to consider the rule that can help us determine if the lion eats the tiger or not.\n\nHowever, we can find that the lion chases the rabbit and the lion is red, but there is no information that links the lion eating the tiger with any of the given rules. The lion is red and it does not directly eat the cat or the rabbit, which means we cannot directly conclude if the lion eats the tiger or not. But one thing is certain, the tiger chases the cat and the rabbit. \n\nHowever, the statement says 'The lion does not eat the tiger.' We need to prove that this is true or false. If we consider all the rules and the given information, we find that the lion eats the cat is not mentioned in the rules or information.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_lion, eats_lion_rabbit), blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat) & sees(lion, rabbit) & sees(lion, tiger)",
+          "z3_formula": "And(sees_lion_cat, sees_lion_rabbit, sees_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat) & chases(tiger, rabbit)",
+          "z3_formula": "And(chases_tiger_cat, chases_tiger_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_tiger, chases_tiger_rabbit), nice_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat) & chases(lion, rabbit) -> kind(cat)",
+          "z3_formula": "Implies(And(eats_lion_cat, chases_lion_rabbit), kind_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_lion_cat, kind_lion), sees_lion_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_rabbit, chases_rabbit_tiger), blue_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_rabbit, eats_rabbit_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(eats_rabbit_cat, blue_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Implies(Not(eats_lion_tiger), Or(And(red_lion, eats_lion_rabbit), And(nice_lion, chases_lion_tiger))))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, tiger)",
+          "z3_formula": "chases_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_lion, eats_lion_rabbit), blue_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_lion_cat, kind_lion), sees_lion_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> nice(X)",
+          "z3_formula": "Implies(eats_rabbit_tiger, nice_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_lion, sees_lion_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_rabbit), nice_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & eats(X, cat) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(kind_lion, eats_lion_cat), sees_lion_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_tiger), blue_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_lion, eats_lion_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(X)",
+          "z3_formula": "Implies(eats_lion_cat, blue_lion)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat) & sees(lion, rabbit) & sees(lion, tiger)",
+          "z3_formula": "And(sees_lion_cat, sees_lion_rabbit, sees_lion_tiger) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, tiger)",
+          "z3_formula": "chases_rabbit_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat) & chases(tiger, rabbit)",
+          "z3_formula": "And(chases_tiger_cat, chases_tiger_rabbit) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, eats_X_rabbit), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(lion, cat) & chases(lion, rabbit) -> kind(cat)",
+          "z3_formula": "Implies(And(eats_lion_cat, chases_lion_rabbit), kind_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(rabbit, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(eats_rabbit_tiger, nice_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_X, chases_X_rabbit), nice_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_X_cat, kind_X), sees_X_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_X, chases_X_tiger), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_X, eats_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(X)",
+          "z3_formula": "Implies(eats_X_cat, blue_X)",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, tiger)",
+          "z3_formula": "chases_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, eats_X_rabbit), blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(lion, cat) & chases(lion, rabbit) -> kind(cat)",
+          "z3_formula": "Implies(And(eats_lion_cat, chases_lion_rabbit), kind_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(rabbit, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(eats_rabbit_tiger, nice_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_X, chases_X_rabbit), nice_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_X_cat, kind_X), sees_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_X, chases_X_tiger), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_X, eats_X_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(eats_X_cat, blue_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "Not(eats_lion_tiger) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_lion, eats_lion_rabbit), blue_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & chases(X, rabbit) -> kind(cat)",
+          "z3_formula": "Implies(And(eats_lion_cat, chases_lion_rabbit), kind_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(eats_rabbit_tiger, nice_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_lion, sees_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_rabbit), nice_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_lion_cat, kind_lion), sees_lion_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_tiger), blue_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_lion, eats_lion_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(eats_lion_cat, blue_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, eats_X_rabbit), blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_X, eats_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(eats_X_cat, blue_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & sees(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_X_cat, sees_X_rabbit), kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(rabbit)",
+          "z3_formula": "Implies(And(nice_X, chases_X_rabbit), nice_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(chases_X_tiger, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, tiger)",
+          "z3_formula": "chases_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(rabbit, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(eats_rabbit_tiger, nice_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_X_cat, kind_X), sees_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_X, eats_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(eats_X_cat, blue_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "Not(eats_lion_tiger)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "lion_nice == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "lion_red == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "lion_sees_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "tiger_nice == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(lion_red, eats_lion_rabbit), lion_blue)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & kind(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_lion_cat, kind_lion), lion_sees_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(lion_nice, chases_lion_tiger), lion_blue)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(lion_blue, eats_lion_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(X)",
+          "z3_formula": "Implies(eats_lion_cat, lion_blue)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "Not(eats_lion_tiger)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chase(X, Y) -> blue(X)",
+          "z3_formula": "Implies(And(nice_lion, chase_lion_tiger), blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "see(lion, tiger)",
+          "z3_formula": "see_lion_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "see(tiger, cat)",
+          "z3_formula": "see_tiger_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chase(rabbit, tiger)",
+          "z3_formula": "chase_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eat(X, cat)",
+          "z3_formula": "Implies(blue_lion, eat_lion_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eat(X, Y) -> nice(Y)",
+          "z3_formula": "Implies(eat_lion_tiger, nice_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chase(X, Y) -> nice(Y)",
+          "z3_formula": "Implies(And(nice_lion, chase_lion_rabbit), nice_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(Not(eat_lion_tiger), Not(chase_lion_rabbit)), And(eat_lion_tiger, Not(chase_lion_rabbit)), And(eat_lion_tiger, chase_lion_rabbit)))",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(red_lion, eats_lion_rabbit), blue_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(And(eats_lion_cat, chases_lion_rabbit), kind_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> nice(X)",
+          "z3_formula": "Implies(eats_tiger_rabbit, nice_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_lion, sees_lion_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, rabbit) -> nice(X)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_rabbit), nice_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(nice_lion, chases_lion_tiger), blue_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_lion, eats_lion_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> blue(X)",
+          "z3_formula": "Implies(eats_lion_cat, blue_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "Not(eats_lion_tiger)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 62
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 0,
+      "total_weight": 134,
+      "solve_time_ms": 1.58635713160038
+    },
+    "timing": {
+      "trace_gen_s": 15.625,
+      "extraction_s": 40.442,
+      "dedup_s": 1.861,
+      "maxsat_s": 0.005,
+      "total_s": 57.932
+    }
+  }
+}

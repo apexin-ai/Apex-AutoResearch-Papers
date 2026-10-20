@@ -1,0 +1,557 @@
+# analysis loo sensitivity
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_analysis_loo-sensitivity_20260521T220615.log`
+- **Structured JSON:** [`afbe1c789bf1eb0ec651.json`](../../sessions/af/afbe1c789bf1eb0ec651.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bd613551-c44b-4467-84f1-2614f6bf6b2e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779417000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a74ecd3e-66ed-441b-a7e8-1f8c87533700",
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run a Python script on server westd-16639 via SSH. Note that the project context mentions westd-25068, but the user explicitly asked for westd-16639.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "46a916b3-cc38-46ff-8b81-11d949539f14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRzcKNaNtooFU39VHERggX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12408,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12408
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VsD4iEyfkYbAkZp8FYYQeJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "92fc111f-333e-4406-86cb-83a0f2dbbbd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRzcKNaNtooFU39VHERggX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12408,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12408
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T22:06:29.655Z_
+
+<details><summary>↩ Tool result · `toolu_01VsD4iEyfkYbAkZp8FYYQeJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "d8911d0c-d2f0-4ccc-8043-7f3d0b7bb870",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017THCc9ggYaKEVhxJYkqGWk`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nfrom scipy.stats import spearmanr\nimport itertools\n\nmodels = ['R1-Distill', 'gpt-5.5', 'o3', 'Gemini*', 'gpt-4.1']\nkappa = [0.248, 0.563, 0.596, 0.790, 0.792]\ndelta = [2.45, 0.49, 0.00, -1.05, -1.47]\n\nprint('=== Leave-One-Out Sensitivity Analysis ===')\nprint(f'Full (n=5): rho={spearmanr(kappa, delta)[0]:.3f}, p={spearmanr(kappa, delta)[1]:.4f}')\nprint()\nfor i in range(5):\n    k_loo = [kappa[j] for j in range(5) if j != i]\n    d_loo = [delta[j] for j in range(5) if j != i]\n    rho, p = spearmanr(k_loo, d_loo)\n    print(f'Drop {models[i]:12s} (k={kappa[i]:.3f}, d={delta[i]:+.2f}): n=4 rho={rho:.3f}, p={p:.4f} (one-tailed={p/2:.4f})')\n\nprint()\nprint('=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===')\nk_swap = [0.248, 0.563, 0.596, 0.792, 0.790]\nd_swap = [2.45, 0.49, 0.00, -1.05, -1.47]\nrho_swap, p_swap = spearmanr(k_swap, d_swap)\nprint(f'After kappa swap: rho={rho_swap:.3f}, p={p_swap:.4f}')\n\nprint()\nprint('=== Gemini delta sensitivity ===')\nfor new_delta in [-2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0]:\n    k_test = [0.248, 0.563, 0.596, 0.790, 0.792]\n    d_test = [2.45, 0.49, 0.00, new_delta, -1.47]\n    rho_t, p_t = spearmanr(k_test, d_test)\n    print(f'  Gemini delta={new_delta:+.1f}: rho={rho_t:.3f}, p={p_t:.4f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "72202a3d-5d58-4dd8-82ad-1044d06a6b16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEkpDVPiR7rB4zBwe8BQmt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 24249,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 405
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T22:06:40.036Z_
+
+<details><summary>↩ Tool result · `toolu_017THCc9ggYaKEVhxJYkqGWk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Leave-One-Out Sensitivity Analysis ===\\nFull (n=5): rho=-1.000, p=0.0000\\n\\nDrop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\n\\n=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===\\nAfter kappa swap: rho=-0.900, p=0.0374\\n\\n=== Gemini delta sensitivity ===\\n  Gemini delta=-2.0: rho=-0.900, p=0.0374\\n  Gemini delta=-1.5: rho=-0.900, p=0.0374\\n  Gemini delta=-1.0: rho=-1.000, p=0.0000\\n  Gemini delta=-0.5: rho=-1.000, p=0.0000\\n  Gemini delta=+0.0: rho=-0.975, p=0.0048\\n  Gemini delta=+0.5: rho=-0.700, p=0.1881\\n  Gemini delta=+1.0: rho=-0.700, p=0.1881\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "07b3460b-a9d2-44e8-b910-cb4342670641",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Leave-One-Out Sensitivity Analysis ===\\\\nFull (n=5): rho=-1.000, p=0.0000\\\\n\\\\nDrop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\\\nDrop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\\\nDrop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\\\nDrop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\\\nDrop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\\\n\\\\n=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===\\\\nAfter kappa swap: rho=-0.900, p=0.0374\\\\n\\\\n=== Gemini delta sensitivity ===\\\\n  Gemini delta=-2.0: rho=-0.900, p=0.0374\\\\n  Gemini delta=-1.5: rho=-0.900, p=0.0374\\\\n  Gemini delta=-1.0: rho=-1.000, p=0.0000\\\\n  Gemini delta=-0.5: rho=-1.000, p=0.0000\\\\n  Gemini delta=+0.0: rho=-0.975, p=0.0048\\\\n  Gemini delta=+0.5: rho=-0.700, p=0.1881\\\\n  Gemini delta=+1.0: rho=-0.700, p=0.1881\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Leave-One-Out Sensitivity Analysis ===\\nFull (n=5): rho=-1.000, p=0.0000\\n\\nDrop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\nDrop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)\\n\\n=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===\\nAfter kappa swap: rho=-0.900, p=0.0374\\n\\n=== Gemini delta sensitivity ===\\n  Gemini delta=-2.0: rho=-0.900, p=0.0374\\n  Gemini delta=-1.5: rho=-0.900, p=0.0374\\n  Gemini delta=-1.0: rho=-1.000, p=0.0000\\n  Gemini delta=-0.5: rho=-1.000, p=0.0000\\n  Gemini delta=+0.0: rho=-0.975, p=0.0048\\n  Gemini delta=+0.5: rho=-0.700, p=0.1881\\n  Gemini delta=+1.0: rho=-0.700, p=0.1881\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+完整输出：
+
+```
+=== Leave-One-Out Sensitivity Analysis ===
+Full (n=5): rho=-1.000, p=0.0000
+
+Drop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+
+=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===
+After kappa swap: rho=-0.900, p=0.0374
+
+=== Gemini delta sensitivity ===
+  Gemini delta=-2.0: rho=-0.900, p=0.0374
+  Gemini delta=-1.5: rho=-0.900, p=0.0374
+  Gemini delta=-1.0: rho=-1.000, p=0.0000
+  Gemini delta=-0.5: rho=-1.000, p=0.0000
+  Gemini delta=+0.0: rho=-0.975, p=0.0048
+  Gemini delta=+0.5: rho=-0.700, p=0.1881
+  Gemini delta=+1.0: rho=-0.700, p=0.1881
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "uuid": "5025dd2b-e1a6-48b7-b471-5b1646aca268",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M79NsqrWLnPoEMfaPmNbFH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1372,
+      "cache_read_input_tokens": 24654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1372
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 10_
+
+完整输出：
+
+```
+=== Leave-One-Out Sensitivity Analysis ===
+Full (n=5): rho=-1.000, p=0.0000
+
+Drop R1-Distill   (k=0.248, d=+2.45): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop gpt-5.5      (k=0.563, d=+0.49): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop o3           (k=0.596, d=+0.00): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop Gemini*      (k=0.790, d=-1.05): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+Drop gpt-4.1      (k=0.792, d=-1.47): n=4 rho=-1.000, p=0.0000 (one-tailed=0.0000)
+
+=== Gemini vs gpt-4.1 swap test (kappa diff=0.002) ===
+After kappa swap: rho=-0.900, p=0.0374
+
+=== Gemini delta sensitivity ===
+  Gemini delta=-2.0: rho=-0.900, p=0.0374
+  Gemini delta=-1.5: rho=-0.900, p=0.0374
+  Gemini delta=-1.0: rho=-1.000, p=0.0000
+  Gemini delta=-0.5: rho=-1.000, p=0.0000
+  Gemini delta=+0.0: rho=-0.975, p=0.0048
+  Gemini delta=+0.5: rho=-0.700, p=0.1881
+  Gemini delta=+1.0: rho=-0.700, p=0.1881
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 21809,
+  "duration_api_ms": 21279,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "c5d4de99-fd3b-4e22-aeb9-d15fd8b022e8",
+  "total_cost_usd": 0.15623525,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 14185,
+    "cache_read_input_tokens": 60744,
+    "output_tokens": 1424,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14185,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 524,
+        "cache_read_input_tokens": 24654,
+        "cache_creation_input_tokens": 1372,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1372
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1482,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001572,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 1424,
+      "cacheReadInputTokens": 60744,
+      "cacheCreationInputTokens": 14185,
+      "webSearchRequests": 0,
+      "costUSD": 0.15466325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c0fb8b5e-acc0-45dc-94c3-278087270a4b"
+}
+```
+
+</details>
+
+---

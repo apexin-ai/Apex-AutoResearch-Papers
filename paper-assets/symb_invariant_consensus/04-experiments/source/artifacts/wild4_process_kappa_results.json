@@ -1,0 +1,32 @@
+{
+  "experiment": "wild4_process_kappa",
+  "source": "exp033_mistral_7b_folio204",
+  "K": 12,
+  "n_questions": 204,
+  "answer_level": {
+    "fleiss_kappa_4cat": 0.3294,
+    "fleiss_kappa_3cat_empty_as_unknown": 0.4093,
+    "fleiss_kappa_3cat_empty_excluded": 0.5006,
+    "fleiss_kappa_primary": 0.4093,
+    "mean_agreement": 0.51,
+    "std_agreement": 0.2247
+  },
+  "process_level": {
+    "mean_cosine_similarity": 0.6902,
+    "std_cosine_similarity": 0.0992
+  },
+  "correlation": {
+    "pearson_r": -0.0642,
+    "pearson_p": 0.361771,
+    "spearman_rho": -0.0466,
+    "spearman_p": 0.507615
+  },
+  "same_answer_different_process": {
+    "cosine_threshold": 0.5,
+    "global_ratio": 0.0933,
+    "total_same_answer_pairs": 6605,
+    "total_different_process_pairs": 616,
+    "questions_with_data": 204
+  },
+  "note": "Full per_question data in server: /root/symb_invariant_consensus/results/wild4_process_kappa/results.json"
+}

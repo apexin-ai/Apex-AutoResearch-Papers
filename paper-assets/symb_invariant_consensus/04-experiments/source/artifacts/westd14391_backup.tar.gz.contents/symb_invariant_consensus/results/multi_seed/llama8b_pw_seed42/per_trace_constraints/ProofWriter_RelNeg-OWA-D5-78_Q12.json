@@ -1,0 +1,1091 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-78_Q12",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(mouse)",
+          "z3_formula": "Implies(visits_mouse_mouse, nice_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(mouse)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_mouse, big_mouse), likes_mouse_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_mouse, visits_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == Unknown",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_squirrel_tiger), green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, nice_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> ~visits(X, tiger)",
+          "z3_formula": "Implies(nice_lion, ~visits_lion_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_X, big_X), likes_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_X, visits_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & ~nice(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_X_tiger, ~nice_X), likes_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & ~eats(X, squirrel) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_X_tiger, ~eats_X_squirrel), likes_X_lion)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_mouse, big_mouse), likes_mouse_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> nice(X)",
+          "z3_formula": "Implies(visits_mouse_tiger, nice_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & nice(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_mouse_tiger, nice_mouse), likes_mouse_lion)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_squirrel, nice_squirrel), round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_tiger, cold_tiger), white_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == False",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, nice_X), round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, cold_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(eats_X_squirrel)), likes_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_X_tiger, Not(eats_X_squirrel)), likes_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & not(nice(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_X_tiger, Not(nice_X)), likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_X_tiger, Not(eats_X_squirrel)), likes_X_lion)",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_lion, nice_lion), round_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_mouse, big_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not(visits(X, tiger))",
+          "z3_formula": "Implies(nice_lion, not(visits_lion_tiger))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_mouse, big_mouse), likes_mouse_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_mouse, visits_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & not(nice(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_mouse_tiger, not(nice_mouse)), likes_mouse_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_mouse_tiger, not(eats_mouse_squirrel)), likes_mouse_lion)",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_squirrel_tiger), green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_mouse, nice_mouse), round_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_lion, big_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_mouse, nice_mouse), round_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(lion) -> not visits(lion, tiger)",
+          "z3_formula": "Implies(nice_lion, Not(visits_lion_tiger))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_mouse, big_mouse), likes_mouse_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & not nice(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_lion_tiger, Not(nice_lion)), likes_lion_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not eats(X, squirrel) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_tiger, Not(eats_lion_squirrel)), likes_lion_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(lion, X)",
+          "z3_formula": "Implies(likes_mouse_lion, likes_lion_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(mouse)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(mouse) -> big(mouse)",
+          "z3_formula": "Implies(green_mouse, big_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_mouse, big_mouse), likes_mouse_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & Not(nice(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_tiger_lion, Not(nice_tiger)), likes_tiger_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & Not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_tiger_mouse, Not(eats_mouse_squirrel)), likes_tiger_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == Unknown",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_mouse_mouse, nice_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_mouse, big_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_mouse, visits_mouse_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(big_squirrel, likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_tiger_lion, Not(eats_squirrel_squirrel)), likes_tiger_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & not(nice(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_tiger_tiger, Not(nice_tiger)), likes_tiger_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & visits(X, tiger) -> green(Y)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_squirrel_tiger), green_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_squirrel, visits_squirrel_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_squirrel, big_squirrel), likes_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(visits_squirrel_mouse, likes_squirrel_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_mouse, big_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not(eats(X, squirrel)) -> likes(tiger, lion)",
+          "z3_formula": "Implies(And(likes_squirrel_lion, Not(eats_squirrel_lion)), likes_tiger_lion)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> nice(X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, nice_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & visits(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, visits_lion_tiger), green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_mouse, big_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(big_mouse, nice_mouse), round_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(round_squirrel, big_squirrel), likes_squirrel_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_lion, visits_lion_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) & Not(nice(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(eats_tiger_mouse, Not(nice_tiger)), likes_tiger_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & Not(eats(X, squirrel)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_tiger_lion, Not(eats_tiger_squirrel)), likes_tiger_lion)",
+          "source_step": 19
+        }
+      ]
+    }
+  ]
+}

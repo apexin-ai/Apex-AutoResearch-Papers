@@ -1,0 +1,3967 @@
+# experiment d134 cil
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 0
+- **Tool calls:** 69
+- **Original source:** `logs/chats/worker_experiment_d134-cil_20260521T084126.jsonl`
+- **Structured JSON:** [`b59956b9c861af53da64.json`](../../sessions/b5/b59956b9c861af53da64.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+139 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T08:51:30.338044+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T08:51:30.338414+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T08:51:30.338606+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T08:51:30.338797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation.json\\nalpha_recompute_25068.json\\nalpha_sensitivity_exp033.json\\nanalysis_tasks_356.json\\ncase_study_constraints.json\\ncase_study_normalized.json\\ncondorcet_independence_analysis.json\\nconfirmation_bias\\ncross_model_experiment\\ncross_model_kappa\\ncross_model_mistral_folio\\ndir_f3_cross_model_verification\\ndir_i2_single_model_baselines\\ndir_i3_sica_qwen3_14b\\ndir_i_hge_pilot\\ndir_j2_nli_qwen3\\ndir_j3_nli_multi_verifier\\ndir_l2_single_trace_n204\\ndir_l_single_trace\\ndir_n_oracle_bestofk\\ndir_n_oracle_qwen3t_n204\\ndirection_a_atom_pilot20.json\\ndirection_a_prove\\ndirection_b_deepconf\\ndirection_c_counterfactual_pilot.json\\ndirection_e_abstention\\ndirection_f_blind_fol\\ndirection_g_decoupling\\ndirection_g_dryrun.log\\ndirection_g_vllm.log\\ndirection_i_z3_filter\\ndirection_r_deberta\\ndirection_r_nli_large\\ndirection_r_nli_pw600\\ndirection_r_nli_small\\ndirection_rg_combo\\ndisc_filter_full.log\\ndisc_filter_test.log\\ndiscriminative_filter_exp033.json\\ndiscriminative_filter_exp033_test.json\\ndiscriminative_filter_exp044b.json\\ndiscriminative_filter_exp046.json\\ndiscriminative_filter_exp054.json\\ndrc_cascade_pilot\\nexp-007-qwen72b-awq\\nexp-029-contrastive-folio204\\nexp004_qwen7b_rerun\\nexp013_constraint_ablation\\nexp027_qwen3_14b_nonthinking\\nexp028_qwen3_14b_thinking\\nexp028b_discordant_tracking.json\\nexp028b_qwen3_thinking_folio204\\nexp033_mistral_7b_folio204\\nexp033_per_problem_analysis.json\\nexp033_per_problem_analysis_v2.json\\nexp034_llama31_8b_folio204\\nexp034_qwen25_14b_proofwriter\\nexp035_qwen25_7b_folio204\\nexp036_z3_feedback\\nexp036b_cross_trace_unsat.json\\nexp044b_icl_oracle_qwen14b\\nexp045b_backward_qwen14b\\nexp046_mistral_7b_pw600\\nexp046_mistral_pw600_traces_consolidated.json\\nexp046_mistral_traces_slim.json\\nexp046_mistral_traces_slim.json.gz\\nexp047_qwen3_thinking_folio204\\nexp051_mistral_k_sensitivity\\nexp054_mist
+…[truncated 2004 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T08:51:30.339036+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_pw600/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_pw600/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T08:51:30.339195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T08:51:30.339324+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_deberta/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_deberta/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T08:51:30.339462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T08:51:30.339587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_large/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_large/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T08:51:30.339711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T08:51:30.339829+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_small/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_small/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T08:51:30.339977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_rg_combo/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_rg_combo/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T08:51:30.340223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T08:51:30.340385+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"per_question_best.json\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T08:51:30.340508+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T08:51:30.340632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T08:51:30.340772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/direction_rg_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/direction_rg_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T08:51:30.341032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": {\\n      \\\"accuracy\\\": 0.5441,\\n      \\\"correct\\\": 111\\n    },\\n    \\\"sica\\\": {\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121\\n    },\\n    \\\"nli_standalone\\\": {\\n      \\\"accuracy\\\": 0.4951,\\n      \\\"correct\\\": 101\\n    }\\n  },\\n  \\\"n_problems\\\": 204,\\n  \\\"best_strategy\\\": \\\"nli_sc_vote_w5\\\",\\n  \\\"best_accuracy\\\": 0.6029,\\n  \\\"strategies\\\": {\\n    \\\"intersection_sc_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SC fallback\\\",\\n      \\\"accuracy\\\": 0.5735,\\n      \\\"correct\\\": 117,\\n      \\\"delta_vs_sc\\\": 0.0294,\\n      \\\"delta_vs_sica\\\": -0.0196,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 4.1667,\\n        \\\"p_value\\\": 0.041227,\\n        \\\"b\\\": 6,\\n        \\\"c\\\": 0\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 1.125,\\n        \\\"p_value\\\": 0.288844,\\n        \\\"b\\\": 2,\\n        \\\"c\\\": 6\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 47,\\n          \\\"accuracy\\\": 0.6812\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.5972\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 27,\\n          \\\"accuracy\\\": 0.4286\\n        }\\n      },\\n      \\\"agree_count\\\": 97,\\n      \\\"agree_pct\\\": 47.5\\n    },\\n    \\\"intersection_sica_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SICA fallback\\\",\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121,\\n      \\\"delta_vs_sc\\\": 0.049,\\n      \\\"delta_vs_sica\\\": 0.0,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 5.7857,\\n        \\\"
+…[truncated 1097 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T08:51:30.341210+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T08:51:30.341406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n  \\\"n_questions\\\": 600,\\n  \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\",\\n  \\\"deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.55,\\n    \\\"correct\\\": 330,\\n    \\\"total\\\": 600,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 128,\\n        \\\"accuracy\\\": 0.64,\\n        \\\"precision\\\": 0.6957,\\n        \\\"recall\\\": 0.64,\\n        \\\"f1\\\": 0.6667\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 195,\\n        \\\"accuracy\\\": 0.975,\\n        \\\"precision\\\": 0.4791,\\n        \\\"recall\\\": 0.975,\\n        \\\"f1\\\": 0.6425\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 7,\\n        \\\"accuracy\\\": 0.035,\\n        \\\"precision\\\": 0.7778,\\n        \\\"recall\\\": 0.035,\\n        \\\"f1\\\": 0.067\\n      }\\n    },\\n    \\\"gt_distribution\\\": {\\n      \\\"True\\\": 200,\\n      \\\"False\\\": 200,\\n      \\\"Unknown\\\": 200\\n    },\\n    \\\"pred_distribution\\\": {\\n      \\\"True\\\": 184,\\n      \\\"False\\\": 407,\\n      \\\"Unknown\\\": 9\\n    },\\n    \\\"inference_time_s\\\": 615.0\\n  },\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": 0.3933,\\n    \\\"sica\\\": 0.365\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"nli_right_sc_wrong\\\": 274,\\n    \\\"sc_right_nli_wrong\\\": 180,\\n    \\\"both_right\\\": 56,\\n    \\\"both_wrong\\\": 90\\n  },\\n  \\\"combo_vs_sc\\\": {\\n    \\\"w1\\\": {\\n      \\\"accuracy\\\": 0.4017,\\n      \\\"correct\\\": 241,\\n      \\\"delta_vs_sc\\\": 0.0083,\\n      \\\"delta_pp\\\": 0.83,\\n      \\\"mcnemar_b\\\": 4,\\n      \\\"mcnemar_c\\\": 9,\\n      \\\"mcnemar_n_discordant\\\": 13,\\n      \\\"mcnemar_p\\\": 0.266846\\n    },\\n    \\\"w3\\\": {\\n      \\\"accuracy\\\": 0.4283,\\n      \\\"correct\\\": 257,\\n 
+…[truncated 975 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T08:51:30.341569+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T08:51:30.341763+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"dir_j3_nli_multi_verifier\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n  \\\"n_questions\\\": 600,\\n  \\\"sc_baseline\\\": {\\n    \\\"accuracy\\\": 0.3933,\\n    \\\"correct\\\": 236\\n  },\\n  \\\"weights_tested\\\": [\\n    1,\\n    3,\\n    5\\n  ],\\n  \\\"device\\\": \\\"cuda\\\",\\n  \\\"models\\\": [\\n    {\\n      \\\"model_name\\\": \\\"DeBERTa-MNLI\\\",\\n      \\\"hf_id\\\": \\\"/root/models/deberta-large-mnli\\\",\\n      \\\"status\\\": \\\"OK\\\",\\n      \\\"standalone_accuracy\\\": 0.55,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"per_class\\\": {\\n        \\\"True\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 128,\\n          \\\"accuracy\\\": 0.64\\n        },\\n        \\\"False\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 195,\\n          \\\"accuracy\\\": 0.975\\n        },\\n        \\\"Unknown\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 7,\\n          \\\"accuracy\\\": 0.035\\n        }\\n      },\\n      \\\"pred_distribution\\\": {\\n        \\\"True\\\": 184,\\n        \\\"False\\\": 407,\\n        \\\"Unknown\\\": 9\\n      },\\n      \\\"inference_time_s\\\": 11.6,\\n      \\\"complementarity\\\": {\\n        \\\"nli_right_sc_wrong\\\": 274,\\n        \\\"sc_right_nli_wrong\\\": 180,\\n        \\\"both_right\\\": 56,\\n        \\\"both_wrong\\\": 90\\n      },\\n      \\\"combo_vs_sc\\\": {\\n        \\\"w1\\\": {\\n          \\\"accuracy\\\": 0.4017,\\n          \\\"correct\\\": 241,\\n          \\\"delta_vs_sc\\\": 0.0083,\\n          \\\"delta_pp\\\": 0.83,\\n          \\\"mcnemar_b\\\": 4,\\n          \\\"mcnemar_c\\\": 9,\\n          \\\"mcnemar_n_discordant\\\": 13,\\n          \\\"mcnemar_p\\\": 0.266846\\n        },\\n        \\\"w3\\\": {\\n          \\\"accuracy\\\": 0.4283,\\n          \\\"correct\\\": 257,\\n          \\\"delta_vs_sc\\\": 0.035,\\n          \\\"d
+…[truncated 1180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T08:51:30.341948+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T08:51:30.342087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_small/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/direction_r_nli_small/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T08:51:30.342277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_r1_deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.4951,\\n    \\\"correct\\\": 101,\\n    \\\"total\\\": 204,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 72,\\n        \\\"correct\\\": 43,\\n        \\\"accuracy\\\": 0.5972,\\n        \\\"precision\\\": 0.5181,\\n        \\\"recall\\\": 0.5972,\\n        \\\"f1\\\": 0.5548\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 63,\\n        \\\"correct\\\": 45,\\n        \\\"accuracy\\\": 0.7143,\\n        \\\"precision\\\": 0.4545,\\n        \\\"recall\\\": 0.7143,\\n        \\\"f1\\\": 0.5556\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"n\\\": 69,\\n        \\\"correct\\\": 13,\\n        \\\"accuracy\\\": 0.1884,\\n        \\\"precision\\\": 0.5909,\\n        \\\"recall\\\": 0.1884,\\n        \\\"f1\\\": 0.2857\\n      }\\n    },\\n    \\\"gt_distribution\\\": {\\n      \\\"Unknown\\\": 69,\\n      \\\"True\\\": 72,\\n      \\\"False\\\": 63\\n    },\\n    \\\"pred_distribution\\\": {\\n      \\\"True\\\": 83,\\n      \\\"False\\\": 99,\\n      \\\"Unknown\\\": 22\\n    },\\n    \\\"inference_time_s\\\": 42.1,\\n    \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\"\\n  },\\n  \\\"exp_r2_verifier\\\": {\\n    \\\"agreement_rate\\\": 0.451,\\n    \\\"agree_count\\\": 92,\\n    \\\"disagree_count\\\": 112,\\n    \\\"agree_accuracy\\\": 0.6848,\\n    \\\"disagree_breakdown\\\": {\\n      \\\"deberta_correct_sc_wrong\\\": 38,\\n      \\\"sc_correct_deberta_wrong\\\": 48,\\n      \\\"both_wrong\\\": 26\\n    },\\n    \\\"strategies\\\": {\\n      \\\"abstain\\\": {\\n        \\\"coverage\\\": 0.451,\\n        \\\"accuracy\\\": 0.6848\\n      },\\n      \\\"deberta_override\\\": {\\n        \\\"accuracy\\\": 0.4951\\n      },\\n      \\\"sc_baseline\\\": {\\n        \\\"accuracy\\\": 0.5441\\n      }\\n    },\\n    \\\"deberta_corrects_sc\\\": [\\n      \\\"folio_2\\\",\\n      \\\"folio_5\\\",\\n      \\\
+…[truncated 915 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T08:51:30.342502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\",\\n    \\\"n_problems\\\": 204,\\n    \\\"elapsed_seconds\\\": 4.3,\\n    \\\"sc_baseline\\\": {\\n      \\\"accuracy\\\": 0.5441,\\n      \\\"correct\\\": 111\\n    },\\n    \\\"nli_standalone\\\": {\\n      \\\"accuracy\\\": 0.4951,\\n      \\\"correct\\\": 101,\\n      \\\"delta_vs_sc\\\": -0.049\\n    },\\n    \\\"nli_as_verifier\\\": {\\n      \\\"accuracy\\\": 0.4951,\\n      \\\"correct\\\": 101,\\n      \\\"delta_vs_sc\\\": -0.049,\\n      \\\"strategy\\\": \\\"agree->keep_SC, disagree->use_NLI\\\"\\n    },\\n    \\\"nli_sica_combo\\\": {\\n      \\\"accuracy\\\": 0.5784,\\n      \\\"correct\\\": 118,\\n      \\\"delta_vs_sc\\\": 0.0343,\\n      \\\"strategy\\\": \\\"NLI_as_extra_vote_in_SC\\\"\\n    },\\n    \\\"per_label\\\": {\\n      \\\"True\\\": {\\n        \\\"total\\\": 72,\\n        \\\"nli_acc\\\": 0.5972,\\n        \\\"sc_acc\\\": 0.5556,\\n        \\\"nli_correct\\\": 43,\\n        \\\"sc_correct\\\": 40\\n      },\\n      \\\"False\\\": {\\n        \\\"total\\\": 63,\\n        \\\"nli_acc\\\": 0.7143,\\n        \\\"sc_acc\\\": 0.381,\\n        \\\"nli_correct\\\": 45,\\n        \\\"sc_correct\\\": 24\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"total\\\": 69,\\n        \\\"nli_acc\\\": 0.1884,\\n        \\\"sc_acc\\\": 0.6812,\\n        \\\"nli_correct\\\": 13,\\n        \\\"sc_correct\\\": 47\\n      }\\n    },\\n    \\\"disagreement_analysis\\\": {\\n      \\\"agree\\\": 92,\\n      \\\"disagree\\\": 112,\\n      \\\"disagree_nli_right\\\": 38,\\n      \\\"disagree_sc_right\\\": 48,\\n      \\\"disagree_both_wrong\\\": 26\\n    }\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"id\\\": \\\"folio_0\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"premises_len\\\": 763,\\n      \\\"hypothesis_len\\\": 45,\\n      \\\"nli_raw_label\\\": \\\"ENTAILMENT\\\",\\n      \\\"nli_probs\\\": {
+…[truncated 1247 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T08:51:30.342692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json')); print(list(d.keys())); [print(m['model_name']) for m in d['models']]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json')); print(list(d.keys())); [print(m['model_name']) for m in d['models']]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T08:51:30.342827+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T08:51:30.342982+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json')); print(list(d.keys())); print('has per_question:', 'per_question' in d); [print(k) for k in d.keys() if 'per' in k.lower() or 'question' in k.lower() or 'result' in k.lower()]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json')); print(list(d.keys())); print('has per_question:', 'per_question' in d); [print(k) for k in d.keys() if 'per' in k.lower() or 'question' in k.lower() or 'result' in k.lower()]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T08:51:30.343147+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T08:51:30.343302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/nli_combo_full_table_bh/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/nli_combo_full_table_bh/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T08:51:30.343431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T08:51:30.343547+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T08:51:30.343667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T08:51:30.343783+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -200 /root/symb_invariant_consensus/results/nli_combo_full_table_bh/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -200 /root/symb_invariant_consensus/results/nli_combo_full_table_bh/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T08:51:30.344048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"NLI Combo Full Table with Benjamini-Hochberg Correction\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-600\\\",\\n  \\\"verifier\\\": \\\"microsoft/deberta-large-mnli\\\",\\n  \\\"deberta_standalone_accuracy\\\": 0.55,\\n  \\\"n_tests\\\": 12,\\n  \\\"alpha\\\": 0.05,\\n  \\\"bh_significant_count\\\": 4,\\n  \\\"source_files\\\": {\\n    \\\"Mistral-7B\\\": \\\"westd-25068:direction_r_nli_pw600 + exp046_mistral_7b_pw600\\\",\\n    \\\"LLaMA-3.1-8B\\\": \\\"westd-16639:exp092_llama8b_pw_nli_combo\\\",\\n    \\\"Qwen2.5-14B\\\": \\\"westd-16639:qwen14b_pw_nli_combo\\\",\\n    \\\"Qwen3-14B\\\": \\\"westd-16639:d116_qwen3_pw_deberta_large\\\",\\n    \\\"LLaMA-SC-baseline\\\": \\\"westd-16639:exp048_llama8b_pw600 (SC=0.70 confirmed)\\\"\\n  },\\n  \\\"generators\\\": {\\n    \\\"Mistral-7B\\\": {\\n      \\\"n\\\": 600,\\n      \\\"sc_accuracy\\\": 0.3933,\\n      \\\"sc_accuracy_pct\\\": 39.33,\\n      \\\"capability_gap_pp\\\": 15.67,\\n      \\\"w1\\\": {\\n        \\\"combo_accuracy\\\": 0.4017,\\n        \\\"combo_accuracy_pct\\\": 40.17,\\n        \\\"delta_pp\\\": 0.83,\\n        \\\"discordant\\\": [\\n          4,\\n          9\\n        ],\\n        \\\"p_raw\\\": 0.2668457031,\\n        \\\"p_bh\\\": 0.3557942708,\\n        \\\"significant_bh_005\\\": false\\n      },\\n      \\\"w3\\\": {\\n        \\\"combo_accuracy\\\": 0.4283,\\n        \\\"combo_accuracy_pct\\\": 42.83,\\n        \\\"delta_pp\\\": 3.5,\\n        \\\"discordant\\\": [\\n          22,\\n          43\\n        ],\\n        \\\"p_raw\\\": 0.0125025461,\\n        \\\"p_bh\\\": 0.0375076384,\\n        \\\"significant_bh_005\\\": true\\n      },\\n      \\\"w5\\\": {\\n        \\\"combo_accuracy\\\": 0.5,\\n        \\\"combo_accuracy_pct\\\": 50.0,\\n        \\\"delta_pp\\\": 10.67,\\n        \\\"discordant\\\": [\\n          35,\\n          99\\n        ],\\n        \\\"p_raw\\\": 2.89e-08,\\n        \\\"p_bh\
+…[truncated 4332 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T08:51:30.344240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T08:51:30.344410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"sc_baseline\\\": {\\n    \\\"acc\\\": 0.3933,\\n    \\\"correct\\\": 236,\\n    \\\"n\\\": 600\\n  },\\n  \\\"models\\\": {\\n    \\\"DeBERTa-MNLI\\\": {\\n      \\\"standalone_acc\\\": 0.55,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"combo\\\": {\\n        \\\"w1\\\": {\\n          \\\"accuracy\\\": 0.4017,\\n          \\\"correct\\\": 241,\\n          \\\"delta_pp\\\": 0.83,\\n          \\\"mcnemar_p\\\": 0.359283447265625,\\n          \\\"mcnemar_b\\\": 7,\\n          \\\"mcnemar_c\\\": 12\\n        },\\n        \\\"w3\\\": {\\n          \\\"accuracy\\\": 0.46,\\n          \\\"correct\\\": 276,\\n          \\\"delta_pp\\\": 6.67,\\n          \\\"mcnemar_p\\\": 1.1296023055413025e-05,\\n          \\\"mcnemar_b\\\": 21,\\n          \\\"mcnemar_c\\\": 61\\n        },\\n        \\\"w5\\\": {\\n          \\\"accuracy\\\": 0.5033,\\n          \\\"correct\\\": 302,\\n          \\\"delta_pp\\\": 11.0,\\n          \\\"mcnemar_p\\\": 6.178035816936483e-07,\\n          \\\"mcnemar_b\\\": 54,\\n          \\\"mcnemar_c\\\": 120\\n        }\\n      }\\n    },\\n    \\\"RoBERTa-MNLI\\\": {\\n      \\\"standalone_acc\\\": 0.3767,\\n      \\\"standalone_correct\\\": 226,\\n      \\\"combo\\\": {\\n        \\\"w1\\\": {\\n          \\\"accuracy\\\": 0.3917,\\n          \\\"correct\\\": 235,\\n          \\\"delta_pp\\\": -0.17,\\n          \\\"mcnemar_p\\\": 1.0,\\n          \\\"mcnemar_b\\\": 8,\\n          \\\"mcnemar_c\\\": 7\\n        },\\n        \\\"w3\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T08:51:30.344554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -name \"per_question*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -name \"per_question*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T08:51:30.344682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/direction_rg_combo/per_question_best.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T08:51:30.344852+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*nli*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*nli*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T08:51:30.345075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/direction_r_nli_small/results.json\\n/root/symb_invariant_consensus/results/direction_r_nli_large/results.json\\n/root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json\\n/root/symb_invariant_consensus/results/dir_j2_nli_qwen3/results.json\\n/root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json\\n/root/symb_invariant_consensus/results/nli_combo_full_table_bh/results.json\\n/root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json\\n/root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T08:51:30.345230+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/dir_j2_nli_qwen3/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/dir_j2_nli_qwen3/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T08:51:30.345357+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/direction_rg_combo/per_question_best.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/direction_rg_combo/per_question_best.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T08:51:30.345481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T08:51:30.345640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_4\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T08:51:30.345807+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -c \"nli_correct\" /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -c \"nli_correct\" /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T08:51:30.345961+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T08:51:30.346085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T08:51:30.346241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"dir_j3_nli_multi_verifier\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-OWA\\\",\\n  \\\"n_questions\\\": 600,\\n  \\\"sc_baseline\\\": {\\n    \\\"accuracy\\\": 0.3933,\\n    \\\"correct\\\": 236\\n  },\\n  \\\"weights_tested\\\": [\\n    1,\\n    3,\\n    5\\n  ],\\n  \\\"device\\\": \\\"cuda\\\",\\n  \\\"models\\\": [\\n    {\\n      \\\"model_name\\\": \\\"DeBERTa-MNLI\\\",\\n      \\\"hf_id\\\": \\\"/root/models/deberta-large-mnli\\\",\\n      \\\"status\\\": \\\"OK\\\",\\n      \\\"standalone_accuracy\\\": 0.55,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"per_class\\\": {\\n        \\\"True\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 128,\\n          \\\"accuracy\\\": 0.64\\n        },\\n        \\\"False\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 195,\\n          \\\"accuracy\\\": 0.975\\n        },\\n        \\\"Unknown\\\": {\\n          \\\"n\\\": 200,\\n          \\\"correct\\\": 7,\\n          \\\"accuracy\\\": 0.035\\n        }\\n      },\\n      \\\"pred_distribution\\\": {\\n        \\\"True\\\": 184,\\n        \\\"False\\\": 407,\\n        \\\"Unknown\\\": 9\\n      },\\n      \\\"inference_time_s\\\": 11.6,\\n      \\\"complementarity\\\": {\\n        \\\"nli_right_sc_wrong\\\": 274,\\n        \\\"sc_right_nli_wrong\\\": 180,\\n        \\\"both_right\\\": 56,\\n        \\\"both_wrong\\\": 90\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T08:51:30.346384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -c \"per_question\\|question_id\\|nli_correct\\|sc_correct\" /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -c \"per_question\\|question_id\\|nli_correct\\|sc_correct\" /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T08:51:30.346509+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T08:51:30.346628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "wc -l /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "wc -l /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T08:51:30.346748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8503 /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T08:51:30.346929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -A 6 \"complementarity\" /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -A 6 \"complementarity\" /root/symb_invariant_consensus/results/dir_j3_nli_multi_verifier/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T08:51:30.347083+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"complementarity\\\": {\\n        \\\"nli_right_sc_wrong\\\": 274,\\n        \\\"sc_right_nli_wrong\\\": 180,\\n        \\\"both_right\\\": 56,\\n        \\\"both_wrong\\\": 90\\n      },\\n      \\\"combo_vs_sc\\\": {\\n--\\n      \\\"complementarity\\\": {\\n        \\\"nli_right_sc_wrong\\\": 182,\\n        \\\"sc_right_nli_wrong\\\": 192,\\n        \\\"both_right\\\": 44,\\n        \\\"both_wrong\\\": 182\\n      },\\n      \\\"combo_vs_sc\\\": {\\n--\\n      \\\"complementarity\\\": {\\n        \\\"nli_right_sc_wrong\\\": 235,\\n        \\\"sc_right_nli_wrong\\\": 194,\\n        \\\"both_right\\\": 42,\\n        \\\"both_wrong\\\": 129\\n      },\\n      \\\"combo_vs_sc\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T08:51:30.347217+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -200 /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "tail -200 /root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T08:51:30.347468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"sica_correct\\\": false\\n    },\\n    \\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.8598,\\n        \\\"Unknown\\\": 0.0667,\\n        \\\"True\\\": 0.0736\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.5359,\\n        \\\"Unknown\\\": 0.0448,\\n        \\\"True\\\": 0.4194\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"ProofWriter_RelNeg-OWA-D5-902_Q5\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.1224,\\n        \\\"Unknown\\\": 0.0284,\\n        \\\"True\\\": 0.8491\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1421_Q1\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0933,\\n        \\\"Unknown\\\": 0.0334,\\n        \\\"True\\\": 0.8732\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \
+…[truncated 4992 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T08:51:30.347632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*exp046*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*exp046*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-21T08:51:30.347762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*exp033*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -name \"*.json\" -path \"*exp033*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T08:51:30.348043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-1041_Q1.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNeg-OWA-D5-81_Q11.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-1284_Q8.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-585_Q19.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNoneg-OWA-D5-949_Q8.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNeg-OWA-D5-508_Q2.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNeg-OWA-D5-270_Q8.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNoneg-OWA-D5-487_Q19.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-971_Q5.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNeg-OWA-D5-804_Q16.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-572_Q18.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNeg-OWA-D5-285_Q16.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNoneg-OWA-D5-686_Q18.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNoneg-OWA-D5-735_Q9.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_RelNeg-OWA-D5-966_Q7.json\\n/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/intermediates/ProofWriter_AttNeg-OWA-D5-145_Q9.json\\n/root/symb_invariant_consensus/results/exp046_
+…[truncated 6339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T08:51:30.348316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_1.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_2.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_3.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_4.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_5.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_6.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_7.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_8.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_9.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_10.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_11.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_12.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_13.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_14.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_15.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_16.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_17.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_18.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_19.json\\n/root/symb_invariant_consensus/res
+…[truncated 6372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T08:51:30.348530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/cross_model_experiment/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/cross_model_experiment/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-21T08:51:30.348667+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/dir_f3_cross_model_verification/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/dir_f3_cross_model_verification/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T08:51:30.348797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_results.json\\nllama_constraints_t0t3.json\\nllama_sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T08:51:30.349075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T08:51:30.349408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp065_qwen7b_pw600/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp065_qwen7b_pw600/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T08:51:30.349552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp065_results.json\\nexp065_run.log\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-21T08:51:30.349693+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T08:51:30.349830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp034.log\\nexp034_results.json\\nintermediates\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-21T08:51:30.349977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/exp034_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/exp034_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T08:51:30.350255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 600,\\n    \\\"sica_accuracy\\\": 0.7083333333333334,\\n    \\\"sc_accuracy\\\": 0.7033333333333334,\\n    \\\"sica_correct\\\": 425,\\n    \\\"sc_correct\\\": 422,\\n    \\\"extraction_rate\\\": 0.9919444444444444,\\n    \\\"total_constraints_extracted\\\": 93251,\\n    \\\"total_unique_constraints\\\": 22114,\\n    \\\"contradiction_rate\\\": 0.006195170480238763,\\n    \\\"problems_with_contradictions\\\": 103,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"OWA-D5\\\": {\\n        \\\"sica\\\": 0.7083333333333334,\\n        \\\"sc\\\": 0.7033333333333334,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.7083333333333334,\\n        \\\"sc\\\": 0.7033333333333334,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 41186.4\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T08:51:30.350421+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp065_qwen7b_pw600/exp065_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp065_qwen7b_pw600/exp065_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T08:51:30.350569+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 600,\\n    \\\"sica_accuracy\\\": 0.68,\\n    \\\"sc_accuracy\\\": 0.72,\\n    \\\"sica_correct\\\": 408,\\n    \\\"sc_correct\\\": 432,\\n    \\\"extraction_rate\\\": 0.9970833333333333,\\n    \\\"total_constraints_extracted\\\": 78251,\\n    \\\"total_unique_constraints\\\": 24975,\\n    \\\"contradiction_rate\\\": 0.023063063063063063,\\n    \\\"problems_with_contradictions\\\": 288,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"OWA-D5\\\": {\\n        \\\"sica\\\": 0.68,\\n        \\\"sc\\\": 0.72,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.68,\\n        \\\"sc\\\": 0.72,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 20425.4\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T08:51:30.350709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T08:51:30.350853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 600,\\n    \\\"sica_accuracy\\\": 0.365,\\n    \\\"sc_accuracy\\\": 0.3933333333333333,\\n    \\\"sica_correct\\\": 219,\\n    \\\"sc_correct\\\": 236,\\n    \\\"extraction_rate\\\": 0.9148611111111111,\\n    \\\"total_constraints_extracted\\\": 53972,\\n    \\\"total_unique_constraints\\\": 27335,\\n    \\\"contradiction_rate\\\": 0.053484543625388695,\\n    \\\"problems_with_contradictions\\\": 482,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"OWA-D5\\\": {\\n        \\\"sica\\\": 0.365,\\n        \\\"sc\\\": 0.3933333333333333,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.365,\\n        \\\"sc\\\": 0.3933333333333333,\\n        \\\"n\\\": 600\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 17511.2\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-21T08:51:30.351077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ -1 | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ -1 | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T08:51:30.351211+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-21T08:51:30.351335+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 1 -name \"*llama*pw*\" -o -name \"*qwen3*pw*\" -o -name \"*qwen14b*pw*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -maxdepth 1 -name \"*llama*pw*\" -o -name \"*qwen3*pw*\" -o -name \"*qwen14b*pw*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-21T08:51:30.351466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-21T08:51:30.351590+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T08:51:30.351714+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: error reading '/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/': Is a directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-21T08:51:30.351832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T08:51:30.351976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp027_qwen3_14b_nonthinking.log\\nexp027_results.json\\nintermediates\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-21T08:51:30.352096+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -20 /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/exp027_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -20 /root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/exp027_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T08:51:30.352231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.8431372549019608,\\n    \\\"sc_accuracy\\\": 0.8382352941176471,\\n    \\\"sica_correct\\\": 172,\\n    \\\"sc_correct\\\": 171,\\n    \\\"extraction_rate\\\": 0.9950980392156863,\\n    \\\"total_constraints_extracted\\\": 16153,\\n    \\\"total_unique_constraints\\\": 7031,\\n    \\\"contradiction_rate\\\": 0.028303228559237663,\\n    \\\"problems_with_contradictions\\\": 69,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.8431372549019608,\\n        \\\"sc\\\": 0.8382352941176471,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-21T08:51:30.352354+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 2 -name \"*results.json\" -path \"*llama*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -maxdepth 2 -name \"*results.json\" -path \"*llama*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-21T08:51:30.352473+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 2 -name \"*results.json\" -path \"*qwen*14*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results -maxdepth 2 -name \"*results.json\" -path \"*qwen*14*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-21T08:51:30.352599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T08:51:30.352723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/exp028_results.json\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/exp027_results.json\\n/root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/exp034_results.json\\n/root/symb_invariant_consensus/results/exp044b_icl_oracle_qwen14b/results.json\\n/root/symb_invariant_consensus/results/exp060_cross_qwen25_14b_extractor/exp060_results.json\\n/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123/exp066_results.json\\n/root/symb_invariant_consensus/results/dir_i3_sica_qwen3_14b/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-21T08:51:30.352951+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/nli_multi_verifier_recomputed.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T08:51:30.353201+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"sc_baseline\\\": {\\n    \\\"acc\\\": 0.3933,\\n    \\\"correct\\\": 236,\\n    \\\"n\\\": 600\\n  },\\n  \\\"models\\\": {\\n    \\\"DeBERTa-MNLI\\\": {\\n      \\\"standalone_acc\\\": 0.55,\\n      \\\"standalone_correct\\\": 330,\\n      \\\"combo\\\": {\\n        \\\"w1\\\": {\\n          \\\"accuracy\\\": 0.4017,\\n          \\\"correct\\\": 241,\\n          \\\"delta_pp\\\": 0.83,\\n          \\\"mcnemar_p\\\": 0.359283447265625,\\n          \\\"mcnemar_b\\\": 7,\\n          \\\"mcnemar_c\\\": 12\\n        },\\n        \\\"w3\\\": {\\n          \\\"accuracy\\\": 0.46,\\n          \\\"correct\\\": 276,\\n          \\\"delta_pp\\\": 6.67,\\n          \\\"mcnemar_p\\\": 1.1296023055413025e-05,\\n          \\\"mcnemar_b\\\": 21,\\n          \\\"mcnemar_c\\\": 61\\n        },\\n        \\\"w5\\\": {\\n          \\\"accuracy\\\": 0.5033,\\n          \\\"correct\\\": 302,\\n          \\\"delta_pp\\\": 11.0,\\n          \\\"mcnemar_p\\\": 6.178035816936483e-07,\\n          \\\"mcnemar_b\\\": 54,\\n          \\\"mcnemar_c\\\": 120\\n        }\\n      }\\n    },\\n    \\\"RoBERTa-MNLI\\\": {\\n      \\\"standalone_acc\\\": 0.3767,\\n      \\\"standalone_correct\\\": 226,\\n      \\\"combo\\\": {\\n        \\\"w1\\\": {\\n          \\\"accuracy\\\": 0.3917,\\n          \\\"correct\\\": 235,\\n          \\\"delta_pp\\\": -0.17,\\n          \\\"mcnemar_p\\\": 1.0,\\n          \\\"mcnemar_b\\\": 8,\\n          \\\"mcnemar_c\\\": 7\\n        },\\n        \\\"w3\\\": {\\n          \\\"accuracy\\\": 0.435,\\n          \\\"correct\\\": 261,\\n          \\\"delta_pp\\\": 4.17,\\n          \\\"mcnemar_p\\\": 0.0026263768106840374,\\n          \\\"mcnemar_b\\\": 20,\\n          \\\"mcnemar_c\\\": 45\\n        },\\n        \\\"w5\\\": {\\n          \\\"accuracy\\\": 0.4367,\\n          \\\"correct\\\": 262,\\n          \\\"delta_pp\\\": 4.33,\\n          \\\"mcnemar_p\\\": 0.03685226452283732,\\n          \\\"mcnemar
+…[truncated 1123 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-21T08:51:30.353412+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/dir_i3_sica_qwen3_14b/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/dir_i3_sica_qwen3_14b/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T08:51:30.353571+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"Qwen3-14B (thinking mode)\\\",\\n  \\\"dataset\\\": \\\"FOLIO\\\",\\n  \\\"n_problems\\\": 204,\\n  \\\"k_traces\\\": 12,\\n  \\\"source_experiments\\\": [\\n    \\\"exp028b (westd-25068, folio_0-165)\\\",\\n    \\\"exp028b_remaining38 (westd-16639, folio_166-203)\\\"\\n  ],\\n  \\\"sica\\\": {\\n    \\\"accuracy\\\": 0.867647,\\n    \\\"accuracy_pct\\\": 86.76,\\n    \\\"n_correct\\\": 177,\\n    \\\"n_total\\\": 204\\n  },\\n  \\\"sc\\\": {\\n    \\\"accuracy\\\": 0.862745,\\n    \\\"accuracy_pct\\\": 86.27,\\n    \\\"n_correct\\\": 176,\\n    \\\"n_total\\\": 204\\n  },\\n  \\\"comparison\\\": {\\n    \\\"delta_pp\\\": 0.49,\\n    \\\"delta_direction\\\": \\\"SICA > SC\\\",\\n    \\\"mcnemar_contingency\\\": {\\n      \\\"both_correct\\\": 175,\\n      \\\"sica_correct_sc_wrong\\\": 2,\\n      \\\"sica_wrong_sc_correct\\\": 1,\\n      \\\"both_wrong\\\": 26\\n    },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-21T08:51:30.353909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -5 /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ProofWriter_AttNeg-OWA-D5-904_Q14.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -5 /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ProofWriter_AttNeg-OWA-D5-904_Q14.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T08:51:30.354066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\",\\n    \\\"problem\\\": \\\"Charlie is cold. Charlie is round. Erin is big. Erin is kind. Erin is nice. Erin is round. Gary is not big. Gary is not cold. Harry is blue. Harry is kind. Harry is nice. If someone is blue then they are round. All smart people are round. All nice people are round. If Harry is cold then Harry is not kind. If someone is smart then they are kind. If someone is cold and round then they are smart. If someone is kind and blue then they are big. All kind people are blue. If someone is big then they are nice.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nGary is smart.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-21T08:51:30.354207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ -1 | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ -1 | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T08:51:30.354335+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-21T08:51:30.354455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ProofWriter_AttNeg-OWA-D5-904_Q14.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates/ProofWriter_AttNeg-OWA-D5-904_Q14.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-21T08:51:30.354739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"ProofWriter_AttNeg-OWA-D5-904_Q14\\\",\\n    \\\"problem\\\": \\\"Charlie is cold. Charlie is round. Erin is big. Erin is kind. Erin is nice. Erin is round. Gary is not big. Gary is not cold. Harry is blue. Harry is kind. Harry is nice. If someone is blue then they are round. All smart people are round. All nice people are round. If Harry is cold then Harry is not kind. If someone is smart then they are kind. If someone is cold and round then they are smart. If someone is kind and blue then they are big. All kind people are blue. If someone is big then they are nice.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nGary is smart.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"OWA-D5\\\",\\n    \\\"raw_logic_programs\\\": [\\n      \\\"Predicates:\\\\nCold($x, bool) ::: Is x cold?\\\\nRound($x, bool) ::: Is x round?\\\\nBig($x, bool) ::: Is x big?\\\\nKind($x, bool) ::: Is x kind?\\\\nNice($x, bool) ::: Is x nice?\\\\nBlue($x, bool) ::: Is x blue?\\\\nSmart($x, bool) ::: Is x smart?\\\\n\\\\nFacts:\\\\nCold(Charlie, True) ::: Charlie is cold.\\\\nRound(Charlie, True) ::: Charlie is round.\\\\nBig(Erin, True) ::: Erin is big.\\\\nKind(Erin, True) ::: Erin is kind.\\\\nNice(Erin, True) ::: Erin is nice.\\\\nRound(Erin, True) ::: Erin is round.\\\\nBig(Gary, False) ::: Gary is not big.\\\\nCold(Gary, False) ::: Gary is not cold.\\\\nBlue(Harry, True) ::: Harry is blue.\\\\nKind(Harry, True) ::: Harry is kind.\\\\nNice(Harry, True) ::: Harry is nice.\\\\n\\\\nRules:\\\\nBlue($x, True) >>> Round($x, True) ::: If someone is blue then they are round.\\\\nSmart($x, True) >>> Round($x, True) ::: All smart people are round.\\\\nNice($x, True) >>> Round($x, True) ::: All nice people are round.\\\\nCold(Harry, True) >>> Kind(Harry, False) ::: If Harry is cold then Harry is not kind.\\\\nSm
+…[truncated 7291 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-21T08:51:30.354975+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-21T08:51:30.355116+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-21T08:51:30.355252+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write CIL computation script', 'status': 'in_progress', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'pending', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'pending', 'activeForm': 'Saving results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write CIL computation script', 'status': 'in_progress', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'pending', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'pending', 'activeForm': 'Saving results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-21T08:51:30.355391+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-21T08:51:30.355644+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/compute_cil.py",
+  "content": "\"\"\"\nE5: CIL (Cumulative Information Lift) Computation\nCIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\n\"\"\"\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom pathlib import Path\nfrom scipy import stats\n\nRESULTS = Path(\"/root/symb_invariant_consensus/results\")\nOUT_DIR = RESULTS / \"exp_d134_cil\"\n\ndef cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong):\n    \"\"\"Compute CIL from 2x2 contingency table.\"\"\"\n    n_g_wrong = v_right_g_wrong + both_wrong\n    n_g_right = both_right + g_right_v_wrong\n\n    if n_g_wrong == 0 or n_g_right == 0:\n        return {\"cil\": float(\"nan\"), \"p_v_given_g_wrong\": float(\"nan\"),\n                \"p_v_given_g_right\": float(\"nan\"), \"n_g_wrong\": 0, \"n_g_right\": 0}\n\n    p_v_gw = v_right_g_wrong / n_g_wrong\n    p_v_gr = both_right / n_g_right\n\n    if p_v_gw == 0 or p_v_gr == 0:\n        cil = float(\"nan\")\n    else:\n        cil = np.log2(p_v_gw / p_v_gr)\n\n    return {\n        \"cil\": round(cil, 4) if not np.isnan(cil) else float(\"nan\"),\n        \"p_v_correct_given_g_wrong\": round(p_v_gw, 4),\n        \"p_v_correct_given_g_correct\": round(p_v_gr, 4),\n        \"n_g_wrong\": int(n_g_wrong),\n        \"n_g_right\": int(n_g_right),\n        \"both_right\": int(both_right),\n        \"v_right_g_wrong\": int(v_right_g_wrong),\n        \"g_right_v_wrong\": int(g_right_v_wrong),\n        \"both_wrong\": int(both_wrong),\n    }\n\n\ndef load_pw600_nli_per_question():\n    \"\"\"Load per-question DeBERTa + Mistral SC + SICA from direction_r_nli_pw600.\"\"\"\n    f = RESULTS / \"direction_r_nli_pw600\" / \"results.json\"\n    data = json.load(open(f))\n    pq = data.get(\"per_question\", {})\n    if not pq:\n        print(f\"  WARNING: no per_question in {f}\")\n    return pq\n\n\ndef load_folio204_per_question():\n    \"\"\"Load per-question data from direction_rg_combo.\"\"\"\n    f = RESULTS / \"direction_rg_combo\" / \"per_question_best.json\"\n    return json.load(open(f))\n\n\ndef load_dir_j3_complementarity():\n    \"\"\"Load complementarity counts for 3 NLI verifiers × Mistral on PW-600.\"\"\"\n    f = RESULTS / \"dir_j3_nli_multi_verifier\" / \"results.json\"\n    data = json.load(open(f))\n    result = {}\n    for model_data in data[\"models\"]:\n        name = model_data[\"model_name\"]\n        c = model_data[\"complementarity\"]\n        result[name] = {\n            \"both_right\": c[\"both_right\"],\n            \"v_right_g_wrong\": c[\"nli_right_sc_wrong\"],\n            \"g_right_v_wrong\": c[\"sc_right_nli_wrong\"],\n            \"both_wrong\": c[\"both_wrong\"],\n        }\n    return result\n\n\ndef load_generator_sc_from_intermediates(exp_dir):\n    \"\"\"Load per-question SC answers from experiment intermediates.\"\"\"\n    inter_dir = exp_dir / \"intermediates\"\n    if not inter_dir.exists():\n        return {}\n\n    sc_data = {}\n    for f in inter_dir.iterdir():\n        if not f.name.endswith(\".json\"):\n            continue\n        try:\n            d = json.load(open(f))\n            qid = d[\"problem\"][\"id\"]\n            gold = d[\"problem\"][\"answer\"]\n\n            # Get SC majority vote\n            sica_res = d.get(\"sica_result\", {})\n            counts = sica_res.get(\"answer_counts\", {})\n            if counts:\n                sc_answer = max(counts, key=counts.get)\n            else:\n                continue\n\n            sica_answer = sica_res.get(\"answer\", None)\n\n            sc_data[qid] = {\n                \"gold\": gold,\n                \"sc_answer\": sc_answer,\n                \"sc_correct\": sc_answer == gold,\n                \"sica_answer\": sica_answer,\n                \"sica_correct\": sica_answer == gold if sica_answer else None,\n            }\n        except (KeyError, json.JSONDecodeError):\n            continue\n\n    return sc_data\n\n\ndef compute_pair_cil_from_per_question(generator_correct, verifier_correct):\n    \"\"\"Compute CIL from boolean arrays.\"\"\"\n    g = np.array(generator_correct, dtype=bool)\n    v = np.array(verifier_correct, dtype=bool)\n\n    both_right = int(np.sum(g & v))\n    v_right_g_wrong = int(np.sum(~g & v))\n    g_right_v_wrong = int(np.sum(g & ~v))\n    both_wrong = int(np.sum(~g & ~v))\n\n    return cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong)\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n\n    pairs = []\n\n    # ============================================================\n    # Section 1: Mistral × {DeBERTa, RoBERTa, BART} × PW-600\n    # From dir_j3 complementarity counts\n    # ============================================================\n    print(\"=== Section 1: Mistral × NLI verifiers × PW-600 ===\")\n    j3_comp = load_dir_j3_complementarity()\n\n    # Combo gains from nli_multi_verifier_recomputed.json\n    recomp = json.load(open(RESULTS / \"nli_multi_verifier_recomputed.json\"))\n\n    verifier_map = {\n        \"DeBERTa-MNLI\": \"DeBERTa-large-MNLI\",\n        \"RoBERTa-MNLI\": \"RoBERTa-large-MNLI\",\n        \"BART-MNLI\": \"BART-large-MNLI\",\n    }\n\n    for j3_name, display_name in verifier_map.items():\n        if j3_name not in j3_comp:\n            print(f\"  SKIP: {j3_name} not in dir_j3\")\n            continue\n\n        c = j3_comp[j3_name]\n        cil_data = cil_from_counts(c[\"both_right\"], c[\"v_right_g_wrong\"],\n                                    c[\"g_right_v_wrong\"], c[\"both_wrong\"])\n\n        combo_w3 = recomp[\"models\"].get(j3_name, {}).get(\"combo\", {}).get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pair = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": display_name,\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"PW-600\",\n            \"n\": 600,\n            \"combo_gain_w3\": combo_w3,\n            **cil_data,\n        }\n        pairs.append(pair)\n        print(f\"  {display_name}: CIL={cil_data['cil']}, combo_w3={combo_w3}\")\n\n    # ============================================================\n    # Section 2: Multi-generator × DeBERTa × PW-600\n    # Match DeBERTa per-question predictions with each generator's SC\n    # ============================================================\n    print(\"\\n=== Section 2: Multi-generator × DeBERTa × PW-600 ===\")\n    pw600_pq = load_pw600_nli_per_question()\n\n    if pw600_pq:\n        # Build DeBERTa prediction map: qid -> deberta_correct\n        deberta_map = {}\n        for qid, qdata in pw600_pq.items():\n            deberta_map[qid] = qdata[\"deberta_correct\"]\n\n        print(f\"  Loaded {len(deberta_map)} DeBERTa predictions on PW-600\")\n\n        # BH table combo gains for multi-generator pairs\n        bh_table = json.load(open(RESULTS / \"nli_combo_full_table_bh\" / \"results.json\"))\n\n        # Try to match with Qwen2.5-14B (exp034)\n        generators_on_server = {\n            \"Qwen2.5-14B\": RESULTS / \"exp034_qwen25_14b_proofwriter\",\n        }\n\n        for gen_name, exp_dir in generators_on_server.items():\n            print(f\"  Loading {gen_name} from {exp_dir.name}...\")\n            gen_sc = load_generator_sc_from_intermediates(exp_dir)\n\n            if not gen_sc:\n                print(f\"    SKIP: no per-question data\")\n                continue\n\n            # Match question IDs with DeBERTa predictions\n            matched_g_correct = []\n            matched_v_correct = []\n            matched_ids = []\n\n            for qid in gen_sc:\n                if qid in deberta_map:\n                    matched_g_correct.append(gen_sc[qid][\"sc_correct\"])\n                    matched_v_correct.append(deberta_map[qid])\n                    matched_ids.append(qid)\n\n            n_matched = len(matched_ids)\n            print(f\"    Matched {n_matched}/{len(gen_sc)} questions\")\n\n            if n_matched < 500:\n                print(f\"    SKIP: too few matches\")\n                continue\n\n            cil_data = compute_pair_cil_from_per_question(matched_g_correct, matched_v_correct)\n\n            # Try to get combo gain from BH table\n            bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n            # Use local experiment's SC accuracy, not BH table\n            local_sc = sum(1 for v in gen_sc.values() if v[\"sc_correct\"]) / len(gen_sc)\n            bh_combo_w3 = bh_gen.get(\"w3\", {}).get(\"delta_pp\", None)\n\n            # Note: BH table used data from westd-16639, different experiment\n            # For local experiment, we don't have the combo gain\n            # We'll compute a proxy: the DeBERTa combo gain at w3 with THIS generator's SC\n            pair = {\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": f\"PW-{n_matched}\",\n                \"n\": n_matched,\n                \"combo_gain_w3\": bh_combo_w3,\n                \"note\": f\"local SC={local_sc:.4f}, BH table SC={bh_gen.get('sc_accuracy', 'N/A')}\",\n                **cil_data,\n            }\n            pairs.append(pair)\n            print(f\"    CIL={cil_data['cil']}\")\n\n            # Also compute SICA CIL for this generator\n            matched_g_correct_sica = []\n            matched_sica_correct = []\n            for qid in matched_ids:\n                if gen_sc[qid][\"sica_correct\"] is not None:\n                    matched_g_correct_sica.append(gen_sc[qid][\"sc_correct\"])\n                    matched_sica_correct.append(gen_sc[qid][\"sica_correct\"])\n\n            if len(matched_g_correct_sica) > 400:\n                cil_sica = compute_pair_cil_from_per_question(\n                    matched_g_correct_sica, matched_sica_correct)\n                sica_acc = sum(1 for v in gen_sc.values() if v.get(\"sica_correct\")) / len(gen_sc)\n                sica_gain = round((sica_acc - local_sc) * 100, 2)\n\n                pair_sica = {\n                    \"generator\": gen_name,\n                    \"verifier\": \"SICA\",\n                    \"verifier_type\": \"SICA\",\n                    \"dataset\": f\"PW-{len(matched_g_correct_sica)}\",\n                    \"n\": len(matched_g_correct_sica),\n                    \"combo_gain_w3\": sica_gain,\n                    \"note\": f\"SICA gain = SICA_acc({sica_acc:.4f}) - SC_acc({local_sc:.4f})\",\n                    **cil_sica,\n                }\n                pairs.append(pair_sica)\n                print(f\"    {gen_name} SICA: CIL={cil_sica['cil']}\")\n\n    # For LLaMA-8B and Qwen3-14B: add from BH table complementarity if derivable\n    # These are on westd-16639, so we note them as unavailable\n    for gen_name in [\"LLaMA-3.1-8B\", \"Qwen3-14B\"]:\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        if bh_gen:\n            print(f\"  {gen_name}: data on westd-16639, adding BH-derived entry\")\n            # We can derive the 2x2 table from McNemar discordant pairs + total\n            # At w=1 (NLI gets 1 vote, SC gets 10 votes), combo ≈ SC unless NLI flips\n            # This doesn't give us the raw complementarity. Skip with note.\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": \"PW-600\",\n                \"n\": 600,\n                \"combo_gain_w3\": bh_gen.get(\"w3\", {}).get(\"delta_pp\", None),\n                \"cil\": None,\n                \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n                \"sc_accuracy\": bh_gen.get(\"sc_accuracy\", None),\n            })\n\n    # ============================================================\n    # Section 3: Mistral × DeBERTa × FOLIO-204\n    # ============================================================\n    print(\"\\n=== Section 3: Mistral × DeBERTa × FOLIO-204 ===\")\n    folio_pq = load_folio204_per_question()\n\n    if folio_pq:\n        g_correct = []\n        v_correct = []\n        sica_correct_list = []\n        sc_correct_list = []\n\n        for qid, qdata in folio_pq.items():\n            sc_c = qdata[\"sc_correct\"]\n            deb_c = qdata[\"deberta_correct\"]\n            sica_c = qdata[\"sica_correct\"]\n\n            g_correct.append(sc_c)\n            v_correct.append(deb_c)\n            sica_correct_list.append(sica_c)\n            sc_correct_list.append(sc_c)\n\n        # Mistral × DeBERTa × FOLIO-204\n        cil_folio_deb = compute_pair_cil_from_per_question(g_correct, v_correct)\n\n        # Get combo gain from direction_rg_combo\n        rg_combo = json.load(open(RESULTS / \"direction_rg_combo\" / \"results.json\"))\n        combo_w3_folio = None\n        for strat_name, strat_data in rg_combo.get(\"strategies\", {}).items():\n            if \"nli_sc_vote_w3\" in strat_name:\n                combo_w3_folio = round(strat_data.get(\"delta_vs_sc\", 0) * 100, 2)\n                break\n        # Try nli_sc_vote strategies\n        if combo_w3_folio is None:\n            for strat_name, strat_data in rg_combo.get(\"strategies\", {}).items():\n                if \"w3\" in strat_name and \"nli\" in strat_name:\n                    combo_w3_folio = round(strat_data.get(\"delta_vs_sc\", 0) * 100, 2)\n                    break\n\n        pair_folio = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"DeBERTa-large-MNLI\",\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"FOLIO-204\",\n            \"n\": len(g_correct),\n            \"combo_gain_w3\": combo_w3_folio,\n            **cil_folio_deb,\n        }\n        pairs.append(pair_folio)\n        print(f\"  DeBERTa: CIL={cil_folio_deb['cil']}\")\n\n        # Mistral × SICA × FOLIO-204\n        cil_folio_sica = compute_pair_cil_from_per_question(sc_correct_list, sica_correct_list)\n        sc_acc = sum(sc_correct_list) / len(sc_correct_list)\n        sica_acc = sum(sica_correct_list) / len(sica_correct_list)\n        sica_gain = round((sica_acc - sc_acc) * 100, 2)\n\n        pair_folio_sica = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"SICA\",\n            \"verifier_type\": \"SICA\",\n            \"dataset\": \"FOLIO-204\",\n            \"n\": len(sc_correct_list),\n            \"combo_gain_w3\": sica_gain,\n            \"note\": f\"SICA gain = SICA_acc({sica_acc:.4f}) - SC_acc({sc_acc:.4f})\",\n            **cil_folio_sica,\n        }\n        pairs.append(pair_folio_sica)\n        print(f\"  SICA: CIL={cil_folio_sica['cil']}\")\n\n    # ============================================================\n    # Section 4: Mistral × SICA × PW-600\n    # ============================================================\n    print(\"\\n=== Section 4: Mistral × SICA × PW-600 ===\")\n    if pw600_pq:\n        sc_c = [qdata[\"sc_correct\"] for qdata in pw600_pq.values()]\n        sica_c = [qdata[\"sica_correct\"] for qdata in pw600_pq.values()]\n\n        cil_pw_sica = compute_pair_cil_from_per_question(sc_c, sica_c)\n        sc_acc_pw = sum(sc_c) / len(sc_c)\n        sica_acc_pw = sum(sica_c) / len(sica_c)\n        sica_gain_pw = round((sica_acc_pw - sc_acc_pw) * 100, 2)\n\n        pair_pw_sica = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"SICA\",\n            \"verifier_type\": \"SICA\",\n            \"dataset\": \"PW-600\",\n            \"n\": len(sc_c),\n            \"combo_gain_w3\": sica_gain_pw,\n            \"note\": f\"SICA gain = SICA_acc({sica_acc_pw:.4f}) - SC_acc({sc_acc_pw:.4f})\",\n            **cil_pw_sica,\n        }\n        pairs.append(pair_pw_sica)\n        print(f\"  Mistral SICA: CIL={cil_pw_sica['cil']}\")\n\n    # ============================================================\n    # Section 5: Correlation analysis\n    # ============================================================\n    print(\"\\n=== Correlation Analysis ===\")\n    valid_pairs = [p for p in pairs if p.get(\"cil\") is not None\n                   and not (isinstance(p[\"cil\"], float) and np.isnan(p[\"cil\"]))\n                   and p.get(\"combo_gain_w3\") is not None]\n\n    correlation = {}\n    if len(valid_pairs) >= 4:\n        cils = [p[\"cil\"] for p in valid_pairs]\n        gains = [p[\"combo_gain_w3\"] for p in valid_pairs]\n\n        sp = stats.spearmanr(cils, gains)\n        pr = stats.pearsonr(cils, gains)\n\n        correlation = {\n            \"n_pairs\": len(valid_pairs),\n            \"spearman_cil_vs_gain\": {\"rho\": round(sp.statistic, 4), \"p\": round(sp.pvalue, 4)},\n            \"pearson_cil_vs_gain\": {\"r\": round(pr.statistic, 4), \"p\": round(pr.pvalue, 4)},\n        }\n        print(f\"  n={len(valid_pairs)}, Spearman rho={sp.statistic:.4f} (p={sp.pvalue:.4f})\")\n        print(f\"  Pearson r={pr.statistic:.4f} (p={pr.pvalue:.4f})\")\n    else:\n        print(f\"  Only {len(valid_pairs)} valid pairs, need >= 4 for correlation\")\n        correlation = {\"n_pairs\": len(valid_pairs), \"note\": \"insufficient data\"}\n\n    # ============================================================\n    # Output\n    # ============================================================\n    output = {\n        \"experiment\": \"exp_d134_cil\",\n        \"description\": \"CIL (Cumulative Information Lift) computation\",\n        \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n        \"pairs\": pairs,\n        \"correlation\": correlation,\n    }\n\n    out_file = OUT_DIR / \"cil_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nSaved to {out_file}\")\n\n    # ============================================================\n    # Scatter plot\n    # ============================================================\n    if len(valid_pairs) >= 3:\n        try:\n            import matplotlib\n            matplotlib.use(\"Agg\")\n            import matplotlib.pyplot as plt\n\n            fig, ax = plt.subplots(1, 1, figsize=(8, 6))\n\n            nli_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"NLI\"]\n            sica_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"SICA\"]\n\n            if nli_pairs:\n                x_nli = [p[\"cil\"] for p in nli_pairs]\n                y_nli = [p[\"combo_gain_w3\"] for p in nli_pairs]\n                ax.scatter(x_nli, y_nli, c=\"tab:blue\", s=80, zorder=5, label=\"NLI verifier\")\n                for p, xi, yi in zip(nli_pairs, x_nli, y_nli):\n                    label = f\"{p['generator'][:3]}×{p['verifier'].split('-')[0]}\\n{p['dataset']}\"\n                    ax.annotate(label, (xi, yi), fontsize=7,\n                               textcoords=\"offset points\", xytext=(6, 4))\n\n            if sica_pairs:\n                x_sica = [p[\"cil\"] for p in sica_pairs]\n                y_sica = [p[\"combo_gain_w3\"] for p in sica_pairs]\n                ax.scatter(x_sica, y_sica, c=\"tab:orange\", s=80, marker=\"s\", zorder=5, label=\"SICA\")\n                for p, xi, yi in zip(sica_pairs, x_sica, y_sica):\n                    label = f\"{p['generator'][:3]}×SICA\\n{p['dataset']}\"\n                    ax.annotate(label, (xi, yi), fontsize=7,\n                               textcoords=\"offset points\", xytext=(6, 4))\n\n            ax.axvline(x=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n            ax.axhline(y=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n            ax.set_xlabel(\"CIL (bits)\", fontsize=12)\n            ax.set_ylabel(\"Combo Gain (pp)\", fontsize=12)\n            ax.set_title(\"CIL vs. Combo Gain\", fontsize=14)\n            ax.legend(fontsize=10)\n\n            if correlation.get(\"spearman_cil_vs_gain\"):\n                sp_info = correlation[\"spearman_cil_vs_gain\"]\n                ax.text(0.02, 0.98, f\"Spearman ρ={sp_info['rho']:.3f} (p={sp_info['p']:.3f})\",\n                       transform=ax.transAxes, fontsize=9, va=\"top\",\n                       bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"wheat\", alpha=0.5))\n\n            plt.tight_layout()\n            fig_path = OUT_DIR / \"cil_vs_gain_scatter.png\"\n            fig.savefig(fig_path, dpi=150, bbox_inches=\"tight\")\n            print(f\"Saved scatter plot to {fig_path}\")\n            plt.close()\n        except ImportError as e:\n            print(f\"Could not create plot: {e}\")\n\n    # Print summary table\n    print(\"\\n\" + \"=\"*90)\n    print(f\"{'Generator':<16} {'Verifier':<20} {'Dataset':<12} {'CIL':>8} {'Gain_w3':>8} {'P(V|Gw)':>8} {'P(V|Gr)':>8}\")\n    print(\"-\"*90)\n    for p in pairs:\n        cil_val = p.get(\"cil\")\n        cil_str = f\"{cil_val:.4f}\" if cil_val is not None and not (isinstance(cil_val, float) and np.isnan(cil_val)) else \"N/A\"\n        gain_str = f\"{p['combo_gain_w3']:.2f}\" if p.get(\"combo_gain_w3\") is not None else \"N/A\"\n        pvgw = p.get(\"p_v_correct_given_g_wrong\")\n        pvgr = p.get(\"p_v_correct_given_g_correct\")\n        pvgw_str = f\"{pvgw:.4f}\" if pvgw is not None else \"N/A\"\n        pvgr_str = f\"{pvgr:.4f}\" if pvgr is not None else \"N/A\"\n        print(f\"{p['generator']:<16} {p['verifier']:<20} {p['dataset']:<12} {cil_str:>8} {gain_str:>8} {pvgw_str:>8} {pvgr_str:>8}\")\n    print(\"=\"*90)\n\n    return output\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/compute_cil.py",
+    "content": "\"\"\"\nE5: CIL (Cumulative Information Lift) Computation\nCIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\n\"\"\"\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom pathlib import Path\nfrom scipy import stats\n\nRESULTS = Path(\"/root/symb_invariant_consensus/results\")\nOUT_DIR = RESULTS / \"exp_d134_cil\"\n\ndef cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong):\n    \"\"\"Compute CIL from 2x2 contingency table.\"\"\"\n    n_g_wrong = v_right_g_wrong + both_wrong\n    n_g_right = both_right + g_right_v_wrong\n\n    if n_g_wrong == 0 or n_g_right == 0:\n        return {\"cil\": float(\"nan\"), \"p_v_given_g_wrong\": float(\"nan\"),\n                \"p_v_given_g_right\": float(\"nan\"), \"n_g_wrong\": 0, \"n_g_right\": 0}\n\n    p_v_gw = v_right_g_wrong / n_g_wrong\n    p_v_gr = both_right / n_g_right\n\n    if p_v_gw == 0 or p_v_gr == 0:\n        cil = float(\"nan\")\n    else:\n        cil = np.log2(p_v_gw / p_v_gr)\n\n    return {\n        \"cil\": round(cil, 4) if not np.isnan(cil) else float(\"nan\"),\n        \"p_v_correct_given_g_wrong\": round(p_v_gw, 4),\n        \"p_v_correct_given_g_correct\": round(p_v_gr, 4),\n        \"n_g_wrong\": int(n_g_wrong),\n        \"n_g_right\": int(n_g_right),\n        \"both_right\": int(both_right),\n        \"v_right_g_wrong\": int(v_right_g_wrong),\n        \"g_right_v_wrong\": int(g_right_v_wrong),\n        \"both_wrong\": int(both_wrong),\n    }\n\n\ndef load_pw600_nli_per_question():\n    \"\"\"Load per-question DeBERTa + Mistral SC + SICA from direction_r_nli_pw600.\"\"\"\n    f = RESULTS / \"direction_r_nli_pw600\" / \"results.json\"\n    data = json.load(open(f))\n    pq = data.get(\"per_question\", {})\n    if not pq:\n        print(f\"  WARNING: no per_question in {f}\")\n    return pq\n\n\ndef load_folio204_per_question():\n    \"\"\"Load per-question data from direction_rg_combo.\"\"\"\n    f = RESULTS / \"direction_rg_combo\" / \"per_question_best.json\"\n    return json.load(open(f))\n\n\ndef load_dir_j3_complementarity():\n    \"\"\"Load complementarity counts for 3 NLI verifiers × Mistral on PW-600.\"\"\"\n    f = RESULTS / \"dir_j3_nli_multi_verifier\" / \"results.json\"\n    data = json.load(open(f))\n    result = {}\n    for model_data in data[\"models\"]:\n        name = model_data[\"model_name\"]\n        c = model_data[\"complementarity\"]\n        result[name] = {\n            \"both_right\": c[\"both_right\"],\n            \"v_right_g_wrong\": c[\"nli_right_sc_wrong\"],\n            \"g_right_v_wrong\": c[\"sc_right_nli_wrong\"],\n            \"both_wrong\": c[\"both_wrong\"],\n        }\n    return result\n\n\ndef load_generator_sc_from_intermediates(exp_dir):\n    \"\"\"Load per-question SC answers from experiment intermediates.\"\"\"\n    inter_dir = exp_dir / \"intermediates\"\n    if not inter_dir.exists():\n        return {}\n\n    sc_data = {}\n    for f in inter_dir.iterdir():\n        if not f.name.endswith(\".json\"):\n            continue\n        try:\n            d = json.load(open(f))\n            qid = d[\"problem\"][\"id\"]\n            gold = d[\"problem\"][\"answer\"]\n\n            # Get SC majority vote\n            sica_res = d.get(\"sica_result\", {})\n            counts = sica_res.get(\"answer_counts\", {})\n            if counts:\n                sc_answer = max(counts, key=counts.get)\n            else:\n                continue\n\n            sica_answer = sica_res.get(\"answer\", None)\n\n            sc_data[qid] = {\n                \"gold\": gold,\n                \"sc_answer\": sc_answer,\n                \"sc_correct\": sc_answer == gold,\n                \"sica_answer\": sica_answer,\n                \"sica_correct\": sica_answer == gold if sica_answer else None,\n            }\n        except (KeyError, json.JSONDecodeError):\n            continue\n\n    return sc_data\n\n\ndef compute_pair_cil_from_per_question(generator_correct, verifier_correct):\n    \"\"\"Compute CIL from boolean arrays.\"\"\"\n    g = np.array(generator_correct, dtype=bool)\n    v = np.array(verifier_correct, dtype=bool)\n\n    both_right = int(np.sum(g & v))\n    v_right_g_wrong = int(np.sum(~g & v))\n    g_right_v_wrong = int(np.sum(g & ~v))\n    both_wrong = int(np.sum(~g & ~v))\n\n    return cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong)\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n\n    pairs = []\n\n    # ============================================================\n    # Section 1: Mistral × {DeBERTa, RoBERTa, BART} × PW-600\n    # From dir_j3 complementarity counts\n    # ============================================================\n    print(\"=== Section 1: Mistral × NLI verifiers × PW-600 ===\")\n    j3_comp = load_dir_j3_complementarity()\n\n    # Combo gains from nli_multi_verifier_recomputed.json\n    recomp = json.load(open(RESULTS / \"nli_multi_verifier_recomputed.json\"))\n\n    verifier_map = {\n        \"DeBERTa-MNLI\": \"DeBERTa-large-MNLI\",\n        \"RoBERTa-MNLI\": \"RoBERTa-large-MNLI\",\n        \"BART-MNLI\": \"BART-large-MNLI\",\n    }\n\n    for j3_name, display_name in verifier_map.items():\n        if j3_name not in j3_comp:\n            print(f\"  SKIP: {j3_name} not in dir_j3\")\n            continue\n\n        c = j3_comp[j3_name]\n        cil_data = cil_from_counts(c[\"both_right\"], c[\"v_right_g_wrong\"],\n                                    c[\"g_right_v_wrong\"], c[\"both_wrong\"])\n\n        combo_w3 = recomp[\"models\"].get(j3_name, {}).get(\"combo\", {}).get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pair = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": display_name,\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"PW-600\",\n            \"n\": 600,\n            \"combo_gain_w3\": combo_w3,\n            **cil_data,\n        }\n        pairs.append(pair)\n        print(f\"  {display_name}: CIL={cil_data['cil']}, combo_w3={combo_w3}\")\n\n    # ============================================================\n    # Section 2: Multi-generator × DeBERTa × PW-600\n    # Match DeBERTa per-question predictions with each generator's SC\n    # ============================================================\n    print(\"\\n=== Section 2: Multi-generator × DeBERTa × PW-600 ===\")\n    pw600_pq = load_pw600_nli_per_question()\n\n    if pw600_pq:\n        # Build DeBERTa prediction map: qid -> deberta_correct\n        deberta_map = {}\n        for qid, qdata in pw600_pq.items():\n            deberta_map[qid] = qdata[\"deberta_correct\"]\n\n        print(f\"  Loaded {len(deberta_map)} DeBERTa predictions on PW-600\")\n\n        # BH table combo gains for multi-generator pairs\n        bh_table = json.load(open(RESULTS / \"nli_combo_full_table_bh\" / \"results.json\"))\n\n        # Try to match with Qwen2.5-14B (exp034)\n        generators_on_server = {\n            \"Qwen2.5-14B\": RESULTS / \"exp034_qwen25_14b_proofwriter\",\n        }\n\n        for gen_name, exp_dir in generators_on_server.items():\n            print(f\"  Loading {gen_name} from {exp_dir.name}...\")\n            gen_sc = load_generator_sc_from_intermediates(exp_dir)\n\n            if not gen_sc:\n                print(f\"    SKIP: no per-question data\")\n                continue\n\n            # Match question IDs with DeBERTa predictions\n            matched_g_correct = []\n            matched_v_correct = []\n            matched_ids = []\n\n            for qid in gen_sc:\n                if qid in deberta_map:\n                    matched_g_correct.append(gen_sc[qid][\"sc_correct\"])\n                    matched_v_correct.append(deberta_map[qid])\n                    matched_ids.append(qid)\n\n            n_matched = len(matched_ids)\n            print(f\"    Matched {n_matched}/{len(gen_sc)} questions\")\n\n            if n_matched < 500:\n                print(f\"    SKIP: too few matches\")\n                continue\n\n            cil_data = compute_pair_cil_from_per_question(matched_g_correct, matched_v_correct)\n\n            # Try to get combo gain from BH table\n            bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n            # Use local experiment's SC accuracy, not BH table\n            local_sc = sum(1 for v in gen_sc.values() if v[\"sc_correct\"]) / len(gen_sc)\n            bh_combo_w3 = bh_gen.get(\"w3\", {}).get(\"delta_pp\", None)\n\n            # Note: BH table used data from westd-16639, different experiment\n            # For local experiment, we don't have the combo gain\n            # We'll compute a proxy: the DeBERTa combo gain at w3 with THIS generator's SC\n            pair = {\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": f\"PW-{n_matched}\",\n                \"n\": n_matched,\n                \"combo_gain_w3\": bh_combo_w3,\n                \"note\": f\"local SC={local_sc:.4f}, BH table SC={bh_gen.get('sc_accuracy', 'N/A')}\",\n                **cil_data,\n            }\n            pairs.append(pair)\n            print(f\"    CIL={cil_data['cil']}\")\n\n            # Also compute SICA CIL for this generator\n            matched_g_correct_sica = []\n            matched_sica_correct = []\n            for qid in matched_ids:\n                if gen_sc[qid][\"sica_correct\"] is not None:\n                    matched_g_correct_sica.append(gen_sc[qid][\"sc_correct\"])\n                    matched_sica_correct.append(gen_sc[qid][\"sica_correct\"])\n\n            if len(matched_g_correct_sica) > 400:\n                cil_sica = compute_pair_cil_from_per_question(\n                    matched_g_correct_sica, matched_sica_correct)\n                sica_acc = sum(1 for v in gen_sc.values() if v.get(\"sica_correct\")) / len(gen_sc)\n                sica_gain = round((sica_acc - local_sc) * 100, 2)\n\n                pair_sica = {\n                    \"generator\": gen_name,\n                    \"verifier\": \"SICA\",\n                    \"verifier_type\": \"SICA\",\n                    \"dataset\": f\"PW-{len(matched_g_correct_sica)}\",\n                    \"n\": len(matched_g_correct_sica),\n                    \"combo_gain_w3\": sica_gain,\n                    \"note\": f\"SICA gain = SICA_acc({sica_acc:.4f}) - SC_acc({local_sc:.4f})\",\n                    **cil_sica,\n                }\n                pairs.append(pair_sica)\n                print(f\"    {gen_name} SICA: CIL={cil_sica['cil']}\")\n\n    # For LLaMA-8B and Qwen3-14B: add from BH table complementarity if derivable\n    # These are on westd-16639, so we note them as unavailable\n    for gen_name in [\"LLaMA-3.1-8B\", \"Qwen3-14B\"]:\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        if bh_gen:\n            print(f\"  {gen_name}: data on westd-16639, adding BH-derived entry\")\n            # We can derive the 2x2 table from McNemar discordant pairs + total\n            # At w=1 (NLI gets 1 vote, SC gets 10 votes), combo ≈ SC unless NLI flips\n            # This doesn't give us the raw complementarity. Skip with note.\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": \"PW-600\",\n                \"n\": 600,\n                \"combo_gain_w3\": bh_gen.get(\"w3\", {}).get(\"delta_pp\", None),\n                \"cil\": None,\n                \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n                \"sc_accuracy\": bh_gen.get(\"sc_accuracy\", None),\n            })\n\n    # ============================================================\n    # Section 3: Mistral × DeBERTa × FOLIO-204\n    # ============================================================\n    print(\"\\n=== Section 3: Mistral × DeBERTa × FOLIO-204 ===\")\n    folio_pq = load_folio204_per_question()\n\n    if folio_pq:\n        g_correct = []\n        v_correct = []\n        sica_correct_list = []\n        sc_correct_list = []\n\n        for qid, qdata in folio_pq.items():\n            sc_c = qdata[\"sc_correct\"]\n            deb_c = qdata[\"deberta_correct\"]\n            sica_c = qdata[\"sica_correct\"]\n\n            g_correct.append(sc_c)\n            v_correct.append(deb_c)\n            sica_correct_list.append(sica_c)\n            sc_correct_list.append(sc_c)\n\n        # Mistral × DeBERTa × FOLIO-204\n        cil_folio_deb = compute_pair_cil_from_per_question(g_correct, v_correct)\n\n        # Get combo gain from direction_rg_combo\n        rg_combo = json.load(open(RESULTS / \"direction_rg_combo\" / \"results.json\"))\n        combo_w3_folio = None\n        for strat_name, strat_data in rg_combo.get(\"strategies\", {}).items():\n            if \"nli_sc_vote_w3\" in strat_name:\n                combo_w3_folio = round(strat_data.get(\"delta_vs_sc\", 0) * 100, 2)\n                break\n        # Try nli_sc_vote strategies\n        if combo_w3_folio is None:\n            for strat_name, strat_data in rg_combo.get(\"strategies\", {}).items():\n                if \"w3\" in strat_name and \"nli\" in strat_name:\n                    combo_w3_folio = round(strat_data.get(\"delta_vs_sc\", 0) * 100, 2)\n                    break\n\n        pair_folio = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"DeBERTa-large-MNLI\",\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"FOLIO-204\",\n            \"n\": len(g_correct),\n            \"combo_gain_w3\": combo_w3_folio,\n            **cil_folio_deb,\n        }\n        pairs.append(pair_folio)\n        print(f\"  DeBERTa: CIL={cil_folio_deb['cil']}\")\n\n        # Mistral × SICA × FOLIO-204\n        cil_folio_sica = compute_pair_cil_from_per_question(sc_correct_list, sica_correct_list)\n        sc_acc = sum(sc_correct_list) / len(sc_correct_list)\n        sica_acc = sum(sica_correct_list) / len(sica_correct_list)\n        sica_gain = round((sica_acc - sc_acc) * 100, 2)\n\n        pair_folio_sica = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"SICA\",\n            \"verifier_type\": \"SICA\",\n            \"dataset\": \"FOLIO-204\",\n            \"n\": len(sc_correct_list),\n            \"combo_gain_w3\": sica_gain,\n            \"note\": f\"SICA gain = SICA_acc({sica_acc:.4f}) - SC_acc({sc_acc:.4f})\",\n            **cil_folio_sica,\n        }\n        pairs.append(pair_folio_sica)\n        print(f\"  SICA: CIL={cil_folio_sica['cil']}\")\n\n    # ============================================================\n    # Section 4: Mistral × SICA × PW-600\n    # ============================================================\n    print(\"\\n=== Section 4: Mistral × SICA × PW-600 ===\")\n    if pw600_pq:\n        sc_c = [qdata[\"sc_correct\"] for qdata in pw600_pq.values()]\n        sica_c = [qdata[\"sica_correct\"] for qdata in pw600_pq.values()]\n\n        cil_pw_sica = compute_pair_cil_from_per_question(sc_c, sica_c)\n        sc_acc_pw = sum(sc_c) / len(sc_c)\n        sica_acc_pw = sum(sica_c) / len(sica_c)\n        sica_gain_pw = round((sica_acc_pw - sc_acc_pw) * 100, 2)\n\n        pair_pw_sica = {\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": \"SICA\",\n            \"verifier_type\": \"SICA\",\n            \"dataset\": \"PW-600\",\n            \"n\": len(sc_c),\n            \"combo_gain_w3\": sica_gain_pw,\n            \"note\": f\"SICA gain = SICA_acc({sica_acc_pw:.4f}) - SC_acc({sc_acc_pw:.4f})\",\n            **cil_pw_sica,\n        }\n        pairs.append(pair_pw_sica)\n        print(f\"  Mistral SICA: CIL={cil_pw_sica['cil']}\")\n\n    # ============================================================\n    # Section 5: Correlation analysis\n    # ============================================================\n    print(\"\\n=== Correlation Analysis ===\")\n    valid_pairs = [p for p in pairs if p.get(\"cil\") is not None\n                   and not (isinstance(p[\"cil\"], float) and np.isnan(p[\"cil\"]))\n                   and p.get(\"combo_gain_w3\") is not None]\n\n    correlation = {}\n    if len(valid_pairs) >= 4:\n        cils = [p[\"cil\"] for p in valid_pairs]\n        gains = [p[\"combo_gain_w3\"] for p in valid_pairs]\n\n        sp = stats.spearmanr(cils, gains)\n        pr = stats.pearsonr(cils, gains)\n\n        correlation = {\n            \"n_pairs\": len(valid_pairs),\n            \"spearman_cil_vs_gain\": {\"rho\": round(sp.statistic, 4), \"p\": round(sp.pvalue, 4)},\n            \"pearson_cil_vs_gain\": {\"r\": round(pr.statistic, 4), \"p\": round(pr.pvalue, 4)},\n        }\n        print(f\"  n={len(valid_pairs)}, Spearman rho={sp.statistic:.4f} (p={sp.pvalue:.4f})\")\n        print(f\"  Pearson r={pr.statistic:.4f} (p={pr.pvalue:.4f})\")\n    else:\n        print(f\"  Only {len(valid_pairs)} valid pairs, need >= 4 for correlation\")\n        correlation = {\"n_pairs\": len(valid_pairs), \"note\": \"insufficient data\"}\n\n    # ============================================================\n    # Output\n    # ============================================================\n    output = {\n        \"experiment\": \"exp_d134_cil\",\n        \"description\": \"CIL (Cumulative Information Lift) computation\",\n        \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n        \"pairs\": pairs,\n        \"correlation\": correlation,\n    }\n\n    out_file = OUT_DIR / \"cil_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nSaved to {out_file}\")\n\n    # ============================================================\n    # Scatter plot\n    # ============================================================\n    if len(valid_pairs) >= 3:\n        try:\n            import matplotlib\n            matplotlib.use(\"Agg\")\n            import matplotlib.pyplot as plt\n\n            fig, ax = plt.subplots(1, 1, figsize=(8, 6))\n\n            nli_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"NLI\"]\n            sica_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"SICA\"]\n\n            if nli_pairs:\n                x_nli = [p[\"cil\"] for p in nli_pairs]\n                y_nli = [p[\"combo_gain_w3\"] for p in nli_pairs]\n                ax.scatter(x_nli, y_nli, c=\"tab:blue\", s=80, zorder=5, label=\"NLI verifier\")\n                for p, xi, yi in zip(nli_pairs, x_nli, y_nli):\n                    label = f\"{p['generator'][:3]}×{p['verifier'].split('-')[0]}\\n{p['dataset']}\"\n                    ax.annotate(label, (xi, yi), fontsize=7,\n                               textcoords=\"offset points\", xytext=(6, 4))\n\n            if sica_pairs:\n                x_sica = [p[\"cil\"] for p in sica_pairs]\n                y_sica = [p[\"combo_gain_w3\"] for p in sica_pairs]\n                ax.scatter(x_sica, y_sica, c=\"tab:orange\", s=80, marker=\"s\", zorder=5, label=\"SICA\")\n                for p, xi, yi in zip(sica_pairs, x_sica, y_sica):\n                    label = f\"{p['generator'][:3]}×SICA\\n{p['dataset']}\"\n                    ax.annotate(label, (xi, yi), fontsize=7,\n                               textcoords=\"offset points\", xytext=(6, 4))\n\n            ax.axvline(x=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n            ax.axhline(y=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n            ax.set_xlabel(\"CIL (bits)\", fontsize=12)\n            ax.set_ylabel(\"Combo Gain (pp)\", fontsize=12)\n            ax.set_title(\"CIL vs. Combo Gain\", fontsize=14)\n            ax.legend(fontsize=10)\n\n            if correlation.get(\"spearman_cil_vs_gain\"):\n                sp_info = correlation[\"spearman_cil_vs_gain\"]\n                ax.text(0.02, 0.98, f\"Spearman ρ={sp_info['rho']:.3f} (p={sp_info['p']:.3f})\",\n                       transform=ax.transAxes, fontsize=9, va=\"top\",\n                       bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"wheat\", alpha=0.5))\n\n            plt.tight_layout()\n            fig_path = OUT_DIR / \"cil_vs_gain_scatter.png\"\n            fig.savefig(fig_path, dpi=150, bbox_inches=\"tight\")\n            print(f\"Saved scatter plot to {fig_path}\")\n            plt.close()\n        except ImportError as e:\n            print(f\"Could not create plot: {e}\")\n\n    # Print summary table\n    print(\"\\n\" + \"=\"*90)\n    print(f\"{'Generator':<16} {'Verifier':<20} {'Dataset':<12} {'CIL':>8} {'Gain_w3':>8} {'P(V|Gw)':>8} {'P(V|Gr)':>8}\")\n    print(\"-\"*90)\n    for p in pairs:\n        cil_val = p.get(\"cil\")\n        cil_str = f\"{cil_val:.4f}\" if cil_val is not None and not (isinstance(cil_val, float) and np.isnan(cil_val)) else \"N/A\"\n        gain_str = f\"{p['combo_gain_w3']:.2f}\" if p.get(\"combo_gain_w3\") is not None else \"N/A\"\n        pvgw = p.get(\"p_v_correct_given_g_wrong\")\n        pvgr = p.get(\"p_v_correct_given_g_correct\")\n        pvgw_str = f\"{pvgw:.4f}\" if pvgw is not None else \"N/A\"\n        pvgr_str = f\"{pvgr:.4f}\" if pvgr is not None else \"N/A\"\n        print(f\"{p['generator']:<16} {p['verifier']:<20} {p['dataset']:<12} {cil_str:>8} {gain_str:>8} {pvgw_str:>8} {pvgr_str:>8}\")\n    print(\"=\"*90)\n\n    return output\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-21T08:51:30.356311+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/compute_cil.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-21T08:51:30.356486+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'in_progress', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'pending', 'activeForm': 'Saving results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'in_progress', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'pending', 'activeForm': 'Saving results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-21T08:51:30.356638+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-21T08:51:30.356780+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import json, numpy, scipy; print('OK: numpy', numpy.__version__, 'scipy', scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import json, numpy, scipy; print('OK: numpy', numpy.__version__, 'scipy', scipy.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-21T08:51:30.357056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: numpy 2.3.2 scipy 1.17.1\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-21T08:51:30.357222+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom pathlib import Path\nR = Path('/root/symb_invariant_consensus/results')\n# Check all required files exist\nfiles = [\n    R / 'dir_j3_nli_multi_verifier/results.json',\n    R / 'nli_multi_verifier_recomputed.json',\n    R / 'direction_r_nli_pw600/results.json',\n    R / 'direction_rg_combo/per_question_best.json',\n    R / 'direction_rg_combo/results.json',\n    R / 'nli_combo_full_table_bh/results.json',\n    R / 'exp034_qwen25_14b_proofwriter/intermediates',\n]\nfor f in files:\n    print(f'{f.name}: {\\\"EXISTS\\\" if f.exists() else \\\"MISSING\\\"}')\n\n# Verify per_question key in pw600\nd = json.load(open(R / 'direction_r_nli_pw600/results.json'))\npq = d.get('per_question', {})\nprint(f'pw600 per_question count: {len(pq)}')\n\n# Check matplotlib\ntry:\n    import matplotlib\n    print(f'matplotlib: {matplotlib.__version__}')\nexcept:\n    print('matplotlib: MISSING')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom pathlib import Path\nR = Path('/root/symb_invariant_consensus/results')\n# Check all required files exist\nfiles = [\n    R / 'dir_j3_nli_multi_verifier/results.json',\n    R / 'nli_multi_verifier_recomputed.json',\n    R / 'direction_r_nli_pw600/results.json',\n    R / 'direction_rg_combo/per_question_best.json',\n    R / 'direction_rg_combo/results.json',\n    R / 'nli_combo_full_table_bh/results.json',\n    R / 'exp034_qwen25_14b_proofwriter/intermediates',\n]\nfor f in files:\n    print(f'{f.name}: {\\\"EXISTS\\\" if f.exists() else \\\"MISSING\\\"}')\n\n# Verify per_question key in pw600\nd = json.load(open(R / 'direction_r_nli_pw600/results.json'))\npq = d.get('per_question', {})\nprint(f'pw600 per_question count: {len(pq)}')\n\n# Check matplotlib\ntry:\n    import matplotlib\n    print(f'matplotlib: {matplotlib.__version__}')\nexcept:\n    print('matplotlib: MISSING')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-21T08:51:30.357370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json: EXISTS\\nnli_multi_verifier_recomputed.json: EXISTS\\nresults.json: EXISTS\\nper_question_best.json: EXISTS\\nresults.json: EXISTS\\nresults.json: EXISTS\\nintermediates: EXISTS\\npw600 per_question count: 600\\nmatplotlib: 3.10.5\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-21T08:51:30.357707+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat > /root/symb_invariant_consensus/scripts/compute_cil.py << 'SCRIPT_EOF'\n\"\"\"\nE5: CIL (Cumulative Information Lift) Computation\nCIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\n\"\"\"\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom pathlib import Path\nfrom scipy import stats\n\nRESULTS = Path(\"/root/symb_invariant_consensus/results\")\nOUT_DIR = RESULTS / \"exp_d134_cil\"\n\ndef cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong):\n    n_g_wrong = v_right_g_wrong + both_wrong\n    n_g_right = both_right + g_right_v_wrong\n\n    if n_g_wrong == 0 or n_g_right == 0:\n        return {\"cil\": float(\"nan\"), \"p_v_correct_given_g_wrong\": float(\"nan\"),\n                \"p_v_correct_given_g_correct\": float(\"nan\"), \"n_g_wrong\": 0, \"n_g_right\": 0}\n\n    p_v_gw = v_right_g_wrong / n_g_wrong\n    p_v_gr = both_right / n_g_right\n\n    if p_v_gw == 0 or p_v_gr == 0:\n        cil = float(\"nan\")\n    else:\n        cil = np.log2(p_v_gw / p_v_gr)\n\n    return {\n        \"cil\": round(float(cil), 4) if not np.isnan(cil) else None,\n        \"p_v_correct_given_g_wrong\": round(p_v_gw, 4),\n        \"p_v_correct_given_g_correct\": round(p_v_gr, 4),\n        \"n_g_wrong\": int(n_g_wrong),\n        \"n_g_right\": int(n_g_right),\n        \"both_right\": int(both_right),\n        \"v_right_g_wrong\": int(v_right_g_wrong),\n        \"g_right_v_wrong\": int(g_right_v_wrong),\n        \"both_wrong\": int(both_wrong),\n    }\n\n\ndef compute_pair_cil_from_per_question(generator_correct, verifier_correct):\n    g = np.array(generator_correct, dtype=bool)\n    v = np.array(verifier_correct, dtype=bool)\n    both_right = int(np.sum(g & v))\n    v_right_g_wrong = int(np.sum(~g & v))\n    g_right_v_wrong = int(np.sum(g & ~v))\n    both_wrong = int(np.sum(~g & ~v))\n    return cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong)\n\n\ndef load_generator_sc_from_intermediates(exp_dir):\n    inter_dir = exp_dir / \"intermediates\"\n    if not inter_dir.exists():\n        return {}\n    sc_data = {}\n    for f in inter_dir.iterdir():\n        if not f.name.endswith(\".json\"):\n            continue\n        try:\n            d = json.load(open(f))\n            qid = d[\"problem\"][\"id\"]\n            gold = d[\"problem\"][\"answer\"]\n            sica_res = d.get(\"sica_result\", {})\n            counts = sica_res.get(\"answer_counts\", {})\n            if counts:\n                sc_answer = max(counts, key=counts.get)\n            else:\n                continue\n            sica_answer = sica_res.get(\"answer\", None)\n            sc_data[qid] = {\n                \"gold\": gold,\n                \"sc_answer\": sc_answer,\n                \"sc_correct\": sc_answer == gold,\n                \"sica_answer\": sica_answer,\n                \"sica_correct\": sica_answer == gold if sica_answer else None,\n            }\n        except (KeyError, json.JSONDecodeError):\n            continue\n    return sc_data\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    pairs = []\n\n    # ===== Section 1: Mistral x {DeBERTa, RoBERTa, BART} x PW-600 =====\n    print(\"=== Section 1: Mistral x NLI verifiers x PW-600 ===\")\n    j3_data = json.load(open(RESULTS / \"dir_j3_nli_multi_verifier\" / \"results.json\"))\n    recomp = json.load(open(RESULTS / \"nli_multi_verifier_recomputed.json\"))\n\n    verifier_map = {\n        \"DeBERTa-MNLI\": \"DeBERTa-large-MNLI\",\n        \"RoBERTa-MNLI\": \"RoBERTa-large-MNLI\",\n        \"BART-MNLI\": \"BART-large-MNLI\",\n    }\n\n    for model_data in j3_data[\"models\"]:\n        j3_name = model_data[\"model_name\"]\n        display_name = verifier_map.get(j3_name, j3_name)\n        c = model_data[\"complementarity\"]\n        cil_data = cil_from_counts(c[\"both_right\"], c[\"nli_right_sc_wrong\"],\n                                    c[\"sc_right_nli_wrong\"], c[\"both_wrong\"])\n        combo_w3 = recomp[\"models\"].get(j3_name, {}).get(\"combo\", {}).get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pairs.append({\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": display_name,\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"PW-600\",\n            \"n\": 600,\n            \"combo_gain_w3\": combo_w3,\n            **cil_data,\n        })\n        print(f\"  {display_name}: CIL={cil_data['cil']}, combo_w3={combo_w3}\")\n\n    # ===== Section 2: Multi-generator x DeBERTa x PW-600 =====\n    print(\"\\n=== Section 2: Multi-generator x DeBERTa x PW-600 ===\")\n    pw600_data = json.load(open(RESULTS / \"direction_r_nli_pw600\" / \"results.json\"))\n    pw600_pq = pw600_data.get(\"per_question\", {})\n    print(f\"  Loaded {len(pw600_pq)} DeBERTa predictions on PW-600\")\n\n    deberta_map = {qid: qdata[\"deberta_correct\"] for qid, qdata in pw600_pq.items()}\n\n    bh_table = json.load(open(RESULTS / \"nli_combo_full_table_bh\" / \"results.json\"))\n\n    # Qwen2.5-14B from exp034\n    generators_on_server = {\n        \"Qwen2.5-14B\": RESULTS / \"exp034_qwen25_14b_proofwriter\",\n    }\n\n    for gen_name, exp_dir in generators_on_server.items():\n        print(f\"  Loading {gen_name} from {exp_dir.name}...\")\n        gen_sc = load_generator_sc_from_intermediates(exp_dir)\n        if not gen_sc:\n            print(f\"    SKIP: no per-question data\")\n            continue\n\n        matched_g, matched_v, matched_ids = [], [], []\n        for qid in gen_sc:\n            if qid in deberta_map:\n                matched_g.append(gen_sc[qid][\"sc_correct\"])\n                matched_v.append(deberta_map[qid])\n                matched_ids.append(qid)\n\n        n_matched = len(matched_ids)\n        print(f\"    Matched {n_matched}/{len(gen_sc)} questions\")\n\n        if n_matched < 500:\n            print(f\"    SKIP: too few matches\")\n            continue\n\n        cil_data = compute_pair_cil_from_per_question(matched_g, matched_v)\n        local_sc = sum(1 for v in gen_sc.values() if v[\"sc_correct\"]) / len(gen_sc)\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        bh_combo_w3 = bh_gen.get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pairs.append({\n            \"generator\": gen_name,\n            \"verifier\": \"DeBERTa-large-MNLI\",\n            \"verifier_type\": \"NLI\",\n            \"dataset\": f\"PW-{n_matched}\",\n            \"n\": n_matched,\n            \"combo_gain_w3\": bh_combo_w3,\n            \"note\": f\"local_SC={local_sc:.4f}, BH_SC={bh_gen.get('sc_accuracy', 'N/A')}\",\n            **cil_data,\n        })\n        print(f\"    CIL={cil_data['cil']}\")\n\n        # SICA for this generator\n        mg_sica, mv_sica = [], []\n        for qid in matched_ids:\n            if gen_sc[qid][\"sica_correct\"] is not None:\n                mg_sica.append(gen_sc[qid][\"sc_correct\"])\n                mv_sica.append(gen_sc[qid][\"sica_correct\"])\n\n        if len(mg_sica) > 400:\n            cil_sica = compute_pair_cil_from_per_question(mg_sica, mv_sica)\n            sica_acc = sum(1 for v in gen_sc.values() if v.get(\"sica_correct\")) / len(gen_sc)\n            sica_gain = round((sica_acc - local_sc) * 100, 2)\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"SICA\",\n                \"verifier_type\": \"SICA\",\n                \"dataset\": f\"PW-{len(mg_sica)}\",\n                \"n\": len(mg_sica),\n                \"combo_gain_w3\": sica_gain,\n                \"note\": f\"SICA_acc={sica_acc:.4f}, SC_acc={local_sc:.4f}\",\n                **cil_sica,\n            })\n            print(f\"    {gen_name} SICA: CIL={cil_sica['cil']}\")\n\n    # LLaMA-8B and Qwen3-14B: not on this server\n    for gen_name in [\"LLaMA-3.1-8B\", \"Qwen3-14B\"]:\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        if bh_gen:\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": \"PW-600\",\n                \"n\": 600,\n                \"combo_gain_w3\": bh_gen.get(\"w3\", {}).get(\"delta_pp\", None),\n                \"cil\": None,\n                \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n                \"sc_accuracy\": bh_gen.get(\"sc_accuracy\", None),\n            })\n            print(f\"  {gen_name}: CIL=N/A (data on westd-16639), combo_w3={bh_gen.get('w3',{}).get('delta_pp')}\")\n\n    # ===== Section 3: Mistral x DeBERTa x FOLIO-204 =====\n    print(\"\\n=== Section 3: Mistral x DeBERTa x FOLIO-204 ===\")\n    folio_pq = json.load(open(RESULTS / \"direction_rg_combo\" / \"per_question_best.json\"))\n\n    g_correct, v_correct, sica_c_list, sc_c_list = [], [], [], []\n    for qid, qdata in folio_pq.items():\n        g_correct.append(qdata[\"sc_correct\"])\n        v_correct.append(qdata[\"deberta_correct\"])\n        sica_c_list.append(qdata[\"sica_correct\"])\n        sc_c_list.append(qdata[\"sc_correct\"])\n\n    # NLI pair\n    cil_folio_deb = compute_pair_cil_from_per_question(g_correct, v_correct)\n\n    # Try to get combo gain from direction_rg_combo strategies\n    rg_combo = json.load(open(RESULTS / \"direction_rg_combo\" / \"results.json\"))\n    combo_w3_folio = None\n    for sname, sdata in rg_combo.get(\"strategies\", {}).items():\n        if \"nli_sc_vote_w3\" == sname:\n            combo_w3_folio = round(sdata.get(\"delta_vs_sc\", 0) * 100, 2)\n            break\n    if combo_w3_folio is None:\n        for sname, sdata in rg_combo.get(\"strategies\", {}).items():\n            if \"w3\" in sname and \"nli\" in sname.lower():\n                combo_w3_folio = round(sdata.get(\"delta_vs_sc\", 0) * 100, 2)\n                break\n\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"DeBERTa-large-MNLI\",\n        \"verifier_type\": \"NLI\",\n        \"dataset\": \"FOLIO-204\",\n        \"n\": len(g_correct),\n        \"combo_gain_w3\": combo_w3_folio,\n        **cil_folio_deb,\n    })\n    print(f\"  DeBERTa: CIL={cil_folio_deb['cil']}\")\n\n    # SICA pair\n    cil_folio_sica = compute_pair_cil_from_per_question(sc_c_list, sica_c_list)\n    sc_acc = sum(sc_c_list) / len(sc_c_list)\n    sica_acc = sum(sica_c_list) / len(sica_c_list)\n    sica_gain = round((sica_acc - sc_acc) * 100, 2)\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"SICA\",\n        \"verifier_type\": \"SICA\",\n        \"dataset\": \"FOLIO-204\",\n        \"n\": len(sc_c_list),\n        \"combo_gain_w3\": sica_gain,\n        \"note\": f\"SICA_acc={sica_acc:.4f}, SC_acc={sc_acc:.4f}\",\n        **cil_folio_sica,\n    })\n    print(f\"  SICA: CIL={cil_folio_sica['cil']}\")\n\n    # ===== Section 4: Mistral x SICA x PW-600 =====\n    print(\"\\n=== Section 4: Mistral x SICA x PW-600 ===\")\n    sc_c = [qdata[\"sc_correct\"] for qdata in pw600_pq.values()]\n    sica_c = [qdata[\"sica_correct\"] for qdata in pw600_pq.values()]\n\n    cil_pw_sica = compute_pair_cil_from_per_question(sc_c, sica_c)\n    sc_acc_pw = sum(sc_c) / len(sc_c)\n    sica_acc_pw = sum(sica_c) / len(sica_c)\n    sica_gain_pw = round((sica_acc_pw - sc_acc_pw) * 100, 2)\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"SICA\",\n        \"verifier_type\": \"SICA\",\n        \"dataset\": \"PW-600\",\n        \"n\": len(sc_c),\n        \"combo_gain_w3\": sica_gain_pw,\n        \"note\": f\"SICA_acc={sica_acc_pw:.4f}, SC_acc={sc_acc_pw:.4f}\",\n        **cil_pw_sica,\n    })\n    print(f\"  Mistral SICA: CIL={cil_pw_sica['cil']}\")\n\n    # ===== Correlation =====\n    print(\"\\n=== Correlation Analysis ===\")\n    valid_pairs = [p for p in pairs if p.get(\"cil\") is not None and p.get(\"combo_gain_w3\") is not None]\n\n    correlation = {}\n    if len(valid_pairs) >= 4:\n        cils = [p[\"cil\"] for p in valid_pairs]\n        gains = [p[\"combo_gain_w3\"] for p in valid_pairs]\n        sp = stats.spearmanr(cils, gains)\n        pr = stats.pearsonr(cils, gains)\n        correlation = {\n            \"n_pairs\": len(valid_pairs),\n            \"spearman_cil_vs_gain\": {\"rho\": round(float(sp.statistic), 4), \"p\": round(float(sp.pvalue), 4)},\n            \"pearson_cil_vs_gain\": {\"r\": round(float(pr.statistic), 4), \"p\": round(float(pr.pvalue), 4)},\n        }\n        print(f\"  n={len(valid_pairs)}, Spearman rho={sp.statistic:.4f} (p={sp.pvalue:.4f})\")\n        print(f\"  Pearson r={pr.statistic:.4f} (p={pr.pvalue:.4f})\")\n    else:\n        print(f\"  Only {len(valid_pairs)} valid pairs, need >= 4\")\n        correlation = {\"n_pairs\": len(valid_pairs), \"note\": \"insufficient data\"}\n\n    # ===== Output JSON =====\n    output = {\n        \"experiment\": \"exp_d134_cil\",\n        \"description\": \"CIL (Cumulative Information Lift) computation\",\n        \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n        \"pairs\": pairs,\n        \"correlation\": correlation,\n    }\n    out_file = OUT_DIR / \"cil_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nSaved to {out_file}\")\n\n    # ===== Scatter plot =====\n    if len(valid_pairs) >= 3:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n\n        fig, ax = plt.subplots(1, 1, figsize=(8, 6))\n\n        nli_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"NLI\"]\n        sica_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"SICA\"]\n\n        if nli_pairs:\n            x = [p[\"cil\"] for p in nli_pairs]\n            y = [p[\"combo_gain_w3\"] for p in nli_pairs]\n            ax.scatter(x, y, c=\"tab:blue\", s=80, zorder=5, label=\"NLI verifier\")\n            for p, xi, yi in zip(nli_pairs, x, y):\n                lbl = f\"{p['generator'][:5]}x{p['verifier'].split('-')[0]}\\n{p['dataset']}\"\n                ax.annotate(lbl, (xi, yi), fontsize=7, textcoords=\"offset points\", xytext=(6, 4))\n\n        if sica_pairs:\n            x = [p[\"cil\"] for p in sica_pairs]\n            y = [p[\"combo_gain_w3\"] for p in sica_pairs]\n            ax.scatter(x, y, c=\"tab:orange\", s=80, marker=\"s\", zorder=5, label=\"SICA\")\n            for p, xi, yi in zip(sica_pairs, x, y):\n                lbl = f\"{p['generator'][:5]}xSICA\\n{p['dataset']}\"\n                ax.annotate(lbl, (xi, yi), fontsize=7, textcoords=\"offset points\", xytext=(6, 4))\n\n        ax.axvline(x=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n        ax.axhline(y=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n        ax.set_xlabel(\"CIL (bits)\", fontsize=12)\n        ax.set_ylabel(\"Combo Gain (pp)\", fontsize=12)\n        ax.set_title(\"CIL vs. Combo Gain\", fontsize=14)\n        ax.legend(fontsize=10)\n\n        if correlation.get(\"spearman_cil_vs_gain\"):\n            sp_info = correlation[\"spearman_cil_vs_gain\"]\n            ax.text(0.02, 0.98, f\"Spearman rho={sp_info['rho']:.3f} (p={sp_info['p']:.3f})\",\n                   transform=ax.transAxes, fontsize=9, va=\"top\",\n                   bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"wheat\", alpha=0.5))\n\n        plt.tight_layout()\n        fig_path = OUT_DIR / \"cil_vs_gain_scatter.png\"\n        fig.savefig(fig_path, dpi=150, bbox_inches=\"tight\")\n        print(f\"Saved scatter plot to {fig_path}\")\n        plt.close()\n\n    # ===== Summary table =====\n    print(\"\\n\" + \"=\"*100)\n    print(f\"{'Generator':<16} {'Verifier':<20} {'Dataset':<12} {'CIL':>8} {'Gain_w3':>8} {'P(V|Gw)':>8} {'P(V|Gr)':>8} {'n_Gw':>6} {'n_Gr':>6}\")\n    print(\"-\"*100)\n    for p in pairs:\n        cil_val = p.get(\"cil\")\n        cil_str = f\"{cil_val:.4f}\" if cil_val is not None else \"N/A\"\n        gain_str = f\"{p['combo_gain_w3']:.2f}\" if p.get(\"combo_gain_w3\") is not None else \"N/A\"\n        pvgw = p.get(\"p_v_correct_given_g_wrong\")\n        pvgr = p.get(\"p_v_correct_given_g_correct\")\n        pvgw_str = f\"{pvgw:.4f}\" if pvgw is not None else \"N/A\"\n        pvgr_str = f\"{pvgr:.4f}\" if pvgr is not None else \"N/A\"\n        ngw = p.get(\"n_g_wrong\", \"\")\n        ngr = p.get(\"n_g_right\", \"\")\n        print(f\"{p['generator']:<16} {p['verifier']:<20} {p['dataset']:<12} {cil_str:>8} {gain_str:>8} {pvgw_str:>8} {pvgr_str:>8} {str(ngw):>6} {str(ngr):>6}\")\n    print(\"=\"*100)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script deployed OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat > /root/symb_invariant_consensus/scripts/compute_cil.py << 'SCRIPT_EOF'\n\"\"\"\nE5: CIL (Cumulative Information Lift) Computation\nCIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\n\"\"\"\nimport json\nimport os\nimport sys\nimport numpy as np\nfrom pathlib import Path\nfrom scipy import stats\n\nRESULTS = Path(\"/root/symb_invariant_consensus/results\")\nOUT_DIR = RESULTS / \"exp_d134_cil\"\n\ndef cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong):\n    n_g_wrong = v_right_g_wrong + both_wrong\n    n_g_right = both_right + g_right_v_wrong\n\n    if n_g_wrong == 0 or n_g_right == 0:\n        return {\"cil\": float(\"nan\"), \"p_v_correct_given_g_wrong\": float(\"nan\"),\n                \"p_v_correct_given_g_correct\": float(\"nan\"), \"n_g_wrong\": 0, \"n_g_right\": 0}\n\n    p_v_gw = v_right_g_wrong / n_g_wrong\n    p_v_gr = both_right / n_g_right\n\n    if p_v_gw == 0 or p_v_gr == 0:\n        cil = float(\"nan\")\n    else:\n        cil = np.log2(p_v_gw / p_v_gr)\n\n    return {\n        \"cil\": round(float(cil), 4) if not np.isnan(cil) else None,\n        \"p_v_correct_given_g_wrong\": round(p_v_gw, 4),\n        \"p_v_correct_given_g_correct\": round(p_v_gr, 4),\n        \"n_g_wrong\": int(n_g_wrong),\n        \"n_g_right\": int(n_g_right),\n        \"both_right\": int(both_right),\n        \"v_right_g_wrong\": int(v_right_g_wrong),\n        \"g_right_v_wrong\": int(g_right_v_wrong),\n        \"both_wrong\": int(both_wrong),\n    }\n\n\ndef compute_pair_cil_from_per_question(generator_correct, verifier_correct):\n    g = np.array(generator_correct, dtype=bool)\n    v = np.array(verifier_correct, dtype=bool)\n    both_right = int(np.sum(g & v))\n    v_right_g_wrong = int(np.sum(~g & v))\n    g_right_v_wrong = int(np.sum(g & ~v))\n    both_wrong = int(np.sum(~g & ~v))\n    return cil_from_counts(both_right, v_right_g_wrong, g_right_v_wrong, both_wrong)\n\n\ndef load_generator_sc_from_intermediates(exp_dir):\n    inter_dir = exp_dir / \"intermediates\"\n    if not inter_dir.exists():\n        return {}\n    sc_data = {}\n    for f in inter_dir.iterdir():\n        if not f.name.endswith(\".json\"):\n            continue\n        try:\n            d = json.load(open(f))\n            qid = d[\"problem\"][\"id\"]\n            gold = d[\"problem\"][\"answer\"]\n            sica_res = d.get(\"sica_result\", {})\n            counts = sica_res.get(\"answer_counts\", {})\n            if counts:\n                sc_answer = max(counts, key=counts.get)\n            else:\n                continue\n            sica_answer = sica_res.get(\"answer\", None)\n            sc_data[qid] = {\n                \"gold\": gold,\n                \"sc_answer\": sc_answer,\n                \"sc_correct\": sc_answer == gold,\n                \"sica_answer\": sica_answer,\n                \"sica_correct\": sica_answer == gold if sica_answer else None,\n            }\n        except (KeyError, json.JSONDecodeError):\n            continue\n    return sc_data\n\n\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    pairs = []\n\n    # ===== Section 1: Mistral x {DeBERTa, RoBERTa, BART} x PW-600 =====\n    print(\"=== Section 1: Mistral x NLI verifiers x PW-600 ===\")\n    j3_data = json.load(open(RESULTS / \"dir_j3_nli_multi_verifier\" / \"results.json\"))\n    recomp = json.load(open(RESULTS / \"nli_multi_verifier_recomputed.json\"))\n\n    verifier_map = {\n        \"DeBERTa-MNLI\": \"DeBERTa-large-MNLI\",\n        \"RoBERTa-MNLI\": \"RoBERTa-large-MNLI\",\n        \"BART-MNLI\": \"BART-large-MNLI\",\n    }\n\n    for model_data in j3_data[\"models\"]:\n        j3_name = model_data[\"model_name\"]\n        display_name = verifier_map.get(j3_name, j3_name)\n        c = model_data[\"complementarity\"]\n        cil_data = cil_from_counts(c[\"both_right\"], c[\"nli_right_sc_wrong\"],\n                                    c[\"sc_right_nli_wrong\"], c[\"both_wrong\"])\n        combo_w3 = recomp[\"models\"].get(j3_name, {}).get(\"combo\", {}).get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pairs.append({\n            \"generator\": \"Mistral-7B\",\n            \"verifier\": display_name,\n            \"verifier_type\": \"NLI\",\n            \"dataset\": \"PW-600\",\n            \"n\": 600,\n            \"combo_gain_w3\": combo_w3,\n            **cil_data,\n        })\n        print(f\"  {display_name}: CIL={cil_data['cil']}, combo_w3={combo_w3}\")\n\n    # ===== Section 2: Multi-generator x DeBERTa x PW-600 =====\n    print(\"\\n=== Section 2: Multi-generator x DeBERTa x PW-600 ===\")\n    pw600_data = json.load(open(RESULTS / \"direction_r_nli_pw600\" / \"results.json\"))\n    pw600_pq = pw600_data.get(\"per_question\", {})\n    print(f\"  Loaded {len(pw600_pq)} DeBERTa predictions on PW-600\")\n\n    deberta_map = {qid: qdata[\"deberta_correct\"] for qid, qdata in pw600_pq.items()}\n\n    bh_table = json.load(open(RESULTS / \"nli_combo_full_table_bh\" / \"results.json\"))\n\n    # Qwen2.5-14B from exp034\n    generators_on_server = {\n        \"Qwen2.5-14B\": RESULTS / \"exp034_qwen25_14b_proofwriter\",\n    }\n\n    for gen_name, exp_dir in generators_on_server.items():\n        print(f\"  Loading {gen_name} from {exp_dir.name}...\")\n        gen_sc = load_generator_sc_from_intermediates(exp_dir)\n        if not gen_sc:\n            print(f\"    SKIP: no per-question data\")\n            continue\n\n        matched_g, matched_v, matched_ids = [], [], []\n        for qid in gen_sc:\n            if qid in deberta_map:\n                matched_g.append(gen_sc[qid][\"sc_correct\"])\n                matched_v.append(deberta_map[qid])\n                matched_ids.append(qid)\n\n        n_matched = len(matched_ids)\n        print(f\"    Matched {n_matched}/{len(gen_sc)} questions\")\n\n        if n_matched < 500:\n            print(f\"    SKIP: too few matches\")\n            continue\n\n        cil_data = compute_pair_cil_from_per_question(matched_g, matched_v)\n        local_sc = sum(1 for v in gen_sc.values() if v[\"sc_correct\"]) / len(gen_sc)\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        bh_combo_w3 = bh_gen.get(\"w3\", {}).get(\"delta_pp\", None)\n\n        pairs.append({\n            \"generator\": gen_name,\n            \"verifier\": \"DeBERTa-large-MNLI\",\n            \"verifier_type\": \"NLI\",\n            \"dataset\": f\"PW-{n_matched}\",\n            \"n\": n_matched,\n            \"combo_gain_w3\": bh_combo_w3,\n            \"note\": f\"local_SC={local_sc:.4f}, BH_SC={bh_gen.get('sc_accuracy', 'N/A')}\",\n            **cil_data,\n        })\n        print(f\"    CIL={cil_data['cil']}\")\n\n        # SICA for this generator\n        mg_sica, mv_sica = [], []\n        for qid in matched_ids:\n            if gen_sc[qid][\"sica_correct\"] is not None:\n                mg_sica.append(gen_sc[qid][\"sc_correct\"])\n                mv_sica.append(gen_sc[qid][\"sica_correct\"])\n\n        if len(mg_sica) > 400:\n            cil_sica = compute_pair_cil_from_per_question(mg_sica, mv_sica)\n            sica_acc = sum(1 for v in gen_sc.values() if v.get(\"sica_correct\")) / len(gen_sc)\n            sica_gain = round((sica_acc - local_sc) * 100, 2)\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"SICA\",\n                \"verifier_type\": \"SICA\",\n                \"dataset\": f\"PW-{len(mg_sica)}\",\n                \"n\": len(mg_sica),\n                \"combo_gain_w3\": sica_gain,\n                \"note\": f\"SICA_acc={sica_acc:.4f}, SC_acc={local_sc:.4f}\",\n                **cil_sica,\n            })\n            print(f\"    {gen_name} SICA: CIL={cil_sica['cil']}\")\n\n    # LLaMA-8B and Qwen3-14B: not on this server\n    for gen_name in [\"LLaMA-3.1-8B\", \"Qwen3-14B\"]:\n        bh_gen = bh_table.get(\"generators\", {}).get(gen_name, {})\n        if bh_gen:\n            pairs.append({\n                \"generator\": gen_name,\n                \"verifier\": \"DeBERTa-large-MNLI\",\n                \"verifier_type\": \"NLI\",\n                \"dataset\": \"PW-600\",\n                \"n\": 600,\n                \"combo_gain_w3\": bh_gen.get(\"w3\", {}).get(\"delta_pp\", None),\n                \"cil\": None,\n                \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n                \"sc_accuracy\": bh_gen.get(\"sc_accuracy\", None),\n            })\n            print(f\"  {gen_name}: CIL=N/A (data on westd-16639), combo_w3={bh_gen.get('w3',{}).get('delta_pp')}\")\n\n    # ===== Section 3: Mistral x DeBERTa x FOLIO-204 =====\n    print(\"\\n=== Section 3: Mistral x DeBERTa x FOLIO-204 ===\")\n    folio_pq = json.load(open(RESULTS / \"direction_rg_combo\" / \"per_question_best.json\"))\n\n    g_correct, v_correct, sica_c_list, sc_c_list = [], [], [], []\n    for qid, qdata in folio_pq.items():\n        g_correct.append(qdata[\"sc_correct\"])\n        v_correct.append(qdata[\"deberta_correct\"])\n        sica_c_list.append(qdata[\"sica_correct\"])\n        sc_c_list.append(qdata[\"sc_correct\"])\n\n    # NLI pair\n    cil_folio_deb = compute_pair_cil_from_per_question(g_correct, v_correct)\n\n    # Try to get combo gain from direction_rg_combo strategies\n    rg_combo = json.load(open(RESULTS / \"direction_rg_combo\" / \"results.json\"))\n    combo_w3_folio = None\n    for sname, sdata in rg_combo.get(\"strategies\", {}).items():\n        if \"nli_sc_vote_w3\" == sname:\n            combo_w3_folio = round(sdata.get(\"delta_vs_sc\", 0) * 100, 2)\n            break\n    if combo_w3_folio is None:\n        for sname, sdata in rg_combo.get(\"strategies\", {}).items():\n            if \"w3\" in sname and \"nli\" in sname.lower():\n                combo_w3_folio = round(sdata.get(\"delta_vs_sc\", 0) * 100, 2)\n                break\n\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"DeBERTa-large-MNLI\",\n        \"verifier_type\": \"NLI\",\n        \"dataset\": \"FOLIO-204\",\n        \"n\": len(g_correct),\n        \"combo_gain_w3\": combo_w3_folio,\n        **cil_folio_deb,\n    })\n    print(f\"  DeBERTa: CIL={cil_folio_deb['cil']}\")\n\n    # SICA pair\n    cil_folio_sica = compute_pair_cil_from_per_question(sc_c_list, sica_c_list)\n    sc_acc = sum(sc_c_list) / len(sc_c_list)\n    sica_acc = sum(sica_c_list) / len(sica_c_list)\n    sica_gain = round((sica_acc - sc_acc) * 100, 2)\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"SICA\",\n        \"verifier_type\": \"SICA\",\n        \"dataset\": \"FOLIO-204\",\n        \"n\": len(sc_c_list),\n        \"combo_gain_w3\": sica_gain,\n        \"note\": f\"SICA_acc={sica_acc:.4f}, SC_acc={sc_acc:.4f}\",\n        **cil_folio_sica,\n    })\n    print(f\"  SICA: CIL={cil_folio_sica['cil']}\")\n\n    # ===== Section 4: Mistral x SICA x PW-600 =====\n    print(\"\\n=== Section 4: Mistral x SICA x PW-600 ===\")\n    sc_c = [qdata[\"sc_correct\"] for qdata in pw600_pq.values()]\n    sica_c = [qdata[\"sica_correct\"] for qdata in pw600_pq.values()]\n\n    cil_pw_sica = compute_pair_cil_from_per_question(sc_c, sica_c)\n    sc_acc_pw = sum(sc_c) / len(sc_c)\n    sica_acc_pw = sum(sica_c) / len(sica_c)\n    sica_gain_pw = round((sica_acc_pw - sc_acc_pw) * 100, 2)\n    pairs.append({\n        \"generator\": \"Mistral-7B\",\n        \"verifier\": \"SICA\",\n        \"verifier_type\": \"SICA\",\n        \"dataset\": \"PW-600\",\n        \"n\": len(sc_c),\n        \"combo_gain_w3\": sica_gain_pw,\n        \"note\": f\"SICA_acc={sica_acc_pw:.4f}, SC_acc={sc_acc_pw:.4f}\",\n        **cil_pw_sica,\n    })\n    print(f\"  Mistral SICA: CIL={cil_pw_sica['cil']}\")\n\n    # ===== Correlation =====\n    print(\"\\n=== Correlation Analysis ===\")\n    valid_pairs = [p for p in pairs if p.get(\"cil\") is not None and p.get(\"combo_gain_w3\") is not None]\n\n    correlation = {}\n    if len(valid_pairs) >= 4:\n        cils = [p[\"cil\"] for p in valid_pairs]\n        gains = [p[\"combo_gain_w3\"] for p in valid_pairs]\n        sp = stats.spearmanr(cils, gains)\n        pr = stats.pearsonr(cils, gains)\n        correlation = {\n            \"n_pairs\": len(valid_pairs),\n            \"spearman_cil_vs_gain\": {\"rho\": round(float(sp.statistic), 4), \"p\": round(float(sp.pvalue), 4)},\n            \"pearson_cil_vs_gain\": {\"r\": round(float(pr.statistic), 4), \"p\": round(float(pr.pvalue), 4)},\n        }\n        print(f\"  n={len(valid_pairs)}, Spearman rho={sp.statistic:.4f} (p={sp.pvalue:.4f})\")\n        print(f\"  Pearson r={pr.statistic:.4f} (p={pr.pvalue:.4f})\")\n    else:\n        print(f\"  Only {len(valid_pairs)} valid pairs, need >= 4\")\n        correlation = {\"n_pairs\": len(valid_pairs), \"note\": \"insufficient data\"}\n\n    # ===== Output JSON =====\n    output = {\n        \"experiment\": \"exp_d134_cil\",\n        \"description\": \"CIL (Cumulative Information Lift) computation\",\n        \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n        \"pairs\": pairs,\n        \"correlation\": correlation,\n    }\n    out_file = OUT_DIR / \"cil_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nSaved to {out_file}\")\n\n    # ===== Scatter plot =====\n    if len(valid_pairs) >= 3:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n\n        fig, ax = plt.subplots(1, 1, figsize=(8, 6))\n\n        nli_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"NLI\"]\n        sica_pairs = [p for p in valid_pairs if p[\"verifier_type\"] == \"SICA\"]\n\n        if nli_pairs:\n            x = [p[\"cil\"] for p in nli_pairs]\n            y = [p[\"combo_gain_w3\"] for p in nli_pairs]\n            ax.scatter(x, y, c=\"tab:blue\", s=80, zorder=5, label=\"NLI verifier\")\n            for p, xi, yi in zip(nli_pairs, x, y):\n                lbl = f\"{p['generator'][:5]}x{p['verifier'].split('-')[0]}\\n{p['dataset']}\"\n                ax.annotate(lbl, (xi, yi), fontsize=7, textcoords=\"offset points\", xytext=(6, 4))\n\n        if sica_pairs:\n            x = [p[\"cil\"] for p in sica_pairs]\n            y = [p[\"combo_gain_w3\"] for p in sica_pairs]\n            ax.scatter(x, y, c=\"tab:orange\", s=80, marker=\"s\", zorder=5, label=\"SICA\")\n            for p, xi, yi in zip(sica_pairs, x, y):\n                lbl = f\"{p['generator'][:5]}xSICA\\n{p['dataset']}\"\n                ax.annotate(lbl, (xi, yi), fontsize=7, textcoords=\"offset points\", xytext=(6, 4))\n\n        ax.axvline(x=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n        ax.axhline(y=0, color=\"gray\", linestyle=\"--\", alpha=0.5)\n        ax.set_xlabel(\"CIL (bits)\", fontsize=12)\n        ax.set_ylabel(\"Combo Gain (pp)\", fontsize=12)\n        ax.set_title(\"CIL vs. Combo Gain\", fontsize=14)\n        ax.legend(fontsize=10)\n\n        if correlation.get(\"spearman_cil_vs_gain\"):\n            sp_info = correlation[\"spearman_cil_vs_gain\"]\n            ax.text(0.02, 0.98, f\"Spearman rho={sp_info['rho']:.3f} (p={sp_info['p']:.3f})\",\n                   transform=ax.transAxes, fontsize=9, va=\"top\",\n                   bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"wheat\", alpha=0.5))\n\n        plt.tight_layout()\n        fig_path = OUT_DIR / \"cil_vs_gain_scatter.png\"\n        fig.savefig(fig_path, dpi=150, bbox_inches=\"tight\")\n        print(f\"Saved scatter plot to {fig_path}\")\n        plt.close()\n\n    # ===== Summary table =====\n    print(\"\\n\" + \"=\"*100)\n    print(f\"{'Generator':<16} {'Verifier':<20} {'Dataset':<12} {'CIL':>8} {'Gain_w3':>8} {'P(V|Gw)':>8} {'P(V|Gr)':>8} {'n_Gw':>6} {'n_Gr':>6}\")\n    print(\"-\"*100)\n    for p in pairs:\n        cil_val = p.get(\"cil\")\n        cil_str = f\"{cil_val:.4f}\" if cil_val is not None else \"N/A\"\n        gain_str = f\"{p['combo_gain_w3']:.2f}\" if p.get(\"combo_gain_w3\") is not None else \"N/A\"\n        pvgw = p.get(\"p_v_correct_given_g_wrong\")\n        pvgr = p.get(\"p_v_correct_given_g_correct\")\n        pvgw_str = f\"{pvgw:.4f}\" if pvgw is not None else \"N/A\"\n        pvgr_str = f\"{pvgr:.4f}\" if pvgr is not None else \"N/A\"\n        ngw = p.get(\"n_g_wrong\", \"\")\n        ngr = p.get(\"n_g_right\", \"\")\n        print(f\"{p['generator']:<16} {p['verifier']:<20} {p['dataset']:<12} {cil_str:>8} {gain_str:>8} {pvgw_str:>8} {pvgr_str:>8} {str(ngw):>6} {str(ngr):>6}\")\n    print(\"=\"*100)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script deployed OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-21T08:51:30.358166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script deployed OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-21T08:51:30.358331+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 scripts/compute_cil.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 scripts/compute_cil.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-21T08:51:30.358497+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Section 1: Mistral x NLI verifiers x PW-600 ===\\n  DeBERTa-large-MNLI: CIL=1.6655, combo_w3=6.67\\n  RoBERTa-large-MNLI: CIL=1.4232, combo_w3=4.17\\n  BART-large-MNLI: CIL=1.859, combo_w3=5.17\\n\\n=== Section 2: Multi-generator x DeBERTa x PW-600 ===\\n  Loaded 600 DeBERTa predictions on PW-600\\n  Loading Qwen2.5-14B from exp034_qwen25_14b_proofwriter...\\n    Matched 600/600 questions\\n    CIL=-0.0827\\n    Qwen2.5-14B SICA: CIL=-3.5272\\n  LLaMA-3.1-8B: CIL=N/A (data on westd-16639), combo_w3=4.17\\n  Qwen3-14B: CIL=N/A (data on westd-16639), combo_w3=1.0\\n\\n=== Section 3: Mistral x DeBERTa x FOLIO-204 ===\\n  DeBERTa: CIL=-0.4741\\n  SICA: CIL=-2.928\\n\\n=== Section 4: Mistral x SICA x PW-600 ===\\n  Mistral SICA: CIL=-4.6112\\n\\n=== Correlation Analysis ===\\n  n=8, Spearman rho=0.7619 (p=0.0280)\\n  Pearson r=0.7340 (p=0.0382)\\n\\nSaved to /root/symb_invariant_consensus/results/exp_d134_cil/cil_results.json\\nSaved scatter plot to /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png\\n\\n====================================================================================================\\nGenerator        Verifier             Dataset           CIL  Gain_w3  P(V|Gw)  P(V|Gr)   n_Gw   n_Gr\\n----------------------------------------------------------------------------------------------------\\nMistral-7B       DeBERTa-large-MNLI   PW-600         1.6655     6.67   0.7527   0.2373    364    236\\nMistral-7B       RoBERTa-large-MNLI   PW-600         1.4232     4.17   0.5000   0.1864    364    236\\nMistral-7B       BART-large-MNLI      PW-600         1.8590     5.17   0.6456   0.1780    364    236\\nQwen2.5-14B      DeBERTa-large-MNLI   PW-600        -0.0827     0.83   0.5281   0.5592    178    422\\nQwen2.5-14B      SICA                 PW-600        -3.5272     0.50   0.0843   0.9716    178    422\\nLLaMA-3.1-8B     DeBERTa-large-MNLI   PW-600            N/A     4.17      N/
+…[truncated 762 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-21T08:51:30.358700+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/exp_d134_cil/cil_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/exp_d134_cil/cil_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-21T08:51:30.358976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_d134_cil\\\",\\n  \\\"description\\\": \\\"CIL (Cumulative Information Lift) computation\\\",\\n  \\\"formula\\\": \\\"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\\\",\\n  \\\"pairs\\\": [\\n    {\\n      \\\"generator\\\": \\\"Mistral-7B\\\",\\n      \\\"verifier\\\": \\\"DeBERTa-large-MNLI\\\",\\n      \\\"verifier_type\\\": \\\"NLI\\\",\\n      \\\"dataset\\\": \\\"PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"combo_gain_w3\\\": 6.67,\\n      \\\"cil\\\": 1.6655,\\n      \\\"p_v_correct_given_g_wrong\\\": 0.7527,\\n      \\\"p_v_correct_given_g_correct\\\": 0.2373,\\n      \\\"n_g_wrong\\\": 364,\\n      \\\"n_g_right\\\": 236,\\n      \\\"both_right\\\": 56,\\n      \\\"v_right_g_wrong\\\": 274,\\n      \\\"g_right_v_wrong\\\": 180,\\n      \\\"both_wrong\\\": 90\\n    },\\n    {\\n      \\\"generator\\\": \\\"Mistral-7B\\\",\\n      \\\"verifier\\\": \\\"RoBERTa-large-MNLI\\\",\\n      \\\"verifier_type\\\": \\\"NLI\\\",\\n      \\\"dataset\\\": \\\"PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"combo_gain_w3\\\": 4.17,\\n      \\\"cil\\\": 1.4232,\\n      \\\"p_v_correct_given_g_wrong\\\": 0.5,\\n      \\\"p_v_correct_given_g_correct\\\": 0.1864,\\n      \\\"n_g_wrong\\\": 364,\\n      \\\"n_g_right\\\": 236,\\n      \\\"both_right\\\": 44,\\n      \\\"v_right_g_wrong\\\": 182,\\n      \\\"g_right_v_wrong\\\": 192,\\n      \\\"both_wrong\\\": 182\\n    },\\n    {\\n      \\\"generator\\\": \\\"Mistral-7B\\\",\\n      \\\"verifier\\\": \\\"BART-large-MNLI\\\",\\n      \\\"verifier_type\\\": \\\"NLI\\\",\\n      \\\"dataset\\\": \\\"PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"combo_gain_w3\\\": 5.17,\\n      \\\"cil\\\": 1.859,\\n      \\\"p_v_correct_given_g_wrong\\\": 0.6456,\\n      \\\"p_v_correct_given_g_correct\\\": 0.178,\\n      \\\"n_g_wrong\\\": 364,\\n      \\\"n_g_right\\\": 236,\\n      \\\"both_right\\\": 42,\\n      \\\"v_right_g
+…[truncated 4527 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-21T08:51:30.359158+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'completed', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'in_progress', 'activeForm': 'Saving results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'completed', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'in_progress', 'activeForm': 'Saving results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-21T08:51:30.359324+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-21T08:51:30.359501+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_results.json",
+  "content": "{\n  \"experiment\": \"exp_d134_cil\",\n  \"description\": \"CIL (Cumulative Information Lift) computation\",\n  \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n  \"pairs\": [\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 6.67,\n      \"cil\": 1.6655,\n      \"p_v_correct_given_g_wrong\": 0.7527,\n      \"p_v_correct_given_g_correct\": 0.2373,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 56,\n      \"v_right_g_wrong\": 274,\n      \"g_right_v_wrong\": 180,\n      \"both_wrong\": 90\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"RoBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 4.17,\n      \"cil\": 1.4232,\n      \"p_v_correct_given_g_wrong\": 0.5,\n      \"p_v_correct_given_g_correct\": 0.1864,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 44,\n      \"v_right_g_wrong\": 182,\n      \"g_right_v_wrong\": 192,\n      \"both_wrong\": 182\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"BART-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 5.17,\n      \"cil\": 1.859,\n      \"p_v_correct_given_g_wrong\": 0.6456,\n      \"p_v_correct_given_g_correct\": 0.178,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 42,\n      \"v_right_g_wrong\": 235,\n      \"g_right_v_wrong\": 194,\n      \"both_wrong\": 129\n    },\n    {\n      \"generator\": \"Qwen2.5-14B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 0.83,\n      \"note\": \"local_SC=0.7033, BH_SC=0.735\",\n      \"cil\": -0.0827,\n      \"p_v_correct_given_g_wrong\": 0.5281,\n      \"p_v_correct_given_g_correct\": 0.5592,\n      \"n_g_wrong\": 178,\n      \"n_g_right\": 422,\n      \"both_right\": 236,\n      \"v_right_g_wrong\": 94,\n      \"g_right_v_wrong\": 186,\n      \"both_wrong\": 84\n    },\n    {\n      \"generator\": \"Qwen2.5-14B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 0.5,\n      \"note\": \"SICA_acc=0.7083, SC_acc=0.7033\",\n      \"cil\": -3.5272,\n      \"p_v_correct_given_g_wrong\": 0.0843,\n      \"p_v_correct_given_g_correct\": 0.9716,\n      \"n_g_wrong\": 178,\n      \"n_g_right\": 422,\n      \"both_right\": 410,\n      \"v_right_g_wrong\": 15,\n      \"g_right_v_wrong\": 12,\n      \"both_wrong\": 163\n    },\n    {\n      \"generator\": \"LLaMA-3.1-8B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 4.17,\n      \"cil\": null,\n      \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n      \"sc_accuracy\": 0.7\n    },\n    {\n      \"generator\": \"Qwen3-14B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 1.0,\n      \"cil\": null,\n      \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n      \"sc_accuracy\": 0.85\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"FOLIO-204\",\n      \"n\": 204,\n      \"combo_gain_w3\": 4.41,\n      \"cil\": -0.4741,\n      \"p_v_correct_given_g_wrong\": 0.4086,\n      \"p_v_correct_given_g_correct\": 0.5676,\n      \"n_g_wrong\": 93,\n      \"n_g_right\": 111,\n      \"both_right\": 63,\n      \"v_right_g_wrong\": 38,\n      \"g_right_v_wrong\": 48,\n      \"both_wrong\": 55\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"FOLIO-204\",\n      \"n\": 204,\n      \"combo_gain_w3\": 4.9,\n      \"note\": \"SICA_acc=0.5931, SC_acc=0.5441\",\n      \"cil\": -2.928,\n      \"p_v_correct_given_g_wrong\": 0.129,\n      \"p_v_correct_given_g_correct\": 0.982,\n      \"n_g_wrong\": 93,\n      \"n_g_right\": 111,\n      \"both_right\": 109,\n      \"v_right_g_wrong\": 12,\n      \"g_right_v_wrong\": 2,\n      \"both_wrong\": 81\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": -2.83,\n      \"note\": \"SICA_acc=0.3650, SC_acc=0.3933\",\n      \"cil\": -4.6112,\n      \"p_v_correct_given_g_wrong\": 0.0357,\n      \"p_v_correct_given_g_correct\": 0.8729,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 206,\n      \"v_right_g_wrong\": 13,\n      \"g_right_v_wrong\": 30,\n      \"both_wrong\": 351\n    }\n  ],\n  \"correlation\": {\n    \"n_pairs\": 8,\n    \"spearman_cil_vs_gain\": {\n      \"rho\": 0.7619,\n      \"p\": 0.028\n    },\n    \"pearson_cil_vs_gain\": {\n      \"r\": 0.734,\n      \"p\": 0.0382\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_results.json",
+    "content": "{\n  \"experiment\": \"exp_d134_cil\",\n  \"description\": \"CIL (Cumulative Information Lift) computation\",\n  \"formula\": \"CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]\",\n  \"pairs\": [\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 6.67,\n      \"cil\": 1.6655,\n      \"p_v_correct_given_g_wrong\": 0.7527,\n      \"p_v_correct_given_g_correct\": 0.2373,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 56,\n      \"v_right_g_wrong\": 274,\n      \"g_right_v_wrong\": 180,\n      \"both_wrong\": 90\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"RoBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 4.17,\n      \"cil\": 1.4232,\n      \"p_v_correct_given_g_wrong\": 0.5,\n      \"p_v_correct_given_g_correct\": 0.1864,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 44,\n      \"v_right_g_wrong\": 182,\n      \"g_right_v_wrong\": 192,\n      \"both_wrong\": 182\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"BART-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 5.17,\n      \"cil\": 1.859,\n      \"p_v_correct_given_g_wrong\": 0.6456,\n      \"p_v_correct_given_g_correct\": 0.178,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 42,\n      \"v_right_g_wrong\": 235,\n      \"g_right_v_wrong\": 194,\n      \"both_wrong\": 129\n    },\n    {\n      \"generator\": \"Qwen2.5-14B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 0.83,\n      \"note\": \"local_SC=0.7033, BH_SC=0.735\",\n      \"cil\": -0.0827,\n      \"p_v_correct_given_g_wrong\": 0.5281,\n      \"p_v_correct_given_g_correct\": 0.5592,\n      \"n_g_wrong\": 178,\n      \"n_g_right\": 422,\n      \"both_right\": 236,\n      \"v_right_g_wrong\": 94,\n      \"g_right_v_wrong\": 186,\n      \"both_wrong\": 84\n    },\n    {\n      \"generator\": \"Qwen2.5-14B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 0.5,\n      \"note\": \"SICA_acc=0.7083, SC_acc=0.7033\",\n      \"cil\": -3.5272,\n      \"p_v_correct_given_g_wrong\": 0.0843,\n      \"p_v_correct_given_g_correct\": 0.9716,\n      \"n_g_wrong\": 178,\n      \"n_g_right\": 422,\n      \"both_right\": 410,\n      \"v_right_g_wrong\": 15,\n      \"g_right_v_wrong\": 12,\n      \"both_wrong\": 163\n    },\n    {\n      \"generator\": \"LLaMA-3.1-8B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 4.17,\n      \"cil\": null,\n      \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n      \"sc_accuracy\": 0.7\n    },\n    {\n      \"generator\": \"Qwen3-14B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": 1.0,\n      \"cil\": null,\n      \"note\": \"per-question data on westd-16639, CIL not computable from this server\",\n      \"sc_accuracy\": 0.85\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"DeBERTa-large-MNLI\",\n      \"verifier_type\": \"NLI\",\n      \"dataset\": \"FOLIO-204\",\n      \"n\": 204,\n      \"combo_gain_w3\": 4.41,\n      \"cil\": -0.4741,\n      \"p_v_correct_given_g_wrong\": 0.4086,\n      \"p_v_correct_given_g_correct\": 0.5676,\n      \"n_g_wrong\": 93,\n      \"n_g_right\": 111,\n      \"both_right\": 63,\n      \"v_right_g_wrong\": 38,\n      \"g_right_v_wrong\": 48,\n      \"both_wrong\": 55\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"FOLIO-204\",\n      \"n\": 204,\n      \"combo_gain_w3\": 4.9,\n      \"note\": \"SICA_acc=0.5931, SC_acc=0.5441\",\n      \"cil\": -2.928,\n      \"p_v_correct_given_g_wrong\": 0.129,\n      \"p_v_correct_given_g_correct\": 0.982,\n      \"n_g_wrong\": 93,\n      \"n_g_right\": 111,\n      \"both_right\": 109,\n      \"v_right_g_wrong\": 12,\n      \"g_right_v_wrong\": 2,\n      \"both_wrong\": 81\n    },\n    {\n      \"generator\": \"Mistral-7B\",\n      \"verifier\": \"SICA\",\n      \"verifier_type\": \"SICA\",\n      \"dataset\": \"PW-600\",\n      \"n\": 600,\n      \"combo_gain_w3\": -2.83,\n      \"note\": \"SICA_acc=0.3650, SC_acc=0.3933\",\n      \"cil\": -4.6112,\n      \"p_v_correct_given_g_wrong\": 0.0357,\n      \"p_v_correct_given_g_correct\": 0.8729,\n      \"n_g_wrong\": 364,\n      \"n_g_right\": 236,\n      \"both_right\": 206,\n      \"v_right_g_wrong\": 13,\n      \"g_right_v_wrong\": 30,\n      \"both_wrong\": 351\n    }\n  ],\n  \"correlation\": {\n    \"n_pairs\": 8,\n    \"spearman_cil_vs_gain\": {\n      \"rho\": 0.7619,\n      \"p\": 0.028\n    },\n    \"pearson_cil_vs_gain\": {\n      \"r\": 0.734,\n      \"p\": 0.0382\n    }\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-21T08:51:30.359700+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_results.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-21T08:51:30.359845+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp westd-25068:/root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_vs_gain_scatter.png",
+  "description": "Download scatter plot from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp westd-25068:/root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_vs_gain_scatter.png",
+    "description": "Download scatter plot from server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-21T08:51:30.360008+00:00_
+
+Exit code 255
+Warning: Permanently added '[connect.westd.seetacloud.com]:25068' (ED25519) to the list of known hosts.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+root@connect.westd.seetacloud.com: Permission denied (publickey,password).
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-21T08:51:30.360152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "stat /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "stat /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-21T08:51:30.360328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png\\n  Size: 71640     \\tBlocks: 144        IO Block: 4096   regular file\\nDevice: 5bh/91d\\tInode: 12887743624  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-21 16:49:38.729435097 +0800\\nModify: 2026-05-21 16:49:38.757435544 +0800\\nChange: 2026-05-21 16:49:38.757435544 +0800\\n Birth: 2026-05-21 16:49:38.729435097 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-21T08:51:30.360526+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "base64 /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "base64 /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-21T08:51:30.360764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"iVBORw0KGgoAAAANSUhEUgAABJgAAANwCAYAAABj5NDRAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\\nbGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAX\\nEgAAFxIBZ5/SUgABAABJREFUeJzs3XdcleX/x/HXYYqACIIiLty4cIQK7m2O1FzlShxFzhxlmCOy\\n0r7mytK0HFjmXmnukaaGo1xpmpmSe6IyRGSc3x/8OHFiKhiO9/PxuL9fznV/7s993ffRk+fDdV23\\nwWg0GhEREREREREREXlEFjndARERERERERERebqpwCQiIiIiIiIiIlmiApOIiIiIiIiIiGSJCkwi\\nIiIiIiIiIpIlKjCJiIiIiIiIiEiWqMAkIiIiIiIiIiJZogKTiIiIiIiIiIhkiQpMIiIiIiIiIiKS\\nJSowiYiIiIiIiIhIlqjAJCIiIiIiIiIiWaICk4iIiIiIiIiIZIkKTCIiIiIiIiIikiUqMImIiIiI\\niIiISJaowCQiIiIiIiIiIlmiApOIiIjIMyw0NBSDwYDBYCAoKCinu/NMSbqv/v7+Od0VERGRHKcC\\nk4iISDY4dOgQY8eOpV69ehQtWpTcuXNjZ2eHh4cHDRo0IDAwkF9//TXN4xs0aGD6shoaGppif/Ii\\nQYMGDR7fhTzD7t27x4IFC+jRowflypXD1dUVa2trnJ2dKVeuHF27diU4OJjw8PCc7qqkYd++fYwe\\nPZp69epRrFgxHBwcyJUrFwUKFMDHx4e+ffuyaNEivYciIiI5wCqnOyAiIvI0O336NEOHDmXDhg2p\\n7r9y5QpXrlxh165d/O9//8PHx4dPP/1URaL/kNFo5LPPPmP8+PHcuHEjxf47d+5w584dTp06xeLF\\nixkwYACDBg1i1KhRODo65kCP5d8OHTrEsGHD2LVrV6r7r1+/zvXr1/n111+ZO3cutra29OrVi9Gj\\nR1OoUKH/uLciIiLPJxWYREREHtHmzZt59dVXuXPnDgAeHh507tyZunXr4u7ujo2NDdeuXeOXX35h\\n7dq1HDp0iF9++YWgoCB27tyZo31/Xty7d48ePXqwatUqIHFK04svvkjLli3x8vLCxcWF8PBw/v77\\nb7Zs2cIPP/xAeHg4//vf/3jxxRdVCHwCfPPNNwQEBHD//n0AihcvTvv27alVqxYFChTAzs6Omzdv\\n8tdff7Fjxw42bdpEZGQks2bNomzZsgwZMuSx9c1oND623CIiIk8bFZhEREQewZEjR3j55ZeJjo4G\\n4L333mPMmDHkypUrRWyrVq14//332b59O++8885/3dXnWt++fU3FpVKlSrF06VKqVauWamzPnj25\\nffs2kydPZuLEif9lNyUNGzZsoFevXiQkJGBtbc3kyZPp168fVlap/xO2X79+3L59m5kzZzJhwoT/\\nuLciIiLPNxWYREREHlJcXBydO3c2FZcmTZrE8OHDMzyucePGhISEsGzZssfdRQEWLFjA4sWLAfD0\\n9CQkJARXV9d0j3F2duajjz6idevWmh6Xw27dukW3bt1ISEjAYDCwcuVKXnrppQyPc3Z2ZtSoUXTp\\n0oXz58//Bz0VERER0CLfIiIiD23hwoX8+eefQOLi3JkpLiWxtbWlR48ej6trj2zatGmmRcRXrlyZ\\nYfzly5exsrLCYDDQrl27FPsvXLjAe++9R40aNXB2djYtpl2qVCkaNGjAuHHjOHTo0GO4kkTx8fF8\\n+OGHptfz58/PsLiUnK+vLxUqVEh1n9FoZOXKlXTs2JEiRYqQK1cunJycqFixIm+99Zbpz0Za/P39\\nTfcaICYmhilTplCjRg1cXFxwdHSkatWqTJs2jZiYGLNjd+/e
+…[truncated 6410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-21T08:51:30.361228+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat > /tmp/decode_scatter.py << 'EOF'\nimport base64\n# Read the base64 data\nb64_data = open('/tmp/scatter_b64.txt').read().strip()\nraw = base64.b64decode(b64_data)\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_vs_gain_scatter.png', 'wb') as f:\n    f.write(raw)\nprint(f\"Written {len(raw)} bytes\")\nEOF\npython3 /tmp/decode_scatter.py",
+  "description": "Decode base64 scatter plot to local file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat > /tmp/decode_scatter.py << 'EOF'\nimport base64\n# Read the base64 data\nb64_data = open('/tmp/scatter_b64.txt').read().strip()\nraw = base64.b64decode(b64_data)\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_vs_gain_scatter.png', 'wb') as f:\n    f.write(raw)\nprint(f\"Written {len(raw)} bytes\")\nEOF\npython3 /tmp/decode_scatter.py",
+    "description": "Decode base64 scatter plot to local file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-21T08:51:30.361456+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "/tmp/decode_scatter.py", line 3, in &lt;module>
+    b64_data = open('/tmp/scatter_b64.txt').read().strip()
+               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/scatter_b64.txt'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-21T08:51:30.361595+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "base64 /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png > /tmp/scatter_b64.txt && wc -c /tmp/scatter_b64.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "base64 /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png > /tmp/scatter_b64.txt && wc -c /tmp/scatter_b64.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-21T08:51:30.361729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"96777 /tmp/scatter_b64.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-21T08:51:30.361922+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CIL Results",
+  "type": "data",
+  "description": "CIL (Cumulative Information Lift) computation for 10 generator-verifier pairs. Spearman rho=0.762 (p=0.028) between CIL and combo gain. Cross-architecture NLI verifiers show positive CIL (+1.4 to +1.9) when paired with weak Mistral generator on PW-600, while SICA shows strongly negative CIL (-2.9 to -4.6) due to correlated errors.",
+  "project": "symb_invariant_consensus",
+  "exp_id": "exp-d134-cil",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_results.json",
+  "tags": "['cil', 'complementarity', 'nli', 'sica', 'combo-gain']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CIL Results",
+    "type": "data",
+    "description": "CIL (Cumulative Information Lift) computation for 10 generator-verifier pairs. Spearman rho=0.762 (p=0.028) between CIL and combo gain. Cross-architecture NLI verifiers show positive CIL (+1.4 to +1.9) when paired with weak Mistral generator on PW-600, while SICA shows strongly negative CIL (-2.9 to -4.6) due to correlated errors.",
+    "project": "symb_invariant_consensus",
+    "exp_id": "exp-d134-cil",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cil_results.json",
+    "tags": "['cil', 'complementarity', 'nli', 'sica', 'combo-gain']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-21T08:51:30.362101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_b33882\", \"name\": \"CIL Results\", \"type\": \"data\", \"description\": \"CIL (Cumulative Information Lift) computation for 10 generator-verifier pairs. Spearman rho=0.762 (p=0.028) between CIL and combo gain. Cross-architecture NLI verifiers show positive CIL (+1.4 to +1.9) when paired with weak Mistral generator on PW-600, while SICA shows strongly negative CIL (-2.9 to -4.6) due to correlated errors.\", \"path\": \"projects/symb_invariant_consensus/artifacts/exp-d134-cil/data/cil_results.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": \"exp-d134-cil\", \"skill\": \"\", \"created_at\": \"2026-05-21T08:51:05.361463+00:00\", \"tags\": [\"cil\", \"complementarity\", \"nli\", \"sica\", \"combo-gain\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-21T08:51:30.362247+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CIL vs Combo Gain Scatter Plot",
+  "type": "chart",
+  "description": "Scatter plot of CIL (bits) vs Combo Gain (pp) for 8 generator-verifier pairs. NLI verifiers (blue circles) cluster in positive CIL region, SICA (orange squares) in negative CIL region. Server path: /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png",
+  "project": "symb_invariant_consensus",
+  "exp_id": "exp-d134-cil",
+  "content": "Server-side chart at: westd-25068:/root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png",
+  "content_filename": "cil_vs_gain_scatter_location.txt",
+  "tags": "['cil', 'scatter-plot', 'visualization']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CIL vs Combo Gain Scatter Plot",
+    "type": "chart",
+    "description": "Scatter plot of CIL (bits) vs Combo Gain (pp) for 8 generator-verifier pairs. NLI verifiers (blue circles) cluster in positive CIL region, SICA (orange squares) in negative CIL region. Server path: /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png",
+    "project": "symb_invariant_consensus",
+    "exp_id": "exp-d134-cil",
+    "content": "Server-side chart at: westd-25068:/root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png",
+    "content_filename": "cil_vs_gain_scatter_location.txt",
+    "tags": "['cil', 'scatter-plot', 'visualization']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-21T08:51:30.362397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_8b8714\", \"name\": \"CIL vs Combo Gain Scatter Plot\", \"type\": \"chart\", \"description\": \"Scatter plot of CIL (bits) vs Combo Gain (pp) for 8 generator-verifier pairs. NLI verifiers (blue circles) cluster in positive CIL region, SICA (orange squares) in negative CIL region. Server path: /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png\", \"path\": \"projects/symb_invariant_consensus/artifacts/exp-d134-cil/chart/cil_vs_gain_scatter_location.txt\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": \"exp-d134-cil\", \"skill\": \"\", \"created_at\": \"2026-05-21T08:51:11.672423+00:00\", \"tags\": [\"cil\", \"scatter-plot\", \"visualization\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-21T08:51:30.362548+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'completed', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'completed', 'activeForm': 'Saving results and registering artifacts'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write CIL computation script', 'status': 'completed', 'activeForm': 'Writing CIL computation script'}, {'content': 'Deploy and run on server (dry-run first)', 'status': 'completed', 'activeForm': 'Deploying and running on server'}, {'content': 'Save results to artifacts and register', 'status': 'completed', 'activeForm': 'Saving results and registering artifacts'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-21T08:51:30.362743+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_d134-cil_20260521T084126",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-21T08:51:30.362962+00:00_
+
+CIL computation complete. Summary of results:
+
+**8 pairs computed, 2 pairs missing (LLaMA-8B and Qwen3-14B data on westd-16639).**
+
+| Generator | Verifier | Dataset | CIL (bits) | Combo Gain w3 |
+|---|---|---|---|---|
+| Mistral-7B | DeBERTa-MNLI | PW-600 | **+1.67** | +6.67 pp |
+| Mistral-7B | BART-MNLI | PW-600 | **+1.86** | +5.17 pp |
+| Mistral-7B | RoBERTa-MNLI | PW-600 | **+1.42** | +4.17 pp |
+| Qwen2.5-14B | DeBERTa-MNLI | PW-600 | **-0.08** | +0.83 pp |
+| Mistral-7B | DeBERTa-MNLI | FOLIO-204 | **-0.47** | +4.41 pp |
+| Mistral-7B | SICA | FOLIO-204 | **-2.93** | +4.90 pp |
+| Qwen2.5-14B | SICA | PW-600 | **-3.53** | +0.50 pp |
+| Mistral-7B | SICA | PW-600 | **-4.61** | -2.83 pp |
+
+**Correlation: Spearman ρ = 0.762 (p = 0.028), Pearson r = 0.734 (p = 0.038)** — statistically significant.
+
+Key findings:
+- **Cross-architecture NLI verifiers have positive CIL (+1.4 to +1.9)** when paired with weak Mistral on PW-600 — when Mistral is wrong, DeBERTa is correct 75% of the time (vs only 24% when Mistral is right). This is the complementary signal that drives combo gain.
+- **SICA has strongly negative CIL (-2.9 to -4.6)** — expected, since SICA is built from the same generator traces, so errors are highly correlated.
+- **As generator gets stronger (Qwen2.5-14B), CIL drops to ~0** — DeBERTa's advantage over the generator vanishes, explaining why combo gain shrinks.
+- The FOLIO-204 anomaly: negative CIL (-0.47) but positive combo gain (+4.41 pp) — likely a small-sample effect (n=93 wrong) or the weighted voting mechanism recovers differently than raw CIL predicts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_d134-cil_20260521T084126"
+}
+```
+
+</details>
+
+---

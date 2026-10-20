@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-073-qwen7b-logiqa200-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:21:57.207Z",
+    "updated_at": "2026-05-19T15:46:06.285Z",
+    "hypothesis": "Qwen2.5-7B LogiQA seed=456 第三组 seed replication。exp-070 (seed=42) SC=68.5% Δ=+2.5pp, exp-071 (seed=123) 进行中。seed=456 加固第二个 Goldilocks 数据点。如果 3 seeds 方向一致，累积证据支持 Qwen2.5-7B 在 LogiQA 上处于 Goldilocks regime。",
+    "parent": "exp-070-qwen7b-logiqa200",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 456 --api-base http://localhost:8000/v1 --model auto --data data/logiqa_200.json --output results/exp073_qwen7b_logiqa200_seed456/exp073_results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": "cuda:0",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 456,
+      "port": 8000,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+      "eval_data": "data/logiqa_200.json"
+    }
+  },
+  "timestamp": "2026-05-19T15:46:06.471860+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,804 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-668_Q8",
+    "problem": "The bald eagle chases the lion. The bald eagle chases the rabbit. The bald eagle is big. The cow needs the bald eagle. The cow needs the rabbit. The lion chases the cow. The lion chases the rabbit. The lion is kind. The lion is not round. The lion needs the bald eagle. The lion does not visit the cow. The lion visits the rabbit. The rabbit chases the bald eagle. The rabbit visits the bald eagle. If someone needs the rabbit then the rabbit chases the lion. If someone is rough and they do not chase the rabbit then they visit the bald eagle. If someone chases the lion then they do not need the cow. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. If someone chases the bald eagle and they do not need the cow then they visit the cow. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. If someone is big then they do not visit the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not visit the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(BaldEagle, Lion, True) ::: The bald eagle chases the lion.\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nBig(BaldEagle, True) ::: The bald eagle is big.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nNeeds(Cow, Rabbit, True) ::: The cow needs the rabbit.\nChases(Lion, Cow, True) ::: The lion chases the cow.\nChases(Lion, Rabbit, True) ::: The lion chases the rabbit.\nKind(Lion, True) ::: The lion is kind.\nRound(Lion, False) ::: The lion is not round.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\nVisits(Lion, Cow, False) ::: The lion does not visit the cow.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nChases(Rabbit, BaldEagle, True) ::: The rabbit chases the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nNeeds($x, Rabbit, True) >>> Chases(Rabbit, Lion, True) ::: If someone needs the rabbit then the rabbit chases the lion.\nRough($x, True) && Chases($x, Rabbit, False) >>> Visits($x, BaldEagle, True) ::: If someone is rough and they do not chase the rabbit then they visit the bald eagle.\nChases($x, Lion, True) >>> Needs($x, Cow, False) ::: If someone chases the lion then they do not need the cow.\nNeeds($x, BaldEagle, True) && Chases(BaldEagle, Cow, True) >>> Round(BaldEagle, False) ::: If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\nChases($x, BaldEagle, True) && Needs($x, Cow, False) >>> Visits($x, Cow, True) ::: If someone chases the bald eagle and they do not need the cow then they visit the cow.\nNeeds($x, Rabbit, True) && Visits(Rabbit, Cow, True) >>> Big(Rabbit, True) ::: If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\nBig($x, True) >>> Visits($x, Lion, False) ::: If someone is big then they do not visit the lion.\n\nQuery:\nVisits(Rabbit, Cow, False) ::: The rabbit does not visit the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 61.0,
+      "True": 0.0,
+      "Unknown": 85.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will create a table to track the information given and deduce the relationships between the different entities. We will use the following symbols:\n\n- B: Bald eagle\n- C: Cow\n- L: Lion\n- R: Rabbit\n\nWe will also use the following symbols to represent the properties and actions:\n\n- Big: \n- Round: \n- Chases: \n- Visits: \n- Needs: \n\n| Entity | Big | Round | Chases | Visits | Needs |\n| --- | --- | --- | --- | --- | --- |\n| B |  |  | R, L | L, R | C, R, L |\n| C |  |  |  |  | B, R |\n| L |  |  | C, R | R | B |\n| R |  |  | B, L | B, L |  |\n\nWe will use the given statements to update the table:\n\n1. The bald eagle chases the lion.\n2. The bald eagle chases the rabbit.\n3. The bald eagle is big.\n4. The cow needs the bald eagle.\n5. The cow needs the rabbit.\n6. The lion chases the cow.\n7. The lion chases the rabbit.\n8. The lion is kind.\n9. The lion is not round.\n10. The lion needs the bald eagle.\n11. The lion does not visit the cow.\n12. The lion visits the rabbit.\n13. The rabbit chases the bald eagle.\n14. The rabbit visits the bald eagle.\n15. If someone needs the rabbit then the rabbit chases the lion.\n16. If someone is rough and they do not chase the rabbit then they visit the bald eagle.\n17. If someone chases the lion then they do not need the cow.\n18. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow.\n20. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n21. If someone is big then they do not visit the lion.\n\nFrom statement 21, we can conclude that the rabbit does not visit the lion.\n\nFrom statement 20, we cannot directly determine whether the rabbit visits the cow or not, but we can deduce that the cow needs the rabbit.\n\nFrom statement 5, we know that the cow needs the rabbit.\n\nFrom statement 15, we can conclude that the rabbit chases the lion.\n\nFrom statement 11, we know that the lion does not visit the cow.\n\nFrom statement 13, we know that the rabbit visits the bald eagle.\n\nFrom statement 19, we can conclude that the rabbit does not chase the bald eagle.\n\nFrom statement 14, we know that the rabbit visits the bald eagle.\n\nTherefore, we cannot directly determine whether the rabbit visits the cow or not.\n\nSo the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the rabbit. (This does not directly relate to the statement but provides information about the lion and rabbit's relationship.)\n\n2. The lion does not visit the cow. (This statement directly provides information about the lion's actions but does not directly relate to the rabbit's actions.)\n\n3. The rabbit chases the bald eagle. (This statement directly provides information about the rabbit's actions but does not directly relate to the rabbit visiting the cow.)\n\n4. The rabbit visits the bald eagle. (This statement directly contradicts the statement we are trying to evaluate.)\n\nFrom statements 4, we can conclude that the statement \"The rabbit does not visit the cow\" is false because the rabbit visits the bald eagle.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\n1. The bald eagle chases the lion.\n2. The bald eagle chases the rabbit.\n3. The bald eagle is big.\n4. The cow needs the bald eagle.\n5. The cow needs the rabbit.\n6. The lion chases the cow.\n7. The lion chases the rabbit.\n8. The lion is kind.\n9. The lion is not round.\n10. The lion needs the bald eagle.\n11. The lion does not visit the cow.\n12. The lion visits the rabbit.\n13. The rabbit chases the bald eagle.\n14. The rabbit visits the bald eagle.\n15. If someone needs the rabbit then the rabbit chases the lion.\n16. If someone is rough and they do not chase the rabbit then they visit the bald eagle. (Note: The definition of 'rough' is not explicitly mentioned. However, we can assume that it implies being big or strong, given the context.)\n17. If someone chases the lion then they do not need the cow.\n18. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow.\n20. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n21. If someone is big then they do not visit the lion.\n\nNow, let's analyze the given statement:\n\"The rabbit does not visit the cow.\"\n\nFrom statement 5, we know that the cow needs the rabbit.\nFrom statement 11, we know that the lion does not visit the cow.\nFrom statement 12, we know that the lion visits the rabbit.\nFrom statement 15, we know that if someone needs the rabbit, then the rabbit chases the lion. However, the statement does not say anything about the rabbit visiting the cow.\n\nFrom statement 21, we know that if someone is big then they do not visit the lion. This implies that the lion is not big. However, this information does not affect our analysis.\n\nFrom statement 13, we know that the rabbit chases the bald eagle.\nFrom statement 14, we know that the rabbit visits the bald eagle.\n\nNow, let's consider the following possible scenarios:\n\nScenario 1: The rabbit visits the cow.\nIn this scenario, we have a contradiction with statement 14, which says that the rabbit visits the bald eagle. Therefore, this scenario is not possible.\n\nScenario 2: The rabbit does not visit the cow.\nIn this scenario, we do not have any contradictions with the given statements. Therefore, this scenario is possible.\n\nHowever, we cannot conclude that the statement is true based on this analysis. We need more information to determine whether the rabbit visits the cow or not.\n\nSince we have a possible scenario where the rabbit does not visit the cow, and we cannot prove that the statement is true or false, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and rules to determine if the statement \"The rabbit does not visit the cow\" is true, false, or unknown.\n\nLet's analyze the information:\n\n1. The bald eagle chases the lion. The bald eagle chases the rabbit. The bald eagle is big. The cow needs the bald eagle. The cow needs the rabbit. The lion chases the cow. The lion chases the rabbit. The lion is kind. The lion is not round. The lion needs the bald eagle. The lion does not visit the cow. The lion visits the rabbit. The rabbit chases the bald eagle. The rabbit visits the bald eagle.\n\n2. If someone needs the rabbit then the rabbit chases the lion.\n   - Since the cow needs the rabbit, it implies that the cow needs the rabbit. \n   - However, we also know that the lion chases the cow, which means the lion does not need the cow. \n   - Therefore, the cow does not need the rabbit because the lion chases the cow.\n\n3. The cow does not need the rabbit, so we can disregard the rule that if someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n\n4. The lion chases the rabbit and the lion is not round. However, we do not have enough information to conclude if the lion is rough.\n\n5. We know that the lion does not visit the cow. We also know that the lion is kind.\n\n6. The rabbit chases the bald eagle and visits the bald eagle. We do not have enough information to conclude if the rabbit is big or not.\n\n7. If someone is rough and they do not chase the rabbit then they visit the bald eagle. We do not have enough information to determine if the lion is rough.\n\n8. If someone chases the lion then they do not need the cow. We know that the cow chases the lion, but we also know that the cow needs the rabbit. This means we cannot conclude if the cow is rough or not.\n\n9. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. We know that the lion needs the bald eagle, but we do not have enough information to determine if the bald eagle is round or not.\n\n10. If someone chases the bald eagle and they do not need the cow then they visit the cow. We know that the rabbit chases the bald eagle, but we also know that the rabbit needs the cow. This means we cannot conclude if the rabbit is rough or not.\n\nBased on the information, we cannot determine if the rabbit visits the cow or not. We have multiple rules and information that lead to different conclusions, but none of them directly tell us if the rabbit visits the cow.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit does not visit the cow' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know the following:\n   - The rabbit chases the bald eagle.\n   - The rabbit visits the bald eagle.\n   - If someone needs the rabbit then the rabbit chases the lion. (However, we don't have any information that directly connects anyone needing the rabbit.)\n   - If someone is rough and they do not chase the rabbit then they visit the bald eagle. (However, we don't have any information about someone being rough.)\n   - If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. (However, we don't have any information that directly connects anyone needing the bald eagle.)\n   - If someone chases the bald eagle and they do not need the cow then they visit the cow. (However, we don't have any information about someone chasing the bald eagle.)\n   - If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. (However, we don't have any information that directly connects anyone needing the rabbit.)\n   - If someone is big then they do not visit the lion. (However, we don't have any information that directly connects anyone being big.)\n\n2. Now, let's examine the statement 'The rabbit does not visit the cow' in relation to the given information.\n   - We know the rabbit visits the bald eagle.\n   - We don't have any information that directly connects the rabbit to the cow.\n\nHowever, we can find a connection using the information 'If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.'\nFrom this statement, we can infer that if the rabbit visits the cow, then the rabbit is big. This implies that the rabbit is big if the rabbit visits the cow.\n\nNow, let's use the information 'If someone is big then they do not visit the lion.'\nFrom this statement, we can infer that if the rabbit is big, then the rabbit does not visit the lion.\n\nHowever, we know the lion chases the rabbit. Now, we can use the information 'If someone chases the lion then they do not need the cow.'\nFrom this statement, we can infer that if the rabbit chases the lion, then the rabbit does not need the cow.\n\nNow, let's use the information 'If someone needs the rabbit then the rabbit chases the lion.'\nFrom this statement, if we can find someone who needs the rabbit, we can infer that the rabbit chases the lion.\n\nWe can find a connection using the information 'The cow needs the rabbit.'\nNow, let's use the information 'If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.'\nFrom this statement, we can infer that if the rabbit visits the cow, then the rabbit is big. This implies that the rabbit is big if the rabbit visits the cow.\n\nHowever, we have another piece of information 'The cow needs the bald eagle.'\nNow, let's use the information 'If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.'\nFrom this statement, we can infer that if the bald eagle chases the cow and someone needs the bald eagle, then the bald eagle is not round.\n\nNow, let's use the information 'The bald eagle chases the cow.'\nFrom this statement, we can infer that the bald eagle chases the cow.\n\nNow, let's use the information 'The cow needs the bald eagle.'\nFrom this statement, we can infer that the cow needs the bald eagle.\n\nNow, let's use the information 'The cow needs the rabbit.'\nFrom this statement, we can infer that someone needs the rabbit.\n\nUsing the information 'If someone needs the rabbit then the rabbit chases the lion.'\nFrom this statement, we can infer that the rabbit chases the lion.\n\nHowever, we know the lion is kind. Now, let's use the information 'If someone is rough and they do not chase the rabbit then they visit the bald eagle.'\nFrom this statement, we can infer that if someone is rough and does not chase the rabbit, then they visit the bald eagle.\n\nNow, let's use the information 'The lion is kind.'\nFrom this statement, we can infer that the lion is kind.\n\nNow, let's use the information 'The lion is not round.'\nFrom this statement, we can infer that the lion is not round.\n\nHowever, we know the lion visits the rabbit. Now, let's use the information 'If someone chases the bald eagle and they do not need the cow then they visit the cow.'\nFrom this statement, we can infer that if someone chases the bald eagle and does not need the cow, then they visit the cow.\n\nNow, let's use the information 'The lion chases the rabbit.'\nFrom this statement, we can infer that the lion chases the rabbit.\n\nNow, let's use the information 'The lion does not visit the cow.'\nFrom this statement, we can infer that the lion does not visit the cow.\n\nHowever, we know the rabbit chases the lion and the lion does not visit the cow. Now, let's use the information 'If someone is big then they do not visit the lion.'\nFrom this statement, we can infer that if the rabbit is big, then the rabbit does not visit the lion.\n\nHowever, we have another piece of information 'The lion visits the rabbit.'\nFrom this statement, we can infer that the lion visits the rabbit.\n\nNow, let's use the information 'The rabbit chases the lion.'\nFrom this statement, we can infer that the rabbit chases the lion.\n\nNow, let's use the information 'The lion chases the cow.'\nFrom this statement, we can infer that the lion chases the cow.\n\nNow, let's use the information 'If someone chases the lion then they do not need the cow.'\nFrom this statement, we can infer that if the lion chases the cow, then the lion does not need the cow.\n\nHowever, we have another piece of information 'The lion chases the cow.'\nFrom this statement, we can infer that the lion chases the cow.\n\nNow, let's use the information 'The lion does not need the cow.'\nFrom this statement, we can infer that the lion does not need the cow.\n\nNow, let's use the information 'The lion chases the cow.'\nFrom this statement, we can infer that the lion chases the cow.\n\nNow, let's use the information 'The lion does not need the cow.'\nFrom this statement, we can infer that the lion does not need the cow.\n\nNow, let's use the information 'The lion chases the rabbit.'\nFrom this statement, we can infer that the lion chases the rabbit.\n\nNow, let's use the information 'The lion visits the rabbit.'\nFrom this statement, we can infer that the lion visits the rabbit.\n\nNow, let's use the information 'The rabbit does not visit the lion.'\nFrom this statement, we can infer that the rabbit does not visit the lion.\n\nNow, let's use the information 'The lion chases the rabbit.'\nFrom this statement, we can infer that the lion chases the rabbit.\n\nNow, let's use the information 'The lion visits the rabbit.'\nFrom this statement, we can infer that the lion visits the rabbit.\n\nNow, let's use the information 'The rabbit does not visit the lion.'\nFrom this statement, we can infer that the rabbit does not visit the lion.\n\nHowever, we have another piece of information 'The lion chases the rabbit.'\nFrom this statement, we can infer that the lion chases the rabbit.\n\nNow, let's use the information 'The lion visits the rabbit.'\nFrom this statement, we can infer that the lion visits the rabbit.\n\nNow, let's use the information 'The lion is kind.'\nFrom this statement, we can infer that the lion is kind.\n\nNow, let's use the information 'The lion is not round.'\nFrom this statement, we can infer that the lion is not round.\n\nNow, let's use the information 'The lion does not visit the cow.'\nFrom this statement, we can infer that the lion does not visit the cow.\n\nNow, let's use the information 'The lion visits the rabbit.'\nFrom this statement, we can infer that the lion visits the rabbit.\n\nNow, let's use the information 'The rabbit chases the lion.'\nFrom this statement, we can infer that the rabbit chases the lion.\n\nHowever, we know the lion is kind. Now, let's use the information 'The lion is kind.'\nFrom this statement, we can infer that the lion is kind.\n\nNow, let's use the information 'The lion is not round.'\nFrom this statement, we can infer that the lion is not round.\n\nHowever, we have another piece of information 'The rabbit visits the bald eagle.'\nFrom this statement, we can infer that the rabbit visits the bald eagle.\n\nNow, let's use the information 'The bald eagle is big.'\nFrom this statement, we can infer that the bald eagle is big.\n\nNow, let's use the information 'The bald eagle does not visit the lion.'\nFrom this statement, we can infer that the bald eagle does not visit the lion.\n\nHowever, we know the lion chases the cow. Now, let's use the information 'The cow needs the rabbit.'\nFrom this statement, we can infer that the cow needs the rabbit.\n\nHowever, we have another piece of information 'The lion needs the bald eagle.'\nFrom this statement, we can infer that the lion needs the bald eagle.\n\nNow, let's use the information 'The lion chases the rabbit.'\nFrom this statement, we can infer that the lion chases the rabbit.\n\nNow, let's use the information 'The lion does not visit the cow.'\nFrom this statement, we can infer that the lion does not visit the cow",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, let's analyze the given statements and break them down step by step.\n\n1. The bald eagle chases the lion. \n2. The bald eagle chases the rabbit. \n3. The bald eagle is big. \n4. The cow needs the bald eagle. \n5. The cow needs the rabbit. \n6. The lion chases the cow. \n7. The lion chases the rabbit. \n8. The lion is kind. \n9. The lion is not round. \n10. The lion needs the bald eagle. \n11. The lion does not visit the cow. \n12. The lion visits the rabbit. \n13. The rabbit chases the bald eagle. \n14. The rabbit visits the bald eagle. \n15. If someone needs the rabbit then the rabbit chases the lion.\n16. If someone is rough and they do not chase the rabbit then they visit the bald eagle.\n17. If someone chases the lion then they do not need the cow.\n18. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow.\n20. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n21. If someone is big then they do not visit the lion.\n\nWe are trying to determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown.\n\nFrom statement 5, we know the cow needs the rabbit. \nFrom statement 20, if someone needs the rabbit and the rabbit visits the cow then the rabbit is big. This implies that the rabbit is not big. However, from statement 3, we know the bald eagle is big, and from statement 21, if someone is big then they do not visit the lion. However, the lion chases the rabbit. Therefore the lion is not big.\n\nNow let's consider the rabbit's behavior. From statement 14, the rabbit visits the bald eagle. \nFrom statement 13, the rabbit chases the bald eagle. Now, we can use statement 17, if someone chases the lion then they do not need the cow. However, the lion is not big, and the lion chases the rabbit. Therefore, the rabbit does not need the cow. \n\nWe can use statement 19, if someone chases the bald eagle and they do not need the cow then they visit the cow. However, from statement 14, the rabbit visits the bald eagle. But the rabbit needs the cow, which is false. We can use statement 15, if someone needs the rabbit then the rabbit chases the lion. However, we already know that the lion is not big, and the lion chases the rabbit. But the rabbit does not need the cow. Therefore the rabbit does not chase the lion.\n\nFrom statement 12, the lion visits the rabbit. From statement 15, if someone needs the rabbit then the rabbit chases the lion. However, the lion is not big, and the lion chases the rabbit. Therefore the lion does not need the rabbit.\n\nFrom statement 11, the lion does not visit the cow. However, the lion chases the cow (statement 6). We can use statement 16, if someone is rough and they do not chase the rabbit then they visit the bald eagle. However, the lion is not rough, and the lion chases the rabbit. Therefore, the lion is not rough. \n\nHowever, the lion needs the bald eagle (statement 10). From statement 4, the cow needs the bald eagle. Therefore, the cow is not rough. From statement 6, the lion chases the cow. Therefore, the lion is rough.\n\nNow, we can use statement 16, if someone is rough and they do not chase the rabbit then they visit the bald eagle. However, the lion is rough, and the lion chases the rabbit. Therefore, the lion visits the bald eagle. However, the lion visits the rabbit (statement 12). However, the lion does not visit the cow (statement 11). \n\nFrom statement 18, if someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. However, the cow does not need the bald eagle. Therefore, the bald eagle is round.\n\nHowever, the lion chases the rabbit (statement 7), and the lion is not round (statement 9). However, from statement 18, if someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. However, we already know the lion is not big, and the lion chases the rabbit. Therefore the lion does not need the bald eagle. However, from statement 10, the lion needs the bald eagle. However, we already know the lion is not big, and the lion chases the rabbit. Therefore the lion does not need the bald eagle. However, the lion is rough, and the lion does not chase the rabbit. Therefore, the lion visits the bald eagle.\n\nHowever, the lion visits the rabbit (statement 12), and the lion is rough. However, we can use statement 15, if someone needs the rabbit then the rabbit chases the lion. However, the lion is not big, and the lion chases the rabbit. Therefore the lion does not need the rabbit. However, the lion visits the rabbit (statement 12). However, the lion is rough, and the lion does not chase the rabbit. Therefore, the lion visits the bald eagle.\n\nHowever, the lion is rough, and the lion does not chase the rabbit. However, the lion needs the bald eagle (statement 10). However, we already know the lion is not big, and the lion chases the rabbit. Therefore the lion does not need the bald eagle. However, the lion is rough, and the lion visits the bald eagle.\n\nHowever, the lion is rough, and the lion visits the bald eagle. However, the lion visits the rabbit (statement 12). However, the lion does not visit the cow (statement 11). \n\nHowever, the lion is rough, and the lion does not chase the rabbit. However, the lion visits the bald eagle. However, the lion is rough, and the lion does not chase the rabbit. However, the lion visits the rabbit (statement 12). However, the lion does not visit the cow (statement 11).\n\nFrom statement 12, the lion visits the rabbit. From statement 21, if someone is big then they do not visit the lion. However, the lion is not big. Therefore, the lion is not big. From statement 14, the rabbit visits the bald eagle. From statement 13, the rabbit chases the bald eagle. However, the lion is not big, and the lion chases the rabbit. Therefore, the lion does not need the cow.\n\nNow, let's consider the lion's behavior. From statement 12, the lion visits the rabbit. From statement 21, if someone is big then they do not visit the lion. However, the lion is not big. However, the lion is rough, and the lion does not chase the rabbit. Therefore, the lion visits the bald eagle.\n\nHowever, the lion is rough, and the lion does not chase the rabbit. However, the lion visits the rabbit (statement 12). However, the lion is rough, and the lion does not visit the cow (statement 11). However, the lion is rough, and the lion does not chase the rabbit. Therefore, the lion visits the bald eagle.\n\nHowever, the lion is rough, and the lion does not chase the rabbit. However, the lion visits the bald eagle. However, the lion does not visit the cow (statement 11). However, the lion visits the rabbit (statement 12).\n\nFrom statement 14, the rabbit visits the bald eagle. However, the lion is rough, and the lion does not visit the cow (statement 11). However, the lion visits the rabbit (statement 12). However, the lion does not visit the cow (statement 11).\n\nHowever, the lion is rough, and the lion does not visit the cow (statement 11). However, the lion visits the rabbit (statement 12). However, the lion is rough, and the lion does not chase the rabbit. Therefore, the lion visits the bald eagle.\n\nHowever, the lion is rough, and the lion does not chase the rabbit. However, the lion visits the rabbit (statement 12). However, the lion is rough, and the lion does not visit the cow (statement 11). \n\nHowever, the lion is rough, and the lion does not visit the cow (statement 11). However, the lion visits the rabbit (statement 12). However, the lion does not visit the cow (statement 11).\n\nHowever, the lion visits the rabbit (statement 12). However, the lion is rough, and the lion does not visit the cow (statement 11).\n\nHowever, the lion is rough, and the lion does not visit the cow (statement 11). \n\nHowever, the lion does not visit the cow (statement 11). \n\nThe statement \"The rabbit does not visit the cow\" is false.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n\n1. The bald eagle chases the lion.\n2. The bald eagle chases the rabbit.\n3. The bald eagle is big.\n4. The cow needs the bald eagle.\n5. The cow needs the rabbit.\n6. The lion chases the cow.\n7. The lion chases the rabbit.\n8. The lion is kind.\n9. The lion is not round.\n10. The lion needs the bald eagle.\n11. The lion does not visit the cow.\n12. The lion visits the rabbit.\n13. The rabbit chases the bald eagle.\n14. The rabbit visits the bald eagle.\n15. If someone needs the rabbit then the rabbit chases the lion.\n16. If someone is rough and they do not chase the rabbit then they visit the bald eagle.\n17. If someone chases the lion then they do not need the cow.\n18. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow.\n20. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n21. If someone is big then they do not visit the lion.\n\nWe need to find information related to the statement \"The rabbit does not visit the cow.\"\n\nFrom statements 4 and 5, we know that the cow needs both the bald eagle and the rabbit. \n\nFrom statement 20, we can conclude that if someone needs the rabbit and the rabbit visits the cow, then the rabbit is big. However, this does not directly tell us whether the rabbit visits the cow or not.\n\nFrom statements 14 and 21, we can conclude that since the rabbit visits the bald eagle, and the rabbit is not explicitly stated as big or not big, we cannot directly use statement 21 to conclude whether the rabbit visits the lion or not.\n\nHowever, we can use statement 21 to eliminate the possibility that the rabbit is big because if the rabbit were big, it would not visit the lion. Since statement 21 is a general rule, and we cannot apply it directly to the rabbit's size, we cannot determine the rabbit's size.\n\nBut statement 12 directly tells us that the lion visits the rabbit. Also, statement 15 says that if someone needs the rabbit, then the rabbit chases the lion. Since the lion needs the bald eagle (statement 10), we can conclude that the lion does not need the rabbit.\n\nFrom statement 4, we know that the cow needs the bald eagle, and from statement 6, we know that the lion chases the cow. Using statement 17, we can conclude that the lion does not need the cow, which is consistent with our previous conclusion.\n\nHowever, statement 15 implies that someone who needs the rabbit chases the lion. Since the lion needs the bald eagle (statement 10), we can conclude that the lion is not someone who needs the rabbit.\n\nNow, let's consider the rabbit's behavior towards the cow. Statement 15 implies that if someone needs the rabbit, then the rabbit chases the lion. Statement 20 implies that if someone needs the rabbit and the rabbit visits the cow, then the rabbit is big. However, since we cannot determine the rabbit's size, we cannot directly apply this rule.\n\nHowever, statement 5 tells us that the cow needs the rabbit. If the rabbit visits the cow, then statement 20 would imply that the rabbit is big, but this is not possible because the lion is big (statement 3), and statement 21 implies that if someone is big, they do not visit the lion. Since the lion visits the rabbit (statement 12), the lion is not big because it visits the rabbit.\n\nHowever, from statement 3, we know that the bald eagle is big. Statement 2 tells us that the bald eagle chases the rabbit, which is consistent with the lion being big.\n\nNow, let's examine the relationship between the rabbit and the cow. Statement 4 implies that the cow needs the bald eagle, and statement 5 implies that the cow needs the rabbit.\n\nFrom statement 12, we know that the lion visits the rabbit, and statement 15 implies that if someone needs the rabbit, then the rabbit chases the lion. Since the lion needs the bald eagle (statement 10), we can conclude that the lion is not someone who needs the rabbit.\n\nNow, let's consider the rabbit's behavior towards the cow. Statement 5 implies that the cow needs the rabbit, but we cannot determine whether the rabbit visits the cow or not.\n\nHowever, from statement 12, we know that the lion visits the rabbit, and statement 15 implies that if someone needs the rabbit, then the rabbit chases the lion. Since the lion does not need the rabbit, the rabbit does not chase the lion.\n\nFrom statement 21, we know that if someone is big, they do not visit the lion. Since the lion is not big, the lion visits the rabbit (statement 12). \n\nFrom statement 5, we know that the cow needs the rabbit, but we cannot determine whether the rabbit visits the cow or not.\n\nHowever, we can use statement 15 to eliminate the possibility that the rabbit chases the lion. \n\nAlso, we can use statement 19 to eliminate the possibility that the rabbit visits the cow. Statement 19 implies that if someone chases the bald eagle and they do not need the cow, then they visit the cow. However, the rabbit chases the bald eagle (statement 13), and the rabbit needs the cow (statement 5). Therefore, the rabbit needs the cow, and the rabbit visits the cow.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The rabbit visits the bald eagle\" and the statement \"If someone visits the bald eagle and they do not need the cow then they visit the cow,\" we can infer that the rabbit needs the bald eagle.\n\n2. From the statement \"If someone needs the rabbit then the rabbit chases the lion\" and the statement \"The lion visits the rabbit,\" we can infer that the lion needs the rabbit.\n\n3. From the statement \"The lion chases the cow\" and the statement \"If someone chases the lion then they do not need the cow,\" we can infer that the lion does not need the cow.\n\n4. From the statement \"The lion is kind\" and the statement \"The lion is not round,\" we can infer nothing about the lion's size or the lion's relationship with the cow or the rabbit.\n\n5. From the statement \"The lion visits the rabbit,\" we can infer that the lion does not need the cow, which was already inferred in step 3.\n\n6. From the statement \"The rabbit needs the bald eagle\" (inferred in step 1) and the statement \"The lion needs the rabbit\" (inferred in step 2), we can infer that the lion needs the bald eagle.\n\n7. From the statement \"The lion needs the bald eagle\" (inferred in step 6) and the statement \"The lion is big,\" we can infer nothing about the lion's size.\n\n8. From the statement \"The cow needs the bald eagle\" and the statement \"The cow needs the rabbit,\" we can infer nothing about the rabbit's relationship with the cow.\n\n9. From the statement \"The lion is big\" and the statement \"If someone is big then they do not visit the lion,\" we can infer that the lion does not visit the lion.\n\n10. From the statement \"The lion is big\" and the statement \"If someone is big then they do not visit the lion,\" we can infer that the lion does not visit the lion, which was already inferred in step 9.\n\n11. From the statement \"The lion chases the rabbit\" and the statement \"The lion visits the rabbit,\" we can infer that the lion does not chase the rabbit.\n\n12. From the statement \"The lion is kind\" and the statement \"The lion chases the rabbit,\" we can infer nothing about the lion's kind nature.\n\n13. From the statement \"The lion does not chase the rabbit\" (inferred in step 11) and the statement \"If someone chases the lion then they do not need the cow,\" we can infer that the lion needs the cow.\n\n14. From the statement \"The lion needs the cow\" (inferred in step 13) and the statement \"The lion is big,\" we can infer that the lion is big.\n\n15. From the statement \"The lion needs the cow\" (inferred in step 13) and the statement \"The lion is big,\" we can infer that the lion is big, which was already inferred in step 14.\n\n16. From the statement \"The lion is big\" (inferred in step 14) and the statement \"The lion is kind,\" we can infer nothing about the lion's kind nature.\n\n17. From the statement \"The lion is big\" (inferred in step 14) and the statement \"The lion is not round,\" we can infer nothing about the lion's shape.\n\n18. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"If someone is rough and they do not chase the rabbit then they visit the bald eagle,\" we can infer nothing about the lion's rough nature.\n\n19. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is kind,\" we can infer nothing about the lion's kind nature.\n\n20. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is big,\" we can infer nothing about the lion's size.\n\n21. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion chases the rabbit,\" we can infer nothing about the lion's relationship with the rabbit.\n\n22. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit visits the bald eagle,\" we can infer nothing about the rabbit's relationship with the bald eagle.\n\n23. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"If someone is rough and they do not chase the rabbit then they visit the bald eagle,\" we can infer that the lion is rough and does not chase the rabbit.\n\n24. From the statement \"The lion is rough\" (inferred in step 23) and the statement \"The lion does not chase the rabbit,\" we can infer that the lion is rough and does not chase the rabbit, which was already inferred in step 23.\n\n25. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit chases the bald eagle,\" we can infer nothing about the rabbit's relationship with the bald eagle.\n\n26. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"If someone needs the rabbit then the rabbit chases the lion,\" we can infer nothing about the rabbit's relationship with the lion.\n\n27. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion chases the cow,\" we can infer nothing about the lion's relationship with the cow.\n\n28. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The cow needs the rabbit,\" we can infer nothing about the cow's relationship with the rabbit.\n\n29. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The cow needs the bald eagle,\" we can infer nothing about the cow's relationship with the bald eagle.\n\n30. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The cow needs the rabbit,\" we can infer nothing about the cow's relationship with the rabbit.\n\n31. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is big,\" we can infer nothing about the lion's size.\n\n32. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion does not visit the cow,\" we can infer nothing about the lion's relationship with the cow.\n\n33. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit visits the bald eagle,\" we can infer nothing about the rabbit's relationship with the bald eagle.\n\n34. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit chases the bald eagle,\" we can infer nothing about the rabbit's relationship with the bald eagle.\n\n35. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The cow needs the rabbit,\" we can infer nothing about the cow's relationship with the rabbit.\n\n36. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The cow needs the bald eagle,\" we can infer nothing about the cow's relationship with the bald eagle.\n\n37. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion needs the rabbit,\" we can infer nothing about the lion's relationship with the rabbit.\n\n38. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is kind,\" we can infer nothing about the lion's kind nature.\n\n39. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is not round,\" we can infer nothing about the lion's shape.\n\n40. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is big,\" we can infer nothing about the lion's size.\n\n41. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion chases the rabbit,\" we can infer nothing about the lion's relationship with the rabbit.\n\n42. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion visits the rabbit,\" we can infer nothing about the lion's relationship with the rabbit.\n\n43. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit chases the lion,\" we can infer nothing about the rabbit's relationship with the lion.\n\n44. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The rabbit visits the bald eagle,\" we can infer nothing about the rabbit's relationship with the bald eagle.\n\n45. From the statement \"The lion does not visit the cow\" (inferred in step 10) and the statement \"The lion is big,\" we can infer nothing about the lion's size.\n\n46. From the statement \"The lion does not visit the cow\" (inferred in step",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll use a truth table and logical reasoning. Let's start by defining the following variables:\n\n- A: The lion is kind.\n- B: The lion is round.\n- C: The lion visits the cow.\n- D: The lion visits the rabbit.\n- E: The cow needs the rabbit.\n- F: The cow needs the bald eagle.\n- G: The bald eagle is big.\n- H: The bald eagle chases the lion.\n- I: The bald eagle chases the rabbit.\n- J: The rabbit chases the lion.\n- K: The rabbit chases the bald eagle.\n- L: The rabbit visits the cow.\n- M: The rabbit visits the bald eagle.\n- N: Someone is rough.\n- O: Someone needs the rabbit.\n\nNow, let's analyze the given statements:\n\n1. The bald eagle chases the lion. => H\n2. The bald eagle chases the rabbit. => I\n3. The bald eagle is big. => G\n4. The cow needs the bald eagle. => F\n5. The cow needs the rabbit. => E\n6. The lion chases the cow. => Not a variable, but we can derive it: If the lion chases the cow, then it must be that the lion does not need the cow.\n7. The lion chases the rabbit. => D\n8. The lion is kind. => A\n9. The lion is not round. => Not B\n10. The lion needs the bald eagle. => Not directly related to our variables.\n11. The lion does not visit the cow. => Not C\n12. The lion visits the rabbit. => D\n13. The rabbit chases the bald eagle. => K\n14. The rabbit visits the bald eagle. => M\n15. If someone needs the rabbit then the rabbit chases the lion. => If O, then J\n16. If someone is rough and they do not chase the rabbit then they visit the bald eagle. => If N and not K, then M\n17. If someone chases the lion then they do not need the cow. => If H or J, then not E\n18. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. => If F and H, then not B\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow. => If H or K and not E, then C\n20. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. => If O and L, then G\n21. If someone is big then they do not visit the lion. => If G, then not D\n\nNow, let's use these statements to determine whether the rabbit visits the cow (L). From statement 21, if the bald eagle is big (G), then it must be that the rabbit does not visit the lion (not D). From statement 20, if the rabbit needs the cow (E) and visits the cow (L), then it must be that the rabbit is big (G). But if the rabbit is big (G), then it must be that it does not visit the lion (not D).\n\nHowever, we know that the lion visits the rabbit (D). This means that the rabbit must not be big (not G). If the rabbit is not big (not G), then it must be that it does not need the cow (not E). From statement 17, if someone chases the lion (H or J), then they do not need the cow (not E). Since the lion visits the rabbit (D), we can conclude that the rabbit does not need the cow (not E).\n\nWe also know that the cow needs the rabbit (E) from statement 5. Therefore, we can conclude that the rabbit does not visit the cow (not L).\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown, we need to analyze the given information and find any relevant rules that apply.\n\nRule 1: If someone needs the rabbit then the rabbit chases the lion. \nRule 2: If someone is rough and they do not chase the rabbit then they visit the bald eagle. \nRule 3: If someone chases the lion then they do not need the cow. \nRule 4: If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. \nRule 5: If someone chases the bald eagle and they do not need the cow then they visit the cow. \nRule 6: If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. \nRule 7: If someone is big then they do not visit the lion.\n\nFrom the given information, we know:\n\n- The lion chases the rabbit (Rule 8).\n- The lion visits the rabbit (Rule 10).\n- The rabbit chases the bald eagle (Rule 11).\n- The rabbit visits the bald eagle (Rule 12).\n\nSince the lion visits the rabbit, we know the lion needs the rabbit. Therefore, from Rule 1, the rabbit chases the lion, which is true.\n\nFrom Rule 5, since the lion chases the bald eagle, and the lion does not need the cow, the lion visits the cow. However, we are given that the lion does not visit the cow (Rule 10), so this rule is irrelevant.\n\nWe also know that the rabbit chases the bald eagle. \n\nFrom Rule 3, since the lion chases the lion, the lion does not need the cow. However, this rule is also irrelevant because we already know the lion's relationship with the cow.\n\nFrom Rule 11, since the rabbit chases the bald eagle, we cannot conclude whether the rabbit needs the cow or not.\n\nHowever, from Rule 11, since the rabbit chases the bald eagle, we can conclude that the rabbit does not need the cow because if it needed the cow, the bald eagle would not chase the cow.\n\nNow we have a contradiction. We are given that the rabbit visits the bald eagle (Rule 12) but we also know that the rabbit does not need the cow.\n\nHowever, from Rule 6, since the rabbit visits the cow and it needs the rabbit, the rabbit is big. However, this is irrelevant.\n\nHowever, from Rule 7, if someone is big then they do not visit the lion. Therefore, since the lion is not round (Rule 9), and the rabbit is big, the rabbit does not visit the lion.\n\nWe cannot conclude whether the rabbit visits the cow or not.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth value of the statement 'The rabbit does not visit the cow,' let's analyze the given statements and their implications.\n\n1. The bald eagle chases the lion. The bald eagle chases the rabbit. The bald eagle is big. The cow needs the bald eagle. The cow needs the rabbit. The lion chases the cow. The lion chases the rabbit. The lion is kind. The lion is not round. The lion needs the bald eagle. The lion does not visit the cow. The lion visits the rabbit. The rabbit chases the bald eagle. The rabbit visits the bald eagle.\n\n2. If someone needs the rabbit then the rabbit chases the lion. \n   From statement 1, we know the cow needs the rabbit. However, we cannot conclude that the rabbit chases the lion from this information alone.\n\n3. If someone is rough and they do not chase the rabbit then they visit the bald eagle.\n   We don't have enough information about who is rough.\n\n4. If someone chases the lion then they do not need the cow.\n   We know the lion chases the cow, so it is true that the lion does not need the cow.\n\n5. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\n   From statement 1, we know the cow needs the bald eagle, but we do not know if the bald eagle chases the cow. This information is unknown.\n\n6. If someone chases the bald eagle and they do not need the cow then they visit the cow.\n   We know the rabbit chases the bald eagle, but we don't know if the rabbit needs the cow.\n\n7. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\n   From statement 1, we know the cow needs the rabbit, and the rabbit visits the cow, but we do not have information about the rabbit's size.\n\n8. If someone is big then they do not visit the lion.\n   We know the bald eagle is big, and it does not visit the lion.\n\nNow, let's analyze the statement 'The rabbit does not visit the cow.' \n\nFrom statement 1, we know the lion does not visit the cow, but we cannot conclude anything about the rabbit. However, statement 1 also tells us that the lion visits the rabbit. If the rabbit visits the cow, then statement 7 implies that the rabbit is big. But statement 8 says that if someone is big, they do not visit the lion. This would mean that the rabbit, being big, does not visit the lion. However, statement 1 says the lion visits the rabbit, not the other way around. This does not directly relate to the statement we are trying to determine. \n\nHowever, we know the lion visits the rabbit, but we do not know if the rabbit visits the lion. If the rabbit visits the lion, then we cannot conclude anything about the rabbit visiting the cow. But if the rabbit visits the cow, then we would know the rabbit is big. We also know the cow needs the rabbit, and the lion chases the cow, and the lion does not need the cow. \n\nSince we know that if someone chases the lion then they do not need the cow (from statement 4), and the lion chases the cow, it follows that the cow does not need the lion. This implies that the cow needs the rabbit. Also, we know the lion visits the rabbit, so the lion needs the rabbit. This implies that the rabbit is being chased by the lion, and since the lion needs the rabbit, and the rabbit chases the bald eagle, the bald eagle needs the rabbit, and the cow needs the rabbit. \n\nHowever, the cow needs the rabbit, and if the rabbit visits the cow, then the rabbit is big, but this does not directly relate to the statement we are trying to determine. \n\nLet's look at the statements that imply the rabbit does not visit the cow. We have the statement 'If someone is big then they do not visit the lion.' We know the rabbit is big, but we cannot conclude that the rabbit does not visit the cow from this information alone. \n\nHowever, if the rabbit does visit the cow, then the rabbit is big (from statement 7). But statement 8 implies that if someone is big, they do not visit the lion. This does not relate directly to the rabbit visiting the cow. \n\nHowever, we know that if someone needs the rabbit and the rabbit visits the cow then the rabbit is big. But we also know the lion does not visit the cow. \n\nWe can conclude that the lion does not visit the cow, but we cannot conclude that the rabbit does not visit the cow from this information alone. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. We also know the lion does not visit the cow. But we cannot conclude that the rabbit does not visit the cow from this information alone.\n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, let's analyze the statement 'The lion does not visit the cow.' We know this is true. If the lion does not visit the cow, then it follows that the cow does not need the lion. This implies that the cow needs the rabbit. \n\nNow, let's look at the statement 'The lion visits the rabbit.' We know this is true. If the lion visits the rabbit, then it follows that the lion needs the rabbit. This implies that the rabbit is being chased by the lion. \n\nHowever, we know that if someone needs the rabbit and the rabbit visits the cow then the rabbit is big. But we also know the lion visits the rabbit. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But the lion visits the rabbit, and the lion does not visit the cow. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But the lion visits the rabbit. We also know the lion does not visit the cow. \n\nNow, let's look at the statement 'The cow needs the rabbit.' We know this is true. If the cow needs the rabbit, then it follows that the rabbit visits the cow. But if the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But the lion visits the rabbit, and the lion does not visit the cow. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But the lion visits the rabbit. We also know the lion does not visit the cow. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But we also know the lion does not visit the cow. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. But the lion visits the rabbit. We also know the lion does not visit the cow. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nNow, let's look at the statement 'The lion does not visit the cow.' We know this is true. If the lion does not visit the cow, then it follows that the cow does not need the lion. This implies that the cow needs the rabbit. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we know the lion visits the rabbit. If the rabbit visits the cow, then the rabbit is big. \n\nHowever, we",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cow needs the rabbit. (Statement 4)\n2. The lion is kind. (Statement 7)\n3. The lion is not round. (Statement 8)\n4. The lion does not visit the cow. (Statement 10)\n5. The lion visits the rabbit. (Statement 11)\n6. If someone chases the lion then they do not need the cow. (Statement 9)\n7. The rabbit chases the bald eagle. (Statement 12)\n8. The rabbit visits the bald eagle. (Statement 13)\n9. If someone needs the rabbit then the rabbit chases the lion. (Statement 5)\n10. If someone is rough and they do not chase the rabbit then they visit the bald eagle. (Statement 6)\n11. The bald eagle is big. (Statement 3)\n12. The cow needs the bald eagle. (Statement 4)\n13. The cow needs the rabbit. (Statement 4)\n14. The lion chases the rabbit. (Statement 2)\n15. The lion chases the cow. (Statement 6)\n16. The lion needs the bald eagle. (Statement 8)\n17. The lion is kind. (Statement 7)\n18. If someone is big then they do not visit the lion. (Statement 14)\n19. If someone chases the bald eagle and they do not need the cow then they visit the cow. (Statement 10)\n20. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. (Statement 9)\n21. The lion is not round. (Statement 8)\n22. The lion visits the rabbit. (Statement 11)\n23. The rabbit chases the lion. (Statement 2)\n24. The rabbit visits the bald eagle. (Statement 13)\n25. The rabbit is big. (Statement 12)\n26. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. (Statement 11)\n\nNow, we need to use the information to determine whether the statement \"The rabbit does not visit the cow\" is true, false, or unknown.\n\nFrom statement 10, we can conclude that the lion visits the bald eagle. \n\nAlso, we know the rabbit visits the bald eagle (statement 13), and the lion is not round (statement 8). \n\nNow, we need to check the information about the cow and the rabbit. We know the cow needs the rabbit (statement 4), but we cannot determine whether the rabbit visits the cow based on this information alone. \n\nHowever, we have another rule (Statement 11): \"If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\" We know the cow needs the rabbit (statement 4) but we cannot determine whether the rabbit visits the cow. However, we cannot use this rule to determine whether the rabbit visits the cow.\n\nHowever, we have another rule (Statement 10): \"If someone chases the bald eagle and they do not need the cow then they visit the cow.\" The rabbit chases the bald eagle (statement 12). But we know the rabbit does not need the cow. The lion chases the rabbit. We cannot use this rule to determine whether the rabbit visits the cow.\n\nHowever, we have another rule (Statement 14): \"If someone is big then they do not visit the lion.\" We know the rabbit is big (statement 12), and the lion visits the rabbit (statement 11). But we cannot use this rule to determine whether the rabbit visits the cow.\n\nHowever, we have another rule (Statement 5): \"If someone needs the rabbit then the rabbit chases the lion.\" The cow needs the rabbit (statement 4). But we cannot determine whether the cow needs the lion. However, we cannot use this rule to determine whether the rabbit visits the cow.\n\nHowever, we have another rule (Statement 6): \"If someone is rough and they do not chase the rabbit then they visit the bald eagle.\" The lion is kind (statement 7), but we cannot determine whether the lion is rough. However, we cannot use this rule to determine whether the rabbit visits the cow.\n\nNow, we cannot use any rule to determine whether the rabbit visits the cow. However, we know the lion visits the rabbit (statement 11), and the lion does not visit the cow (statement 10). \n\nSo, the statement \"The rabbit does not visit the cow\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, rabbit)",
+          "z3_formula": "needs_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, cow))",
+          "z3_formula": "not(visits_lion_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> chases(rabbit, X)",
+          "z3_formula": "Implies(needs_rabbit_rabbit, chases_rabbit_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(chases(X, rabbit)) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, not(chases_X_rabbit)), visits_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> not(needs(X, cow))",
+          "z3_formula": "Implies(chases_X_lion, not(needs_X_cow))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & chases(bald_eagle, cow) -> not(round(X))",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, chases_bald_eagle_cow), not(round_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not(needs(X, cow)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, not(needs_X_cow)), visits_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(rabbit, cow) -> big(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, visits_rabbit_cow), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(visits(X, lion))",
+          "z3_formula": "Implies(big_X, not(visits_X_lion))",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(rabbit, lion))",
+          "z3_formula": "not(visits_rabbit_lion) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == Unknown",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, rabbit)",
+          "z3_formula": "needs_cow_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, cow))",
+          "z3_formula": "not(visits_lion_cow) == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(rabbit, bald_eagle))",
+          "z3_formula": "not(chases_rabbit_bald_eagle) == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == Unknown",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visit(lion, cow)",
+          "z3_formula": "not visit_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, eagle)",
+          "z3_formula": "chases_rabbit_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visit(rabbit, eagle)",
+          "z3_formula": "visit_rabbit_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not visit(rabbit, cow)",
+          "z3_formula": "Not(visit_rabbit_cow)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, rabbit)",
+          "z3_formula": "needs_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, cow))",
+          "z3_formula": "not(visits_lion_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> chases(rabbit, lion)",
+          "z3_formula": "Implies(needs_rabbit_rabbit, chases_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(chases(X, rabbit)) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, not(chases_X_rabbit)), visits_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> not(needs(X, cow))",
+          "z3_formula": "Implies(chases_X_lion, not(needs_X_cow))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & chases(bald_eagle, cow) -> not(round(bald_eagle))",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, chases_bald_eagle_cow), not(round_bald_eagle))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not(needs(X, cow)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, not(needs_X_cow)), visits_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(rabbit, cow) -> big(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, visits_rabbit_cow), big_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(visits(X, lion))",
+          "z3_formula": "Implies(big_X, not(visits_X_lion))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(rabbit, cow))",
+          "z3_formula": "not(visits_rabbit_cow) == True",
+          "source_step": 20
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, rabbit)",
+          "z3_formula": "needs_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, cow))",
+          "z3_formula": "not(visits_lion_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> chases(rabbit, lion)",
+          "z3_formula": "Implies(needs_rabbit_rabbit, chases_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(chases(X, rabbit)) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_lion, not(chases_lion_rabbit)), visits_lion_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> not(needs(X, cow))",
+          "z3_formula": "Implies(chases_lion_cow, not(needs_lion_cow))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & chases(bald_eagle, cow) -> not(round(bald_eagle))",
+          "z3_formula": "Implies(And(needs_lion_bald_eagle, chases_bald_eagle_cow), not(round_bald_eagle))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not(needs(X, cow)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_lion_bald_eagle, not(needs_lion_cow)), visits_lion_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(rabbit, cow) -> big(rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_rabbit, visits_rabbit_cow), big_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(visits(X, lion))",
+          "z3_formula": "Implies(big_lion, not(visits_lion_lion))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(rabbit, cow))",
+          "z3_formula": "not(visits_rabbit_cow) == False",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, rabbit)",
+          "z3_formula": "needs_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(lion, cow))",
+          "z3_formula": "not(visit_lion_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visit(lion, rabbit)",
+          "z3_formula": "visit_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visit(rabbit, bald_eagle)",
+          "z3_formula": "visit_rabbit_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> chases(rabbit, lion)",
+          "z3_formula": "Implies(needs_X_rabbit, chases_rabbit_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(chase(X, rabbit)) -> visit(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, not(chase_X_rabbit)), visit_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chase(X, lion) -> not(needs(X, cow))",
+          "z3_formula": "Implies(chase_X_lion, not(needs_X_cow))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & chase(bald_eagle, cow) -> not(round(bald_eagle))",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, chase_bald_eagle_cow), not(round_bald_eagle))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chase(X, bald_eagle) & not(needs(X, cow)) -> visit(X, cow)",
+          "z3_formula": "Implies(And(chase_X_bald_eagle, not(needs_X_cow)), visit_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visit(X, cow) -> big(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, visit_X_cow), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(visit(X, lion))",
+          "z3_formula": "Implies(big_X, not(visit_X_lion))",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(visit(rabbit, cow))",
+          "z3_formula": "not(visit_rabbit_cow) == True",
+          "source_step": 22
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> chases(rabbit, lion)",
+          "z3_formula": "Implies(needs_lion_rabbit, chases_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & ~chases(rabbit, X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, ~chases_rabbit_X), visits_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> ~needs(X, cow)",
+          "z3_formula": "Implies(chases_X_lion, ~needs_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & chases(bald_eagle, cow) -> ~round(bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, chases_bald_eagle_cow), ~round_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & ~needs(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, ~needs_X_cow), visits_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(rabbit, cow) -> big(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, visits_rabbit_cow), big_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> ~visits(X, lion)",
+          "z3_formula": "Implies(big_X, ~visits_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "~needs(rabbit, cow)",
+          "z3_formula": "~needs_rabbit_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "~visits(lion, cow)",
+          "z3_formula": "~visits_lion_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "~visits(rabbit, lion)",
+          "z3_formula": "~visits_rabbit_lion == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 113,
+      "traces_with_constraints": 6,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 0,
+      "total_weight": 93,
+      "solve_time_ms": 1.1357972398400307
+    },
+    "timing": {
+      "trace_gen_s": 25.103,
+      "extraction_s": 63.947,
+      "dedup_s": 0.658,
+      "maxsat_s": 0.003,
+      "total_s": 89.712
+    }
+  }
+}

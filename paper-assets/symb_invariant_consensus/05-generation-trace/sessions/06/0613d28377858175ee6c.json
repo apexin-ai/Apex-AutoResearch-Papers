@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0613d28377858175ee6c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 033",
+  "task_key": "worker_analysis_exp-033_20260518T190340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-033_20260518T190340_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "a5a506a856fbdd7d2edb8d3b6e12688982c33566ace30d426fa918963fd38362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**exp-033 结果与 capability trap 假设矛盾。**\n\n| 指标 | 值 |\n|---|---|\n| n | 198/204 (97.1%) |\n| SC accuracy | 54.04% |\n| SICA accuracy | 59.09% |\n| **Delta** | **+5.05pp** |\n| McNemar exact p | **0.013** (显著) |\n| 不一致对 | SICA纠正12题, SC纠正2题 |\n\n关键解读：\n- Mistral-7B 上 SICA 显著优于 SC，这是所有实验中最大的正向 delta\n- 与 Qwen2.5-14B 的 delta=+0.25pp（不显著）和 pilot exp-010 的 delta=0 形成鲜明对比\n- **Capability trap 假设过于简单化**：弱模型并非 \"约束质量差所以无法提升\"，而是 SC 共识低时 SICA 的约束加权反而提供了额外区分信号\n- Pilot exp-010 (n=60) 的 delta=0 可能是小样本不具代表性\n\n实验状态：198/204 题完成后进程中断（无完成标记），6 题缺失不影响显著性结论。JSON 的 summary 部分是 n=188 时的快照，实际 results 数组有 198 条记录。\n\n报告已写入 `artifacts/exp033_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-033.md"
+}

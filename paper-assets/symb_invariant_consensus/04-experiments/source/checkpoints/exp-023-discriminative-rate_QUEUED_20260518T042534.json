@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-023-discriminative-rate",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:50:26.792Z",
+    "updated_at": "2026-05-18T04:25:34.140Z",
+    "hypothesis": "Full-dataset discriminative rate analysis (W1+W3 合并): Qwen2.5-14B 在 804 题上 self-extracted constraints 的 source-trace discriminativeness 和 Z3 semantic discriminativeness 均低于 15%，证明即使用 Z3 per-answer evaluation，self-extracted constraints 仍无判别力，封堵 oracle scoring confound。",
+    "parent": "sica_constraint_ablation_013"
+  },
+  "timestamp": "2026-05-18T04:25:34.267792+00:00",
+  "trigger": "update_registry"
+}

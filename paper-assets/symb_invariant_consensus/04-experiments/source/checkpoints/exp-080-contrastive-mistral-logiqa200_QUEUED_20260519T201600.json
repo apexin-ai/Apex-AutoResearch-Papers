@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-080-contrastive-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:14:59.602Z",
+    "updated_at": "2026-05-19T20:16:00.056Z",
+    "hypothesis": "Contrastive × Mistral-7B × LogiQA-200 cross-dataset validation. 补全方法×数据集矩阵最后一格。exp-075b (Contrastive×FOLIO) 中间结果 Δ=-15.9pp。如果 LogiQA 上也 negative，确认 contrastive 方法跨数据集无效。",
+    "parent": "exp-075b-contrastive-mistral-folio"
+  },
+  "timestamp": "2026-05-19T20:16:00.272944+00:00",
+  "trigger": "update_registry"
+}

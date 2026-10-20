@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-040-qwen3-pw600-16639",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:01:31.954Z",
+    "updated_at": "2026-05-19T11:01:11.894Z",
+    "hypothesis": "Qwen3-14B non-thinking 在 ProofWriter-600 全量上 SICA vs SC：跨模型代际验证 capability trap 在 PW 数据集上是否持续。与 exp-039 (Qwen2.5-14B PW-600) 对比代际差异。",
+    "spec": {
+      "command": "run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --seed 42 --pw-data data/proofwriter_full.json --folio-data data/empty.json --math-data data/empty.json",
+      "server": "westd-16639",
+      "data_path": "/root/symb_invariant_consensus/data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen3-14B (non-thinking)",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-14B (cached, enable_thinking=false)",
+      "eval_data": "ProofWriter-600",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/results.json",
+      "log_path": "/root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/exp033.log"
+    },
+    "notes": "westd-16639 实际目录: exp033_qwen3_14b_pw600_nonthinking, tmux: exp033, port: 8001, GPU 1. 162/600 (27.0%) at 22:28 UTC. Qwen3-14B thinking=false, 推理速度约为 Qwen2.5-14B 的一半。",
+    "conclusion": "negative",
+    "metrics": {
+      "n": 600,
+      "sica_accuracy": 0.857,
+      "sc_accuracy": 0.85,
+      "delta_pp": 0.7,
+      "extraction_rate": 0.997,
+      "contradiction_rate": 0.004,
+      "wall_time_min": 1032.2
+    },
+    "completed_at": "2026-05-19T11:01:11.894Z"
+  },
+  "timestamp": "2026-05-19T11:01:12.067387+00:00",
+  "trigger": "update_registry"
+}

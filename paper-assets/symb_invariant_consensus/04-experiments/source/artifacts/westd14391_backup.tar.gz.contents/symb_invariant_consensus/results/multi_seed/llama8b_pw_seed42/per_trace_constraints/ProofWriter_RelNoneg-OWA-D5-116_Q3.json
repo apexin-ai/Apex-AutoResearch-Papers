@@ -1,0 +1,713 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-116_Q3",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & red(rabbit) -> big(X)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, red_rabbit), big_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> likes(rabbit, X)",
+          "z3_formula": "Implies(visits_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees_lion(X)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes_lion(X) & sees_rabbit(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(young_lion, likes_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes_rabbit(lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes_lion(X) & sees_rabbit(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes_rabbit(lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit(X) -> sees_lion(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit(X) -> sees_dog(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, sees_dog_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees_dog(X) -> sees_lion(X)",
+          "z3_formula": "Implies(sees_dog_lion, sees_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees_lion(lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & red(rabbit) -> big(rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, red_rabbit), big_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(lion, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_lion, visits_lion_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(visits_lion_rabbit, likes_rabbit_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, lion) -> young(rabbit)",
+          "z3_formula": "Implies(likes_rabbit_lion, young_rabbit)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, X) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> ? (sees(X, lion) | Not(sees(X, lion)))",
+          "z3_formula": "Implies(sees_lion_rabbit, Or(sees_lion_lion, Not(sees_lion_lion)))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == ? (sees_lion_rabbit, young_lion)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_lion, young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & sees(Y, X) -> sees(X, X)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, sees_rabbit_lion), sees_lion_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-111_Q9",
+    "problem": "The bald eagle chases the mouse. The bald eagle chases the squirrel. The bald eagle is cold. The lion chases the bald eagle. The lion does not chase the mouse. The lion chases the squirrel. The lion is blue. The lion needs the squirrel. The lion visits the squirrel. The mouse does not visit the bald eagle. The mouse does not visit the squirrel. The squirrel is cold. The squirrel is red. The squirrel does not visit the lion. If something visits the mouse then the mouse is green. If the mouse does not chase the lion then the mouse needs the lion. If something visits the squirrel and the squirrel does not chase the lion then the lion is green. If something is young then it visits the bald eagle. If something visits the bald eagle then the bald eagle visits the squirrel. If something visits the squirrel and the squirrel is red then it is young. If something needs the squirrel and it is not cold then the squirrel chases the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nChases(BaldEagle, Mouse, True) ::: The bald eagle chases the mouse.\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nChases(Lion, BaldEagle, True) ::: The lion chases the bald eagle.\nChases(Lion, Mouse, False) ::: The lion does not chase the mouse.\nChases(Lion, Squirrel, True) ::: The lion chases the squirrel.\nBlue(Lion, True) ::: The lion is blue.\nNeeds(Lion, Squirrel, True) ::: The lion needs the squirrel.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nVisits(Mouse, BaldEagle, False) ::: The mouse does not visit the bald eagle.\nVisits(Mouse, Squirrel, False) ::: The mouse does not visit the squirrel.\nCold(Squirrel, True) ::: The squirrel is cold.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, Lion, False) ::: The squirrel does not visit the lion.\n\nRules:\nVisits($x, Mouse, True) >>> Green(Mouse, True) ::: If something visits the mouse then the mouse is green.\nChases(Mouse, Lion, False) >>> Needs(Mouse, Lion, True) ::: If the mouse does not chase the lion then the mouse needs the lion.\nVisits($x, Squirrel, True) && Chases(Squirrel, Lion, False) >>> Green(Lion, True) ::: If something visits the squirrel and the squirrel does not chase the lion then the lion is green.\nYoung($x, True) >>> Visits($x, BaldEagle, True) ::: If something is young then it visits the bald eagle.\nVisits($x, BaldEagle, True) >>> Visits(BaldEagle, Squirrel, True) ::: If something visits the bald eagle then the bald eagle visits the squirrel.\nVisits($x, Squirrel, True) && Red(Squirrel, True) >>> Young($x, True) ::: If something visits the squirrel and the squirrel is red then it is young.\nNeeds($x, Squirrel, True) && Cold($x, False) >>> Chases(Squirrel, BaldEagle, True) ::: If something needs the squirrel and it is not cold then the squirrel chases the bald eagle.\n\nQuery:\nYoung(BaldEagle, True) ::: The bald eagle is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

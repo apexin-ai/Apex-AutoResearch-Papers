@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-039-14b-pw600-16639",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:01:31.038Z",
+    "updated_at": "2026-05-18T18:53:09.943Z",
+    "hypothesis": "Qwen2.5-14B-Instruct 在 ProofWriter-600 全量上 SICA vs SC（westd-16639 重跑）：验证 capability trap 在 PW 数据集全量规模上是否持续。复现 sica_expanded_14b 的 PW 子集结果（delta=+0.3pp）。",
+    "spec": {
+      "command": "run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --pw-data data/proofwriter_full.json --folio-data data/empty.json --math-data data/empty.json",
+      "server": "westd-16639",
+      "data_path": "/root/symb_invariant_consensus/data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-14B-Instruct (cached)",
+      "eval_data": "ProofWriter-600"
+    }
+  },
+  "timestamp": "2026-05-18T18:53:10.073339+00:00",
+  "trigger": "update_registry"
+}

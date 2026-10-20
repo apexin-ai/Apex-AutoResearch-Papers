@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-604_Q11",
+    "problem": "The cat chases the dog. The cat chases the mouse. The cat chases the tiger. The cat eats the dog. The dog is big. The dog sees the cat. The mouse does not eat the cat. The mouse eats the tiger. The mouse does not see the tiger. The tiger eats the dog. The tiger is nice. If something is young and it eats the tiger then it eats the dog. If something sees the mouse and it eats the mouse then the mouse sees the tiger. If something sees the mouse then it is big. If something chases the dog then the dog chases the cat. If something chases the dog then it chases the cat. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. If something sees the dog and it chases the tiger then the tiger chases the dog. If the tiger is green and the tiger is big then the tiger sees the dog. If something chases the cat then it sees the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger sees the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(Cat, Dog, True) ::: The cat chases the dog.\nChases(Cat, Mouse, True) ::: The cat chases the mouse.\nChases(Cat, Tiger, True) ::: The cat chases the tiger.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nBig(Dog, True) ::: The dog is big.\nSees(Dog, Cat, True) ::: The dog sees the cat.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nSees(Mouse, Tiger, False) ::: The mouse does not see the tiger.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nNice(Tiger, True) ::: The tiger is nice.\n\nRules:\nYoung($x, True) && Eats($x, Tiger, True) >>> Eats($x, Dog, True) ::: If something is young and it eats the tiger then it eats the dog.\nSees($x, Mouse, True) && Eats($x, Mouse, True) >>> Sees(Mouse, Tiger, True) ::: If something sees the mouse and it eats the mouse then the mouse sees the tiger.\nSees($x, Mouse, True) >>> Big($x, True) ::: If something sees the mouse then it is big.\nChases($x, Dog, True) >>> Chases(Dog, Cat, True) ::: If something chases the dog then the dog chases the cat.\nChases($x, Dog, True) >>> Chases($x, Cat, True) ::: If something chases the dog then it chases the cat.\nChases($x, Tiger, True) && Eats(Tiger, Cat, True) >>> Sees(Cat, Mouse, True) ::: If something chases the tiger and the tiger eats the cat then the cat sees the mouse.\nSees($x, Dog, True) && Chases($x, Tiger, True) >>> Chases(Tiger, Dog, True) ::: If something sees the dog and it chases the tiger then the tiger chases the dog.\nGreen(Tiger, True) && Big(Tiger, True) >>> Sees(Tiger, Dog, True) ::: If the tiger is green and the tiger is big then the tiger sees the dog.\nChases($x, Cat, True) >>> Sees($x, Dog, True) ::: If something chases the cat then it sees the dog.\n\nQuery:\nSees(Tiger, Dog, True) ::: The tiger sees the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "sica_d016_c0_precheck",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:00:14.192Z",
+    "updated_at": "2026-05-16T04:00:18.038Z",
+    "hypothesis": "D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）",
+    "parent": "sica_proofwriter30_v2"
+  },
+  "timestamp": "2026-05-16T04:00:18.101635+00:00",
+  "trigger": "update_registry"
+}

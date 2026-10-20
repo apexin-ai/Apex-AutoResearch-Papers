@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-77_Q15",
+    "problem": "The bear is blue. The cat eats the cow. The cat is red. The cat is round. The cat does not need the cow. The cat does not need the dog. The cow is not round. The dog chases the bear. The dog chases the cat. The dog is round. If the bear is not green then the bear eats the cat. If the dog needs the cat then the dog chases the bear. If the cow needs the bear then the cow is green. If the dog chases the cow then the dog needs the bear. Red things are nice. If something is green then it needs the cow. If something is nice then it eats the bear. If something is nice and it eats the bear then the bear is red. If something eats the dog and it is not red then the dog does not need the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not need the cow.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nNeed($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(bear, True) ::: The bear is blue.\nEats(cat, cow, True) ::: The cat eats the cow.\nRed(cat, True) ::: The cat is red.\nRound(cat, True) ::: The cat is round.\nNeed(cat, cow, False) ::: The cat does not need the cow.\nNeed(cat, dog, False) ::: The cat does not need the dog.\nRound(cow, False) ::: The cow is not round.\nChases(dog, bear, True) ::: The dog chases the bear.\nChases(dog, cat, True) ::: The dog chases the cat.\nRound(dog, True) ::: The dog is round.\n\nRules:\nBlue(bear, False) >>> Eats(bear, cat, True) ::: If the bear is not green then the bear eats the cat.\nNeed(dog, cat, True) >>> Chases(dog, bear, True) ::: If the dog needs the cat then the dog chases the bear.\nNeed(cow, bear, True) >>> Green(cow, True) ::: If the cow needs the bear then the cow is green.\nChases(dog, cow, True) >>> Need(dog, bear, True) ::: If the dog chases the cow then the dog needs the bear.\nRed($x, True) >>> Nice($x, True) ::: Red things are nice.\nGreen($x, True) >>> Need($x, cow, True) ::: If something is green then it needs the cow.\nNice($x, True) >>> Eats($x, bear, True) ::: If something is nice then it eats the bear.\nNice($x, True) && Eats($x, bear, True) >>> Red(bear, True) ::: If something is nice and it eats the bear then the bear is red.\nEats($x, dog, True) && Red($x, False) >>> Need(dog, cow, False) ::: If something eats the dog and it is not red then the dog does not need the cow.\n\nQuery:\nNeed(dog, cow, False) ::: The dog does not need the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

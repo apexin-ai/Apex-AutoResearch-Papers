@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-371_Q22",
+    "problem": "Anne is nice. Anne is smart. Bob is nice. Fiona is green. Fiona is nice. Gary is blue. Gary is smart. All red things are nice. Big things are kind. If Bob is smart then Bob is green. Blue things are green. Green, smart things are big. If something is red and blue then it is big. Nice things are red. All kind things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nSmart(Anne, True) ::: Anne is smart.\nNice(Bob, True) ::: Bob is nice.\nGreen(Fiona, True) ::: Fiona is green.\nNice(Fiona, True) ::: Fiona is nice.\nBlue(Gary, True) ::: Gary is blue.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nRed($x, True) >>> Nice($x, True) ::: All red things are nice.\nBig($x, True) >>> Kind($x, True) ::: Big things are kind.\nSmart(Bob, True) >>> Green(Bob, True) ::: If Bob is smart then Bob is green.\nBlue($x, True) >>> Green($x, True) ::: Blue things are green.\nGreen($x, True) && Smart($x, True) >>> Big($x, True) ::: Green, smart things are big.\nRed($x, True) && Blue($x, True) >>> Big($x, True) ::: If something is red and blue then it is big.\nNice($x, True) >>> Red($x, True) ::: Nice things are red.\nKind($x, True) >>> Red($x, True) ::: All kind things are red.\n\nQuery:\nSmart(Bob, True) ::: Bob is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

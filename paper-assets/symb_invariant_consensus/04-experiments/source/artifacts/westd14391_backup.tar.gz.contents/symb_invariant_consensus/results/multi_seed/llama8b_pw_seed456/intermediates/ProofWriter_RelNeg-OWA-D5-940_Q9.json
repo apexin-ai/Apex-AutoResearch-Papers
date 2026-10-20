@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-940_Q9",
+    "problem": "The bald eagle is kind. The bald eagle is not red. The bald eagle likes the dog. The dog needs the lion. The lion does not need the bald eagle. The mouse likes the dog. The mouse does not see the dog. If someone needs the mouse then the mouse does not see the bald eagle. If someone needs the dog then the dog needs the lion. If someone is rough then they see the mouse. If someone sees the mouse then the mouse is kind. If someone needs the lion then they do not see the bald eagle. If someone sees the dog then they need the mouse. All kind people are rough. If someone sees the mouse then they like the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(BaldEagle, True) ::: The bald eagle is kind.\nRed(BaldEagle, False) ::: The bald eagle is not red.\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nNeeds(Dog, Lion, True) ::: The dog needs the lion.\nNeeds(Lion, BaldEagle, False) ::: The lion does not need the bald eagle.\nLikes(Mouse, Dog, True) ::: The mouse likes the dog.\nSees(Mouse, Dog, False) ::: The mouse does not see the dog.\n\nRules:\nNeeds($x, Mouse, True) >>> Sees(Mouse, BaldEagle, False) ::: If someone needs the mouse then the mouse does not see the bald eagle.\nNeeds($x, Dog, True) >>> Needs(Dog, Lion, True) ::: If someone needs the dog then the dog needs the lion.\nRough($x, True) >>> Sees($x, Mouse, True) ::: If someone is rough then they see the mouse.\nSees($x, Mouse, True) >>> Kind(Mouse, True) ::: If someone sees the mouse then the mouse is kind.\nNeeds($x, Lion, True) >>> Sees($x, BaldEagle, False) ::: If someone needs the lion then they do not see the bald eagle.\nSees($x, Dog, True) >>> Needs($x, Mouse, True) ::: If someone sees the dog then they need the mouse.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nSees($x, Mouse, True) >>> Likes($x, Lion, True) ::: If someone sees the mouse then they like the lion.\n\nQuery:\nRough(Mouse, True) ::: The mouse is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

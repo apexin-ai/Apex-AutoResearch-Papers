@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-144_Q18",
+    "problem": "The bald eagle is big. The bald eagle is not green. The bald eagle likes the bear. The bald eagle likes the squirrel. The bear chases the lion. The bear is green. The bear visits the bald eagle. The bear visits the squirrel. The lion is not green. The lion likes the bear. The lion visits the squirrel. The squirrel chases the bald eagle. The squirrel is cold. The squirrel visits the bald eagle. If someone is cold then they are not young. All big people are not green. If the lion is big and the lion is green then the lion chases the bald eagle. If someone chases the bald eagle then they like the bear. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. If someone visits the lion then they like the bald eagle. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. If someone visits the lion then they are cold. If someone likes the bear then they chase the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nGreen(BaldEagle, False) ::: The bald eagle is not green.\nLikes(BaldEagle, Bear, True) ::: The bald eagle likes the bear.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nChases(Bear, Lion, True) ::: The bear chases the lion.\nGreen(Bear, True) ::: The bear is green.\nVisits(Bear, BaldEagle, True) ::: The bear visits the bald eagle.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nGreen(Lion, False) ::: The lion is not green.\nLikes(Lion, Bear, True) ::: The lion likes the bear.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nCold(Squirrel, True) ::: The squirrel is cold.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nCold($x, True) >>> Young($x, False) ::: If someone is cold then they are not young.\nBig($x, True) >>> Green($x, False) ::: All big people are not green.\nBig(Lion, True) && Green(Lion, True) >>> Chases(Lion, BaldEagle, True) ::: If the lion is big and the lion is green then the lion chases the bald eagle.\nChases($x, BaldEagle, True) >>> Likes($x, Bear, True) ::: If someone chases the bald eagle then they like the bear.\nRound($x, True) && Visits($x, BaldEagle, True) >>> Likes(BaldEagle, Squirrel, True) ::: If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\nVisits($x, Lion, True) >>> Likes($x, BaldEagle, True) ::: If someone visits the lion then they like the bald eagle.\nVisits(Lion, Squirrel, True) && Chases(Squirrel, Bear, True) >>> Chases(Bear, BaldEagle, True) ::: If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\nVisits($x, Lion, True) >>> Cold($x, True) ::: If someone visits the lion then they are cold.\nLikes($x, Bear, True) >>> Chases($x, Bear, True) ::: If someone likes the bear then they chase the bear.\n\nQuery:\nCold(BaldEagle, True) ::: The bald eagle is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

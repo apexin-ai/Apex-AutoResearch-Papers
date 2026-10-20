@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-084-debate-mistral-logiqa-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:33:19.983Z",
+    "updated_at": "2026-05-19T22:47:46.915Z",
+    "hypothesis": "Debate × Mistral-7B × LogiQA-200 seed=123 replication. exp-078 (seed=42) Δ=-23.0pp (catastrophic negative). Multi-seed 确认 Debate 在 LogiQA 上的大幅 negative 结果是否跨 seed 稳定。",
+    "parent": "exp-078-debate-mistral-logiqa200",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_debate.py --mode vllm --dataset logiqa --k 12 --n-debates 4 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp084_debate_mistral_logiqa_seed123/results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "295372",
+      "log_path": "~/runs/symb_invariant_consensus/exp-084-debate-mistral-logiqa-seed123.log",
+      "submitted_at": "2026-05-19T22:36:51.829Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T22:47:45.234Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed"
+  },
+  "timestamp": "2026-05-19T22:47:47.137676+00:00",
+  "trigger": "update_registry"
+}

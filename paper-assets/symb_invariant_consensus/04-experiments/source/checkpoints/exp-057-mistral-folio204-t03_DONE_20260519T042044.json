@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-057-mistral-folio204-t03",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:49:57.330Z",
+    "updated_at": "2026-05-19T04:20:44.783Z",
+    "hypothesis": "T=0.3 低温 traces 更确定性更一致，SICA delta < T=0.7 的 +4.90pp。与 exp-054 (T=1.0, +0.49pp) 共同形成 T sensitivity ablation curve。parent=exp-033, D060 analysis paper",
+    "parent": "exp-033",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.3 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --folio-data data/folio_full.json --math-data data/empty.json --pw-data data/empty.json --output results/exp057_mistral_folio204_t03/exp057_results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "n/a",
+      "eval_data": "data/folio_full.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T04:20:43.571Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T04:20:44.783Z"
+  },
+  "timestamp": "2026-05-19T04:20:44.949911+00:00",
+  "trigger": "update_registry"
+}

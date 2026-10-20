@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-033",
+  "project": "symb_invariant_consensus",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:42:09.819Z",
+    "updated_at": "2026-05-18T19:19:15.613Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp033.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp033_mistral_7b_folio204/exp033_results.json --save-intermediates 2>&1 | tee results/exp033_mistral_7b_folio204/exp033.log\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "65773",
+      "log_path": "~/runs/symb_invariant_consensus/exp-033.log",
+      "submitted_at": "2026-05-18T17:42:09.638Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Cross-family validation: Mistral-7B-Instruct-v0.3 在 FOLIO-204 全量上 SICA vs SC。验证 capability trap 跨模型家族在 full dataset 上是否持续（D012 pilot exp-010 已确认 delta=0, n=60）。",
+    "reproduce": {
+      "finished_at": "2026-05-18T19:02:16.294Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:02:18.863472+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T19:19:15.783145+00:00",
+  "trigger": "update_registry"
+}

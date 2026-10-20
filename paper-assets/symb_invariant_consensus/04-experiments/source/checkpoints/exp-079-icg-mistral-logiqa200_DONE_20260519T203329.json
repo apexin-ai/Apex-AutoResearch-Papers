@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-079-icg-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:06:05.950Z",
+    "updated_at": "2026-05-19T20:33:29.162Z",
+    "hypothesis": "ICG × Mistral-7B × LogiQA-200 cross-dataset validation. 验证 ICG 方法在 LogiQA 多选题上是否有效。与 exp-074 (ICG×FOLIO) 和 exp-078 (Debate×LogiQA) 对比，构建方法×数据集交叉矩阵。如果 ICG 在 LogiQA 上也无效，进一步确认 independence bottleneck 的普遍性。",
+    "parent": "exp-074-icg-mistral-folio",
+    "spec": {
+      "command": "python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 42 --api-base http://localhost:8010/v1 --model auto --dataset logiqa --data data/logiqa_200.json --output results/exp079_icg_mistral_logiqa200/results.json --save-intermediates",
+      "server": "westd-16639",
+      "gpu": "cuda:0",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "vllm_port": 8010,
+      "tmux_session": "exp079_run",
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (pretrained, no fine-tuning)",
+      "eval_data": "logiqa_200.json",
+      "checkpoint_path": "results/exp079_icg_mistral_logiqa200/results.json",
+      "log_path": "results/exp079_icg_mistral_logiqa200/run.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.475,
+      "icg_accuracy": 0.47,
+      "delta": -0.005,
+      "n_samples": 200,
+      "wall_time_min": 54.3
+    },
+    "completed_at": "2026-05-19T20:33:29.162Z"
+  },
+  "timestamp": "2026-05-19T20:33:29.366850+00:00",
+  "trigger": "update_registry"
+}

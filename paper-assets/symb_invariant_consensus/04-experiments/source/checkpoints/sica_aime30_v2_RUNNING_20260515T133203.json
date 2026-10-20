@@ -1,0 +1,37 @@
+{
+  "exp_id": "sica_aime30_v2",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:24:26.526Z",
+    "updated_at": "2026-05-15T13:32:03.281Z",
+    "spec": {
+      "command": "PYTHONUNBUFFERED=1 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --seed 42",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "121139",
+      "log_path": "/tmp/sica_aime30_v2.log",
+      "submitted_at": "2026-05-15T13:24:26.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "method": "SICA",
+      "model_name": "QwQ-32B",
+      "data_path": "/root/symb_invariant_consensus/data/aime2024_subset.json",
+      "data_count": 30,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 10240,
+      "seed": 42,
+      "fixes": "timeout=120s HTTP, future timeout=180s, semaphore(6), vLLM health check"
+    },
+    "hypothesis": "AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）"
+  },
+  "timestamp": "2026-05-15T13:32:03.301181+00:00",
+  "trigger": "update_registry"
+}

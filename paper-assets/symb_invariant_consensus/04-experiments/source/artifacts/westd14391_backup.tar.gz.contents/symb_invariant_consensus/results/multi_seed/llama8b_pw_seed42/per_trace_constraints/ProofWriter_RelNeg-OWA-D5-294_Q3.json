@@ -1,0 +1,568 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-294_Q3",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & needs(X, dog) -> likes(dog, squirrel)",
+          "z3_formula": "Implies(And(eats_cat_squirrel, needs_cat_dog), likes_dog_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, X) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(likes_dog_cat, likes_cat_dog), Not(likes_dog_squirrel))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & kind(Y) -> likes(X, cat)",
+          "z3_formula": "Implies(And(likes_dog_tiger, kind_tiger), likes_dog_cat)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_cat, needs_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "not(round_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(tiger))",
+          "z3_formula": "not(kind_tiger) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_X_tiger, needs_tiger_dog), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_cat, needs_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_X, needs_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, kind_X), likes_tiger_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_X, eats_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & eats(X, tiger) -> needs(tiger, dog)",
+          "z3_formula": "Implies(And(needs_X_cat, eats_X_tiger), needs_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & not(eats(X, tiger)) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_dog, not(eats_X_tiger)), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> eats(dog, squirrel)",
+          "z3_formula": "Implies(round_dog, eats_dog_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, kind_X), likes_tiger_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_cat_tiger, needs_tiger_dog), round_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(cat, cat)",
+          "z3_formula": "Not(eats_cat_cat)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_cat, eats_cat_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_cat, eats_cat_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_cat, eats_cat_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_cat, needs_cat_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, dog) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_cat_tiger, likes_tiger_dog), Not(likes_cat_squirrel))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_cat_tiger, kind_cat), likes_tiger_cat)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

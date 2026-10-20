@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "061cb24ccb3fcd4c1d57",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code exp 075 contrastive pipeline",
+  "task_key": "worker_code_exp-075-contrastive-pipeline_20260519T164134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_exp-075-contrastive-pipeline_20260519T164134_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "ce377d35dc14ef643c0b83a992094e87e644d19102cd694f0220afc38368c72c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务完成。`run_contrastive.py` 已部署到 `westd-25068:/root/symb_invariant_consensus/run_contrastive.py`，5 题 vLLM dry-run 验证通过。\n\n**实现摘要**：\n\n- **596 行**，三阶段 pipeline：\n  - **Phase 1**: 复用 `VLLMGenerator` 生成 K=12 traces + SC 投票确定候选集\n  - **Phase 2**: 对每个候选答案，用新设计的 `CONTRASTIVE_PROMPT` 调用 LLM K_contrast=3 次，分别生成 pro/con FOL 约束，每条约束经 `parse_z3_formula` 验证兼容性\n  - **Phase 3**: 对每个候选独立运行 MAX-SAT：`score = MAX-SAT(pro) - MAX-SAT(con)`，取最高分答案\n- **复用模块**: `VLLMGenerator`, `VLLMBackend`, `ConstraintDeduplicator`, `MaxSATSolver`, `SelfConsistency`, `normalize_logic_answer`\n- **特性**: resume 支持、checkpoint、save-intermediates、degenerate case 处理、ETA 估算\n- **CLI 接口**与任务要求完全一致\n- vLLM 未由本 Worker 启动（复用了已有的 port 8000），无需清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-075-contrastive-pipeline.md"
+}

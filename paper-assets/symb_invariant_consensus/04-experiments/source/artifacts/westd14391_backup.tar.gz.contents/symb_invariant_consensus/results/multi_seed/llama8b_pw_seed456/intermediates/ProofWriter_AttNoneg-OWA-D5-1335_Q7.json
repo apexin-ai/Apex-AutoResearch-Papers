@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1335_Q7",
+    "problem": "Anne is cold. Anne is green. Anne is rough. Charlie is kind. Dave is cold. Dave is furry. Dave is kind. Dave is quiet. Dave is red. Erin is kind. Erin is quiet. Erin is red. Furry, rough people are green. Red people are furry. All green people are kind. Kind people are quiet. If someone is cold then they are rough. All furry, rough people are cold. All quiet people are red. All red, quiet people are cold. If Anne is kind then Anne is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nGreen(Anne, True) ::: Anne is green.\nRough(Anne, True) ::: Anne is rough.\nKind(Charlie, True) ::: Charlie is kind.\nCold(Dave, True) ::: Dave is cold.\nFurry(Dave, True) ::: Dave is furry.\nKind(Dave, True) ::: Dave is kind.\nQuiet(Dave, True) ::: Dave is quiet.\nRed(Dave, True) ::: Dave is red.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\n\nRules:\nFurry($x, True) && Rough($x, True) >>> Green($x, True) ::: Furry, rough people are green.\nRed($x, True) >>> Furry($x, True) ::: Red people are furry.\nGreen($x, True) >>> Kind($x, True) ::: All green people are kind.\nKind($x, True) >>> Quiet($x, True) ::: Kind people are quiet.\nCold($x, True) >>> Rough($x, True) ::: If someone is cold then they are rough.\nFurry($x, True) && Rough($x, True) >>> Cold($x, True) ::: All furry, rough people are cold.\nQuiet($x, True) >>> Red($x, True) ::: All quiet people are red.\nRed($x, True) && Quiet($x, True) >>> Cold($x, True) ::: All red, quiet people are cold.\nKind(Anne, True) >>> Furry(Anne, True) ::: If Anne is kind then Anne is furry.\n\nQuery:\nFurry(Charlie, True) ::: Charlie is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-685_Q8",
+    "problem": "The bear chases the cow. The bear eats the cow. The bear is young. The cow is red. The cow is round. The cow visits the squirrel. The rabbit is round. The rabbit visits the bear. The squirrel eats the cow. The squirrel visits the rabbit. If someone visits the squirrel and the squirrel chases the cow then the cow is round. If someone is big and red then they chase the rabbit. If someone visits the rabbit then the rabbit visits the bear. If the squirrel chases the cow and the cow is round then the cow is young. If someone chases the squirrel then the squirrel eats the rabbit. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit. If someone chases the rabbit then the rabbit is red. All red people are big. If someone eats the bear then they chase the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nEats(Bear, Cow, True) ::: The bear eats the cow.\nYoung(Bear, True) ::: The bear is young.\nRed(Cow, True) ::: The cow is red.\nRound(Cow, True) ::: The cow is round.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nRound(Rabbit, True) ::: The rabbit is round.\nVisits(Rabbit, Bear, True) ::: The rabbit visits the bear.\nEats(Squirrel, Cow, True) ::: The squirrel eats the cow.\nVisits(Squirrel, Rabbit, True) ::: The squirrel visits the rabbit.\n\nRules:\nVisits($x, Squirrel, True) && Chases(Squirrel, Cow, True) >>> Round(Cow, True) ::: If someone visits the squirrel and the squirrel chases the cow then the cow is round.\nBig($x, True) && Red($x, True) >>> Chases($x, Rabbit, True) ::: If someone is big and red then they chase the rabbit.\nVisits($x, Rabbit, True) >>> Visits(Rabbit, Bear, True) ::: If someone visits the rabbit then the rabbit visits the bear.\nChases(Squirrel, Cow, True) && Round(Cow, True) >>> Young(Cow, True) ::: If the squirrel chases the cow and the cow is round then the cow is young.\nChases($x, Squirrel, True) >>> Eats(Squirrel, Rabbit, True) ::: If someone chases the squirrel then the squirrel eats the rabbit.\nEats($x, Cow, True) && Eats(Cow, Rabbit, True) >>> Chases($x, Rabbit, True) ::: If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\nChases($x, Rabbit, True) >>> Red(Rabbit, True) ::: If someone chases the rabbit then the rabbit is red.\nRed($x, True) >>> Big($x, True) ::: All red people are big.\nEats($x, Bear, True) >>> Chases($x, Cow, True) ::: If someone eats the bear then they chase the cow.\n\nQuery:\nRed(Rabbit, False) ::: The rabbit is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

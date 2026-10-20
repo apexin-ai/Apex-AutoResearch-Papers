@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-661_Q24",
+    "problem": "The bald eagle chases the tiger. The bald eagle visits the dog. The bear is not kind. The bear needs the bald eagle. The bear needs the tiger. The dog chases the bald eagle. The dog chases the bear. The dog is not cold. The dog needs the bear. The tiger is kind. The tiger is not young. If someone visits the bald eagle then the bald eagle chases the tiger. If someone visits the tiger then the tiger does not need the dog. If the dog chases the bear and the dog is round then the bear visits the dog. If someone chases the tiger and they chase the bald eagle then the bald eagle needs the dog. If someone needs the dog then the dog is round. If someone visits the dog then they chase the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is round.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nKind($x, bool) ::: Is x kind?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nVisits(BaldEagle, Dog, True) ::: The bald eagle visits the dog.\nKind(Bear, False) ::: The bear is not kind.\nNeeds(Bear, BaldEagle, True) ::: The bear needs the bald eagle.\nNeeds(Bear, Tiger, True) ::: The bear needs the tiger.\nChases(Dog, BaldEagle, True) ::: The dog chases the bald eagle.\nChases(Dog, Bear, True) ::: The dog chases the bear.\nCold(Dog, False) ::: The dog is not cold.\nNeeds(Dog, Bear, True) ::: The dog needs the bear.\nKind(Tiger, True) ::: The tiger is kind.\nYoung(Tiger, False) ::: The tiger is not young.\n\nRules:\nVisits($x, BaldEagle, True) >>> Chases(BaldEagle, Tiger, True) ::: If someone visits the bald eagle then the bald eagle chases the tiger.\nVisits($x, Tiger, True) >>> Needs(Tiger, Dog, False) ::: If someone visits the tiger then the tiger does not need the dog.\nChases(Dog, Bear, True) && Round(Dog, True) >>> Visits(Bear, Dog, True) ::: If the dog chases the bear and the dog is round then the bear visits the dog.\nChases($x, Tiger, True) && Chases($x, BaldEagle, True) >>> Needs(BaldEagle, Dog, True) ::: If someone chases the tiger and they chase the bald eagle then the bald eagle needs the dog.\nNeeds($x, Dog, True) >>> Round($x, True) ::: If someone needs the dog then the dog is round.\nVisits($x, Dog, True) >>> Chases($x, BaldEagle, True) ::: If someone visits the dog then they chase the bald eagle.\n\nQuery:\nRound(Tiger, True) ::: The tiger is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

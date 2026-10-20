@@ -1,0 +1,1239 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-637_Q19",
+    "problem": "The bald eagle eats the bear. The bald eagle is nice. The bald eagle visits the mouse. The bear eats the tiger. The bear is kind. The bear visits the tiger. The mouse eats the bear. The mouse is green. The mouse is kind. The mouse sees the bald eagle. The mouse sees the bear. The mouse sees the tiger. The tiger eats the mouse. The tiger sees the bald eagle. The tiger sees the bear. The tiger visits the mouse. If something is kind then it visits the bald eagle. If something eats the bear then the bear sees the bald eagle. If the bald eagle is round then the bald eagle eats the bear. If something eats the bald eagle and it sees the bear then the bald eagle is kind. If something sees the bald eagle then the bald eagle visits the mouse. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. If something is blue and it eats the tiger then the tiger eats the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is not green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nNice(BaldEagle, True) ::: The bald eagle is nice.\nVisits(BaldEagle, Mouse, True) ::: The bald eagle visits the mouse.\nEats(Bear, Tiger, True) ::: The bear eats the tiger.\nKind(Bear, True) ::: The bear is kind.\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nEats(Mouse, Bear, True) ::: The mouse eats the bear.\nGreen(Mouse, True) ::: The mouse is green.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSees(Mouse, Bear, True) ::: The mouse sees the bear.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\nSees(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\nSees(Tiger, Bear, True) ::: The tiger sees the bear.\nVisits(Tiger, Mouse, True) ::: The tiger visits the mouse.\n\nRules:\nKind($x, True) >>> Visits($x, BaldEagle, True) ::: If something is kind then it visits the bald eagle.\nEats($x, Bear, True) >>> Sees(Bear, BaldEagle, True) ::: If something eats the bear then the bear sees the bald eagle.\nRound(BaldEagle, True) >>> Eats(BaldEagle, Bear, True) ::: If the bald eagle is round then the bald eagle eats the bear.\nEats($x, BaldEagle, True) && Sees($x, Bear, True) >>> Kind(BaldEagle, True) ::: If something eats the bald eagle and it sees the bear then the bald eagle is kind.\nSees($x, BaldEagle, True) >>> Visits(BaldEagle, Mouse, True) ::: If something sees the bald eagle then the bald eagle visits the mouse.\nVisits($x, BaldEagle, True) && Visits(BaldEagle, Mouse, True) >>> Eats($x, BaldEagle, True) ::: If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\nBlue($x, True) && Eats($x, Tiger, True) >>> Eats(Tiger, Mouse, True) ::: If something is blue and it eats the tiger then the tiger eats the mouse.\n\nQuery:\nGreen(BaldEagle, False) ::: The bald eagle is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 105.0,
+      "Unknown": 175.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to examine the given information and the provided conditions.\n\n1. The statement \"The mouse is green\" is given, but it does not directly relate to the bald eagle.\n2. There is no information provided that directly states the color of the bald eagle.\n3. The condition \"If something is blue and it eats the tiger then the tiger eats the mouse\" does not directly relate to the color of the bald eagle.\n\nHowever, we can use the given conditions to deduce that the statement is true. \n\nWe are given the following conditions:\n- The bald eagle is nice.\n- If something eats the bear then the bear sees the bald eagle.\n- The mouse eats the bear.\n- The mouse sees the bald eagle.\n- If something sees the bald eagle then the bald eagle visits the mouse.\n- The bald eagle visits the mouse.\n\nFrom the conditions, we know that the mouse eats the bear, and the mouse sees the bald eagle. However, there is no information that the mouse is blue, and we do not have any information about the color of the bald eagle. \n\nThe final piece of information we need to examine is the statement \"The mouse is green.\" However, this information is about the color of the mouse, not the bald eagle. \n\nWe also have the statement \"The mouse is kind.\" However, we do not have any information that links the color of an object to its kindness or any other property.\n\nFrom the given conditions, we can conclude that the bald eagle is nice and visits the mouse. However, we cannot determine the color of the bald eagle from the given information.\n\nTherefore, the statement \"The bald eagle is not green\" cannot be determined to be true or false based on the given conditions. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. The bald eagle eats the bear. (This statement alone does not provide any information about the color of the bald eagle.)\n2. The bald eagle is nice. (This statement alone does not provide any information about the color of the bald eagle.)\n3. The bald eagle visits the mouse. (This statement alone does not provide any information about the color of the bald eagle.)\n4. If something is kind, then it visits the bald eagle. Since the bald eagle is nice, it visits the bald eagle, which means the statement \"The bald eagle is nice\" does not provide any information about the color of the bald eagle.\n5. The mouse eats the bear. (This statement alone does not provide any information about the color of the bald eagle.)\n6. The mouse is green. (This statement alone does not provide any information about the bald eagle.)\n7. The mouse is kind. (This statement alone does not provide any information about the bald eagle.)\n8. The mouse sees the bald eagle. (This statement alone does not provide any information about the color of the bald eagle.)\n9. The mouse sees the bear. (This statement alone does not provide any information about the color of the bald eagle.)\n10. The mouse sees the tiger. (This statement alone does not provide any information about the color of the bald eagle.)\n11. The tiger eats the mouse. (This statement alone does not provide any information about the color of the bald eagle.)\n12. The tiger sees the bald eagle. (This statement alone does not provide any information about the color of the bald eagle.)\n13. The tiger sees the bear. (This statement alone does not provide any information about the color of the bald eagle.)\n14. The tiger visits the mouse. (This statement alone does not provide any information about the color of the bald eagle.)\n15. If something is kind then it visits the bald eagle. (This statement alone does not provide any information about the color of the bald eagle.)\n16. If something eats the bear then the bear sees the bald eagle. (This statement alone does not provide any information about the color of the bald eagle.)\n17. If the bald eagle is round then the bald eagle eats the bear. (This statement alone does not provide any information about the color of the bald eagle.)\n18. If something eats the bald eagle and it sees the bear then the bald eagle is kind. (This statement alone does not provide any information about the color of the bald eagle.)\n19. If something sees the bald eagle then the bald eagle visits the mouse. (This statement alone does not provide any information about the color of the bald eagle.)\n20. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (This statement alone does not provide any information about the color of the bald eagle.)\n21. If something is blue and it eats the tiger then the tiger eats the mouse. (This statement alone does not provide any information about the color of the bald eagle.)\n\nNow, let's look for any statement that might be related to the color of the bald eagle. The only relevant statement is: \"The mouse is green.\" This statement does not provide any information about the bald eagle's color. However, we can look at the statement \"The mouse eats the bear\" which implies that the mouse sees the bear and the bear sees the bald eagle. This implies that the bald eagle is not eaten by the mouse, which implies that the bald eagle does not eat the bear. Since there is no statement that says the bald eagle is green and there is a statement that says the mouse is green, we can deduce that the bald eagle is not green.\n\nHowever, we are not done yet. We must make sure there are no other statements that might contradict this conclusion.\n\nAfter careful analysis, we can see that there is no other statement that might contradict the conclusion that the bald eagle is not green.\n\nTherefore, the statement \"The bald eagle is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and the conditions provided. We will start by listing the given statements and the conditions.\n\n**Given Statements:**\n\n1. The bald eagle eats the bear.\n2. The bald eagle is nice.\n3. The bald eagle visits the mouse.\n4. The bear eats the tiger.\n5. The bear is kind.\n6. The bear visits the tiger.\n7. The mouse eats the bear.\n8. The mouse is green.\n9. The mouse is kind.\n10. The mouse sees the bald eagle.\n11. The mouse sees the bear.\n12. The mouse sees the tiger.\n13. The tiger eats the mouse.\n14. The tiger sees the bald eagle.\n15. The tiger sees the bear.\n16. The tiger visits the mouse.\n\n**Conditions:**\n\n1. If something is kind then it visits the bald eagle.\n2. If something eats the bear then the bear sees the bald eagle.\n3. If the bald eagle is round then the bald eagle eats the bear.\n4. If something eats the bald eagle and it sees the bear then the bald eagle is kind.\n5. If something sees the bald eagle then the bald eagle visits the mouse.\n6. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\n7. If something is blue and it eats the tiger then the tiger eats the mouse.\n\n**Analysis:**\n\nFrom statement 8, we know that the mouse is green. We don't have any information about the bald eagle's color, so we can't directly conclude its color from this statement.\n\nHowever, from statement 2, we know that the bald eagle is nice. We can use condition 1 to conclude that since the bald eagle is nice (kind), it visits the bald eagle. But this is not a conclusion we can make because the bald eagle visits the mouse, not the other way around.\n\nFrom statement 10, we know that the mouse sees the bald eagle. We can use condition 5 to conclude that since the mouse sees the bald eagle, the bald eagle visits the mouse, which is true from statement 3.\n\nNow, we need to consider the possibilities for the bald eagle's color. If the bald eagle is green, then statement 8 would be a self-contradiction (the mouse is green), which would make the statement false.\n\nIf the bald eagle is not green, then there are two possibilities: it can be blue or any other color. However, we don't have any information about the bald eagle's color, so we can't conclude that it is not green.\n\nBut wait, we are given the statement \"The bald eagle is not green.\" We need to determine whether this statement is true, false, or unknown.\n\nSince we don't have any information about the bald eagle's color, we can't conclude that it is not green. Therefore, the statement \"The bald eagle is not green\" is unknown.\n\nSo, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. (Given)\n2. The mouse sees the bald eagle. (Given)\n3. If something sees the bald eagle then the bald eagle visits the mouse. (Rule 7)\n   - Therefore, the bald eagle visits the mouse. (Inferred)\n4. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (Rule 8)\n   - This rule doesn't apply to the mouse, as it sees the bald eagle but doesn't visit it. The statement only says it visits the mouse, not the bald eagle.\n5. We cannot find any direct or indirect information that suggests the bald eagle is green.\n\nSince we do not have any information that directly or indirectly states the bald eagle is green, we cannot confirm whether the statement \"The bald eagle is not green\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The mouse is green\" is given.\n   However, there is no direct information about the bald eagle's color.\n\n2. Since the mouse is green and the statement \"If something sees the bald eagle then the bald eagle visits the mouse\" is given, it can be inferred that the mouse sees the bald eagle. However, this does not provide any information about the bald eagle's color.\n\n3. Since the mouse sees the bald eagle and the statement \"The mouse sees the bald eagle\" is given, it can be inferred that the bald eagle visits the mouse, which is already given in the problem statement.\n\n4. There is no information that directly links the bald eagle's color to its behavior or any other characteristics.\n\nSince we do not have any information about the bald eagle's color, we cannot determine whether the statement \"The bald eagle is not green\" is true or false.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the bear. (Given information)\n2. The bald eagle is nice. (Given information)\n3. The bald eagle visits the mouse. (Given information)\n4. The bear eats the tiger. (Given information)\n5. The bear is kind. (Given information)\n6. The bear visits the tiger. (Given information)\n7. The mouse eats the bear. (Given information)\n8. The mouse is green. (Given information)\n9. The mouse is kind. (Given information)\n10. The mouse sees the bald eagle. (Given information)\n11. The mouse sees the bear. (Given information)\n12. The mouse sees the tiger. (Given information)\n13. The tiger eats the mouse. (Given information)\n14. The tiger sees the bald eagle. (Given information)\n15. The tiger sees the bear. (Given information)\n16. The tiger visits the mouse. (Given information)\n\nNow, let's analyze the conditions:\n\n1. If something is kind then it visits the bald eagle. (Condition)\n   - The bear is kind (given information) and visits the bald eagle (given information). \n   - The mouse is kind (given information) and visits the bald eagle (given information).\n   - The tiger visits the bald eagle (given information). However, it does not explicitly state that the tiger is kind.\n\n2. If something eats the bear then the bear sees the bald eagle. (Condition)\n   - The mouse eats the bear (given information) and the bear sees the bald eagle (given information).\n\n3. If the bald eagle is round then the bald eagle eats the bear. (Condition)\n   - We don't have any information about the bald eagle being round.\n\n4. If something eats the bald eagle and it sees the bear then the bald eagle is kind. (Condition)\n   - We don't have any information about something eating the bald eagle.\n\n5. If something sees the bald eagle then the bald eagle visits the mouse. (Condition)\n   - The mouse sees the bald eagle (given information) and the bald eagle visits the mouse (given information).\n\n6. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (Condition)\n   - We don't have any information about something visiting the bald eagle.\n\n7. If something is blue and it eats the tiger then the tiger eats the mouse. (Condition)\n   - We don't have any information about something being blue.\n\nNow, we need to analyze the statement \"The bald eagle is not green.\"\n\n- We have information that the mouse is green (given information).\n- We don't have any information about the bald eagle's color.\n\nHowever, we can derive information from the conditions:\n\n- Condition 1: The bear and the mouse are kind, and both visit the bald eagle. However, the mouse is green, not the bald eagle.\n- Condition 2: The mouse eats the bear, and the bear sees the bald eagle. This does not provide any information about the bald eagle's color.\n\nSince we don't have any information about the bald eagle's color, we cannot determine whether the statement \"The bald eagle is not green\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not green\" is true, false, or unknown, we need to find information about the color of the bald eagle.\n\n1. The statement \"The mouse is green.\" is given. \n   However, we cannot conclude anything about the color of the bald eagle from this statement.\n\n2. There is no direct information about the color of the bald eagle in the given statements. \n   We have to find indirect information.\n\n3. The statement \"If the bald eagle eats the bear then the bear sees the bald eagle.\" does not provide any information about the color of the bald eagle.\n\n4. The statement \"If the bald eagle is round then the bald eagle eats the bear.\" does not provide any information about the color of the bald eagle.\n\n5. The statement \"If something eats the bald eagle and it sees the bear then the bald eagle is kind.\" does not provide any information about the color of the bald eagle.\n\n6. The statement \"If something sees the bald eagle then the bald eagle visits the mouse.\" does not provide any information about the color of the bald eagle.\n\n7. The statement \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" does not provide any information about the color of the bald eagle.\n\n8. There is a statement \"The mouse is green.\" and another statement \"If something is green then it visits the bald eagle.\" However, we don't know if the mouse visits the bald eagle or not. If the mouse visits the bald eagle then we cannot conclude that the bald eagle is green.\n\n9. However, we have another statement \"If something eats the bear then the bear sees the bald eagle.\" and \"The mouse eats the bear.\" So the bear sees the bald eagle. \n\n10. There is no statement that says \"The bear sees the bald eagle\" and \"The bald eagle is green.\" However, there is a statement \"The mouse sees the bald eagle\" and the statement \"The mouse is green.\" This gives us a clue that maybe the mouse and the bald eagle have something in common.\n\n11. Since we can't conclude that the mouse visits the bald eagle, we can't conclude that the mouse and the bald eagle have something in common.\n\n12. However, we have another statement \"The mouse sees the bald eagle\" and \"The mouse is green.\" But there is a statement \"The bear eats the tiger\" and \"The bear is kind.\" So the bear eats the tiger. But we also have a statement \"If something is kind then it visits the bald eagle.\" So the bear visits the bald eagle.\n\n13. We have a statement \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" But we don't know if the bear eats the bald eagle or not. If the bear eats the bald eagle then the bald eagle is not green. But we don't know if the bear eats the bald eagle or not.\n\n14. However, we have a statement \"If something eats the bald eagle and it sees the bear then the bald eagle is kind.\" and \"The mouse eats the bear.\" So the mouse sees the bear and the bald eagle, and the bald eagle is kind. \n\n15. Since we know that the bald eagle is kind, we can conclude that the bear visits the bald eagle.\n\n16. We have a statement \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" and \"The bear visits the bald eagle.\" So the bald eagle visits the mouse. \n\n17. We have a statement \"If something eats the bear then the bear sees the bald eagle.\" and \"The mouse eats the bear.\" So the bear sees the bald eagle.\n\n18. We have a statement \"The mouse sees the bald eagle\" and \"The mouse is green.\" \n\n19. We have a statement \"If something sees the bald eagle then the bald eagle visits the mouse.\" and \"The mouse sees the bald eagle.\" So the bald eagle visits the mouse.\n\n20. We have a statement \"The bald eagle is kind.\" \n\n21. We have a statement \"The bear sees the bald eagle.\" \n\n22. We have a statement \"The bear visits the bald eagle.\" \n\n23. We have a statement \"The bald eagle visits the mouse.\" \n\n24. We have a statement \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" and \"The bear visits the bald eagle.\" and \"The bald eagle visits the mouse.\" So the bear eats the bald eagle.\n\n25. We have a statement \"If the bald eagle eats the bear then the bear sees the bald eagle.\" and \"The bear eats the bald eagle.\" So the bear sees the bald eagle.\n\n26. We have a statement \"The bald eagle is kind.\" and \"The bear sees the bald eagle.\" and \"The bear eats the bald eagle.\" \n\n27. Since we know that the bald eagle eats the bear, and the bear sees the bald eagle, we can conclude that the bald eagle is kind.\n\n28. Since we know that the bald eagle is kind, and the mouse eats the bear, we can conclude that the mouse sees the bald eagle.\n\n29. Since we know that the mouse sees the bald eagle, and the bald eagle visits the mouse, we can conclude that the bald eagle sees the mouse.\n\n30. Since we know that the bear sees the bald eagle, and the bald eagle sees the mouse, we can conclude that the bear sees the mouse.\n\n31. Since we know that the bear sees the mouse, and the mouse eats the bear, we can conclude that the bear is not green.\n\n32. We have a statement \"The mouse is green.\" \n\n33. Since we know that the bear eats the mouse, and the mouse is green, we can conclude that the bear does not eat green things.\n\n34. We have a statement \"The tiger eats the mouse.\" and \"The tiger sees the bear.\" and \"The bear eats the tiger.\" \n\n35. Since we know that the bear eats the tiger, and the tiger eats the mouse, we can conclude that the bear eats the mouse.\n\n36. Since we know that the bear eats the mouse, and the mouse is green, we can conclude that the bear eats green things.\n\n37. We have a statement \"The bear eats green things.\" and \"The bald eagle is not round.\" and \"The bald eagle eats the bear.\" However, we don't know if the bald eagle is green or not.\n\n38. We have a statement \"If something is blue and it eats the tiger then the tiger eats the mouse.\" and \"The bear is not blue.\" \n\n39. We have a statement \"The bear eats the tiger.\" and \"The tiger eats the mouse.\" \n\n40. Since we know that the bear eats the tiger, and the tiger eats the mouse, we can conclude that the bear eats the mouse.\n\n41. Since we know that the bear eats the mouse, and the mouse is green, we can conclude that the bear eats green things.\n\n42. We have a statement \"The bear eats green things.\" and \"The bear is kind.\" \n\n43. We have a statement \"If something is kind then it visits the bald eagle.\" and \"The bear is kind.\" So the bear visits the bald eagle.\n\n44. We have a statement \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" and \"The bear visits the bald eagle.\" and \"The bald eagle visits the mouse.\" So the bear eats the bald eagle.\n\n45. We have a statement \"The bald eagle eats the bear.\" and \"The bear eats the bald eagle.\" \n\n46. Since we know that the bald eagle eats the bear, and the bear eats the bald eagle, we can conclude that the bald eagle and the bear are not the same thing.\n\n47. We have a statement \"The bear is kind.\" and \"The bear eats the bald eagle.\" \n\n48. Since we know that the bear eats the bald eagle, and the bear is kind, we can conclude that the bear visits the bald eagle.\n\n49. We have a statement \"The bear visits the bald eagle.\" and \"The bald eagle is not round.\" \n\n50. Since we know that the bear visits the bald eagle, and the bald eagle is not round, we can conclude that the bear visits a non-round bald eagle.\n\n51. However, we have a statement \"If the bald eagle is round then the bald eagle eats the bear.\" and \"The bald eagle is not round.\" So the bald eagle does not eat the bear.\n\n52. Since we know that the bald eagle does not eat the bear, and the bear eats the bald eagle, we can conclude that the bald eagle is not green.\n\nTherefore, the statement \"The bald eagle is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules provided to determine the truth of the statement \"The bald eagle is not green.\"\n\nGiven statements:\n\n1. The bald eagle eats the bear.\n2. The bald eagle is nice.\n3. The bald eagle visits the mouse.\n4. The bear eats the tiger.\n5. The bear is kind.\n6. The bear visits the tiger.\n7. The mouse eats the bear.\n8. The mouse is green.\n9. The mouse is kind.\n10. The mouse sees the bald eagle.\n11. The mouse sees the bear.\n12. The mouse sees the tiger.\n13. The tiger eats the mouse.\n14. The tiger sees the bald eagle.\n15. The tiger sees the bear.\n16. The tiger visits the mouse.\n17. If something is kind then it visits the bald eagle.\n18. If something eats the bear then the bear sees the bald eagle.\n19. If the bald eagle is round then the bald eagle eats the bear.\n20. If something eats the bald eagle and it sees the bear then the bald eagle is kind.\n21. If something sees the bald eagle then the bald eagle visits the mouse.\n22. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\n23. If something is blue and it eats the tiger then the tiger eats the mouse.\n\nNow, let's break down the information given to determine the color of the bald eagle.\n\n- We know that the mouse is green (statement 8).\n- We don't know the color of the bald eagle from the statements directly.\n\nHowever, statement 18 says \"If something eats the bear then the bear sees the bald eagle.\" From this, we can't conclude the color of the bald eagle, but we can use statement 1: \"The bald eagle eats the bear.\" This matches the condition of statement 18, so we can conclude that the bear sees the bald eagle.\n\nStatement 2 says \"The bald eagle is nice.\" This doesn't give any information about the color of the bald eagle.\n\nWe have to continue this process to find the color of the bald eagle.\n\nFrom statement 21, \"If something sees the bald eagle then the bald eagle visits the mouse.\" The mouse sees the bald eagle (statement 10), so the bald eagle visits the mouse (statement 3).\n\nStatement 22 says \"If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\" The mouse visits the bald eagle (because the bald eagle visits the mouse), but this doesn't directly tell us the color of the bald eagle.\n\nSince we know the mouse is green (statement 8), we can use statement 22. However, we can't determine the color of the bald eagle from this information.\n\nWe have to continue this process to find the color of the bald eagle.\n\nWe know the mouse eats the bear (statement 7), so from statement 18, the bear sees the bald eagle.\n\nHowever, the bear sees the bald eagle (because the bear eats the bear, which the bald eagle eats, matching the condition of statement 18), so we can't conclude the color of the bald eagle.\n\nWe have to continue this process to find the color of the bald eagle.\n\nSince the bear is kind (statement 5), from statement 17, the bear visits the bald eagle. This doesn't tell us the color of the bald eagle.\n\nFrom statement 6, the bear visits the tiger. \n\nFrom statement 4, the bear eats the tiger. \n\nFrom statement 15, the tiger sees the bear.\n\nFrom statement 14, the tiger sees the bald eagle.\n\nHowever, the tiger doesn't eat the bald eagle (because there's no statement saying the tiger eats the bald eagle), so we can't use statement 20 to conclude the color of the bald eagle.\n\nSince the tiger sees the bald eagle (statement 14) and the tiger sees the bear (statement 15), we can't conclude the color of the bald eagle.\n\nWe have to continue this process to find the color of the bald eagle.\n\nFrom statement 13, the tiger eats the mouse. However, there's no statement saying the tiger is blue. Statement 23 says \"If something is blue and it eats the tiger then the tiger eats the mouse.\" This means that we can't conclude the color of the tiger or the bald eagle from this information.\n\nWe have to continue this process to find the color of the bald eagle.\n\nFrom statement 17, if something is kind, then it visits the bald eagle. The mouse is kind (statement 9), but we already know that the mouse visits the bald eagle (statement 3).\n\nThe only thing left to do is to try to find a statement that has the word \"green\" and \"bald eagle.\" \n\nStatement 8 says \"The mouse is green.\" However, this doesn't tell us the color of the bald eagle.\n\nFrom statement 10, the mouse sees the bald eagle. \n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse sees the bald eagle (statement 10), we can use statement 21, which says \"If something sees the bald eagle then the bald eagle visits the mouse.\" This matches the condition of statement 10, so we can conclude that the bald eagle visits the mouse (statement 3).\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nWe have to continue this process to find the color of the bald eagle.\n\nFrom statement 20, if something eats the bald eagle and it sees the bear, then the bald eagle is kind. However, we don't have any information about an animal eating the bald eagle and seeing the bear.\n\nHowever, there's no statement saying that the bald eagle eats an animal, which eats the bear and sees the bald eagle.\n\nHowever, there's a statement that says \"The bald eagle is nice\" (statement 2).\n\nThe statement says \"The mouse is green\" (statement 8), and we know that the mouse eats the bear (statement 7).\n\nThe statement says that if something eats the bear, then the bear sees the bald eagle (statement 18).\n\nSince the mouse eats the bear (statement 7), we can conclude that the bear sees the bald eagle.\n\nFrom statement 2, the bald eagle is nice. \n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse eats the bear (statement 7) and the mouse is green (statement 8), we can use statement 18, which says \"If something eats the bear then the bear sees the bald eagle.\" \n\nHowever, this doesn't tell us the color of the bald eagle.\n\nWe have to continue this process to find the color of the bald eagle.\n\nFrom statement 7, the mouse eats the bear. \n\nFrom statement 18, the bear sees the bald eagle.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nFrom statement 4, the bear eats the tiger.\n\nFrom statement 15, the tiger sees the bear.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse eats the bear (statement 7) and the mouse is green (statement 8), we can use statement 21, which says \"If something sees the bald eagle then the bald eagle visits the mouse.\" \n\nHowever, this doesn't tell us the color of the bald eagle.\n\nFrom statement 10, the mouse sees the bald eagle.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nHowever, there's a statement that says \"The mouse is green\" (statement 8).\n\nThe statement says \"The mouse is green\" (statement 8), and we know that the mouse eats the bear (statement 7).\n\nFrom statement 7, the mouse eats the bear.\n\nFrom statement 8, the mouse is green.\n\nFrom statement 7, the mouse eats the bear.\n\nFrom statement 18, if something eats the bear then the bear sees the bald eagle.\n\nSince the mouse eats the bear (statement 7), we can conclude that the bear sees the bald eagle.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse is green (statement 8) and the mouse eats the bear (statement 7), we can use statement 18, which says \"If something eats the bear then the bear sees the bald eagle.\"\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nHowever, there's a statement that says \"The mouse is green\" (statement 8).\n\nFrom statement 10, the mouse sees the bald eagle.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nFrom statement 10, the mouse sees the bald eagle.\n\nFrom statement 21, if something sees the bald eagle then the bald eagle visits the mouse.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse sees the bald eagle (statement 10), we can use statement 21, which says \"If something sees the bald eagle then the bald eagle visits the mouse.\" \n\nHowever, this doesn't tell us the color of the bald eagle.\n\nHowever, there's a statement that says \"The mouse is green\" (statement 8).\n\nFrom statement 8, the mouse is green.\n\nFrom statement 10, the mouse sees the bald eagle.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nFrom statement 10, the mouse sees the bald eagle.\n\nFrom statement 21, if something sees the bald eagle then the bald eagle visits the mouse.\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nSince the mouse is green (statement 8) and the mouse eats the bear (statement 7), we can use statement 18, which says \"If something eats the bear then the bear sees the bald eagle.\"\n\nHowever, this doesn't tell us the color of the bald eagle.\n\nHowever, there's a statement that says",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and their implications on the properties of the animals.\n\nGiven statements:\n1. The bald eagle eats the bear. (1)\n2. The bald eagle is nice. (2)\n3. The bald eagle visits the mouse. (3)\n4. The bear eats the tiger. (4)\n5. The bear is kind. (5)\n6. The bear visits the tiger. (6)\n7. The mouse eats the bear. (7)\n8. The mouse is green. (8)\n9. The mouse is kind. (9)\n10. The mouse sees the bald eagle. (10)\n11. The mouse sees the bear. (11)\n12. The mouse sees the tiger. (12)\n13. The tiger eats the mouse. (13)\n14. The tiger sees the bald eagle. (14)\n15. The tiger sees the bear. (15)\n16. The tiger visits the mouse. (16)\n17. If something is kind then it visits the bald eagle. (17)\n18. If something eats the bear then the bear sees the bald eagle. (18)\n19. If the bald eagle is round then the bald eagle eats the bear. (19)\n20. If something eats the bald eagle and it sees the bear then the bald eagle is kind. (20)\n21. If something sees the bald eagle then the bald eagle visits the mouse. (21)\n22. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (22)\n23. If something is blue and it eats the tiger then the tiger eats the mouse. (23)\n\nWe are asked to determine whether the following statement is true, false, or unknown:\nThe bald eagle is not green.\n\nFrom statement (8), we know that the mouse is green. \n\nFrom statement (7), we know that the mouse eats the bear. \nUsing statement (18), we know that since the mouse eats the bear, the bear sees the bald eagle.\n\nNow, let's consider the properties of the bear. From statement (5), we know that the bear is kind. \nUsing statement (17), we know that since the bear is kind, it visits the bald eagle. \n\nSince the bear visits the bald eagle and the bald eagle visits the mouse (from statement 3), \nusing statement (22), we know that the bear eats the bald eagle. \n\nHowever, from statement (1), we know that the bald eagle eats the bear. \nThis creates a contradiction with our previous conclusion that the bear eats the bald eagle.\n\nSince we have a contradiction, we can conclude that the statement \"The bear is kind\" is false. \n\nThis means that the statement \"If something is kind then it visits the bald eagle\" (statement 17) does not apply to the bear.\n\nHowever, there is no statement that directly implies the bald eagle is green or not green. The only information we have about the bald eagle is that it visits the mouse (statement 3), it eats the bear (statement 1), it is nice (statement 2), and there is a statement that if it eats the bear and sees it, then it is kind (statement 20). We also have a statement that if it sees the bear, it eats the bear (statement 19). However, this statement is conditional on the bald eagle being round, which is not mentioned anywhere else in the problem.\n\nTherefore, the given information is insufficient to determine whether the bald eagle is green or not. \n\nHence, our answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The bald eagle is not green,\" we need to analyze the given information and the rules.\n\n1. The bald eagle eats the bear. (Initial statement)\n2. The bald eagle is nice. (Initial statement)\n3. The bald eagle visits the mouse. (Initial statement)\n4. The bear eats the tiger. (Initial statement)\n5. The bear is kind. (Initial statement)\n6. The bear visits the tiger. (Initial statement)\n7. The mouse eats the bear. (Initial statement)\n8. The mouse is green. (Initial statement)\n9. The mouse is kind. (Initial statement)\n10. The mouse sees the bald eagle. (Initial statement)\n11. The mouse sees the bear. (Initial statement)\n12. The mouse sees the tiger. (Initial statement)\n13. The tiger eats the mouse. (Initial statement)\n14. The tiger sees the bald eagle. (Initial statement)\n15. The tiger sees the bear. (Initial statement)\n16. The tiger visits the mouse. (Initial statement)\n\nNow let's analyze the rules:\n1. If something is kind then it visits the bald eagle. (Rule 1)\n2. If something eats the bear then the bear sees the bald eagle. (Rule 2)\n3. If the bald eagle is round then the bald eagle eats the bear. (Rule 3)\n4. If something eats the bald eagle and it sees the bear then the bald eagle is kind. (Rule 4)\n5. If something sees the bald eagle then the bald eagle visits the mouse. (Rule 5)\n6. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (Rule 6)\n7. If something is blue and it eats the tiger then the tiger eats the mouse. (Rule 7)\n\nNow let's analyze the given statements and rules to find any information about the bald eagle being green.\n\nFrom the initial statements, we can see that the mouse is green (Statement 8). However, there is no information about the bald eagle's color.\n\nFrom the rules, we can see that there is no rule that directly mentions the color of the bald eagle.\n\nHowever, there is a rule that mentions \"something\" is green, and that \"something\" eats the bear (Rule 6 doesn't apply here), but Rule 2 says \"If something eats the bear then the bear sees the bald eagle.\" ( Rule 2), and since the mouse eats the bear, we can conclude that the bear sees the bald eagle. Now let's see if this information is useful.\n\nSince the mouse is green (Statement 8), the mouse eats the bear (Statement 7), and the bear sees the bald eagle (Rule 2), we can't conclude anything about the color of the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse is green (Statement 8) and the mouse eats the bear (Statement 7), the mouse is one of the \"something\" in Rule 2. Since the mouse eats the bear, the bear sees the bald eagle (Rule 2). The statement that says \"If something eats the bear then the bear sees the bald eagle\" implies that the bear sees the bald eagle because it ate the bear, but there is no information about the bear eating the bald eagle.\n\nHowever, let's analyze the information in another way. Since the bear sees the bald eagle (Rule 2), and the bald eagle visits the mouse (Statement 3), the mouse sees the bald eagle (Statement 10). Since the mouse sees the bald eagle, the bald eagle visits the mouse (Rule 5). Now let's see if this information is useful.\n\nSince the mouse sees the bald eagle (Statement 10) and the bald eagle visits the mouse (Statement 3), the mouse is one of the \"something\" in Rule 5. Since the mouse sees the bald eagle, the bald eagle visits the mouse (Rule 5). This information is useful because it implies that the mouse sees the bald eagle, and the bald eagle visits the mouse, which means that the mouse sees the bald eagle and the bald eagle visits the mouse, which means that the mouse is one of the \"something\" in Rule 6.\n\nHowever, let's analyze the information in another way. Since the mouse sees the bald eagle (Statement 10) and the mouse eats the bear (Statement 7), the mouse eats the bear and the mouse sees the bald eagle, which means that the mouse is one of the \"something\" in Rule 6. Since the mouse eats the bear and the mouse sees the bald eagle, the mouse is one of the \"something\" in Rule 6, and since the mouse eats the bear and the mouse sees the bald eagle, the mouse is one of the \"something\" in Rule 6. Since the mouse eats the bear and the mouse sees the bald eagle, the mouse is one of the \"something\" in Rule 6, which means that the mouse eats the bald eagle (Rule 6).\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse sees the bald eagle (Statement 10), we can conclude that the mouse sees the bald eagle and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse sees the bear (Statement 11), we can conclude that the mouse sees the bear and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse sees the tiger (Statement 12), we can conclude that the mouse sees the tiger and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is kind (Statement 9), we can conclude that the mouse is kind and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse visits the tiger (There is no information about the mouse visiting the tiger), we can't conclude anything about the mouse visiting the tiger.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger sees the mouse (Statement 13), we can conclude that the tiger sees the mouse and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger sees the bear (Statement 15), we can conclude that the tiger sees the bear and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger sees the bald eagle (Statement 14), we can conclude that the tiger sees the bald eagle and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger visits the mouse (Statement 16), we can conclude that the tiger visits the mouse and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger eats the mouse (Statement 13), we can conclude that the tiger eats the mouse and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger eats the mouse (Statement 13), we can conclude that the mouse eats the bald eagle and the tiger eats the mouse.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the tiger eats the mouse (Statement 13), we can conclude that the mouse is one of the \"something\" in Rule 7, which means that the mouse is blue and the tiger eats the mouse.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nNow let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green and the mouse eats the bald eagle.\n\nHowever, let's analyze the information in another way. Since the mouse eats the bald eagle (Rule 6), and the mouse is green (Statement 8), we can conclude that the mouse is green",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to find a chain of reasoning that leads to the conclusion about the bald eagle's color. We will break down the given information and the statements into smaller parts.\n\n1. The bald eagle eats the bear. \n2. The bald eagle is nice. \n3. The bald eagle visits the mouse. \n4. The bear eats the tiger. \n5. The bear is kind. \n6. The bear visits the tiger. \n7. The mouse eats the bear. \n8. The mouse is green. \n9. The mouse is kind. \n10. The mouse sees the bald eagle. \n11. The mouse sees the bear. \n12. The mouse sees the tiger. \n13. The tiger eats the mouse. \n14. The tiger sees the bald eagle. \n15. The tiger sees the bear. \n16. The tiger visits the mouse. \n\nNow, let's analyze the given conditions:\n\n1. If something is kind then it visits the bald eagle. (Condition 2, statement 3)\n2. If something eats the bear then the bear sees the bald eagle. (No direct relation, so ignore)\n3. If the bald eagle is round then the bald eagle eats the bear. (No information about the bald eagle's shape, so ignore)\n4. If something eats the bald eagle and it sees the bear then the bald eagle is kind. (No direct relation, so ignore)\n5. If something sees the bald eagle then the bald eagle visits the mouse. (Statement 3, but there's no direct relation to the color)\n6. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. (No direct relation to the color)\n7. If something is blue and it eats the tiger then the tiger eats the mouse. (No direct relation to the bald eagle's color)\n\nNow let's find a chain of reasoning that leads to the conclusion:\n\n* There's no information that directly states the bald eagle's color. \n* The statement \"The mouse is green\" (Statement 8) does not imply anything about the bald eagle.\n* The statement \"The mouse eats the bear\" (Statement 7) does not imply anything about the bald eagle.\n\nWe cannot find any information that directly or indirectly states that the bald eagle is green. We can only determine that the mouse is green.\n\nTherefore, the statement \"The bald eagle is not green\" is unknown because we don't have enough information to determine the bald eagle's color.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve the problem, we need to find out if the statement \"The bald eagle is not green\" is true, false, or unknown based on the given information.\n\nFrom the given statements, we have the following relevant information:\n\n- The mouse is green.\n- The mouse sees the bald eagle.\n- If something sees the bald eagle then the bald eagle visits the mouse.\n- If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\n\nHowever, there is no direct information about the bald eagle's color. \n\nBut we can use the information that \"If something is kind then it visits the bald eagle.\" \nThe mouse is kind and the mouse is green, but we cannot directly determine the bald eagle's color from this information.\n\nHowever, we can see that the mouse is green but there is no information about the bald eagle's color. We can't use the information \"The mouse sees the bald eagle\" and \"If something sees the bald eagle then the bald eagle visits the mouse\" to determine the bald eagle's color.\n\nThe statement \"The bald eagle is not green\" is true if the bald eagle is not green, but it is unknown because we cannot determine the bald eagle's color.\n\nSo, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_bald_eagle, sees_bear_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_X, visits_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, bald_eagle)",
+          "z3_formula": "visits_bald_eagle_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_X, visits_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, sees_bear_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, sees_X_bear), kind_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(sees_X_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, visits_bald_eagle_mouse), eats_X_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_X, eats_X_tiger), eats_tiger_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "Not(green_bald_eagle) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bald_eagle, visits_bald_eagle_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_tiger, sees_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> eats(bald_eagle, bear)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(bald_eagle)",
+          "z3_formula": "Implies(And(eats_bald_eagle_bear, sees_tiger_bear), kind_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_bald_eagle, visits_bald_eagle_mouse), eats_tiger_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_bald_eagle, eats_bald_eagle_tiger), eats_tiger_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "Not(green_bald_eagle) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, Y) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, visits_bald_eagle_Y), eats_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == False",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(sees_mouse_eagle, visits_eagle_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, eagle)",
+          "z3_formula": "sees_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not green(eagle)",
+          "z3_formula": "Not(green_eagle) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, bald_eagle) -> not green(bald_eagle)",
+          "z3_formula": "Implies(And(kind_bear, visits_bear_bald_eagle), Not(green_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_mouse_bear, sees_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> eats(bald_eagle, bear)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, sees_X_bear), kind_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, visits_bald_eagle_mouse), eats_X_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_X, eats_X_tiger), eats_tiger_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "Not(green_bald_eagle) == Unknown",
+          "source_step": 24
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_tiger, sees_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> eats(bald_eagle, bear)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(bald_eagle)",
+          "z3_formula": "Implies(And(eats_tiger_bald_eagle, sees_tiger_bear), kind_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_bald_eagle, visits_bald_eagle_tiger), eats_tiger_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_tiger, eats_tiger_mouse), eats_tiger_mouse)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, eagle)",
+          "z3_formula": "sees_bear_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & visits(eagle, Y) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(visits_bear_eagle, visits_eagle_mouse), eats_bear_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(eagle, bear)",
+          "z3_formula": "eats_eagle_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> sees(eagle, X)",
+          "z3_formula": "Implies(eats_eagle_bear, sees_eagle_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & sees(eagle, X) -> kind(eagle)",
+          "z3_formula": "Implies(And(eats_eagle_bear, sees_eagle_bear), kind_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> sees(X, eagle)",
+          "z3_formula": "Implies(eats_eagle_bear, sees_bear_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> eats(X, eagle)",
+          "z3_formula": "Implies(visits_bear_eagle, eats_bear_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & visits(eagle, Y) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(visits_bear_eagle, visits_eagle_mouse), eats_bear_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(eagle) -> eats(eagle, bear)",
+          "z3_formula": "Implies(round_eagle, eats_eagle_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & sees(X, eagle) -> kind(eagle)",
+          "z3_formula": "Implies(And(eats_X_eagle, sees_X_eagle), kind_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> sees(X, eagle)",
+          "z3_formula": "Implies(eats_X_eagle, sees_X_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_X, eats_X_tiger), eats_tiger_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not green(eagle)",
+          "z3_formula": "Not(green_eagle)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_tiger, sees_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> eats(bald_eagle, bear)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(bald_eagle)",
+          "z3_formula": "Implies(And(eats_bald_eagle_tiger, sees_tiger_bear), kind_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_bald_eagle, visits_bald_eagle_mouse), eats_tiger_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_mouse, eats_mouse_tiger), eats_tiger_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == False",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_bald_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_tiger, sees_bear_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, bear)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bear) -> kind(X)",
+          "z3_formula": "Implies(And(eats_tiger_bald_eagle, sees_tiger_bear), kind_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(X, mouse)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, visits_mouse_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(X, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_bald_eagle, visits_tiger_mouse), eats_tiger_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(blue_bald_eagle, eats_bald_eagle_tiger), eats_tiger_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "Not(green_bald_eagle) == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, eagle)",
+          "z3_formula": "sees_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> visits(eagle, X)",
+          "z3_formula": "Implies(sees_mouse_eagle, visits_eagle_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & visits(eagle, Y) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(visits_eagle_mouse, visits_eagle_mouse), eats_mouse_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(eagle)",
+          "z3_formula": "Not(green_eagle) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 185,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 65,
+      "excluded": 0,
+      "total_weight": 185,
+      "solve_time_ms": 1.4494191855192184
+    },
+    "timing": {
+      "trace_gen_s": 24.972,
+      "extraction_s": 45.029,
+      "dedup_s": 2.196,
+      "maxsat_s": 0.005,
+      "total_s": 72.202
+    }
+  }
+}

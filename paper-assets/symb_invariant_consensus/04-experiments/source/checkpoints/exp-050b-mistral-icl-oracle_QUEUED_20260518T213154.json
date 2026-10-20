@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-050b-mistral-icl-oracle",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:31:50.554Z",
+    "updated_at": "2026-05-18T21:31:54.641Z",
+    "hypothesis": "Mistral-7B ICL Oracle FOLIO-199 (v2, max_model_len=16384): 修复 exp-050 context overflow (8192 不够 ICL prompt 4100 + max_tokens 4096)。用 16384 context 重跑。parent=exp-050"
+  },
+  "timestamp": "2026-05-18T21:31:54.796966+00:00",
+  "trigger": "update_registry"
+}

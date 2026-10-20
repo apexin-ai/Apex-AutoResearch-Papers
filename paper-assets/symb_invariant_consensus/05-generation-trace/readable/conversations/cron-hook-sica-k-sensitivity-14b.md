@@ -1,0 +1,573 @@
+# cron hook sica k sensitivity 14b
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/cron_hook_sica_k_sensitivity_14b.jsonl`
+- **Structured JSON:** [`1ac1c92a3ea41132cd4c.json`](../../sessions/1a/1ac1c92a3ea41132cd4c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+20 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T02:10:07.212483+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: sica_k_sensitivity_14b
+- project: symb_invariant_consensus
+- server: westd-32608
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T02:10:19.820645+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T02:10:19.821397+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T02:10:23.838552+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T02:10:24.192165+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T02:10:24.193415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T05:12:03.025Z\", \"updated_at\": \"2026-05-17T02:10:05.719Z\", \"hypothesis\": \"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"failed\"}, \"exp-010-mistral\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-17T01:04:36.900Z\", \"updated_at\": \"2026-05-17T01:04:43.205Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化\", \"parent\": \"sica_expanded_14b\", \"notes\": \"模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。\"}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:01:51.841Z\", \"updated_at\": \"2026-05-17T01:02:16.162Z\", \"hypothesis\": \"加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}, \"notes\": \"exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data).\"}, \"exp-011-llama8b\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-17T01:00:32.450Z\", \"updated_at\": \"2026-05-17T01:00:39.116Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Ins
+…[truncated 13405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 354
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T02:10:24.545381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T02:10:24.545822+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T02:10:24.546095+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T02:10:24.597372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-17T02:10:06Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 20 个实验 — DONE 17, PREPARING 1, QUEUED 2\\n**DONE 分布**: failed 2, killed 6, negative 2, success 7\\n\\n### GPU 占用\\n- **分配**: 1 张 — westd-32608:cuda:0\\n- **空闲（分配了没跑）**: westd-32608:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-32608**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `sica_k_sensitivity_14b` [failed] — 2026-05-17T02:10:05 — EXIT_CODE=129 (non-zero)\\n- `exp-016-weighted-sc` [success] — 2026-05-17T01:02:16\\n- `exp-005` [negative] — 2026-05-16T20:53:22\\n- `sica_constraint_ablation_013` [success] — 2026-05-16T20:27:11\\n- `sica_expanded_14b` [success] — 2026-05-16T19:20:52 — EXIT_CODE=129 (non-zero)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `sica_k_sensitivity_14b`: EXIT_CODE=129 (non-zero)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-010-mistral: Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（排队等待 GPU）\\n- exp-011-llama8b: Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（排队等待 GPU）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **sica_k_sensitivity_14b** (failed): K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效 ← 基于 sica_expanded_14b\\n- **exp-016-weighted-sc** (success): 加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC ← 基于 sica_expanded_14b\\n- **exp-005** (negative): QwQ-32B 作为 reasoning mode
+…[truncated 1236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T02:10:24.598015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-16 19:22 UTC | 更新原因: exp-001 完成，更新进展和近期任务\\n\\n## 核心方向\\nCapability Trap Analysis Paper：系统揭示为什么 symbolic consensus (SICA) 不能 beat voting (SC)——即使 extraction rate 高、diversity 存在，constraint quality 受 LLM capability 限制导致 aggregation 无贡献。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D025 Analysis Paper Pivot) + 审稿进行中\\n- **exp-001 完成** (2026-05-16): SICA 76.49% vs SC 76.24% = +0.25pp (n=804, n.s.)\\n  - FOLIO: 0.00pp (n=204) — sub-claim dead\\n  - ProofWriter D5: +0.33pp (n=600) — not significant\\n- **D025 pivot 数据锚定**: headline = \\\"+0.25pp on 804 questions, not significant\\\"\\n- **Plan 覆盖**: 19 实验，1 done (exp-001)，18 planned\\n- **Claim 状态**: C1(mechanism vacuous) 需 exp-013; C2(operating regime) 需 cross-family; C3(C0 predictor) 需 multi-model data\\n\\n## 近期任务\\n- [x] exp-001 完成，registry 修正 conclusion→success\\n- [ ] exp-002 K-ablation (K=6,8,11,12,16,20, 60题, ~6h GPU) — 启动中\\n- [ ] exp-013 constraint ablation (CPU, MaxSAT vs count-only) — 数据准备中\\n- [ ] Mistral-7B HF 下载 (DDL May 17 12:00 UTC, 3次ModelScope失败)\\n- [ ] exp-010/011 cross-family (Mistral/LLaMA) — 等模型就绪\\n- [ ] exp-017 StrategyQA + exp-018 ARC-Challenge — 等 exp-002 完成后\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-002 启动中 (~6h)\\n- 排队: exp-010 (1.5h) → exp-011 (1.5h) → exp-017 (1.5h) → exp-018 (1.5h)\\n- 累计已用: ~14h (exp-001)\\n- 预估剩余: ~18h GPU for all remaining experiments\\n\\n## 阻塞项\\n- Mistral-7B 下载损坏 (3次81.3%截断) → 尝试 HF 直下，DDL May 17 12:00 UTC\\n- ~~Agent session 停滞~~ → 已恢复\\n- ~~FOLIO sub-claim~~ → dead (0.00pp)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D028 | 2026-05-17 | exp-002 中期：K=11 gap=0 确认 tiebreak-only；D012 vs K-a | exp-002, exp-001 |\\n| D027 | 2026-05-16 | exp-013 确认
+…[truncated 946 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T02:10:35.564123+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'exp_id': 'sica_k_sensitivity_14b'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'exp_id': 'sica_k_sensitivity_14b'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T02:10:36.568148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0553}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T02:10:36.769503+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T02:10:36.820136+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T02:10:50.362581+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['*']",
+  "limit": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['*']",
+    "limit": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T02:10:50.514295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:12:03.025Z\", \"updated_at\": \"2026-05-17T02:10:05.719Z\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_k_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"237939\", \"log_path\": \"~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log\", \"submitted_at\": \"2026-05-16T20:00:54Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"k_values\": [6, 8, 11, 12, 16, 20], \"eta_hours\": 5.9, \"checkpoint_source\": \"Qwen2.5-14B-Instruct (base, no fine-tuning)\", \"eval_data\": \"D012 60 problems (PW30+FOLIO30)\", \"wall_clock_seconds\": 22151.7, \"gpu_hours\": 6.15}, \"hypothesis\": \"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\", \"parent\": \"sica_expanded_14b\", \"reproduce\": {\"finished_at\": \"2026-05-17T02:10:05.417Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T02:10:05.719Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T02:10:07.161307+00:00\"}]}}}, \"count\": 1, \"total\": 17, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1193}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T02:11:17.981284+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:sica_k_sensitivity_14b",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：诊断 sica_k_sensitivity_14b 实验失败原因\n\n### 背景\n实验 `sica_k_sensitivity_14b` 在 westd-32608 上运行了约 6.15 小时（预估 5.9h），以 EXIT_CODE=129 (SIGHUP) 退出。Cron 系统因无有效 W&B metrics 标记为 failed。\n\n但前序实验 `sica_expanded_14b` 也是 EXIT_CODE=129 但实际已完成（日志末尾有 \"FULL_MVP_DONE\"）。所以本次很可能也是完成后收到 SIGHUP 假信号。\n\n### 你要做什么\n\n1. SSH 到 westd-32608，读取日志尾部：\n   ```\n   tail -200 ~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log\n   ```\n   看是否有完成标志（如 \"DONE\"、\"ALL K VALUES COMPLETE\" 之类）\n\n2. 检查结果文件是否存在：\n   ```\n   ls -la /root/symb_invariant_consensus/results/k_ablation*/\n   ls -la /root/symb_invariant_consensus/results/*k_sensitivity*\n   find /root/symb_invariant_consensus/results/ -name \"*k_*\" -o -name \"*ablation*\" | head -30\n   ```\n\n3. 如果有结果 JSON，读取关键 metrics（每个 K 值的 SICA accuracy 和 SC accuracy）\n\n4. 检查脚本内容了解输出结构：\n   ```\n   cat /root/symb_invariant_consensus/scripts/run_k_ablation.sh\n   ```\n\n### 产出\n写一份简短诊断报告，包含：\n- 实验是否实际完成（日志证据）\n- 各 K 值的 metrics（如有）\n- 是否只是 SIGHUP 假失败（同 sica_expanded_14b）\n- 建议：应该把 conclusion 改为 success/negative 还是确实 failed\n\n用 `save_project_file` 保存诊断报告到 `memory.md` 末尾追加（或单独保存到一个临时文件）。如果有结果数据，用 `register_artifact` 注册。",
+  "tool_groups": "['ssh', 'registry', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:sica_k_sensitivity_14b",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：诊断 sica_k_sensitivity_14b 实验失败原因\n\n### 背景\n实验 `sica_k_sensitivity_14b` 在 westd-32608 上运行了约 6.15 小时（预估 5.9h），以 EXIT_CODE=129 (SIGHUP) 退出。Cron 系统因无有效 W&B metrics 标记为 failed。\n\n但前序实验 `sica_expanded_14b` 也是 EXIT_CODE=129 但实际已完成（日志末尾有 \"FULL_MVP_DONE\"）。所以本次很可能也是完成后收到 SIGHUP 假信号。\n\n### 你要做什么\n\n1. SSH 到 westd-32608，读取日志尾部：\n   ```\n   tail -200 ~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log\n   ```\n   看是否有完成标志（如 \"DONE\"、\"ALL K VALUES COMPLETE\" 之类）\n\n2. 检查结果文件是否存在：\n   ```\n   ls -la /root/symb_invariant_consensus/results/k_ablation*/\n   ls -la /root/symb_invariant_consensus/results/*k_sensitivity*\n   find /root/symb_invariant_consensus/results/ -name \"*k_*\" -o -name \"*ablation*\" | head -30\n   ```\n\n3. 如果有结果 JSON，读取关键 metrics（每个 K 值的 SICA accuracy 和 SC accuracy）\n\n4. 检查脚本内容了解输出结构：\n   ```\n   cat /root/symb_invariant_consensus/scripts/run_k_ablation.sh\n   ```\n\n### 产出\n写一份简短诊断报告，包含：\n- 实验是否实际完成（日志证据）\n- 各 K 值的 metrics（如有）\n- 是否只是 SIGHUP 假失败（同 sica_expanded_14b）\n- 建议：应该把 conclusion 改为 success/negative 还是确实 failed\n\n用 `save_project_file` 保存诊断报告到 `memory.md` 末尾追加（或单独保存到一个临时文件）。如果有结果数据，用 `register_artifact` 注册。",
+    "tool_groups": "['ssh', 'registry', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T02:11:20.798077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_sica_k_sensitivity_14b_20260517T021118\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_diagnose_sica_k_sensitivity_14b_20260517T021118.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_sica_k_sensitivity_14b_20260517T021118 started. Use get_worker_status('worker_diagnose_sica_k_sensitivity_14b_20260517T021118') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sica_k_sensitivity_14b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2816
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T02:11:37.305675+00:00_
+
+已派 Worker 诊断。实验运行时长与预估吻合（6.15h vs 5.9h ETA），且前序实验 `sica_expanded_14b` 有相同 EXIT_CODE=129 但实际已完成的先例。等 Worker 回调后更新 registry 并处理后续（GPU 当前空闲，exp-011-llama8b 在排队等启动）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sica_k_sensitivity_14b"
+}
+```
+
+</details>
+
+---

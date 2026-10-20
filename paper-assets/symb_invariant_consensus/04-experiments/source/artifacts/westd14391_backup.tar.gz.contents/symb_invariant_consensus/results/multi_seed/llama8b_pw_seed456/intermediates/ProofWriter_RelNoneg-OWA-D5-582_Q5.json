@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-582_Q5",
+    "problem": "The dog chases the squirrel. The lion chases the rabbit. The lion needs the dog. The lion visits the dog. The lion visits the rabbit. The rabbit is cold. The squirrel visits the dog. If something is rough and it chases the rabbit then the rabbit is rough. If something chases the squirrel then it visits the dog. If something chases the lion then it is rough. If something is green then it needs the dog. If something is green then it needs the lion. If something visits the dog then it is green. If something needs the lion then it chases the lion. All cold things are green. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nChases(Lion, Rabbit, True) ::: The lion chases the rabbit.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nVisits(Lion, Dog, True) ::: The lion visits the dog.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nCold(Rabbit, True) ::: The rabbit is cold.\nVisits(Squirrel, Dog, True) ::: The squirrel visits the dog.\n\nRules:\nRough($x, True) && Chases($x, Rabbit, True) >>> Rough(Rabbit, True) ::: If something is rough and it chases the rabbit then the rabbit is rough.\nChases($x, Squirrel, True) >>> Visits($x, Dog, True) ::: If something chases the squirrel then it visits the dog.\nChases($x, Lion, True) >>> Rough($x, True) ::: If something chases the lion then it is rough.\nGreen($x, True) >>> Needs($x, Dog, True) ::: If something is green then it needs the dog.\nGreen($x, True) >>> Needs($x, Lion, True) ::: If something is green then it needs the lion.\nVisits($x, Dog, True) >>> Green($x, True) ::: If something visits the dog then it is green.\nNeeds($x, Lion, True) >>> Chases($x, Lion, True) ::: If something needs the lion then it chases the lion.\nCold($x, True) >>> Green($x, True) ::: All cold things are green.\nNeeds(Rabbit, Lion, True) && Cold(Lion, True) >>> Visits(Lion, Squirrel, True) ::: If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nQuery:\nGreen(Dog, True) ::: The dog is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

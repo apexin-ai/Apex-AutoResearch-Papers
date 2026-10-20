@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f6e930b0dde506171fd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix experiments tex multiseed consistency",
+  "task_key": "worker_fix_experiments-tex-multiseed-consistency_20260523T001421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_experiments-tex-multiseed-consistency_20260523T001421_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "24294b0cccd17ab8b26b0eaf9999349935b218e6735ffc46a090a9b3d8d09ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**Diff**: experiments.tex L57\n```\n- $\\bar\\Delta=-1.79\\pm0.25$\n+ $\\bar\\Delta=-1.24\\pm0.86$\n```\n\n**附录 vs 主文对照（全部一致）**:\n\n| 条件 | 附录 tab:multi-seed | experiments.tex（修复后） |\n|------|-------------------|------------------------|\n| Mistral-7B × PW (4s) | -2.38±1.12 | -2.38±1.12 ✓ |\n| Qwen2.5-14B × FOLIO (4s) | -1.24±0.86 | -1.24±0.86 ✓ |\n| Mistral-7B × FOLIO (3s) | +0.16±2.70 | \"near-zero...mixed signs\" ✓ |\n| LLaMA-8B × FOLIO (3s) | -0.98±2.25 | \"near-zero...mixed signs\" ✓ |\n\n编译成功，27 页，无错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-experiments-tex-multiseed-consistency.md"
+}

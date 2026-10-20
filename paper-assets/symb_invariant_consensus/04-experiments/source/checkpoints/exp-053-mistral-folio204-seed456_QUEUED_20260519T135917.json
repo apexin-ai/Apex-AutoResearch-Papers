@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-053-mistral-folio204-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:17:36.430Z",
+    "updated_at": "2026-05-19T13:59:17.050Z",
+    "hypothesis": "exp-033 replication (seed=456): Mistral-7B FOLIO-204 K=12 T=0.7，第二组独立 replication。与 exp-052 (seed=123) 一起验证 exp-033 结论 robustness。parent=exp-033",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T13:59:17.231227+00:00",
+  "trigger": "update_registry"
+}

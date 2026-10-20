@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-042-premise-formalization",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:53:36.547Z",
+    "updated_at": "2026-05-18T19:02:37.081Z",
+    "hypothesis": "Premise-Only Formalization: 绕过 CoT trace extraction，直接让 LLM 将 FOLIO premises + conclusion 形式化为 FOL，用 Z3 验证逻辑蕴含。K=12 独立 formalization + majority vote。如果 extraction quality 是 capability trap 的瓶颈，直接 formalization 应能产生更准确的约束，使 Premise-FOL > vanilla SICA。",
+    "spec": {
+      "command": "premise_formalization.py --api-base http://localhost:8002/v1 --model auto --k 12 --data data/folio_full.json --output results/exp042_premise_formalization/results.json --seed 42",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/symb_invariant_consensus/exp-042-premise-formalization.log",
+      "submitted_at": "2026-05-18T18:53:44.005Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-14B-Instruct (cached)",
+      "eval_data": "FOLIO-204",
+      "wall_clock_seconds": 533.1,
+      "gpu_hours": 0.15
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T19:02:34.758Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T19:02:37.081Z"
+  },
+  "timestamp": "2026-05-18T19:02:37.276319+00:00",
+  "trigger": "update_registry"
+}

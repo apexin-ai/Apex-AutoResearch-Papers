@@ -1,0 +1,70 @@
+{
+  "exp_id": "sica_expanded_14b",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:12:00.374Z",
+    "updated_at": "2026-05-16T19:20:52.810Z",
+    "spec": {
+      "command": "python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates",
+      "server": "westd-32608",
+      "data_path": "data/proofwriter_full.json (600 D5) + data/folio_full.json (204)",
+      "data_count": 804,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "pid": "181491",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/symb_invariant_consensus/sica_expanded_14b.log",
+      "submitted_at": "2026-05-16T05:19:00.966Z",
+      "backend": "nohup",
+      "account": "root",
+      "eta_hours": 13.4,
+      "wall_clock_seconds": 50368.9,
+      "gpu_hours": 13.99
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T19:18:29.155Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T19:18:29.888Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T19:18:30.703230+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "sica_accuracy": 0.765,
+      "sc_accuracy": 0.762,
+      "sica_sc_gap_pp": 0.3,
+      "n_problems": 804,
+      "folio_sica": 0.794,
+      "folio_sc": 0.794,
+      "folio_gap_pp": 0,
+      "folio_n": 204,
+      "proofwriter_sica": 0.755,
+      "proofwriter_sc": 0.752,
+      "proofwriter_gap_pp": 0.3,
+      "proofwriter_n": 600,
+      "extraction_rate": 0.89,
+      "answer_extraction_rate": 1,
+      "contradiction_rate": 0.022,
+      "problems_with_contradictions": 331,
+      "truncated_traces": 0,
+      "wall_time_min": 826
+    },
+    "notes": "实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \"FULL_MVP_DONE\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。",
+    "checkpoint_path": "/root/symb_invariant_consensus/results/sica_expanded_14b.json"
+  },
+  "timestamp": "2026-05-16T19:20:52.852069+00:00",
+  "trigger": "update_registry"
+}

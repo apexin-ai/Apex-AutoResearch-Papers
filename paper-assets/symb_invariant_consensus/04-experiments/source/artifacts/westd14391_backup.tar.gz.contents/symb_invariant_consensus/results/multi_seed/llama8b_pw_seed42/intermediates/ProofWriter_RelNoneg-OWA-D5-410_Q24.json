@@ -1,0 +1,1262 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-410_Q24",
+    "problem": "The bald eagle is green. The bald eagle needs the lion. The bald eagle sees the cat. The bald eagle sees the lion. The cat sees the bald eagle. The cow sees the bald eagle. The lion needs the bald eagle. If someone sees the cat and the cat is green then they visit the cat. If someone needs the cat and the cat needs the bald eagle then they are blue. If someone is blue and they need the lion then they see the lion. If someone sees the cow then the cow needs the bald eagle. If someone needs the bald eagle then they see the lion. If someone needs the cat then the cat is blue. If someone visits the lion and they are nice then the lion visits the cat. If someone needs the bald eagle and they see the lion then they see the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\n\nRules:\nSees($x, Cat, True) && Green(Cat, True) >>> Visits($x, Cat, True) ::: If someone sees the cat and the cat is green then they visit the cat.\nNeeds($x, Cat, True) && Needs(Cat, BaldEagle, True) >>> Blue($x, True) ::: If someone needs the cat and the cat needs the bald eagle then they are blue.\nBlue($x, True) && Needs($x, Lion, True) >>> Sees($x, Lion, True) ::: If someone is blue and they need the lion then they see the lion.\nSees($x, Cow, True) >>> Needs(Cow, BaldEagle, True) ::: If someone sees the cow then the cow needs the bald eagle.\nNeeds($x, BaldEagle, True) >>> Sees($x, Lion, True) ::: If someone needs the bald eagle then they see the lion.\nNeeds($x, Cat, True) >>> Blue(Cat, True) ::: If someone needs the cat then the cat is blue.\nVisits($x, Lion, True) && Nice($x, True) >>> Visits(Lion, Cat, True) ::: If someone visits the lion and they are nice then the lion visits the cat.\nNeeds($x, BaldEagle, True) && Sees($x, Lion, True) >>> Sees($x, Cow, True) ::: If someone needs the bald eagle and they see the lion then they see the cow.\n\nQuery:\nKind(Lion, True) ::: The lion is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 176.5
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the lion is kind, we need to follow the given statements and their implications.\n\nGiven statements:\n1. The bald eagle is green.\n2. The bald eagle needs the lion.\n3. The bald eagle sees the cat.\n4. The bald eagle sees the lion.\n5. The cat sees the bald eagle.\n6. The cow sees the bald eagle.\n7. The lion needs the bald eagle.\n8. If someone sees the cat and the cat is green then they visit the cat.\n9. If someone needs the cat and the cat needs the bald eagle then they are blue.\n10. If someone is blue and they need the lion then they see the lion.\n11. If someone sees the cow then the cow needs the bald eagle.\n12. If someone needs the bald eagle then they see the lion.\n13. If someone needs the cat then the cat is blue.\n14. If someone visits the lion and they are nice then the lion visits the cat.\n15. If someone needs the bald eagle and they see the lion then they see the cow.\n\nFrom statement 3: The bald eagle sees the cat.\nFrom statement 8: If someone sees the cat and the cat is green then they visit the cat. Since the bald eagle sees the cat and the cat is green (from statement 1), we can conclude that the bald eagle visits the cat.\n\nFrom statement 14: If someone visits the lion and they are nice then the lion visits the cat. However, we don't have enough information to conclude that the lion is kind or nice. The given information doesn't mention the bald eagle visiting the lion; it only says that the bald eagle sees the lion (from statement 4).\n\nHowever, from statement 7: The lion needs the bald eagle. From statement 13: If someone needs the cat then the cat is blue. This is not directly applicable here, but it indicates that if someone needs the cat and the cat needs the bald eagle, they are blue. However, this is a separate condition and does not directly affect the lion's kindness.\n\nFrom statement 12: If someone needs the bald eagle then they see the lion. Since the lion needs the bald eagle (from statement 7), it means the lion sees the bald eagle, but this does not directly tell us about the lion's kindness.\n\nFrom statement 15: If someone needs the bald eagle and they see the lion then they see the cow. Since the lion needs the bald eagle (from statement 7), we can conclude that the lion sees the cow.\n\nHowever, none of these statements provide any information about the lion's behavior or kindness. Therefore, we cannot determine whether the lion is kind based on the given information. The statement \"The lion is kind\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to analyze the given statements and their relationships. \n\nLet's start by assigning variables to each individual: \n- B: Bald eagle\n- C: Cat\n- L: Lion\n- S: Someone (or a person)\n- W: Cow\n\nFrom the given information, we have the following relationships:\n1. The bald eagle is green.\n2. The bald eagle needs the lion.\n3. The bald eagle sees the cat.\n4. The bald eagle sees the lion.\n5. The cat sees the bald eagle.\n6. The cow sees the bald eagle.\n7. The lion needs the bald eagle.\n8. If someone sees the cat and the cat is green then they visit the cat.\n9. If someone needs the cat and the cat needs the bald eagle then they are blue.\n10. If someone is blue and they need the lion then they see the lion.\n11. If someone sees the cow then the cow needs the bald eagle.\n12. If someone needs the bald eagle then they see the lion.\n13. If someone needs the cat then the cat is blue.\n14. If someone visits the lion and they are nice then the lion visits the cat.\n15. If someone needs the bald eagle and they see the lion then they see the cow.\n\nWe need to determine whether statement 14 is true or not (i.e., whether the lion is kind). \n\nTo do this, we need to establish the conditions under which the lion visits the cat. From statement 14, we see that if someone visits the lion and they are nice, then the lion visits the cat. \n\nHowever, we don't have any information about whether the person who visits the lion is nice or not. This makes the statement about the lion being kind unknown because we cannot determine whether the lion is kind based on the given information.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and use the given information to determine the truth of the statement.\n\nFrom the information given, we can start by identifying the colors and emotions associated with each animal:\n\n1. The bald eagle is green.\n2. The cat needs the bald eagle, so if someone needs the cat, then the cat is blue.\n3. The lion needs the bald eagle.\n4. If someone sees the cat and the cat is green, then they visit the cat. \n5. If someone is blue and they need the lion, then they see the lion. \n6. The lion needs the bald eagle. \n7. If someone sees the cow, then the cow needs the bald eagle.\n8. If someone needs the bald eagle, then they see the lion.\n9. If someone needs the cat, then the cat is blue.\n10. If someone visits the lion and they are nice, then the lion visits the cat.\n\nFrom the statement \"The lion is kind,\" we can infer that if the lion is kind, then the lion visits the cat. \n\nWe can use rule 10 to determine if the lion is kind. Since rule 10 states that if someone visits the lion and they are nice, then the lion visits the cat, we need to find out if someone visits the lion.\n\nFrom rule 8, we know that if someone needs the bald eagle, then they see the lion. Since the lion needs the bald eagle (rule 3), we can conclude that the lion sees the lion.\n\nHowever, this is a contradiction, because the lion cannot see the lion. Therefore, we cannot conclude that the lion is kind.\n\nHowever, we can also infer that the lion is not kind because if it were, the lion would visit the cat (rule 10), but we have no information that says the lion visits the cat.\n\nSince we cannot conclude that the lion is kind, we cannot conclude that the lion is not kind either. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to determine if the lion is kind or not. We are given various conditions and their consequences. We will analyze the given statements step by step to reach a conclusion.\n\n1. The bald eagle is green. \n   We don't have any information about the lion yet, so we'll keep this in mind.\n\n2. The bald eagle needs the lion. \n   This indicates a connection between the bald eagle and the lion, but it doesn't tell us anything about the lion's kindness.\n\n3. The bald eagle sees the cat. \n   Again, this doesn't provide any information about the lion's kindness.\n\n4. The bald eagle sees the lion. \n   This confirms the connection between the bald eagle and the lion, but it still doesn't tell us about the lion's kindness.\n\n5. The cat sees the bald eagle. \n   We still don't have any information about the lion's kindness.\n\n6. The cow sees the bald eagle. \n   This doesn't provide any information about the lion's kindness.\n\n7. The lion needs the bald eagle. \n   This indicates another connection between the lion and the bald eagle, but it still doesn't tell us about the lion's kindness.\n\n8. If someone sees the cat and the cat is green then they visit the cat. \n   This is a general condition and doesn't provide any information about the lion's kindness.\n\n9. If someone needs the cat and the cat needs the bald eagle then they are blue. \n   This is another general condition and doesn't provide any information about the lion's kindness.\n\n10. If someone is blue and they need the lion then they see the lion. \n    We still don't have any information about the lion's kindness.\n\n11. If someone sees the cow then the cow needs the bald eagle. \n    This doesn't provide any information about the lion's kindness.\n\n12. If someone needs the bald eagle then they see the lion. \n    We still don't have any information about the lion's kindness.\n\n13. If someone needs the cat then the cat is blue. \n    We still don't have any information about the lion's kindness.\n\n14. If someone visits the lion and they are nice then the lion visits the cat. \n    This is a crucial condition. We need to determine if anyone visits the lion and is nice.\n\n15. If someone needs the bald eagle and they see the lion then they see the cow. \n    We still don't have any information about the lion's kindness.\n\nNow, let's analyze the given statements again to find any information about the lion's kindness.\n\n- We don't have any direct information about the lion's kindness.\n- We know that the lion needs the bald eagle (statement 7) and the bald eagle sees the lion (statement 4).\n- We also know that if someone needs the bald eagle and they see the lion, then they see the cow (statement 15). \n- However, this doesn't provide any information about the lion's kindness.\n\nNow, let's try to use the conditions to determine if anyone visits the lion and is nice.\n\n- We know that if someone visits the lion and they are nice then the lion visits the cat (statement 14).\n- However, we still don't have any information about someone visiting the lion and being nice.\n\nAfter analyzing all the conditions, we still don't have any information about the lion's kindness. Therefore, the statement \"The lion is kind\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is kind\" is true, false, or unknown, we need to break down the given information and apply logical deductions.\n\n1. The bald eagle is green.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n2. The bald eagle needs the lion.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n3. The bald eagle sees the cat.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n4. The bald eagle sees the lion.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n5. The cat sees the bald eagle.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n6. The cow sees the bald eagle.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\n7. The lion needs the bald eagle.\n   - This statement doesn't provide any useful information regarding the lion's kindness.\n\nNow, let's analyze the rules given at the end:\n\n1. If someone sees the cat and the cat is green then they visit the cat.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n2. If someone needs the cat and the cat needs the bald eagle then they are blue.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n3. If someone is blue and they need the lion then they see the lion.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n4. If someone sees the cow then the cow needs the bald eagle.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n5. If someone needs the bald eagle then they see the lion.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n6. If someone needs the cat then the cat is blue.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\n7. If someone visits the lion and they are nice then the lion visits the cat.\n   - Since this is a conditional statement involving \"nice,\" which is not defined anywhere, we cannot determine the lion's kindness based on this rule.\n\n8. If someone needs the bald eagle and they see the lion then they see the cow.\n   - This rule doesn't provide any useful information regarding the lion's kindness.\n\nNow, let's analyze the statements again to see if we can find any information that can help us determine the lion's kindness. The only statement that might be related to kindness is statement 7, but it involves the term \"nice,\" which is not defined.\n\nSince we cannot determine the lion's kindness based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step. We can represent the given information as a series of statements:\n\n1. The bald eagle is green.\n2. The bald eagle needs the lion.\n3. The bald eagle sees the cat.\n4. The bald eagle sees the lion.\n5. The cat sees the bald eagle.\n6. The cow sees the bald eagle.\n7. The lion needs the bald eagle.\n8. If someone sees the cat and the cat is green then they visit the cat.\n9. If someone needs the cat and the cat needs the bald eagle then they are blue.\n10. If someone is blue and they need the lion then they see the lion.\n11. If someone sees the cow then the cow needs the bald eagle.\n12. If someone needs the bald eagle then they see the lion.\n13. If someone needs the cat then the cat is blue.\n14. If someone visits the lion and they are nice then the lion visits the cat.\n15. If someone needs the bald eagle and they see the lion then they see the cow.\n\nTo determine whether the lion is kind, we need to see if there's any information that indicates the lion's kind nature. Statement 14 is the only statement that mentions the lion's behavior in relation to being kind. It states that if someone visits the lion and they are nice, then the lion visits the cat.\n\nFrom the given information, we can deduce the following:\n\n- The bald eagle sees the cat (statement 3).\n- The bald eagle sees the lion (statement 4).\n- The lion needs the bald eagle (statement 7).\n- If someone sees the lion, then they need the bald eagle (statement 12).\n\nHowever, to determine whether the lion is kind, we need to know if the lion visits the cat after being visited by someone nice.\n\nSince we don't know whether the bald eagle is nice or not, we cannot conclude the lion's kind nature.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to follow the given conditions and see if they lead us to a conclusion about the lion's kindness.\n\n1. The bald eagle sees the cat.\n2. The bald eagle needs the lion.\n3. The cat sees the bald eagle.\n4. The cat is green.\n\nSince the cat is green, we can apply the first condition: \"If someone sees the cat and the cat is green then they visit the cat.\" However, there is no information about the bald eagle visiting the cat. Therefore, we cannot conclude anything about the cat's color or the lion's kindness from this condition.\n\n5. The cow sees the bald eagle.\n6. The lion needs the bald eagle.\n\nFrom condition (6), we know the lion needs the bald eagle. Now, let's apply condition (11): \"If someone needs the bald eagle then they see the lion.\" This means the lion sees the bald eagle.\n\n7. The lion sees the bald eagle.\n8. The lion needs the bald eagle.\n\nNow, let's apply condition (9): \"If someone sees the cow then the cow needs the bald eagle.\" This means the cow needs the bald eagle. Now, let's apply condition (10): \"If someone needs the bald eagle then they see the lion.\" However, we already know the lion sees the bald eagle. Now, let's apply condition (10) to the cow: The cow needs the bald eagle, so the cow sees the lion.\n\n9. The cat sees the bald eagle.\n10. The cat is green.\n\nFrom condition (10), we know the cat is green. Now, let's apply condition (1): \"If someone sees the cat and the cat is green then they visit the cat.\" This means the bald eagle visits the cat.\n\n11. The bald eagle visits the cat.\n\nNow, let's apply condition (12): \"If someone visits the lion and they are nice then the lion visits the cat.\" However, we do not have information about the lion's kindness or the bald eagle's niceness. This condition cannot be applied.\n\n12. The lion needs the bald eagle.\n\nFrom condition (6), we know the lion needs the bald eagle. Now, let's apply condition (7): \"If someone is blue and they need the lion then they see the lion.\" However, we do not have information about anyone being blue. This condition cannot be applied.\n\n13. The lion needs the bald eagle.\n\nFrom condition (6), we know the lion needs the bald eagle. Now, let's apply condition (14): \"If someone needs the lion then the cat is blue.\" However, we do not have information about the cat's color. This condition cannot be applied.\n\n14. The cat sees the bald eagle.\n15. The cat is blue.\n\nFrom condition (15), we know the cat is blue. Now, let's apply condition (13): \"If someone needs the lion then the cat is blue.\" This means the lion needs the cat. Now, let's apply condition (16): \"If someone needs the cat and the cat needs the bald eagle then they are blue.\" This means the lion is blue.\n\n16. The lion is blue.\n\nFrom condition (13), we know the lion needs the bald eagle. Now, let's apply condition (17): \"If someone is blue and they need the lion then they see the lion.\" This means the lion sees the lion.\n\n17. The lion sees the lion.\n\nSince the lion sees the lion, it does not necessarily mean the lion is kind. However, we can now conclude that the lion is blue.\n\n18. The lion is blue.\n\nHowever, this does not answer our question about the lion's kindness. Let's look at condition (13) again: \"If someone needs the lion then they are blue.\" From this condition, we know the lion is blue. Now, let's look at condition (5): \"The lion sees the bald eagle.\" Now, let's apply condition (14): \"If someone needs the lion then the cat is blue.\" This means the lion sees the cat. Now, let's apply condition (15): \"If someone needs the cat and the cat needs the bald eagle then they are blue.\" However, we already know the lion is blue.\n\nNow, let's apply condition (13) to the cat: The cat needs the bald eagle, so the cat is blue.\n\n19. The cat is blue.\n\nNow, let's apply condition (16) to the cat: The cat needs the bald eagle, and the cat is blue. This means the cat sees the lion.\n\n20. The cat sees the lion.\n\nHowever, this does not answer our question about the lion's kindness. Let's look at condition (13) again: \"If someone needs the lion then they are blue.\" From this condition, we know the lion is blue. Now, let's look at condition (5): \"The lion sees the bald eagle.\" Now, let's apply condition (11): \"If someone needs the bald eagle then they see the lion.\" This means the lion needs the bald eagle.\n\nHowever, we already know the lion needs the bald eagle. Now, let's apply condition (5) again: The lion sees the bald eagle.\n\nHowever, we already know the lion sees the bald eagle. Now, let's apply condition (10) to the lion: The lion needs the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (7) to the lion: The lion is blue and the lion needs the bald eagle. This means the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's look at condition (15): \"If someone sees the bald eagle then the cat is blue.\" However, we do not have information about the cat's color. This condition cannot be applied.\n\nNow, let's apply condition (8) to the lion: The lion needs the bald eagle. Now, let's apply condition (10) to the lion: The lion needs the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (13) to the lion: The lion needs the bald eagle. Now, let's apply condition (14) to the lion: The lion needs the bald eagle, so the lion sees the cat.\n\nHowever, we already know the cat sees the lion. Now, let's apply condition (13) to the lion: The lion needs the bald eagle. Now, let's apply condition (7) to the lion: The lion is blue and the lion needs the bald eagle. This means the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (13) to the lion: The lion needs the bald eagle. Now, let's apply condition (11) to the lion: The lion needs the bald eagle, so the lion sees the cow.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (10) to the lion: The lion needs the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's look at condition (8) again: The lion needs the bald eagle. Now, let's apply condition (14) to the lion: The lion needs the bald eagle, so the lion sees the cat.\n\nHowever, we already know the cat sees the lion. Now, let's apply condition (15) to the lion: The lion sees the bald eagle, so the cat is blue.\n\nHowever, we already know the cat is blue. Now, let's apply condition (16) to the lion: The lion sees the bald eagle, so the cat is blue.\n\nHowever, we already know the cat is blue. Now, let's apply condition (13) to the lion: The lion sees the bald eagle. Now, let's apply condition (7) to the lion: The lion is blue and the lion sees the bald eagle. This means the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (10) to the lion: The lion sees the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (5) to the lion: The lion sees the bald eagle.\n\nHowever, we already know the lion sees the bald eagle. Now, let's apply condition (10) to the lion: The lion sees the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's look at condition (6) again: The lion needs the bald eagle. Now, let's apply condition (11) to the lion: The lion needs the bald eagle, so the lion sees the cow.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (10) to the lion: The lion needs the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (10) to the lion: The lion needs the bald eagle, so the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition (13) to the lion: The lion needs the bald eagle. Now, let's apply condition (14) to the lion: The lion needs the bald eagle, so the lion sees the cat.\n\nHowever, we already know the cat sees the lion. Now, let's apply condition (13) to the lion: The lion needs the bald eagle. Now, let's apply condition (7) to the lion: The lion is blue and the lion needs the bald eagle. This means the lion sees the lion.\n\nHowever, we already know the lion sees the lion. Now, let's apply condition",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to analyze the given statements and their implications.\n\n1. The bald eagle is green.\n   - This statement does not provide any information about the lion.\n\n2. The bald eagle needs the lion.\n   - This statement implies that the lion is somehow related to the bald eagle, but it does not provide any information about the lion's kindness.\n\n3. The bald eagle sees the cat.\n   - This statement does not provide any information about the lion.\n\n4. The bald eagle sees the lion.\n   - This statement is similar to statement 2; it implies that the lion is related to the bald eagle but does not provide any information about the lion's kindness.\n\n5. The cat sees the bald eagle.\n   - This statement does not provide any information about the lion.\n\n6. The cow sees the bald eagle.\n   - This statement does not provide any information about the lion.\n\n7. The lion needs the bald eagle.\n   - This statement is similar to statement 2; it implies that the lion is related to the bald eagle but does not provide any information about the lion's kindness.\n\nNow let's examine the rules that govern the behavior and properties of the animals:\n\n1. If someone sees the cat and the cat is green then they visit the cat.\n   - This rule does not provide any information about the lion's kindness.\n\n2. If someone needs the cat and the cat needs the bald eagle then they are blue.\n   - This rule does not provide any information about the lion's kindness.\n\n3. If someone is blue and they need the lion then they see the lion.\n   - This rule does not provide any information about the lion's kindness.\n\n4. If someone sees the cow then the cow needs the bald eagle.\n   - This rule does not provide any information about the lion's kindness.\n\n5. If someone needs the bald eagle then they see the lion.\n   - This rule does not provide any information about the lion's kindness.\n\n6. If someone needs the cat then the cat is blue.\n   - This rule does not provide any information about the lion's kindness.\n\n7. If someone visits the lion and they are nice then the lion visits the cat.\n   - This rule implies that if someone is nice, they visit the lion, but it does not directly provide any information about the lion's kindness. However, it can be inferred that the lion is kind if someone is nice and visits the lion.\n\n8. If someone needs the bald eagle and they see the lion then they see the cow.\n   - This rule does not provide any information about the lion's kindness.\n\nBased on rule 7, we can infer that the lion is kind if someone is nice and visits the lion. However, we cannot directly determine the lion's kindness from the given statements.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to follow the given rules and find out what color the lion is and whether the lion visits the cat.\n\n1. The bald eagle is green.\n   - Rule: If someone sees the cat and the cat is green then they visit the cat.\n\n2. The bald eagle needs the lion.\n   - Rule: If someone needs the cat and the cat needs the bald eagle then they are blue.\n   - So, the lion is blue.\n\n3. The cat sees the bald eagle.\n   - Since the bald eagle is green, this does not tell us anything about the lion.\n\n4. The lion sees the bald eagle.\n   - Since the lion is blue, we know this from the previous step.\n\n5. The cow sees the bald eagle.\n   - Since the cow sees the bald eagle, the cow needs the bald eagle.\n   - Rule: If someone sees the cow then the cow needs the bald eagle.\n   - So, the cow needs the bald eagle.\n\n6. The lion needs the bald eagle.\n   - We already know this from the previous steps.\n\n7. If someone needs the bald eagle then they see the lion.\n   - Since the lion needs the bald eagle, this tells us that the lion sees the lion.\n\n8. Since the lion sees the lion, and the lion is blue, we follow the rule: If someone is blue and they need the lion then they see the lion.\n   - This rule does not apply to the lion, since we already know the lion sees the lion.\n\n9. If someone needs the bald eagle then they see the lion.\n   - Since the lion needs the bald eagle, we already know the lion sees the lion.\n\n10. If someone needs the bald eagle and they see the lion then they see the cow.\n    - Since the lion needs the bald eagle, this tells us that the lion sees the cow.\n\n11. If someone sees the cat and the cat is green then they visit the cat.\n    - This rule does not apply to the lion, since we are looking for the lion's color and whether it visits the cat.\n\n12. If someone needs the cat then the cat is blue.\n    - Since the lion needs the cat (because the lion needs the bald eagle and the cat needs the bald eagle), the cat is blue.\n\n13. The lion visits the cat.\n    - Since the lion is blue and needs the cat, we follow the rule: If someone visits the lion and they are nice then the lion visits the cat.\n    - However, we do not know if the lion is nice.\n\n14. The lion needs the bald eagle.\n    - We already know this from the previous steps.\n\n15. The lion sees the lion.\n    - We already know this from the previous steps.\n\nBased on the given rules, we cannot determine whether the lion is kind or not. The only information we have about the lion's kindness is the rule \"If someone visits the lion and they are nice then the lion visits the cat.\" However, we do not know if the lion is nice.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement we want to evaluate: \"The lion is kind.\"\n\n1. The given statements are:\n   - The bald eagle is green.\n   - The bald eagle needs the lion.\n   - The bald eagle sees the cat.\n   - The bald eagle sees the lion.\n   - The cat sees the bald eagle.\n   - The cow sees the bald eagle.\n   - The lion needs the bald eagle.\n   - If someone sees the cat and the cat is green then they visit the cat.\n   - If someone needs the cat and the cat needs the bald eagle then they are blue.\n   - If someone is blue and they need the lion then they see the lion.\n   - If someone sees the cow then the cow needs the bald eagle.\n   - If someone needs the bald eagle then they see the lion.\n   - If someone needs the cat then the cat is blue.\n   - If someone visits the lion and they are nice then the lion visits the cat.\n   - If someone needs the bald eagle and they see the lion then they see the cow.\n\n2. We are asked to determine whether the following statement is true, false, or unknown: \"The lion is kind.\"\n\nTo determine this, we need to apply the given statements to the statement \"The lion is kind.\" However, there's no direct information about the lion's kindness.\n\nHowever, the given statement \"If someone visits the lion and they are nice then the lion visits the cat\" can be interpreted as the lion being kind. \n\nTherefore, let's analyze the conditions to see if we can infer the lion's kindness.\n\nFrom the statement \"The lion needs the bald eagle\" and \"The bald eagle needs the lion,\" we can infer a mutual need relationship between the lion and the bald eagle.\n\nHowever, there's no direct information about the lion's kindness.\n\nSo, based on the given statements, we can't conclude whether the lion is kind or not.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to analyze the given information and the provided conditions.\n\n1. The bald eagle is green.\n2. The bald eagle needs the lion.\n3. The bald eagle sees the cat.\n4. The bald eagle sees the lion.\n5. The cat sees the bald eagle.\n6. The cow sees the bald eagle.\n7. The lion needs the bald eagle.\n8. If someone sees the cat and the cat is green then they visit the cat.\n9. If someone needs the cat and the cat needs the bald eagle then they are blue.\n10. If someone is blue and they need the lion then they see the lion.\n11. If someone sees the cow then the cow needs the bald eagle.\n12. If someone needs the bald eagle then they see the lion.\n13. If someone needs the cat then the cat is blue.\n14. If someone visits the lion and they are nice then the lion visits the cat.\n15. If someone needs the bald eagle and they see the lion then they see the cow.\n\nFrom the given information:\n- The lion needs the bald eagle (Statement 7).\n- The bald eagle sees the lion (Statement 4).\n\nWe don't have any information that directly states the lion's kindness or niceness. However, we can infer some information from Statement 14: \"If someone visits the lion and they are nice then the lion visits the cat.\" This implies that the lion's behavior is related to someone's niceness, but we cannot conclude the lion's kindness from this statement alone.\n\nSince we cannot directly determine the lion's kindness from the given information, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the lion is kind, we need to analyze the given information step by step.\n\n1. The bald eagle is green. (We don't know what \"green\" means in this context, but we'll keep it in mind.)\n2. The bald eagle needs the lion. (The bald eagle has a need for the lion.)\n3. The bald eagle sees the cat. (The bald eagle has seen the cat.)\n4. The bald eagle sees the lion. (The bald eagle has seen the lion.)\n5. The cat sees the bald eagle. (The cat has seen the bald eagle.)\n6. The cow sees the bald eagle. (The cow has seen the bald eagle.)\n7. The lion needs the bald eagle. (The lion has a need for the bald eagle.)\n8. If someone sees the cat and the cat is green then they visit the cat. (We don't have any information about the cat being green yet.)\n9. If someone needs the cat and the cat needs the bald eagle then they are blue. (We'll keep this in mind for now.)\n10. If someone is blue and they need the lion then they see the lion. (We'll keep this in mind for now.)\n11. If someone sees the cow then the cow needs the bald eagle. (The cow needs the bald eagle.)\n12. If someone needs the bald eagle then they see the lion. (If someone needs the bald eagle, they see the lion.)\n13. If someone needs the cat then the cat is blue. (We'll keep this in mind for now.)\n14. If someone visits the lion and they are nice then the lion visits the cat. (We don't have any information about someone visiting the lion yet.)\n15. If someone needs the bald eagle and they see the lion then they see the cow. (If someone needs the bald eagle and sees the lion, they see the cow.)\n\nNow, let's analyze the statement \"The lion is kind.\" To determine whether this is true, false, or unknown, we need to find a connection between the lion being kind and the given information.\n\nFrom point 14, we know that if someone visits the lion and they are nice, then the lion visits the cat. This suggests a connection between visiting the lion and being kind.\n\nHowever, we don't have any information about someone visiting the lion. The closest information we have is from point 4, which states that the bald eagle sees the lion. But this doesn't necessarily imply that the bald eagle is nice or kind.\n\nSince we don't have enough information to conclude whether the lion is kind or not, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_bald_eagle_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_bald_eagle_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, cat)",
+          "z3_formula": "visits_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_cat_bald_eagle, blue_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_cat_cat, green_cat), visits_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_cow, needs_cow_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_cat_bald_eagle, blue_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(X)",
+          "z3_formula": "nice_X == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion) -> visits(lion, cat)",
+          "z3_formula": "Implies(kind_lion, visits_lion_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion) == False",
+          "z3_formula": "kind_lion == False",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion) == True",
+          "z3_formula": "kind_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion) == Unknown",
+          "z3_formula": "kind_lion == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & green(X) -> visit(X)",
+          "z3_formula": "Implies(And(sees_cat_bald_eagle, green_cat), visit_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) & needs(Y, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_cat_bald_eagle, needs_bald_eagle_lion), blue_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_cat, needs_cat_lion), sees_cat_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_cow_bald_eagle, sees_cow_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(X)",
+          "z3_formula": "Implies(needs_cat_bald_eagle, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X) & nice(X) -> visit(lion, cat)",
+          "z3_formula": "Implies(And(visit_lion_cat, nice_lion), visit_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_cow_bald_eagle, sees_cow_lion), sees_cow_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(X, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visit(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visit_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visit(bald_eagle, cat)",
+          "z3_formula": "visit_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> blue(X)",
+          "z3_formula": "Implies(sees_X_lion, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> blue(X)",
+          "z3_formula": "Implies(needs_X_lion, blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, sees_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_cow_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(X, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_bald_eagle_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_lion_bald_eagle, needs_cat_bald_eagle), blue_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_lion_bald_eagle, sees_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_lion_bald_eagle, sees_lion_lion), sees_lion_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_lion_cat, green_cat), visits_lion_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_lion_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(X, cat)",
+          "z3_formula": "Implies(And(visits_lion_lion, nice_lion), visits_lion_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(X)",
+          "z3_formula": "Implies(needs_X_cat, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 189,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 1,
+      "total_weight": 188,
+      "solve_time_ms": 1.386355608701706
+    },
+    "timing": {
+      "trace_gen_s": 24.167,
+      "extraction_s": 34.656,
+      "dedup_s": 1.891,
+      "maxsat_s": 0.005,
+      "total_s": 60.718
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-721_Q8",
+    "problem": "The bald eagle does not eat the mouse. The bald eagle is not rough. The bald eagle needs the lion. The bald eagle sees the lion. The lion is nice. The mouse is kind. The mouse needs the bald eagle. The mouse needs the lion. The mouse sees the lion. The rabbit eats the bald eagle. The rabbit needs the mouse. If someone eats the bald eagle and they see the bald eagle then they are big. If someone is nice and they eat the rabbit then they eat the bald eagle. If someone eats the bald eagle then they are cold. If someone needs the rabbit and they are big then the rabbit sees the mouse. If someone is cold then they need the lion. If someone is cold and big then they do not need the bald eagle. If someone needs the lion then they see the bald eagle. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the bald eagle.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(BaldEagle, Mouse, False) ::: The bald eagle does not eat the mouse.\nRough(BaldEagle, False) ::: The bald eagle is not rough.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nNice(Lion, True) ::: The lion is nice.\nKind(Mouse, True) ::: The mouse is kind.\nNeeds(Mouse, BaldEagle, True) ::: The mouse needs the bald eagle.\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion.\nSees(Mouse, Lion, True) ::: The mouse sees the lion.\nEats(Rabbit, BaldEagle, True) ::: The rabbit eats the bald eagle.\nNeeds(Rabbit, Mouse, True) ::: The rabbit needs the mouse.\n\nRules:\nEats($x, BaldEagle, True) && Sees($x, BaldEagle, True) >>> Big($x, True) ::: If someone eats the bald eagle and they see the bald eagle then they are big.\nNice($x, True) && Eats($x, Rabbit, True) >>> Eats($x, BaldEagle, True) ::: If someone is nice and they eat the rabbit then they eat the bald eagle.\nEats($x, BaldEagle, True) >>> Cold($x, True) ::: If someone eats the bald eagle then they are cold.\nNeeds($x, Rabbit, True) && Big($x, True) >>> Sees(Rabbit, Mouse, True) ::: If someone needs the rabbit and they are big then the rabbit sees the mouse.\nCold($x, True) >>> Needs($x, Lion, True) ::: If someone is cold then they need the lion.\nCold($x, True) && Big($x, True) >>> Needs($x, BaldEagle, False) ::: If someone is cold and big then they do not need the bald eagle.\nNeeds($x, Lion, True) >>> Sees($x, BaldEagle, True) ::: If someone needs the lion then they see the bald eagle.\nSees(Rabbit, BaldEagle, True) && Big(Rabbit, False) >>> Eats(BaldEagle, Lion, True) ::: If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\nEats(BaldEagle, Lion, True) >>> Sees(BaldEagle, Lion, False) ::: If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nQuery:\nSees(Rabbit, BaldEagle, False) ::: The rabbit does not see the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

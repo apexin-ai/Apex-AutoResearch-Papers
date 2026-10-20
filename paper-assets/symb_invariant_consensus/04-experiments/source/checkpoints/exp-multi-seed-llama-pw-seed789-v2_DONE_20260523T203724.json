@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp-multi-seed-llama-pw-seed789-v2",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:56:24.810Z",
+    "updated_at": "2026-05-23T20:37:24.235Z",
+    "hypothesis": "LLaMA-3.1-8B PW seed789 多种子复制（westd-30973 cuda:1 全新运行）。替代 16639 cuda:0 上的慢速运行（12/600）。验证 SCB 在 ProofWriter 上跨 seed 稳定性。",
+    "parent": "exp-multi-seed-llama-pw",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python run_cross_dataset_replication.py --dataset proofwriter --data-path data/proofwriter_full.json --k 12 --vllm-port 8001 --seed 789 --temperature 0.7 --max-tokens 2048 --output results/multi_seed/llama8b_pw_seed789_v2/results.json\"",
+      "server": "westd-30973",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "6018",
+      "log_path": "~/runs/symb_invariant_consensus/exp-multi-seed-llama-pw-seed789-v2.log",
+      "submitted_at": "2026-05-23T06:09:20.553Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 789,
+      "checkpoint_source": "vllm-served:/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct",
+      "eval_data": "data/proofwriter_full.json",
+      "checkpoint_path": "westd-16639:/root/symb_invariant_consensus/results/multi_seed/llama8b_pw_seed789/",
+      "wall_clock_seconds": 52083.7,
+      "gpu_hours": 14.47
+    },
+    "notes": "冗余实验。seed789 完整结果在 westd-16639 (600/600, SC=71.17%, SICA=66.50% alphabetical corrected)。30973 上的 v2/v3 恢复进程已全部 kill。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-23T20:37:24.235Z"
+  },
+  "timestamp": "2026-05-23T20:37:24.564904+00:00",
+  "trigger": "update_registry"
+}

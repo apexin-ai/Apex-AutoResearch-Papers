@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-745_Q8",
+    "problem": "The dog is green. The dog is not kind. The lion is big. The lion is round. The lion needs the dog. The mouse is big. The mouse likes the dog. The mouse does not need the rabbit. The mouse visits the dog. The rabbit is kind. The rabbit visits the dog. If someone needs the dog then they visit the lion. If someone needs the mouse then they are kind. If someone is round and they like the rabbit then the rabbit visits the mouse. If someone visits the rabbit then the rabbit visits the mouse. If someone likes the dog then the dog visits the rabbit. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion. If the rabbit needs the lion then the lion needs the mouse. If someone visits the mouse then the mouse needs the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not need the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nGreen(Dog, True) ::: The dog is green.\nKind(Dog, False) ::: The dog is not kind.\nBig(Lion, True) ::: The lion is big.\nRound(Lion, True) ::: The lion is round.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nBig(Mouse, True) ::: The mouse is big.\nLikes(Mouse, Dog, True) ::: The mouse likes the dog.\nNeeds(Mouse, Rabbit, False) ::: The mouse does not need the rabbit.\nVisits(Mouse, Dog, True) ::: The mouse visits the dog.\nKind(Rabbit, True) ::: The rabbit is kind.\nVisits(Rabbit, Dog, True) ::: The rabbit visits the dog.\n\nRules:\nNeeds($x, Dog, True) >>> Visits($x, Lion, True) ::: If someone needs the dog then they visit the lion.\nNeeds($x, Mouse, True) >>> Kind($x, True) ::: If someone needs the mouse then they are kind.\nRound($x, True) && Likes($x, Rabbit, True) >>> Visits(Rabbit, Mouse, True) ::: If someone is round and they like the rabbit then the rabbit visits the mouse.\nVisits($x, Rabbit, True) >>> Visits(Rabbit, Mouse, True) ::: If someone visits the rabbit then the rabbit visits the mouse.\nLikes($x, Dog, True) >>> Visits(Dog, Rabbit, True) ::: If someone likes the dog then the dog visits the rabbit.\nVisits(Mouse, Lion, True) && Needs(Mouse, Dog, True) >>> Needs(Dog, Lion, True) ::: If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\nNeeds(Rabbit, Lion, True) >>> Needs(Lion, Mouse, True) ::: If the rabbit needs the lion then the lion needs the mouse.\nVisits($x, Mouse, True) >>> Needs(Mouse, Dog, True) ::: If someone visits the mouse then the mouse needs the dog.\n\nQuery:\nNeeds(Mouse, Dog, False) ::: The mouse does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

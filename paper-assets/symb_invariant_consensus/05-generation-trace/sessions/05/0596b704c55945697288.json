@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0596b704c55945697288",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper writing appendix",
+  "task_key": "worker_paper_writing_appendix_20260517T184655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_appendix_20260517T184655_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "86fa1914a26378a67503b128d6e23ba7d89cb8647b16a66e1fbdc5fc5450c031"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Changes made:\n\n**`main.tex`**:\n- Added `\\usepackage{listings}` with `\\lstset` config for prompt template formatting\n- Replaced Limitations placeholder with `\\input{limitations_content}` (reuses existing file)\n\n**`appendix.tex`** now contains four sections:\n- **Limitations** (via `\\input` in main.tex before `\\appendix`)\n- **Appendix A: Prompt Templates** — system prompt, math extraction prompt, logic extraction prompt, JSON output schema, LLM config (T=0.1, max\\_tokens=1024), all in `lstlisting` blocks\n- **Appendix B: Statistical Power Analysis** — table with 3 confirmatory conditions ($n \\geq 200$), MDE and observed power from `power_analysis_summary.txt` (actual computed values: MDE 4.64pp/4.84pp for LLaMA conditions, not the approximate task values)\n- **Appendix C: Bootstrap Confidence Intervals** — table with 95% CIs, all including zero; Qwen CI from summary data, LLaMA CIs from task specification (should verify against `bootstrap_cis.json` on server)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-appendix.md"
+}

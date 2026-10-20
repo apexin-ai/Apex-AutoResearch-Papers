@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-1026_Q13",
+    "problem": "The cat is green. The cat is nice. The cat likes the squirrel. The rabbit likes the tiger. The rabbit does not need the cat. The rabbit needs the squirrel. The squirrel is cold. The squirrel needs the cat. The squirrel needs the rabbit. The tiger chases the cat. The tiger chases the rabbit. The tiger is kind. The tiger is nice. The tiger is young. The tiger likes the cat. The tiger needs the cat. If something chases the squirrel then the squirrel needs the tiger. If something needs the tiger then it likes the rabbit. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. If something chases the rabbit then the rabbit does not need the tiger. If something is kind and it chases the rabbit then it needs the tiger. If something is kind then it does not like the squirrel. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not like the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(cat, True) ::: The cat is green.\nNice(cat, True) ::: The cat is nice.\nLikes(cat, squirrel, True) ::: The cat likes the squirrel.\nLikes(rabbit, tiger, True) ::: The rabbit likes the tiger.\nNeeds(rabbit, cat, False) ::: The rabbit does not need the cat.\nNeeds(rabbit, squirrel, True) ::: The rabbit needs the squirrel.\nCold(squirrel, True) ::: The squirrel is cold.\nNeeds(squirrel, cat, True) ::: The squirrel needs the cat.\nNeeds(squirrel, rabbit, True) ::: The squirrel needs the rabbit.\nChases(tiger, cat, True) ::: The tiger chases the cat.\nChases(tiger, rabbit, True) ::: The tiger chases the rabbit.\nKind(tiger, True) ::: The tiger is kind.\nNice(tiger, True) ::: The tiger is nice.\nYoung(tiger, True) ::: The tiger is young.\nLikes(tiger, cat, True) ::: The tiger likes the cat.\nNeeds(tiger, cat, True) ::: The tiger needs the cat.\n\nRules:\nChases($x, squirrel, True) >>> Needs(squirrel, tiger, True) ::: If something chases the squirrel then the squirrel needs the tiger.\nNeeds($x, tiger, True) >>> Likes($x, rabbit, True) ::: If something needs the tiger then it likes the rabbit.\nChases($x, cat, True) && Likes($x, rabbit, True) >>> Chases(rabbit, squirrel, True) ::: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\nChases($x, rabbit, True) >>> Needs(rabbit, tiger, False) ::: If something chases the rabbit then the rabbit does not need the tiger.\nKind($x, True) && Chases($x, rabbit, True) >>> Needs($x, tiger, True) ::: If something is kind and it chases the rabbit then it needs the tiger.\nKind($x, True) >>> Likes($x, squirrel, False) ::: If something is kind then it does not like the squirrel.\nLikes($x, squirrel, True) && Needs($x, tiger, False) >>> Likes(squirrel, tiger, True) ::: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nQuery:\nLikes(rabbit, rabbit, False) ::: The rabbit does not like the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

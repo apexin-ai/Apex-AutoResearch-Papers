@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-437_Q1",
+    "problem": "The cow is not blue. The cow is green. The cow visits the mouse. The lion does not eat the mouse. The lion sees the cow. The lion visits the mouse. The mouse is blue. The mouse is red. The squirrel is red. The squirrel visits the mouse. If something eats the squirrel then the squirrel visits the cow. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. If something is red and big then it eats the lion. If something visits the cow then it does not visit the squirrel. If something sees the mouse then the mouse eats the squirrel. If something sees the lion then it sees the mouse. If something is red and it visits the lion then it does not eat the cow. If something is blue then it sees the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel visits the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nBlue(Cow, False) ::: The cow is not blue.\nGreen(Cow, True) ::: The cow is green.\nVisits(Cow, Mouse, True) ::: The cow visits the mouse.\nEats(Lion, Mouse, False) ::: The lion does not eat the mouse.\nSees(Lion, Cow, True) ::: The lion sees the cow.\nVisits(Lion, Mouse, True) ::: The lion visits the mouse.\nBlue(Mouse, True) ::: The mouse is blue.\nRed(Mouse, True) ::: The mouse is red.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, Mouse, True) ::: The squirrel visits the mouse.\n\nRules:\nEats($x, Squirrel, True) >>> Visits(Squirrel, Cow, True) ::: If something eats the squirrel then the squirrel visits the cow.\nEats(Cow, Mouse, True) && Eats(Cow, Squirrel, True) >>> Visits(Squirrel, Cow, True) ::: If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow.\nRed($x, True) && Big($x, True) >>> Eats($x, Lion, True) ::: If something is red and big then it eats the lion.\nVisits($x, Cow, True) >>> Visits($x, Squirrel, False) ::: If something visits the cow then it does not visit the squirrel.\nSees($x, Mouse, True) >>> Eats(Mouse, Squirrel, True) ::: If something sees the mouse then the mouse eats the squirrel.\nSees($x, Lion, True) >>> Sees($x, Mouse, True) ::: If something sees the lion then it sees the mouse.\nRed($x, True) && Visits($x, Lion, True) >>> Eats($x, Cow, False) ::: If something is red and it visits the lion then it does not eat the cow.\nBlue($x, True) >>> Sees($x, Lion, True) ::: If something is blue then it sees the lion.\n\nQuery:\nVisits(Squirrel, Mouse, True) ::: The squirrel visits the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

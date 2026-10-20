@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-587_Q8",
+    "problem": "The bald eagle chases the squirrel. The bald eagle eats the bear. The bear does not eat the lion. The bear visits the lion. The lion does not eat the bald eagle. The squirrel is red. The squirrel visits the bald eagle. If something is round then it eats the squirrel. If something is blue and green then it chases the bald eagle. If something eats the squirrel then the squirrel is green. If the bald eagle is round then the bald eagle chases the lion. If something is blue then it chases the squirrel. All red things are blue. If something chases the lion then it is blue. Blue, red things are round. If something visits the bald eagle and it is not round then it visits the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not eat the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nEats(Bear, Lion, False) ::: The bear does not eat the lion.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nEats(Lion, BaldEagle, False) ::: The lion does not eat the bald eagle.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nRound($x, True) >>> Eats($x, Squirrel, True) ::: If something is round then it eats the squirrel.\nBlue($x, True) && Green($x, True) >>> Chases($x, BaldEagle, True) ::: If something is blue and green then it chases the bald eagle.\nEats($x, Squirrel, True) >>> Green(Squirrel, True) ::: If something eats the squirrel then the squirrel is green.\nRound(BaldEagle, True) >>> Chases(BaldEagle, Lion, True) ::: If the bald eagle is round then the bald eagle chases the lion.\nBlue($x, True) >>> Chases($x, Squirrel, True) ::: If something is blue then it chases the squirrel.\nRed($x, True) >>> Blue($x, True) ::: All red things are blue.\nChases($x, Lion, True) >>> Blue($x, True) ::: If something chases the lion then it is blue.\nBlue($x, True) && Red($x, True) >>> Round($x, True) ::: Blue, red things are round.\nVisits($x, BaldEagle, True) && Round($x, False) >>> Visits($x, Lion, True) ::: If something visits the bald eagle and it is not round then it visits the lion.\n\nQuery:\nEats(Squirrel, Squirrel, False) ::: The squirrel does not eat the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

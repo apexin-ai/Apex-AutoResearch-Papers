@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-multi-seed-llama-pw-seed789",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:43:53.558Z",
+    "updated_at": "2026-05-23T04:51:56.847Z",
+    "hypothesis": "LLaMA-3.1-8B PW seed789 多种子复制。验证 SCB 在 ProofWriter 上跨 seed 稳定性（Δ(SICA-SC)≤0）。配合 seed42/123/456 组成 4-seed 覆盖。",
+    "parent": "exp-multi-seed-llama-pw"
+  },
+  "timestamp": "2026-05-23T04:51:57.149590+00:00",
+  "trigger": "update_registry"
+}

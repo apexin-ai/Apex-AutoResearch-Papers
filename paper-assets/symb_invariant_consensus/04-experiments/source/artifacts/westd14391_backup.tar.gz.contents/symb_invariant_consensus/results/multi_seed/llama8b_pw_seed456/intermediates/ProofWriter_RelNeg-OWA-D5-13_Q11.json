@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-13_Q11",
+    "problem": "The bald eagle chases the dog. The bald eagle chases the tiger. The bald eagle needs the tiger. The dog chases the tiger. The dog does not like the squirrel. The dog needs the squirrel. The squirrel chases the dog. The squirrel is young. The squirrel likes the tiger. The tiger is not cold. The tiger does not like the dog. The tiger needs the squirrel. If someone likes the tiger and they need the tiger then the tiger is young. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. If someone needs the tiger then they are not cold. If someone is young and they need the bald eagle then they need the tiger. If someone is young then they need the bald eagle. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger needs the tiger.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nChases(BaldEagle, Dog, True) ::: The bald eagle chases the dog.\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nChases(Dog, Tiger, True) ::: The dog chases the tiger.\nLikes(Dog, Squirrel, False) ::: The dog does not like the squirrel.\nNeeds(Dog, Squirrel, True) ::: The dog needs the squirrel.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Tiger, True) ::: The squirrel likes the tiger.\nCold(Tiger, False) ::: The tiger is not cold.\nLikes(Tiger, Dog, False) ::: The tiger does not like the dog.\nNeeds(Tiger, Squirrel, True) ::: The tiger needs the squirrel.\n\nRules:\nLikes($x, Tiger, True) && Needs($x, Tiger, True) >>> Young(Tiger, True) ::: If someone likes the tiger and they need the tiger then the tiger is young.\nNeeds($x, Squirrel, True) && Needs(Squirrel, BaldEagle, True) >>> Needs(BaldEagle, Dog, True) ::: If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\nNeeds($x, Tiger, True) >>> Cold($x, False) ::: If someone needs the tiger then they are not cold.\nYoung($x, True) && Needs($x, BaldEagle, True) >>> Needs($x, Tiger, True) ::: If someone is young and they need the bald eagle then they need the tiger.\nYoung($x, True) >>> Needs($x, BaldEagle, True) ::: If someone is young then they need the bald eagle.\nChases(Dog, BaldEagle, True) && Needs(Dog, Tiger, False) >>> Red(Tiger, False) ::: If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nQuery:\nNeeds(Tiger, Tiger, True) ::: The tiger needs the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

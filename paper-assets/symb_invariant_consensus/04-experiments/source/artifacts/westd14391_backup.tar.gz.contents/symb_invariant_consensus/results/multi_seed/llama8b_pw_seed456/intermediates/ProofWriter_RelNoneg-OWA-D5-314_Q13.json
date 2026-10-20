@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-314_Q13",
+    "problem": "The bear chases the cow. The bear eats the squirrel. The bear is cold. The bear visits the mouse. The bear visits the squirrel. The cow eats the mouse. The cow is cold. The cow visits the bear. The cow visits the squirrel. The mouse chases the cow. The squirrel eats the bear. If something eats the cow then the cow chases the squirrel. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. If something eats the mouse then it visits the cow. If something eats the mouse then it chases the bear. If something visits the bear and it visits the mouse then the bear is blue. If something eats the bear then the bear is cold. If something is blue and it eats the squirrel then it eats the cow. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. If something chases the bear then the bear is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not chase the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nEats(Bear, Squirrel, True) ::: The bear eats the squirrel.\nCold(Bear, True) ::: The bear is cold.\nVisits(Bear, Mouse, True) ::: The bear visits the mouse.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nCold(Cow, True) ::: The cow is cold.\nVisits(Cow, Bear, True) ::: The cow visits the bear.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nChases(Mouse, Cow, True) ::: The mouse chases the cow.\nEats(Squirrel, Bear, True) ::: The squirrel eats the bear.\n\nRules:\nEats($x, Cow, True) >>> Chases(Cow, Squirrel, True) ::: If something eats the cow then the cow chases the squirrel.\nEats($x, Squirrel, True) && Eats(Squirrel, Mouse, True) >>> Chases(Mouse, Cow, True) ::: If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\nEats($x, Mouse, True) >>> Visits($x, Cow, True) ::: If something eats the mouse then it visits the cow.\nEats($x, Mouse, True) >>> Chases($x, Bear, True) ::: If something eats the mouse then it chases the bear.\nVisits($x, Bear, True) && Visits($x, Mouse, True) >>> Blue(Bear, True) ::: If something visits the bear and it visits the mouse then the bear is blue.\nEats($x, Bear, True) >>> Cold(Bear, True) ::: If something eats the bear then the bear is cold.\nBlue($x, True) && Eats($x, Squirrel, True) >>> Eats($x, Cow, True) ::: If something is blue and it eats the squirrel then it eats the cow.\nChases(Mouse, Cow, True) && Chases(Cow, Squirrel, True) >>> Visits(Mouse, Bear, True) ::: If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\nChases($x, Bear, True) >>> Blue(Bear, True) ::: If something chases the bear then the bear is blue.\n\nQuery:\nChases(Mouse, Bear, False) ::: The mouse does not chase the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

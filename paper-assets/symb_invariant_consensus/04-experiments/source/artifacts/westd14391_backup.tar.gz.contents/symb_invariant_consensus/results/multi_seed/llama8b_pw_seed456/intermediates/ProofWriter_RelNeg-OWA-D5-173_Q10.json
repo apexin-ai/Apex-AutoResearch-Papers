@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-173_Q10",
+    "problem": "The cat chases the lion. The cat is not blue. The cat is round. The lion eats the cat. The lion is blue. The lion is round. The lion does not need the rabbit. The mouse eats the rabbit. The mouse does not need the cat. The rabbit chases the cat. The rabbit chases the mouse. The rabbit is not big. If something chases the rabbit then it needs the cat. If something eats the mouse then the mouse needs the cat. If something is blue then it chases the rabbit. If something chases the rabbit then the rabbit is blue. If something needs the cat and it is not big then it is kind. If the mouse eats the lion then the lion is not round. If something is kind and round then it does not eat the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not need the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nEats($x, $y, bool) ::: Does x eat y?\nNeeds($x, $y, bool) ::: Does x need y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(Cat, Lion, True) ::: The cat chases the lion.\nBlue(Cat, False) ::: The cat is not blue.\nRound(Cat, True) ::: The cat is round.\nEats(Lion, Cat, True) ::: The lion eats the cat.\nBlue(Lion, True) ::: The lion is blue.\nRound(Lion, True) ::: The lion is round.\nNeeds(Lion, Rabbit, False) ::: The lion does not need the rabbit.\nEats(Mouse, Rabbit, True) ::: The mouse eats the rabbit.\nNeeds(Mouse, Cat, False) ::: The mouse does not need the cat.\nChases(Rabbit, Cat, True) ::: The rabbit chases the cat.\nChases(Rabbit, Mouse, True) ::: The rabbit chases the mouse.\nBig(Rabbit, False) ::: The rabbit is not big.\n\nRules:\nChases($x, Rabbit, True) >>> Needs($x, Cat, True) ::: If something chases the rabbit then it needs the cat.\nEats($x, Mouse, True) >>> Needs(Mouse, Cat, True) ::: If something eats the mouse then the mouse needs the cat.\nBlue($x, True) >>> Chases($x, Rabbit, True) ::: If something is blue then it chases the rabbit.\nChases($x, Rabbit, True) >>> Blue(Rabbit, True) ::: If something chases the rabbit then the rabbit is blue.\nNeeds($x, Cat, True) && Big($x, False) >>> Kind($x, True) ::: If something needs the cat and it is not big then it is kind.\nEats(Mouse, Lion, True) >>> Round(Lion, False) ::: If the mouse eats the lion then the lion is not round.\nKind($x, True) && Round($x, True) >>> Eats($x, Mouse, False) ::: If something is kind and round then it does not eat the mouse.\n\nQuery:\nNeeds(Rabbit, Cat, False) ::: The rabbit does not need the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

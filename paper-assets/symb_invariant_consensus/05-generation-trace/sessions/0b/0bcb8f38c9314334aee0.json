@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bcb8f38c9314334aee0",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment d134 baf decoupled",
+  "task_key": "worker_experiment_d134-baf-decoupled_20260521T084208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_d134-baf-decoupled_20260521T084208_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "291a3b9344edd8680b8855684886f2b8d734fb93275c40eed319f601d5e35b4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n**exp-d134-baf-decoupled 结论**\n\n| 条件 | SICA Acc | BR mean | BR median | 截断比例 |\n|------|----------|---------|-----------|---------|\n| Full trace | 59.31% | 2.787 | 2.158 | 0% |\n| Trunc-conservative | 53.92% | 2.490 | 1.620 | 4.3% |\n| Trunc-standard | 54.41% | 2.655 | 1.789 | 18.9% |\n| Trunc-aggressive | 53.92% | 2.255 | 1.909 | 35.3% |\n\n**关键发现：**\n- **BR 无显著降低**：所有三种截断策略的 Wilcoxon signed-rank test 均不显著（p=0.12/0.55/0.26），配对比较中 BR 下降/上升的题目数近乎对半（如 aggressive 27↓ vs 25↑）\n- **准确率显著下降**：截断后 SICA 准确率下降约 5pp（McNemar p<0.013），尤其 conservative 策略有 11 题从对变错、0 题从错变对\n- **结论**：简单截断 CoT 答案句再做约束提取不能有效缓解 SCB——confirmation bias 已渗透到推理过程中间步骤，而非仅存在于最终结论句。截断反而丢失了有价值的约束信息，导致准确率净损失\n\n结果写入：\n- 服务器：`/root/symb_invariant_consensus/results/exp_d134_baf_decoupled/results.json`\n- 本地：`artifacts/baf_decoupled_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-d134-baf-decoupled.md"
+}

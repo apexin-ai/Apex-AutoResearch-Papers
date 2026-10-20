@@ -1,0 +1,1722 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-709_Q1",
+    "problem": "The bald eagle is green. The bald eagle is rough. The bald eagle is young. The bald eagle needs the squirrel. The bald eagle sees the squirrel. The cat is round. The cat needs the bald eagle. The cat needs the dog. The cat visits the bald eagle. The dog needs the bald eagle. The dog sees the bald eagle. The dog visits the cat. The squirrel needs the cat. The squirrel visits the bald eagle. If something sees the dog then it sees the cat. If something needs the dog and it is round then it needs the cat. If something visits the squirrel then the squirrel visits the dog. If something is nice then it sees the dog. If something needs the cat then it is nice. If something sees the cat then it is green. If something needs the cat then it is rough. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle needs the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nNeeds(BaldEagle, Squirrel, True) ::: The bald eagle needs the squirrel.\nSees(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nRound(Cat, True) ::: The cat is round.\nNeeds(Cat, BaldEagle, True) ::: The cat needs the bald eagle.\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nVisits(Cat, BaldEagle, True) ::: The cat visits the bald eagle.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nVisits(Dog, Cat, True) ::: The dog visits the cat.\nNeeds(Squirrel, Cat, True) ::: The squirrel needs the cat.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nSees($x, Dog, True) >>> Sees($x, Cat, True) ::: If something sees the dog then it sees the cat.\nNeeds($x, Dog, True) && Round($x, True) >>> Needs($x, Cat, True) ::: If something needs the dog and it is round then it needs the cat.\nVisits($x, Squirrel, True) >>> Visits(Squirrel, Dog, True) ::: If something visits the squirrel then the squirrel visits the dog.\nNice($x, True) >>> Sees($x, Dog, True) ::: If something is nice then it sees the dog.\nNeeds($x, Cat, True) >>> Nice($x, True) ::: If something needs the cat then it is nice.\nSees($x, Cat, True) >>> Green($x, True) ::: If something sees the cat then it is green.\nNeeds($x, Cat, True) >>> Rough($x, True) ::: If something needs the cat then it is rough.\nVisits($x, Squirrel, True) && Visits(Squirrel, Dog, True) >>> Visits(Squirrel, BaldEagle, True) ::: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nQuery:\nNeeds(BaldEagle, Squirrel, True) ::: The bald eagle needs the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 169.0,
+      "True": 227.0,
+      "Unknown": 238.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 1,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, let's break down the given information and rules step by step.\n\n1. The bald eagle is green. \n2. The bald eagle is rough. \n3. The bald eagle is young. \n4. The bald eagle needs the squirrel.\n5. The bald eagle sees the squirrel.\n6. The cat is round. \n7. The cat needs the bald eagle. \n8. The cat needs the dog. \n9. The cat visits the bald eagle. \n10. The dog needs the bald eagle. \n11. The dog sees the bald eagle. \n12. The dog visits the cat. \n13. The squirrel needs the cat. \n14. The squirrel visits the bald eagle. \n\nNow let's examine the rules:\n\n1. If something sees the dog then it sees the cat.\n2. If something needs the dog and it is round then it needs the cat.\n3. If something visits the squirrel then the squirrel visits the dog.\n4. If something is nice then it sees the dog.\n5. If something needs the cat then it is nice.\n6. If something sees the cat then it is green.\n7. If something needs the cat then it is rough.\n8. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nNow we can determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown.\n\nLet's analyze the rules and statements:\n- Rule 5: If something needs the cat then it is nice. \n- Statement 4: The bald eagle needs the squirrel.\n- Rule 7: If something needs the cat then it is rough.\n- Statement 2: The bald eagle is rough.\n\nSince the bald eagle needs the squirrel (Statement 4), it is nice according to Rule 5, which means it is not rough according to the definition of \"nice\" as per Rule 4. However, the information states that the bald eagle is indeed rough (Statement 2).\n\nHence, we have a contradiction. The statement \"The bald eagle is rough\" and the statement \"If something needs the cat then it is rough\" (Rule 7) both imply that the bald eagle needs the cat, but the bald eagle sees the squirrel, which implies the squirrel does not need the cat.\n\nSince we have a contradiction in the rules, we cannot determine the truth value of the statement \"The bald eagle needs the squirrel.\"\n\nSo the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the information given, we have the following:\n\n1. The bald eagle is rough.\n2. The bald eagle needs the squirrel.\n3. The squirrel visits the bald eagle.\n4. If something visits the squirrel then the squirrel visits the dog.\n5. The squirrel visits the bald eagle. (This implies that the squirrel visits the dog.)\n\nNow, let's use the given rules to analyze the situation:\n\nFrom rule 4, since the squirrel visits the bald eagle, the squirrel must also visit the dog.\n\nFrom rule 5, since the squirrel visits the bald eagle and the squirrel visits the dog, the squirrel must visit the bald eagle.\n\nFrom rule 1, since the bald eagle is rough, the bald eagle needs the cat (rule 7).\n\nFrom rule 9, since the bald eagle needs the cat, the bald eagle is nice (rule 8).\n\nNow, since the bald eagle is nice, the bald eagle sees the dog (rule 11).\n\nSince the bald eagle sees the dog, the bald eagle sees the cat (rule 2).\n\nHowever, we cannot conclude whether the bald eagle needs the squirrel or not because we cannot determine if the bald eagle sees the squirrel.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The bald eagle needs the squirrel. (Initial Statement)\n2. The bald eagle is rough. (From the initial statement)\n3. If something needs the cat then it is rough. (Rule 9)\n\nFrom rule 9, we know that the bald eagle being rough implies that it needs the cat, not the squirrel.\n\nHowever, we still need to check the following rules:\n- If something needs the dog and it is round then it needs the cat. (Rule 4)\n- The cat is round. (From the initial statement)\n- The cat needs the bald eagle. (From the initial statement)\n- The cat needs the dog. (From the initial statement)\n- The dog sees the bald eagle. (From the initial statement)\n- The dog visits the cat. (From the initial statement)\n- The cat visits the bald eagle. (From the initial statement)\n\nSince the cat is round and needs the dog, it implies that the cat needs the bald eagle, which is true. But the initial information that the bald eagle needs the squirrel is still unknown.\n\nHowever, we have to follow the rule chain for the last rule.\n- If something visits the squirrel then the squirrel visits the dog. (Rule 7)\n- The squirrel visits the bald eagle. (From the initial statement)\n- The squirrel needs the cat. (From the initial statement)\n- If something sees the cat then it is green. (Rule 10)\n- The bald eagle sees the cat. (From the initial statement)\n- The bald eagle is green. (From the initial statement)\n- The dog sees the cat. (From the initial statement)\n- The dog is green. (From the initial statement)\n- The dog needs the bald eagle. (From the initial statement)\n- The dog is not round. (From the initial statement)\n- If something needs the dog and it is round then it needs the cat. (Rule 4)\n- The cat needs the dog. (From the initial statement)\n- The cat is round. (From the initial statement)\n- The cat is nice. (From rule 8)\n\nWe now have to follow rule 8 to check if it sees the dog.\n- If something is nice then it sees the dog. (Rule 8)\n- The cat is nice. (From the previous step)\n- The cat sees the dog. (From rule 8)\n- The squirrel visits the cat. (From the initial statement)\n- If something visits the squirrel then the squirrel visits the dog. (Rule 7)\n- The squirrel visits the dog. (From rule 7)\n\nNow we can apply the last rule to check if the squirrel visits the bald eagle.\n- If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 12)\n- The squirrel visits the dog. (From the previous step)\n- The squirrel visits the bald eagle. (From rule 12)\n\nNow we can apply the rule to check if the bald eagle needs the squirrel.\n- The squirrel needs the cat. (From the initial statement)\n- If something sees the cat then it is green. (Rule 10)\n- The bald eagle sees the cat. (From the initial statement)\n- The bald eagle is green. (From the initial statement)\n- The squirrel visits the bald eagle. (From the previous step)\n- The squirrel is nice. (From rule 8)\n- The squirrel sees the dog. (From rule 8)\n- The dog is green. (From the initial statement)\n- The dog needs the bald eagle. (From the initial statement)\n- The dog is not round. (From the initial statement)\n- If something needs the dog and it is round then it needs the cat. (Rule 4)\n- The cat needs the dog. (From the initial statement)\n- The cat is round. (From the initial statement)\n- The cat is nice. (From the previous step)\n- The cat sees the dog. (From rule 8)\n- The squirrel visits the cat. (From the initial statement)\n- If something visits the squirrel then the squirrel visits the dog. (Rule 7)\n- The squirrel visits the dog. (From rule 7)\n- If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 12)\n- The squirrel visits the bald eagle. (From rule 12)\n\nNow we have to check the final rule.\n- The squirrel needs the cat. (From the initial statement)\n- The squirrel visits the bald eagle. (From the previous step)\n- The squirrel sees the cat. (From the initial statement)\n- The squirrel is green. (From rule 10)\n- The squirrel is not round. (From the initial statement)\n- The cat is round. (From the initial statement)\n- The cat needs the dog. (From the initial statement)\n- The cat sees the dog. (From the previous step)\n- The cat is nice. (From the previous step)\n- The cat needs the bald eagle. (From the initial statement)\n- The bald eagle is rough. (From the initial statement)\n- The bald eagle is young. (From the initial statement)\n- The bald eagle needs the squirrel. (Initial statement)\n\nSince we have not found any contradiction and all the previous steps are consistent, we can conclude that:\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The bald eagle needs the squirrel. (Statement to be evaluated)\n2. The bald eagle is young.\n3. The bald eagle is rough.\n4. The bald eagle needs the squirrel. (Redundant information)\n\nFrom the given rules, we have:\n- If something needs the cat then it is rough. (Rule 9)\n- The bald eagle needs the cat. (Implicit, not directly stated, but necessary to determine if the statement is true or false)\n- If something needs the dog and it is round then it needs the cat. (Rule 5) (Not applicable since the cat is round, but we can't say if the cat is round from the given information)\n- If something is nice then it needs the cat. (Rule 7)\n- If something needs the cat then it is nice. (Rule 7)\n- If something sees the cat then it is green. (Rule 8)\n- The bald eagle is green. (Implicit, not directly stated, but necessary to determine if the statement is true or false)\n\nNow, let's try to find a path to the statement \"The bald eagle needs the squirrel\":\n\n- If the bald eagle needs the squirrel, it is not directly related to any rules.\n- However, if the bald eagle needs the cat (which is implicit and necessary to determine if the statement is true or false), then it is rough (Rule 9).\n\nWe can find a path to \"The bald eagle sees the cat\" which implies the bald eagle is green (Rule 8), but we can't directly relate \"The bald eagle needs the squirrel\" to any rules.\n\nTherefore, based on the given information and the rules, we can't determine if \"The bald eagle needs the squirrel\" is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, let's break down the given information and analyze the conditions.\n\nFrom the given statements:\n\n1. The bald eagle needs the squirrel.\n   - This statement directly contradicts the statement we need to evaluate. We'll need to check other statements to see if the first statement is true.\n\n2. If something needs the cat then it is rough.\n   - The bald eagle needs the cat (Statement 4), so it is rough.\n\n3. If something needs the cat then it is rough.\n   - Since the bald eagle is rough (Statement 2), we can confirm this statement is true.\n\n4. If something sees the cat then it is green.\n   - Since the bald eagle sees the cat (Statement 7), we can confirm this statement is true.\n\n5. The bald eagle is green. \n   - This statement directly contradicts the statement we obtained in step 4. We'll need to check other statements to see if the fifth statement is true.\n\n6. If something sees the dog then it sees the cat.\n   - Since the dog sees the bald eagle (Statement 8), it sees the cat.\n\n7. If something needs the dog and it is round then it needs the cat.\n   - The cat is round (Statement 6), and it needs the dog (Statement 3), so it needs the cat.\n\n8. The cat needs the bald eagle.\n   - This statement directly contradicts the statement we obtained in step 7. We'll need to check other statements to see if the eighth statement is true.\n\n9. If something visits the squirrel then the squirrel visits the dog.\n   - Since the squirrel visits the bald eagle (Statement 10), the squirrel visits the dog.\n\n10. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n    - The squirrel visits the dog (Statement 9), and the squirrel visits the bald eagle (Statement 10), so this statement is true.\n\nNow, let's analyze the initial statement: \"The bald eagle is green. The bald eagle is rough. The bald eagle is young. The bald eagle needs the squirrel. The bald eagle sees the squirrel.\"\n\nThe first three statements are true, but we don't know whether the last two statements are true or not.\n\nFrom the analysis, we obtained the following statements:\n- The bald eagle is rough.\n- The bald eagle is green.\n\nThe first statement contradicts the statement we obtained in the second analysis, and the second statement contradicts the statement we obtained in the first analysis. \n\nNow, let's combine the given information and the statements we obtained to see if we can determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown.\n\nFrom Statement 3: If something needs the cat then it is rough.\n- The bald eagle needs the cat (Statement 4), so it is rough.\n\nFrom Statement 6: If something sees the dog then it sees the cat.\n- The dog sees the bald eagle (Statement 8), it sees the cat.\n\nFrom Statement 7: If something needs the dog and it is round then it needs the cat.\n- The cat is round (Statement 6), and it needs the dog (Statement 3), so it needs the cat.\n\nFrom Statement 9: If something visits the squirrel then the squirrel visits the dog.\n- Since the squirrel visits the bald eagle (Statement 10), the squirrel visits the dog.\n\nFrom Statement 10: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n- The squirrel visits the dog (Statement 9), and the squirrel visits the bald eagle (Statement 10), so this statement is true.\n\nFrom the analysis, we can see that the statements we obtained do not directly contradict the initial statement, and the initial statement does not directly contradict the statements we obtained. However, the initial statement contradicts the first statement in the problem, which states that the bald eagle is green. We also know that the bald eagle is rough, which is obtained from the statements that the bald eagle needs the cat.\n\nSince we cannot directly determine whether the statement \"The bald eagle needs the squirrel\" is true or false using the statements we obtained, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the relationship between the bald eagle and the squirrel.\n\n1. The bald eagle is green. (Statement 1)\n2. The bald eagle is rough. (Statement 2)\n3. The bald eagle is young. (Statement 3)\n4. The bald eagle needs the squirrel. (Statement 4)\n5. The bald eagle sees the squirrel. (Statement 5)\n6. The cat is round. (Statement 6)\n7. The cat needs the bald eagle. (Statement 7)\n8. The cat needs the dog. (Statement 8)\n9. The cat visits the bald eagle. (Statement 9)\n10. The dog needs the bald eagle. (Statement 10)\n11. The dog sees the bald eagle. (Statement 11)\n12. The dog visits the cat. (Statement 12)\n13. The squirrel needs the cat. (Statement 13)\n14. The squirrel visits the bald eagle. (Statement 14)\n\nGiven statements:\n- If something sees the dog then it sees the cat. (Rule 1)\n- If something needs the dog and it is round then it needs the cat. (Rule 2)\n- If something visits the squirrel then the squirrel visits the dog. (Rule 3)\n- If something is nice then it sees the dog. (Rule 4)\n- If something needs the cat then it is nice. (Rule 5)\n- If something sees the cat then it is green. (Rule 6)\n- If something needs the cat then it is rough. (Rule 7)\n- If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 8)\n\nWe want to determine whether statement 4 (The bald eagle needs the squirrel) is true, false, or unknown.\n\nLet's analyze the given statements:\n- Statement 4: The bald eagle needs the squirrel.\n- Statement 2: The bald eagle is rough.\n- Rule 7: If something needs the cat then it is rough.\n\nFrom Rule 7, we can infer that the bald eagle needs the cat (not the squirrel) because the bald eagle is rough.\n\nNow, let's examine the relationships between the cat, the dog, and the squirrel:\n- Rule 2: If something needs the dog and it is round then it needs the cat. (The cat is round, so it needs the cat.)\n- Statement 7: The cat needs the bald eagle.\n- Statement 13: The squirrel needs the cat.\n- Statement 14: The squirrel visits the bald eagle.\n\nFrom Rule 3, if the squirrel visits the bald eagle, then the squirrel must visit the dog (Statement 14 implies Statement 13 implies Statement 12).\n\nNow, let's examine the relationship between the squirrel and the dog:\n- Statement 14: The squirrel visits the bald eagle.\n- Rule 8: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (The squirrel visits the bald eagle, so the squirrel must visit the dog.)\n\nGiven these relationships, we can determine the following:\n- The cat needs the bald eagle.\n- The squirrel needs the cat.\n- The squirrel visits the dog.\n- The squirrel visits the bald eagle.\n\nNow, let's examine the relationship between the bald eagle and the squirrel:\n- Statement 4: The bald eagle needs the squirrel.\n- Rule 7: If something needs the cat then it is rough. (The bald eagle needs the cat, not the squirrel.)\n- Rule 6: If something sees the cat then it is green. (The bald eagle sees the cat, so it is green.)\n\nHowever, we don't have enough information to determine whether the bald eagle needs the squirrel. The given statements and rules don't provide a clear conclusion.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information, we have the following facts:\n\n1. The bald eagle is green. (Fact 1)\n2. The bald eagle is rough. (Fact 2)\n3. The bald eagle is young. (Fact 3)\n4. The bald eagle needs the squirrel. (This is the statement we are trying to determine)\n5. The bald eagle sees the squirrel. (Fact 5)\n6. The cat is round. (Fact 6)\n7. The cat needs the bald eagle. (Fact 7)\n8. The cat needs the dog. (Fact 8)\n9. The cat visits the bald eagle. (Fact 9)\n10. The dog needs the bald eagle. (Fact 10)\n11. The dog sees the bald eagle. (Fact 11)\n12. The dog visits the cat. (Fact 12)\n13. The squirrel needs the cat. (Fact 13)\n14. The squirrel visits the bald eagle. (Fact 14)\n15. If something sees the dog then it sees the cat. (Rule 1)\n16. If something needs the dog and it is round then it needs the cat. (Rule 2)\n17. If something visits the squirrel then the squirrel visits the dog. (Rule 3)\n18. If something is nice then it sees the dog. (Rule 4)\n19. If something needs the cat then it is nice. (Rule 5)\n20. If something sees the cat then it is green. (Rule 6)\n21. If something needs the cat then it is rough. (Rule 7)\n22. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 8)\n\nNow, let's try to determine whether the bald eagle needs the squirrel.\n\nFrom Rule 7, we know that if something needs the cat, then it is rough. We already know that the bald eagle is rough (Fact 2). Therefore, the bald eagle needs the cat.\n\nFrom Rule 5, we know that if something needs the cat, then it is nice. We have already determined that the bald eagle needs the cat. Therefore, the bald eagle is nice.\n\nNow, let's see if the bald eagle sees the dog. We do not have any direct information about this, but we can use Rule 1, which states that if something sees the dog, then it sees the cat. We know that the cat is nice (from Rule 5, since the cat needs the dog), and we also know that if something is nice, then it sees the dog (from Rule 4). Therefore, the cat sees the dog.\n\nHowever, we cannot conclude that the bald eagle sees the dog from this information. We only know that the cat sees the dog.\n\nLet's try to determine whether the bald eagle needs the squirrel again. We already know that the bald eagle is rough (Fact 2), which means it needs the cat (from Rule 7). We also know that the cat needs the squirrel (from Fact 13). Therefore, the bald eagle needs the squirrel.\n\nSince we have now determined that the bald eagle needs the squirrel, the statement \"The bald eagle needs the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements and rules.\n\n1. The bald eagle is green. (Statement 1)\n2. The bald eagle is rough. (Statement 2)\n3. The bald eagle is young. (Statement 3)\n4. The bald eagle needs the squirrel. (Statement 4)\n5. The bald eagle sees the squirrel. (Statement 5)\n6. The cat is round. (Statement 6)\n7. The cat needs the bald eagle. (Statement 7)\n8. The cat needs the dog. (Statement 8)\n9. The cat visits the bald eagle. (Statement 9)\n10. The dog needs the bald eagle. (Statement 10)\n11. The dog sees the bald eagle. (Statement 11)\n12. The dog visits the cat. (Statement 12)\n13. The squirrel needs the cat. (Statement 13)\n14. The squirrel visits the bald eagle. (Statement 14)\n\nFrom the given rules:\n\n1. If something sees the dog then it sees the cat. (Rule 1)\n2. If something needs the dog and it is round then it needs the cat. (Rule 2)\n3. If something visits the squirrel then the squirrel visits the dog. (Rule 3)\n4. If something is nice then it sees the dog. (Rule 4)\n5. If something needs the cat then it is nice. (Rule 5)\n6. If something sees the cat then it is green. (Rule 6)\n7. If something needs the cat then it is rough. (Rule 7)\n8. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 8)\n\nWe want to determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown.\n\nFrom Statement 4, we have: The bald eagle needs the squirrel.\n\nUsing Rule 7, if something needs the cat then it is rough, and from Statement 2, the bald eagle is rough, we cannot directly conclude that the bald eagle needs the cat. However, we can use Rule 7 to establish a connection between the bald eagle needing the squirrel and the bald eagle needing the cat.\n\nWe know the bald eagle needs the squirrel (Statement 4), but we need to determine if this implies that the bald eagle needs the cat.\n\nFrom Statement 7, the cat needs the bald eagle, and from Statement 8, the cat needs the dog. Since the cat is round, using Rule 2, if something needs the dog and it is round then it needs the cat, we can infer that the cat needs the dog because it is round. However, this does not directly relate to the bald eagle needing the squirrel.\n\nFrom Statement 13, the squirrel needs the cat, and from Rule 5, if something needs the cat then it is nice. This means the squirrel is nice because it needs the cat. From Rule 4, if something is nice then it sees the dog, but we don't have a direct statement from the squirrel seeing the dog.\n\nFrom Statement 14, the squirrel visits the bald eagle, and from Rule 3, if something visits the squirrel then the squirrel visits the dog. This implies that the squirrel visits the dog.\n\nUsing Rule 8, if something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle, we can infer that the squirrel visiting the dog implies that the squirrel visits the bald eagle, which is already given in Statement 14.\n\nNow, we know the squirrel needs the cat (Statement 13), the cat is round (Statement 6), and from Rule 2, if something needs the dog and it is round then it needs the cat, we can infer that the cat needs the dog because it is round.\n\nFrom Statement 7, the cat needs the bald eagle. Since the cat needs the bald eagle and the cat is round, we can conclude that the cat needs the dog (from Rule 2), and from Statement 8, the cat needs the dog.\n\nUsing Rule 7, if something needs the cat then it is rough, and from Statement 2, the bald eagle is rough, we can infer that the bald eagle needs the cat because it is rough.\n\nSince the bald eagle needs the cat, from Rule 5, if something needs the cat then it is nice, we can conclude that the bald eagle is nice because it needs the cat.\n\nFrom Rule 4, if something is nice then it sees the dog, but we don't have a direct statement from the bald eagle seeing the dog.\n\nHowever, from Statement 5, the bald eagle sees the squirrel, but we cannot directly conclude that the bald eagle sees the dog.\n\nFrom Statement 10, the dog needs the bald eagle, and from Statement 6, the cat is round. Since the cat is round, using Rule 2, if something needs the dog and it is round then it needs the cat, we can infer that the cat needs the dog because it is round.\n\nFrom Statement 8, the cat needs the dog, and from Statement 11, the dog sees the bald eagle. However, we cannot directly conclude that the cat sees the dog.\n\nFrom Statement 12, the dog visits the cat, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the dog sees the cat.\n\nHowever, from Statement 7, the cat needs the bald eagle, and from Statement 2, the bald eagle is rough, we cannot directly conclude that the cat sees the bald eagle.\n\nFrom Statement 9, the cat visits the bald eagle, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the cat sees the dog.\n\nHowever, we can conclude that the cat needs the dog (from Statement 8), and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nFrom Statement 6, the cat is round, and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nSince the cat is round (Statement 6) and the cat is rough (from Rule 7), we can conclude that the cat needs the dog (from Rule 2).\n\nHowever, from Statement 10, the dog needs the bald eagle, and from Statement 11, the dog sees the bald eagle. However, we cannot directly conclude that the cat sees the dog.\n\nFrom Statement 12, the dog visits the cat, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the dog sees the cat.\n\nHowever, we can conclude that the cat needs the dog (from Statement 8), and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nSince the cat is round (Statement 6) and the cat is rough (from Rule 7), we can conclude that the cat needs the dog (from Rule 2).\n\nHowever, from Statement 7, the cat needs the bald eagle, and from Statement 2, the bald eagle is rough, we cannot directly conclude that the cat sees the bald eagle.\n\nFrom Statement 9, the cat visits the bald eagle, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the cat sees the dog.\n\nHowever, we can conclude that the cat needs the dog (from Statement 8), and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nSince the cat is round (Statement 6) and the cat is rough (from Rule 7), we can conclude that the cat needs the dog (from Rule 2).\n\nHowever, from Statement 10, the dog needs the bald eagle, and from Statement 11, the dog sees the bald eagle. However, we cannot directly conclude that the cat sees the dog.\n\nFrom Statement 12, the dog visits the cat, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the dog sees the cat.\n\nHowever, we can conclude that the cat needs the dog (from Statement 8), and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nSince the cat is round (Statement 6) and the cat is rough (from Rule 7), we can conclude that the cat needs the dog (from Rule 2).\n\nHowever, from Statement 7, the cat needs the bald eagle, and from Statement 2, the bald eagle is rough, we cannot directly conclude that the cat sees the bald eagle.\n\nFrom Statement 9, the cat visits the bald eagle, and from Rule 1, if something sees the dog then it sees the cat, but we cannot directly conclude that the cat sees the dog.\n\nHowever, we can conclude that the cat needs the dog (from Statement 8), and from Rule 7, if something needs the cat then it is rough, we can infer that the cat is rough because it needs the cat.\n\nSince the cat is round (Statement 6) and the cat is rough (from Rule 7), we can conclude that the cat needs the dog (from Rule 2).\n\nHowever, from Statement 10, the dog needs the bald eagle, and from Statement 11, the dog sees the bald eagle. However, we cannot directly conclude that the cat sees the dog.\n\nFrom Statement 12, the dog visits the cat, and from Rule 1, if something sees the dog then it sees the cat, but we",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nStep 1: Analyze the given information.\n- The bald eagle is green. (Rule 1)\n- The bald eagle is rough. (Rule 2)\n- The bald eagle is young. (Rule 3)\n- The bald eagle needs the squirrel. (Given)\n- The bald eagle sees the squirrel. (Rule 4)\n- The cat is round. (Rule 5)\n- The cat needs the bald eagle. (Rule 6)\n- The cat needs the dog. (Rule 7)\n- The cat visits the bald eagle. (Rule 8)\n- The dog needs the bald eagle. (Rule 9)\n- The dog sees the bald eagle. (Rule 10)\n- The dog visits the cat. (Rule 11)\n- The squirrel needs the cat. (Rule 12)\n- The squirrel visits the bald eagle. (Rule 13)\n- If something sees the dog then it sees the cat. (Rule 14)\n- If something needs the dog and it is round then it needs the cat. (Rule 15)\n- If something visits the squirrel then the squirrel visits the dog. (Rule 16)\n- If something is nice then it sees the dog. (Rule 17)\n- If something needs the cat then it is nice. (Rule 18)\n- If something sees the cat then it is green. (Rule 19)\n- If something needs the cat then it is rough. (Rule 20)\n- If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle. (Rule 21)\n\nStep 2: Analyze the rules that might affect the statement \"The bald eagle needs the squirrel.\"\n- Rule 2: The bald eagle is rough.\n- Rule 3: The bald eagle is young.\n- Rule 4: The bald eagle sees the squirrel.\n- Rule 5: The cat is round.\n- Rule 6: The cat needs the bald eagle.\n- Rule 7: The cat needs the dog.\n- Rule 8: The cat visits the bald eagle.\n- Rule 9: The dog needs the bald eagle.\n- Rule 10: The dog sees the bald eagle.\n- Rule 11: The dog visits the cat.\n- Rule 12: The squirrel needs the cat.\n- Rule 13: The squirrel visits the bald eagle.\n- Rule 14: If something sees the dog then it sees the cat.\n- Rule 15: If something needs the dog and it is round then it needs the cat.\n- Rule 16: If something visits the squirrel then the squirrel visits the dog.\n- Rule 17: If something is nice then it sees the dog.\n- Rule 18: If something needs the cat then it is nice.\n- Rule 19: If something sees the cat then it is green.\n- Rule 20: If something needs the cat then it is rough.\n- Rule 21: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nStep 3: Determine whether the statement \"The bald eagle needs the squirrel\" can be proven true or false using the given information and rules.\n\nFrom Rule 20, we know that if something needs the cat, then it is rough. However, we cannot conclude that the bald eagle is nice because there is no rule that says it needs the cat. We can only say that it is rough.\n\nWe cannot find any rule that directly says \"The bald eagle needs the squirrel.\" However, we can analyze the rules to see if there is a chain of events that might lead to the conclusion.\n\nStep 4: Analyze the chain of events to see if we can find any information that relates the bald eagle to the squirrel.\n\n- Rule 4: The bald eagle sees the squirrel.\n- Rule 13: The squirrel visits the bald eagle.\n- Rule 12: The squirrel needs the cat.\n- Rule 18: If something needs the cat then it is nice.\n- Rule 17: If something is nice then it sees the dog.\n- Rule 14: If something sees the dog then it sees the cat.\n\nHowever, we cannot conclude that the squirrel needs the bald eagle. We can only say that the squirrel visits the bald eagle, the bald eagle sees the squirrel, and the squirrel needs the cat.\n\nWe cannot find any information that directly or indirectly says \"The bald eagle needs the squirrel.\" Therefore, the statement \"The bald eagle needs the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information and rules.\n\nFrom the given statements:\n1. The bald eagle is green.\n2. The bald eagle is rough.\n3. The bald eagle is young.\n4. The bald eagle needs the squirrel.\n5. The bald eagle sees the squirrel.\n6. The cat is round.\n7. The cat needs the bald eagle.\n8. The cat needs the dog.\n9. The cat visits the bald eagle.\n10. The dog needs the bald eagle.\n11. The dog sees the bald eagle.\n12. The dog visits the cat.\n13. The squirrel needs the cat.\n14. The squirrel visits the bald eagle.\n\nNow, let's examine the given rules:\n1. If something sees the dog then it sees the cat.\n   - We don't have any information that directly satisfies this rule. However, we can infer from rule 2 and rule 11 that the bald eagle sees the dog.\n\n2. If something needs the dog and it is round then it needs the cat.\n   - The cat is round (rule 6) and needs the dog (rule 8), so it needs the cat (rule 2).\n\n3. If something visits the squirrel then the squirrel visits the dog.\n   - We don't have any information that directly satisfies this rule. However, we can infer from rule 14 that the squirrel visits the bald eagle.\n\n4. If something is nice then it sees the dog.\n   - We don't have any information that directly satisfies this rule. However, we can infer from rule 5 that the bald eagle sees the squirrel.\n\n5. If something needs the cat then it is nice.\n   - The cat needs the bald eagle (rule 7) and the bald eagle is young (rule 3), so the cat is nice.\n\n6. If something sees the cat then it is green.\n   - The cat is round (rule 6), but we don't have any information about something seeing the cat.\n\n7. If something needs the cat then it is rough.\n   - The cat needs the bald eagle (rule 7) and the bald eagle is young (rule 3), so the cat is rough.\n\n8. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n   - The squirrel visits the bald eagle (rule 14) and the squirrel visits the dog is not directly mentioned, but we can infer from rule 13 that the squirrel needs the cat.\n\nNow, let's examine the statement: \n\"The bald eagle needs the squirrel.\"\n\nWe can see that the bald eagle needs the squirrel (rule 4) and the bald eagle is young (rule 3). However, we don't have any information that directly satisfies the rules related to the bald eagle's needs or the squirrel's actions.\n\nGiven the information, we cannot directly determine whether the statement is true or false, so the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the provided rules to determine if the statement \"The bald eagle needs the squirrel\" is true, false, or unknown.\n\n1. The bald eagle is green.\n2. The bald eagle is rough.\n3. The bald eagle is young.\n4. The bald eagle needs the squirrel.\n5. The bald eagle sees the squirrel.\n6. The cat is round.\n7. The cat needs the bald eagle.\n8. The cat needs the dog.\n9. The cat visits the bald eagle.\n10. The dog needs the bald eagle.\n11. The dog sees the bald eagle.\n12. The dog visits the cat.\n13. The squirrel needs the cat.\n14. The squirrel visits the bald eagle.\n\nNow, let's use the given rules to analyze the statements:\n\nRule 1: If something sees the dog then it sees the cat.\n- There is no information in the statements that directly relates to this rule.\n\nRule 2: If something needs the dog and it is round then it needs the cat.\n- The cat is round (statement 6), and the cat needs the dog (statement 8). Therefore, the cat needs the cat, but this does not apply to the bald eagle.\n\nRule 3: If something visits the squirrel then the squirrel visits the dog.\n- The squirrel visits the bald eagle (statement 14), which implies that the squirrel visits the dog (by Rule 3).\n\nRule 4: If something is nice then it sees the dog.\n- There is no information in the statements that directly relates to this rule.\n\nRule 5: If something needs the cat then it is nice.\n- The cat needs the bald eagle (statement 7), so the bald eagle is nice. The squirrel needs the cat (statement 13), so the squirrel is nice.\n\nRule 6: If something sees the cat then it is green.\n- The bald eagle sees the cat (by implication from Rule 1, not directly given), so the bald eagle is green (statement 1).\n\nRule 7: If something needs the cat then it is rough.\n- The bald eagle needs the cat (by implication from Rule 2, not directly given), so the bald eagle is rough (statement 2).\n\nRule 8: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n- The squirrel visits the bald eagle (statement 14), which satisfies this rule.\n\nNow, we need to determine if the statement \"The bald eagle needs the squirrel\" is true, false, or unknown. \n\nFrom the given statements, we know that the bald eagle needs the squirrel (statement 4). To verify this, we need to check the given rules. \n\nStatement 4, \"The bald eagle needs the squirrel,\" is directly given. Therefore, the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"The bald eagle needs the squirrel\" is true, false, or unknown, we need to analyze the given information and rules.\n\n1. The bald eagle is young. (This does not provide any information about the bald eagle needing the squirrel.)\n2. The bald eagle needs the squirrel. (This statement is what we are trying to determine.)\n3. The bald eagle sees the squirrel. (This does not provide any information about the bald eagle needing the squirrel.)\n\nNow, let's analyze the rules:\n\n1. If something needs the dog and it is round then it needs the cat. (This rule does not apply to the bald eagle, as there is no information that the bald eagle is round.)\n2. If something sees the dog then it sees the cat. (This rule does not apply to the bald eagle, as there is no information that the bald eagle sees the dog.)\n3. If something visits the squirrel then the squirrel visits the dog. (This rule does not apply to the bald eagle, as there is no information that the bald eagle visits the squirrel.)\n4. If something is nice then it sees the dog. (This rule does not apply to the bald eagle, as there is no information that the bald eagle is nice.)\n5. If something needs the cat then it is nice. (This rule does not apply to the bald eagle, as there is no information that the bald eagle needs the cat.)\n6. If something sees the cat then it is green. (This rule does not apply to the bald eagle, as there is no information that the bald eagle sees the cat.)\n7. If something needs the cat then it is rough. (This rule does not apply to the bald eagle, as there is no information that the bald eagle needs the cat.)\n\nHowever, there is no direct information or rule that states the bald eagle does not need the squirrel. But we can infer that the bald eagle needs the squirrel because the statement \"The bald eagle needs the squirrel\" is explicitly given in the problem.\n\nTherefore, based on the given information and rules, we cannot definitively conclude that the statement \"The bald eagle needs the squirrel\" is true or false. However, we can say that it is not unknown. The statement is simply given in the problem.\n\nHowever, since the statement is given as one of the premises and we are trying to deduce information from it, we can say the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_X_squirrel_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_X_squirrel_dog), visits_X_squirrel_bald_eagle)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, visits_bald_eagle_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, cat)",
+          "z3_formula": "Implies(rough_bald_eagle, needs_bald_eagle_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, nice_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, sees_bald_eagle_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) <- rough(X)",
+          "z3_formula": "Implies(rough_bald_eagle, needs_bald_eagle_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(squirrel, dog)",
+          "z3_formula": "Implies(visits_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_cat_cat, green_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(dog))",
+          "z3_formula": "not(round_dog) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_dog_dog, round_dog), needs_dog_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_cat, sees_cat_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(squirrel, dog)",
+          "z3_formula": "Implies(visits_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(squirrel, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, visits_squirrel_dog), visits_squirrel_bald_eagle)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_cat_cat, green_cat)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "not(round_squirrel) == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 36
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, rough_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bald_eagle_dog, round_bald_eagle), needs_bald_eagle_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> needs(X, cat)",
+          "z3_formula": "Implies(nice_bald_eagle, needs_bald_eagle_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, nice_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_bald_eagle_cat, green_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, sees_bald_eagle_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bald_eagle_dog, round_cat), needs_bald_eagle_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(visits_bald_eagle_squirrel, visits_bald_eagle_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_bald_eagle_squirrel, visits_bald_eagle_dog), visits_bald_eagle_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X_dog), visits_squirrel_X_bald_eagle)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X_dog), visits_squirrel_X_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X_dog), visits_squirrel_X_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X_dog), visits_squirrel_X_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(needs(bald_eagle, squirrel))",
+          "z3_formula": "unknown(needs_bald_eagle_squirrel)",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits_squirrel(X, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits_squirrel(X, dog) -> visits_squirrel(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X_dog), visits_squirrel_X_bald_eagle)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_dog, round_X), needs_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(squirrel, dog)",
+          "z3_formula": "Implies(visits_X_squirrel, visits_squirrel_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_X, sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_X_cat, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_X_cat, green_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cat, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(squirrel, dog) -> visits(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_dog), visits_squirrel_bald_eagle)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bald_eagle_dog, round_bald_eagle), needs_bald_eagle_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, sees_bald_eagle_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(squirrel, dog)",
+          "z3_formula": "Implies(visits_bald_eagle_squirrel, visits_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, dog)",
+          "z3_formula": "Implies(nice_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> nice(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, nice_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> green(X)",
+          "z3_formula": "Implies(sees_bald_eagle_cat, green_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> rough(X)",
+          "z3_formula": "Implies(needs_bald_eagle_cat, rough_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 265,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 61,
+      "excluded": 0,
+      "total_weight": 264,
+      "solve_time_ms": 1.2601157650351524
+    },
+    "timing": {
+      "trace_gen_s": 24.411,
+      "extraction_s": 44.734,
+      "dedup_s": 2.741,
+      "maxsat_s": 0.005,
+      "total_s": 71.89
+    }
+  }
+}

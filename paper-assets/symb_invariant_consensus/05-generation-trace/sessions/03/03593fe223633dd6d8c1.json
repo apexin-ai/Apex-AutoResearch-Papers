@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03593fe223633dd6d8c1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops probe westd 16639",
+  "task_key": "worker_ops_probe-westd-16639_20260525T204035",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_probe-westd-16639_20260525T204035_result.json",
+    "occurrence": 1,
+    "bytes": 2172,
+    "sha256": "a056d498db5217ed6b44f75ef63bbd00bbfd28688ca476efdbb6b8688989d379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "探测完成。以下是完整摘要：\n\n---\n\n## westd-16639 服务器项目数据摘要\n\n### 磁盘空间\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 12G | **19G** | 40% |\n| 数据盘 `/root/autodl-tmp` | 350G | 230G | **121G** | 66% |\n\n### 项目大小\n\n| 路径 | 大小 |\n|------|------|\n| `/root/symb_invariant_consensus` | **1.1G** |\n| `/root/autodl-tmp/symb_invariant_consensus` | **17G**（其中 models/ 占 17G） |\n| `/root/autodl-tmp/.hf_cache` | **1.3G** |\n\n### results 目录\n- **大小**: 834M\n- **文件/目录数**: 97 条（含 ~25 个 JSON 文件 + ~72 个实验子目录）\n- 最大文件: `r11_3verifier_canonical.json` (126K)\n- 典型实验目录: `multi_seed/`, `exp_d126_crossmodel_sica/`, `exp_d135_frontier_scb/` 等\n\n### artifacts 目录\n- **大小**: 176K\n- **文件数**: 5 个（capability_gap_scatter.pdf/png, deberta_ft_combo_all.json, nli_recompute.json, nondeterminism_root_cause.md）\n\n### HF Cache\n- **大小**: 1.3G（位于 `/root/autodl-tmp/.hf_cache`）\n\n### Checkpoint 文件\n- **无** `.pt/.pth/.bin/.safetensors` 文件在项目根目录\n- `/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned/` 存在但**为空** (0 bytes)\n- `/root/autodl-tmp/symb_invariant_consensus/models/` 包含：`deberta-large-pw-owa` 和 `deberta-large-pw-owa-dryrun`（共 17G）\n\n### Git 状态\n- **项目无 `.git` 目录** — 非 git 仓库\n\n### Figures\n- `figures/`: f2_sc_vs_delta (pdf/png), f3_kt_sensitivity (pdf/png), 及生成脚本 gen_f2.py, gen_f3.py\n- `docs/paper/figures/`: gen_f6_kappa_accuracy_scatter.py, gen_capability_gap_scatter.py\n\n### 特殊发现\n1. **项目不是 git 仓库**（无 .git 目录）\n2. **wandb 目录不存在**（实验可能用的远端 wandb 或未启用）\n3. **checkpoints 目录为空**，实际模型权重在数据盘 `/root/autodl-tmp/symb_invariant_consensus/models/`（17G）\n4. 数据盘已用 66%，仍有 121G 可用空间充裕\n5. `scripts/` 目录非常活跃（100+ 文件），包含大量实验运行/分析脚本，最近更新到 May 25"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-probe-westd-16639.md"
+}

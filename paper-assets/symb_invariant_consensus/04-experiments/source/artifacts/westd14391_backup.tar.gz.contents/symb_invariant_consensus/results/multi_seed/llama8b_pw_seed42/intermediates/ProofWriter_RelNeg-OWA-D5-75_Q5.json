@@ -1,0 +1,1204 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-75_Q5",
+    "problem": "The bald eagle chases the cow. The bald eagle chases the dog. The cow needs the bald eagle. The cow sees the lion. The dog chases the cow. The dog is green. The lion is rough. If someone is blue and rough then they see the lion. If someone needs the cow and they do not need the lion then they chase the cow. If someone sees the cow then the cow is kind. If someone is rough then they chase the bald eagle. If someone is blue then they do not chase the bald eagle. If someone is kind then they chase the lion. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. If the bald eagle sees the dog then the bald eagle sees the cow. If someone needs the cow then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle sees the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(BaldEagle, Cow, True) ::: The bald eagle chases the cow.\nChases(BaldEagle, Dog, True) ::: The bald eagle chases the dog.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nSees(Cow, Lion, True) ::: The cow sees the lion.\nChases(Dog, Cow, True) ::: The dog chases the cow.\nGreen(Dog, True) ::: The dog is green.\nRough(Lion, True) ::: The lion is rough.\n\nRules:\nBlue($x, True) && Rough($x, True) >>> Sees($x, Lion, True) ::: If someone is blue and rough then they see the lion.\nNeeds($x, Cow, True) && Needs($x, Lion, False) >>> Chases($x, Cow, True) ::: If someone needs the cow and they do not need the lion then they chase the cow.\nSees($x, Cow, True) >>> Kind(Cow, True) ::: If someone sees the cow then the cow is kind.\nRough($x, True) >>> Chases($x, BaldEagle, True) ::: If someone is rough then they chase the bald eagle.\nBlue($x, True) >>> Chases($x, BaldEagle, False) ::: If someone is blue then they do not chase the bald eagle.\nKind($x, True) >>> Chases($x, Lion, True) ::: If someone is kind then they chase the lion.\nChases($x, BaldEagle, True) && Chases(BaldEagle, Dog, True) >>> Sees($x, Dog, True) ::: If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\nSees(BaldEagle, Dog, True) >>> Sees(BaldEagle, Cow, True) ::: If the bald eagle sees the dog then the bald eagle sees the cow.\nNeeds($x, Cow, True) >>> Rough($x, True) ::: If someone needs the cow then they are rough.\n\nQuery:\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 173.5,
+      "Unknown": 134.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the bald eagle sees the dog, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. The bald eagle chases the dog. \n2. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n\nFrom statement 1, we know that the bald eagle chases the dog. \n\nHowever, statement 2 requires that someone chases the bald eagle. We need to check if there is anyone who chases the bald eagle.\n\nFrom statement 3, we know that the cow needs the bald eagle. But we also know that if someone needs the cow and they do not need the lion then they chase the cow (statement 4 is not directly related to the bald eagle, but we will see its relevance later). \n\nFrom statement 5, we know that the cow sees the lion. From statement 6, we know that the dog chases the cow. However, statement 7 tells us that the dog is green. \n\nFrom statement 8, we know that if someone is blue and rough then they see the lion. The lion is rough (statement 9), so someone who is blue and rough sees the lion. We know the lion is rough but there is no information about someone being blue and rough.\n\nFrom statement 10, we know that if someone needs the cow and they do not need the lion then they chase the cow. We already know the cow needs the bald eagle (statement 3), but we do not know if the cow needs the lion. \n\nHowever, statement 11 says that if someone is rough then they chase the bald eagle. Since the lion is rough (statement 9), the lion chases the bald eagle. \n\nNow, we have someone who chases the bald eagle (the lion) and the bald eagle chases the dog (statement 1).\n\nFrom statement 2, if someone chases the bald eagle and the bald eagle chases the dog, then the bald eagle sees the dog. \n\nTherefore, the bald eagle sees the dog. \n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break down the information given and apply it step by step.\n\n1. The bald eagle chases the dog. (Given)\n2. The dog chases the cow. (Given)\n3. The dog is green. (Given)\n4. The lion is rough. (Given)\n5. If someone is blue and rough then they see the lion. (Rule)\n6. If someone needs the cow and they do not need the lion then they chase the cow. (Rule)\n7. If someone sees the cow then the cow is kind. (Rule)\n8. If someone is rough then they chase the bald eagle. (Rule)\n9. If someone is blue then they do not chase the bald eagle. (Rule)\n10. If someone is kind then they chase the lion. (Rule)\n11. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. (Rule)\n12. If the bald eagle sees the dog then the bald eagle sees the cow. (Rule)\n13. If someone needs the cow then they are rough. (Rule)\n\nFrom statement 1, we know that the bald eagle chases the dog.\n\nNow, we need to apply rule 11: \"If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\"\n\nSince we know that the bald eagle chases the dog (statement 1), we cannot directly apply rule 11 to conclude that the bald eagle sees the dog, because we do not have information about someone chasing the bald eagle. However, we can proceed with the given rules.\n\nFrom statement 3, we know that the dog is green. We do not have any rule that directly relates being green to seeing or not seeing the lion or the cow.\n\nFrom statement 4, we know that the lion is rough.\n\nHowever, we do not have information about the bald eagle seeing the lion or the cow.\n\nFrom statement 5, we know that if someone is blue and rough, then they see the lion. But since the lion is rough, it does not necessarily mean that the bald eagle sees the lion.\n\nFrom statement 6, we know that if someone needs the cow and they do not need the lion, then they chase the cow. Since we do not know who needs the cow, we cannot apply this rule.\n\nFrom statement 7, we know that if someone sees the cow, then the cow is kind. But we do not have information about the cow's kindness.\n\nFrom statement 8, we know that if someone is rough, then they chase the bald eagle. However, we do not know if the bald eagle is rough or not.\n\nFrom statement 9, we know that if someone is blue, then they do not chase the bald eagle. But we do not have any information about the bald eagle's color.\n\nFrom statement 10, we know that if someone is kind, then they chase the lion. But we do not have information about the lion's location or the bald eagle's kindness.\n\nFrom statement 13, we know that if someone needs the cow, then they are rough. However, we do not know if the bald eagle needs the cow or not.\n\nBased on the given rules and information, we cannot conclude whether the bald eagle sees the dog or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the bald eagle sees the dog, we need to analyze the given statements and use logical deductions.\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nNow, we will use the given statements to determine whether the bald eagle sees the dog.\n\nFrom statement 2, we know that the bald eagle chases the dog. \n\nFrom statement 16, we know that the cow needs the bald eagle. So, the cow is rough (from statement 16).\n\nFrom statement 4, we know that the cow sees the lion. \n\nSince the cow is rough, from statement 8, we can conclude that the cow is blue and rough. \n\nFrom statement 8, being blue and rough means the cow sees the lion. This already given in statement 4.\n\nFrom statement 10, we know that if someone sees the cow then the cow is kind. Since the cow is seen by itself (as it sees the lion), we can conclude that the cow is kind.\n\nFrom statement 11, if someone is rough, they chase the bald eagle. But the cow is rough and kind (from above), so it does not chase the bald eagle.\n\nFrom statement 3, we know the cow needs the bald eagle. From statement 9, if someone needs the cow and they do not need the lion then they chase the cow. Since the cow does not chase itself, the cow is not chasing the bald eagle.\n\nNow, from statement 2, the bald eagle chases the dog. From statement 14, if someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n\nSince the bald eagle chases the dog, and the condition of statement 14 is met, the bald eagle sees the dog.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the bald eagle sees the dog, we need to follow the given rules and analyze the given information.\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nFrom statement 2, we know the bald eagle chases the dog.\n\nNow, let's look at the rules that might help us determine if the bald eagle sees the dog.\n\nFrom rule 14, if someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. Since the bald eagle chases the dog (statement 2), we need to find someone who chases the bald eagle.\n\nFrom rule 11, if someone is rough then they chase the bald eagle. However, we don't have any information that someone is rough. We need more information to determine if the bald eagle sees the dog.\n\nLet's try to find more information about the cow.\n\nFrom statement 3, the cow needs the bald eagle. From rule 16, if someone needs the cow then they are rough. So, the bald eagle is rough (because the cow needs the bald eagle and the cow needs the bald eagle, so the bald eagle is rough).\n\nNow we know the bald eagle is rough. From rule 11, if someone is rough then they chase the bald eagle. Therefore, the bald eagle is chased by the cow.\n\nSince the bald eagle is chased by the cow and the bald eagle chases the dog (from statement 2), we can apply rule 14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. In this case, the cow chases the bald eagle, and the bald eagle chases the dog, so the bald eagle sees the dog.\n\nTherefore, the statement \"The bald eagle sees the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information and rules into a series of logical statements.\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nFrom statement 16, we can conclude that the cow is rough because the cow needs the bald eagle (statement 3).\n\nFrom statement 10, we can conclude that the cow is kind because the cow sees the lion (statement 4).\n\nFrom statement 6, we know that the dog is green.\n\nFrom statement 11, since the cow is rough (concluded above), the cow chases the bald eagle.\n\nFrom statement 2, the bald eagle chases the dog.\n\nNow, let's apply the given rules to determine if the bald eagle sees the dog.\n\nStatement 14: If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n\nFrom statement 2, the bald eagle chases the dog. From statement 11, the cow chases the bald eagle. \n\nSo, from statement 14, we can conclude that the bald eagle sees the dog.\n\nTherefore, the statement \"The bald eagle sees the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the bald eagle sees the dog, we need to analyze the given statements and their implications.\n\n1. The bald eagle chases the dog. (Given)\n2. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. (Given)\nFrom the first statement, we know the bald eagle chases the dog. This directly implies that the bald eagle is the entity that chases the bald eagle in the second statement.\n3. Since the bald eagle chases the dog, it satisfies the condition in the second statement. Therefore, we can conclude that the bald eagle sees the dog.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle sees the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the cow. \n2. The bald eagle chases the dog.\nFrom these two statements, we can infer that the bald eagle is a chaser, and it chases both the cow and the dog. However, this information alone does not tell us whether the bald eagle sees the dog.\n\n3. The cow needs the bald eagle. \n4. The cow sees the lion. \nThese statements do not provide any information about the bald eagle's relationship with the lion or whether it sees the dog.\n\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\nThese statements also do not provide any information about the bald eagle's relationship with the dog.\n\n8. If someone is blue and rough then they see the lion.\nWe do not know if the bald eagle is blue or rough, so we cannot determine if it sees the lion based on this statement.\n\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\nThese statements also do not provide any information about the bald eagle's relationship with the dog.\n\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\nFrom these two statements, we can infer that if the bald eagle is chased by someone and it chases the dog, then it sees the dog. However, we do not know if the bald eagle is chased by someone.\n\n16. The bald eagle is not mentioned as blue or rough, and we do not know if it is kind. \nHowever, we know that the dog chases the cow (statement 5), and the cow needs the bald eagle (statement 3), and someone who needs the cow and does not need the lion chases the cow (statement 9). This means that the dog needs the cow, and since the dog needs the cow, it is rough (statement 16 implies that someone who needs the cow is rough).\n\n17. Since the dog is rough (statement 6), it chases the bald eagle (statement 11).\n\n18. The bald eagle chases the dog (statement 2), which means that someone chases the bald eagle and it chases the dog.\n\n19. Based on statement 14, since the bald eagle chases the dog and someone chases the bald eagle, the bald eagle sees the dog.\n\nTherefore, the statement \"The bald eagle sees the dog\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical deductions. We'll break down the problem into smaller parts and use a truth table to represent the relationships between the different statements.\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nNow, we'll analyze the statement \"The bald eagle sees the dog\" and use the given information to deduce its truth value.\n\nFrom statement 2, we know the bald eagle chases the dog. This information alone does not tell us whether the bald eagle sees the dog or not.\n\nFrom statement 14, we know that if the bald eagle chases the dog and the bald eagle chases the dog (from statement 2), then the bald eagle sees the dog. However, this statement is incomplete because we don't know whether the bald eagle chases the dog or not. We only know that the bald eagle chases the dog.\n\nFrom statement 2, we know the bald eagle chases the dog. Now, let's analyze the dog's behavior. From statement 5, we know the dog chases the cow. We also know that the dog is green (statement 6).\n\nNow, let's analyze the cow's behavior. We know that the cow needs the bald eagle (statement 3), which means the cow is rough (statement 16). The cow sees the lion (statement 4), which means the cow is kind (statement 10).\n\nNow, let's analyze the lion's behavior. We know that the lion is rough (statement 7). Since the cow is kind (from statement 10), the cow does not chase the lion (statement 13).\n\nNow, let's analyze the bald eagle's behavior. We know that the bald eagle chases the cow (statement 1), which means the bald eagle does not need the lion (statement 9). Therefore, the bald eagle is not rough (from statement 11).\n\nNow, let's analyze the dog's behavior again. We know that the dog chases the cow (statement 5), which means the dog is not kind (from statement 10).\n\nFrom statement 12, we know that if someone is blue then they do not chase the bald eagle. However, we don't know if the dog is blue or not.\n\nFrom statement 6, we know the dog is green. We don't know if the dog is blue or not. Therefore, we can't determine whether the dog does or does not chase the bald eagle.\n\nHowever, we do know that the dog chases the cow (statement 5). We also know that the bald eagle chases the cow (statement 1). Therefore, we can conclude that the bald eagle sees the cow (from statement 15).\n\nNow, let's analyze the relationship between the bald eagle and the dog. We know that the bald eagle chases the dog (statement 2), and we also know that the bald eagle sees the cow (from statement 15). From statement 15, we know that if the bald eagle sees the dog, then the bald eagle sees the cow. However, we can't determine whether the bald eagle sees the dog or not.\n\nTherefore, based on the given information, we can't determine whether the statement \"The bald eagle sees the dog\" is true or false. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information and the rules provided:\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nNow, let's analyze the statement \"The bald eagle sees the dog\" and the given rules to determine if it's true, false, or unknown.\n\nFrom rule 1, we know the bald eagle chases the cow, and from rule 2, we know the bald eagle chases the dog. We can also deduce that the dog chases the cow from rule 5.\n\nTo determine if the bald eagle sees the dog, we need to examine the rules that involve seeing.\n\nFrom rule 8, if someone is blue and rough then they see the lion. However, this doesn't directly apply to the bald eagle.\n\nFrom rule 14, if someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. Since the bald eagle chases the dog (rule 2), we can use this rule to conclude that the bald eagle sees the dog.\n\nHowever, we must consider the rules that might affect the bald eagle's ability to see the dog. From rule 1, we know the bald eagle chases the cow, and from rule 2, we know the bald eagle chases the dog. We can also deduce that the dog chases the cow from rule 5.\n\nNow let's use the rules to see if the bald eagle sees the dog. If the bald eagle chases the dog, from rule 2 then the bald eagle chases the dog. Now if the bald eagle chases the dog, then the bald eagle sees the dog. \n\nTherefore, the statement \"The bald eagle sees the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle sees the dog\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The bald eagle chases the dog. \nFrom this statement, we can conclude that the bald eagle is aware of the dog's presence. However, we cannot directly conclude that the bald eagle sees the dog from this information alone.\n\n2. The dog chases the cow. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n3. The dog is green. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n4. If someone sees the lion, then they are blue and rough. \nThis statement introduces a new condition but does not provide any direct information about the bald eagle's perception of the dog.\n\n5. The lion is rough. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n6. If someone needs the cow and they do not need the lion then they chase the cow. \nThis statement introduces a new condition but does not provide any direct information about the bald eagle's perception of the dog.\n\n7. If someone sees the cow then the cow is kind. \nThis statement introduces a new condition but does not provide any direct information about the bald eagle's perception of the dog.\n\n8. If someone is rough then they chase the bald eagle. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n9. If someone is blue then they do not chase the bald eagle. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n10. If someone is kind then they chase the lion. \nThis statement does not provide any direct information about the bald eagle's perception of the dog.\n\n11. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. \nThis statement introduces a new condition. We already know that the bald eagle chases the dog from statement 1. Therefore, if someone chases the bald eagle, we can conclude that the bald eagle sees the dog.\n\n12. If the bald eagle sees the dog then the bald eagle sees the cow. \nThis statement introduces a new condition. We do not have any information that directly links the bald eagle seeing the dog to seeing the cow.\n\nHowever, from the given statements, we can conclude that the statement \"The bald eagle sees the dog\" is true. We can prove this by using the following steps:\n\nThe bald eagle chases the dog. \nTherefore, if someone chases the bald eagle, then the bald eagle sees the dog.\n\nFrom the given statements, there is no information that someone chases the bald eagle. However, we can infer that the dog chases the cow, and the dog is green. We do not have any information about the dog chasing the bald eagle.\n\nHowever, we can infer that the cow needs the bald eagle. This is because the cow sees the lion, and the lion is rough. Therefore, the cow needs the bald eagle because it is rough.\n\nSince the cow needs the bald eagle, we can conclude that the cow is rough. Therefore, the cow chases the bald eagle.\n\nSince the cow chases the bald eagle, we can conclude that the bald eagle sees the dog.\n\nTherefore, the statement \"The bald eagle sees the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the entities (bald eagle, cow, dog, lion). We'll use a combination of logical deductions and inferences.\n\n1. The bald eagle chases the cow.\n2. The bald eagle chases the dog.\n3. The cow needs the bald eagle.\n4. The cow sees the lion.\n5. The dog chases the cow.\n6. The dog is green.\n7. The lion is rough.\n8. If someone is blue and rough then they see the lion.\n9. If someone needs the cow and they do not need the lion then they chase the cow.\n10. If someone sees the cow then the cow is kind.\n11. If someone is rough then they chase the bald eagle.\n12. If someone is blue then they do not chase the bald eagle.\n13. If someone is kind then they chase the lion.\n14. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n15. If the bald eagle sees the dog then the bald eagle sees the cow.\n16. If someone needs the cow then they are rough.\n\nNow, we need to determine whether the bald eagle sees the dog. We have two statements related to this:\n- Statement 14: If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\n- Statement 2: The bald eagle chases the dog.\n\nFrom statement 2, we know that the bald eagle chases the dog. However, we cannot directly apply statement 14 because it requires the bald eagle to be chased by someone. We need to find out if there's anyone who chases the bald eagle.\n\nFrom statement 11, if someone is rough then they chase the bald eagle. From statement 7, the lion is rough. Therefore, the lion chases the bald eagle.\n\nNow we can apply statement 14: If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. Since the lion chases the bald eagle and the bald eagle chases the dog, we can conclude that the bald eagle sees the dog.\n\nTherefore, the statement \"The bald eagle sees the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle sees the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the cow. (Given)\n2. The bald eagle chases the dog. (Given)\n3. The cow needs the bald eagle. (Given)\n4. The cow sees the lion. (Given)\n5. The dog chases the cow. (Given)\n6. The dog is green. (Given)\n7. The lion is rough. (Given)\n\nFrom the information provided, we have the following conditions:\n\n- If someone is blue and rough then they see the lion. (Condition 1)\n- If someone needs the cow and they do not need the lion then they chase the cow. (Condition 2)\n- If someone sees the cow then the cow is kind. (Condition 3)\n- If someone is rough then they chase the bald eagle. (Condition 4)\n- If someone is blue then they do not chase the bald eagle. (Condition 5)\n- If someone is kind then they chase the lion. (Condition 6)\n- If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. (Condition 7)\n- If the bald eagle sees the dog then the bald eagle sees the cow. (Condition 8)\n- If someone needs the cow then they are rough. (Condition 9)\n\nWe are trying to determine whether the statement \"The bald eagle sees the dog\" is true or false.\n\nFrom Condition 7, we know that if someone chases the bald eagle and the bald eagle chases the dog, then the bald eagle sees the dog. \n\nSince we already know that the bald eagle chases the dog (from statement 2), we need to check if there is anyone chasing the bald eagle. \n\nFrom Condition 4, if someone is rough then they chase the bald eagle. \n\nFrom Condition 9, if someone needs the cow then they are rough. \n\nSo, the bald eagle chases the cow (from statement 1), and the cow needs the bald eagle (from statement 3), which implies the cow is rough (from Condition 9). \n\nNow we know that the cow is rough, and from Condition 4, if someone is rough then they chase the bald eagle. \n\nTherefore, the cow chases the bald eagle.\n\nFrom Condition 7, since the bald eagle chases the dog and the cow chases the bald eagle, the bald eagle sees the dog.\n\nThe statement \"The bald eagle sees the dog\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, Y) -> sees(bald_eagle, Y)",
+          "z3_formula": "Implies(And(chases_someone_bald_eagle, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & not needs(X, lion) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_someone_cow, not needs_someone_lion), chases_someone_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_someone, rough_someone), sees_someone_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, lion)",
+          "z3_formula": "needs_cow_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_lion, chases_lion_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, Y) -> sees(bald_eagle, Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_dog, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_cow, rough_cow), sees_cow_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_cow_bald_eagle, Not(needs_cow_lion)), chases_cow_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(X)",
+          "z3_formula": "Implies(sees_cow_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_cow, chases_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_cow, Not(chases_cow_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_cow, chases_cow_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(X, dog)",
+          "z3_formula": "Implies(And(chases_cow_bald_eagle, chases_bald_eagle_dog), sees_cow_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_cow_dog, sees_cow_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_cow_bald_eagle, rough_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cow, bald_eagle))",
+          "z3_formula": "Not(chases_cow_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & ~needs(X, lion) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> ~chases(X, bald_eagle)",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases_bald_eagle_dog -> sees(X, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & ~needs(X, lion) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> ~chases(X, bald_eagle)",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(X, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_dog, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & not needs(X, lion) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not chases(X, bald_eagle)",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(bald_eagle, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_Y), sees_X_Y)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(X, Z)",
+          "z3_formula": "Implies(sees_X_Y, sees_X_Z)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(X, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> aware(X, Y)",
+          "z3_formula": "Implies(chases_bald_eagle_dog, aware_bald_eagle_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> blue(X) & rough(X)",
+          "z3_formula": "Implies(sees_lion, And(blue_lion, rough_lion))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & not needs(X, Z) -> chases(X, Y)",
+          "z3_formula": "Implies(And(needs_cow_bald_eagle, Not(needs_cow_lion)), chases_cow_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> kind(Y)",
+          "z3_formula": "Implies(sees_cow, kind_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not chases(X, bald_eagle)",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(bald_eagle, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(X, Z)",
+          "z3_formula": "Implies(sees_X_Y, sees_X_Z)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(X, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(sees_X_dog, sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, rough_X), sees_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & Not(needs(X, lion)) -> chases(X, cow)",
+          "z3_formula": "Implies(And(needs_X_cow, Not(needs_X_lion)), chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> kind(cow)",
+          "z3_formula": "Implies(sees_X_cow, kind_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(rough_X, chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bald_eagle))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, lion)",
+          "z3_formula": "Implies(kind_X, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & chases(bald_eagle, dog) -> sees(bald_eagle, dog)",
+          "z3_formula": "Implies(And(chases_X_bald_eagle, chases_bald_eagle_dog), sees_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, dog) -> sees(bald_eagle, cow)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, sees_bald_eagle_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> rough(X)",
+          "z3_formula": "Implies(needs_X_cow, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 179,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 47,
+      "excluded": 1,
+      "total_weight": 177,
+      "solve_time_ms": 1.7257044091820717
+    },
+    "timing": {
+      "trace_gen_s": 10.452,
+      "extraction_s": 36.358,
+      "dedup_s": 1.773,
+      "maxsat_s": 0.004,
+      "total_s": 48.587
+    }
+  }
+}

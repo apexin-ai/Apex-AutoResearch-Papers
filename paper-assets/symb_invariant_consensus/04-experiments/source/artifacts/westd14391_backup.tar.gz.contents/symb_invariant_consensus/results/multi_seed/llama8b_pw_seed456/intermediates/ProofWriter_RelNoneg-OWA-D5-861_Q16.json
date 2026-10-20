@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-861_Q16",
+    "problem": "The cat needs the dog. The dog is kind. The dog needs the rabbit. The rabbit eats the dog. The rabbit is green. The tiger chases the rabbit. The tiger is big. If something is nice and it eats the tiger then it needs the dog. If something chases the cat then it eats the cat. If the dog chases the tiger then the tiger needs the rabbit. If the rabbit chases the tiger then the rabbit chases the cat. If something chases the cat then the cat is kind. If something eats the dog then it chases the cat. If something is rough then it eats the dog. If something is kind then it is rough. If something eats the rabbit and the rabbit is big then it is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog needs the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\nChases($x, $y, bool) ::: Does x chase y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nKind(Dog, True) ::: The dog is kind.\nNeeds(Dog, Rabbit, True) ::: The dog needs the rabbit.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nGreen(Rabbit, True) ::: The rabbit is green.\nChases(Tiger, Rabbit, True) ::: The tiger chases the rabbit.\nBig(Tiger, True) ::: The tiger is big.\n\nRules:\nNice($x, True) && Eats($x, Tiger, True) >>> Needs($x, Dog, True) ::: If something is nice and it eats the tiger then it needs the dog.\nChases($x, Cat, True) >>> Eats($x, Cat, True) ::: If something chases the cat then it eats the cat.\nChases(Dog, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If the dog chases the tiger then the tiger needs the rabbit.\nChases(Rabbit, Tiger, True) >>> Chases(Rabbit, Cat, True) ::: If the rabbit chases the tiger then the rabbit chases the cat.\nChases($x, Cat, True) >>> Kind(Cat, True) ::: If something chases the cat then the cat is kind.\nEats($x, Dog, True) >>> Chases($x, Cat, True) ::: If something eats the dog then it chases the cat.\nRough($x, True) >>> Eats($x, Dog, True) ::: If something is rough then it eats the dog.\nKind($x, True) >>> Rough($x, True) ::: If something is kind then it is rough.\nEats($x, Rabbit, True) && Big(Rabbit, True) >>> Kind($x, True) ::: If something eats the rabbit and the rabbit is big then it is kind.\n\nQuery:\nNeeds(Dog, Dog, True) ::: The dog needs the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

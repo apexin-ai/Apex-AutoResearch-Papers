@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp-d126-r1-distill-sica",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:19:19.126Z",
+    "updated_at": "2026-05-21T17:22:52.150Z",
+    "hypothesis": "Reasoning-distilled model (DeepSeek-R1-Distill-LLaMA-8B) does not escape SCB: self-extracted constraints will show BR≥2× and SICA≈SC, demonstrating that SCB is a structural property of autoregressive self-extraction that reasoning training cannot eliminate.",
+    "notes": "Pipeline re-run PID 451580: 130/204 intermediates, ETA ~17:10 UTC. Cross-extraction v2 has 93/204. Plan: pipeline finishes → kill R1-Distill vLLM (cuda:3) → deploy Mistral port 8004 → run reextract_bpe_fix.py for remaining ~111 problems → merge 204 → compute full SICA+BR+κ. Mistral model: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+    "reproduce": {
+      "finished_at": "2026-05-21T17:22:50.819Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T15:27:22.742934+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "cross_model_extraction": {
+        "n_problems": 93,
+        "sc_accuracy": 0.7312,
+        "sica_accuracy": 0.7527,
+        "delta_pp": 2.15,
+        "extraction_rate": 0.932,
+        "total_constraints": 6364,
+        "unique_constraints": 3726,
+        "n_sica_wrong": 23,
+        "mean_br": 2.63,
+        "median_br": 1.74,
+        "n_br_finite": 12,
+        "process_kappa_tfidf": 0.2522,
+        "answer_fleiss_kappa": 0.6629,
+        "extractor": "Mistral-7B",
+        "note": "Cross-model: R1-Distill traces extracted by Mistral-7B. BPE fix applied."
+      }
+    }
+  },
+  "timestamp": "2026-05-21T17:22:52.427389+00:00",
+  "trigger": "update_registry"
+}

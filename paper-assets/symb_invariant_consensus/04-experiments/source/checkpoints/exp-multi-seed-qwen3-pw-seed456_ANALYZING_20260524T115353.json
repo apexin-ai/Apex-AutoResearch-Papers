@@ -1,0 +1,19 @@
+{
+  "exp_id": "exp-multi-seed-qwen3-pw-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:14:48.152Z",
+    "updated_at": "2026-05-24T11:53:52.917Z",
+    "hypothesis": "Qwen3-14B non-thinking PW seed456 多种子复制。验证 SCB 在 ProofWriter 上跨 seed 稳定性（Δ(SICA-SC)≤0）。配合 seed42 组成多 seed 覆盖。",
+    "parent": "exp-027-qwen3-14b-non-thinking",
+    "spec": {
+      "command": "python run_full_mvp.py --mode vllm --k 12 --vllm-port 8021 --seed 456 --temperature 0.7 --max-tokens 4096 --output results/multi_seed/qwen3_pw_seed456/results.json"
+    }
+  },
+  "timestamp": "2026-05-24T11:53:53.267672+00:00",
+  "trigger": "update_registry"
+}

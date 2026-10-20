@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-069-llama8b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:40:15.817Z",
+    "updated_at": "2026-05-19T14:32:05.419Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 LLaMA-8B SC=66.18% delta=-4.41pp (exp-063, negative/error amplification)。LogiQA 上 Mistral-7B SC=51% delta=+0.5pp (exp-049b)，Qwen2.5-14B SC=78.5% delta=-0.50pp (exp-038)。测试 LLaMA-8B 在 LogiQA 上的 regime（SC 预计 50-60%，可能在 error amplification zone）。parent=exp-063-llama8b-folio204-16639",
+    "parent": "exp-063-llama8b-folio204-16639",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8012/v1 --model auto --seed 42 --strategyqa-data data/logiqa_200.json --folio-data data/empty.json --math-data data/empty.json --pw-data data/empty.json --output results/exp069_llama8b_logiqa200/exp069_results.json --save-intermediates",
+      "server": "westd-16639",
+      "gpu": "cuda:2",
+      "port": 8012,
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "notes": "诊断 2026-05-19T20:17: westd-16639 上运行正常。tmux_session=exp-069-llama8b-logiqa200, vLLM via nohup (非 tmux), run PID=152414, vLLM PID=151829 (EngineCore on GPU2). port=8012, CUDA_VISIBLE_DEVICES=2. 进度: 12/200 (6%), 刚启动约12分钟。GPU2 利用率 96%, 显存 88254/97887 MiB。vLLM model=/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct, max-model-len=8192。同机其他实验: exp-048(GPU3,457/600), exp-064(GPU0,74/204), exp-068(GPU1,121/200)。",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:32:03.443Z"
+    }
+  },
+  "timestamp": "2026-05-19T14:32:05.694481+00:00",
+  "trigger": "update_registry"
+}

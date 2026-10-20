@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-026-folio204-trace-regen",
+  "project": "symb_invariant_consensus",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:41:13.054Z",
+    "updated_at": "2026-05-18T11:41:31.463Z",
+    "hypothesis": "FOLIO 204 全量 trace 重生成（Qwen2.5-14B, K=12, T=0.3）：在 westd-25068 上复现 exp-001 的 FOLIO traces，用于 cross-model extraction 和 case study 选取。归一化 bug 已修复，温度已统一为 T_ext=0.3。",
+    "parent": "sica_expanded_14b"
+  },
+  "timestamp": "2026-05-18T11:41:31.576337+00:00",
+  "trigger": "update_registry"
+}

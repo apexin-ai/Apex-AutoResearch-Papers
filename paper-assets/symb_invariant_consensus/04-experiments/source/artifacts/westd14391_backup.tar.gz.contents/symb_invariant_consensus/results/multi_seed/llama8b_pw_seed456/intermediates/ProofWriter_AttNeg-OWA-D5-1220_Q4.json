@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1220_Q4",
+    "problem": "Anne is blue. Bob is blue. Bob is green. Bob is smart. Dave is big. Dave is nice. Fiona is smart. If something is nice then it is not green. Quiet, blue things are big. If something is blue then it is young. If something is nice then it is quiet. Young things are blue. If Anne is young then Anne is quiet. If Dave is young then Dave is green. All big, quiet things are nice. If Fiona is blue then Fiona is not green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nBlue(Bob, True) ::: Bob is blue.\nGreen(Bob, True) ::: Bob is green.\nSmart(Bob, True) ::: Bob is smart.\nBig(Dave, True) ::: Dave is big.\nNice(Dave, True) ::: Dave is nice.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nNice($x, True) >>> Green($x, False) ::: If something is nice then it is not green.\nQuiet($x, True) && Blue($x, True) >>> Big($x, True) ::: Quiet, blue things are big.\nBlue($x, True) >>> Young($x, True) ::: If something is blue then it is young.\nNice($x, True) >>> Quiet($x, True) ::: If something is nice then it is quiet.\nYoung($x, True) >>> Blue($x, True) ::: Young things are blue.\nYoung(Anne, True) >>> Quiet(Anne, True) ::: If Anne is young then Anne is quiet.\nYoung(Dave, True) >>> Green(Dave, True) ::: If Dave is young then Dave is green.\nBig($x, True) && Quiet($x, True) >>> Nice($x, True) ::: All big, quiet things are nice.\nBlue(Fiona, True) >>> Green(Fiona, False) ::: If Fiona is blue then Fiona is not green.\n\nQuery:\nQuiet(Dave, False) ::: Dave is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

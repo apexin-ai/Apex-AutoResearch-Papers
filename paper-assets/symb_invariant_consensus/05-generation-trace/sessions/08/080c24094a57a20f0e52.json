@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "080c24094a57a20f0e52",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir i3 sica qwen3 14b",
+  "task_key": "worker_experiment_dir-i3-sica-qwen3-14b_20260520T172642",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-i3-sica-qwen3-14b_20260520T172642_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "6e3c14d13297cfe39fe7145d1a9ac1773dae84f05461d126cbcae5d8d2514d07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果写入 `/root/symb_invariant_consensus/results/dir_i3_sica_qwen3_14b/results.json`。\n\n## Dir-I3 结果：SICA vs SC on Qwen3-14B (FOLIO, n=204, k=12)\n\n| 方法 | Correct | Accuracy |\n|------|---------|----------|\n| SICA | 177/204 | **86.76%** |\n| SC   | 176/204 | **86.27%** |\n| Δ(SICA−SC) | +1 | **+0.49 pp** |\n\n**McNemar exact test**: p=1.0, **不显著**\n\n**Discordant pairs** (仅 3 题不一致):\n- SICA✓ SC✗: `folio_19`, `folio_20`\n- SICA✗ SC✓: `folio_156`\n- 175 题两者都对，26 题两者都错\n\nSICA 在 Qwen3-14B 上略优于 SC (+0.49pp)，但差异在统计上不显著（仅 3 个 discordant pairs，太少无法检出差异）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-i3-sica-qwen3-14b.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-036-z3-feedback-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:18:09.052Z",
+    "updated_at": "2026-05-18T18:50:47.192Z",
+    "hypothesis": "Z3 UNSAT core feedback refinement: closed-loop 方法用 Z3 solver 的 UNSAT core 指导 LLM 修正矛盾约束（最多 3 轮）。如果约束质量是瓶颈，solver 反馈应能提升 constraint discriminative power，使 Z3-feedback SICA > vanilla SICA。目标 recovery_rate > 0%（recovery_rate = Z3fb_delta / oracle_delta × 100%）。与之前 open-loop interventions（contrastive/cross-model/generational 全部失败）对比，closed-loop 利用 formal verification 信号可能是打破 capability trap 的关键。"
+  },
+  "timestamp": "2026-05-18T18:50:47.363042+00:00",
+  "trigger": "update_registry"
+}

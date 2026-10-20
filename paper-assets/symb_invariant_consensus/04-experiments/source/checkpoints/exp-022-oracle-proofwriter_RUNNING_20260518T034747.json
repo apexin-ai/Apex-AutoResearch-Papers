@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-022-oracle-proofwriter",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:47:31.892Z",
+    "updated_at": "2026-05-18T03:47:47.876Z",
+    "hypothesis": "ProofWriter oracle: gold DSL (raw_logic_programs) 通过 Z3 consistency checking 加权 K=12 traces，Oracle-SICA 应显著超越 SC 和 SICA(self)，在 ProofWriter 600 题上复现 FOLIO oracle (+8.82pp) 的 extraction bottleneck 结论。",
+    "parent": "exp-021-oracle-folio",
+    "spec": {
+      "command": "python scripts/run_exp022_oracle_proofwriter.py",
+      "server": "westd-32608",
+      "data_path": "/root/autodl-tmp/crdd/data/proofwriter/proofwriter-OWA-D5-validation.jsonl",
+      "data_count": 600,
+      "model_name": "Qwen2.5-14B-Instruct (traces) + Z3 (oracle)",
+      "seed": "N/A",
+      "checkpoint_path": "N/A (CPU-only oracle)",
+      "log_path": "/root/symb_invariant_consensus/results/exp022_oracle_pw.log",
+      "checkpoint_source": "sica_expanded_14b traces (no model checkpoint)",
+      "eval_data": "ProofWriter OWA-D5 validation 600 problems"
+    }
+  },
+  "timestamp": "2026-05-18T03:47:47.991486+00:00",
+  "trigger": "update_registry"
+}

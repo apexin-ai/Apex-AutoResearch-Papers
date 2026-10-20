@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1208_Q15",
+    "problem": "Anne is cold. Anne is not green. Anne is not kind. Anne is quiet. Anne is round. Bob is kind. Bob is round. Charlie is cold. Charlie is quiet. Charlie is round. Erin is furry. If something is quiet then it is rough. Cold things are round. If something is green then it is quiet. All cold things are quiet. Green things are quiet. If something is kind and green then it is furry. Furry things are green. If Bob is kind then Bob is not rough. If something is rough and green then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nGreen(Anne, False) ::: Anne is not green.\nKind(Anne, False) ::: Anne is not kind.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, True) ::: Anne is round.\nKind(Bob, True) ::: Bob is kind.\nRound(Bob, True) ::: Bob is round.\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRound(Charlie, True) ::: Charlie is round.\nFurry(Erin, True) ::: Erin is furry.\n\nRules:\nQuiet($x, True) >>> Rough($x, True) ::: If something is quiet then it is rough.\nCold($x, True) >>> Round($x, True) ::: Cold things are round.\nGreen($x, True) >>> Quiet($x, True) ::: If something is green then it is quiet.\nCold($x, True) >>> Quiet($x, True) ::: All cold things are quiet.\nGreen($x, True) >>> Quiet($x, True) ::: Green things are quiet.\nKind($x, True) && Green($x, True) >>> Furry($x, True) ::: If something is kind and green then it is furry.\nFurry($x, True) >>> Green($x, True) ::: Furry things are green.\nKind(Bob, True) >>> Rough(Bob, False) ::: If Bob is kind then Bob is not rough.\nRough($x, True) && Green($x, True) >>> Cold($x, True) ::: If something is rough and green then it is cold.\n\nQuery:\nQuiet(Bob, False) ::: Bob is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

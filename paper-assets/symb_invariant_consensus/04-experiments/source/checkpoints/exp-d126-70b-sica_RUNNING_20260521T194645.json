@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-d126-70b-sica",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:01:56.827Z",
+    "updated_at": "2026-05-21T19:46:45.433Z",
+    "hypothesis": "Symbolic confirmation bias persists at 72B scale: Qwen2.5-72B self-extracted constraints will show BR > 1 and κ ≥ 0.40, with SICA ≈ SC (no significant improvement), demonstrating that the independence bottleneck is scale-invariant beyond the 7B-14B range tested so far.",
+    "notes": "westd-16639 单卡 70B (PID 436077) 已被 D136 主动终止（25/204, ETA 45h 不经济）。实验转移到 westd-25068 tp=4 (PID 40007, vLLM PID 39013 port 8002, AWQ 39GB confirmed)。westd-25068 进度 52/204, ETA ~2.6h, avg 61.8s/prob。folio_0-folio_11 (12题) 在 westd-25068 标为 SKIPPED，合并时需用 westd-16639 实际结果替换。",
+    "reproduce": {
+      "finished_at": "2026-05-21T19:46:11.474Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T19:46:22.575967+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "python exp_70b_sica_awq_25068.py",
+      "server": "westd-25068",
+      "data_path": "folio_12 (204 problems)",
+      "data_count": 204,
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T19:46:45.714392+00:00",
+  "trigger": "update_registry"
+}

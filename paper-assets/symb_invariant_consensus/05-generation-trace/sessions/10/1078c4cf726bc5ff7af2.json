@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1078c4cf726bc5ff7af2",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis vote diversity prep",
+  "task_key": "worker_analysis_vote_diversity_prep_20260515T220218",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_vote_diversity_prep_20260515T220218_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "9cdc9b8e2460f7f4ffcad3d90a4b8938e070fcdf6bd16cdb4d043344a198c54d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本正常运行。结果确认：\n\n**22 题中 16 题有有效投票，multi-candidate rate = 0.0%** — 所有 16 题的 K 条 trace 都只产生 1 个候选答案（其余 6 题答案提取完全失败，0 票）。\n\n关键数字：\n- `#Cand=1` 贯穿所有有效题目，SICA≡SC，gap=0pp\n- 约束提取仍有价值：19/22 题提取了约束，exclusion rate 38.7%，但由于只有 1 个候选答案，MaxSAT 的排除操作不改变最终选择\n- 6 题（idx 1,7,8,10,13,14）投票数为 0——答案提取完全失败，注意 idx 4,6,9,11,12 投票数远低于 K=12（1~10 票），说明部分 trace 也提取失败\n\n脚本已保存在 `/root/symb_invariant_consensus/analyze_vote_diversity.py`，用法：`python analyze_vote_diversity.py [results_json_path]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-vote-diversity-prep.md"
+}

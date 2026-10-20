@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0702ba9b9d7e947f3d53",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "figure f4 fix",
+  "task_key": "worker_figure_f4-fix_20260517T163816",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_f4-fix_20260517T163816_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "4583d6b9b61b818e2c9066c0170392ff5331ffa97e6229faa216e24a7bfc988a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "F4 修复完成。\n\n**变更摘要**：\n- 删除 2 个 superseded 数据点（exp-011 LLaMA-8B D012, Qwen-14B D012）\n- 添加 QwQ-32B PW 单条件（C0=0.026, Δ=-5.9pp, n=17）\n- Marker size ∝ sqrt(n/60)，n=804 的点明显大于 n=60\n- 添加 95% CI error bars（binomial SE propagation）\n- 保留视觉规范：y=0 虚线、色盲友好配色、形状区分 domain、无标题、去上右边框\n\n**输出文件**：\n- `westd-32608:/root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.pdf`\n- `westd-32608:/root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.png` (300dpi)\n\n**脚本**：`scripts/plot_f4_fixed.py`（独立可运行），`scripts/plot_hero_figures.py` 的 F4 部分也已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-f4-fix.md"
+}

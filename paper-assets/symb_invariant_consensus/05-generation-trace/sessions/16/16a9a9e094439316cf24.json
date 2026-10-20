@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16a9a9e094439316cf24",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra urgent gpu status check",
+  "task_key": "worker_infra_urgent-gpu-status-check_20260522T131538",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_urgent-gpu-status-check_20260522T131538_result.json",
+    "occurrence": 1,
+    "bytes": 2139,
+    "sha256": "f62c8a854d8e10f82ec7441de030e96bd2488815a1fbfb1d8af61e8f0bbf1062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告 — westd-16639 @ 2026-05-22 21:16 UTC\n\n### GPU 总览\n\n| GPU | 型号 | 利用率 | 显存 | 运行进程 |\n|-----|------|--------|------|---------|\n| 0 | RTX PRO 6000 Black | 97% | 90159/97887 MiB | vLLM Qwen2.5-14B (PID 551459) |\n| 1 | RTX PRO 6000 Black | 96% | 88263/97887 MiB | vLLM LLaMA-3.1-8B (PID 595559) |\n| 2 | RTX PRO 6000 Black | 96% | 90213/97887 MiB | vLLM Mistral-7B (PID 510289) |\n| **3** | RTX PRO 6000 Black | **0%** | **0 MiB** | **空闲** |\n\n### 实验进度\n\n#### cuda:0 — Qwen2.5-14B PW (master PID 552333, alive 5h42m)\n\n| Seed | 进度 | 状态 | 结果 |\n|------|------|------|------|\n| 123 | **303/600** | **运行中** | SICA=73.6%, SC=72.9%（中间结果） |\n| 456 | 600/600 | 旧结果（异常） | SICA=0.0%, SC=0.0%, extraction_rate=0.0 |\n| 789 | 600/600 | 旧结果（异常） | SICA=0.0%, SC=0.0%, extraction_rate=0.0 |\n\n> seed456/789 的 results.json 是之前失败的 run_full_mvp.py 运行留下的（0% accuracy、0 extraction）。当前多种子脚本还在跑 seed123，这两个 seed 尚未被当前轮次覆盖。\n\n#### cuda:1 — LLaMA-3.1-8B FOLIO (master PID 596151, alive 2h09m)\n\n| Seed | 进度 | 状态 | 结果 |\n|------|------|------|------|\n| 123 | 204/204 | **完成** | **SICA=63.73%, SC=67.16%**, extraction_rate=95.9%, contradiction_rate=4.9% |\n| 456 | **12/204** | **运行中** | ETA ~164 min (~2.7h) |\n| 789 | — | 未开始 | 目录不存在 |\n\n#### cuda:2 — Mistral-7B PW (master PID 510987, alive 9h45m)\n\n| Seed | 进度 | 状态 | 结果 |\n|------|------|------|------|\n| 42 | 600/600 | **完成** | **SICA=36.67%, SC=40.0%**, abstention(t=0.5): coverage=25.8%, acc_retained=47.1% |\n| 123 | **586/600** | **运行中** | SICA=37.88%, SC=41.13% (586个问题的中间结果), ETA ~7 min |\n| 456 | — | 未开始 | 目录不存在 |\n| 789 | — | 未开始 | 目录不存在 |\n\n### 其他进程\n\n- **PID 605169**: ModelScope 下载 Qwen2.5-7B-Instruct → `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`（started 20:12）\n\n### 空闲卡\n\n**GPU 3** 完全空闲（0% utilization, 0 MiB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-gpu-status-check.md"
+}

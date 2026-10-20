@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-016-weighted-sc",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:01:51.841Z",
+    "updated_at": "2026-05-17T01:02:10.724Z",
+    "hypothesis": "加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC",
+    "parent": "sica_expanded_14b",
+    "conclusion": "success",
+    "metrics": {
+      "sica_accuracy": 0.7649,
+      "sc_uniform_accuracy": 0.7624,
+      "inv_length_accuracy": 0.7674,
+      "length_weighted_accuracy": 0.7525,
+      "constraint_count_accuracy": 0.7525,
+      "inv_length_vs_sc_p": 0.453,
+      "length_vs_sc_p": 0.153,
+      "inv_length_vs_sica_p": 0.864,
+      "length_vs_sica_p": 0.066,
+      "n_problems": 804,
+      "all_nonsignificant": true
+    },
+    "notes": "exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data)."
+  },
+  "timestamp": "2026-05-17T01:02:10.777398+00:00",
+  "trigger": "update_registry"
+}

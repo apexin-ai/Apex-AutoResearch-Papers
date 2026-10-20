@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-203_Q7",
+    "problem": "Bob is nice. Bob is round. Bob is young. Dave is round. Erin is big. Erin is red. Gary is young. All round things are nice. All nice, big things are white. If something is big and white then it is round. Young things are nice. Big, red things are young. All nice things are quiet. All quiet things are big. Young, quiet things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nYoung(Bob, True) ::: Bob is young.\nRound(Dave, True) ::: Dave is round.\nBig(Erin, True) ::: Erin is big.\nRed(Erin, True) ::: Erin is red.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round things are nice.\nNice($x, True) && Big($x, True) >>> White($x, True) ::: All nice, big things are white.\nBig($x, True) && White($x, True) >>> Round($x, True) ::: If something is big and white then it is round.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nBig($x, True) && Red($x, True) >>> Young($x, True) ::: Big, red things are young.\nNice($x, True) >>> Quiet($x, True) ::: All nice things are quiet.\nQuiet($x, True) >>> Big($x, True) ::: All quiet things are big.\nYoung($x, True) && Quiet($x, True) >>> Red($x, True) ::: Young, quiet things are red.\n\nQuery:\nBig(Gary, True) ::: Gary is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-442_Q9",
+    "problem": "The bald eagle chases the cat. The bald eagle does not eat the mouse. The cat eats the cow. The cow eats the cat. The cow is blue. The cow is young. The cow sees the cat. The cow does not see the mouse. The mouse does not chase the cow. The mouse eats the bald eagle. The mouse is round. If something eats the mouse then it is round. If the mouse is red then the mouse sees the cow. If something chases the cat then it does not chase the mouse. If the mouse chases the cat then the cat eats the mouse. If something is round then it chases the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat chases the cat.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nEats(BaldEagle, Mouse, False) ::: The bald eagle does not eat the mouse.\nEats(Cat, Cow, True) ::: The cat eats the cow.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nBlue(Cow, True) ::: The cow is blue.\nYoung(Cow, True) ::: The cow is young.\nSees(Cow, Cat, True) ::: The cow sees the cat.\nSees(Cow, Mouse, False) ::: The cow does not see the mouse.\nChases(Mouse, Cow, False) ::: The mouse does not chase the cow.\nEats(Mouse, BaldEagle, True) ::: The mouse eats the bald eagle.\nRound(Mouse, True) ::: The mouse is round.\n\nRules:\nEats($x, Mouse, True) >>> Round($x, True) ::: If something eats the mouse then it is round.\nRed(Mouse, True) >>> Sees(Mouse, Cow, True) ::: If the mouse is red then the mouse sees the cow.\nChases($x, Cat, True) >>> Chases($x, Mouse, False) ::: If something chases the cat then it does not chase the mouse.\nChases(Mouse, Cat, True) >>> Eats(Cat, Mouse, True) ::: If the mouse chases the cat then the cat eats the mouse.\nRound($x, True) >>> Chases($x, Cat, True) ::: If something is round then it chases the cat.\n\nQuery:\nChases(Cat, Cat, True) ::: The cat chases the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

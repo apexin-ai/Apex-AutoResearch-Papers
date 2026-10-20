@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-925_Q22",
+    "problem": "The bald eagle chases the bear. The bald eagle needs the cat. The bald eagle visits the squirrel. The bear does not chase the squirrel. The bear is blue. The cat chases the squirrel. The cat visits the bear. The cat visits the squirrel. The squirrel is green. The squirrel does not need the cat. If someone is cold and they visit the bear then the bear does not need the squirrel. If the bald eagle is blue and the bald eagle visits the cat then the cat is nice. If someone is blue then they visit the cat. If someone visits the bear then the bear needs the cat. If the bear visits the bald eagle then the bear visits the cat. If someone needs the squirrel then the squirrel chases the cat. If the bear needs the bald eagle and the bear needs the cat then the bald eagle is blue. If someone visits the cat then they need the bald eagle. If someone needs the bear and they are blue then the bear does not visit the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nChases(BaldEagle, Bear, True) ::: The bald eagle chases the bear.\nNeeds(BaldEagle, Cat, True) ::: The bald eagle needs the cat.\nVisits(BaldEagle, Squirrel, True) ::: The bald eagle visits the squirrel.\nChases(Bear, Squirrel, False) ::: The bear does not chase the squirrel.\nBlue(Bear, True) ::: The bear is blue.\nChases(Cat, Squirrel, True) ::: The cat chases the squirrel.\nVisits(Cat, Bear, True) ::: The cat visits the bear.\nVisits(Cat, Squirrel, True) ::: The cat visits the squirrel.\nGreen(Squirrel, True) ::: The squirrel is green.\nNeeds(Squirrel, Cat, False) ::: The squirrel does not need the cat.\n\nRules:\nCold($x, True) && Visits($x, Bear, True) >>> Needs(Bear, Squirrel, False) ::: If someone is cold and they visit the bear then the bear does not need the squirrel.\nBlue(BaldEagle, True) && Visits(BaldEagle, Cat, True) >>> Nice(Cat, True) ::: If the bald eagle is blue and the bald eagle visits the cat then the cat is nice.\nBlue($x, True) >>> Visits($x, Cat, True) ::: If someone is blue then they visit the cat.\nVisits($x, Bear, True) >>> Needs(Bear, Cat, True) ::: If someone visits the bear then the bear needs the cat.\nVisits(Bear, BaldEagle, True) >>> Visits(Bear, Cat, True) ::: If the bear visits the bald eagle then the bear visits the cat.\nNeeds($x, Squirrel, True) >>> Chases(Squirrel, Cat, True) ::: If someone needs the squirrel then the squirrel chases the cat.\nNeeds(Bear, BaldEagle, True) && Needs(Bear, Cat, True) >>> Blue(BaldEagle, True) ::: If the bear needs the bald eagle and the bear needs the cat then the bald eagle is blue.\nVisits($x, Cat, True) >>> Needs($x, BaldEagle, True) ::: If someone visits the cat then they need the bald eagle.\nNeeds($x, Bear, True) && Blue($x, True) >>> Visits(Bear, Squirrel, False) ::: If someone needs the bear and they are blue then the bear does not visit the squirrel.\n\nQuery:\nCold(BaldEagle, True) ::: The bald eagle is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-043-consistency-filtering",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:58:40.028Z",
+    "updated_at": "2026-05-18T18:59:04.105Z",
+    "hypothesis": "Constraint Consistency Filtering: 从已有 exp-001 数据中，只保留在 ≥T/K 条 trace 中出现的约束（T=4,6,8），用筛选后的约束跑 MAX-SAT。假设跨 trace 一致出现的约束质量更高，filtered SICA > full SICA。",
+    "spec": {
+      "command": "python3 run_consistency_filtering.py",
+      "server": "westd-25068",
+      "data_path": "results/folio_204_14b/",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct (reuse exp-001 data)",
+      "seed": 42,
+      "checkpoint_source": "exp-001/folio_204_14b intermediates",
+      "eval_data": "FOLIO-204",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp4_consistency_filtering/",
+      "log_path": "/root/symb_invariant_consensus/results/exp4_consistency_filtering/results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.75,
+      "sica_t1_all": 0.7794,
+      "sica_t4": 0.75,
+      "sica_t6": 0.7549,
+      "sica_t8": 0.7549,
+      "avg_unique_constraints": 13.2,
+      "avg_filtered_t4": 1.8,
+      "avg_filtered_t6": 0.8,
+      "avg_filtered_t8": 0.3
+    },
+    "completed_at": "2026-05-18T18:59:04.105Z"
+  },
+  "timestamp": "2026-05-18T18:59:04.231304+00:00",
+  "trigger": "update_registry"
+}

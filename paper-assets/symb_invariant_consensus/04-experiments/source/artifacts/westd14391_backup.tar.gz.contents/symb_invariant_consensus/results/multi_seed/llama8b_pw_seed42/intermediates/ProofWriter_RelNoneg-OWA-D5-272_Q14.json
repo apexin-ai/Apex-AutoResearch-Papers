@@ -1,0 +1,877 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-272_Q14",
+    "problem": "The bald eagle likes the dog. The bald eagle sees the dog. The bear likes the dog. The dog is green. The dog sees the bald eagle. The dog sees the bear. The squirrel sees the bear. If someone is kind then they visit the bald eagle. If the dog is nice and the dog is cold then the dog sees the squirrel. If someone visits the bald eagle and they are kind then the bald eagle is green. If someone likes the bald eagle and the bald eagle is green then they like the dog. If someone is rough and they like the bear then they visit the bald eagle. Green people are kind. If someone visits the bald eagle then the bald eagle sees the dog. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear visits the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nKind($x, bool) ::: Is x kind?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nLikes(Bear, Dog, True) ::: The bear likes the dog.\nGreen(Dog, True) ::: The dog is green.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nSees(Dog, Bear, True) ::: The dog sees the bear.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\n\nRules:\nKind($x, True) >>> Visits($x, BaldEagle, True) ::: If someone is kind then they visit the bald eagle.\nNice(Dog, True) && Cold(Dog, True) >>> Sees(Dog, Squirrel, True) ::: If the dog is nice and the dog is cold then the dog sees the squirrel.\nVisits($x, BaldEagle, True) && Kind($x, True) >>> Green(BaldEagle, True) ::: If someone visits the bald eagle and they are kind then the bald eagle is green.\nLikes($x, BaldEagle, True) && Green(BaldEagle, True) >>> Likes($x, Dog, True) ::: If someone likes the bald eagle and the bald eagle is green then they like the dog.\nRough($x, True) && Likes($x, Bear, True) >>> Visits($x, BaldEagle, True) ::: If someone is rough and they like the bear then they visit the bald eagle.\nGreen($x, True) >>> Kind($x, True) ::: Green people are kind.\nVisits($x, BaldEagle, True) >>> Sees(BaldEagle, Dog, True) ::: If someone visits the bald eagle then the bald eagle sees the dog.\nSees(Dog, Squirrel, True) && Rough(Squirrel, True) >>> Likes(Squirrel, BaldEagle, True) ::: If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nQuery:\nVisits(Bear, BaldEagle, True) ::: The bear visits the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 0.0,
+      "Unknown": 105.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Given)\n2. There is no direct information that the bear visits the bald eagle. However, we can use the information that if someone likes the bald eagle and the bald eagle is green then they like the dog. But we cannot conclude that this implies the bear will visit the bald eagle.\n3. However, we do know that if someone is rough and they like the bear then they visit the bald eagle. To determine if this applies to the bear, we need to find out if the bear is rough.\n4. We know that green people are kind. But we also know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. Since the squirrel sees the bear, the bear is not necessarily rough.\n5. The information provided is insufficient to conclude that the bear is rough or not. Therefore, we cannot determine if the bear will visit the bald eagle based on this information.\n6. There is no information that directly links the bear to visiting the bald eagle or being rough. However, we can analyze the other option where the bear is linked to visiting the bald eagle. If someone is rough and they like the bear then they visit the bald eagle. We know the bear likes the dog but we don't know if the bear is rough.\n7. Since we know the dog is green, then the dog is kind. We also know that if someone is kind then they visit the bald eagle. Therefore, the dog visits the bald eagle.\n8. Since the dog sees the bald eagle, we can conclude that the bald eagle sees the dog.\n9. Since the dog is green and the dog sees the bald eagle, we can conclude that the bald eagle is green.\n10. Since the bald eagle is green, the bear likes the dog because if someone likes the bald eagle and the bald eagle is green then they like the dog.\n11. Since the dog sees the bear, we can conclude that the dog likes the bear because if the dog sees the bear then the dog likes the bear.\n12. Since the dog likes the bear and we know the dog is kind, we can infer that the bear is also kind because green people are kind and we have concluded that the dog is green. This makes the bear likely to be kind as well because it likes the dog.\n13. However, we also know that if someone is rough and they like the bear then they visit the bald eagle. Since the dog is kind and likes the bear, we cannot conclude that the dog will visit the bald eagle because the dog is kind. \n14. Since the dog is kind and the dog likes the bear, and since we have concluded that the bear is likely to be kind, the condition that if someone is rough and they like the bear then they visit the bald eagle does not apply to the bear. Therefore, we cannot determine if the bear visits the bald eagle based on this condition.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n15. Since we know the dog visits the bald eagle and the dog is kind, and we know that if someone is kind then they visit the bald eagle, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n16. Since we know the dog is green and the dog sees the squirrel, and we know the squirrel sees the bear, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n17. Since we know the squirrel sees the bear and we know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n18. Since we know the bear likes the dog and we know the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n19. Since we know the dog is green and the dog is kind, and we know that if someone is kind then they visit the bald eagle, we know that the dog visits the bald eagle. However, we also know that if someone is rough and they like the bear then they visit the bald eagle. We cannot determine if the bear visits the bald eagle based on this condition.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n20. Since we know the bear likes the dog and the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n21. Since we know the squirrel sees the bear and the squirrel is rough because the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. Since the squirrel is rough and the squirrel sees the bear, we cannot determine if the bear visits the bald eagle based on this condition.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n22. Since we know the bear likes the dog, and we know the dog sees the bald eagle and the bald eagle sees the dog, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n23. Since we know the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n24. Since we know the dog sees the bear, and we know the bear likes the dog, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n25. Since we know the bear likes the dog, and we know the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n26. Since we know the dog sees the bear and the bear likes the dog, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n27. Since we know the bear likes the dog and we know the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n28. Since we know the dog sees the bald eagle and the bald eagle sees the dog, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n29. Since we know the squirrel sees the bear and we know the squirrel likes the bald eagle because the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. We cannot determine if the bear visits the bald eagle based on this condition.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n30. Since we know the bear likes the dog, and we know the dog sees the bald eagle, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n31. Since we know the dog is green and the dog is kind, and we know that if someone is kind then they visit the bald eagle, we know that the dog visits the bald eagle. However, we also know that if someone is rough and they like the bear then they visit the bald eagle. We cannot determine if the bear visits the bald eagle based on this condition.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n32. Since we know the bear likes the dog, and we know the dog is green, then the dog is kind. Since the bear likes the dog and the dog is kind, we cannot determine if the bear visits the bald eagle based on this information.\n\nHowever, we can look at the information provided and see if there is any other condition that might imply that the bear visits the bald eagle.\n\n33. Since we know the bear",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the bear visits the bald eagle, we need to analyze the given information and the rules. \n\n1. The bear likes the dog. (Rule 1)\n2. The dog is green. (Rule 4)\n3. Green people are kind. (Rule 8)\n4. If someone is kind then they visit the bald eagle. (Rule 2)\n5. Since the dog is green and people who are green are kind, the dog is kind. \n6. Therefore, the dog visits the bald eagle. (Rule 4)\n\n7. The dog sees the bald eagle. (Rule 3)\n8. The dog sees the bear. (Rule 5)\n\nNow, we need to find a rule that connects the bear's actions with the bald eagle. \n\n1. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (Rule 11)\n2. The squirrel sees the bear. (Rule 6)\n3. There is no information about the squirrel's roughness or the dog seeing the squirrel. However, we can't conclude the statement as true or false with the given information.\n\nHowever, we can find a rule that connects the bear's actions with the bald eagle if the bear is kind. \n\n1. The bear likes the dog. (Rule 1)\n2. The dog is green. (Rule 4)\n3. Green people are kind. (Rule 8)\n4. If someone is kind then they visit the bald eagle. (Rule 2)\n5. Since the dog is green and people who are green are kind, the bear is kind. \n6. Therefore, the bear visits the bald eagle. (Rule 4)\n\nHowever, we don't have information about the bear's kind or roughness. \n\nWe can't conclude the statement as true or false with the given information. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Statement 3)\n2. The dog sees the bald eagle. (Statement 5)\n3. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (Statement 9)\n   However, we do not have information about the squirrel being rough or not. So, this statement does not provide any direct information about the bear visiting the bald eagle.\n\n4. If someone is rough and they like the bear then they visit the bald eagle. (Statement 7)\n   We do not have any information about someone being rough and liking the bear. This does not provide any direct information about the bear visiting the bald eagle.\n\n5. The only information we have about the bear is that it likes the dog (Statement 3). We do not have any information about the bear visiting the bald eagle.\n\nHowever, we can infer that someone may visit the bald eagle if they are kind (Statement 1) or if they visit the bald eagle and are kind (Statement 6). We also know that green people are kind (Statement 10). Since the dog is green (Statement 4), the dog is kind (Statement 10). If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle (Statement 9).\n\nSince we do not have information about the squirrel being rough or not, this statement does not provide any direct information about the bear visiting the bald eagle.\n\nThe bear does like the dog (Statement 3), but this does not provide any information about the bear visiting the bald eagle. Therefore, the statement \"The bear visits the bald eagle\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Given)\n2. We are not given any information that directly links the bear's actions to visiting the bald eagle. However, we can deduce that the bear's actions are related to its liking for the dog, which might indirectly relate to its interaction with the bald eagle.\n\n3. The dog sees the bald eagle. (Given)\n4. The dog is green. (Given) This implies that the dog is kind (Green people are kind). (Given)\n5. Since the dog is kind, it visits the bald eagle. (If someone is kind then they visit the bald eagle.) (Given)\n\n6. From the previous step, we can conclude that the dog visits the bald eagle. Now, let's analyze if the bear visits the bald eagle.\n\n7. There is no direct information that links the bear to visiting the bald eagle. However, we can analyze the following possibilities:\n   a. If the bear likes the bald eagle, then the bear must visit the bald eagle (If someone likes the bald eagle and the bald eagle is green then they like the dog. This statement does not directly relate, but if the bald eagle is green, it is kind, and kind people visit the bald eagle. However, there is no information that the bald eagle is green.)\n   b. If the bear likes the bald eagle and the bald eagle is green, then the bear likes the dog. (If someone likes the bald eagle and the bald eagle is green then they like the dog.) However, we cannot confirm if the bald eagle is green or not.\n   c. If someone is rough and they like the bear, then they visit the bald eagle. (If someone is rough and they like the bear then they visit the bald eagle.) However, we cannot find any information that links someone who likes the bear to visiting the bald eagle.\n\nBased on the given information, there is no direct or indirect link that confirms the bear visits the bald eagle. We cannot confirm if the bear is rough, if the bear likes the bald eagle, or if the bald eagle is green. Therefore, we cannot conclude that the statement \"The bear visits the bald eagle\" is true or false.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller statements and use the given information to find the answer.\n\n1. The bald eagle likes the dog.\n2. The bald eagle sees the dog.\n3. The bear likes the dog.\n4. The dog is green.\n5. The dog sees the bald eagle.\n6. The dog sees the bear.\n7. The squirrel sees the bear.\n8. If someone is kind then they visit the bald eagle.\n9. If the dog is nice and the dog is cold then the dog sees the squirrel.\n10. If someone visits the bald eagle and they are kind then the bald eagle is green.\n11. If someone likes the bald eagle and the bald eagle is green then they like the dog.\n12. If someone is rough and they like the bear then they visit the bald eagle.\n13. Green people are kind.\n14. If someone visits the bald eagle then the bald eagle sees the dog.\n15. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nWe are given the statement: The bear visits the bald eagle.\n\nLet's analyze the statements to see if we can conclude whether the bear visits the bald eagle.\n\nFrom statement 3, we know that the bear likes the dog. However, this alone doesn't tell us whether the bear visits the bald eagle.\n\nFrom statement 12, we know that if someone is rough and they like the bear then they visit the bald eagle. However, we don't know if the bear is rough or not.\n\nFrom statement 13, we know that green people are kind. However, we don't know if the bear is green or not.\n\nFrom statement 8, we know that if someone is kind then they visit the bald eagle. However, we don't know if the bear is kind or not.\n\nWe also know that the bear sees the squirrel from statement 7. However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nLet's analyze the statements again. We know that the squirrel sees the bear (statement 7) and the dog sees the squirrel (statement 6). However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nWe can also analyze the statements from the perspective of the bear. From statement 3, we know that the bear likes the dog. From statement 6, we know that the dog sees the bear. However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nFrom statement 14, we know that if someone visits the bald eagle then the bald eagle sees the dog. However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nFrom statement 15, we know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the dog. From statement 5, we know that the dog sees the bald eagle. From statement 4, we know that the dog is green. From statement 8, we know that if someone is kind then they visit the bald eagle. Since the dog is green (statement 4), we can conclude that the dog is kind (statement 13). From statement 8, we can conclude that the dog visits the bald eagle.\n\nNow, let's go back to the bear. We know that the dog visits the bald eagle (from the previous conclusion). From statement 14, we know that if someone visits the bald eagle then the bald eagle sees the dog. Since the dog visits the bald eagle, the bald eagle sees the dog (statement 14). From statement 5, we know that the dog sees the bald eagle. From statement 6, we know that the dog sees the bear. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the squirrel. From statement 15, we know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. However, this still doesn't tell us if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the bear again. From statement 3, we know that the bear likes the dog. We also know that the dog sees the bald eagle (statement 5) and the dog visits the bald eagle (from the previous conclusion). From statement 8, we can conclude that the dog is kind. Since the dog is kind, we can conclude that the dog visits the bald eagle (statement 8). From statement 14, we know that if someone visits the bald eagle then the bald eagle sees the dog. Since the dog visits the bald eagle, the bald eagle sees the dog (statement 14). From statement 5, we know that the dog sees the bald eagle. From statement 6, we know that the dog sees the bear. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the dog again. We know that the dog sees the bald eagle (statement 5) and the dog visits the bald eagle (from the previous conclusion). From statement 4, we know that the dog is green. From statement 13, we know that green people are kind. From statement 8, we can conclude that the dog is kind. Since the dog is kind, we can conclude that the dog visits the bald eagle (statement 8). From statement 14, we know that if someone visits the bald eagle then the bald eagle sees the dog. Since the dog visits the bald eagle, the bald eagle sees the dog (statement 14). From statement 5, we know that the dog sees the bald eagle. From statement 6, we know that the dog sees the bear. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the bear one more time. We know that the dog sees the bald eagle (statement 5) and the dog visits the bald eagle (from the previous conclusion). From statement 3, we know that the bear likes the dog. From statement 6, we know that the dog sees the bear. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The bear likes the dog.\" We know that the bear likes the dog (statement 3) and the dog is green (statement 4). From statement 13, we know that green people are kind. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The dog is green.\" We know that the dog is green (statement 4) and green people are kind (statement 13). From statement 8, we can conclude that the dog is kind. Since the dog is kind, we can conclude that the dog visits the bald eagle (statement 8). From statement 14, we know that if someone visits the bald eagle then the bald eagle sees the dog. Since the dog visits the bald eagle, the bald eagle sees the dog (statement 14). From statement 5, we know that the dog sees the bald eagle. From statement 6, we know that the dog sees the bear. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The dog sees the bear.\" We know that the dog sees the bear (statement 6) and the bear likes the dog (statement 3). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The squirrel sees the bear.\" We know that the squirrel sees the bear (statement 7) and the dog sees the squirrel (statement 6). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The dog sees the squirrel.\" We know that the dog sees the squirrel (statement 6) and the squirrel sees the bear (statement 7). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The dog is nice and the dog is cold.\" We know that the dog is green (statement 4), but we don't know if the dog is nice and cold or not. However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The squirrel is rough.\" We know that the squirrel sees the bear (statement 7) and the dog sees the squirrel (statement 6). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The bear is rough.\" We know that the bear likes the dog (statement 3) and the dog sees the bear (statement 6). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The bear is kind.\" We know that the bear likes the dog (statement 3) and the dog sees the bear (statement 6). However, we still don't know if the bear visits the bald eagle or not.\n\nHowever, we can analyze the statements from the perspective of the statement \"The bear is green.\" We know that the bear likes the dog (statement 3) and the dog sees the bear (statement 6). However, we still don't know if the",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the bear visits the bald eagle, we need to analyze the given statements and find any information that links the bear to visiting the bald eagle.\n\nFrom the given statements:\n1. The bear likes the dog.\n2. If someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we don't have any information about the bear being rough or the bear visiting the bald eagle directly. To link the bear to visiting the bald eagle, we need to find a sequence of statements that connect the bear to someone who is rough and likes the bear.\n\nFrom the statement: \n- If someone is rough and they like the bear then they visit the bald eagle.\n\nWe know that the dog likes the bear, but we don't have any information about the dog being rough. However, we have a statement that says: \n- If the dog is nice and the dog is cold then the dog sees the squirrel.\n\nBut we also have a statement that says: \n- Green people are kind.\n\nSo, since the dog is green and green people are kind, the dog is kind. And since the dog likes the bear, the dog is not rough. But we have a statement that says:\n- If someone is rough and they like the bear then they visit the bald eagle.\n\nNow, we can see that we don't have any information about the bear being rough. The only information about the bear being rough is in the statement about the squirrel. \n- If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nWe also have a statement that says: \n- The squirrel sees the bear.\n\nBut we still don't have any information about the squirrel being rough. We only know that the squirrel sees the bear, but we don't know if the squirrel is rough or not. However, we do know that the squirrel sees the bear, but we can't conclude that the bear visits the bald eagle from this information alone.\n\nBut we also have a statement that says: \n- If the squirrel is rough then the squirrel likes the bald eagle.\n\nHowever, we also have a statement that says: \n- If the dog is nice and the dog is cold then the dog sees the squirrel.\n\nAnd we know that the dog is green, so the dog is nice. And we also know that the dog likes the bear. But we still don't have any information about the dog being cold.\n\nHowever, we do know that the bear likes the dog. We also know that the dog sees the bald eagle, but we don't know if the dog is cold or not. We only know that the dog is green and the dog likes the bear.\n\nNow, let's look at the statement that says: \n- If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nBut we also have a statement that says: \n- The squirrel sees the bear.\n\nHowever, we still don't have any information about the squirrel being rough. We only know that the squirrel sees the bear, but we don't know if the squirrel is rough or not.\n\nBut we also have a statement that says: \n- If someone visits the bald eagle and they are kind then the bald eagle is green.\n\nHowever, we also have a statement that says: \n- If someone likes the bald eagle and the bald eagle is green then they like the dog.\n\nBut we also know that the dog sees the bald eagle, and the dog is green, so the dog is kind. However, we still don't have any information about the dog visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog. We also know that the dog sees the bald eagle, but we don't know if the dog visits the bald eagle or not.\n\nNow, let's look at the statement that says: \n- If someone visits the bald eagle then the bald eagle sees the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog, and we also know that the dog sees the bald eagle. But we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if the bear likes the dog, and the dog sees the bald eagle, then the dog must be nice, and the dog must be green. And we know that if the dog is green, then the dog is kind.\n\nHowever, we also have a statement that says: \n- If the dog is nice and the dog is cold then the dog sees the squirrel.\n\nBut we also have a statement that says: \n- If the dog is nice then the dog is kind.\n\nSo, since the dog is green, and green people are kind, the dog is kind. And since the dog is kind, the dog is nice.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nBut we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we don't have any information about the bear being rough.\n\nBut we do know that the bear likes the dog, and we also know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nBut we do know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nHowever, we also have a statement that says: \n- The squirrel sees the bear.\n\nHowever, we still don't have any information about the squirrel being rough.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nHowever, we also have a statement that says: \n- The squirrel sees the bear.\n\nHowever, we still don't have any information about the squirrel being rough.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nHowever, we also have a statement that says: \n- The squirrel sees the bear.\n\nHowever, we still don't have any information about the squirrel being rough.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the dog sees the bald eagle.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any information about the bear visiting the bald eagle.\n\nHowever, we do know that if someone is rough and they like the bear then they visit the bald eagle.\n\nHowever, we still don't have any information about the bear being rough.\n\nHowever, we do know that the bear likes the dog.\n\nHowever, we still don't have any",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Given)\n2. Someone who likes the dog might not necessarily visit the bald eagle. We need more information to establish a connection between liking the dog and visiting the bald eagle.\n\nFrom the given information, we have the following rules:\n- If someone is kind then they visit the bald eagle. (Rule 1)\n- If the dog is nice and the dog is cold then the dog sees the squirrel. (Rule 2)\n- If someone visits the bald eagle and they are kind then the bald eagle is green. (Rule 3)\n- If someone likes the bald eagle and the bald eagle is green then they like the dog. (Rule 4)\n- If someone is rough and they like the bear then they visit the bald eagle. (Rule 5)\n- Green people are kind. (Rule 6)\n- If someone visits the bald eagle then the bald eagle sees the dog. (Rule 7)\n- If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (Rule 8)\n\nFrom the given information and rules, we can establish the following connections:\n- The bear likes the dog (Statement 1).\n- The dog is green. (Given)\n- Since the dog is green, the dog must be kind (Rule 6).\n- Since the dog is kind, the dog visits the bald eagle (Rule 1).\n- The bald eagle sees the dog (Rule 7).\n- The dog sees the bear (Given).\n- The dog sees the squirrel (Rule 2: the dog is nice and cold, but we don't have information about the dog's temperature).\n- The squirrel sees the bear (Given).\n- The squirrel is rough (Rule 8: if the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle. However, we don't have information that the dog sees the squirrel).\n- The dog sees the bear (Given).\n\nWe can establish that the bear likes the dog (Statement 1) and the dog sees the bear (Given). However, we cannot determine whether the bear visits the bald eagle based on the given information.\n\nSince we cannot determine the statement \"The bear visits the bald eagle\" to be true or false based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine if the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (From statement 3)\n2. If someone is rough and they like the bear then they visit the bald eagle. (From statement 9)\n   - This implies that the bear is rough. If it is not, then the statement does not apply.\n   - However, the bear being rough is not explicitly stated. Therefore, we cannot conclude this yet.\n\n3. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (From statement 12)\n   - This statement does not provide any information about the bear.\n\n4. The dog sees the bear. (From statement 6)\n   - This implies that the dog is aware of the bear's presence.\n\n5. The dog is green. (From statement 4)\n   - This implies that the dog is kind (From statement 8).\n   - However, this does not provide any information about the bear.\n\n6. If the dog is nice and the dog is cold then the dog sees the squirrel. (From statement 7)\n   - We do not have any information about the dog's temperature.\n\n7. The squirrel sees the bear. (From statement 8)\n   - This implies that the squirrel is aware of the bear's presence.\n\n8. If someone visits the bald eagle and they are kind then the bald eagle is green. (From statement 5)\n   - This statement does not provide any information about the bear.\n\n9. The dog sees the bald eagle. (From statement 2)\n   - This implies that the dog is aware of the bald eagle's presence.\n\n10. If someone likes the bald eagle and the bald eagle is green then they like the dog. (From statement 6)\n    - This statement does not provide any information about the bear.\n\n11. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (From statement 12)\n    - We do not have any information about the squirrel's roughness.\n\n12. If someone visits the bald eagle then the bald eagle sees the dog. (From statement 11)\n    - This implies that the bald eagle is aware of the dog's presence.\n\n13. The squirrel likes the bald eagle. (From statement 12)\n    - This implies that the squirrel is rough (From statement 12).\n\n14. The dog is green. (From statement 4)\n    - This implies that the dog is kind (From statement 8).\n\nSince the bear being rough is not explicitly stated, we cannot conclude that the bear visits the bald eagle. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the bear visits the bald eagle, we need to analyze the given statements and their logical implications. \n\n1. The bald eagle likes the dog.\n2. The bald eagle sees the dog.\n3. The bear likes the dog.\n4. The dog is green.\n5. The dog sees the bald eagle.\n6. The dog sees the bear.\n7. The squirrel sees the bear.\n8. If someone is kind then they visit the bald eagle.\n9. If the dog is nice and the dog is cold then the dog sees the squirrel.\n10. If someone visits the bald eagle and they are kind then the bald eagle is green.\n11. If someone likes the bald eagle and the bald eagle is green then they like the dog.\n12. If someone is rough and they like the bear then they visit the bald eagle.\n13. Green people are kind.\n14. If someone visits the bald eagle then the bald eagle sees the dog.\n15. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nFrom statement 13, we can conclude that since the dog is green, it is kind (because green people are kind). Statement 8 implies that if the dog is kind, it visits the bald eagle.\n\nFrom statement 4, the dog is green. Therefore, from statement 8, the dog visits the bald eagle.\n\nNow, we need to determine if the bear visits the bald eagle. To do this, we can analyze the statements related to the bear.\n\nStatement 3 says the bear likes the dog. We cannot directly conclude from this statement that the bear visits the bald eagle.\n\nStatement 7 says the squirrel sees the bear. We cannot directly conclude from this statement that the bear visits the bald eagle.\n\nHowever, statement 12 says if someone is rough and they like the bear then they visit the bald eagle. We do not have information about anyone being rough or liking the bear. So, we cannot directly apply this rule to conclude that the bear visits the bald eagle.\n\nHowever, we can analyze the relationships between the bear and other entities that may lead to the bear visiting the bald eagle indirectly. The bear likes the dog, and the dog sees the bear. Since the dog visits the bald eagle (as deduced earlier), and statement 14 says if someone visits the bald eagle then the bald eagle sees the dog, we cannot conclude that the bear visits the bald eagle directly.\n\nHowever, there is a chain of events that can lead to the bear visiting the bald eagle. If the squirrel sees the bear (statement 7), and the squirrel sees the dog (from statement 9, but we don't have information that the dog is cold), the squirrel likes the bald eagle (statement 15). But we cannot conclude from this that the squirrel visits the bald eagle. However, the squirrel is not relevant in this case.\n\nNow we must examine if the bear visits the bald eagle indirectly. If the squirrel is rough and the squirrel sees the dog, then the squirrel likes the bald eagle. However, the squirrel does not like the bald eagle in this case because it doesn't see the dog and the squirrel is not rough in this scenario. However, if we look at the given statements, we see that the bear likes the dog and the dog sees the bear. However, we do not have enough information to conclude that the dog is cold. If the dog is cold then the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. However, the squirrel does not like the bald eagle in this case because it doesn't see the dog and the squirrel is not rough in this scenario. But this is not the case.\n\nNow we must examine if the bear visits the bald eagle indirectly. If the squirrel is rough, the squirrel likes the bald eagle. However, the squirrel is not rough. Now let's look at the given statements. The bear likes the dog. The dog is green. The dog is kind because the dog is green. The dog visits the bald eagle because the dog is kind. The dog sees the bear. The squirrel sees the bear. \n\nThe only statement that is relevant to the bear visiting the bald eagle is statement 12: If someone is rough and they like the bear then they visit the bald eagle. However, we cannot conclude from the given statements that the bear likes the bald eagle or that the bear is rough. \n\nHowever, we do not need to know that the bear is rough to determine if the bear visits the bald eagle. We can use statement 12 in a different way. If the squirrel sees the dog and the squirrel is rough, the squirrel likes the bald eagle. However, we do not know that the squirrel sees the dog and the squirrel is rough. However, we do know that the squirrel sees the bear and we know that if the squirrel sees the bear, the squirrel sees the dog. \n\nFrom statement 7, we know that the squirrel sees the bear. From statement 6, we know that the dog sees the bear. Therefore, the squirrel sees the dog. \n\nHowever, we still do not know that the squirrel is rough. However, if we combine statement 7 and statement 15, we can determine if the squirrel is rough. Statement 15 says if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. Statement 9 says if the dog is nice and the dog is cold then the dog sees the squirrel. Statement 6 says the dog sees the bear. Therefore, if the dog is cold and the dog is nice, the squirrel is rough and the squirrel likes the bald eagle. However, the squirrel does not like the bald eagle in this case. However, the squirrel is not rough in this case. However, this is not the case.\n\nHowever, we do not need to know that the squirrel is rough to determine if the bear visits the bald eagle. We can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. We also know that the dog sees the bald eagle and the bald eagle sees the dog. \n\nNow, let's look at the statements again. If the squirrel sees the bear, the squirrel sees the dog and the dog sees the bear, we can use statement 14 to conclude that the dog visits the bald eagle and the bald eagle sees the dog. However, we cannot conclude from this that the bear visits the bald eagle.\n\nHowever, we can use statement 14 in a different way. Statement 14 says if someone visits the bald eagle then the bald eagle sees the dog. The dog visits the bald eagle. The bald eagle sees the dog. Therefore, if the bear visits the bald eagle, the bald eagle sees the dog. However, we know that the bald eagle sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle. However, we can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear. \n\nHowever, we still do not know that the squirrel is rough. However, if we combine statement 7 and statement 15, we can determine if the squirrel is rough. Statement 15 says if the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. Statement 9 says if the dog is nice and the dog is cold then the dog sees the squirrel. Statement 6 says the dog sees the bear. Therefore, if the dog is cold and the dog is nice, the squirrel is rough and the squirrel likes the bald eagle. However, the squirrel does not like the bald eagle in this case. However, the squirrel is not rough in this case. However, this is not the case.\n\nHowever, we do not need to know that the squirrel is rough to determine if the bear visits the bald eagle. We can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. We also know that the dog sees the bald eagle and the bald eagle sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle. However, we can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle. However, we can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. We also know that the dog sees the bald eagle and the bald eagle sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle. However, we can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. We also know that the dog sees the bald eagle and the bald eagle sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle. However, we can use the fact that the squirrel sees the bear and the dog sees the bear to determine if the bear visits the bald eagle. We know that the squirrel sees the bear and the dog sees the bear. Therefore, the squirrel sees the dog. We also know that the dog sees the bald eagle and the bald eagle sees the dog. \n\nHowever, we cannot conclude from this that the bear visits the bald eagle.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (This is a known fact)\n2. If someone is rough and they like the bear then they visit the bald eagle. (This is a rule)\n3. We don't have any information about the bear being rough. However, we do know that the bear likes the dog, but we don't know if the bear is rough or not.\n\nSince we don't have enough information about the bear being rough or not, we cannot conclude if the bear visits the bald eagle based on the given rules.\n\nHowever, let's look for other rules that might help us.\n\n4. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle. (This is a rule)\n5. The squirrel sees the bear. (This is a known fact)\n6. If the dog sees the squirrel and the squirrel sees the bear, then it is possible that the squirrel is rough. But we cannot conclude that the squirrel is rough with the given information.\n\nWe still cannot conclude if the bear visits the bald eagle based on the information above.\n\nLet's analyze the given rules again.\n\n7. If someone visits the bald eagle and they are kind then the bald eagle is green. (This is a rule)\n8. Green people are kind. (This is a rule)\n9. The dog is green. (This is a known fact)\n10. If the dog is green then the dog is kind. (From rule 8)\n11. If the dog is green and the dog is nice then the dog sees the squirrel. (This is a rule)\n12. The dog is green. (This is a known fact)\n13. The dog is nice. (We can assume this because if the dog is not nice, it might not see the squirrel, but we are not given any information to the contrary)\n\n14. From rule 11, if the dog is green and the dog is nice then the dog sees the squirrel. \n15. The dog sees the squirrel. (This is a known fact)\n16. The squirrel sees the bear. (This is a known fact)\n17. If the dog sees the squirrel and the squirrel sees the bear, then it is possible that the squirrel is rough. But we cannot conclude that the squirrel is rough with the given information.\n\nHowever, we can conclude that the squirrel sees the bear. And we can also conclude that the dog sees the squirrel.\n\nNow, let's think about the information we have so far.\n\nThe bear likes the dog. The dog sees the squirrel. The squirrel sees the bear. But we still don't know if the bear visits the bald eagle.\n\nHowever, we can use the rule \"If someone visits the bald eagle then the bald eagle sees the dog.\" (This is a rule)\n\nIf the bear visits the bald eagle, then the bald eagle sees the dog. But we already know that the dog sees the squirrel, and the squirrel sees the bear. So, it is possible that the bear visits the bald eagle.\n\nBut we still need to find out if the bear is rough or not.\n\nLet's think about the information we have so far.\n\nThe squirrel sees the bear. The squirrel likes the bald eagle if it sees the bear and the bear is rough. But we don't know if the bear is rough or not.\n\nHowever, we can use the rule \"If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\" (This is a rule)\n\nIf the squirrel likes the bald eagle, then the squirrel sees the bear and the bear is rough. But we already know that the squirrel sees the bear.\n\nSo, if the squirrel sees the bear and the squirrel likes the bald eagle, then the bear is rough.\n\nNow, let's think about the information we have so far.\n\nThe squirrel sees the bear. The squirrel likes the bald eagle. The bear is rough.\n\nIf the bear is rough and the bear likes the dog, then the bear visits the bald eagle.\n\nTherefore, the statement \"The bear visits the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Given)\n2. The bear sees the dog. (Given)\n3. The dog sees the bald eagle. (Given)\n4. If someone is rough and they like the bear, then they visit the bald eagle. (Given)\n   - We need to find out if the bear is rough or not to determine if this condition is met.\n\n5. If the dog is nice and the dog is cold, then the dog sees the squirrel. (Given)\n   - We have no information about the dog being cold or nice, so we can't use this condition.\n\n6. If the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle. (Given)\n   - We need to find out if the squirrel is rough or not to determine if this condition is met.\n\n7. The squirrel sees the bear. (Given)\n8. The squirrel likes the bald eagle. (Not given, but we can use the condition in step 6 to find out)\n   - We need to find out if the squirrel sees the dog, and if the squirrel is rough or not.\n\n9. The dog is green. (Given)\n   - Green people are kind (Given), so the dog is kind.\n\n10. If someone is kind, then they visit the bald eagle. (Given)\n    - We already know the dog is kind (step 9), so the dog visits the bald eagle.\n\n11. If someone visits the bald eagle and they are kind, then the bald eagle is green. (Given)\n    - We already know the dog visits the bald eagle (step 10), and the dog is kind, so the bald eagle is green.\n\n12. If someone likes the bald eagle and the bald eagle is green, then they like the dog. (Given)\n    - We don't have enough information to determine if the bear likes the bald eagle.\n\n13. We need to analyze the given information again to determine if the bear visits the bald eagle.\n\n- From step 1, we know the bear likes the dog.\n- From step 4, we need the bear to be rough and like the dog to visit the bald eagle.\n- From step 7, we know the squirrel sees the bear.\n- From step 8, we can use the condition in step 6 to find out if the squirrel is rough or not.\n\nUsing the condition in step 6: If the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle.\n- We know the dog sees the squirrel (Given).\n- We need to find out if the squirrel is rough or not.\n\nNow let's analyze the given information again to determine if the squirrel is rough or not:\n- If someone is rough and they like the bear, then they visit the bald eagle. (Given)\n- If the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle. (Given)\n- We know the squirrel sees the bear (Given), and the squirrel likes the bald eagle (Not given, but we can use the condition in step 6 to find out).\n- The squirrel is rough or not is unknown.\n\nSince the squirrel's roughness is unknown, we can't use the condition in step 6 to determine if the squirrel likes the bald eagle. However, we can use another condition to determine if the squirrel is rough or not:\n\n- If the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle. (Given)\n- If the dog sees the squirrel, then the dog and the squirrel have a relationship.\n- Since the dog is green (Given), the dog is kind (step 9).\n- If the squirrel likes the bald eagle, then the squirrel is rough (step 4).\n- However, we already know the squirrel sees the bear (Given), so the squirrel can't be rough.\n\nNow let's go back to step 4: If someone is rough and they like the bear, then they visit the bald eagle.\n- We know the bear likes the dog (Given), but we can't determine if the bear is rough or not.\n- However, we can use another condition to determine if the bear is rough or not:\n\n- If the dog is nice and the dog is cold, then the dog sees the squirrel. (Given)\n- We don't have any information about the dog being cold or nice, so we can't use this condition.\n\n- If the dog sees the squirrel and the squirrel is rough, then the squirrel likes the bald eagle. (Given)\n- However, we already know the squirrel is not rough (step above).\n\nSince the squirrel is not rough, we can't use the condition in step 4 to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If someone visits the bald eagle, then the bald eagle sees the dog. (Given)\n- We know the dog sees the bald eagle (Given), and the bald eagle is green (step 11).\n- The bear likes the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n\nNow let's analyze the given information again to determine if the bear visits the bald eagle:\n\n- The bear sees the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n- The bear likes the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If the bear is rough and the bear likes the bear, then the bear visits the bald eagle. (Given, but we need to find out if the bear likes the bear)\n- We know the bear likes the dog (Given), but we can't determine if the bear likes the bear or not.\n\nSince we can't determine if the bear likes the bear or not, we can't use the condition to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- The bear is not given to be rough or not, but we can use another condition to find out if the bear is rough or not:\n\n- If someone is rough and they like the bear, then they visit the bald eagle. (Given)\n- However, we already know the squirrel is not rough (step above).\n\nSince the squirrel is not rough, we can't use the condition to determine if the bear is rough or not.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If someone visits the bald eagle, then the bald eagle sees the dog. (Given)\n- We know the dog sees the bald eagle (Given), and the bald eagle is green (step 11).\n- However, we can't determine if the bear visits the bald eagle or not.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- The bear likes the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n\nNow let's analyze the given information again to determine if the bear visits the bald eagle:\n\n- The bear sees the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n- The bear likes the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If the bear is rough, then the bear visits the bald eagle. (Not directly given, but we can use another condition to find out if the bear is rough or not)\n\nSince we can't determine if the bear is rough or not, we can't use the condition to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If the bear is not rough, then the bear does not visit the bald eagle. (Not directly given, but we can use another condition to find out if the bear is rough or not)\n\nSince we can't determine if the bear is rough or not, we can't use the condition to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If the bear is kind, then the bear visits the bald eagle. (Not given, but we can use another condition to find out if the bear is kind or not)\n\nSince the bear is not given to be kind or not, we can't use the condition to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- The bear is not given to be kind or not, but we can use another condition to find out if the bear is kind or not:\n\n- The dog is green (Given), and green people are kind (Given).\n- However, the dog is not a person, so the condition doesn't apply.\n\nNow let's analyze the given information again to determine if the bear visits the bald eagle:\n\n- The bear sees the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n- The bear likes the dog (Given), but we can't determine if the bear visits the bald eagle or not.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- If the bear is kind, then the bear visits the bald eagle. (Not given, but we can use another condition to find out if the bear is kind or not)\n\nSince the bear is not given to be kind or not, we can't use the condition to determine if the bear visits the bald eagle.\n\nHowever, we can use another condition to determine if the bear visits the bald eagle:\n\n- The",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the dog. (Given)\n2. If someone is rough and they like the bear then they visit the bald eagle. (Given)\n   However, there is no information about the bear itself being rough. We cannot assume the bear is rough based on this statement.\n\n3. There is no information about the bear being kind, which would imply that it visits the bald eagle based on the rule \"If someone is kind then they visit the bald eagle.\" (Given)\n\n4. The bear is not mentioned in the rule \"If the dog is nice and the dog is cold then the dog sees the squirrel.\" (Given) \n   However, this rule does not provide any information about the bear visiting the bald eagle.\n\n5. The statement \"If someone visits the bald eagle then the bald eagle sees the dog\" (Given) does not provide any information about the bear visiting the bald eagle.\n\n6. The statement \"If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle\" (Given) does not provide any information about the bear visiting the bald eagle.\n\n7. The statement \"If someone likes the bald eagle and the bald eagle is green then they like the dog\" (Given) does not provide any information about the bear visiting the bald eagle.\n\n8. The statement \"If the dog is nice and the dog is cold then the dog sees the squirrel\" (Given) does not provide any information about the bear visiting the bald eagle.\n\n9. The statement \"If someone visits the bald eagle and they are kind then the bald eagle is green\" (Given) does not provide any information about the bear visiting the bald eagle.\n\n10. There is no information about the bear visiting the bald eagle directly or indirectly.\n\nBased on the given information, we cannot determine whether the bear visits the bald eagle. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_squirrel, likes_squirrel_bear), visits_squirrel_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_squirrel, likes_squirrel_bear), visits_squirrel_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_dog, visits_dog_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, eagle)",
+          "z3_formula": "visits_dog_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> visits(X, eagle)",
+          "z3_formula": "Implies(likes_bear_eagle, visits_bear_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_dog, visits_dog_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, likes_X_bear), visits_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, kind_X), visits_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_dog, visits_dog_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bald_eagle, green_bald_eagle), likes_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(likes_bald_eagle, visits_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough, likes_bear), visits_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(visits_bald_eagle)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visit(X, bald_eagle)",
+          "z3_formula": "Implies(kind_dog, visit_dog_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visit_dog_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visit(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_bear, likes_bear_bear), visit_bear_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(ppl)",
+          "z3_formula": "green_ppl == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visit_dog_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "bear(visit)",
+          "z3_formula": "bear_visit == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_dog, visits_bear_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & kind(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_bear_bald_eagle, kind_bear), green_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_bear, likes_bear_bear), visits_bear_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visits_bear_bald_eagle, sees_bald_eagle_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, squirrel)",
+          "z3_formula": "sees_dog_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(rough_bear, likes_bear_dog), visits_bear_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, squirrel)",
+          "z3_formula": "sees_dog_squirrel == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & kind(X) -> green(eagle)",
+          "z3_formula": "Implies(And(visits_bear_eagle, kind_bear), green_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & green(eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_eagle, green_eagle), likes_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog) -> kind(dog)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dog) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(kind_dog, visits_bald_eagle_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(kind_dog, visits_bald_eagle_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, X) -> sees(bald_eagle, dog)",
+          "z3_formula": "Implies(visits_bald_eagle_dog, sees_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, X) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bald_eagle_X, green_bald_eagle), likes_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(bear, X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(rough_X, likes_bear_X), visits_bald_eagle_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog) -> kind(dog)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, X) -> sees(bald_eagle, dog)",
+          "z3_formula": "Implies(visits_bald_eagle_X, sees_bald_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 16
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(rough_bear, likes_bear_bear), visits_bear_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> sees(X, dog)",
+          "z3_formula": "Implies(visits_bear_eagle, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(X) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_dog), likes_dog_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & green(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_eagle, green_eagle), likes_bear_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(visits_bear_eagle, kind_bear), green_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == Unknown",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 125,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 0,
+      "total_weight": 125,
+      "solve_time_ms": 1.3247504830360413
+    },
+    "timing": {
+      "trace_gen_s": 25.174,
+      "extraction_s": 49.138,
+      "dedup_s": 1.574,
+      "maxsat_s": 0.005,
+      "total_s": 75.891
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-561_Q16",
+    "problem": "The bald eagle is blue. The bald eagle does not need the squirrel. The bear chases the bald eagle. The bear is blue. The bear is round. The bear sees the bald eagle. The squirrel is nice. The squirrel is red. The tiger chases the bald eagle. The tiger sees the bald eagle. If someone chases the squirrel then they see the tiger. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. If someone is red then they see the bear. If someone needs the bear then they do not chase the squirrel. All blue people are round. If someone needs the tiger then they chase the bear. If someone is red and they need the tiger then the tiger is red. If someone sees the bear then they need the tiger. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger sees the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nNeed($x, $y, bool) ::: Does x need y?\nChase($x, $y, bool) ::: Does x chase y?\nRound($x, bool) ::: Is x round?\nSee($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nNeed(BaldEagle, Squirrel, False) ::: The bald eagle does not need the squirrel.\nChase(Bear, BaldEagle, True) ::: The bear chases the bald eagle.\nBlue(Bear, True) ::: The bear is blue.\nRound(Bear, True) ::: The bear is round.\nSee(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nNice(Squirrel, True) ::: The squirrel is nice.\nRed(Squirrel, True) ::: The squirrel is red.\nChase(Tiger, BaldEagle, True) ::: The tiger chases the bald eagle.\nSee(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\n\nRules:\nChase($x, Squirrel, True) >>> See($x, Tiger, True) ::: If someone chases the squirrel then they see the tiger.\nSee(BaldEagle, Tiger, True) && Chase(Tiger, BaldEagle, True) >>> Need(Tiger, Squirrel, True) ::: If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\nRed($x, True) >>> See($x, Bear, True) ::: If someone is red then they see the bear.\nNeed($x, Bear, True) >>> Chase($x, Squirrel, False) ::: If someone needs the bear then they do not chase the squirrel.\nBlue($x, True) >>> Round($x, True) ::: All blue people are round.\nNeed($x, Tiger, True) >>> Chase($x, Bear, True) ::: If someone needs the tiger then they chase the bear.\nRed($x, True) && Need($x, Tiger, True) >>> Red(Tiger, True) ::: If someone is red and they need the tiger then the tiger is red.\nSee($x, Bear, True) >>> Need($x, Tiger, True) ::: If someone sees the bear then they need the tiger.\nSee($x, Tiger, True) && See(Tiger, Bear, False) >>> Chase($x, Tiger, False) ::: If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nQuery:\nSee(Tiger, Tiger, True) ::: The tiger sees the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

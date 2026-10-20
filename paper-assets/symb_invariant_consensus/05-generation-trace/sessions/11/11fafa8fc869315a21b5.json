@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11fafa8fc869315a21b5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp005 qwq regime",
+  "task_key": "worker_analysis_exp005_qwq_regime_20260516T052554",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp005_qwq_regime_20260516T052554_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "2841bda419474305fa229fe04af8711ee9dcc75d13bedf9042e0b582c03b30b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出已保存并注册：\n\n**服务器文件**：\n- `results/qwq_operating_regime.md` — 格式化报告\n- `results/qwq_operating_regime.json` — 结构化数据\n\n**Artifacts**：\n- `art_20260516_877e3f` — MD 报告\n- `art_20260516_b064a6` — JSON 数据\n\n**与任务模板的主要差异**（基于实际文件验证）：\n\n| 项目 | 任务模板 | 实际数据 |\n|------|---------|---------|\n| ProofWriter N | 16 | **17**（文件中实际完成 17 题） |\n| PW multi-candidate | 18.75% (3/16) | **23.5% (4/17)**（多了 Q12） |\n| PW SICA acc | X% | **82.4%** |\n| PW SC acc | X% | **88.2%** |\n| PW Δ | 0.0 | **−5.9pp**（SICA 反而更差） |\n| FOLIO N | 10 | **2**（仅 live test，K=4 非 K=12） |\n| Combined C0 | 3.6% | **2.6% effective / 10.3% nominal** |\n\n关键发现：ProofWriter 上 SICA 不仅没有超越 SC，反而因为约束提取偏差（498_Q8：少数派 constraint score 38 > 多数派 27）比 SC 差 5.9pp。这比预期的\"SICA≡SC\"结论更强烈——reasoning model 下 SICA 可能有害。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp005-qwq-regime.md"
+}

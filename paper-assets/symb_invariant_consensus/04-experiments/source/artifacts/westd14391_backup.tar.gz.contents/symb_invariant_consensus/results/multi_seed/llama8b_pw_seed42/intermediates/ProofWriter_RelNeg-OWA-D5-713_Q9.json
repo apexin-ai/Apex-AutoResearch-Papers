@@ -1,0 +1,1276 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-713_Q9",
+    "problem": "The cat needs the cow. The cow eats the cat. The cow is blue. The mouse eats the rabbit. The mouse is cold. The mouse is young. The mouse needs the cow. The rabbit is cold. The rabbit is young. The rabbit needs the cat. If someone is cold and they see the rabbit then the rabbit is young. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. If someone eats the cow then they eat the mouse. If someone is nice and young then they see the rabbit. If someone eats the rabbit then they need the cat. If someone sees the rabbit then they are not green. If someone sees the cat and they are cold then they are nice. If someone needs the cat and they are young then they see the cat. If the cow is not young then the cow is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse sees the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nBlue(Cow, True) ::: The cow is blue.\nEats(Mouse, Rabbit, True) ::: The mouse eats the rabbit.\nCold(Mouse, True) ::: The mouse is cold.\nYoung(Mouse, True) ::: The mouse is young.\nNeeds(Mouse, Cow, True) ::: The mouse needs the cow.\nCold(Rabbit, True) ::: The rabbit is cold.\nYoung(Rabbit, True) ::: The rabbit is young.\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat.\n\nRules:\nCold($x, True) && Sees($x, Rabbit, True) >>> Young(Rabbit, True) ::: If someone is cold and they see the rabbit then the rabbit is young.\nSees(Mouse, Cat, True) && Needs(Cow, Mouse, False) >>> Eats(Cat, Rabbit, True) ::: If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\nEats($x, Cow, True) >>> Eats($x, Mouse, True) ::: If someone eats the cow then they eat the mouse.\nNice($x, True) && Young($x, True) >>> Sees($x, Rabbit, True) ::: If someone is nice and young then they see the rabbit.\nEats($x, Rabbit, True) >>> Needs($x, Cat, True) ::: If someone eats the rabbit then they need the cat.\nSees($x, Rabbit, True) >>> Green($x, False) ::: If someone sees the rabbit then they are not green.\nSees($x, Cat, True) && Cold($x, True) >>> Nice($x, True) ::: If someone sees the cat and they are cold then they are nice.\nNeeds($x, Cat, True) && Young($x, True) >>> Sees($x, Cat, True) ::: If someone needs the cat and they are young then they see the cat.\nYoung(Cow, False) >>> Green(Cow, True) ::: If the cow is not young then the cow is green.\n\nQuery:\nSees(Mouse, Rabbit, True) ::: The mouse sees the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 114.5,
+      "Unknown": 167.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the mouse sees the rabbit, we need to analyze the given statements and their implications.\n\n1. The cow is blue.\n2. The mouse eats the rabbit.\n3. The mouse is cold.\n4. The mouse is young.\n5. The mouse needs the cow.\n6. The rabbit is cold.\n7. The rabbit is young.\n8. The rabbit needs the cat.\n9. If someone is cold and they see the rabbit then the rabbit is young. (This statement is not directly applicable to the mouse, but it implies that the rabbit's youth is not determined by the mouse's coldness.)\n10. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. (We will come back to this statement later.)\n11. If someone eats the cow then they eat the mouse. (This statement is not directly applicable to the problem.)\n12. If someone is nice and young then they see the rabbit. (We will come back to this statement later.)\n13. If someone eats the rabbit then they need the cat. (We will come back to this statement later.)\n14. If someone sees the rabbit then they are not green. (We will come back to this statement later.)\n15. If someone sees the cat and they are cold then they are nice. (We will come back to this statement later.)\n16. If someone needs the cat and they are young then they see the cat. (We will come back to this statement later.)\n17. If the cow is not young then the cow is green. (We will come back to this statement later.)\n\nNow, let's analyze the given statements:\n\n- The mouse is young (statement 4) and needs the cow (statement 5). \n- If someone needs the cat and they are young then they see the cat (statement 16). However, the mouse needs the cow, not the cat. \n- But if the mouse sees the cat, then the cow does not need the mouse (statement 10), which implies that the cat eats the rabbit (statement 10). \n- However, the rabbit is young (statement 7) and cold (statement 6), and the mouse is also young and cold (statement 3). \n- The mouse is cold and sees the rabbit (this is what we are trying to determine), which implies that the rabbit is young (statement 9). \n- But this would contradict statement 10 if the mouse sees the cat, because the rabbit is indeed young.\n\nHowever, we cannot directly determine whether the mouse sees the rabbit from the given statements. The given statements imply that the mouse seeing the rabbit would lead to a contradiction with other statements. Therefore, the statement \"The mouse sees the rabbit\" is **unknown** because we cannot determine its truth value based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that the mouse eats the rabbit. \n   - From the given statement: \"The mouse eats the rabbit.\"\n   - Since the mouse eats the rabbit, it implies that the mouse must be able to see the rabbit first.\n\n2. The statement also says that if someone is cold and they see the rabbit then the rabbit is young. \n   - However, this information does not directly affect whether the mouse sees the rabbit or not.\n\n3. Another statement says that if the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. \n   - This statement does not provide any direct information about whether the mouse sees the rabbit or not.\n\n4. The statement also says that if someone sees the rabbit then they are not green. \n   - Since the cow is blue, not green, and the rabbit is cold and young, we can infer that the rabbit is not green. \n   - However, this information still does not tell us whether the mouse sees the rabbit or not.\n\n5. From the initial statement, we know that the mouse is cold and young. \n   - Since the mouse is young and cold, it implies that the mouse might be able to see the rabbit according to the rule that if someone is cold and they see the rabbit then the rabbit is young.\n\n6. Finally, we need to determine whether the cow needs the mouse or not. \n   - From the given statements, we can infer that the cow needs the mouse because the cat needs the cow, and the mouse needs the cow. \n   - If the cow does not need the mouse, the cat eats the rabbit. \n   - However, we cannot conclude that the cat eats the rabbit because we do not know if the cow needs the mouse or not.\n\nBased on the given statements, we can conclude that the mouse might see the rabbit because the mouse is young and cold. However, we cannot confirm whether the mouse sees the rabbit or not because we do not know for certain if the cow needs the mouse or not.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is cold. (Given)\n2. The mouse is young. (Given)\n3. The mouse needs the cow. (Given)\n4. If someone is cold and they see the rabbit then the rabbit is young. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n5. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n6. If someone eats the cow then they eat the mouse. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n7. If someone is nice and young then they see the rabbit. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n8. If someone eats the rabbit then they need the cat. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n9. If someone sees the rabbit then they are not green. (Given)\n   - We can't conclude anything from this statement directly, so we will come back to it later.\n10. If someone sees the cat and they are cold then they are nice. (Given)\n    - We can't conclude anything from this statement directly, so we will come back to it later.\n11. If someone needs the cat and they are young then they see the cat. (Given)\n    - This doesn't directly relate to the mouse seeing the rabbit, so we will come back to it later.\n12. If the cow is not young then the cow is green. (Given)\n    - The cow is blue, so it must be young.\n\nNow, let's try to find a connection between the mouse and the rabbit.\n\n- The mouse is cold and young. From statement 4, this means the rabbit is young. However, this doesn't help us determine if the mouse sees the rabbit.\n\n- The mouse needs the cow. We know the cow is blue and young.\n\n- We can't find a direct connection between the mouse seeing the rabbit and the other statements.\n\nHowever, we can try to use the information to find if the mouse can see the rabbit under certain conditions. \n\n- If the mouse sees the cat and the cow does not need the mouse, then the cat eats the rabbit. However, we don't know if the cat sees the mouse or if the cow needs the mouse.\n\n- The mouse eats the rabbit is not given, but if the mouse sees the rabbit, it could be possible.\n\nWe can't find a direct way to determine if the mouse sees the rabbit from the given statements.\n\nHowever, let's check the conditions under which the mouse can see the rabbit:\n\n- The mouse is young.\n- The rabbit is young. This is given by statement 4.\n- The mouse is cold.\n- The mouse needs the cow.\n\nWe can't determine if the mouse sees the rabbit directly from the given statements.\n\nHowever, we can determine that the statement \"The mouse sees the rabbit\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse eats the rabbit. (Given)\n   From this statement, we cannot directly determine if the mouse sees the rabbit. However, it is a crucial piece of information to consider.\n\n2. The mouse is cold. (Given)\n   This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\n3. The mouse is young. (Given)\n   This statement also does not provide any direct information about the mouse seeing the rabbit.\n\n4. The mouse needs the cow. (Given)\n   We know the mouse needs the cow, but we do not know if the mouse sees the rabbit based on this statement alone.\n\n5. The rabbit is cold. (Given)\n   This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\n6. The rabbit is young. (Given)\n   This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\n7. If someone is cold and they see the rabbit then the rabbit is young. (Given)\n   This statement tells us that if someone is cold and sees the rabbit, the rabbit is young. However, we do not know if the mouse is cold and sees the rabbit.\n\n8. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. (Given)\n   This statement is irrelevant to determining if the mouse sees the rabbit.\n\n9. If someone eats the cow then they eat the mouse. (Given)\n   This statement is also irrelevant to determining if the mouse sees the rabbit.\n\n10. If someone is nice and young then they see the rabbit. (Given)\n    This statement alone does not provide any direct information about the mouse seeing the rabbit. However, it does tell us that if someone is nice and young, they see the rabbit.\n\n11. If someone eats the rabbit then they need the cat. (Given)\n    This statement is irrelevant to determining if the mouse sees the rabbit.\n\n12. If someone sees the rabbit then they are not green. (Given)\n    This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\n13. If someone sees the cat and they are cold then they are nice. (Given)\n    This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\n14. If someone needs the cat and they are young then they see the cat. (Given)\n    This statement tells us that if someone needs the cat and is young, they see the cat. However, it does not directly relate to the mouse seeing the rabbit.\n\n15. If the cow is not young then the cow is green. (Given)\n    This statement alone does not provide any direct information about the mouse seeing the rabbit.\n\nFrom the given statements, we can conclude that we do not have enough information to determine if the mouse sees the rabbit or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use them to determine the relationship between the mouse and the rabbit.\n\n1. The cat needs the cow.\n2. The cow eats the cat.\n3. The cow is blue.\n4. The mouse eats the rabbit.\n5. The mouse is cold.\n6. The mouse is young.\n7. The mouse needs the cow.\n8. The rabbit is cold.\n9. The rabbit is young.\n10. The rabbit needs the cat.\n11. If someone is cold and they see the rabbit then the rabbit is young.\n12. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\n13. If someone eats the cow then they eat the mouse.\n14. If someone is nice and young then they see the rabbit.\n15. If someone eats the rabbit then they need the cat.\n16. If someone sees the rabbit then they are not green.\n17. If someone sees the cat and they are cold then they are nice.\n18. If someone needs the cat and they are young then they see the cat.\n19. If the cow is not young then the cow is green.\n\nFrom statement 6, we know the mouse is young.\nFrom statement 7, we know the mouse needs the cow.\nFrom statement 18, we know that since the mouse is young and needs the cat, the mouse sees the cat.\n\nFrom statement 8, we know the rabbit is young.\nFrom statement 9, we know the rabbit needs the cat.\n\nFrom statement 10, we know the rabbit needs the cat.\nFrom statement 15, we know if someone eats the rabbit then they need the cat. However, since the mouse sees the cat and the rabbit needs the cat, it doesn't necessarily mean the mouse eats the rabbit.\n\nFrom statement 12, we know if the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. However, since the mouse needs the cow, it's not known whether the cow needs the mouse.\n\nFrom statement 5, we know the mouse is cold.\nFrom statement 17, we know that since the mouse sees the cat and is cold, the mouse is nice. However, this does not affect the outcome.\n\nFrom statement 14, we know if someone is nice and young then they see the rabbit. However, since the mouse is nice and young, it doesn't necessarily mean the mouse sees the rabbit.\n\nNow, let's examine the possibilities based on the given statements:\n\n- If the mouse sees the cat and the cow does not need the mouse, then the cat eats the rabbit (from statement 12).\n- However, since the mouse needs the cow, it's not known whether the cow needs the mouse.\n- If the mouse sees the rabbit, then it's not known what happens next.\n- However, if the mouse eats the rabbit, then the mouse needs the cat (from statement 15). Since the rabbit is young, it's possible that the mouse sees the rabbit.\n\nFrom statement 11, we know if someone is cold and they see the rabbit then the rabbit is young. However, since the mouse is cold and it's possible that the mouse sees the rabbit, it's not known whether the mouse sees the rabbit.\n\nFrom statement 16, we know if someone sees the rabbit then they are not green. However, this does not affect the outcome.\n\nBased on the given statements and the analysis above, it's not possible to determine with certainty whether the mouse sees the rabbit. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the mouse sees the rabbit, we need to analyze the given statements and their relationships.\n\nFrom the given statements:\n1. The mouse is young.\n2. The mouse is cold.\n3. If someone is cold and they see the rabbit then the rabbit is young. (This statement does not apply to the mouse, but it sets a condition for the rabbit's age.)\n4. The rabbit is young.\n5. The mouse needs the cow.\n6. If someone needs the cow, then the mouse sees the cat. (This is not directly applicable, but we need to find a path to the conclusion.)\n7. If someone is young and they need the cat, then they see the cat. (This is not directly applicable, but we need to find a path to the conclusion.)\n8. The rabbit needs the cat.\n9. If someone eats the rabbit, then they need the cat. (This does not apply to the mouse directly.)\n10. The cat eats the rabbit. (We will come back to this statement later.)\n\nHowever, we cannot directly find a path from the mouse to seeing the rabbit. We need to establish a connection between the mouse and the rabbit.\n\nFrom the given statements, we can infer the following:\n- The rabbit is young (statement 4).\n- The rabbit is cold (statement 5).\n- If someone is cold and they see the rabbit then the rabbit is young (statement 3). This statement is not applicable to the mouse, but it supports the fact that the rabbit is young.\n- If someone eats the rabbit, then they need the cat (statement 9). We cannot directly apply this statement to the mouse.\n- The cat eats the rabbit (statement 10).\n\nHowever, statement 10 tells us that the cat eats the rabbit. But the statement does not tell us whether the mouse sees the rabbit or not. \n\nSo, we cannot conclude that the mouse sees the rabbit directly from the given statements.\n\nHence, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step.\n\n1. The statement we need to evaluate is: \"The mouse sees the rabbit.\"\n2. Since the mouse eats the rabbit, it is known that the mouse sees the rabbit. This is a direct conclusion from the statement \"The mouse eats the rabbit.\"\n3. To evaluate the truth of this statement, we need to determine if the mouse eats the rabbit.\n4. We know that the mouse is cold, the mouse is young, and the mouse needs the cow. \n5. We also know that the rabbit is cold and the rabbit is young.\n6. Given that the mouse is cold and the mouse sees the rabbit, we can conclude that the rabbit is young from the rule: \"If someone is cold and they see the rabbit then the rabbit is young.\"\n7. From the rule \"The mouse is young\" we can also use another rule: \"If someone is young then they need the cat.\" However, this will not give us a direct conclusion, but it is an important fact.\n8. Since the mouse needs the cat, we can use another rule: \"If someone needs the cat and they are young then they see the cat.\" This is not directly related to the rabbit, but it's another fact.\n9. The statement \"The cat needs the cow\" is an initial fact. We also know that the cow eats the cat, which is a direct conclusion from the initial fact.\n10. We also know that the cow is blue. However, this fact is irrelevant to the current problem.\n11. From the rule \"If someone eats the cow then they eat the mouse,\" we can conclude that the mouse eats the cow is not a given fact but the cat eats the cow. Therefore, the cat eats the mouse is a fact.\n12. We can use another rule \"If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\" Since the mouse sees the cat and the cow does not need the mouse (the cat eats the cow), we can conclude that the cat eats the rabbit.\n13. From the rule \"If someone eats the rabbit then they need the cat,\" we can conclude that the cat needs the rabbit. This is a direct conclusion from the fact that the cat eats the rabbit.\n14. However, we have a fact that the cat needs the cow, and the cow eats the cat. This creates a cycle where the cat needs the cow, and the cow eats the cat. This means the cat needs the cow and the cow needs the mouse (since the cow eats the cat and the cat eats the mouse).\n15. We can now evaluate the truth of the statement \"The mouse sees the rabbit.\" Since the mouse eats the rabbit, it is known that the mouse sees the rabbit.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The cat needs the cow.\n- The cow eats the cat.\n- The cow is blue.\n- The mouse eats the rabbit.\n- The mouse is cold.\n- The mouse is young.\n- The mouse needs the cow.\n- The rabbit is cold.\n- The rabbit is young.\n- The rabbit needs the cat.\n\nRules:\n1. If someone is cold and they see the rabbit then the rabbit is young.\n2. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\n3. If someone eats the cow then they eat the mouse.\n4. If someone is nice and young then they see the rabbit.\n5. If someone eats the rabbit then they need the cat.\n6. If someone sees the rabbit then they are not green.\n7. If someone sees the cat and they are cold then they are nice.\n8. If someone needs the cat and they are young then they see the cat.\n9. If the cow is not young then the cow is green.\n\nWe need to determine whether the statement \"The mouse sees the rabbit\" is true, false, or unknown.\n\nLet's analyze the given information and the rules to find any relevant information about the mouse seeing the rabbit.\n\nFrom rule 1, we cannot directly apply it here since we do not have information about someone being cold and seeing the rabbit. However, we do have information about the mouse being young (rule 7), which could be relevant later.\n\nFrom rule 2, we cannot directly apply it here since we do not have information about the cow not needing the mouse. However, we do have information about the mouse needing the cow (given information).\n\nFrom rule 3, we cannot directly apply it here since we do not have information about someone eating the cow.\n\nFrom rule 4, we cannot directly apply it here since we do not have information about someone being nice and young.\n\nFrom rule 5, we cannot directly apply it here since we do not have information about someone eating the rabbit.\n\nFrom rule 6, we cannot directly apply it here since we do not have information about someone seeing the rabbit.\n\nFrom rule 7, we know that if someone sees the cat and they are cold then they are nice. However, we do not have information about someone seeing the cat and being cold.\n\nFrom rule 8, we know that if someone needs the cat and they are young then they see the cat. However, we do not have information about someone needing the cat and being young.\n\nFrom rule 9, we know that if the cow is not young then the cow is green. However, we do not have information about the cow being not young.\n\nNow, let's analyze the given information and the rules to find any indirect information about the mouse seeing the rabbit.\n\nWe know that the mouse eats the rabbit (given information). This information can be used with rule 5, which states that if someone eats the rabbit then they need the cat. Therefore, we can conclude that the mouse needs the cat.\n\nWe also know that the mouse is young (given information) and needs the cat. This information can be used with rule 8, which states that if someone needs the cat and they are young then they see the cat. However, this rule does not provide any direct information about the mouse seeing the rabbit. It only tells us that the mouse sees the cat.\n\nHowever, we do not have any information about the mouse seeing the rabbit. We only know that the mouse eats the rabbit, which does not provide any information about the mouse seeing the rabbit.\n\nTherefore, we cannot determine whether the mouse sees the rabbit or not.\n\nThe final answer is: $\\boxed{unknown}$",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that the mouse eats the rabbit. (From \"The mouse eats the rabbit.\")\n2. We know that the rabbit is young. (From \"The rabbit is young.\")\n3. We also know that if someone is cold and they see the rabbit, then the rabbit is young. (From \"If someone is cold and they see the rabbit then the rabbit is young.\") However, this doesn't directly help us determine if the mouse sees the rabbit.\n\nHowever, we can use another condition to analyze this:\n4. We know that if the mouse sees the cat and the cow does not need the mouse, then the cat eats the rabbit. (From \"If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\") We also know that the mouse sees the cat is possible because we have the condition: \"If someone needs the cat and they are young then they see the cat.\" However, we don't have enough information to confirm if the mouse is young or not, but we do know the mouse is cold (From \"The mouse is cold.\") and the mouse needs the cow (From \"The mouse needs the cow.\").\n\n5. We know that the cow is blue. (From \"The cow is blue.\") However, we also know that if the cow is not young then the cow is green. (From \"If the cow is not young then the cow is green.\") We do not know the age of the cow.\n\n6. We know that the mouse eats the rabbit, and the rabbit is young, but we don't have enough information to confirm if the mouse sees the rabbit or not.\n\nBased on the given information, we can't confirm if the mouse sees the rabbit or not. Therefore, the statement \"The mouse sees the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break down the information given and use it to determine the truth of the statement \"The mouse sees the rabbit.\"\n\n1. From the statement \"The mouse eats the rabbit,\" we cannot conclude that the mouse sees the rabbit. The mouse may eat the rabbit without seeing it.\n\n2. However, we know \"If someone sees the rabbit then they are not green.\" But this statement does not tell us anything about the mouse.\n\n3. The statement \"The mouse is cold\" does not affect the situation directly.\n\n4. The statement \"The mouse is young\" also does not affect the situation directly.\n\n5. The statement \"The mouse needs the cow\" does not give us any information about the mouse seeing the rabbit.\n\n6. We know \"If someone is cold and they see the rabbit then the rabbit is young.\" But this statement does not tell us anything about the mouse seeing the rabbit.\n\n7. The statement \"If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit\" does not help us determine if the mouse sees the rabbit.\n\n8. We know \"If the cow is not young then the cow is green.\" But the color of the cow does not affect the situation directly.\n\n9. We also know \"If someone eats the rabbit then they need the cat.\" But this statement does not tell us anything about the mouse seeing the rabbit.\n\n10. The statement \"If someone sees the cat and they are cold then they are nice\" does not help us determine if the mouse sees the rabbit.\n\n11. The statement \"If someone needs the cat and they are young then they see the cat\" does not directly tell us if the mouse sees the rabbit.\n\n12. We know \"The rabbit is young\" and \"The rabbit needs the cat.\" But this information does not help us determine if the mouse sees the rabbit.\n\n13. Finally, we know \"The mouse is young\" and \"The mouse needs the cow.\" We can use this information in conjunction with \"If someone needs the cat and they are young then they see the cat\" to determine that the mouse sees the cat.\n\nHowever, this does not tell us if the mouse sees the rabbit.\n\n14. We have to re-examine the statement \"If someone needs the cat and they are young then they see the cat.\" Then we can also conclude that the rabbit sees the cat since the rabbit is young and the rabbit needs the cat.\n\n15. We know \"If someone sees the rabbit then they are not green\" and \"The rabbit sees the cat.\" Since the rabbit is not green, we can conclude that the rabbit sees the cat.\n\n16. We know \"The rabbit sees the cat\" and \"The mouse is young\" and \"The mouse needs the cow.\" We can use the statement \"If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit\" to determine that the mouse does not see the cat.\n\n17. However, if the mouse does not see the cat, then the mouse cannot see the rabbit. But we already know that the mouse eats the rabbit. Therefore, the mouse must see the rabbit.\n\nTherefore, the statement \"The mouse sees the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the mouse sees the rabbit, we need to analyze the given statements and their implications.\n\n1. The mouse eats the rabbit. \n   This statement implies that the mouse and the rabbit have a relationship where one consumes the other. However, it does not directly indicate whether the mouse sees the rabbit.\n\n2. If someone sees the cat and they are cold then they are nice. \n   We do not have any information about the mouse being cold. Therefore, we cannot directly apply this rule.\n\n3. If someone sees the rabbit then they are not green. \n   This rule does not provide any information about the mouse seeing the rabbit.\n\n4. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. \n   This statement implies that the mouse sees the cat under certain conditions. However, it does not imply that the mouse sees the rabbit.\n\n5. If someone is cold and they see the rabbit then the rabbit is young. \n   We do not have any information about the mouse being cold. Therefore, we cannot directly apply this rule.\n\n6. If someone is nice and young then they see the rabbit. \n   We do not have any information about the mouse being nice. However, we do know that the mouse is young (from the statement \"The mouse is young.\").\n\n7. The rabbit is young.\n   This statement confirms that the rabbit is indeed young, which aligns with the previous statement.\n\n8. The rabbit is cold.\n   This statement implies that the rabbit satisfies one of the conditions for someone being cold and seeing the rabbit.\n\n9. If someone is cold and they see the rabbit then the rabbit is young. \n   Since the rabbit is young (from statement 7), and the rabbit is cold (from statement 8), this rule applies.\n\n10. If someone is nice and young then they see the rabbit.\n    Since the mouse is young (from statement 6), and we do not have any information about the mouse being nice, we cannot directly apply this rule.\n\nHowever, we can use the following statements to establish a connection between the mouse and the rabbit:\n- The mouse eats the rabbit (from statement 1).\n- If someone eats the rabbit then they need the cat (from statement 8).\n- The mouse needs the cow (from statement 3).\n- The cow eats the cat (from statement 2).\n\nSince the mouse needs the cow, and the cow eats the cat, it implies that the mouse needs the cat. Given that the mouse eats the rabbit, it follows that the mouse needs the cat because the mouse eats the rabbit and the mouse needs the cat.\n\nThe mouse sees the cat because the mouse needs the cat and the mouse is young (from statement 6).\n\nSince the mouse sees the cat, and the rabbit is young (from statement 7), and the rabbit is cold (from statement 8), and the mouse needs the cat because the mouse eats the rabbit, the mouse seeing the cat and the rabbit being young and cold implies that the mouse sees the rabbit.\n\nTherefore, the statement \"The mouse sees the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply the rules step by step.\n\n1. The rabbit is cold and young.\n2. The rabbit is young and needs the cat.\n\nFrom the rules, if someone is cold and they see the rabbit, then the rabbit is young. However, we already know that the rabbit is young from statement 1. \n\nThis rule doesn't give us any new information about the mouse seeing the rabbit.\n\n3. The mouse eats the rabbit.\n4. The mouse is cold and young.\n5. The mouse is young and needs the cow.\n6. The cow is blue and not young (because the cat needs the cow, and the cat is not green).\n\nFrom the rules, if the mouse sees the cat and the cow does not need the mouse, then the cat eats the rabbit. However, we don't know if the mouse sees the cat or not. We can't determine this yet.\n\n7. The cat needs the cow. \n\nFrom the rules, if someone sees the rabbit, then they are not green. If someone sees the cat and they are cold, then they are nice. If someone sees the cat and they are not green, then they are cold. \n\nThis creates a cycle where if someone sees the cat and they are not green, then they are cold. If someone sees the cat and they are cold, then they are nice.\n\n8. The mouse is not green (we don't know if the mouse sees the cat or not, but the mouse is not green because the mouse is cold and the mouse is young).\n\n9. The rabbit is not green.\n\n10. The rabbit is not green and cold.\n\nFrom rule 7, if someone sees the cat and they are not green, then they are cold. We know the rabbit is not green and cold. \n\nHowever, from rule 7, if someone sees the cat, then they are not green. If someone sees the cat and they are cold, then they are nice. If someone is nice and young then they see the rabbit. The rabbit is young and not green, so the rabbit sees the cat. \n\nThis means the rabbit sees the cat.\n\nNow, let's analyze the rule that the mouse sees the cat and the cow does not need the mouse. \n\nThe cat needs the cow, and the cow is not young, so the cow is green. \n\nFrom rule 5, the mouse is young and needs the cow. The cow is green, not blue, but we don't know if the cow needs the mouse. \n\nIf the cow needs the mouse, then the cat eats the rabbit, because the mouse sees the cat and the cow needs the mouse. However, this creates a contradiction because the rabbit is young and needs the cat. If the cat eats the rabbit, then the rabbit is not young. \n\nHowever, the rabbit is young, so the cat does not eat the rabbit. \n\nTherefore, the cow does not need the mouse. \n\nNow we have the mouse sees the cat and the cow does not need the mouse. \n\nHowever, we know the cat does not eat the rabbit, so the mouse sees the rabbit is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_mouse_cat, young_mouse), sees_mouse_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> not needs(cow, X)",
+          "z3_formula": "Implies(sees_mouse_cat, not needs_cow_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(sees_mouse_cat, eats_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not green(X)",
+          "z3_formula": "Implies(sees_mouse_rabbit, not green_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_mouse_cat, cold_mouse), nice_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_mouse_cat, young_mouse), sees_mouse_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_mouse_rabbit, needs_mouse_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not green(X)",
+          "z3_formula": "Implies(sees_mouse_rabbit, not green_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_mouse_cat, cold_mouse), nice_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) -> green(X)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_mouse_rabbit, sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(green(X))",
+          "z3_formula": "Implies(sees_mouse_rabbit, Not(green_mouse))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow) == False",
+          "z3_formula": "Not(green_cow) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(green(X))",
+          "z3_formula": "Implies(sees_rabbit_cow, Not(green_cow))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(green(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(green_cat))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, young_mouse), sees_mouse_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> Not(eats(cat, rabbit))",
+          "z3_formula": "Implies(needs_cow_mouse, Not(eats_cat_rabbit))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_mouse_cow, needs_cow_mouse), needs_mouse_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & not(needs(cow, X)) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_cat, Not(needs_cow_mouse)), eats_cat_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(eats_X_cow, eats_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, young_X), sees_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not(green(X))",
+          "z3_formula": "Implies(sees_X_rabbit, Not(green_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_X_cat, cold_X), nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, young_X), sees_X_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(cow)) -> green(cow)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit) == True",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit) == True",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit) == Unknown",
+          "z3_formula": "sees_mouse_rabbit == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_X, sees_X_rabbit), young_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & not(needs(cow, X)) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(needs_cow_X)), eats_cat_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(eats_X_cow, eats_X_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, young_X), sees_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not(green(X))",
+          "z3_formula": "Implies(sees_X_rabbit, Not(green_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_X_cat, cold_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, young_X), sees_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(cow)) -> green(cow)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_X, sees_X_rabbit), young_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & not needs(cow, X) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(needs_cow_X)), eats_cat_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(eats_X_cow, eats_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, young_X), sees_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not green(X)",
+          "z3_formula": "Implies(sees_X_rabbit, Not(green_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_X_cat, cold_X), nice_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, young_X), sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not young(cow) -> green(cow)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> sees(X, cat)",
+          "z3_formula": "Implies(needs_mouse_cow, sees_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, cat) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_mouse, needs_mouse_cat), sees_mouse_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_mouse_rabbit, needs_mouse_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, rabbit)",
+          "z3_formula": "eats_cat_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, cat)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, cat) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_mouse, needs_mouse_cat), sees_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(eats_cow_cat, eats_cat_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, mouse)",
+          "z3_formula": "eats_cat_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & not needs(cow, X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_cat, Not(needs_cow_mouse)), eats_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cow, mouse)",
+          "z3_formula": "Not(needs_cow_mouse) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, rabbit)",
+          "z3_formula": "eats_cat_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_cat_rabbit, needs_cat_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(cold_X, sees_X_rabbit), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, cat) & not needs(cow, mouse) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_cat, Not(needs_cow_mouse)), eats_cat_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(eats_X_cow, eats_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, young_X), sees_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not green(X)",
+          "z3_formula": "Implies(sees_X_rabbit, Not(green_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_X_cat, cold_X), nice_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, young_X), sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not young(cow) -> green(cow)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_rabbit), young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, cat) & not(need(cow, mouse)) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_cat, not(need_cow_mouse)), eats_cat_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "need(mouse, cow)",
+          "z3_formula": "need_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(need_mouse_cat, young_mouse), sees_mouse_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(X)) -> green(X)",
+          "z3_formula": "Implies(Not(young_cow), green_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(green(X))",
+          "z3_formula": "Implies(sees_rabbit, Not(green_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & young(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, young_X), sees_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> Not(green(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(green_X))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(rabbit))",
+          "z3_formula": "Not(green_rabbit) == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(needs(cow, X)) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(needs_cow_X)), eats_cat_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(mouse, cat))",
+          "z3_formula": "Not(sees_mouse_cat) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(mouse, rabbit)) -> eats(mouse, rabbit)",
+          "z3_formula": "Implies(Not(sees_mouse_rabbit), eats_mouse_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(eats_mouse_rabbit, needs_mouse_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> needs(X, cat)",
+          "z3_formula": "Implies(needs_mouse_cow, needs_mouse_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> sees(X, cat)",
+          "z3_formula": "Implies(needs_mouse_cat, sees_mouse_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & young(X) & cold(rabbit) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_cat, young_mouse, cold_rabbit), sees_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit) & needs(rabbit, cat)",
+          "z3_formula": "And(young_rabbit, needs_rabbit_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(cold_X, sees_X_rabbit), young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(green(X))",
+          "z3_formula": "Implies(sees_X_rabbit, Not(green_X))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(sees_X_cat, cold_X), nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> cold(X)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(green_X)), cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(green(mouse))",
+          "z3_formula": "Not(green_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(green(rabbit))",
+          "z3_formula": "Not(green_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "Not(green(rabbit)) & cold(rabbit)",
+          "z3_formula": "And(Not(green_rabbit), cold_rabbit) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> cold(X)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(green_X)), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(young(cow))",
+          "z3_formula": "Not(young_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(Not(needs(Y, X))) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(Not(needs_Y_X))), eats_cat_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(Not(needs(Y, X))) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, Not(Not(needs_Y_X))), eats_cat_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(cat, rabbit))",
+          "z3_formula": "Not(eats_cat_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(Not(needs(Y, X))) -> Not(eats(cat, rabbit))",
+          "z3_formula": "Implies(And(sees_X_cat, Not(Not(needs_Y_X))), Not(eats_cat_rabbit))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(needs(cow, mouse))",
+          "z3_formula": "Not(needs_cow_mouse) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(Not(needs(Y, X))) -> Not(eats(cat, rabbit))",
+          "z3_formula": "Implies(And(sees_X_cat, Not(Not(needs_Y_X))), Not(eats_cat_rabbit))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit) == Unknown",
+          "z3_formula": "sees_mouse_rabbit == Unknown",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 191,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 67
+    },
+    "maxsat_stats": {
+      "satisfied": 63,
+      "excluded": 4,
+      "total_weight": 183,
+      "solve_time_ms": 2.095581032335758
+    },
+    "timing": {
+      "trace_gen_s": 9.34,
+      "extraction_s": 38.605,
+      "dedup_s": 2.441,
+      "maxsat_s": 0.006,
+      "total_s": 50.392
+    }
+  }
+}

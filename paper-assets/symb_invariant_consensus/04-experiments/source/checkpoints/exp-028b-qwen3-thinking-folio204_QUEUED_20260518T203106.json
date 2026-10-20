@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-028b-qwen3-thinking-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:30:30.635Z",
+    "updated_at": "2026-05-18T20:31:06.571Z",
+    "hypothesis": "Qwen3-14B thinking mode (enable_thinking=True, 32K context) 在 FOLIO-204 上 SICA vs SC。D028 pilot (35/204, delta=+2.86pp) 被 kill。thinking mode 产生更 diverse+higher-quality reasoning traces，如果同时提升 trace quality 和 diversity，可能打破 14B 级别的 capability trap。parent=exp-028"
+  },
+  "timestamp": "2026-05-18T20:31:06.769823+00:00",
+  "trigger": "update_registry"
+}

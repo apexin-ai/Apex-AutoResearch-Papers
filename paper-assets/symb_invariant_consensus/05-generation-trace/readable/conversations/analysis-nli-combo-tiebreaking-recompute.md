@@ -1,0 +1,2863 @@
+# analysis nli combo tiebreaking recompute
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 99
+- **Recorded user turns:** 0
+- **Tool calls:** 49
+- **Original source:** `logs/chats/worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117.jsonl`
+- **Structured JSON:** [`2074bef4f6ce8e2e61a2.json`](../../sessions/20/2074bef4f6ce8e2e61a2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+99 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T15:16:12.605645+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T15:16:12.606116+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T15:16:12.606380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*recompute*\" -o -name \"*tiebreak*\" -o -name \"*d061*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*recompute*\" -o -name \"*tiebreak*\" -o -name \"*d061*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T15:16:12.606614+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T15:16:12.606815+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/scripts/ -name \"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/scripts/ -name \"*.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T15:16:12.607041+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T15:16:12.607244+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/symb_invariant_consensus/artifacts/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/symb_invariant_consensus/artifacts/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T15:16:12.607448+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T15:16:12.607698+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*recompute*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*recompute*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T15:16:12.607929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*tiebreak*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*tiebreak*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T15:16:12.608149+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/symb_invariant_consensus/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T15:16:12.608366+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*d061*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/ -name \"*d061*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T15:16:12.608561+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/symb_invariant_consensus/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T15:16:12.608741+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/symb_invariant_consensus/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T15:16:12.608964+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/symb_invariant_consensus/artifacts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/symb_invariant_consensus/artifacts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T15:16:12.609164+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/symb_invariant_consensus/scripts/ -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/symb_invariant_consensus/scripts/ -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T15:16:12.609353+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/symb_invariant_consensus/artifacts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T15:16:12.609536+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/symb_invariant_consensus/scripts/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T15:16:12.609751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T15:16:12.610011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_fix_tiebreaking.py\\naggregate_cegis.py\\nalpha_ablation_analysis.py\\nanalysis\\nanalysis_ascii_perturbation.py\\nanalysis_cegis_sica.py\\nanalysis_constraint_ablation_folio204.py\\nanalysis_constraint_precision.py\\nanalysis_k_ablation_folio204.py\\nanalyze_seeds.py\\nartifacts\\nauto_run_analysis.sh\\nbackup_legacy_20260519\\nbackward_verification.py\\nbaselines\\ncheckpoints\\ncil_bootstrap_loo.py\\ncompute_fleiss_kappa.py\\ncompute_gpt4o_br_kappa.py\\ncompute_process_kappa_multi.py\\ncompute_r1_distill_br_kappa.py\\ncross_trace_unsat.py\\ndata\\ndiff_scorers.py\\ndir_k_nli_qwen3_pw600.py\\ndirection_b_weighted_maxsat.py\\ndirection_b_weighted_maxsat_full.py\\ndirection_g_decoupling.py\\ndirection_h_adversarial.py\\ndirection_j_bootstrap.py\\ndirection_k_minority_report.py\\ndirection_q_premise_mutation.py\\nexp_d126_crossmodel_sica.py\\nexp_d126_crossmodel_sica.py.bak\\nexp_d134_baf_decoupled.py\\nexperiments\\nextract_constraints.py\\nextract_constraints_parallel.py\\nextract_fast.py\\nextract_llama_constraints.py\\nfigures\\nlaunch_exp050.sh\\nlogs\\nmcnemar_recompute.py\\npremise_formalization.py\\nprepare_data.py\\nprepare_logiqa_30.py\\nprepare_proofwriter.py\\nprepare_proofwriter_30.py\\nr11_sbert_analysis.py\\nr11_sbert_process_kappa.json\\nrecompute_alpha_16639.py\\nreeval_d064_seeds.py\\nreextract_bpe_fix.py\\nreextract_bpe_fix.py.bak\\nreextract_failed.py\\nreextract_qwen3_fixed.py\\nreextract_v2.py\\nreextract_v3.py\\nresults\\nrun_ablation_analysis.py\\nrun_after_extraction.sh\\nrun_case_study.py\\nrun_consistency_filtering.py\\nrun_contrastive.py\\nrun_contrastive_folio.py\\nrun_cross_dataset_replication.py\\nrun_debate.py\\nrun_exp028b.sh\\nrun_exp049b.sh\\nrun_exp050b.sh\\nrun_exp050b_exponly.sh\\nrun_full_mvp.py\\nrun_full_mvp.py.bak\\nrun_full_mvp.py.bak2\\nrun_icg.py\\nrun_icl_oracle.py\\nrun_kappa_generalization.py\\nrun_logiqa.py\\nrun_multi_temp.py\\nrun_multiseed_mistra
+…[truncated 283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T15:16:12.610243+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/ -maxdepth 3 -name \"*recompute*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/ -maxdepth 3 -name \"*recompute*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T15:16:12.610440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/recompute_alpha_16639.py\\n/root/symb_invariant_consensus/results/mcnemar_recomputed_16639.json\\n/root/symb_invariant_consensus/results/alpha_recompute_16639.json\\n/root/symb_invariant_consensus/mcnemar_recompute.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T15:16:12.610639+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/ -maxdepth 3 -name \"*tiebreak*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/ -maxdepth 3 -name \"*tiebreak*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T15:16:12.610843+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/ -maxdepth 3 -name \"*nli_combo*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/ -maxdepth 3 -name \"*nli_combo*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T15:16:12.611080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/_fix_tiebreaking.py\\n/root/symb_invariant_consensus/sc_tiebreak_revalidation.py\\n/root/symb_invariant_consensus/results/sc_tiebreak_revalidation_16639.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T15:16:12.611301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py\\n/root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T15:16:12.611547+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/_fix_tiebreaking.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/_fix_tiebreaking.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T15:16:12.611747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T15:16:12.612041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Fix insertion-order tiebreaking in NLI combo scripts → alphabetical.\\\"\\\"\\\"\\nimport re\\n\\nFIXES = [\\n    # (file, line_no, old_pattern, new_code)\\n    (\\\"scripts/qwen14b_pw_nli_combo.py\\\", 126,\\n     \\\"            combo_answer = max(combo_votes, key=combo_votes.get)\\\",\\n     \\\"            _max = max(combo_votes.values()); combo_answer = sorted(k for k, v in combo_votes.items() if v == _max)[0]\\\"),\\n    (\\\"scripts/exp092_llama8b_pw_nli_combo.py\\\", 118,\\n     \\\"            combo_answer = max(votes, key=votes.get)\\\",\\n     \\\"            _max = max(votes.values()); combo_answer = sorted(k for k, v in votes.items() if v == _max)[0]\\\"),\\n    (\\\"dir_k_nli_qwen3_pw600.py\\\", 163,\\n     '            combo_answer = votes.most_common(1)[0][0] if votes else \\\"Unknown\\\"',\\n     '            combo_answer = sorted([k for k, v in votes.items() if v == max(votes.values())])[0] if votes else \\\"Unknown\\\"'),\\n    (\\\"dir_k_nli_qwen3_pw600.py\\\", 202,\\n     '            combo_answer = votes.most_common(1)[0][0] if votes else \\\"Unknown\\\"',\\n     '            combo_answer = sorted([k for k, v in votes.items() if v == max(votes.values())])[0] if votes else \\\"Unknown\\\"'),\\n]\\n\\nfor fpath, lineno, old, new in FIXES:\\n    with open(fpath) as f:\\n        lines = f.readlines()\\n    if lines[lineno-1].rstrip() == old:\\n        lines[lineno-1] = new + \\\"\\\\n\\\"\\n        with open(fpath, \\\"w\\\") as f:\\n            f.writelines(lines)\\n        print(f\\\"FIXED {fpath}:{lineno}\\\")\\n    else:\\n        print(f\\\"MISMATCH {fpath}:{lineno}\\\")\\n        print(f\\\"  Expected: {old!r}\\\")\\n        print(f\\\"  Got:      {lines[lineno-1].rstrip()!r}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T15:16:12.612613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"LLaMA-3.1-8B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\n\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\nregardless of generator model, so we reuse D116's per_question results directly.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\n\\nEXP048_PATH = \\\"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\\\"\\nD116_PATH = \\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\nWEIGHTS = [1, 3, 5]\\n\\n\\ndef mcnemar_test(b, c):\\n    n = b + c\\n    if n == 0:\\n        return 1.0\\n    return binomtest(min(b, c), n, 0.5).pvalue\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(EXP048_PATH) as f:\\n        exp048 = json.load(f)\\n    with open(D116_PATH) as f:\\n        d116 = json.load(f)\\n\\n    results_list = exp048[\\\"results\\\"]\\n    d116_pq = d116[\\\"per_question\\\"]\\n    total = len(results_list)\\n    print(f\\\"Loaded {total} problems from exp048 (LLaMA-3.1-8B PW600)\\\")\\n\\n    gt = {}\\n    sc_answers = {}\\n    sc_vote_dists = {}\\n    for r in results_list:\\n        pid = r[\\\"problem_id\\\"]\\n        gt[pid] = r[\\\"ground_truth\\\"]\\n        sc_answers[pid] = r[\\\"sc_answer\\\"]\\n        sc_vote_dists[pid] = r[\\\"sc_vote_distribution\\\"]\\n\\n    missing = [pid for pid in gt if pid not in d116_pq]\\n    if missing:\\n        print(f\\\"WARNING: {len(missing)} problems missing from D116!\\\")\\n        for m in missing[:5]:\\n            print(f\\\"  {m}\\\")\\n    else:\\n        print(\\\"All 600 problem_ids match D116 DeBERTa predictions.\\\")\\n\\n    gold_mismatch = [pid for pid
+…[truncated 7245 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T15:16:12.612909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-22T15:16:12.613110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/sc_tiebreak_revalidation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/sc_tiebreak_revalidation.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T15:16:12.613539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Qwen2.5-14B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\n\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\nregardless of generator model, so we reuse D116's per_question results directly.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\n\\nEXP032_PATH = \\\"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\\\"\\nD116_PATH = \\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\nWEIGHTS = [1, 3, 5]\\n\\n\\ndef mcnemar_test(b, c):\\n    n = b + c\\n    if n == 0:\\n        return 1.0\\n    return binomtest(min(b, c), n, 0.5).pvalue\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(EXP032_PATH) as f:\\n        exp032 = json.load(f)\\n    with open(D116_PATH) as f:\\n        d116 = json.load(f)\\n\\n    results_list = exp032[\\\"results\\\"]\\n    d116_pq = d116[\\\"per_question\\\"]\\n    total = len(results_list)\\n    print(f\\\"Loaded {total} problems from exp032 (Qwen2.5-14B PW600)\\\")\\n\\n    # Extract per-problem data from exp032\\n    gt = {}\\n    sc_answers = {}\\n    sc_vote_dists = {}\\n    for r in results_list:\\n        pid = r[\\\"problem_id\\\"]\\n        gt[pid] = r[\\\"ground_truth\\\"]\\n        sc_answers[pid] = r[\\\"sc_answer\\\"]\\n        sc_vote_dists[pid] = r[\\\"sc_vote_distribution\\\"]\\n\\n    # Verify all problem_ids match D116\\n    missing = [pid for pid in gt if pid not in d116_pq]\\n    if missing:\\n        print(f\\\"WARNING: {len(missing)} problems missing from D116!\\\")\\n        for m in missing[:5]:\\n            print(f\\\"  {m}\\\")\\n    else:\\n        print(\\\"All 600 problem_ids 
+…[truncated 7237 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T15:16:12.614140+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Batch SC tiebreaking revalidation: recompute SC with deterministic alphabetical tie-breaking.\\\"\\\"\\\"\\nimport json\\nfrom pathlib import Path\\n\\nEXPERIMENTS = [\\n    {\\\"exp_id\\\": \\\"exp-033\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 seed=42 T=0.7 K=12\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\",\\n     \\\"old_sc\\\": 54.41, \\\"model\\\": \\\"Mistral-7B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"},\\n    {\\\"exp_id\\\": \\\"exp-057\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.3\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03/exp057_results.json\\\",\\n     \\\"old_sc\\\": 57.35, \\\"model\\\": \\\"Mistral-7B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"},\\n    {\\\"exp_id\\\": \\\"exp-058\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.5\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json\\\",\\n     \\\"old_sc\\\": 57.84, \\\"model\\\": \\\"Mistral-7B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"},\\n    {\\\"exp_id\\\": \\\"exp-054\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=1.0\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10/exp054_results.json\\\",\\n     \\\"old_sc\\\": 55.39, \\\"model\\\": \\\"Mistral-7B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"},\\n    {\\\"exp_id\\\": \\\"exp-051-k4\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=4\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k4/results.json\\\",\\n     \\\"old_sc\\\": 54.41, \\\"model\\\": \\\"Mistral-7B\\\", \\\"dataset\\\": \\\"FOLIO-204\\\"},\\n    {\\\"exp_id\\\": \\\"exp-051-k8\\\", \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=8\\\",\\n     \\\"path\\\": \\\"/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity/k8/results.json\\\"
+…[truncated 8219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T15:16:12.614445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-22T15:16:12.614646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T15:16:12.614837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T15:16:12.615056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T15:16:12.615252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -130 /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -130 /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T15:16:12.615562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"LLaMA-3.1-8B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\n\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\nregardless of generator model, so we reuse D116's per_question results directly.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\n\\nEXP048_PATH = \\\"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\\\"\\nD116_PATH = \\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\nWEIGHTS = [1, 3, 5]\\n\\n\\ndef mcnemar_test(b, c):\\n    n = b + c\\n    if n == 0:\\n        return 1.0\\n    return binomtest(min(b, c), n, 0.5).pvalue\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(EXP048_PATH) as f:\\n        exp048 = json.load(f)\\n    with open(D116_PATH) as f:\\n        d116 = json.load(f)\\n\\n    results_list = exp048[\\\"results\\\"]\\n    d116_pq = d116[\\\"per_question\\\"]\\n    total = len(results_list)\\n    print(f\\\"Loaded {total} problems from exp048 (LLaMA-3.1-8B PW600)\\\")\\n\\n    gt = {}\\n    sc_answers = {}\\n    sc_vote_dists = {}\\n    for r in results_list:\\n        pid = r[\\\"problem_id\\\"]\\n        gt[pid] = r[\\\"ground_truth\\\"]\\n        sc_answers[pid] = r[\\\"sc_answer\\\"]\\n        sc_vote_dists[pid] = r[\\\"sc_vote_distribution\\\"]\\n\\n    missing = [pid for pid in gt if pid not in d116_pq]\\n    if missing:\\n        print(f\\\"WARNING: {len(missing)} problems missing from D116!\\\")\\n        for m in missing[:5]:\\n            print(f\\\"  {m}\\\")\\n    else:\\n        print(\\\"All 600 problem_ids match D116 DeBERTa predictions.\\\")\\n\\n    gold_mismatch = [pid for pid
+…[truncated 3636 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T15:16:12.615795+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -140 /root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -140 /root/symb_invariant_consensus/scripts/qwen14b_pw_nli_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T15:16:12.616174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Qwen2.5-14B ProofWriter NLI Combo using D116's DeBERTa-large predictions.\\n\\nDeBERTa-large-mnli predictions are deterministic on the same 600 PW problems\\nregardless of generator model, so we reuse D116's per_question results directly.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nfrom collections import Counter\\nfrom scipy.stats import binomtest\\n\\nEXP032_PATH = \\\"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\\\"\\nD116_PATH = \\\"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\nWEIGHTS = [1, 3, 5]\\n\\n\\ndef mcnemar_test(b, c):\\n    n = b + c\\n    if n == 0:\\n        return 1.0\\n    return binomtest(min(b, c), n, 0.5).pvalue\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(EXP032_PATH) as f:\\n        exp032 = json.load(f)\\n    with open(D116_PATH) as f:\\n        d116 = json.load(f)\\n\\n    results_list = exp032[\\\"results\\\"]\\n    d116_pq = d116[\\\"per_question\\\"]\\n    total = len(results_list)\\n    print(f\\\"Loaded {total} problems from exp032 (Qwen2.5-14B PW600)\\\")\\n\\n    # Extract per-problem data from exp032\\n    gt = {}\\n    sc_answers = {}\\n    sc_vote_dists = {}\\n    for r in results_list:\\n        pid = r[\\\"problem_id\\\"]\\n        gt[pid] = r[\\\"ground_truth\\\"]\\n        sc_answers[pid] = r[\\\"sc_answer\\\"]\\n        sc_vote_dists[pid] = r[\\\"sc_vote_distribution\\\"]\\n\\n    # Verify all problem_ids match D116\\n    missing = [pid for pid in gt if pid not in d116_pq]\\n    if missing:\\n        print(f\\\"WARNING: {len(missing)} problems missing from D116!\\\")\\n        for m in missing[:5]:\\n            print(f\\\"  {m}\\\")\\n    else:\\n        print(\\\"All 600 problem_ids 
+…[truncated 3935 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T15:16:12.616464+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json')); print('SC baseline:', d['sc_baseline']); print('Combo:'); [print(f'  {k}: acc={v[\\\"accuracy\\\"]}, delta={v[\\\"delta_pp\\\"]}pp, p={v[\\\"mcnemar_p\\\"]}') for k,v in d['combo'].items()]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json')); print('SC baseline:', d['sc_baseline']); print('Combo:'); [print(f'  {k}: acc={v[\\\"accuracy\\\"]}, delta={v[\\\"delta_pp\\\"]}pp, p={v[\\\"mcnemar_p\\\"]}') for k,v in d['combo'].items()]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T15:16:12.616671+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T15:16:12.616891+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json')); print('SC baseline:', d['sc_baseline']); print('Combo:'); [print(f'  {k}: acc={v[\\\"accuracy\\\"]}, delta={v[\\\"delta_pp\\\"]}pp, p={v[\\\"mcnemar_p\\\"]}') for k,v in d['combo'].items()]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json')); print('SC baseline:', d['sc_baseline']); print('Combo:'); [print(f'  {k}: acc={v[\\\"accuracy\\\"]}, delta={v[\\\"delta_pp\\\"]}pp, p={v[\\\"mcnemar_p\\\"]}') for k,v in d['combo'].items()]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T15:16:12.617099+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T15:16:12.617317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A2 \"sc_baseline\\|\\\"combo\\\":\\|\\\"w1\\\"\\|\\\"w3\\\"\\|\\\"w5\\\"\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A2 \"sc_baseline\\|\\\"combo\\\":\\|\\\"w1\\\"\\|\\\"w3\\\"\\|\\\"w5\\\"\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T15:16:12.617503+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T15:16:12.617674+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A2 \"sc_baseline\\|\\\"combo\\\":\\|\\\"w1\\\"\\|\\\"w3\\\"\\|\\\"w5\\\"\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A2 \"sc_baseline\\|\\\"combo\\\":\\|\\\"w1\\\"\\|\\\"w3\\\"\\|\\\"w5\\\"\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T15:16:12.617848+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T15:16:12.618086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -E \"sc_baseline|accuracy|delta_pp|mcnemar_p\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -E \"sc_baseline|accuracy|delta_pp|mcnemar_p\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T15:16:12.618291+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T15:16:12.618475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -E \"sc_baseline|accuracy|delta_pp|mcnemar_p\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -E \"sc_baseline|accuracy|delta_pp|mcnemar_p\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T15:16:12.618658+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T15:16:12.618865+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-22T15:16:12.619085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -30 /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -30 /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T15:16:12.619304+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp092: LLaMA-3.1-8B ProofWriter NLI Combo (DeBERTa-large reused from D116)\\\",\\n  \\\"verifier_model\\\": \\\"microsoft/deberta-large-mnli\\\",\\n  \\\"generator_model\\\": \\\"LLaMA-3.1-8B-Instruct\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-600\\\",\\n  \\\"n_questions\\\": 600,\\n  \\\"standalone_accuracy\\\": 0.55,\\n  \\\"sc_baseline\\\": 0.7,\\n  \\\"capability_gap_pp\\\": -15.0,\\n  \\\"deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.55,\\n    \\\"correct\\\": 330,\\n    \\\"total\\\": 600,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 128,\\n        \\\"accuracy\\\": 0.64,\\n        \\\"precision\\\": 0.6957,\\n        \\\"recall\\\": 0.64,\\n        \\\"f1\\\": 0.6667\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 195,\\n        \\\"accuracy\\\": 0.975,\\n        \\\"precision\\\": 0.4791,\\n        \\\"recall\\\": 0.975,\\n        \\\"f1\\\": 0.6425\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T15:16:12.619551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"Qwen2.5-14B ProofWriter NLI Combo (DeBERTa-large reused from D116)\\\",\\n  \\\"verifier_model\\\": \\\"microsoft/deberta-large-mnli\\\",\\n  \\\"generator_model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n  \\\"dataset\\\": \\\"ProofWriter-D5-600\\\",\\n  \\\"n_questions\\\": 600,\\n  \\\"standalone_accuracy\\\": 0.55,\\n  \\\"sc_baseline\\\": 0.735,\\n  \\\"capability_gap_pp\\\": -18.5,\\n  \\\"deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.55,\\n    \\\"correct\\\": 330,\\n    \\\"total\\\": 600,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 128,\\n        \\\"accuracy\\\": 0.64,\\n        \\\"precision\\\": 0.6957,\\n        \\\"recall\\\": 0.64,\\n        \\\"f1\\\": 0.6667\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 200,\\n        \\\"correct\\\": 195,\\n        \\\"accuracy\\\": 0.975,\\n        \\\"precision\\\": 0.4791,\\n        \\\"recall\\\": 0.975,\\n        \\\"f1\\\": 0.6425\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T15:16:12.619774+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A5 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A5 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T15:16:12.619984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"combo_vs_sc_full\\\": {\\n    \\\"w1\\\": {\\n      \\\"accuracy\\\": 0.7283,\\n      \\\"correct\\\": 437,\\n      \\\"delta_vs_sc\\\": 0.0283,\\n      \\\"delta_pp\\\": 2.83,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T15:16:12.620161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A5 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A5 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T15:16:12.620347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"combo_vs_sc_full\\\": {\\n    \\\"w1\\\": {\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"correct\\\": 445,\\n      \\\"delta_vs_sc\\\": 0.0067,\\n      \\\"delta_pp\\\": 0.67,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T15:16:12.620533+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep \"accuracy\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep \"accuracy\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-22T15:16:12.620725+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep \"accuracy\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep \"accuracy\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T15:16:12.620972+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"standalone_accuracy\\\": 0.55,\\n    \\\"accuracy\\\": 0.55,\\n        \\\"accuracy\\\": 0.64,\\n        \\\"accuracy\\\": 0.975,\\n        \\\"accuracy\\\": 0.035,\\n      \\\"accuracy\\\": 0.7283,\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"accuracy\\\": 0.7167,\\n      \\\"accuracy\\\": 0.7283,\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"accuracy\\\": 0.7167,\\n    \\\"agree_accuracy\\\": 0.913,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T15:16:12.621191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"standalone_accuracy\\\": 0.55,\\n    \\\"accuracy\\\": 0.55,\\n        \\\"accuracy\\\": 0.64,\\n        \\\"accuracy\\\": 0.975,\\n        \\\"accuracy\\\": 0.035,\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"accuracy\\\": 0.7433,\\n      \\\"accuracy\\\": 0.7533,\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"accuracy\\\": 0.7433,\\n      \\\"accuracy\\\": 0.7533,\\n    \\\"agree_accuracy\\\": 0.9025,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T15:16:12.621449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /root/symb_invariant_consensus/_fix_tiebreaking.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /root/symb_invariant_consensus/_fix_tiebreaking.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-22T15:16:12.621654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T15:16:12.621849+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T15:16:12.622073+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/symb_invariant_consensus/_fix_tiebreaking.py\\n  Size: 1559      \\tBlocks: 8          IO Block: 4096   regular file\\nDevice: 34h/52d\\tInode: 27934483015  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-22 20:57:01.805380880 +0800\\nModify: 2026-05-21 13:31:36.648548482 +0800\\nChange: 2026-05-21 13:31:36.648548482 +0800\\n Birth: 2026-05-21 13:31:36.648548482 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T15:16:12.622272+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T15:16:12.622461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\\n  Size: 234491    \\tBlocks: 464        IO Block: 4096   regular file\\nDevice: 34h/52d\\tInode: 16123188606  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-22 09:30:11.341597438 +0800\\nModify: 2026-05-21 06:37:13.724920589 +0800\\nChange: 2026-05-21 06:37:13.724920589 +0800\\n Birth: 2026-05-21 06:37:13.716920667 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-22T15:16:12.622656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json\\n  Size: 228665    \\tBlocks: 448        IO Block: 4096   regular file\\nDevice: 34h/52d\\tInode: 15042167770  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-22 09:30:11.341597438 +0800\\nModify: 2026-05-21 05:40:24.150966836 +0800\\nChange: 2026-05-21 05:40:24.150966836 +0800\\n Birth: 2026-05-21 05:40:24.146966857 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T15:16:12.622849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/symb_invariant_consensus/scripts/exp092_llama8b_pw_nli_combo.py\\n  Size: 8668      \\tBlocks: 24         IO Block: 4096   regular file\\nDevice: 34h/52d\\tInode: 33294301549  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-22 22:10:59.575258602 +0800\\nModify: 2026-05-21 13:31:36.664548416 +0800\\nChange: 2026-05-21 13:31:36.664548416 +0800\\n Birth: 2026-05-21 06:36:58.977064070 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T15:16:12.623118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A50 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A50 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T15:16:12.623362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"combo_vs_sc_full\\\": {\\n    \\\"w1\\\": {\\n      \\\"accuracy\\\": 0.7283,\\n      \\\"correct\\\": 437,\\n      \\\"delta_vs_sc\\\": 0.0283,\\n      \\\"delta_pp\\\": 2.83,\\n      \\\"mcnemar_b\\\": 18,\\n      \\\"mcnemar_c\\\": 1,\\n      \\\"mcnemar_n_discordant\\\": 19,\\n      \\\"mcnemar_p\\\": 0.0001\\n    },\\n    \\\"w3\\\": {\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"correct\\\": 445,\\n      \\\"delta_vs_sc\\\": 0.0417,\\n      \\\"delta_pp\\\": 4.17,\\n      \\\"mcnemar_b\\\": 47,\\n      \\\"mcnemar_c\\\": 22,\\n      \\\"mcnemar_n_discordant\\\": 69,\\n      \\\"mcnemar_p\\\": 0.0035\\n    },\\n    \\\"w5\\\": {\\n      \\\"accuracy\\\": 0.7167,\\n      \\\"correct\\\": 430,\\n      \\\"delta_vs_sc\\\": 0.0167,\\n      \\\"delta_pp\\\": 1.67,\\n      \\\"mcnemar_b\\\": 71,\\n      \\\"mcnemar_c\\\": 61,\\n      \\\"mcnemar_n_discordant\\\": 132,\\n      \\\"mcnemar_p\\\": 0.4335\\n    }\\n  },\\n  \\\"agreement_vs_sc\\\": {\\n    \\\"agree\\\": 230,\\n    \\\"disagree\\\": 370,\\n    \\\"agreement_rate\\\": 0.3833,\\n    \\\"agree_accuracy\\\": 0.913,\\n    \\\"disagree_deberta_correct\\\": 120,\\n    \\\"disagree_sc_correct\\\": 210\\n  },\\n  \\\"per_question\\\": {\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0752,\\n        \\\"Unknown\\\": 0.0964,\\n        \\\"True\\\": 0.8284\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 8,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T15:16:12.623584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -A50 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -A50 \"combo_vs_sc_full\" /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T15:16:12.623843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"combo_vs_sc_full\\\": {\\n    \\\"w1\\\": {\\n      \\\"accuracy\\\": 0.7417,\\n      \\\"correct\\\": 445,\\n      \\\"delta_vs_sc\\\": 0.0067,\\n      \\\"delta_pp\\\": 0.67,\\n      \\\"mcnemar_b\\\": 7,\\n      \\\"mcnemar_c\\\": 3,\\n      \\\"mcnemar_n_discordant\\\": 10,\\n      \\\"mcnemar_p\\\": 0.3438\\n    },\\n    \\\"w3\\\": {\\n      \\\"accuracy\\\": 0.7433,\\n      \\\"correct\\\": 446,\\n      \\\"delta_vs_sc\\\": 0.0083,\\n      \\\"delta_pp\\\": 0.83,\\n      \\\"mcnemar_b\\\": 14,\\n      \\\"mcnemar_c\\\": 9,\\n      \\\"mcnemar_n_discordant\\\": 23,\\n      \\\"mcnemar_p\\\": 0.4049\\n    },\\n    \\\"w5\\\": {\\n      \\\"accuracy\\\": 0.7533,\\n      \\\"correct\\\": 452,\\n      \\\"delta_vs_sc\\\": 0.0183,\\n      \\\"delta_pp\\\": 1.83,\\n      \\\"mcnemar_b\\\": 29,\\n      \\\"mcnemar_c\\\": 18,\\n      \\\"mcnemar_n_discordant\\\": 47,\\n      \\\"mcnemar_p\\\": 0.1439\\n    }\\n  },\\n  \\\"agreement_vs_sc\\\": {\\n    \\\"agree\\\": 277,\\n    \\\"disagree\\\": 323,\\n    \\\"agreement_rate\\\": 0.4617,\\n    \\\"agree_accuracy\\\": 0.9025,\\n    \\\"disagree_deberta_correct\\\": 80,\\n    \\\"disagree_sc_correct\\\": 191\\n  },\\n  \\\"per_question\\\": {\\n    \\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0752,\\n        \\\"Unknown\\\": 0.0964,\\n        \\\"True\\\": 0.8284\\n      },\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"True\\\": 12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T15:16:12.624224+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/d061_recompute_exp091_092.py << 'PYEOF'\n\"\"\"D061 canonical tiebreaking recompute for exp-091 and exp-092.\n\nCompares insertion-order tiebreaking (old bug) vs alphabetical tiebreaking (D061 fix).\n\"\"\"\nimport json\nfrom scipy.stats import binomtest\n\nEXPERIMENTS = {\n    \"exp-092\": {\n        \"label\": \"LLaMA-3.1-8B × PW-600\",\n        \"results_path\": \"/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\",\n        \"sc_data_path\": \"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\",\n        \"nli_data_path\": \"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\",\n    },\n    \"exp-091\": {\n        \"label\": \"Qwen2.5-14B × PW-600\",\n        \"results_path\": \"/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json\",\n        \"sc_data_path\": \"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\",\n        \"nli_data_path\": \"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\",\n    },\n}\n\nWEIGHTS = [1, 3, 5]\nCLASSES = [\"True\", \"False\", \"Unknown\"]\n\n\ndef mcnemar_test(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    return binomtest(min(b, c), n, 0.5).pvalue\n\n\ndef combo_vote(sc_vote_dist, nli_pred, w, tiebreak=\"alphabetical\"):\n    \"\"\"Compute combo answer with specified tiebreaking.\"\"\"\n    votes = {}\n    for cls in CLASSES:\n        votes[cls] = sc_vote_dist.get(cls, 0) + (w if cls == nli_pred else 0)\n\n    max_v = max(votes.values())\n    tied = [k for k, v in votes.items() if v == max_v]\n\n    if tiebreak == \"alphabetical\":\n        return sorted(tied)[0]\n    else:\n        return max(votes, key=votes.get)\n\n\ndef recompute_experiment(exp_id, exp_info):\n    with open(exp_info[\"sc_data_path\"]) as f:\n        sc_data = json.load(f)\n    with open(exp_info[\"nli_data_path\"]) as f:\n        nli_data = json.load(f)\n\n    results_list = sc_data[\"results\"]\n    nli_pq = nli_data[\"per_question\"]\n    total = len(results_list)\n\n    gt = {}\n    sc_answers = {}\n    sc_vote_dists = {}\n    for r in results_list:\n        pid = r[\"problem_id\"]\n        gt[pid] = r[\"ground_truth\"]\n        sc_answers[pid] = r[\"sc_answer\"]\n        sc_vote_dists[pid] = r[\"sc_vote_distribution\"]\n\n    nli_preds = {pid: nli_pq[pid][\"deberta_pred\"] for pid in gt}\n\n    sc_correct_n = sum(1 for pid in gt if sc_answers[pid] == gt[pid])\n    sc_acc = sc_correct_n / total\n\n    combo_comparison = {}\n    for w in WEIGHTS:\n        old_correct = 0\n        new_correct = 0\n        old_b = old_c = 0\n        new_b = new_c = 0\n        affected = []\n\n        for pid in gt:\n            gold = gt[pid]\n            sc_correct = sc_answers[pid] == gold\n\n            old_answer = combo_vote(sc_vote_dists[pid], nli_preds[pid], w, \"insertion_order\")\n            new_answer = combo_vote(sc_vote_dists[pid], nli_preds[pid], w, \"alphabetical\")\n\n            old_is_correct = old_answer == gold\n            new_is_correct = new_answer == gold\n\n            if old_is_correct:\n                old_correct += 1\n            if new_is_correct:\n                new_correct += 1\n            if old_is_correct and not sc_correct:\n                old_b += 1\n            if not old_is_correct and sc_correct:\n                old_c += 1\n            if new_is_correct and not sc_correct:\n                new_b += 1\n            if not new_is_correct and sc_correct:\n                new_c += 1\n\n            if old_answer != new_answer:\n                affected.append({\n                    \"pid\": pid,\n                    \"old\": old_answer,\n                    \"new\": new_answer,\n                    \"gold\": gold,\n                    \"sc\": sc_answers[pid],\n                    \"nli\": nli_preds[pid],\n                    \"sc_dist\": sc_vote_dists[pid],\n                    \"old_correct\": old_is_correct,\n                    \"new_correct\": new_is_correct,\n                })\n\n        old_acc = old_correct / total\n        new_acc = new_correct / total\n        old_delta = old_acc - sc_acc\n        new_delta = new_acc - sc_acc\n        old_p = mcnemar_test(old_b, old_c)\n        new_p = mcnemar_test(new_b, new_c)\n\n        combo_comparison[f\"w{w}\"] = {\n            \"old_accuracy\": round(old_acc, 4),\n            \"new_accuracy\": round(new_acc, 4),\n            \"old_correct\": old_correct,\n            \"new_correct\": new_correct,\n            \"old_delta_pp\": round(old_delta * 100, 2),\n            \"new_delta_pp\": round(new_delta * 100, 2),\n            \"old_mcnemar_p\": round(old_p, 4),\n            \"new_mcnemar_p\": round(new_p, 4),\n            \"old_discordant\": [old_b, old_c],\n            \"new_discordant\": [new_b, new_c],\n            \"n_affected\": len(affected),\n            \"affected_details\": affected,\n        }\n\n    return {\n        \"exp_id\": exp_id,\n        \"label\": exp_info[\"label\"],\n        \"n\": total,\n        \"sc_baseline\": round(sc_acc, 4),\n        \"sc_baseline_pct\": round(sc_acc * 100, 2),\n        \"sc_correct\": sc_correct_n,\n        \"combo_comparison\": combo_comparison,\n    }\n\n\ndef main():\n    all_results = {}\n    for exp_id, exp_info in EXPERIMENTS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_id}: {exp_info['label']}\")\n        print(f\"{'='*60}\")\n\n        result = recompute_experiment(exp_id, exp_info)\n        all_results[exp_id] = result\n\n        print(f\"  SC baseline: {result['sc_baseline_pct']:.2f}% ({result['sc_correct']}/{result['n']})\")\n        print(f\"\\n  {'Weight':<8} {'Old Combo':>10} {'New Combo':>10} {'Old Δ':>8} {'New Δ':>8} {'Old p':>8} {'New p':>8} {'#Aff':>5}\")\n        print(f\"  {'-'*67}\")\n        for w in WEIGHTS:\n            c = result[\"combo_comparison\"][f\"w{w}\"]\n            print(f\"  w={w:<5} {c['old_accuracy']*100:>9.2f}% {c['new_accuracy']*100:>9.2f}% \"\n                  f\"{c['old_delta_pp']:>+7.2f} {c['new_delta_pp']:>+7.2f} \"\n                  f\"{c['old_mcnemar_p']:>7.4f} {c['new_mcnemar_p']:>7.4f} {c['n_affected']:>5}\")\n\n        for w in WEIGHTS:\n            c = result[\"combo_comparison\"][f\"w{w}\"]\n            if c[\"affected_details\"]:\n                print(f\"\\n  Affected questions (w={w}):\")\n                for a in c[\"affected_details\"]:\n                    tag = \"\"\n                    if a[\"old_correct\"] and not a[\"new_correct\"]:\n                        tag = \" [LOST]\"\n                    elif not a[\"old_correct\"] and a[\"new_correct\"]:\n                        tag = \" [GAINED]\"\n                    elif a[\"old_correct\"] and a[\"new_correct\"]:\n                        tag = \" [BOTH OK]\"\n                    else:\n                        tag = \" [BOTH WRONG]\"\n                    print(f\"    {a['pid']}: {a['old']} -> {a['new']} (GT={a['gold']}, SC={a['sc']}, NLI={a['nli']}){tag}\")\n                    print(f\"      sc_dist={a['sc_dist']}\")\n\n    # Remove affected_details from saved JSON (too verbose)\n    save_results = json.loads(json.dumps(all_results))\n    for exp_id in save_results:\n        for wk in save_results[exp_id][\"combo_comparison\"]:\n            details = save_results[exp_id][\"combo_comparison\"][wk].pop(\"affected_details\")\n            save_results[exp_id][\"combo_comparison\"][wk][\"affected_pids\"] = [d[\"pid\"] for d in details]\n\n    out_path = \"/root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(save_results, f, indent=2)\n    print(f\"\\n\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/d061_recompute_exp091_092.py << 'PYEOF'\n\"\"\"D061 canonical tiebreaking recompute for exp-091 and exp-092.\n\nCompares insertion-order tiebreaking (old bug) vs alphabetical tiebreaking (D061 fix).\n\"\"\"\nimport json\nfrom scipy.stats import binomtest\n\nEXPERIMENTS = {\n    \"exp-092\": {\n        \"label\": \"LLaMA-3.1-8B × PW-600\",\n        \"results_path\": \"/root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\",\n        \"sc_data_path\": \"/root/symb_invariant_consensus/results/exp048_llama8b_pw600/exp048_results.json\",\n        \"nli_data_path\": \"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\",\n    },\n    \"exp-091\": {\n        \"label\": \"Qwen2.5-14B × PW-600\",\n        \"results_path\": \"/root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json\",\n        \"sc_data_path\": \"/root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/results.json\",\n        \"nli_data_path\": \"/root/symb_invariant_consensus/results/d116_qwen3_pw_deberta_large/results.json\",\n    },\n}\n\nWEIGHTS = [1, 3, 5]\nCLASSES = [\"True\", \"False\", \"Unknown\"]\n\n\ndef mcnemar_test(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    return binomtest(min(b, c), n, 0.5).pvalue\n\n\ndef combo_vote(sc_vote_dist, nli_pred, w, tiebreak=\"alphabetical\"):\n    \"\"\"Compute combo answer with specified tiebreaking.\"\"\"\n    votes = {}\n    for cls in CLASSES:\n        votes[cls] = sc_vote_dist.get(cls, 0) + (w if cls == nli_pred else 0)\n\n    max_v = max(votes.values())\n    tied = [k for k, v in votes.items() if v == max_v]\n\n    if tiebreak == \"alphabetical\":\n        return sorted(tied)[0]\n    else:\n        return max(votes, key=votes.get)\n\n\ndef recompute_experiment(exp_id, exp_info):\n    with open(exp_info[\"sc_data_path\"]) as f:\n        sc_data = json.load(f)\n    with open(exp_info[\"nli_data_path\"]) as f:\n        nli_data = json.load(f)\n\n    results_list = sc_data[\"results\"]\n    nli_pq = nli_data[\"per_question\"]\n    total = len(results_list)\n\n    gt = {}\n    sc_answers = {}\n    sc_vote_dists = {}\n    for r in results_list:\n        pid = r[\"problem_id\"]\n        gt[pid] = r[\"ground_truth\"]\n        sc_answers[pid] = r[\"sc_answer\"]\n        sc_vote_dists[pid] = r[\"sc_vote_distribution\"]\n\n    nli_preds = {pid: nli_pq[pid][\"deberta_pred\"] for pid in gt}\n\n    sc_correct_n = sum(1 for pid in gt if sc_answers[pid] == gt[pid])\n    sc_acc = sc_correct_n / total\n\n    combo_comparison = {}\n    for w in WEIGHTS:\n        old_correct = 0\n        new_correct = 0\n        old_b = old_c = 0\n        new_b = new_c = 0\n        affected = []\n\n        for pid in gt:\n            gold = gt[pid]\n            sc_correct = sc_answers[pid] == gold\n\n            old_answer = combo_vote(sc_vote_dists[pid], nli_preds[pid], w, \"insertion_order\")\n            new_answer = combo_vote(sc_vote_dists[pid], nli_preds[pid], w, \"alphabetical\")\n\n            old_is_correct = old_answer == gold\n            new_is_correct = new_answer == gold\n\n            if old_is_correct:\n                old_correct += 1\n            if new_is_correct:\n                new_correct += 1\n            if old_is_correct and not sc_correct:\n                old_b += 1\n            if not old_is_correct and sc_correct:\n                old_c += 1\n            if new_is_correct and not sc_correct:\n                new_b += 1\n            if not new_is_correct and sc_correct:\n                new_c += 1\n\n            if old_answer != new_answer:\n                affected.append({\n                    \"pid\": pid,\n                    \"old\": old_answer,\n                    \"new\": new_answer,\n                    \"gold\": gold,\n                    \"sc\": sc_answers[pid],\n                    \"nli\": nli_preds[pid],\n                    \"sc_dist\": sc_vote_dists[pid],\n                    \"old_correct\": old_is_correct,\n                    \"new_correct\": new_is_correct,\n                })\n\n        old_acc = old_correct / total\n        new_acc = new_correct / total\n        old_delta = old_acc - sc_acc\n        new_delta = new_acc - sc_acc\n        old_p = mcnemar_test(old_b, old_c)\n        new_p = mcnemar_test(new_b, new_c)\n\n        combo_comparison[f\"w{w}\"] = {\n            \"old_accuracy\": round(old_acc, 4),\n            \"new_accuracy\": round(new_acc, 4),\n            \"old_correct\": old_correct,\n            \"new_correct\": new_correct,\n            \"old_delta_pp\": round(old_delta * 100, 2),\n            \"new_delta_pp\": round(new_delta * 100, 2),\n            \"old_mcnemar_p\": round(old_p, 4),\n            \"new_mcnemar_p\": round(new_p, 4),\n            \"old_discordant\": [old_b, old_c],\n            \"new_discordant\": [new_b, new_c],\n            \"n_affected\": len(affected),\n            \"affected_details\": affected,\n        }\n\n    return {\n        \"exp_id\": exp_id,\n        \"label\": exp_info[\"label\"],\n        \"n\": total,\n        \"sc_baseline\": round(sc_acc, 4),\n        \"sc_baseline_pct\": round(sc_acc * 100, 2),\n        \"sc_correct\": sc_correct_n,\n        \"combo_comparison\": combo_comparison,\n    }\n\n\ndef main():\n    all_results = {}\n    for exp_id, exp_info in EXPERIMENTS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"  {exp_id}: {exp_info['label']}\")\n        print(f\"{'='*60}\")\n\n        result = recompute_experiment(exp_id, exp_info)\n        all_results[exp_id] = result\n\n        print(f\"  SC baseline: {result['sc_baseline_pct']:.2f}% ({result['sc_correct']}/{result['n']})\")\n        print(f\"\\n  {'Weight':<8} {'Old Combo':>10} {'New Combo':>10} {'Old Δ':>8} {'New Δ':>8} {'Old p':>8} {'New p':>8} {'#Aff':>5}\")\n        print(f\"  {'-'*67}\")\n        for w in WEIGHTS:\n            c = result[\"combo_comparison\"][f\"w{w}\"]\n            print(f\"  w={w:<5} {c['old_accuracy']*100:>9.2f}% {c['new_accuracy']*100:>9.2f}% \"\n                  f\"{c['old_delta_pp']:>+7.2f} {c['new_delta_pp']:>+7.2f} \"\n                  f\"{c['old_mcnemar_p']:>7.4f} {c['new_mcnemar_p']:>7.4f} {c['n_affected']:>5}\")\n\n        for w in WEIGHTS:\n            c = result[\"combo_comparison\"][f\"w{w}\"]\n            if c[\"affected_details\"]:\n                print(f\"\\n  Affected questions (w={w}):\")\n                for a in c[\"affected_details\"]:\n                    tag = \"\"\n                    if a[\"old_correct\"] and not a[\"new_correct\"]:\n                        tag = \" [LOST]\"\n                    elif not a[\"old_correct\"] and a[\"new_correct\"]:\n                        tag = \" [GAINED]\"\n                    elif a[\"old_correct\"] and a[\"new_correct\"]:\n                        tag = \" [BOTH OK]\"\n                    else:\n                        tag = \" [BOTH WRONG]\"\n                    print(f\"    {a['pid']}: {a['old']} -> {a['new']} (GT={a['gold']}, SC={a['sc']}, NLI={a['nli']}){tag}\")\n                    print(f\"      sc_dist={a['sc_dist']}\")\n\n    # Remove affected_details from saved JSON (too verbose)\n    save_results = json.loads(json.dumps(all_results))\n    for exp_id in save_results:\n        for wk in save_results[exp_id][\"combo_comparison\"]:\n            details = save_results[exp_id][\"combo_comparison\"][wk].pop(\"affected_details\")\n            save_results[exp_id][\"combo_comparison\"][wk][\"affected_pids\"] = [d[\"pid\"] for d in details]\n\n    out_path = \"/root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(save_results, f, indent=2)\n    print(f\"\\n\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T15:16:12.624564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T15:16:12.624778+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "mkdir -p /root/symb_invariant_consensus/artifacts && cd /root/symb_invariant_consensus && python3 d061_recompute_exp091_092.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "mkdir -p /root/symb_invariant_consensus/artifacts && cd /root/symb_invariant_consensus && python3 d061_recompute_exp091_092.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T15:16:12.625112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  exp-092: LLaMA-3.1-8B × PW-600\\n============================================================\\n  SC baseline: 70.00% (420/600)\\n\\n  Weight    Old Combo  New Combo    Old Δ    New Δ    Old p    New p  #Aff\\n  -------------------------------------------------------------------\\n  w=1         73.00%     73.33%   +3.00   +3.33  0.0029  0.0012     2\\n  w=3         74.00%     73.33%   +4.00   +3.33  0.0184  0.0519     7\\n  w=5         72.50%     72.00%   +2.50   +2.00  0.2668  0.3846     4\\n\\n  Affected questions (w=1):\\n    ProofWriter_AttNeg-OWA-D5-401_Q4: True -> False (GT=False, SC=True, NLI=False) [GAINED]\\n      sc_dist={'True': 5, 'False': 4}\\n    ProofWriter_AttNeg-OWA-D5-1229_Q6: True -> False (GT=False, SC=Unknown, NLI=False) [GAINED]\\n      sc_dist={'Unknown': 4, 'False': 3, 'True': 4}\\n\\n  Affected questions (w=3):\\n    ProofWriter_RelNeg-OWA-D5-966_Q7: True -> False (GT=True, SC=Unknown, NLI=False) [LOST]\\n      sc_dist={'Unknown': 4, 'True': 4, 'False': 1}\\n    ProofWriter_RelNeg-OWA-D5-30_Q5: True -> False (GT=True, SC=Unknown, NLI=False) [LOST]\\n      sc_dist={'Unknown': 5, 'True': 5, 'False': 2}\\n    ProofWriter_AttNoneg-OWA-D5-178_Q11: True -> False (GT=True, SC=Unknown, NLI=False) [LOST]\\n      sc_dist={'Unknown': 4, 'True': 4, 'False': 1}\\n    ProofWriter_RelNoneg-OWA-D5-582_Q12: True -> False (GT=False, SC=True, NLI=False) [GAINED]\\n      sc_dist={'Unknown': 3, 'True': 5, 'False': 2}\\n    ProofWriter_RelNoneg-OWA-D5-582_Q5: True -> False (GT=True, SC=True, NLI=False) [LOST]\\n      sc_dist={'True': 4, 'Unknown': 3, 'False': 1}\\n    ProofWriter_RelNoneg-OWA-D5-301_Q21: True -> False (GT=Unknown, SC=True, NLI=False) [BOTH WRONG]\\n      sc_dist={'Unknown': 4, 'True': 5, 'False': 2}\\n    ProofWriter_AttNoneg-OWA-D5-412_Q9: True -> False (GT=True, SC=True, NLI=False) [LOST]\\n      sc_dist={'True': 5, 'Unkno
+…[truncated 2620 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-22T15:16:12.625429+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && python3 scripts/exp092_llama8b_pw_nli_combo.py 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus && python3 scripts/exp092_llama8b_pw_nli_combo.py 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-22T15:16:12.625637+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && python3 scripts/qwen14b_pw_nli_combo.py 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus && python3 scripts/qwen14b_pw_nli_combo.py 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-22T15:16:12.625842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 600 problems from exp048 (LLaMA-3.1-8B PW600)\\nAll 600 problem_ids match D116 DeBERTa predictions.\\nGold labels verified: all match.\\n\\nSC baseline (LLaMA-3.1-8B, K=12): 0.7000 (420/600)\\nDeBERTa-large standalone: 0.5500 (330/600)\\nCapability gap: -15.00pp\\n\\n=== Complementarity ===\\n  NLI right, SC wrong: 120\\n  SC right, NLI wrong: 210\\n  Both right: 210\\n  Both wrong: 60\\n\\n=== Combo Results ===\\n  w=1: 0.7333 (440/600), delta=+3.33pp, p=0.0012, discordant=[28,8]\\n  w=3: 0.7333 (440/600), delta=+3.33pp, p=0.0519, discordant=[58,38]\\n  w=5: 0.7200 (432/600), delta=+2.00pp, p=0.3846, discordant=[86,74]\\n\\n=== Agreement ===\\n  Agree: 230/600 (0.3833), acc=0.9130\\n  Disagree: DeBERTa right=120, SC right=210\\n\\nSaved: /root/symb_invariant_consensus/results/exp092_llama8b_pw_nli_combo/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T15:16:12.626098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 600 problems from exp032 (Qwen2.5-14B PW600)\\nAll 600 problem_ids match D116 DeBERTa predictions.\\nGold labels verified: all match.\\n\\nSC baseline (Qwen2.5-14B, K=12): 0.7350 (441/600)\\nDeBERTa-large standalone: 0.5500 (330/600)\\nCapability gap: -18.50pp\\n\\nComplementarity: NLI✓SC✗=80, SC✓NLI✗=191, both✓=250, both✗=79\\n\\n=== Combo Results ===\\n  w=1: 0.7417 (445/600), delta=+0.67pp, p=0.3438, discordant=[7,3]\\n  w=3: 0.7467 (448/600), delta=+1.17pp, p=0.2295, discordant=[16,9]\\n  w=5: 0.7517 (451/600), delta=+1.67pp, p=0.1934, discordant=[29,19]\\n\\n=== Agreement ===\\n  Agree: 277/600 (0.4617), acc=0.9025\\n  Disagree: DeBERTa right=80, SC right=191\\n\\nSaved: /root/symb_invariant_consensus/results/qwen14b_pw_nli_combo/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T15:16:12.626376+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json << 'JSONEOF'\n{\n  \"description\": \"D061 canonical tiebreaking recompute: insertion-order → alphabetical sorted(tied)[0]\",\n  \"date\": \"2026-05-22\",\n  \"exp-092\": {\n    \"label\": \"LLaMA-3.1-8B × PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7000,\n    \"sc_baseline_pct\": 70.00,\n    \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7283, \"new_acc\": 0.7333, \"old_delta_pp\": 2.83, \"new_delta_pp\": 3.33, \"old_p\": 0.0001, \"new_p\": 0.0012},\n      \"w3\": {\"old_acc\": 0.7417, \"new_acc\": 0.7333, \"old_delta_pp\": 4.17, \"new_delta_pp\": 3.33, \"old_p\": 0.0035, \"new_p\": 0.0519},\n      \"w5\": {\"old_acc\": 0.7167, \"new_acc\": 0.7200, \"old_delta_pp\": 1.67, \"new_delta_pp\": 2.00, \"old_p\": 0.4335, \"new_p\": 0.3846}\n    },\n    \"best_new\": \"w1 (73.33%, +3.33pp, p=0.0012)\"\n  },\n  \"exp-091\": {\n    \"label\": \"Qwen2.5-14B × PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7350,\n    \"sc_baseline_pct\": 73.50,\n    \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7417, \"new_acc\": 0.7417, \"old_delta_pp\": 0.67, \"new_delta_pp\": 0.67, \"old_p\": 0.3438, \"new_p\": 0.3438},\n      \"w3\": {\"old_acc\": 0.7433, \"new_acc\": 0.7467, \"old_delta_pp\": 0.83, \"new_delta_pp\": 1.17, \"old_p\": 0.4049, \"new_p\": 0.2295},\n      \"w5\": {\"old_acc\": 0.7533, \"new_acc\": 0.7517, \"old_delta_pp\": 1.83, \"new_delta_pp\": 1.67, \"old_p\": 0.1439, \"new_p\": 0.1934}\n    },\n    \"best_new\": \"w5 (75.17%, +1.67pp, p=0.1934)\"\n  }\n}\nJSONEOF\necho \"Saved.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json << 'JSONEOF'\n{\n  \"description\": \"D061 canonical tiebreaking recompute: insertion-order → alphabetical sorted(tied)[0]\",\n  \"date\": \"2026-05-22\",\n  \"exp-092\": {\n    \"label\": \"LLaMA-3.1-8B × PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7000,\n    \"sc_baseline_pct\": 70.00,\n    \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7283, \"new_acc\": 0.7333, \"old_delta_pp\": 2.83, \"new_delta_pp\": 3.33, \"old_p\": 0.0001, \"new_p\": 0.0012},\n      \"w3\": {\"old_acc\": 0.7417, \"new_acc\": 0.7333, \"old_delta_pp\": 4.17, \"new_delta_pp\": 3.33, \"old_p\": 0.0035, \"new_p\": 0.0519},\n      \"w5\": {\"old_acc\": 0.7167, \"new_acc\": 0.7200, \"old_delta_pp\": 1.67, \"new_delta_pp\": 2.00, \"old_p\": 0.4335, \"new_p\": 0.3846}\n    },\n    \"best_new\": \"w1 (73.33%, +3.33pp, p=0.0012)\"\n  },\n  \"exp-091\": {\n    \"label\": \"Qwen2.5-14B × PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7350,\n    \"sc_baseline_pct\": 73.50,\n    \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7417, \"new_acc\": 0.7417, \"old_delta_pp\": 0.67, \"new_delta_pp\": 0.67, \"old_p\": 0.3438, \"new_p\": 0.3438},\n      \"w3\": {\"old_acc\": 0.7433, \"new_acc\": 0.7467, \"old_delta_pp\": 0.83, \"new_delta_pp\": 1.17, \"old_p\": 0.4049, \"new_p\": 0.2295},\n      \"w5\": {\"old_acc\": 0.7533, \"new_acc\": 0.7517, \"old_delta_pp\": 1.83, \"new_delta_pp\": 1.67, \"old_p\": 0.1439, \"new_p\": 0.1934}\n    },\n    \"best_new\": \"w5 (75.17%, +1.67pp, p=0.1934)\"\n  }\n}\nJSONEOF\necho \"Saved.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T15:16:12.626614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-22T15:16:12.626822+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+  "type": "data",
+  "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo, comparing old insertion-order vs new sorted() tiebreaking",
+  "project": "symb_invariant_consensus",
+  "source_path": "/root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json",
+  "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+    "type": "data",
+    "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo, comparing old insertion-order vs new sorted() tiebreaking",
+    "project": "symb_invariant_consensus",
+    "source_path": "/root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json",
+    "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T15:16:12.627066+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-22T15:16:12.627294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-22T15:16:12.627578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"D061 canonical tiebreaking recompute: insertion-order → alphabetical sorted(tied)[0]\\\",\\n  \\\"date\\\": \\\"2026-05-22\\\",\\n  \\\"exp-092\\\": {\\n    \\\"label\\\": \\\"LLaMA-3.1-8B × PW-600 (DeBERTa-large NLI combo)\\\",\\n    \\\"sc_baseline\\\": 0.7000,\\n    \\\"sc_baseline_pct\\\": 70.00,\\n    \\\"n\\\": 600,\\n    \\\"combo\\\": {\\n      \\\"w1\\\": {\\\"old_acc\\\": 0.7283, \\\"new_acc\\\": 0.7333, \\\"old_delta_pp\\\": 2.83, \\\"new_delta_pp\\\": 3.33, \\\"old_p\\\": 0.0001, \\\"new_p\\\": 0.0012},\\n      \\\"w3\\\": {\\\"old_acc\\\": 0.7417, \\\"new_acc\\\": 0.7333, \\\"old_delta_pp\\\": 4.17, \\\"new_delta_pp\\\": 3.33, \\\"old_p\\\": 0.0035, \\\"new_p\\\": 0.0519},\\n      \\\"w5\\\": {\\\"old_acc\\\": 0.7167, \\\"new_acc\\\": 0.7200, \\\"old_delta_pp\\\": 1.67, \\\"new_delta_pp\\\": 2.00, \\\"old_p\\\": 0.4335, \\\"new_p\\\": 0.3846}\\n    },\\n    \\\"best_new\\\": \\\"w1 (73.33%, +3.33pp, p=0.0012)\\\"\\n  },\\n  \\\"exp-091\\\": {\\n    \\\"label\\\": \\\"Qwen2.5-14B × PW-600 (DeBERTa-large NLI combo)\\\",\\n    \\\"sc_baseline\\\": 0.7350,\\n    \\\"sc_baseline_pct\\\": 73.50,\\n    \\\"n\\\": 600,\\n    \\\"combo\\\": {\\n      \\\"w1\\\": {\\\"old_acc\\\": 0.7417, \\\"new_acc\\\": 0.7417, \\\"old_delta_pp\\\": 0.67, \\\"new_delta_pp\\\": 0.67, \\\"old_p\\\": 0.3438, \\\"new_p\\\": 0.3438},\\n      \\\"w3\\\": {\\\"old_acc\\\": 0.7433, \\\"new_acc\\\": 0.7467, \\\"old_delta_pp\\\": 0.83, \\\"new_delta_pp\\\": 1.17, \\\"old_p\\\": 0.4049, \\\"new_p\\\": 0.2295},\\n      \\\"w5\\\": {\\\"old_acc\\\": 0.7533, \\\"new_acc\\\": 0.7517, \\\"old_delta_pp\\\": 1.83, \\\"new_delta_pp\\\": 1.67, \\\"old_p\\\": 0.1439, \\\"new_p\\\": 0.1934}\\n    },\\n    \\\"best_new\\\": \\\"w5 (75.17%, +1.67pp, p=0.1934)\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-22T15:16:12.627840+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+  "type": "data",
+  "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+  "project": "symb_invariant_consensus",
+  "content": "{\"description\":\"D061 canonical tiebreaking recompute: insertion-order → alphabetical sorted(tied)[0]\",\"date\":\"2026-05-22\",\"exp-092\":{\"label\":\"LLaMA-3.1-8B × PW-600 (DeBERTa-large NLI combo)\",\"sc_baseline\":0.7,\"sc_baseline_pct\":70.0,\"n\":600,\"combo\":{\"w1\":{\"old_acc\":0.7283,\"new_acc\":0.7333,\"old_delta_pp\":2.83,\"new_delta_pp\":3.33,\"old_p\":0.0001,\"new_p\":0.0012},\"w3\":{\"old_acc\":0.7417,\"new_acc\":0.7333,\"old_delta_pp\":4.17,\"new_delta_pp\":3.33,\"old_p\":0.0035,\"new_p\":0.0519},\"w5\":{\"old_acc\":0.7167,\"new_acc\":0.72,\"old_delta_pp\":1.67,\"new_delta_pp\":2.0,\"old_p\":0.4335,\"new_p\":0.3846}},\"best_new\":\"w1 (73.33%, +3.33pp, p=0.0012)\"},\"exp-091\":{\"label\":\"Qwen2.5-14B × PW-600 (DeBERTa-large NLI combo)\",\"sc_baseline\":0.735,\"sc_baseline_pct\":73.5,\"n\":600,\"combo\":{\"w1\":{\"old_acc\":0.7417,\"new_acc\":0.7417,\"old_delta_pp\":0.67,\"new_delta_pp\":0.67,\"old_p\":0.3438,\"new_p\":0.3438},\"w3\":{\"old_acc\":0.7433,\"new_acc\":0.7467,\"old_delta_pp\":0.83,\"new_delta_pp\":1.17,\"old_p\":0.4049,\"new_p\":0.2295},\"w5\":{\"old_acc\":0.7533,\"new_acc\":0.7517,\"old_delta_pp\":1.83,\"new_delta_pp\":1.67,\"old_p\":0.1439,\"new_p\":0.1934}},\"best_new\":\"w5 (75.17%, +1.67pp, p=0.1934)\"}}",
+  "content_filename": "nli_recompute_exp091_exp092.json",
+  "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+    "type": "data",
+    "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+    "project": "symb_invariant_consensus",
+    "content": "{\"description\":\"D061 canonical tiebreaking recompute: insertion-order → alphabetical sorted(tied)[0]\",\"date\":\"2026-05-22\",\"exp-092\":{\"label\":\"LLaMA-3.1-8B × PW-600 (DeBERTa-large NLI combo)\",\"sc_baseline\":0.7,\"sc_baseline_pct\":70.0,\"n\":600,\"combo\":{\"w1\":{\"old_acc\":0.7283,\"new_acc\":0.7333,\"old_delta_pp\":2.83,\"new_delta_pp\":3.33,\"old_p\":0.0001,\"new_p\":0.0012},\"w3\":{\"old_acc\":0.7417,\"new_acc\":0.7333,\"old_delta_pp\":4.17,\"new_delta_pp\":3.33,\"old_p\":0.0035,\"new_p\":0.0519},\"w5\":{\"old_acc\":0.7167,\"new_acc\":0.72,\"old_delta_pp\":1.67,\"new_delta_pp\":2.0,\"old_p\":0.4335,\"new_p\":0.3846}},\"best_new\":\"w1 (73.33%, +3.33pp, p=0.0012)\"},\"exp-091\":{\"label\":\"Qwen2.5-14B × PW-600 (DeBERTa-large NLI combo)\",\"sc_baseline\":0.735,\"sc_baseline_pct\":73.5,\"n\":600,\"combo\":{\"w1\":{\"old_acc\":0.7417,\"new_acc\":0.7417,\"old_delta_pp\":0.67,\"new_delta_pp\":0.67,\"old_p\":0.3438,\"new_p\":0.3438},\"w3\":{\"old_acc\":0.7433,\"new_acc\":0.7467,\"old_delta_pp\":0.83,\"new_delta_pp\":1.17,\"old_p\":0.4049,\"new_p\":0.2295},\"w5\":{\"old_acc\":0.7533,\"new_acc\":0.7517,\"old_delta_pp\":1.83,\"new_delta_pp\":1.67,\"old_p\":0.1439,\"new_p\":0.1934}},\"best_new\":\"w5 (75.17%, +1.67pp, p=0.1934)\"}}",
+    "content_filename": "nli_recompute_exp091_exp092.json",
+    "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-22T15:16:12.628093+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'D061 can...%, +1.67pp, p=0.1934)'}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-22T15:16:12.628311+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+  "type": "data",
+  "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+  "project": "symb_invariant_consensus",
+  "content": "{\n  \"description\": \"D061 canonical tiebreaking recompute: insertion-order to alphabetical sorted(tied)[0]\",\n  \"date\": \"2026-05-22\",\n  \"exp-092\": {\n    \"label\": \"LLaMA-3.1-8B x PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7000, \"sc_baseline_pct\": 70.00, \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7283, \"new_acc\": 0.7333, \"old_delta_pp\": 2.83, \"new_delta_pp\": 3.33, \"old_p\": 0.0001, \"new_p\": 0.0012},\n      \"w3\": {\"old_acc\": 0.7417, \"new_acc\": 0.7333, \"old_delta_pp\": 4.17, \"new_delta_pp\": 3.33, \"old_p\": 0.0035, \"new_p\": 0.0519},\n      \"w5\": {\"old_acc\": 0.7167, \"new_acc\": 0.7200, \"old_delta_pp\": 1.67, \"new_delta_pp\": 2.00, \"old_p\": 0.4335, \"new_p\": 0.3846}\n    },\n    \"best_new\": \"w1 (73.33%, +3.33pp, p=0.0012)\"\n  },\n  \"exp-091\": {\n    \"label\": \"Qwen2.5-14B x PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7350, \"sc_baseline_pct\": 73.50, \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7417, \"new_acc\": 0.7417, \"old_delta_pp\": 0.67, \"new_delta_pp\": 0.67, \"old_p\": 0.3438, \"new_p\": 0.3438},\n      \"w3\": {\"old_acc\": 0.7433, \"new_acc\": 0.7467, \"old_delta_pp\": 0.83, \"new_delta_pp\": 1.17, \"old_p\": 0.4049, \"new_p\": 0.2295},\n      \"w5\": {\"old_acc\": 0.7533, \"new_acc\": 0.7517, \"old_delta_pp\": 1.83, \"new_delta_pp\": 1.67, \"old_p\": 0.1439, \"new_p\": 0.1934}\n    },\n    \"best_new\": \"w5 (75.17%, +1.67pp, p=0.1934)\"\n  }\n}",
+  "content_filename": "nli_recompute_exp091_exp092.json",
+  "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+    "type": "data",
+    "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+    "project": "symb_invariant_consensus",
+    "content": "{\n  \"description\": \"D061 canonical tiebreaking recompute: insertion-order to alphabetical sorted(tied)[0]\",\n  \"date\": \"2026-05-22\",\n  \"exp-092\": {\n    \"label\": \"LLaMA-3.1-8B x PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7000, \"sc_baseline_pct\": 70.00, \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7283, \"new_acc\": 0.7333, \"old_delta_pp\": 2.83, \"new_delta_pp\": 3.33, \"old_p\": 0.0001, \"new_p\": 0.0012},\n      \"w3\": {\"old_acc\": 0.7417, \"new_acc\": 0.7333, \"old_delta_pp\": 4.17, \"new_delta_pp\": 3.33, \"old_p\": 0.0035, \"new_p\": 0.0519},\n      \"w5\": {\"old_acc\": 0.7167, \"new_acc\": 0.7200, \"old_delta_pp\": 1.67, \"new_delta_pp\": 2.00, \"old_p\": 0.4335, \"new_p\": 0.3846}\n    },\n    \"best_new\": \"w1 (73.33%, +3.33pp, p=0.0012)\"\n  },\n  \"exp-091\": {\n    \"label\": \"Qwen2.5-14B x PW-600 (DeBERTa-large NLI combo)\",\n    \"sc_baseline\": 0.7350, \"sc_baseline_pct\": 73.50, \"n\": 600,\n    \"combo\": {\n      \"w1\": {\"old_acc\": 0.7417, \"new_acc\": 0.7417, \"old_delta_pp\": 0.67, \"new_delta_pp\": 0.67, \"old_p\": 0.3438, \"new_p\": 0.3438},\n      \"w3\": {\"old_acc\": 0.7433, \"new_acc\": 0.7467, \"old_delta_pp\": 0.83, \"new_delta_pp\": 1.17, \"old_p\": 0.4049, \"new_p\": 0.2295},\n      \"w5\": {\"old_acc\": 0.7533, \"new_acc\": 0.7517, \"old_delta_pp\": 1.83, \"new_delta_pp\": 1.67, \"old_p\": 0.1439, \"new_p\": 0.1934}\n    },\n    \"best_new\": \"w5 (75.17%, +1.67pp, p=0.1934)\"\n  }\n}",
+    "content_filename": "nli_recompute_exp091_exp092.json",
+    "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-22T15:16:12.628526+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'D061 can...%, +1.67pp, p=0.1934)'}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-22T15:16:12.628719+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+  "type": "data",
+  "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+  "project": "symb_invariant_consensus",
+  "content": "See /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json on westd-16639",
+  "content_filename": "nli_recompute_exp091_exp092.json",
+  "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D061 NLI tiebreaking recompute exp-091 exp-092",
+    "type": "data",
+    "description": "D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo",
+    "project": "symb_invariant_consensus",
+    "content": "See /root/symb_invariant_consensus/artifacts/nli_recompute_exp091_exp092.json on westd-16639",
+    "content_filename": "nli_recompute_exp091_exp092.json",
+    "tags": "['D061', 'tiebreaking', 'exp-091', 'exp-092', 'NLI-combo', 'recompute']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-22T15:16:12.628981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_c8ec0c\", \"name\": \"D061 NLI tiebreaking recompute exp-091 exp-092\", \"type\": \"data\", \"description\": \"D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B) and exp-092 (LLaMA-8B) NLI combo\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/nli_recompute_exp091_exp092.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T15:16:01.064333+00:00\", \"tags\": [\"D061\", \"tiebreaking\", \"exp-091\", \"exp-092\", \"NLI-combo\", \"recompute\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-22T15:16:12.629278+00:00_
+
+## Recompute Results
+
+### exp-092 LLaMA-3.1-8B × PW-600
+SC baseline: **70.00%** (420/600)
+
+| Weight | Old Combo | New Combo | Old Δ | New Δ | Old p | New p |
+|--------|-----------|-----------|-------|-------|-------|-------|
+| w=1 | 72.83% | **73.33%** | +2.83 | **+3.33** | 0.0001 | 0.0012 |
+| w=3 | 74.17% | **73.33%** | +4.17 | **+3.33** | 0.0035 | 0.0519 |
+| w=5 | 71.67% | **72.00%** | +1.67 | **+2.00** | 0.4335 | 0.3846 |
+
+Best new weight: **w=1** (+3.33pp, p=0.0012, significant)
+
+Note: w=3 dropped from 74.17% to 73.33% (lost significance, p=0.0519 borderline). w=1 is now the best and only significant weight.
+
+### exp-091 Qwen2.5-14B × PW-600
+SC baseline: **73.50%** (441/600)
+
+| Weight | Old Combo | New Combo | Old Δ | New Δ | Old p | New p |
+|--------|-----------|-----------|-------|-------|-------|-------|
+| w=1 | 74.17% | **74.17%** | +0.67 | **+0.67** | 0.3438 | 0.3438 |
+| w=3 | 74.33% | **74.67%** | +0.83 | **+1.17** | 0.4049 | 0.2295 |
+| w=5 | 75.33% | **75.17%** | +1.83 | **+1.67** | 0.1439 | 0.1934 |
+
+Best new weight: **w=5** (+1.67pp, p=0.1934, not significant)
+
+Note: w=1 unchanged (no ties at that weight). w=3 improved slightly (+0.34pp). w=5 dropped slightly (-0.16pp). None reach significance.
+
+Results saved to `artifacts/nli_recompute_exp091_exp092.json` on westd-16639 and registered as `art_20260522_c8ec0c`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_nli-combo-tiebreaking-recompute_20260522T151117"
+}
+```
+
+</details>
+
+---

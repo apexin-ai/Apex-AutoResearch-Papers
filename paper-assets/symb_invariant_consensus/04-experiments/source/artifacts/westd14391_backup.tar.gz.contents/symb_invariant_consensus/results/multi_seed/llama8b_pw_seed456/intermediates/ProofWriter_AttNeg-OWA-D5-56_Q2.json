@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-56_Q2",
+    "problem": "Dave is red. Erin is quiet. Fiona is white. Harry is big. Harry is not green. Harry is quiet. Harry is red. Quiet, red people are smart. If someone is quiet then they are smart. If Dave is red then Dave is big. If Dave is smart and Dave is white then Dave is big. If Fiona is white and Fiona is red then Fiona is rough. If someone is white then they are quiet. Rough people are green. All smart people are red.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nRed(Dave, True) ::: Dave is red.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Fiona, True) ::: Fiona is white.\nBig(Harry, True) ::: Harry is big.\nGreen(Harry, False) ::: Harry is not green.\nQuiet(Harry, True) ::: Harry is quiet.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nQuiet($x, True) && Red($x, True) >>> Smart($x, True) ::: Quiet, red people are smart.\nQuiet($x, True) >>> Smart($x, True) ::: If someone is quiet then they are smart.\nRed(Dave, True) >>> Big(Dave, True) ::: If Dave is red then Dave is big.\nSmart(Dave, True) && White(Dave, True) >>> Big(Dave, True) ::: If Dave is smart and Dave is white then Dave is big.\nWhite(Fiona, True) && Red(Fiona, True) >>> Rough(Fiona, True) ::: If Fiona is white and Fiona is red then Fiona is rough.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nRough($x, True) >>> Green($x, True) ::: Rough people are green.\nSmart($x, True) >>> Red($x, True) ::: All smart people are red.\n\nQuery:\nRed(Harry, False) ::: Harry is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

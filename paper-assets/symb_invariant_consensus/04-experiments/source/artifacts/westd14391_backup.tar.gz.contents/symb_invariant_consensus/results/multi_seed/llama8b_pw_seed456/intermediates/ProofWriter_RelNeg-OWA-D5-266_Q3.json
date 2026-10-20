@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-266_Q3",
+    "problem": "The bald eagle eats the cow. The bald eagle does not eat the dog. The bald eagle is rough. The cow is round. The cow sees the bald eagle. The cow does not see the dog. The cow visits the bald eagle. The cow visits the lion. The dog is rough. The lion is young. The lion does not see the bald eagle. The lion sees the cow. If someone is green and they eat the bald eagle then the bald eagle is not rough. If someone is big and they do not see the bald eagle then the bald eagle is rough. If someone is big then they visit the dog. If someone eats the lion and they are big then the lion eats the dog. If someone visits the dog then the dog eats the cow. If someone is rough and they eat the cow then they are young. If the lion eats the cow then the lion visits the bald eagle. If someone is big and they see the lion then they are green. If someone is young then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(BaldEagle, Cow, True) ::: The bald eagle eats the cow.\nEats(BaldEagle, Dog, False) ::: The bald eagle does not eat the dog.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nRound(Cow, True) ::: The cow is round.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nSees(Cow, Dog, False) ::: The cow does not see the dog.\nVisits(Cow, BaldEagle, True) ::: The cow visits the bald eagle.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nRough(Dog, True) ::: The dog is rough.\nYoung(Lion, True) ::: The lion is young.\nSees(Lion, BaldEagle, False) ::: The lion does not see the bald eagle.\nSees(Lion, Cow, True) ::: The lion sees the cow.\n\nRules:\nGreen($x, True) && Eats($x, BaldEagle, True) >>> Rough(BaldEagle, False) ::: If someone is green and they eat the bald eagle then the bald eagle is not rough.\nBig($x, True) && Sees($x, BaldEagle, False) >>> Rough(BaldEagle, True) ::: If someone is big and they do not see the bald eagle then the bald eagle is rough.\nBig($x, True) >>> Visits($x, Dog, True) ::: If someone is big then they visit the dog.\nEats($x, Lion, True) && Big($x, True) >>> Eats(Lion, Dog, True) ::: If someone eats the lion and they are big then the lion eats the dog.\nVisits($x, Dog, True) >>> Eats(Dog, Cow, True) ::: If someone visits the dog then the dog eats the cow.\nRough($x, True) && Eats($x, Cow, True) >>> Young($x, True) ::: If someone is rough and they eat the cow then they are young.\nEats(Lion, Cow, True) >>> Visits(Lion, BaldEagle, True) ::: If the lion eats the cow then the lion visits the bald eagle.\nBig($x, True) && Sees($x, Lion, True) >>> Green($x, True) ::: If someone is big and they see the lion then they are green.\nYoung($x, True) >>> Big($x, True) ::: If someone is young then they are big.\n\nQuery:\nBig(Lion, True) ::: The lion is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

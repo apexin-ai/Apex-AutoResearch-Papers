@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-wild2-ascii",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:47:08.985Z",
+    "updated_at": "2026-05-20T08:47:46.080Z",
+    "hypothesis": "ASCII padding in FOLIO prompts will reduce inter-trace Fleiss kappa by disrupting shared surface-level patterns, testing whether trace correlation comes from prompt content vs model architecture bias.",
+    "spec": {
+      "command": "python analysis_ascii_perturbation.py",
+      "server": "westd-16639",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_path": "results/wild2_ascii_perturbation/results.json",
+      "log_path": "results/wild2_ascii_perturbation/"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T08:47:46.336237+00:00",
+  "trigger": "update_registry"
+}

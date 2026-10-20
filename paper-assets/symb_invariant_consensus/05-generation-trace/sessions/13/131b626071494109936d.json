@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "131b626071494109936d",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp040 alive check",
+  "task_key": "worker_diag_exp040-alive-check_20260519T073434",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp040-alive-check_20260519T073434_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "4be6fa6419e6ff4c6577d0cce8682a6a2d47a71fe877977487b0772a04f69ba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## Part 1: exp-040 存活检查\n- **存活**，tmux session `exp033` 运行中\n- cuda:1 GPU-Util 100%, vLLM 进程活跃\n- **进度：~482/600**（results.json 481 条，intermediates 482 个）\n- 当前准确率：SICA=85.4%, SC=84.8%\n\n## Part 2: EXP-E 部署完成\n- **exp-063-llama8b-folio204-16639** 已部署在 cuda:0\n- vLLM: tmux `exp063_vllm`, port 8004\n- 全量运行: tmux `exp063_run`, 204 问题\n- Dry-run 通过（3/3，SICA=66.7% SC=33.3%）\n- Registry 已注册为 RUNNING\n- 预计运行时间：~204 × 26s ≈ 88 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp040-alive-check.md"
+}

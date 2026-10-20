@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-272_Q16",
+    "problem": "The bald eagle likes the dog. The bald eagle sees the dog. The bear likes the dog. The dog is green. The dog sees the bald eagle. The dog sees the bear. The squirrel sees the bear. If someone is kind then they visit the bald eagle. If the dog is nice and the dog is cold then the dog sees the squirrel. If someone visits the bald eagle and they are kind then the bald eagle is green. If someone likes the bald eagle and the bald eagle is green then they like the dog. If someone is rough and they like the bear then they visit the bald eagle. Green people are kind. If someone visits the bald eagle then the bald eagle sees the dog. If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear is kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nLikes(Bear, Dog, True) ::: The bear likes the dog.\nGreen(Dog, True) ::: The dog is green.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nSees(Dog, Bear, True) ::: The dog sees the bear.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\n\nRules:\nKind($x, True) >>> Visits($x, BaldEagle, True) ::: If someone is kind then they visit the bald eagle.\nNice(Dog, True) && Cold(Dog, True) >>> Sees(Dog, Squirrel, True) ::: If the dog is nice and the dog is cold then the dog sees the squirrel.\nVisits($x, BaldEagle, True) && Kind($x, True) >>> Green(BaldEagle, True) ::: If someone visits the bald eagle and they are kind then the bald eagle is green.\nLikes($x, BaldEagle, True) && Green(BaldEagle, True) >>> Likes($x, Dog, True) ::: If someone likes the bald eagle and the bald eagle is green then they like the dog.\nRough($x, True) && Likes($x, Bear, True) >>> Visits($x, BaldEagle, True) ::: If someone is rough and they like the bear then they visit the bald eagle.\nGreen($x, True) >>> Kind($x, True) ::: Green people are kind.\nVisits($x, BaldEagle, True) >>> Sees(BaldEagle, Dog, True) ::: If someone visits the bald eagle then the bald eagle sees the dog.\nSees(Dog, Squirrel, True) && Rough(Squirrel, True) >>> Likes(Squirrel, BaldEagle, True) ::: If the dog sees the squirrel and the squirrel is rough then the squirrel likes the bald eagle.\n\nQuery:\nKind(Bear, True) ::: The bear is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

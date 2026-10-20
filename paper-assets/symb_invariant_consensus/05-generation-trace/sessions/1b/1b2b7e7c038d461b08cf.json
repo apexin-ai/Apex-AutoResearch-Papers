@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1b2b7e7c038d461b08cf",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix table3 and 944 urgent",
+  "task_key": "worker_fix_table3-and-944-urgent_20260523T111430",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_table3-and-944-urgent_20260523T111430.log",
+    "occurrence": 1,
+    "bytes": 984215,
+    "sha256": "066a545928c67deb08f87077af46bdc5c3415a47e344a06dc3ea8c88cdd24406"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "1b2b7e7c038d461b08cf-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "1b2b7e7c038d461b08cf-part-0002.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-table3-and-944-urgent.md"
+}

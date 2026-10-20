@@ -1,0 +1,1025 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-298_Q21",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & kind(Y) -> kind(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, kind_mouse), kind_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(X, rabbit)",
+          "z3_formula": "Or(likes_tiger_rabbit, likes_mouse_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_mouse_rabbit, eats_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, mouse)",
+          "z3_formula": "eats_mouse_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit) -> eats(mouse, bald_eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "Or(eats_tiger_rabbit, eats_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "Or(eats_tiger_bald_eagle, eats_mouse_bald_eagle)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(tiger))",
+          "z3_formula": "not(red_tiger) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_tiger_mouse, eats_tiger_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_X_rabbit, eats_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_tiger_eagle, likes_tiger_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(mouse, rabbit)",
+          "z3_formula": "Not(eats_mouse_rabbit) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(tiger)",
+          "z3_formula": "not_red_tiger == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, Not(likes_tiger_rabbit)), likes_rabbit_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(likes_tiger_bald_eagle, Not(eats_tiger_mouse)), eats_tiger_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_animal, round_animal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, eagle)",
+          "z3_formula": "likes_tiger_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, rabbit) -> eats(mouse, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(Not(round_tiger), Not(round_tiger)))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & round(Y) -> kind(X)",
+          "z3_formula": "Implies(And(round_tiger, round_mouse), kind_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_mouse, eats_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, rabbit)",
+          "z3_formula": "Not(likes_tiger_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_tiger_mouse, likes_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown red(tiger)",
+          "z3_formula": "Unknown(red_tiger)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, mouse)",
+          "z3_formula": "likes_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(likes_rabbit_mouse, likes_tiger_rabbit), eats_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not eats_tiger_mouse",
+          "z3_formula": "Not(eats_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_X_rabbit, eats_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, eagle)",
+          "z3_formula": "needs_mouse_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, eagle)",
+          "z3_formula": "likes_tiger_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(eagle)",
+          "z3_formula": "young_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, eagle)",
+          "z3_formula": "likes_mouse_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

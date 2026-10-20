@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1110_Q3",
+    "problem": "Bob is blue. Bob is cold. Bob is nice. Bob is round. Bob is smart. Bob is white. Dave is cold. Dave is white. Erin is blue. Erin is cold. Erin is nice. Erin is round. Erin is smart. Fiona is blue. Fiona is nice. Fiona is smart. White people are nice. All rough people are smart. If someone is blue and rough then they are smart. All nice, rough people are smart. If someone is nice and round then they are rough. White, smart people are blue. All blue people are nice. Nice people are round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nSmart(Bob, True) ::: Bob is smart.\nWhite(Bob, True) ::: Bob is white.\nCold(Dave, True) ::: Dave is cold.\nWhite(Dave, True) ::: Dave is white.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Fiona, True) ::: Fiona is blue.\nNice(Fiona, True) ::: Fiona is nice.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nWhite($x, True) >>> Nice($x, True) ::: White people are nice.\nRough($x, True) >>> Smart($x, True) ::: All rough people are smart.\nBlue($x, True) && Rough($x, True) >>> Smart($x, True) ::: If someone is blue and rough then they are smart.\nNice($x, True) && Rough($x, True) >>> Smart($x, True) ::: All nice, rough people are smart.\nNice($x, True) && Round($x, True) >>> Rough($x, True) ::: If someone is nice and round then they are rough.\nWhite($x, True) && Smart($x, True) >>> Blue($x, True) ::: White, smart people are blue.\nBlue($x, True) >>> Nice($x, True) ::: All blue people are nice.\nNice($x, True) >>> Round($x, True) ::: Nice people are round.\n\nQuery:\nRough(Erin, True) ::: Erin is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

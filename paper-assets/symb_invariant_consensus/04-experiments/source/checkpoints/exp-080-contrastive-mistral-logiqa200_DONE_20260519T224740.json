@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-080-contrastive-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:14:59.602Z",
+    "updated_at": "2026-05-19T22:47:40.450Z",
+    "hypothesis": "Contrastive constraint generation with MAX-SAT consensus (SICA) transfers from FOLIO to LogiQA, improving accuracy over self-consistency baseline on 200 LogiQA problems with Mistral-7B (seed=42).",
+    "parent": "exp-075b-contrastive-mistral-folio",
+    "spec": {
+      "command": "python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 42 --dataset logiqa --api-base http://localhost:8000/v1 --model auto --data data/logiqa_200.json --output results/exp080_contrastive_mistral_logiqa200/results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": "cuda:0",
+      "pid": 279841,
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_path": "results/exp080_contrastive_mistral_logiqa200/results.json",
+      "log_path": "results/exp080_contrastive_mistral_logiqa200/train.log",
+      "checkpoint_source": "vllm-inference-only",
+      "eval_data": "data/logiqa_200.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T20:40:16.674Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T20:40:18.160Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T20:40:21.407849+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T22:47:40.682147+00:00",
+  "trigger": "update_registry"
+}

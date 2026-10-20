@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c640c19d28998406b86",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops cleanup 25068 exp085b exp084",
+  "task_key": "worker_ops_cleanup-25068-exp085b-exp084_20260520T001051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup-25068-exp085b-exp084_20260520T001051_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "e721d5c16d505c38d9b03a56b3fbaeb0b3e6561c38ea9e346a6f0de35e76b462"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**任务 1: PID 295425 — 已 kill。** exp-085b dryrun 进程 (`run_contrastive.py`) 已终止，不再竞争 vLLM API。\n\n**任务 2: exp-084 真实状态：**\n- **PID 295377 仍然存活**，运行时间 01:34:20（约1.5小时），正在执行 `run_debate.py`\n- **进度：82/200**，有 summary 数据（debate_accuracy=0.2561, sc_accuracy=0.4878）\n- **GPU 1 利用率 96%，显存 90677 MiB** — 正在高负载计算\n- **结论：exp-084 仍在正常推进中，registry 标记 DONE/failed 是错误的，需要修正。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-25068-exp085b-exp084.md"
+}

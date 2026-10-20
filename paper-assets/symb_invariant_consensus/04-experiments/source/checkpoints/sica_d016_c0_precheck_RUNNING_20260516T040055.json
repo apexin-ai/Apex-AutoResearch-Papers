@@ -1,0 +1,53 @@
+{
+  "exp_id": "sica_d016_c0_precheck",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:00:14.192Z",
+    "updated_at": "2026-05-16T04:00:55.484Z",
+    "hypothesis": "D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）",
+    "parent": "sica_proofwriter30_v2",
+    "spec": {
+      "command": "python sica_pipeline.py --data folio_subset.json+proofwriter_subset.json --K 6 --T 0.7 --max-tokens 4096 --model Qwen2.5-14B-Instruct",
+      "server": "westd-32608",
+      "data_path": "data/folio_subset.json (10q) + data/proofwriter_subset.json (16q)",
+      "data_count": 26,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "model_path": "/root/autodl-tmp/models/Qwen2.5-14B-Instruct",
+      "hyperparams": {
+        "K": 6,
+        "T": 0.7,
+        "max_tokens": 4096,
+        "max_model_len": 8192
+      },
+      "checkpoint_source": "N/A (inference-only, no checkpoint)",
+      "eval_data": "FOLIO-10 + ProofWriter-16 (C0 precheck subset)"
+    },
+    "metrics": {
+      "multi_candidate_rate_combined": 0.46,
+      "multi_candidate_rate_folio": 0.4,
+      "multi_candidate_rate_proofwriter": 0.5,
+      "sc_accuracy_combined": 0.73,
+      "sc_accuracy_folio": 0.8,
+      "sc_accuracy_proofwriter": 0.69,
+      "n_problems": 26,
+      "n_folio": 10,
+      "n_proofwriter": 16,
+      "K": 6,
+      "T": 0.7,
+      "total_time_s": 280,
+      "c0_gate": "PASS (46% >= 20%)",
+      "model": "Qwen2.5-14B-Instruct",
+      "vllm_gpu_mem_gib": 27.6,
+      "smoke_test": "2 problems end-to-end OK, constraints 21-26 per problem"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T04:00:55.525552+00:00",
+  "trigger": "update_registry"
+}

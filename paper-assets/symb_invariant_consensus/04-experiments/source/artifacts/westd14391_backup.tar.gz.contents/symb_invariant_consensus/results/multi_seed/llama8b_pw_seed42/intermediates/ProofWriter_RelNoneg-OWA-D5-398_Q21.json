@@ -1,0 +1,1220 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-398_Q21",
+    "problem": "The bald eagle is blue. The bald eagle is cold. The bald eagle needs the rabbit. The bear visits the lion. The lion is nice. The lion likes the bald eagle. The lion needs the bald eagle. The lion needs the rabbit. The lion visits the rabbit. The rabbit likes the bear. The rabbit needs the bald eagle. The rabbit needs the lion. The rabbit visits the bald eagle. The rabbit visits the bear. If someone visits the rabbit then they need the bear. If someone needs the rabbit then the rabbit likes the bear. If someone visits the bear and the bear needs the rabbit then they need the bear. If someone needs the bear then they need the rabbit. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. If someone likes the bear then the bear visits the rabbit. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. If the rabbit likes the bear then the bear visits the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not like the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nNeeds(BaldEagle, Rabbit, True) ::: The bald eagle needs the rabbit.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nNice(Lion, True) ::: The lion is nice.\nLikes(Lion, BaldEagle, True) ::: The lion likes the bald eagle.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nLikes(Rabbit, Bear, True) ::: The rabbit likes the bear.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\nVisits(Rabbit, Bear, True) ::: The rabbit visits the bear.\n\nRules:\nVisits($x, Rabbit, True) >>> Needs($x, Bear, True) ::: If someone visits the rabbit then they need the bear.\nNeeds($x, Rabbit, True) >>> Likes(Rabbit, Bear, True) ::: If someone needs the rabbit then the rabbit likes the bear.\nVisits($x, Bear, True) && Needs(Bear, Rabbit, True) >>> Needs($x, Bear, True) ::: If someone visits the bear and the bear needs the rabbit then they need the bear.\nNeeds($x, Bear, True) >>> Needs($x, Rabbit, True) ::: If someone needs the bear then they need the rabbit.\nNeeds(Bear, Lion, True) && Likes(Bear, BaldEagle, True) >>> Visits(Bear, BaldEagle, True) ::: If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\nBlue($x, True) && Likes($x, BaldEagle, True) >>> Needs(BaldEagle, Rabbit, True) ::: If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\nLikes($x, Bear, True) >>> Visits(Bear, Rabbit, True) ::: If someone likes the bear then the bear visits the rabbit.\nLikes(BaldEagle, Rabbit, True) && Visits(BaldEagle, Rabbit, True) >>> Needs(BaldEagle, Bear, True) ::: If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\nLikes(Rabbit, Bear, True) >>> Visits(Bear, BaldEagle, True) ::: If the rabbit likes the bear then the bear visits the bald eagle.\n\nQuery:\nLikes(Bear, BaldEagle, False) ::: The bear does not like the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 158.0,
+      "Unknown": 152.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided. \n\nFrom the given information, we have:\n\n1. The bald eagle is blue.\n2. The lion is nice.\n3. The lion likes the bald eagle.\n4. The lion needs the bald eagle.\n5. The lion needs the rabbit.\n6. The lion visits the rabbit.\n7. The rabbit likes the bear.\n8. The rabbit needs the lion.\n9. The rabbit needs the bald eagle.\n10. The rabbit visits the bald eagle.\n11. The rabbit visits the bear.\n\nFrom the rules, we have:\n\n1. If someone visits the rabbit then they need the bear.\n2. If someone needs the rabbit then the rabbit likes the bear.\n3. If someone visits the bear and the bear needs the rabbit then they need the bear.\n4. If someone needs the bear then they need the rabbit.\n5. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\n6. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\n7. If someone likes the bear then the bear visits the rabbit.\n8. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\n9. If the rabbit likes the bear then the bear visits the bald eagle.\n\nWe need to determine whether the bear likes the bald eagle. To do this, let's look at the information and rules that involve the bear and the bald eagle.\n\nFrom rule 5, we know that if the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. However, this does not directly tell us whether the bear likes the bald eagle.\n\nFrom rule 6, we know that if someone is blue and they like the bald eagle then the bald eagle needs the rabbit. However, this does not directly tell us whether the bear likes the bald eagle.\n\nFrom rule 7, we know that if someone likes the bear then the bear visits the rabbit. However, this does not directly tell us whether the bear likes the bald eagle.\n\nFrom rule 8, we know that if the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. However, this does not directly tell us whether the bear likes the bald eagle.\n\nFrom rule 9, we know that if the rabbit likes the bear then the bear visits the bald eagle. Since the rabbit likes the bear (from information 7), we can apply this rule.\n\nThe rabbit likes the bear (information 7), so the bear visits the bald eagle (rule 9).\n\nHowever, this still does not directly tell us whether the bear likes the bald eagle.\n\nSince we do not have any information that directly states whether the bear likes the bald eagle, the statement \"The bear does not like the bald eagle\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nFrom the given information:\n\n1. The rabbit likes the bear. (Statement 8)\n2. If someone likes the bear then the bear visits the rabbit. (Statement 9 does not directly apply, but statement 8 implies the bear visits the rabbit, however that statement does not directly say that if the rabbit likes the bear then the bear visits the rabbit. However, it does say that the rabbit likes the bear, which does lead to the bear visiting the rabbit indirectly through statement 9. However, we can assume that the rabbit and the bear like each other and they both visit each other.)\n3. The lion is nice. (Statement 3)\n4. The lion likes the bald eagle. (Statement 5)\n5. The lion needs the bald eagle. (Statement 6)\n6. The lion needs the rabbit. (Statement 7)\n7. The lion visits the rabbit. (Statement 8)\n8. The rabbit needs the lion. (Statement 9)\n9. The rabbit needs the bald eagle. (Statement 10)\n10. The rabbit visits the bald eagle. (Statement 11)\n11. The rabbit visits the bear. (Statement 12)\n12. The bald eagle is blue. (Statement 1)\n13. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. (Statement 14)\n14. The bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. (Statement 15 does not directly apply, but statement 14 leads to statement 15, however, we are not given that the bald eagle likes the rabbit and visits the rabbit, but we can infer that the bald eagle needs the rabbit and the bear.)\n15. The lion visits the bald eagle. (Statement 5 does not directly apply, but statement 6 leads to statement 5, however, we can infer that the lion visits the bald eagle. However, this can be disputed as the lion is not directly visiting the bald eagle but rather the lion needs the bald eagle and the lion likes the bald eagle. However, the lion's actions are related to the bald eagle, but it is not directly stated that the lion visits the bald eagle.)\n\nThe bear's relationship with the bald eagle is as follows:\n\n- The bear visits the rabbit. (Statement 12)\n- The rabbit needs the lion. (Statement 9)\n- The lion needs the bald eagle. (Statement 6)\n- The lion visits the bald eagle. (This can be disputed as the lion is not directly visiting the bald eagle, however, the lion's actions are related to the bald eagle.)\n\nWe are not given any direct information about the bear liking the bald eagle. However, we can infer that the bear visits the bald eagle indirectly through the lion and the rabbit. \n\nSince we cannot directly determine whether the bear likes the bald eagle, we cannot conclude that the statement is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is blue. (Let's assume this statement is true for now)\n2. The bald eagle is cold. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n3. The bald eagle needs the rabbit. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n4. The bear visits the lion. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n5. The lion is nice. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n6. The lion likes the bald eagle. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n7. The lion needs the bald eagle. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n8. The lion needs the rabbit. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n9. The lion visits the rabbit. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n10. The rabbit likes the bear. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n11. The rabbit needs the bald eagle. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n12. The rabbit needs the lion. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n13. The rabbit visits the bald eagle. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n14. The rabbit visits the bear. (This statement does not provide any information about the relationship between the bear and the bald eagle, so we can ignore it for now)\n15. If someone visits the rabbit then they need the bear. (Let's call this statement (A))\n16. If someone needs the rabbit then the rabbit likes the bear. (Let's call this statement (B))\n17. If someone visits the bear and the bear needs the rabbit then they need the bear. (Let's call this statement (C))\n18. If someone needs the bear then they need the rabbit. (Let's call this statement (D))\n19. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. (Let's call this statement (E))\n20. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. (Let's call this statement (F))\n21. If someone likes the bear then the bear visits the rabbit. (Let's call this statement (G))\n22. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. (Let's call this statement (H))\n23. If the rabbit likes the bear then the bear visits the bald eagle. (Let's call this statement (I))\n\nWe want to determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown.\n\nLet's start by analyzing the implications of the given statements.\n\nFrom statement (F), we know that if someone is blue and they like the bald eagle then the bald eagle needs the rabbit. Since the bald eagle is blue (statement 1), we can infer that the bald eagle likes the bald eagle itself, which is a contradiction. However, this is not possible, so we need to re-examine the statement. The statement is not applicable in this case.\n\nFrom statement (I), we know that if the rabbit likes the bear then the bear visits the bald eagle. We do not know whether the rabbit likes the bear, so we cannot conclude anything about the bear's relationship with the bald eagle.\n\nFrom statement (G), we know that if someone likes the bear then the bear visits the rabbit. However, this statement does not provide any information about the bear's relationship with the bald eagle.\n\nFrom statement (H), we know that if the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. However, this statement does not provide any information about the bear's relationship with the bald eagle.\n\nFrom statement (D), we know that if someone needs the bear then they need the rabbit. This statement is not applicable in this case.\n\nFrom statement (C), we know that if someone visits the bear and the bear needs the rabbit then they need the bear. This statement is not applicable in this case.\n\nFrom statement (B), we know that if someone needs the rabbit then the rabbit likes the bear. This statement is not applicable in this case.\n\nFrom statement (A), we know that if someone visits the rabbit then they need the bear. This statement is not applicable in this case.\n\nFrom statement (E), we know that if the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. However, we do not know whether the bear needs the lion, so we cannot conclude anything about the bear's relationship with the bald eagle.\n\nWe have analyzed all the implications of the given statements, and we cannot conclude anything about the bear's relationship with the bald eagle. Therefore, the statement \"The bear does not like the bald eagle\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The bear visits the lion. (From the initial information)\n2. The lion is nice. (From the initial information)\n3. The lion likes the bald eagle. (From the initial information)\n4. If someone visits the bear and the bear needs the rabbit then they need the bear. (From the given rule)\n   - We don't have information about the bear needing the rabbit yet, so we'll keep this in mind.\n5. If someone needs the bear then they need the rabbit. (From the given rule)\n   - We'll also keep this in mind for now.\n6. The rabbit likes the bear. (From the initial information)\n7. The rabbit needs the lion. (From the initial information)\n8. The lion needs the bald eagle. (From the initial information)\n9. If someone likes the bear then the bear visits the rabbit. (From the given rule)\n   - The rabbit likes the bear, so we can conclude that the bear visits the rabbit.\n10. The rabbit visits the bald eagle. (From the initial information)\n11. If the rabbit likes the bear then the bear visits the bald eagle. (From the given rule)\n    - Since the rabbit likes the bear, the bear visits the bald eagle.\n\nNow, we can analyze the bear's behavior based on the given rules.\n\n- The bear visits the lion (step 1) and the bear visits the rabbit (step 9). \n- After visiting the lion, the bear visits the rabbit (which is already known).\n- After visiting the rabbit, the bear visits the bald eagle (step 11).\n\nHowever, we have the condition that if the bear needs the rabbit and visits the bear, then they need the bear. But we don't have any information that the bear needs the rabbit after visiting the lion and the rabbit. We do know that the rabbit likes the bear (step 6), which means the bear visits the rabbit (step 9).\n\nHowever, we still need to figure out if the bear likes the bald eagle or not.\n\nFrom the given information, the bear visits the lion, the lion likes the bald eagle, and the bear likes the bald eagle is not explicitly stated. However, we do have the condition that if someone is blue and they like the bald eagle then the bald eagle needs the rabbit. Since the bear is not explicitly blue and there's no information that the bear likes the bald eagle, we cannot conclude that the bear likes the bald eagle based on this rule.\n\nHowever, we do have the information that the bear visits the bald eagle (step 11) after visiting the rabbit, which is a different situation than visiting the lion and the rabbit. We also know that the bear visits the lion and the lion likes the bald eagle, but we still cannot conclude that the bear likes the bald eagle.\n\nBased on the information provided and the given rules, we cannot determine if the bear likes the bald eagle. Therefore, the statement \"The bear does not like the bald eagle\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. The statement to be evaluated: The bear does not like the bald eagle.\n   We will try to find evidence that supports or contradicts this statement.\n\n2. From the given information, we know:\n   - The lion is nice and likes the bald eagle.\n   - The rabbit likes the bear.\n   - The bear visits the lion (but this does not directly relate to the bear's feelings towards the bald eagle).\n   - If the bear likes the bald eagle and needs the lion, then the bear visits the bald eagle.\n   - If someone likes the bear then the bear visits the rabbit (but this does not directly relate to the bear's feelings towards the bald eagle).\n\n3. We also know that:\n   - The bald eagle is blue and cold.\n   - The lion needs the bald eagle.\n   - The lion needs the rabbit.\n   - The rabbit needs the lion.\n   - The rabbit needs the bald eagle.\n   - The bear needs the lion (if the bear needs the lion and likes the bald eagle, then the bear visits the bald eagle).\n\n4. From the given information, we know that:\n   - The lion likes the bald eagle, and we have no information that suggests the bear likes the bald eagle or does not like the bald eagle.\n   - However, we do have some information that relates to the bear's actions, but we are trying to find out if the bear likes the bald eagle or not.\n\n5. Now, let's try to find a contradiction or evidence that supports the statement \"The bear does not like the bald eagle.\"\n   - We know the lion likes the bald eagle.\n   - We also know that the rabbit likes the bear.\n   - But we do not know if the bear likes the bald eagle or not.\n\n6. We need to analyze the statement \"If the bear likes the bald eagle then the bear visits the bald eagle\" to see if we can find any contradiction.\n   - We have no information that says the bear likes the bald eagle, so we cannot apply this statement.\n\n7. However, we do have a statement that says \"If the bear visits the bear and the bear needs the rabbit then they need the bear.\"\n   - This statement does not relate to our target statement, so we will ignore it.\n\n8. We also have a statement that says \"If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\"\n   - The bald eagle is blue, but we do not know if the bald eagle likes the bear or not, so we will ignore this statement.\n\n9. Now, let's look at the statement \"If someone likes the bear then the bear visits the rabbit.\"\n   - We know the rabbit likes the bear, but this does not provide any information about the bear's feelings towards the bald eagle.\n\n10. We also have a statement that says \"If the rabbit likes the bear then the bear visits the bald eagle.\"\n    - We know the rabbit likes the bear, but this statement does not provide any information about the bear's feelings towards the bald eagle.\n\n11. However, we do have a statement that says \"If the bear likes the bald eagle and needs the lion, then the bear visits the bald eagle.\"\n    - We do not have any information that suggests the bear likes the bald eagle or needs the lion, so we cannot apply this statement.\n\n12. After analyzing the given information, we cannot find any evidence that directly supports or contradicts the statement \"The bear does not like the bald eagle.\"\n\n13. Therefore, the statement \"The bear does not like the bald eagle\" is unknown, as we do not have enough information to determine whether the bear likes the bald eagle or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the relationships between the characters.\n\nFrom the given statements, we have:\n\n1. The bald eagle is blue.\n2. The bear visits the lion.\n3. The lion is nice.\n4. The lion likes the bald eagle.\n5. The lion needs the bald eagle.\n6. The lion needs the rabbit.\n7. The lion visits the rabbit.\n8. The rabbit likes the bear.\n9. The rabbit needs the bald eagle.\n10. The rabbit needs the lion.\n11. The rabbit visits the bald eagle.\n12. The rabbit visits the bear.\n13. If someone visits the rabbit then they need the bear.\n14. If someone needs the rabbit then the rabbit likes the bear.\n15. If someone visits the bear and the bear needs the rabbit then they need the bear.\n16. If someone needs the bear then they need the rabbit.\n17. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\n18. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\n19. If someone likes the bear then the bear visits the rabbit.\n20. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\n21. If the rabbit likes the bear then the bear visits the bald eagle.\n\nFrom statement 8, we know that the rabbit likes the bear. \n\nFrom statement 21, we know that if the rabbit likes the bear then the bear visits the bald eagle. \n\nSince the rabbit likes the bear (statement 8), the bear visits the bald eagle (statement 21). \n\nNow, let's analyze the bear's relationship with the bald eagle. From statement 17, we know that if the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. \n\nWe already know that the bear visits the bald eagle (statement 21), and the bear likes the bald eagle is not explicitly stated, but we do know that the bear is not explicitly stated to dislike the bald eagle.\n\nHowever, we do not have enough information to determine whether the bear likes the bald eagle or not. The statement \"The bear does not like the bald eagle\" can be true or false, but we cannot determine it with certainty based on the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and the given rules. \n\nFrom the given information, we know that:\n1. The bald eagle is blue.\n2. The lion is nice.\n3. The lion likes the bald eagle.\n4. The lion needs the bald eagle.\n5. The lion needs the rabbit.\n6. The lion visits the rabbit.\n7. The rabbit likes the bear.\n8. The rabbit needs the lion.\n9. The rabbit needs the bald eagle.\n10. The rabbit visits the bald eagle.\n11. The rabbit visits the bear.\n\nNow, let's analyze the given rules:\n1. If someone visits the rabbit then they need the bear.\n2. If someone needs the rabbit then the rabbit likes the bear.\n3. If someone visits the bear and the bear needs the rabbit then they need the bear.\n4. If someone needs the bear then they need the rabbit.\n5. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\n6. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\n7. If someone likes the bear then the bear visits the rabbit.\n8. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\n9. If the rabbit likes the bear then the bear visits the bald eagle.\n\nTo determine whether the bear likes the bald eagle, let's consider the following:\n- The bear visits the lion (rule 3 is not applicable here, we don't have information that the bear needs the lion in this case), we do not know the bear's feelings towards the bald eagle.\n- The rabbit likes the bear (rule 7 is not applicable here, we do not know the bear's feelings towards the bald eagle).\n- We do not have any information that directly tells us whether the bear likes the bald eagle or not.\n\nHowever, we can infer some information by using rule 8: If the rabbit likes the bear then the bear visits the bald eagle. But this rule doesn't directly tell us whether the bear likes the bald eagle.\n\nWe can also infer from rule 5: If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. But we don't know whether the bear needs the lion in this case.\n\nFrom the given rules and information, we cannot directly determine whether the bear likes the bald eagle or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and its implications. We will break down the information into individual statements and use logical deductions to conclude.\n\n1. The bald eagle is blue.\n2. The bald eagle is cold.\n3. The bald eagle needs the rabbit.\n4. The bear visits the lion.\n5. The lion is nice.\n6. The lion likes the bald eagle.\n7. The lion needs the bald eagle.\n8. The lion needs the rabbit.\n9. The lion visits the rabbit.\n10. The rabbit likes the bear.\n11. The rabbit needs the bald eagle.\n12. The rabbit needs the lion.\n13. The rabbit visits the bald eagle.\n14. The rabbit visits the bear.\n15. If someone visits the rabbit then they need the bear.\n16. If someone needs the rabbit then the rabbit likes the bear.\n17. If someone visits the bear and the bear needs the rabbit then they need the bear.\n18. If someone needs the bear then they need the rabbit.\n19. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\n20. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\n21. If someone likes the bear then the bear visits the rabbit.\n22. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\n23. If the rabbit likes the bear then the bear visits the bald eagle.\n\nFrom statement 4, we know that the bear visits the lion, which implies that the bear likes the lion. However, we are not given any information directly stating that the bear likes or dislikes the bald eagle.\n\nNow, let's analyze the information provided in statement 21: If someone likes the bear then the bear visits the rabbit. This implies that if the bald eagle likes the bear, the bear would visit the rabbit. However, if the bear visits the rabbit, then it needs the bear (from statement 17). This is a contradiction, as the bear cannot need itself.\n\nNow, we will apply statement 20: If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. We know the bald eagle is blue from statement 1. Since we don't have any information about the bald eagle liking the bear, we can't directly apply this statement. However, we can deduce that the bald eagle needs the rabbit, which implies that the rabbit likes the bear (from statement 16).\n\nApplying statement 23: If the rabbit likes the bear then the bear visits the bald eagle. This implies that the bear likes the bald eagle.\n\nTherefore, the statement \"The bear does not like the bald eagle\" is false, as the bear likes the bald eagle.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nFrom the given information:\n1. The bear visits the lion. (This does not provide any information about the bear's likes.)\n2. The lion likes the bald eagle. (This does not provide any information about the bear's likes.)\n3. The bear needs the lion. (This does not provide any information about the bear's likes.)\n4. The lion needs the bald eagle. (This does not provide any information about the bear's likes.)\n5. The lion needs the rabbit. (This does not provide any information about the bear's likes.)\n6. The rabbit likes the bear. (This does not provide any information about the bear's likes.)\n7. The rabbit needs the bald eagle. (This does not provide any information about the bear's likes.)\n8. The rabbit needs the lion. (This does not provide any information about the bear's likes.)\n9. The rabbit visits the bald eagle. (This does not provide any information about the bear's likes.)\n10. The rabbit visits the bear. (This does not provide any information about the bear's likes.)\n11. If someone visits the rabbit then they need the bear. (This rule does not apply to the bear.)\n12. If someone needs the rabbit then the rabbit likes the bear. (This rule does not apply to the bear.)\n13. If someone visits the bear and the bear needs the rabbit then they need the bear. (This rule does not apply to the bald eagle.)\n14. If someone needs the bear then they need the rabbit. (This rule does not apply to the bear.)\n15. If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. (This rule does not apply to the given information.)\n16. If someone is blue and they like the bald eagle then the bald eagle needs the rabbit. (The bald eagle is blue, but this rule does not apply to the bear.)\n17. If someone likes the bear then the bear visits the rabbit. (This rule does not apply to the bald eagle.)\n18. If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear. (This rule does not apply to the bear.)\n\nHowever, there is one rule that is relevant to the bear's likes:\n19. If the rabbit likes the bear then the bear visits the bald eagle. \n\nThis rule does not directly tell us whether the bear likes the bald eagle, but we can infer it from the given information. The rabbit likes the bear (rule 6), and if the rabbit likes the bear, then the bear visits the bald eagle (rule 19). \n\nSince the bear visits the bald eagle when the rabbit likes the bear, we can conclude that the bear likes the bald eagle. \n\nTherefore, the statement \"The bear does not like the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the information, we know:\n- The lion is nice.\n- The lion likes the bald eagle.\n- The lion needs the bald eagle.\n- The rabbit likes the bear.\n- The rabbit needs the lion.\n- The lion needs the rabbit.\n- The lion visits the rabbit.\n- The rabbit visits the bear.\n- The rabbit likes the bald eagle.\n- The rabbit needs the bald eagle.\n- The bald eagle is blue.\n- The bald eagle needs the rabbit.\n\nFrom the rules, we know:\n- If someone visits the rabbit then they need the bear.\n- If someone needs the rabbit then the rabbit likes the bear.\n- If someone visits the bear and the bear needs the rabbit then they need the bear.\n- If someone needs the bear then they need the rabbit.\n- If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle.\n- If someone is blue and they like the bald eagle then the bald eagle needs the rabbit.\n- If someone likes the bear then the bear visits the rabbit.\n- If the bald eagle likes the rabbit and the bald eagle visits the rabbit then the bald eagle needs the bear.\n- If the rabbit likes the bear then the bear visits the bald eagle.\n\nWe need to find a relationship between the bear and the bald eagle. To do this, let's analyze the information and rules step by step.\n\n1. From the information, we know the bear and the lion are not mentioned to be related in any way, so we cannot conclude anything about the bear's relationship with the lion yet.\n\n2. From the information, we know the lion likes the bald eagle. However, the bear's relationship with the bald eagle is not mentioned.\n\n3. From the rule, we know if the bear likes the bald eagle, then the bear visits the bald eagle. However, this rule is not directly applicable because we do not know whether the bear likes the bald eagle.\n\n4. From the rule, we know if someone likes the bear, then the bear visits the rabbit. However, this rule is not directly applicable because we do not know whether the bald eagle likes the bear.\n\n5. However, we can conclude from the rule \"If the rabbit likes the bear then the bear visits the bald eagle\" that if the bear likes the bald eagle, then the bear will visit the bald eagle.\n\n6. However, we can also conclude from the rule \"If the rabbit likes the bear then the bear visits the bald eagle\" that if the bald eagle likes the rabbit, then the bear will visit the bald eagle. From the information, we know the rabbit likes the bear. Therefore, we can conclude that the bear visits the bald eagle.\n\n7. Therefore, we can conclude from the rule \"If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle\" that the bear likes the bald eagle.\n\nHence, the statement \"The bear does not like the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use the information to determine the relationship between the bear and the bald eagle.\n\n1. The bear visits the lion. (Statement 4)\n2. The lion is nice. (Statement 5)\n3. The lion likes the bald eagle. (Statement 6)\n4. The lion needs the bald eagle. (Statement 7)\n5. The lion needs the rabbit. (Statement 8)\n6. The lion visits the rabbit. (Statement 9)\n7. The rabbit likes the bear. (Statement 10)\n8. The rabbit needs the bald eagle. (Statement 11)\n9. The rabbit needs the lion. (Statement 12)\n10. The rabbit visits the bald eagle. (Statement 13)\n11. The rabbit visits the bear. (Statement 14)\n\nWe need to determine whether the bear likes the bald eagle. Let's look at the statements that mention the bear and the bald eagle.\n\n- If the bear needs the lion and the bear likes the bald eagle then the bear visits the bald eagle. (Statement 16)\n- If someone likes the bear then the bear visits the rabbit. (Statement 19) This does not directly relate to the bear and the bald eagle.\n- If the rabbit likes the bear then the bear visits the bald eagle. (Statement 20)\n\nWe know that the lion likes the bald eagle (Statement 6), and the lion visits the bear (Statement 4). However, we do not have direct information that the bear likes the bald eagle. However, the statement \"If someone is blue and they like the bald eagle then the bald eagle needs the rabbit\" (Statement 18) does not apply to the bear, as the bear is not blue.\n\nHowever, we do have the following statements:\n- The rabbit likes the bear. (Statement 10)\n- The rabbit needs the lion. (Statement 12)\n- The lion needs the bald eagle. (Statement 7)\n- The bear visits the lion. (Statement 4)\n\nSince the lion needs the bald eagle, and the lion needs the rabbit, it implies that the lion likes the rabbit. As the lion likes the rabbit, and the lion visits the rabbit, it is possible that the lion likes the bald eagle indirectly through the rabbit. However, we do not have information that the bear directly likes the bald eagle.\n\nHowever, statement 10 says that the rabbit likes the bear. From statement 20, if the rabbit likes the bear then the bear visits the bald eagle. Hence, we can conclude that the bear likes the bald eagle.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. The lion is nice and likes the bald eagle. (Given)\n\n2. The lion needs the bald eagle. (Given)\n\n3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. (Given)\n\n4. If someone likes the bear, then the bear visits the rabbit. (Given)\n\nHowever, there is no direct statement that says the bear likes the bald eagle. But there are several indirect statements that can help us deduce the relationship between the bear and the bald eagle.\n\nFrom the given information, we know that the lion likes the bald eagle and needs the bald eagle. Since the bear needs the lion (from statement 2), it can be inferred that the bear also likes the lion. \n\nNow, from statement 3, if the bear likes the bald eagle, then the bear visits the bald eagle. But there's no direct statement that says the bear likes the bald eagle. However, since the lion is nice and likes the bald eagle, and the bear needs the lion, we can conclude that the bear also likes the lion. \n\nBut if the bear likes the lion, then from statement 4, the bear visits the rabbit. Now, we need to check the relationship between the bear and the rabbit.\n\nFrom statement 1, the bald eagle is blue, and it needs the rabbit. From statement 7, if someone is blue and they like the bald eagle, then the bald eagle needs the rabbit. This implies that the bald eagle likes the rabbit. \n\nNow, we need to check the relationship between the rabbit and the bear. From statement 8, the rabbit likes the bear.\n\nFrom statement 5, if the bear needs the rabbit, then the rabbit likes the bear. But from statement 8, we already know that the rabbit likes the bear.\n\nNow, let's analyze the situation where the bear visits the rabbit. From statement 6, if someone visits the rabbit, then they need the bear. But the bear visits the rabbit (from the previous deductions), so the bear needs the rabbit. \n\nNow, since the bear needs the rabbit, from statement 5, the rabbit likes the bear. We already knew this from statement 8.\n\nHowever, we can deduce more information from statement 10. The bear visits the bald eagle. If the bear visits the bald eagle, then the bear needs the lion (from statement 3). We already knew this from statement 2.\n\nNow, since the bear needs the lion, we can conclude that the bear likes the lion (from statement 2 and the previous deductions).\n\nHowever, we can deduce more information from statement 9. The lion needs the bald eagle. If the lion needs the bald eagle, then from statement 1, the bald eagle is blue and it needs the rabbit. But we already knew this from statement 7.\n\nHowever, we can deduce more information from statement 7. If the bald eagle is blue and it likes the rabbit, then the rabbit needs the bald eagle. But we already knew this from statement 9.\n\nNow, let's analyze the situation where the rabbit visits the bald eagle. From statement 9, if the rabbit likes the bear, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nHowever, we can deduce more information from statement 11. If the rabbit visits the bald eagle, then the rabbit needs the lion. But we already knew this from statement 9.\n\nHowever, we can deduce more information from statement 12. If the rabbit visits the bear, then the rabbit likes the bear. But we already knew this from statement 8.\n\nNow, let's analyze the situation where the bear visits the bald eagle. From statement 10, if the bear visits the bald eagle, then the bear needs the lion. But we already knew this from statement 2.\n\nHowever, we can deduce more information from statement 3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nNow, let's analyze the situation where the rabbit visits the bear. From statement 12, if the rabbit visits the bear, then the rabbit likes the bear. But we already knew this from statement 8.\n\nHowever, we can deduce more information from statement 6. If someone visits the rabbit, then they need the bear. But the bear visits the rabbit (from the previous deductions), so the bear needs the rabbit. \n\nNow, since the bear needs the rabbit, from statement 5, the rabbit likes the bear. We already knew this from statement 8.\n\nHowever, we can deduce more information from statement 5. If someone needs the rabbit, then the rabbit likes the bear. But we already knew this from statement 8.\n\nNow, let's analyze the situation where the lion visits the rabbit. From statement 8, if the lion likes the bald eagle, then the bear visits the rabbit. But we already knew this from statement 5.\n\nHowever, we can deduce more information from statement 9. If the lion needs the bald eagle, then the bald eagle needs the rabbit. But we already knew this from statement 7.\n\nNow, let's analyze the situation where the rabbit visits the lion. From statement 9, if the rabbit needs the lion, then the lion likes the bald eagle. But we already knew this from statement 1.\n\nHowever, we can deduce more information from statement 11. If the rabbit visits the bald eagle, then the rabbit needs the lion. But we already knew this from statement 9.\n\nHowever, we can deduce more information from statement 11. If the rabbit needs the lion, then the lion likes the bald eagle. But we already knew this from statement 1.\n\nNow, let's analyze the situation where the bear visits the lion. From statement 2, if the bear needs the lion, then the bear likes the lion. But we already knew this from statement 1.\n\nHowever, we can deduce more information from statement 5. If someone needs the lion, then the lion likes the bald eagle. But we already knew this from statement 1.\n\nHowever, we can deduce more information from statement 2. If the bear needs the lion, then the bear likes the lion. But we already knew this from statement 1.\n\nNow, let's analyze the situation where the lion visits the bear. From statement 2, if the lion needs the bear, then the lion likes the bear. But we already knew this from statement 8.\n\nHowever, we can deduce more information from statement 1. If the lion likes the bald eagle, then the lion needs the bald eagle. But we already knew this from statement 2.\n\nHowever, we can deduce more information from statement 2. If the lion needs the bald eagle, then the bald eagle needs the rabbit. But we already knew this from statement 7.\n\nNow, let's analyze the situation where the bear visits the rabbit. From statement 10, if the bear visits the bald eagle, then the bear needs the lion. But we already knew this from statement 2.\n\nHowever, we can deduce more information from statement 6. If someone visits the rabbit, then they need the bear. But the bear visits the rabbit (from the previous deductions), so the bear needs the rabbit. \n\nNow, since the bear needs the rabbit, from statement 5, the rabbit likes the bear. We already knew this from statement 8.\n\nHowever, we can deduce more information from statement 3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nHowever, we can deduce more information from statement 3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nHowever, we can deduce more information from statement 3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nNow, let's analyze the situation where the lion visits the bear. From statement 2, if the lion needs the bear, then the lion likes the bear. But we already knew this from statement 8.\n\nHowever, we can deduce more information from statement 1. If the lion likes the bald eagle, then the lion needs the bald eagle. But we already knew this from statement 2.\n\nHowever, we can deduce more information from statement 2. If the lion needs the bald eagle, then the bald eagle needs the rabbit. But we already knew this from statement 7.\n\nHowever, we can deduce more information from statement 5. If someone needs the bear, then they need the rabbit. But we already knew this from statement 6.\n\nHowever, we can deduce more information from statement 6. If someone visits the rabbit, then they need the bear. But the bear visits the rabbit (from the previous deductions), so the bear needs the rabbit. \n\nNow, since the bear needs the rabbit, from statement 5, the rabbit likes the bear. We already knew this from statement 8.\n\nHowever, we can deduce more information from statement 8. If the rabbit likes the bear, then the bear visits the rabbit. But we already knew this from statement 10.\n\nHowever, we can deduce more information from statement 3. If the bear needs the lion and the bear likes the bald eagle, then the bear visits the bald eagle. But we already knew this from statement 10.\n\nHowever, we can deduce more information from statement 3. If the bear",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, bear)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(bear, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_X_bear, needs_bear_rabbit), needs_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bear, needs_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, lion) & likes(bear, bald_eagle) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(And(needs_bear_lion, likes_bear_bald_eagle), visits_bear_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(bald_eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_X, likes_X_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, rabbit)",
+          "z3_formula": "Implies(likes_X_bear, visits_bear_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, rabbit) & visits(bald_eagle, rabbit) -> needs(bald_eagle, bear)",
+          "z3_formula": "Implies(And(likes_bald_eagle_rabbit, visits_bald_eagle_rabbit), needs_bald_eagle_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, bear) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(bald_eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_bald_eagle, likes_rabbit_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, rabbit) -> needs(bald_eagle, bear)",
+          "z3_formula": "Implies(And(likes_rabbit_bald_eagle, visits_rabbit_bald_eagle), needs_bald_eagle_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_bear_lion, needs_bear_rabbit), needs_bear_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_bear_bear, needs_bear_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, rabbit)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_rabbit_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_rabbit_bald_eagle)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & needs(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, needs_bear_lion), visits_bear_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, rabbit)",
+          "z3_formula": "Implies(likes_bear_bear, visits_bear_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bear, bald_eagle)",
+          "z3_formula": "Not(likes_bear_bald_eagle) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "unknown likes(bear, bald_eagle)",
+          "z3_formula": "Or(likes_bear_bald_eagle, Not(likes_bear_bald_eagle)) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_bear_rabbit, needs_bear_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, bear)",
+          "z3_formula": "Implies(needs_bear_rabbit, likes_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_bear_bear, needs_bear_rabbit), needs_bear_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_bear_bear, needs_bear_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & likes(X, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_bear_lion, likes_bear_bald_eagle), visits_bear_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(blue_bald_eagle, likes_bald_eagle_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, rabbit)",
+          "z3_formula": "Implies(likes_bald_eagle_bear, visits_bald_eagle_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(likes_bear_rabbit, visits_bear_rabbit), needs_bald_eagle_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(likes_bald_eagle_bear, visits_bald_eagle_bear)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_lion_rabbit, needs_lion_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(needs_lion_rabbit, likes_rabbit_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(bear, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_lion_bear, needs_bear_rabbit), needs_lion_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_lion_bear, needs_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, lion) & likes(bear, bald_eagle) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(And(needs_bear_lion, likes_bear_bald_eagle), visits_bear_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(bald_eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_bald_eagle, likes_lion_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, rabbit)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, bear) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, bear) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_bear_rabbit, needs_bear_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(needs_bear_rabbit, likes_rabbit_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(bear, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_bear_bear, needs_bear_rabbit), needs_bear_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_bear_bear, needs_bear_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, lion) & likes(bear, bald_eagle) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(And(needs_bear_lion, likes_bear_bald_eagle), visits_bear_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(bald_eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_bald_eagle, likes_bald_eagle_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, rabbit)",
+          "z3_formula": "Implies(likes_bald_eagle_bear, visits_bear_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, rabbit) & visits(bald_eagle, rabbit) -> needs(bald_eagle, bear)",
+          "z3_formula": "Implies(And(likes_bald_eagle_rabbit, visits_rabbit_bald_eagle), needs_bald_eagle_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, bear) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_bald_eagle)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, eagle)",
+          "z3_formula": "likes_lion_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, eagle)",
+          "z3_formula": "needs_lion_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, bear)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_X_bear, needs_X_rabbit), needs_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bear, needs_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, lion) & likes(bear, eagle) -> visits(bear, eagle)",
+          "z3_formula": "Implies(And(needs_bear_lion, likes_bear_eagle), visits_bear_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, eagle) -> needs(eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_eagle, likes_eagle_eagle), needs_eagle_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, rabbit)",
+          "z3_formula": "Implies(likes_X_bear, visits_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(eagle, rabbit) & visits(eagle, rabbit) -> needs(eagle, bear)",
+          "z3_formula": "Implies(And(likes_eagle_rabbit, visits_eagle_rabbit), needs_eagle_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, bear) -> visits(bear, eagle)",
+          "z3_formula": "Implies(likes_rabbit_bear, visits_bear_eagle)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(X, rabbit) -> needs(X, bear)",
+          "z3_formula": "Implies(And(visits_X_bear, needs_X_rabbit), needs_X_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bear, needs_X_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & likes(X, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_lion, likes_X_bald_eagle), visits_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & likes(X, bald_eagle) -> needs(bald_eagle, rabbit)",
+          "z3_formula": "Implies(And(blue_X, likes_X_bald_eagle), needs_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, rabbit)",
+          "z3_formula": "Implies(likes_X_bear, visits_bear_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, rabbit) -> needs(bald_eagle, bear)",
+          "z3_formula": "Implies(And(likes_X_rabbit, visits_X_rabbit), needs_bald_eagle_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(bear, bald_eagle)",
+          "z3_formula": "Implies(likes_X_bear, visits_bear_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & likes(X, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_lion, likes_X_bald_eagle), visits_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, rabbit)",
+          "z3_formula": "Implies(likes_X_bear, visits_X_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_bear, visits_X_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == False",
+          "source_step": 15
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 182,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 68
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 1,
+      "total_weight": 180,
+      "solve_time_ms": 1.3423636555671692
+    },
+    "timing": {
+      "trace_gen_s": 24.575,
+      "extraction_s": 58.661,
+      "dedup_s": 2.148,
+      "maxsat_s": 0.005,
+      "total_s": 85.389
+    }
+  }
+}

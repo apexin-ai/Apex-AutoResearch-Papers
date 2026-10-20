@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-574_Q12",
+    "problem": "The bald eagle is not green. The bald eagle likes the cow. The bald eagle needs the cat. The cat is cold. The cat likes the cow. The cat needs the bald eagle. The cow eats the cat. The dog does not eat the cow. The dog is green. The dog likes the cow. The dog needs the bald eagle. All cold things are green. If something is cold then it needs the cow. If something is young then it needs the bald eagle. If something is young and cold then it eats the dog. If the bald eagle does not need the cat then the bald eagle likes the dog. If something eats the dog then the dog is cold. If something is cold then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not eat the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(BaldEagle, False) ::: The bald eagle is not green.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nNeeds(BaldEagle, Cat, True) ::: The bald eagle needs the cat.\nCold(Cat, True) ::: The cat is cold.\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nNeeds(Cat, BaldEagle, True) ::: The cat needs the bald eagle.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nEats(Dog, Cow, False) ::: The dog does not eat the cow.\nGreen(Dog, True) ::: The dog is green.\nLikes(Dog, Cow, True) ::: The dog likes the cow.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\n\nRules:\nCold($x, True) >>> Green($x, True) ::: All cold things are green.\nCold($x, True) >>> Needs($x, Cow, True) ::: If something is cold then it needs the cow.\nYoung($x, True) >>> Needs($x, BaldEagle, True) ::: If something is young then it needs the bald eagle.\nYoung($x, True) && Cold($x, True) >>> Eats($x, Dog, True) ::: If something is young and cold then it eats the dog.\nNeeds(BaldEagle, Cat, False) >>> Likes(BaldEagle, Dog, True) ::: If the bald eagle does not need the cat then the bald eagle likes the dog.\nEats($x, Dog, True) >>> Cold(Dog, True) ::: If something eats the dog then the dog is cold.\nCold($x, True) >>> Young($x, True) ::: If something is cold then it is young.\n\nQuery:\nEats(Dog, Dog, False) ::: The dog does not eat the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

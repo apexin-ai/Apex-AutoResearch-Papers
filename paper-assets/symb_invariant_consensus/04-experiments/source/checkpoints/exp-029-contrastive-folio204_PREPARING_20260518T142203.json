@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:22:03.513Z",
+    "updated_at": "2026-05-18T14:22:03.513Z"
+  },
+  "timestamp": "2026-05-18T14:22:03.642765+00:00",
+  "trigger": "update_registry"
+}

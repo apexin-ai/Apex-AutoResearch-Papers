@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-145_Q9",
+    "problem": "Anne is kind. Anne is quiet. Anne is smart. Bob is kind. Bob is nice. Bob is smart. Fiona is not nice. Fiona is red. Gary is nice. Gary is white. If Bob is kind then Bob is smart. If something is kind and nice then it is smart. If something is nice and red then it is smart. If something is quiet and not nice then it is smart. All green things are kind. If Anne is quiet and Anne is white then Anne is kind. If Fiona is not nice then Fiona is green. All smart, kind things are white. If something is kind and green then it is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nSmart(Anne, True) ::: Anne is smart.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nSmart(Bob, True) ::: Bob is smart.\nNice(Fiona, False) ::: Fiona is not nice.\nRed(Fiona, True) ::: Fiona is red.\nNice(Gary, True) ::: Gary is nice.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nKind(Bob, True) >>> Smart(Bob, True) ::: If Bob is kind then Bob is smart.\nKind($x, True) && Nice($x, True) >>> Smart($x, True) ::: If something is kind and nice then it is smart.\nNice($x, True) && Red($x, True) >>> Smart($x, True) ::: If something is nice and red then it is smart.\nQuiet($x, True) && Nice($x, False) >>> Smart($x, True) ::: If something is quiet and not nice then it is smart.\nGreen($x, True) >>> Kind($x, True) ::: All green things are kind.\nQuiet(Anne, True) && White(Anne, True) >>> Kind(Anne, True) ::: If Anne is quiet and Anne is white then Anne is kind.\nNice(Fiona, False) >>> Green(Fiona, True) ::: If Fiona is not nice then Fiona is green.\nSmart($x, True) && Kind($x, True) >>> White($x, True) ::: All smart, kind things are white.\nKind($x, True) && Green($x, True) >>> Quiet($x, True) ::: If something is kind and green then it is quiet.\n\nQuery:\nSmart(Fiona, True) ::: Fiona is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

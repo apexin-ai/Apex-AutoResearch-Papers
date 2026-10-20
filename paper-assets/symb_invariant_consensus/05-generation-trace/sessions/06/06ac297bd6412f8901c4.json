@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06ac297bd6412f8901c4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis tost sensitivity",
+  "task_key": "worker_analysis_tost-sensitivity_20260521T072359",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_tost-sensitivity_20260521T072359_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "664cf29067b751804a50d269bdd47b7056e0417c65027dbaf50c8565481c6b35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。结果写入 `tost_sensitivity.json`，摘要：\n\n| Margin | Equivalent | Genuinely Different | Underpowered |\n|--------|-----------|-------------------|-------------|\n| ±1pp | 0 | 2 | 14 |\n| ±2pp | 4 | 2 | 10 |\n| ±3pp | 10 | 0 | 6 |\n\n关键发现：\n- **±1pp**：过严，无条件通过等价检验；Mistral/Qwen2.5 的 PW-D5 两条被判为\"genuinely different\"\n- **±2pp**：4/16 通过（Qwen3 系列 + Mistral FOLIO s456），2 条 PW-D5 仍为 different，10 条 underpowered\n- **±3pp**：10/16 通过，0 条 different（因 |Δ|>3 的条件均未达 McNemar 显著），6 条 underpowered（主要是 SE 较大的 LLaMA/Mistral 条件）\n\nSE 估计方法：6 条 `raw_p < 1.0` 的从 McNemar z 统计量反推；10 条 `raw_p = 1.0` 的用 paired proportion model（假设方法间相关系数 r=0.95）估计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-sensitivity.md"
+}

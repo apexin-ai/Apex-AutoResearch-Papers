@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-897_Q12",
+    "problem": "Anne is nice. Bob is big. Bob is blue. Bob is cold. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. Fiona is furry. Fiona is young. If someone is furry and nice then they are cold. If Bob is blue and Bob is big then Bob is cold. All blue, cold people are big. If someone is nice then they are smart. All smart, big people are nice. All smart people are blue. Blue, smart people are furry. Furry, cold people are smart. Cold people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> Cold($x, True) ::: If someone is furry and nice then they are cold.\nBlue(Bob, True) && Big(Bob, True) >>> Cold(Bob, True) ::: If Bob is blue and Bob is big then Bob is cold.\nBlue($x, True) && Cold($x, True) >>> Big($x, True) ::: All blue, cold people are big.\nNice($x, True) >>> Smart($x, True) ::: If someone is nice then they are smart.\nSmart($x, True) && Big($x, True) >>> Nice($x, True) ::: All smart, big people are nice.\nSmart($x, True) >>> Blue($x, True) ::: All smart people are blue.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: Blue, smart people are furry.\nFurry($x, True) && Cold($x, True) >>> Smart($x, True) ::: Furry, cold people are smart.\nCold($x, True) >>> Big($x, True) ::: Cold people are big.\n\nQuery:\nBig(Anne, False) ::: Anne is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

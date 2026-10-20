@@ -1,0 +1,7572 @@
+# fix multi candidate rate
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 165
+- **Recorded user turns:** 2
+- **Tool calls:** 56
+- **Original source:** `logs/workers/worker_fix_multi-candidate-rate_20260517T132002.log`
+- **Structured JSON:** [`56dafce7ec02c19454a2.json`](../../sessions/56/56dafce7ec02c19454a2.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e0dcd775-11b0-4897-ad31-205218628cca",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779042000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bdac5af4-37e0-4b92-adb4-40c4e236f51c",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取 registry 和项目结构，了解当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "6ce1a290-af34-45da-8d0a-24ddb286cf0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrnMjNXd3KXqAy9ZXwuZ71",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12729,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12729
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ng8gdKVkcqMRa6JQ97Tgp4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "2d4c6f24-4732-4b7a-b90a-7317a1f21cf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrnMjNXd3KXqAy9ZXwuZ71",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12729,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12729
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T13:20:18.724Z_
+
+<details><summary>↩ Tool result · `toolu_01Ng8gdKVkcqMRa6JQ97Tgp4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "619e0191-5b04-4cb9-82c4-667c38489c2e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to see current multi_candidate_rate values, and also explore the server's results directory structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "896d1706-a913-49f2-a093-160df7c9d1de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfRP9YmtbQJvrySmTjAt75",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1531
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011mqUV57tWhXw1SdaGJNyM7`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "597f7bce-1a58-49f9-b5dd-1eaee3a4d909",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfRP9YmtbQJvrySmTjAt75",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1531
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T13:20:23.793Z_
+
+<details><summary>↩ Tool result · `toolu_011mqUV57tWhXw1SdaGJNyM7`</summary>
+
+```text
+Error: result (63,204 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "adf93dc7-416b-471d-8976-c4e4abe07661",
+  "tool_use_result": {
+    "content": "Error: result (63,204 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-009-overhead-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:01:08.521Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\", \"spec\": {\"command\": \"CPU-only analysis of exp-001 timing data\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}, \"checkpoint_path\": \"N/A (CPU-only analysis)\", \"log_path\": \"N/A (CPU-only analysis)\", \"completed_at\": \"2026-05-17T12:01:08.521Z\"}, \"exp-014-deepseek-r1-7b\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T12:00:57.157Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": 324400, \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"D012 (30PW+30FOLIO)\"}}, \"exp-020-llama8b-folio-204\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T11:50:57.467Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"309318\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log\", \"submitted_at\": \"2026-05-17T09:12:58.789Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_204.jsonl\", \"data_count\": 204, \"model_name\": \"meta-llama/Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (inference-only, no checkpoint)\", \"eval_data\": \"FOLIO full dataset 204 problems\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp020_folio_200/\", \"wall_clock_seconds\": 9478.7, \"gpu_hours\": 2.63}, \"reproduce\": {\"finished_at\": \"2026-05-17T11:27:04.546Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T11:27:06.717657+00:00\"}]}, \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668, \"bootstrap_ci_95\": [-5.88, 0.98], \"bootstrap_p_sica_ge_sc\": 0.1, \"discordant_sica_wins\": 4, \"discordant_sc_wins\": 9, \"discordant_total\": 13, \"discordant_rate\": 0.064, \"multi_candidate_rate\": 0.618, \"extraction_rate\": 0.942, \"answer_extraction_rate\": 0.951, \"contradiction_rate\": 0.062, \"both_wrong\": 71, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"FOLIO-204\", \"wall_time_min\": 131.7}, \"conclusion\": \"negative\", \"notes\": \"DEFINITIVE NEGATIVE。LLaMA-8B FOLIO 204题：SICA 60.8% vs SC 63.2%, delta=-2.45pp, McNemar p=0.2668, CI [-5.88, +0.98]。Discordant 4:9 SICA 输多赢少。exp-011 FOLIO +10pp 在 n=204 完全反转为 -2.45pp——确认为 Type I error (n=30 随机波动)。C0=61.8% 高（SICA 有操作空间），但约束改票时反而引入更多错误(9 SC wins vs 4 SICA wins)。Sweet spot hypothesis 被否定。SICA≤SC everywhere 确认。\", \"completed_at\": \"2026-05-17T11:50:57.467Z\"}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T09:15:53.996Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T08:18:21.546Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T09:10:18.592Z\", \"training_hours\": 0.87}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"submitted_at\": \"2026-05-17T08:18:24.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\", \"wall_clock_seconds\": 3450.0, \"gpu_hours\": 0.96}, \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:10:21.404482+00:00\"}]}, \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\", \"notes\": \"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\", \"completed_at\": \"2026-05-17T09:15:53.996Z\"}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:22:02.386Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"data_count\": 60, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"huggingface:mistralai/Mistral-7B-Instruct-v0.3\", \"eval_data\": \"ProofWriter-D5 + FOLIO (D012 split)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp010_mistral_v3/\", \"wall_clock_seconds\": 1506.4, \"gpu_hours\": 0.42}, \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"reproduce\": {\"finished_at\": \"2026-05-17T08:17:39.965Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T08:17:42.415004+00:00\"}]}, \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.0667, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\", \"notes\": \"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\", \"completed_at\": \"2026-05-17T08:22:02.386Z\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:18:22.559Z\", \"updated_at\": \"2026-05-17T08:02:40.938Z\", \"hypothesis\": \"Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题\", \"parent\": \"pilot-constraint-filtering\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T06:42:48.028Z\", \"command\": \"cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T06:43:15.557Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/pilot-contrastive-prompt.log\", \"submitted_at\": \"2026-05-17T06:42:49.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 26.8, \"gpu_hours\": 0.01}, \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/pilot-contrastive-prompt.log\", \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T06:43:16.479Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:43:18.090519+00:00\"}]}, \"notes\": \"脚本已验证可用（run_pilot_contrastive_v2.sh + pilot_contrastive_constraints.py）。修复方案：submit 时用 bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/symb_invariant_consensus/scripts/run_pilot_contrastive_v2.sh\\\" 包裹。当前 GPU 被 exp-010-mistral-v3 占用（vLLM 87880MiB），等其完成后提交。\"}, \"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:15:02.161Z\", \"updated_at\": \"2026-05-17T07:59:02.260Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T06:45:47.789Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\"\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T07:55:14.227Z\", \"training_hours\": 1.16}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"292780\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\", \"submitted_at\": \"2026-05-17T06:45:49.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4392.6, \"gpu_hours\": 1.22}, \"pid\": \"292780\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T07:55:16.092007+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}, \"notes\": \"LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability trap 的正面——模型弱时 SICA 有用。\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\", \"completed_at\": \"2026-05-17T07:59:02.260Z\"}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:13:27.054Z\", \"updated_at\": \"2026-05-17T06:44:33.593Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T06:19:18.377Z\", \"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T06:39:42.063Z\", \"training_hours\": 0.34}, \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"289541\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\", \"submitted_at\": \"2026-05-17T06:19:19.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1433.8, \"gpu_hours\": 0.4}, \"pid\": \"289541\", \"log_path\": \"/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:39:44.088518+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.0833, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}, \"notes\": \"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\", \"checkpoint_path\": \"N/A (evaluation experiment)\", \"completed_at\": \"2026-05-17T06:43:13.130Z\"}, \"exp-010-mistral-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:26:42.201Z\", \"updated_at\": \"2026-05-17T06:19:34.268Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v2: 修复 max-model-len=8192 防 400 循环）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T05:51:38.846Z\", \"command\": \"pkill -f \\\"vllm.entrypoints\\\" 2>/dev/null; sleep 3; cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T05:51:53.254Z\", \"training_hours\": 0.0}, \"spec\": {\"command\": \"pkill -f \\\"vllm.entrypoints\\\" 2>/dev/null; sleep 3; cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v2.log\", \"submitted_at\": \"2026-05-17T05:51:40.607Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13.6, \"gpu_hours\": 0.0}, \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v2.log\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T05:51:54.213Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T05:51:55.875957+00:00\"}]}, \"notes\": \"SIGTERM (exit 143) 在提交后 ~15s。根因：compound command 中 pkill -f \\\"vllm.entrypoints\\\" 可能误杀 tmux 父进程链。Director 已明确禁止 pkill 和 bash 脚本写在同一行。需要 v3：先手动清理 vLLM，再独立提交脚本。\"}, \"pilot-constraint-filtering\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:47:05.171Z\", \"updated_at\": \"2026-05-17T06:11:36.503Z\", \"hypothesis\": \"Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T04:47:13.762Z\", \"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T05:28:15.355Z\", \"training_hours\": 0.68}, \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"282213\", \"log_path\": \"~/runs/symb_invariant_consensus/pilot-constraint-filtering.log\", \"submitted_at\": \"2026-05-17T04:47:15.480Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5013.4, \"gpu_hours\": 1.39}, \"pid\": \"282213\", \"log_path\": \"~/runs/symb_invariant_consensus/pilot-constraint-filtering.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T05:28:16.989563+00:00\"}]}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE confirmed. T=1/2/3 结果完全一致(+2.33pp=1题翻转), T≥5 SICA退化为SC。Discriminative analysis: unique constraints 中 11.5% 是 discriminative (by count), 37.2% (by weight)。但有效 flip 率仅 4/23=17.4%。根本原因：提取的约束是 domain facts (kind_charlie==True, Implies(...)) — 无论答案是什么，中间推理步骤大部分共通。约束系统未提取答案级别判别谓词。Constraint filtering 天花板极低，不是 rescue path。\", \"checkpoint_path\": \"N/A (analysis experiment, no checkpoint)\", \"completed_at\": \"2026-05-17T06:10:48.874Z\", \"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:19:51.591Z\", \"updated_at\": \"2026-05-17T05:31:46.070Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（多选题型）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T05:30:39.347Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp018_arc.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T05:30:48.403Z\", \"training_hours\": 0.0}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"285496\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc.log\", \"submitted_at\": \"2026-05-17T05:30:41.118Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8.2, \"gpu_hours\": 0.0}, \"pid\": \"285496\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc.log\", \"failure_reason\": \"Traceback → al_arc.py\\\", line 244, in &lt;module> main() File \\\"/root/symb_invariant_consensus/scripts/eval_arc.py\\\", line 142, in main generator = build_generator(args) ^^^^^^^^^^^^^^^ NameError: name 'build_generator' is not defined. Did you mean: 'build_extractor'?\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T05:30:49.360Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T05:30:50.922842+00:00\"}]}, \"notes\": \"NameError: name 'build_generator' is not defined in eval_arc.py:142. 代码bug——函数未定义/未导入。Worker 诊断修复中。\"}, \"exp-017-strategyqa-v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:17:54.931Z\", \"updated_at\": \"2026-05-17T05:29:12.136Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T04:18:02.638Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T04:26:23.412Z\", \"training_hours\": 0.14}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"278827\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa-v3.log\", \"submitted_at\": \"2026-05-17T04:18:04.451Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4267.7, \"gpu_hours\": 1.19}, \"pid\": \"278827\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa-v3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T04:26:25.041303+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}, \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json\", \"notes\": \"StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出\", \"completed_at\": \"2026-05-17T05:29:12.136Z\"}, \"exp-017-strategyqa-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:50:55.005Z\", \"updated_at\": \"2026-05-17T04:27:27.997Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T03:51:02.300Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T04:01:13.600Z\", \"training_hours\": 0.17}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"274312\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa-v2.log\", \"submitted_at\": \"2026-05-17T03:51:04.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2184.0, \"gpu_hours\": 0.61}, \"pid\": \"274312\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa-v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T04:01:15.665453+00:00\"}]}, \"conclusion\": \"failed\", \"failure_reason\": \"答案提取bug: 73.3% (44/60) answer=\\\"\\\"。Pipeline输出True/False但extractor只认Yes/No。数据无效，需修复后重跑。\", \"completed_at\": \"2026-05-17T04:27:27.997Z\"}, \"exp-017-strategyqa\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:19:50.628Z\", \"updated_at\": \"2026-05-17T03:50:54.370Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T03:46:30.089Z\", \"command\": \"pkill -f vllm 2>/dev/null || true; sleep 2; bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T03:47:02.948Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"pkill -f vllm 2>/dev/null || true; sleep 2; bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa.log\", \"submitted_at\": \"2026-05-17T03:46:31.684Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 32.2, \"gpu_hours\": 0.01}, \"pid\": \"unknown\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-017-strategyqa.log\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T03:47:03.842Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:47:05.693732+00:00\"}]}}, \"exp-010-mistral\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:04:36.900Z\", \"updated_at\": \"2026-05-17T03:37:29.439Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化\", \"parent\": \"sica_expanded_14b\", \"notes\": \"模型已确认完整下载：3 shards (4.95+5.00+4.55GB) + consolidated.safetensors (14.5GB)。排在 exp-018 之后启动。需要 Worker 准备启动脚本（参照 exp-011 模式）。\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T03:22:52.734Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T03:37:29.116Z\", \"training_hours\": 0.24}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"270100\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral.log\", \"submitted_at\": \"2026-05-17T03:22:54.245Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 875.2, \"gpu_hours\": 0.24}, \"pid\": \"270100\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral.log\", \"conclusion\": \"failed\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-17T03:37:29.439Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:37:31.206441+00:00\"}]}}, \"exp-011-llama8b-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:19:49.625Z\", \"updated_at\": \"2026-05-17T03:24:54.392Z\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T03:19:59.814Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T03:22:16.279Z\", \"training_hours\": 0.04}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"269123\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b-v2.log\", \"submitted_at\": \"2026-05-17T03:20:01.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 135.6, \"gpu_hours\": 0.04}, \"pid\": \"269123\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b-v2.log\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific (v2: 修复 GPU OOM，kill 旧 vLLM 后重跑)\", \"parent\": \"sica_expanded_14b\", \"failure_reason\": \"模型权重损坏: model-00002-of-00004.safetensors 下载不完整 (3.7G vs 预期 ~4.9G)，safetensors_rust.SafetensorError\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T03:22:17.134Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:22:18.620317+00:00\"}]}}, \"sica_temp_diversity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:14:34.555Z\", \"updated_at\": \"2026-05-17T03:21:14.807Z\", \"spec\": {\"command\": \"python3 diagnose_diversity.py\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/data/math500_subset.json\", \"data_count\": 5, \"model_name\": \"QwQ-32B\", \"seed\": 42, \"method\": \"SICA-diagnostic\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/symb_invariant_consensus/results/diversity_diagnosis.json\"}, \"hypothesis\": \"不同 temperature (0.7/0.9/1.0) 下 QwQ-32B 是否产生足够的 trace 分歧以触发 MAX-SAT 矛盾检测\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T12:14:56.903Z\", \"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}, \"parent\": \"sica_smoke_5q\"}, \"sica_d012_14b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:02:41.309Z\", \"updated_at\": \"2026-05-17T03:21:14.256Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --math-data /tmp/empty_math.json --pw-data data/proofwriter_30.json --folio-data data/folio_30.json --output results/sica_d012_14b.json --save-intermediates 2>&1 | tee /tmp/sica_d012_14b.log\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"177178\", \"log_path\": \"~/runs/symb_invariant_consensus/sica_d012_14b.log\", \"submitted_at\": \"2026-05-16T04:05:23.888Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 3809.2, \"gpu_hours\": 1.06}, \"reproduce\": {\"finished_at\": \"2026-05-16T05:04:49.668Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:04:50.574652+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}, \"checkpoint_path\": \"/root/symb_invariant_consensus/results/sica_d012_14b.json\", \"completed_at\": \"2026-05-16T05:08:53.052Z\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 D012 (30PW+30FOLIO) 上 SICA pipeline 端到端有效：C0(多候选率≥20%) + C1(提取率≥80%) + C2(矛盾率≥10%) + C3(SICA>SC) 四项 sanity check 全通过\", \"parent\": \"sica_d016_c0_precheck\"}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:12:00.374Z\", \"updated_at\": \"2026-05-17T03:21:11.438Z\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"pid\": \"181491\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/symb_invariant_consensus/sica_expanded_14b.log\", \"submitted_at\": \"2026-05-16T05:19:00.966Z\", \"backend\": \"nohup\", \"account\": \"root\", \"eta_hours\": 13.4, \"wall_clock_seconds\": 50368.9, \"gpu_hours\": 13.99}, \"reproduce\": {\"finished_at\": \"2026-05-16T19:18:29.155Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T19:18:29.888Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T19:18:30.703230+00:00\"}]}, \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}, \"notes\": \"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\"FULL_MVP_DONE\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\", \"parent\": \"sica_d012_14b\"}, \"sica_k_sensitivity_14b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:12:03.025Z\", \"updated_at\": \"2026-05-17T03:19:48.625Z\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_k_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"237939\", \"log_path\": \"~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log\", \"submitted_at\": \"2026-05-16T20:00:54Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"k_values\": [6, 8, 11, 12, 16, 20], \"eta_hours\": 5.9, \"checkpoint_source\": \"Qwen2.5-14B-Instruct (base, no fine-tuning)\", \"eval_data\": \"D012 60 problems (PW30+FOLIO30)\", \"wall_clock_seconds\": 22151.7, \"gpu_hours\": 6.15}, \"hypothesis\": \"K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效\", \"parent\": \"sica_expanded_14b\", \"reproduce\": {\"finished_at\": \"2026-05-17T02:10:05.417Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T02:10:05.719Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T02:10:07.161307+00:00\"}]}, \"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}, \"notes\": \"K-ablation 实际完成（EXIT_CODE=129 为 SIGHUP 假失败，同 sica_expanded_14b 模式）。结果：SICA ≤ SC for all K。K=11(奇数)验证 tiebreak 无贡献(gap=0)。K=12/16/20 SICA 退化 -3~5pp，表明更多 traces 引入更多低质量约束反而有害。直接强化 C1 (mechanism vacuous)。Artifact: art_20260517_2c1577。\"}, \"exp-011-llama8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:00:32.450Z\", \"updated_at\": \"2026-05-17T03:00:35.641Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific\", \"parent\": \"sica_expanded_14b\", \"notes\": \"Prep done by worker_prep_exp-011-llama8b_20260516T204635. Model: LLaMA-3.1-8B-Instruct (14GB, 4 shards). Script: /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh. Dataset: D012 (30 PW + 30 FOLIO = 60 题). 预估 ~25-30GB GPU, ~1-1.5h runtime. 等 sica_k_sensitivity_14b 完成后启动。\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T02:56:05.600Z\", \"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T02:58:40.441Z\", \"training_hours\": 0.04}, \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"266576\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b.log\", \"submitted_at\": \"2026-05-17T02:56:07.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 154.1, \"gpu_hours\": 0.04}, \"pid\": \"266576\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-011-llama8b.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T02:58:41.363Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T02:58:43.037174+00:00\"}]}}, \"exp-016-weighted-sc\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:01:51.841Z\", \"updated_at\": \"2026-05-17T01:02:16.162Z\", \"hypothesis\": \"加权投票变体(inverse-length/length-weighted/constraint-count)是否比 uniform SC 有统计显著优势——验证简单启发式能否替代 SICA 或超越 SC\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}, \"notes\": \"exp-016 weighted SC baselines 完成。804题上所有加权变体 vs SC/SICA 均不显著(p>0.05)。Length-weighting 反而 -1pp（长 trace 略不可靠），inv-length +0.5pp 但非显著。结论：简单启发式加权不能替代也不能超越 uniform voting。支持 C1 (mechanism vacuous) — 问题不在聚合方式，而在约束质量本身。Artifacts: art_20260516_c7cc07 (report), art_20260516_7eef43 (data).\", \"spec\": {\"checkpoint_path\": \"N/A (analysis on existing traces)\", \"log_path\": \"N/A\", \"command\": \"python scripts/weighted_sc_baseline.py\", \"server\": \"westd-32608\", \"data_path\": \"exp-001 traces (804 problems)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct (reuse)\", \"seed\": \"N/A\"}, \"completed_at\": \"2026-05-17T01:02:16.162Z\"}, \"exp-005\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T20:52:36.217Z\", \"updated_at\": \"2026-05-16T20:53:22.616Z\", \"hypothesis\": \"QwQ-32B 作为 reasoning model 展示 SICA 的 operating regime boundary: 模型过强→diversity 消失→SICA≡SC\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"command\": \"CPU-only data analysis: aggregate QwQ-32B negative results\", \"server\": \"westd-32608\", \"data_path\": \"results/aime30_v2.json + results/proofwriter_30_v2.json + results/folio_livetest.json + results/diversity_diagnosis.json\", \"data_count\": 46, \"model_name\": \"QwQ-32B (analysis target) vs Qwen2.5-14B-Instruct (comparison)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A (CPU-only analysis, no model checkpoint)\", \"eval_data\": \"Aggregated outputs from sica_aime30_v3 (22q), sica_proofwriter30_v2 (17q), sica_folio30 (2q), sica_temp_diversity (5q)\"}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"artifacts/exp-005/data/operating_regime_data.json + artifacts/exp-005/report/operating_regime_report.md\", \"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}, \"conclusion\": \"negative\", \"notes\": \"exp-005 Operating Regime Analysis 完成。QwQ-32B 综合 46 题数据：effective C0=2.6%，远低于 20% 阈值。数学域 SICA≡SC (Δ=0pp, AIME 22题)，逻辑域 SICA&lt;SC (Δ=−5.9pp, PW 17题)。对比 Qwen2.5-14B C0=46% (17.7x)。直接支持 paper Claim 2 (operating regime boundary)。Artifacts: art_20260516_bf444f (data), art_20260516_d6966d (report)。\", \"completed_at\": \"2026-05-16T20:53:22.616Z\"}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T20:26:35.414Z\", \"updated_at\": \"2026-05-16T20:27:11.828Z\", \"spec\": {\"command\": \"python scripts/extract_constraints_for_ablation.py\", \"server\": \"westd-32608\", \"data_path\": \"results/sica_expanded_14b/\", \"data_count\": 804, \"model_name\": \"N/A (CPU ablation on exp-001 outputs)\", \"seed\": \"N/A\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/constraint_ablation.json\", \"completed_at\": \"2026-05-16T20:26:58.473Z\", \"hypothesis\": \"exp-013: MaxSAT 加权聚合是否比 count-only 或 random-weight 有显著优势？验证 SICA 核心机制（约束加权）的实际贡献\", \"parent\": \"sica_expanded_14b\", \"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7637, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"agreement_802_of_804\": true, \"mcnemar_p_all_gt_0.7\": true, \"note\": \"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\"}, \"notes\": \"exp-013 constraint ablation 完成。804题上 MaxSAT(76.49%) ≈ count-only(76.62%) ≈ random-weight(76.37%) ≈ SC(76.24%)。802/804 题三种方法结果一致，McNemar p>0.7。直接支持 C1 claim (mechanism vacuous): MaxSAT 优化相对简单计数无统计显著优势。限制：exp-001 未存 raw constraints，count-only/random-weight 使用近似公式。\"}, \"sica_folio30\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:08:43.460Z\", \"updated_at\": \"2026-05-16T04:42:53.530Z\", \"hypothesis\": \"逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"hypothesis\": \"FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12\", \"dataset\": \"FOLIO (yale-nlp/FOLIO validation subset)\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_subset.json\", \"data_count\": 30, \"label_distribution\": {\"True\": 10, \"False\": 10, \"Unknown\": 10}, \"has_fol_annotations\": true, \"model_name\": \"QwQ-32B\", \"server\": \"westd-32608\", \"command\": \"python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json\", \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 12288, \"seed\": 42, \"eval_script\": \"/root/symb_invariant_consensus/eval_folio.py\", \"dry_run_passed\": true, \"live_test_passed\": true, \"live_test_result\": \"2/2 correct (SICA=100%, SC=100%), pipeline all stages functional\"}, \"notes\": \"废弃：QwQ-32B spec（max_tokens=12288），已被 sica_d012_14b（Qwen2.5-14B-Instruct 全量 D012 评估）覆盖。QwQ-32B 全域 C0 FAIL (3.6%)，模型已 pivot。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T04:42:50.715Z\"}, \"sica_d016_c0_precheck\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:00:14.192Z\", \"updated_at\": \"2026-05-16T04:01:11.163Z\", \"hypothesis\": \"D016 模型 pivot C0 预检：Qwen2.5-14B-Instruct 在逻辑域是否产生足够 trace 多样性（多候选率 ≥20%）\", \"parent\": \"sica_proofwriter30_v2\", \"spec\": {\"command\": \"python sica_pipeline.py --data folio_subset.json+proofwriter_subset.json --K 6 --T 0.7 --max-tokens 4096 --model Qwen2.5-14B-Instruct\", \"server\": \"westd-32608\", \"data_path\": \"data/folio_subset.json (10q) + data/proofwriter_subset.json (16q)\", \"data_count\": 26, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"model_path\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"hyperparams\": {\"K\": 6, \"T\": 0.7, \"max_tokens\": 4096, \"max_model_len\": 8192}, \"checkpoint_source\": \"N/A (inference-only, no checkpoint)\", \"eval_data\": \"FOLIO-10 + ProofWriter-16 (C0 precheck subset)\"}, \"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}, \"conclusion\": \"success\", \"notes\": \"C0 PASS: Qwen2.5-14B-Instruct 多候选率 46% (FOLIO 40%, ProofWriter 50%)，远超 20% 阈值。对比 QwQ-32B 全域 3.6%，提升 12.8x。SC accuracy 73% (FOLIO 80%, PW 69%)。Smoke test 2题 SICA pipeline 端到端通过。vLLM PID 174291, 27.6 GiB, max-model-len=8192。Report: art_20260516_e2774d。\", \"checkpoint_path\": \"N/A (inference-only precheck, no checkpoint)\", \"log_path\": \"artifacts/_project/report/d016_model_pivot_report.md (art_20260516_e2774d)\", \"completed_at\": \"2026-05-16T04:01:11.163Z\"}, \"sica_proofwriter30_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:19:01.325Z\", \"updated_at\": \"2026-05-16T01:38:43.002Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）\", \"parent\": \"sica_proofwriter30\", \"spec\": {\"command\": \"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 12288 --seed 42 --save-intermediates --output results/proofwriter_30_v2.json\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"155077\", \"log_path\": \"/root/runs/symb_invariant_consensus/proofwriter30_v2.log\", \"submitted_at\": \"2026-05-15T22:19:16.529Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"method\": \"SICA\", \"model_name\": \"QwQ-32B\", \"data_path\": \"/root/symb_invariant_consensus/data/proofwriter_subset.json\", \"data_count\": 30, \"seed\": 42, \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 12288, \"domain\": \"logic\", \"extraction_prompt\": \"LOGIC_EXTRACTION_PROMPT\", \"z3_timeout_s\": 60, \"checkpoint_source\": \"N/A (new SICA logic domain experiment, retry of sica_proofwriter30 with fixed max_tokens)\", \"eval_data\": \"ProofWriter D5 30 problems (T:10 F:10 U:10)\", \"wall_clock_seconds\": 11503.9, \"gpu_hours\": 3.2}, \"notes\": \"16/30 killed (Director 指令)。D012 四项全 FAIL。MaxSAT 根因诊断结论：三层问题叠加——(1) 约束提取失败 54.4%，QwQ-32B 收到 extraction prompt 后重新推理而非输出 JSON，3/4 多候选题提取为零；(2) 一致投票=一致约束，14/17 题 12/12 同一答案，约束天然不矛盾（正确行为非 bug）；(3) 评分偏差，唯一 SICA≠SC 的题 498_Q8，SICA 给少数派 38 分 > 多数派 27 分，因提取失败非随机。MaxSAT 求解器本身无 bug（注入测试 6/6 通过）。推荐修复：L3 自动注入 answer==trace_answer 约束使不同答案 trace 必有冲突；L1 提取用 system prompt 强制 JSON-only。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T01:31:00.468Z\"}, \"sica_proofwriter30\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:08:42.831Z\", \"updated_at\": \"2026-05-15T22:18:19.326Z\", \"hypothesis\": \"逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性\", \"parent\": \"sica_aime30_v3\", \"spec\": {\"command\": \"python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 16384 --seed 42 --save-intermediates --output results/proofwriter_30_eval.json\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"153924\", \"log_path\": \"/root/runs/symb_invariant_consensus/proofwriter30.log\", \"submitted_at\": \"2026-05-15T22:11:44.644Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"method\": \"SICA\", \"model_name\": \"QwQ-32B\", \"data_path\": \"/root/symb_invariant_consensus/data/proofwriter_subset.json\", \"data_count\": 30, \"seed\": 42, \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 16384, \"domain\": \"logic\", \"extraction_prompt\": \"LOGIC_EXTRACTION_PROMPT\", \"z3_timeout_s\": 60, \"checkpoint_source\": \"N/A (not eval - new SICA logic domain experiment)\", \"eval_data\": \"ProofWriter D5 30 problems (T:10 F:10 U:10)\", \"wall_clock_seconds\": 378.0, \"gpu_hours\": 0.1}, \"reproduce\": {\"finished_at\": \"2026-05-15T22:15:57.895Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:15:58.664228+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T22:18:02.631Z\", \"notes\": \"配置错误导致完全失败。--max-tokens 16384 等于 vLLM 的 --max-model-len 16384，prompt 输入空间为 0，所有 30 题从第 1 题起全部 400 Bad Request。没有生成任何 trace，没有提取约束，没有投票。4 分钟内跑完（全是 retry 耗时）。无法评估 sanity check 标准。需要用 --max-tokens 12288 或更小值重跑（AIME 实验用的 10240 正常工作）。\", \"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}, \"checkpoint_path\": \"/root/symb_invariant_consensus/results/proofwriter_30_eval.json\", \"log_path\": \"/root/runs/symb_invariant_consensus/proofwriter30.log\"}, \"sica_aime30_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:13:04.296Z\", \"updated_at\": \"2026-05-15T22:07:55.967Z\", \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）\", \"spec\": {\"command\": \"PYTHONUNBUFFERED=1 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --seed 42 --resume\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"129992\", \"log_path\": \"/root/runs/symb_invariant_consensus/sica_aime30_v2_resume.log\", \"account\": \"root\", \"method\": \"SICA\", \"model_name\": \"QwQ-32B\", \"data_path\": \"/root/symb_invariant_consensus/data/aime2024_subset.json\", \"data_count\": 30, \"seed\": 42, \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 10240, \"fixes\": \"timeout=1800s; n=4 batching on disk but not loaded by running process\", \"resumed_from\": \"sica_aime30_v2 (4/30 completed)\", \"remaining_problems\": 26}, \"parent\": \"sica_aime30_v2\", \"notes\": \"v3 killed at 22/30 (PID 129992, 6h11m). Vote diversity analysis: multi-candidate rate = 0.0%, all valid problems have exactly 1 candidate. SICA≡SC confirmed structural. 6/22 problems with 0 votes (extraction failure). 数学域结论锁定，转逻辑域。\", \"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T22:07:52.491Z\"}, \"sica_aime30_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:24:26.526Z\", \"updated_at\": \"2026-05-15T16:11:32.132Z\", \"spec\": {\"command\": \"PYTHONUNBUFFERED=1 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --seed 42\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"121139\", \"log_path\": \"/tmp/sica_aime30_v2.log\", \"submitted_at\": \"2026-05-15T13:24:26.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"method\": \"SICA\", \"model_name\": \"QwQ-32B\", \"data_path\": \"/root/symb_invariant_consensus/data/aime2024_subset.json\", \"data_count\": 30, \"k\": 12, \"temperature\": 0.7, \"max_tokens\": 10240, \"seed\": null, \"seed_note\": \"--seed 42 在命令行中但 run_full_mvp.py 可能未实现该参数，实际 seed 未生效\", \"fixes\": \"timeout=120s HTTP, future timeout=180s, semaphore(6), vLLM health check\", \"wall_clock_seconds\": 8899.6, \"gpu_hours\": 2.47}, \"hypothesis\": \"AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）\", \"conclusion\": \"killed\", \"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:52:45.450Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-15T15:52:46.068Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:52:46.737218+00:00\"}]}, \"notes\": \"失败原因: Problem 5 (aime2024_II_05, 凸六边形几何题) 12条并发trace在单GPU上竞争资源→每条trace吞吐极低→客户端~600s超时后重试→旧请求仍在vLLM running→恶性循环卡死~1h47min | 已有成果: 4/30题完成 SICA 3/4=75% SC 3/4=75%, P2有Z3Exception(0 constraints extracted) | vLLM本身健康(test request <1s) | 建议: 降低并发k或分批处理trace(如4条/批), 增大client timeout, kill stuck requests后重启\"}, \"sica_aime30_t07\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:38:16.330Z\", \"updated_at\": \"2026-05-15T13:11:37.911Z\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_t07.json --no-proofwriter\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"119338\", \"log_path\": \"~/runs/symb_invariant_consensus/sica_aime30_t07.log\", \"submitted_at\": \"2026-05-15T13:01:07.184Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/aime2024_subset.json\", \"data_count\": 30, \"model_name\": \"QwQ-32B\", \"seed\": null, \"wall_clock_seconds\": 630.7, \"gpu_hours\": 0.18}, \"hypothesis\": \"AIME 2024（QwQ-32B 弱项，~79.5% acc）上 SICA 能否检测更多跨路径矛盾并超越 SC@K=12——验证\\\"SICA 价值随问题难度递增\\\"假设\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T13:11:37.911Z\"}, \"mvp_math50_t07\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:16:29.416Z\", \"updated_at\": \"2026-05-15T12:21:37.283Z\", \"spec\": {\"command\": \"nohup python3 run_full_mvp.py --mode vllm --k 12 --output results/mvp_math50_t07.json > /tmp/mvp_math50.log 2>&1 &\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/data/math500_subset.json\", \"data_count\": 50, \"model_name\": \"QwQ-32B\", \"seed\": 42, \"method\": \"SICA\", \"checkpoint_path\": \"results/mvp_math50_t07.json\", \"log_path\": \"/tmp/mvp_math50.log\", \"temperature\": 0.7, \"k\": 12}, \"hypothesis\": \"SICA MVP: 50题MATH-500上跨路径MAX-SAT约束共识能否检测矛盾并超越SC@K=12\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:21:37.283Z\"}, \"sica_smoke_5q\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:38:43.996Z\", \"updated_at\": \"2026-05-15T11:39:13.456Z\", \"spec\": {\"command\": \"python3 smoke_test_5q.py (nohup)\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/data/math500_subset.json\", \"data_count\": 5, \"model_name\": \"QwQ-32B\", \"seed\": 42, \"method\": \"SICA\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/smoke_test_5q.log\"}, \"hypothesis\": \"SICA smoke test: 验证端到端 pipeline 可行性（5题 MATH-500, K=12, QwQ-32B）\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T11:39:07.006Z\", \"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:22:09.665Z\", \"updated_at\": \"2026-05-15T11:22:09.666Z\", \"conclusion\": \"failed\"}, \"crd_folio_main\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:35:42.037Z\", \"updated_at\": \"2026-05-15T09:36:24.832Z\", \"spec\": {\"command\": \"python run_pipeline.py (CRD dual-representation pipeline)\", \"server\": \"westd-32608\", \"data_path\": \"/root/autodl-tmp/crdd/results/mvp_v4_full.jsonl\", \"data_count\": 204, \"model_name\": \"Qwen3-32B-AWQ\", \"seed\": 42, \"method\": \"CRD\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/crdd/results/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:36:03.793Z\", \"hypothesis\": \"CRD: 双表征(FOL+SymPy)分歧检测+定向修复能提升逻辑推理准确率（非SICA方法）\", \"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 35, \"total\": 35, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1438}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DnaZurASqyNWrACrbB5Lqt`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7b622392-3120-4092-a819-64681073f656",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfRP9YmtbQJvrySmTjAt75",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 24570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1531
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T13:20:26.985Z_
+
+<details><summary>↩ Tool result · `toolu_01DnaZurASqyNWrACrbB5Lqt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aime30_t07.json\\naime30_v2.json\\naime30_v2_partial_backup.json\\naime30_v2_rescore_analysis.json\\nanalysis_expanded.json\\nc0_precheck_qwen14b.json\\ncompute_quality_metrics.py\\nconstraint_ablation.json\\nconstraint_cache\\nconstraint_cache_consolidated.json\\nconstraint_quality_correlation\\nd016_smoke_test.json\\ndiversity_diagnosis.json\\nexp001_analysis.md\\nexp009_overhead\\nexp010_mistral\\nexp011_llama8b\\nexp014_deepseek_r1_7b\\nexp015_logic_lm\\nexp017_strategyqa\\nexp018_arc\\nexp019_constraint_quality_analysis.json\\nexp019_constraint_quality_summary.csv\\nexp019_strategyqa_200\\nexp020_folio_200\\nfolio_livetest.json\\nk_ablation\\npilot_constraint_filtering\\npilot_contrastive\\nproofwriter_30_v2.json\\nproofwriter_5_l3l1_fix.json\\nqwq_operating_regime.json\\nqwq_operating_regime.md\\nrescore_pure_results.json\\nsica_d012_14b.json\\nsica_expanded_14b.json\\nsmoke_test_5q.json\\ntiebreak_analysis.json\\nweighted_sc_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "65311929-c648-4745-9ab6-af540c578633",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aime30_t07.json\\\\naime30_v2.json\\\\naime30_v2_partial_backup.json\\\\naime30_v2_rescore_analysis.json\\\\nanalysis_expanded.json\\\\nc0_precheck_qwen14b.json\\\\ncompute_quality_metrics.py\\\\nconstraint_ablation.json\\\\nconstraint_cache\\\\nconstraint_cache_consolidated.json\\\\nconstraint_quality_correlation\\\\nd016_smoke_test.json\\\\ndiversity_diagnosis.json\\\\nexp001_analysis.md\\\\nexp009_overhead\\\\nexp010_mistral\\\\nexp011_llama8b\\\\nexp014_deepseek_r1_7b\\\\nexp015_logic_lm\\\\nexp017_strategyqa\\\\nexp018_arc\\\\nexp019_constraint_quality_analysis.json\\\\nexp019_constraint_quality_summary.csv\\\\nexp019_strategyqa_200\\\\nexp020_folio_200\\\\nfolio_livetest.json\\\\nk_ablation\\\\npilot_constraint_filtering\\\\npilot_contrastive\\\\nproofwriter_30_v2.json\\\\nproofwriter_5_l3l1_fix.json\\\\nqwq_operating_regime.json\\\\nqwq_operating_regime.md\\\\nrescore_pure_results.json\\\\nsica_d012_14b.json\\\\nsica_expanded_14b.json\\\\nsmoke_test_5q.json\\\\ntiebreak_analysis.json\\\\nweighted_sc_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"aime30_t07.json\\naime30_v2.json\\naime30_v2_partial_backup.json\\naime30_v2_rescore_analysis.json\\nanalysis_expanded.json\\nc0_precheck_qwen14b.json\\ncompute_quality_metrics.py\\nconstraint_ablation.json\\nconstraint_cache\\nconstraint_cache_consolidated.json\\nconstraint_quality_correlation\\nd016_smoke_test.json\\ndiversity_diagnosis.json\\nexp001_analysis.md\\nexp009_overhead\\nexp010_mistral\\nexp011_llama8b\\nexp014_deepseek_r1_7b\\nexp015_logic_lm\\nexp017_strategyqa\\nexp018_arc\\nexp019_constraint_quality_analysis.json\\nexp019_constraint_quality_summary.csv\\nexp019_strategyqa_200\\nexp020_folio_200\\nfolio_livetest.json\\nk_ablation\\npilot_constraint_filtering\\npilot_contrastive\\nproofwriter_30_v2.json\\nproofwriter_5_l3l1_fix.json\\nqwq_operating_regime.json\\nqwq_operating_regime.md\\nrescore_pure_results.json\\nsica_d012_14b.json\\nsica_expanded_14b.json\\nsmoke_test_5q.json\\ntiebreak_analysis.json\\nweighted_sc_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me extract the multi_candidate_rate values from the registry, and then look at the actual result files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4ed07890-38bf-4dac-aa3d-33fe84629b5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Registry 数据太大，我用 subagent 提取 multi_candidate_rate，同时开始查看服务器上的实验结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7e5c3769-d589-4845-81b6-ffe96970cece",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012ngHxsiyZzXr6RjjF8S8Rz`</summary>
+
+```json
+{
+  "description": "Extract multi_candidate_rate from registry",
+  "prompt": "Extract all experiments' multi_candidate_rate values from the registry JSON file at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nThe file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nFor each experiment, I need:\n- exp_id\n- multi_candidate_rate (look in metrics or any nested field)\n- model name\n- dataset info\n- number of questions\n\nReturn a clean table with all experiments and their multi_candidate_rate values. If multi_candidate_rate is not present for an experiment, note that too.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "0b4da81c-2072-4b53-aae4-fa387f2cad55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 15_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Extract multi_candidate_rate from registry",
+  "task_type": "local_agent",
+  "prompt": "Extract all experiments' multi_candidate_rate values from the registry JSON file at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nThe file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nFor each experiment, I need:\n- exp_id\n- multi_candidate_rate (look in metrics or any nested field)\n- model name\n- dataset info\n- number of questions\n\nReturn a clean table with all experiments and their multi_candidate_rate values. If multi_candidate_rate is not present for an experiment, note that too.",
+  "uuid": "04056086-9665-418f-8704-96dbdcfd8f01",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+## Round 1
+
+108 recorded events
+
+### User
+
+_source line 16 · 2026-05-17T13:20:36.064Z_
+
+Extract all experiments' multi_candidate_rate values from the registry JSON file at:
+/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt
+
+The file is JSON with schema: {result: string}. The "result" field is itself a JSON string that needs to be parsed.
+
+For each experiment, I need:
+- exp_id
+- multi_candidate_rate (look in metrics or any nested field)
+- model name
+- dataset info
+- number of questions
+
+Return a clean table with all experiments and their multi_candidate_rate values. If multi_candidate_rate is not present for an experiment, note that too.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7898b30b-2242-4587-b379-ede5bf9fe575"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011e9gjdjDAL6Gwedp2kxGvr`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp010_mistral/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d0a4d9f2-ca51-4525-a59e-75478713232e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JbKKzH7ctcwco92VfMCf9n`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp017_strategyqa/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "006b7e76-fd58-441a-8d0a-e069db4afabd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WFvip57LrMTd924MFFRhTG`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp018_arc/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "00f127b7-650d-4b60-bcb6-70acd49057cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTnyisjTo9q66ANrTcmhkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 26101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 20_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 15635,
+    "tool_uses": 1,
+    "duration_ms": 3044
+  },
+  "last_tool_name": "Read",
+  "uuid": "17904aa4-023f-4893-b4a6-846d2f22ef13",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PQyiGfPGCFQRcqJJAn5HUS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "b2ace19f-4b21-4883-a04d-002519953e6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmFJKeExq3V6Zhj4u7PUXb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15573,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15573,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T13:20:39.371Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PQyiGfPGCFQRcqJJAn5HUS`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "ea908c86-c619-4f92-b886-65e886020f44",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 23_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 16745,
+    "tool_uses": 2,
+    "duration_ms": 6171
+  },
+  "last_tool_name": "Read",
+  "uuid": "796c29c5-644c-4175-9741-cbf920b01878",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0161VQyPryJFAVvXrGRZbz44`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "limit": 200,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4bb9556f-6383-4c9e-84b7-9f471e2e510b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rPyyqaQC5fEcXZcsv1T4o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 15573,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1059,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T13:20:42.622Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0161VQyPryJFAVvXrGRZbz44`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "27896670-09e6-4de5-8581-456970862a19",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 26_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 17052,
+    "tool_uses": 3,
+    "duration_ms": 9272
+  },
+  "last_tool_name": "Read",
+  "uuid": "92a862bd-1454-44d3-84e2-b0d9b2f5b41d",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QGdin9dwkcTSiFanjvkr97`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "limit": 100,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "977250e8-24a4-4d1c-b594-ec648587f0bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCJwpxd1Bp4YwfyUjE8exZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 16632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T13:20:45.616Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QGdin9dwkcTSiFanjvkr97`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d7e34906-f6cc-43f2-96f0-bb00b5a4eb85",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Count lines in registry file",
+  "usage": {
+    "total_tokens": 17345,
+    "tool_uses": 4,
+    "duration_ms": 12500
+  },
+  "last_tool_name": "Bash",
+  "uuid": "534db8f0-0290-4500-8f1d-d79c14505f11",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XxS3YFdAg7VCLxc9PgX24V`</summary>
+
+```json
+{
+  "command": "wc -l \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\"",
+  "description": "Count lines in registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7367bc47-35c5-469c-bd88-5f200ebc363b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171FK3cNkDA3XSaBuw1wgmi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 16867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T13:20:48.747Z_
+
+<details><summary>↩ Tool result · `toolu_01XxS3YFdAg7VCLxc9PgX24V`</summary>
+
+```text
+0 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e786503c-d9a1-4e48-80b5-dfa138821b68"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 32_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Parse JSON structure of registry file",
+  "usage": {
+    "total_tokens": 17614,
+    "tool_uses": 5,
+    "duration_ms": 20573
+  },
+  "last_tool_name": "Bash",
+  "uuid": "fffe50d4-04b1-4902-af05-05da761ee4d9",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PtSKwJYEgdFTqowci3qr6D`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\n# The 'result' field is itself a JSON string\ninner = json.loads(data['result'])\n\n# Explore structure\nif isinstance(inner, dict):\n    print('Top-level keys:', list(inner.keys())[:20])\n    for k, v in inner.items():\n        print(f'  {k}: type={type(v).__name__}', end='')\n        if isinstance(v, list):\n            print(f', len={len(v)}')\n        elif isinstance(v, dict):\n            print(f', keys={list(v.keys())[:5]}')\n        else:\n            print(f', value={str(v)[:100]}')\nelif isinstance(inner, list):\n    print(f'Top-level: list, len={len(inner)}')\n    if len(inner) > 0:\n        print('First item keys:', list(inner[0].keys()) if isinstance(inner[0], dict) else type(inner[0]))\n\" 2>&1",
+  "description": "Parse JSON structure of registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e2243932-de67-4037-a3da-bff232f4fe8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E2ErNpRoTBE2zgT2cmaRzU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 267,
+      "cache_read_input_tokens": 17102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 267,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T13:20:56.757Z_
+
+<details><summary>↩ Tool result · `toolu_01PtSKwJYEgdFTqowci3qr6D`</summary>
+
+```text
+Top-level keys: ['success', 'data', 'error', 'metadata']
+  success: type=bool, value=True
+  data: type=dict, keys=['experiments', 'count', 'total', 'baseline']
+  error: type=NoneType, value=None
+  metadata: type=dict, keys=['elapsed_seconds']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "5a427531-0c80-41e1-9b15-4c39f20c4121"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Explore experiments structure",
+  "usage": {
+    "total_tokens": 18224,
+    "tool_uses": 6,
+    "duration_ms": 29905
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c4d48eb6-9bc9-4e02-9d1f-f21e08beccb2",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DzhiWNPtv8qNLoVhsKuCnK`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\nprint(f'Number of experiments: {len(experiments)}')\nprint()\n\n# Look at first experiment structure\nif experiments:\n    exp0 = experiments[0]\n    print('First experiment keys:', list(exp0.keys()))\n    print()\n    # Print full first experiment\n    print(json.dumps(exp0, indent=2)[:3000])\n\" 2>&1",
+  "description": "Explore experiments structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d9d72927-a132-4e9c-8521-280344186e84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018z3EtF1iD4umr4F58a2pub",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 17369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 538,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T13:21:06.231Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DzhiWNPtv8qNLoVhsKuCnK`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 14, in &lt;module>
+    exp0 = experiments[0]
+           ~~~~~~~~~~~^^^
+KeyError: 0
+Number of experiments: 35
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "421bee5d-b727-4537-bf83-7e0d2a6956c9",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 14, in &lt;module>\n    exp0 = experiments[0]\n           ~~~~~~~~~~~^^^\nKeyError: 0\nNumber of experiments: 35"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Explore experiments dict structure",
+  "usage": {
+    "total_tokens": 18674,
+    "tool_uses": 7,
+    "duration_ms": 35995
+  },
+  "last_tool_name": "Bash",
+  "uuid": "84aed92b-93c7-4d13-8df5-7ef35ef25c52",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017wVFFUgL14BacnBj78XGTL`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\nprint(f'Type: {type(experiments).__name__}')\nprint(f'Number of experiments: {len(experiments)}')\n\n# It's a dict\nexp_ids = list(experiments.keys())\nprint('Experiment IDs:', exp_ids[:5])\nprint()\n\n# Look at first experiment\nfirst_id = exp_ids[0]\nexp0 = experiments[first_id]\nprint(f'First exp ({first_id}) keys:', list(exp0.keys()))\nprint()\nprint(json.dumps(exp0, indent=2)[:3000])\n\" 2>&1",
+  "description": "Explore experiments dict structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "747e92ee-db87-465f-9509-cb8c053a1dca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aZFFADVhTh2EfWeruLpj2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 17907,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 377,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T13:21:12.155Z_
+
+<details><summary>↩ Tool result · `toolu_017wVFFUgL14BacnBj78XGTL`</summary>
+
+```text
+Type: dict
+Number of experiments: 35
+Experiment IDs: ['exp-009-overhead-analysis', 'exp-014-deepseek-r1-7b', 'exp-020-llama8b-folio-204', 'exp-019-llama8b-strategyqa-200', 'exp-010-mistral-v3']
+
+First exp (exp-009-overhead-analysis) keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'metrics', 'conclusion', 'notes', 'spec', 'checkpoint_path', 'log_path', 'completed_at']
+
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-17T11:51:43.293Z",
+  "updated_at": "2026-05-17T12:01:08.521Z",
+  "hypothesis": "SICA pipeline \u7684 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving \u5404\u5360\u591a\u5c11\u2014\u2014\u91cf\u5316 SICA \u76f8\u5bf9 SC \u7684\u989d\u5916\u8ba1\u7b97\u6210\u672c",
+  "metrics": {
+    "n": 804,
+    "mean_total_wall_s": 61.6,
+    "mean_trace_gen_s": 31.6,
+    "trace_gen_pct": 51.3,
+    "mean_extract_s": 29,
+    "extract_pct": 47,
+    "mean_dedup_s": 1,
+    "dedup_pct": 1.6,
+    "mean_maxsat_s": 0.003,
+    "maxsat_pct": 0.005,
+    "sica_overhead_s": 30,
+    "sica_overhead_pct": 48.7,
+    "pw_overhead_pct": 51.3,
+    "folio_overhead_pct": 38.6,
+    "p50_overhead_pct": 48.9,
+    "p90_overhead_pct": 57.6
+  },
+  "conclusion": "success",
+  "notes": "SICA overhead \u5206\u6790 (804\u9898)\uff1a\u603b\u65f6\u95f4 61.6s/\u9898\uff0c\u5176\u4e2d trace \u751f\u6210 31.6s (51.3%)\uff0c\u7ea6\u675f\u63d0\u53d6 29.0s (47.0%)\uff0c\u53bb\u91cd 1.0s (1.6%)\uff0cMaxSAT 0.003s (\u22480%)\u3002SICA vs SC \u591a\u82b1 30.0s/\u9898 (+48.7%)\uff0c\u5f00\u9500\u51e0\u4e4e\u5168\u90e8\u6765\u81ea constraint extraction LLM \u8c03\u7528\u3002MaxSAT \u6c42\u89e3\u53ef\u5ffd\u7565\u3002\u8bba\u6587 insight\uff1aSICA \u7684\u8ba1\u7b97\u74f6\u9888\u4e0d\u5728 formal reasoning (SAT) \u800c\u5728 LLM extraction\uff0c\u4e14 extraction \u4ea7\u51fa\u7684\u7ea6\u675f\u7f3a\u4e4f\u5224\u522b\u529b\u2014\u2014\u9ad8\u6210\u672c\u4f4e\u56de\u62a5\u3002",
+  "spec": {
+    "command": "CPU-only analysis of exp-001 timing data",
+    "server": "westd-32608",
+    "data_path": "/root/symb_invariant_consensus/results/",
+    "data_count": 804,
+    "model_name": "Qwen2.5-14B-Instruct",
+    "seed": 42
+  },
+  "checkpoint_path": "N/A (CPU-only analysis)",
+  "log_path": "N/A (CPU-only analysis)",
+  "completed_at": "2026-05-17T12:01:08.521Z"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "5c6b3147-a09e-47dc-843f-d36447ed0bca"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Search for multi_candidate_rate across all experiments",
+  "usage": {
+    "total_tokens": 20311,
+    "tool_uses": 8,
+    "duration_ms": 46925
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f18c9e24-431e-4918-8cec-0784c3410ebe",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LG96w54oh2P8ShAwokis14`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# Search for multi_candidate_rate in all experiments\nfor exp_id, exp in experiments.items():\n    metrics = exp.get('metrics', {})\n    if metrics and 'multi_candidate_rate' in str(metrics):\n        print(f'{exp_id}: multi_candidate_rate found in metrics')\n    \n    # Also search in notes, conclusion, spec\n    full_str = json.dumps(exp)\n    if 'multi_candidate_rate' in full_str:\n        print(f'{exp_id}: multi_candidate_rate found somewhere')\n    if 'multi_candidate' in full_str:\n        print(f'{exp_id}: multi_candidate found somewhere')\n\" 2>&1",
+  "description": "Search for multi_candidate_rate across all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "3780bdc8-23e2-4371-a00c-09473207e288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LYvomMXM1L5PjR1rm8aCdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1564,
+      "cache_read_input_tokens": 18284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1564,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T13:21:23.117Z_
+
+<details><summary>↩ Tool result · `toolu_01LG96w54oh2P8ShAwokis14`</summary>
+
+```text
+exp-020-llama8b-folio-204: multi_candidate_rate found in metrics
+exp-020-llama8b-folio-204: multi_candidate_rate found somewhere
+exp-020-llama8b-folio-204: multi_candidate found somewhere
+exp-010-mistral-v3: multi_candidate_rate found in metrics
+exp-010-mistral-v3: multi_candidate_rate found somewhere
+exp-010-mistral-v3: multi_candidate found somewhere
+exp-011-llama8b-v3: multi_candidate_rate found in metrics
+exp-011-llama8b-v3: multi_candidate_rate found somewhere
+exp-011-llama8b-v3: multi_candidate found somewhere
+exp-018-arc-v2: multi_candidate_rate found in metrics
+exp-018-arc-v2: multi_candidate_rate found somewhere
+exp-018-arc-v2: multi_candidate found somewhere
+exp-017-strategyqa-v3: multi_candidate_rate found in metrics
+exp-017-strategyqa-v3: multi_candidate_rate found somewhere
+exp-017-strategyqa-v3: multi_candidate found somewhere
+sica_d012_14b: multi_candidate_rate found in metrics
+sica_d012_14b: multi_candidate_rate found somewhere
+sica_d012_14b: multi_candidate found somewhere
+sica_d016_c0_precheck: multi_candidate_rate found in metrics
+sica_d016_c0_precheck: multi_candidate_rate found somewhere
+sica_d016_c0_precheck: multi_candidate found somewhere
+sica_proofwriter30: multi_candidate_rate found in metrics
+sica_proofwriter30: multi_candidate_rate found somewhere
+sica_proofwriter30: multi_candidate found somewhere
+sica_aime30_v3: multi_candidate_rate found in metrics
+sica_aime30_v3: multi_candidate_rate found somewhere
+sica_aime30_v3: multi_candidate found somewhere
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "6e6ffaea-3998-47d4-a1dc-e3a2a33b211b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Extract multi_candidate_rate details for matching experiments",
+  "usage": {
+    "total_tokens": 21269,
+    "tool_uses": 9,
+    "duration_ms": 53825
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7ad5f590-ea7b-4b22-9264-ae78da138080",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YBwnyq8Pxq23prNJCiK1Ee`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# For experiments WITH multi_candidate_rate, extract details\nprint('=== Experiments WITH multi_candidate_rate ===')\nprint()\nfor exp_id, exp in experiments.items():\n    metrics = exp.get('metrics', {})\n    if metrics and isinstance(metrics, dict) and 'multi_candidate_rate' in metrics:\n        mcr = metrics['multi_candidate_rate']\n        spec = exp.get('spec', {})\n        model = spec.get('model_name', 'N/A')\n        dataset = spec.get('dataset', spec.get('data_path', 'N/A'))\n        n_questions = metrics.get('n_questions', metrics.get('n', spec.get('data_count', 'N/A')))\n        print(f'exp_id: {exp_id}')\n        print(f'  multi_candidate_rate: {mcr}')\n        print(f'  model: {model}')\n        print(f'  dataset: {dataset}')\n        print(f'  n_questions: {n_questions}')\n        print(f'  status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n        print()\n\" 2>&1",
+  "description": "Extract multi_candidate_rate details for matching experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f6833af6-569d-46ad-ac33-5ba79a8f1653",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lp8H52GdVr2ZytN4x4QDpm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 886,
+      "cache_read_input_tokens": 19848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 886,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T13:21:29.989Z_
+
+<details><summary>↩ Tool result · `toolu_01YBwnyq8Pxq23prNJCiK1Ee`</summary>
+
+```text
+=== Experiments WITH multi_candidate_rate ===
+
+exp_id: exp-020-llama8b-folio-204
+  multi_candidate_rate: 0.618
+  model: meta-llama/Llama-3.1-8B-Instruct
+  dataset: /root/symb_invariant_consensus/data/folio_204.jsonl
+  n_questions: 204
+  status: DONE
+
+exp_id: exp-010-mistral-v3
+  multi_candidate_rate: 0.0667
+  model: Mistral-7B-Instruct-v0.3
+  dataset: D012 (30 ProofWriter + 30 FOLIO)
+  n_questions: 60
+  status: DONE
+
+exp_id: exp-011-llama8b-v3
+  multi_candidate_rate: 0.6167
+  model: N/A
+  dataset: N/A
+  n_questions: 60
+  status: DONE
+
+exp_id: exp-018-arc-v2
+  multi_candidate_rate: 0.0833
+  model: N/A
+  dataset: N/A
+  n_questions: 60
+  status: DONE
+
+exp_id: exp-017-strategyqa-v3
+  multi_candidate_rate: 0.1
+  model: N/A
+  dataset: N/A
+  n_questions: 60
+  status: DONE
+
+exp_id: sica_proofwriter30
+  multi_candidate_rate: N/A (no traces generated)
+  model: QwQ-32B
+  dataset: /root/symb_invariant_consensus/data/proofwriter_subset.json
+  n_questions: 30
+  status: DONE
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1c1b3311-2f55-421c-824b-c140bea82562"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Get remaining experiment details",
+  "usage": {
+    "total_tokens": 22287,
+    "tool_uses": 10,
+    "duration_ms": 63051
+  },
+  "last_tool_name": "Bash",
+  "uuid": "179af7a2-bcfb-4d76-ae34-40d31380a3c3",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014KJhBYUXYajVAkYNBfpvsb`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# Get remaining experiments with multi_candidate_rate\nremaining = ['sica_d012_14b', 'sica_d016_c0_precheck', 'sica_aime30_v3']\nfor exp_id in remaining:\n    exp = experiments[exp_id]\n    metrics = exp.get('metrics', {})\n    spec = exp.get('spec', {})\n    mcr = metrics.get('multi_candidate_rate', 'NOT FOUND')\n    model = spec.get('model_name', 'N/A')\n    dataset = spec.get('dataset', spec.get('data_path', 'N/A'))\n    n_questions = metrics.get('n_questions', metrics.get('n', spec.get('data_count', 'N/A')))\n    print(f'exp_id: {exp_id}')\n    print(f'  multi_candidate_rate: {mcr}')\n    print(f'  model: {model}')\n    print(f'  dataset: {dataset}')\n    print(f'  n_questions: {n_questions}')\n    print(f'  status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    print()\n\n# Now get details for exp-011 and exp-018 and exp-017 which had N/A for model/dataset\nprint('=== Detailed spec/notes for incomplete entries ===')\nfor eid in ['exp-011-llama8b-v3', 'exp-018-arc-v2', 'exp-017-strategyqa-v3']:\n    exp = experiments[eid]\n    print(f'{eid}:')\n    print(f'  spec: {json.dumps(exp.get(\\\"spec\\\", {}), indent=4)}')\n    print(f'  hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")[:200]}')\n    print(f'  notes: {str(exp.get(\\\"notes\\\", \\\"N/A\\\"))[:200]}')\n    print()\n\" 2>&1",
+  "description": "Get remaining experiment details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "df09e7cf-ca9f-49d6-a8ae-876bd2ad583d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Khzq2oYuewtKRCUhWEzUe9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 945,
+      "cache_read_input_tokens": 20734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 945,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T13:21:39.216Z_
+
+<details><summary>↩ Tool result · `toolu_014KJhBYUXYajVAkYNBfpvsb`</summary>
+
+```text
+exp_id: sica_d012_14b
+  multi_candidate_rate: NOT FOUND
+  model: Qwen2.5-14B-Instruct
+  dataset: data/proofwriter_30.json + data/folio_30.json
+  n_questions: 60
+  status: DONE
+
+exp_id: sica_d016_c0_precheck
+  multi_candidate_rate: NOT FOUND
+  model: Qwen2.5-14B-Instruct
+  dataset: data/folio_subset.json (10q) + data/proofwriter_subset.json (16q)
+  n_questions: 26
+  status: DONE
+
+exp_id: sica_aime30_v3
+  multi_candidate_rate: NOT FOUND
+  model: QwQ-32B
+  dataset: /root/symb_invariant_consensus/data/aime2024_subset.json
+  n_questions: 30
+  status: DONE
+
+=== Detailed spec/notes for incomplete entries ===
+exp-011-llama8b-v3:
+  spec: {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp011_llama8b.sh\"",
+    "server": "westd-32608",
+    "gpu": [
+        "cuda:0"
+    ],
+    "pid": "292780",
+    "log_path": "~/runs/symb_invariant_consensus/exp-011-llama8b-v3.log",
+    "submitted_at": "2026-05-17T06:45:49.636Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 4392.6,
+    "gpu_hours": 1.22
+}
+  hypothesis: Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）
+  notes: LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操
+
+exp-018-arc-v2:
+  spec: {
+    "command": "cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh",
+    "server": "westd-32608",
+    "gpu": [
+        "cuda:0"
+    ],
+    "pid": "289541",
+    "log_path": "~/runs/symb_invariant_consensus/exp-018-arc-v2.log",
+    "submitted_at": "2026-05-17T06:19:19.350Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 1433.8,
+    "gpu_hours": 0.4
+}
+  hypothesis: Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）
+  notes: ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度
+
+exp-017-strategyqa-v3:
+  spec: {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh",
+    "server": "westd-32608",
+    "gpu": [
+        "cuda:0"
+    ],
+    "pid": "278827",
+    "log_path": "~/runs/symb_invariant_consensus/exp-017-strategyqa-v3.log",
+    "submitted_at": "2026-05-17T04:18:04.451Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 4267.7,
+    "gpu_hours": 1.19
+}
+  hypothesis: Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）
+  notes: StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "172e4450-4d71-4b19-a40a-ee640fe95a44"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Check where multi_candidate appears in remaining experiments",
+  "usage": {
+    "total_tokens": 24554,
+    "tool_uses": 11,
+    "duration_ms": 75841
+  },
+  "last_tool_name": "Bash",
+  "uuid": "56e53a6b-3ce6-4803-aa32-879cc6fd733c",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018dz9x6g6EkNd9GBFWeiLGA`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# Check sica_d012_14b and sica_d016_c0_precheck and sica_aime30_v3 for multi_candidate in metrics\nfor eid in ['sica_d012_14b', 'sica_d016_c0_precheck', 'sica_aime30_v3']:\n    exp = experiments[eid]\n    metrics = exp.get('metrics', {})\n    print(f'{eid} metrics keys: {list(metrics.keys()) if isinstance(metrics, dict) else \\\"NOT DICT\\\"}')\n    # Search for multi_candidate anywhere in the full JSON\n    full = json.dumps(exp)\n    idx = full.find('multi_candidate')\n    if idx >= 0:\n        print(f'  Found at idx {idx}: ...{full[max(0,idx-20):idx+80]}...')\n    print()\n\" 2>&1",
+  "description": "Check where multi_candidate appears in remaining experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "54a41494-2aa0-4321-9b90-d8938d446ea3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EKyFkzJ9iA1vXB85KtUy4u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2222,
+      "cache_read_input_tokens": 21679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2222,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T13:21:51.987Z_
+
+<details><summary>↩ Tool result · `toolu_018dz9x6g6EkNd9GBFWeiLGA`</summary>
+
+```text
+sica_d012_14b metrics keys: ['sica_accuracy', 'sc_accuracy', 'sica_sc_gap_pp', 'c0_multi_candidate_rate', 'c1_extraction_rate', 'c2_contradiction_problems', 'c3_gap_pp', 'bootstrap_p', 'proofwriter_sica', 'proofwriter_sc', 'folio_sica', 'folio_sc', 'total_constraints_raw', 'total_constraints_unique', 'maxsat_exclusion_rate', 'wall_time_min', 'd012_verdict']
+  Found at idx 1268: ...c_gap_pp": 3.3, "c0_multi_candidate_rate": 0.5333, "c1_extraction_rate": 1, "c2_contradiction_proble...
+
+sica_d016_c0_precheck metrics keys: ['multi_candidate_rate_combined', 'multi_candidate_rate_folio', 'multi_candidate_rate_proofwriter', 'sc_accuracy_combined', 'sc_accuracy_folio', 'sc_accuracy_proofwriter', 'n_problems', 'n_folio', 'n_proofwriter', 'K', 'T', 'total_time_s', 'c0_gate', 'model', 'vllm_gpu_mem_gib', 'smoke_test']
+  Found at idx 997: ...et)"}, "metrics": {"multi_candidate_rate_combined": 0.46, "multi_candidate_rate_folio": 0.4, "multi_...
+
+sica_aime30_v3 metrics keys: ['progress', 'sica_accuracy_interim', 'sc_accuracy_interim', 'sica_sc_gap_pp', 'avg_time_per_problem_s', 'runtime_h', 'remaining_problems', 'vote_diversity_analysis', 'process_status']
+  Found at idx 1677: ...tal_problems": 22, "multi_candidate_rate": 0, "zero_vote_problems": 6, "zero_vote_indices": [1, 7, 8...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4b4a9a36-d6f1-4537-89a6-e042ff4cae6a"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Get exact multi_candidate_rate values for remaining experiments",
+  "usage": {
+    "total_tokens": 25604,
+    "tool_uses": 12,
+    "duration_ms": 84502
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a2aebc10-c366-4213-9052-2fc9675e65bf",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0121Qv9PFr48ba1Tqc5txfrV`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# sica_d012_14b: c0_multi_candidate_rate\nexp = experiments['sica_d012_14b']\nm = exp['metrics']\nprint('sica_d012_14b:')\nprint(f'  c0_multi_candidate_rate: {m[\\\"c0_multi_candidate_rate\\\"]}')\n\n# sica_d016_c0_precheck: multiple multi_candidate_rate fields\nexp = experiments['sica_d016_c0_precheck']\nm = exp['metrics']\nprint('sica_d016_c0_precheck:')\nprint(f'  multi_candidate_rate_combined: {m[\\\"multi_candidate_rate_combined\\\"]}')\nprint(f'  multi_candidate_rate_folio: {m[\\\"multi_candidate_rate_folio\\\"]}')\nprint(f'  multi_candidate_rate_proofwriter: {m[\\\"multi_candidate_rate_proofwriter\\\"]}')\n\n# sica_aime30_v3: nested in vote_diversity_analysis\nexp = experiments['sica_aime30_v3']\nm = exp['metrics']\nprint('sica_aime30_v3:')\nvda = m.get('vote_diversity_analysis', {})\nprint(f'  vote_diversity_analysis: {json.dumps(vda, indent=4)}')\n\n# sica_proofwriter30: check what value it has\nexp = experiments['sica_proofwriter30']\nm = exp['metrics']\nprint('sica_proofwriter30:')\nprint(f'  multi_candidate_rate: {m.get(\\\"multi_candidate_rate\\\", \\\"NOT FOUND\\\")}')\nprint(f'  all metrics keys: {list(m.keys())}')\n\" 2>&1",
+  "description": "Get exact multi_candidate_rate values for remaining experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "6037588a-4740-42d9-876f-49e3f765b3a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FEUvuYCJBYbT3e44nQnnn5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 977,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 977,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T13:22:00.666Z_
+
+<details><summary>↩ Tool result · `toolu_0121Qv9PFr48ba1Tqc5txfrV`</summary>
+
+```text
+sica_d012_14b:
+  c0_multi_candidate_rate: 0.5333
+sica_d016_c0_precheck:
+  multi_candidate_rate_combined: 0.46
+  multi_candidate_rate_folio: 0.4
+  multi_candidate_rate_proofwriter: 0.5
+sica_aime30_v3:
+  vote_diversity_analysis: {
+    "valid_problems": 16,
+    "total_problems": 22,
+    "multi_candidate_rate": 0,
+    "zero_vote_problems": 6,
+    "zero_vote_indices": [
+        1,
+        7,
+        8,
+        10,
+        13,
+        14
+    ],
+    "constraints_extracted": "19/22",
+    "exclusion_rate": 0.387,
+    "conclusion": "All 16 valid problems have exactly 1 candidate answer. SICA\u2261SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate."
+}
+sica_proofwriter30:
+  multi_candidate_rate: N/A (no traces generated)
+  all metrics keys: ['sica_accuracy', 'sc_accuracy', 'sica_sc_gap_pp', 'total_wall_time_s', 'total_wall_time_min', 'avg_time_per_problem_s', 'traces_generated', 'constraints_extracted', 'traces_with_constraints', 'unique_constraints', 'maxsat_satisfied', 'maxsat_excluded', 'multi_candidate_rate', 'vote_diversity', 'z3_errors', 'z3_timeouts', 'problems_with_contradiction', 'problems_with_votes', 'failure_mode', 'failure_count', 'root_cause']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "0b1effd6-0b54-4a66-a76d-b1b90bcd6193"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Get all 35 experiments with multi_candidate_rate info",
+  "usage": {
+    "total_tokens": 26762,
+    "tool_uses": 13,
+    "duration_ms": 96652
+  },
+  "last_tool_name": "Bash",
+  "uuid": "09b820bf-c51c-45f0-ba18-d1f34701dd69",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DeEoEwEKs2jjtQLBDHdNqt`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# Now let's get ALL experiments and check for model/dataset/n_questions even for those without multi_candidate_rate\nprint('=== ALL 35 experiments ===')\nprint()\nfor exp_id, exp in experiments.items():\n    metrics = exp.get('metrics', {})\n    spec = exp.get('spec', {})\n    \n    # Find multi_candidate_rate in various locations\n    mcr = None\n    mcr_field = None\n    if isinstance(metrics, dict):\n        if 'multi_candidate_rate' in metrics:\n            mcr = metrics['multi_candidate_rate']\n            mcr_field = 'metrics.multi_candidate_rate'\n        elif 'c0_multi_candidate_rate' in metrics:\n            mcr = metrics['c0_multi_candidate_rate']\n            mcr_field = 'metrics.c0_multi_candidate_rate'\n        elif 'multi_candidate_rate_combined' in metrics:\n            mcr = metrics['multi_candidate_rate_combined']\n            mcr_field = 'metrics.multi_candidate_rate_combined'\n        else:\n            # Check nested\n            for k, v in metrics.items():\n                if isinstance(v, dict) and 'multi_candidate_rate' in v:\n                    mcr = v['multi_candidate_rate']\n                    mcr_field = f'metrics.{k}.multi_candidate_rate'\n                    break\n    \n    model = spec.get('model_name', 'N/A')\n    dataset = spec.get('dataset', spec.get('data_path', 'N/A'))\n    n_q = metrics.get('n_questions', metrics.get('n', spec.get('data_count', 'N/A'))) if isinstance(metrics, dict) else 'N/A'\n    \n    has_mcr = mcr is not None\n    print(f'{exp_id} | model={model} | dataset={dataset} | n={n_q} | mcr={mcr} ({mcr_field}) | status={exp.get(\\\"status\\\",\\\"?\\\")}')\n\" 2>&1",
+  "description": "Get all 35 experiments with multi_candidate_rate info"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d7306785-e0d7-4fb8-8dd1-341945babad5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CVq2s1SFKLJrAdYNExDB6x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 24878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1112,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T13:22:12.856Z_
+
+<details><summary>↩ Tool result · `toolu_01DeEoEwEKs2jjtQLBDHdNqt`</summary>
+
+```text
+=== ALL 35 experiments ===
+
+exp-009-overhead-analysis | model=Qwen2.5-14B-Instruct | dataset=/root/symb_invariant_consensus/results/ | n=804 | mcr=None (None) | status=DONE
+exp-014-deepseek-r1-7b | model=DeepSeek-R1-Distill-Qwen-7B | dataset=/root/symb_invariant_consensus/data/ | n=60 | mcr=None (None) | status=RUNNING
+exp-020-llama8b-folio-204 | model=meta-llama/Llama-3.1-8B-Instruct | dataset=/root/symb_invariant_consensus/data/folio_204.jsonl | n=204 | mcr=0.618 (metrics.multi_candidate_rate) | status=DONE
+exp-019-llama8b-strategyqa-200 | model=N/A | dataset=N/A | n=200 | mcr=None (None) | status=DONE
+exp-010-mistral-v3 | model=Mistral-7B-Instruct-v0.3 | dataset=D012 (30 ProofWriter + 30 FOLIO) | n=60 | mcr=0.0667 (metrics.multi_candidate_rate) | status=DONE
+pilot-contrastive-prompt | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-011-llama8b-v3 | model=N/A | dataset=N/A | n=60 | mcr=0.6167 (metrics.multi_candidate_rate) | status=DONE
+exp-018-arc-v2 | model=N/A | dataset=N/A | n=60 | mcr=0.0833 (metrics.multi_candidate_rate) | status=DONE
+exp-010-mistral-v2 | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+pilot-constraint-filtering | model=N/A | dataset=N/A | n=43 | mcr=None (None) | status=DONE
+exp-018-arc | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-017-strategyqa-v3 | model=N/A | dataset=N/A | n=60 | mcr=0.1 (metrics.multi_candidate_rate) | status=DONE
+exp-017-strategyqa-v2 | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-017-strategyqa | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-010-mistral | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-011-llama8b-v2 | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+sica_temp_diversity | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/math500_subset.json | n=5 | mcr=None (None) | status=DONE
+sica_d012_14b | model=Qwen2.5-14B-Instruct | dataset=data/proofwriter_30.json + data/folio_30.json | n=60 | mcr=0.5333 (metrics.c0_multi_candidate_rate) | status=DONE
+sica_expanded_14b | model=Qwen2.5-14B-Instruct | dataset=data/proofwriter_full.json (600 D5) + data/folio_full.json (204) | n=804 | mcr=None (None) | status=DONE
+sica_k_sensitivity_14b | model=Qwen2.5-14B-Instruct | dataset=data/proofwriter_30.json + data/folio_30.json | n=60 | mcr=None (None) | status=DONE
+exp-011-llama8b | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=DONE
+exp-016-weighted-sc | model=Qwen2.5-14B-Instruct (reuse) | dataset=exp-001 traces (804 problems) | n=804 | mcr=None (None) | status=DONE
+exp-005 | model=QwQ-32B (analysis target) vs Qwen2.5-14B-Instruct (comparison) | dataset=results/aime30_v2.json + results/proofwriter_30_v2.json + results/folio_livetest.json + results/diversity_diagnosis.json | n=46 | mcr=None (None) | status=DONE
+sica_constraint_ablation_013 | model=N/A (CPU ablation on exp-001 outputs) | dataset=results/sica_expanded_14b/ | n=804 | mcr=None (None) | status=DONE
+sica_folio30 | model=QwQ-32B | dataset=FOLIO (yale-nlp/FOLIO validation subset) | n=30 | mcr=None (None) | status=DONE
+sica_d016_c0_precheck | model=Qwen2.5-14B-Instruct | dataset=data/folio_subset.json (10q) + data/proofwriter_subset.json (16q) | n=26 | mcr=0.46 (metrics.multi_candidate_rate_combined) | status=DONE
+sica_proofwriter30_v2 | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/proofwriter_subset.json | n=30 | mcr=None (None) | status=DONE
+sica_proofwriter30 | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/proofwriter_subset.json | n=30 | mcr=N/A (no traces generated) (metrics.multi_candidate_rate) | status=DONE
+sica_aime30_v3 | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/aime2024_subset.json | n=30 | mcr=0 (metrics.vote_diversity_analysis.multi_candidate_rate) | status=DONE
+sica_aime30_v2 | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/aime2024_subset.json | n=30 | mcr=None (None) | status=DONE
+sica_aime30_t07 | model=QwQ-32B | dataset=data/aime2024_subset.json | n=30 | mcr=None (None) | status=DONE
+mvp_math50_t07 | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/math500_subset.json | n=50 | mcr=None (None) | status=DONE
+sica_smoke_5q | model=QwQ-32B | dataset=/root/symb_invariant_consensus/data/math500_subset.json | n=5 | mcr=None (None) | status=DONE
+smoke-test-5q | model=N/A | dataset=N/A | n=N/A | mcr=None (None) | status=PREPARING
+crd_folio_main | model=Qwen3-32B-AWQ | dataset=/root/autodl-tmp/crdd/results/mvp_v4_full.jsonl | n=204 | mcr=None (None) | status=DONE
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1ceab655-4f82-42a8-bad6-f31cb7f7d4b5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "description": "Running Get model/dataset info from hypothesis/notes",
+  "usage": {
+    "total_tokens": 29519,
+    "tool_uses": 14,
+    "duration_ms": 109840
+  },
+  "last_tool_name": "Bash",
+  "uuid": "e7b738f1-f89f-4404-b1bf-a59ee825f880",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BbuczKX5nrtnVPDdRAxd9A`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt', 'r') as f:\n    data = json.load(f)\n\ninner = json.loads(data['result'])\nexperiments = inner['data']['experiments']\n\n# Get model info from hypothesis/notes for experiments where spec doesn't have it\nfor eid in ['exp-011-llama8b-v3', 'exp-018-arc-v2', 'exp-017-strategyqa-v3', 'exp-019-llama8b-strategyqa-200']:\n    exp = experiments[eid]\n    hyp = exp.get('hypothesis', '')[:300]\n    notes = str(exp.get('notes', ''))[:300]\n    print(f'{eid}:')\n    print(f'  hypothesis: {hyp}')\n    print(f'  notes: {notes}')\n    print()\n\" 2>&1",
+  "description": "Get model/dataset info from hypothesis/notes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "ab48ab82-53d4-4cbb-ab8b-4aff525593a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014mce8RQWLxgLiUmBapVrNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 25990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2755,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T13:22:26.007Z_
+
+<details><summary>↩ Tool result · `toolu_01BbuczKX5nrtnVPDdRAxd9A`</summary>
+
+```text
+exp-011-llama8b-v3:
+  hypothesis: Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）
+  notes: LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability
+
+exp-018-arc-v2:
+  hypothesis: Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）
+  notes: ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。
+
+exp-017-strategyqa-v3:
+  hypothesis: Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）
+  notes: StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出
+
+exp-019-llama8b-strategyqa-200:
+  hypothesis: Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）
+  notes: StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f1483ef4-6959-4ec7-8560-aa0acde9786c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "af0fd9eb8b7c0c795",
+  "tool_use_id": "toolu_012ngHxsiyZzXr6RjjF8S8Rz",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Extract multi_candidate_rate from registry",
+  "usage": {
+    "total_tokens": 31010,
+    "tool_uses": 14,
+    "duration_ms": 144281
+  },
+  "uuid": "9e9fcb58-33a2-48e6-9101-f197da3db1ab",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T13:23:00.349Z_
+
+<details><summary>↩ Tool result · `toolu_012ngHxsiyZzXr6RjjF8S8Rz`</summary>
+
+```text
+Now I have all the data. Let me compile the final table.
+
+Here is the complete table of all 35 experiments and their `multi_candidate_rate` values:
+
+---
+
+**Experiments WITH multi_candidate_rate:**
+
+| # | exp_id | multi_candidate_rate | Field Location | Model | Dataset | N Questions | Status |
+|---|--------|---------------------|----------------|-------|---------|-------------|--------|
+| 1 | `exp-020-llama8b-folio-204` | **0.618** | `metrics.multi_candidate_rate` | LLaMA-3.1-8B-Instruct | FOLIO 204 | 204 | DONE |
+| 2 | `exp-011-llama8b-v3` | **0.6167** | `metrics.multi_candidate_rate` | LLaMA-3.1-8B-Instruct | D012 (30 PW + 30 FOLIO) | 60 | DONE |
+| 3 | `sica_d012_14b` | **0.5333** | `metrics.c0_multi_candidate_rate` | Qwen2.5-14B-Instruct | 30 ProofWriter + 30 FOLIO | 60 | DONE |
+| 4 | `sica_d016_c0_precheck` | **0.46** (combined) | `metrics.multi_candidate_rate_combined` | Qwen2.5-14B-Instruct | 10 FOLIO + 16 ProofWriter | 26 | DONE |
+|   |  | 0.40 (FOLIO) | `metrics.multi_candidate_rate_folio` | | | | |
+|   |  | 0.50 (ProofWriter) | `metrics.multi_candidate_rate_proofwriter` | | | | |
+| 5 | `exp-017-strategyqa-v3` | **0.1** | `metrics.multi_candidate_rate` | Qwen2.5-14B-Instruct | StrategyQA (Yes/No) | 60 | DONE |
+| 6 | `exp-018-arc-v2` | **0.0833** | `metrics.multi_candidate_rate` | Qwen2.5-14B-Instruct | ARC-Challenge (ABCD) | 60 | DONE |
+| 7 | `exp-010-mistral-v3` | **0.0667** | `metrics.multi_candidate_rate` | Mistral-7B-Instruct-v0.3 | D012 (30 PW + 30 FOLIO) | 60 | DONE |
+| 8 | `sica_aime30_v3` | **0** | `metrics.vote_diversity_analysis.multi_candidate_rate` | QwQ-32B | AIME 2024 subset | 30 | DONE |
+| 9 | `sica_proofwriter30` | **"N/A (no traces generated)"** | `metrics.multi_candidate_rate` | QwQ-32B | ProofWriter subset | 30 | DONE |
+
+---
+
+**Experiments WITHOUT multi_candidate_rate (26 experiments):**
+
+| # | exp_id | Model | Dataset | N | Status |
+|---|--------|-------|---------|---|--------|
+| 1 | `exp-009-overhead-analysis` | Qwen2.5-14B-Instruct | exp-001 timing data | 804 | DONE |
+| 2 | `exp-014-deepseek-r1-7b` | DeepSeek-R1-Distill-Qwen-7B | N/A | 60 | RUNNING |
+| 3 | `exp-019-llama8b-strategyqa-200` | LLaMA-3.1-8B-Instruct (from hypothesis) | StrategyQA | 200 | DONE |
+| 4 | `pilot-contrastive-prompt` | N/A | N/A | N/A | DONE |
+| 5 | `exp-010-mistral-v2` | N/A | N/A | N/A | DONE |
+| 6 | `pilot-constraint-filtering` | N/A | N/A | 43 | DONE |
+| 7 | `exp-018-arc` | N/A | N/A | N/A | DONE |
+| 8 | `exp-017-strategyqa-v2` | N/A | N/A | N/A | DONE |
+| 9 | `exp-017-strategyqa` | N/A | N/A | N/A | DONE |
+| 10 | `exp-010-mistral` | N/A | N/A | N/A | DONE |
+| 11 | `exp-011-llama8b-v2` | N/A | N/A | N/A | DONE |
+| 12 | `sica_temp_diversity` | QwQ-32B | math500 subset | 5 | DONE |
+| 13 | `sica_expanded_14b` | Qwen2.5-14B-Instruct | 600 PW D5 + 204 FOLIO | 804 | DONE |
+| 14 | `sica_k_sensitivity_14b` | Qwen2.5-14B-Instruct | 30 PW + 30 FOLIO | 60 | DONE |
+| 15 | `exp-011-llama8b` | N/A | N/A | N/A | DONE |
+| 16 | `exp-016-weighted-sc` | Qwen2.5-14B-Instruct (reuse) | exp-001 traces | 804 | DONE |
+| 17 | `exp-005` | QwQ-32B / Qwen2.5-14B | multiple | 46 | DONE |
+| 18 | `sica_constraint_ablation_013` | CPU ablation on exp-001 | exp-001 outputs | 804 | DONE |
+| 19 | `sica_folio30` | QwQ-32B | FOLIO validation subset | 30 | DONE |
+| 20 | `sica_proofwriter30_v2` | QwQ-32B | ProofWriter subset | 30 | DONE |
+| 21 | `sica_aime30_v2` | QwQ-32B | AIME 2024 subset | 30 | DONE |
+| 22 | `sica_aime30_t07` | QwQ-32B | AIME 2024 subset | 30 | DONE |
+| 23 | `mvp_math50_t07` | QwQ-32B | math500 subset | 50 | DONE |
+| 24 | `sica_smoke_5q` | QwQ-32B | math500 subset | 5 | DONE |
+| 25 | `smoke-test-5q` | N/A | N/A | N/A | PREPARING |
+| 26 | `crd_folio_main` | Qwen3-32B-AWQ | FOLIO 204 (CRD results) | 204 | DONE |
+
+---
+
+**Key observations:**
+
+- 9 out of 35 experiments have some form of `multi_candidate_rate` recorded.
+- The field name varies: `multi_candidate_rate`, `c0_multi_candidate_rate`, `multi_candidate_rate_combined/folio/proofwriter`, or nested under `vote_diversity_analysis`.
+- LLaMA-8B shows the highest rates (~0.62), consistent with it being a weaker model producing more diverse outputs.
+- Qwen2.5-14B on logic tasks (PW/FOLIO) is around 0.46-0.53.
+- Simpler tasks (ARC at 0.083, StrategyQA at 0.1) and stronger models (Mistral at 0.067, QwQ-32B on AIME at 0.0) show very low multi_candidate_rate.
+- `sica_proofwriter30` has the field but with a string value `"N/A (no traces generated)"` indicating a failed run.
+
+agentId: af0fd9eb8b7c0c795 (use SendMessage with to: 'af0fd9eb8b7c0c795' to continue this agent)
+&lt;usage>total_tokens: 32314
+tool_uses: 14
+duration_ms: 144283&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "480c711d-07cc-48fd-b2ff-98ceddb11d97",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Extract all experiments' multi_candidate_rate values from the registry JSON file at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nThe file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nFor each experiment, I need:\n- exp_id\n- multi_candidate_rate (look in metrics or any nested field)\n- model name\n- dataset info\n- number of questions\n\nReturn a clean table with all experiments and their multi_candidate_rate values. If multi_candidate_rate is not present for an experiment, note that too.",
+    "agentId": "af0fd9eb8b7c0c795",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the data. Let me compile the final table.\n\nHere is the complete table of all 35 experiments and their `multi_candidate_rate` values:\n\n---\n\n**Experiments WITH multi_candidate_rate:**\n\n| # | exp_id | multi_candidate_rate | Field Location | Model | Dataset | N Questions | Status |\n|---|--------|---------------------|----------------|-------|---------|-------------|--------|\n| 1 | `exp-020-llama8b-folio-204` | **0.618** | `metrics.multi_candidate_rate` | LLaMA-3.1-8B-Instruct | FOLIO 204 | 204 | DONE |\n| 2 | `exp-011-llama8b-v3` | **0.6167** | `metrics.multi_candidate_rate` | LLaMA-3.1-8B-Instruct | D012 (30 PW + 30 FOLIO) | 60 | DONE |\n| 3 | `sica_d012_14b` | **0.5333** | `metrics.c0_multi_candidate_rate` | Qwen2.5-14B-Instruct | 30 ProofWriter + 30 FOLIO | 60 | DONE |\n| 4 | `sica_d016_c0_precheck` | **0.46** (combined) | `metrics.multi_candidate_rate_combined` | Qwen2.5-14B-Instruct | 10 FOLIO + 16 ProofWriter | 26 | DONE |\n|   |  | 0.40 (FOLIO) | `metrics.multi_candidate_rate_folio` | | | | |\n|   |  | 0.50 (ProofWriter) | `metrics.multi_candidate_rate_proofwriter` | | | | |\n| 5 | `exp-017-strategyqa-v3` | **0.1** | `metrics.multi_candidate_rate` | Qwen2.5-14B-Instruct | StrategyQA (Yes/No) | 60 | DONE |\n| 6 | `exp-018-arc-v2` | **0.0833** | `metrics.multi_candidate_rate` | Qwen2.5-14B-Instruct | ARC-Challenge (ABCD) | 60 | DONE |\n| 7 | `exp-010-mistral-v3` | **0.0667** | `metrics.multi_candidate_rate` | Mistral-7B-Instruct-v0.3 | D012 (30 PW + 30 FOLIO) | 60 | DONE |\n| 8 | `sica_aime30_v3` | **0** | `metrics.vote_diversity_analysis.multi_candidate_rate` | QwQ-32B | AIME 2024 subset | 30 | DONE |\n| 9 | `sica_proofwriter30` | **\"N/A (no traces generated)\"** | `metrics.multi_candidate_rate` | QwQ-32B | ProofWriter subset | 30 | DONE |\n\n---\n\n**Experiments WITHOUT multi_candidate_rate (26 experiments):**\n\n| # | exp_id | Model | Dataset | N | Status |\n|---|--------|-------|---------|---|--------|\n| 1 | `exp-009-overhead-analysis` | Qwen2.5-14B-Instruct | exp-001 timing data | 804 | DONE |\n| 2 | `exp-014-deepseek-r1-7b` | DeepSeek-R1-Distill-Qwen-7B | N/A | 60 | RUNNING |\n| 3 | `exp-019-llama8b-strategyqa-200` | LLaMA-3.1-8B-Instruct (from hypothesis) | StrategyQA | 200 | DONE |\n| 4 | `pilot-contrastive-prompt` | N/A | N/A | N/A | DONE |\n| 5 | `exp-010-mistral-v2` | N/A | N/A | N/A | DONE |\n| 6 | `pilot-constraint-filtering` | N/A | N/A | 43 | DONE |\n| 7 | `exp-018-arc` | N/A | N/A | N/A | DONE |\n| 8 | `exp-017-strategyqa-v2` | N/A | N/A | N/A | DONE |\n| 9 | `exp-017-strategyqa` | N/A | N/A | N/A | DONE |\n| 10 | `exp-010-mistral` | N/A | N/A | N/A | DONE |\n| 11 | `exp-011-llama8b-v2` | N/A | N/A | N/A | DONE |\n| 12 | `sica_temp_diversity` | QwQ-32B | math500 subset | 5 | DONE |\n| 13 | `sica_expanded_14b` | Qwen2.5-14B-Instruct | 600 PW D5 + 204 FOLIO | 804 | DONE |\n| 14 | `sica_k_sensitivity_14b` | Qwen2.5-14B-Instruct | 30 PW + 30 FOLIO | 60 | DONE |\n| 15 | `exp-011-llama8b` | N/A | N/A | N/A | DONE |\n| 16 | `exp-016-weighted-sc` | Qwen2.5-14B-Instruct (reuse) | exp-001 traces | 804 | DONE |\n| 17 | `exp-005` | QwQ-32B / Qwen2.5-14B | multiple | 46 | DONE |\n| 18 | `sica_constraint_ablation_013` | CPU ablation on exp-001 | exp-001 outputs | 804 | DONE |\n| 19 | `sica_folio30` | QwQ-32B | FOLIO validation subset | 30 | DONE |\n| 20 | `sica_proofwriter30_v2` | QwQ-32B | ProofWriter subset | 30 | DONE |\n| 21 | `sica_aime30_v2` | QwQ-32B | AIME 2024 subset | 30 | DONE |\n| 22 | `sica_aime30_t07` | QwQ-32B | AIME 2024 subset | 30 | DONE |\n| 23 | `mvp_math50_t07` | QwQ-32B | math500 subset | 50 | DONE |\n| 24 | `sica_smoke_5q` | QwQ-32B | math500 subset | 5 | DONE |\n| 25 | `smoke-test-5q` | N/A | N/A | N/A | PREPARING |\n| 26 | `crd_folio_main` | Qwen3-32B-AWQ | FOLIO 204 (CRD results) | 204 | DONE |\n\n---\n\n**Key observations:**\n\n- 9 out of 35 experiments have some form of `multi_candidate_rate` recorded.\n- The field name varies: `multi_candidate_rate`, `c0_multi_candidate_rate`, `multi_candidate_rate_combined/folio/proofwriter`, or nested under `vote_diversity_analysis`.\n- LLaMA-8B shows the highest rates (~0.62), consistent with it being a weaker model producing more diverse outputs.\n- Qwen2.5-14B on logic tasks (PW/FOLIO) is around 0.46-0.53.\n- Simpler tasks (ARC at 0.083, StrategyQA at 0.1) and stronger models (Mistral at 0.067, QwQ-32B on AIME at 0.0) show very low multi_candidate_rate.\n- `sica_proofwriter30` has the field but with a string value `\"N/A (no traces generated)\"` indicating a failed run."
+      }
+    ],
+    "totalDurationMs": 144283,
+    "totalTokens": 32314,
+    "totalToolUseCount": 14,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1490,
+      "cache_read_input_tokens": 28745,
+      "output_tokens": 2078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1490
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2078,
+          "cache_read_input_tokens": 28745,
+          "cache_creation_input_tokens": 1490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1490,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 3,
+      "searchCount": 0,
+      "bashCount": 11,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T13:23:01.825Z_
+
+<details><summary>↩ Tool result · `toolu_011e9gjdjDAL6Gwedp2kxGvr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp010_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "b44bfed5-69c2-4cb2-9378-13a1e49805f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp010_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp010_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T13:23:03.437Z_
+
+<details><summary>↩ Tool result · `toolu_01JbKKzH7ctcwco92VfMCf9n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp017_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "0e7ffc37-a832-4e58-8a89-a434ba4d0411",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp017_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp017_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T13:23:05.061Z_
+
+<details><summary>↩ Tool result · `toolu_01WFvip57LrMTd924MFFRhTG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp018_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "00568ff2-89c3-40d9-9144-5a5b3feea9c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp018_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp018_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the registry values and the file locations. Let me write a Python script to calculate the true multi_candidate_rate for each experiment by examining vote distributions. I need to check the structure of these result JSON files first, then compute the correct values.
+
+Key experiments to check:
+1. exp-010-mistral-v3: current 0.0667, expected ~0.5
+2. exp-017-strategyqa-v3: current 0.1
+3. exp-018-arc-v2: current 0.0833
+4. exp-011-llama8b-v3: current 0.6167
+
+
+5. sica_expanded_14b: no multi_candidate_rate in registry
+6. sica_d012_14b: current 0.5333
+
+Let me examine the JSON file structure to understand how the vote distributions are organized.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e62398ca-2321-4fd2-8d1b-868a22aa92a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtNEF7PshSxiZjNDxNeGfc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3207,
+      "cache_read_input_tokens": 27361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3207
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+有了 registry 值和文件位置。现在检查各实验结果文件的结构，计算真实 multi_candidate_rate。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "2c53d772-68a7-4c9c-afae-e640a8f55d04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtNEF7PshSxiZjNDxNeGfc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3207,
+      "cache_read_input_tokens": 27361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3207
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016uiAYx2C2ywb97ZGDKjTW7`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp010_mistral/exp010_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "fd01651d-b43d-45cf-96c1-bdfd7b787c27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtNEF7PshSxiZjNDxNeGfc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3207,
+      "cache_read_input_tokens": 27361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3207
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T13:23:18.701Z_
+
+<details><summary>↩ Tool result · `toolu_016uiAYx2C2ywb97ZGDKjTW7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.48333333333333334,\\n    \\\"sc_accuracy\\\": 0.48333333333333334,\\n    \\\"sica_correct\\\": 29,\\n    \\\"sc_correct\\\": 29,\\n    \\\"extraction_rate\\\": 0.8819444444444444,\\n    \\\"answer_extraction_rate\\\": 1.0,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 720,\\n      \\\"fallback\\\": 0,\\n      \\\"none\\\": 0\\n    },\\n    \\\"truncated_traces\\\": 0,\\n    \\\"total_constraints_extracted\\\": 3939,\\n    \\\"total_unique_constraints\\\": 1228,\\n    \\\"contradiction_rate\\\": 0.05618892508143322,\\n    \\\"problems_with_contradictions\\\": 38,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.4,\\n        \\\"sc\\\": 0.4,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5666666666666667,\\n        \\\"sc\\\": 0.5666666666666667,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.4,\\n        \\\"sc\\\": 0.4,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5666666666666667,\\n        \\\"sc\\\": 0.5666666666666667,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 1161.0\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nFiona is round.\\\",\\n      \\\"dataset\\\": \\\"proofwriter\\\",\\n      \\\"level\\\": \\\"D5\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"Unknown\\\": 99.5,\\n        \\\"Fiona is not round\\\": 90.5,\\n        \\\"True\\\": 87.0\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 6,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 6,\\n        \\\"Fiona is not round\\\": 3,\\n        \\\"True\\\": 3\\n      },\\n      \\\"sc_correct\\\": false,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 127,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 22\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 18,\\n        \\\"excluded\\\": 4,\\n        \\\"total_weight\\\": 115,\\n        \\\"solve_time_ms\\\": 2.215589163824916\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 11.147,\\n        \\\"extraction_s\\\": 16.706,\\n        \\\"dedup_s\\\": 0.895,\\n        \\\"maxsat_s\\\": 0.005,\\n        \\\"total_s\\\": 28.754\\n      },\\n      \\\"wall_time_s\\\": 28.76,\\n      \\\"trace_extraction_stats\\\": {\\n        \\\"boxed\\\": 12,\\n        \\\"fallback\\\": 0,\\n        \\\"none\\\": 0\\n      },\\n      \\\"truncated_traces\\\": 0,\\n      \\\"raw_constraints\\\": [\\n        {\\n          \\\"expression\\\": \\\"red(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"red_fiona == True\\\",\\n          \\\"weight\\\": 12,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "88d9b257-c3d4-4480-85a0-7fddba0ee0da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.48333333333333334,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.48333333333333334,\\\\n    \\\\\\\"sica_correct\\\\\\\": 29,\\\\n    \\\\\\\"sc_correct\\\\\\\": 29,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.8819444444444444,\\\\n    \\\\\\\"answer_extraction_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n      \\\\\\\"boxed\\\\\\\": 720,\\\\n      \\\\\\\"fallback\\\\\\\": 0,\\\\n      \\\\\\\"none\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"truncated_traces\\\\\\\": 0,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 3939,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 1228,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.05618892508143322,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 38,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.4,\\\\n        \\\\\\\"sc\\\\\\\": 0.4,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5666666666666667,\\\\n        \\\\\\\"sc\\\\\\\": 0.5666666666666667,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.4,\\\\n        \\\\\\\"sc\\\\\\\": 0.4,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5666666666666667,\\\\n        \\\\\\\"sc\\\\\\\": 0.5666666666666667,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 1161.0\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following facts and rules:\\\\\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nFiona is round.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 99.5,\\\\n        \\\\\\\"Fiona is not round\\\\\\\": 90.5,\\\\n        \\\\\\\"True\\\\\\\": 87.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 6,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 6,\\\\n        \\\\\\\"Fiona is not round\\\\\\\": 3,\\\\n        \\\\\\\"True\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 127,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 22\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 18,\\\\n        \\\\\\\"excluded\\\\\\\": 4,\\\\n        \\\\\\\"total_weight\\\\\\\": 115,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 2.215589163824916\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 11.147,\\\\n        \\\\\\\"extraction_s\\\\\\\": 16.706,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.895,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.005,\\\\n        \\\\\\\"total_s\\\\\\\": 28.754\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 28.76,\\\\n      \\\\\\\"trace_extraction_stats\\\\\\\": {\\\\n        \\\\\\\"boxed\\\\\\\": 12,\\\\n        \\\\\\\"fallback\\\\\\\": 0,\\\\n        \\\\\\\"none\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"truncated_traces\\\\\\\": 0,\\\\n      \\\\\\\"raw_constraints\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"red(fiona)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"red_fiona == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 12,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.48333333333333334,\\n    \\\"sc_accuracy\\\": 0.48333333333333334,\\n    \\\"sica_correct\\\": 29,\\n    \\\"sc_correct\\\": 29,\\n    \\\"extraction_rate\\\": 0.8819444444444444,\\n    \\\"answer_extraction_rate\\\": 1.0,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 720,\\n      \\\"fallback\\\": 0,\\n      \\\"none\\\": 0\\n    },\\n    \\\"truncated_traces\\\": 0,\\n    \\\"total_constraints_extracted\\\": 3939,\\n    \\\"total_unique_constraints\\\": 1228,\\n    \\\"contradiction_rate\\\": 0.05618892508143322,\\n    \\\"problems_with_contradictions\\\": 38,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.4,\\n        \\\"sc\\\": 0.4,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5666666666666667,\\n        \\\"sc\\\": 0.5666666666666667,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.4,\\n        \\\"sc\\\": 0.4,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5666666666666667,\\n        \\\"sc\\\": 0.5666666666666667,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 1161.0\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nFiona is round.\\\",\\n      \\\"dataset\\\": \\\"proofwriter\\\",\\n      \\\"level\\\": \\\"D5\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"Unknown\\\": 99.5,\\n        \\\"Fiona is not round\\\": 90.5,\\n        \\\"True\\\": 87.0\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 6,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 6,\\n        \\\"Fiona is not round\\\": 3,\\n        \\\"True\\\": 3\\n      },\\n      \\\"sc_correct\\\": false,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 127,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 22\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 18,\\n        \\\"excluded\\\": 4,\\n        \\\"total_weight\\\": 115,\\n        \\\"solve_time_ms\\\": 2.215589163824916\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 11.147,\\n        \\\"extraction_s\\\": 16.706,\\n        \\\"dedup_s\\\": 0.895,\\n        \\\"maxsat_s\\\": 0.005,\\n        \\\"total_s\\\": 28.754\\n      },\\n      \\\"wall_time_s\\\": 28.76,\\n      \\\"trace_extraction_stats\\\": {\\n        \\\"boxed\\\": 12,\\n        \\\"fallback\\\": 0,\\n        \\\"none\\\": 0\\n      },\\n      \\\"truncated_traces\\\": 0,\\n      \\\"raw_constraints\\\": [\\n        {\\n          \\\"expression\\\": \\\"red(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"red_fiona == True\\\",\\n          \\\"weight\\\": 12,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UtfZWhLXBEwtXmQSQedCjp`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1ab90167-876c-4804-ac81-d42161b6305a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtNEF7PshSxiZjNDxNeGfc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3207,
+      "cache_read_input_tokens": 27361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3207
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GDaLFJdCXjoXh4XhQfcwix`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp018_arc/exp018_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "0fe7819d-8e98-4ab9-ba79-2194d2decc58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtNEF7PshSxiZjNDxNeGfc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3207,
+      "cache_read_input_tokens": 27361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3207
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T13:23:20.440Z_
+
+<details><summary>↩ Tool result · `toolu_01UtfZWhLXBEwtXmQSQedCjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.5667,\\n    \\\"sc_accuracy\\\": 0.5333,\\n    \\\"sica_correct\\\": 34,\\n    \\\"sc_correct\\\": 32,\\n    \\\"delta\\\": 0.0333,\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"temperature\\\": 0.7,\\n    \\\"total_wall_time_s\\\": 429.1\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"strategyqa_000\\\",\\n      \\\"problem\\\": \\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"No\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.8246290273964405\\n      },\\n      \\\"wall_time_s\\\": 0.72\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"strategyqa_001\\\",\\n      \\\"problem\\\": \\\"Does Dragon Ball shows and movies fall short of Friday 13th number of projects?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": false,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 15,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 2\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 2,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 15,\\n        \\\"solve_time_ms\\\": 0.8735321462154388\\n      },\\n      \\\"wall_time_s\\\": 17.08\\n    },\\n    {\\n      \\\"problem_idx\\\": 2,\\n      \\\"problem_id\\\": \\\"strategyqa_002\\\",\\n      \\\"problem\\\": \\\"Was Mercedes-Benz associated with the Nazis?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": false,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 11,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 11,\\n        \\\"solve_time_ms\\\": 1.482954015955329\\n      },\\n      \\\"wall_time_s\\\": 8.73\\n    },\\n    {\\n      \\\"problem_idx\\\": 3,\\n      \\\"problem_id\\\": \\\"strategyqa_003\\\",\\n      \\\"problem\\\": \\\"Could chives be mistaken for grass?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "2dc11f9b-1352-43ea-91fc-369b1cc003ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5667,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5333,\\\\n    \\\\\\\"sica_correct\\\\\\\": 34,\\\\n    \\\\\\\"sc_correct\\\\\\\": 32,\\\\n    \\\\\\\"delta\\\\\\\": 0.0333,\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 429.1\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"strategyqa_000\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"strategyqa\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"No\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 12,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 1,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 12,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.8246290273964405\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 0.72\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"strategyqa_001\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Does Dragon Ball shows and movies fall short of Friday 13th number of projects?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"strategyqa\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Yes\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"No\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 15,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 2,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 15,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 0.8735321462154388\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 17.08\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 2,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"strategyqa_002\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Was Mercedes-Benz associated with the Nazis?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"strategyqa\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Yes\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"No\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 11,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 11,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 1,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 11,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.482954015955329\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 8.73\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 3,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"strategyqa_003\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Could chives be mistaken for grass?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"strategyqa\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Yes\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"No\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.5667,\\n    \\\"sc_accuracy\\\": 0.5333,\\n    \\\"sica_correct\\\": 34,\\n    \\\"sc_correct\\\": 32,\\n    \\\"delta\\\": 0.0333,\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"temperature\\\": 0.7,\\n    \\\"total_wall_time_s\\\": 429.1\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"strategyqa_000\\\",\\n      \\\"problem\\\": \\\"Is Guitar Hero Beatles inappropriate for a US third grader?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"No\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.8246290273964405\\n      },\\n      \\\"wall_time_s\\\": 0.72\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"strategyqa_001\\\",\\n      \\\"problem\\\": \\\"Does Dragon Ball shows and movies fall short of Friday 13th number of projects?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": false,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 15,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 2\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 2,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 15,\\n        \\\"solve_time_ms\\\": 0.8735321462154388\\n      },\\n      \\\"wall_time_s\\\": 17.08\\n    },\\n    {\\n      \\\"problem_idx\\\": 2,\\n      \\\"problem_id\\\": \\\"strategyqa_002\\\",\\n      \\\"problem\\\": \\\"Was Mercedes-Benz associated with the Nazis?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"No\\\",\\n      \\\"sc_correct\\\": false,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"No\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 11,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 11,\\n        \\\"solve_time_ms\\\": 1.482954015955329\\n      },\\n      \\\"wall_time_s\\\": 8.73\\n    },\\n    {\\n      \\\"problem_idx\\\": 3,\\n      \\\"problem_id\\\": \\\"strategyqa_003\\\",\\n      \\\"problem\\\": \\\"Could chives be mistaken for grass?\\\",\\n      \\\"dataset\\\": \\\"strategyqa\\\",\\n      \\\"ground_truth\\\": \\\"Yes\\\",\\n      \\\"sica_answer\\\": \\\"No\\\",\\n      \\\"sica_correct\\\": false,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T13:23:23.520Z_
+
+<details><summary>↩ Tool result · `toolu_01GDaLFJdCXjoXh4XhQfcwix`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.95,\\n    \\\"sc_accuracy\\\": 0.9667,\\n    \\\"sica_correct\\\": 57,\\n    \\\"sc_correct\\\": 58,\\n    \\\"delta\\\": -0.0167,\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"temperature\\\": 0.7,\\n    \\\"total_wall_time_s\\\": 1122.5\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"arc_challenge_000\\\",\\n      \\\"problem\\\": \\\"Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"A\\\",\\n      \\\"sica_answer\\\": \\\"A\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"A\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"A\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.8005648162215948\\n      },\\n      \\\"wall_time_s\\\": 17.81\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"arc_challenge_001\\\",\\n      \\\"problem\\\": \\\"Which statement correctly describes a physical characteristic of the Moon?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"B\\\",\\n      \\\"sica_answer\\\": \\\"B\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"B\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"B\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.5752981416881084\\n      },\\n      \\\"wall_time_s\\\": 16.12\\n    },\\n    {\\n      \\\"problem_idx\\\": 2,\\n      \\\"problem_id\\\": \\\"arc_challenge_002\\\",\\n      \\\"problem\\\": \\\"Which object in the solar system is orbited by a belt of asteroids?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"C\\\",\\n      \\\"sica_answer\\\": \\\"C\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"C\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"C\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.5286118723452091\\n      },\\n      \\\"wall_time_s\\\": 17.82\\n    },\\n    {\\n      \\\"problem_idx\\\": 3,\\n      \\\"problem_id\\\": \\\"arc_challenge_003\\\",\\n      \\\"problem\\\": \\\"Light waves that cross from an air medium to a water medium will\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"C\\\",\\n      \\\"sica_answer\\\": \\\"C\\\",\\n      \\\"sica_correct\\\": true,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "b0d0264a-5cb0-423b-9e0d-d7e1171dc9e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.95,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.9667,\\\\n    \\\\\\\"sica_correct\\\\\\\": 57,\\\\n    \\\\\\\"sc_correct\\\\\\\": 58,\\\\n    \\\\\\\"delta\\\\\\\": -0.0167,\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\": 0.7,\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 1122.5\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"arc_challenge_000\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"A\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 12,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 1,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 12,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.8005648162215948\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 17.81\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"arc_challenge_001\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Which statement correctly describes a physical characteristic of the Moon?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"B\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 12,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 1,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 12,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.5752981416881084\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 16.12\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 2,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"arc_challenge_002\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Which object in the solar system is orbited by a belt of asteroids?\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"C\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 12,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 1,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 12,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.5286118723452091\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 17.82\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 3,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"arc_challenge_003\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Light waves that cross from an air medium to a water medium will\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.95,\\n    \\\"sc_accuracy\\\": 0.9667,\\n    \\\"sica_correct\\\": 57,\\n    \\\"sc_correct\\\": 58,\\n    \\\"delta\\\": -0.0167,\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"temperature\\\": 0.7,\\n    \\\"total_wall_time_s\\\": 1122.5\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"arc_challenge_000\\\",\\n      \\\"problem\\\": \\\"Cities control the amount of pollution that is allowed to come from cars. How does this most likely help people?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"A\\\",\\n      \\\"sica_answer\\\": \\\"A\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"A\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"A\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.8005648162215948\\n      },\\n      \\\"wall_time_s\\\": 17.81\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"arc_challenge_001\\\",\\n      \\\"problem\\\": \\\"Which statement correctly describes a physical characteristic of the Moon?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"B\\\",\\n      \\\"sica_answer\\\": \\\"B\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"B\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"B\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.5752981416881084\\n      },\\n      \\\"wall_time_s\\\": 16.12\\n    },\\n    {\\n      \\\"problem_idx\\\": 2,\\n      \\\"problem_id\\\": \\\"arc_challenge_002\\\",\\n      \\\"problem\\\": \\\"Which object in the solar system is orbited by a belt of asteroids?\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"C\\\",\\n      \\\"sica_answer\\\": \\\"C\\\",\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"C\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"C\\\": 12\\n      },\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 12,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 1\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 1,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 12,\\n        \\\"solve_time_ms\\\": 1.5286118723452091\\n      },\\n      \\\"wall_time_s\\\": 17.82\\n    },\\n    {\\n      \\\"problem_idx\\\": 3,\\n      \\\"problem_id\\\": \\\"arc_challenge_003\\\",\\n      \\\"problem\\\": \\\"Light waves that cross from an air medium to a water medium will\\\",\\n      \\\"dataset\\\": \\\"arc_challenge\\\",\\n      \\\"ground_truth\\\": \\\"C\\\",\\n      \\\"sica_answer\\\": \\\"C\\\",\\n      \\\"sica_correct\\\": true,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the structure. Each experiment has a `results` array where each problem has a `sc_vote_distribution` field. The multi_candidate_rate should be: number of problems where `sc_vote_distribution` has >1 unique answer / total problems.
+
+Let me write a Python script to compute this for all experiments. I need to check:
+1. exp-010-mistral-v3 → exp010_mistral/exp010_results.json
+2. exp-017-strategyqa-v3 → exp017_strategyqa/exp017_results.json
+3. exp-018-arc-v2 → exp018_arc/exp018_results.json
+
+
+4. exp-011-llama8b-v3 → exp011_llama8b/
+5. sica_expanded_14b → sica_expanded_14b.json
+6. sica_d012_14b → sica_d012_14b.json
+
+I should also check exp-019 and exp-020. Let me write a comprehensive Python script to handle all these files.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "a76cb25c-96e5-498c-9854-0bf56a3cbe28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+结构清楚了。每个问题都有 `sc_vote_distribution`，统计其中 unique answer > 1 的比例即可。写 Python 脚本批量计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4d3e4fad-7b42-4c76-b116-97f8e737ec40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BDBsKtuKehCRg4JTqeFPps`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp011_llama8b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e7f7c302-bbf4-47a4-b3dd-2170e0cc0a0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RgWYhdKqdH7gWKV5EKMKU7`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp019_strategyqa_200/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e50756f6-2da1-4a5e-80ba-19bb79fe91de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T13:23:36.892Z_
+
+<details><summary>↩ Tool result · `toolu_01BDBsKtuKehCRg4JTqeFPps`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp011_results.json\\ntruncation_bias_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f61d3710-ed54-4b97-8a91-75a5cd32bf0a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp011_results.json\\\\ntruncation_bias_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp011_results.json\\ntruncation_bias_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PP1VrAxwQzC1dKFbm6gWt7`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -5 /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "fdcee773-90fa-4011-9cb6-1d19f0a9c9a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F3D7iz1eZMNescYgcT49ag`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -5 /root/symb_invariant_consensus/results/sica_d012_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "a640c9ce-c2ce-4f45-9c43-b04058ff0dec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNj3oEZhBA42AWkoGPCyeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5544,
+      "cache_read_input_tokens": 30568,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-17T13:23:45.132Z_
+
+<details><summary>↩ Tool result · `toolu_01RgWYhdKqdH7gWKV5EKMKU7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp019_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "899897bd-1653-44f5-b2f7-9d2ba664ee94",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp019_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp019_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-17T13:23:47.948Z_
+
+<details><summary>↩ Tool result · `toolu_01PP1VrAxwQzC1dKFbm6gWt7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 804,\\n    \\\"sica_accuracy\\\": 0.7649253731343284,\\n    \\\"sc_accuracy\\\": 0.7624378109452736,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "46e68a9f-2175-494a-a0bc-c039b9a32f67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 804,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.7649253731343284,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.7624378109452736,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 804,\\n    \\\"sica_accuracy\\\": 0.7649253731343284,\\n    \\\"sc_accuracy\\\": 0.7624378109452736,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-17T13:23:49.499Z_
+
+<details><summary>↩ Tool result · `toolu_01F3D7iz1eZMNescYgcT49ag`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.7333333333333333,\\n    \\\"sc_accuracy\\\": 0.7,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "fb1ffbce-4c02-4ebc-b547-fc944fe17636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.7333333333333333,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.7,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.7333333333333333,\\n    \\\"sc_accuracy\\\": 0.7,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check exp-020 (folio 200):
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "c18bea3f-2476-4bd0-ab83-7e09c09cccef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gAUv1KiYSAXpCu2TLiruN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1343,
+      "cache_read_input_tokens": 36112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1343
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016nx2LzfEHMpSxsAbaiLZem`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /root/symb_invariant_consensus/results/exp020_folio_200/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f321b179-fa1d-4d92-bd95-ccbf058b92d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gAUv1KiYSAXpCu2TLiruN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1343,
+      "cache_read_input_tokens": 36112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1343
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-17T13:23:55.616Z_
+
+<details><summary>↩ Tool result · `toolu_016nx2LzfEHMpSxsAbaiLZem`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp020_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "be15cfe2-7309-4ac1-9b46-844eafcc5d89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp020_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp020_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+所有文件都已确认。用 Python 脚本批量计算所有实验的真实 multi_candidate_rate。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "ca086d85-d171-42b4-acb8-e938c4fb0635",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014BD41CfCDGzJVtGxKpgYno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 37455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TNS8HBBZrGjczF2UZeLVxD`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json, glob\n\nfiles = {\n    'exp-010-mistral-v3': 'results/exp010_mistral/exp010_results.json',\n    'exp-011-llama8b-v3': 'results/exp011_llama8b/exp011_results.json',\n    'exp-017-strategyqa-v3': 'results/exp017_strategyqa/exp017_results.json',\n    'exp-018-arc-v2': 'results/exp018_arc/exp018_results.json',\n    'exp-019-llama8b-strategyqa-200': 'results/exp019_strategyqa_200/exp019_results.json',\n    'exp-020-llama8b-folio-204': 'results/exp020_folio_200/exp020_results.json',\n    'sica_expanded_14b': 'results/sica_expanded_14b.json',\n    'sica_d012_14b': 'results/sica_d012_14b.json',\n}\n\nfor exp_id, fpath in files.items():\n    try:\n        with open(fpath) as f:\n            data = json.load(f)\n        results = data.get('results', [])\n        n_total = len(results)\n        n_multi = 0\n        for r in results:\n            vd = r.get('sc_vote_distribution', {})\n            if len(vd) > 1:\n                n_multi += 1\n        rate = n_multi / n_total if n_total > 0 else 0\n        print(f'{exp_id}: {n_multi}/{n_total} = {rate:.4f}')\n    except Exception as e:\n        print(f'{exp_id}: ERROR - {e}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "24f48bf6-2463-4603-8e5e-4fddc244dead",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014BD41CfCDGzJVtGxKpgYno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 37455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-17T13:24:06.648Z_
+
+<details><summary>↩ Tool result · `toolu_01TNS8HBBZrGjczF2UZeLVxD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\"\\\\nimport json, glob\\\\n\\\\nfiles = {\\\\n    \\\\'exp-010-mistral-v3\\\\': \\\\'results/exp010_mistral/exp010_results.json\\\\',\\\\n    \\\\'exp-011-llama8b-v3\\\\': \\\\'results/exp011_llama8b/exp011_results.json\\\\',\\\\n    \\\\'exp-017-strategyqa-v3\\\\': \\\\'results/exp017_strategyqa/exp017_results.json\\\\',\\\\n    \\\\'exp-018-arc-v2\\\\': \\\\'results/exp018_arc/exp018_results.json\\\\',\\\\n    \\\\'exp-019-llama8b-strategyqa-200\\\\': \\\\'results/exp019_strategyqa_200/exp019_results.json\\\\',\\\\n    \\\\'exp-020-llama8b-folio-204\\\\': \\\\'results/exp020_folio_200/exp020_results.json\\\\',\\\\n    \\\\'sica_expanded_14b\\\\': \\\\'results/sica_expanded_14b.json\\\\',\\\\n    \\\\'sica_d012_14b\\\\': \\\\'results/sica_d012_14b.json\\\\',\\\\n}\\\\n\\\\nfor exp_id, fpath in files.items():\\\\n    try:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n        results = data.get(\\\\'results\\\\', [])\\\\n        n_total = len(results)\\\\n        n_multi = 0\\\\n        for r in results:\\\\n            vd = r.get(\\\\'sc_vote_distribution\\\\', {})\\\\n            if len(vd) > 1:\\\\n                n_multi += 1\\\\n        rate = n_multi / n_total if n_total > 0 else 0\\\\n        print(f\\\\'{exp_id}: {n_multi}/{n_total} = {rate:.4f}\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'{exp_id}: ERROR - {e}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "b2307903-0603-4c86-b9a4-2fe5ef7654b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\\\\\"\\\\\\\\nimport json, glob\\\\\\\\n\\\\\\\\nfiles = {\\\\\\\\n    \\\\\\\\'exp-010-mistral-v3\\\\\\\\': \\\\\\\\'results/exp010_mistral/exp010_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'exp-011-llama8b-v3\\\\\\\\': \\\\\\\\'results/exp011_llama8b/exp011_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'exp-017-strategyqa-v3\\\\\\\\': \\\\\\\\'results/exp017_strategyqa/exp017_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'exp-018-arc-v2\\\\\\\\': \\\\\\\\'results/exp018_arc/exp018_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'exp-019-llama8b-strategyqa-200\\\\\\\\': \\\\\\\\'results/exp019_strategyqa_200/exp019_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'exp-020-llama8b-folio-204\\\\\\\\': \\\\\\\\'results/exp020_folio_200/exp020_results.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'sica_expanded_14b\\\\\\\\': \\\\\\\\'results/sica_expanded_14b.json\\\\\\\\',\\\\\\\\n    \\\\\\\\'sica_d012_14b\\\\\\\\': \\\\\\\\'results/sica_d012_14b.json\\\\\\\\',\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor exp_id, fpath in files.items():\\\\\\\\n    try:\\\\\\\\n        with open(fpath) as f:\\\\\\\\n            data = json.load(f)\\\\\\\\n        results = data.get(\\\\\\\\'results\\\\\\\\', [])\\\\\\\\n        n_total = len(results)\\\\\\\\n        n_multi = 0\\\\\\\\n        for r in results:\\\\\\\\n            vd = r.get(\\\\\\\\'sc_vote_distribution\\\\\\\\', {})\\\\\\\\n            if len(vd) > 1:\\\\\\\\n                n_multi += 1\\\\\\\\n        rate = n_multi / n_total if n_total > 0 else 0\\\\\\\\n        print(f\\\\\\\\'{exp_id}: {n_multi}/{n_total} = {rate:.4f}\\\\\\\\')\\\\\\\\n    except Exception as e:\\\\\\\\n        print(f\\\\\\\\'{exp_id}: ERROR - {e}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\"\\\\nimport json, glob\\\\n\\\\nfiles = {\\\\n    \\\\'exp-010-mistral-v3\\\\': \\\\'results/exp010_mistral/exp010_results.json\\\\',\\\\n    \\\\'exp-011-llama8b-v3\\\\': \\\\'results/exp011_llama8b/exp011_results.json\\\\',\\\\n    \\\\'exp-017-strategyqa-v3\\\\': \\\\'results/exp017_strategyqa/exp017_results.json\\\\',\\\\n    \\\\'exp-018-arc-v2\\\\': \\\\'results/exp018_arc/exp018_results.json\\\\',\\\\n    \\\\'exp-019-llama8b-strategyqa-200\\\\': \\\\'results/exp019_strategyqa_200/exp019_results.json\\\\',\\\\n    \\\\'exp-020-llama8b-folio-204\\\\': \\\\'results/exp020_folio_200/exp020_results.json\\\\',\\\\n    \\\\'sica_expanded_14b\\\\': \\\\'results/sica_expanded_14b.json\\\\',\\\\n    \\\\'sica_d012_14b\\\\': \\\\'results/sica_d012_14b.json\\\\',\\\\n}\\\\n\\\\nfor exp_id, fpath in files.items():\\\\n    try:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n        results = data.get(\\\\'results\\\\', [])\\\\n        n_total = len(results)\\\\n        n_multi = 0\\\\n        for r in results:\\\\n            vd = r.get(\\\\'sc_vote_distribution\\\\', {})\\\\n            if len(vd) > 1:\\\\n                n_multi += 1\\\\n        rate = n_multi / n_total if n_total > 0 else 0\\\\n        print(f\\\\'{exp_id}: {n_multi}/{n_total} = {rate:.4f}\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'{exp_id}: ERROR - {e}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+python3 not found. Let me try python or check which python is available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "97e6b144-a7dc-469f-92c6-303aebe5baeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rbjvpRe9GCB4t9xMGu3RV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1314,
+      "cache_read_input_tokens": 37689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AQvAwyUdH6fjQanggCqoCe`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "which python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "5285ade7-2db0-4545-ae5f-19d134c1e464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rbjvpRe9GCB4t9xMGu3RV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1314,
+      "cache_read_input_tokens": 37689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-17T13:24:10.667Z_
+
+<details><summary>↩ Tool result · `toolu_01AQvAwyUdH6fjQanggCqoCe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1c8fd94f-4681-40cf-ad4c-28756ceb550e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U3WbZbRGcBWDTVxdmnrzwe`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "which python && which python3 && which conda",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "a65238d6-1c09-4b5d-aef4-6c43182829e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019M9QX1yB21kH5jcA2feSNV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 39003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-17T13:24:24.669Z_
+
+<details><summary>↩ Tool result · `toolu_01U3WbZbRGcBWDTVxdmnrzwe`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 7.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "463d8f69-b9d8-44a4-b590-86b5b1b2e1ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 7.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Jh7276QR1jyrwT8TRsLZFx`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls /opt/conda/bin/python* /usr/bin/python* 2>/dev/null; echo \"---\"; find /root -name \"python\" -o -name \"python3\" 2>/dev/null | head -5",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "eb22cd68-8b6e-4147-abd1-52eb6e496509",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcND2Ejbi2E2BGPiq4Qzou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 39230,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-17T13:24:29.239Z_
+
+<details><summary>↩ Tool result · `toolu_01Jh7276QR1jyrwT8TRsLZFx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1c902961-657f-4704-bb85-9cbd02362af0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\n/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"---\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/src/arrow/python\\n/root/miniconda3/lib/python3.12/site-packages/torch/include/google/protobuf/compiler/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011vg7EUFbHaASMKt5xHqLVG`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cd /root/symb_invariant_consensus && /root/miniconda3/bin/python -c \"\nimport json\n\nfiles = {\n    'exp-010-mistral-v3': 'results/exp010_mistral/exp010_results.json',\n    'exp-011-llama8b-v3': 'results/exp011_llama8b/exp011_results.json',\n    'exp-017-strategyqa-v3': 'results/exp017_strategyqa/exp017_results.json',\n    'exp-018-arc-v2': 'results/exp018_arc/exp018_results.json',\n    'exp-019-llama8b-strategyqa-200': 'results/exp019_strategyqa_200/exp019_results.json',\n    'exp-020-llama8b-folio-204': 'results/exp020_folio_200/exp020_results.json',\n    'sica_expanded_14b': 'results/sica_expanded_14b.json',\n    'sica_d012_14b': 'results/sica_d012_14b.json',\n}\n\nfor exp_id, fpath in files.items():\n    try:\n        with open(fpath) as f:\n            data = json.load(f)\n        results = data.get('results', [])\n        n_total = len(results)\n        n_multi = 0\n        for r in results:\n            vd = r.get('sc_vote_distribution', {})\n            if len(vd) > 1:\n                n_multi += 1\n        rate = n_multi / n_total if n_total > 0 else 0\n        print(f'{exp_id}: {n_multi}/{n_total} = {rate:.4f}')\n    except Exception as e:\n        print(f'{exp_id}: ERROR - {e}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7e1164c5-5c23-4ca8-9757-d645cb62a8c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016w3Q2DKTuo9ByCDGsoDTS4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 39537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-17T13:24:40.495Z_
+
+<details><summary>↩ Tool result · `toolu_011vg7EUFbHaASMKt5xHqLVG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp-010-mistral-v3: 30/60 = 0.5000\\nexp-011-llama8b-v3: 37/60 = 0.6167\\nexp-017-strategyqa-v3: 6/60 = 0.1000\\nexp-018-arc-v2: 3/60 = 0.0500\\nexp-019-llama8b-strategyqa-200: 82/200 = 0.4100\\nexp-020-llama8b-folio-204: 126/204 = 0.6176\\nsica_expanded_14b: 307/804 = 0.3818\\nsica_d012_14b: 32/60 = 0.5333\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "636a32de-0de3-4b9c-a74b-b9c5a2f0d715",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp-010-mistral-v3: 30/60 = 0.5000\\\\nexp-011-llama8b-v3: 37/60 = 0.6167\\\\nexp-017-strategyqa-v3: 6/60 = 0.1000\\\\nexp-018-arc-v2: 3/60 = 0.0500\\\\nexp-019-llama8b-strategyqa-200: 82/200 = 0.4100\\\\nexp-020-llama8b-folio-204: 126/204 = 0.6176\\\\nsica_expanded_14b: 307/804 = 0.3818\\\\nsica_d012_14b: 32/60 = 0.5333\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp-010-mistral-v3: 30/60 = 0.5000\\nexp-011-llama8b-v3: 37/60 = 0.6167\\nexp-017-strategyqa-v3: 6/60 = 0.1000\\nexp-018-arc-v2: 3/60 = 0.0500\\nexp-019-llama8b-strategyqa-200: 82/200 = 0.4100\\nexp-020-llama8b-folio-204: 126/204 = 0.6176\\nsica_expanded_14b: 307/804 = 0.3818\\nsica_d012_14b: 32/60 = 0.5333\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the correct values. Let me compare with registry:
+
+| Experiment | Registry Value | Correct Value | Match? |
+|---|---|---|---|
+| exp-010-mistral-v3 | 0.0667 | 0.5000 | WRONG |
+| exp-011-llama8b-v3 | 0.6167 | 0.6167 | OK |
+| exp-017-strategyqa-v3 | 0.1 | 0.1000 | OK |
+| exp-018-arc-v2 | 0.0833 | 0.0500 | WRONG |
+
+
+| exp-019-llama8b-strategyqa-200 | not in registry | 0.4100 | N/A |
+| exp-020-llama8b-folio-204 | 0.618 | 0.6176 | OK (rounding) |
+| sica_expanded_14b | not in registry | 0.3818 | N/A |
+| sica_d012_14b | 0.5333 | 0.5333 | OK |
+
+I can see there are two experiments that need corrections: exp-010-mistral-v3 needs to be updated from 0.0667 to 0.5000, and exp-018-arc-v2 needs to be updated from 0.0833 to 0.0500.
+
+For exp-018-arc-v2, the registry value of 0.0833 is incorrect—that's 5/60, but only 3/60 actually have multiple candidates, so the correct value is 0.0500. I also need to add multi_candidate_rate entries for exp-019 and sica_expanded_14b since they're missing from the registry. Let me verify sica_aime30_v3 which shows 0 in the registry to see if there are result files for it, and exp-020 looks fine since 0.618 and 0.6176 are close enough due to rounding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "faca4a2c-45c7-4a8d-88f9-c4c6ad142ec8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+计算结果出来了。对比 registry：
+
+| Experiment | Registry | Computed | Status |
+|---|---|---|---|
+| exp-010-mistral-v3 | 0.0667 | **0.5000** | **WRONG** |
+| exp-011-llama8b-v3 | 0.6167 | 0.6167 | OK |
+| exp-017-strategyqa-v3 | 0.1 | 0.1000 | OK |
+| exp-018-arc-v2 | 0.0833 | **0.0500** | **WRONG** |
+| exp-019-llama8b-strategyqa-200 | (missing) | 0.4100 | 需补充 |
+| exp-020-llama8b-folio-204 | 0.618 | 0.6176 | OK (rounding) |
+| sica_expanded_14b | (missing) | 0.3818 | 需补充 |
+| sica_d012_14b | 0.5333 | 0.5333 | OK |
+
+两个错误值需要修正，两个缺失值需要补充。现在执行更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1e4c2105-190e-49a2-81ec-1e5c6af4e0e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BhqfU4dyCvDJPxhJxHA7uj`</summary>
+
+```json
+{
+  "exp_id": "exp-010-mistral-v3",
+  "field": "metrics.multi_candidate_rate",
+  "value": 0.5,
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "cc00d609-3fe3-4bc2-a2c3-e191c557121b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-17T13:24:58.399Z_
+
+<details><summary>↩ Tool result · `toolu_01BhqfU4dyCvDJPxhJxHA7uj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.128}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "ec3ac163-1504-47aa-afe3-05815802dbc9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.128}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.128}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01G8Jkn6Ljpoa8ZUoUbHSU8w`</summary>
+
+```json
+{
+  "exp_id": "exp-018-arc-v2",
+  "field": "metrics.multi_candidate_rate",
+  "value": 0.05,
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7dc7f50d-3e89-417d-993c-d61c5487da1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-17T13:24:59.045Z_
+
+<details><summary>↩ Tool result · `toolu_01G8Jkn6Ljpoa8ZUoUbHSU8w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1154}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "b28974c8-ff7c-4e9c-a50b-5dd83d6c40ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1154}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1154}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019MfD1Xb5cz43m3DQrin6v6`</summary>
+
+```json
+{
+  "exp_id": "exp-019-llama8b-strategyqa-200",
+  "field": "metrics.multi_candidate_rate",
+  "value": 0.41,
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1d56eb2f-4784-4b26-b845-95459b4fa9ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-17T13:25:00.029Z_
+
+<details><summary>↩ Tool result · `toolu_019MfD1Xb5cz43m3DQrin6v6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1245}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "61f35801-6537-4974-a075-5b56eaed595b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1245}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1245}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0172qQETkZmT1q2PRnchrXbx`</summary>
+
+```json
+{
+  "exp_id": "sica_expanded_14b",
+  "field": "metrics.multi_candidate_rate",
+  "value": 0.3818,
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f02422a4-65c7-41c0-aeef-f411297222ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzFXiMnCm9DZKyoWwVnrA8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 39904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-17T13:25:00.240Z_
+
+<details><summary>↩ Tool result · `toolu_0172qQETkZmT1q2PRnchrXbx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1261}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "49c3288a-2e4f-48a1-b90b-ded195d10a03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1261}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Dotted field 'metrics.multi_candidate_rate' is not supported. To update nested fields, pass the parent key (e.g. field='metrics') with the full dict as value.\", \"metadata\": {\"elapsed_seconds\": 0.1261}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to pass the full metrics dict. Let me first read the current metrics for each experiment, then update with the corrected value.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4fdd7af1-1483-4092-b87d-15c1eaaebea9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+需要传完整 metrics dict。先读取各实验的当前 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "2dce1cdc-83ac-43df-9fdd-e287a2af50d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01SjtwPf3CFQmA4j4WAGZwDk`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-010-mistral-v3"
+  },
+  "fields": [
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "c0cfa8aa-da60-4047-8b75-9600cfb6a8b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-17T13:25:06.309Z_
+
+<details><summary>↩ Tool result · `toolu_01SjtwPf3CFQmA4j4WAGZwDk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1129}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f0d1a7c5-0d71-4a56-a7ff-587fcf4a17f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1129}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1129}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01AkXMBjvxfwLwz3W9Dw7RoL`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-018-arc-v2"
+  },
+  "fields": [
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f9bc731c-773a-49ac-9dc8-ba28ae0a9e78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-17T13:25:07.314Z_
+
+<details><summary>↩ Tool result · `toolu_01AkXMBjvxfwLwz3W9Dw7RoL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1584}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1df5e222-c8e4-4390-97ce-c8a4da2c1878",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1584}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1584}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014wx9PieMsN58owZmLqaM93`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-019-llama8b-strategyqa-200"
+  },
+  "fields": [
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "68156806-1bf0-4b94-8e09-6aa75f6a12fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-17T13:25:07.785Z_
+
+<details><summary>↩ Tool result · `toolu_014wx9PieMsN58owZmLqaM93`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1151}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "3bb3f054-eaa3-4faf-9f90-a3aabecc7927",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1151}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1151}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PfpDJhRadV5TeMsTSnB2pp`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "sica_expanded_14b"
+  },
+  "fields": [
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "cf1473ee-4c55-4ca3-bd6a-4f7b6b346ca1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q85inEDue3wsPtPkrDK1kV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1843,
+      "cache_read_input_tokens": 40738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1843
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-17T13:25:08.358Z_
+
+<details><summary>↩ Tool result · `toolu_01PfpDJhRadV5TeMsTSnB2pp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1269}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "0c274a35-3e4b-4e7e-a978-2778e935bf7d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1269}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1269}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It seems the filter by exp_id doesn't work that way. Let me try reading specific experiments differently. The registry seems to use exp_id as the key somehow. Let me try without filters and with a specific exp_id pattern, or just read the full registry data from the saved file.
+
+Actually, let me look at the saved registry file more carefully with an agent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "699a8e3d-ee7b-439f-a3f7-8361c7ee861b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0145M1HbrxAkb6tPJR6CzDUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 42581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1004
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121_
+
+filter 不起作用。让我直接从已保存的 registry 文件提取 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "7c610bcf-fd7c-4fac-9143-8ce3b2d7d359",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0145M1HbrxAkb6tPJR6CzDUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 42581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1004
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014WMRqtcM3LBNnbZcxN76LM`</summary>
+
+```json
+{
+  "description": "Extract metrics dicts from registry",
+  "prompt": "Read the file /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nIt's JSON with schema {result: string}. The result string is itself JSON containing experiment data.\n\nI need you to extract the FULL metrics dict for these 4 experiments:\n1. exp-010-mistral-v3\n2. exp-018-arc-v2\n3. exp-019-llama8b-strategyqa-200\n4. sica_expanded_14b\n\nPrint the complete metrics JSON for each experiment. I need the exact current values so I can update one field while preserving all others. Print them as valid JSON objects.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "37b4adaa-910f-406a-8bb1-124e64387def",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0145M1HbrxAkb6tPJR6CzDUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 42581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1004
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 123_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Extract metrics dicts from registry",
+  "task_type": "local_agent",
+  "prompt": "Read the file /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nIt's JSON with schema {result: string}. The result string is itself JSON containing experiment data.\n\nI need you to extract the FULL metrics dict for these 4 experiments:\n1. exp-010-mistral-v3\n2. exp-018-arc-v2\n3. exp-019-llama8b-strategyqa-200\n4. sica_expanded_14b\n\nPrint the complete metrics JSON for each experiment. I need the exact current values so I can update one field while preserving all others. Print them as valid JSON objects.",
+  "uuid": "b2f742c0-b735-46c7-8f6e-be3f0d09e663",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+## Round 2
+
+42 recorded events
+
+### User
+
+_source line 124 · 2026-05-17T13:25:27.014Z_
+
+Read the file /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt
+
+It's JSON with schema {result: string}. The result string is itself JSON containing experiment data.
+
+I need you to extract the FULL metrics dict for these 4 experiments:
+1. exp-010-mistral-v3
+2. exp-018-arc-v2
+3. exp-019-llama8b-strategyqa-200
+4. sica_expanded_14b
+
+Print the complete metrics JSON for each experiment. I need the exact current values so I can update one field while preserving all others. Print them as valid JSON objects.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "9f72ca01-ea9f-45bb-9666-4f4420a280a2"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 125_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 15639,
+    "tool_uses": 1,
+    "duration_ms": 8777
+  },
+  "last_tool_name": "Read",
+  "uuid": "6d5dfbc3-a1b8-48ed-bcad-4060acc795fa",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011RSBTnyKwNdSJ6Dw5DCz4K`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f1f93fb3-d3f1-450b-adea-cc9cd3feb429",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GvVNRcvwhrh7c3x7F4Sw2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7326,
+      "cache_read_input_tokens": 8251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7326,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-17T13:25:36.116Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_011RSBTnyKwNdSJ6Dw5DCz4K`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "660522bf-2b3b-4272-8934-bd26671bac1d",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 128_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 16744,
+    "tool_uses": 2,
+    "duration_ms": 14718
+  },
+  "last_tool_name": "Read",
+  "uuid": "e3fc8117-47da-4341-a49b-dddf52d42dca",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018pLtu8VRUEuyGPMjPsxbud`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "offset": 0,
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4e0878ba-0370-4bde-ac52-1786781ee06a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFunjYJ76gyEsU7bzwPEy4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 15577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1042,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-17T13:25:42.044Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018pLtu8VRUEuyGPMjPsxbud`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "aa05332f-c564-4e38-8972-d5e4fffbbd09",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 131_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 17051,
+    "tool_uses": 3,
+    "duration_ms": 19850
+  },
+  "last_tool_name": "Read",
+  "uuid": "294a11bf-f1f4-4c90-b52e-af089bb594e2",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 132_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018m5wifWMTsbgCA1CenUc3a`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "offset": 0,
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e0ac32a0-c4e5-44b1-b25f-57c550dce92f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZGcNbdCrLTZZJymzMYCEK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 16619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-17T13:25:47.159Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018m5wifWMTsbgCA1CenUc3a`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "e548e961-e15a-4089-bed1-5cba11512383",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 134_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "usage": {
+    "total_tokens": 17359,
+    "tool_uses": 4,
+    "duration_ms": 23510
+  },
+  "last_tool_name": "Read",
+  "uuid": "b841412d-4704-4cfd-ae7f-12bb71fe1030",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DLVr2yjdFtE4fVzaRx3nU7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "59c12868-3f23-4dbc-8709-68ff95c261b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qzja6ioYdQ7bjjupDVfYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 16854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-17T13:25:50.825Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DLVr2yjdFtE4fVzaRx3nU7`</summary>
+
+```text
+File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "158fe295-480b-4d29-a4b2-0b7a9069ef24",
+  "tool_use_result": "Error: File content (28867 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 137_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Searching for exp-010-mistral-v3",
+  "usage": {
+    "total_tokens": 17596,
+    "tool_uses": 5,
+    "duration_ms": 27879
+  },
+  "last_tool_name": "Grep",
+  "uuid": "7345e9d6-aa95-4f07-996c-2c135cf07962",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 138_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01QkgFZacqprUCFbtNy5RyKa`</summary>
+
+```json
+{
+  "pattern": "exp-010-mistral-v3",
+  "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt",
+  "output_mode": "content",
+  "-A": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "29df52ad-1a3e-4072-ab68-82caa8ced18f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gvugxnxZbFyEpYUgCNU5N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 17089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-17T13:25:54.908Z_
+
+<details><summary>↩ Tool result · `toolu_01QkgFZacqprUCFbtNy5RyKa`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "c460ed77-6041-47f9-b54f-67f03bd53b7f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 140_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Running Parse JSON file and extract metrics for 4 specific experiments",
+  "usage": {
+    "total_tokens": 17837,
+    "tool_uses": 6,
+    "duration_ms": 36460
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0570d396-c57d-4e7b-a54c-de0f166ff3bd",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 141_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XfXPHoXVNGz2K8PpxDrSsr`</summary>
+
+```json
+{
+  "command": "cat '/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\n\ntargets = ['exp-010-mistral-v3', 'exp-018-arc-v2', 'exp-019-llama8b-strategyqa-200', 'sica_expanded_14b']\n\nif isinstance(data, dict):\n    # might be a dict with experiment entries\n    for t in targets:\n        if t in data:\n            print(f'=== {t} ===')\n            entry = data[t]\n            if isinstance(entry, dict) and 'metrics' in entry:\n                print(json.dumps(entry['metrics'], indent=2))\n            else:\n                print(json.dumps(entry, indent=2))\n            print()\nelif isinstance(data, list):\n    for item in data:\n        if isinstance(item, dict):\n            eid = item.get('experiment_id') or item.get('id') or item.get('name', '')\n            if eid in targets:\n                print(f'=== {eid} ===')\n                if 'metrics' in item:\n                    print(json.dumps(item['metrics'], indent=2))\n                else:\n                    print(json.dumps(item, indent=2))\n                print()\n\"\n",
+  "description": "Parse JSON file and extract metrics for 4 specific experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "60d3eb86-fa52-4a93-9503-9d8c1f00cb75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDb4i8zwbJC1hXPDYuvNww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 17324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-17T13:26:03.613Z_
+
+<details><summary>↩ Tool result · `toolu_01XfXPHoXVNGz2K8PpxDrSsr`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "1ce87a21-a7f4-4b44-8d5e-26f989905dd6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 143_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Running Inspect JSON structure of the registry data",
+  "usage": {
+    "total_tokens": 18366,
+    "tool_uses": 7,
+    "duration_ms": 42994
+  },
+  "last_tool_name": "Bash",
+  "uuid": "9f61fbf9-78af-4cae-a471-7a4b4d84482f",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 144_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GgwkCuaYrTBZu9s7g3xrPx`</summary>
+
+```json
+{
+  "command": "cat '/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult = raw['result']\n# result is a JSON string\ndata = json.loads(result)\n\nprint('Type of data:', type(data).__name__)\nif isinstance(data, dict):\n    print('Top-level keys:', list(data.keys())[:20])\n    # check first value\n    for k in list(data.keys())[:2]:\n        v = data[k]\n        print(f'  {k}: type={type(v).__name__}')\n        if isinstance(v, dict):\n            print(f'    keys: {list(v.keys())[:15]}')\nelif isinstance(data, list):\n    print('Length:', len(data))\n    if len(data) > 0:\n        item = data[0]\n        print('First item type:', type(item).__name__)\n        if isinstance(item, dict):\n            print('First item keys:', list(item.keys())[:15])\n\"\n",
+  "description": "Inspect JSON structure of the registry data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "49b504cb-94d6-4fde-9c59-87de07273e40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGvHm6kfCdUFLNpnZzTcpN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 17563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 527,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-17T13:26:10.122Z_
+
+<details><summary>↩ Tool result · `toolu_01GgwkCuaYrTBZu9s7g3xrPx`</summary>
+
+```text
+Type of data: dict
+Top-level keys: ['success', 'data', 'error', 'metadata']
+  success: type=bool
+  data: type=dict
+    keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "2ee37fbb-0ce4-4484-b02c-6ab2eb41ba0a"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 146_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "description": "Running Extract metrics for the 4 target experiments",
+  "usage": {
+    "total_tokens": 18936,
+    "tool_uses": 8,
+    "duration_ms": 50313
+  },
+  "last_tool_name": "Bash",
+  "uuid": "39c85597-2c6c-4122-bc7f-ab7f1af8ccce",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool call
+
+_source line 147_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01C7g2ZGntjHCqdbntCkTq76`</summary>
+
+```json
+{
+  "command": "cat '/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\nprint('Type of experiments:', type(experiments).__name__)\nif isinstance(experiments, list):\n    print('Count:', len(experiments))\n    # Find our targets\n    targets = ['exp-010-mistral-v3', 'exp-018-arc-v2', 'exp-019-llama8b-strategyqa-200', 'sica_expanded_14b']\n    for item in experiments:\n        eid = item.get('experiment_id') or item.get('id') or item.get('name', '')\n        if eid in targets:\n            print(f'=== {eid} ===')\n            if 'metrics' in item:\n                print(json.dumps(item['metrics'], indent=2))\n            else:\n                print('No metrics key. Keys:', list(item.keys()))\n                print(json.dumps(item, indent=2))\n            print()\nelif isinstance(experiments, dict):\n    print('Keys sample:', list(experiments.keys())[:10])\n    targets = ['exp-010-mistral-v3', 'exp-018-arc-v2', 'exp-019-llama8b-strategyqa-200', 'sica_expanded_14b']\n    for t in targets:\n        if t in experiments:\n            entry = experiments[t]\n            print(f'=== {t} ===')\n            if isinstance(entry, dict) and 'metrics' in entry:\n                print(json.dumps(entry['metrics'], indent=2))\n            else:\n                print(json.dumps(entry, indent=2))\n            print()\n\"\n",
+  "description": "Extract metrics for the 4 target experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "556993fa-9ad8-48c0-af5e-be828e8bdd1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lakxnww3hWMwasRMJ6UqCv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 497,
+      "cache_read_input_tokens": 18090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 497,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-17T13:26:17.435Z_
+
+<details><summary>↩ Tool result · `toolu_01C7g2ZGntjHCqdbntCkTq76`</summary>
+
+```text
+Type of experiments: dict
+Keys sample: ['exp-009-overhead-analysis', 'exp-014-deepseek-r1-7b', 'exp-020-llama8b-folio-204', 'exp-019-llama8b-strategyqa-200', 'exp-010-mistral-v3', 'pilot-contrastive-prompt', 'exp-011-llama8b-v3', 'exp-018-arc-v2', 'exp-010-mistral-v2', 'pilot-constraint-filtering']
+=== exp-010-mistral-v3 ===
+{
+  "n": 60,
+  "k": 12,
+  "sica_accuracy": 0.4833,
+  "sc_accuracy": 0.4833,
+  "delta_pp": 0,
+  "multi_candidate_rate": 0.0667,
+  "extraction_rate": 0.8819,
+  "answer_extraction_rate": 1,
+  "contradiction_rate": 0.0562,
+  "discordant_sica_wins": 2,
+  "discordant_sc_wins": 2,
+  "mcnemar_p": 1,
+  "proofwriter_sica": 0.4,
+  "proofwriter_sc": 0.4,
+  "proofwriter_delta_pp": 0,
+  "folio_sica": 0.5667,
+  "folio_sc": 0.5667,
+  "folio_delta_pp": 0,
+  "truncated_traces": 0,
+  "model": "Mistral-7B-Instruct-v0.3",
+  "dataset": "D012"
+}
+
+=== exp-018-arc-v2 ===
+{
+  "n": 60,
+  "k": 12,
+  "sica_accuracy": 0.95,
+  "sc_accuracy": 0.9667,
+  "delta_pp": -1.67,
+  "multi_candidate_rate": 0.0833,
+  "extraction_rate": 1,
+  "contradiction_detected": 3,
+  "discordant_sica_wins": 0,
+  "discordant_sc_wins": 1,
+  "dataset": "ARC-Challenge",
+  "model": "Qwen2.5-14B-Instruct"
+}
+
+=== exp-019-llama8b-strategyqa-200 ===
+{
+  "n": 200,
+  "k": 12,
+  "sica_accuracy": 0.74,
+  "sc_accuracy": 0.72,
+  "delta_pp": 2,
+  "mcnemar_p": 0.424,
+  "bootstrap_ci_95": [
+    -1.5,
+    5.5
+  ],
+  "bootstrap_p_delta_le_0": 0.12,
+  "discordant_sica_wins": 9,
+  "discordant_sc_wins": 5,
+  "discordant_total": 14,
+  "discordant_rate": 0.07,
+  "sc_unanimous_rate": 0.545,
+  "model": "LLaMA-3.1-8B-Instruct",
+  "dataset": "StrategyQA",
+  "wall_time_min": 52
+}
+
+=== sica_expanded_14b ===
+{
+  "sica_accuracy": 0.765,
+  "sc_accuracy": 0.762,
+  "sica_sc_gap_pp": 0.3,
+  "n_problems": 804,
+  "folio_sica": 0.794,
+  "folio_sc": 0.794,
+  "folio_gap_pp": 0,
+  "folio_n": 204,
+  "proofwriter_sica": 0.755,
+  "proofwriter_sc": 0.752,
+  "proofwriter_gap_pp": 0.3,
+  "proofwriter_n": 600,
+  "extraction_rate": 0.89,
+  "answer_extraction_rate": 1,
+  "contradiction_rate": 0.022,
+  "problems_with_contradictions": 331,
+  "truncated_traces": 0,
+  "wall_time_min": 826
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f1b47d71-02bd-405f-ad93-799ed12c0264"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 149_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a482aa3538a1af2fc",
+  "tool_use_id": "toolu_014WMRqtcM3LBNnbZcxN76LM",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Extract metrics dicts from registry",
+  "usage": {
+    "total_tokens": 20627,
+    "tool_uses": 8,
+    "duration_ms": 59852
+  },
+  "uuid": "dcfd8c3c-0567-4646-b7b5-f01d77217fdd",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed"
+}
+```
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-17T13:26:26.868Z_
+
+<details><summary>↩ Tool result · `toolu_014WMRqtcM3LBNnbZcxN76LM`</summary>
+
+````text
+Here are the complete metrics for the 4 experiments:
+
+**exp-010-mistral-v3**
+```json
+{
+  "n": 60,
+  "k": 12,
+  "sica_accuracy": 0.4833,
+  "sc_accuracy": 0.4833,
+  "delta_pp": 0,
+  "multi_candidate_rate": 0.0667,
+  "extraction_rate": 0.8819,
+  "answer_extraction_rate": 1,
+  "contradiction_rate": 0.0562,
+  "discordant_sica_wins": 2,
+  "discordant_sc_wins": 2,
+  "mcnemar_p": 1,
+  "proofwriter_sica": 0.4,
+  "proofwriter_sc": 0.4,
+  "proofwriter_delta_pp": 0,
+  "folio_sica": 0.5667,
+  "folio_sc": 0.5667,
+  "folio_delta_pp": 0,
+  "truncated_traces": 0,
+  "model": "Mistral-7B-Instruct-v0.3",
+  "dataset": "D012"
+}
+```
+
+**exp-018-arc-v2**
+```json
+{
+  "n": 60,
+  "k": 12,
+  "sica_accuracy": 0.95,
+  "sc_accuracy": 0.9667,
+  "delta_pp": -1.67,
+  "multi_candidate_rate": 0.0833,
+  "extraction_rate": 1,
+  "contradiction_detected": 3,
+  "discordant_sica_wins": 0,
+  "discordant_sc_wins": 1,
+  "dataset": "ARC-Challenge",
+  "model": "Qwen2.5-14B-Instruct"
+}
+```
+
+**exp-019-llama8b-strategyqa-200**
+```json
+{
+  "n": 200,
+  "k": 12,
+  "sica_accuracy": 0.74,
+  "sc_accuracy": 0.72,
+  "delta_pp": 2,
+  "mcnemar_p": 0.424,
+  "bootstrap_ci_95": [-1.5, 5.5],
+  "bootstrap_p_delta_le_0": 0.12,
+  "discordant_sica_wins": 9,
+  "discordant_sc_wins": 5,
+  "discordant_total": 14,
+  "discordant_rate": 0.07,
+  "sc_unanimous_rate": 0.545,
+  "model": "LLaMA-3.1-8B-Instruct",
+  "dataset": "StrategyQA",
+  "wall_time_min": 52
+}
+```
+
+**sica_expanded_14b**
+```json
+{
+  "sica_accuracy": 0.765,
+  "sc_accuracy": 0.762,
+  "sica_sc_gap_pp": 0.3,
+  "n_problems": 804,
+  "folio_sica": 0.794,
+  "folio_sc": 0.794,
+  "folio_gap_pp": 0,
+  "folio_n": 204,
+  "proofwriter_sica": 0.755,
+  "proofwriter_sc": 0.752,
+  "proofwriter_gap_pp": 0.3,
+  "proofwriter_n": 600,
+  "extraction_rate": 0.89,
+  "answer_extraction_rate": 1,
+  "contradiction_rate": 0.022,
+  "problems_with_contradictions": 331,
+  "truncated_traces": 0,
+  "wall_time_min": 826
+}
+```
+
+agentId: a482aa3538a1af2fc (use SendMessage with to: 'a482aa3538a1af2fc' to continue this agent)
+&lt;usage>total_tokens: 21249
+tool_uses: 8
+duration_ms: 59853&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "03d73343-8936-4b63-9bb3-fbfd72cd627d",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Read the file /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/2af30557-a604-434a-83bb-bbdd6503c9ed/tool-results/mcp-agent-ml-research-read_registry-1779024023772.txt\n\nIt's JSON with schema {result: string}. The result string is itself JSON containing experiment data.\n\nI need you to extract the FULL metrics dict for these 4 experiments:\n1. exp-010-mistral-v3\n2. exp-018-arc-v2\n3. exp-019-llama8b-strategyqa-200\n4. sica_expanded_14b\n\nPrint the complete metrics JSON for each experiment. I need the exact current values so I can update one field while preserving all others. Print them as valid JSON objects.",
+    "agentId": "a482aa3538a1af2fc",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the complete metrics for the 4 experiments:\n\n**exp-010-mistral-v3**\n```json\n{\n  \"n\": 60,\n  \"k\": 12,\n  \"sica_accuracy\": 0.4833,\n  \"sc_accuracy\": 0.4833,\n  \"delta_pp\": 0,\n  \"multi_candidate_rate\": 0.0667,\n  \"extraction_rate\": 0.8819,\n  \"answer_extraction_rate\": 1,\n  \"contradiction_rate\": 0.0562,\n  \"discordant_sica_wins\": 2,\n  \"discordant_sc_wins\": 2,\n  \"mcnemar_p\": 1,\n  \"proofwriter_sica\": 0.4,\n  \"proofwriter_sc\": 0.4,\n  \"proofwriter_delta_pp\": 0,\n  \"folio_sica\": 0.5667,\n  \"folio_sc\": 0.5667,\n  \"folio_delta_pp\": 0,\n  \"truncated_traces\": 0,\n  \"model\": \"Mistral-7B-Instruct-v0.3\",\n  \"dataset\": \"D012\"\n}\n```\n\n**exp-018-arc-v2**\n```json\n{\n  \"n\": 60,\n  \"k\": 12,\n  \"sica_accuracy\": 0.95,\n  \"sc_accuracy\": 0.9667,\n  \"delta_pp\": -1.67,\n  \"multi_candidate_rate\": 0.0833,\n  \"extraction_rate\": 1,\n  \"contradiction_detected\": 3,\n  \"discordant_sica_wins\": 0,\n  \"discordant_sc_wins\": 1,\n  \"dataset\": \"ARC-Challenge\",\n  \"model\": \"Qwen2.5-14B-Instruct\"\n}\n```\n\n**exp-019-llama8b-strategyqa-200**\n```json\n{\n  \"n\": 200,\n  \"k\": 12,\n  \"sica_accuracy\": 0.74,\n  \"sc_accuracy\": 0.72,\n  \"delta_pp\": 2,\n  \"mcnemar_p\": 0.424,\n  \"bootstrap_ci_95\": [-1.5, 5.5],\n  \"bootstrap_p_delta_le_0\": 0.12,\n  \"discordant_sica_wins\": 9,\n  \"discordant_sc_wins\": 5,\n  \"discordant_total\": 14,\n  \"discordant_rate\": 0.07,\n  \"sc_unanimous_rate\": 0.545,\n  \"model\": \"LLaMA-3.1-8B-Instruct\",\n  \"dataset\": \"StrategyQA\",\n  \"wall_time_min\": 52\n}\n```\n\n**sica_expanded_14b**\n```json\n{\n  \"sica_accuracy\": 0.765,\n  \"sc_accuracy\": 0.762,\n  \"sica_sc_gap_pp\": 0.3,\n  \"n_problems\": 804,\n  \"folio_sica\": 0.794,\n  \"folio_sc\": 0.794,\n  \"folio_gap_pp\": 0,\n  \"folio_n\": 204,\n  \"proofwriter_sica\": 0.755,\n  \"proofwriter_sc\": 0.752,\n  \"proofwriter_gap_pp\": 0.3,\n  \"proofwriter_n\": 600,\n  \"extraction_rate\": 0.89,\n  \"answer_extraction_rate\": 1,\n  \"contradiction_rate\": 0.022,\n  \"problems_with_contradictions\": 331,\n  \"truncated_traces\": 0,\n  \"wall_time_min\": 826\n}\n```"
+      }
+    ],
+    "totalDurationMs": 59853,
+    "totalTokens": 21249,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1690,
+      "cache_read_input_tokens": 18587,
+      "output_tokens": 971,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1690
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 971,
+          "cache_read_input_tokens": 18587,
+          "cache_creation_input_tokens": 1690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1690,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 4,
+      "searchCount": 1,
+      "bashCount": 3,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 151_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full metrics for all 4 experiments. I need to update the metrics with the correct multi_candidate_rate values:
+
+1. exp-010-mistral-v3: change multi_candidate_rate from 0.0667 to 0.5
+2. exp-018-arc-v2: change multi_candidate_rate from 0.0833 to 0.05
+3. exp-019-llama8b-strategyqa-200: add multi_candidate_rate = 0.41
+4. sica_expanded_14b: add multi_candidate_rate = 0.3818
+
+
+Let me apply these updates now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d6c830a9-1dee-44f0-b037-d44693ecaeca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152_
+
+拿到完整 metrics。现在用正确的 multi_candidate_rate 更新四个实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "62627a42-cf49-48e0-8924-26a575003260",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Ep66hv6H561NSQQQr6RgaM`</summary>
+
+```json
+{
+  "exp_id": "exp-010-mistral-v3",
+  "field": "metrics",
+  "value": {
+    "n": 60,
+    "k": 12,
+    "sica_accuracy": 0.4833,
+    "sc_accuracy": 0.4833,
+    "delta_pp": 0,
+    "multi_candidate_rate": 0.5,
+    "extraction_rate": 0.8819,
+    "answer_extraction_rate": 1,
+    "contradiction_rate": 0.0562,
+    "discordant_sica_wins": 2,
+    "discordant_sc_wins": 2,
+    "mcnemar_p": 1,
+    "proofwriter_sica": 0.4,
+    "proofwriter_sc": 0.4,
+    "proofwriter_delta_pp": 0,
+    "folio_sica": 0.5667,
+    "folio_sc": 0.5667,
+    "folio_delta_pp": 0,
+    "truncated_traces": 0,
+    "model": "Mistral-7B-Instruct-v0.3",
+    "dataset": "D012"
+  },
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "3aa352d8-a986-44b4-a463-042c7e7fdb50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-17T13:26:37.730Z_
+
+<details><summary>↩ Tool result · `toolu_01Ep66hv6H561NSQQQr6RgaM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-010-mistral-v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T13:26:37.622Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"data_count\": 60, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"huggingface:mistralai/Mistral-7B-Instruct-v0.3\", \"eval_data\": \"ProofWriter-D5 + FOLIO (D012 split)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp010_mistral_v3/\", \"wall_clock_seconds\": 1506.4, \"gpu_hours\": 0.42}, \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"reproduce\": {\"finished_at\": \"2026-05-17T08:17:39.965Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T08:17:42.415004+00:00\"}]}, \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\", \"notes\": \"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\", \"completed_at\": \"2026-05-17T08:22:02.386Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "8a949957-3f64-4874-b8a7-95b908602513",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-010-mistral-v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:48:05.255Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:26:37.622Z\\\", \\\"hypothesis\\\": \\\"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298717\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:56:55.973Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"huggingface:mistralai/Mistral-7B-Instruct-v0.3\\\", \\\"eval_data\\\": \\\"ProofWriter-D5 + FOLIO (D012 split)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp010_mistral_v3/\\\", \\\"wall_clock_seconds\\\": 1506.4, \\\"gpu_hours\\\": 0.42}, \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T08:17:39.965Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T08:17:42.415004+00:00\\\"}]}, \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.4833, \\\"sc_accuracy\\\": 0.4833, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.5, \\\"extraction_rate\\\": 0.8819, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.0562, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 2, \\\"mcnemar_p\\\": 1, \\\"proofwriter_sica\\\": 0.4, \\\"proofwriter_sc\\\": 0.4, \\\"proofwriter_delta_pp\\\": 0, \\\"folio_sica\\\": 0.5667, \\\"folio_sc\\\": 0.5667, \\\"folio_delta_pp\\\": 0, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"dataset\\\": \\\"D012\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\\\", \\\"completed_at\\\": \\\"2026-05-17T08:22:02.386Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2179}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-010-mistral-v3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T13:26:37.622Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"data_count\": 60, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"huggingface:mistralai/Mistral-7B-Instruct-v0.3\", \"eval_data\": \"ProofWriter-D5 + FOLIO (D012 split)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp010_mistral_v3/\", \"wall_clock_seconds\": 1506.4, \"gpu_hours\": 0.42}, \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"reproduce\": {\"finished_at\": \"2026-05-17T08:17:39.965Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T08:17:42.415004+00:00\"}]}, \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}, \"conclusion\": \"negative\", \"notes\": \"Mistral-7B cross-family: SICA 48.33% = SC 48.33%, delta=0.00pp。Multi-candidate rate 仅 6.67%（vs LLaMA-8B 61.7%、Qwen-14B 46%）。模型太弱：SC baseline 48.33%（近随机），trace 缺乏多样性（30/60 题非 unanimous 但 SICA 只改了 4 题）。Discordant 2:2 平局，McNemar p=1.0。支持 operating regime 有下界：模型必须足够强才能生成有意义的 diverse traces。PW 40%/40%, FOLIO 56.67%/56.67%。\", \"completed_at\": \"2026-05-17T08:22:02.386Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2179}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01875cgmBk8VJK9RndkPVFwH`</summary>
+
+```json
+{
+  "exp_id": "exp-018-arc-v2",
+  "field": "metrics",
+  "value": {
+    "n": 60,
+    "k": 12,
+    "sica_accuracy": 0.95,
+    "sc_accuracy": 0.9667,
+    "delta_pp": -1.67,
+    "multi_candidate_rate": 0.05,
+    "extraction_rate": 1,
+    "contradiction_detected": 3,
+    "discordant_sica_wins": 0,
+    "discordant_sc_wins": 1,
+    "dataset": "ARC-Challenge",
+    "model": "Qwen2.5-14B-Instruct"
+  },
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "f00256b0-f4d4-411a-a860-81041565c9fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-17T13:26:39.585Z_
+
+<details><summary>↩ Tool result · `toolu_01875cgmBk8VJK9RndkPVFwH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-018-arc-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:13:27.054Z\", \"updated_at\": \"2026-05-17T13:26:39.502Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T06:19:18.377Z\", \"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T06:39:42.063Z\", \"training_hours\": 0.34}, \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"289541\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\", \"submitted_at\": \"2026-05-17T06:19:19.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1433.8, \"gpu_hours\": 0.4}, \"pid\": \"289541\", \"log_path\": \"/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:39:44.088518+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}, \"notes\": \"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\", \"checkpoint_path\": \"N/A (evaluation experiment)\", \"completed_at\": \"2026-05-17T06:43:13.130Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1865}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "961f0522-3c3e-41ff-a458-51136d757152",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-018-arc-v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:13:27.054Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:26:39.502Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-17T06:19:18.377Z\\\", \\\"command\\\": \\\"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\\\", \\\"code_commit\\\": \\\"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\\\", \\\"finished_at\\\": \\\"2026-05-17T06:39:42.063Z\\\", \\\"training_hours\\\": 0.34}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"289541\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:19:19.350Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1433.8, \\\"gpu_hours\\\": 0.4}, \\\"pid\\\": \\\"289541\\\", \\\"log_path\\\": \\\"/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T06:39:44.088518+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.95, \\\"sc_accuracy\\\": 0.9667, \\\"delta_pp\\\": -1.67, \\\"multi_candidate_rate\\\": 0.05, \\\"extraction_rate\\\": 1, \\\"contradiction_detected\\\": 3, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 1, \\\"dataset\\\": \\\"ARC-Challenge\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\"}, \\\"notes\\\": \\\"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\\\", \\\"checkpoint_path\\\": \\\"N/A (evaluation experiment)\\\", \\\"completed_at\\\": \\\"2026-05-17T06:43:13.130Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1865}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-018-arc-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:13:27.054Z\", \"updated_at\": \"2026-05-17T13:26:39.502Z\", \"hypothesis\": \"Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）\", \"parent\": \"sica_expanded_14b\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T06:19:18.377Z\", \"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T06:39:42.063Z\", \"training_hours\": 0.34}, \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"289541\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\", \"submitted_at\": \"2026-05-17T06:19:19.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1433.8, \"gpu_hours\": 0.4}, \"pid\": \"289541\", \"log_path\": \"/root/symb_invariant_consensus/results/exp018_arc/exp018_results.json\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:39:44.088518+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}, \"notes\": \"ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。\", \"checkpoint_path\": \"N/A (evaluation experiment)\", \"completed_at\": \"2026-05-17T06:43:13.130Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1865}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017c75v1sMrZLH6yia4Kzr5p`</summary>
+
+```json
+{
+  "exp_id": "exp-019-llama8b-strategyqa-200",
+  "field": "metrics",
+  "value": {
+    "n": 200,
+    "k": 12,
+    "sica_accuracy": 0.74,
+    "sc_accuracy": 0.72,
+    "delta_pp": 2,
+    "multi_candidate_rate": 0.41,
+    "mcnemar_p": 0.424,
+    "bootstrap_ci_95": [
+      -1.5,
+      5.5
+    ],
+    "bootstrap_p_delta_le_0": 0.12,
+    "discordant_sica_wins": 9,
+    "discordant_sc_wins": 5,
+    "discordant_total": 14,
+    "discordant_rate": 0.07,
+    "sc_unanimous_rate": 0.545,
+    "model": "LLaMA-3.1-8B-Instruct",
+    "dataset": "StrategyQA",
+    "wall_time_min": 52
+  },
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d4e52c5d-eed6-4538-b737-fabfcdf1c70a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-17T13:26:41.972Z_
+
+<details><summary>↩ Tool result · `toolu_017c75v1sMrZLH6yia4Kzr5p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-019-llama8b-strategyqa-200\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T13:26:41.871Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T08:18:21.546Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T09:10:18.592Z\", \"training_hours\": 0.87}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"submitted_at\": \"2026-05-17T08:18:24.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\", \"wall_clock_seconds\": 3450.0, \"gpu_hours\": 0.96}, \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:10:21.404482+00:00\"}]}, \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\", \"notes\": \"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\", \"completed_at\": \"2026-05-17T09:15:53.996Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2128}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "4447aa8d-4348-4af7-879d-f6e16deb35da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-019-llama8b-strategyqa-200\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T08:07:01.919Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:26:41.871Z\\\", \\\"hypothesis\\\": \\\"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\\\", \\\"parent\\\": \\\"exp-011-llama8b-v3\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-17T08:18:21.546Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\\\\\"\\\", \\\"code_commit\\\": \\\"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\\\", \\\"finished_at\\\": \\\"2026-05-17T09:10:18.592Z\\\", \\\"training_hours\\\": 0.87}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"302372\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T08:18:24.001Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\\\", \\\"wall_clock_seconds\\\": 3450.0, \\\"gpu_hours\\\": 0.96}, \\\"pid\\\": \\\"302372\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T09:10:21.404482+00:00\\\"}]}, \\\"metrics\\\": {\\\"n\\\": 200, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.74, \\\"sc_accuracy\\\": 0.72, \\\"delta_pp\\\": 2, \\\"multi_candidate_rate\\\": 0.41, \\\"mcnemar_p\\\": 0.424, \\\"bootstrap_ci_95\\\": [-1.5, 5.5], \\\"bootstrap_p_delta_le_0\\\": 0.12, \\\"discordant_sica_wins\\\": 9, \\\"discordant_sc_wins\\\": 5, \\\"discordant_total\\\": 14, \\\"discordant_rate\\\": 0.07, \\\"sc_unanimous_rate\\\": 0.545, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"StrategyQA\\\", \\\"wall_time_min\\\": 52}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\\\", \\\"completed_at\\\": \\\"2026-05-17T09:15:53.996Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2128}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-019-llama8b-strategyqa-200\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T13:26:41.871Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\", \"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-32608\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T08:18:21.546Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"code_commit\": \"97aeaa572a6b6571b4bfea9c6ec6bcf915780425\", \"finished_at\": \"2026-05-17T09:10:18.592Z\", \"training_hours\": 0.87}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"submitted_at\": \"2026-05-17T08:18:24.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\", \"wall_clock_seconds\": 3450.0, \"gpu_hours\": 0.96}, \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T09:10:21.404482+00:00\"}]}, \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\", \"notes\": \"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\", \"completed_at\": \"2026-05-17T09:15:53.996Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2128}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013P16YJSYxykgZF2AWnyNLf`</summary>
+
+```json
+{
+  "exp_id": "sica_expanded_14b",
+  "field": "metrics",
+  "value": {
+    "sica_accuracy": 0.765,
+    "sc_accuracy": 0.762,
+    "sica_sc_gap_pp": 0.3,
+    "n_problems": 804,
+    "multi_candidate_rate": 0.3818,
+    "folio_sica": 0.794,
+    "folio_sc": 0.794,
+    "folio_gap_pp": 0,
+    "folio_n": 204,
+    "proofwriter_sica": 0.755,
+    "proofwriter_sc": 0.752,
+    "proofwriter_gap_pp": 0.3,
+    "proofwriter_n": 600,
+    "extraction_rate": 0.89,
+    "answer_extraction_rate": 1,
+    "contradiction_rate": 0.022,
+    "problems_with_contradictions": 331,
+    "truncated_traces": 0,
+    "wall_time_min": 826
+  },
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "10a99287-3116-44f6-b4f7-7669f0f886b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBv6V9NpzXWxkhbhL1D3ii",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1477,
+      "cache_read_input_tokens": 43585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1477
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-17T13:26:43.926Z_
+
+<details><summary>↩ Tool result · `toolu_013P16YJSYxykgZF2AWnyNLf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sica_expanded_14b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:12:00.374Z\", \"updated_at\": \"2026-05-17T13:26:43.835Z\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"pid\": \"181491\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/symb_invariant_consensus/sica_expanded_14b.log\", \"submitted_at\": \"2026-05-16T05:19:00.966Z\", \"backend\": \"nohup\", \"account\": \"root\", \"eta_hours\": 13.4, \"wall_clock_seconds\": 50368.9, \"gpu_hours\": 13.99}, \"reproduce\": {\"finished_at\": \"2026-05-16T19:18:29.155Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T19:18:29.888Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T19:18:30.703230+00:00\"}]}, \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}, \"notes\": \"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\"FULL_MVP_DONE\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\", \"parent\": \"sica_d012_14b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2078}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "3f2a98b0-f513-422e-8729-1427c0fb525c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sica_expanded_14b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:12:00.374Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:26:43.835Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\\\", \\\"data_count\\\": 804, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"181491\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/sica_expanded_14b.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T05:19:00.966Z\\\", \\\"backend\\\": \\\"nohup\\\", \\\"account\\\": \\\"root\\\", \\\"eta_hours\\\": 13.4, \\\"wall_clock_seconds\\\": 50368.9, \\\"gpu_hours\\\": 13.99}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T19:18:29.155Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T19:18:29.888Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T19:18:30.703230+00:00\\\"}]}, \\\"metrics\\\": {\\\"sica_accuracy\\\": 0.765, \\\"sc_accuracy\\\": 0.762, \\\"sica_sc_gap_pp\\\": 0.3, \\\"n_problems\\\": 804, \\\"multi_candidate_rate\\\": 0.3818, \\\"folio_sica\\\": 0.794, \\\"folio_sc\\\": 0.794, \\\"folio_gap_pp\\\": 0, \\\"folio_n\\\": 204, \\\"proofwriter_sica\\\": 0.755, \\\"proofwriter_sc\\\": 0.752, \\\"proofwriter_gap_pp\\\": 0.3, \\\"proofwriter_n\\\": 600, \\\"extraction_rate\\\": 0.89, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"problems_with_contradictions\\\": 331, \\\"truncated_traces\\\": 0, \\\"wall_time_min\\\": 826}, \\\"notes\\\": \\\"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\\\\\"FULL_MVP_DONE\\\\\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\", \\\"hypothesis\\\": \\\"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\\\", \\\"parent\\\": \\\"sica_d012_14b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2078}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sica_expanded_14b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:12:00.374Z\", \"updated_at\": \"2026-05-17T13:26:43.835Z\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"pid\": \"181491\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/symb_invariant_consensus/sica_expanded_14b.log\", \"submitted_at\": \"2026-05-16T05:19:00.966Z\", \"backend\": \"nohup\", \"account\": \"root\", \"eta_hours\": 13.4, \"wall_clock_seconds\": 50368.9, \"gpu_hours\": 13.99}, \"reproduce\": {\"finished_at\": \"2026-05-16T19:18:29.155Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T19:18:29.888Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T19:18:30.703230+00:00\"}]}, \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}, \"notes\": \"实验完整完成 804/804 题并保存结果。EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），非真实失败。日志末尾打印 \\\"FULL_MVP_DONE\\\" 后才出现 exit code。D025 pivot 确认：SICA≈SC (+0.3pp, N=804)，D012 +3.3pp 是小样本噪声。FOLIO sub-claim dead (0pp)。\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\", \"hypothesis\": \"Qwen2.5-14B-Instruct 在 N=804 (600PW+204FOLIO) 上 SICA 相比 SC 有统计显著优势（p<0.05）——full-scale validation of D012 preliminary +3.3pp signal\", \"parent\": \"sica_d012_14b\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2078}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 161_
+
+四个更新全部成功。再验证一下最终结果是否一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "511465dc-eaf9-4157-bc9a-e3e332fa6b42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrTMjmFzQKJB4h2hvtgzSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6229,
+      "cache_read_input_tokens": 45062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6229
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 162_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BeR7rjrgGHyLdh6s1mQk41`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 0,
+  "fields": [
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "c6273303-559f-4705-9cfc-1ec0226de4f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrTMjmFzQKJB4h2hvtgzSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6229,
+      "cache_read_input_tokens": 45062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6229
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 163 · 2026-05-17T13:26:48.172Z_
+
+<details><summary>↩ Tool result · `toolu_01BeR7rjrgGHyLdh6s1mQk41`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sica_expanded_14b\": {\"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}}, \"exp-019-llama8b-strategyqa-200\": {\"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}}, \"exp-018-arc-v2\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}}, \"exp-010-mistral-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}}, \"exp-009-overhead-analysis\": {\"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}}, \"exp-014-deepseek-r1-7b\": {}, \"exp-020-llama8b-folio-204\": {\"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668, \"bootstrap_ci_95\": [-5.88, 0.98], \"bootstrap_p_sica_ge_sc\": 0.1, \"discordant_sica_wins\": 4, \"discordant_sc_wins\": 9, \"discordant_total\": 13, \"discordant_rate\": 0.064, \"multi_candidate_rate\": 0.618, \"extraction_rate\": 0.942, \"answer_extraction_rate\": 0.951, \"contradiction_rate\": 0.062, \"both_wrong\": 71, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"FOLIO-204\", \"wall_time_min\": 131.7}}, \"pilot-contrastive-prompt\": {}, \"exp-011-llama8b-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}}, \"exp-010-mistral-v2\": {}, \"pilot-constraint-filtering\": {\"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {}, \"exp-017-strategyqa-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}}, \"exp-017-strategyqa-v2\": {}, \"exp-017-strategyqa\": {}, \"exp-010-mistral\": {}, \"exp-011-llama8b-v2\": {}, \"sica_temp_diversity\": {\"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}}, \"sica_d012_14b\": {\"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}}, \"sica_k_sensitivity_14b\": {\"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}}, \"exp-011-llama8b\": {}, \"exp-016-weighted-sc\": {\"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}}, \"exp-005\": {\"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}}, \"sica_constraint_ablation_013\": {\"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7637, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"agreement_802_of_804\": true, \"mcnemar_p_all_gt_0.7\": true, \"note\": \"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\"}}, \"sica_folio30\": {}, \"sica_d016_c0_precheck\": {\"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}}, \"sica_proofwriter30_v2\": {}, \"sica_proofwriter30\": {\"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}}, \"sica_aime30_v2\": {\"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}}, \"sica_aime30_t07\": {}, \"mvp_math50_t07\": {}, \"sica_smoke_5q\": {\"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"smoke-test-5q\": {}, \"crd_folio_main\": {\"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 35, \"total\": 35, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1252}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "d78e7492-1c2d-4aaf-b614-09d08ad824de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sica_expanded_14b\\\": {\\\"metrics\\\": {\\\"sica_accuracy\\\": 0.765, \\\"sc_accuracy\\\": 0.762, \\\"sica_sc_gap_pp\\\": 0.3, \\\"n_problems\\\": 804, \\\"multi_candidate_rate\\\": 0.3818, \\\"folio_sica\\\": 0.794, \\\"folio_sc\\\": 0.794, \\\"folio_gap_pp\\\": 0, \\\"folio_n\\\": 204, \\\"proofwriter_sica\\\": 0.755, \\\"proofwriter_sc\\\": 0.752, \\\"proofwriter_gap_pp\\\": 0.3, \\\"proofwriter_n\\\": 600, \\\"extraction_rate\\\": 0.89, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.022, \\\"problems_with_contradictions\\\": 331, \\\"truncated_traces\\\": 0, \\\"wall_time_min\\\": 826}}, \\\"exp-019-llama8b-strategyqa-200\\\": {\\\"metrics\\\": {\\\"n\\\": 200, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.74, \\\"sc_accuracy\\\": 0.72, \\\"delta_pp\\\": 2, \\\"multi_candidate_rate\\\": 0.41, \\\"mcnemar_p\\\": 0.424, \\\"bootstrap_ci_95\\\": [-1.5, 5.5], \\\"bootstrap_p_delta_le_0\\\": 0.12, \\\"discordant_sica_wins\\\": 9, \\\"discordant_sc_wins\\\": 5, \\\"discordant_total\\\": 14, \\\"discordant_rate\\\": 0.07, \\\"sc_unanimous_rate\\\": 0.545, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"StrategyQA\\\", \\\"wall_time_min\\\": 52}}, \\\"exp-018-arc-v2\\\": {\\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.95, \\\"sc_accuracy\\\": 0.9667, \\\"delta_pp\\\": -1.67, \\\"multi_candidate_rate\\\": 0.05, \\\"extraction_rate\\\": 1, \\\"contradiction_detected\\\": 3, \\\"discordant_sica_wins\\\": 0, \\\"discordant_sc_wins\\\": 1, \\\"dataset\\\": \\\"ARC-Challenge\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\"}}, \\\"exp-010-mistral-v3\\\": {\\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.4833, \\\"sc_accuracy\\\": 0.4833, \\\"delta_pp\\\": 0, \\\"multi_candidate_rate\\\": 0.5, \\\"extraction_rate\\\": 0.8819, \\\"answer_extraction_rate\\\": 1, \\\"contradiction_rate\\\": 0.0562, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 2, \\\"mcnemar_p\\\": 1, \\\"proofwriter_sica\\\": 0.4, \\\"proofwriter_sc\\\": 0.4, \\\"proofwriter_delta_pp\\\": 0, \\\"folio_sica\\\": 0.5667, \\\"folio_sc\\\": 0.5667, \\\"folio_delta_pp\\\": 0, \\\"truncated_traces\\\": 0, \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"dataset\\\": \\\"D012\\\"}}, \\\"exp-009-overhead-analysis\\\": {\\\"metrics\\\": {\\\"n\\\": 804, \\\"mean_total_wall_s\\\": 61.6, \\\"mean_trace_gen_s\\\": 31.6, \\\"trace_gen_pct\\\": 51.3, \\\"mean_extract_s\\\": 29, \\\"extract_pct\\\": 47, \\\"mean_dedup_s\\\": 1, \\\"dedup_pct\\\": 1.6, \\\"mean_maxsat_s\\\": 0.003, \\\"maxsat_pct\\\": 0.005, \\\"sica_overhead_s\\\": 30, \\\"sica_overhead_pct\\\": 48.7, \\\"pw_overhead_pct\\\": 51.3, \\\"folio_overhead_pct\\\": 38.6, \\\"p50_overhead_pct\\\": 48.9, \\\"p90_overhead_pct\\\": 57.6}}, \\\"exp-014-deepseek-r1-7b\\\": {}, \\\"exp-020-llama8b-folio-204\\\": {\\\"metrics\\\": {\\\"n\\\": 204, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.608, \\\"sc_accuracy\\\": 0.632, \\\"delta_pp\\\": -2.45, \\\"mcnemar_p\\\": 0.2668, \\\"bootstrap_ci_95\\\": [-5.88, 0.98], \\\"bootstrap_p_sica_ge_sc\\\": 0.1, \\\"discordant_sica_wins\\\": 4, \\\"discordant_sc_wins\\\": 9, \\\"discordant_total\\\": 13, \\\"discordant_rate\\\": 0.064, \\\"multi_candidate_rate\\\": 0.618, \\\"extraction_rate\\\": 0.942, \\\"answer_extraction_rate\\\": 0.951, \\\"contradiction_rate\\\": 0.062, \\\"both_wrong\\\": 71, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"FOLIO-204\\\", \\\"wall_time_min\\\": 131.7}}, \\\"pilot-contrastive-prompt\\\": {}, \\\"exp-011-llama8b-v3\\\": {\\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.6667, \\\"sc_accuracy\\\": 0.6, \\\"delta_pp\\\": 6.67, \\\"multi_candidate_rate\\\": 0.6167, \\\"extraction_rate\\\": 0.8556, \\\"answer_extraction_rate\\\": 0.8958, \\\"contradiction_rate\\\": 0.0527, \\\"problems_with_contradictions\\\": 43, \\\"truncated_traces\\\": 44, \\\"discordant_sica_wins\\\": 5, \\\"discordant_sc_wins\\\": 1, \\\"mcnemar_p\\\": 0.2188, \\\"proofwriter_sica\\\": 0.6333, \\\"proofwriter_sc\\\": 0.6, \\\"proofwriter_delta_pp\\\": 3.33, \\\"folio_sica\\\": 0.7, \\\"folio_sc\\\": 0.6, \\\"folio_delta_pp\\\": 10, \\\"model\\\": \\\"LLaMA-3.1-8B-Instruct\\\", \\\"dataset\\\": \\\"D012\\\", \\\"wall_time_min\\\": 66.4}}, \\\"exp-010-mistral-v2\\\": {}, \\\"pilot-constraint-filtering\\\": {\\\"metrics\\\": {\\\"n\\\": 43, \\\"thresholds_tested\\\": [1, 2, 3, 5, 7], \\\"best_gap_pp\\\": 2.33, \\\"best_T\\\": 1, \\\"sica_T1\\\": 0.7674, \\\"sc\\\": 0.7442, \\\"T5_gap\\\": 0, \\\"T7_gap\\\": 0, \\\"discriminative_ratio_count\\\": 0.115, \\\"discriminative_ratio_weight\\\": 0.372, \\\"effective_flip_rate\\\": 0.174, \\\"multi_answer_problems\\\": 23, \\\"unanimous_problems\\\": 20, \\\"problems_disc_favors_different\\\": 4}}, \\\"exp-018-arc\\\": {}, \\\"exp-017-strategyqa-v3\\\": {\\\"metrics\\\": {\\\"n\\\": 60, \\\"k\\\": 12, \\\"sica_accuracy\\\": 0.5667, \\\"sc_accuracy\\\": 0.5333, \\\"delta_pp\\\": 3.33, \\\"mcnemar_chi2\\\": 0.5, \\\"mcnemar_p\\\": \\\"n.s.\\\", \\\"bootstrap_ci_95\\\": [0, 8.33], \\\"bootstrap_p_delta_le_0\\\": 0.1346, \\\"multi_candidate_rate\\\": 0.1, \\\"contradiction_detected\\\": 5, \\\"extraction_rate_problem\\\": 1, \\\"extraction_rate_trace\\\": 0.704, \\\"discordant_sica_wins\\\": 2, \\\"discordant_sc_wins\\\": 0}}, \\\"exp-017-strategyqa-v2\\\": {}, \\\"exp-017-strategyqa\\\": {}, \\\"exp-010-mistral\\\": {}, \\\"exp-011-llama8b-v2\\\": {}, \\\"sica_temp_diversity\\\": {\\\"metrics\\\": {\\\"temperatures_tested\\\": [0.7, 0.9, 1], \\\"problems_tested\\\": 3, \\\"problems_with_divergence\\\": 0, \\\"finding\\\": \\\"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\\\", \\\"max_tokens_issue\\\": \\\"4096 tokens insufficient for some L5 problems (truncation)\\\", \\\"recommendation\\\": \\\"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\\\"}}, \\\"sica_d012_14b\\\": {\\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7333, \\\"sc_accuracy\\\": 0.7, \\\"sica_sc_gap_pp\\\": 3.3, \\\"c0_multi_candidate_rate\\\": 0.5333, \\\"c1_extraction_rate\\\": 1, \\\"c2_contradiction_problems\\\": 34, \\\"c3_gap_pp\\\": 3.3, \\\"bootstrap_p\\\": 0.2261, \\\"proofwriter_sica\\\": 0.6667, \\\"proofwriter_sc\\\": 0.6667, \\\"folio_sica\\\": 0.8, \\\"folio_sc\\\": 0.7333, \\\"total_constraints_raw\\\": 5849, \\\"total_constraints_unique\\\": 1735, \\\"maxsat_exclusion_rate\\\": 0.0259, \\\"wall_time_min\\\": 58.3, \\\"d012_verdict\\\": \\\"ALL_PASS\\\"}}, \\\"sica_k_sensitivity_14b\\\": {\\\"metrics\\\": {\\\"K6_sica\\\": 0.733, \\\"K6_sc\\\": 0.733, \\\"K6_gap_pp\\\": 0, \\\"K8_sica\\\": 0.733, \\\"K8_sc\\\": 0.75, \\\"K8_gap_pp\\\": -1.7, \\\"K11_sica\\\": 0.733, \\\"K11_sc\\\": 0.733, \\\"K11_gap_pp\\\": 0, \\\"K12_sica\\\": 0.7, \\\"K12_sc\\\": 0.75, \\\"K12_gap_pp\\\": -5, \\\"K16_sica\\\": 0.717, \\\"K16_sc\\\": 0.75, \\\"K16_gap_pp\\\": -3.3, \\\"K20_sica\\\": 0.7, \\\"K20_sc\\\": 0.733, \\\"K20_gap_pp\\\": -3.3, \\\"all_K_sica_leq_sc\\\": true, \\\"larger_K_degrades_sica\\\": true}}, \\\"exp-011-llama8b\\\": {}, \\\"exp-016-weighted-sc\\\": {\\\"metrics\\\": {\\\"sica_accuracy\\\": 0.7649, \\\"sc_uniform_accuracy\\\": 0.7624, \\\"inv_length_accuracy\\\": 0.7674, \\\"length_weighted_accuracy\\\": 0.7525, \\\"constraint_count_accuracy\\\": 0.7525, \\\"inv_length_vs_sc_p\\\": 0.453, \\\"length_vs_sc_p\\\": 0.153, \\\"inv_length_vs_sica_p\\\": 0.864, \\\"length_vs_sica_p\\\": 0.066, \\\"n_problems\\\": 804, \\\"all_nonsignificant\\\": true}}, \\\"exp-005\\\": {\\\"metrics\\\": {\\\"qwq_aggregate_c0_nominal_pct\\\": 10.3, \\\"qwq_aggregate_c0_effective_pct\\\": 2.6, \\\"qwen14b_c0_pct\\\": 46, \\\"diversity_ratio_effective\\\": 17.7, \\\"aime_delta_pp\\\": 0, \\\"proofwriter_delta_pp\\\": -5.9, \\\"aime_n\\\": 22, \\\"proofwriter_n\\\": 17, \\\"temp_diversity_n\\\": 5, \\\"folio_n\\\": 2, \\\"total_problems\\\": 46, \\\"c0_threshold\\\": 20, \\\"qwq_below_threshold\\\": true}}, \\\"sica_constraint_ablation_013\\\": {\\\"metrics\\\": {\\\"maxsat_accuracy\\\": 0.7649, \\\"count_only_accuracy\\\": 0.7662, \\\"random_weight_accuracy\\\": 0.7637, \\\"sc_baseline_accuracy\\\": 0.7624, \\\"n_problems\\\": 804, \\\"agreement_802_of_804\\\": true, \\\"mcnemar_p_all_gt_0.7\\\": true, \\\"note\\\": \\\"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\\\"}}, \\\"sica_folio30\\\": {}, \\\"sica_d016_c0_precheck\\\": {\\\"metrics\\\": {\\\"multi_candidate_rate_combined\\\": 0.46, \\\"multi_candidate_rate_folio\\\": 0.4, \\\"multi_candidate_rate_proofwriter\\\": 0.5, \\\"sc_accuracy_combined\\\": 0.73, \\\"sc_accuracy_folio\\\": 0.8, \\\"sc_accuracy_proofwriter\\\": 0.69, \\\"n_problems\\\": 26, \\\"n_folio\\\": 10, \\\"n_proofwriter\\\": 16, \\\"K\\\": 6, \\\"T\\\": 0.7, \\\"total_time_s\\\": 280, \\\"c0_gate\\\": \\\"PASS (46% >= 20%)\\\", \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"vllm_gpu_mem_gib\\\": 27.6, \\\"smoke_test\\\": \\\"2 problems end-to-end OK, constraints 21-26 per problem\\\"}}, \\\"sica_proofwriter30_v2\\\": {}, \\\"sica_proofwriter30\\\": {\\\"metrics\\\": {\\\"sica_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sc_accuracy\\\": \\\"0/30 (0.0%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"total_wall_time_s\\\": 238.9, \\\"total_wall_time_min\\\": 4, \\\"avg_time_per_problem_s\\\": 8, \\\"traces_generated\\\": 0, \\\"constraints_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_constraints\\\": 0, \\\"maxsat_satisfied\\\": 0, \\\"maxsat_excluded\\\": 0, \\\"multi_candidate_rate\\\": \\\"N/A (no traces generated)\\\", \\\"vote_diversity\\\": \\\"N/A\\\", \\\"z3_errors\\\": 0, \\\"z3_timeouts\\\": 0, \\\"problems_with_contradiction\\\": 0, \\\"problems_with_votes\\\": 0, \\\"failure_mode\\\": \\\"ALL_400_BAD_REQUEST\\\", \\\"failure_count\\\": \\\"30/30\\\", \\\"root_cause\\\": \\\"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\\\"}}, \\\"sica_aime30_v3\\\": {\\\"metrics\\\": {\\\"progress\\\": \\\"22/30\\\", \\\"sica_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sc_accuracy_interim\\\": \\\"16/22 (72.7%)\\\", \\\"sica_sc_gap_pp\\\": 0, \\\"avg_time_per_problem_s\\\": 645.9, \\\"runtime_h\\\": 5.9, \\\"remaining_problems\\\": 8, \\\"vote_diversity_analysis\\\": {\\\"valid_problems\\\": 16, \\\"total_problems\\\": 22, \\\"multi_candidate_rate\\\": 0, \\\"zero_vote_problems\\\": 6, \\\"zero_vote_indices\\\": [1, 7, 8, 10, 13, 14], \\\"constraints_extracted\\\": \\\"19/22\\\", \\\"exclusion_rate\\\": 0.387, \\\"conclusion\\\": \\\"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\\\"}, \\\"process_status\\\": \\\"gone (cron miss 1/5)\\\"}}, \\\"sica_aime30_v2\\\": {\\\"metrics\\\": {\\\"progress\\\": \\\"4/30\\\", \\\"sica_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"sc_accuracy_interim\\\": \\\"3/4 (75%)\\\", \\\"avg_time_per_problem_s\\\": 557, \\\"p2_z3_error\\\": \\\"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\\\", \\\"p5_vllm_stuck\\\": \\\"vLLM timeout since ~22:11, retried multiple rounds\\\", \\\"issue\\\": \\\"vLLM service likely crashed or OOM at Problem 5\\\", \\\"analysis_contradiction_rate_aime\\\": \\\"50% (2/4)\\\", \\\"analysis_contradiction_rate_math\\\": \\\"20% (1/5)\\\", \\\"analysis_unique_constraints_per_problem_aime\\\": 18.7, \\\"analysis_exclusion_rate\\\": \\\"10.7%\\\", \\\"analysis_sica_sc_agreement\\\": \\\"9/9 (100%)\\\", \\\"analysis_signal\\\": \\\"weak positive - mechanism works but SC too unanimous to flip\\\", \\\"analysis_p2_failure\\\": \\\"0 constraints, 0 votes - answer extraction failure\\\"}}, \\\"sica_aime30_t07\\\": {}, \\\"mvp_math50_t07\\\": {}, \\\"sica_smoke_5q\\\": {\\\"metrics\\\": {\\\"sica_accuracy\\\": 0.8, \\\"sc_accuracy\\\": 0.8, \\\"extraction_rate\\\": 1, \\\"problems_with_contradictions\\\": 1, \\\"total_problems\\\": 5, \\\"total_time_s\\\": 3505, \\\"avg_time_per_problem_s\\\": 701, \\\"per_problem\\\": [{\\\"id\\\": \\\"algebra/2470\\\", \\\"level\\\": 1, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 27, \\\"unique\\\": 9, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"prealgebra/65\\\", \\\"level\\\": 2, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 26, \\\"unique\\\": 2, \\\"excluded\\\": 0}, {\\\"id\\\": \\\"number_theory/847\\\", \\\"level\\\": 3, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 21, \\\"unique\\\": 11, \\\"excluded\\\": 0, \\\"note\\\": \\\"14 JSON parse failures, 1693s\\\"}, {\\\"id\\\": \\\"precalculus/1199\\\", \\\"level\\\": 4, \\\"sica_correct\\\": false, \\\"sc_correct\\\": false, \\\"constraints\\\": 35, \\\"unique\\\": 6, \\\"excluded\\\": 0, \\\"note\\\": \\\"graph-reading problem, model cannot see image\\\"}, {\\\"id\\\": \\\"algebra/2277\\\", \\\"level\\\": 5, \\\"sica_correct\\\": true, \\\"sc_correct\\\": true, \\\"constraints\\\": 60, \\\"unique\\\": 6, \\\"satisfied\\\": 3, \\\"excluded\\\": 3}]}}, \\\"smoke-test-5q\\\": {}, \\\"crd_folio_main\\\": {\\\"metrics\\\": {\\\"divergence_rate\\\": 0.422, \\\"diagnosis_rate\\\": 0.872, \\\"error_types\\\": 4, \\\"directed_advantage_pp\\\": 4.7, \\\"directed_p_value\\\": 0.63, \\\"localization_accuracy\\\": 0.946, \\\"fol_accuracy\\\": 0.789, \\\"code_accuracy\\\": 0.598, \\\"oracle_accuracy\\\": 0.878, \\\"pipeline_accuracy\\\": 0.814, \\\"baseline_accuracy\\\": 0.74, \\\"cost_multiplier\\\": 5.76, \\\"dataset\\\": \\\"FOLIO\\\", \\\"n\\\": 204}}}, \\\"count\\\": 35, \\\"total\\\": 35, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1252}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"sica_expanded_14b\": {\"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"multi_candidate_rate\": 0.3818, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}}, \"exp-019-llama8b-strategyqa-200\": {\"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"multi_candidate_rate\": 0.41, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}}, \"exp-018-arc-v2\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.95, \"sc_accuracy\": 0.9667, \"delta_pp\": -1.67, \"multi_candidate_rate\": 0.05, \"extraction_rate\": 1, \"contradiction_detected\": 3, \"discordant_sica_wins\": 0, \"discordant_sc_wins\": 1, \"dataset\": \"ARC-Challenge\", \"model\": \"Qwen2.5-14B-Instruct\"}}, \"exp-010-mistral-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.4833, \"sc_accuracy\": 0.4833, \"delta_pp\": 0, \"multi_candidate_rate\": 0.5, \"extraction_rate\": 0.8819, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.0562, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 2, \"mcnemar_p\": 1, \"proofwriter_sica\": 0.4, \"proofwriter_sc\": 0.4, \"proofwriter_delta_pp\": 0, \"folio_sica\": 0.5667, \"folio_sc\": 0.5667, \"folio_delta_pp\": 0, \"truncated_traces\": 0, \"model\": \"Mistral-7B-Instruct-v0.3\", \"dataset\": \"D012\"}}, \"exp-009-overhead-analysis\": {\"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}}, \"exp-014-deepseek-r1-7b\": {}, \"exp-020-llama8b-folio-204\": {\"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668, \"bootstrap_ci_95\": [-5.88, 0.98], \"bootstrap_p_sica_ge_sc\": 0.1, \"discordant_sica_wins\": 4, \"discordant_sc_wins\": 9, \"discordant_total\": 13, \"discordant_rate\": 0.064, \"multi_candidate_rate\": 0.618, \"extraction_rate\": 0.942, \"answer_extraction_rate\": 0.951, \"contradiction_rate\": 0.062, \"both_wrong\": 71, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"FOLIO-204\", \"wall_time_min\": 131.7}}, \"pilot-contrastive-prompt\": {}, \"exp-011-llama8b-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}}, \"exp-010-mistral-v2\": {}, \"pilot-constraint-filtering\": {\"metrics\": {\"n\": 43, \"thresholds_tested\": [1, 2, 3, 5, 7], \"best_gap_pp\": 2.33, \"best_T\": 1, \"sica_T1\": 0.7674, \"sc\": 0.7442, \"T5_gap\": 0, \"T7_gap\": 0, \"discriminative_ratio_count\": 0.115, \"discriminative_ratio_weight\": 0.372, \"effective_flip_rate\": 0.174, \"multi_answer_problems\": 23, \"unanimous_problems\": 20, \"problems_disc_favors_different\": 4}}, \"exp-018-arc\": {}, \"exp-017-strategyqa-v3\": {\"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.5667, \"sc_accuracy\": 0.5333, \"delta_pp\": 3.33, \"mcnemar_chi2\": 0.5, \"mcnemar_p\": \"n.s.\", \"bootstrap_ci_95\": [0, 8.33], \"bootstrap_p_delta_le_0\": 0.1346, \"multi_candidate_rate\": 0.1, \"contradiction_detected\": 5, \"extraction_rate_problem\": 1, \"extraction_rate_trace\": 0.704, \"discordant_sica_wins\": 2, \"discordant_sc_wins\": 0}}, \"exp-017-strategyqa-v2\": {}, \"exp-017-strategyqa\": {}, \"exp-010-mistral\": {}, \"exp-011-llama8b-v2\": {}, \"sica_temp_diversity\": {\"metrics\": {\"temperatures_tested\": [0.7, 0.9, 1], \"problems_tested\": 3, \"problems_with_divergence\": 0, \"finding\": \"QwQ-32B produces zero answer divergence at all temperatures on MATH L4-5. Reasoning model's deterministic chain dominates sampling randomness.\", \"max_tokens_issue\": \"4096 tokens insufficient for some L5 problems (truncation)\", \"recommendation\": \"Use AIME 2024 (harder, ~79.5% acc) or non-reasoning model for trace diversity\"}}, \"sica_d012_14b\": {\"metrics\": {\"sica_accuracy\": 0.7333, \"sc_accuracy\": 0.7, \"sica_sc_gap_pp\": 3.3, \"c0_multi_candidate_rate\": 0.5333, \"c1_extraction_rate\": 1, \"c2_contradiction_problems\": 34, \"c3_gap_pp\": 3.3, \"bootstrap_p\": 0.2261, \"proofwriter_sica\": 0.6667, \"proofwriter_sc\": 0.6667, \"folio_sica\": 0.8, \"folio_sc\": 0.7333, \"total_constraints_raw\": 5849, \"total_constraints_unique\": 1735, \"maxsat_exclusion_rate\": 0.0259, \"wall_time_min\": 58.3, \"d012_verdict\": \"ALL_PASS\"}}, \"sica_k_sensitivity_14b\": {\"metrics\": {\"K6_sica\": 0.733, \"K6_sc\": 0.733, \"K6_gap_pp\": 0, \"K8_sica\": 0.733, \"K8_sc\": 0.75, \"K8_gap_pp\": -1.7, \"K11_sica\": 0.733, \"K11_sc\": 0.733, \"K11_gap_pp\": 0, \"K12_sica\": 0.7, \"K12_sc\": 0.75, \"K12_gap_pp\": -5, \"K16_sica\": 0.717, \"K16_sc\": 0.75, \"K16_gap_pp\": -3.3, \"K20_sica\": 0.7, \"K20_sc\": 0.733, \"K20_gap_pp\": -3.3, \"all_K_sica_leq_sc\": true, \"larger_K_degrades_sica\": true}}, \"exp-011-llama8b\": {}, \"exp-016-weighted-sc\": {\"metrics\": {\"sica_accuracy\": 0.7649, \"sc_uniform_accuracy\": 0.7624, \"inv_length_accuracy\": 0.7674, \"length_weighted_accuracy\": 0.7525, \"constraint_count_accuracy\": 0.7525, \"inv_length_vs_sc_p\": 0.453, \"length_vs_sc_p\": 0.153, \"inv_length_vs_sica_p\": 0.864, \"length_vs_sica_p\": 0.066, \"n_problems\": 804, \"all_nonsignificant\": true}}, \"exp-005\": {\"metrics\": {\"qwq_aggregate_c0_nominal_pct\": 10.3, \"qwq_aggregate_c0_effective_pct\": 2.6, \"qwen14b_c0_pct\": 46, \"diversity_ratio_effective\": 17.7, \"aime_delta_pp\": 0, \"proofwriter_delta_pp\": -5.9, \"aime_n\": 22, \"proofwriter_n\": 17, \"temp_diversity_n\": 5, \"folio_n\": 2, \"total_problems\": 46, \"c0_threshold\": 20, \"qwq_below_threshold\": true}}, \"sica_constraint_ablation_013\": {\"metrics\": {\"maxsat_accuracy\": 0.7649, \"count_only_accuracy\": 0.7662, \"random_weight_accuracy\": 0.7637, \"sc_baseline_accuracy\": 0.7624, \"n_problems\": 804, \"agreement_802_of_804\": true, \"mcnemar_p_all_gt_0.7\": true, \"note\": \"approximate (raw z3 formulas unavailable, count-only/random-weight use proxy)\"}}, \"sica_folio30\": {}, \"sica_d016_c0_precheck\": {\"metrics\": {\"multi_candidate_rate_combined\": 0.46, \"multi_candidate_rate_folio\": 0.4, \"multi_candidate_rate_proofwriter\": 0.5, \"sc_accuracy_combined\": 0.73, \"sc_accuracy_folio\": 0.8, \"sc_accuracy_proofwriter\": 0.69, \"n_problems\": 26, \"n_folio\": 10, \"n_proofwriter\": 16, \"K\": 6, \"T\": 0.7, \"total_time_s\": 280, \"c0_gate\": \"PASS (46% >= 20%)\", \"model\": \"Qwen2.5-14B-Instruct\", \"vllm_gpu_mem_gib\": 27.6, \"smoke_test\": \"2 problems end-to-end OK, constraints 21-26 per problem\"}}, \"sica_proofwriter30_v2\": {}, \"sica_proofwriter30\": {\"metrics\": {\"sica_accuracy\": \"0/30 (0.0%)\", \"sc_accuracy\": \"0/30 (0.0%)\", \"sica_sc_gap_pp\": 0, \"total_wall_time_s\": 238.9, \"total_wall_time_min\": 4, \"avg_time_per_problem_s\": 8, \"traces_generated\": 0, \"constraints_extracted\": 0, \"traces_with_constraints\": 0, \"unique_constraints\": 0, \"maxsat_satisfied\": 0, \"maxsat_excluded\": 0, \"multi_candidate_rate\": \"N/A (no traces generated)\", \"vote_diversity\": \"N/A\", \"z3_errors\": 0, \"z3_timeouts\": 0, \"problems_with_contradiction\": 0, \"problems_with_votes\": 0, \"failure_mode\": \"ALL_400_BAD_REQUEST\", \"failure_count\": \"30/30\", \"root_cause\": \"max_tokens=16384 equals max_model_len=16384, leaving 0 tokens for prompt input. Every API call returns 400.\"}}, \"sica_aime30_v3\": {\"metrics\": {\"progress\": \"22/30\", \"sica_accuracy_interim\": \"16/22 (72.7%)\", \"sc_accuracy_interim\": \"16/22 (72.7%)\", \"sica_sc_gap_pp\": 0, \"avg_time_per_problem_s\": 645.9, \"runtime_h\": 5.9, \"remaining_problems\": 8, \"vote_diversity_analysis\": {\"valid_problems\": 16, \"total_problems\": 22, \"multi_candidate_rate\": 0, \"zero_vote_problems\": 6, \"zero_vote_indices\": [1, 7, 8, 10, 13, 14], \"constraints_extracted\": \"19/22\", \"exclusion_rate\": 0.387, \"conclusion\": \"All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate.\"}, \"process_status\": \"gone (cron miss 1/5)\"}}, \"sica_aime30_v2\": {\"metrics\": {\"progress\": \"4/30\", \"sica_accuracy_interim\": \"3/4 (75%)\", \"sc_accuracy_interim\": \"3/4 (75%)\", \"avg_time_per_problem_s\": 557, \"p2_z3_error\": \"Z3Exception on z3_maxsat.py:163, 0 constraints extracted\", \"p5_vllm_stuck\": \"vLLM timeout since ~22:11, retried multiple rounds\", \"issue\": \"vLLM service likely crashed or OOM at Problem 5\", \"analysis_contradiction_rate_aime\": \"50% (2/4)\", \"analysis_contradiction_rate_math\": \"20% (1/5)\", \"analysis_unique_constraints_per_problem_aime\": 18.7, \"analysis_exclusion_rate\": \"10.7%\", \"analysis_sica_sc_agreement\": \"9/9 (100%)\", \"analysis_signal\": \"weak positive - mechanism works but SC too unanimous to flip\", \"analysis_p2_failure\": \"0 constraints, 0 votes - answer extraction failure\"}}, \"sica_aime30_t07\": {}, \"mvp_math50_t07\": {}, \"sica_smoke_5q\": {\"metrics\": {\"sica_accuracy\": 0.8, \"sc_accuracy\": 0.8, \"extraction_rate\": 1, \"problems_with_contradictions\": 1, \"total_problems\": 5, \"total_time_s\": 3505, \"avg_time_per_problem_s\": 701, \"per_problem\": [{\"id\": \"algebra/2470\", \"level\": 1, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 27, \"unique\": 9, \"excluded\": 0}, {\"id\": \"prealgebra/65\", \"level\": 2, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 26, \"unique\": 2, \"excluded\": 0}, {\"id\": \"number_theory/847\", \"level\": 3, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 21, \"unique\": 11, \"excluded\": 0, \"note\": \"14 JSON parse failures, 1693s\"}, {\"id\": \"precalculus/1199\", \"level\": 4, \"sica_correct\": false, \"sc_correct\": false, \"constraints\": 35, \"unique\": 6, \"excluded\": 0, \"note\": \"graph-reading problem, model cannot see image\"}, {\"id\": \"algebra/2277\", \"level\": 5, \"sica_correct\": true, \"sc_correct\": true, \"constraints\": 60, \"unique\": 6, \"satisfied\": 3, \"excluded\": 3}]}}, \"smoke-test-5q\": {}, \"crd_folio_main\": {\"metrics\": {\"divergence_rate\": 0.422, \"diagnosis_rate\": 0.872, \"error_types\": 4, \"directed_advantage_pp\": 4.7, \"directed_p_value\": 0.63, \"localization_accuracy\": 0.946, \"fol_accuracy\": 0.789, \"code_accuracy\": 0.598, \"oracle_accuracy\": 0.878, \"pipeline_accuracy\": 0.814, \"baseline_accuracy\": 0.74, \"cost_multiplier\": 5.76, \"dataset\": \"FOLIO\", \"n\": 204}}}, \"count\": 35, \"total\": 35, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1252}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 164_
+
+全部更新完成。验证结果：
+
+| Experiment | 旧值 | 新值 (from data) | 状态 |
+|---|---|---|---|
+| **exp-010-mistral-v3** | 0.0667 | **0.5** (30/60) | 已修正 |
+| **exp-018-arc-v2** | 0.0833 | **0.05** (3/60) | 已修正 |
+| **exp-019-llama8b-strategyqa-200** | (缺失) | **0.41** (82/200) | 已补充 |
+| **sica_expanded_14b** | (缺失) | **0.3818** (307/804) | 已补充 |
+| exp-011-llama8b-v3 | 0.6167 | 0.6167 | 无需修改 |
+| exp-017-strategyqa-v3 | 0.1 | 0.1 | 无需修改 |
+| exp-020-llama8b-folio-204 | 0.618 | 0.6176 | 无需修改 (rounding) |
+| sica_d012_14b | 0.5333 | 0.5333 | 无需修改 |
+
+exp-010-mistral-v3 的旧值 0.0667 (4/60) 确实是 discordant rate 而非 multi_candidate_rate，实际有 30/60 题存在多候选答案。exp-018-arc-v2 的旧值 0.0833 (5/60) 也有误，实际只有 3/60 题有多候选。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "uuid": "9c77e26a-bbee-4dfd-af23-398d04d9797e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DJ7zFXJjj7xS9Ci7yLyA7q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5443,
+      "cache_read_input_tokens": 51291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5443
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 165_
+
+全部更新完成。验证结果：
+
+| Experiment | 旧值 | 新值 (from data) | 状态 |
+|---|---|---|---|
+| **exp-010-mistral-v3** | 0.0667 | **0.5** (30/60) | 已修正 |
+| **exp-018-arc-v2** | 0.0833 | **0.05** (3/60) | 已修正 |
+| **exp-019-llama8b-strategyqa-200** | (缺失) | **0.41** (82/200) | 已补充 |
+| **sica_expanded_14b** | (缺失) | **0.3818** (307/804) | 已补充 |
+| exp-011-llama8b-v3 | 0.6167 | 0.6167 | 无需修改 |
+| exp-017-strategyqa-v3 | 0.1 | 0.1 | 无需修改 |
+| exp-020-llama8b-folio-204 | 0.618 | 0.6176 | 无需修改 (rounding) |
+| sica_d012_14b | 0.5333 | 0.5333 | 无需修改 |
+
+exp-010-mistral-v3 的旧值 0.0667 (4/60) 确实是 discordant rate 而非 multi_candidate_rate，实际有 30/60 题存在多候选答案。exp-018-arc-v2 的旧值 0.0833 (5/60) 也有误，实际只有 3/60 题有多候选。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 406152,
+  "duration_api_ms": 368627,
+  "num_turns": 35,
+  "stop_reason": "end_turn",
+  "session_id": "2af30557-a604-434a-83bb-bbdd6503c9ed",
+  "total_cost_usd": 1.5570140000000003,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 44893,
+    "cache_read_input_tokens": 612628,
+    "output_tokens": 8505,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44893,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 447,
+        "cache_read_input_tokens": 51291,
+        "cache_creation_input_tokens": 5443,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5443
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1281,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001366,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 48,
+      "outputTokens": 19546,
+      "cacheReadInputTokens": 1044091,
+      "cacheCreationInputTokens": 87154,
+      "webSearchRequests": 0,
+      "costUSD": 1.555648,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2a0daaf1-5403-4194-aceb-d62705fef2f4"
+}
+```
+
+</details>
+
+---

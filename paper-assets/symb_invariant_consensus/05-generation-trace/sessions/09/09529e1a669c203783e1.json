@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09529e1a669c203783e1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp012 gsm8k",
+  "task_key": "worker_gpu_exp012-gsm8k_20260517T164736",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp012-gsm8k_20260517T164736_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "342c535843e0c33603efd90c05259c4604235f504331fca00bdcbc2d5d9f64f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并在正常运行：\n\n- **GPU**: 88453MiB / 97887MiB, 100% utilization, vLLM 引擎已加载\n- **进度**: 3/30 题正在处理（前 2 题均正确，C0=答案一致）\n- **预计 ETA**: ~10.5 min（28 remaining, avg 22.5s/prob）\n- **修复**: `--max-model-len` 从 4096 改为 8192，解决 input/output token 冲突\n- **Registry**: `exp-012-gsm8k-pilot` 已标记 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp012-gsm8k.md"
+}

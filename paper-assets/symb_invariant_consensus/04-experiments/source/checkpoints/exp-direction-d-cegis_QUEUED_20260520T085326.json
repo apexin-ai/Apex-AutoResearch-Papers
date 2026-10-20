@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-direction-d-cegis",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:53:01.301Z",
+    "updated_at": "2026-05-20T08:53:26.278Z",
+    "hypothesis": "CEGIS: Iterative counterexample-guided constraint refinement will improve SICA by using Z3 counterexamples to strengthen constraints across multiple rounds, breaking the single-pass extraction bottleneck."
+  },
+  "timestamp": "2026-05-20T08:53:26.536018+00:00",
+  "trigger": "update_registry"
+}

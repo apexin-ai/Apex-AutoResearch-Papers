@@ -1,0 +1,1935 @@
+# code fix fallback fields
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_code_fix-fallback-fields_20260515T141820.log`
+- **Structured JSON:** [`6e15fdfb34dea354917c.json`](../../sessions/6e/6e15fdfb34dea354917c.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "06d9a0e0-a3d6-44d6-a6d7-de19ad5ff688",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778871600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ec66da13-c2e0-4372-81cd-d0fd80515c21",
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the relevant files to understand the current code structure, then make the fixes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "8bde788e-8db7-4c07-a2cf-aafd4b33b0bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mykjixhz4SCzcWPNqGFVhB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取两个文件，了解当前代码结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "d760646d-dc23-4330-9ba9-5aefa7c4378f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mykjixhz4SCzcWPNqGFVhB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016XgfKvpX1LQavncB1uztRX`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "121c682c-124b-4b08-8723-3308e986aa5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mykjixhz4SCzcWPNqGFVhB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11824,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11824
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T14:18:34.434Z_
+
+<details><summary>↩ Tool result · `toolu_016XgfKvpX1LQavncB1uztRX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "344cd520-7dc1-444c-b5d7-1a0c3486c182",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JjiRD3ynSB6iEMSXDZaAkJ`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/sica/pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "8ca08d70-6ad6-478c-969d-977e44d66cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtfwsUb9iyLd6EZ8G82hqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 23665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 724
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TjvV19VDy7KAQctvyRe48G`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "99f89942-8b1b-4141-85df-e44cba45dc6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtfwsUb9iyLd6EZ8G82hqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 23665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 724
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T14:18:39.329Z_
+
+<details><summary>↩ Tool result · `toolu_01JjiRD3ynSB6iEMSXDZaAkJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA end-to-end pipeline: trace generation -> constraint extraction -> Z3 dedup -> MAX-SAT -> scoring -> answer selection.\\nInput: problem dict with \\\"problem\\\" and \\\"answer\\\" fields\\nOutput: result dict with answer, score, constraint stats, maxsat stats\\nDependencies: trace_generator, constraint_extractor, z3_maxsat, scorer\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nimport time\\nfrom collections import Counter\\n\\nfrom .trace_generator import TraceGenerator\\nfrom .constraint_extractor import ConstraintExtractor\\nfrom .z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom .scorer import InvariantScorer\\nfrom utils.math_equiv import group_equivalent_answers\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:\\n    \\\"\\\"\\\"Group answers by case-insensitive exact match (for logic domain).\\\"\\\"\\\"\\n    groups: dict[str, list[int]] = {}\\n    canonical_map: dict[str, str] = {}\\n    for i, ans in enumerate(answers):\\n        if ans is None or str(ans).strip() == \\\"\\\":\\n            continue\\n        key = str(ans).strip().lower()\\n        if key not in canonical_map:\\n            canonical_map[key] = str(ans).strip()\\n            groups[canonical_map[key]] = []\\n        groups[canonical_map[key]].append(i)\\n    return groups\\n\\n\\nclass SICAPipeline:\\n    def __init__(\\n        self,\\n        trace_generator: TraceGenerator,\\n        constraint_extractor: ConstraintExtractor,\\n        k: int = 12,\\n        maxsat_timeout_ms: int = 10000,\\n    ):\\n        self.trace_generator = trace_generator\\n        self.constraint_extractor = constraint_extractor\\n        self.k = k\\n        self.deduplicator = ConstraintDeduplicator()\\n        self.solver = MaxSATSolver()\\n        self.scorer = InvariantScorer()\\n        self.maxsat_timeout_ms = maxsat_timeout_ms\\n\\n    def run_single(self, problem: dict) -> dict:\\n        \\\"\\\"\\\"Run full SICA pipeline on a single problem.\\\"\\\"\\\"\\n        t_start = time.perf_counter()\\n\\n        # Auto-detect domain from problem metadata\\n        domain = \\\"logic\\\" if problem.get(\\\"dataset\\\") == \\\"proofwriter\\\" else \\\"math\\\"\\n        self.constraint_extractor.domain = domain\\n\\n        cached_traces = None\\n        try:\\n            # 1. Generate K traces\\n            t0 = time.perf_counter()\\n            traces = self.trace_generator.generate(problem[\\\"problem\\\"], k=self.k)\\n            trace_time = time.perf_counter() - t0\\n            cached_traces = traces\\n\\n            # 2. Extract constraints from each trace (batch for concurrency)\\n            t0 = time.perf_counter()\\n            all_constraints = self.constraint_extractor.extract_batch(\\n                [t[\\\"trace\\\"] for t in traces]\\n            )\\n            extract_time = time.perf_counter() - t0\\n\\n            total_constraints = sum(len(c) for c in all_constraints)\\n            non_empty = sum(1 for c in all_constraints if c)\\n\\n            # 3. Deduplicate via z3 equivalence\\n            t0 = time.perf_counter()\\n            unique_constraints = self.deduplicator.deduplicate(all_constraints)\\n            dedup_time = time.perf_counter() - t0\\n\\n            # 4. MAX-SAT solve\\n            t0 = time.perf_counter()\\n            maxsat_result = self.solver.solve(unique_constraints, timeout_ms=self.maxsat_timeout_ms)\\n            maxsat_time = time.perf_counter() - t0\\n\\n            # 5. Group equivalent answers, then score\\n            raw_answers = [t[\\\"answer\\\"] for t in traces if t[\\\"answer\\\"]]\\n\\n            if domain == \\\"logic\\\":\\n                equiv_groups = _group_logic_answers(raw_answers)\\n            else:\\n                equiv_groups = group_equivalent_answers(raw_answers)\\n\\n            # Remap trace answers to canonical forms for scorer\\n            canonical_map = {}\\n            for canonical, indices in equiv_groups.items():\\n                for idx in indices:\\n                    canonical_map[raw_answers[idx]] = canonical\\n\\n            for t in traces:\\n                if t[\\\"answer\\\"] in canonical_map:\\n                    t[\\\"answer\\\"] = canonical_map[t[\\\"answer\\\"]]\\n\\n            candidates = list(equiv_groups.keys())\\n            answer_counts = {k: len(v) for k, v in equiv_groups.items()}\\n            scores = self.scorer.score(maxsat_result, traces, candidates)\\n            selected = self.scorer.select_answer(scores, answer_counts)\\n\\n            total_time = time.perf_counter() - t_start\\n\\n            return {\\n                \\\"answer\\\": selected,\\n                \\\"domain\\\": domain,\\n                \\\"scores\\\": scores,\\n                \\\"answer_counts\\\": answer_counts,\\n                \\\"traces\\\": traces,\\n                \\\"constraints_stats\\\": {\\n                    \\\"total_extracted\\\": total_constraints,\\n                    \\\"traces_with_constraints\\\": non_empty,\\n                    \\\"unique_after_dedup\\\": len(unique_constraints),\\n                },\\n                \\\"maxsat_stats\\\": {\\n                    \\\"satisfied\\\": len(maxsat_result.satisfied),\\n                    \\\"excluded\\\": len(maxsat_result.excluded),\\n                    \\\"total_weight\\\": maxsat_result.total_weight,\\n                    \\\"solve_time_ms\\\": maxsat_result.solve_time_ms,\\n                },\\n                \\\"timing\\\": {\\n                    \\\"trace_gen_s\\\": round(trace_time, 3),\\n                    \\\"extraction_s\\\": round(extract_time, 3),\\n                    \\\"dedup_s\\\": round(dedup_time, 3),\\n                    \\\"maxsat_s\\\": round(maxsat_time, 3),\\n                    \\\"total_s\\\": round(total_time, 3),\\n                },\\n            }\\n        except Exception as e:\\n            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\\n            result = {\\\"error\\\": str(e), \\\"domain\\\": domain}\\n            if cached_traces:\\n                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\\n                if sc_answers:\\n                    counter = Counter(sc_answers)\\n                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\\n                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\\n                    result[\\\"answer_counts\\\"] = dict(counter)\\n                result[\\\"traces\\\"] = cached_traces\\n            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\\n            return result\\n\\n    def run_batch(self, problems: list[dict]) -> list[dict]:\\n        \\\"\\\"\\\"Run pipeline on a batch of problems.\\\"\\\"\\\"\\n        results = []\\n        for i, p in enumerate(problems):\\n            logger.info(\\\"Processing problem %d/%d\\\", i + 1, len(problems))\\n            result = self.run_single(p)\\n            result[\\\"problem_idx\\\"] = i\\n            results.append(result)\\n        return results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "9dd17234-3d8c-4251-81e9-28ec6461bb14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSICA end-to-end pipeline: trace generation -> constraint extraction -> Z3 dedup -> MAX-SAT -> scoring -> answer selection.\\\\nInput: problem dict with \\\\\\\"problem\\\\\\\" and \\\\\\\"answer\\\\\\\" fields\\\\nOutput: result dict with answer, score, constraint stats, maxsat stats\\\\nDependencies: trace_generator, constraint_extractor, z3_maxsat, scorer\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport logging\\\\nimport time\\\\nfrom collections import Counter\\\\n\\\\nfrom .trace_generator import TraceGenerator\\\\nfrom .constraint_extractor import ConstraintExtractor\\\\nfrom .z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\\\nfrom .scorer import InvariantScorer\\\\nfrom utils.math_equiv import group_equivalent_answers\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Group answers by case-insensitive exact match (for logic domain).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    groups: dict[str, list[int]] = {}\\\\n    canonical_map: dict[str, str] = {}\\\\n    for i, ans in enumerate(answers):\\\\n        if ans is None or str(ans).strip() == \\\\\\\"\\\\\\\":\\\\n            continue\\\\n        key = str(ans).strip().lower()\\\\n        if key not in canonical_map:\\\\n            canonical_map[key] = str(ans).strip()\\\\n            groups[canonical_map[key]] = []\\\\n        groups[canonical_map[key]].append(i)\\\\n    return groups\\\\n\\\\n\\\\nclass SICAPipeline:\\\\n    def __init__(\\\\n        self,\\\\n        trace_generator: TraceGenerator,\\\\n        constraint_extractor: ConstraintExtractor,\\\\n        k: int = 12,\\\\n        maxsat_timeout_ms: int = 10000,\\\\n    ):\\\\n        self.trace_generator = trace_generator\\\\n        self.constraint_extractor = constraint_extractor\\\\n        self.k = k\\\\n        self.deduplicator = ConstraintDeduplicator()\\\\n        self.solver = MaxSATSolver()\\\\n        self.scorer = InvariantScorer()\\\\n        self.maxsat_timeout_ms = maxsat_timeout_ms\\\\n\\\\n    def run_single(self, problem: dict) -> dict:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run full SICA pipeline on a single problem.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        t_start = time.perf_counter()\\\\n\\\\n        # Auto-detect domain from problem metadata\\\\n        domain = \\\\\\\"logic\\\\\\\" if problem.get(\\\\\\\"dataset\\\\\\\") == \\\\\\\"proofwriter\\\\\\\" else \\\\\\\"math\\\\\\\"\\\\n        self.constraint_extractor.domain = domain\\\\n\\\\n        cached_traces = None\\\\n        try:\\\\n            # 1. Generate K traces\\\\n            t0 = time.perf_counter()\\\\n            traces = self.trace_generator.generate(problem[\\\\\\\"problem\\\\\\\"], k=self.k)\\\\n            trace_time = time.perf_counter() - t0\\\\n            cached_traces = traces\\\\n\\\\n            # 2. Extract constraints from each trace (batch for concurrency)\\\\n            t0 = time.perf_counter()\\\\n            all_constraints = self.constraint_extractor.extract_batch(\\\\n                [t[\\\\\\\"trace\\\\\\\"] for t in traces]\\\\n            )\\\\n            extract_time = time.perf_counter() - t0\\\\n\\\\n            total_constraints = sum(len(c) for c in all_constraints)\\\\n            non_empty = sum(1 for c in all_constraints if c)\\\\n\\\\n            # 3. Deduplicate via z3 equivalence\\\\n            t0 = time.perf_counter()\\\\n            unique_constraints = self.deduplicator.deduplicate(all_constraints)\\\\n            dedup_time = time.perf_counter() - t0\\\\n\\\\n            # 4. MAX-SAT solve\\\\n            t0 = time.perf_counter()\\\\n            maxsat_result = self.solver.solve(unique_constraints, timeout_ms=self.maxsat_timeout_ms)\\\\n            maxsat_time = time.perf_counter() - t0\\\\n\\\\n            # 5. Group equivalent answers, then score\\\\n            raw_answers = [t[\\\\\\\"answer\\\\\\\"] for t in traces if t[\\\\\\\"answer\\\\\\\"]]\\\\n\\\\n            if domain == \\\\\\\"logic\\\\\\\":\\\\n                equiv_groups = _group_logic_answers(raw_answers)\\\\n            else:\\\\n                equiv_groups = group_equivalent_answers(raw_answers)\\\\n\\\\n            # Remap trace answers to canonical forms for scorer\\\\n            canonical_map = {}\\\\n            for canonical, indices in equiv_groups.items():\\\\n                for idx in indices:\\\\n                    canonical_map[raw_answers[idx]] = canonical\\\\n\\\\n            for t in traces:\\\\n                if t[\\\\\\\"answer\\\\\\\"] in canonical_map:\\\\n                    t[\\\\\\\"answer\\\\\\\"] = canonical_map[t[\\\\\\\"answer\\\\\\\"]]\\\\n\\\\n            candidates = list(equiv_groups.keys())\\\\n            answer_counts = {k: len(v) for k, v in equiv_groups.items()}\\\\n            scores = self.scorer.score(maxsat_result, traces, candidates)\\\\n            selected = self.scorer.select_answer(scores, answer_counts)\\\\n\\\\n            total_time = time.perf_counter() - t_start\\\\n\\\\n            return {\\\\n                \\\\\\\"answer\\\\\\\": selected,\\\\n                \\\\\\\"domain\\\\\\\": domain,\\\\n                \\\\\\\"scores\\\\\\\": scores,\\\\n                \\\\\\\"answer_counts\\\\\\\": answer_counts,\\\\n                \\\\\\\"traces\\\\\\\": traces,\\\\n                \\\\\\\"constraints_stats\\\\\\\": {\\\\n                    \\\\\\\"total_extracted\\\\\\\": total_constraints,\\\\n                    \\\\\\\"traces_with_constraints\\\\\\\": non_empty,\\\\n                    \\\\\\\"unique_after_dedup\\\\\\\": len(unique_constraints),\\\\n                },\\\\n                \\\\\\\"maxsat_stats\\\\\\\": {\\\\n                    \\\\\\\"satisfied\\\\\\\": len(maxsat_result.satisfied),\\\\n                    \\\\\\\"excluded\\\\\\\": len(maxsat_result.excluded),\\\\n                    \\\\\\\"total_weight\\\\\\\": maxsat_result.total_weight,\\\\n                    \\\\\\\"solve_time_ms\\\\\\\": maxsat_result.solve_time_ms,\\\\n                },\\\\n                \\\\\\\"timing\\\\\\\": {\\\\n                    \\\\\\\"trace_gen_s\\\\\\\": round(trace_time, 3),\\\\n                    \\\\\\\"extraction_s\\\\\\\": round(extract_time, 3),\\\\n                    \\\\\\\"dedup_s\\\\\\\": round(dedup_time, 3),\\\\n                    \\\\\\\"maxsat_s\\\\\\\": round(maxsat_time, 3),\\\\n                    \\\\\\\"total_s\\\\\\\": round(total_time, 3),\\\\n                },\\\\n            }\\\\n        except Exception as e:\\\\n            logger.error(\\\\\\\"SICA pipeline failed: %s\\\\\\\", e, exc_info=True)\\\\n            result = {\\\\\\\"error\\\\\\\": str(e), \\\\\\\"domain\\\\\\\": domain}\\\\n            if cached_traces:\\\\n                sc_answers = [t.get(\\\\\\\"answer\\\\\\\") for t in cached_traces if t.get(\\\\\\\"answer\\\\\\\")]\\\\n                if sc_answers:\\\\n                    counter = Counter(sc_answers)\\\\n                    result[\\\\\\\"answer\\\\\\\"] = counter.most_common(1)[0][0]\\\\n                    result[\\\\\\\"sc_answer\\\\\\\"] = result[\\\\\\\"answer\\\\\\\"]\\\\n                    result[\\\\\\\"answer_counts\\\\\\\"] = dict(counter)\\\\n                result[\\\\\\\"traces\\\\\\\"] = cached_traces\\\\n            result[\\\\\\\"timing\\\\\\\"] = {\\\\\\\"total_s\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n            return result\\\\n\\\\n    def run_batch(self, problems: list[dict]) -> list[dict]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Run pipeline on a batch of problems.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        results = []\\\\n        for i, p in enumerate(problems):\\\\n            logger.info(\\\\\\\"Processing problem %d/%d\\\\\\\", i + 1, len(problems))\\\\n            result = self.run_single(p)\\\\n            result[\\\\\\\"problem_idx\\\\\\\"] = i\\\\n            results.append(result)\\\\n        return results\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA end-to-end pipeline: trace generation -> constraint extraction -> Z3 dedup -> MAX-SAT -> scoring -> answer selection.\\nInput: problem dict with \\\"problem\\\" and \\\"answer\\\" fields\\nOutput: result dict with answer, score, constraint stats, maxsat stats\\nDependencies: trace_generator, constraint_extractor, z3_maxsat, scorer\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nimport time\\nfrom collections import Counter\\n\\nfrom .trace_generator import TraceGenerator\\nfrom .constraint_extractor import ConstraintExtractor\\nfrom .z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom .scorer import InvariantScorer\\nfrom utils.math_equiv import group_equivalent_answers\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:\\n    \\\"\\\"\\\"Group answers by case-insensitive exact match (for logic domain).\\\"\\\"\\\"\\n    groups: dict[str, list[int]] = {}\\n    canonical_map: dict[str, str] = {}\\n    for i, ans in enumerate(answers):\\n        if ans is None or str(ans).strip() == \\\"\\\":\\n            continue\\n        key = str(ans).strip().lower()\\n        if key not in canonical_map:\\n            canonical_map[key] = str(ans).strip()\\n            groups[canonical_map[key]] = []\\n        groups[canonical_map[key]].append(i)\\n    return groups\\n\\n\\nclass SICAPipeline:\\n    def __init__(\\n        self,\\n        trace_generator: TraceGenerator,\\n        constraint_extractor: ConstraintExtractor,\\n        k: int = 12,\\n        maxsat_timeout_ms: int = 10000,\\n    ):\\n        self.trace_generator = trace_generator\\n        self.constraint_extractor = constraint_extractor\\n        self.k = k\\n        self.deduplicator = ConstraintDeduplicator()\\n        self.solver = MaxSATSolver()\\n        self.scorer = InvariantScorer()\\n        self.maxsat_timeout_ms = maxsat_timeout_ms\\n\\n    def run_single(self, problem: dict) -> dict:\\n        \\\"\\\"\\\"Run full SICA pipeline on a single problem.\\\"\\\"\\\"\\n        t_start = time.perf_counter()\\n\\n        # Auto-detect domain from problem metadata\\n        domain = \\\"logic\\\" if problem.get(\\\"dataset\\\") == \\\"proofwriter\\\" else \\\"math\\\"\\n        self.constraint_extractor.domain = domain\\n\\n        cached_traces = None\\n        try:\\n            # 1. Generate K traces\\n            t0 = time.perf_counter()\\n            traces = self.trace_generator.generate(problem[\\\"problem\\\"], k=self.k)\\n            trace_time = time.perf_counter() - t0\\n            cached_traces = traces\\n\\n            # 2. Extract constraints from each trace (batch for concurrency)\\n            t0 = time.perf_counter()\\n            all_constraints = self.constraint_extractor.extract_batch(\\n                [t[\\\"trace\\\"] for t in traces]\\n            )\\n            extract_time = time.perf_counter() - t0\\n\\n            total_constraints = sum(len(c) for c in all_constraints)\\n            non_empty = sum(1 for c in all_constraints if c)\\n\\n            # 3. Deduplicate via z3 equivalence\\n            t0 = time.perf_counter()\\n            unique_constraints = self.deduplicator.deduplicate(all_constraints)\\n            dedup_time = time.perf_counter() - t0\\n\\n            # 4. MAX-SAT solve\\n            t0 = time.perf_counter()\\n            maxsat_result = self.solver.solve(unique_constraints, timeout_ms=self.maxsat_timeout_ms)\\n            maxsat_time = time.perf_counter() - t0\\n\\n            # 5. Group equivalent answers, then score\\n            raw_answers = [t[\\\"answer\\\"] for t in traces if t[\\\"answer\\\"]]\\n\\n            if domain == \\\"logic\\\":\\n                equiv_groups = _group_logic_answers(raw_answers)\\n            else:\\n                equiv_groups = group_equivalent_answers(raw_answers)\\n\\n            # Remap trace answers to canonical forms for scorer\\n            canonical_map = {}\\n            for canonical, indices in equiv_groups.items():\\n                for idx in indices:\\n                    canonical_map[raw_answers[idx]] = canonical\\n\\n            for t in traces:\\n                if t[\\\"answer\\\"] in canonical_map:\\n                    t[\\\"answer\\\"] = canonical_map[t[\\\"answer\\\"]]\\n\\n            candidates = list(equiv_groups.keys())\\n            answer_counts = {k: len(v) for k, v in equiv_groups.items()}\\n            scores = self.scorer.score(maxsat_result, traces, candidates)\\n            selected = self.scorer.select_answer(scores, answer_counts)\\n\\n            total_time = time.perf_counter() - t_start\\n\\n            return {\\n                \\\"answer\\\": selected,\\n                \\\"domain\\\": domain,\\n                \\\"scores\\\": scores,\\n                \\\"answer_counts\\\": answer_counts,\\n                \\\"traces\\\": traces,\\n                \\\"constraints_stats\\\": {\\n                    \\\"total_extracted\\\": total_constraints,\\n                    \\\"traces_with_constraints\\\": non_empty,\\n                    \\\"unique_after_dedup\\\": len(unique_constraints),\\n                },\\n                \\\"maxsat_stats\\\": {\\n                    \\\"satisfied\\\": len(maxsat_result.satisfied),\\n                    \\\"excluded\\\": len(maxsat_result.excluded),\\n                    \\\"total_weight\\\": maxsat_result.total_weight,\\n                    \\\"solve_time_ms\\\": maxsat_result.solve_time_ms,\\n                },\\n                \\\"timing\\\": {\\n                    \\\"trace_gen_s\\\": round(trace_time, 3),\\n                    \\\"extraction_s\\\": round(extract_time, 3),\\n                    \\\"dedup_s\\\": round(dedup_time, 3),\\n                    \\\"maxsat_s\\\": round(maxsat_time, 3),\\n                    \\\"total_s\\\": round(total_time, 3),\\n                },\\n            }\\n        except Exception as e:\\n            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\\n            result = {\\\"error\\\": str(e), \\\"domain\\\": domain}\\n            if cached_traces:\\n                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\\n                if sc_answers:\\n                    counter = Counter(sc_answers)\\n                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\\n                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\\n                    result[\\\"answer_counts\\\"] = dict(counter)\\n                result[\\\"traces\\\"] = cached_traces\\n            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\\n            return result\\n\\n    def run_batch(self, problems: list[dict]) -> list[dict]:\\n        \\\"\\\"\\\"Run pipeline on a batch of problems.\\\"\\\"\\\"\\n        results = []\\n        for i, p in enumerate(problems):\\n            logger.info(\\\"Processing problem %d/%d\\\", i + 1, len(problems))\\n            result = self.run_single(p)\\n            result[\\\"problem_idx\\\"] = i\\n            results.append(result)\\n        return results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T14:18:39.853Z_
+
+<details><summary>↩ Tool result · `toolu_01TjvV19VDy7KAQctvyRe48G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\n\\nUsage:\\n  python run_full_mvp.py --mode vllm --k 12\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\n\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\nfrom sica.pipeline import SICAPipeline\\nfrom baselines.self_consistency import SelfConsistency\\nfrom utils.math_equiv import is_equiv\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\n    problems = []\\n    if os.path.exists(math_path):\\n        with open(math_path) as f:\\n            math_data = json.load(f)\\n        for p in math_data:\\n            p.setdefault(\\\"dataset\\\", \\\"math\\\")\\n        problems.extend(math_data)\\n        logger.info(\\\"Loaded %d MATH problems\\\", len(math_data))\\n    else:\\n        logger.error(\\\"MATH data not found: %s\\\", math_path)\\n        sys.exit(1)\\n\\n    if pw_path and os.path.exists(pw_path):\\n        with open(pw_path) as f:\\n            pw_data = json.load(f)\\n        for p in pw_data:\\n            p.setdefault(\\\"dataset\\\", \\\"proofwriter\\\")\\n        problems.extend(pw_data)\\n        logger.info(\\\"Loaded %d ProofWriter problems\\\", len(pw_data))\\n    else:\\n        logger.warning(\\\"ProofWriter data not found or skipped: %s\\\", pw_path)\\n\\n    logger.info(\\\"Total: %d problems\\\", len(problems))\\n    return problems\\n\\n\\ndef load_checkpoint(output_path: str) -> dict:\\n    if os.path.exists(output_path):\\n        with open(output_path) as f:\\n            data = json.load(f)\\n        return data\\n    return {}\\n\\n\\ndef build_generator(args):\\n    if args.mode == \\\"mock\\\":\\n        return MockGenerator()\\n    elif args.mode == \\\"vllm\\\":\\n        return VLLMGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n            temperature=args.temperature,\\n            max_tokens=args.max_tokens,\\n            seed=args.seed,\\n        )\\n    elif args.mode == \\\"api\\\":\\n        return APIGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model,\\n            seed=args.seed,\\n        )\\n    raise ValueError(f\\\"Unknown mode: {args.mode}\\\")\\n\\n\\ndef build_extractor(args):\\n    if args.mode == \\\"mock\\\":\\n        return ConstraintExtractor(llm=MockLLM())\\n    elif args.mode == \\\"vllm\\\":\\n        return ConstraintExtractor(llm=VLLMBackend(\\n            base_url=args.api_base,\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n        ))\\n    return ConstraintExtractor(llm=APIBasedLLM(\\n        base_url=args.api_base,\\n        api_key=[REDACTED],\\n        model=args.model if args.model != \\\"auto\\\" else None,\\n        temperature=0.1,\\n    ))\\n\\n\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\n    n = len(all_results)\\n    if n == 0:\\n        return {}\\n\\n    sica_correct = sum(1 for r in all_results if r[\\\"sica_correct\\\"])\\n    sc_correct = sum(1 for r in all_results if r[\\\"sc_correct\\\"])\\n    total_extracted = sum(r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] for r in all_results)\\n    total_excluded = sum(r[\\\"maxsat_stats\\\"][\\\"excluded\\\"] for r in all_results)\\n    total_unique = sum(r[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"] for r in all_results)\\n    problems_with_contradictions = sum(\\n        1 for r in all_results if r.get(\\\"maxsat_stats\\\", {}).get(\\\"excluded\\\", 0) > 0\\n    )\\n\\n    level_stats: dict[str, dict] = {}\\n    dataset_stats = {}\\n    for r in all_results:\\n        level = str(r.get(\\\"level\\\", \\\"unknown\\\"))\\n        ds = r.get(\\\"dataset\\\", \\\"unknown\\\")\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\n          \\n\\n... [截断: 输出过长，省略 5802 字符] ...\\n\\n> {cs.get('unique_after_dedup',0)} unique\\\")\\n            print(f\\\"  MaxSAT: {ms.get('satisfied',0)} sat, {ms.get('excluded',0)} excl, solve={ms.get('solve_time_ms',0)}ms\\\")\\n            print(f\\\"  Timing: trace={timing.get('trace_gen_s',0):.1f}s extract={timing.get('extraction_s',0):.1f}s total={timing.get('total_s',0):.1f}s\\\")\\n        except Exception as e:\\n            logger.error(\\\"SICA error on %s: %s\\\", prob_id, e)\\n            import traceback; traceback.print_exc()\\n            sica_result = {\\\"answer\\\": \\\"\\\", \\\"traces\\\": [], \\\"scores\\\": {},\\n                           \\\"constraints_stats\\\": {\\\"total_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_after_dedup\\\": 0},\\n                           \\\"maxsat_stats\\\": {\\\"satisfied\\\": 0, \\\"excluded\\\": 0, \\\"total_weight\\\": 0, \\\"solve_time_ms\\\": 0},\\n                           \\\"timing\\\": {}}\\n            sica_answer = \\\"\\\"\\n            sica_correct = False\\n\\n        try:\\n            traces = sica_result.get(\\\"traces\\\", [])\\n            answers = [t.get(\\\"answer\\\", \\\"\\\") for t in traces]\\n            sc_result = sc_baseline.run(prob, traces=[t.get(\\\"trace\\\",\\\"\\\") for t in traces], answers=answers)\\n            sc_answer = sc_result.get(\\\"answer\\\", \\\"\\\")\\n            sc_correct = is_equiv(sc_answer, prob[\\\"answer\\\"])\\n            print(f\\\"SC:   {sc_answer} ({'V' if sc_correct else 'X'}) -- votes: {sc_result.get('vote_count','?')}/{len(traces)}\\\")\\n        except Exception as e:\\n            logger.error(\\\"SC error on %s: %s\\\", prob_id, e)\\n            sc_answer = \\\"\\\"\\n            sc_correct = False\\n            sc_result = {\\\"vote_count\\\": 0, \\\"vote_distribution\\\": {}}\\n\\n        elapsed = time.time() - t0\\n        elapsed_times.append(elapsed)\\n        print(f\\\"Time: {elapsed:.1f}s\\\")\\n\\n        # ETA\\n        avg_time = sum(elapsed_times) / len(elapsed_times)\\n        remaining_count = len(remaining) - (progress_idx + 1)\\n        eta_s = avg_time * remaining_count\\n        if remaining_count > 0:\\n            eta_min = eta_s / 60\\n            print(f\\\"ETA: {eta_min:.1f} min ({remaining_count} remaining, avg {avg_time:.1f}s/prob)\\\")\\n\\n        sys.stdout.flush()\\n\\n        result_entry = {\\n            \\\"problem_idx\\\": i,\\n            \\\"problem_id\\\": prob_id,\\n            \\\"problem\\\": prob[\\\"problem\\\"],\\n            \\\"dataset\\\": dataset,\\n            \\\"level\\\": level,\\n            \\\"ground_truth\\\": prob[\\\"answer\\\"],\\n            \\\"sica_answer\\\": sica_answer,\\n            \\\"sica_scores\\\": sica_result.get(\\\"scores\\\", {}),\\n            \\\"sica_correct\\\": sica_correct,\\n            \\\"sc_answer\\\": sc_answer,\\n            \\\"sc_vote_count\\\": sc_result.get(\\\"vote_count\\\", 0),\\n            \\\"sc_vote_distribution\\\": sc_result.get(\\\"vote_distribution\\\", {}),\\n            \\\"sc_correct\\\": sc_correct,\\n            \\\"constraints_stats\\\": sica_result.get(\\\"constraints_stats\\\", {}),\\n            \\\"maxsat_stats\\\": sica_result.get(\\\"maxsat_stats\\\", {}),\\n            \\\"timing\\\": sica_result.get(\\\"timing\\\", {}),\\n            \\\"wall_time_s\\\": round(elapsed, 2),\\n        }\\n        all_results.append(result_entry)\\n\\n        # Save checkpoint after each problem\\n        summary = compute_summary(all_results, extractor.stats)\\n        summary[\\\"k\\\"] = args.k\\n        summary[\\\"mode\\\"] = args.mode\\n        summary[\\\"total_wall_time_s\\\"] = round(time.time() - total_start, 1)\\n        output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n        os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n        with open(args.output, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2, default=str)\\n\\n    # Final summary\\n    total_wall = time.time() - total_start\\n    summary = compute_summary(all_results, extractor.stats)\\n    summary[\\\"k\\\"] = args.k\\n    summary[\\\"mode\\\"] = args.mode\\n    summary[\\\"total_wall_time_s\\\"] = round(total_wall, 1)\\n\\n    output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print_summary(summary)\\n    print(f\\\"\\\\nTotal wall time: {total_wall/60:.1f} min\\\")\\n    print(f\\\"Results saved to {args.output}\\\")\\n    print(\\\"FULL_MVP_DONE\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "248c0327-34c3-4837-8489-f59bebe5b034",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\\\n\\\\nUsage:\\\\n  python run_full_mvp.py --mode vllm --k 12\\\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\\\nfrom sica.pipeline import SICAPipeline\\\\nfrom baselines.self_consistency import SelfConsistency\\\\nfrom utils.math_equiv import is_equiv\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\\\n    problems = []\\\\n    if os.path.exists(math_path):\\\\n        with open(math_path) as f:\\\\n            math_data = json.load(f)\\\\n        for p in math_data:\\\\n            p.setdefault(\\\\\\\"dataset\\\\\\\", \\\\\\\"math\\\\\\\")\\\\n        problems.extend(math_data)\\\\n        logger.info(\\\\\\\"Loaded %d MATH problems\\\\\\\", len(math_data))\\\\n    else:\\\\n        logger.error(\\\\\\\"MATH data not found: %s\\\\\\\", math_path)\\\\n        sys.exit(1)\\\\n\\\\n    if pw_path and os.path.exists(pw_path):\\\\n        with open(pw_path) as f:\\\\n            pw_data = json.load(f)\\\\n        for p in pw_data:\\\\n            p.setdefault(\\\\\\\"dataset\\\\\\\", \\\\\\\"proofwriter\\\\\\\")\\\\n        problems.extend(pw_data)\\\\n        logger.info(\\\\\\\"Loaded %d ProofWriter problems\\\\\\\", len(pw_data))\\\\n    else:\\\\n        logger.warning(\\\\\\\"ProofWriter data not found or skipped: %s\\\\\\\", pw_path)\\\\n\\\\n    logger.info(\\\\\\\"Total: %d problems\\\\\\\", len(problems))\\\\n    return problems\\\\n\\\\n\\\\ndef load_checkpoint(output_path: str) -> dict:\\\\n    if os.path.exists(output_path):\\\\n        with open(output_path) as f:\\\\n            data = json.load(f)\\\\n        return data\\\\n    return {}\\\\n\\\\n\\\\ndef build_generator(args):\\\\n    if args.mode == \\\\\\\"mock\\\\\\\":\\\\n        return MockGenerator()\\\\n    elif args.mode == \\\\\\\"vllm\\\\\\\":\\\\n        return VLLMGenerator(\\\\n            base_url=args.api_base,\\\\n            api_key=[REDACTED],\\\\n            model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n            temperature=args.temperature,\\\\n            max_tokens=args.max_tokens,\\\\n            seed=args.seed,\\\\n        )\\\\n    elif args.mode == \\\\\\\"api\\\\\\\":\\\\n        return APIGenerator(\\\\n            base_url=args.api_base,\\\\n            api_key=[REDACTED],\\\\n            model=args.model,\\\\n            seed=args.seed,\\\\n        )\\\\n    raise ValueError(f\\\\\\\"Unknown mode: {args.mode}\\\\\\\")\\\\n\\\\n\\\\ndef build_extractor(args):\\\\n    if args.mode == \\\\\\\"mock\\\\\\\":\\\\n        return ConstraintExtractor(llm=MockLLM())\\\\n    elif args.mode == \\\\\\\"vllm\\\\\\\":\\\\n        return ConstraintExtractor(llm=VLLMBackend(\\\\n            base_url=args.api_base,\\\\n            model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n        ))\\\\n    return ConstraintExtractor(llm=APIBasedLLM(\\\\n        base_url=args.api_base,\\\\n        api_key=[REDACTED],\\\\n        model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n        temperature=0.1,\\\\n    ))\\\\n\\\\n\\\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\\\n    n = len(all_results)\\\\n    if n == 0:\\\\n        return {}\\\\n\\\\n    sica_correct = sum(1 for r in all_results if r[\\\\\\\"sica_correct\\\\\\\"])\\\\n    sc_correct = sum(1 for r in all_results if r[\\\\\\\"sc_correct\\\\\\\"])\\\\n    total_extracted = sum(r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"total_extracted\\\\\\\"] for r in all_results)\\\\n    total_excluded = sum(r[\\\\\\\"maxsat_stats\\\\\\\"][\\\\\\\"excluded\\\\\\\"] for r in all_results)\\\\n    total_unique = sum(r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"unique_after_dedup\\\\\\\"] for r in all_results)\\\\n    problems_with_contradictions = sum(\\\\n        1 for r in all_results if r.get(\\\\\\\"maxsat_stats\\\\\\\", {}).get(\\\\\\\"excluded\\\\\\\", 0) > 0\\\\n    )\\\\n\\\\n    level_stats: dict[str, dict] = {}\\\\n    dataset_stats = {}\\\\n    for r in all_results:\\\\n        level = str(r.get(\\\\\\\"level\\\\\\\", \\\\\\\"unknown\\\\\\\"))\\\\n        ds = r.get(\\\\\\\"dataset\\\\\\\", \\\\\\\"unknown\\\\\\\")\\\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\\\n          \\\\n\\\\n... [截断: 输出过长，省略 5802 字符] ...\\\\n\\\\n> {cs.get('unique_after_dedup',0)} unique\\\\\\\")\\\\n            print(f\\\\\\\"  MaxSAT: {ms.get('satisfied',0)} sat, {ms.get('excluded',0)} excl, solve={ms.get('solve_time_ms',0)}ms\\\\\\\")\\\\n            print(f\\\\\\\"  Timing: trace={timing.get('trace_gen_s',0):.1f}s extract={timing.get('extraction_s',0):.1f}s total={timing.get('total_s',0):.1f}s\\\\\\\")\\\\n        except Exception as e:\\\\n            logger.error(\\\\\\\"SICA error on %s: %s\\\\\\\", prob_id, e)\\\\n            import traceback; traceback.print_exc()\\\\n            sica_result = {\\\\\\\"answer\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"traces\\\\\\\": [], \\\\\\\"scores\\\\\\\": {},\\\\n                           \\\\\\\"constraints_stats\\\\\\\": {\\\\\\\"total_extracted\\\\\\\": 0, \\\\\\\"traces_with_constraints\\\\\\\": 0, \\\\\\\"unique_after_dedup\\\\\\\": 0},\\\\n                           \\\\\\\"maxsat_stats\\\\\\\": {\\\\\\\"satisfied\\\\\\\": 0, \\\\\\\"excluded\\\\\\\": 0, \\\\\\\"total_weight\\\\\\\": 0, \\\\\\\"solve_time_ms\\\\\\\": 0},\\\\n                           \\\\\\\"timing\\\\\\\": {}}\\\\n            sica_answer = \\\\\\\"\\\\\\\"\\\\n            sica_correct = False\\\\n\\\\n        try:\\\\n            traces = sica_result.get(\\\\\\\"traces\\\\\\\", [])\\\\n            answers = [t.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\") for t in traces]\\\\n            sc_result = sc_baseline.run(prob, traces=[t.get(\\\\\\\"trace\\\\\\\",\\\\\\\"\\\\\\\") for t in traces], answers=answers)\\\\n            sc_answer = sc_result.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            sc_correct = is_equiv(sc_answer, prob[\\\\\\\"answer\\\\\\\"])\\\\n            print(f\\\\\\\"SC:   {sc_answer} ({'V' if sc_correct else 'X'}) -- votes: {sc_result.get('vote_count','?')}/{len(traces)}\\\\\\\")\\\\n        except Exception as e:\\\\n            logger.error(\\\\\\\"SC error on %s: %s\\\\\\\", prob_id, e)\\\\n            sc_answer = \\\\\\\"\\\\\\\"\\\\n            sc_correct = False\\\\n            sc_result = {\\\\\\\"vote_count\\\\\\\": 0, \\\\\\\"vote_distribution\\\\\\\": {}}\\\\n\\\\n        elapsed = time.time() - t0\\\\n        elapsed_times.append(elapsed)\\\\n        print(f\\\\\\\"Time: {elapsed:.1f}s\\\\\\\")\\\\n\\\\n        # ETA\\\\n        avg_time = sum(elapsed_times) / len(elapsed_times)\\\\n        remaining_count = len(remaining) - (progress_idx + 1)\\\\n        eta_s = avg_time * remaining_count\\\\n        if remaining_count > 0:\\\\n            eta_min = eta_s / 60\\\\n            print(f\\\\\\\"ETA: {eta_min:.1f} min ({remaining_count} remaining, avg {avg_time:.1f}s/prob)\\\\\\\")\\\\n\\\\n        sys.stdout.flush()\\\\n\\\\n        result_entry = {\\\\n            \\\\\\\"problem_idx\\\\\\\": i,\\\\n            \\\\\\\"problem_id\\\\\\\": prob_id,\\\\n            \\\\\\\"problem\\\\\\\": prob[\\\\\\\"problem\\\\\\\"],\\\\n            \\\\\\\"dataset\\\\\\\": dataset,\\\\n            \\\\\\\"level\\\\\\\": level,\\\\n            \\\\\\\"ground_truth\\\\\\\": prob[\\\\\\\"answer\\\\\\\"],\\\\n            \\\\\\\"sica_answer\\\\\\\": sica_answer,\\\\n            \\\\\\\"sica_scores\\\\\\\": sica_result.get(\\\\\\\"scores\\\\\\\", {}),\\\\n            \\\\\\\"sica_correct\\\\\\\": sica_correct,\\\\n            \\\\\\\"sc_answer\\\\\\\": sc_answer,\\\\n            \\\\\\\"sc_vote_count\\\\\\\": sc_result.get(\\\\\\\"vote_count\\\\\\\", 0),\\\\n            \\\\\\\"sc_vote_distribution\\\\\\\": sc_result.get(\\\\\\\"vote_distribution\\\\\\\", {}),\\\\n            \\\\\\\"sc_correct\\\\\\\": sc_correct,\\\\n            \\\\\\\"constraints_stats\\\\\\\": sica_result.get(\\\\\\\"constraints_stats\\\\\\\", {}),\\\\n            \\\\\\\"maxsat_stats\\\\\\\": sica_result.get(\\\\\\\"maxsat_stats\\\\\\\", {}),\\\\n            \\\\\\\"timing\\\\\\\": sica_result.get(\\\\\\\"timing\\\\\\\", {}),\\\\n            \\\\\\\"wall_time_s\\\\\\\": round(elapsed, 2),\\\\n        }\\\\n        all_results.append(result_entry)\\\\n\\\\n        # Save checkpoint after each problem\\\\n        summary = compute_summary(all_results, extractor.stats)\\\\n        summary[\\\\\\\"k\\\\\\\"] = args.k\\\\n        summary[\\\\\\\"mode\\\\\\\"] = args.mode\\\\n        summary[\\\\\\\"total_wall_time_s\\\\\\\"] = round(time.time() - total_start, 1)\\\\n        output = {\\\\\\\"summary\\\\\\\": summary, \\\\\\\"results\\\\\\\": all_results}\\\\n        os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n        with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(output, f, indent=2, default=str)\\\\n\\\\n    # Final summary\\\\n    total_wall = time.time() - total_start\\\\n    summary = compute_summary(all_results, extractor.stats)\\\\n    summary[\\\\\\\"k\\\\\\\"] = args.k\\\\n    summary[\\\\\\\"mode\\\\\\\"] = args.mode\\\\n    summary[\\\\\\\"total_wall_time_s\\\\\\\"] = round(total_wall, 1)\\\\n\\\\n    output = {\\\\\\\"summary\\\\\\\": summary, \\\\\\\"results\\\\\\\": all_results}\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n\\\\n    print_summary(summary)\\\\n    print(f\\\\\\\"\\\\\\\\nTotal wall time: {total_wall/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n    print(\\\\\\\"FULL_MVP_DONE\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\n\\nUsage:\\n  python run_full_mvp.py --mode vllm --k 12\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\n\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\nfrom sica.pipeline import SICAPipeline\\nfrom baselines.self_consistency import SelfConsistency\\nfrom utils.math_equiv import is_equiv\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\n    problems = []\\n    if os.path.exists(math_path):\\n        with open(math_path) as f:\\n            math_data = json.load(f)\\n        for p in math_data:\\n            p.setdefault(\\\"dataset\\\", \\\"math\\\")\\n        problems.extend(math_data)\\n        logger.info(\\\"Loaded %d MATH problems\\\", len(math_data))\\n    else:\\n        logger.error(\\\"MATH data not found: %s\\\", math_path)\\n        sys.exit(1)\\n\\n    if pw_path and os.path.exists(pw_path):\\n        with open(pw_path) as f:\\n            pw_data = json.load(f)\\n        for p in pw_data:\\n            p.setdefault(\\\"dataset\\\", \\\"proofwriter\\\")\\n        problems.extend(pw_data)\\n        logger.info(\\\"Loaded %d ProofWriter problems\\\", len(pw_data))\\n    else:\\n        logger.warning(\\\"ProofWriter data not found or skipped: %s\\\", pw_path)\\n\\n    logger.info(\\\"Total: %d problems\\\", len(problems))\\n    return problems\\n\\n\\ndef load_checkpoint(output_path: str) -> dict:\\n    if os.path.exists(output_path):\\n        with open(output_path) as f:\\n            data = json.load(f)\\n        return data\\n    return {}\\n\\n\\ndef build_generator(args):\\n    if args.mode == \\\"mock\\\":\\n        return MockGenerator()\\n    elif args.mode == \\\"vllm\\\":\\n        return VLLMGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n            temperature=args.temperature,\\n            max_tokens=args.max_tokens,\\n            seed=args.seed,\\n        )\\n    elif args.mode == \\\"api\\\":\\n        return APIGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model,\\n            seed=args.seed,\\n        )\\n    raise ValueError(f\\\"Unknown mode: {args.mode}\\\")\\n\\n\\ndef build_extractor(args):\\n    if args.mode == \\\"mock\\\":\\n        return ConstraintExtractor(llm=MockLLM())\\n    elif args.mode == \\\"vllm\\\":\\n        return ConstraintExtractor(llm=VLLMBackend(\\n            base_url=args.api_base,\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n        ))\\n    return ConstraintExtractor(llm=APIBasedLLM(\\n        base_url=args.api_base,\\n        api_key=[REDACTED],\\n        model=args.model if args.model != \\\"auto\\\" else None,\\n        temperature=0.1,\\n    ))\\n\\n\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\n    n = len(all_results)\\n    if n == 0:\\n        return {}\\n\\n    sica_correct = sum(1 for r in all_results if r[\\\"sica_correct\\\"])\\n    sc_correct = sum(1 for r in all_results if r[\\\"sc_correct\\\"])\\n    total_extracted = sum(r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] for r in all_results)\\n    total_excluded = sum(r[\\\"maxsat_stats\\\"][\\\"excluded\\\"] for r in all_results)\\n    total_unique = sum(r[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"] for r in all_results)\\n    problems_with_contradictions = sum(\\n        1 for r in all_results if r.get(\\\"maxsat_stats\\\", {}).get(\\\"excluded\\\", 0) > 0\\n    )\\n\\n    level_stats: dict[str, dict] = {}\\n    dataset_stats = {}\\n    for r in all_results:\\n        level = str(r.get(\\\"level\\\", \\\"unknown\\\"))\\n        ds = r.get(\\\"dataset\\\", \\\"unknown\\\")\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\n          \\n\\n... [截断: 输出过长，省略 5802 字符] ...\\n\\n> {cs.get('unique_after_dedup',0)} unique\\\")\\n            print(f\\\"  MaxSAT: {ms.get('satisfied',0)} sat, {ms.get('excluded',0)} excl, solve={ms.get('solve_time_ms',0)}ms\\\")\\n            print(f\\\"  Timing: trace={timing.get('trace_gen_s',0):.1f}s extract={timing.get('extraction_s',0):.1f}s total={timing.get('total_s',0):.1f}s\\\")\\n        except Exception as e:\\n            logger.error(\\\"SICA error on %s: %s\\\", prob_id, e)\\n            import traceback; traceback.print_exc()\\n            sica_result = {\\\"answer\\\": \\\"\\\", \\\"traces\\\": [], \\\"scores\\\": {},\\n                           \\\"constraints_stats\\\": {\\\"total_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_after_dedup\\\": 0},\\n                           \\\"maxsat_stats\\\": {\\\"satisfied\\\": 0, \\\"excluded\\\": 0, \\\"total_weight\\\": 0, \\\"solve_time_ms\\\": 0},\\n                           \\\"timing\\\": {}}\\n            sica_answer = \\\"\\\"\\n            sica_correct = False\\n\\n        try:\\n            traces = sica_result.get(\\\"traces\\\", [])\\n            answers = [t.get(\\\"answer\\\", \\\"\\\") for t in traces]\\n            sc_result = sc_baseline.run(prob, traces=[t.get(\\\"trace\\\",\\\"\\\") for t in traces], answers=answers)\\n            sc_answer = sc_result.get(\\\"answer\\\", \\\"\\\")\\n            sc_correct = is_equiv(sc_answer, prob[\\\"answer\\\"])\\n            print(f\\\"SC:   {sc_answer} ({'V' if sc_correct else 'X'}) -- votes: {sc_result.get('vote_count','?')}/{len(traces)}\\\")\\n        except Exception as e:\\n            logger.error(\\\"SC error on %s: %s\\\", prob_id, e)\\n            sc_answer = \\\"\\\"\\n            sc_correct = False\\n            sc_result = {\\\"vote_count\\\": 0, \\\"vote_distribution\\\": {}}\\n\\n        elapsed = time.time() - t0\\n        elapsed_times.append(elapsed)\\n        print(f\\\"Time: {elapsed:.1f}s\\\")\\n\\n        # ETA\\n        avg_time = sum(elapsed_times) / len(elapsed_times)\\n        remaining_count = len(remaining) - (progress_idx + 1)\\n        eta_s = avg_time * remaining_count\\n        if remaining_count > 0:\\n            eta_min = eta_s / 60\\n            print(f\\\"ETA: {eta_min:.1f} min ({remaining_count} remaining, avg {avg_time:.1f}s/prob)\\\")\\n\\n        sys.stdout.flush()\\n\\n        result_entry = {\\n            \\\"problem_idx\\\": i,\\n            \\\"problem_id\\\": prob_id,\\n            \\\"problem\\\": prob[\\\"problem\\\"],\\n            \\\"dataset\\\": dataset,\\n            \\\"level\\\": level,\\n            \\\"ground_truth\\\": prob[\\\"answer\\\"],\\n            \\\"sica_answer\\\": sica_answer,\\n            \\\"sica_scores\\\": sica_result.get(\\\"scores\\\", {}),\\n            \\\"sica_correct\\\": sica_correct,\\n            \\\"sc_answer\\\": sc_answer,\\n            \\\"sc_vote_count\\\": sc_result.get(\\\"vote_count\\\", 0),\\n            \\\"sc_vote_distribution\\\": sc_result.get(\\\"vote_distribution\\\", {}),\\n            \\\"sc_correct\\\": sc_correct,\\n            \\\"constraints_stats\\\": sica_result.get(\\\"constraints_stats\\\", {}),\\n            \\\"maxsat_stats\\\": sica_result.get(\\\"maxsat_stats\\\", {}),\\n            \\\"timing\\\": sica_result.get(\\\"timing\\\", {}),\\n            \\\"wall_time_s\\\": round(elapsed, 2),\\n        }\\n        all_results.append(result_entry)\\n\\n        # Save checkpoint after each problem\\n        summary = compute_summary(all_results, extractor.stats)\\n        summary[\\\"k\\\"] = args.k\\n        summary[\\\"mode\\\"] = args.mode\\n        summary[\\\"total_wall_time_s\\\"] = round(time.time() - total_start, 1)\\n        output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n        os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n        with open(args.output, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2, default=str)\\n\\n    # Final summary\\n    total_wall = time.time() - total_start\\n    summary = compute_summary(all_results, extractor.stats)\\n    summary[\\\"k\\\"] = args.k\\n    summary[\\\"mode\\\"] = args.mode\\n    summary[\\\"total_wall_time_s\\\"] = round(total_wall, 1)\\n\\n    output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print_summary(summary)\\n    print(f\\\"\\\\nTotal wall time: {total_wall/60:.1f} min\\\")\\n    print(f\\\"Results saved to {args.output}\\\")\\n    print(\\\"FULL_MVP_DONE\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Let me parse the key parts:
+
+**pipeline.py except branch** (current):
+```python
+except Exception as e:
+    logger.error("SICA pipeline failed: %s", e, exc_info=True)
+    result = {"error": str(e), "domain": domain}
+    if cached_traces:
+        sc_answers = [t.get("answer") for t in cached_traces if t.get("answer")]
+        if sc_answers:
+            counter = Counter(sc_answers)
+            result["answer"] = counter.most_common(1)[0][0]
+
+
+```
+
+I'm seeing that the exception handler finishes by populating the answer from cached traces, then adds the answer counts and traces to the result. But I notice the error path is missing three fields that the normal path returns: `constraints_stats`, `maxsat_stats`, and `scores`. The `answer` field also won't be set if there are no cached traces to fall back on, which creates an inconsistency with the successful execution path.
+
+Looking at the `compute_summary` function, it's aggregating results across all test cases by summing up metrics like correct answers, extracted constraints, excluded items, and unique constraints after deduplication. The function assumes these fields exist in each result dictionary, which would fail if any result came from the exception handler.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "fc217a18-b7ca-440a-a757-dd4ce9591c04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rDNRSLymNfvvhhLskSgTv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5862,
+      "cache_read_input_tokens": 24389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+`run_full_mvp.py` 输出被截断了，需要看 `compute_summary` 完整代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "4dd91a8c-a94d-46b1-9a15-06f3516f3e60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rDNRSLymNfvvhhLskSgTv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5862,
+      "cache_read_input_tokens": 24389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MpvDSETY9WT6LKdDhth1F1`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"def compute_summary\" /root/symb_invariant_consensus/run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "ad783bc5-f4ad-41f4-afeb-cf043ac29171",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rDNRSLymNfvvhhLskSgTv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5862,
+      "cache_read_input_tokens": 24389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T14:18:52.797Z_
+
+<details><summary>↩ Tool result · `toolu_01MpvDSETY9WT6LKdDhth1F1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"105:def compute_summary(all_results: list[dict], ext_stats) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "1f6ef789-94c6-48c8-afde-d919dfc55ebb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"105:def compute_summary(all_results: list[dict], ext_stats) -> dict:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"105:def compute_summary(all_results: list[dict], ext_stats) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ECqpftsCPaHyNLmV8Q8Bdq`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -200 /root/symb_invariant_consensus/run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "84f9494a-ea5c-4cb4-8f54-f028d2507ef6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ukt5KcZpKwPjq1ns1a6Joy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 30251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 913
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T14:18:56.209Z_
+
+<details><summary>↩ Tool result · `toolu_01ECqpftsCPaHyNLmV8Q8Bdq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\n\\nUsage:\\n  python run_full_mvp.py --mode vllm --k 12\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\n\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\nfrom sica.pipeline import SICAPipeline\\nfrom baselines.self_consistency import SelfConsistency\\nfrom utils.math_equiv import is_equiv\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\n    problems = []\\n    if os.path.exists(math_path):\\n        with open(math_path) as f:\\n            math_data = json.load(f)\\n        for p in math_data:\\n            p.setdefault(\\\"dataset\\\", \\\"math\\\")\\n        problems.extend(math_data)\\n        logger.info(\\\"Loaded %d MATH problems\\\", len(math_data))\\n    else:\\n        logger.error(\\\"MATH data not found: %s\\\", math_path)\\n        sys.exit(1)\\n\\n    if pw_path and os.path.exists(pw_path):\\n        with open(pw_path) as f:\\n            pw_data = json.load(f)\\n        for p in pw_data:\\n            p.setdefault(\\\"dataset\\\", \\\"proofwriter\\\")\\n        problems.extend(pw_data)\\n        logger.info(\\\"Loaded %d ProofWriter problems\\\", len(pw_data))\\n    else:\\n        logger.warning(\\\"ProofWriter data not found or skipped: %s\\\", pw_path)\\n\\n    logger.info(\\\"Total: %d problems\\\", len(problems))\\n    return problems\\n\\n\\ndef load_checkpoint(output_path: str) -> dict:\\n    if os.path.exists(output_path):\\n        with open(output_path) as f:\\n            data = json.load(f)\\n        return data\\n    return {}\\n\\n\\ndef build_generator(args):\\n    if args.mode == \\\"mock\\\":\\n        return MockGenerator()\\n    elif args.mode == \\\"vllm\\\":\\n        return VLLMGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n            temperature=args.temperature,\\n            max_tokens=args.max_tokens,\\n            seed=args.seed,\\n        )\\n    elif args.mode == \\\"api\\\":\\n        return APIGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model,\\n            seed=args.seed,\\n        )\\n    raise ValueError(f\\\"Unknown mode: {args.mode}\\\")\\n\\n\\ndef build_extractor(args):\\n    if args.mode == \\\"mock\\\":\\n        return ConstraintExtractor(llm=MockLLM())\\n    elif args.mode == \\\"vllm\\\":\\n        return ConstraintExtractor(llm=VLLMBackend(\\n            base_url=args.api_base,\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n        ))\\n    return ConstraintExtractor(llm=APIBasedLLM(\\n        base_url=args.api_base,\\n        api_key=[REDACTED],\\n        model=args.model if args.model != \\\"auto\\\" else None,\\n        temperature=0.1,\\n    ))\\n\\n\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\n    n = len(all_results)\\n    if n == 0:\\n        return {}\\n\\n    sica_correct = sum(1 for r in all_results if r[\\\"sica_correct\\\"])\\n    sc_correct = sum(1 for r in all_results if r[\\\"sc_correct\\\"])\\n    total_extracted = sum(r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] for r in all_results)\\n    total_excluded = sum(r[\\\"maxsat_stats\\\"][\\\"excluded\\\"] for r in all_results)\\n    total_unique = sum(r[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"] for r in all_results)\\n    problems_with_contradictions = sum(\\n        1 for r in all_results if r.get(\\\"maxsat_stats\\\", {}).get(\\\"excluded\\\", 0) > 0\\n    )\\n\\n    level_stats: dict[str, dict] = {}\\n    dataset_stats = {}\\n    for r in all_results:\\n        level = str(r.get(\\\"level\\\", \\\"unknown\\\"))\\n        ds = r.get(\\\"dataset\\\", \\\"unknown\\\")\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\n            if val not in bucket:\\n                bucket[val] = {\\\"sica_correct\\\": 0, \\\"sc_correct\\\": 0, \\\"total\\\": 0}\\n            bucket[val][\\\"total\\\"] += 1\\n            if r[\\\"sica_correct\\\"]:\\n                bucket[val][\\\"sica_correct\\\"] += 1\\n            if r[\\\"sc_correct\\\"]:\\n                bucket[val][\\\"sc_correct\\\"] += 1\\n\\n    def _acc(bucket):\\n        return {\\n            k: {\\n                \\\"sica\\\": v[\\\"sica_correct\\\"] / max(v[\\\"total\\\"], 1),\\n                \\\"sc\\\": v[\\\"sc_correct\\\"] / max(v[\\\"total\\\"], 1),\\n                \\\"n\\\": v[\\\"total\\\"],\\n            }\\n            for k, v in bucket.items()\\n        }\\n\\n    return {\\n        \\\"n_problems\\\": n,\\n        \\\"sica_accuracy\\\": sica_correct / n,\\n        \\\"sc_accuracy\\\": sc_correct / n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sc_correct\\\": sc_correct,\\n        \\\"extraction_rate\\\": ext_stats.success / max(ext_stats.success + ext_stats.total_fail, 1),\\n        \\\"total_constraints_extracted\\\": total_extracted,\\n        \\\"total_unique_constraints\\\": total_unique,\\n        \\\"contradiction_rate\\\": total_excluded / max(total_unique, 1),\\n        \\\"problems_with_contradictions\\\": problems_with_contradictions,\\n        \\\"per_level_accuracy\\\": _acc(level_stats),\\n        \\\"per_dataset_accuracy\\\": _acc(dataset_stats),\\n    }\\n\\n\\ndef print_summary(summary: dict):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"FULL MVP EXPERIMENT RESULTS\\\")\\n    print(\\\"=\\\" * 80)\\n    n = summary[\\\"n_problems\\\"]\\n    print(f\\\"Problems: {n}\\\")\\n    print(f\\\"SICA accuracy: {summary['sica_accuracy']:.1%} ({summary['sica_correct']}/{n})\\\")\\n    print(f\\\"SC accuracy:   {summary['sc_accuracy']:.1%} ({summary['sc_correct']}/{n})\\\")\\n    print(f\\\"Extraction rate: {summary['extraction_rate']:.1%}\\\")\\n    print(f\\\"Contradiction rate: {summary['contradiction_rate']:.1%}\\\")\\n    print(f\\\"Problems with contradictions: {summary['problems_with_contradictions']}/{n}\\\")\\n\\n    print(\\\"\\\\n--- By Dataset ---\\\")\\n    for ds, s in sorted(summary.get(\\\"per_dataset_accuracy\\\", {}).items()):\\n        print(f\\\"  {ds:12s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\")\\n\\n    print(\\\"\\\\n--- By Level ---\\\")\\n    for lv, s in sorted(summary.get(\\\"per_level_accuracy\\\", {}).items()):\\n        print(f\\\"  Level {lv:>3s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\")\\n    print(\\\"=\\\" * 80)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"SICA Full MVP Experiment (60 problems)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"mock\\\", \\\"vllm\\\", \\\"api\\\"], default=\\\"vllm\\\")\\n    parser.add_argument(\\\"--k\\\", type=int, default=12)\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"auto\\\")\\n    parser.add_argument(\\\"--api-base\\\", type=str, default=\\\"http://localhost:8000/v1\\\")\\n    parser.add_argument(\\\"--api-key\\\", type=str, default=\\\"EMPTY\\\")\\n    parser.add_argument(\\\"--math-data\\\", type=str, default=\\\"data/math500_subset.json\\\")\\n    parser.add_argument(\\\"--pw-data\\\", type=str, default=\\\"data/proofwriter_subset.json\\\")\\n    parser.add_argument(\\\"--output\\\", type=str, default=\\\"results/mvp_full_results.json\\\")\\n    parser.add_argument(\\\"--resume\\\", action=\\\"store_true\\\", help=\\\"Resume from checkpoint\\\")\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.7, help=\\\"Sampling temperature\\\")\\n    parser.add_argument(\\\"--max-tokens\\\", type=int, default=10240, help=\\\"Max tokens for trace generation\\\")\\n    parser.add_argument(\\\"--no-proofwriter\\\", action=\\\"store_true\\\", help=\\\"Skip ProofWriter data\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=None, help=\\\"Random seed for reproducibility\\\")\\n    args = parser.parse_args()\\n\\n    if args.seed is not None:\\n        import random\\n        import numpy as np\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "90342c5a-3475-4612-b90c-7608bfca8e84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\\\n\\\\nUsage:\\\\n  python run_full_mvp.py --mode vllm --k 12\\\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\\\nfrom sica.pipeline import SICAPipeline\\\\nfrom baselines.self_consistency import SelfConsistency\\\\nfrom utils.math_equiv import is_equiv\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\\\n    problems = []\\\\n    if os.path.exists(math_path):\\\\n        with open(math_path) as f:\\\\n            math_data = json.load(f)\\\\n        for p in math_data:\\\\n            p.setdefault(\\\\\\\"dataset\\\\\\\", \\\\\\\"math\\\\\\\")\\\\n        problems.extend(math_data)\\\\n        logger.info(\\\\\\\"Loaded %d MATH problems\\\\\\\", len(math_data))\\\\n    else:\\\\n        logger.error(\\\\\\\"MATH data not found: %s\\\\\\\", math_path)\\\\n        sys.exit(1)\\\\n\\\\n    if pw_path and os.path.exists(pw_path):\\\\n        with open(pw_path) as f:\\\\n            pw_data = json.load(f)\\\\n        for p in pw_data:\\\\n            p.setdefault(\\\\\\\"dataset\\\\\\\", \\\\\\\"proofwriter\\\\\\\")\\\\n        problems.extend(pw_data)\\\\n        logger.info(\\\\\\\"Loaded %d ProofWriter problems\\\\\\\", len(pw_data))\\\\n    else:\\\\n        logger.warning(\\\\\\\"ProofWriter data not found or skipped: %s\\\\\\\", pw_path)\\\\n\\\\n    logger.info(\\\\\\\"Total: %d problems\\\\\\\", len(problems))\\\\n    return problems\\\\n\\\\n\\\\ndef load_checkpoint(output_path: str) -> dict:\\\\n    if os.path.exists(output_path):\\\\n        with open(output_path) as f:\\\\n            data = json.load(f)\\\\n        return data\\\\n    return {}\\\\n\\\\n\\\\ndef build_generator(args):\\\\n    if args.mode == \\\\\\\"mock\\\\\\\":\\\\n        return MockGenerator()\\\\n    elif args.mode == \\\\\\\"vllm\\\\\\\":\\\\n        return VLLMGenerator(\\\\n            base_url=args.api_base,\\\\n            api_key=[REDACTED],\\\\n            model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n            temperature=args.temperature,\\\\n            max_tokens=args.max_tokens,\\\\n            seed=args.seed,\\\\n        )\\\\n    elif args.mode == \\\\\\\"api\\\\\\\":\\\\n        return APIGenerator(\\\\n            base_url=args.api_base,\\\\n            api_key=[REDACTED],\\\\n            model=args.model,\\\\n            seed=args.seed,\\\\n        )\\\\n    raise ValueError(f\\\\\\\"Unknown mode: {args.mode}\\\\\\\")\\\\n\\\\n\\\\ndef build_extractor(args):\\\\n    if args.mode == \\\\\\\"mock\\\\\\\":\\\\n        return ConstraintExtractor(llm=MockLLM())\\\\n    elif args.mode == \\\\\\\"vllm\\\\\\\":\\\\n        return ConstraintExtractor(llm=VLLMBackend(\\\\n            base_url=args.api_base,\\\\n            model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n        ))\\\\n    return ConstraintExtractor(llm=APIBasedLLM(\\\\n        base_url=args.api_base,\\\\n        api_key=[REDACTED],\\\\n        model=args.model if args.model != \\\\\\\"auto\\\\\\\" else None,\\\\n        temperature=0.1,\\\\n    ))\\\\n\\\\n\\\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\\\n    n = len(all_results)\\\\n    if n == 0:\\\\n        return {}\\\\n\\\\n    sica_correct = sum(1 for r in all_results if r[\\\\\\\"sica_correct\\\\\\\"])\\\\n    sc_correct = sum(1 for r in all_results if r[\\\\\\\"sc_correct\\\\\\\"])\\\\n    total_extracted = sum(r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"total_extracted\\\\\\\"] for r in all_results)\\\\n    total_excluded = sum(r[\\\\\\\"maxsat_stats\\\\\\\"][\\\\\\\"excluded\\\\\\\"] for r in all_results)\\\\n    total_unique = sum(r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"unique_after_dedup\\\\\\\"] for r in all_results)\\\\n    problems_with_contradictions = sum(\\\\n        1 for r in all_results if r.get(\\\\\\\"maxsat_stats\\\\\\\", {}).get(\\\\\\\"excluded\\\\\\\", 0) > 0\\\\n    )\\\\n\\\\n    level_stats: dict[str, dict] = {}\\\\n    dataset_stats = {}\\\\n    for r in all_results:\\\\n        level = str(r.get(\\\\\\\"level\\\\\\\", \\\\\\\"unknown\\\\\\\"))\\\\n        ds = r.get(\\\\\\\"dataset\\\\\\\", \\\\\\\"unknown\\\\\\\")\\\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\\\n            if val not in bucket:\\\\n                bucket[val] = {\\\\\\\"sica_correct\\\\\\\": 0, \\\\\\\"sc_correct\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0}\\\\n            bucket[val][\\\\\\\"total\\\\\\\"] += 1\\\\n            if r[\\\\\\\"sica_correct\\\\\\\"]:\\\\n                bucket[val][\\\\\\\"sica_correct\\\\\\\"] += 1\\\\n            if r[\\\\\\\"sc_correct\\\\\\\"]:\\\\n                bucket[val][\\\\\\\"sc_correct\\\\\\\"] += 1\\\\n\\\\n    def _acc(bucket):\\\\n        return {\\\\n            k: {\\\\n                \\\\\\\"sica\\\\\\\": v[\\\\\\\"sica_correct\\\\\\\"] / max(v[\\\\\\\"total\\\\\\\"], 1),\\\\n                \\\\\\\"sc\\\\\\\": v[\\\\\\\"sc_correct\\\\\\\"] / max(v[\\\\\\\"total\\\\\\\"], 1),\\\\n                \\\\\\\"n\\\\\\\": v[\\\\\\\"total\\\\\\\"],\\\\n            }\\\\n            for k, v in bucket.items()\\\\n        }\\\\n\\\\n    return {\\\\n        \\\\\\\"n_problems\\\\\\\": n,\\\\n        \\\\\\\"sica_accuracy\\\\\\\": sica_correct / n,\\\\n        \\\\\\\"sc_accuracy\\\\\\\": sc_correct / n,\\\\n        \\\\\\\"sica_correct\\\\\\\": sica_correct,\\\\n        \\\\\\\"sc_correct\\\\\\\": sc_correct,\\\\n        \\\\\\\"extraction_rate\\\\\\\": ext_stats.success / max(ext_stats.success + ext_stats.total_fail, 1),\\\\n        \\\\\\\"total_constraints_extracted\\\\\\\": total_extracted,\\\\n        \\\\\\\"total_unique_constraints\\\\\\\": total_unique,\\\\n        \\\\\\\"contradiction_rate\\\\\\\": total_excluded / max(total_unique, 1),\\\\n        \\\\\\\"problems_with_contradictions\\\\\\\": problems_with_contradictions,\\\\n        \\\\\\\"per_level_accuracy\\\\\\\": _acc(level_stats),\\\\n        \\\\\\\"per_dataset_accuracy\\\\\\\": _acc(dataset_stats),\\\\n    }\\\\n\\\\n\\\\ndef print_summary(summary: dict):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 80)\\\\n    print(\\\\\\\"FULL MVP EXPERIMENT RESULTS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n    n = summary[\\\\\\\"n_problems\\\\\\\"]\\\\n    print(f\\\\\\\"Problems: {n}\\\\\\\")\\\\n    print(f\\\\\\\"SICA accuracy: {summary['sica_accuracy']:.1%} ({summary['sica_correct']}/{n})\\\\\\\")\\\\n    print(f\\\\\\\"SC accuracy:   {summary['sc_accuracy']:.1%} ({summary['sc_correct']}/{n})\\\\\\\")\\\\n    print(f\\\\\\\"Extraction rate: {summary['extraction_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Contradiction rate: {summary['contradiction_rate']:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Problems with contradictions: {summary['problems_with_contradictions']}/{n}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- By Dataset ---\\\\\\\")\\\\n    for ds, s in sorted(summary.get(\\\\\\\"per_dataset_accuracy\\\\\\\", {}).items()):\\\\n        print(f\\\\\\\"  {ds:12s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- By Level ---\\\\\\\")\\\\n    for lv, s in sorted(summary.get(\\\\\\\"per_level_accuracy\\\\\\\", {}).items()):\\\\n        print(f\\\\\\\"  Level {lv:>3s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 80)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"SICA Full MVP Experiment (60 problems)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"mock\\\\\\\", \\\\\\\"vllm\\\\\\\", \\\\\\\"api\\\\\\\"], default=\\\\\\\"vllm\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--k\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=\\\\\\\"auto\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--api-base\\\\\\\", type=str, default=\\\\\\\"http://localhost:8000/v1\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--api-key\\\\\\\", type=str, default=\\\\\\\"EMPTY\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--math-data\\\\\\\", type=str, default=\\\\\\\"data/math500_subset.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--pw-data\\\\\\\", type=str, default=\\\\\\\"data/proofwriter_subset.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=\\\\\\\"results/mvp_full_results.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--resume\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Resume from checkpoint\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.7, help=\\\\\\\"Sampling temperature\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-tokens\\\\\\\", type=int, default=10240, help=\\\\\\\"Max tokens for trace generation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-proofwriter\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip ProofWriter data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=None, help=\\\\\\\"Random seed for reproducibility\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.seed is not None:\\\\n        import random\\\\n        import numpy as np\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA Full MVP experiment: 50 MATH-500 + 10 ProofWriter, SICA vs SC@K.\\nFeatures: resume support, per-dataset/per-level stats, ETA estimation.\\n\\nUsage:\\n  python run_full_mvp.py --mode vllm --k 12\\n  python run_full_mvp.py --mode vllm --k 12 --resume\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\n\\nfrom sica.constraint_extractor import ConstraintExtractor, MockLLM, APIBasedLLM, VLLMBackend\\nfrom sica.trace_generator import MockGenerator, VLLMGenerator, APIGenerator\\nfrom sica.pipeline import SICAPipeline\\nfrom baselines.self_consistency import SelfConsistency\\nfrom utils.math_equiv import is_equiv\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_all_problems(math_path: str, pw_path: str) -> list[dict]:\\n    problems = []\\n    if os.path.exists(math_path):\\n        with open(math_path) as f:\\n            math_data = json.load(f)\\n        for p in math_data:\\n            p.setdefault(\\\"dataset\\\", \\\"math\\\")\\n        problems.extend(math_data)\\n        logger.info(\\\"Loaded %d MATH problems\\\", len(math_data))\\n    else:\\n        logger.error(\\\"MATH data not found: %s\\\", math_path)\\n        sys.exit(1)\\n\\n    if pw_path and os.path.exists(pw_path):\\n        with open(pw_path) as f:\\n            pw_data = json.load(f)\\n        for p in pw_data:\\n            p.setdefault(\\\"dataset\\\", \\\"proofwriter\\\")\\n        problems.extend(pw_data)\\n        logger.info(\\\"Loaded %d ProofWriter problems\\\", len(pw_data))\\n    else:\\n        logger.warning(\\\"ProofWriter data not found or skipped: %s\\\", pw_path)\\n\\n    logger.info(\\\"Total: %d problems\\\", len(problems))\\n    return problems\\n\\n\\ndef load_checkpoint(output_path: str) -> dict:\\n    if os.path.exists(output_path):\\n        with open(output_path) as f:\\n            data = json.load(f)\\n        return data\\n    return {}\\n\\n\\ndef build_generator(args):\\n    if args.mode == \\\"mock\\\":\\n        return MockGenerator()\\n    elif args.mode == \\\"vllm\\\":\\n        return VLLMGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n            temperature=args.temperature,\\n            max_tokens=args.max_tokens,\\n            seed=args.seed,\\n        )\\n    elif args.mode == \\\"api\\\":\\n        return APIGenerator(\\n            base_url=args.api_base,\\n            api_key=[REDACTED],\\n            model=args.model,\\n            seed=args.seed,\\n        )\\n    raise ValueError(f\\\"Unknown mode: {args.mode}\\\")\\n\\n\\ndef build_extractor(args):\\n    if args.mode == \\\"mock\\\":\\n        return ConstraintExtractor(llm=MockLLM())\\n    elif args.mode == \\\"vllm\\\":\\n        return ConstraintExtractor(llm=VLLMBackend(\\n            base_url=args.api_base,\\n            model=args.model if args.model != \\\"auto\\\" else None,\\n        ))\\n    return ConstraintExtractor(llm=APIBasedLLM(\\n        base_url=args.api_base,\\n        api_key=[REDACTED],\\n        model=args.model if args.model != \\\"auto\\\" else None,\\n        temperature=0.1,\\n    ))\\n\\n\\ndef compute_summary(all_results: list[dict], ext_stats) -> dict:\\n    n = len(all_results)\\n    if n == 0:\\n        return {}\\n\\n    sica_correct = sum(1 for r in all_results if r[\\\"sica_correct\\\"])\\n    sc_correct = sum(1 for r in all_results if r[\\\"sc_correct\\\"])\\n    total_extracted = sum(r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] for r in all_results)\\n    total_excluded = sum(r[\\\"maxsat_stats\\\"][\\\"excluded\\\"] for r in all_results)\\n    total_unique = sum(r[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"] for r in all_results)\\n    problems_with_contradictions = sum(\\n        1 for r in all_results if r.get(\\\"maxsat_stats\\\", {}).get(\\\"excluded\\\", 0) > 0\\n    )\\n\\n    level_stats: dict[str, dict] = {}\\n    dataset_stats = {}\\n    for r in all_results:\\n        level = str(r.get(\\\"level\\\", \\\"unknown\\\"))\\n        ds = r.get(\\\"dataset\\\", \\\"unknown\\\")\\n        for val, bucket in [(level, level_stats), (ds, dataset_stats)]:\\n            if val not in bucket:\\n                bucket[val] = {\\\"sica_correct\\\": 0, \\\"sc_correct\\\": 0, \\\"total\\\": 0}\\n            bucket[val][\\\"total\\\"] += 1\\n            if r[\\\"sica_correct\\\"]:\\n                bucket[val][\\\"sica_correct\\\"] += 1\\n            if r[\\\"sc_correct\\\"]:\\n                bucket[val][\\\"sc_correct\\\"] += 1\\n\\n    def _acc(bucket):\\n        return {\\n            k: {\\n                \\\"sica\\\": v[\\\"sica_correct\\\"] / max(v[\\\"total\\\"], 1),\\n                \\\"sc\\\": v[\\\"sc_correct\\\"] / max(v[\\\"total\\\"], 1),\\n                \\\"n\\\": v[\\\"total\\\"],\\n            }\\n            for k, v in bucket.items()\\n        }\\n\\n    return {\\n        \\\"n_problems\\\": n,\\n        \\\"sica_accuracy\\\": sica_correct / n,\\n        \\\"sc_accuracy\\\": sc_correct / n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sc_correct\\\": sc_correct,\\n        \\\"extraction_rate\\\": ext_stats.success / max(ext_stats.success + ext_stats.total_fail, 1),\\n        \\\"total_constraints_extracted\\\": total_extracted,\\n        \\\"total_unique_constraints\\\": total_unique,\\n        \\\"contradiction_rate\\\": total_excluded / max(total_unique, 1),\\n        \\\"problems_with_contradictions\\\": problems_with_contradictions,\\n        \\\"per_level_accuracy\\\": _acc(level_stats),\\n        \\\"per_dataset_accuracy\\\": _acc(dataset_stats),\\n    }\\n\\n\\ndef print_summary(summary: dict):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"FULL MVP EXPERIMENT RESULTS\\\")\\n    print(\\\"=\\\" * 80)\\n    n = summary[\\\"n_problems\\\"]\\n    print(f\\\"Problems: {n}\\\")\\n    print(f\\\"SICA accuracy: {summary['sica_accuracy']:.1%} ({summary['sica_correct']}/{n})\\\")\\n    print(f\\\"SC accuracy:   {summary['sc_accuracy']:.1%} ({summary['sc_correct']}/{n})\\\")\\n    print(f\\\"Extraction rate: {summary['extraction_rate']:.1%}\\\")\\n    print(f\\\"Contradiction rate: {summary['contradiction_rate']:.1%}\\\")\\n    print(f\\\"Problems with contradictions: {summary['problems_with_contradictions']}/{n}\\\")\\n\\n    print(\\\"\\\\n--- By Dataset ---\\\")\\n    for ds, s in sorted(summary.get(\\\"per_dataset_accuracy\\\", {}).items()):\\n        print(f\\\"  {ds:12s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\")\\n\\n    print(\\\"\\\\n--- By Level ---\\\")\\n    for lv, s in sorted(summary.get(\\\"per_level_accuracy\\\", {}).items()):\\n        print(f\\\"  Level {lv:>3s}: SICA={s['sica']:.1%}  SC={s['sc']:.1%}  (n={s['n']})\\\")\\n    print(\\\"=\\\" * 80)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"SICA Full MVP Experiment (60 problems)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"mock\\\", \\\"vllm\\\", \\\"api\\\"], default=\\\"vllm\\\")\\n    parser.add_argument(\\\"--k\\\", type=int, default=12)\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"auto\\\")\\n    parser.add_argument(\\\"--api-base\\\", type=str, default=\\\"http://localhost:8000/v1\\\")\\n    parser.add_argument(\\\"--api-key\\\", type=str, default=\\\"EMPTY\\\")\\n    parser.add_argument(\\\"--math-data\\\", type=str, default=\\\"data/math500_subset.json\\\")\\n    parser.add_argument(\\\"--pw-data\\\", type=str, default=\\\"data/proofwriter_subset.json\\\")\\n    parser.add_argument(\\\"--output\\\", type=str, default=\\\"results/mvp_full_results.json\\\")\\n    parser.add_argument(\\\"--resume\\\", action=\\\"store_true\\\", help=\\\"Resume from checkpoint\\\")\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.7, help=\\\"Sampling temperature\\\")\\n    parser.add_argument(\\\"--max-tokens\\\", type=int, default=10240, help=\\\"Max tokens for trace generation\\\")\\n    parser.add_argument(\\\"--no-proofwriter\\\", action=\\\"store_true\\\", help=\\\"Skip ProofWriter data\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=None, help=\\\"Random seed for reproducibility\\\")\\n    args = parser.parse_args()\\n\\n    if args.seed is not None:\\n        import random\\n        import numpy as np\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me identify the issues:
+
+**pipeline.py except branch** - missing fields compared to normal path:
+- `constraints_stats` - MISSING
+- `maxsat_stats` - MISSING  
+- `scores` - MISSING (but normal path has it)
+- `answer` - conditionally set only if cached_traces has answers
+- `answer_counts` - conditionally set
+- `traces` - conditionally set
+
+**run_full_mvp.py compute_summary** - unsafe access at lines ~113-117:
+
+
+The code is summing values from `constraints_stats` and `maxsat_stats` dictionaries across all results without checking if those keys exist first. However, looking at the main loop in run_full_mvp.py, there's already a fallback except handler that creates a sica_result with those fields, and result_entry uses `.get("constraints_stats", {})` for safe access, so the data flowing into compute_summary should have those fields present.
+
+But wait—if pipeline.py returns a result without `constraints_stats`, then result_entry will have `"constraints_stats": {}`, and then compute_summary tries to access `r["constraints_stats"]["total_extracted"]` which will fail on an empty dict. So I need two fixes: first, make sure pipeline.py adds the missing fields in its except branch, and second, use safe `.get()` access in compute_summary when accessing nested keys.
+
+Now I'm checking what fields the normal path actually includes in `constraints_stats`. The normal execution path has `total_extracted`, `traces_with_constraints`, and `unique_after_dedup`, but no `json_parse_failures`. The task description asks me to add `json_parse_failures` to the fallback, but the normal path doesn't have it—so I need to decide whether to match the normal path exactly or follow the task's explicit instruction to include it. I need to make sure the fallback result structure matches the normal path exactly. The normal path returns constraints_stats with total_extracted, traces_with_constraints, and unique_after_dedup, plus maxsat_stats with satisfied, excluded, total_weight, and solve_time_ms. The task also wants json_parse_failures and timeout in the fallback as extra fields, which won't hurt since they're just defaults.
+
+Now I'm realizing I also need to include scores, answer_counts, answer, and traces in the fallback even when there are no cached_traces. I'll need to modify both files using ssh_execute to apply these patches properly. I need to add safe access patterns for the constraints_stats and maxsat_stats dictionaries when aggregating results, since some entries might not have these keys populated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "6257cf3f-2d87-48e3-9ff6-111f57cb8698",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzLf7kJw6EZXaQZs3EECB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3288,
+      "cache_read_input_tokens": 31164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+现在清楚了两个问题。开始修复。
+
+**pipeline.py except 分支**缺少 `constraints_stats`、`maxsat_stats`、`scores`，且 `answer`/`answer_counts`/`traces` 在无 cached_traces 时也缺。
+
+**run_full_mvp.py compute_summary** 第 113-115 行直接 `r["constraints_stats"]["total_extracted"]` 访问，遇到空 dict 会 KeyError。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "b796d562-fce7-4fa3-b325-dc09c22192a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzLf7kJw6EZXaQZs3EECB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3288,
+      "cache_read_input_tokens": 31164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01P8KXXyr9LTk438JW7TTMZJ`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport re\n\n# --- Fix 1: pipeline.py ---\nwith open('sica/pipeline.py', 'r') as f:\n    content = f.read()\n\nold_except = '''        except Exception as e:\n            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\n            result = {\\\"error\\\": str(e), \\\"domain\\\": domain}\n            if cached_traces:\n                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\n                if sc_answers:\n                    counter = Counter(sc_answers)\n                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\n                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\n                    result[\\\"answer_counts\\\"] = dict(counter)\n                result[\\\"traces\\\"] = cached_traces\n            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\n            return result'''\n\nnew_except = '''        except Exception as e:\n            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\n            result = {\n                \\\"error\\\": str(e),\n                \\\"domain\\\": domain,\n                \\\"answer\\\": \\\"\\\",\n                \\\"scores\\\": {},\n                \\\"answer_counts\\\": {},\n                \\\"traces\\\": [],\n                \\\"constraints_stats\\\": {\n                    \\\"total_extracted\\\": 0,\n                    \\\"traces_with_constraints\\\": 0,\n                    \\\"unique_after_dedup\\\": 0,\n                },\n                \\\"maxsat_stats\\\": {\n                    \\\"satisfied\\\": 0,\n                    \\\"excluded\\\": 0,\n                    \\\"total_weight\\\": 0,\n                    \\\"solve_time_ms\\\": 0,\n                },\n            }\n            if cached_traces:\n                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\n                if sc_answers:\n                    counter = Counter(sc_answers)\n                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\n                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\n                    result[\\\"answer_counts\\\"] = dict(counter)\n                result[\\\"traces\\\"] = cached_traces\n            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\n            return result'''\n\nassert old_except in content, 'pipeline.py: old except block not found'\ncontent = content.replace(old_except, new_except)\nwith open('sica/pipeline.py', 'w') as f:\n    f.write(content)\nprint('pipeline.py fixed')\n\n# --- Fix 2: run_full_mvp.py ---\nwith open('run_full_mvp.py', 'r') as f:\n    content = f.read()\n\nold_lines = '''    total_extracted = sum(r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] for r in all_results)\n    total_excluded = sum(r[\\\"maxsat_stats\\\"][\\\"excluded\\\"] for r in all_results)\n    total_unique = sum(r[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"] for r in all_results)'''\n\nnew_lines = '''    total_extracted = sum(r.get(\\\"constraints_stats\\\", {}).get(\\\"total_extracted\\\", 0) for r in all_results)\n    total_excluded = sum(r.get(\\\"maxsat_stats\\\", {}).get(\\\"excluded\\\", 0) for r in all_results)\n    total_unique = sum(r.get(\\\"constraints_stats\\\", {}).get(\\\"unique_after_dedup\\\", 0) for r in all_results)'''\n\nassert old_lines in content, 'run_full_mvp.py: old lines not found'\ncontent = content.replace(old_lines, new_lines)\nwith open('run_full_mvp.py', 'w') as f:\n    f.write(content)\nprint('run_full_mvp.py fixed')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "11105220-b734-43ed-905f-8755e5b479ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzLf7kJw6EZXaQZs3EECB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3288,
+      "cache_read_input_tokens": 31164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T14:19:38.131Z_
+
+<details><summary>↩ Tool result · `toolu_01P8KXXyr9LTk438JW7TTMZJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\"\\\\nimport re\\\\n\\\\n# --- Fix 1: pipeline.py ---\\\\nwith open(\\\\'sica/pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold_except = \\\\'\\\\'\\\\'        except Exception as e:\\\\n            logger.error(\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\", e, exc_info=True)\\\\n            result = {\\\\\\\\\\\"error\\\\\\\\\\\": str(e), \\\\\\\\\\\"domain\\\\\\\\\\\": domain}\\\\n            if cached_traces:\\\\n                sc_answers = [t.get(\\\\\\\\\\\"answer\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\"answer\\\\\\\\\\\")]\\\\n                if sc_answers:\\\\n                    counter = Counter(sc_answers)\\\\n                    result[\\\\\\\\\\\"answer\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\n                    result[\\\\\\\\\\\"sc_answer\\\\\\\\\\\"] = result[\\\\\\\\\\\"answer\\\\\\\\\\\"]\\\\n                    result[\\\\\\\\\\\"answer_counts\\\\\\\\\\\"] = dict(counter)\\\\n                result[\\\\\\\\\\\"traces\\\\\\\\\\\"] = cached_traces\\\\n            result[\\\\\\\\\\\"timing\\\\\\\\\\\"] = {\\\\\\\\\\\"total_s\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n            return result\\\\'\\\\'\\\\'\\\\n\\\\nnew_except = \\\\'\\\\'\\\\'        except Exception as e:\\\\n            logger.error(\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\", e, exc_info=True)\\\\n            result = {\\\\n                \\\\\\\\\\\"error\\\\\\\\\\\": str(e),\\\\n                \\\\\\\\\\\"domain\\\\\\\\\\\": domain,\\\\n                \\\\\\\\\\\"answer\\\\\\\\\\\": \\\\\\\\\\\"\\\\\\\\\\\",\\\\n                \\\\\\\\\\\"scores\\\\\\\\\\\": {},\\\\n                \\\\\\\\\\\"answer_counts\\\\\\\\\\\": {},\\\\n                \\\\\\\\\\\"traces\\\\\\\\\\\": [],\\\\n                \\\\\\\\\\\"constraints_stats\\\\\\\\\\\": {\\\\n                    \\\\\\\\\\\"total_extracted\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"traces_with_constraints\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\": 0,\\\\n                },\\\\n                \\\\\\\\\\\"maxsat_stats\\\\\\\\\\\": {\\\\n                    \\\\\\\\\\\"satisfied\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"excluded\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"total_weight\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"solve_time_ms\\\\\\\\\\\": 0,\\\\n                },\\\\n            }\\\\n            if cached_traces:\\\\n                sc_answers = [t.get(\\\\\\\\\\\"answer\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\"answer\\\\\\\\\\\")]\\\\n                if sc_answers:\\\\n                    counter = Counter(sc_answers)\\\\n                    result[\\\\\\\\\\\"answer\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\n                    result[\\\\\\\\\\\"sc_answer\\\\\\\\\\\"] = result[\\\\\\\\\\\"answer\\\\\\\\\\\"]\\\\n                    result[\\\\\\\\\\\"answer_counts\\\\\\\\\\\"] = dict(counter)\\\\n                result[\\\\\\\\\\\"traces\\\\\\\\\\\"] = cached_traces\\\\n            result[\\\\\\\\\\\"timing\\\\\\\\\\\"] = {\\\\\\\\\\\"total_s\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n            return result\\\\'\\\\'\\\\'\\\\n\\\\nassert old_except in content, \\\\'pipeline.py: old except block not found\\\\'\\\\ncontent = content.replace(old_except, new_except)\\\\nwith open(\\\\'sica/pipeline.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'pipeline.py fixed\\\\')\\\\n\\\\n# --- Fix 2: run_full_mvp.py ---\\\\nwith open(\\\\'run_full_mvp.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold_lines = \\\\'\\\\'\\\\'    total_extracted = sum(r[\\\\\\\\\\\"constraints_stats\\\\\\\\\\\"][\\\\\\\\\\\"total_extracted\\\\\\\\\\\"] for r in all_results)\\\\n    total_excluded = sum(r[\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\"][\\\\\\\\\\\"excluded\\\\\\\\\\\"] for r in all_results)\\\\n    total_unique = sum(r[\\\\\\\\\\\"constraints_stats\\\\\\\\\\\"][\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\"] for r in all_results)\\\\'\\\\'\\\\'\\\\n\\\\nnew_lines = \\\\'\\\\'\\\\'    total_extracted = sum(r.get(\\\\\\\\\\\"constraints_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"total_extracted\\\\\\\\\\\", 0) for r in all_results)\\\\n    total_excluded = sum(r.get(\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"excluded\\\\\\\\\\\", 0) for r in all_results)\\\\n    total_unique = sum(r.get(\\\\\\\\\\\"constraints_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\", 0) for r in all_results)\\\\'\\\\'\\\\'\\\\n\\\\nassert old_lines in content, \\\\'run_full_mvp.py: old lines not found\\\\'\\\\ncontent = content.replace(old_lines, new_lines)\\\\nwith open(\\\\'run_full_mvp.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'run_full_mvp.py fixed\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "d5c4dd6d-32fb-4f87-ac0b-7492befac0fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\n# --- Fix 1: pipeline.py ---\\\\\\\\nwith open(\\\\\\\\'sica/pipeline.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\nold_except = \\\\\\\\'\\\\\\\\'\\\\\\\\'        except Exception as e:\\\\\\\\n            logger.error(\\\\\\\\\\\\\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\\\\\\\\\\\\\", e, exc_info=True)\\\\\\\\n            result = {\\\\\\\\\\\\\\\\\\\\\\\"error\\\\\\\\\\\\\\\\\\\\\\\": str(e), \\\\\\\\\\\\\\\\\\\\\\\"domain\\\\\\\\\\\\\\\\\\\\\\\": domain}\\\\\\\\n            if cached_traces:\\\\\\\\n                sc_answers = [t.get(\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\")]\\\\\\\\n                if sc_answers:\\\\\\\\n                    counter = Counter(sc_answers)\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"sc_answer\\\\\\\\\\\\\\\\\\\\\\\"] = result[\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"answer_counts\\\\\\\\\\\\\\\\\\\\\\\"] = dict(counter)\\\\\\\\n                result[\\\\\\\\\\\\\\\\\\\\\\\"traces\\\\\\\\\\\\\\\\\\\\\\\"] = cached_traces\\\\\\\\n            result[\\\\\\\\\\\\\\\\\\\\\\\"timing\\\\\\\\\\\\\\\\\\\\\\\"] = {\\\\\\\\\\\\\\\\\\\\\\\"total_s\\\\\\\\\\\\\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\\\\\n            return result\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_except = \\\\\\\\'\\\\\\\\'\\\\\\\\'        except Exception as e:\\\\\\\\n            logger.error(\\\\\\\\\\\\\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\\\\\\\\\\\\\", e, exc_info=True)\\\\\\\\n            result = {\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"error\\\\\\\\\\\\\\\\\\\\\\\": str(e),\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"domain\\\\\\\\\\\\\\\\\\\\\\\": domain,\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"scores\\\\\\\\\\\\\\\\\\\\\\\": {},\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"answer_counts\\\\\\\\\\\\\\\\\\\\\\\": {},\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"traces\\\\\\\\\\\\\\\\\\\\\\\": [],\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"constraints_stats\\\\\\\\\\\\\\\\\\\\\\\": {\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"total_extracted\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"traces_with_constraints\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                },\\\\\\\\n                \\\\\\\\\\\\\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\\\\\\\\\\\\\": {\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"satisfied\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"excluded\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"total_weight\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"solve_time_ms\\\\\\\\\\\\\\\\\\\\\\\": 0,\\\\\\\\n                },\\\\\\\\n            }\\\\\\\\n            if cached_traces:\\\\\\\\n                sc_answers = [t.get(\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\")]\\\\\\\\n                if sc_answers:\\\\\\\\n                    counter = Counter(sc_answers)\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"sc_answer\\\\\\\\\\\\\\\\\\\\\\\"] = result[\\\\\\\\\\\\\\\\\\\\\\\"answer\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\n                    result[\\\\\\\\\\\\\\\\\\\\\\\"answer_counts\\\\\\\\\\\\\\\\\\\\\\\"] = dict(counter)\\\\\\\\n                result[\\\\\\\\\\\\\\\\\\\\\\\"traces\\\\\\\\\\\\\\\\\\\\\\\"] = cached_traces\\\\\\\\n            result[\\\\\\\\\\\\\\\\\\\\\\\"timing\\\\\\\\\\\\\\\\\\\\\\\"] = {\\\\\\\\\\\\\\\\\\\\\\\"total_s\\\\\\\\\\\\\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\\\\\n            return result\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nassert old_except in content, \\\\\\\\'pipeline.py: old except block not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old_except, new_except)\\\\\\\\nwith open(\\\\\\\\'sica/pipeline.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\nprint(\\\\\\\\'pipeline.py fixed\\\\\\\\')\\\\\\\\n\\\\\\\\n# --- Fix 2: run_full_mvp.py ---\\\\\\\\nwith open(\\\\\\\\'run_full_mvp.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\nold_lines = \\\\\\\\'\\\\\\\\'\\\\\\\\'    total_extracted = sum(r[\\\\\\\\\\\\\\\\\\\\\\\"constraints_stats\\\\\\\\\\\\\\\\\\\\\\\"][\\\\\\\\\\\\\\\\\\\\\\\"total_extracted\\\\\\\\\\\\\\\\\\\\\\\"] for r in all_results)\\\\\\\\n    total_excluded = sum(r[\\\\\\\\\\\\\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\\\\\\\\\\\\\"][\\\\\\\\\\\\\\\\\\\\\\\"excluded\\\\\\\\\\\\\\\\\\\\\\\"] for r in all_results)\\\\\\\\n    total_unique = sum(r[\\\\\\\\\\\\\\\\\\\\\\\"constraints_stats\\\\\\\\\\\\\\\\\\\\\\\"][\\\\\\\\\\\\\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\\\\\\\\\\\\\"] for r in all_results)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nnew_lines = \\\\\\\\'\\\\\\\\'\\\\\\\\'    total_extracted = sum(r.get(\\\\\\\\\\\\\\\\\\\\\\\"constraints_stats\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"total_extracted\\\\\\\\\\\\\\\\\\\\\\\", 0) for r in all_results)\\\\\\\\n    total_excluded = sum(r.get(\\\\\\\\\\\\\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"excluded\\\\\\\\\\\\\\\\\\\\\\\", 0) for r in all_results)\\\\\\\\n    total_unique = sum(r.get(\\\\\\\\\\\\\\\\\\\\\\\"constraints_stats\\\\\\\\\\\\\\\\\\\\\\\", {}).get(\\\\\\\\\\\\\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\\\\\\\\\\\\\", 0) for r in all_results)\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\nassert old_lines in content, \\\\\\\\'run_full_mvp.py: old lines not found\\\\\\\\'\\\\\\\\ncontent = content.replace(old_lines, new_lines)\\\\\\\\nwith open(\\\\\\\\'run_full_mvp.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\nprint(\\\\\\\\'run_full_mvp.py fixed\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\"\\\\nimport re\\\\n\\\\n# --- Fix 1: pipeline.py ---\\\\nwith open(\\\\'sica/pipeline.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold_except = \\\\'\\\\'\\\\'        except Exception as e:\\\\n            logger.error(\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\", e, exc_info=True)\\\\n            result = {\\\\\\\\\\\"error\\\\\\\\\\\": str(e), \\\\\\\\\\\"domain\\\\\\\\\\\": domain}\\\\n            if cached_traces:\\\\n                sc_answers = [t.get(\\\\\\\\\\\"answer\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\"answer\\\\\\\\\\\")]\\\\n                if sc_answers:\\\\n                    counter = Counter(sc_answers)\\\\n                    result[\\\\\\\\\\\"answer\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\n                    result[\\\\\\\\\\\"sc_answer\\\\\\\\\\\"] = result[\\\\\\\\\\\"answer\\\\\\\\\\\"]\\\\n                    result[\\\\\\\\\\\"answer_counts\\\\\\\\\\\"] = dict(counter)\\\\n                result[\\\\\\\\\\\"traces\\\\\\\\\\\"] = cached_traces\\\\n            result[\\\\\\\\\\\"timing\\\\\\\\\\\"] = {\\\\\\\\\\\"total_s\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n            return result\\\\'\\\\'\\\\'\\\\n\\\\nnew_except = \\\\'\\\\'\\\\'        except Exception as e:\\\\n            logger.error(\\\\\\\\\\\"SICA pipeline failed: %s\\\\\\\\\\\", e, exc_info=True)\\\\n            result = {\\\\n                \\\\\\\\\\\"error\\\\\\\\\\\": str(e),\\\\n                \\\\\\\\\\\"domain\\\\\\\\\\\": domain,\\\\n                \\\\\\\\\\\"answer\\\\\\\\\\\": \\\\\\\\\\\"\\\\\\\\\\\",\\\\n                \\\\\\\\\\\"scores\\\\\\\\\\\": {},\\\\n                \\\\\\\\\\\"answer_counts\\\\\\\\\\\": {},\\\\n                \\\\\\\\\\\"traces\\\\\\\\\\\": [],\\\\n                \\\\\\\\\\\"constraints_stats\\\\\\\\\\\": {\\\\n                    \\\\\\\\\\\"total_extracted\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"traces_with_constraints\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\": 0,\\\\n                },\\\\n                \\\\\\\\\\\"maxsat_stats\\\\\\\\\\\": {\\\\n                    \\\\\\\\\\\"satisfied\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"excluded\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"total_weight\\\\\\\\\\\": 0,\\\\n                    \\\\\\\\\\\"solve_time_ms\\\\\\\\\\\": 0,\\\\n                },\\\\n            }\\\\n            if cached_traces:\\\\n                sc_answers = [t.get(\\\\\\\\\\\"answer\\\\\\\\\\\") for t in cached_traces if t.get(\\\\\\\\\\\"answer\\\\\\\\\\\")]\\\\n                if sc_answers:\\\\n                    counter = Counter(sc_answers)\\\\n                    result[\\\\\\\\\\\"answer\\\\\\\\\\\"] = counter.most_common(1)[0][0]\\\\n                    result[\\\\\\\\\\\"sc_answer\\\\\\\\\\\"] = result[\\\\\\\\\\\"answer\\\\\\\\\\\"]\\\\n                    result[\\\\\\\\\\\"answer_counts\\\\\\\\\\\"] = dict(counter)\\\\n                result[\\\\\\\\\\\"traces\\\\\\\\\\\"] = cached_traces\\\\n            result[\\\\\\\\\\\"timing\\\\\\\\\\\"] = {\\\\\\\\\\\"total_s\\\\\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n            return result\\\\'\\\\'\\\\'\\\\n\\\\nassert old_except in content, \\\\'pipeline.py: old except block not found\\\\'\\\\ncontent = content.replace(old_except, new_except)\\\\nwith open(\\\\'sica/pipeline.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'pipeline.py fixed\\\\')\\\\n\\\\n# --- Fix 2: run_full_mvp.py ---\\\\nwith open(\\\\'run_full_mvp.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold_lines = \\\\'\\\\'\\\\'    total_extracted = sum(r[\\\\\\\\\\\"constraints_stats\\\\\\\\\\\"][\\\\\\\\\\\"total_extracted\\\\\\\\\\\"] for r in all_results)\\\\n    total_excluded = sum(r[\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\"][\\\\\\\\\\\"excluded\\\\\\\\\\\"] for r in all_results)\\\\n    total_unique = sum(r[\\\\\\\\\\\"constraints_stats\\\\\\\\\\\"][\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\"] for r in all_results)\\\\'\\\\'\\\\'\\\\n\\\\nnew_lines = \\\\'\\\\'\\\\'    total_extracted = sum(r.get(\\\\\\\\\\\"constraints_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"total_extracted\\\\\\\\\\\", 0) for r in all_results)\\\\n    total_excluded = sum(r.get(\\\\\\\\\\\"maxsat_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"excluded\\\\\\\\\\\", 0) for r in all_results)\\\\n    total_unique = sum(r.get(\\\\\\\\\\\"constraints_stats\\\\\\\\\\\", {}).get(\\\\\\\\\\\"unique_after_dedup\\\\\\\\\\\", 0) for r in all_results)\\\\'\\\\'\\\\'\\\\n\\\\nassert old_lines in content, \\\\'run_full_mvp.py: old lines not found\\\\'\\\\ncontent = content.replace(old_lines, new_lines)\\\\nwith open(\\\\'run_full_mvp.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'run_full_mvp.py fixed\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to use conda environment. Let me activate conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "b1e51b18-c844-446f-b057-663f90c67745",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01442JKycD9cti8gV713Zhn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4848,
+      "cache_read_input_tokens": 34452,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+需要激活 conda 环境。改用写文件方式，避免引号转义问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "695c8ee8-4b22-4c83-bee7-e9fcaef115dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01442JKycD9cti8gV713Zhn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4848,
+      "cache_read_input_tokens": 34452,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LRfkF5yn4XCeccFCRWeg1d`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/fix_pipeline.py << 'PYEOF'\nimport sys\n\n# --- Fix 1: pipeline.py ---\nwith open('/root/symb_invariant_consensus/sica/pipeline.py', 'r') as f:\n    content = f.read()\n\nold_except = '''        except Exception as e:\n            logger.error(\"SICA pipeline failed: %s\", e, exc_info=True)\n            result = {\"error\": str(e), \"domain\": domain}\n            if cached_traces:\n                sc_answers = [t.get(\"answer\") for t in cached_traces if t.get(\"answer\")]\n                if sc_answers:\n                    counter = Counter(sc_answers)\n                    result[\"answer\"] = counter.most_common(1)[0][0]\n                    result[\"sc_answer\"] = result[\"answer\"]\n                    result[\"answer_counts\"] = dict(counter)\n                result[\"traces\"] = cached_traces\n            result[\"timing\"] = {\"total_s\": round(time.perf_counter() - t_start, 3)}\n            return result'''\n\nnew_except = '''        except Exception as e:\n            logger.error(\"SICA pipeline failed: %s\", e, exc_info=True)\n            result = {\n                \"error\": str(e),\n                \"domain\": domain,\n                \"answer\": \"\",\n                \"scores\": {},\n                \"answer_counts\": {},\n                \"traces\": [],\n                \"constraints_stats\": {\n                    \"total_extracted\": 0,\n                    \"traces_with_constraints\": 0,\n                    \"unique_after_dedup\": 0,\n                },\n                \"maxsat_stats\": {\n                    \"satisfied\": 0,\n                    \"excluded\": 0,\n                    \"total_weight\": 0,\n                    \"solve_time_ms\": 0,\n                },\n            }\n            if cached_traces:\n                sc_answers = [t.get(\"answer\") for t in cached_traces if t.get(\"answer\")]\n                if sc_answers:\n                    counter = Counter(sc_answers)\n                    result[\"answer\"] = counter.most_common(1)[0][0]\n                    result[\"sc_answer\"] = result[\"answer\"]\n                    result[\"answer_counts\"] = dict(counter)\n                result[\"traces\"] = cached_traces\n            result[\"timing\"] = {\"total_s\": round(time.perf_counter() - t_start, 3)}\n            return result'''\n\nif old_except not in content:\n    print(\"ERROR: pipeline.py old except block not found\", file=sys.stderr)\n    sys.exit(1)\ncontent = content.replace(old_except, new_except)\nwith open('/root/symb_invariant_consensus/sica/pipeline.py', 'w') as f:\n    f.write(content)\nprint('pipeline.py fixed')\n\n# --- Fix 2: run_full_mvp.py ---\nwith open('/root/symb_invariant_consensus/run_full_mvp.py', 'r') as f:\n    content = f.read()\n\nold_lines = '    total_extracted = sum(r[\"constraints_stats\"][\"total_extracted\"] for r in all_results)\\n    total_excluded = sum(r[\"maxsat_stats\"][\"excluded\"] for r in all_results)\\n    total_unique = sum(r[\"constraints_stats\"][\"unique_after_dedup\"] for r in all_results)'\n\nnew_lines = '    total_extracted = sum(r.get(\"constraints_stats\", {}).get(\"total_extracted\", 0) for r in all_results)\\n    total_excluded = sum(r.get(\"maxsat_stats\", {}).get(\"excluded\", 0) for r in all_results)\\n    total_unique = sum(r.get(\"constraints_stats\", {}).get(\"unique_after_dedup\", 0) for r in all_results)'\n\nif old_lines not in content:\n    print(\"ERROR: run_full_mvp.py old lines not found\", file=sys.stderr)\n    sys.exit(1)\ncontent = content.replace(old_lines, new_lines)\nwith open('/root/symb_invariant_consensus/run_full_mvp.py', 'w') as f:\n    f.write(content)\nprint('run_full_mvp.py fixed')\nPYEOF\npython /tmp/fix_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "5f953ca7-abb0-46be-99f1-cf93b70ff379",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01442JKycD9cti8gV713Zhn8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4848,
+      "cache_read_input_tokens": 34452,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T14:19:51.602Z_
+
+<details><summary>↩ Tool result · `toolu_01LRfkF5yn4XCeccFCRWeg1d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"pipeline.py fixed\\nrun_full_mvp.py fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "9a0f7468-b5ed-4c4c-baf8-cfc5984801e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pipeline.py fixed\\\\nrun_full_mvp.py fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"pipeline.py fixed\\nrun_full_mvp.py fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+修复已应用。验证修改内容和 import 正确性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "33ffbf65-98fe-4dde-878d-5504ce2868c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwCgHnABAa1wnAreBwkikF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 39300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011UDFu3t42yH51WeM3i4bvV`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"from sica.pipeline import SICAPipeline; print('pipeline import OK')\" && python -c \"import run_full_mvp; print('run_full_mvp import OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "27b0f154-ed71-45c2-aaa8-3b2239124220",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwCgHnABAa1wnAreBwkikF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 39300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T14:19:57.364Z_
+
+<details><summary>↩ Tool result · `toolu_011UDFu3t42yH51WeM3i4bvV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"pipeline import OK\\nrun_full_mvp import OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "bd26035c-88e5-44ef-b67a-dc695730ba3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pipeline import OK\\\\nrun_full_mvp import OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"pipeline import OK\\nrun_full_mvp import OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+import 无误。现在验证修改后的代码结构——确认 except 分支的 key 与正常路径一致，以及 compute_summary 的安全访问。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "772399ce-1b51-4df7-a700-2484460068b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAMyiVkweByhAcA6jmDVo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 40726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 291
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01D6fE55GDktq4K751fTcrpS`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\n# Test 1: verify fallback result has all required keys\nfrom collections import Counter\nimport time\n\n# Simulate the except branch logic\ndomain = 'math'\nt_start = time.perf_counter()\ncached_traces = [{'answer': '42', 'trace': 'blah'}, {'answer': '42', 'trace': 'blah2'}, {'answer': '7', 'trace': 'blah3'}]\n\nresult = {\n    'error': 'test error',\n    'domain': domain,\n    'answer': '',\n    'scores': {},\n    'answer_counts': {},\n    'traces': [],\n    'constraints_stats': {\n        'total_extracted': 0,\n        'traces_with_constraints': 0,\n        'unique_after_dedup': 0,\n    },\n    'maxsat_stats': {\n        'satisfied': 0,\n        'excluded': 0,\n        'total_weight': 0,\n        'solve_time_ms': 0,\n    },\n}\nif cached_traces:\n    sc_answers = [t.get('answer') for t in cached_traces if t.get('answer')]\n    if sc_answers:\n        counter = Counter(sc_answers)\n        result['answer'] = counter.most_common(1)[0][0]\n        result['sc_answer'] = result['answer']\n        result['answer_counts'] = dict(counter)\n    result['traces'] = cached_traces\nresult['timing'] = {'total_s': round(time.perf_counter() - t_start, 3)}\n\n# Check all keys that normal path returns\nrequired_keys = {'answer', 'domain', 'scores', 'answer_counts', 'traces', 'constraints_stats', 'maxsat_stats', 'timing'}\nmissing = required_keys - set(result.keys())\nassert not missing, f'Missing keys: {missing}'\nprint('Test 1 PASS: fallback result has all required keys')\nprint('Keys:', sorted(result.keys()))\n\n# Test 2: compute_summary safe access with missing fields\nresults_with_empty = [\n    {'sica_correct': True, 'sc_correct': False, 'constraints_stats': {}, 'maxsat_stats': {}, 'level': '1', 'dataset': 'math'},\n    {'sica_correct': False, 'sc_correct': True, 'level': '2', 'dataset': 'math'},  # totally missing stats\n]\ntotal_extracted = sum(r.get('constraints_stats', {}).get('total_extracted', 0) for r in results_with_empty)\ntotal_excluded = sum(r.get('maxsat_stats', {}).get('excluded', 0) for r in results_with_empty)\ntotal_unique = sum(r.get('constraints_stats', {}).get('unique_after_dedup', 0) for r in results_with_empty)\nprint(f'Test 2 PASS: safe access works (extracted={total_extracted}, excluded={total_excluded}, unique={total_unique})')\n\n# Test 3: with real fallback values\nresults_with_fallback = [\n    {'sica_correct': True, 'sc_correct': True, 'constraints_stats': {'total_extracted': 5, 'traces_with_constraints': 3, 'unique_after_dedup': 2}, 'maxsat_stats': {'satisfied': 2, 'excluded': 1, 'total_weight': 10, 'solve_time_ms': 50}, 'level': '1', 'dataset': 'math'},\n    {'sica_correct': False, 'sc_correct': True, 'constraints_stats': {'total_extracted': 0, 'traces_with_constraints': 0, 'unique_after_dedup': 0}, 'maxsat_stats': {'satisfied': 0, 'excluded': 0, 'total_weight': 0, 'solve_time_ms': 0}, 'level': '2', 'dataset': 'math'},\n]\ntotal_extracted = sum(r.get('constraints_stats', {}).get('total_extracted', 0) for r in results_with_fallback)\nassert total_extracted == 5, f'Expected 5, got {total_extracted}'\nprint(f'Test 3 PASS: mixed normal+fallback results compute correctly (extracted={total_extracted})')\n\nprint('ALL TESTS PASSED')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "9c63940a-f567-442d-8a3a-5900abada7dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAMyiVkweByhAcA6jmDVo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 291,
+      "cache_read_input_tokens": 40726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 291
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T14:20:14.796Z_
+
+<details><summary>↩ Tool result · `toolu_01D6fE55GDktq4K751fTcrpS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Test 1 PASS: fallback result has all required keys\\nKeys: ['answer', 'answer_counts', 'constraints_stats', 'domain', 'error', 'maxsat_stats', 'sc_answer', 'scores', 'timing', 'traces']\\nTest 2 PASS: safe access works (extracted=0, excluded=0, unique=0)\\nTest 3 PASS: mixed normal+fallback results compute correctly (extracted=5)\\nALL TESTS PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "4c2f806f-1cf6-438e-9ae1-1176b9c41651",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Test 1 PASS: fallback result has all required keys\\\\nKeys: ['answer', 'answer_counts', 'constraints_stats', 'domain', 'error', 'maxsat_stats', 'sc_answer', 'scores', 'timing', 'traces']\\\\nTest 2 PASS: safe access works (extracted=0, excluded=0, unique=0)\\\\nTest 3 PASS: mixed normal+fallback results compute correctly (extracted=5)\\\\nALL TESTS PASSED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Test 1 PASS: fallback result has all required keys\\nKeys: ['answer', 'answer_counts', 'constraints_stats', 'domain', 'error', 'maxsat_stats', 'sc_answer', 'scores', 'timing', 'traces']\\nTest 2 PASS: safe access works (extracted=0, excluded=0, unique=0)\\nTest 3 PASS: mixed normal+fallback results compute correctly (extracted=5)\\nALL TESTS PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+最后确认修改后的 diff。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "1c773920-326e-44b7-b3bd-078c1cb9820f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSLG7AMaz4fMm3VSSQ7Efy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 41017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1466
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CTm3cSpvC3XYuYSYZePQTR`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"except Exception\" -A 30 /root/symb_invariant_consensus/sica/pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "7774de28-a70e-43af-948a-b94f92ad5321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSLG7AMaz4fMm3VSSQ7Efy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 41017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1466
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T14:20:19.032Z_
+
+<details><summary>↩ Tool result · `toolu_01CTm3cSpvC3XYuYSYZePQTR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"139:        except Exception as e:\\n140-            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\\n141-            result = {\\n142-                \\\"error\\\": str(e),\\n143-                \\\"domain\\\": domain,\\n144-                \\\"answer\\\": \\\"\\\",\\n145-                \\\"scores\\\": {},\\n146-                \\\"answer_counts\\\": {},\\n147-                \\\"traces\\\": [],\\n148-                \\\"constraints_stats\\\": {\\n149-                    \\\"total_extracted\\\": 0,\\n150-                    \\\"traces_with_constraints\\\": 0,\\n151-                    \\\"unique_after_dedup\\\": 0,\\n152-                },\\n153-                \\\"maxsat_stats\\\": {\\n154-                    \\\"satisfied\\\": 0,\\n155-                    \\\"excluded\\\": 0,\\n156-                    \\\"total_weight\\\": 0,\\n157-                    \\\"solve_time_ms\\\": 0,\\n158-                },\\n159-            }\\n160-            if cached_traces:\\n161-                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\\n162-                if sc_answers:\\n163-                    counter = Counter(sc_answers)\\n164-                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\\n165-                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\\n166-                    result[\\\"answer_counts\\\"] = dict(counter)\\n167-                result[\\\"traces\\\"] = cached_traces\\n168-            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\\n169-            return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "f60bd4f1-47a7-49eb-afbb-9c718115c0c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"139:        except Exception as e:\\\\n140-            logger.error(\\\\\\\"SICA pipeline failed: %s\\\\\\\", e, exc_info=True)\\\\n141-            result = {\\\\n142-                \\\\\\\"error\\\\\\\": str(e),\\\\n143-                \\\\\\\"domain\\\\\\\": domain,\\\\n144-                \\\\\\\"answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n145-                \\\\\\\"scores\\\\\\\": {},\\\\n146-                \\\\\\\"answer_counts\\\\\\\": {},\\\\n147-                \\\\\\\"traces\\\\\\\": [],\\\\n148-                \\\\\\\"constraints_stats\\\\\\\": {\\\\n149-                    \\\\\\\"total_extracted\\\\\\\": 0,\\\\n150-                    \\\\\\\"traces_with_constraints\\\\\\\": 0,\\\\n151-                    \\\\\\\"unique_after_dedup\\\\\\\": 0,\\\\n152-                },\\\\n153-                \\\\\\\"maxsat_stats\\\\\\\": {\\\\n154-                    \\\\\\\"satisfied\\\\\\\": 0,\\\\n155-                    \\\\\\\"excluded\\\\\\\": 0,\\\\n156-                    \\\\\\\"total_weight\\\\\\\": 0,\\\\n157-                    \\\\\\\"solve_time_ms\\\\\\\": 0,\\\\n158-                },\\\\n159-            }\\\\n160-            if cached_traces:\\\\n161-                sc_answers = [t.get(\\\\\\\"answer\\\\\\\") for t in cached_traces if t.get(\\\\\\\"answer\\\\\\\")]\\\\n162-                if sc_answers:\\\\n163-                    counter = Counter(sc_answers)\\\\n164-                    result[\\\\\\\"answer\\\\\\\"] = counter.most_common(1)[0][0]\\\\n165-                    result[\\\\\\\"sc_answer\\\\\\\"] = result[\\\\\\\"answer\\\\\\\"]\\\\n166-                    result[\\\\\\\"answer_counts\\\\\\\"] = dict(counter)\\\\n167-                result[\\\\\\\"traces\\\\\\\"] = cached_traces\\\\n168-            result[\\\\\\\"timing\\\\\\\"] = {\\\\\\\"total_s\\\\\\\": round(time.perf_counter() - t_start, 3)}\\\\n169-            return result\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"139:        except Exception as e:\\n140-            logger.error(\\\"SICA pipeline failed: %s\\\", e, exc_info=True)\\n141-            result = {\\n142-                \\\"error\\\": str(e),\\n143-                \\\"domain\\\": domain,\\n144-                \\\"answer\\\": \\\"\\\",\\n145-                \\\"scores\\\": {},\\n146-                \\\"answer_counts\\\": {},\\n147-                \\\"traces\\\": [],\\n148-                \\\"constraints_stats\\\": {\\n149-                    \\\"total_extracted\\\": 0,\\n150-                    \\\"traces_with_constraints\\\": 0,\\n151-                    \\\"unique_after_dedup\\\": 0,\\n152-                },\\n153-                \\\"maxsat_stats\\\": {\\n154-                    \\\"satisfied\\\": 0,\\n155-                    \\\"excluded\\\": 0,\\n156-                    \\\"total_weight\\\": 0,\\n157-                    \\\"solve_time_ms\\\": 0,\\n158-                },\\n159-            }\\n160-            if cached_traces:\\n161-                sc_answers = [t.get(\\\"answer\\\") for t in cached_traces if t.get(\\\"answer\\\")]\\n162-                if sc_answers:\\n163-                    counter = Counter(sc_answers)\\n164-                    result[\\\"answer\\\"] = counter.most_common(1)[0][0]\\n165-                    result[\\\"sc_answer\\\"] = result[\\\"answer\\\"]\\n166-                    result[\\\"answer_counts\\\"] = dict(counter)\\n167-                result[\\\"traces\\\"] = cached_traces\\n168-            result[\\\"timing\\\"] = {\\\"total_s\\\": round(time.perf_counter() - t_start, 3)}\\n169-            return result\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017wv5VmHazJ9e5dsDuq8ADW`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"total_extracted\\|total_excluded\\|total_unique\" /root/symb_invariant_consensus/run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "d99e3913-ac1d-424d-88da-dd173471e882",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSLG7AMaz4fMm3VSSQ7Efy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 41017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1466
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T14:20:19.273Z_
+
+<details><summary>↩ Tool result · `toolu_017wv5VmHazJ9e5dsDuq8ADW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "f72d0f53-a3dd-40ac-8bb6-4d1a9ac8eac5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XgCQRheaHnwFwUzgMsQXkQ`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -n \"total_extracted\" /root/symb_invariant_consensus/run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "06041f49-5de6-4549-9343-dbbcc02a5e58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyM5QThdr4tvAbLEzm6TV4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 42483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T14:20:22.578Z_
+
+<details><summary>↩ Tool result · `toolu_01XgCQRheaHnwFwUzgMsQXkQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"112:    total_extracted = sum(r.get(\\\"constraints_stats\\\", {}).get(\\\"total_extracted\\\", 0) for r in all_results)\\n150:        \\\"total_constraints_extracted\\\": total_extracted,\\n254:            print(f\\\"  Constraints: {cs.get('total_extracted',0)} extracted -> {cs.get('unique_after_dedup',0)} unique\\\")\\n261:                           \\\"constraints_stats\\\": {\\\"total_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_after_dedup\\\": 0},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "ac926ee7-bc3c-4381-9fb2-6e794e39db95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"112:    total_extracted = sum(r.get(\\\\\\\"constraints_stats\\\\\\\", {}).get(\\\\\\\"total_extracted\\\\\\\", 0) for r in all_results)\\\\n150:        \\\\\\\"total_constraints_extracted\\\\\\\": total_extracted,\\\\n254:            print(f\\\\\\\"  Constraints: {cs.get('total_extracted',0)} extracted -> {cs.get('unique_after_dedup',0)} unique\\\\\\\")\\\\n261:                           \\\\\\\"constraints_stats\\\\\\\": {\\\\\\\"total_extracted\\\\\\\": 0, \\\\\\\"traces_with_constraints\\\\\\\": 0, \\\\\\\"unique_after_dedup\\\\\\\": 0},\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"112:    total_extracted = sum(r.get(\\\"constraints_stats\\\", {}).get(\\\"total_extracted\\\", 0) for r in all_results)\\n150:        \\\"total_constraints_extracted\\\": total_extracted,\\n254:            print(f\\\"  Constraints: {cs.get('total_extracted',0)} extracted -> {cs.get('unique_after_dedup',0)} unique\\\")\\n261:                           \\\"constraints_stats\\\": {\\\"total_extracted\\\": 0, \\\"traces_with_constraints\\\": 0, \\\"unique_after_dedup\\\": 0},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+两处修复完成，验证全部通过。
+
+### 修复总结
+
+**pipeline.py** (L139-169) — except 分支的 `result` dict 从只有 `error`+`domain` 扩展为包含所有正常路径的 key：
+- 新增 `answer`(空串)、`scores`({})、`answer_counts`({})、`traces`([])
+- 新增 `constraints_stats`（三个字段全部为 0）
+- 新增 `maxsat_stats`（四个字段：satisfied/excluded/total_weight/solve_time_ms 全部为 0）
+- 有 `cached_traces` 时仍覆盖 answer/answer_counts/traces
+
+**run_full_mvp.py** (L112-114) — `compute_summary` 中三行直接下标访问改为 `.get()` 链式安全访问：
+- `r["constraints_stats"]["total_extracted"]` → `r.get("constraints_stats", {}).get("total_extracted", 0)`
+- `r["maxsat_stats"]["excluded"]` → 同上
+- `r["constraints_stats"]["unique_after_dedup"]` → 同上
+
+### 验证结果
+- 两个文件 import 无语法错误 ✓
+- fallback result 包含所有 required keys ✓
+- compute_summary 对空 dict / 完全缺失字段 / 正常+fallback 混合数据均正确计算 ✓
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "uuid": "31b8866e-54b9-4f7d-89aa-5fed1154dcf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X8ShEWoFpevHMpSbXQDykD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 43492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+两处修复完成，验证全部通过。
+
+### 修复总结
+
+**pipeline.py** (L139-169) — except 分支的 `result` dict 从只有 `error`+`domain` 扩展为包含所有正常路径的 key：
+- 新增 `answer`(空串)、`scores`({})、`answer_counts`({})、`traces`([])
+- 新增 `constraints_stats`（三个字段全部为 0）
+- 新增 `maxsat_stats`（四个字段：satisfied/excluded/total_weight/solve_time_ms 全部为 0）
+- 有 `cached_traces` 时仍覆盖 answer/answer_counts/traces
+
+**run_full_mvp.py** (L112-114) — `compute_summary` 中三行直接下标访问改为 `.get()` 链式安全访问：
+- `r["constraints_stats"]["total_extracted"]` → `r.get("constraints_stats", {}).get("total_extracted", 0)`
+- `r["maxsat_stats"]["excluded"]` → 同上
+- `r["constraints_stats"]["unique_after_dedup"]` → 同上
+
+### 验证结果
+- 两个文件 import 无语法错误 ✓
+- fallback result 包含所有 required keys ✓
+- compute_summary 对空 dict / 完全缺失字段 / 正常+fallback 混合数据均正确计算 ✓
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 123265,
+  "duration_api_ms": 117571,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "6a2e1c43-4445-4533-828f-74efd45a9f79",
+  "total_cost_usd": 0.5763195,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 32018,
+    "cache_read_input_tokens": 362780,
+    "output_tokens": 7719,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32018,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 399,
+        "cache_read_input_tokens": 43492,
+        "cache_creation_input_tokens": 367,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 367
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1677,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017670000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 7719,
+      "cacheReadInputTokens": 362780,
+      "cacheCreationInputTokens": 32018,
+      "webSearchRequests": 0,
+      "costUSD": 0.5745525,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "4f474ca3-b836-457d-bccb-4ac57ace4cf5"
+}
+```
+
+</details>
+
+---

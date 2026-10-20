@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-515_Q4",
+    "problem": "Bob is red. Charlie is nice. Charlie is smart. Dave is cold. Dave is smart. Fiona is big. Fiona is red. All green people are rough. Red, smart people are green. If Bob is green and Bob is rough then Bob is red. If someone is rough then they are big. If someone is smart and big then they are cold. If someone is green and big then they are nice. All smart, nice people are cold. All nice, rough people are big. If Dave is cold then Dave is red.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nRed(Bob, True) ::: Bob is red.\nNice(Charlie, True) ::: Charlie is nice.\nSmart(Charlie, True) ::: Charlie is smart.\nCold(Dave, True) ::: Dave is cold.\nSmart(Dave, True) ::: Dave is smart.\nBig(Fiona, True) ::: Fiona is big.\nRed(Fiona, True) ::: Fiona is red.\n\nRules:\nGreen($x, True) >>> Rough($x, True) ::: All green people are rough.\nRed($x, True) && Smart($x, True) >>> Green($x, True) ::: Red, smart people are green.\nGreen(Bob, True) && Rough(Bob, True) >>> Red(Bob, True) ::: If Bob is green and Bob is rough then Bob is red.\nRough($x, True) >>> Big($x, True) ::: If someone is rough then they are big.\nSmart($x, True) && Big($x, True) >>> Cold($x, True) ::: If someone is smart and big then they are cold.\nGreen($x, True) && Big($x, True) >>> Nice($x, True) ::: If someone is green and big then they are nice.\nSmart($x, True) && Nice($x, True) >>> Cold($x, True) ::: All smart, nice people are cold.\nNice($x, True) && Rough($x, True) >>> Big($x, True) ::: All nice, rough people are big.\nCold(Dave, True) >>> Red(Dave, True) ::: If Dave is cold then Dave is red.\n\nQuery:\nRed(Dave, False) ::: Dave is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

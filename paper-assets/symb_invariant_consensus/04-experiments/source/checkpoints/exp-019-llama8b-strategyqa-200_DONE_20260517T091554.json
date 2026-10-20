@@ -1,0 +1,79 @@
+{
+  "exp_id": "exp-019-llama8b-strategyqa-200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:07:01.919Z",
+    "updated_at": "2026-05-17T09:15:53.996Z",
+    "hypothesis": "Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）",
+    "parent": "exp-011-llama8b-v3",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T08:18:21.546Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\"",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T09:10:18.592Z",
+      "training_hours": 0.87
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\"",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "302372",
+      "log_path": "~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log",
+      "submitted_at": "2026-05-17T08:18:24.001Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp019_strategyqa_200/",
+      "wall_clock_seconds": 3450.0,
+      "gpu_hours": 0.96
+    },
+    "pid": "302372",
+    "log_path": "~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T09:10:21.404482+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n": 200,
+      "k": 12,
+      "sica_accuracy": 0.74,
+      "sc_accuracy": 0.72,
+      "delta_pp": 2,
+      "mcnemar_p": 0.424,
+      "bootstrap_ci_95": [
+        -1.5,
+        5.5
+      ],
+      "bootstrap_p_delta_le_0": 0.12,
+      "discordant_sica_wins": 9,
+      "discordant_sc_wins": 5,
+      "discordant_total": 14,
+      "discordant_rate": 0.07,
+      "sc_unanimous_rate": 0.545,
+      "model": "LLaMA-3.1-8B-Instruct",
+      "dataset": "StrategyQA",
+      "wall_time_min": 52
+    },
+    "conclusion": "negative",
+    "notes": "StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。",
+    "completed_at": "2026-05-17T09:15:53.996Z"
+  },
+  "timestamp": "2026-05-17T09:15:54.078394+00:00",
+  "trigger": "update_registry"
+}

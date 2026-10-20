@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "171b9f5b2da3f559a304",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 062 failure",
+  "task_key": "worker_diag_exp-062-failure_20260519T151122",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-062-failure_20260519T151122_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "164a29dc95a7872e47dcd04e60369150366736bc84ec6eaf593a342116709e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diagnose_exp062_exp065.md`。\n\n**结论：两个实验均已正常完成，cron 误报为 failed。**\n\n| 实验 | 模型 | 数据集 | SICA | SC | 耗时 |\n|------|------|--------|------|----|------|\n| exp-062 | Gemma-3-27B-IT | FOLIO 204 | **80.4%** | 80.9% | 357 min |\n| exp-065 | Qwen2.5-7B | ProofWriter 600 | **68.0%** | 72.0% | 340 min |\n\n**误报原因**：实验完成后 run session 正常退出，但未写 sentinel 文件且无 W&B，cron 将 session 消失误判为进程崩溃。\n\n**待处理**：GPU 3 上 exp062_vllm 残留进程占 88GB 显存，需要清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-062-failure.md"
+}

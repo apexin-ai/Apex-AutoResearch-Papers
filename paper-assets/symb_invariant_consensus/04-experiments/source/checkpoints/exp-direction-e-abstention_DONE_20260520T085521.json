@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-direction-e-abstention",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:59.761Z",
+    "updated_at": "2026-05-20T08:55:21.063Z",
+    "hypothesis": "Selective Abstention: Per-question answer entropy can serve as a reliable uncertainty signal; abstaining on high-entropy questions will improve accuracy on the remaining covered set.",
+    "spec": {
+      "command": "python direction_e_abstention.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 traces (Mistral-7B FOLIO-204)",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "auroc": 0.673,
+      "coverage_80pct_delta_pp": 4.4,
+      "coverage_60pct_delta_pp": 8.8
+    },
+    "checkpoint_path": "N/A (analysis experiment)",
+    "log_path": "worker_analysis_direction-e-selective-abstention_20260520T074201",
+    "completed_at": "2026-05-20T08:55:21.063Z"
+  },
+  "timestamp": "2026-05-20T08:55:21.332135+00:00",
+  "trigger": "update_registry"
+}

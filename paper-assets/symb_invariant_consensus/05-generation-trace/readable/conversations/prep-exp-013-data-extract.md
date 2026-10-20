@@ -1,0 +1,2264 @@
+# prep exp 013 data extract
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/chats/worker_prep_exp-013-data-extract_20260516T194125.jsonl`
+- **Structured JSON:** [`1209f90960f51d85cab6.json`](../../sessions/12/1209f90960f51d85cab6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+77 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T19:48:12.356154+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T19:48:12.356672+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T19:48:12.356944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "ls -lh /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "ls -lh /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T19:48:12.357154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "find /root/symb_invariant_consensus/results/ -path \"*expanded*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "find /root/symb_invariant_consensus/results/ -path \"*expanded*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T19:48:12.357347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 3.1M May 17 03:01 /root/symb_invariant_consensus/results/sica_expanded_14b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T19:48:12.357546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\\n/root/symb_invariant_consensus/results/analysis_expanded.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T19:48:12.357727+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nprint('Type:', type(data).__name__)\nif isinstance(data, dict):\n    print('Top keys:', list(data.keys())[:15])\n    for k,v in data.items():\n        print(f'  {k}: {type(v).__name__}', f'len={len(v)}' if hasattr(v,'__len__') else '')\nelif isinstance(data, list):\n    print('List len:', len(data))\n    print('First item keys:', list(data[0].keys()) if data else 'empty')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nprint('Type:', type(data).__name__)\nif isinstance(data, dict):\n    print('Top keys:', list(data.keys())[:15])\n    for k,v in data.items():\n        print(f'  {k}: {type(v).__name__}', f'len={len(v)}' if hasattr(v,'__len__') else '')\nelif isinstance(data, list):\n    print('List len:', len(data))\n    print('First item keys:', list(data[0].keys()) if data else 'empty')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T19:48:12.358269+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T19:48:12.358521+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "head -c 2000 /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "head -c 2000 /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T19:48:12.358816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 804,\\n    \\\"sica_accuracy\\\": 0.7649253731343284,\\n    \\\"sc_accuracy\\\": 0.7624378109452736,\\n    \\\"sica_correct\\\": 615,\\n    \\\"sc_correct\\\": 613,\\n    \\\"extraction_rate\\\": 0.8904436152570481,\\n    \\\"answer_extraction_rate\\\": 1.0,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 9648,\\n      \\\"fallback\\\": 0,\\n      \\\"none\\\": 0\\n    },\\n    \\\"truncated_traces\\\": 0,\\n    \\\"total_constraints_extracted\\\": 88428,\\n    \\\"total_unique_constraints\\\": 17273,\\n    \\\"contradiction_rate\\\": 0.022347015573438316,\\n    \\\"problems_with_contradictions\\\": 331,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.755,\\n        \\\"sc\\\": 0.7516666666666667,\\n        \\\"n\\\": 600\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7941176470588235,\\n        \\\"sc\\\": 0.7941176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.755,\\n        \\\"sc\\\": 0.7516666666666667,\\n        \\\"n\\\": 600\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7941176470588235,\\n        \\\"sc\\\": 0.7941176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 49558.9\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nBob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Dave is cold. Dave is kind. Dave is smart. Fiona is quiet. If something is quiet and cold then it is smart. Red, cold things are round. If something is kind and rough then it is 
+…[truncated 616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T19:48:12.359095+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "grep -o '\"[a-z_]*constraint[a-z_]*\"\\|\"[a-z_]*weight[a-z_]*\"\\|\"[a-z_]*formula[a-z_]*\"\\|\"[a-z_]*trace[a-z_]*\"\\|\"[a-z_]*vote[a-z_]*\"\\|\"[a-z_]*score[a-z_]*\"' /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "grep -o '\"[a-z_]*constraint[a-z_]*\"\\|\"[a-z_]*weight[a-z_]*\"\\|\"[a-z_]*formula[a-z_]*\"\\|\"[a-z_]*trace[a-z_]*\"\\|\"[a-z_]*vote[a-z_]*\"\\|\"[a-z_]*score[a-z_]*\"' /root/symb_invariant_consensus/results/sica_expanded_14b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T19:48:12.359267+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T19:48:12.359604+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\nprint('=== Problem 0 keys ===')\nfor k in p.keys():\n    v = p[k]\n    info = f'type={type(v).__name__}'\n    if isinstance(v, (list, dict, str)):\n        info += f' len={len(v)}'\n    print(f'  {k}: {info}')\n\n# Look deeper at constraint-related fields\nfor k in p.keys():\n    if any(x in k.lower() for x in ['constraint', 'weight', 'formula', 'trace', 'vote', 'unique']):\n        v = p[k]\n        if isinstance(v, list) and v:\n            print(f'\\n=== {k}[0] sample ===')\n            sample = v[0]\n            if isinstance(sample, dict):\n                print(json.dumps(sample, indent=2)[:500])\n            else:\n                print(repr(sample)[:300])\n        elif isinstance(v, dict):\n            print(f'\\n=== {k} (dict) ===')\n            print(json.dumps(v, indent=2)[:500])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\nprint('=== Problem 0 keys ===')\nfor k in p.keys():\n    v = p[k]\n    info = f'type={type(v).__name__}'\n    if isinstance(v, (list, dict, str)):\n        info += f' len={len(v)}'\n    print(f'  {k}: {info}')\n\n# Look deeper at constraint-related fields\nfor k in p.keys():\n    if any(x in k.lower() for x in ['constraint', 'weight', 'formula', 'trace', 'vote', 'unique']):\n        v = p[k]\n        if isinstance(v, list) and v:\n            print(f'\\n=== {k}[0] sample ===')\n            sample = v[0]\n            if isinstance(sample, dict):\n                print(json.dumps(sample, indent=2)[:500])\n            else:\n                print(repr(sample)[:300])\n        elif isinstance(v, dict):\n            print(f'\\n=== {k} (dict) ===')\n            print(json.dumps(v, indent=2)[:500])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T19:48:12.359792+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'results/sica_expanded_14b.json\\\\') as f:\\\\n    data = json.load(f)\\\\nresults = data[\\\\'results\\\\']\\\\np = results[0]\\\\nprint(\\\\'=== Problem 0 keys ===\\\\')\\\\nfor k in p.keys():\\\\n    v = p[k]\\\\n    info = f\\\\'type={type(v).__name__}\\\\'\\\\n    if isinstance(v, (list, dict, str)):\\\\n        info += f\\\\' len={len(v)}\\\\'\\\\n    print(f\\\\'  {k}: {info}\\\\')\\\\n\\\\n# Look deeper at constraint-related fields\\\\nfor k in p.keys():\\\\n    if any(x in k.lower() for x in [\\\\'constraint\\\\', \\\\'weight\\\\', \\\\'formula\\\\', \\\\'trace\\\\', \\\\'vote\\\\', \\\\'unique\\\\']):\\\\n        v = p[k]\\\\n        if isinstance(v, list) and v:\\\\n            print(f\\\\'\\\\\\\\n=== {k}[0] sample ===\\\\')\\\\n            sample = v[0]\\\\n            if isinstance(sample, dict):\\\\n                print(json.dumps(sample, indent=2)[:500])\\\\n            else:\\\\n                print(repr(sample)[:300])\\\\n        elif isinstance(v, dict):\\\\n            print(f\\\\'\\\\\\\\n=== {k} (dict) ===\\\\')\\\\n            print(json.dumps(v, indent=2)[:500])\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T19:48:12.360053+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "which python || find /root/miniconda3/bin -name \"python*\" 2>/dev/null || find /opt -name \"python*\" 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "which python || find /root/miniconda3/bin -name \"python*\" 2>/dev/null || find /opt -name \"python*\" 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T19:48:12.360204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T19:48:12.360342+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\nprint('=== Problem 0 keys ===')\nfor k in p.keys():\n    v = p[k]\n    info = f'type={type(v).__name__}'\n    if isinstance(v, (list, dict, str)):\n        info += f' len={len(v)}'\n    print(f'  {k}: {info}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\nprint('=== Problem 0 keys ===')\nfor k in p.keys():\n    v = p[k]\n    info = f'type={type(v).__name__}'\n    if isinstance(v, (list, dict, str)):\n        info += f' len={len(v)}'\n    print(f'  {k}: {info}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T19:48:12.360501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Problem 0 keys ===\\n  problem_idx: type=int\\n  problem_id: type=str len=35\\n  problem: type=str len=604\\n  dataset: type=str len=11\\n  level: type=str len=2\\n  ground_truth: type=str len=4\\n  sica_answer: type=str len=4\\n  sica_scores: type=dict len=1\\n  sica_correct: type=bool\\n  sc_answer: type=str len=4\\n  sc_vote_count: type=int\\n  sc_vote_distribution: type=dict len=1\\n  sc_correct: type=bool\\n  constraints_stats: type=dict len=3\\n  maxsat_stats: type=dict len=4\\n  timing: type=dict len=5\\n  wall_time_s: type=float\\n  trace_extraction_stats: type=dict len=3\\n  truncated_traces: type=int\\n  raw_constraints: type=list len=0\\n  per_trace: type=list len=12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T19:48:12.360648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\n\nprint('=== constraints_stats ===')\nprint(json.dumps(p['constraints_stats'], indent=2))\nprint()\nprint('=== maxsat_stats ===')\nprint(json.dumps(p['maxsat_stats'], indent=2))\nprint()\nprint('=== per_trace[0] keys ===')\nif p['per_trace']:\n    t = p['per_trace'][0]\n    for k in t.keys():\n        v = t[k]\n        info = f'type={type(v).__name__}'\n        if isinstance(v, (list, dict, str)):\n            info += f' len={len(v)}'\n        print(f'  {k}: {info}')\n    if 'constraints' in t:\n        print()\n        print('=== per_trace[0].constraints[0] ===')\n        if t['constraints']:\n            print(json.dumps(t['constraints'][0], indent=2)[:600])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\np = results[0]\n\nprint('=== constraints_stats ===')\nprint(json.dumps(p['constraints_stats'], indent=2))\nprint()\nprint('=== maxsat_stats ===')\nprint(json.dumps(p['maxsat_stats'], indent=2))\nprint()\nprint('=== per_trace[0] keys ===')\nif p['per_trace']:\n    t = p['per_trace'][0]\n    for k in t.keys():\n        v = t[k]\n        info = f'type={type(v).__name__}'\n        if isinstance(v, (list, dict, str)):\n            info += f' len={len(v)}'\n        print(f'  {k}: {info}')\n    if 'constraints' in t:\n        print()\n        print('=== per_trace[0].constraints[0] ===')\n        if t['constraints']:\n            print(json.dumps(t['constraints'][0], indent=2)[:600])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T19:48:12.361231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== constraints_stats ===\\n{\\n  \\\"total_extracted\\\": 75,\\n  \\\"traces_with_constraints\\\": 12,\\n  \\\"unique_after_dedup\\\": 16\\n}\\n\\n=== maxsat_stats ===\\n{\\n  \\\"satisfied\\\": 16,\\n  \\\"excluded\\\": 0,\\n  \\\"total_weight\\\": 75,\\n  \\\"solve_time_ms\\\": 0.9229059796780348\\n}\\n\\n=== per_trace[0] keys ===\\n  trace_idx: type=int\\n  answer: type=str len=4\\n  finish_reason: type=str len=4\\n  extraction_method: type=str len=5\\n  trace_len: type=int\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T19:48:12.361471+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n\n# Check how many have non-empty raw_constraints\nnon_empty = [(i, len(r['raw_constraints'])) for i, r in enumerate(results) if r['raw_constraints']]\nprint(f'Problems with non-empty raw_constraints: {len(non_empty)} / {len(results)}')\nif non_empty:\n    print(f'First 5: {non_empty[:5]}')\n    # Show first non-empty one\n    idx = non_empty[0][0]\n    print(f'\\\\n=== results[{idx}].raw_constraints[0] ===')\n    print(json.dumps(results[idx]['raw_constraints'][0], indent=2)[:600])\nelse:\n    # Maybe constraints are in sica_scores differently\n    print('\\\\n=== Checking sica_scores structure ===')\n    print(json.dumps(results[0]['sica_scores'], indent=2))\n    print(json.dumps(results[5]['sica_scores'], indent=2))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n\n# Check how many have non-empty raw_constraints\nnon_empty = [(i, len(r['raw_constraints'])) for i, r in enumerate(results) if r['raw_constraints']]\nprint(f'Problems with non-empty raw_constraints: {len(non_empty)} / {len(results)}')\nif non_empty:\n    print(f'First 5: {non_empty[:5]}')\n    # Show first non-empty one\n    idx = non_empty[0][0]\n    print(f'\\\\n=== results[{idx}].raw_constraints[0] ===')\n    print(json.dumps(results[idx]['raw_constraints'][0], indent=2)[:600])\nelse:\n    # Maybe constraints are in sica_scores differently\n    print('\\\\n=== Checking sica_scores structure ===')\n    print(json.dumps(results[0]['sica_scores'], indent=2))\n    print(json.dumps(results[5]['sica_scores'], indent=2))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T19:48:12.361638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Problems with non-empty raw_constraints: 0 / 804\\n\\n=== Checking sica_scores structure ===\\n{\\n  \\\"True\\\": 75.0\\n}\\n{\\n  \\\"False\\\": 24.0\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T19:48:12.362067+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find results/ -type d | head -20 && echo \"---\" && find results/ -name \"*.json\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find results/ -type d | head -20 && echo \"---\" && find results/ -name \"*.json\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T19:48:12.362244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results/\\nresults/k_ablation\\n---\\nresults/smoke_test_5q.json\\nresults/diversity_diagnosis.json\\nresults/aime30_t07.json\\nresults/aime30_v2.json\\nresults/aime30_v2_partial_backup.json\\nresults/aime30_v2_rescore_analysis.json\\nresults/rescore_pure_results.json\\nresults/folio_livetest.json\\nresults/proofwriter_30_v2.json\\nresults/proofwriter_5_l3l1_fix.json\\nresults/c0_precheck_qwen14b.json\\nresults/d016_smoke_test.json\\nresults/sica_d012_14b.json\\nresults/tiebreak_analysis.json\\nresults/sica_expanded_14b.json\\nresults/qwq_operating_regime.json\\nresults/constraint_ablation.json\\nresults/analysis_expanded.json\\nresults/k_ablation/traces_k20.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T19:48:12.362377+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\n# Check if there's already a constraint_ablation result\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\nprint('Top keys:', list(data.keys())[:10])\nif 'summary' in data:\n    print(json.dumps(data['summary'], indent=2)[:500])\nelif 'methods' in data:\n    print(json.dumps(data['methods'], indent=2)[:500])\nelse:\n    print(json.dumps({k: type(v).__name__ for k,v in data.items()}))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\n# Check if there's already a constraint_ablation result\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\nprint('Top keys:', list(data.keys())[:10])\nif 'summary' in data:\n    print(json.dumps(data['summary'], indent=2)[:500])\nelif 'methods' in data:\n    print(json.dumps(data['methods'], indent=2)[:500])\nelse:\n    print(json.dumps({k: type(v).__name__ for k,v in data.items()}))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T19:48:12.362530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['experiment', 'source_file', 'n_problems', 'seed', 'constraint_cache_used', 'methods', 'agreement', 'per_problem']\\n{\\n  \\\"SICA-MaxSAT\\\": {\\n    \\\"accuracy\\\": 0.712644,\\n    \\\"n_correct\\\": 62,\\n    \\\"n_problems\\\": 87,\\n    \\\"delta_vs_sc_pp\\\": 0.0,\\n    \\\"pvalue_mcnemar\\\": 1.0,\\n    \\\"exact\\\": true\\n  },\\n  \\\"SICA-count-only\\\": {\\n    \\\"accuracy\\\": 0.712644,\\n    \\\"n_correct\\\": 62,\\n    \\\"n_problems\\\": 87,\\n    \\\"delta_vs_sc_pp\\\": 0.0,\\n    \\\"pvalue_mcnemar\\\": 1.0,\\n    \\\"exact\\\": false\\n  },\\n  \\\"SICA-random-weight\\\": {\\n    \\\"accuracy\\\": 0.712644,\\n    \\\"n_correct\\\": 62,\\n    \\\"n_problems\\\": 87,\\n    \\\"delta_vs_sc_pp\\\": 0.0,\\n    \\\"pvalue_mcnemar\\\": 1.0,\\n    \\\"exact\\\": f\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T19:48:12.362661+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\nprint('constraint_cache_used:', data.get('constraint_cache_used'))\nprint('n_problems:', data.get('n_problems'))\nprint('source_file:', data.get('source_file'))\n# Check per_problem structure\nif data.get('per_problem'):\n    print('per_problem[0] keys:', list(data['per_problem'][0].keys()))\n    print(json.dumps(data['per_problem'][0], indent=2)[:800])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\nprint('constraint_cache_used:', data.get('constraint_cache_used'))\nprint('n_problems:', data.get('n_problems'))\nprint('source_file:', data.get('source_file'))\n# Check per_problem structure\nif data.get('per_problem'):\n    print('per_problem[0] keys:', list(data['per_problem'][0].keys()))\n    print(json.dumps(data['per_problem'][0], indent=2)[:800])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:48:12.362800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"constraint_cache_used: False\\nn_problems: 87\\nsource_file: results/sica_expanded_14b.json\\nper_problem[0] keys: ['problem_idx', 'problem_id', 'ground_truth', 'sc_answer', 'sc_correct', 'sica_maxsat_answer', 'sica_maxsat_correct', 'sica_count_only_answer', 'sica_count_only_correct', 'sica_random_weight_answer', 'sica_random_weight_correct']\\n{\\n  \\\"problem_idx\\\": 0,\\n  \\\"problem_id\\\": \\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\",\\n  \\\"ground_truth\\\": \\\"True\\\",\\n  \\\"sc_answer\\\": \\\"True\\\",\\n  \\\"sc_correct\\\": true,\\n  \\\"sica_maxsat_answer\\\": \\\"True\\\",\\n  \\\"sica_maxsat_correct\\\": true,\\n  \\\"sica_count_only_answer\\\": \\\"True\\\",\\n  \\\"sica_count_only_correct\\\": true,\\n  \\\"sica_random_weight_answer\\\": \\\"True\\\",\\n  \\\"sica_random_weight_correct\\\": true\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T19:48:12.363006+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"traces*\" -o -name \"*trace_cache*\" -o -name \"*generations*\" | head -20 && echo \"---\" && ls -lh results/k_ablation/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"traces*\" -o -name \"*trace_cache*\" -o -name \"*generations*\" | head -20 && echo \"---\" && ls -lh results/k_ablation/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T19:48:12.364072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./results/k_ablation/traces_k20.json\\n---\\ntotal 736K\\n-rw-r--r-- 1 root root 734K May 17 03:42 traces_k20.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T19:48:12.364253+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/k_ablation/traces_k20.json') as f:\n    data = json.load(f)\nprint('Type:', type(data).__name__)\nif isinstance(data, list):\n    print('Len:', len(data))\n    print('Item[0] keys:', list(data[0].keys()) if data else 'empty')\nelif isinstance(data, dict):\n    print('Keys:', list(data.keys())[:10])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/k_ablation/traces_k20.json') as f:\n    data = json.load(f)\nprint('Type:', type(data).__name__)\nif isinstance(data, list):\n    print('Len:', len(data))\n    print('Item[0] keys:', list(data[0].keys()) if data else 'empty')\nelif isinstance(data, dict):\n    print('Keys:', list(data.keys())[:10])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T19:48:12.364584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Type: dict\\nKeys: ['ProofWriter_AttNoneg-OWA-D5-1041_Q1', 'ProofWriter_RelNeg-OWA-D5-81_Q11', 'ProofWriter_AttNoneg-OWA-D5-1284_Q8', 'ProofWriter_AttNoneg-OWA-D5-585_Q19', 'ProofWriter_RelNoneg-OWA-D5-949_Q8', 'ProofWriter_RelNeg-OWA-D5-508_Q2', 'ProofWriter_AttNeg-OWA-D5-270_Q8', 'ProofWriter_RelNoneg-OWA-D5-487_Q19', 'ProofWriter_AttNoneg-OWA-D5-971_Q5', 'ProofWriter_AttNeg-OWA-D5-804_Q16']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T19:48:12.364757+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/k_ablation/traces_k20.json') as f:\n    data = json.load(f)\n# Check structure of first problem's traces\nkey = list(data.keys())[0]\nval = data[key]\nprint(f'Problem: {key}')\nprint(f'Type: {type(val).__name__}')\nif isinstance(val, list):\n    print(f'Num traces: {len(val)}')\n    if val:\n        print(f'Trace[0] type: {type(val[0]).__name__}')\n        if isinstance(val[0], dict):\n            print(f'Trace[0] keys: {list(val[0].keys())}')\n        elif isinstance(val[0], str):\n            print(f'Trace[0][:200]: {val[0][:200]}')\nelif isinstance(val, dict):\n    print(f'Keys: {list(val.keys())[:10]}')\nprint(f'Total problems in trace file: {len(data)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/k_ablation/traces_k20.json') as f:\n    data = json.load(f)\n# Check structure of first problem's traces\nkey = list(data.keys())[0]\nval = data[key]\nprint(f'Problem: {key}')\nprint(f'Type: {type(val).__name__}')\nif isinstance(val, list):\n    print(f'Num traces: {len(val)}')\n    if val:\n        print(f'Trace[0] type: {type(val[0]).__name__}')\n        if isinstance(val[0], dict):\n            print(f'Trace[0] keys: {list(val[0].keys())}')\n        elif isinstance(val[0], str):\n            print(f'Trace[0][:200]: {val[0][:200]}')\nelif isinstance(val, dict):\n    print(f'Keys: {list(val.keys())[:10]}')\nprint(f'Total problems in trace file: {len(data)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T19:48:12.364993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Problem: ProofWriter_AttNoneg-OWA-D5-1041_Q1\\nType: dict\\nKeys: ['problem_text', 'dataset', 'traces', 'gen_time_s']\\nTotal problems in trace file: 19\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T19:48:12.365145+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"*.py\" | head -30 && echo \"===\" && ls scripts/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"*.py\" | head -30 && echo \"===\" && ls scripts/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T19:48:12.365394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./data/prepare_data.py\\n./data/prepare_proofwriter.py\\n./data/__init__.py\\n./data/math500_loader.py\\n./data/proofwriter_loader.py\\n./data/prepare_folio.py\\n./data/folio_loader.py\\n./data/prepare_full.py\\n./sica/__init__.py\\n./sica/constraint_extractor.py\\n./sica/z3_maxsat.py\\n./sica/scorer.py\\n./sica/trace_generator.py\\n./sica/pipeline.py\\n./baselines/__init__.py\\n./baselines/self_consistency.py\\n./run_mvp.py\\n./utils/__init__.py\\n./utils/math_equiv.py\\n./run_step2_verify.py\\n./run_smoke5.py\\n./run_full_mvp.py\\n./diagnose_diversity.py\\n./test_fix.py\\n./smoke_test.py\\n./diag_test.py\\n./smoke_test2.py\\n./test_z3_fix.py\\n./diagnose_p2.py\\n./diagnose_p6.py\\n===\\nREADME_experiments.md\\n__pycache__\\nanalyze_expanded.py\\nconstraint_ablation.py\\neval_arc.py\\neval_gsm8k.py\\neval_math_l45.py\\neval_strategyqa.py\\nprepare_arc.py\\nprepare_gsm8k.py\\nprepare_math_l45.py\\nprepare_strategyqa.py\\nrun_gsm8k_pilot.py\\nrun_k_ablation.py\\nrun_k_ablation.py.bak\\nrun_k_ablation.sh\\nstart_vllm_72b_awq.sh\\nstart_vllm_7b.sh\\nstart_vllm_deepseek_r1_7b.sh\\nstart_vllm_deepseek_r1_8b.sh\\nstart_vllm_llama_8b.sh\\nstart_vllm_mistral_7b.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T19:48:12.365808+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && head -80 scripts/constraint_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && head -80 scripts/constraint_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T19:48:12.366129+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nexp-013: Constraint Ablation Study\\n\\nCompares three constraint aggregation methods on exp-001 (sica_expanded_14b) data\\nto demonstrate that MaxSAT satisfiability checking outperforms simple counting.\\n\\nMethods:\\n  A) SICA-MaxSAT     — weighted partial MaxSAT + A+C scorer (current pipeline)\\n  B) SICA-count-only  — sum all constraint weights per answer, no SAT filtering\\n  C) SICA-random-weight — MaxSAT with randomized constraint weights (seed=42)\\n\\nInput:\\n  - exp-001 results file (results/sica_expanded_14b.json)\\n  - Optional: constraint cache JSON for exact count-only / random-weight computation\\n\\nWhen no constraint cache is available:\\n  - Method A reads stored MaxSAT results (exact)\\n  - Method B uses proportional excluded-weight approximation\\n  - Method C uses score-perturbation simulation\\n  Results are flagged as approximate (~) in the output.\\n\\nUsage:\\n  python scripts/constraint_ablation.py --data-dir results\\n  python scripts/constraint_ablation.py --data-dir results --constraint-cache results/constraints_cache.json\\n  python scripts/constraint_ablation.py --help\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport random\\nimport sys\\nfrom collections import Counter\\n\\nsys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\nALPHA = 0.5  # scorer penalty weight for excluded constraints\\n\\ntry:\\n    from sica.z3_maxsat import (\\n        ConstraintDeduplicator, MaxSATSolver, UniqueConstraint, MaxSATResult,\\n    )\\n    from sica.scorer import InvariantScorer\\n    HAS_Z3 = True\\nexcept ImportError:\\n    HAS_Z3
+…[truncated 1062 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T19:48:12.366309+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && wc -l scripts/constraint_ablation.py && echo \"---\" && head -200 sica/pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && wc -l scripts/constraint_ablation.py && echo \"---\" && head -200 sica/pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T19:48:12.366583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"533 scripts/constraint_ablation.py\\n---\\n\\\"\\\"\\\"\\nSICA end-to-end pipeline: trace generation -> constraint extraction -> Z3 dedup -> MAX-SAT -> scoring -> answer selection.\\nInput: problem dict with \\\"problem\\\" and \\\"answer\\\" fields\\nOutput: result dict with answer, score, constraint stats, maxsat stats\\nDependencies: trace_generator, constraint_extractor, z3_maxsat, scorer\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nimport time\\nfrom collections import Counter\\n\\nfrom .trace_generator import TraceGenerator\\nfrom .constraint_extractor import ConstraintExtractor\\nfrom .z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nimport z3 as _z3\\nfrom .scorer import InvariantScorer\\nfrom utils.math_equiv import group_equivalent_answers\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef _group_logic_answers(answers: list[str]) -> dict[str, list[int]]:\\n    \\\"\\\"\\\"Group answers by case-insensitive exact match (for logic domain).\\\"\\\"\\\"\\n    groups: dict[str, list[int]] = {}\\n    canonical_map: dict[str, str] = {}\\n    for i, ans in enumerate(answers):\\n        if ans is None or str(ans).strip() == \\\"\\\":\\n            continue\\n        key = str(ans).strip().lower()\\n        if key not in canonical_map:\\n            canonical_map[key] = str(ans).strip()\\n            groups[canonical_map[key]] = []\\n        groups[canonical_map[key]].append(i)\\n    return groups\\n\\n\\nclass SICAPipeline:\\n    def __init__(\\n        self,\\n        trace_generator: TraceGenerator,\\n        constraint_extractor: ConstraintExtractor,\\n        k: int = 12,\\n        maxsat_timeout_ms: int = 10000,\\n    ):\\n        self.trace_generator = trace_generator\\n        self.constraint_extractor = constraint_extractor\\n        self.k = k\\n        self.deduplicator = ConstraintDeduplicator()\\n        self.solver = MaxSATSolver()\\n        self.scorer = Inva
+…[truncated 7121 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T19:48:12.366777+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"raw_constraints\\|save_intermediate\\|per_trace\\|strip\\|slim\" run_full_mvp.py | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"raw_constraints\\|save_intermediate\\|per_trace\\|strip\\|slim\" run_full_mvp.py | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T19:48:12.366954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"230:                        help=\\\"Save raw_constraints and per-trace info in output JSON\\\")\\n371:        if args.save_intermediates:\\n372:            result_entry[\\\"raw_constraints\\\"] = sica_result.get(\\\"raw_constraints\\\", [])\\n373:            result_entry[\\\"per_trace\\\"] = [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T19:48:12.367174+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '360,400p' run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '360,400p' run_full_mvp.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T19:48:12.367361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"sc_vote_count\\\": sc_result.get(\\\"vote_count\\\", 0),\\n            \\\"sc_vote_distribution\\\": sc_result.get(\\\"vote_distribution\\\", {}),\\n            \\\"sc_correct\\\": sc_correct,\\n            \\\"constraints_stats\\\": sica_result.get(\\\"constraints_stats\\\", {}),\\n            \\\"maxsat_stats\\\": sica_result.get(\\\"maxsat_stats\\\", {}),\\n            \\\"timing\\\": sica_result.get(\\\"timing\\\", {}),\\n            \\\"wall_time_s\\\": round(elapsed, 2),\\n            \\\"trace_extraction_stats\\\": trace_extraction_stats,\\n            \\\"truncated_traces\\\": truncated_traces,\\n        }\\n\\n        if args.save_intermediates:\\n            result_entry[\\\"raw_constraints\\\"] = sica_result.get(\\\"raw_constraints\\\", [])\\n            result_entry[\\\"per_trace\\\"] = [\\n                {\\n                    \\\"trace_idx\\\": t.get(\\\"trace_idx\\\"),\\n                    \\\"answer\\\": t.get(\\\"answer\\\", \\\"\\\"),\\n                    \\\"finish_reason\\\": t.get(\\\"finish_reason\\\", \\\"unknown\\\"),\\n                    \\\"extraction_method\\\": t.get(\\\"extraction_method\\\", \\\"unknown\\\"),\\n                    \\\"trace_len\\\": len(t.get(\\\"trace\\\", \\\"\\\")),\\n                }\\n                for t in sica_result.get(\\\"traces\\\", [])\\n            ]\\n\\n        all_results.append(result_entry)\\n\\n        # Save checkpoint after each problem\\n        summary = compute_summary(all_results, extractor.stats)\\n        summary[\\\"k\\\"] = args.k\\n        summary[\\\"mode\\\"] = args.mode\\n        summary[\\\"total_wall_time_s\\\"] = round(time.time() - total_start, 1)\\n        output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n        os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n        with open(args.output, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2, default=str
+…[truncated 314 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T19:48:12.367513+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"trace_cache\\|save_traces\\|cache_dir\\|--trace\" run_full_mvp.py | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"trace_cache\\|save_traces\\|cache_dir\\|--trace\" run_full_mvp.py | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T19:48:12.367650+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T19:48:12.367772+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -rn \"trace_cache\\|TraceCache\\|trace_dir\\|save_trace\" sica/ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -rn \"trace_cache\\|TraceCache\\|trace_dir\\|save_trace\" sica/ | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T19:48:12.367915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T19:48:12.368042+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"save_intermediates\\|--save\" run_full_mvp.py | head -10 && echo \"---\" && sed -n '225,235p' run_full_mvp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && grep -n \"save_intermediates\\|--save\" run_full_mvp.py | head -10 && echo \"---\" && sed -n '225,235p' run_full_mvp.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T19:48:12.368179+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"229:    parser.add_argument(\\\"--save-intermediates\\\", action=\\\"store_true\\\",\\n371:        if args.save_intermediates:\\n---\\n    parser.add_argument(\\\"--no-proofwriter\\\", action=\\\"store_true\\\", help=\\\"Skip ProofWriter data\\\")\\n    parser.add_argument(\\\"--folio-data\\\", type=str, default=\\\"data/folio_30.json\\\", help=\\\"Path to FOLIO data\\\")\\n    parser.add_argument(\\\"--no-folio\\\", action=\\\"store_true\\\", help=\\\"Skip FOLIO data\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=None, help=\\\"Random seed for reproducibility\\\")\\n    parser.add_argument(\\\"--save-intermediates\\\", action=\\\"store_true\\\",\\n                        help=\\\"Save raw_constraints and per-trace info in output JSON\\\")\\n    args = parser.parse_args()\\n\\n    if args.seed is not None:\\n        import random\\n        import numpy as np\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T19:48:12.368345+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"*.json\" -size +1M | head -10 && echo \"---\" && du -sh results/ && echo \"---\" && find . -name \"*cache*\" -o -name \"*traces*\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && find . -name \"*.json\" -size +1M | head -10 && echo \"---\" && du -sh results/ && echo \"---\" && find . -name \"*cache*\" -o -name \"*traces*\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T19:48:12.368696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./results/sica_expanded_14b.json\\n---\\n4.4M\\tresults/\\n---\\n./data/__pycache__\\n./sica/__pycache__\\n./baselines/__pycache__\\n./results/k_ablation/traces_k20.json\\n./utils/__pycache__\\n./__pycache__\\n./scripts/__pycache__\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T19:48:12.368847+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n# Check a few problems to see if any have raw_constraints\n# Also check if per_trace has constraint info anywhere\np5 = results[5]\nprint('Problem 5 constraints_stats:', p5['constraints_stats'])\nprint('Problem 5 per_trace[0]:', p5['per_trace'][0] if p5.get('per_trace') else 'None')\nprint()\n# Check problem with high constraint count\nmax_c = max(results, key=lambda r: r['constraints_stats']['unique_after_dedup'])\nprint(f'Max constraints problem: idx={max_c[\\\"problem_idx\\\"]}, unique={max_c[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"]}')\nprint(f'  total_extracted={max_c[\\\"constraints_stats\\\"][\\\"total_extracted\\\"]}')\nprint(f'  maxsat satisfied={max_c[\\\"maxsat_stats\\\"][\\\"satisfied\\\"]}, excluded={max_c[\\\"maxsat_stats\\\"][\\\"excluded\\\"]}')\nprint(f'  sica_scores={max_c[\\\"sica_scores\\\"]}')\nprint(f'  raw_constraints len={len(max_c[\\\"raw_constraints\\\"])}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n# Check a few problems to see if any have raw_constraints\n# Also check if per_trace has constraint info anywhere\np5 = results[5]\nprint('Problem 5 constraints_stats:', p5['constraints_stats'])\nprint('Problem 5 per_trace[0]:', p5['per_trace'][0] if p5.get('per_trace') else 'None')\nprint()\n# Check problem with high constraint count\nmax_c = max(results, key=lambda r: r['constraints_stats']['unique_after_dedup'])\nprint(f'Max constraints problem: idx={max_c[\\\"problem_idx\\\"]}, unique={max_c[\\\"constraints_stats\\\"][\\\"unique_after_dedup\\\"]}')\nprint(f'  total_extracted={max_c[\\\"constraints_stats\\\"][\\\"total_extracted\\\"]}')\nprint(f'  maxsat satisfied={max_c[\\\"maxsat_stats\\\"][\\\"satisfied\\\"]}, excluded={max_c[\\\"maxsat_stats\\\"][\\\"excluded\\\"]}')\nprint(f'  sica_scores={max_c[\\\"sica_scores\\\"]}')\nprint(f'  raw_constraints len={len(max_c[\\\"raw_constraints\\\"])}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T19:48:12.369013+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Problem 5 constraints_stats: {'total_extracted': 24, 'traces_with_constraints': 12, 'unique_after_dedup': 2}\\nProblem 5 per_trace[0]: {'trace_idx': 0, 'answer': 'False', 'finish_reason': 'stop', 'extraction_method': 'boxed', 'trace_len': 1687}\\n\\nMax constraints problem: idx=758, unique=64\\n  total_extracted=121\\n  maxsat satisfied=64, excluded=0\\n  sica_scores={'True': 121.0}\\n  raw_constraints len=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T19:48:12.369173+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '80,200p' scripts/constraint_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '80,200p' scripts/constraint_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T19:48:12.369372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n# ── McNemar's test ───────────────────────────────────────────────\\n\\ndef mcnemar_pvalue(a_correct: list[bool], b_correct: list[bool]) -> float:\\n    \\\"\\\"\\\"Two-sided McNemar's test using exact binomial distribution.\\\"\\\"\\\"\\n    n10 = sum(a and not b for a, b in zip(a_correct, b_correct))\\n    n01 = sum(not a and b for a, b in zip(a_correct, b_correct))\\n    n = n10 + n01\\n    if n == 0:\\n        return 1.0\\n    k = min(n10, n01)\\n    p = sum(math.comb(n, i) * 0.5 ** n for i in range(k + 1))\\n    return min(2.0 * p, 1.0)\\n\\n\\n# ── Helper ───────────────────────────────────────────────────────\\n\\ndef _pick_best(scores: dict[str, float], sc_dist: dict | None = None) -> str:\\n    \\\"\\\"\\\"Pick highest-scoring answer; break ties by SC vote frequency.\\\"\\\"\\\"\\n    mx = max(scores.values())\\n    top = [a for a, s in scores.items() if s == mx]\\n    if len(top) == 1:\\n        return top[0]\\n    if sc_dist:\\n        return max(top, key=lambda a: sc_dist.get(a, 0))\\n    return top[0]\\n\\n\\ndef _parse_cached_constraints(entries: list[dict], dedup) -> list:\\n    \\\"\\\"\\\"Parse constraint cache entries into UniqueConstraint objects.\\\"\\\"\\\"\\n    ucs = []\\n    for e in entries:\\n        z3_f = dedup._parse_z3(e[\\\"z3_formula_str\\\"])\\n        if z3_f is None:\\n            continue\\n        ucs.append(UniqueConstraint(\\n            expression=e[\\\"expression\\\"],\\n            z3_formula=z3_f,\\n            weight=e[\\\"weight\\\"],\\n            source_traces=e[\\\"source_traces\\\"],\\n        ))\\n    return ucs\\n\\n\\n# ── Data loading ─────────────────────────────────────────────────\\n\\ndef find_results_file(data_dir: str) -> str:\\n    \\\"\\\"\\\"Locate the exp-001 results JSON file.\\\"\\\"\\\"\\n    if os.path.isfile(data_dir):\\n        return data_dir\\n    for name in [\\\"sica_expanded_14b.json\\\", \\\"sica_d012_14b.json\\\"]:\\n        path
+…[truncated 2895 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T19:48:12.369713+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '200,350p' scripts/constraint_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '200,350p' scripts/constraint_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T19:48:12.370058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        if n_excluded == 0 or total_traces == 0 or not sica_scores:\\n            answers.append(p[\\\"sica_answer\\\"])\\n            correct.append(p[\\\"sica_correct\\\"])\\n            continue\\n\\n        count_scores = {}\\n        for ans, ms_score in sica_scores.items():\\n            trace_share = sc_dist.get(ans, 0) / total_traces\\n            count_scores[ans] = ms_score + (1 + ALPHA) * trace_share * excluded_weight\\n        for ans in sc_dist:\\n            if ans not in count_scores:\\n                trace_share = sc_dist[ans] / total_traces\\n                count_scores[ans] = (1 + ALPHA) * trace_share * excluded_weight\\n\\n        best = _pick_best(count_scores, sc_dist)\\n        answers.append(best)\\n        correct.append(check_correct(best, p[\\\"ground_truth\\\"], p.get(\\\"dataset\\\", \\\"\\\")))\\n    return answers, correct\\n\\n\\ndef _count_only_exact(problems, cache):\\n    \\\"\\\"\\\"Exact count-only: treat all constraints as satisfied, score with InvariantScorer.\\\"\\\"\\\"\\n    scorer = InvariantScorer(alpha=ALPHA)\\n    dedup = ConstraintDeduplicator()\\n    answers, correct = [], []\\n    for p in problems:\\n        idx = str(p[\\\"problem_idx\\\"])\\n        if idx not in cache or \\\"per_trace\\\" not in p:\\n            answers.append(p[\\\"sica_answer\\\"])\\n            correct.append(p[\\\"sica_correct\\\"])\\n            continue\\n\\n        ucs = _parse_cached_constraints(cache[idx], dedup)\\n        if not ucs:\\n            answers.append(p[\\\"sica_answer\\\"])\\n            correct.append(p[\\\"sica_correct\\\"])\\n            continue\\n\\n        fake_result = MaxSATResult(\\n            satisfied=ucs, excluded=[],\\n            total_weight=sum(u.weight for u in ucs),\\n            solve_time_ms=0.0,\\n        )\\n        traces = [{\\\"trace_idx\\\": t[\\\"trace_idx\\\"], \\\"answer\\\": t[\\\"answer\\\"]}\\n                  for t in p[\\\"per_trace\\
+…[truncated 4724 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T19:48:12.370321+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '350,533p' scripts/constraint_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && sed -n '350,533p' scripts/constraint_ablation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T19:48:12.370708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        marker = \\\"\\\" if info[\\\"exact\\\"] else \\\" ~\\\"\\n        pval_str = f\\\"{info['pvalue']:.4f}\\\" if info[\\\"pvalue\\\"] is not None else \\\"—\\\"\\n        delta = info[\\\"accuracy\\\"] - sc_acc\\n        label = name + marker\\n        print(f\\\"{label:<22}| {info['accuracy']:>7.1f}% | {delta:>+13.1f}pp | {pval_str:>17}\\\")\\n\\n    print(f\\\"{'SC@K (baseline)':<22}| {sc_acc:>7.1f}% | {'—':>14} | {'—':>17}\\\")\\n\\n    maxsat_cor = methods[\\\"SICA-MaxSAT\\\"][\\\"correct\\\"]\\n    print(\\\"\\\\nPer-problem agreement:\\\")\\n    for name, info in methods.items():\\n        if name == \\\"SICA-MaxSAT\\\":\\n            continue\\n        agree = sum(a == b for a, b in zip(maxsat_cor, info[\\\"correct\\\"]))\\n        print(f\\\"  MaxSAT vs {name}: {agree}/{n} agree ({agree / n * 100:.1f}%)\\\")\\n\\n    approx = [n for n, i in methods.items() if not i[\\\"exact\\\"]]\\n    if approx:\\n        print(f\\\"\\\\n~ = approximation (no constraint cache). Affects: {', '.join(approx)}\\\")\\n\\n\\ndef build_json_output(n, methods, sc_answers, sc_correct, problems, source_file, seed, has_cache):\\n    sc_acc = sum(sc_correct) / n\\n\\n    method_summaries = {}\\n    for name, info in methods.items():\\n        method_summaries[name] = {\\n            \\\"accuracy\\\": round(info[\\\"accuracy\\\"] / 100, 6),\\n            \\\"n_correct\\\": sum(info[\\\"correct\\\"]),\\n            \\\"n_problems\\\": n,\\n            \\\"delta_vs_sc_pp\\\": round(info[\\\"accuracy\\\"] - sc_acc * 100, 2),\\n            \\\"pvalue_mcnemar\\\": round(info[\\\"pvalue\\\"], 6) if info[\\\"pvalue\\\"] is not None else None,\\n            \\\"exact\\\": info[\\\"exact\\\"],\\n        }\\n    method_summaries[\\\"SC@K\\\"] = {\\n        \\\"accuracy\\\": round(sc_acc, 6),\\n        \\\"n_correct\\\": sum(sc_correct),\\n        \\\"n_problems\\\": n,\\n    }\\n\\n    maxsat_cor = methods[\\\"SICA-MaxSAT\\\"][\\\"cor
+…[truncated 5713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T19:48:12.371073+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n\n# Understand the per-trace answer distribution vs constraints stats\nimport statistics\nratios = []\nfor r in results:\n    total = r['constraints_stats']['total_extracted']\n    unique = r['constraints_stats']['unique_after_dedup']\n    n_traces = len(r.get('per_trace', []))\n    sat = r['maxsat_stats']['satisfied']\n    exc = r['maxsat_stats']['excluded']\n    if total > 0:\n        ratios.append(total / n_traces)\nprint(f'Total problems: {len(results)}')\nprint(f'Problems with total_extracted>0: {sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"]>0)}')\nprint(f'Mean constraints/trace: {statistics.mean(ratios):.1f}')\nprint(f'Median constraints/trace: {statistics.median(ratios):.1f}')\nprint()\n# How many have excluded > 0 (where ablation matters)\nn_exc = sum(1 for r in results if r['maxsat_stats']['excluded'] > 0)\nprint(f'Problems with excluded>0 (ablation-sensitive): {n_exc}/{len(results)}')\n# How many have multiple answers in sica_scores\nn_multi = sum(1 for r in results if len(r['sica_scores']) > 1)\nprint(f'Problems with >1 candidate answer: {n_multi}/{len(results)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/sica_expanded_14b.json') as f:\n    data = json.load(f)\nresults = data['results']\n\n# Understand the per-trace answer distribution vs constraints stats\nimport statistics\nratios = []\nfor r in results:\n    total = r['constraints_stats']['total_extracted']\n    unique = r['constraints_stats']['unique_after_dedup']\n    n_traces = len(r.get('per_trace', []))\n    sat = r['maxsat_stats']['satisfied']\n    exc = r['maxsat_stats']['excluded']\n    if total > 0:\n        ratios.append(total / n_traces)\nprint(f'Total problems: {len(results)}')\nprint(f'Problems with total_extracted>0: {sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"]>0)}')\nprint(f'Mean constraints/trace: {statistics.mean(ratios):.1f}')\nprint(f'Median constraints/trace: {statistics.median(ratios):.1f}')\nprint()\n# How many have excluded > 0 (where ablation matters)\nn_exc = sum(1 for r in results if r['maxsat_stats']['excluded'] > 0)\nprint(f'Problems with excluded>0 (ablation-sensitive): {n_exc}/{len(results)}')\n# How many have multiple answers in sica_scores\nn_multi = sum(1 for r in results if len(r['sica_scores']) > 1)\nprint(f'Problems with >1 candidate answer: {n_multi}/{len(results)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T19:48:12.371311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total problems: 804\\nProblems with total_extracted>0: 804\\nMean constraints/trace: 9.2\\nMedian constraints/trace: 8.0\\n\\nProblems with excluded>0 (ablation-sensitive): 331/804\\nProblems with >1 candidate answer: 307/804\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T19:48:12.371580+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && cat > scripts/extract_constraints_for_ablation.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Extract per-problem constraint data from exp-001 results for exp-013 ablation.\n\nSince raw_constraints were not saved during the exp-001 run (--save-intermediates\nwas not effective), this script extracts all available constraint-related fields\nper problem into individual cache files.\n\nEach output file contains:\n  - per_trace: [{trace_idx, answer}] — answer per trace\n  - constraints_stats: {total_extracted, traces_with_constraints, unique_after_dedup}\n  - maxsat_stats: {satisfied, excluded, total_weight, solve_time_ms}\n  - sica_scores: {answer: score}\n  - sc_vote_distribution: {answer: count}\n  - metadata: {problem_id, dataset, level, ground_truth, n_traces}\n\nThe constraint_ablation.py script uses constraints_stats + maxsat_stats + sica_scores\nfor its approximation methods (count-only and random-weight).\n\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\n\n\ndef extract(input_path: str, output_dir: str) -> dict:\n    with open(input_path) as f:\n        data = json.load(f)\n\n    results = data[\"results\"]\n    os.makedirs(output_dir, exist_ok=True)\n\n    stats = {\"total\": 0, \"with_excluded\": 0, \"multi_answer\": 0}\n\n    for r in results:\n        problem_id = r.get(\"problem_id\", f\"problem_{r['problem_idx']}\")\n        safe_id = problem_id.replace(\"/\", \"_\").replace(\" \", \"_\")\n\n        per_trace = r.get(\"per_trace\", [])\n        cache_entry = {\n            \"problem_idx\": r[\"problem_idx\"],\n            \"problem_id\": problem_id,\n            \"dataset\": r.get(\"dataset\", \"\"),\n            \"level\": r.get(\"level\", \"\"),\n            \"ground_truth\": r[\"ground_truth\"],\n            \"n_traces\": len(per_trace),\n            \"per_trace\": [\n                {\"trace_idx\": t[\"trace_idx\"], \"answer\": t[\"answer\"]}\n                for t in per_trace\n            ],\n            \"constraints_stats\": r.get(\"constraints_stats\", {}),\n            \"maxsat_stats\": r.get(\"maxsat_stats\", {}),\n            \"sica_scores\": r.get(\"sica_scores\", {}),\n            \"sica_answer\": r.get(\"sica_answer\", \"\"),\n            \"sica_correct\": r.get(\"sica_correct\", False),\n            \"sc_answer\": r.get(\"sc_answer\", \"\"),\n            \"sc_correct\": r.get(\"sc_correct\", False),\n            \"sc_vote_distribution\": r.get(\"sc_vote_distribution\", {}),\n            \"sc_vote_count\": r.get(\"sc_vote_count\", 0),\n        }\n\n        out_path = os.path.join(output_dir, f\"{safe_id}.json\")\n        with open(out_path, \"w\") as f:\n            json.dump(cache_entry, f, indent=2)\n\n        stats[\"total\"] += 1\n        if r.get(\"maxsat_stats\", {}).get(\"excluded\", 0) > 0:\n            stats[\"with_excluded\"] += 1\n        if len(r.get(\"sica_scores\", {})) > 1:\n            stats[\"multi_answer\"] += 1\n\n    return stats\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Extract per-problem constraint data from exp-001 for ablation\"\n    )\n    parser.add_argument(\n        \"--input\", default=\"results/sica_expanded_14b.json\",\n        help=\"Path to exp-001 results JSON\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"results/constraint_cache/\",\n        help=\"Output directory for per-problem JSON files\",\n    )\n    args = parser.parse_args()\n\n    if not os.path.exists(args.input):\n        print(f\"ERROR: Input file not found: {args.input}\", file=sys.stderr)\n        sys.exit(1)\n\n    stats = extract(args.input, args.output_dir)\n    print(f\"Extracted {stats['total']} problems to {args.output_dir}\")\n    print(f\"  with_excluded (ablation-sensitive): {stats['with_excluded']}\")\n    print(f\"  multi_answer: {stats['multi_answer']}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && cat > scripts/extract_constraints_for_ablation.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Extract per-problem constraint data from exp-001 results for exp-013 ablation.\n\nSince raw_constraints were not saved during the exp-001 run (--save-intermediates\nwas not effective), this script extracts all available constraint-related fields\nper problem into individual cache files.\n\nEach output file contains:\n  - per_trace: [{trace_idx, answer}] — answer per trace\n  - constraints_stats: {total_extracted, traces_with_constraints, unique_after_dedup}\n  - maxsat_stats: {satisfied, excluded, total_weight, solve_time_ms}\n  - sica_scores: {answer: score}\n  - sc_vote_distribution: {answer: count}\n  - metadata: {problem_id, dataset, level, ground_truth, n_traces}\n\nThe constraint_ablation.py script uses constraints_stats + maxsat_stats + sica_scores\nfor its approximation methods (count-only and random-weight).\n\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\n\n\ndef extract(input_path: str, output_dir: str) -> dict:\n    with open(input_path) as f:\n        data = json.load(f)\n\n    results = data[\"results\"]\n    os.makedirs(output_dir, exist_ok=True)\n\n    stats = {\"total\": 0, \"with_excluded\": 0, \"multi_answer\": 0}\n\n    for r in results:\n        problem_id = r.get(\"problem_id\", f\"problem_{r['problem_idx']}\")\n        safe_id = problem_id.replace(\"/\", \"_\").replace(\" \", \"_\")\n\n        per_trace = r.get(\"per_trace\", [])\n        cache_entry = {\n            \"problem_idx\": r[\"problem_idx\"],\n            \"problem_id\": problem_id,\n            \"dataset\": r.get(\"dataset\", \"\"),\n            \"level\": r.get(\"level\", \"\"),\n            \"ground_truth\": r[\"ground_truth\"],\n            \"n_traces\": len(per_trace),\n            \"per_trace\": [\n                {\"trace_idx\": t[\"trace_idx\"], \"answer\": t[\"answer\"]}\n                for t in per_trace\n            ],\n            \"constraints_stats\": r.get(\"constraints_stats\", {}),\n            \"maxsat_stats\": r.get(\"maxsat_stats\", {}),\n            \"sica_scores\": r.get(\"sica_scores\", {}),\n            \"sica_answer\": r.get(\"sica_answer\", \"\"),\n            \"sica_correct\": r.get(\"sica_correct\", False),\n            \"sc_answer\": r.get(\"sc_answer\", \"\"),\n            \"sc_correct\": r.get(\"sc_correct\", False),\n            \"sc_vote_distribution\": r.get(\"sc_vote_distribution\", {}),\n            \"sc_vote_count\": r.get(\"sc_vote_count\", 0),\n        }\n\n        out_path = os.path.join(output_dir, f\"{safe_id}.json\")\n        with open(out_path, \"w\") as f:\n            json.dump(cache_entry, f, indent=2)\n\n        stats[\"total\"] += 1\n        if r.get(\"maxsat_stats\", {}).get(\"excluded\", 0) > 0:\n            stats[\"with_excluded\"] += 1\n        if len(r.get(\"sica_scores\", {})) > 1:\n            stats[\"multi_answer\"] += 1\n\n    return stats\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Extract per-problem constraint data from exp-001 for ablation\"\n    )\n    parser.add_argument(\n        \"--input\", default=\"results/sica_expanded_14b.json\",\n        help=\"Path to exp-001 results JSON\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"results/constraint_cache/\",\n        help=\"Output directory for per-problem JSON files\",\n    )\n    args = parser.parse_args()\n\n    if not os.path.exists(args.input):\n        print(f\"ERROR: Input file not found: {args.input}\", file=sys.stderr)\n        sys.exit(1)\n\n    stats = extract(args.input, args.output_dir)\n    print(f\"Extracted {stats['total']} problems to {args.output_dir}\")\n    print(f\"  with_excluded (ablation-sensitive): {stats['with_excluded']}\")\n    print(f\"  multi_answer: {stats['multi_answer']}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T19:48:12.371844+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T19:48:12.372091+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/extract_constraints_for_ablation.py --input results/sica_expanded_14b.json --output-dir results/constraint_cache/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/extract_constraints_for_ablation.py --input results/sica_expanded_14b.json --output-dir results/constraint_cache/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T19:48:12.372278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Extracted 804 problems to results/constraint_cache/\\n  with_excluded (ablation-sensitive): 331\\n  multi_answer: 307\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T19:48:12.372480+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && ls results/constraint_cache/ | wc -l && echo \"---\" && ls results/constraint_cache/ | head -5 && echo \"---\" && cat results/constraint_cache/ProofWriter_AttNoneg-OWA-D5-1041_Q1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && ls results/constraint_cache/ | wc -l && echo \"---\" && ls results/constraint_cache/ | head -5 && echo \"---\" && cat results/constraint_cache/ProofWriter_AttNoneg-OWA-D5-1041_Q1.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T19:48:12.372728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"804\\n---\\nProofWriter_AttNeg-OWA-D5-1015_Q19.json\\nProofWriter_AttNeg-OWA-D5-1015_Q3.json\\nProofWriter_AttNeg-OWA-D5-1017_Q19.json\\nProofWriter_AttNeg-OWA-D5-1017_Q5.json\\nProofWriter_AttNeg-OWA-D5-1028_Q10.json\\n---\\n{\\n  \\\"problem_idx\\\": 0,\\n  \\\"problem_id\\\": \\\"ProofWriter_AttNoneg-OWA-D5-1041_Q1\\\",\\n  \\\"dataset\\\": \\\"proofwriter\\\",\\n  \\\"level\\\": \\\"D5\\\",\\n  \\\"ground_truth\\\": \\\"True\\\",\\n  \\\"n_traces\\\": 12,\\n  \\\"per_trace\\\": [\\n    {\\n      \\\"trace_idx\\\": 0,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 1,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 2,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 3,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 4,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 5,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 6,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 7,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 8,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 9,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 10,\\n      \\\"answer\\\": \\\"True\\\"\\n    },\\n    {\\n      \\\"trace_idx\\\": 11,\\n      \\\"answer\\\": \\\"True\\\"\\n    }\\n  ],\\n  \\\"constraints_stats\\\": {\\n    \\\"total_extracted\\\": 75,\\n    \\\"traces_with_constraints\\\": 12,\\n    \\\"unique_after_dedup\\\": 16\\n  },\\n  \\\"maxsat_stats\\\": {\\n    \\\"satisfied\\\": 16,\\n    \\\"excluded\\\": 0,\\n    \\\"total_weight\\\": 75,\\n    \\\"solve_time_ms\\\": 0.9229059796780348\\n  },\\n  \\\"sica_scores\\\": {\\n    \\\"True\\\": 75.0\\n  },\\n  \\\"sica_answer\\\": \\\"True\\\",\\n  \\\"sica_co
+…[truncated 287 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T19:48:12.372984+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/constraint_ablation.py --data-dir results --output results/constraint_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/constraint_ablation.py --data-dir results --output results/constraint_ablation.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T19:48:12.373211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 03:47:06,919 INFO Loaded 804 problems from results/sica_expanded_14b.json\\n2026-05-17 03:47:06,919 INFO No constraint cache — using approximations for count-only and random-weight\\n\\n=== Constraint Ablation Results (exp-001, N=804 problems) ===\\n\\nMethod                | Accuracy | vs SC-baseline | p-value (McNemar)\\n----------------------|----------|----------------|-------------------\\nSICA-MaxSAT           |    76.5% |          +0.2pp |            0.8555\\nSICA-count-only ~     |    76.6% |          +0.4pp |            0.7111\\nSICA-random-weight ~  |    76.4% |          +0.1pp |            1.0000\\nSC@K (baseline)       |    76.2% |              — |                 —\\n\\nPer-problem agreement:\\n  MaxSAT vs SICA-count-only: 803/804 agree (99.9%)\\n  MaxSAT vs SICA-random-weight: 803/804 agree (99.9%)\\n\\n~ = approximation (no constraint cache). Affects: SICA-count-only, SICA-random-weight\\n\\nDetailed results saved to results/constraint_ablation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T19:48:12.373463+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\n\nprint('=== Full Results ===')\nfor name, info in data['methods'].items():\n    print(f'  {name}: acc={info[\\\"accuracy\\\"]:.4f}, n_correct={info.get(\\\"n_correct\\\",\\\"?\\\")}, exact={info.get(\\\"exact\\\",\\\"?\\\")}')\n\nprint(f'\\nAgreement: {data[\\\"agreement\\\"]}')\nprint(f'constraint_cache_used: {data[\\\"constraint_cache_used\\\"]}')\n\n# Find disagreement problems\nper = data['per_problem']\ndisagree = [p for p in per if p['sica_maxsat_correct'] != p['sica_count_only_correct']\n            or p['sica_maxsat_correct'] != p['sica_random_weight_correct']]\nprint(f'\\nDisagreement problems: {len(disagree)}')\nfor d in disagree[:5]:\n    print(f'  idx={d[\\\"problem_idx\\\"]}, gt={d[\\\"ground_truth\\\"]}, maxsat={d[\\\"sica_maxsat_answer\\\"]}, count={d[\\\"sica_count_only_answer\\\"]}, random={d[\\\"sica_random_weight_answer\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\n\nprint('=== Full Results ===')\nfor name, info in data['methods'].items():\n    print(f'  {name}: acc={info[\\\"accuracy\\\"]:.4f}, n_correct={info.get(\\\"n_correct\\\",\\\"?\\\")}, exact={info.get(\\\"exact\\\",\\\"?\\\")}')\n\nprint(f'\\nAgreement: {data[\\\"agreement\\\"]}')\nprint(f'constraint_cache_used: {data[\\\"constraint_cache_used\\\"]}')\n\n# Find disagreement problems\nper = data['per_problem']\ndisagree = [p for p in per if p['sica_maxsat_correct'] != p['sica_count_only_correct']\n            or p['sica_maxsat_correct'] != p['sica_random_weight_correct']]\nprint(f'\\nDisagreement problems: {len(disagree)}')\nfor d in disagree[:5]:\n    print(f'  idx={d[\\\"problem_idx\\\"]}, gt={d[\\\"ground_truth\\\"]}, maxsat={d[\\\"sica_maxsat_answer\\\"]}, count={d[\\\"sica_count_only_answer\\\"]}, random={d[\\\"sica_random_weight_answer\\\"]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T19:48:12.373674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Full Results ===\\n  SICA-MaxSAT: acc=0.7649, n_correct=615, exact=True\\n  SICA-count-only: acc=0.7662, n_correct=616, exact=False\\n  SICA-random-weight: acc=0.7637, n_correct=614, exact=False\\n  SC@K: acc=0.7624, n_correct=613, exact=?\\n\\nAgreement: {'maxsat_vs_SICA-count-only': {'n_agree': 803, 'n_total': 804, 'pct': 99.9}, 'maxsat_vs_SICA-random-weight': {'n_agree': 803, 'n_total': 804, 'pct': 99.9}}\\nconstraint_cache_used: False\\n\\nDisagreement problems: 2\\n  idx=401, gt=False, maxsat=False, count=False, random=Unknown\\n  idx=662, gt=Unknown, maxsat=False, count=Unknown, random=False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T19:48:12.373853+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json, os\n\n# Create consolidated cache (single JSON keyed by problem_idx)\ncache_dir = 'results/constraint_cache/'\nconsolidated = {}\nfor fname in sorted(os.listdir(cache_dir)):\n    if not fname.endswith('.json'):\n        continue\n    with open(os.path.join(cache_dir, fname)) as f:\n        entry = json.load(f)\n    consolidated[str(entry['problem_idx'])] = entry\n\nwith open('results/constraint_cache_consolidated.json', 'w') as f:\n    json.dump(consolidated, f)\nprint(f'Consolidated cache: {len(consolidated)} entries')\nprint(f'File size: {os.path.getsize(\\\"results/constraint_cache_consolidated.json\\\") / 1024:.0f} KB')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json, os\n\n# Create consolidated cache (single JSON keyed by problem_idx)\ncache_dir = 'results/constraint_cache/'\nconsolidated = {}\nfor fname in sorted(os.listdir(cache_dir)):\n    if not fname.endswith('.json'):\n        continue\n    with open(os.path.join(cache_dir, fname)) as f:\n        entry = json.load(f)\n    consolidated[str(entry['problem_idx'])] = entry\n\nwith open('results/constraint_cache_consolidated.json', 'w') as f:\n    json.dump(consolidated, f)\nprint(f'Consolidated cache: {len(consolidated)} entries')\nprint(f'File size: {os.path.getsize(\\\"results/constraint_cache_consolidated.json\\\") / 1024:.0f} KB')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T19:48:12.374067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Consolidated cache: 804 entries\\nFile size: 808 KB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T19:48:12.374227+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\n\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\n\nprint('=== Verification Report ===')\nprint(f'Source: {data[\\\"source_file\\\"]}')\nprint(f'N problems: {data[\\\"n_problems\\\"]}')\nprint(f'Cache used: {data[\\\"constraint_cache_used\\\"]}')\nprint(f'Seed: {data[\\\"seed\\\"]}')\nprint()\n\nprint('Method comparison:')\nmethods = data['methods']\nsc_acc = methods['SC@K']['accuracy'] * 100\nfor name in ['SICA-MaxSAT', 'SICA-count-only', 'SICA-random-weight']:\n    m = methods[name]\n    exact = '(exact)' if m['exact'] else '(approx)'\n    delta = m['accuracy'] * 100 - sc_acc\n    print(f'  {name} {exact}: {m[\\\"accuracy\\\"]*100:.2f}% (delta={delta:+.2f}pp, p={m[\\\"pvalue_mcnemar\\\"]})')\nprint(f'  SC@K: {sc_acc:.2f}%')\nprint()\n\n# Key finding: do methods produce DIFFERENT results?\nper = data['per_problem']\nmaxsat_vs_count = sum(1 for p in per if p['sica_maxsat_answer'] != p['sica_count_only_answer'])\nmaxsat_vs_random = sum(1 for p in per if p['sica_maxsat_answer'] != p['sica_random_weight_answer'])\ncount_vs_random = sum(1 for p in per if p['sica_count_only_answer'] != p['sica_random_weight_answer'])\nprint(f'Answer differences:')\nprint(f'  MaxSAT vs count-only: {maxsat_vs_count} problems')\nprint(f'  MaxSAT vs random-weight: {maxsat_vs_random} problems')\nprint(f'  count-only vs random-weight: {count_vs_random} problems')\nprint()\n\n# Show the divergent problems in detail\nprint('Divergent problems (where methods disagree):')\nfor p in per:\n    answers = {p['sica_maxsat_answer'], p['sica_count_only_answer'], p['sica_random_weight_answer']}\n    if len(answers) > 1:\n        print(f'  idx={p[\\\"problem_idx\\\"]}, id={p[\\\"problem_id\\\"][:40]}, gt={p[\\\"ground_truth\\\"]}')\n        print(f'    MaxSAT={p[\\\"sica_maxsat_answer\\\"]}, count={p[\\\"sica_count_only_answer\\\"]}, random={p[\\\"sica_random_weight_answer\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32608",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport json\n\nwith open('results/constraint_ablation.json') as f:\n    data = json.load(f)\n\nprint('=== Verification Report ===')\nprint(f'Source: {data[\\\"source_file\\\"]}')\nprint(f'N problems: {data[\\\"n_problems\\\"]}')\nprint(f'Cache used: {data[\\\"constraint_cache_used\\\"]}')\nprint(f'Seed: {data[\\\"seed\\\"]}')\nprint()\n\nprint('Method comparison:')\nmethods = data['methods']\nsc_acc = methods['SC@K']['accuracy'] * 100\nfor name in ['SICA-MaxSAT', 'SICA-count-only', 'SICA-random-weight']:\n    m = methods[name]\n    exact = '(exact)' if m['exact'] else '(approx)'\n    delta = m['accuracy'] * 100 - sc_acc\n    print(f'  {name} {exact}: {m[\\\"accuracy\\\"]*100:.2f}% (delta={delta:+.2f}pp, p={m[\\\"pvalue_mcnemar\\\"]})')\nprint(f'  SC@K: {sc_acc:.2f}%')\nprint()\n\n# Key finding: do methods produce DIFFERENT results?\nper = data['per_problem']\nmaxsat_vs_count = sum(1 for p in per if p['sica_maxsat_answer'] != p['sica_count_only_answer'])\nmaxsat_vs_random = sum(1 for p in per if p['sica_maxsat_answer'] != p['sica_random_weight_answer'])\ncount_vs_random = sum(1 for p in per if p['sica_count_only_answer'] != p['sica_random_weight_answer'])\nprint(f'Answer differences:')\nprint(f'  MaxSAT vs count-only: {maxsat_vs_count} problems')\nprint(f'  MaxSAT vs random-weight: {maxsat_vs_random} problems')\nprint(f'  count-only vs random-weight: {count_vs_random} problems')\nprint()\n\n# Show the divergent problems in detail\nprint('Divergent problems (where methods disagree):')\nfor p in per:\n    answers = {p['sica_maxsat_answer'], p['sica_count_only_answer'], p['sica_random_weight_answer']}\n    if len(answers) > 1:\n        print(f'  idx={p[\\\"problem_idx\\\"]}, id={p[\\\"problem_id\\\"][:40]}, gt={p[\\\"ground_truth\\\"]}')\n        print(f'    MaxSAT={p[\\\"sica_maxsat_answer\\\"]}, count={p[\\\"sica_count_only_answer\\\"]}, random={p[\\\"sica_random_weight_answer\\\"]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T19:48:12.374383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Verification Report ===\\nSource: results/sica_expanded_14b.json\\nN problems: 804\\nCache used: False\\nSeed: 42\\n\\nMethod comparison:\\n  SICA-MaxSAT (exact): 76.49% (delta=+0.25pp, p=0.855536)\\n  SICA-count-only (approx): 76.62% (delta=+0.37pp, p=0.711071)\\n  SICA-random-weight (approx): 76.37% (delta=+0.12pp, p=1.0)\\n  SC@K: 76.24%\\n\\nAnswer differences:\\n  MaxSAT vs count-only: 1 problems\\n  MaxSAT vs random-weight: 1 problems\\n  count-only vs random-weight: 2 problems\\n\\nDivergent problems (where methods disagree):\\n  idx=401, id=ProofWriter_AttNoneg-OWA-D5-897_Q12, gt=False\\n    MaxSAT=False, count=False, random=Unknown\\n  idx=662, id=folio_062, gt=Unknown\\n    MaxSAT=False, count=Unknown, random=False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-16T19:48:12.374562+00:00_
+
+完成。产出总结：
+
+**产出**：
+- `scripts/extract_constraints_for_ablation.py` — 从 exp-001 结果提取 804 个 per-problem JSON
+- `results/constraint_cache/` — 804 个文件（每个问题一个）
+- `results/constraint_cache_consolidated.json` — 合并版本（808 KB）
+- `results/constraint_ablation.json` — 完整 804 问题的 ablation 结果（覆盖了之前的 87 问题版本）
+
+**关键发现**：
+- `raw_constraints` 在 exp-001 输出中全部为空（pipeline 运行时未生效 save-intermediates），因此 count-only 和 random-weight 使用近似公式
+- 三种方法高度一致（802/804 问题结果相同），仅 2 个问题存在分歧
+- 近似结果：MaxSAT 76.49% / count-only 76.62% / random-weight 76.37% / SC baseline 76.24%
+- 所有 McNemar p-values > 0.7，三种方法间无统计显著差异
+
+**限制**：由于缺少原始 z3 formulas，count-only 和 random-weight 结果标记为 approximate。若需精确比较，需重跑 pipeline 加 `--save-intermediates` 获取原始约束数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_prep_exp-013-data-extract_20260516T194125"
+}
+```
+
+</details>
+
+---

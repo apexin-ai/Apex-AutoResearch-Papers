@@ -1,0 +1,3680 @@
+# analysis direction e selective abstention
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_analysis_direction-e-selective-abstention_20260520T074201.log`
+- **Structured JSON:** [`7f3970c6f07df6ec691d.json`](../../sessions/7f/7f3970c6f07df6ec691d.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "30c13e1f-1efa-4f7f-82a4-e478d02cfe76",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779280800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a952ef0b-f289-4bce-9aad-11ad2e794833",
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the data on the server to understand the format, then implement the selective abstention analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "84bde73b-2fa9-4a67-a04a-1e4640d20bc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9G3RUy1Ht5aq1FuwXEn52",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12836,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12836
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先探查服务器上的数据格式和可用数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "570d6088-4eba-483d-aab7-e71402094b9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9G3RUy1Ht5aq1FuwXEn52",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12836,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12836
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018GeHdSQx4fDD24LgZEkFne`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "73e69415-fa34-40c5-933d-b95fc0683c18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9G3RUy1Ht5aq1FuwXEn52",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12836,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12836
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T07:42:15.931Z_
+
+<details><summary>↩ Tool result · `toolu_018GeHdSQx4fDD24LgZEkFne`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "20a84627-fc4e-41c3-a08d-42a53b950966",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me explore the data on the server to understand the format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "5becd5f3-819b-48dc-8040-c71f2e9ec2c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139xKnJNeaH7rWrSpchpAZ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1805,
+      "cache_read_input_tokens": 24677,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1805
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wj7XaqsXu922P2bmcmqJbd`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "99cbe532-2b37-4f34-a0ee-61629019aac9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139xKnJNeaH7rWrSpchpAZ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1805,
+      "cache_read_input_tokens": 24677,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1805
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N28wyGAaMhdASJYcHoHsim`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -maxdepth 1 -type d -name \"*exp05*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "308cc01d-3f01-4246-adea-79f0c7104dc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139xKnJNeaH7rWrSpchpAZ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1805,
+      "cache_read_input_tokens": 24677,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1805
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T07:42:20.636Z_
+
+<details><summary>↩ Tool result · `toolu_01Wj7XaqsXu922P2bmcmqJbd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "47e73219-563e-4355-8da1-c1f336d6c827",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"constraint_cache\\\\nexp033.log\\\\nexp033_results.json\\\\nintermediates\\\\nsc_answer_matrix.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T07:42:21.161Z_
+
+<details><summary>↩ Tool result · `toolu_01N28wyGAaMhdASJYcHoHsim`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp05_backward_verification\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\n/root/symb_invariant_consensus/results/exp059_cross_qwen3_extractor\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "76ce1f16-8575-4eda-be2b-5e2aefa0a935",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp05_backward_verification\\\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\\\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\\\n/root/symb_invariant_consensus/results/exp059_cross_qwen3_extractor\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp05_backward_verification\\n/root/symb_invariant_consensus/results/exp051_mistral_k_sensitivity\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\n/root/symb_invariant_consensus/results/exp059_cross_qwen3_extractor\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+没有 exp052/053 目录。先探查 exp033 的数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "529b52e3-096a-4cff-8d8d-a00752536a89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShWCsK5XxaCj1KmPvfnpvE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 26482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0143DuNR6JiZG5Azji5JHx3n`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "41e9a2a4-a71a-44b1-9878-9ede36000cfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShWCsK5XxaCj1KmPvfnpvE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 26482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T07:42:27.030Z_
+
+<details><summary>↩ Tool result · `toolu_0143DuNR6JiZG5Azji5JHx3n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_201.json\\nfolio_202.json\\nfolio_203.json\\nfolio_21.json\\nfolio_22.json\\nfolio_23.json\\nfolio_24.json\\nfolio_25.json\\nfolio_26.json\\nfolio_27.json\\nfolio_28.json\\nfolio_29.json\\nfolio_3.json\\nfolio_30.json\\nfolio_31.json\\nfolio_32.json\\nfolio_33.json\\nfolio_34.json\\nfolio_35.json\\nfolio_36.json\\nfolio_37.json\\nfolio_38.json\\nfolio_39.json\\nfolio_4.json\\nfolio_40.json\\nfolio_41.json\\nfolio_42.json\\nfolio_43.json\\nfolio_44.json\\nfolio_45.json\\nfolio_46.json\\nfolio_47.json\\nfolio_48.json\\nfolio_49.json\\nfolio_5.json\\nfolio_50.json\\nfolio_51.json\\nfolio_52.json\\nfolio_53.json\\nfolio_54.json\\nfolio_55.json\\nfolio_56.json\\nfolio_57.json\\nfolio_58.json\\nfolio_59.json\\nfolio_6.json\\nfolio_60.json\\nfolio_61.json\\nfolio_62.json\\nfolio_63.json\\nfolio_64.json\\nfolio_65.json\\nfolio_66.json\\nfolio_67.json\\nfolio_68.json\\nfolio_69.json\\nfolio_7.json\\nfolio_70.json\\nfolio_71.json\\nfolio_72.json\\nfolio_73.json\\nfolio_74.json\\nfolio_75.json\\nfolio_76.json\\nfolio_77.json\\nfolio_78.json\\nfolio_79.json\\nfolio_8.json\\nfolio_80.json\\nfolio_81.json\\nfolio_82.json\\nfolio_83.json\\nfolio_84.json\\nfolio_85.json\\nfolio_86.json\\nfolio_87.json\\nfolio_88.json\\nfolio_89.json\\nfolio_9.json\\nfolio_90.json\\nfolio_91.json\\nfolio_92.json\\nfolio_93.json\\nfolio_94.json\\nfolio_95.json\\nfolio_96.json\\nfolio_97.json\\nfolio_98.json\\nfolio_99.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9e197b7e-1a19-463c-9137-a8963fdcba5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"folio_0.json\\\\nfolio_1.json\\\\nfolio_10.json\\\\nfolio_100.json\\\\nfolio_101.json\\\\nfolio_102.json\\\\nfolio_103.json\\\\nfolio_104.json\\\\nfolio_105.json\\\\nfolio_106.json\\\\nfolio_107.json\\\\nfolio_108.json\\\\nfolio_109.json\\\\nfolio_11.json\\\\nfolio_110.json\\\\nfolio_111.json\\\\nfolio_112.json\\\\nfolio_113.json\\\\nfolio_114.json\\\\nfolio_115.json\\\\nfolio_116.json\\\\nfolio_117.json\\\\nfolio_118.json\\\\nfolio_119.json\\\\nfolio_12.json\\\\nfolio_120.json\\\\nfolio_121.json\\\\nfolio_122.json\\\\nfolio_123.json\\\\nfolio_124.json\\\\nfolio_125.json\\\\nfolio_126.json\\\\nfolio_127.json\\\\nfolio_128.json\\\\nfolio_129.json\\\\nfolio_13.json\\\\nfolio_130.json\\\\nfolio_131.json\\\\nfolio_132.json\\\\nfolio_133.json\\\\nfolio_134.json\\\\nfolio_135.json\\\\nfolio_136.json\\\\nfolio_137.json\\\\nfolio_138.json\\\\nfolio_139.json\\\\nfolio_14.json\\\\nfolio_140.json\\\\nfolio_141.json\\\\nfolio_142.json\\\\nfolio_143.json\\\\nfolio_144.json\\\\nfolio_145.json\\\\nfolio_146.json\\\\nfolio_147.json\\\\nfolio_148.json\\\\nfolio_149.json\\\\nfolio_15.json\\\\nfolio_150.json\\\\nfolio_151.json\\\\nfolio_152.json\\\\nfolio_153.json\\\\nfolio_154.json\\\\nfolio_155.json\\\\nfolio_156.json\\\\nfolio_157.json\\\\nfolio_158.json\\\\nfolio_159.json\\\\nfolio_16.json\\\\nfolio_160.json\\\\nfolio_161.json\\\\nfolio_162.json\\\\nfolio_163.json\\\\nfolio_164.json\\\\nfolio_165.json\\\\nfolio_166.json\\\\nfolio_167.json\\\\nfolio_168.json\\\\nfolio_169.json\\\\nfolio_17.json\\\\nfolio_170.json\\\\nfolio_171.json\\\\nfolio_172.json\\\\nfolio_173.json\\\\nfolio_174.json\\\\nfolio_175.json\\\\nfolio_176.json\\\\nfolio_177.json\\\\nfolio_178.json\\\\nfolio_179.json\\\\nfolio_18.json\\\\nfolio_180.json\\\\nfolio_181.json\\\\nfolio_182.json\\\\nfolio_183.json\\\\nfolio_184.json\\\\nfolio_185.json\\\\nfolio_186.json\\\\nfolio_187.json\\\\nfolio_188.json\\\\nfolio_189.json\\\\nfolio_19.json\\\\nfolio_190.json\\\\nfolio_191.json\\\\nfolio_192.json\\\\nfolio_193.json\\\\nfolio_194.json\\\\nfolio_195.json\\\\nfolio_196.json\\\\nfolio_197.json\\\\nfolio_198.json\\\\nfolio_199.json\\\\nfolio_2.json\\\\nfolio_20.json\\\\nfolio_200.json\\\\nfolio_201.json\\\\nfolio_202.json\\\\nfolio_203.json\\\\nfolio_21.json\\\\nfolio_22.json\\\\nfolio_23.json\\\\nfolio_24.json\\\\nfolio_25.json\\\\nfolio_26.json\\\\nfolio_27.json\\\\nfolio_28.json\\\\nfolio_29.json\\\\nfolio_3.json\\\\nfolio_30.json\\\\nfolio_31.json\\\\nfolio_32.json\\\\nfolio_33.json\\\\nfolio_34.json\\\\nfolio_35.json\\\\nfolio_36.json\\\\nfolio_37.json\\\\nfolio_38.json\\\\nfolio_39.json\\\\nfolio_4.json\\\\nfolio_40.json\\\\nfolio_41.json\\\\nfolio_42.json\\\\nfolio_43.json\\\\nfolio_44.json\\\\nfolio_45.json\\\\nfolio_46.json\\\\nfolio_47.json\\\\nfolio_48.json\\\\nfolio_49.json\\\\nfolio_5.json\\\\nfolio_50.json\\\\nfolio_51.json\\\\nfolio_52.json\\\\nfolio_53.json\\\\nfolio_54.json\\\\nfolio_55.json\\\\nfolio_56.json\\\\nfolio_57.json\\\\nfolio_58.json\\\\nfolio_59.json\\\\nfolio_6.json\\\\nfolio_60.json\\\\nfolio_61.json\\\\nfolio_62.json\\\\nfolio_63.json\\\\nfolio_64.json\\\\nfolio_65.json\\\\nfolio_66.json\\\\nfolio_67.json\\\\nfolio_68.json\\\\nfolio_69.json\\\\nfolio_7.json\\\\nfolio_70.json\\\\nfolio_71.json\\\\nfolio_72.json\\\\nfolio_73.json\\\\nfolio_74.json\\\\nfolio_75.json\\\\nfolio_76.json\\\\nfolio_77.json\\\\nfolio_78.json\\\\nfolio_79.json\\\\nfolio_8.json\\\\nfolio_80.json\\\\nfolio_81.json\\\\nfolio_82.json\\\\nfolio_83.json\\\\nfolio_84.json\\\\nfolio_85.json\\\\nfolio_86.json\\\\nfolio_87.json\\\\nfolio_88.json\\\\nfolio_89.json\\\\nfolio_9.json\\\\nfolio_90.json\\\\nfolio_91.json\\\\nfolio_92.json\\\\nfolio_93.json\\\\nfolio_94.json\\\\nfolio_95.json\\\\nfolio_96.json\\\\nfolio_97.json\\\\nfolio_98.json\\\\nfolio_99.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_201.json\\nfolio_202.json\\nfolio_203.json\\nfolio_21.json\\nfolio_22.json\\nfolio_23.json\\nfolio_24.json\\nfolio_25.json\\nfolio_26.json\\nfolio_27.json\\nfolio_28.json\\nfolio_29.json\\nfolio_3.json\\nfolio_30.json\\nfolio_31.json\\nfolio_32.json\\nfolio_33.json\\nfolio_34.json\\nfolio_35.json\\nfolio_36.json\\nfolio_37.json\\nfolio_38.json\\nfolio_39.json\\nfolio_4.json\\nfolio_40.json\\nfolio_41.json\\nfolio_42.json\\nfolio_43.json\\nfolio_44.json\\nfolio_45.json\\nfolio_46.json\\nfolio_47.json\\nfolio_48.json\\nfolio_49.json\\nfolio_5.json\\nfolio_50.json\\nfolio_51.json\\nfolio_52.json\\nfolio_53.json\\nfolio_54.json\\nfolio_55.json\\nfolio_56.json\\nfolio_57.json\\nfolio_58.json\\nfolio_59.json\\nfolio_6.json\\nfolio_60.json\\nfolio_61.json\\nfolio_62.json\\nfolio_63.json\\nfolio_64.json\\nfolio_65.json\\nfolio_66.json\\nfolio_67.json\\nfolio_68.json\\nfolio_69.json\\nfolio_7.json\\nfolio_70.json\\nfolio_71.json\\nfolio_72.json\\nfolio_73.json\\nfolio_74.json\\nfolio_75.json\\nfolio_76.json\\nfolio_77.json\\nfolio_78.json\\nfolio_79.json\\nfolio_8.json\\nfolio_80.json\\nfolio_81.json\\nfolio_82.json\\nfolio_83.json\\nfolio_84.json\\nfolio_85.json\\nfolio_86.json\\nfolio_87.json\\nfolio_88.json\\nfolio_89.json\\nfolio_9.json\\nfolio_90.json\\nfolio_91.json\\nfolio_92.json\\nfolio_93.json\\nfolio_94.json\\nfolio_95.json\\nfolio_96.json\\nfolio_97.json\\nfolio_98.json\\nfolio_99.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N1zFwHSqPVtEqXqgMay29H`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "817b1e80-25d2-4111-8045-8be5e4bb02c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShWCsK5XxaCj1KmPvfnpvE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 26482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T07:42:27.700Z_
+
+<details><summary>↩ Tool result · `toolu_01N1zFwHSqPVtEqXqgMay29H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "6f6aa12e-3bb6-4564-bf6f-adaf93a584fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"folio_0\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_1\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_2\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_3\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_4\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_5\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see the data format. `sc_answer_matrix.json` has per-question data with 12 answers and ground_truth. Now let me also check the intermediates format and the exp033_results.json for SICA results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "dbbc0caf-1201-4e98-9dce-df3074f1d81e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDsBEfBARwwoFLt6UeLAW1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 27114,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+数据格式清晰：`sc_answer_matrix.json` 包含每题 12 条 trace 答案 + gold answer。再查 SICA 结果和 results.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "705a5ab7-8fbe-407e-93b4-1639c3878bca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDsBEfBARwwoFLt6UeLAW1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 27114,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RJ6Gr7eFmmFSt28S7bcWjr`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "eed093bb-d309-4a67-9459-f42847f32dbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDsBEfBARwwoFLt6UeLAW1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 27114,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T07:42:34.933Z_
+
+<details><summary>↩ Tool result · `toolu_01RJ6Gr7eFmmFSt28S7bcWjr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5931372549019608,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 121,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9714052287581699,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 8021,\\n    \\\"contradiction_rate\\\": 0.03503303827452936,\\n    \\\"problems_with_contradictions\\\": 128,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4881.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 3.5,\\n        \\\"Unknown\\\": 58.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 9,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 9,\\n        \\\"False\\\": 1\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9a48817e-a4f9-4822-8099-82b58aee1858",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5931372549019608,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5441176470588235,\\\\n    \\\\\\\"sica_correct\\\\\\\": 121,\\\\n    \\\\\\\"sc_correct\\\\\\\": 111,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9714052287581699,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 14042,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 8021,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.03503303827452936,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 128,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"validation\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5931372549019608,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5931372549019608,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 4881.8\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 3.5,\\\\n        \\\\\\\"Unknown\\\\\\\": 58.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 9,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 9,\\\\n        \\\\\\\"False\\\\\\\": 1\\\\n      },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5931372549019608,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 121,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9714052287581699,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 8021,\\n    \\\"contradiction_rate\\\": 0.03503303827452936,\\n    \\\"problems_with_contradictions\\\": 128,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4881.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 3.5,\\n        \\\"Unknown\\\": 58.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 9,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 9,\\n        \\\"False\\\": 1\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015Qh7ftXRG8rVtyL6kH4s6e`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -80 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "49c5f01e-ea44-4731-8212-58c9420e8ea5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDsBEfBARwwoFLt6UeLAW1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 27114,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3061
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T07:42:35.608Z_
+
+<details><summary>↩ Tool result · `toolu_015Qh7ftXRG8rVtyL6kH4s6e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"False\\\": 3.5,\\n      \\\"Unknown\\\": 58.0\\n    },\\n    \\\"answer_counts\\\": {\\n      \\\"Unknown\\\": 9,\\n      \\\"False\\\": 1\\n    },\\n    \\\"traces\\\": [\\n      {\\n        \\\"trace\\\": \\\" To determine whether the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and see if there's a logical connection between them and the conclusion.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community.\\\\n2. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances.\\\\n3. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\\\\n4. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nFrom premises 1 and 4, we know that if Bonnie is very engaged with school events and is a student who attends the school, then she performs in school talent shows often. However, we don't have any information about whether Bonnie is very engaged with school events and is a student who attends the school.\\\\n\\\\nPremise 3 tells us that all young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Since we don't know Bonnie's age or her intentions regarding her academic career, we can't definitively say whether she's a student who attends the school.\\\\n\\\\nPremise 2 tells us that if Bonnie chaperones high school dances, then she's not a student who attends the school. Since we don't know whether Bonnie chaperones high school dances, we can't use this information to determine whether she's a student who attends the school.\\\\n\\\\nFrom premises 1, 2, and 4, we know that if Bonnie is very engaged with school events and is not a student who attends the school (by chaperoning high school dances), then she doesn't perform in school talent shows often. However, we don't have any information about whether Bonnie is engaged with school events or chaperones high school d\\n\\n... [截断: 输出过长，省略 14980 字符] ...\\n\\now whether this is the case.\\\\n\\\\nSince we don't have enough information to determine whether Bonnie chaperones high school dances or not, the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is uncertain. We cannot make a definitive statement about it based on the given premises.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 7\\n      },\\n      {\\n        \\\"trace\\\": \\\" Let's break down the given premises and use them to determine the conclusion about Bonnie performing in school talent shows often.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\n\\\\nNow let's analyze the conclusion:\\\\nBonnie performs in school talent shows often.\\\\n\\\\nFrom Premise 2, we know that if Bonnie is not an inactive and disinterested member of her community, then she performs in school talent shows often. However, Premise 6 states that if Bonnie is not a student who attends the school and is not very engaged with school events, then she does not perform in school talent shows often.\\\\n\\\\nSince we don't have any information about whether Bonnie is a student who attends the school or not, we cannot definitively say whether she performs in school talent shows often or not. Therefore, the conclusion is uncertain.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 8\\n      },\\n      {\\n        \\\"trace\\\": \\\" To determine whether the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\n\\\\nNow let's analyze the conclusion:\\\\n\\\\n7. Conclusion: Bonnie performs in school talent shows often.\\\\n\\\\nFrom the given premises, we can see that there is no direct connection between Bonnie performing in school talent shows often and the other given information. Premise 6 only tells us that Bonnie is either a student who attends the school and attends and is very engaged with school events, or she is not a student who attends the school and not very engaged with school events. However, we do not have any information about whether Bonnie performs in school talent shows often or not.\\\\n\\\\nTherefore, the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is uncertain based on the given premises.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 9\\n      },\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "159c08e3-8b37-4b44-b968-425349b2da2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"problem\\\\\\\": {\\\\n    \\\\\\\"id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n    \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n    \\\\\\\"solution\\\\\\\": \\\\\\\"\\\\\\\",\\\\n    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n    \\\\\\\"premises_fol\\\\\\\": [\\\\n      \\\\\\\"\\\\\\\\u2200x (TalentShows(x) \\\\\\\\u2192 Engaged(x))\\\\\\\",\\\\n      \\\\\\\"\\\\\\\\u2200x (TalentShows(x) \\\\\\\\u2228 Inactive(x))\\\\\\\",\\\\n      \\\\\\\"\\\\\\\\u2200x (Chaperone(x) \\\\\\\\u2192 \\\\\\\\u00acStudents(x))\\\\\\\",\\\\n      \\\\\\\"\\\\\\\\u2200x (Inactive(x) \\\\\\\\u2192 Chaperone(x))\\\\\\\",\\\\n      \\\\\\\"\\\\\\\\u2200x (AcademicCareer(x) \\\\\\\\u2192 Students(x))\\\\\\\",\\\\n      \\\\\\\"(Engaged(bonnie) \\\\\\\\u2227 Students(bonnie)) \\\\\\\\u2295 (\\\\\\\\u00acEngaged(bonnie) \\\\\\\\u2227 \\\\\\\\u00acStudents(bonnie))\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"conclusion_fol\\\\\\\": \\\\\\\"Engaged(bonnie)\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\"\\\\n  },\\\\n  \\\\\\\"sica_result\\\\\\\": {\\\\n    \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"scores\\\\\\\": {\\\\n      \\\\\\\"False\\\\\\\": 3.5,\\\\n      \\\\\\\"Unknown\\\\\\\": 58.0\\\\n    },\\\\n    \\\\\\\"answer_counts\\\\\\\": {\\\\n      \\\\\\\"Unknown\\\\\\\": 9,\\\\n      \\\\\\\"False\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"traces\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"trace\\\\\\\": \\\\\\\" To determine whether the conclusion \\\\\\\\\\\\\\\"Bonnie performs in school talent shows often\\\\\\\\\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and see if there's a logical connection between them and the conclusion.\\\\\\\\n\\\\\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community.\\\\\\\\n2. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances.\\\\\\\\n3. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\\\\\\\\n4. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nFrom premises 1 and 4, we know that if Bonnie is very engaged with school events and is a student who attends the school, then she performs in school talent shows often. However, we don't have any information about whether Bonnie is very engaged with school events and is a student who attends the school.\\\\\\\\n\\\\\\\\nPremise 3 tells us that all young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Since we don't know Bonnie's age or her intentions regarding her academic career, we can't definitively say whether she's a student who attends the school.\\\\\\\\n\\\\\\\\nPremise 2 tells us that if Bonnie chaperones high school dances, then she's not a student who attends the school. Since we don't know whether Bonnie chaperones high school dances, we can't use this information to determine whether she's a student who attends the school.\\\\\\\\n\\\\\\\\nFrom premises 1, 2, and 4, we know that if Bonnie is very engaged with school events and is not a student who attends the school (by chaperoning high school dances), then she doesn't perform in school talent shows often. However, we don't have any information about whether Bonnie is engaged with school events or chaperones high school d\\\\n\\\\n... [截断: 输出过长，省略 14980 字符] ...\\\\n\\\\now whether this is the case.\\\\\\\\n\\\\\\\\nSince we don't have enough information to determine whether Bonnie chaperones high school dances or not, the conclusion \\\\\\\\\\\\\\\"Bonnie performs in school talent shows often\\\\\\\\\\\\\\\" is uncertain. We cannot make a definitive statement about it based on the given premises.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Uncertain}\\\\\\\",\\\\n        \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"trace_idx\\\\\\\": 7\\\\n      },\\\\n      {\\\\n        \\\\\\\"trace\\\\\\\": \\\\\\\" Let's break down the given premises and use them to determine the conclusion about Bonnie performing in school talent shows often.\\\\\\\\n\\\\\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\\\\\n\\\\\\\\nNow let's analyze the conclusion:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\\n\\\\\\\\nFrom Premise 2, we know that if Bonnie is not an inactive and disinterested member of her community, then she performs in school talent shows often. However, Premise 6 states that if Bonnie is not a student who attends the school and is not very engaged with school events, then she does not perform in school talent shows often.\\\\\\\\n\\\\\\\\nSince we don't have any information about whether Bonnie is a student who attends the school or not, we cannot definitively say whether she performs in school talent shows often or not. Therefore, the conclusion is uncertain.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Uncertain}\\\\\\\",\\\\n        \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"trace_idx\\\\\\\": 8\\\\n      },\\\\n      {\\\\n        \\\\\\\"trace\\\\\\\": \\\\\\\" To determine whether the conclusion \\\\\\\\\\\\\\\"Bonnie performs in school talent shows often\\\\\\\\\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\\\\\\\\n\\\\\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\\\\\n\\\\\\\\nNow let's analyze the conclusion:\\\\\\\\n\\\\\\\\n7. Conclusion: Bonnie performs in school talent shows often.\\\\\\\\n\\\\\\\\nFrom the given premises, we can see that there is no direct connection between Bonnie performing in school talent shows often and the other given information. Premise 6 only tells us that Bonnie is either a student who attends the school and attends and is very engaged with school events, or she is not a student who attends the school and not very engaged with school events. However, we do not have any information about whether Bonnie performs in school talent shows often or not.\\\\\\\\n\\\\\\\\nTherefore, the conclusion \\\\\\\\\\\\\\\"Bonnie performs in school talent shows often\\\\\\\\\\\\\\\" is uncertain based on the given premises.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Uncertain}\\\\\\\",\\\\n        \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"trace_idx\\\\\\\": 9\\\\n      },\\\\n      {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"False\\\": 3.5,\\n      \\\"Unknown\\\": 58.0\\n    },\\n    \\\"answer_counts\\\": {\\n      \\\"Unknown\\\": 9,\\n      \\\"False\\\": 1\\n    },\\n    \\\"traces\\\": [\\n      {\\n        \\\"trace\\\": \\\" To determine whether the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and see if there's a logical connection between them and the conclusion.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community.\\\\n2. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances.\\\\n3. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\\\\n4. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nFrom premises 1 and 4, we know that if Bonnie is very engaged with school events and is a student who attends the school, then she performs in school talent shows often. However, we don't have any information about whether Bonnie is very engaged with school events and is a student who attends the school.\\\\n\\\\nPremise 3 tells us that all young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Since we don't know Bonnie's age or her intentions regarding her academic career, we can't definitively say whether she's a student who attends the school.\\\\n\\\\nPremise 2 tells us that if Bonnie chaperones high school dances, then she's not a student who attends the school. Since we don't know whether Bonnie chaperones high school dances, we can't use this information to determine whether she's a student who attends the school.\\\\n\\\\nFrom premises 1, 2, and 4, we know that if Bonnie is very engaged with school events and is not a student who attends the school (by chaperoning high school dances), then she doesn't perform in school talent shows often. However, we don't have any information about whether Bonnie is engaged with school events or chaperones high school d\\n\\n... [截断: 输出过长，省略 14980 字符] ...\\n\\now whether this is the case.\\\\n\\\\nSince we don't have enough information to determine whether Bonnie chaperones high school dances or not, the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is uncertain. We cannot make a definitive statement about it based on the given premises.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 7\\n      },\\n      {\\n        \\\"trace\\\": \\\" Let's break down the given premises and use them to determine the conclusion about Bonnie performing in school talent shows often.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\n\\\\nNow let's analyze the conclusion:\\\\nBonnie performs in school talent shows often.\\\\n\\\\nFrom Premise 2, we know that if Bonnie is not an inactive and disinterested member of her community, then she performs in school talent shows often. However, Premise 6 states that if Bonnie is not a student who attends the school and is not very engaged with school events, then she does not perform in school talent shows often.\\\\n\\\\nSince we don't have any information about whether Bonnie is a student who attends the school or not, we cannot definitively say whether she performs in school talent shows often or not. Therefore, the conclusion is uncertain.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 8\\n      },\\n      {\\n        \\\"trace\\\": \\\" To determine whether the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\\\\n\\\\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Premise 1)\\\\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Premise 2)\\\\n3. If people chaperone high school dances, then they are not students who attend the school. (Premise 3)\\\\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Premise 4)\\\\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Premise 5)\\\\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Premise 6)\\\\n\\\\nNow let's analyze the conclusion:\\\\n\\\\n7. Conclusion: Bonnie performs in school talent shows often.\\\\n\\\\nFrom the given premises, we can see that there is no direct connection between Bonnie performing in school talent shows often and the other given information. Premise 6 only tells us that Bonnie is either a student who attends the school and attends and is very engaged with school events, or she is not a student who attends the school and not very engaged with school events. However, we do not have any information about whether Bonnie performs in school talent shows often or not.\\\\n\\\\nTherefore, the conclusion \\\\\\\"Bonnie performs in school talent shows often\\\\\\\" is uncertain based on the given premises.\\\\n\\\\n\\\\\\\\boxed{Uncertain}\\\",\\n        \\\"answer\\\": \\\"Unknown\\\",\\n        \\\"trace_idx\\\": 9\\n      },\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the information I need. The `exp033_results.json` has per-question results with:
+- `sica_answer`, `sica_correct`
+- `sc_answer`, `sc_vote_count`, `sc_vote_distribution`
+- `ground_truth`
+
+And the `sc_answer_matrix.json` has the 12 answers per question.
+
+Now I have everything. Let me write the analysis script. The key data source is `exp033_results.json` which already contains per-question sc_vote_distribution, sica_answer, sc_answer, ground_truth.
+
+
+I should focus on the data I have rather than searching for other seed variations. Let me examine the full structure of a result entry to understand what fields are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "93a00d2c-2086-4680-9da0-2c6d45f4dd32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xmxo1MryRTkjPp9ZnWUW7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3993,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3993
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+`exp033_results.json` 已包含所有需要的字段。现在查 seed=123/456 数据是否在其他目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "c7014f4b-16a4-4684-b00a-8edb1b39ae89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xmxo1MryRTkjPp9ZnWUW7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3993,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3993
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014KUWZwwKASatXbJGtCCqGb`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -maxdepth 1 -type d -name \"*seed*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "f5f02292-57bd-4724-ac84-055132e06ec2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xmxo1MryRTkjPp9ZnWUW7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3993,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3993
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LKc6a6eBeB4WxPU1GsFD4X`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -maxdepth 1 -type d -name \"*folio*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "d04ffca8-8e4e-4493-a5fb-0c8fc9829d67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xmxo1MryRTkjPp9ZnWUW7V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3993,
+      "cache_read_input_tokens": 30175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3993
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T07:42:46.475Z_
+
+<details><summary>↩ Tool result · `toolu_014KUWZwwKASatXbJGtCCqGb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "4463e18c-d791-4fd5-84c5-dc737397700d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T07:42:47.007Z_
+
+<details><summary>↩ Tool result · `toolu_01LKc6a6eBeB4WxPU1GsFD4X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/folio_204_14b\\n/root/symb_invariant_consensus/results/exp-029-contrastive-folio204\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio\\n/root/symb_invariant_consensus/results/oracle_folio_regen\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204\\n/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204\\n/root/symb_invariant_consensus/results/exp035_qwen25_7b_folio204\\n/root/symb_invariant_consensus/results/icl_oracle_folio\\n/root/symb_invariant_consensus/results/exp047_qwen3_thinking_folio204\\n/root/symb_invariant_consensus/results/exp028b_qwen3_thinking_folio204\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204\\n/root/symb_invariant_consensus/results/exp062_gemma27b_folio204\\n/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp076_debate_mistral_folio\\n/root/symb_invariant_consensus/results/exp074_icg_mistral_folio\\n/root/symb_invariant_consensus/results/exp075b_contrastive_mistral_folio\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "7164560b-f4b7-4ca4-8080-bb95a7131c13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b\\\\n/root/symb_invariant_consensus/results/exp-029-contrastive-folio204\\\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio\\\\n/root/symb_invariant_consensus/results/oracle_folio_regen\\\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204\\\\n/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204\\\\n/root/symb_invariant_consensus/results/exp035_qwen25_7b_folio204\\\\n/root/symb_invariant_consensus/results/icl_oracle_folio\\\\n/root/symb_invariant_consensus/results/exp047_qwen3_thinking_folio204\\\\n/root/symb_invariant_consensus/results/exp028b_qwen3_thinking_folio204\\\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204\\\\n/root/symb_invariant_consensus/results/exp062_gemma27b_folio204\\\\n/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\\\n/root/symb_invariant_consensus/results/exp076_debate_mistral_folio\\\\n/root/symb_invariant_consensus/results/exp074_icg_mistral_folio\\\\n/root/symb_invariant_consensus/results/exp075b_contrastive_mistral_folio\\\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/folio_204_14b\\n/root/symb_invariant_consensus/results/exp-029-contrastive-folio204\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio\\n/root/symb_invariant_consensus/results/oracle_folio_regen\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204\\n/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204\\n/root/symb_invariant_consensus/results/exp035_qwen25_7b_folio204\\n/root/symb_invariant_consensus/results/icl_oracle_folio\\n/root/symb_invariant_consensus/results/exp047_qwen3_thinking_folio204\\n/root/symb_invariant_consensus/results/exp028b_qwen3_thinking_folio204\\n/root/symb_invariant_consensus/results/exp054_mistral_folio204_t10\\n/root/symb_invariant_consensus/results/exp057_mistral_folio204_t03\\n/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204\\n/root/symb_invariant_consensus/results/exp062_gemma27b_folio204\\n/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp076_debate_mistral_folio\\n/root/symb_invariant_consensus/results/exp074_icg_mistral_folio\\n/root/symb_invariant_consensus/results/exp075b_contrastive_mistral_folio\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see exp067_mistral_folio_seed789 but no seed123/seed456 for plain Mistral FOLIO. Let me check if exp067 has the same format as exp033 (SC answer matrix). Also let me check exp074c and exp074d - those are ICG (not plain SC/SICA), so they won't work directly.
+
+For multi-seed validation, I can use:
+- exp033 (seed=42, Mistral-7B, FOLIO-204)
+- exp067 (seed=789, Mistral, FOLIO)
+
+
+- Now I'm looking at exp067 to verify its structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "a4e73c50-2c8d-4097-91b8-0a176860cc8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGm9D2aK3XQMqUGXtpuA2d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1599,
+      "cache_read_input_tokens": 34168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1599
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JhRn8PZvP9xWF5wdxAfycH`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "5364d129-8f9f-425b-8091-c005ee4daa1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGm9D2aK3XQMqUGXtpuA2d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1599,
+      "cache_read_input_tokens": 34168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1599
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xke8Vafwjdka64PZJHXxJU`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9b102783-b755-4fca-9eaf-0ebe1db6b910",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGm9D2aK3XQMqUGXtpuA2d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1599,
+      "cache_read_input_tokens": 34168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1599
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T07:42:56.216Z_
+
+<details><summary>↩ Tool result · `toolu_01JhRn8PZvP9xWF5wdxAfycH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dryrun.json\\nexp067_results.json\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "5c627e20-b11a-442f-9d68-c5815b422b33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dryrun.json\\\\nexp067_results.json\\\\nintermediates\\\\nper_trace_constraints\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dryrun.json\\nexp067_results.json\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T07:42:56.745Z_
+
+<details><summary>↩ Tool result · `toolu_01Xke8Vafwjdka64PZJHXxJU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5392156862745098,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 110,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9709967320261438,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 7837,\\n    \\\"contradiction_rate\\\": 0.03279316064820722,\\n    \\\"problems_with_contradictions\\\": 117,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4907.6\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "8ce04651-9475-438b-a69d-3a70f89117e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5392156862745098,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5441176470588235,\\\\n    \\\\\\\"sica_correct\\\\\\\": 110,\\\\n    \\\\\\\"sc_correct\\\\\\\": 111,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9709967320261438,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 14042,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 7837,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.03279316064820722,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 117,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"validation\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5392156862745098,\\\\n        \\\\\\\"sc\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 4907.6\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5392156862745098,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 110,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9709967320261438,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 7837,\\n    \\\"contradiction_rate\\\": 0.03279316064820722,\\n    \\\"problems_with_contradictions\\\": 117,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5392156862745098,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4907.6\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp067 has the same format. Same SC accuracy (0.544) which makes sense - same model, same data, just different seed. But the SICA accuracy is different (0.539 vs 0.593), which suggests the seed affects the constraint extraction.
+
+Wait, the SC accuracy is identical (0.5441176470588235). That seems odd - with different seeds, the SC answers should be different. Unless the seed only affects the SICA part (constraint extraction), not the base LLM generation. Actually, looking more carefully: exp033 has sc_correct=111, exp067 also has sc_correct=111. 
+
+So the seed appears to only influence constraint extraction, not the base model traces themselves. If these experiments share the same K=12 traces but use different seeds for constraint extraction, then the SC-based abstention analysis would be identical across seeds while only the SICA results would vary. Let me check if the vote distributions match to confirm this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "2af7d5ff-5541-4c62-ad8a-2e8cf0c8aad4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01282Xd7CvQY6FiejLaMCgNM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 35767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1038
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RK7JA6RaSqWtpfryntB32K`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json')); r=d['results'][0]; print(json.dumps({k:r[k] for k in ['problem_id','sc_answer','sc_vote_distribution','sica_answer','sica_correct','sc_correct','ground_truth']}, indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "8b939691-aa7c-4ee3-8c07-0eefc6724159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01282Xd7CvQY6FiejLaMCgNM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 35767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1038
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T07:43:11.835Z_
+
+<details><summary>↩ Tool result · `toolu_01RK7JA6RaSqWtpfryntB32K`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "5b84dac7-b201-4931-a843-804d3571da2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017yBFNoRJSAPChEjPTbuPBp`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -A 15 \"folio_1\\\"\" /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9f0265d3-97ea-433a-8e92-65a82ad8d746",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y1bBNRQX1htCRt6FXdYNif",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 591,
+      "cache_read_input_tokens": 36805,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 591
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T07:43:15.900Z_
+
+<details><summary>↩ Tool result · `toolu_017yBFNoRJSAPChEjPTbuPBp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"problem_id\\\": \\\"folio_1\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 14.0,\\n        \\\"The conclusion is true.\\\": 12.0,\\n        \\\"True\\\": 40.0,\\n        \\\"Unknown\\\": 40.5\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 5,\\n      \\\"sc_vote_distribution\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "e07cd6df-8011-482e-bfaa-df7866efcc7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 14.0,\\\\n        \\\\\\\"The conclusion is true.\\\\\\\": 12.0,\\\\n        \\\\\\\"True\\\\\\\": 40.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 40.5\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 5,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"problem_id\\\": \\\"folio_1\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 14.0,\\n        \\\"The conclusion is true.\\\": 12.0,\\n        \\\"True\\\": 40.0,\\n        \\\"Unknown\\\": 40.5\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 5,\\n      \\\"sc_vote_distribution\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so sc_vote_count for folio_1 in exp067 is 5 (True got 5 votes). Let me also check exp033 for folio_1 to see if SC distributions are the same.
+
+Wait, actually the SC accuracy is identical (0.5441176470588235) in both experiments. Let me check if the SC vote distributions differ. If seed only affects SICA, the SC data would be the same.
+
+Actually, I have enough info. Let me just write the script. The script should:
+1. Load exp033_results.json (and optionally exp067_results.json for multi-seed)
+
+
+2. Extract the vote distributions, correctness labels, and ground truth for each question
+3. Calculate per-question metrics like the fraction of votes for the majority class and entropy
+4. Run selective abstention experiments at different coverage thresholds, comparing entropy-based filtering against random filtering
+5. Compute the AUROC to evaluate performance
+
+Now I'll write and deploy this to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "16e37884-4227-4a7e-b4c5-f685674d4884",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYVJ2gNiUotVeQSo5F7J3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+数据格式已明确。exp033（seed=42）和 exp067（seed=789）都有完整的 SC/SICA 数据。现在写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "6a84ebcd-5b9a-4235-ab5d-c148803a86c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYVJ2gNiUotVeQSo5F7J3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012MY4ijiKkPmVd9ACpuTan4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention.py",
+  "content": "\"\"\"Direction E: Selective Abstention via per-question consistency calibration.\nEvaluates accuracy-coverage tradeoff using entropy/majority-fraction as routing signals.\n\"\"\"\n\nimport json\nimport math\nimport os\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef load_results(path):\n    \"\"\"Load experiment results JSON, return list of per-question dicts.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"results\"], data[\"summary\"]\n\ndef compute_per_question_metrics(results):\n    \"\"\"Compute majority_fraction, entropy, sc_correct, sica_correct per question.\"\"\"\n    records = []\n    for r in results:\n        dist = r[\"sc_vote_distribution\"]\n        # filter to valid answers only, count total valid votes\n        valid_counts = {k: v for k, v in dist.items() if k in VALID_ANSWERS}\n        total_valid = sum(valid_counts.values())\n        if total_valid == 0:\n            continue\n\n        majority_frac = max(valid_counts.values()) / total_valid\n        entropy = 0.0\n        for cnt in valid_counts.values():\n            p = cnt / total_valid\n            if p > 0:\n                entropy -= p * math.log2(p)\n\n        records.append({\n            \"problem_id\": r[\"problem_id\"],\n            \"ground_truth\": r[\"ground_truth\"],\n            \"sc_answer\": r[\"sc_answer\"],\n            \"sc_correct\": r[\"sc_correct\"],\n            \"sica_answer\": r.get(\"sica_answer\"),\n            \"sica_correct\": r.get(\"sica_correct\"),\n            \"majority_fraction\": majority_frac,\n            \"entropy\": entropy,\n            \"vote_distribution\": valid_counts,\n            \"total_valid_votes\": total_valid,\n        })\n    return records\n\ndef selective_abstention_by_metric(records, metric_key, ascending=True, coverages=None):\n    \"\"\"Rank questions by metric, abstain from hardest ones at each coverage level.\n\n    ascending=True means lower metric = more confident (e.g., entropy).\n    ascending=False means higher metric = more confident (e.g., majority_fraction).\n    \"\"\"\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    sorted_recs = sorted(records, key=lambda x: x[metric_key], reverse=not ascending)\n    n = len(sorted_recs)\n\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        subset = sorted_recs[:k]\n        sc_acc = sum(1 for r in subset if r[\"sc_correct\"]) / len(subset)\n        sica_acc = sum(1 for r in subset if r.get(\"sica_correct\")) / len(subset)\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": len(subset),\n            \"n_total\": n,\n            \"sc_accuracy\": sc_acc,\n            \"sica_accuracy\": sica_acc,\n        }\n    return results\n\ndef random_abstention(records, coverages=None, n_trials=1000, seed=42):\n    \"\"\"Baseline: random abstention at each coverage level (averaged over trials).\"\"\"\n    import random\n    rng = random.Random(seed)\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    n = len(records)\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        sc_accs = []\n        for _ in range(n_trials):\n            subset = rng.sample(records, k)\n            sc_accs.append(sum(1 for r in subset if r[\"sc_correct\"]) / len(subset))\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": k,\n            \"n_total\": n,\n            \"sc_accuracy_mean\": sum(sc_accs) / len(sc_accs),\n            \"sc_accuracy_std\": (sum((x - sum(sc_accs)/len(sc_accs))**2 for x in sc_accs) / len(sc_accs)) ** 0.5,\n        }\n    return results\n\ndef compute_auroc(records):\n    \"\"\"AUROC: entropy as predictor of SC being wrong (higher entropy → more likely wrong).\"\"\"\n    # positive class = SC incorrect\n    scored = [(r[\"entropy\"], not r[\"sc_correct\"]) for r in records]\n    scored.sort(key=lambda x: x[0], reverse=True)  # high entropy first\n\n    n_pos = sum(1 for _, label in scored if label)\n    n_neg = len(scored) - n_pos\n    if n_pos == 0 or n_neg == 0:\n        return float(\"nan\")\n\n    tp = 0\n    fp = 0\n    prev_score = None\n    auc = 0.0\n    prev_tp = 0\n    prev_fp = 0\n\n    for score, label in scored:\n        if score != prev_score and prev_score is not None:\n            auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n            prev_tp = tp\n            prev_fp = fp\n        if label:\n            tp += 1\n        else:\n            fp += 1\n        prev_score = score\n    auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n\n    return auc / (n_pos * n_neg)\n\ndef analyze_single_exp(results_path, label=\"\"):\n    \"\"\"Full analysis for one experiment.\"\"\"\n    results, summary = load_results(results_path)\n    records = compute_per_question_metrics(results)\n\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    # Entropy-based abstention (low entropy = confident)\n    entropy_results = selective_abstention_by_metric(records, \"entropy\", ascending=True, coverages=coverages)\n    # Majority-fraction-based abstention (high majority_frac = confident)\n    majfrac_results = selective_abstention_by_metric(records, \"majority_fraction\", ascending=False, coverages=coverages)\n    # Random baseline\n    random_results = random_abstention(records, coverages=coverages)\n    # AUROC\n    auroc = compute_auroc(records)\n\n    # Distribution stats\n    entropies = [r[\"entropy\"] for r in records]\n    maj_fracs = [r[\"majority_fraction\"] for r in records]\n\n    return {\n        \"label\": label,\n        \"n_questions\": len(records),\n        \"sc_accuracy_full\": summary[\"sc_accuracy\"],\n        \"sica_accuracy_full\": summary[\"sica_accuracy\"],\n        \"auroc_entropy_predicts_error\": auroc,\n        \"entropy_stats\": {\n            \"mean\": sum(entropies) / len(entropies),\n            \"min\": min(entropies),\n            \"max\": max(entropies),\n            \"median\": sorted(entropies)[len(entropies) // 2],\n        },\n        \"majority_fraction_stats\": {\n            \"mean\": sum(maj_fracs) / len(maj_fracs),\n            \"min\": min(maj_fracs),\n            \"max\": max(maj_fracs),\n            \"median\": sorted(maj_fracs)[len(maj_fracs) // 2],\n        },\n        \"coverage_table\": [],\n        \"entropy_results\": entropy_results,\n        \"majfrac_results\": majfrac_results,\n        \"random_results\": random_results,\n    }\n\ndef format_table(analysis):\n    \"\"\"Format coverage table for display.\"\"\"\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n    rows = []\n    for cov in coverages:\n        ent = analysis[\"entropy_results\"][cov]\n        mf = analysis[\"majfrac_results\"][cov]\n        rnd = analysis[\"random_results\"][cov]\n        delta_ent = ent[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        delta_mf = mf[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        row = {\n            \"coverage\": f\"{cov*100:.0f}%\",\n            \"n_answered\": ent[\"n_answered\"],\n            \"random_sc_acc\": f\"{rnd['sc_accuracy_mean']*100:.1f}%\",\n            \"entropy_sc_acc\": f\"{ent['sc_accuracy']*100:.1f}%\",\n            \"majfrac_sc_acc\": f\"{mf['sc_accuracy']*100:.1f}%\",\n            \"entropy_sica_acc\": f\"{ent['sica_accuracy']*100:.1f}%\",\n            \"delta_entropy_pp\": f\"{delta_ent*100:+.1f}pp\",\n            \"delta_majfrac_pp\": f\"{delta_mf*100:+.1f}pp\",\n        }\n        rows.append(row)\n    analysis[\"coverage_table\"] = rows\n    return rows\n\ndef print_report(analysis):\n    \"\"\"Print formatted report.\"\"\"\n    label = analysis[\"label\"]\n    print(f\"\\n{'='*70}\")\n    print(f\"  Direction E: Selective Abstention — {label}\")\n    print(f\"{'='*70}\")\n    print(f\"  N questions: {analysis['n_questions']}\")\n    print(f\"  SC accuracy (full):   {analysis['sc_accuracy_full']*100:.1f}%\")\n    print(f\"  SICA accuracy (full): {analysis['sica_accuracy_full']*100:.1f}%\")\n    print(f\"  AUROC (entropy → error): {analysis['auroc_entropy_predicts_error']:.4f}\")\n    print(f\"  Entropy stats: mean={analysis['entropy_stats']['mean']:.3f}, \"\n          f\"median={analysis['entropy_stats']['median']:.3f}, \"\n          f\"range=[{analysis['entropy_stats']['min']:.3f}, {analysis['entropy_stats']['max']:.3f}]\")\n    print(f\"  MajFrac stats: mean={analysis['majority_fraction_stats']['mean']:.3f}, \"\n          f\"median={analysis['majority_fraction_stats']['median']:.3f}, \"\n          f\"range=[{analysis['majority_fraction_stats']['min']:.3f}, {analysis['majority_fraction_stats']['max']:.3f}]\")\n\n    print(f\"\\n  Coverage Table:\")\n    print(f\"  {'Cov':>5} {'N':>4} {'Random SC':>10} {'Entropy SC':>11} {'MajFrac SC':>11} {'Entropy SICA':>13} {'Δ(ent)':>8} {'Δ(mf)':>8}\")\n    print(f\"  {'-'*5} {'-'*4} {'-'*10} {'-'*11} {'-'*11} {'-'*13} {'-'*8} {'-'*8}\")\n    for row in analysis[\"coverage_table\"]:\n        print(f\"  {row['coverage']:>5} {row['n_answered']:>4} {row['random_sc_acc']:>10} \"\n              f\"{row['entropy_sc_acc']:>11} {row['majfrac_sc_acc']:>11} \"\n              f\"{row['entropy_sica_acc']:>13} {row['delta_entropy_pp']:>8} {row['delta_majfrac_pp']:>8}\")\n    print()\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    experiments = {\n        \"exp033 (Mistral-7B, seed=42)\": f\"{base}/exp033_mistral_7b_folio204/exp033_results.json\",\n        \"exp067 (Mistral-7B, seed=789)\": f\"{base}/exp067_mistral_folio_seed789/exp067_results.json\",\n    }\n\n    all_analyses = {}\n    for label, path in experiments.items():\n        if not os.path.exists(path):\n            print(f\"SKIP: {path} not found\")\n            continue\n        analysis = analyze_single_exp(path, label)\n        format_table(analysis)\n        print_report(analysis)\n        all_analyses[label] = analysis\n\n    # Multi-seed aggregate if >1 experiment\n    if len(all_analyses) > 1:\n        print(f\"\\n{'='*70}\")\n        print(f\"  Multi-seed Aggregate\")\n        print(f\"{'='*70}\")\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        print(f\"  AUROC mean: {sum(aurocs)/len(aurocs):.4f}, values: {[f'{a:.4f}' for a in aurocs]}\")\n\n        print(f\"\\n  {'Cov':>5} {'Entropy SC (mean±std)':>22} {'Random SC (mean)':>17} {'Δ mean':>8}\")\n        print(f\"  {'-'*5} {'-'*22} {'-'*17} {'-'*8}\")\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            delta = ent_mean - rnd_mean\n            print(f\"  {cov*100:>4.0f}% {ent_mean*100:>7.1f}% ± {ent_std*100:.1f}% {rnd_mean*100:>12.1f}% {delta*100:>+7.1f}pp\")\n\n    # Save JSON output\n    output = {\n        \"description\": \"Direction E: Selective Abstention results\",\n        \"experiments\": {},\n    }\n    for label, analysis in all_analyses.items():\n        # Convert for JSON serialization\n        exp_out = {\n            \"label\": label,\n            \"n_questions\": analysis[\"n_questions\"],\n            \"sc_accuracy_full\": analysis[\"sc_accuracy_full\"],\n            \"sica_accuracy_full\": analysis[\"sica_accuracy_full\"],\n            \"auroc_entropy_predicts_error\": analysis[\"auroc_entropy_predicts_error\"],\n            \"entropy_stats\": analysis[\"entropy_stats\"],\n            \"majority_fraction_stats\": analysis[\"majority_fraction_stats\"],\n            \"coverage_table\": analysis[\"coverage_table\"],\n        }\n        # Add raw numeric data for downstream plotting\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        exp_out[\"coverage_data\"] = {}\n        for cov in coverages:\n            cov_key = f\"{cov:.1f}\"\n            exp_out[\"coverage_data\"][cov_key] = {\n                \"entropy_sc_acc\": analysis[\"entropy_results\"][cov][\"sc_accuracy\"],\n                \"entropy_sica_acc\": analysis[\"entropy_results\"][cov][\"sica_accuracy\"],\n                \"majfrac_sc_acc\": analysis[\"majfrac_results\"][cov][\"sc_accuracy\"],\n                \"random_sc_acc_mean\": analysis[\"random_results\"][cov][\"sc_accuracy_mean\"],\n                \"random_sc_acc_std\": analysis[\"random_results\"][cov][\"sc_accuracy_std\"],\n                \"n_answered\": analysis[\"entropy_results\"][cov][\"n_answered\"],\n            }\n        output[\"experiments\"][label] = exp_out\n\n    # Multi-seed aggregate\n    if len(all_analyses) > 1:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aggregate = {}\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            aggregate[f\"{cov:.1f}\"] = {\n                \"entropy_sc_mean\": ent_mean,\n                \"entropy_sc_std\": ent_std,\n                \"random_sc_mean\": rnd_mean,\n                \"delta_pp\": ent_mean - rnd_mean,\n            }\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        output[\"aggregate\"] = {\n            \"n_seeds\": len(all_analyses),\n            \"auroc_mean\": sum(aurocs) / len(aurocs),\n            \"auroc_values\": aurocs,\n            \"coverage_data\": aggregate,\n        }\n\n    out_path = \"/root/symb_invariant_consensus/results/direction_e_abstention/results.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "b98cbc86-ba82-499d-9add-be7ae3dc0ca1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYVJ2gNiUotVeQSo5F7J3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T07:44:17.335Z_
+
+<details><summary>↩ Tool result · `toolu_012MY4ijiKkPmVd9ACpuTan4`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "8c880d1c-5421-46ad-b191-ca60e7258999",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention.py",
+    "content": "\"\"\"Direction E: Selective Abstention via per-question consistency calibration.\nEvaluates accuracy-coverage tradeoff using entropy/majority-fraction as routing signals.\n\"\"\"\n\nimport json\nimport math\nimport os\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef load_results(path):\n    \"\"\"Load experiment results JSON, return list of per-question dicts.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"results\"], data[\"summary\"]\n\ndef compute_per_question_metrics(results):\n    \"\"\"Compute majority_fraction, entropy, sc_correct, sica_correct per question.\"\"\"\n    records = []\n    for r in results:\n        dist = r[\"sc_vote_distribution\"]\n        # filter to valid answers only, count total valid votes\n        valid_counts = {k: v for k, v in dist.items() if k in VALID_ANSWERS}\n        total_valid = sum(valid_counts.values())\n        if total_valid == 0:\n            continue\n\n        majority_frac = max(valid_counts.values()) / total_valid\n        entropy = 0.0\n        for cnt in valid_counts.values():\n            p = cnt / total_valid\n            if p > 0:\n                entropy -= p * math.log2(p)\n\n        records.append({\n            \"problem_id\": r[\"problem_id\"],\n            \"ground_truth\": r[\"ground_truth\"],\n            \"sc_answer\": r[\"sc_answer\"],\n            \"sc_correct\": r[\"sc_correct\"],\n            \"sica_answer\": r.get(\"sica_answer\"),\n            \"sica_correct\": r.get(\"sica_correct\"),\n            \"majority_fraction\": majority_frac,\n            \"entropy\": entropy,\n            \"vote_distribution\": valid_counts,\n            \"total_valid_votes\": total_valid,\n        })\n    return records\n\ndef selective_abstention_by_metric(records, metric_key, ascending=True, coverages=None):\n    \"\"\"Rank questions by metric, abstain from hardest ones at each coverage level.\n\n    ascending=True means lower metric = more confident (e.g., entropy).\n    ascending=False means higher metric = more confident (e.g., majority_fraction).\n    \"\"\"\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    sorted_recs = sorted(records, key=lambda x: x[metric_key], reverse=not ascending)\n    n = len(sorted_recs)\n\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        subset = sorted_recs[:k]\n        sc_acc = sum(1 for r in subset if r[\"sc_correct\"]) / len(subset)\n        sica_acc = sum(1 for r in subset if r.get(\"sica_correct\")) / len(subset)\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": len(subset),\n            \"n_total\": n,\n            \"sc_accuracy\": sc_acc,\n            \"sica_accuracy\": sica_acc,\n        }\n    return results\n\ndef random_abstention(records, coverages=None, n_trials=1000, seed=42):\n    \"\"\"Baseline: random abstention at each coverage level (averaged over trials).\"\"\"\n    import random\n    rng = random.Random(seed)\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    n = len(records)\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        sc_accs = []\n        for _ in range(n_trials):\n            subset = rng.sample(records, k)\n            sc_accs.append(sum(1 for r in subset if r[\"sc_correct\"]) / len(subset))\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": k,\n            \"n_total\": n,\n            \"sc_accuracy_mean\": sum(sc_accs) / len(sc_accs),\n            \"sc_accuracy_std\": (sum((x - sum(sc_accs)/len(sc_accs))**2 for x in sc_accs) / len(sc_accs)) ** 0.5,\n        }\n    return results\n\ndef compute_auroc(records):\n    \"\"\"AUROC: entropy as predictor of SC being wrong (higher entropy → more likely wrong).\"\"\"\n    # positive class = SC incorrect\n    scored = [(r[\"entropy\"], not r[\"sc_correct\"]) for r in records]\n    scored.sort(key=lambda x: x[0], reverse=True)  # high entropy first\n\n    n_pos = sum(1 for _, label in scored if label)\n    n_neg = len(scored) - n_pos\n    if n_pos == 0 or n_neg == 0:\n        return float(\"nan\")\n\n    tp = 0\n    fp = 0\n    prev_score = None\n    auc = 0.0\n    prev_tp = 0\n    prev_fp = 0\n\n    for score, label in scored:\n        if score != prev_score and prev_score is not None:\n            auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n            prev_tp = tp\n            prev_fp = fp\n        if label:\n            tp += 1\n        else:\n            fp += 1\n        prev_score = score\n    auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n\n    return auc / (n_pos * n_neg)\n\ndef analyze_single_exp(results_path, label=\"\"):\n    \"\"\"Full analysis for one experiment.\"\"\"\n    results, summary = load_results(results_path)\n    records = compute_per_question_metrics(results)\n\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    # Entropy-based abstention (low entropy = confident)\n    entropy_results = selective_abstention_by_metric(records, \"entropy\", ascending=True, coverages=coverages)\n    # Majority-fraction-based abstention (high majority_frac = confident)\n    majfrac_results = selective_abstention_by_metric(records, \"majority_fraction\", ascending=False, coverages=coverages)\n    # Random baseline\n    random_results = random_abstention(records, coverages=coverages)\n    # AUROC\n    auroc = compute_auroc(records)\n\n    # Distribution stats\n    entropies = [r[\"entropy\"] for r in records]\n    maj_fracs = [r[\"majority_fraction\"] for r in records]\n\n    return {\n        \"label\": label,\n        \"n_questions\": len(records),\n        \"sc_accuracy_full\": summary[\"sc_accuracy\"],\n        \"sica_accuracy_full\": summary[\"sica_accuracy\"],\n        \"auroc_entropy_predicts_error\": auroc,\n        \"entropy_stats\": {\n            \"mean\": sum(entropies) / len(entropies),\n            \"min\": min(entropies),\n            \"max\": max(entropies),\n            \"median\": sorted(entropies)[len(entropies) // 2],\n        },\n        \"majority_fraction_stats\": {\n            \"mean\": sum(maj_fracs) / len(maj_fracs),\n            \"min\": min(maj_fracs),\n            \"max\": max(maj_fracs),\n            \"median\": sorted(maj_fracs)[len(maj_fracs) // 2],\n        },\n        \"coverage_table\": [],\n        \"entropy_results\": entropy_results,\n        \"majfrac_results\": majfrac_results,\n        \"random_results\": random_results,\n    }\n\ndef format_table(analysis):\n    \"\"\"Format coverage table for display.\"\"\"\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n    rows = []\n    for cov in coverages:\n        ent = analysis[\"entropy_results\"][cov]\n        mf = analysis[\"majfrac_results\"][cov]\n        rnd = analysis[\"random_results\"][cov]\n        delta_ent = ent[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        delta_mf = mf[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        row = {\n            \"coverage\": f\"{cov*100:.0f}%\",\n            \"n_answered\": ent[\"n_answered\"],\n            \"random_sc_acc\": f\"{rnd['sc_accuracy_mean']*100:.1f}%\",\n            \"entropy_sc_acc\": f\"{ent['sc_accuracy']*100:.1f}%\",\n            \"majfrac_sc_acc\": f\"{mf['sc_accuracy']*100:.1f}%\",\n            \"entropy_sica_acc\": f\"{ent['sica_accuracy']*100:.1f}%\",\n            \"delta_entropy_pp\": f\"{delta_ent*100:+.1f}pp\",\n            \"delta_majfrac_pp\": f\"{delta_mf*100:+.1f}pp\",\n        }\n        rows.append(row)\n    analysis[\"coverage_table\"] = rows\n    return rows\n\ndef print_report(analysis):\n    \"\"\"Print formatted report.\"\"\"\n    label = analysis[\"label\"]\n    print(f\"\\n{'='*70}\")\n    print(f\"  Direction E: Selective Abstention — {label}\")\n    print(f\"{'='*70}\")\n    print(f\"  N questions: {analysis['n_questions']}\")\n    print(f\"  SC accuracy (full):   {analysis['sc_accuracy_full']*100:.1f}%\")\n    print(f\"  SICA accuracy (full): {analysis['sica_accuracy_full']*100:.1f}%\")\n    print(f\"  AUROC (entropy → error): {analysis['auroc_entropy_predicts_error']:.4f}\")\n    print(f\"  Entropy stats: mean={analysis['entropy_stats']['mean']:.3f}, \"\n          f\"median={analysis['entropy_stats']['median']:.3f}, \"\n          f\"range=[{analysis['entropy_stats']['min']:.3f}, {analysis['entropy_stats']['max']:.3f}]\")\n    print(f\"  MajFrac stats: mean={analysis['majority_fraction_stats']['mean']:.3f}, \"\n          f\"median={analysis['majority_fraction_stats']['median']:.3f}, \"\n          f\"range=[{analysis['majority_fraction_stats']['min']:.3f}, {analysis['majority_fraction_stats']['max']:.3f}]\")\n\n    print(f\"\\n  Coverage Table:\")\n    print(f\"  {'Cov':>5} {'N':>4} {'Random SC':>10} {'Entropy SC':>11} {'MajFrac SC':>11} {'Entropy SICA':>13} {'Δ(ent)':>8} {'Δ(mf)':>8}\")\n    print(f\"  {'-'*5} {'-'*4} {'-'*10} {'-'*11} {'-'*11} {'-'*13} {'-'*8} {'-'*8}\")\n    for row in analysis[\"coverage_table\"]:\n        print(f\"  {row['coverage']:>5} {row['n_answered']:>4} {row['random_sc_acc']:>10} \"\n              f\"{row['entropy_sc_acc']:>11} {row['majfrac_sc_acc']:>11} \"\n              f\"{row['entropy_sica_acc']:>13} {row['delta_entropy_pp']:>8} {row['delta_majfrac_pp']:>8}\")\n    print()\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    experiments = {\n        \"exp033 (Mistral-7B, seed=42)\": f\"{base}/exp033_mistral_7b_folio204/exp033_results.json\",\n        \"exp067 (Mistral-7B, seed=789)\": f\"{base}/exp067_mistral_folio_seed789/exp067_results.json\",\n    }\n\n    all_analyses = {}\n    for label, path in experiments.items():\n        if not os.path.exists(path):\n            print(f\"SKIP: {path} not found\")\n            continue\n        analysis = analyze_single_exp(path, label)\n        format_table(analysis)\n        print_report(analysis)\n        all_analyses[label] = analysis\n\n    # Multi-seed aggregate if >1 experiment\n    if len(all_analyses) > 1:\n        print(f\"\\n{'='*70}\")\n        print(f\"  Multi-seed Aggregate\")\n        print(f\"{'='*70}\")\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        print(f\"  AUROC mean: {sum(aurocs)/len(aurocs):.4f}, values: {[f'{a:.4f}' for a in aurocs]}\")\n\n        print(f\"\\n  {'Cov':>5} {'Entropy SC (mean±std)':>22} {'Random SC (mean)':>17} {'Δ mean':>8}\")\n        print(f\"  {'-'*5} {'-'*22} {'-'*17} {'-'*8}\")\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            delta = ent_mean - rnd_mean\n            print(f\"  {cov*100:>4.0f}% {ent_mean*100:>7.1f}% ± {ent_std*100:.1f}% {rnd_mean*100:>12.1f}% {delta*100:>+7.1f}pp\")\n\n    # Save JSON output\n    output = {\n        \"description\": \"Direction E: Selective Abstention results\",\n        \"experiments\": {},\n    }\n    for label, analysis in all_analyses.items():\n        # Convert for JSON serialization\n        exp_out = {\n            \"label\": label,\n            \"n_questions\": analysis[\"n_questions\"],\n            \"sc_accuracy_full\": analysis[\"sc_accuracy_full\"],\n            \"sica_accuracy_full\": analysis[\"sica_accuracy_full\"],\n            \"auroc_entropy_predicts_error\": analysis[\"auroc_entropy_predicts_error\"],\n            \"entropy_stats\": analysis[\"entropy_stats\"],\n            \"majority_fraction_stats\": analysis[\"majority_fraction_stats\"],\n            \"coverage_table\": analysis[\"coverage_table\"],\n        }\n        # Add raw numeric data for downstream plotting\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        exp_out[\"coverage_data\"] = {}\n        for cov in coverages:\n            cov_key = f\"{cov:.1f}\"\n            exp_out[\"coverage_data\"][cov_key] = {\n                \"entropy_sc_acc\": analysis[\"entropy_results\"][cov][\"sc_accuracy\"],\n                \"entropy_sica_acc\": analysis[\"entropy_results\"][cov][\"sica_accuracy\"],\n                \"majfrac_sc_acc\": analysis[\"majfrac_results\"][cov][\"sc_accuracy\"],\n                \"random_sc_acc_mean\": analysis[\"random_results\"][cov][\"sc_accuracy_mean\"],\n                \"random_sc_acc_std\": analysis[\"random_results\"][cov][\"sc_accuracy_std\"],\n                \"n_answered\": analysis[\"entropy_results\"][cov][\"n_answered\"],\n            }\n        output[\"experiments\"][label] = exp_out\n\n    # Multi-seed aggregate\n    if len(all_analyses) > 1:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aggregate = {}\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            aggregate[f\"{cov:.1f}\"] = {\n                \"entropy_sc_mean\": ent_mean,\n                \"entropy_sc_std\": ent_std,\n                \"random_sc_mean\": rnd_mean,\n                \"delta_pp\": ent_mean - rnd_mean,\n            }\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        output[\"aggregate\"] = {\n            \"n_seeds\": len(all_analyses),\n            \"auroc_mean\": sum(aurocs) / len(aurocs),\n            \"auroc_values\": aurocs,\n            \"coverage_data\": aggregate,\n        }\n\n    out_path = \"/root/symb_invariant_consensus/results/direction_e_abstention/results.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+先做 dry-run 验证数据路径和 Python 可用性（按 C001 约束）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "234ce2fd-efe5-45ee-a1dc-8246d32c98fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2eDqeoPz4JgW3LNSZU4qH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5094,
+      "cache_read_input_tokens": 38110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5094
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JtPPWMaVqEjdEd2PWbT7fE`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 --version"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "85237af5-a55a-4d29-9c6e-f8bc1750fb43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2eDqeoPz4JgW3LNSZU4qH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5094,
+      "cache_read_input_tokens": 38110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5094
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T07:44:23.000Z_
+
+<details><summary>↩ Tool result · `toolu_01JtPPWMaVqEjdEd2PWbT7fE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9c09383c-680b-43f5-a7ee-478ea986dca6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BjSK8wikJ9z56Pcx6SdcEF`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "080f97c0-4b16-470d-a183-12e74ea0cbd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2eDqeoPz4JgW3LNSZU4qH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5094,
+      "cache_read_input_tokens": 38110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5094
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T07:44:23.607Z_
+
+<details><summary>↩ Tool result · `toolu_01BjSK8wikJ9z56Pcx6SdcEF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "8b56911d-a8ea-4d12-b704-e10bda000f4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+python3 not found. Let me check for conda or other python installations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "22a681b8-a673-44f9-96c8-609257c7f87c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PteKkXK1K65QJ6VyNiekL5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 43204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+python3 不在 PATH 中。检查 conda/python 位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "d2bb2a31-5c07-4cd1-ba82-f3497be38300",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PteKkXK1K65QJ6VyNiekL5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 43204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_01EtqLG4GjT683p5wj5Zn3Rc`</summary>
+
+```json
+{
+  "server": "westd-25068"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "4f399487-316c-4c13-868b-567d8d90f433",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PteKkXK1K65QJ6VyNiekL5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 43204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011BpwDW9dLCxMLh27EUQaxA`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "fcdc9672-196f-4a84-9b63-5f43091233d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PteKkXK1K65QJ6VyNiekL5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 43204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T07:44:28.036Z_
+
+<details><summary>↩ Tool result · `toolu_01EtqLG4GjT683p5wj5Zn3Rc`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "54e20dec-f899-4967-ba75-6eb77e0e806c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T07:44:28.563Z_
+
+<details><summary>↩ Tool result · `toolu_011BpwDW9dLCxMLh27EUQaxA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "32da7531-3d60-4b82-90f1-7592babbd28a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+Python 在 conda 路径。上传脚本并运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "47bfaf5f-4afa-4a5b-bef5-1a7ff3ed94a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqRPVAZ7LriFEGcNcW68F4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 413,
+      "cache_read_input_tokens": 43851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 413
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DAmMUaiyBD6BD3LyCKZsjp`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat > /root/symb_invariant_consensus/scripts/direction_e_abstention.py << 'SCRIPT_EOF'\n\"\"\"Direction E: Selective Abstention via per-question consistency calibration.\nEvaluates accuracy-coverage tradeoff using entropy/majority-fraction as routing signals.\n\"\"\"\n\nimport json\nimport math\nimport os\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef load_results(path):\n    \"\"\"Load experiment results JSON, return list of per-question dicts.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"results\"], data[\"summary\"]\n\ndef compute_per_question_metrics(results):\n    \"\"\"Compute majority_fraction, entropy, sc_correct, sica_correct per question.\"\"\"\n    records = []\n    for r in results:\n        dist = r[\"sc_vote_distribution\"]\n        valid_counts = {k: v for k, v in dist.items() if k in VALID_ANSWERS}\n        total_valid = sum(valid_counts.values())\n        if total_valid == 0:\n            continue\n\n        majority_frac = max(valid_counts.values()) / total_valid\n        entropy = 0.0\n        for cnt in valid_counts.values():\n            p = cnt / total_valid\n            if p > 0:\n                entropy -= p * math.log2(p)\n\n        records.append({\n            \"problem_id\": r[\"problem_id\"],\n            \"ground_truth\": r[\"ground_truth\"],\n            \"sc_answer\": r[\"sc_answer\"],\n            \"sc_correct\": r[\"sc_correct\"],\n            \"sica_answer\": r.get(\"sica_answer\"),\n            \"sica_correct\": r.get(\"sica_correct\"),\n            \"majority_fraction\": majority_frac,\n            \"entropy\": entropy,\n            \"vote_distribution\": valid_counts,\n            \"total_valid_votes\": total_valid,\n        })\n    return records\n\ndef selective_abstention_by_metric(records, metric_key, ascending=True, coverages=None):\n    \"\"\"Rank questions by metric, abstain from hardest ones at each coverage level.\n\n    ascending=True means lower metric = more confident (e.g., entropy).\n    ascending=False means higher metric = more confident (e.g., majority_fraction).\n    \"\"\"\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    sorted_recs = sorted(records, key=lambda x: x[metric_key], reverse=not ascending)\n    n = len(sorted_recs)\n\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        subset = sorted_recs[:k]\n        sc_acc = sum(1 for r in subset if r[\"sc_correct\"]) / len(subset)\n        sica_acc = sum(1 for r in subset if r.get(\"sica_correct\")) / len(subset)\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": len(subset),\n            \"n_total\": n,\n            \"sc_accuracy\": sc_acc,\n            \"sica_accuracy\": sica_acc,\n        }\n    return results\n\ndef random_abstention(records, coverages=None, n_trials=1000, seed=42):\n    \"\"\"Baseline: random abstention at each coverage level (averaged over trials).\"\"\"\n    import random\n    rng = random.Random(seed)\n    if coverages is None:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    n = len(records)\n    results = {}\n    for cov in coverages:\n        k = max(1, int(round(n * cov)))\n        sc_accs = []\n        for _ in range(n_trials):\n            subset = rng.sample(records, k)\n            sc_accs.append(sum(1 for r in subset if r[\"sc_correct\"]) / len(subset))\n        results[cov] = {\n            \"coverage\": cov,\n            \"n_answered\": k,\n            \"n_total\": n,\n            \"sc_accuracy_mean\": sum(sc_accs) / len(sc_accs),\n            \"sc_accuracy_std\": (sum((x - sum(sc_accs)/len(sc_accs))**2 for x in sc_accs) / len(sc_accs)) ** 0.5,\n        }\n    return results\n\ndef compute_auroc(records):\n    \"\"\"AUROC: entropy as predictor of SC being wrong (higher entropy -> more likely wrong).\"\"\"\n    scored = [(r[\"entropy\"], not r[\"sc_correct\"]) for r in records]\n    scored.sort(key=lambda x: x[0], reverse=True)\n\n    n_pos = sum(1 for _, label in scored if label)\n    n_neg = len(scored) - n_pos\n    if n_pos == 0 or n_neg == 0:\n        return float(\"nan\")\n\n    tp = 0\n    fp = 0\n    prev_score = None\n    auc = 0.0\n    prev_tp = 0\n    prev_fp = 0\n\n    for score, label in scored:\n        if score != prev_score and prev_score is not None:\n            auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n            prev_tp = tp\n            prev_fp = fp\n        if label:\n            tp += 1\n        else:\n            fp += 1\n        prev_score = score\n    auc += (fp - prev_fp) * (tp + prev_tp) / 2.0\n\n    return auc / (n_pos * n_neg)\n\ndef analyze_single_exp(results_path, label=\"\"):\n    \"\"\"Full analysis for one experiment.\"\"\"\n    results, summary = load_results(results_path)\n    records = compute_per_question_metrics(results)\n\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n\n    entropy_results = selective_abstention_by_metric(records, \"entropy\", ascending=True, coverages=coverages)\n    majfrac_results = selective_abstention_by_metric(records, \"majority_fraction\", ascending=False, coverages=coverages)\n    random_results = random_abstention(records, coverages=coverages)\n    auroc = compute_auroc(records)\n\n    entropies = [r[\"entropy\"] for r in records]\n    maj_fracs = [r[\"majority_fraction\"] for r in records]\n\n    return {\n        \"label\": label,\n        \"n_questions\": len(records),\n        \"sc_accuracy_full\": summary[\"sc_accuracy\"],\n        \"sica_accuracy_full\": summary[\"sica_accuracy\"],\n        \"auroc_entropy_predicts_error\": auroc,\n        \"entropy_stats\": {\n            \"mean\": sum(entropies) / len(entropies),\n            \"min\": min(entropies),\n            \"max\": max(entropies),\n            \"median\": sorted(entropies)[len(entropies) // 2],\n        },\n        \"majority_fraction_stats\": {\n            \"mean\": sum(maj_fracs) / len(maj_fracs),\n            \"min\": min(maj_fracs),\n            \"max\": max(maj_fracs),\n            \"median\": sorted(maj_fracs)[len(maj_fracs) // 2],\n        },\n        \"coverage_table\": [],\n        \"entropy_results\": entropy_results,\n        \"majfrac_results\": majfrac_results,\n        \"random_results\": random_results,\n    }\n\ndef format_table(analysis):\n    \"\"\"Format coverage table for display.\"\"\"\n    coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n    rows = []\n    for cov in coverages:\n        ent = analysis[\"entropy_results\"][cov]\n        mf = analysis[\"majfrac_results\"][cov]\n        rnd = analysis[\"random_results\"][cov]\n        delta_ent = ent[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        delta_mf = mf[\"sc_accuracy\"] - rnd[\"sc_accuracy_mean\"]\n        row = {\n            \"coverage\": f\"{cov*100:.0f}%\",\n            \"n_answered\": ent[\"n_answered\"],\n            \"random_sc_acc\": f\"{rnd['sc_accuracy_mean']*100:.1f}%\",\n            \"entropy_sc_acc\": f\"{ent['sc_accuracy']*100:.1f}%\",\n            \"majfrac_sc_acc\": f\"{mf['sc_accuracy']*100:.1f}%\",\n            \"entropy_sica_acc\": f\"{ent['sica_accuracy']*100:.1f}%\",\n            \"delta_entropy_pp\": f\"{delta_ent*100:+.1f}pp\",\n            \"delta_majfrac_pp\": f\"{delta_mf*100:+.1f}pp\",\n        }\n        rows.append(row)\n    analysis[\"coverage_table\"] = rows\n    return rows\n\ndef print_report(analysis):\n    \"\"\"Print formatted report.\"\"\"\n    label = analysis[\"label\"]\n    print(f\"\\n{'='*70}\")\n    print(f\"  Direction E: Selective Abstention -- {label}\")\n    print(f\"{'='*70}\")\n    print(f\"  N questions: {analysis['n_questions']}\")\n    print(f\"  SC accuracy (full):   {analysis['sc_accuracy_full']*100:.1f}%\")\n    print(f\"  SICA accuracy (full): {analysis['sica_accuracy_full']*100:.1f}%\")\n    print(f\"  AUROC (entropy -> error): {analysis['auroc_entropy_predicts_error']:.4f}\")\n    print(f\"  Entropy stats: mean={analysis['entropy_stats']['mean']:.3f}, \"\n          f\"median={analysis['entropy_stats']['median']:.3f}, \"\n          f\"range=[{analysis['entropy_stats']['min']:.3f}, {analysis['entropy_stats']['max']:.3f}]\")\n    print(f\"  MajFrac stats: mean={analysis['majority_fraction_stats']['mean']:.3f}, \"\n          f\"median={analysis['majority_fraction_stats']['median']:.3f}, \"\n          f\"range=[{analysis['majority_fraction_stats']['min']:.3f}, {analysis['majority_fraction_stats']['max']:.3f}]\")\n\n    print(f\"\\n  Coverage Table:\")\n    print(f\"  {'Cov':>5} {'N':>4} {'Random SC':>10} {'Entropy SC':>11} {'MajFrac SC':>11} {'Entropy SICA':>13} {'d(ent)':>8} {'d(mf)':>8}\")\n    print(f\"  {'-'*5} {'-'*4} {'-'*10} {'-'*11} {'-'*11} {'-'*13} {'-'*8} {'-'*8}\")\n    for row in analysis[\"coverage_table\"]:\n        print(f\"  {row['coverage']:>5} {row['n_answered']:>4} {row['random_sc_acc']:>10} \"\n              f\"{row['entropy_sc_acc']:>11} {row['majfrac_sc_acc']:>11} \"\n              f\"{row['entropy_sica_acc']:>13} {row['delta_entropy_pp']:>8} {row['delta_majfrac_pp']:>8}\")\n    print()\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    experiments = {\n        \"exp033 (Mistral-7B, seed=42)\": f\"{base}/exp033_mistral_7b_folio204/exp033_results.json\",\n        \"exp067 (Mistral-7B, seed=789)\": f\"{base}/exp067_mistral_folio_seed789/exp067_results.json\",\n    }\n\n    all_analyses = {}\n    for label, path in experiments.items():\n        if not os.path.exists(path):\n            print(f\"SKIP: {path} not found\")\n            continue\n        analysis = analyze_single_exp(path, label)\n        format_table(analysis)\n        print_report(analysis)\n        all_analyses[label] = analysis\n\n    if len(all_analyses) > 1:\n        print(f\"\\n{'='*70}\")\n        print(f\"  Multi-seed Aggregate\")\n        print(f\"{'='*70}\")\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        print(f\"  AUROC mean: {sum(aurocs)/len(aurocs):.4f}, values: {[f'{a:.4f}' for a in aurocs]}\")\n\n        print(f\"\\n  {'Cov':>5} {'Entropy SC (mean+/-std)':>24} {'Random SC (mean)':>17} {'d mean':>8}\")\n        print(f\"  {'-'*5} {'-'*24} {'-'*17} {'-'*8}\")\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            delta = ent_mean - rnd_mean\n            print(f\"  {cov*100:>4.0f}% {ent_mean*100:>9.1f}% +/- {ent_std*100:.1f}% {rnd_mean*100:>12.1f}% {delta*100:>+7.1f}pp\")\n\n    output = {\n        \"description\": \"Direction E: Selective Abstention results\",\n        \"experiments\": {},\n    }\n    for label, analysis in all_analyses.items():\n        exp_out = {\n            \"label\": label,\n            \"n_questions\": analysis[\"n_questions\"],\n            \"sc_accuracy_full\": analysis[\"sc_accuracy_full\"],\n            \"sica_accuracy_full\": analysis[\"sica_accuracy_full\"],\n            \"auroc_entropy_predicts_error\": analysis[\"auroc_entropy_predicts_error\"],\n            \"entropy_stats\": analysis[\"entropy_stats\"],\n            \"majority_fraction_stats\": analysis[\"majority_fraction_stats\"],\n            \"coverage_table\": analysis[\"coverage_table\"],\n        }\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        exp_out[\"coverage_data\"] = {}\n        for cov in coverages:\n            cov_key = f\"{cov:.1f}\"\n            exp_out[\"coverage_data\"][cov_key] = {\n                \"entropy_sc_acc\": analysis[\"entropy_results\"][cov][\"sc_accuracy\"],\n                \"entropy_sica_acc\": analysis[\"entropy_results\"][cov][\"sica_accuracy\"],\n                \"majfrac_sc_acc\": analysis[\"majfrac_results\"][cov][\"sc_accuracy\"],\n                \"random_sc_acc_mean\": analysis[\"random_results\"][cov][\"sc_accuracy_mean\"],\n                \"random_sc_acc_std\": analysis[\"random_results\"][cov][\"sc_accuracy_std\"],\n                \"n_answered\": analysis[\"entropy_results\"][cov][\"n_answered\"],\n            }\n        output[\"experiments\"][label] = exp_out\n\n    if len(all_analyses) > 1:\n        coverages = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]\n        aggregate = {}\n        for cov in coverages:\n            ent_accs = [a[\"entropy_results\"][cov][\"sc_accuracy\"] for a in all_analyses.values()]\n            rnd_accs = [a[\"random_results\"][cov][\"sc_accuracy_mean\"] for a in all_analyses.values()]\n            ent_mean = sum(ent_accs) / len(ent_accs)\n            ent_std = (sum((x - ent_mean)**2 for x in ent_accs) / len(ent_accs)) ** 0.5\n            rnd_mean = sum(rnd_accs) / len(rnd_accs)\n            aggregate[f\"{cov:.1f}\"] = {\n                \"entropy_sc_mean\": ent_mean,\n                \"entropy_sc_std\": ent_std,\n                \"random_sc_mean\": rnd_mean,\n                \"delta_pp\": ent_mean - rnd_mean,\n            }\n        aurocs = [a[\"auroc_entropy_predicts_error\"] for a in all_analyses.values()]\n        output[\"aggregate\"] = {\n            \"n_seeds\": len(all_analyses),\n            \"auroc_mean\": sum(aurocs) / len(aurocs),\n            \"auroc_values\": aurocs,\n            \"coverage_data\": aggregate,\n        }\n\n    out_path = \"/root/symb_invariant_consensus/results/direction_e_abstention/results.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "51210487-2d81-4cb8-a2f2-5ad7207ba151",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqRPVAZ7LriFEGcNcW68F4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 413,
+      "cache_read_input_tokens": 43851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 413
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T07:45:17.788Z_
+
+<details><summary>↩ Tool result · `toolu_01DAmMUaiyBD6BD3LyCKZsjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "a4799004-35a9-4315-ad30-085accceb65b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Qu398rjXRSFb69ScmbRUk7`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/symb_invariant_consensus/scripts/direction_e_abstention.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "877e8fd0-280d-45f3-9c8d-7f5d1d3e2a24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DNm6dLvzs43LpwV997JLTg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4733,
+      "cache_read_input_tokens": 44264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4733
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T07:45:22.723Z_
+
+<details><summary>↩ Tool result · `toolu_01Qu398rjXRSFb69ScmbRUk7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\n  Direction E: Selective Abstention -- exp033 (Mistral-7B, seed=42)\\n======================================================================\\n  N questions: 204\\n  SC accuracy (full):   54.4%\\n  SICA accuracy (full): 59.3%\\n  AUROC (entropy -> error): 0.6888\\n  Entropy stats: mean=0.628, median=0.684, range=[0.000, 1.557]\\n  MajFrac stats: mean=0.788, median=0.818, range=[0.417, 1.000]\\n\\n  Coverage Table:\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\n   100%  204      54.4%       54.4%       54.4%         59.3%   +0.0pp   +0.0pp\\n    90%  184      54.4%       56.0%       55.4%         61.4%   +1.5pp   +1.0pp\\n    80%  163      54.5%       58.3%       59.5%         63.2%   +3.8pp   +5.1pp\\n    70%  143      54.4%       63.6%       62.9%         63.6%   +9.2pp   +8.5pp\\n    60%  122      54.5%       66.4%       66.4%         66.4%  +11.9pp  +11.9pp\\n    50%  102      54.3%       70.6%       69.6%         70.6%  +16.3pp  +15.3pp\\n\\n\\n======================================================================\\n  Direction E: Selective Abstention -- exp067 (Mistral-7B, seed=789)\\n======================================================================\\n  N questions: 204\\n  SC accuracy (full):   54.4%\\n  SICA accuracy (full): 53.9%\\n  AUROC (entropy -> error): 0.6577\\n  Entropy stats: mean=0.641, median=0.722, range=[0.000, 1.571]\\n  MajFrac stats: mean=0.781, median=0.800, range=[0.375, 1.000]\\n\\n  Coverage Table:\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\n   100%  204      54.4%       54.4%       54.4%         53.9%   +0.0pp   +0.0pp\\n    90%  184      54.5%       57.6%       57.6%         57.1%   +3.1pp   +3.1pp\\n    80%  163      54.5%       59.5%       59.5%         58.9%   +5.1pp   +5.1pp\\n    70%  143      54.4%       60.8%       60.8%         61.5%   +6.5pp   +6.5pp\\n    60%  122      54.5%       62.3%       63.1%         62.3%   +7.8pp   +8.6pp\\n    50%  102      54.4%       64.7%       64.7%         64.7%  +10.3pp  +10.3pp\\n\\n\\n======================================================================\\n  Multi-seed Aggregate\\n======================================================================\\n  AUROC mean: 0.6733, values: ['0.6888', '0.6577']\\n\\n    Cov  Entropy SC (mean+/-std)  Random SC (mean)   d mean\\n  ----- ------------------------ ----------------- --------\\n   100%      54.4% +/- 0.0%         54.4%    +0.0pp\\n    90%      56.8% +/- 0.8%         54.5%    +2.3pp\\n    80%      58.9% +/- 0.6%         54.5%    +4.4pp\\n    70%      62.2% +/- 1.4%         54.4%    +7.8pp\\n    60%      64.3% +/- 2.0%         54.5%    +9.8pp\\n    50%      67.6% +/- 2.9%         54.4%   +13.3pp\\n\\nResults saved to /root/symb_invariant_consensus/results/direction_e_abstention/results.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "9f3d63d4-7b56-4ad9-8ff4-ae1eab040ae8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\n  Direction E: Selective Abstention -- exp033 (Mistral-7B, seed=42)\\\\n======================================================================\\\\n  N questions: 204\\\\n  SC accuracy (full):   54.4%\\\\n  SICA accuracy (full): 59.3%\\\\n  AUROC (entropy -> error): 0.6888\\\\n  Entropy stats: mean=0.628, median=0.684, range=[0.000, 1.557]\\\\n  MajFrac stats: mean=0.788, median=0.818, range=[0.417, 1.000]\\\\n\\\\n  Coverage Table:\\\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\\\n   100%  204      54.4%       54.4%       54.4%         59.3%   +0.0pp   +0.0pp\\\\n    90%  184      54.4%       56.0%       55.4%         61.4%   +1.5pp   +1.0pp\\\\n    80%  163      54.5%       58.3%       59.5%         63.2%   +3.8pp   +5.1pp\\\\n    70%  143      54.4%       63.6%       62.9%         63.6%   +9.2pp   +8.5pp\\\\n    60%  122      54.5%       66.4%       66.4%         66.4%  +11.9pp  +11.9pp\\\\n    50%  102      54.3%       70.6%       69.6%         70.6%  +16.3pp  +15.3pp\\\\n\\\\n\\\\n======================================================================\\\\n  Direction E: Selective Abstention -- exp067 (Mistral-7B, seed=789)\\\\n======================================================================\\\\n  N questions: 204\\\\n  SC accuracy (full):   54.4%\\\\n  SICA accuracy (full): 53.9%\\\\n  AUROC (entropy -> error): 0.6577\\\\n  Entropy stats: mean=0.641, median=0.722, range=[0.000, 1.571]\\\\n  MajFrac stats: mean=0.781, median=0.800, range=[0.375, 1.000]\\\\n\\\\n  Coverage Table:\\\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\\\n   100%  204      54.4%       54.4%       54.4%         53.9%   +0.0pp   +0.0pp\\\\n    90%  184      54.5%       57.6%       57.6%         57.1%   +3.1pp   +3.1pp\\\\n    80%  163      54.5%       59.5%       59.5%         58.9%   +5.1pp   +5.1pp\\\\n    70%  143      54.4%       60.8%       60.8%         61.5%   +6.5pp   +6.5pp\\\\n    60%  122      54.5%       62.3%       63.1%         62.3%   +7.8pp   +8.6pp\\\\n    50%  102      54.4%       64.7%       64.7%         64.7%  +10.3pp  +10.3pp\\\\n\\\\n\\\\n======================================================================\\\\n  Multi-seed Aggregate\\\\n======================================================================\\\\n  AUROC mean: 0.6733, values: ['0.6888', '0.6577']\\\\n\\\\n    Cov  Entropy SC (mean+/-std)  Random SC (mean)   d mean\\\\n  ----- ------------------------ ----------------- --------\\\\n   100%      54.4% +/- 0.0%         54.4%    +0.0pp\\\\n    90%      56.8% +/- 0.8%         54.5%    +2.3pp\\\\n    80%      58.9% +/- 0.6%         54.5%    +4.4pp\\\\n    70%      62.2% +/- 1.4%         54.4%    +7.8pp\\\\n    60%      64.3% +/- 2.0%         54.5%    +9.8pp\\\\n    50%      67.6% +/- 2.9%         54.4%   +13.3pp\\\\n\\\\nResults saved to /root/symb_invariant_consensus/results/direction_e_abstention/results.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\n  Direction E: Selective Abstention -- exp033 (Mistral-7B, seed=42)\\n======================================================================\\n  N questions: 204\\n  SC accuracy (full):   54.4%\\n  SICA accuracy (full): 59.3%\\n  AUROC (entropy -> error): 0.6888\\n  Entropy stats: mean=0.628, median=0.684, range=[0.000, 1.557]\\n  MajFrac stats: mean=0.788, median=0.818, range=[0.417, 1.000]\\n\\n  Coverage Table:\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\n   100%  204      54.4%       54.4%       54.4%         59.3%   +0.0pp   +0.0pp\\n    90%  184      54.4%       56.0%       55.4%         61.4%   +1.5pp   +1.0pp\\n    80%  163      54.5%       58.3%       59.5%         63.2%   +3.8pp   +5.1pp\\n    70%  143      54.4%       63.6%       62.9%         63.6%   +9.2pp   +8.5pp\\n    60%  122      54.5%       66.4%       66.4%         66.4%  +11.9pp  +11.9pp\\n    50%  102      54.3%       70.6%       69.6%         70.6%  +16.3pp  +15.3pp\\n\\n\\n======================================================================\\n  Direction E: Selective Abstention -- exp067 (Mistral-7B, seed=789)\\n======================================================================\\n  N questions: 204\\n  SC accuracy (full):   54.4%\\n  SICA accuracy (full): 53.9%\\n  AUROC (entropy -> error): 0.6577\\n  Entropy stats: mean=0.641, median=0.722, range=[0.000, 1.571]\\n  MajFrac stats: mean=0.781, median=0.800, range=[0.375, 1.000]\\n\\n  Coverage Table:\\n    Cov    N  Random SC  Entropy SC  MajFrac SC  Entropy SICA   d(ent)    d(mf)\\n  ----- ---- ---------- ----------- ----------- ------------- -------- --------\\n   100%  204      54.4%       54.4%       54.4%         53.9%   +0.0pp   +0.0pp\\n    90%  184      54.5%       57.6%       57.6%         57.1%   +3.1pp   +3.1pp\\n    80%  163      54.5%       59.5%       59.5%         58.9%   +5.1pp   +5.1pp\\n    70%  143      54.4%       60.8%       60.8%         61.5%   +6.5pp   +6.5pp\\n    60%  122      54.5%       62.3%       63.1%         62.3%   +7.8pp   +8.6pp\\n    50%  102      54.4%       64.7%       64.7%         64.7%  +10.3pp  +10.3pp\\n\\n\\n======================================================================\\n  Multi-seed Aggregate\\n======================================================================\\n  AUROC mean: 0.6733, values: ['0.6888', '0.6577']\\n\\n    Cov  Entropy SC (mean+/-std)  Random SC (mean)   d mean\\n  ----- ------------------------ ----------------- --------\\n   100%      54.4% +/- 0.0%         54.4%    +0.0pp\\n    90%      56.8% +/- 0.8%         54.5%    +2.3pp\\n    80%      58.9% +/- 0.6%         54.5%    +4.4pp\\n    70%      62.2% +/- 1.4%         54.4%    +7.8pp\\n    60%      64.3% +/- 2.0%         54.5%    +9.8pp\\n    50%      67.6% +/- 2.9%         54.4%   +13.3pp\\n\\nResults saved to /root/symb_invariant_consensus/results/direction_e_abstention/results.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent results! Now let me retrieve the JSON and save it locally, then register the artifact.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "79e065d8-e4ba-4779-8be1-4bc781578d3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181wErqaEWx2jALptw4YdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1428,
+      "cache_read_input_tokens": 48997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1428
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+结果非常强。现在取回 JSON 到本地并注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "44a64325-8399-490c-867f-ba2e668459cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181wErqaEWx2jALptw4YdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1428,
+      "cache_read_input_tokens": 48997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1428
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QuvZdDRZeYTCpdz6uw8B2T`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_e_abstention/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "5f8131c0-39c7-4db8-9669-cd841c9ef0ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181wErqaEWx2jALptw4YdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1428,
+      "cache_read_input_tokens": 48997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1428
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T07:45:27.850Z_
+
+<details><summary>↩ Tool result · `toolu_01QuvZdDRZeYTCpdz6uw8B2T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Direction E: Selective Abstention results\\\",\\n  \\\"experiments\\\": {\\n    \\\"exp033 (Mistral-7B, seed=42)\\\": {\\n      \\\"label\\\": \\\"exp033 (Mistral-7B, seed=42)\\\",\\n      \\\"n_questions\\\": 204,\\n      \\\"sc_accuracy_full\\\": 0.5441176470588235,\\n      \\\"sica_accuracy_full\\\": 0.5931372549019608,\\n      \\\"auroc_entropy_predicts_error\\\": 0.6888017049307372,\\n      \\\"entropy_stats\\\": {\\n        \\\"mean\\\": 0.6283882037749069,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.5566567074628228,\\n        \\\"median\\\": 0.6840384356390417\\n      },\\n      \\\"majority_fraction_stats\\\": {\\n        \\\"mean\\\": 0.7876768384121325,\\n        \\\"min\\\": 0.4166666666666667,\\n        \\\"max\\\": 1.0,\\n        \\\"median\\\": 0.8181818181818182\\n      },\\n      \\\"coverage_table\\\": [\\n        {\\n          \\\"coverage\\\": \\\"100%\\\",\\n          \\\"n_answered\\\": 204,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"59.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+0.0pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+0.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"90%\\\",\\n          \\\"n_answered\\\": 184,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"56.0%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"55.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"61.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+1.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+1.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"80%\\\",\\n          \\\"n_answered\\\": 163,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"58.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"59.5%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.2%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+3.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+5.1pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"70%\\\",\\n          \\\"n_answered\\\": 143,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"63.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"62.9%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+9.2pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"66.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+11.9pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+11.9pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.3%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"70.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"69.6%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"70.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+16.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+15.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5931372549019608,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5597826086956522,\\n          \\\"entropy_sica_acc\\\": 0.6141304347826086,\\n          \\\"majfrac_sc_acc\\\": 0.5543478260869565,\\n          \\\"random_sc_acc_mean\\\": 0.5442880434782609,\\n          \\\"random_sc_acc_std\\\": 0.01170284120212987,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5828220858895705,\\n          \\\"entropy_sica_acc\\\": 0.6319018404907976,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445521472392638,\\n          \\\"random_sc_acc_std\\\": 0.01752858115660949,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6363636363636364,\\n          \\\"entropy_sica_acc\\\": 0.6363636363636364,\\n          \\\"majfrac_sc_acc\\\": 0.6293706293706294,\\n          \\\"random_sc_acc_mean\\\": 0.5443006993006994,\\n          \\\"random_sc_acc_std\\\": 0.021464972029018873,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6639344262295082,\\n          \\\"entropy_sica_acc\\\": 0.6639344262295082,\\n          \\\"majfrac_sc_acc\\\": 0.6639344262295082,\\n          \\\"random_sc_acc_mean\\\": 0.54487704\\n\\n... [截断: 输出过长，省略 2118 字符] ...\\n\\n          \\\"entropy_sica_acc\\\": \\\"61.5%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+6.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+6.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"62.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"63.1%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"62.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+7.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.6pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"64.7%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+10.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+10.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5392156862745098,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5760869565217391,\\n          \\\"entropy_sica_acc\\\": 0.5706521739130435,\\n          \\\"majfrac_sc_acc\\\": 0.5760869565217391,\\n          \\\"random_sc_acc_mean\\\": 0.5447554347826088,\\n          \\\"random_sc_acc_std\\\": 0.011259021535030302,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5950920245398773,\\n          \\\"entropy_sica_acc\\\": 0.588957055214724,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445214723926379,\\n          \\\"random_sc_acc_std\\\": 0.01748407167228819,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6083916083916084,\\n          \\\"entropy_sica_acc\\\": 0.6153846153846154,\\n          \\\"majfrac_sc_acc\\\": 0.6083916083916084,\\n          \\\"random_sc_acc_mean\\\": 0.5438041958041958,\\n          \\\"random_sc_acc_std\\\": 0.02148151585660289,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6229508196721312,\\n          \\\"entropy_sica_acc\\\": 0.6229508196721312,\\n          \\\"majfrac_sc_acc\\\": 0.6311475409836066,\\n          \\\"random_sc_acc_mean\\\": 0.5453770491803278,\\n          \\\"random_sc_acc_std\\\": 0.02992050742067501,\\n          \\\"n_answered\\\": 122\\n        },\\n        \\\"0.5\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6470588235294118,\\n          \\\"entropy_sica_acc\\\": 0.6470588235294118,\\n          \\\"majfrac_sc_acc\\\": 0.6470588235294118,\\n          \\\"random_sc_acc_mean\\\": 0.5439019607843137,\\n          \\\"random_sc_acc_std\\\": 0.03539136384967851,\\n          \\\"n_answered\\\": 102\\n        }\\n      }\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"n_seeds\\\": 2,\\n    \\\"auroc_mean\\\": 0.6732538990603507,\\n    \\\"auroc_values\\\": [\\n      0.6888017049307372,\\n      0.6577060931899642\\n    ],\\n    \\\"coverage_data\\\": {\\n      \\\"1.0\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5441176470588235,\\n        \\\"entropy_sc_std\\\": 0.0,\\n        \\\"random_sc_mean\\\": 0.5441176470588235,\\n        \\\"delta_pp\\\": 0.0\\n      },\\n      \\\"0.9\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5679347826086957,\\n        \\\"entropy_sc_std\\\": 0.008152173913043459,\\n        \\\"random_sc_mean\\\": 0.5445217391304349,\\n        \\\"delta_pp\\\": 0.023413043478260787\\n      },\\n      \\\"0.8\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5889570552147239,\\n        \\\"entropy_sc_std\\\": 0.006134969325153394,\\n        \\\"random_sc_mean\\\": 0.5445368098159509,\\n        \\\"delta_pp\\\": 0.044420245398772984\\n      },\\n      \\\"0.7\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6223776223776224,\\n        \\\"entropy_sc_std\\\": 0.013986013986013957,\\n        \\\"random_sc_mean\\\": 0.5440524475524475,\\n        \\\"delta_pp\\\": 0.07832517482517487\\n      },\\n      \\\"0.6\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6434426229508197,\\n        \\\"entropy_sc_std\\\": 0.020491803278688492,\\n        \\\"random_sc_mean\\\": 0.5451270491803278,\\n        \\\"delta_pp\\\": 0.09831557377049183\\n      },\\n      \\\"0.5\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6764705882352942,\\n        \\\"entropy_sc_std\\\": 0.02941176470588236,\\n        \\\"random_sc_mean\\\": 0.5435980392156863,\\n        \\\"delta_pp\\\": 0.13287254901960788\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "7bbd5be7-1f15-4899-bb53-68d142171caf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Direction E: Selective Abstention results\\\\\\\",\\\\n  \\\\\\\"experiments\\\\\\\": {\\\\n    \\\\\\\"exp033 (Mistral-7B, seed=42)\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"exp033 (Mistral-7B, seed=42)\\\\\\\",\\\\n      \\\\\\\"n_questions\\\\\\\": 204,\\\\n      \\\\\\\"sc_accuracy_full\\\\\\\": 0.5441176470588235,\\\\n      \\\\\\\"sica_accuracy_full\\\\\\\": 0.5931372549019608,\\\\n      \\\\\\\"auroc_entropy_predicts_error\\\\\\\": 0.6888017049307372,\\\\n      \\\\\\\"entropy_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6283882037749069,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 1.5566567074628228,\\\\n        \\\\\\\"median\\\\\\\": 0.6840384356390417\\\\n      },\\\\n      \\\\\\\"majority_fraction_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7876768384121325,\\\\n        \\\\\\\"min\\\\\\\": 0.4166666666666667,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"median\\\\\\\": 0.8181818181818182\\\\n      },\\\\n      \\\\\\\"coverage_table\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"100%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 204,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"59.3%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+0.0pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+0.0pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"90%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 184,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"56.0%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"55.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"61.4%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+1.5pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+1.0pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"80%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 163,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"58.3%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"59.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"63.2%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+3.8pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+5.1pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"70%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 143,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"63.6%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"62.9%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"63.6%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+9.2pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+8.5pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"60%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 122,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+11.9pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+11.9pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"50%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 102,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.3%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"70.6%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"69.6%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"70.6%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+16.3pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+15.3pp\\\\\\\"\\\\n        }\\\\n      ],\\\\n      \\\\\\\"coverage_data\\\\\\\": {\\\\n        \\\\\\\"1.0\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5931372549019608,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.0,\\\\n          \\\\\\\"n_answered\\\\\\\": 204\\\\n        },\\\\n        \\\\\\\"0.9\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5597826086956522,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6141304347826086,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5543478260869565,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5442880434782609,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01170284120212987,\\\\n          \\\\\\\"n_answered\\\\\\\": 184\\\\n        },\\\\n        \\\\\\\"0.8\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5828220858895705,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6319018404907976,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5445521472392638,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01752858115660949,\\\\n          \\\\\\\"n_answered\\\\\\\": 163\\\\n        },\\\\n        \\\\\\\"0.7\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6363636363636364,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6363636363636364,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6293706293706294,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5443006993006994,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.021464972029018873,\\\\n          \\\\\\\"n_answered\\\\\\\": 143\\\\n        },\\\\n        \\\\\\\"0.6\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.54487704\\\\n\\\\n... [截断: 输出过长，省略 2118 字符] ...\\\\n\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"61.5%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+6.5pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+6.5pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"60%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 122,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"62.3%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"63.1%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"62.3%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+7.8pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+8.6pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"50%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 102,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+10.3pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+10.3pp\\\\\\\"\\\\n        }\\\\n      ],\\\\n      \\\\\\\"coverage_data\\\\\\\": {\\\\n        \\\\\\\"1.0\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5392156862745098,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.0,\\\\n          \\\\\\\"n_answered\\\\\\\": 204\\\\n        },\\\\n        \\\\\\\"0.9\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5760869565217391,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5706521739130435,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5760869565217391,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5447554347826088,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.011259021535030302,\\\\n          \\\\\\\"n_answered\\\\\\\": 184\\\\n        },\\\\n        \\\\\\\"0.8\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.588957055214724,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5445214723926379,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01748407167228819,\\\\n          \\\\\\\"n_answered\\\\\\\": 163\\\\n        },\\\\n        \\\\\\\"0.7\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6083916083916084,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6153846153846154,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6083916083916084,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5438041958041958,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.02148151585660289,\\\\n          \\\\\\\"n_answered\\\\\\\": 143\\\\n        },\\\\n        \\\\\\\"0.6\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6229508196721312,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6229508196721312,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6311475409836066,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5453770491803278,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.02992050742067501,\\\\n          \\\\\\\"n_answered\\\\\\\": 122\\\\n        },\\\\n        \\\\\\\"0.5\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5439019607843137,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.03539136384967851,\\\\n          \\\\\\\"n_answered\\\\\\\": 102\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"aggregate\\\\\\\": {\\\\n    \\\\\\\"n_seeds\\\\\\\": 2,\\\\n    \\\\\\\"auroc_mean\\\\\\\": 0.6732538990603507,\\\\n    \\\\\\\"auroc_values\\\\\\\": [\\\\n      0.6888017049307372,\\\\n      0.6577060931899642\\\\n    ],\\\\n    \\\\\\\"coverage_data\\\\\\\": {\\\\n      \\\\\\\"1.0\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.0,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"0.9\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5679347826086957,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.008152173913043459,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5445217391304349,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.023413043478260787\\\\n      },\\\\n      \\\\\\\"0.8\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5889570552147239,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.006134969325153394,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5445368098159509,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.044420245398772984\\\\n      },\\\\n      \\\\\\\"0.7\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6223776223776224,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.013986013986013957,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5440524475524475,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.07832517482517487\\\\n      },\\\\n      \\\\\\\"0.6\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6434426229508197,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.020491803278688492,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5451270491803278,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.09831557377049183\\\\n      },\\\\n      \\\\\\\"0.5\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6764705882352942,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.02941176470588236,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5435980392156863,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.13287254901960788\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Direction E: Selective Abstention results\\\",\\n  \\\"experiments\\\": {\\n    \\\"exp033 (Mistral-7B, seed=42)\\\": {\\n      \\\"label\\\": \\\"exp033 (Mistral-7B, seed=42)\\\",\\n      \\\"n_questions\\\": 204,\\n      \\\"sc_accuracy_full\\\": 0.5441176470588235,\\n      \\\"sica_accuracy_full\\\": 0.5931372549019608,\\n      \\\"auroc_entropy_predicts_error\\\": 0.6888017049307372,\\n      \\\"entropy_stats\\\": {\\n        \\\"mean\\\": 0.6283882037749069,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.5566567074628228,\\n        \\\"median\\\": 0.6840384356390417\\n      },\\n      \\\"majority_fraction_stats\\\": {\\n        \\\"mean\\\": 0.7876768384121325,\\n        \\\"min\\\": 0.4166666666666667,\\n        \\\"max\\\": 1.0,\\n        \\\"median\\\": 0.8181818181818182\\n      },\\n      \\\"coverage_table\\\": [\\n        {\\n          \\\"coverage\\\": \\\"100%\\\",\\n          \\\"n_answered\\\": 204,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"59.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+0.0pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+0.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"90%\\\",\\n          \\\"n_answered\\\": 184,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"56.0%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"55.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"61.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+1.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+1.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"80%\\\",\\n          \\\"n_answered\\\": 163,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"58.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"59.5%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.2%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+3.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+5.1pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"70%\\\",\\n          \\\"n_answered\\\": 143,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"63.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"62.9%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+9.2pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"66.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+11.9pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+11.9pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.3%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"70.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"69.6%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"70.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+16.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+15.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5931372549019608,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5597826086956522,\\n          \\\"entropy_sica_acc\\\": 0.6141304347826086,\\n          \\\"majfrac_sc_acc\\\": 0.5543478260869565,\\n          \\\"random_sc_acc_mean\\\": 0.5442880434782609,\\n          \\\"random_sc_acc_std\\\": 0.01170284120212987,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5828220858895705,\\n          \\\"entropy_sica_acc\\\": 0.6319018404907976,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445521472392638,\\n          \\\"random_sc_acc_std\\\": 0.01752858115660949,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6363636363636364,\\n          \\\"entropy_sica_acc\\\": 0.6363636363636364,\\n          \\\"majfrac_sc_acc\\\": 0.6293706293706294,\\n          \\\"random_sc_acc_mean\\\": 0.5443006993006994,\\n          \\\"random_sc_acc_std\\\": 0.021464972029018873,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6639344262295082,\\n          \\\"entropy_sica_acc\\\": 0.6639344262295082,\\n          \\\"majfrac_sc_acc\\\": 0.6639344262295082,\\n          \\\"random_sc_acc_mean\\\": 0.54487704\\n\\n... [截断: 输出过长，省略 2118 字符] ...\\n\\n          \\\"entropy_sica_acc\\\": \\\"61.5%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+6.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+6.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"62.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"63.1%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"62.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+7.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.6pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"64.7%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+10.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+10.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5392156862745098,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5760869565217391,\\n          \\\"entropy_sica_acc\\\": 0.5706521739130435,\\n          \\\"majfrac_sc_acc\\\": 0.5760869565217391,\\n          \\\"random_sc_acc_mean\\\": 0.5447554347826088,\\n          \\\"random_sc_acc_std\\\": 0.011259021535030302,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5950920245398773,\\n          \\\"entropy_sica_acc\\\": 0.588957055214724,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445214723926379,\\n          \\\"random_sc_acc_std\\\": 0.01748407167228819,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6083916083916084,\\n          \\\"entropy_sica_acc\\\": 0.6153846153846154,\\n          \\\"majfrac_sc_acc\\\": 0.6083916083916084,\\n          \\\"random_sc_acc_mean\\\": 0.5438041958041958,\\n          \\\"random_sc_acc_std\\\": 0.02148151585660289,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6229508196721312,\\n          \\\"entropy_sica_acc\\\": 0.6229508196721312,\\n          \\\"majfrac_sc_acc\\\": 0.6311475409836066,\\n          \\\"random_sc_acc_mean\\\": 0.5453770491803278,\\n          \\\"random_sc_acc_std\\\": 0.02992050742067501,\\n          \\\"n_answered\\\": 122\\n        },\\n        \\\"0.5\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6470588235294118,\\n          \\\"entropy_sica_acc\\\": 0.6470588235294118,\\n          \\\"majfrac_sc_acc\\\": 0.6470588235294118,\\n          \\\"random_sc_acc_mean\\\": 0.5439019607843137,\\n          \\\"random_sc_acc_std\\\": 0.03539136384967851,\\n          \\\"n_answered\\\": 102\\n        }\\n      }\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"n_seeds\\\": 2,\\n    \\\"auroc_mean\\\": 0.6732538990603507,\\n    \\\"auroc_values\\\": [\\n      0.6888017049307372,\\n      0.6577060931899642\\n    ],\\n    \\\"coverage_data\\\": {\\n      \\\"1.0\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5441176470588235,\\n        \\\"entropy_sc_std\\\": 0.0,\\n        \\\"random_sc_mean\\\": 0.5441176470588235,\\n        \\\"delta_pp\\\": 0.0\\n      },\\n      \\\"0.9\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5679347826086957,\\n        \\\"entropy_sc_std\\\": 0.008152173913043459,\\n        \\\"random_sc_mean\\\": 0.5445217391304349,\\n        \\\"delta_pp\\\": 0.023413043478260787\\n      },\\n      \\\"0.8\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5889570552147239,\\n        \\\"entropy_sc_std\\\": 0.006134969325153394,\\n        \\\"random_sc_mean\\\": 0.5445368098159509,\\n        \\\"delta_pp\\\": 0.044420245398772984\\n      },\\n      \\\"0.7\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6223776223776224,\\n        \\\"entropy_sc_std\\\": 0.013986013986013957,\\n        \\\"random_sc_mean\\\": 0.5440524475524475,\\n        \\\"delta_pp\\\": 0.07832517482517487\\n      },\\n      \\\"0.6\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6434426229508197,\\n        \\\"entropy_sc_std\\\": 0.020491803278688492,\\n        \\\"random_sc_mean\\\": 0.5451270491803278,\\n        \\\"delta_pp\\\": 0.09831557377049183\\n      },\\n      \\\"0.5\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6764705882352942,\\n        \\\"entropy_sc_std\\\": 0.02941176470588236,\\n        \\\"random_sc_mean\\\": 0.5435980392156863,\\n        \\\"delta_pp\\\": 0.13287254901960788\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+保存本地副本并注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "c3865ff3-c95d-4755-bfdb-5ee778639a4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Yn8bbFJVVhj87amiaVDSG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4724,
+      "cache_read_input_tokens": 50425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4724
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016kfxrTPpTM8uTrQ4EHyL6e`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention.py > /dev/null && echo \"local script exists\"",
+  "description": "Check local script exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "b5dbdfae-48f2-4265-933b-a66870d723e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Yn8bbFJVVhj87amiaVDSG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4724,
+      "cache_read_input_tokens": 50425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4724
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T07:45:33.116Z_
+
+<details><summary>↩ Tool result · `toolu_016kfxrTPpTM8uTrQ4EHyL6e`</summary>
+
+```text
+local script exists
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "42b933ba-c84a-4d1e-895f-6774fa05ea47",
+  "tool_use_result": {
+    "stdout": "local script exists",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01CBFeWzL2K5iPVgLPFGNNTJ`</summary>
+
+```json
+{
+  "name": "direction_e_abstention_results",
+  "type": "data",
+  "description": "Direction E: Selective Abstention results — accuracy-coverage curves, AUROC, entropy/majority-fraction calibration on FOLIO-204 (Mistral-7B, 2 seeds)",
+  "project": "symb_invariant_consensus",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention.py",
+  "tags": [
+    "direction-e",
+    "abstention",
+    "calibration",
+    "folio"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "2f17c7bb-8503-4945-8eed-a75cd868b648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUf5kxyJWtL1TmigRWH3Hn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 55149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 255
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T07:45:43.444Z_
+
+<details><summary>↩ Tool result · `toolu_01CBFeWzL2K5iPVgLPFGNNTJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_dce4f9\", \"name\": \"direction_e_abstention_results\", \"type\": \"data\", \"description\": \"Direction E: Selective Abstention results — accuracy-coverage curves, AUROC, entropy/majority-fraction calibration on FOLIO-204 (Mistral-7B, 2 seeds)\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention.py\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T07:45:43.270653+00:00\", \"tags\": [\"direction-e\", \"abstention\", \"calibration\", \"folio\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "bc5925f1-93c8-4182-9f7b-b5aaf6ded636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_dce4f9\\\", \\\"name\\\": \\\"direction_e_abstention_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Direction E: Selective Abstention results — accuracy-coverage curves, AUROC, entropy/majority-fraction calibration on FOLIO-204 (Mistral-7B, 2 seeds)\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T07:45:43.270653+00:00\\\", \\\"tags\\\": [\\\"direction-e\\\", \\\"abstention\\\", \\\"calibration\\\", \\\"folio\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_dce4f9\", \"name\": \"direction_e_abstention_results\", \"type\": \"data\", \"description\": \"Direction E: Selective Abstention results — accuracy-coverage curves, AUROC, entropy/majority-fraction calibration on FOLIO-204 (Mistral-7B, 2 seeds)\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention.py\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T07:45:43.270653+00:00\", \"tags\": [\"direction-e\", \"abstention\", \"calibration\", \"folio\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+现在把 results.json 也保存到本地 artifacts。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "7f0eb876-35bd-4642-a4b7-255aa176e311",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01796RDhVPLNroBaNjkN7JpV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 561,
+      "cache_read_input_tokens": 55404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CHAsWMBKr2KH5QWS2AkVfF`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_e_abstention/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "229cdb5e-0adb-4b53-8250-1d5bccf25442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01796RDhVPLNroBaNjkN7JpV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 561,
+      "cache_read_input_tokens": 55404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-20T07:45:48.451Z_
+
+<details><summary>↩ Tool result · `toolu_01CHAsWMBKr2KH5QWS2AkVfF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Direction E: Selective Abstention results\\\",\\n  \\\"experiments\\\": {\\n    \\\"exp033 (Mistral-7B, seed=42)\\\": {\\n      \\\"label\\\": \\\"exp033 (Mistral-7B, seed=42)\\\",\\n      \\\"n_questions\\\": 204,\\n      \\\"sc_accuracy_full\\\": 0.5441176470588235,\\n      \\\"sica_accuracy_full\\\": 0.5931372549019608,\\n      \\\"auroc_entropy_predicts_error\\\": 0.6888017049307372,\\n      \\\"entropy_stats\\\": {\\n        \\\"mean\\\": 0.6283882037749069,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.5566567074628228,\\n        \\\"median\\\": 0.6840384356390417\\n      },\\n      \\\"majority_fraction_stats\\\": {\\n        \\\"mean\\\": 0.7876768384121325,\\n        \\\"min\\\": 0.4166666666666667,\\n        \\\"max\\\": 1.0,\\n        \\\"median\\\": 0.8181818181818182\\n      },\\n      \\\"coverage_table\\\": [\\n        {\\n          \\\"coverage\\\": \\\"100%\\\",\\n          \\\"n_answered\\\": 204,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"59.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+0.0pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+0.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"90%\\\",\\n          \\\"n_answered\\\": 184,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"56.0%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"55.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"61.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+1.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+1.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"80%\\\",\\n          \\\"n_answered\\\": 163,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"58.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"59.5%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.2%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+3.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+5.1pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"70%\\\",\\n          \\\"n_answered\\\": 143,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"63.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"62.9%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+9.2pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"66.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+11.9pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+11.9pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.3%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"70.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"69.6%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"70.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+16.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+15.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5931372549019608,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5597826086956522,\\n          \\\"entropy_sica_acc\\\": 0.6141304347826086,\\n          \\\"majfrac_sc_acc\\\": 0.5543478260869565,\\n          \\\"random_sc_acc_mean\\\": 0.5442880434782609,\\n          \\\"random_sc_acc_std\\\": 0.01170284120212987,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5828220858895705,\\n          \\\"entropy_sica_acc\\\": 0.6319018404907976,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445521472392638,\\n          \\\"random_sc_acc_std\\\": 0.01752858115660949,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6363636363636364,\\n          \\\"entropy_sica_acc\\\": 0.6363636363636364,\\n          \\\"majfrac_sc_acc\\\": 0.6293706293706294,\\n          \\\"random_sc_acc_mean\\\": 0.5443006993006994,\\n          \\\"random_sc_acc_std\\\": 0.021464972029018873,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6639344262295082,\\n          \\\"entropy_sica_acc\\\": 0.6639344262295082,\\n          \\\"majfrac_sc_acc\\\": 0.6639344262295082,\\n          \\\"random_sc_acc_mean\\\": 0.54487704\\n\\n... [截断: 输出过长，省略 2118 字符] ...\\n\\n          \\\"entropy_sica_acc\\\": \\\"61.5%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+6.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+6.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"62.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"63.1%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"62.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+7.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.6pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"64.7%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+10.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+10.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5392156862745098,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5760869565217391,\\n          \\\"entropy_sica_acc\\\": 0.5706521739130435,\\n          \\\"majfrac_sc_acc\\\": 0.5760869565217391,\\n          \\\"random_sc_acc_mean\\\": 0.5447554347826088,\\n          \\\"random_sc_acc_std\\\": 0.011259021535030302,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5950920245398773,\\n          \\\"entropy_sica_acc\\\": 0.588957055214724,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445214723926379,\\n          \\\"random_sc_acc_std\\\": 0.01748407167228819,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6083916083916084,\\n          \\\"entropy_sica_acc\\\": 0.6153846153846154,\\n          \\\"majfrac_sc_acc\\\": 0.6083916083916084,\\n          \\\"random_sc_acc_mean\\\": 0.5438041958041958,\\n          \\\"random_sc_acc_std\\\": 0.02148151585660289,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6229508196721312,\\n          \\\"entropy_sica_acc\\\": 0.6229508196721312,\\n          \\\"majfrac_sc_acc\\\": 0.6311475409836066,\\n          \\\"random_sc_acc_mean\\\": 0.5453770491803278,\\n          \\\"random_sc_acc_std\\\": 0.02992050742067501,\\n          \\\"n_answered\\\": 122\\n        },\\n        \\\"0.5\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6470588235294118,\\n          \\\"entropy_sica_acc\\\": 0.6470588235294118,\\n          \\\"majfrac_sc_acc\\\": 0.6470588235294118,\\n          \\\"random_sc_acc_mean\\\": 0.5439019607843137,\\n          \\\"random_sc_acc_std\\\": 0.03539136384967851,\\n          \\\"n_answered\\\": 102\\n        }\\n      }\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"n_seeds\\\": 2,\\n    \\\"auroc_mean\\\": 0.6732538990603507,\\n    \\\"auroc_values\\\": [\\n      0.6888017049307372,\\n      0.6577060931899642\\n    ],\\n    \\\"coverage_data\\\": {\\n      \\\"1.0\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5441176470588235,\\n        \\\"entropy_sc_std\\\": 0.0,\\n        \\\"random_sc_mean\\\": 0.5441176470588235,\\n        \\\"delta_pp\\\": 0.0\\n      },\\n      \\\"0.9\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5679347826086957,\\n        \\\"entropy_sc_std\\\": 0.008152173913043459,\\n        \\\"random_sc_mean\\\": 0.5445217391304349,\\n        \\\"delta_pp\\\": 0.023413043478260787\\n      },\\n      \\\"0.8\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5889570552147239,\\n        \\\"entropy_sc_std\\\": 0.006134969325153394,\\n        \\\"random_sc_mean\\\": 0.5445368098159509,\\n        \\\"delta_pp\\\": 0.044420245398772984\\n      },\\n      \\\"0.7\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6223776223776224,\\n        \\\"entropy_sc_std\\\": 0.013986013986013957,\\n        \\\"random_sc_mean\\\": 0.5440524475524475,\\n        \\\"delta_pp\\\": 0.07832517482517487\\n      },\\n      \\\"0.6\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6434426229508197,\\n        \\\"entropy_sc_std\\\": 0.020491803278688492,\\n        \\\"random_sc_mean\\\": 0.5451270491803278,\\n        \\\"delta_pp\\\": 0.09831557377049183\\n      },\\n      \\\"0.5\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6764705882352942,\\n        \\\"entropy_sc_std\\\": 0.02941176470588236,\\n        \\\"random_sc_mean\\\": 0.5435980392156863,\\n        \\\"delta_pp\\\": 0.13287254901960788\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "737a77b9-cc54-43f6-9129-9fbd5d9ea915",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Direction E: Selective Abstention results\\\\\\\",\\\\n  \\\\\\\"experiments\\\\\\\": {\\\\n    \\\\\\\"exp033 (Mistral-7B, seed=42)\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"exp033 (Mistral-7B, seed=42)\\\\\\\",\\\\n      \\\\\\\"n_questions\\\\\\\": 204,\\\\n      \\\\\\\"sc_accuracy_full\\\\\\\": 0.5441176470588235,\\\\n      \\\\\\\"sica_accuracy_full\\\\\\\": 0.5931372549019608,\\\\n      \\\\\\\"auroc_entropy_predicts_error\\\\\\\": 0.6888017049307372,\\\\n      \\\\\\\"entropy_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6283882037749069,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 1.5566567074628228,\\\\n        \\\\\\\"median\\\\\\\": 0.6840384356390417\\\\n      },\\\\n      \\\\\\\"majority_fraction_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.7876768384121325,\\\\n        \\\\\\\"min\\\\\\\": 0.4166666666666667,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"median\\\\\\\": 0.8181818181818182\\\\n      },\\\\n      \\\\\\\"coverage_table\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"100%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 204,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"59.3%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+0.0pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+0.0pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"90%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 184,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"56.0%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"55.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"61.4%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+1.5pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+1.0pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"80%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 163,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"58.3%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"59.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"63.2%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+3.8pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+5.1pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"70%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 143,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"63.6%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"62.9%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"63.6%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+9.2pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+8.5pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"60%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 122,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"66.4%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+11.9pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+11.9pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"50%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 102,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.3%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"70.6%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"69.6%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"70.6%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+16.3pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+15.3pp\\\\\\\"\\\\n        }\\\\n      ],\\\\n      \\\\\\\"coverage_data\\\\\\\": {\\\\n        \\\\\\\"1.0\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5931372549019608,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.0,\\\\n          \\\\\\\"n_answered\\\\\\\": 204\\\\n        },\\\\n        \\\\\\\"0.9\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5597826086956522,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6141304347826086,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5543478260869565,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5442880434782609,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01170284120212987,\\\\n          \\\\\\\"n_answered\\\\\\\": 184\\\\n        },\\\\n        \\\\\\\"0.8\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5828220858895705,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6319018404907976,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5445521472392638,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01752858115660949,\\\\n          \\\\\\\"n_answered\\\\\\\": 163\\\\n        },\\\\n        \\\\\\\"0.7\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6363636363636364,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6363636363636364,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6293706293706294,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5443006993006994,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.021464972029018873,\\\\n          \\\\\\\"n_answered\\\\\\\": 143\\\\n        },\\\\n        \\\\\\\"0.6\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6639344262295082,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.54487704\\\\n\\\\n... [截断: 输出过长，省略 2118 字符] ...\\\\n\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"61.5%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+6.5pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+6.5pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"60%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 122,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.5%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"62.3%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"63.1%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"62.3%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+7.8pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+8.6pp\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"coverage\\\\\\\": \\\\\\\"50%\\\\\\\",\\\\n          \\\\\\\"n_answered\\\\\\\": 102,\\\\n          \\\\\\\"random_sc_acc\\\\\\\": \\\\\\\"54.4%\\\\\\\",\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": \\\\\\\"64.7%\\\\\\\",\\\\n          \\\\\\\"delta_entropy_pp\\\\\\\": \\\\\\\"+10.3pp\\\\\\\",\\\\n          \\\\\\\"delta_majfrac_pp\\\\\\\": \\\\\\\"+10.3pp\\\\\\\"\\\\n        }\\\\n      ],\\\\n      \\\\\\\"coverage_data\\\\\\\": {\\\\n        \\\\\\\"1.0\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5392156862745098,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5441176470588235,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.0,\\\\n          \\\\\\\"n_answered\\\\\\\": 204\\\\n        },\\\\n        \\\\\\\"0.9\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5760869565217391,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.5706521739130435,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5760869565217391,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5447554347826088,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.011259021535030302,\\\\n          \\\\\\\"n_answered\\\\\\\": 184\\\\n        },\\\\n        \\\\\\\"0.8\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.588957055214724,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.5950920245398773,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5445214723926379,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.01748407167228819,\\\\n          \\\\\\\"n_answered\\\\\\\": 163\\\\n        },\\\\n        \\\\\\\"0.7\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6083916083916084,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6153846153846154,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6083916083916084,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5438041958041958,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.02148151585660289,\\\\n          \\\\\\\"n_answered\\\\\\\": 143\\\\n        },\\\\n        \\\\\\\"0.6\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6229508196721312,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6229508196721312,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6311475409836066,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5453770491803278,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.02992050742067501,\\\\n          \\\\\\\"n_answered\\\\\\\": 122\\\\n        },\\\\n        \\\\\\\"0.5\\\\\\\": {\\\\n          \\\\\\\"entropy_sc_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"entropy_sica_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"majfrac_sc_acc\\\\\\\": 0.6470588235294118,\\\\n          \\\\\\\"random_sc_acc_mean\\\\\\\": 0.5439019607843137,\\\\n          \\\\\\\"random_sc_acc_std\\\\\\\": 0.03539136384967851,\\\\n          \\\\\\\"n_answered\\\\\\\": 102\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"aggregate\\\\\\\": {\\\\n    \\\\\\\"n_seeds\\\\\\\": 2,\\\\n    \\\\\\\"auroc_mean\\\\\\\": 0.6732538990603507,\\\\n    \\\\\\\"auroc_values\\\\\\\": [\\\\n      0.6888017049307372,\\\\n      0.6577060931899642\\\\n    ],\\\\n    \\\\\\\"coverage_data\\\\\\\": {\\\\n      \\\\\\\"1.0\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.0,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5441176470588235,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"0.9\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5679347826086957,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.008152173913043459,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5445217391304349,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.023413043478260787\\\\n      },\\\\n      \\\\\\\"0.8\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.5889570552147239,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.006134969325153394,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5445368098159509,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.044420245398772984\\\\n      },\\\\n      \\\\\\\"0.7\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6223776223776224,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.013986013986013957,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5440524475524475,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.07832517482517487\\\\n      },\\\\n      \\\\\\\"0.6\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6434426229508197,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.020491803278688492,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5451270491803278,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.09831557377049183\\\\n      },\\\\n      \\\\\\\"0.5\\\\\\\": {\\\\n        \\\\\\\"entropy_sc_mean\\\\\\\": 0.6764705882352942,\\\\n        \\\\\\\"entropy_sc_std\\\\\\\": 0.02941176470588236,\\\\n        \\\\\\\"random_sc_mean\\\\\\\": 0.5435980392156863,\\\\n        \\\\\\\"delta_pp\\\\\\\": 0.13287254901960788\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Direction E: Selective Abstention results\\\",\\n  \\\"experiments\\\": {\\n    \\\"exp033 (Mistral-7B, seed=42)\\\": {\\n      \\\"label\\\": \\\"exp033 (Mistral-7B, seed=42)\\\",\\n      \\\"n_questions\\\": 204,\\n      \\\"sc_accuracy_full\\\": 0.5441176470588235,\\n      \\\"sica_accuracy_full\\\": 0.5931372549019608,\\n      \\\"auroc_entropy_predicts_error\\\": 0.6888017049307372,\\n      \\\"entropy_stats\\\": {\\n        \\\"mean\\\": 0.6283882037749069,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.5566567074628228,\\n        \\\"median\\\": 0.6840384356390417\\n      },\\n      \\\"majority_fraction_stats\\\": {\\n        \\\"mean\\\": 0.7876768384121325,\\n        \\\"min\\\": 0.4166666666666667,\\n        \\\"max\\\": 1.0,\\n        \\\"median\\\": 0.8181818181818182\\n      },\\n      \\\"coverage_table\\\": [\\n        {\\n          \\\"coverage\\\": \\\"100%\\\",\\n          \\\"n_answered\\\": 204,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"59.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+0.0pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+0.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"90%\\\",\\n          \\\"n_answered\\\": 184,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"56.0%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"55.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"61.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+1.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+1.0pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"80%\\\",\\n          \\\"n_answered\\\": 163,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"58.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"59.5%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.2%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+3.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+5.1pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"70%\\\",\\n          \\\"n_answered\\\": 143,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"63.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"62.9%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"63.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+9.2pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"66.4%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"66.4%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+11.9pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+11.9pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.3%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"70.6%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"69.6%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"70.6%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+16.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+15.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5931372549019608,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5597826086956522,\\n          \\\"entropy_sica_acc\\\": 0.6141304347826086,\\n          \\\"majfrac_sc_acc\\\": 0.5543478260869565,\\n          \\\"random_sc_acc_mean\\\": 0.5442880434782609,\\n          \\\"random_sc_acc_std\\\": 0.01170284120212987,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5828220858895705,\\n          \\\"entropy_sica_acc\\\": 0.6319018404907976,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445521472392638,\\n          \\\"random_sc_acc_std\\\": 0.01752858115660949,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6363636363636364,\\n          \\\"entropy_sica_acc\\\": 0.6363636363636364,\\n          \\\"majfrac_sc_acc\\\": 0.6293706293706294,\\n          \\\"random_sc_acc_mean\\\": 0.5443006993006994,\\n          \\\"random_sc_acc_std\\\": 0.021464972029018873,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6639344262295082,\\n          \\\"entropy_sica_acc\\\": 0.6639344262295082,\\n          \\\"majfrac_sc_acc\\\": 0.6639344262295082,\\n          \\\"random_sc_acc_mean\\\": 0.54487704\\n\\n... [截断: 输出过长，省略 2118 字符] ...\\n\\n          \\\"entropy_sica_acc\\\": \\\"61.5%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+6.5pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+6.5pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"60%\\\",\\n          \\\"n_answered\\\": 122,\\n          \\\"random_sc_acc\\\": \\\"54.5%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"62.3%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"63.1%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"62.3%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+7.8pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+8.6pp\\\"\\n        },\\n        {\\n          \\\"coverage\\\": \\\"50%\\\",\\n          \\\"n_answered\\\": 102,\\n          \\\"random_sc_acc\\\": \\\"54.4%\\\",\\n          \\\"entropy_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"majfrac_sc_acc\\\": \\\"64.7%\\\",\\n          \\\"entropy_sica_acc\\\": \\\"64.7%\\\",\\n          \\\"delta_entropy_pp\\\": \\\"+10.3pp\\\",\\n          \\\"delta_majfrac_pp\\\": \\\"+10.3pp\\\"\\n        }\\n      ],\\n      \\\"coverage_data\\\": {\\n        \\\"1.0\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5441176470588235,\\n          \\\"entropy_sica_acc\\\": 0.5392156862745098,\\n          \\\"majfrac_sc_acc\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_mean\\\": 0.5441176470588235,\\n          \\\"random_sc_acc_std\\\": 0.0,\\n          \\\"n_answered\\\": 204\\n        },\\n        \\\"0.9\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5760869565217391,\\n          \\\"entropy_sica_acc\\\": 0.5706521739130435,\\n          \\\"majfrac_sc_acc\\\": 0.5760869565217391,\\n          \\\"random_sc_acc_mean\\\": 0.5447554347826088,\\n          \\\"random_sc_acc_std\\\": 0.011259021535030302,\\n          \\\"n_answered\\\": 184\\n        },\\n        \\\"0.8\\\": {\\n          \\\"entropy_sc_acc\\\": 0.5950920245398773,\\n          \\\"entropy_sica_acc\\\": 0.588957055214724,\\n          \\\"majfrac_sc_acc\\\": 0.5950920245398773,\\n          \\\"random_sc_acc_mean\\\": 0.5445214723926379,\\n          \\\"random_sc_acc_std\\\": 0.01748407167228819,\\n          \\\"n_answered\\\": 163\\n        },\\n        \\\"0.7\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6083916083916084,\\n          \\\"entropy_sica_acc\\\": 0.6153846153846154,\\n          \\\"majfrac_sc_acc\\\": 0.6083916083916084,\\n          \\\"random_sc_acc_mean\\\": 0.5438041958041958,\\n          \\\"random_sc_acc_std\\\": 0.02148151585660289,\\n          \\\"n_answered\\\": 143\\n        },\\n        \\\"0.6\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6229508196721312,\\n          \\\"entropy_sica_acc\\\": 0.6229508196721312,\\n          \\\"majfrac_sc_acc\\\": 0.6311475409836066,\\n          \\\"random_sc_acc_mean\\\": 0.5453770491803278,\\n          \\\"random_sc_acc_std\\\": 0.02992050742067501,\\n          \\\"n_answered\\\": 122\\n        },\\n        \\\"0.5\\\": {\\n          \\\"entropy_sc_acc\\\": 0.6470588235294118,\\n          \\\"entropy_sica_acc\\\": 0.6470588235294118,\\n          \\\"majfrac_sc_acc\\\": 0.6470588235294118,\\n          \\\"random_sc_acc_mean\\\": 0.5439019607843137,\\n          \\\"random_sc_acc_std\\\": 0.03539136384967851,\\n          \\\"n_answered\\\": 102\\n        }\\n      }\\n    }\\n  },\\n  \\\"aggregate\\\": {\\n    \\\"n_seeds\\\": 2,\\n    \\\"auroc_mean\\\": 0.6732538990603507,\\n    \\\"auroc_values\\\": [\\n      0.6888017049307372,\\n      0.6577060931899642\\n    ],\\n    \\\"coverage_data\\\": {\\n      \\\"1.0\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5441176470588235,\\n        \\\"entropy_sc_std\\\": 0.0,\\n        \\\"random_sc_mean\\\": 0.5441176470588235,\\n        \\\"delta_pp\\\": 0.0\\n      },\\n      \\\"0.9\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5679347826086957,\\n        \\\"entropy_sc_std\\\": 0.008152173913043459,\\n        \\\"random_sc_mean\\\": 0.5445217391304349,\\n        \\\"delta_pp\\\": 0.023413043478260787\\n      },\\n      \\\"0.8\\\": {\\n        \\\"entropy_sc_mean\\\": 0.5889570552147239,\\n        \\\"entropy_sc_std\\\": 0.006134969325153394,\\n        \\\"random_sc_mean\\\": 0.5445368098159509,\\n        \\\"delta_pp\\\": 0.044420245398772984\\n      },\\n      \\\"0.7\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6223776223776224,\\n        \\\"entropy_sc_std\\\": 0.013986013986013957,\\n        \\\"random_sc_mean\\\": 0.5440524475524475,\\n        \\\"delta_pp\\\": 0.07832517482517487\\n      },\\n      \\\"0.6\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6434426229508197,\\n        \\\"entropy_sc_std\\\": 0.020491803278688492,\\n        \\\"random_sc_mean\\\": 0.5451270491803278,\\n        \\\"delta_pp\\\": 0.09831557377049183\\n      },\\n      \\\"0.5\\\": {\\n        \\\"entropy_sc_mean\\\": 0.6764705882352942,\\n        \\\"entropy_sc_std\\\": 0.02941176470588236,\\n        \\\"random_sc_mean\\\": 0.5435980392156863,\\n        \\\"delta_pp\\\": 0.13287254901960788\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me save the results JSON locally too.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "46d002ad-28ed-4b11-a2e9-a59c01590737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRxcrXGuEnufDxSWwXEVg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4684,
+      "cache_read_input_tokens": 55965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4684
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Write · `toolu_013kxEeSViGLU5c381Su33Xr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention_results.json",
+  "content": "{\n  \"description\": \"Direction E: Selective Abstention results\",\n  \"experiments\": {\n    \"exp033 (Mistral-7B, seed=42)\": {\n      \"label\": \"exp033 (Mistral-7B, seed=42)\",\n      \"n_questions\": 204,\n      \"sc_accuracy_full\": 0.5441176470588235,\n      \"sica_accuracy_full\": 0.5931372549019608,\n      \"auroc_entropy_predicts_error\": 0.6888017049307372,\n      \"entropy_stats\": {\n        \"mean\": 0.628,\n        \"min\": 0.0,\n        \"max\": 1.557,\n        \"median\": 0.684\n      },\n      \"majority_fraction_stats\": {\n        \"mean\": 0.788,\n        \"min\": 0.417,\n        \"max\": 1.0,\n        \"median\": 0.818\n      },\n      \"coverage_table\": [\n        {\"coverage\": \"100%\", \"n_answered\": 204, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"54.4%\", \"majfrac_sc_acc\": \"54.4%\", \"entropy_sica_acc\": \"59.3%\", \"delta_entropy_pp\": \"+0.0pp\", \"delta_majfrac_pp\": \"+0.0pp\"},\n        {\"coverage\": \"90%\", \"n_answered\": 184, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"56.0%\", \"majfrac_sc_acc\": \"55.4%\", \"entropy_sica_acc\": \"61.4%\", \"delta_entropy_pp\": \"+1.5pp\", \"delta_majfrac_pp\": \"+1.0pp\"},\n        {\"coverage\": \"80%\", \"n_answered\": 163, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"58.3%\", \"majfrac_sc_acc\": \"59.5%\", \"entropy_sica_acc\": \"63.2%\", \"delta_entropy_pp\": \"+3.8pp\", \"delta_majfrac_pp\": \"+5.1pp\"},\n        {\"coverage\": \"70%\", \"n_answered\": 143, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"63.6%\", \"majfrac_sc_acc\": \"62.9%\", \"entropy_sica_acc\": \"63.6%\", \"delta_entropy_pp\": \"+9.2pp\", \"delta_majfrac_pp\": \"+8.5pp\"},\n        {\"coverage\": \"60%\", \"n_answered\": 122, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"66.4%\", \"majfrac_sc_acc\": \"66.4%\", \"entropy_sica_acc\": \"66.4%\", \"delta_entropy_pp\": \"+11.9pp\", \"delta_majfrac_pp\": \"+11.9pp\"},\n        {\"coverage\": \"50%\", \"n_answered\": 102, \"random_sc_acc\": \"54.3%\", \"entropy_sc_acc\": \"70.6%\", \"majfrac_sc_acc\": \"69.6%\", \"entropy_sica_acc\": \"70.6%\", \"delta_entropy_pp\": \"+16.3pp\", \"delta_majfrac_pp\": \"+15.3pp\"}\n      ],\n      \"coverage_data\": {\n        \"1.0\": {\"entropy_sc_acc\": 0.5441, \"entropy_sica_acc\": 0.5931, \"majfrac_sc_acc\": 0.5441, \"random_sc_acc_mean\": 0.5441, \"n_answered\": 204},\n        \"0.9\": {\"entropy_sc_acc\": 0.5598, \"entropy_sica_acc\": 0.6141, \"majfrac_sc_acc\": 0.5543, \"random_sc_acc_mean\": 0.5443, \"n_answered\": 184},\n        \"0.8\": {\"entropy_sc_acc\": 0.5828, \"entropy_sica_acc\": 0.6319, \"majfrac_sc_acc\": 0.5951, \"random_sc_acc_mean\": 0.5446, \"n_answered\": 163},\n        \"0.7\": {\"entropy_sc_acc\": 0.6364, \"entropy_sica_acc\": 0.6364, \"majfrac_sc_acc\": 0.6294, \"random_sc_acc_mean\": 0.5443, \"n_answered\": 143},\n        \"0.6\": {\"entropy_sc_acc\": 0.6639, \"entropy_sica_acc\": 0.6639, \"majfrac_sc_acc\": 0.6639, \"random_sc_acc_mean\": 0.5449, \"n_answered\": 122},\n        \"0.5\": {\"entropy_sc_acc\": 0.7059, \"entropy_sica_acc\": 0.7059, \"majfrac_sc_acc\": 0.6961, \"random_sc_acc_mean\": 0.5434, \"n_answered\": 102}\n      }\n    },\n    \"exp067 (Mistral-7B, seed=789)\": {\n      \"label\": \"exp067 (Mistral-7B, seed=789)\",\n      \"n_questions\": 204,\n      \"sc_accuracy_full\": 0.5441176470588235,\n      \"sica_accuracy_full\": 0.5392156862745098,\n      \"auroc_entropy_predicts_error\": 0.6577060931899642,\n      \"entropy_stats\": {\n        \"mean\": 0.641,\n        \"min\": 0.0,\n        \"max\": 1.571,\n        \"median\": 0.722\n      },\n      \"majority_fraction_stats\": {\n        \"mean\": 0.781,\n        \"min\": 0.375,\n        \"max\": 1.0,\n        \"median\": 0.800\n      },\n      \"coverage_table\": [\n        {\"coverage\": \"100%\", \"n_answered\": 204, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"54.4%\", \"majfrac_sc_acc\": \"54.4%\", \"entropy_sica_acc\": \"53.9%\", \"delta_entropy_pp\": \"+0.0pp\", \"delta_majfrac_pp\": \"+0.0pp\"},\n        {\"coverage\": \"90%\", \"n_answered\": 184, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"57.6%\", \"majfrac_sc_acc\": \"57.6%\", \"entropy_sica_acc\": \"57.1%\", \"delta_entropy_pp\": \"+3.1pp\", \"delta_majfrac_pp\": \"+3.1pp\"},\n        {\"coverage\": \"80%\", \"n_answered\": 163, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"59.5%\", \"majfrac_sc_acc\": \"59.5%\", \"entropy_sica_acc\": \"58.9%\", \"delta_entropy_pp\": \"+5.1pp\", \"delta_majfrac_pp\": \"+5.1pp\"},\n        {\"coverage\": \"70%\", \"n_answered\": 143, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"60.8%\", \"majfrac_sc_acc\": \"60.8%\", \"entropy_sica_acc\": \"61.5%\", \"delta_entropy_pp\": \"+6.5pp\", \"delta_majfrac_pp\": \"+6.5pp\"},\n        {\"coverage\": \"60%\", \"n_answered\": 122, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"62.3%\", \"majfrac_sc_acc\": \"63.1%\", \"entropy_sica_acc\": \"62.3%\", \"delta_entropy_pp\": \"+7.8pp\", \"delta_majfrac_pp\": \"+8.6pp\"},\n        {\"coverage\": \"50%\", \"n_answered\": 102, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"64.7%\", \"majfrac_sc_acc\": \"64.7%\", \"entropy_sica_acc\": \"64.7%\", \"delta_entropy_pp\": \"+10.3pp\", \"delta_majfrac_pp\": \"+10.3pp\"}\n      ],\n      \"coverage_data\": {\n        \"1.0\": {\"entropy_sc_acc\": 0.5441, \"entropy_sica_acc\": 0.5392, \"majfrac_sc_acc\": 0.5441, \"random_sc_acc_mean\": 0.5441, \"n_answered\": 204},\n        \"0.9\": {\"entropy_sc_acc\": 0.5761, \"entropy_sica_acc\": 0.5707, \"majfrac_sc_acc\": 0.5761, \"random_sc_acc_mean\": 0.5448, \"n_answered\": 184},\n        \"0.8\": {\"entropy_sc_acc\": 0.5951, \"entropy_sica_acc\": 0.5890, \"majfrac_sc_acc\": 0.5951, \"random_sc_acc_mean\": 0.5445, \"n_answered\": 163},\n        \"0.7\": {\"entropy_sc_acc\": 0.6084, \"entropy_sica_acc\": 0.6154, \"majfrac_sc_acc\": 0.6084, \"random_sc_acc_mean\": 0.5438, \"n_answered\": 143},\n        \"0.6\": {\"entropy_sc_acc\": 0.6230, \"entropy_sica_acc\": 0.6230, \"majfrac_sc_acc\": 0.6311, \"random_sc_acc_mean\": 0.5454, \"n_answered\": 122},\n        \"0.5\": {\"entropy_sc_acc\": 0.6471, \"entropy_sica_acc\": 0.6471, \"majfrac_sc_acc\": 0.6471, \"random_sc_acc_mean\": 0.5439, \"n_answered\": 102}\n      }\n    }\n  },\n  \"aggregate\": {\n    \"n_seeds\": 2,\n    \"auroc_mean\": 0.6733,\n    \"auroc_values\": [0.6888, 0.6577],\n    \"coverage_data\": {\n      \"1.0\": {\"entropy_sc_mean\": 0.5441, \"entropy_sc_std\": 0.0, \"random_sc_mean\": 0.5441, \"delta_pp\": 0.0},\n      \"0.9\": {\"entropy_sc_mean\": 0.5679, \"entropy_sc_std\": 0.0082, \"random_sc_mean\": 0.5445, \"delta_pp\": 0.0234},\n      \"0.8\": {\"entropy_sc_mean\": 0.5890, \"entropy_sc_std\": 0.0061, \"random_sc_mean\": 0.5445, \"delta_pp\": 0.0444},\n      \"0.7\": {\"entropy_sc_mean\": 0.6224, \"entropy_sc_std\": 0.0140, \"random_sc_mean\": 0.5441, \"delta_pp\": 0.0783},\n      \"0.6\": {\"entropy_sc_mean\": 0.6434, \"entropy_sc_std\": 0.0205, \"random_sc_mean\": 0.5451, \"delta_pp\": 0.0983},\n      \"0.5\": {\"entropy_sc_mean\": 0.6765, \"entropy_sc_std\": 0.0294, \"random_sc_mean\": 0.5436, \"delta_pp\": 0.1329}\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "74f458c6-f182-4f07-ae6d-ea0c0cb81c15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRxcrXGuEnufDxSWwXEVg4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4684,
+      "cache_read_input_tokens": 55965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4684
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T07:46:19.503Z_
+
+<details><summary>↩ Tool result · `toolu_013kxEeSViGLU5c381Su33Xr`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention_results.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "0b722636-b74e-4aea-af7d-32dbf48bbc69",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention_results.json",
+    "content": "{\n  \"description\": \"Direction E: Selective Abstention results\",\n  \"experiments\": {\n    \"exp033 (Mistral-7B, seed=42)\": {\n      \"label\": \"exp033 (Mistral-7B, seed=42)\",\n      \"n_questions\": 204,\n      \"sc_accuracy_full\": 0.5441176470588235,\n      \"sica_accuracy_full\": 0.5931372549019608,\n      \"auroc_entropy_predicts_error\": 0.6888017049307372,\n      \"entropy_stats\": {\n        \"mean\": 0.628,\n        \"min\": 0.0,\n        \"max\": 1.557,\n        \"median\": 0.684\n      },\n      \"majority_fraction_stats\": {\n        \"mean\": 0.788,\n        \"min\": 0.417,\n        \"max\": 1.0,\n        \"median\": 0.818\n      },\n      \"coverage_table\": [\n        {\"coverage\": \"100%\", \"n_answered\": 204, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"54.4%\", \"majfrac_sc_acc\": \"54.4%\", \"entropy_sica_acc\": \"59.3%\", \"delta_entropy_pp\": \"+0.0pp\", \"delta_majfrac_pp\": \"+0.0pp\"},\n        {\"coverage\": \"90%\", \"n_answered\": 184, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"56.0%\", \"majfrac_sc_acc\": \"55.4%\", \"entropy_sica_acc\": \"61.4%\", \"delta_entropy_pp\": \"+1.5pp\", \"delta_majfrac_pp\": \"+1.0pp\"},\n        {\"coverage\": \"80%\", \"n_answered\": 163, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"58.3%\", \"majfrac_sc_acc\": \"59.5%\", \"entropy_sica_acc\": \"63.2%\", \"delta_entropy_pp\": \"+3.8pp\", \"delta_majfrac_pp\": \"+5.1pp\"},\n        {\"coverage\": \"70%\", \"n_answered\": 143, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"63.6%\", \"majfrac_sc_acc\": \"62.9%\", \"entropy_sica_acc\": \"63.6%\", \"delta_entropy_pp\": \"+9.2pp\", \"delta_majfrac_pp\": \"+8.5pp\"},\n        {\"coverage\": \"60%\", \"n_answered\": 122, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"66.4%\", \"majfrac_sc_acc\": \"66.4%\", \"entropy_sica_acc\": \"66.4%\", \"delta_entropy_pp\": \"+11.9pp\", \"delta_majfrac_pp\": \"+11.9pp\"},\n        {\"coverage\": \"50%\", \"n_answered\": 102, \"random_sc_acc\": \"54.3%\", \"entropy_sc_acc\": \"70.6%\", \"majfrac_sc_acc\": \"69.6%\", \"entropy_sica_acc\": \"70.6%\", \"delta_entropy_pp\": \"+16.3pp\", \"delta_majfrac_pp\": \"+15.3pp\"}\n      ],\n      \"coverage_data\": {\n        \"1.0\": {\"entropy_sc_acc\": 0.5441, \"entropy_sica_acc\": 0.5931, \"majfrac_sc_acc\": 0.5441, \"random_sc_acc_mean\": 0.5441, \"n_answered\": 204},\n        \"0.9\": {\"entropy_sc_acc\": 0.5598, \"entropy_sica_acc\": 0.6141, \"majfrac_sc_acc\": 0.5543, \"random_sc_acc_mean\": 0.5443, \"n_answered\": 184},\n        \"0.8\": {\"entropy_sc_acc\": 0.5828, \"entropy_sica_acc\": 0.6319, \"majfrac_sc_acc\": 0.5951, \"random_sc_acc_mean\": 0.5446, \"n_answered\": 163},\n        \"0.7\": {\"entropy_sc_acc\": 0.6364, \"entropy_sica_acc\": 0.6364, \"majfrac_sc_acc\": 0.6294, \"random_sc_acc_mean\": 0.5443, \"n_answered\": 143},\n        \"0.6\": {\"entropy_sc_acc\": 0.6639, \"entropy_sica_acc\": 0.6639, \"majfrac_sc_acc\": 0.6639, \"random_sc_acc_mean\": 0.5449, \"n_answered\": 122},\n        \"0.5\": {\"entropy_sc_acc\": 0.7059, \"entropy_sica_acc\": 0.7059, \"majfrac_sc_acc\": 0.6961, \"random_sc_acc_mean\": 0.5434, \"n_answered\": 102}\n      }\n    },\n    \"exp067 (Mistral-7B, seed=789)\": {\n      \"label\": \"exp067 (Mistral-7B, seed=789)\",\n      \"n_questions\": 204,\n      \"sc_accuracy_full\": 0.5441176470588235,\n      \"sica_accuracy_full\": 0.5392156862745098,\n      \"auroc_entropy_predicts_error\": 0.6577060931899642,\n      \"entropy_stats\": {\n        \"mean\": 0.641,\n        \"min\": 0.0,\n        \"max\": 1.571,\n        \"median\": 0.722\n      },\n      \"majority_fraction_stats\": {\n        \"mean\": 0.781,\n        \"min\": 0.375,\n        \"max\": 1.0,\n        \"median\": 0.800\n      },\n      \"coverage_table\": [\n        {\"coverage\": \"100%\", \"n_answered\": 204, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"54.4%\", \"majfrac_sc_acc\": \"54.4%\", \"entropy_sica_acc\": \"53.9%\", \"delta_entropy_pp\": \"+0.0pp\", \"delta_majfrac_pp\": \"+0.0pp\"},\n        {\"coverage\": \"90%\", \"n_answered\": 184, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"57.6%\", \"majfrac_sc_acc\": \"57.6%\", \"entropy_sica_acc\": \"57.1%\", \"delta_entropy_pp\": \"+3.1pp\", \"delta_majfrac_pp\": \"+3.1pp\"},\n        {\"coverage\": \"80%\", \"n_answered\": 163, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"59.5%\", \"majfrac_sc_acc\": \"59.5%\", \"entropy_sica_acc\": \"58.9%\", \"delta_entropy_pp\": \"+5.1pp\", \"delta_majfrac_pp\": \"+5.1pp\"},\n        {\"coverage\": \"70%\", \"n_answered\": 143, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"60.8%\", \"majfrac_sc_acc\": \"60.8%\", \"entropy_sica_acc\": \"61.5%\", \"delta_entropy_pp\": \"+6.5pp\", \"delta_majfrac_pp\": \"+6.5pp\"},\n        {\"coverage\": \"60%\", \"n_answered\": 122, \"random_sc_acc\": \"54.5%\", \"entropy_sc_acc\": \"62.3%\", \"majfrac_sc_acc\": \"63.1%\", \"entropy_sica_acc\": \"62.3%\", \"delta_entropy_pp\": \"+7.8pp\", \"delta_majfrac_pp\": \"+8.6pp\"},\n        {\"coverage\": \"50%\", \"n_answered\": 102, \"random_sc_acc\": \"54.4%\", \"entropy_sc_acc\": \"64.7%\", \"majfrac_sc_acc\": \"64.7%\", \"entropy_sica_acc\": \"64.7%\", \"delta_entropy_pp\": \"+10.3pp\", \"delta_majfrac_pp\": \"+10.3pp\"}\n      ],\n      \"coverage_data\": {\n        \"1.0\": {\"entropy_sc_acc\": 0.5441, \"entropy_sica_acc\": 0.5392, \"majfrac_sc_acc\": 0.5441, \"random_sc_acc_mean\": 0.5441, \"n_answered\": 204},\n        \"0.9\": {\"entropy_sc_acc\": 0.5761, \"entropy_sica_acc\": 0.5707, \"majfrac_sc_acc\": 0.5761, \"random_sc_acc_mean\": 0.5448, \"n_answered\": 184},\n        \"0.8\": {\"entropy_sc_acc\": 0.5951, \"entropy_sica_acc\": 0.5890, \"majfrac_sc_acc\": 0.5951, \"random_sc_acc_mean\": 0.5445, \"n_answered\": 163},\n        \"0.7\": {\"entropy_sc_acc\": 0.6084, \"entropy_sica_acc\": 0.6154, \"majfrac_sc_acc\": 0.6084, \"random_sc_acc_mean\": 0.5438, \"n_answered\": 143},\n        \"0.6\": {\"entropy_sc_acc\": 0.6230, \"entropy_sica_acc\": 0.6230, \"majfrac_sc_acc\": 0.6311, \"random_sc_acc_mean\": 0.5454, \"n_answered\": 122},\n        \"0.5\": {\"entropy_sc_acc\": 0.6471, \"entropy_sica_acc\": 0.6471, \"majfrac_sc_acc\": 0.6471, \"random_sc_acc_mean\": 0.5439, \"n_answered\": 102}\n      }\n    }\n  },\n  \"aggregate\": {\n    \"n_seeds\": 2,\n    \"auroc_mean\": 0.6733,\n    \"auroc_values\": [0.6888, 0.6577],\n    \"coverage_data\": {\n      \"1.0\": {\"entropy_sc_mean\": 0.5441, \"entropy_sc_std\": 0.0, \"random_sc_mean\": 0.5441, \"delta_pp\": 0.0},\n      \"0.9\": {\"entropy_sc_mean\": 0.5679, \"entropy_sc_std\": 0.0082, \"random_sc_mean\": 0.5445, \"delta_pp\": 0.0234},\n      \"0.8\": {\"entropy_sc_mean\": 0.5890, \"entropy_sc_std\": 0.0061, \"random_sc_mean\": 0.5445, \"delta_pp\": 0.0444},\n      \"0.7\": {\"entropy_sc_mean\": 0.6224, \"entropy_sc_std\": 0.0140, \"random_sc_mean\": 0.5441, \"delta_pp\": 0.0783},\n      \"0.6\": {\"entropy_sc_mean\": 0.6434, \"entropy_sc_std\": 0.0205, \"random_sc_mean\": 0.5451, \"delta_pp\": 0.0983},\n      \"0.5\": {\"entropy_sc_mean\": 0.6765, \"entropy_sc_std\": 0.0294, \"random_sc_mean\": 0.5436, \"delta_pp\": 0.1329}\n    }\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01PJCjwcmKdnx7jHZh1WW4Uc`</summary>
+
+```json
+{
+  "name": "direction_e_abstention_results_json",
+  "type": "data",
+  "description": "Direction E: Selective Abstention — full results JSON with coverage tables, AUROC, and multi-seed aggregate",
+  "project": "symb_invariant_consensus",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/direction_e_abstention_results.json",
+  "tags": [
+    "direction-e",
+    "abstention",
+    "results"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "982b4ba4-96b0-4810-b2e7-1c4201bcaf0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UN8KpkTDQbadrSjWmdXTN3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3170,
+      "cache_read_input_tokens": 60649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3170
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T07:46:24.311Z_
+
+<details><summary>↩ Tool result · `toolu_01PJCjwcmKdnx7jHZh1WW4Uc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_c33b1b\", \"name\": \"direction_e_abstention_results_json\", \"type\": \"data\", \"description\": \"Direction E: Selective Abstention — full results JSON with coverage tables, AUROC, and multi-seed aggregate\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention_results.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T07:46:24.125266+00:00\", \"tags\": [\"direction-e\", \"abstention\", \"results\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "6f86667f-1645-4ae7-a2bf-6d4de22ed783",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_c33b1b\\\", \\\"name\\\": \\\"direction_e_abstention_results_json\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Direction E: Selective Abstention — full results JSON with coverage tables, AUROC, and multi-seed aggregate\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention_results.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T07:46:24.125266+00:00\\\", \\\"tags\\\": [\\\"direction-e\\\", \\\"abstention\\\", \\\"results\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_c33b1b\", \"name\": \"direction_e_abstention_results_json\", \"type\": \"data\", \"description\": \"Direction E: Selective Abstention — full results JSON with coverage tables, AUROC, and multi-seed aggregate\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention_results.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T07:46:24.125266+00:00\", \"tags\": [\"direction-e\", \"abstention\", \"results\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Direction E 完成。核心发现：
+
+## 结果汇总
+
+**AUROC**: 0.673 (mean over 2 seeds) — entropy 是 SC 错误的中等强度预测器。
+
+### Coverage Table (Multi-seed Aggregate, Mistral-7B, FOLIO-204)
+
+| Coverage | N | Random SC | Entropy SC (mean±std) | Δ vs Random |
+|----------|---|-----------|-----------------------|-------------|
+| 100% | 204 | 54.4% | 54.4% ± 0.0% | +0.0pp |
+| 90% | 184 | 54.5% | 56.8% ± 0.8% | +2.3pp |
+| 80% | 163 | 54.5% | 58.9% ± 0.6% | +4.4pp |
+| 70% | 143 | 54.4% | 62.2% ± 1.4% | +7.8pp |
+| 60% | 122 | 54.5% | 64.3% ± 2.0% | +9.8pp |
+| 50% | 102 | 54.4% | 67.6% ± 2.9% | +13.3pp |
+
+**关键结论**：
+- 弃权最不确定的 20% 问题（coverage=80%）→ SC accuracy 从 54.4% 升至 ~59%，+4.4pp
+- 弃权 50% → accuracy 升至 ~67.6%，+13.3pp，显著高于 random abstention
+- Entropy 和 majority_fraction 效果相当，entropy 略优（在 seed=42 上 70.6% vs 69.6% at 50% coverage）
+- SICA 在 confident 子集上（exp033, seed=42）表现与 SC 趋同甚至相同，说明一致性高时 symbolic 约束无额外增益
+- 实用价值明确：即使只弃权 30% 问题，accuracy 提升 ~8pp
+
+**输出文件**：
+- 服务器: `/root/symb_invariant_consensus/results/direction_e_abstention/results.json`
+- 本地: `artifacts/direction_e_abstention_results.json`
+- 脚本: `artifacts/direction_e_abstention.py` (及服务器 `scripts/direction_e_abstention.py`)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "uuid": "01e7237a-24e0-4b8e-bc4b-782b675f6b4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxyiBAe3eRRqVff7HLh8my",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 518,
+      "cache_read_input_tokens": 63819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 518
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+Direction E 完成。核心发现：
+
+## 结果汇总
+
+**AUROC**: 0.673 (mean over 2 seeds) — entropy 是 SC 错误的中等强度预测器。
+
+### Coverage Table (Multi-seed Aggregate, Mistral-7B, FOLIO-204)
+
+| Coverage | N | Random SC | Entropy SC (mean±std) | Δ vs Random |
+|----------|---|-----------|-----------------------|-------------|
+| 100% | 204 | 54.4% | 54.4% ± 0.0% | +0.0pp |
+| 90% | 184 | 54.5% | 56.8% ± 0.8% | +2.3pp |
+| 80% | 163 | 54.5% | 58.9% ± 0.6% | +4.4pp |
+| 70% | 143 | 54.4% | 62.2% ± 1.4% | +7.8pp |
+| 60% | 122 | 54.5% | 64.3% ± 2.0% | +9.8pp |
+| 50% | 102 | 54.4% | 67.6% ± 2.9% | +13.3pp |
+
+**关键结论**：
+- 弃权最不确定的 20% 问题（coverage=80%）→ SC accuracy 从 54.4% 升至 ~59%，+4.4pp
+- 弃权 50% → accuracy 升至 ~67.6%，+13.3pp，显著高于 random abstention
+- Entropy 和 majority_fraction 效果相当，entropy 略优（在 seed=42 上 70.6% vs 69.6% at 50% coverage）
+- SICA 在 confident 子集上（exp033, seed=42）表现与 SC 趋同甚至相同，说明一致性高时 symbolic 约束无额外增益
+- 实用价值明确：即使只弃权 30% 问题，accuracy 提升 ~8pp
+
+**输出文件**：
+- 服务器: `/root/symb_invariant_consensus/results/direction_e_abstention/results.json`
+- 本地: `artifacts/direction_e_abstention_results.json`
+- 脚本: `artifacts/direction_e_abstention.py` (及服务器 `scripts/direction_e_abstention.py`)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 267821,
+  "duration_api_ms": 261024,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "589f3458-a906-41da-9c80-d43ce561d546",
+  "total_cost_usd": 1.180694,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 52496,
+    "cache_read_input_tokens": 824262,
+    "output_tokens": 17533,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 52496,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 644,
+        "cache_read_input_tokens": 63819,
+        "cache_creation_input_tokens": 518,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 518
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1933,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002023,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 17533,
+      "cacheReadInputTokens": 824262,
+      "cacheCreationInputTokens": 52496,
+      "webSearchRequests": 0,
+      "costUSD": 1.1786709999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0f07c868-1464-4fb4-bebc-15815bbc20a1"
+}
+```
+
+</details>
+
+---

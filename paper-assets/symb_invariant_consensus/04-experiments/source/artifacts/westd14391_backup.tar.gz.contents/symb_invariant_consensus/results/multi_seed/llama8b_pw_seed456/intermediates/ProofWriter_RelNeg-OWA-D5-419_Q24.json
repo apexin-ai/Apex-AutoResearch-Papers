@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-419_Q24",
+    "problem": "The bear likes the cow. The bear does not see the cow. The cow chases the bear. The cow is cold. The cow sees the dog. The dog likes the bear. The dog does not like the tiger. The tiger is not big. The tiger does not see the bear. The tiger sees the cow. If something likes the dog then it is round. If something sees the cow then it is round. If the cow is young and the bear does not see the cow then the bear is young. If something chases the dog then it likes the tiger. If something chases the dog and it is cold then it is young. If the bear likes the cow then the cow chases the dog. If something sees the bear and the bear is young then the bear is rough. If something chases the bear and the bear is young then the bear chases the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger chases the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nLikes(Bear, Cow, True) ::: The bear likes the cow.\nSees(Bear, Cow, False) ::: The bear does not see the cow.\nChases(Cow, Bear, True) ::: The cow chases the bear.\nCold(Cow, True) ::: The cow is cold.\nSees(Cow, Dog, True) ::: The cow sees the dog.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nLikes(Dog, Tiger, False) ::: The dog does not like the tiger.\nBig(Tiger, False) ::: The tiger is not big.\nSees(Tiger, Bear, False) ::: The tiger does not see the bear.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nLikes($x, Dog, True) >>> Round($x, True) ::: If something likes the dog then it is round.\nSees($x, Cow, True) >>> Round($x, True) ::: If something sees the cow then it is round.\nYoung(Cow, True) && Sees(Bear, Cow, False) >>> Young(Bear, True) ::: If the cow is young and the bear does not see the cow then the bear is young.\nChases($x, Dog, True) >>> Likes($x, Tiger, True) ::: If something chases the dog then it likes the tiger.\nChases($x, Dog, True) && Cold($x, True) >>> Young($x, True) ::: If something chases the dog and it is cold then it is young.\nLikes(Bear, Cow, True) >>> Chases(Cow, Dog, True) ::: If the bear likes the cow then the cow chases the dog.\nSees($x, Bear, True) && Young(Bear, True) >>> Rough(Bear, True) ::: If something sees the bear and the bear is young then the bear is rough.\nChases($x, Bear, True) && Young(Bear, True) >>> Chases(Bear, Dog, True) ::: If something chases the bear and the bear is young then the bear chases the dog.\n\nQuery:\nChases(Tiger, Bear, True) ::: The tiger chases the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

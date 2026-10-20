@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-949_Q5",
+    "problem": "The bear is green. The bear likes the cat. The bear likes the dog. The bear visits the dog. The cat is young. The cat sees the bear. The cat sees the dog. The cat visits the bear. The cat visits the mouse. The dog is round. The dog likes the bear. The dog likes the mouse. The dog visits the mouse. The mouse is big. The mouse is cold. The mouse is round. If something visits the mouse and the mouse visits the dog then it is cold. If something likes the cat then it visits the dog. If something is cold then it likes the cat. If something is green then it sees the dog. If something likes the mouse then it sees the cat. If something is green and cold then it likes the cat. If something is big and it visits the bear then the bear is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse visits the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\n\nFacts:\nGreen(Bear, True) ::: The bear is green.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Bear, Dog, True) ::: The bear likes the dog.\nVisits(Bear, Dog, True) ::: The bear visits the dog.\nYoung(Cat, True) ::: The cat is young.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Dog, True) ::: The cat sees the dog.\nVisits(Cat, Bear, True) ::: The cat visits the bear.\nVisits(Cat, Mouse, True) ::: The cat visits the mouse.\nRound(Dog, True) ::: The dog is round.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nLikes(Dog, Mouse, True) ::: The dog likes the mouse.\nVisits(Dog, Mouse, True) ::: The dog visits the mouse.\nBig(Mouse, True) ::: The mouse is big.\nCold(Mouse, True) ::: The mouse is cold.\nRound(Mouse, True) ::: The mouse is round.\n\nRules:\nVisits($x, Mouse, True) && Visits(Mouse, Dog, True) >>> Cold($x, True) ::: If something visits the mouse and the mouse visits the dog then it is cold.\nLikes($x, Cat, True) >>> Visits($x, Dog, True) ::: If something likes the cat then it visits the dog.\nCold($x, True) >>> Likes($x, Cat, True) ::: If something is cold then it likes the cat.\nGreen($x, True) >>> Sees($x, Dog, True) ::: If something is green then it sees the dog.\nLikes($x, Mouse, True) >>> Sees($x, Cat, True) ::: If something likes the mouse then it sees the cat.\nGreen($x, True) && Cold($x, True) >>> Likes($x, Cat, True) ::: If something is green and cold then it likes the cat.\nBig($x, True) && Visits($x, Bear, True) >>> Green(Bear, True) ::: If something is big and it visits the bear then the bear is green.\n\nQuery:\nVisits(Mouse, Dog, True) ::: The mouse visits the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-412_Q4",
+    "problem": "Dave is furry. Dave is green. Dave is quiet. Dave is red. Fiona is blue. Fiona is furry. Fiona is green. Fiona is quiet. Fiona is red. Gary is blue. Gary is nice. Gary is quiet. Gary is red. Gary is smart. Harry is blue. Harry is smart. If something is blue and furry then it is quiet. If Dave is furry then Dave is nice. If something is furry then it is blue. Quiet things are red. All furry, green things are quiet. If something is red then it is green. All nice things are furry. All smart things are nice. Red things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nFurry(Dave, True) ::: Dave is furry.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nRed(Dave, True) ::: Dave is red.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nBlue(Gary, True) ::: Gary is blue.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nSmart(Gary, True) ::: Gary is smart.\nBlue(Harry, True) ::: Harry is blue.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBlue($x, True) && Furry($x, True) >>> Quiet($x, True) ::: If something is blue and furry then it is quiet.\nFurry(Dave, True) >>> Nice(Dave, True) ::: If Dave is furry then Dave is nice.\nFurry($x, True) >>> Blue($x, True) ::: If something is furry then it is blue.\nQuiet($x, True) >>> Red($x, True) ::: Quiet things are red.\nFurry($x, True) && Green($x, True) >>> Quiet($x, True) ::: All furry, green things are quiet.\nRed($x, True) >>> Green($x, True) ::: If something is red then it is green.\nNice($x, True) >>> Furry($x, True) ::: All nice things are furry.\nSmart($x, True) >>> Nice($x, True) ::: All smart things are nice.\nRed($x, True) >>> Quiet($x, True) ::: Red things are quiet.\n\nQuery:\nNice(Dave, False) ::: Dave is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

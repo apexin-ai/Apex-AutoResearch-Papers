@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1201_Q18",
+    "problem": "Anne is furry. Bob is furry. Gary is blue. Gary is cold. Gary is furry. Gary is quiet. Gary is round. Harry is blue. Harry is cold. Harry is quiet. Harry is round. Harry is young. Cold, blue things are quiet. All round, furry things are quiet. If Bob is blue and Bob is round then Bob is young. If something is round then it is blue. If something is young and round then it is blue. If Harry is quiet and Harry is furry then Harry is blue. Furry things are cold. Cold things are round. If something is young and furry then it is rough.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is furry.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nFurry(Bob, True) ::: Bob is furry.\nBlue(Gary, True) ::: Gary is blue.\nCold(Gary, True) ::: Gary is cold.\nFurry(Gary, True) ::: Gary is furry.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nBlue(Harry, True) ::: Harry is blue.\nCold(Harry, True) ::: Harry is cold.\nQuiet(Harry, True) ::: Harry is quiet.\nRound(Harry, True) ::: Harry is round.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nCold($x, True) && Blue($x, True) >>> Quiet($x, True) ::: Cold, blue things are quiet.\nRound($x, True) && Furry($x, True) >>> Quiet($x, True) ::: All round, furry things are quiet.\nBlue(Bob, True) && Round(Bob, True) >>> Young(Bob, True) ::: If Bob is blue and Bob is round then Bob is young.\nRound($x, True) >>> Blue($x, True) ::: If something is round then it is blue.\nYoung($x, True) && Round($x, True) >>> Blue($x, True) ::: If something is young and round then it is blue.\nQuiet(Harry, True) && Furry(Harry, True) >>> Blue(Harry, True) ::: If Harry is quiet and Harry is furry then Harry is blue.\nFurry($x, True) >>> Cold($x, True) ::: Furry things are cold.\nCold($x, True) >>> Round($x, True) ::: Cold things are round.\nYoung($x, True) && Furry($x, True) >>> Rough($x, True) ::: If something is young and furry then it is rough.\n\nQuery:\nFurry(Harry, True) ::: Harry is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

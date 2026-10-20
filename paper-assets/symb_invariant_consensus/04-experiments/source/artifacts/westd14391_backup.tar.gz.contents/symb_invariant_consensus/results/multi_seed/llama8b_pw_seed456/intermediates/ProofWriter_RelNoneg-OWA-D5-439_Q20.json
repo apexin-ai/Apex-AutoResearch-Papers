@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-439_Q20",
+    "problem": "The bald eagle is cold. The bald eagle is green. The bald eagle needs the lion. The bald eagle visits the rabbit. The dog sees the lion. The lion is cold. The lion is green. The lion needs the dog. The lion needs the rabbit. The lion visits the bald eagle. The lion visits the dog. The rabbit is round. The rabbit visits the dog. The rabbit visits the lion. If something is round then it is rough. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle. If something is rough then it visits the lion. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. If the rabbit visits the lion and the rabbit needs the dog then the dog is round. If something visits the rabbit then the rabbit needs the bald eagle. If something visits the lion and the lion needs the dog then it needs the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit visits the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nGreen(BaldEagle, True) ::: The bald eagle is green.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nVisits(BaldEagle, Rabbit, True) ::: The bald eagle visits the rabbit.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nCold(Lion, True) ::: The lion is cold.\nGreen(Lion, True) ::: The lion is green.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nVisits(Lion, BaldEagle, True) ::: The lion visits the bald eagle.\nVisits(Lion, Dog, True) ::: The lion visits the dog.\nRound(Rabbit, True) ::: The rabbit is round.\nVisits(Rabbit, Dog, True) ::: The rabbit visits the dog.\nVisits(Rabbit, Lion, True) ::: The rabbit visits the lion.\n\nRules:\nRound($x, True) >>> Rough($x, True) ::: If something is round then it is rough.\nVisits($x, Rabbit, True) && Needs($x, BaldEagle, True) >>> Visits(Rabbit, BaldEagle, True) ::: If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\nRough($x, True) >>> Visits($x, Lion, True) ::: If something is rough then it visits the lion.\nNeeds(Dog, Rabbit, True) && Sees(Rabbit, BaldEagle, True) >>> Sees(BaldEagle, Dog, True) ::: If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\nVisits(Rabbit, Lion, True) && Needs(Rabbit, Dog, True) >>> Round(Dog, True) ::: If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\nVisits($x, Rabbit, True) >>> Needs(Rabbit, BaldEagle, True) ::: If something visits the rabbit then the rabbit needs the bald eagle.\nVisits($x, Lion, True) && Needs(Lion, Dog, True) >>> Needs($x, Dog, True) ::: If something visits the lion and the lion needs the dog then it needs the dog.\n\nQuery:\nVisits(Rabbit, Rabbit, True) ::: The rabbit visits the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

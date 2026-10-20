@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-521_Q16",
+    "problem": "The cow eats the lion. The lion eats the mouse. The lion needs the mouse. The mouse sees the lion. The tiger eats the lion. The tiger is green. The tiger is red. The tiger needs the lion. The tiger needs the mouse. The tiger sees the cow. If someone sees the lion then they are cold. If someone needs the tiger and they need the mouse then they are cold. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion. All round people are green. All young, green people are round. If someone eats the mouse and the mouse sees the lion then they are green. If someone needs the tiger then the tiger sees the lion. If someone is cold and they see the lion then they need the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow needs the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nEats(Cow, Lion, True) ::: The cow eats the lion.\nEats(Lion, Mouse, True) ::: The lion eats the mouse.\nNeeds(Lion, Mouse, True) ::: The lion needs the mouse.\nSees(Mouse, Lion, True) ::: The mouse sees the lion.\nEats(Tiger, Lion, True) ::: The tiger eats the lion.\nGreen(Tiger, True) ::: The tiger is green.\nRed(Tiger, True) ::: The tiger is red.\nNeeds(Tiger, Lion, True) ::: The tiger needs the lion.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nSees($x, Lion, True) >>> Cold($x, True) ::: If someone sees the lion then they are cold.\nNeeds($x, Tiger, True) && Needs($x, Mouse, True) >>> Cold($x, True) ::: If someone needs the tiger and they need the mouse then they are cold.\nNeeds($x, Tiger, True) && Eats(Tiger, Cow, True) >>> Needs(Tiger, Lion, True) ::: If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\nRound($x, True) >>> Green($x, True) ::: All round people are green.\nYoung($x, True) && Green($x, True) >>> Round($x, True) ::: All young, green people are round.\nEats($x, Mouse, True) && Sees(Mouse, Lion, True) >>> Green($x, True) ::: If someone eats the mouse and the mouse sees the lion then they are green.\nNeeds($x, Tiger, True) >>> Sees(Tiger, Lion, True) ::: If someone needs the tiger then the tiger sees the lion.\nCold($x, True) && Sees($x, Lion, True) >>> Needs($x, Tiger, True) ::: If someone is cold and they see the lion then they need the tiger.\n\nQuery:\nNeeds(Cow, Tiger, True) ::: The cow needs the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

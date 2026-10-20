@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-75_Q5",
+    "problem": "The bald eagle chases the cow. The bald eagle chases the dog. The cow needs the bald eagle. The cow sees the lion. The dog chases the cow. The dog is green. The lion is rough. If someone is blue and rough then they see the lion. If someone needs the cow and they do not need the lion then they chase the cow. If someone sees the cow then the cow is kind. If someone is rough then they chase the bald eagle. If someone is blue then they do not chase the bald eagle. If someone is kind then they chase the lion. If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog. If the bald eagle sees the dog then the bald eagle sees the cow. If someone needs the cow then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle sees the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(BaldEagle, Cow, True) ::: The bald eagle chases the cow.\nChases(BaldEagle, Dog, True) ::: The bald eagle chases the dog.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nSees(Cow, Lion, True) ::: The cow sees the lion.\nChases(Dog, Cow, True) ::: The dog chases the cow.\nGreen(Dog, True) ::: The dog is green.\nRough(Lion, True) ::: The lion is rough.\n\nRules:\nBlue($x, True) && Rough($x, True) >>> Sees($x, Lion, True) ::: If someone is blue and rough then they see the lion.\nNeeds($x, Cow, True) && Needs($x, Lion, False) >>> Chases($x, Cow, True) ::: If someone needs the cow and they do not need the lion then they chase the cow.\nSees($x, Cow, True) >>> Kind(Cow, True) ::: If someone sees the cow then the cow is kind.\nRough($x, True) >>> Chases($x, BaldEagle, True) ::: If someone is rough then they chase the bald eagle.\nBlue($x, True) >>> Chases($x, BaldEagle, False) ::: If someone is blue then they do not chase the bald eagle.\nKind($x, True) >>> Chases($x, Lion, True) ::: If someone is kind then they chase the lion.\nChases($x, BaldEagle, True) && Chases(BaldEagle, Dog, True) >>> Sees($x, Dog, True) ::: If someone chases the bald eagle and the bald eagle chases the dog then the bald eagle sees the dog.\nSees(BaldEagle, Dog, True) >>> Sees(BaldEagle, Cow, True) ::: If the bald eagle sees the dog then the bald eagle sees the cow.\nNeeds($x, Cow, True) >>> Rough($x, True) ::: If someone needs the cow then they are rough.\n\nQuery:\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

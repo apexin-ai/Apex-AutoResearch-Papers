@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-280_Q8",
+    "problem": "The bald eagle needs the mouse. The bald eagle sees the mouse. The cow is red. The cow is rough. The cow sees the bald eagle. The cow sees the mouse. The dog eats the bald eagle. The dog is cold. The dog is rough. The dog needs the bald eagle. The mouse eats the bald eagle. The mouse eats the dog. The mouse is red. The mouse is rough. The mouse is young. The mouse sees the cow. If something is young then it needs the dog. If something eats the cow then the cow is kind. If something is young then it sees the bald eagle. If something is cold and it needs the dog then it eats the mouse. If something needs the bald eagle and it is red then it is young. If something eats the mouse then it needs the mouse. If something eats the bald eagle then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not need the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nSees(BaldEagle, Mouse, True) ::: The bald eagle sees the mouse.\nRed(Cow, True) ::: The cow is red.\nRough(Cow, True) ::: The cow is rough.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nSees(Cow, Mouse, True) ::: The cow sees the mouse.\nEats(Dog, BaldEagle, True) ::: The dog eats the bald eagle.\nCold(Dog, True) ::: The dog is cold.\nRough(Dog, True) ::: The dog is rough.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\nEats(Mouse, BaldEagle, True) ::: The mouse eats the bald eagle.\nEats(Mouse, Dog, True) ::: The mouse eats the dog.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nYoung(Mouse, True) ::: The mouse is young.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\n\nRules:\nYoung($x, True) >>> Needs($x, Dog, True) ::: If something is young then it needs the dog.\nEats($x, Cow, True) >>> Kind(Cow, True) ::: If something eats the cow then the cow is kind.\nYoung($x, True) >>> Sees($x, BaldEagle, True) ::: If something is young then it sees the bald eagle.\nCold($x, True) && Needs($x, Dog, True) >>> Eats($x, Mouse, True) ::: If something is cold and it needs the dog then it eats the mouse.\nNeeds($x, BaldEagle, True) && Red($x, True) >>> Young($x, True) ::: If something needs the bald eagle and it is red then it is young.\nEats($x, Mouse, True) >>> Needs($x, Mouse, True) ::: If something eats the mouse then it needs the mouse.\nEats($x, BaldEagle, True) >>> Red($x, True) ::: If something eats the bald eagle then it is red.\n\nQuery:\nNeeds(Dog, Dog, False) ::: The dog does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

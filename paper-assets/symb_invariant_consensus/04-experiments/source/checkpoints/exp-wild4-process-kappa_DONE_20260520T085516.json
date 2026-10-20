@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp-wild4-process-kappa",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:53.205Z",
+    "updated_at": "2026-05-20T08:55:16.383Z",
+    "hypothesis": "Process-κ: CoT reasoning process similarity (cosine) correlates with answer agreement, and measuring process-level κ reveals whether traces that agree on answers actually use similar reasoning paths.",
+    "spec": {
+      "command": "python analysis_process_kappa.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 traces (Mistral-7B FOLIO-204)",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "answer_kappa": 0.4093,
+      "process_cosine_mean": 0.6902,
+      "pearson_r": -0.064,
+      "pearson_p": 0.36,
+      "same_answer_diff_process_pct": 9.3
+    },
+    "checkpoint_path": "westd-25068:/root/symb_invariant_consensus/results/wild4_process_kappa/results.json",
+    "log_path": "worker_analysis_wild4-process-kappa_20260520T080636",
+    "completed_at": "2026-05-20T08:55:16.383Z"
+  },
+  "timestamp": "2026-05-20T08:55:16.655612+00:00",
+  "trigger": "update_registry"
+}

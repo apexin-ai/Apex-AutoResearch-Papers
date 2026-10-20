@@ -1,0 +1,737 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-272_Q16",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & kind(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_bear_bald_eagle, kind_bear), green_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_squirrel, likes_squirrel_bear), visits_squirrel_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visits_bear_bald_eagle, sees_bald_eagle_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_dog_bald_eagle)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bald_eagle, green_bald_eagle), likes_bear_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel, nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(dog) & cold(dog) -> sees(dog, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(visits_bear_eagle, kind_bear), green_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & green(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_eagle, green_bear), likes_bear_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(rough_something, likes_something_bear), visits_something_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> sees(eagle, X)",
+          "z3_formula": "Implies(visits_bear_eagle, sees_eagle_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, eagle)",
+          "z3_formula": "Implies(And(sees_something_squirrel, rough_squirrel), likes_squirrel_eagle)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(green)",
+          "z3_formula": "kind_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(green) -> kind(X)",
+          "z3_formula": "Implies(kind_green, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(green)",
+          "z3_formula": "kind_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(green) -> kind(X)",
+          "z3_formula": "Implies(kind_green, kind_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_dog, visits_dog_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visits_dog_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(likes_dog_bear, sees_dog_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & rough(Y) -> likes(Y, bald_eagle)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_X, likes_rough_bear), visits_rough_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "(nice(dog) & cold(dog)) -> sees(dog, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "(visits(X, bald_eagle) & kind(X)) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_bear_bald_eagle, kind_bear), green_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "(likes(bald_eagle, X) & green(bald_eagle)) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_bald_eagle_X, green_bald_eagle), likes_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "(rough(X) & likes(bear, X)) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_bear, likes_bear_X), visits_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bald_eagle, kind_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "(visits(X, bald_eagle) -> sees(bald_eagle, dog))",
+          "z3_formula": "Implies(visits_X_bald_eagle, sees_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "(sees(dog, squirrel) & rough(squirrel)) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(kind_animal, visits_animal_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(visits_animal_bald_eagle, kind_animal), green_animal)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & green(bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(And(likes_animal_bald_eagle, green_bald_eagle), likes_animal_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_animal, likes_animal_bear), visits_animal_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(visits_animal_bald_eagle, sees_bald_eagle_animal)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_animal_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == Unknown",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(nice_dog, cold_dog), sees_dog_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & kind(X) -> green(eagle)",
+          "z3_formula": "Implies(And(visits_bear_eagle, kind_bear), green_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_bear, visits_bear_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bear, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, bear) -> visit(X, bald_eagle)",
+          "z3_formula": "Implies(And(rough_person, likes_person_bear), visit_person_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(green)",
+          "z3_formula": "kind_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & kind(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_bear_bald_eagle, kind_bear), green_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & rough(squirrel) -> likes(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(sees_dog_squirrel, rough_squirrel), likes_squirrel_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_dog, kind_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, eagle)",
+          "z3_formula": "Implies(kind_dog, visits_dog_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dog)",
+          "z3_formula": "kind_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, eagle)",
+          "z3_formula": "visits_dog_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & visits(Y, eagle) -> sees(X, eagle)",
+          "z3_formula": "Implies(And(sees_bear_dog, visits_dog_eagle), sees_bear_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, eagle)",
+          "z3_formula": "sees_bear_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(squirrel, X) -> likes(squirrel, eagle)",
+          "z3_formula": "Implies(sees_squirrel_bear, likes_squirrel_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Not(Or(kind_bear, Not(kind_bear)))",
+          "source_step": 13
+        }
+      ]
+    }
+  ]
+}

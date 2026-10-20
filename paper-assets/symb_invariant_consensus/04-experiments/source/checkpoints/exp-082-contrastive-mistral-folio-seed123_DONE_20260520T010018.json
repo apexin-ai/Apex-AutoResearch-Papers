@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp-082-contrastive-mistral-folio-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:27:49.643Z",
+    "updated_at": "2026-05-20T01:00:18.542Z",
+    "spec": {
+      "command": "python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8021/v1 --model auto --data data/folio_full.json --output results/exp082_contrastive_mistral_folio_seed123/results.json --save-intermediates",
+      "server": "westd-16639",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "211081",
+      "log_path": "~/runs/symb_invariant_consensus/exp-082-contrastive-mistral-folio-seed123.log",
+      "submitted_at": "2026-05-19T21:27:49.358Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 123,
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (base, no fine-tuning)",
+      "eval_data": "folio_full.json (204 problems)",
+      "wall_clock_seconds": 12749.2,
+      "gpu_hours": 3.54
+    },
+    "hypothesis": "Contrastive × Mistral-7B × FOLIO-204 seed=123 replication: verifying that the contrastive constraint generation pipeline produces consistent accuracy improvements over SC baseline when controlling for random seed, expecting accuracy within ±2pp of seed=42 run (exp-075b)",
+    "parent": "exp-075b-contrastive-mistral-folio",
+    "reproduce": {
+      "finished_at": "2026-05-20T00:56:03.922Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T00:56:11.027179+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "sc_accuracy": 0.549,
+      "contrastive_accuracy": 0.4951,
+      "delta": -0.0539,
+      "n_samples": 204,
+      "wall_time_min": 206.3,
+      "degenerate_count": 35,
+      "pro_constraints": 1036,
+      "con_constraints": 920
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp082_contrastive_mistral_folio_seed123/results.json",
+    "completed_at": "2026-05-20T01:00:18.542Z"
+  },
+  "timestamp": "2026-05-20T01:00:18.766396+00:00",
+  "trigger": "update_registry"
+}

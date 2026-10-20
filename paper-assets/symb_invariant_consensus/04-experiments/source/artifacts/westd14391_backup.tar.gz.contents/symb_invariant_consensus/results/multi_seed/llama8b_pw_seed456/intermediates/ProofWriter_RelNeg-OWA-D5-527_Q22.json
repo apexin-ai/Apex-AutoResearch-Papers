@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-527_Q22",
+    "problem": "The bald eagle is rough. The bald eagle does not like the lion. The bald eagle sees the mouse. The cat does not eat the lion. The cat sees the mouse. The lion sees the cat. The mouse eats the lion. The mouse likes the bald eagle. The mouse sees the bald eagle. The mouse sees the cat. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. If someone eats the mouse then the mouse is kind. If the lion is not rough then the lion is cold. If someone likes the lion then the lion is green. If someone is kind then they like the lion. If someone eats the lion then the lion eats the mouse. If someone likes the cat then they do not like the bald eagle. If someone is green then they like the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nRough(BaldEagle, True) ::: The bald eagle is rough.\nLikes(BaldEagle, Lion, False) ::: The bald eagle does not like the lion.\nSees(BaldEagle, Mouse, True) ::: The bald eagle sees the mouse.\nEats(Cat, Lion, False) ::: The cat does not eat the lion.\nSees(Cat, Mouse, True) ::: The cat sees the mouse.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nEats(Mouse, Lion, True) ::: The mouse eats the lion.\nLikes(Mouse, BaldEagle, True) ::: The mouse likes the bald eagle.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSees(Mouse, Cat, True) ::: The mouse sees the cat.\n\nRules:\nLikes($x, BaldEagle, True) && Likes(BaldEagle, Cat, False) >>> Likes(Cat, Lion, False) ::: If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\nEats($x, Mouse, True) >>> Kind(Mouse, True) ::: If someone eats the mouse then the mouse is kind.\nRough(Lion, False) >>> Cold(Lion, True) ::: If the lion is not rough then the lion is cold.\nLikes($x, Lion, True) >>> Green(Lion, True) ::: If someone likes the lion then the lion is green.\nKind($x, True) >>> Likes($x, Lion, True) ::: If someone is kind then they like the lion.\nEats($x, Lion, True) >>> Eats(Lion, Mouse, True) ::: If someone eats the lion then the lion eats the mouse.\nLikes($x, Cat, True) >>> Likes($x, BaldEagle, False) ::: If someone likes the cat then they do not like the bald eagle.\nGreen($x, True) >>> Likes($x, BaldEagle, True) ::: If someone is green then they like the bald eagle.\n\nQuery:\nRough(Lion, True) ::: The lion is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

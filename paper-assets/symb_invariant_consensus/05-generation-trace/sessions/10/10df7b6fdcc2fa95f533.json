@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10df7b6fdcc2fa95f533",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix c0 definition rollback",
+  "task_key": "worker_fix_c0-definition-rollback_20260517T133946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_c0-definition-rollback_20260517T133946_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "5be06bfce21006fc1fa8fe3a300b1cf6061778422b2765981b6c085b86170ab9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n**Bug**: `c0_multi_candidate_rate` 被错误定义为 `sica_answer != sc_answer`（SICA-SC 分歧率），而非真实多候选率。\n\n**Fix**: 改为 `len(sc_vote_distribution) > 1`（K 条 trace 投票中有 >1 个不同答案），并将原指标保留为 `c0_disagree_rate`。\n\n**验证结果**:\n\n| 实验 | 旧值(disagree) | 新值(multi) | registry |\n|------|----:|----:|----:|\n| exp011 (LLaMA-8B) | 0.1167 | **0.6167** | 0.6167 ✓ |\n| exp017 (StrategyQA) | 0.0333 | **0.1000** | 0.1 ✓ |\n| exp020 (FOLIO) | 0.0637 | **0.6176** | 0.618 ✓ |\n| exp010 (Mistral) | 0.0667 | **0.5000** | registry 值本身有误 |\n| extraction_rate | 全部 ≤ 1.0 ✓ | | |\n\n`c0_disagree_rate` 在所有实验中均远小于 `c0_multi_candidate_rate`，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c0-definition-rollback.md"
+}

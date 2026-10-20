@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-508_Q2",
+    "problem": "The bald eagle is big. The bald eagle is cold. The bald eagle is young. The cat is not kind. The cow is red. The cow likes the bald eagle. The squirrel visits the bald eagle. If something likes the cow then the cow likes the squirrel. All big things are cold. If the squirrel is red then the squirrel is young. If something likes the squirrel then the squirrel is red. If something is young then it likes the cow. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. If something visits the squirrel and the squirrel is big then it does not like the squirrel. If something is big then it visits the cow. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nKind(Cat, False) ::: The cat is not kind.\nRed(Cow, True) ::: The cow is red.\nLikes(Cow, BaldEagle, True) ::: The cow likes the bald eagle.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nLikes($x, Cow, True) >>> Likes(Cow, Squirrel, True) ::: If something likes the cow then the cow likes the squirrel.\nBig($x, True) >>> Cold($x, True) ::: All big things are cold.\nRed(Squirrel, True) >>> Young(Squirrel, True) ::: If the squirrel is red then the squirrel is young.\nLikes($x, Squirrel, True) >>> Red(Squirrel, True) ::: If something likes the squirrel then the squirrel is red.\nYoung($x, True) >>> Likes($x, Cow, True) ::: If something is young then it likes the cow.\nLikes(Squirrel, Cat, True) && Chases(Cow, Squirrel, False) >>> Likes(Cat, Cow, True) ::: If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow.\nVisits($x, Squirrel, True) && Big(Squirrel, True) >>> Likes($x, Squirrel, False) ::: If something visits the squirrel and the squirrel is big then it does not like the squirrel.\nBig($x, True) >>> Visits($x, Cow, True) ::: If something is big then it visits the cow.\nVisits($x, Squirrel, True) && Red($x, False) >>> Visits(Squirrel, BaldEagle, False) ::: If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nQuery:\nRed(Cow, False) ::: The cow is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

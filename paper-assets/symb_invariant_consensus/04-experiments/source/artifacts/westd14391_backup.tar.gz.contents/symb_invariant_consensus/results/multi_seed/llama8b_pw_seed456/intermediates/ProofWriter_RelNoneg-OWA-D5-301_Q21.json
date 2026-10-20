@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-301_Q21",
+    "problem": "The cat eats the dog. The cat is young. The cat needs the rabbit. The dog is young. The dog needs the rabbit. The lion is green. The lion needs the cat. The rabbit chases the cat. The rabbit chases the dog. The rabbit eats the cat. The rabbit needs the cat. The rabbit needs the lion. All green things are red. If something is red and young then it eats the lion. If something eats the cat then the cat is green. If something is blue and it eats the cat then the cat chases the dog. If something eats the rabbit and it needs the lion then the rabbit is red. If something eats the lion then the lion is young. If something is big then it eats the cat. If something eats the rabbit then the rabbit eats the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not need the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(Cat, Dog, True) ::: The cat eats the dog.\nYoung(Cat, True) ::: The cat is young.\nNeeds(Cat, Rabbit, True) ::: The cat needs the rabbit.\nYoung(Dog, True) ::: The dog is young.\nNeeds(Dog, Rabbit, True) ::: The dog needs the rabbit.\nGreen(Lion, True) ::: The lion is green.\nNeeds(Lion, Cat, True) ::: The lion needs the cat.\nChases(Rabbit, Cat, True) ::: The rabbit chases the cat.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nEats(Rabbit, Cat, True) ::: The rabbit eats the cat.\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\n\nRules:\nGreen($x, True) >>> Red($x, True) ::: All green things are red.\nRed($x, True) && Young($x, True) >>> Eats($x, Lion, True) ::: If something is red and young then it eats the lion.\nEats($x, Cat, True) >>> Green(Cat, True) ::: If something eats the cat then the cat is green.\nBlue($x, True) && Eats($x, Cat, True) >>> Chases(Cat, Dog, True) ::: If something is blue and it eats the cat then the cat chases the dog.\nEats($x, Rabbit, True) && Needs($x, Lion, True) >>> Red(Rabbit, True) ::: If something eats the rabbit and it needs the lion then the rabbit is red.\nEats($x, Lion, True) >>> Young(Lion, True) ::: If something eats the lion then the lion is young.\nBig($x, True) >>> Eats($x, Cat, True) ::: If something is big then it eats the cat.\nEats($x, Rabbit, True) >>> Eats(Rabbit, Dog, True) ::: If something eats the rabbit then the rabbit eats the dog.\n\nQuery:\nNeeds(Cat, Dog, False) ::: The cat does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

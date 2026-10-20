@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1066_Q21",
+    "problem": "Bob is big. Charlie is furry. Charlie is kind. Charlie is smart. Fiona is furry. Fiona is young. Gary is smart. Big, smart things are kind. If something is red and not smart then it is kind. Smart things are furry. If something is red and big then it is furry. If Charlie is red then Charlie is kind. If something is kind then it is young. Young things are not red. If something is furry and smart then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nSmart(Charlie, True) ::: Charlie is smart.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nBig($x, True) && Smart($x, True) >>> Kind($x, True) ::: Big, smart things are kind.\nRed($x, True) && Smart($x, False) >>> Kind($x, True) ::: If something is red and not smart then it is kind.\nSmart($x, True) >>> Furry($x, True) ::: Smart things are furry.\nRed($x, True) && Big($x, True) >>> Furry($x, True) ::: If something is red and big then it is furry.\nRed(Charlie, True) >>> Kind(Charlie, True) ::: If Charlie is red then Charlie is kind.\nKind($x, True) >>> Young($x, True) ::: If something is kind then it is young.\nYoung($x, True) >>> Red($x, False) ::: Young things are not red.\nFurry($x, True) && Smart($x, True) >>> Big($x, True) ::: If something is furry and smart then it is big.\n\nQuery:\nSmart(Fiona, False) ::: Fiona is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

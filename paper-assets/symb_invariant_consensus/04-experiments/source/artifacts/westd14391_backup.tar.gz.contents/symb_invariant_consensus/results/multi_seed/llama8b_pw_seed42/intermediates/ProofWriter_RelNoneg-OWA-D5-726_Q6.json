@@ -1,0 +1,1089 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-726_Q6",
+    "problem": "The bear visits the tiger. The cat is kind. The mouse is green. The mouse is kind. The mouse sees the tiger. The tiger is rough. The tiger visits the cat. If something visits the bear then it sees the bear. If something sees the bear then the bear likes the cat. If something visits the cat then the cat visits the bear. If something sees the bear and the bear likes the cat then it is cold. Cold things are rough. If something is green and it likes the tiger then the tiger visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not see the bear.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nVisits($x, $y, bool) ::: Does x visit y?\nKind($x, bool) ::: Is x kind?\nGreen($x, bool) ::: Is x green?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nKind(Cat, True) ::: The cat is kind.\nGreen(Mouse, True) ::: The mouse is green.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nRough(Tiger, True) ::: The tiger is rough.\nVisits(Tiger, Cat, True) ::: The tiger visits the cat.\n\nRules:\nVisits($x, Bear, True) >>> Sees($x, Bear, True) ::: If something visits the bear then it sees the bear.\nSees($x, Bear, True) >>> Likes(Bear, Cat, True) ::: If something sees the bear then the bear likes the cat.\nVisits($x, Cat, True) >>> Visits(Cat, Bear, True) ::: If something visits the cat then the cat visits the bear.\nSees($x, Bear, True) && Likes(Bear, Cat, True) >>> Cold($x, True) ::: If something sees the bear and the bear likes the cat then it is cold.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\nGreen($x, True) && Likes($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If something is green and it likes the tiger then the tiger visits the mouse.\n\nQuery:\nSees(Cat, Bear, False) ::: The cat does not see the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 111.5,
+      "Unknown": 134.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven Information:\n\n1. The cat is kind.\n2. The mouse is green.\n3. The mouse is kind.\n4. The mouse sees the tiger.\n5. The tiger is rough.\n6. The tiger visits the cat.\n7. If something visits the bear then it sees the bear.\n8. If something sees the bear then the bear likes the cat.\n9. If something visits the cat then the cat visits the bear.\n10. If something sees the bear and the bear likes the cat then it is cold.\n11. Cold things are rough.\n12. If something is green and it likes the tiger then the tiger visits the mouse.\n\nAnalysis:\n\n- From statement 7, we know that something that visits the bear sees the bear. However, this information does not directly relate to the cat.\n- From statement 8, we know that something that sees the bear likes the cat. However, we do not have any information about the cat seeing the bear.\n- From statement 9, we know that if something visits the cat, then the cat visits the bear. This information does not directly relate to whether the cat sees the bear or not.\n- We do not have any information about the cat seeing the bear.\n\nTherefore, based on the given information, we cannot determine whether the statement \"The cat does not see the bear\" is true or false. The information about the cat and the bear is too vague, and we cannot make any conclusions about their relationship.\n\nSo, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is green and kind.\n2. The mouse sees the tiger.\n3. The tiger is rough and visits the cat.\n4. The cat is kind.\n\nWe do not have any direct information about the cat seeing the bear. However, we can use the given rules to try to derive the relationship between the cat and the bear.\n\nFrom the given information:\n- If something sees the bear then the bear likes the cat. (Rule 3)\n- If something visits the bear then it sees the bear. (Rule 1)\n- If something sees the bear and the bear likes the cat then it is cold. (Rule 4)\n- Cold things are rough. (Rule 5)\n- If something is green and it likes the tiger then the tiger visits the mouse. (Rule 6)\n\nThere is no direct information about the cat seeing the bear, but we can consider the possible relationships.\n\nGiven the information that the cat is kind (Rule 2) and the mouse is green and kind (Rule 1), we can apply rule 6 to conclude that the mouse likes the tiger, but it does not directly relate to the cat seeing the bear.\n\nSince we do not have any information about the cat seeing the bear, we cannot conclude whether the statement \"The cat does not see the bear\" is true or false. The information provided does not allow us to derive a definitive relationship between the cat and the bear. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'The cat does not see the bear' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - The cat is kind.\n   - The mouse is green.\n   - The mouse is kind.\n   - The mouse sees the tiger.\n   - The tiger is rough.\n   - The tiger visits the cat.\n   - If something visits the bear then it sees the bear.\n   - If something sees the bear then the bear likes the cat.\n   - If something visits the cat then the cat visits the bear.\n   - If something sees the bear and the bear likes the cat then it is cold.\n   - Cold things are rough.\n   - If something is green and it likes the tiger then the tiger visits the mouse.\n\n2. Analyzing the given information:\n   - We know that the tiger visits the cat.\n   - We know that if something visits the cat then the cat visits the bear.\n   - Since the tiger visits the cat, it implies that the cat visits the bear.\n   - We know that the mouse is green and kind.\n   - We know that the mouse sees the tiger, which means the mouse visits the tiger.\n\n3. Applying the given rules to the information:\n   - Since the mouse sees the tiger, it implies that the mouse visits the bear because the mouse sees the bear.\n   - Now we know that the mouse visits the bear.\n   - We also know that the cat visits the bear because the tiger visits the cat, and the cat visits the bear if something visits the cat.\n   - Since the mouse and the cat both visit the bear, it implies that the bear likes the cat because the mouse and the cat both see the bear.\n\n4. Applying the final rule:\n   - Since the bear likes the cat and the mouse sees the bear, it implies that it is cold because if something sees the bear and the bear likes the cat then it is cold.\n   - We know that cold things are rough.\n   - Therefore, the mouse is rough because it is green and it is cold.\n\n5. Analyzing the statement:\n   - The statement 'The cat does not see the bear' needs to be determined.\n   - We know that the cat visits the bear because the tiger visits the cat, and the cat visits the bear if something visits the cat.\n   - However, we also know that the mouse visits the bear, and the mouse sees the bear, which implies that the cat sees the bear.\n   - The cat sees the bear because the bear likes the cat, and if something sees the bear and the bear likes the cat then it is cold.\n\n6. Conclusion:\n   - The cat sees the bear because the bear likes the cat, and if something sees the bear and the bear likes the cat then it is cold.\n   - Therefore, the statement 'The cat does not see the bear' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The cat does not see the bear' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bear visits the tiger.\n2. The cat is kind.\n3. The mouse is green.\n4. The mouse is kind.\n5. The mouse sees the tiger.\n6. The tiger is rough.\n7. The tiger visits the cat.\n\nGiven Rules:\n\n1. If something visits the bear, then it sees the bear.\n2. If something sees the bear, then the bear likes the cat.\n3. If something visits the cat, then the cat visits the bear.\n4. If something sees the bear and the bear likes the cat, then it is cold.\n5. Cold things are rough.\n6. If something is green and it likes the tiger, then the tiger visits the mouse.\n\nTo determine whether the cat sees the bear, let's analyze the information we have:\n\nFrom rule 1, we know that if something visits the bear, then it sees the bear. However, we don't have any information about the cat visiting the bear. \n\nFrom rule 3, we know that if something visits the cat, then the cat visits the bear. However, we don't have any information about the cat visiting the mouse or the mouse visiting the cat.\n\nFrom the given statements, we can deduce that the tiger visits the cat (statement 7). We can't directly use this information to determine whether the cat sees the bear.\n\nHowever, we can analyze the information we have to see if it leads to a contradiction. \n\nWe know that the tiger is rough (statement 6), and from rule 5, we know that cold things are rough. This means that if something sees the bear and the bear likes the cat, then it is cold. However, this information alone doesn't help us determine whether the cat sees the bear.\n\nLet's analyze the information we have to see if it leads to the cat seeing the bear. \n\nWe know that the mouse is green (statement 3) and the mouse likes the tiger (from the rules and statements, we can't directly deduce that the mouse likes the tiger, but we can use it as a working assumption for now). If the mouse is green and it likes the tiger, then the tiger visits the mouse (rule 6). However, we don't have any information about the mouse visiting the cat or the cat visiting the mouse.\n\nHowever, we can use the information from rule 1 and rule 2 to determine whether the cat sees the bear. \n\nIf something sees the bear, then the bear likes the cat (rule 2). We know that the bear visits the tiger (statement 1), so the bear sees the tiger. From rule 2, this means that the bear likes the cat.\n\nHowever, we still can't determine whether the cat sees the bear directly from the information we have. We need to analyze the information again to see if it leads to a contradiction.\n\nLet's analyze the information again. \n\nWe know that the mouse sees the tiger (statement 5). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, we can use the information from the statements to determine whether the cat sees the bear. \n\nWe know that the tiger visits the cat (statement 7). We also know that the tiger is rough (statement 6). However, we still can't determine whether the cat sees the bear directly from the information we have.\n\nHowever, let's analyze the information from the statements again. \n\nWe know that the tiger visits the cat (statement 7). We can use rule 3 to determine that the cat visits the bear. We know that the tiger visits the cat, and if the cat visits the bear, then the bear sees the cat. From rule 1, if the bear sees the cat, then the bear sees the bear. This doesn't lead to a contradiction, but it doesn't directly determine whether the cat sees the bear either.\n\nHowever, we can analyze the information from the statements again. \n\nWe know that the cat is kind (statement 2). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, let's analyze the information from the statements again. \n\nWe know that the tiger visits the cat (statement 7). We can use the information from the statements and the rules to determine whether the cat sees the bear. \n\nWe can use rule 3 to determine that the cat visits the bear. We know that the tiger visits the cat, and if the cat visits the bear, then the bear sees the cat. From rule 1, if the bear sees the cat, then the bear sees the bear. This doesn't lead to a contradiction, but it still doesn't directly determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements again. \n\nWe know that the mouse sees the tiger (statement 5). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, let's analyze the information from the statements again. \n\nWe know that the cat is kind (statement 2). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements and the rules to determine whether the cat sees the bear. \n\nWe can use the information from the statements and the rules to determine that the cat visits the bear. However, this still doesn't directly determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements again. \n\nWe know that the tiger visits the cat (statement 7). We can use the information from the statements and the rules to determine whether the cat sees the bear. \n\nHowever, let's analyze the information again. \n\nWe know that the tiger is rough (statement 6). We also know that cold things are rough (rule 5). However, this information alone doesn't help us determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements again. \n\nWe know that the mouse sees the tiger (statement 5). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, we can use the information from the statements and the rules to determine whether the cat sees the bear. \n\nHowever, let's analyze the information again. \n\nWe know that the cat is kind (statement 2). We also know that the mouse is kind (statement 4). However, we can't directly use this information to determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements again. \n\nWe know that the tiger visits the cat (statement 7). We can use the information from the statements and the rules to determine whether the cat sees the bear. \n\nHowever, we can use the information from the statements and the rules to determine that the cat visits the bear. We know that the tiger visits the cat, and if the cat visits the bear, then the bear sees the cat. From rule 1, if the bear sees the cat, then the bear sees the bear. This still doesn't directly determine whether the cat sees the bear.\n\nHowever, we can analyze the information from the statements and the rules to determine that the cat sees the bear is unknown.\n\nWe can't directly determine whether the cat sees the bear from the information we have, so we can conclude that the statement 'The cat does not see the bear' is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. The bear visits the tiger.\n2. The cat is kind.\n3. The mouse is green.\n4. The mouse is kind.\n5. The mouse sees the tiger.\n6. The tiger is rough.\n7. The tiger visits the cat.\n8. If something visits the bear then it sees the bear.\n9. If something sees the bear then the bear likes the cat.\n10. If something visits the cat then the cat visits the bear.\n11. If something sees the bear and the bear likes the cat then it is cold.\n12. Cold things are rough.\n13. If something is green and it likes the tiger then the tiger visits the mouse.\n\nNow, let's analyze the statement \"The cat does not see the bear.\"\n\nFrom statement 10, we know that if something visits the cat then the cat visits the bear. This means that the cat does not necessarily see the bear. However, we cannot conclude that the cat does not see the bear.\n\nFrom statement 8, we know that if something visits the bear then it sees the bear. But we do not have any information that the cat visits the bear. Therefore, we cannot conclude that the cat sees the bear.\n\nHowever, we can deduce that if the cat sees the bear, then the bear likes the cat (from statement 9). If the bear likes the cat, then it is cold (from statement 11), and if it is cold, then it is rough (from statement 12). But we know that the tiger is rough (from statement 6). This does not provide any information about the cat.\n\nTo determine whether the cat sees the bear, we need more information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we will analyze the given information and rules step by step.\n\nGiven information:\n1. The bear visits the tiger.\n2. The cat is kind.\n3. The mouse is green.\n4. The mouse is kind.\n5. The mouse sees the tiger.\n6. The tiger is rough.\n7. The tiger visits the cat.\n\nRules:\n1. If something visits the bear then it sees the bear.\n2. If something sees the bear then the bear likes the cat.\n3. If something visits the cat then the cat visits the bear.\n4. If something sees the bear and the bear likes the cat then it is cold.\n5. Cold things are rough.\n6. If something is green and it likes the tiger then the tiger visits the mouse.\n\nFrom rule 3, we can conclude that the cat visits the bear because the cat visited the tiger (rule 7). \n\nNow, since the cat visits the bear, we can use rule 1, which states that if something visits the bear then it sees the bear. Therefore, the cat sees the bear.\n\nSince the cat sees the bear and the bear likes the cat (rule 2), we can conclude that it is cold using rule 4. \n\nFrom rule 5, we know that cold things are rough. Therefore, the cat is rough.\n\nThe statement to be evaluated is: \"The cat does not see the bear.\"\n\nSince we have found that the cat sees the bear, the statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'The cat does not see the bear' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is kind.\n2. The mouse is green.\n3. The mouse is kind.\n4. The mouse sees the tiger.\n5. The tiger is rough.\n6. The tiger visits the cat.\n7. If something visits the bear then it sees the bear.\n8. If something sees the bear then the bear likes the cat.\n9. If something visits the cat then the cat visits the bear.\n10. If something sees the bear and the bear likes the cat then it is cold.\n11. Cold things are rough.\n12. If something is green and it likes the tiger then the tiger visits the mouse.\n\nWe are asked to determine whether 'The cat does not see the bear' is true, false, or unknown.\n\nFrom statement 6, we know that the tiger visits the cat. \n\nFrom statement 7, if the tiger visits the bear, then the tiger sees the bear. \n\nSince we do not have any information that directly links the tiger to the bear, we cannot conclude that the tiger sees the bear.\n\nHowever, we can determine if the cat sees the bear using the given statements.\n\nFrom statement 9, if something visits the cat, then the cat visits the bear. But, there is no direct information that the cat visits the bear. \n\nHowever, from statement 8, if something sees the bear, then the bear likes the cat. But we cannot determine if the cat sees the bear.\n\nWe can analyze the situation using the information provided in statement 7, 8, and 9. However, none of these statements directly link the cat to the bear.\n\nSince we do not have any information that directly links the cat to the bear or that the cat sees the bear, we cannot determine if the statement 'The cat does not see the bear' is true or false.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bear visits the tiger. - This statement is irrelevant to our problem, so we can ignore it.\n\n2. The cat is kind. - This statement is also irrelevant to our problem, so we can ignore it.\n\n3. The mouse is green. - This statement is irrelevant to our problem, so we can ignore it.\n\n4. The mouse is kind. - This statement is also irrelevant to our problem, so we can ignore it.\n\n5. The mouse sees the tiger. - This statement is irrelevant to our problem, so we can ignore it.\n\n6. The tiger is rough. - This statement is irrelevant to our problem, so we can ignore it.\n\n7. The tiger visits the cat. - This statement is irrelevant to our problem, so we can ignore it.\n\n8. If something visits the bear then it sees the bear. - This statement can be ignored as it does not help in determining the statement in question.\n\n9. If something sees the bear then the bear likes the cat. - This statement can be ignored as it does not help in determining the statement in question.\n\n10. If something visits the cat then the cat visits the bear. - This statement can be ignored as it does not help in determining the statement in question.\n\n11. If something sees the bear and the bear likes the cat then it is cold. - This statement can be ignored as it does not help in determining the statement in question.\n\n12. Cold things are rough. - This statement can be ignored as it does not help in determining the statement in question.\n\n13. If something is green and it likes the tiger then the tiger visits the mouse. - This statement can be ignored as it does not help in determining the statement in question.\n\nHowever, we can make use of the following statements to determine the truth value of the statement \"The cat does not see the bear\":\n- If something visits the cat then the cat visits the bear. \n- The tiger visits the cat.\n\nUsing the above statements we can conclude that the cat must have visited the tiger, which in turn implies that the cat must have seen the tiger. \n\nBut we also know that the cat is kind (from statement 2) and the tiger is rough (from statement 6). \n\nUsing the following statement we can conclude that the bear must like the cat, as the cat is kind and the tiger is rough (from statement 1 and 6 and 9). \n\nNow we know that the cat saw the bear (because it saw the tiger and the bear likes the cat) and the bear likes the cat. \n\nSo from statement 11 we can conclude that it is cold. \n\nAnd from statement 12 we can conclude that the cold thing is rough. \n\nThe tiger is rough (from statement 6) and it is also cold, so it must be the thing that is cold and rough. \n\nThe cat saw the bear (because it saw the tiger and the bear likes the cat), and the cat is kind (from statement 2), so we can conclude that the cat does not see the bear is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the information, we have the following:\n\n1. The bear visits the tiger.\n2. The cat is kind.\n3. The mouse is green.\n4. The mouse is kind.\n5. The mouse sees the tiger.\n6. The tiger is rough.\n7. The tiger visits the cat.\n\nNow, let's analyze the rules:\n\n1. If something visits the bear then it sees the bear.\n2. If something sees the bear then the bear likes the cat.\n3. If something visits the cat then the cat visits the bear.\n4. If something sees the bear and the bear likes the cat then it is cold.\n5. Cold things are rough.\n6. If something is green and it likes the tiger then the tiger visits the mouse.\n\nNow, let's analyze the statement \"The cat does not see the bear.\"\n\nFrom rule 3, if something visits the cat then the cat visits the bear. But we don't have any information about the cat visiting the bear. However, we do have information that the tiger visits the cat (rule 7). \n\nUsing rule 1, if the tiger visits the bear, then the tiger sees the bear. Using rule 2, if the tiger sees the bear, then the bear likes the cat. Since the tiger is rough (rule 6), it is also cold (rule 5). \n\nNow, from rule 6, if something is green and it likes the tiger, then the tiger visits the mouse. But we don't have any information that the mouse likes the tiger. However, we do have information that the mouse is kind (rule 4) and green (rule 3). \n\nWe also know that the mouse sees the tiger (rule 5), but we don't know if the mouse likes the tiger or not. However, we do have information that the mouse is kind (rule 4). \n\nWe don't have any information that the mouse likes the tiger or not, but we do know that the mouse is kind and green. Therefore, we cannot determine whether the tiger visits the mouse or not. \n\nSince we don't know whether the tiger visits the mouse or not, we also don't know whether the mouse likes the tiger or not. However, we do know that if the mouse likes the tiger, then the tiger visits the mouse. \n\nNow, let's go back to the statement \"The cat does not see the bear.\" We know that the tiger is rough (rule 6) and cold (rule 5), and the mouse sees the tiger (rule 5). However, we don't know whether the cat sees the bear or not. \n\nThe only information we have is that the cat is kind (rule 2). We don't have any information that the cat sees the bear or not. Therefore, we cannot determine whether the statement \"The cat does not see the bear\" is true or false. \n\nSince we cannot determine whether the cat sees the bear or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - The bear visits the tiger.\n   - The cat is kind.\n   - The mouse is green.\n   - The mouse is kind.\n   - The mouse sees the tiger.\n   - The tiger is rough.\n   - The tiger visits the cat.\n   - If something visits the bear then it sees the bear.\n   - If something sees the bear then the bear likes the cat.\n   - If something visits the cat then the cat visits the bear.\n   - If something sees the bear and the bear likes the cat then it is cold.\n   - Cold things are rough.\n   - If something is green and it likes the tiger then the tiger visits the mouse.\n\n2. From the given information, we know:\n   - The tiger visits the cat (from the given statement).\n   - If something visits the cat then the cat visits the bear (rule).\n   - Therefore, the cat visits the bear.\n\n3. Now we have to analyze the statement \"The cat does not see the bear\" using the given rules:\n   - If the cat visits the bear, then it is possible that the cat sees the bear (rule: If something visits the bear then it sees the bear).\n   - However, we cannot directly conclude whether the cat sees the bear or not because this rule is not absolute.\n\n4. We need to find more information to determine whether the cat sees the bear.\n   - The only way to determine this is by using the rule: If something sees the bear then the bear likes the cat.\n   - However, we do not have any information about whether the cat sees the bear or not.\n\n5. Since we do not have enough information to determine whether the cat sees the bear, we cannot conclude whether the statement \"The cat does not see the bear\" is true or false.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and rules to determine the relationship between the cat and the bear.\n\n1. The cat is kind.\n2. The mouse is green.\n3. The mouse is kind.\n4. The mouse sees the tiger.\n5. The tiger is rough.\n6. The tiger visits the cat.\n7. If something visits the bear then it sees the bear.\n8. If something sees the bear then the bear likes the cat.\n9. If something visits the cat then the cat visits the bear.\n10. If something sees the bear and the bear likes the cat then it is cold.\n11. Cold things are rough.\n12. If something is green and it likes the tiger then the tiger visits the mouse.\n\nNow, let's examine the statement we need to determine: \"The cat does not see the bear.\"\n\nFrom the given statements, we know:\n\n- The cat is kind (statement 1).\n- The tiger visits the cat (statement 6).\n\nHowever, we don't have any direct information about the cat seeing the bear. \n\nLet's consider the rules:\n\n- If something visits the bear then it sees the bear (rule 7).\n- If something sees the bear then the bear likes the cat (rule 8).\n- If something visits the cat then the cat visits the bear (rule 9).\n\nWe can create a chain of events to determine the cat's relationship with the bear. \n\nThe tiger visits the cat (statement 6), and the tiger is rough (statement 5). However, we don't have any information that directly links the cat's actions to the bear.\n\nSince the cat is kind (statement 1), we can't directly conclude whether the cat sees the bear or not.\n\nHowever, we can consider rule 7, which states that if something visits the bear, then it sees the bear. But this rule doesn't tell us whether the cat sees the bear or not.\n\nWe also know that the mouse is green (statement 2) and the mouse is kind (statement 3). But this information doesn't directly relate to the cat or the bear.\n\nLet's analyze the given rules again:\n\n- If something sees the bear then the bear likes the cat (rule 8).\n- If something sees the bear and the bear likes the cat then it is cold (rule 10).\n- Cold things are rough (rule 11).\n\nThis chain of events implies that if the bear likes the cat, then it is cold, and thus rough. However, we still don't have any information that directly links the cat's actions to the bear.\n\nThe key to solving this problem lies in analyzing the relationships between the statements and rules.\n\nSince we can't directly conclude whether the cat sees the bear or not, we can consider the possibilities:\n\n- If the cat sees the bear, then the bear likes the cat (rule 8).\n- If the bear likes the cat, then it is cold (rule 10).\n- If it is cold, then it is rough (rule 11).\n\nHowever, this chain of events doesn't necessarily mean that the cat sees the bear. \n\nGiven the information provided, we can't directly determine whether the cat sees the bear or not. \n\nTherefore, the statement \"The cat does not see the bear\" is unknown, as we don't have enough information to confirm or deny it.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear visits the tiger. (This statement doesn't provide any direct information about the cat or mouse, but we'll keep it in mind.)\n\n2. The cat is kind. (We don't know if the cat sees the bear or not, so this statement doesn't provide any direct information.)\n\n3. The mouse is green. (We don't know if the mouse sees the bear or not, so this statement doesn't provide any direct information.)\n\n4. The mouse is kind. (Similar to the previous statement, this doesn't provide any direct information about the cat or the bear.)\n\n5. The mouse sees the tiger. (We don't have any information about the mouse seeing the bear, so this doesn't provide any direct information.)\n\n6. The tiger is rough. (We'll keep this in mind for later.)\n\n7. The tiger visits the cat. (This statement doesn't provide any information about the cat seeing the bear.)\n\nNow, let's analyze the rules given:\n\n1. If something visits the bear then it sees the bear. (This rule doesn't provide any direct information about the cat, so we can't use it to determine if the cat sees the bear.)\n\n2. If something sees the bear then the bear likes the cat. (Again, this rule doesn't provide any direct information about the cat seeing the bear.)\n\n3. If something visits the cat then the cat visits the bear. (This rule provides a relationship between the cat and the bear, but it doesn't directly answer the question of whether the cat sees the bear.)\n\n4. If something sees the bear and the bear likes the cat then it is cold. (This rule doesn't provide any information about the cat seeing the bear.)\n\n5. Cold things are rough. (This rule is related to rule 6, which states that the tiger is rough. However, it doesn't provide any direct information about the cat seeing the bear.)\n\n6. If something is green and it likes the tiger then the tiger visits the mouse. (This rule is unrelated to the cat and the bear, so we can ignore it.)\n\nGiven the information and rules provided, we can't directly determine whether the cat sees the bear. We don't have any information that would make the statement \"The cat sees the bear\" or \"The cat does not see the bear\" true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_X_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, bear)",
+          "z3_formula": "Implies(visits_X_cat, visits_cat_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_X_bear, likes_bear_cat), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_X, likes_X_tiger), visits_tiger_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_mouse_bear, likes_bear_cat), cold_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_mouse, rough_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(tiger, X) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_tiger_mouse), visits_tiger_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(sees_cat_bear)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_X_cat, visits_cat_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_X_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cat) & sees(X, bear) -> cold(X)",
+          "z3_formula": "Implies(And(likes_bear_cat, sees_X_bear), cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_X, likes_X_tiger), visits_tiger_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_bear_tiger, sees_bear_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_bear_tiger, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_bear_tiger, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_see(cat, bear)",
+          "z3_formula": "Not(sees_cat_bear)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, bear)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_cat_bear, sees_cat_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_cat_bear, likes_bear_cat), cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & likes(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(And(kind_cat, likes_cat_cat), sees_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, cat)",
+          "z3_formula": "Implies(kind_cat, likes_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_cat_bear, sees_cat_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear) == False",
+          "z3_formula": "Not(sees_cat_bear) == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_visits_cat",
+          "z3_formula": "tiger_visits_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_is_rough",
+          "z3_formula": "tiger_is_rough == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_is_green",
+          "z3_formula": "mouse_is_green == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_is_kind",
+          "z3_formula": "mouse_is_kind == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_sees_tiger",
+          "z3_formula": "mouse_sees_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits_bear(X) -> sees_bear(X)",
+          "z3_formula": "Implies(visits_bear, sees_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bear(X) -> likes_bear_cat",
+          "z3_formula": "Implies(sees_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits_cat(X) -> visits_bear_cat",
+          "z3_formula": "Implies(visits_cat, visits_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bear(X) & likes_bear_cat -> cold(X)",
+          "z3_formula": "Implies(And(sees_bear, likes_bear_cat), cold)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold, rough)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes_tiger(X) -> tiger_visits_mouse",
+          "z3_formula": "Implies(And(green, likes_tiger), tiger_visits_mouse)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == Unknown",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 160,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 1,
+      "total_weight": 156,
+      "solve_time_ms": 1.3143662363290787
+    },
+    "timing": {
+      "trace_gen_s": 19.15,
+      "extraction_s": 39.844,
+      "dedup_s": 1.68,
+      "maxsat_s": 0.005,
+      "total_s": 60.678
+    }
+  }
+}

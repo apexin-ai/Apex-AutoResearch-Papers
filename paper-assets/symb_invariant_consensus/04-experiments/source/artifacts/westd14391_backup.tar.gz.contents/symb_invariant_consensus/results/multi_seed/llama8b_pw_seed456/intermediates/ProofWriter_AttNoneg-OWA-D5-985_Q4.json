@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-985_Q4",
+    "problem": "Anne is blue. Anne is rough. Anne is young. Bob is blue. Bob is green. Erin is blue. Erin is green. Erin is rough. Gary is green. Gary is white. All young things are white. If Anne is green then Anne is young. If something is cold then it is young. All blue, rough things are red. All blue things are cold. All young, rough things are white. If something is young and red then it is green. All white, young things are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nBlue(Bob, True) ::: Bob is blue.\nGreen(Bob, True) ::: Bob is green.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Erin, True) ::: Erin is green.\nRough(Erin, True) ::: Erin is rough.\nGreen(Gary, True) ::: Gary is green.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nYoung($x, True) >>> White($x, True) ::: All young things are white.\nGreen(Anne, True) >>> Young(Anne, True) ::: If Anne is green then Anne is young.\nCold($x, True) >>> Young($x, True) ::: If something is cold then it is young.\nBlue($x, True) && Rough($x, True) >>> Red($x, True) ::: All blue, rough things are red.\nBlue($x, True) >>> Cold($x, True) ::: All blue things are cold.\nYoung($x, True) && Rough($x, True) >>> White($x, True) ::: All young, rough things are white.\nYoung($x, True) && Red($x, True) >>> Green($x, True) ::: If something is young and red then it is green.\nWhite($x, True) && Young($x, True) >>> Rough($x, True) ::: All white, young things are rough.\n\nQuery:\nRed(Anne, False) ::: Anne is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

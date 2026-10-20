@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-203_Q21",
+    "problem": "Charlie is cold. Charlie is young. Dave is cold. Erin is white. Fiona is nice. Fiona is white. Fiona is young. All blue things are white. If something is nice and blue then it is white. All young, blue things are not green. If something is white then it is nice. If something is nice then it is round. If Charlie is round then Charlie is white. All blue things are young. If something is cold and green then it is young. Round things are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Dave, True) ::: Dave is cold.\nWhite(Erin, True) ::: Erin is white.\nNice(Fiona, True) ::: Fiona is nice.\nWhite(Fiona, True) ::: Fiona is white.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nBlue($x, True) >>> White($x, True) ::: All blue things are white.\nNice($x, True) && Blue($x, True) >>> White($x, True) ::: If something is nice and blue then it is white.\nYoung($x, True) && Blue($x, True) >>> Green($x, False) ::: All young, blue things are not green.\nWhite($x, True) >>> Nice($x, True) ::: If something is white then it is nice.\nNice($x, True) >>> Round($x, True) ::: If something is nice then it is round.\nRound(Charlie, True) >>> White(Charlie, True) ::: If Charlie is round then Charlie is white.\nBlue($x, True) >>> Young($x, True) ::: All blue things are young.\nCold($x, True) && Green($x, True) >>> Young($x, True) ::: If something is cold and green then it is young.\nRound($x, True) >>> Blue($x, True) ::: Round things are blue.\n\nQuery:\nCold(Fiona, False) ::: Fiona is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

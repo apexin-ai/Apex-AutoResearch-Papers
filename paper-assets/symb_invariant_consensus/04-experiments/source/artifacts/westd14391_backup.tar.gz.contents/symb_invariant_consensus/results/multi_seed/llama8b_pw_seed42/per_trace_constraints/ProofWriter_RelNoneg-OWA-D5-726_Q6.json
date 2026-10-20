@@ -1,0 +1,1037 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-726_Q6",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_X_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, bear)",
+          "z3_formula": "Implies(visits_X_cat, visits_cat_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_X_bear, likes_bear_cat), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_X, likes_X_tiger), visits_tiger_X)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_mouse_bear, likes_bear_cat), cold_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_mouse, rough_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(tiger, X) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_tiger_mouse), visits_tiger_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(sees_cat_bear)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_X_cat, visits_cat_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_X_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cat) & sees(X, bear) -> cold(X)",
+          "z3_formula": "Implies(And(likes_bear_cat, sees_X_bear), cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_X, likes_X_tiger), visits_tiger_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_bear_tiger, sees_bear_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_bear_tiger, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_bear_tiger, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_see(cat, bear)",
+          "z3_formula": "Not(sees_cat_bear)",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, bear)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_cat_bear, sees_cat_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_cat_bear, likes_bear_cat), cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & likes(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(And(kind_cat, likes_cat_cat), sees_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, cat)",
+          "z3_formula": "Implies(kind_cat, likes_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_cat_bear, sees_cat_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear) == False",
+          "z3_formula": "Not(sees_cat_bear) == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_visits_cat",
+          "z3_formula": "tiger_visits_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_is_rough",
+          "z3_formula": "tiger_is_rough == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_is_green",
+          "z3_formula": "mouse_is_green == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_is_kind",
+          "z3_formula": "mouse_is_kind == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_sees_tiger",
+          "z3_formula": "mouse_sees_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits_bear(X) -> sees_bear(X)",
+          "z3_formula": "Implies(visits_bear, sees_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bear(X) -> likes_bear_cat",
+          "z3_formula": "Implies(sees_bear, likes_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits_cat(X) -> visits_bear_cat",
+          "z3_formula": "Implies(visits_cat, visits_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bear(X) & likes_bear_cat -> cold(X)",
+          "z3_formula": "Implies(And(sees_bear, likes_bear_cat), cold)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold, rough)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes_tiger(X) -> tiger_visits_mouse",
+          "z3_formula": "Implies(And(green, likes_tiger), tiger_visits_mouse)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cat)",
+          "z3_formula": "visits_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_tiger_bear, sees_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> likes(bear, cat)",
+          "z3_formula": "Implies(sees_tiger_bear, likes_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(cat, X)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & likes(bear, cat) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_bear_cat), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_tiger, rough_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(green_mouse, likes_mouse_tiger), visits_tiger_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == Unknown",
+          "source_step": 14
+        }
+      ]
+    }
+  ]
+}

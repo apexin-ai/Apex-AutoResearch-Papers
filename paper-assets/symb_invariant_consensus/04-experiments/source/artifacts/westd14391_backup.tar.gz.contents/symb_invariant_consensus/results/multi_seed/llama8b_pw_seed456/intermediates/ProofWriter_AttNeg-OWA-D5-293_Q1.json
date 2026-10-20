@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-293_Q1",
+    "problem": "Bob is blue. Bob is round. Bob is not smart. Charlie is not smart. Dave is round. Harry is big. Harry is smart. Round, blue things are not red. If something is furry and round then it is cold. Smart things are furry. Cold, round things are smart. All cold things are blue. Furry, big things are round.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nNotSmart($x, bool) ::: Is x not smart?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nRound(Bob, True) ::: Bob is round.\nNotSmart(Bob, True) ::: Bob is not smart.\nNotSmart(Charlie, True) ::: Charlie is not smart.\nRound(Dave, True) ::: Dave is round.\nBig(Harry, True) ::: Harry is big.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRound($x, True) && Blue($x, True) >>> Red($x, False) ::: Round, blue things are not red.\nFurry($x, True) && Round($x, True) >>> Cold($x, True) ::: If something is furry and round then it is cold.\nSmart($x, True) >>> Furry($x, True) ::: Smart things are furry.\nCold($x, True) && Round($x, True) >>> Smart($x, True) ::: Cold, round things are smart.\nCold($x, True) >>> Blue($x, True) ::: All cold things are blue.\nFurry($x, True) && Big($x, True) >>> Round($x, True) ::: Furry, big things are round.\n\nQuery:\nRound(Dave, True) ::: Dave is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

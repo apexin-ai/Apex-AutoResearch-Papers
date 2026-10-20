@@ -1,0 +1,620 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-358_Q5",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_mouse_mouse, sees_mouse_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_mouse_cat, eats_cat_mouse), eats_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cold(X) -> visits(X, bear)",
+          "z3_formula": "Implies(And(sees_mouse_cat, cold_mouse), visits_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & rough(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_bear_cow, rough_cow), sees_cow_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(sees_cow_mouse, eats_cow_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_mouse_cat, cold_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, mouse)",
+          "z3_formula": "eats_cat_mouse == False",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cow, bear)",
+          "z3_formula": "eats_cow_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_mouse_mouse, sees_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_cat_mouse, eats_cat_mouse), eats_cat_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> big(cat)",
+          "z3_formula": "Implies(eats_cow_cat, big_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, mouse)",
+          "z3_formula": "visits_mouse_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_mouse_mouse, sees_mouse_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, mouse)",
+          "z3_formula": "eats_cat_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_cat_mouse, eats_cat_mouse), eats_cat_cow)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_mouse_cat, cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, mouse)",
+          "z3_formula": "eats_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_cat_mouse, eats_cat_mouse), eats_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> eats(X, cow)",
+          "z3_formula": "Implies(eats_X_cat, eats_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_X_cat, eats_cat_mouse), eats_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(sees_X_cow, eats_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(visits_X_mouse, sees_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & cold(X) -> visits(cat, bear)",
+          "z3_formula": "Implies(And(eats_X_cat, cold_X), visits_cat_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_X_mouse, cold_X)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_mouse_mouse, cold_mouse)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_mouse_cat, eats_cat_mouse), eats_someone_cow)",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats_someone_cow",
+          "z3_formula": "eats_someone_cow == Unknown",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & rough(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_bear_bear, rough_someone), sees_someone_cow)",
+          "source_step": 44
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_mouse_mouse, cold_someone)",
+          "source_step": 48
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold_someone",
+          "z3_formula": "cold_someone == True",
+          "source_step": 48
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(sees_someone_cow, eats_someone_mouse)",
+          "source_step": 49
+        },
+        {
+          "type": "derived",
+          "expression": "eats_someone_mouse",
+          "z3_formula": "eats_someone_mouse == Unknown",
+          "source_step": 49
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 50
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 28
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, mouse) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_mouse_cat, eats_cat_mouse), eats_X_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & rough(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, rough_X), sees_X_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(visits_X_mouse, sees_mouse_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(sees_X_cow, eats_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(visits_X_mouse, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, sees_X_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & eats(cat, X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_X_cat, eats_cat_X), eats_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cow, cat) -> big(cat)",
+          "z3_formula": "Implies(eats_cow_cat, big_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & rough(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, rough_X), sees_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> eats(X, mouse)",
+          "z3_formula": "Implies(sees_X_cow, eats_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

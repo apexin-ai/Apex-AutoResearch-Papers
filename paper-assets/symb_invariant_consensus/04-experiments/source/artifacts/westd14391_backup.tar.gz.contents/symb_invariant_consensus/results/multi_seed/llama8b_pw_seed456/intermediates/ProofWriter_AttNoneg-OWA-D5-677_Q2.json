@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-677_Q2",
+    "problem": "Bob is furry. Bob is green. Charlie is furry. Charlie is kind. Charlie is young. Erin is green. Erin is kind. Fiona is blue. Fiona is furry. Fiona is smart. All young people are kind. Furry, cold people are young. Furry, blue people are smart. If someone is kind and furry then they are blue. If Bob is smart then Bob is furry. All furry, blue people are kind. If someone is furry then they are cold. If someone is young and furry then they are green.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nYoung(Charlie, True) ::: Charlie is young.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nYoung($x, True) >>> Kind($x, True) ::: All young people are kind.\nFurry($x, True) && Cold($x, True) >>> Young($x, True) ::: Furry, cold people are young.\nFurry($x, True) && Blue($x, True) >>> Smart($x, True) ::: Furry, blue people are smart.\nKind($x, True) && Furry($x, True) >>> Blue($x, True) ::: If someone is kind and furry then they are blue.\nSmart(Bob, True) >>> Furry(Bob, True) ::: If Bob is smart then Bob is furry.\nFurry($x, True) && Blue($x, True) >>> Kind($x, True) ::: All furry, blue people are kind.\nFurry($x, True) >>> Cold($x, True) ::: If someone is furry then they are cold.\nYoung($x, True) && Furry($x, True) >>> Green($x, True) ::: If someone is young and furry then they are green.\n\nQuery:\nKind(Erin, False) ::: Erin is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

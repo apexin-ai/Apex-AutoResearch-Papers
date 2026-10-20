@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-156_Q15",
+    "problem": "The bear chases the cow. The bear is not red. The bear sees the tiger. The cow chases the bear. The mouse chases the tiger. The tiger does not chase the mouse. The tiger needs the mouse. If someone sees the tiger then the tiger is nice. If someone chases the mouse and the mouse does not need the bear then the mouse is not young. If someone chases the cow then they are big. If someone needs the tiger then the tiger sees the bear. If someone is big then they need the tiger. If the tiger sees the bear and the tiger needs the mouse then the tiger is big. If someone is young then they need the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not need the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nRed(Bear, False) ::: The bear is not red.\nSees(Bear, Tiger, True) ::: The bear sees the tiger.\nChases(Cow, Bear, True) ::: The cow chases the bear.\nChases(Mouse, Tiger, True) ::: The mouse chases the tiger.\nChases(Tiger, Mouse, False) ::: The tiger does not chase the mouse.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\n\nRules:\nSees($x, Tiger, True) >>> Nice(Tiger, True) ::: If someone sees the tiger then the tiger is nice.\nChases($x, Mouse, True) && Needs(Mouse, Bear, False) >>> Young($x, False) ::: If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\nChases($x, Cow, True) >>> Big($x, True) ::: If someone chases the cow then they are big.\nNeeds($x, Tiger, True) >>> Sees(Tiger, Bear, True) ::: If someone needs the tiger then the tiger sees the bear.\nBig($x, True) >>> Needs($x, Tiger, True) ::: If someone is big then they need the tiger.\nSees(Tiger, Bear, True) && Needs(Tiger, Mouse, True) >>> Big(Tiger, True) ::: If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\nYoung($x, True) >>> Needs($x, Mouse, True) ::: If someone is young then they need the mouse.\n\nQuery:\nNeeds(Cow, Tiger, False) ::: The cow does not need the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-31_Q8",
+    "problem": "The dog chases the squirrel. The lion eats the squirrel. The lion sees the dog. The squirrel chases the dog. The squirrel chases the lion. The squirrel eats the lion. The squirrel is green. The squirrel is rough. The squirrel sees the dog. The squirrel sees the lion. The tiger is rough. If something is blue then it chases the lion. If something chases the lion and it eats the squirrel then the squirrel sees the tiger. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger. If something sees the tiger then it is blue. Rough things are big. If something chases the dog then it chases the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not chase the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nEats(Lion, Squirrel, True) ::: The lion eats the squirrel.\nSees(Lion, Dog, True) ::: The lion sees the dog.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\nEats(Squirrel, Lion, True) ::: The squirrel eats the lion.\nGreen(Squirrel, True) ::: The squirrel is green.\nRough(Squirrel, True) ::: The squirrel is rough.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\nSees(Squirrel, Lion, True) ::: The squirrel sees the lion.\nRough(Tiger, True) ::: The tiger is rough.\n\nRules:\nBlue($x, True) >>> Chases($x, Lion, True) ::: If something is blue then it chases the lion.\nChases($x, Lion, True) && Eats($x, Squirrel, True) >>> Sees(Squirrel, Tiger, True) ::: If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\nEats(Squirrel, Lion, True) && Green(Squirrel, True) >>> Sees(Lion, Tiger, True) ::: If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\nSees($x, Tiger, True) >>> Blue($x, True) ::: If something sees the tiger then it is blue.\nRough($x, True) >>> Big($x, True) ::: Rough things are big.\nChases($x, Dog, True) >>> Chases($x, Tiger, True) ::: If something chases the dog then it chases the tiger.\n\nQuery:\nChases(Lion, Lion, False) ::: The lion does not chase the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

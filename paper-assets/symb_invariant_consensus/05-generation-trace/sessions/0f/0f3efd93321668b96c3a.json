@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "0f3efd93321668b96c3a",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "infra anonymous repo push",
+  "task_key": "worker_infra_anonymous-repo-push_20260523T130230",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_anonymous-repo-push_20260523T130230.log",
+    "occurrence": 1,
+    "bytes": 771403,
+    "sha256": "901bd10c8a45bad00eda0cb00a897a09b91e13bfeaaeeaacd46d1624854792d4"
+  },
+  "statistics": {
+    "messages": 1254,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 1115,
+      "record": 17,
+      "assistant": 48,
+      "tool_call": 36,
+      "tool_result": 36,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1254,
+      "chunks": [
+        {
+          "path": "0f3efd93321668b96c3a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f3efd93321668b96c3a-part-0007.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-anonymous-repo-push.md"
+}

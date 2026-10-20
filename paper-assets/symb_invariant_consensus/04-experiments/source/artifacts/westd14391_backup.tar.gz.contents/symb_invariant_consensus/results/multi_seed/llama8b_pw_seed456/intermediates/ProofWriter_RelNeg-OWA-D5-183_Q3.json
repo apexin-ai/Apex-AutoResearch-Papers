@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-183_Q3",
+    "problem": "The bald eagle does not eat the lion. The bald eagle does not eat the squirrel. The bald eagle is rough. The lion eats the bald eagle. The lion eats the squirrel. The lion likes the mouse. The lion needs the squirrel. The mouse likes the squirrel. The mouse needs the lion. The squirrel eats the lion. The squirrel is rough. If someone is nice then they like the mouse. If the squirrel needs the lion and the squirrel is nice then the squirrel does not eat the mouse. If the squirrel likes the mouse then the squirrel needs the bald eagle. If someone likes the mouse and the mouse needs the squirrel then the mouse does not like the bald eagle. If the squirrel eats the lion then the squirrel is nice. If the squirrel does not need the bald eagle then the squirrel is round. If someone needs the bald eagle then they are round. If someone eats the mouse and the mouse is nice then the mouse does not need the bald eagle. If someone is round and rough then they eat the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\n\nFacts:\nEats(BaldEagle, Lion, False) ::: The bald eagle does not eat the lion.\nEats(BaldEagle, Squirrel, False) ::: The bald eagle does not eat the squirrel.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nEats(Lion, BaldEagle, True) ::: The lion eats the bald eagle.\nEats(Lion, Squirrel, True) ::: The lion eats the squirrel.\nLikes(Lion, Mouse, True) ::: The lion likes the mouse.\nNeeds(Lion, Squirrel, True) ::: The lion needs the squirrel.\nLikes(Mouse, Squirrel, True) ::: The mouse likes the squirrel.\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion.\nEats(Squirrel, Lion, True) ::: The squirrel eats the lion.\nRough(Squirrel, True) ::: The squirrel is rough.\n\nRules:\nNice($x, True) >>> Likes($x, Mouse, True) ::: If someone is nice then they like the mouse.\nNeeds(Squirrel, Lion, True) && Nice(Squirrel, True) >>> Eats(Squirrel, Mouse, False) ::: If the squirrel needs the lion and the squirrel is nice then the squirrel does not eat the mouse.\nLikes(Squirrel, Mouse, True) >>> Needs(Squirrel, BaldEagle, True) ::: If the squirrel likes the mouse then the squirrel needs the bald eagle.\nLikes($x, Mouse, True) && Needs(Mouse, Squirrel, True) >>> Likes($x, BaldEagle, False) ::: If someone likes the mouse and the mouse needs the squirrel then the mouse does not like the bald eagle.\nEats(Squirrel, Lion, True) >>> Nice(Squirrel, True) ::: If the squirrel eats the lion then the squirrel is nice.\nNeeds(Squirrel, BaldEagle, False) >>> Round(Squirrel, True) ::: If the squirrel does not need the bald eagle then the squirrel is round.\nNeeds($x, BaldEagle, True) >>> Round($x, True) ::: If someone needs the bald eagle then they are round.\nEats($x, Mouse, True) && Nice(Mouse, True) >>> Needs($x, BaldEagle, False) ::: If someone eats the mouse and the mouse is nice then the mouse does not need the bald eagle.\nRound($x, True) && Rough($x, True) >>> Eats($x, Mouse, True) ::: If someone is round and rough then they eat the mouse.\n\nQuery:\nNice(Squirrel, True) ::: The squirrel is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

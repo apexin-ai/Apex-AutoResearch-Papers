@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-517_Q7",
+    "problem": "The bald eagle is green. The bald eagle is red. The cat chases the lion. The cat sees the tiger. The cat visits the bald eagle. The cat visits the lion. The lion chases the cat. The lion is red. The lion sees the bald eagle. The lion sees the cat. The tiger chases the cat. The tiger sees the cat. The tiger visits the bald eagle. The tiger visits the lion. If something sees the lion and it sees the bald eagle then it chases the cat. If something chases the cat then it is young. If something visits the tiger and the tiger sees the cat then it sees the lion. If something visits the tiger and the tiger visits the lion then it sees the bald eagle. If the lion sees the bald eagle then the bald eagle visits the tiger. If something is young then it visits the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle chases the cat.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRed(BaldEagle, True) ::: The bald eagle is red.\nChases(Cat, Lion, True) ::: The cat chases the lion.\nSees(Cat, Tiger, True) ::: The cat sees the tiger.\nVisits(Cat, BaldEagle, True) ::: The cat visits the bald eagle.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nRed(Lion, True) ::: The lion is red.\nSees(Lion, BaldEagle, True) ::: The lion sees the bald eagle.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nSees(Tiger, Cat, True) ::: The tiger sees the cat.\nVisits(Tiger, BaldEagle, True) ::: The tiger visits the bald eagle.\nVisits(Tiger, Lion, True) ::: The tiger visits the lion.\n\nRules:\nSees($x, Lion, True) && Sees($x, BaldEagle, True) >>> Chases($x, Cat, True) ::: If something sees the lion and it sees the bald eagle then it chases the cat.\nChases($x, Cat, True) >>> Young($x, True) ::: If something chases the cat then it is young.\nVisits($x, Tiger, True) && Sees(Tiger, Cat, True) >>> Sees($x, Lion, True) ::: If something visits the tiger and the tiger sees the cat then it sees the lion.\nVisits($x, Tiger, True) && Visits(Tiger, Lion, True) >>> Sees($x, BaldEagle, True) ::: If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\nSees(Lion, BaldEagle, True) >>> Visits(BaldEagle, Tiger, True) ::: If the lion sees the bald eagle then the bald eagle visits the tiger.\nYoung($x, True) >>> Visits($x, Lion, True) ::: If something is young then it visits the lion.\n\nQuery:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

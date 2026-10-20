@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5e2332f32fa8f2a882",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra registry sync and cuda2",
+  "task_key": "worker_infra_registry-sync-and-cuda2_20260523T040452",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_registry-sync-and-cuda2_20260523T040452_result.json",
+    "occurrence": 1,
+    "bytes": 2103,
+    "sha256": "9aa669837d21a776af82d48801025b397973e14861b52d03191bdcf628cc7fcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部拿到了。\n\n---\n\n## 任务 1: 各 GPU 实际实验状态\n\n### westd-16639（ProofWriter 全集 = 600 题）\n\n| GPU | vLLM Port | 模型 | 实验 | 进度 | SC% | SICA% | Δ |\n|-----|-----------|------|------|------|-----|-------|---|\n| **0** | 8001 | **Qwen2.5-14B** | PW seed=456 | 436/600 (72.7%) | 74.08 | 72.94 | **-1.14pp** |\n| **1** | 8006 | **LLaMA-3.1-8B** | PW seed=123 | 376/600 (62.7%) | 72.61 | 64.36 | **-8.25pp** |\n| **2** | — | — | **IDLE** | — | — | — | — |\n| **3** | 8005 | **Qwen2.5-14B** | PW seed=123 | 416/600 (69.3%) | 73.56 | 72.12 | **-1.44pp** |\n\n- GPU 0 的 runner 是链式脚本：seed=456 完成后自动启动 **seed=789**\n- 三个实验均活跃（日志最近几秒有 HTTP 200）\n- 无 tmux session\n\n### westd-14391\n\n| GPU | vLLM Port | 模型 | 实验 | 进度 | SC% | SICA% | Δ |\n|-----|-----------|------|------|------|-----|-------|---|\n| **0** | 8000 | **LLaMA-3.1-8B** | PW seed=42 | 517/600 (86.2%) | 72.73 | 67.12 | **-5.61pp** |\n\n- 用 `run_full_mvp.py`（不是 `run_cross_dataset_replication.py`），带 `--save-intermediates`\n- 无 tmux session\n\n### 回答关键疑问\n\n1. **cuda:0** → Qwen2.5-14B PW seed=456（port 8001），完成后链式跑 seed=789\n2. **cuda:1** → LLaMA-3.1-8B PW seed=123（port 8006）\n3. **cuda:3** → **Qwen2.5-14B**（port 8005），不是 LLaMA。模型路径 = `Qwen2.5-14B-Instruct`，served-model-name = `qwen25-14b`\n\n---\n\n## 任务 2: cuda:2 可用性\n\n| 项 | 状态 |\n|----|------|\n| GPU 2 | 完全空闲，0MiB / 97887MiB，0% util |\n| Qwen2.5-7B-Instruct | **不在磁盘上** |\n| 磁盘上的 Qwen | Qwen2.5-14B-Instruct, Qwen2.5-72B-Instruct-AWQ, Qwen3-14B |\n| `/root/autodl-tmp/` 剩余空间 | **121GB**（350G 总，230G 已用）→ 足够下载 |\n\ncuda:2 硬件可用，但需要先下载 Qwen2.5-7B-Instruct（~15GB）。空间充足。\n\n---\n\n## 需要注意\n\n**所有 4 个在跑实验 SICA 均负于 SC**，LLaMA 尤其严重（-5.6 到 -8.3pp）。这些是中间结果，最终可能变化，但趋势一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-registry-sync-and-cuda2.md"
+}

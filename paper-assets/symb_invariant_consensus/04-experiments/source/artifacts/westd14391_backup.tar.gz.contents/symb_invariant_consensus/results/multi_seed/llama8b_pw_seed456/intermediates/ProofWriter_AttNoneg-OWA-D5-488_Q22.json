@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-488_Q22",
+    "problem": "Anne is big. Bob is big. Bob is furry. Bob is nice. Bob is rough. Bob is white. Bob is young. Erin is blue. Harry is nice. Harry is rough. Harry is white. Harry is young. If something is big then it is furry. If Erin is furry and Erin is white then Erin is blue. If something is furry and big then it is nice. If something is big then it is furry. If something is white and nice then it is rough. Furry, nice things are young. Furry, young things are white. All big, blue things are white. Young, blue things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nBig(Bob, True) ::: Bob is big.\nFurry(Bob, True) ::: Bob is furry.\nNice(Bob, True) ::: Bob is nice.\nRough(Bob, True) ::: Bob is rough.\nWhite(Bob, True) ::: Bob is white.\nYoung(Bob, True) ::: Bob is young.\nBlue(Erin, True) ::: Erin is blue.\nNice(Harry, True) ::: Harry is nice.\nRough(Harry, True) ::: Harry is rough.\nWhite(Harry, True) ::: Harry is white.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBig($x, True) >>> Furry($x, True) ::: If something is big then it is furry.\nFurry(Erin, True) && White(Erin, True) >>> Blue(Erin, True) ::: If Erin is furry and Erin is white then Erin is blue.\nFurry($x, True) && Big($x, True) >>> Nice($x, True) ::: If something is furry and big then it is nice.\nWhite($x, True) && Nice($x, True) >>> Rough($x, True) ::: If something is white and nice then it is rough.\nFurry($x, True) && Nice($x, True) >>> Young($x, True) ::: Furry, nice things are young.\nFurry($x, True) && Young($x, True) >>> White($x, True) ::: Furry, young things are white.\nBig($x, True) && Blue($x, True) >>> White($x, True) ::: All big, blue things are white.\nYoung($x, True) && Blue($x, True) >>> Nice($x, True) ::: Young, blue things are nice.\n\nQuery:\nBig(Harry, True) ::: Harry is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

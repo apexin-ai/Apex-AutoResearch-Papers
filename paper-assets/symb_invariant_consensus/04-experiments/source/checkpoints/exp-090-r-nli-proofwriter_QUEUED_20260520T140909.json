@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-090-r-nli-proofwriter",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:51:31.310Z",
+    "updated_at": "2026-05-20T14:09:08.761Z",
+    "hypothesis": "Cross-architecture NLI verification (DeBERTa-large-MNLI) 在 ProofWriter-D5 上也能提升 SC accuracy，验证 FOLIO 上 R 方法的跨数据集泛化能力。来源: R5-N4 审稿修复 + Claim 1 (cross-architecture escape generalization)。",
+    "parent": "exp-wave3-dir-r-nli-verifier"
+  },
+  "timestamp": "2026-05-20T14:09:09.045364+00:00",
+  "trigger": "update_registry"
+}

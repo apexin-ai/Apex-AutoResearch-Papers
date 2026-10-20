@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-067-mistral-folio-seed789",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:14:16.096Z",
+    "updated_at": "2026-05-19T11:21:00.412Z",
+    "hypothesis": "Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123 +2.94pp, s456 0.00pp。增加统计样本验证 seed variance 和 SC-Δ 相关性。parent=exp-033",
+    "parent": "exp-033",
+    "spec": {
+      "server": "westd-25068",
+      "gpu": "cuda:2",
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "data_count": 204,
+      "seed": 789,
+      "command": "python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --seed 789 --api-base http://localhost:8012/v1 --model auto --folio-data data/folio_full.json --math-data data/empty.json --pw-data data/empty.json --output results/exp067_mistral_folio_seed789/exp067_results.json",
+      "data_path": "data/folio_full.json",
+      "checkpoint_source": "/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+      "eval_data": "data/folio_full.json",
+      "log_path": "results/exp067_mistral_folio_seed789/",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T11:21:00.412Z"
+  },
+  "timestamp": "2026-05-19T11:21:00.595849+00:00",
+  "trigger": "update_registry"
+}

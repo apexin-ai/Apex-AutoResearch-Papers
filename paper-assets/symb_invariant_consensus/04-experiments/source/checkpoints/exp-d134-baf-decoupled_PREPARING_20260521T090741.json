@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-d134-baf-decoupled",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:21:08.341Z",
+    "updated_at": "2026-05-21T09:07:41.482Z",
+    "hypothesis": "Truncating CoT traces before the answer sentence reduces SCB: truncated-trace BR < full-trace BR, because answer leakage into FOL constraints is the primary SCB mechanism (Dir-H provenance showed late-step leakage 27.23% >> early 22.00%).",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T09:07:41.779750+00:00",
+  "trigger": "update_registry"
+}

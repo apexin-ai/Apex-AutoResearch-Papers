@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-81_Q11",
+    "problem": "The cat eats the squirrel. The cat sees the squirrel. The cow eats the squirrel. The cow sees the cat. The rabbit is round. The rabbit sees the cat. The squirrel eats the rabbit. The squirrel is cold. The squirrel needs the rabbit. The squirrel sees the cat. If someone sees the cat and they are not green then they see the cow. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit. Rough people are cold. If someone sees the rabbit then they are not round. If someone sees the squirrel and they are not green then they need the squirrel. If someone eats the cow then they see the rabbit. If someone eats the squirrel then they are rough. If someone is cold then they eat the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is not round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nEats(cat, squirrel, True) ::: The cat eats the squirrel.\nSees(cat, squirrel, True) ::: The cat sees the squirrel.\nEats(cow, squirrel, True) ::: The cow eats the squirrel.\nSees(cow, cat, True) ::: The cow sees the cat.\nRound(rabbit, True) ::: The rabbit is round.\nSees(rabbit, cat, True) ::: The rabbit sees the cat.\nEats(squirrel, rabbit, True) ::: The squirrel eats the rabbit.\nCold(squirrel, True) ::: The squirrel is cold.\nNeeds(squirrel, rabbit, True) ::: The squirrel needs the rabbit.\nSees(squirrel, cat, True) ::: The squirrel sees the cat.\n\nRules:\nSees($x, cat, True) && Green($x, False) >>> Sees($x, cow, True) ::: If someone sees the cat and they are not green then they see the cow.\nKind(rabbit, True) && Sees(rabbit, squirrel, True) >>> Needs(squirrel, rabbit, True) ::: If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\nRough($x, True) >>> Cold($x, True) ::: Rough people are cold.\nSees($x, rabbit, True) >>> Round($x, False) ::: If someone sees the rabbit then they are not round.\nSees($x, squirrel, True) && Green($x, False) >>> Needs($x, squirrel, True) ::: If someone sees the squirrel and they are not green then they need the squirrel.\nEats($x, cow, True) >>> Sees($x, rabbit, True) ::: If someone eats the cow then they see the rabbit.\nEats($x, squirrel, True) >>> Rough($x, True) ::: If someone eats the squirrel then they are rough.\nCold($x, True) >>> Eats($x, cow, True) ::: If someone is cold then they eat the cow.\n\nQuery:\nRound(cat, False) ::: The cat is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

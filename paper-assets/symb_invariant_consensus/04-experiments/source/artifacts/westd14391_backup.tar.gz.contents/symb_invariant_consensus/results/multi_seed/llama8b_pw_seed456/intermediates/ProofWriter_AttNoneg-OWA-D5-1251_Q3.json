@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1251_Q3",
+    "problem": "Erin is big. Erin is green. Erin is kind. Erin is quiet. Erin is red. Erin is smart. Fiona is big. Gary is rough. Harry is quiet. Harry is smart. All smart people are kind. If Harry is rough and Harry is red then Harry is quiet. If someone is green then they are smart. All kind people are quiet. If someone is rough and big then they are green. Rough people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Erin, True) ::: Erin is big.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nRough(Gary, True) ::: Gary is rough.\nQuiet(Harry, True) ::: Harry is quiet.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart($x, True) >>> Kind($x, True) ::: All smart people are kind.\nRough(Harry, True) && Red(Harry, True) >>> Quiet(Harry, True) ::: If Harry is rough and Harry is red then Harry is quiet.\nGreen($x, True) >>> Smart($x, True) ::: If someone is green then they are smart.\nKind($x, True) >>> Quiet($x, True) ::: All kind people are quiet.\nRough($x, True) && Big($x, True) >>> Green($x, True) ::: If someone is rough and big then they are green.\nRough($x, True) >>> Big($x, True) ::: Rough people are big.\n\nQuery:\nBig(Gary, True) ::: Gary is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

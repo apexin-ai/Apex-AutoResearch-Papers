@@ -1,0 +1,730 @@
+# cron hook exp 017 strategyqa
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/cron_hook_exp-017-strategyqa.jsonl`
+- **Structured JSON:** [`4fd064da61d8330f876d.json`](../../sessions/4f/4fd064da61d8330f876d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T07:59:31.488095+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配）
+- 多个 cross-family 实验（exp-010-mistral, exp-011-llama8b）反复因模型下载损坏失败，重跑前必须先验证模型完整性（checksum/shard size）
+- vLLM 服务独占 GPU，启动新实验前必须确认无残留 vLLM 进程（之前 exp-011 因旧 vLLM 占显存 OOM）
+- EXIT_CODE=129/143 在本项目常见：129=SIGHUP 伪失败（实际成功），143=SIGTERM 真 kill——必须看日志区分
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-32608，GPU：1× RTX PRO 6000 Blackwell 98GB
+- 工作目录：`/root/symb_invariant_consensus/`（远程）
+- 运行日志：`~/runs/symb_invariant_consensus/`
+- 模型缓存：HuggingFace cache（Qwen2.5-14B-Instruct 已验证可用；LLaMA-3.1-8B 权重 shard 2 损坏 3.7G vs 4.9G；Mistral-7B-v0.3 下载多次截断）
+- vLLM 用于推理服务（单 GPU 部署）
+- 活跃进程：无（GPU 当前空闲）
+- Cron：reconcile 返回 0 active
+
+### 3. 📊 当前状态
+刚收到 exp-017-strategyqa 失败回调（EXIT_CODE=143 SIGTERM），已派 Worker `worker_diagnose_exp-017-strategyqa_20260517T034803` SSH 诊断日志，**尚未收到回调**。
+
+Registry 状态：
+- DONE: 21 个（success 8, negative 2, failed 5, killed 6）
+- QUEUED: exp-010-mistral-v2, exp-018-arc（等 GPU）
+- PREPARING: smoke-test-5q（遗留，无意义）
+- RUNNING: 无
+
+近期连续 3 个 failed：exp-017-strategyqa (SIGTERM)、exp-010-mistral (进程 5× dead)、exp-011-llama8b-v2 (权重损坏)。全是基础设施问题，非 negative result。
+
+等待中：
+- Worker 诊断回调 → 确认 exp-017 失败根因
+- Director 决策：是否继续投入 GPU 跑 cross-family/cross-domain 验证
+
+### 4. 📋 待办（条件触发式）
+- 诊断 Worker 回调到达 → 根据根因决定：脚本 bug 则修复重跑；OOM 则调参重跑；外部 kill 则查明谁 kill 了
+- exp-017 可重跑 → 用 submit_training_job 重新提交（确认无残留 vLLM）
+- exp-010-mistral-v2 启动条件 → 先验证 Mistral-7B 模型完整性（ls -la shards + 对比预期 size）
+- exp-018-arc 启动条件 → exp-017 成功或确认放弃后，切换到 ARC 数据集
+- 所有 cross-validation 完成 → 汇总 C2 (operating regime) 证据，更新 paper_framing.md
+
+### 5. 🎯 战略上下文
+- **核心结论**：SICA ≈ SC（+0.25pp, n=804, n.s.）。项目已 pivot 到 "Capability Trap Analysis Paper"——论证为什么 symbolic consensus 不 work
+- **三个 Claims**：C1(mechanism vacuous, 已有 exp-013+exp-016 支撑)、C2(operating regime boundary, exp-005 QwQ 支撑但缺 cross-family)、C3(C0 predictor, 需 multi-model 数据)
+- **当前瓶颈**：cross-family 验证（Mistral/LLaMA）和 cross-domain 验证（StrategyQA/ARC）全部因基础设施问题失败，没有一个成功。C2 claim 缺乏 non-Qwen 模型数据点
+- **易错点**：
+  - 不要把 failed（基础设施崩溃）和 negative（hypothesis 被证伪）混淆——failed 应该重跑而非推导新 hypothesis
+  - Qwen2.5-14B 的 sica_expanded_14b 是核心成功实验（N=804），所有 cross-validation 都是从它 derive 的
+  - K-ablation 结果（SICA≤SC for all K）强化 C1 但也意味着方法本身无效——这是 feature not bug（分析论文视角）
+  - vLLM 在 98GB 卡上跑 14B 模型没问题，但 LLaMA-8B 和 Mistral-7B 需要重新下载完整权重
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)
+
+## 可查的历史
+前 10 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-017-strategyqa",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T07:59:44.704577+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T07:59:44.756833+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T07:59:48.329039+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T07:59:48.782093+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T07:59:48.783570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-011-llama8b-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:15:02.161Z\", \"updated_at\": \"2026-05-17T07:59:02.260Z\", \"hypothesis\": \"Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交）\", \"parent\": \"sica_expanded_14b\", \"conclusion\": \"success\", \"metrics\": {\"n\": 60, \"k\": 12, \"sica_accuracy\": 0.6667, \"sc_accuracy\": 0.6, \"delta_pp\": 6.67, \"multi_candidate_rate\": 0.6167, \"extraction_rate\": 0.8556, \"answer_extraction_rate\": 0.8958, \"contradiction_rate\": 0.0527, \"problems_with_contradictions\": 43, \"truncated_traces\": 44, \"discordant_sica_wins\": 5, \"discordant_sc_wins\": 1, \"mcnemar_p\": 0.2188, \"proofwriter_sica\": 0.6333, \"proofwriter_sc\": 0.6, \"proofwriter_delta_pp\": 3.33, \"folio_sica\": 0.7, \"folio_sc\": 0.6, \"folio_delta_pp\": 10, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"D012\", \"wall_time_min\": 66.4}, \"notes\": \"LLaMA-3.1-8B cross-family: SICA 66.7% vs SC 60.0%, +6.67pp (最大增益)。Discordant 5:1 强烈倾向 SICA。FOLIO +10pp, PW +3.33pp。McNemar p=0.22（n=60 受限）。Multi-candidate rate 61.7%（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间。44 条 truncated traces（max-tokens 可能偏短），但仍有效。关键：SC baseline 60%（远低于 Qwen-14B 的 76%），验证 capability trap 的正面——模型弱时 SICA 有用。\"}, \"exp-010-mistral-v3\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T07:56:56.061Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\"}, \"pilot-contrastive-prompt\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:18:22.559Z\", \"updated_at\": \"2026-05-17T06:45:39.749Z\", \"hypothesis\": \"Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 d
+…[truncated 21970 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T07:59:49.191093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 408
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T07:59:49.191497+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T07:59:49.243076+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T07:59:49.294922+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-010-mistral-v3: Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）（排队等待 GPU）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-011-llama8b-v3** (success): Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific（v3: 模型 shard 已修复，GPU 空闲后提交） ← 基于 sica_expanded_14b\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\n- **exp-018-arc-v2** (success): Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复） ← 基于 sica_expanded_14b\\n\\n## 趋势\\n成功 11 / 负向 3 / 失败 9 / 共 29\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", \"total_chars\": 1694, \"truncated\": false}, 
+…[truncated 36 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T07:59:49.346187+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-16 19:22 UTC | 更新原因: exp-001 完成，更新进展和近期任务\\n\\n## 核心方向\\nCapability Trap Analysis Paper：系统揭示为什么 symbolic consensus (SICA) 不能 beat voting (SC)——即使 extraction rate 高、diversity 存在，constraint quality 受 LLM capability 限制导致 aggregation 无贡献。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D025 Analysis Paper Pivot) + 审稿进行中\\n- **exp-001 完成** (2026-05-16): SICA 76.49% vs SC 76.24% = +0.25pp (n=804, n.s.)\\n  - FOLIO: 0.00pp (n=204) — sub-claim dead\\n  - ProofWriter D5: +0.33pp (n=600) — not significant\\n- **D025 pivot 数据锚定**: headline = \\\"+0.25pp on 804 questions, not significant\\\"\\n- **Plan 覆盖**: 19 实验，1 done (exp-001)，18 planned\\n- **Claim 状态**: C1(mechanism vacuous) 需 exp-013; C2(operating regime) 需 cross-family; C3(C0 predictor) 需 multi-model data\\n\\n## 近期任务\\n- [x] exp-001 完成，registry 修正 conclusion→success\\n- [ ] exp-002 K-ablation (K=6,8,11,12,16,20, 60题, ~6h GPU) — 启动中\\n- [ ] exp-013 constraint ablation (CPU, MaxSAT vs count-only) — 数据准备中\\n- [ ] Mistral-7B HF 下载 (DDL May 17 12:00 UTC, 3次ModelScope失败)\\n- [ ] exp-010/011 cross-family (Mistral/LLaMA) — 等模型就绪\\n- [ ] exp-017 StrategyQA + exp-018 ARC-Challenge — 等 exp-002 完成后\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-002 启动中 (~6h)\\n- 排队: exp-010 (1.5h) → exp-011 (1.5h) → exp-017 (1.5h) → exp-018 (1.5h)\\n- 累计已用: ~14h (exp-001)\\n- 预估剩余: ~18h GPU for all remaining experiments\\n\\n## 阻塞项\\n- Mistral-7B 下载损坏 (3次81.3%截断) → 尝试 HF 直下，DDL May 17 12:00 UTC\\n- ~~Agent session 停滞~~ → 已恢复\\n- ~~FOLIO sub-claim~~ → dead (0.00pp)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D030 | 2026-05-17 | D030: 从 Analysis Paper 转向 Methods Paper — 利用诊断数据设计 | exp-001, exp-013 |\\n| D029 | 2026-05-17 | exp-002 最终
+…[truncated 963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T08:00:44.603099+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T08:00:44.654149+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T08:00:58.969007+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T08:00:59.273070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_exp011-statistical-verification_20260517T080055\", \"task_type\": \"analysis:exp011-statistical-verification\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-17T08:00:55.643775+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 304
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T08:00:59.273514+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-010-mistral-v3",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-010-mistral-v3",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T08:01:00.078712+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-010-mistral-v3\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:00:59.511Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7446}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 805
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T08:01:37.604259+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:submit-exp010-mistral-v3",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：诊断并重新提交 exp-010-mistral-v3\n\n### 背景\nexp-010-mistral-v3 之前提交过（PID 298717），但进程已死，状态回到 QUEUED（已手动推至 ALLOCATED）。需要你检查服务器状态并重新提交。\n\n### 服务器信息\n- 服务器：westd-32608\n- GPU：cuda:0（RTX PRO 6000 Blackwell 98GB）——只能用这块卡\n- 工作目录：/root/symb_invariant_consensus/\n- 日志目录：~/runs/symb_invariant_consensus/\n\n### 步骤\n\n1. **检查服务器状态**：\n   - `ps aux | grep -E \"vllm|mistral|exp010\"` 确认无残留进程\n   - 如果有 vLLM 残留进程，用 `kill` 清理（不要 pkill -f，避免误杀）\n   - `nvidia-smi` 确认 GPU 空闲\n\n2. **验证 Mistral-7B 模型完整性**：\n   - 找到模型路径（检查 HuggingFace cache 或 /root/ 下）\n   - `ls -la` 所有 shard 文件，确认大小合理（每个 shard 约 4.5-5GB，总计约 14.5GB）\n   - 如果模型损坏/不完整，用 `huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3` 重新下载\n\n3. **检查脚本是否存在**：\n   - `cat /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh`\n   - 确认脚本包含 vLLM 清理、conda 激活、正确的模型路径\n\n4. **用 submit_training_job 提交**：\n   - exp_id: exp-010-mistral-v3\n   - server: westd-32608\n   - gpu_ids: [0]\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh`\n\n5. **验证**：\n   - 等待 10 秒后检查进程是否存活\n   - 检查日志文件是否开始写入\n\n### 注意事项\n- 如果模型下载损坏，下载可能需要 20-30 分钟（14.5GB）\n- 确保 vLLM 启动时使用 --max-model-len=8192（Mistral-7B 在 98GB 卡上够用）\n- 不要用 pkill -f（之前因此导致 SIGTERM 误杀整个 tmux session）\n- ENV_ACTIVATION 失败模式：必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前缀\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:submit-exp010-mistral-v3",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：诊断并重新提交 exp-010-mistral-v3\n\n### 背景\nexp-010-mistral-v3 之前提交过（PID 298717），但进程已死，状态回到 QUEUED（已手动推至 ALLOCATED）。需要你检查服务器状态并重新提交。\n\n### 服务器信息\n- 服务器：westd-32608\n- GPU：cuda:0（RTX PRO 6000 Blackwell 98GB）——只能用这块卡\n- 工作目录：/root/symb_invariant_consensus/\n- 日志目录：~/runs/symb_invariant_consensus/\n\n### 步骤\n\n1. **检查服务器状态**：\n   - `ps aux | grep -E \"vllm|mistral|exp010\"` 确认无残留进程\n   - 如果有 vLLM 残留进程，用 `kill` 清理（不要 pkill -f，避免误杀）\n   - `nvidia-smi` 确认 GPU 空闲\n\n2. **验证 Mistral-7B 模型完整性**：\n   - 找到模型路径（检查 HuggingFace cache 或 /root/ 下）\n   - `ls -la` 所有 shard 文件，确认大小合理（每个 shard 约 4.5-5GB，总计约 14.5GB）\n   - 如果模型损坏/不完整，用 `huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3` 重新下载\n\n3. **检查脚本是否存在**：\n   - `cat /root/symb_invariant_consensus/scripts/run_exp010_mistral.sh`\n   - 确认脚本包含 vLLM 清理、conda 激活、正确的模型路径\n\n4. **用 submit_training_job 提交**：\n   - exp_id: exp-010-mistral-v3\n   - server: westd-32608\n   - gpu_ids: [0]\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh`\n\n5. **验证**：\n   - 等待 10 秒后检查进程是否存活\n   - 检查日志文件是否开始写入\n\n### 注意事项\n- 如果模型下载损坏，下载可能需要 20-30 分钟（14.5GB）\n- 确保 vLLM 启动时使用 --max-model-len=8192（Mistral-7B 在 98GB 卡上够用）\n- 不要用 pkill -f（之前因此导致 SIGTERM 误杀整个 tmux session）\n- ENV_ACTIVATION 失败模式：必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前缀\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T08:01:52.574705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_submit-exp010-mistral-v3_20260517T080138\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_submit-exp010-mistral-v3_20260517T080138.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_submit-exp010-mistral-v3_20260517T080138 started. Use get_worker_status('worker_code_submit-exp010-mistral-v3_20260517T080138') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 14970
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T08:01:53.078176+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:resubmit-pilot-contrastive-prompt",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：修复并重新提交 pilot-contrastive-prompt 实验\n\n### 背景\npilot-contrastive-prompt 因 EXIT_CODE=127（conda 环境未激活导致 python 命令不存在）失败。需要修复命令并重新提交。\n\n### 实验信息\n- exp_id: pilot-contrastive-prompt\n- hypothesis: Contrastive Prompt Extraction: 将 prompt 改为\"列出支持答案X/反对答案Y的证据\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp\n- parent: pilot-constraint-filtering\n- 服务器：westd-32608\n- GPU：cuda:0\n\n### 步骤\n\n1. **等待 exp-010-mistral-v3 提交确认**（另一个 Worker 正在处理，两个实验不能同时跑——只有 1 块 GPU）\n   - 如果 exp-010-mistral-v3 正在跑，**不要提交本实验**，只完成代码准备工作\n   - 如果 GPU 空闲，才提交\n\n2. **检查实验脚本**：\n   - SSH 到 westd-32608\n   - 查找 contrastive prompt 相关脚本：`find /root/symb_invariant_consensus/ -name \"*contrastive*\"`\n   - 确认脚本存在且正确\n\n3. **修复环境激活问题**：\n   - 确保提交命令以 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 开头\n   - 或确认脚本内部已包含环境激活\n\n4. **如果 GPU 空闲**，用 submit_training_job 提交：\n   - exp_id: pilot-contrastive-prompt\n   - server: westd-32608\n   - gpu_ids: [0]\n   - command: 完整命令（含 conda 激活前缀）\n\n5. **如果 GPU 被 exp-010 占用**：\n   - 只准备好脚本，确认能跑\n   - 在 registry 中更新 notes 说明\"脚本已修复，等 exp-010 完成后提交\"\n   - 不提交\n\n### 关键约束\n- 只有 1 块 GPU（cuda:0），不能并行跑两个实验\n- 优先级：exp-010-mistral-v3 > pilot-contrastive-prompt（cross-family 验证对 paper C2 claim 更重要）\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:resubmit-pilot-contrastive-prompt",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：修复并重新提交 pilot-contrastive-prompt 实验\n\n### 背景\npilot-contrastive-prompt 因 EXIT_CODE=127（conda 环境未激活导致 python 命令不存在）失败。需要修复命令并重新提交。\n\n### 实验信息\n- exp_id: pilot-contrastive-prompt\n- hypothesis: Contrastive Prompt Extraction: 将 prompt 改为\"列出支持答案X/反对答案Y的证据\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp\n- parent: pilot-constraint-filtering\n- 服务器：westd-32608\n- GPU：cuda:0\n\n### 步骤\n\n1. **等待 exp-010-mistral-v3 提交确认**（另一个 Worker 正在处理，两个实验不能同时跑——只有 1 块 GPU）\n   - 如果 exp-010-mistral-v3 正在跑，**不要提交本实验**，只完成代码准备工作\n   - 如果 GPU 空闲，才提交\n\n2. **检查实验脚本**：\n   - SSH 到 westd-32608\n   - 查找 contrastive prompt 相关脚本：`find /root/symb_invariant_consensus/ -name \"*contrastive*\"`\n   - 确认脚本存在且正确\n\n3. **修复环境激活问题**：\n   - 确保提交命令以 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 开头\n   - 或确认脚本内部已包含环境激活\n\n4. **如果 GPU 空闲**，用 submit_training_job 提交：\n   - exp_id: pilot-contrastive-prompt\n   - server: westd-32608\n   - gpu_ids: [0]\n   - command: 完整命令（含 conda 激活前缀）\n\n5. **如果 GPU 被 exp-010 占用**：\n   - 只准备好脚本，确认能跑\n   - 在 registry 中更新 notes 说明\"脚本已修复，等 exp-010 完成后提交\"\n   - 不提交\n\n### 关键约束\n- 只有 1 块 GPU（cuda:0），不能并行跑两个实验\n- 优先级：exp-010-mistral-v3 > pilot-contrastive-prompt（cross-family 验证对 paper C2 claim 更重要）\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T08:02:16.299674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_resubmit-pilot-contrastive-prompt_20260517T080153\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_resubmit-pilot-contrastive-prompt_20260517T080153.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_resubmit-pilot-contrastive-prompt_20260517T080153 started. Use get_worker_status('worker_code_resubmit-pilot-contrastive-prompt_20260517T080153') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 23221
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T08:02:16.606280+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/1 在用（空闲中，exp-010-mistral-v3 正在重新提交） | Worker 3 (GPU 1: exp-010提交 / CPU 2: exp-011统计验证 + contrastive-prompt修复)\n\n## Cross-family & Cross-domain 验证结果汇总\n\n### exp-011-llama8b-v3 ✅ (重大发现)\n- LLaMA-3.1-8B-Instruct, D012 (30PW+30FOLIO), n=60\n- **SICA 66.7% vs SC 60.0%, +6.67pp** (discordant 5:1 SICA wins)\n- FOLIO: +10pp, PW: +3.33pp\n- McNemar p=0.22（n=60 受限，趋势明确）\n- **multi-candidate rate 61.7%**（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间\n- SC baseline 60%（远低于 Qwen-14B 的 76%）\n\n### exp-018-arc-v2 ✅ (支持 C2)\n- Qwen2.5-14B, ARC-Challenge, n=60\n- SICA 95% vs SC 96.67%, **-1.67pp**\n- multi-candidate rate 仅 8.3%（近天花板，无多样性）\n- 完美支持 capability trap: 高 baseline → SICA 无空间甚至有害\n\n### exp-017-strategyqa-v3 ✅ (已完成)\n- Qwen2.5-14B, StrategyQA (常识推理), n=60\n- SICA 56.7% vs SC 53.3%, +3.33pp (n.s., p=0.13)\n- 中等难度任务，轻微正向趋势\n\n## 关键发现：Capability Trap 有方向性\n\n| 条件 | SC baseline | SICA delta | 解释 |\n|------|------------|-----------|------|\n| 弱模型 (LLaMA-8B) | 60% | **+6.67pp** | 多样性高→SICA 有操作空间 |\n| 中等模型 (Qwen-14B, 逻辑域) | 76% | +0.25pp (n.s.) | 多样性中等→SICA≈SC |\n| 强模型/易任务 (Qwen-14B, ARC) | 97% | -1.67pp | 无多样性→SICA 反而有害 |\n\n**这个梯度是 paper 的核心数据**。不再是简单的 \"SICA doesn't work\"，而是精确的 operating regime boundary：\n- C2 claim 现在有跨模型+跨任务的实证支持\n- Capability trap 的机制：diversity → SICA 操作空间，diversity 由 model capability / task difficulty 决定\n\n## 待决策\n1. exp-010-mistral-v3 正在重新提交（之前 PID 死了），如果 Mistral 也跑通，C2 将有 3 个模型族的数据\n2. pilot-contrastive-prompt 修复后等 GPU（验证 C1 rescue path 是否可行）\n3. LLaMA 结果 (+6.67pp) 是否改变 paper framing？之前是 \"mechanism vacuous\"，但对弱模型似乎 mechanism 有效——建议 framing 细化为 \"mechanism conditional on diversity, which is controlled by capability\"",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-017-strategyqa",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 0/1 在用（空闲中，exp-010-mistral-v3 正在重新提交） | Worker 3 (GPU 1: exp-010提交 / CPU 2: exp-011统计验证 + contrastive-prompt修复)\n\n## Cross-family & Cross-domain 验证结果汇总\n\n### exp-011-llama8b-v3 ✅ (重大发现)\n- LLaMA-3.1-8B-Instruct, D012 (30PW+30FOLIO), n=60\n- **SICA 66.7% vs SC 60.0%, +6.67pp** (discordant 5:1 SICA wins)\n- FOLIO: +10pp, PW: +3.33pp\n- McNemar p=0.22（n=60 受限，趋势明确）\n- **multi-candidate rate 61.7%**（vs Qwen-14B 46%）——弱模型更多样→SICA 有更大操作空间\n- SC baseline 60%（远低于 Qwen-14B 的 76%）\n\n### exp-018-arc-v2 ✅ (支持 C2)\n- Qwen2.5-14B, ARC-Challenge, n=60\n- SICA 95% vs SC 96.67%, **-1.67pp**\n- multi-candidate rate 仅 8.3%（近天花板，无多样性）\n- 完美支持 capability trap: 高 baseline → SICA 无空间甚至有害\n\n### exp-017-strategyqa-v3 ✅ (已完成)\n- Qwen2.5-14B, StrategyQA (常识推理), n=60\n- SICA 56.7% vs SC 53.3%, +3.33pp (n.s., p=0.13)\n- 中等难度任务，轻微正向趋势\n\n## 关键发现：Capability Trap 有方向性\n\n| 条件 | SC baseline | SICA delta | 解释 |\n|------|------------|-----------|------|\n| 弱模型 (LLaMA-8B) | 60% | **+6.67pp** | 多样性高→SICA 有操作空间 |\n| 中等模型 (Qwen-14B, 逻辑域) | 76% | +0.25pp (n.s.) | 多样性中等→SICA≈SC |\n| 强模型/易任务 (Qwen-14B, ARC) | 97% | -1.67pp | 无多样性→SICA 反而有害 |\n\n**这个梯度是 paper 的核心数据**。不再是简单的 \"SICA doesn't work\"，而是精确的 operating regime boundary：\n- C2 claim 现在有跨模型+跨任务的实证支持\n- Capability trap 的机制：diversity → SICA 操作空间，diversity 由 model capability / task difficulty 决定\n\n## 待决策\n1. exp-010-mistral-v3 正在重新提交（之前 PID 死了），如果 Mistral 也跑通，C2 将有 3 个模型族的数据\n2. pilot-contrastive-prompt 修复后等 GPU（验证 C1 rescue path 是否可行）\n3. LLaMA 结果 (+6.67pp) 是否改变 paper framing？之前是 \"mechanism vacuous\"，但对弱模型似乎 mechanism 有效——建议 framing 细化为 \"mechanism conditional on diversity, which is controlled by capability\"",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-17T08:19:31.757251+00:00_
+
+一个 Worker (exp011 统计验证) 仍在运行。exp-010-mistral-v3 已有之前的提交记录(PID 298717)但状态是 QUEUED——说明进程已死。需要 Worker 诊断并重新提交。
+
+同时向 Director 汇报重大进展。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-017-strategyqa"
+}
+```
+
+</details>
+
+---

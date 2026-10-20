@@ -1,0 +1,55 @@
+{
+  "exp_id": "sica_aime30_v2",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:24:26.526Z",
+    "updated_at": "2026-05-15T15:52:46.068Z",
+    "spec": {
+      "command": "PYTHONUNBUFFERED=1 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --seed 42",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "121139",
+      "log_path": "/tmp/sica_aime30_v2.log",
+      "submitted_at": "2026-05-15T13:24:26.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "method": "SICA",
+      "model_name": "QwQ-32B",
+      "data_path": "/root/symb_invariant_consensus/data/aime2024_subset.json",
+      "data_count": 30,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 10240,
+      "seed": null,
+      "seed_note": "--seed 42 在命令行中但 run_full_mvp.py 可能未实现该参数，实际 seed 未生效",
+      "fixes": "timeout=120s HTTP, future timeout=180s, semaphore(6), vLLM health check",
+      "wall_clock_seconds": 8899.6,
+      "gpu_hours": 2.47
+    },
+    "hypothesis": "AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v2: 修复 timeout/hang bug 后重跑）",
+    "conclusion": "failed",
+    "metrics": {
+      "progress": "4/30",
+      "sica_accuracy_interim": "3/4 (75%)",
+      "sc_accuracy_interim": "3/4 (75%)",
+      "avg_time_per_problem_s": 557,
+      "p2_z3_error": "Z3Exception on z3_maxsat.py:163, 0 constraints extracted",
+      "p5_vllm_stuck": "vLLM timeout since ~22:11, retried multiple rounds",
+      "issue": "vLLM service likely crashed or OOM at Problem 5"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:52:45.450Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-15T15:52:46.068Z"
+  },
+  "timestamp": "2026-05-15T15:52:46.088374+00:00",
+  "trigger": "update_registry"
+}

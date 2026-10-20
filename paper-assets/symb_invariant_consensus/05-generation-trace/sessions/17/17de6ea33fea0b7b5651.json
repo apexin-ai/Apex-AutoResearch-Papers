@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17de6ea33fea0b7b5651",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code prep all scripts 25068",
+  "task_key": "worker_code_prep-all-scripts-25068_20260518T110401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_prep-all-scripts-25068_20260518T110401_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "d42a7242b6123a73872e96f463870a22f342348c970699209bea824a25220395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部部署完成。汇总：\n\n### 已部署文件\n\n| 文件 | 用途 |\n|------|------|\n| `scripts/run_case_study_extract.sh` | Script A: 3题 case study |\n| `scripts/run_folio_trace_regen.sh` | Script B: FOLIO 204 全量 |\n| `scripts/run_cross_model_mistral.sh` | Script C: Mistral cross-model |\n| `scripts/cross_model_extract.py` | Script C 的 Python 核心逻辑 |\n\n### 运行顺序和预期时间\n\n1. **Script A** (~10 min): 启动 Qwen2.5-14B vLLM → 3 题 case study → vLLM 保持运行\n2. **Script B** (~2-4h): 复用 14B vLLM → FOLIO 204 全量跑完 → 支持 `--resume`\n3. **Script C** (~1-2h): kill 14B vLLM → 启动 Mistral-7B → 读 Script B 的 intermediates → extraction-only → 支持 `--resume`\n\n### 关键设计\n\n- **Script A/B 共享 vLLM**: A 启动 14B，B 自动检测复用；B 也能独立启动\n- **Script C 是 extraction-only**: 自定义 `cross_model_extract.py` 直接调用 `ConstraintExtractor` + `MaxSATSolver`，跳过 trace 生成，从 B 的 intermediates 读取已有 traces\n- **extraction 温度**: Script C 用 `APIBasedLLM(T=0.1)` 而非 `VLLMBackend`（硬编码 T=0.3）\n- **所有脚本都增量保存 + 支持 resume**\n- **不需要修改 pipeline 代码**：Script A/B 用原有 `run_full_mvp.py`，Script C 用独立脚本直接调用内部组件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-all-scripts-25068.md"
+}

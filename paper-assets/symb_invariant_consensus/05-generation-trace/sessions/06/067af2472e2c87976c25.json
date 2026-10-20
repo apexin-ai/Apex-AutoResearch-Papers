@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "067af2472e2c87976c25",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag exp 038 041 16639",
+  "task_key": "worker_diag_exp-038-041-16639_20260518T200944",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_exp-038-041-16639_20260518T200944_result.json",
+    "occurrence": 1,
+    "bytes": 2198,
+    "sha256": "c1b00bef7b9bfe85eba2fa868dba7d376642d9bb5155197302a2cacc6a799845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是结果：\n\n---\n\n## 诊断报告\n\n### exp-038-14b-logiqa200-16639 — **实际已正常完成，非失败**\n\n- **状态**: 200/200 全部完成，输出了 `LOGIQA_DONE` sentinel\n- **结果**: SICA=78.0% (156/200), SC=78.5% (157/200), Delta=-0.5%\n- **Wall time**: 126.8 min\n- **Log**: `/root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/exp038.log`\n- **Results JSON**: `results/exp038_qwen25_14b_logiqa200/results.json`（完整保存）\n- **Cron 误判原因**: 实验完成后进程自然退出，cron 在检测时发现进程不在且可能未检测到 sentinel（时间窗口问题或 sentinel 关键词不匹配）。实验数据完好，无需重跑。\n\n### exp-041-14b-folio204-16639 — **不存在于此服务器**\n\n- 在 westd-16639 上搜索了 `*041*`、`*folio*204*`，没有任何 exp-041 相关目录或脚本\n- 服务器上已有的 folio204 实验是 **exp-036**，也已正常完成：SICA=75.5% (154/204), SC=77.5% (158/204), `FULL_MVP_DONE`\n- **结论**: exp-041 可能从未部署到 westd-16639，或者注册名有误。cron 监控了一个不存在的实验。\n\n### exp-032 / exp-033（对应任务中的 exp-039/040 位置） — **正在运行**\n\n- **exp-032** (Qwen2.5-14B, PW600): tmux session `exp032` 存在，`run_full_mvp.py` 进程活跃，vLLM on GPU 0 (port 8000)\n- **exp-033** (Qwen3-14B non-thinking, PW600): tmux session `exp033` 存在，`run_full_mvp.py` 进程活跃，vLLM on GPU 1 (port 8001)\n- 两者都在正常运行，GPU utilization 100%\n\n### 系统状态\n\n- **GPU**: 4x NVIDIA RTX PRO 6000 Black (98GB)。GPU 0/1 被 exp-032/033 占用 (~88GB each)，GPU 2/3 空闲\n- **磁盘**: 30G 总量，13G 已用，43% — 充足\n- **dmesg**: 无权限访问（容器环境），但从日志看无 OOM/CUDA error 迹象\n\n### 总结\n\n| 实验 | 状态 | 行动 |\n|------|------|------|\n| exp-038 (LogiQA200) | **已完成** — cron 误判 | 无需操作，结果已保存 |\n| exp-041 (FOLIO204) | **不存在于此服务器** | 检查 cron 注册是否有误 |\n| exp-032 (PW600 Qwen2.5-14B) | 运行中 | 正常 |\n| exp-033 (PW600 Qwen3-14B) | 运行中 | 正常 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-038-041-16639.md"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-155_Q6",
+    "problem": "Charlie is cold. Charlie is rough. Charlie is white. Erin is cold. Erin is smart. Fiona is blue. Fiona is cold. Fiona is furry. Fiona is white. Gary is round. If Erin is white then Erin is blue. If someone is round then they are blue. Smart, cold people are white. All smart people are furry. Furry people are cold. Smart, furry people are round. If someone is blue then they are smart. If someone is smart and not cold then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nRough(Charlie, True) ::: Charlie is rough.\nWhite(Charlie, True) ::: Charlie is white.\nCold(Erin, True) ::: Erin is cold.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Fiona, True) ::: Fiona is blue.\nCold(Fiona, True) ::: Fiona is cold.\nFurry(Fiona, True) ::: Fiona is furry.\nWhite(Fiona, True) ::: Fiona is white.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nWhite(Erin, True) >>> Blue(Erin, True) ::: If Erin is white then Erin is blue.\nRound($x, True) >>> Blue($x, True) ::: If someone is round then they are blue.\nSmart($x, True) && Cold($x, True) >>> White($x, True) ::: Smart, cold people are white.\nSmart($x, True) >>> Furry($x, True) ::: All smart people are furry.\nFurry($x, True) >>> Cold($x, True) ::: Furry people are cold.\nSmart($x, True) && Furry($x, True) >>> Round($x, True) ::: Smart, furry people are round.\nBlue($x, True) >>> Smart($x, True) ::: If someone is blue then they are smart.\nSmart($x, True) && !Cold($x, True) >>> Rough($x, True) ::: If someone is smart and not cold then they are rough.\n\nQuery:\n!Round(Erin, True) ::: Erin is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

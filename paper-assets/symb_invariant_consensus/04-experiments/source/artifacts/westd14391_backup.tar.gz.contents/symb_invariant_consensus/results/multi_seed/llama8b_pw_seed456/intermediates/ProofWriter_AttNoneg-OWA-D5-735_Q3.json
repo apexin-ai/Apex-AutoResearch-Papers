@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-735_Q3",
+    "problem": "Bob is big. Bob is nice. Bob is smart. Charlie is nice. Dave is nice. Erin is big. Erin is blue. Erin is furry. Erin is quiet. Erin is round. Erin is smart. All nice things are big. All furry things are blue. Blue, furry things are quiet. If something is round and nice then it is blue. If Bob is round then Bob is blue. Big, quiet things are furry. If something is blue and furry then it is smart. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nSmart(Bob, True) ::: Bob is smart.\nNice(Charlie, True) ::: Charlie is nice.\nNice(Dave, True) ::: Dave is nice.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\n\nRules:\nNice($x, True) >>> Big($x, True) ::: All nice things are big.\nFurry($x, True) >>> Blue($x, True) ::: All furry things are blue.\nBlue($x, True) && Furry($x, True) >>> Quiet($x, True) ::: Blue, furry things are quiet.\nRound($x, True) && Nice($x, True) >>> Blue($x, True) ::: If something is round and nice then it is blue.\nRound(Bob, True) >>> Blue(Bob, True) ::: If Bob is round then Bob is blue.\nBig($x, True) && Quiet($x, True) >>> Furry($x, True) ::: Big, quiet things are furry.\nBlue($x, True) && Furry($x, True) >>> Smart($x, True) ::: If something is blue and furry then it is smart.\nNice(Charlie, True) && Big(Charlie, True) >>> Quiet(Charlie, True) ::: If Charlie is nice and Charlie is big then Charlie is quiet.\n\nQuery:\nBig(Dave, True) ::: Dave is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

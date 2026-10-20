@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-079-icg-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:06:05.950Z",
+    "updated_at": "2026-05-19T19:06:37.611Z",
+    "hypothesis": "ICG × Mistral-7B × LogiQA-200 cross-dataset validation. 验证 ICG 方法在 LogiQA 多选题上是否有效。与 exp-074 (ICG×FOLIO) 和 exp-078 (Debate×LogiQA) 对比，构建方法×数据集交叉矩阵。如果 ICG 在 LogiQA 上也无效，进一步确认 independence bottleneck 的普遍性。",
+    "parent": "exp-074-icg-mistral-folio"
+  },
+  "timestamp": "2026-05-19T19:06:37.820085+00:00",
+  "trigger": "update_registry"
+}

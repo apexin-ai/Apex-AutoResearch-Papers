@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1203_Q8",
+    "problem": "Anne is nice. Erin is red. Erin is not round. Fiona is not nice. Harry is not blue. Harry is red. Harry is young. If Harry is blue and Harry is nice then Harry is red. If something is young and round then it is rough. All young, nice things are rough. Round, quiet things are young. If Erin is young and Erin is round then Erin is blue. Nice things are quiet. All quiet things are round. Rough things are not red. If something is round and red then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not young.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nNotNice($x, bool) ::: Is x not nice?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nRed(Erin, True) ::: Erin is red.\nRound(Erin, False) ::: Erin is not round.\nNotNice(Fiona, True) ::: Fiona is not nice.\nBlue(Harry, False) ::: Harry is not blue.\nRed(Harry, True) ::: Harry is red.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue(Harry, True) && Nice(Harry, True) >>> Red(Harry, True) ::: If Harry is blue and Harry is nice then Harry is red.\nYoung($x, True) && Round($x, True) >>> Rough($x, True) ::: If something is young and round then it is rough.\nYoung($x, True) && Nice($x, True) >>> Rough($x, True) ::: All young, nice things are rough.\nRound($x, True) && Quiet($x, True) >>> Young($x, True) ::: Round, quiet things are young.\nYoung(Erin, True) && Round(Erin, True) >>> Blue(Erin, True) ::: If Erin is young and Erin is round then Erin is blue.\nNice($x, True) >>> Quiet($x, True) ::: Nice things are quiet.\nQuiet($x, True) >>> Round($x, True) ::: All quiet things are round.\nRough($x, True) >>> Red($x, False) ::: Rough things are not red.\nRound($x, True) && Red($x, True) >>> Blue($x, True) ::: If something is round and red then it is blue.\n\nQuery:\nYoung(Anne, False) ::: Anne is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

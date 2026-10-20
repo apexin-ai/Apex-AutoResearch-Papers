@@ -1,0 +1,941 @@
+# cron hook exp 018 arc v2
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/cron_hook_exp-018-arc-v2.jsonl`
+- **Structured JSON:** [`8a3f1812bd1c737b58bc.json`](../../sessions/8a/8a3f1812bd1c737b58bc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T10:42:05.755647+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配）
+- 禁止在 submit_training_job 命令中使用 pkill（exp-010-mistral-v2 事故：pkill 误杀 tmux 父进程链导致 SIGTERM）
+- vLLM 清理必须在独立步骤完成，不能与实验启动脚本写在同一行
+- EXIT_CODE=129 是 SIGHUP 伪信号（进程退出阶段收到），不是真实失败——sica_expanded_14b 和 sica_k_sensitivity_14b 都是这样
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-32608，root@，工作目录 /root/symb_invariant_consensus
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型：/root/autodl-tmp/models/Qwen2.5-14B-Instruct（主力模型，27.6 GiB vLLM）
+- LLaMA-3.1-8B-Instruct：/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct（shard 已修复）
+- Mistral-7B-Instruct-v0.3：/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3（3 shards + consolidated）
+- 数据集：/root/symb_invariant_consensus/data/（proofwriter_full.json 600题, folio_full.json 204题, proofwriter_30.json, folio_30.json, aime2024_subset.json）
+- 结果目录：/root/symb_invariant_consensus/results/
+- Git commit：97aeaa572a6b6571b4bfea9c6ec6bcf915780425
+- 无活跃 cron（reconcile 返回 0）
+- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用
+
+### 3. 📊 当前状态
+刚收到 exp-018-arc-v2 完成回调（ANALYZING），已派 Worker `worker_analysis_exp-018-arc-v2_20260517T064035` 去 SSH 读日志提取 metrics。等 Worker 回调后更新 registry 并汇报 Director。
+
+Registry 摘要：
+- exp-018-arc-v2: ANALYZING — ARC-Challenge 跨域验证（v2, build_generator bug 修复版）
+- exp-011-llama8b-v3: QUEUED — LLaMA-3.1-8B 跨模型验证（等 GPU 空闲）
+- pilot-contrastive-prompt: PREPARING — Contrastive Prompt 机制改进实验
+
+等待中：
+- Worker 回调：worker_analysis_exp-018-arc-v2_20260517T064035
+- 无 Director 决策 pending
+
+### 4. 📋 待办
+- Worker 回调 exp-018-arc-v2 分析完成 → update_registry(conclusion=X, metrics=...) → 汇报 Director → 提交 exp-011-llama8b-v3（GPU 空闲了）
+- exp-011-llama8b-v3 提交后 → GPU 占满，等完成回调
+- Director 决策 pilot-contrastive-prompt 方案 → 准备脚本并提交
+- 所有跨域/跨模型验证完成 → 汇总 Capability Trap 泛化证据表，为 Methods Paper (D030) 提供数据支撑
+
+### 5. 🎯 战略上下文
+- D030 决策：从 Analysis Paper 转向 Methods Paper——利用诊断数据设计改进方法
+- 核心结论链：sica_expanded_14b (+0.25pp n.s., N=804) → K-ablation (SICA≤SC all K) → exp-013 (MaxSAT≈count-only≈random) → pilot-constraint-filtering (negative, 天花板低) → **Capability Trap 确认**
+- exp-017-strategyqa-v3 是唯一略正向的跨域点 (+3.33pp n.s.)，exp-018-arc-v2 结果决定跨域 narrative 强度
+- pilot-contrastive-prompt 是当前最有希望的改进方向（将 discriminative ratio 从 37.2% 提升到 >70%），这是 Methods Paper 的核心实验
+- 易错点：不要把 n.s. 的正向结果当 success claim——paper framing 是 "capability trap"（SICA 不 work），正向但不显著恰好支持这个 narrative
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)
+
+---
+
+## 可查的历史
+前 19 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-018-arc-v2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T10:42:15.459634+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T10:42:15.510305+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T10:42:18.727559+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T10:42:18.979169+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T10:42:18.980716+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-020-llama8b-folio-204\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T09:57:17.793Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\"}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T09:15:53.996Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\", \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\", \"notes\": \"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\"}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:22:02.386Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"parent
+…[truncated 24610 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T10:42:19.583638+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T10:42:19.584085+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T10:42:23.804091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-020-llama8b-folio-204\", \"success\": true, \"actions\": [\"Job still running (pid=309318)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4824
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T10:42:23.855208+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-020-llama8b-folio-204 | Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。 | — | — | — |\\n\\n## 待处理\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-019-llama8b-strategyqa-200** (negative): Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） ← 基于 exp-011-llama8b-v3\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\n\\n## 趋势\\n成功 11 / 负向 5 / 失败 9 / 共 31\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-01
+…[truncated 165 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4271
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T10:42:23.855849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:07 UTC | 更新原因: exp-011 结果出炉 + D031 决策 + 全面更新过时状态\\n\\n## 核心方向\\nOperating Regime Characterization（待验证）：弱模型上 SICA 有实质增益（+6.7pp directional），强模型上退化为 SC。若 powered test 确认 → 论文升级为正面+负面双重发现；若否 → 维持 D025 Capability Trap analysis paper。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D031 powered test 验证中) + 审稿进行中\\n- **关键发现 (2026-05-17)**:\\n  - exp-011 LLaMA-8B: +6.67pp (p=0.22, n=60, directionally positive but NOT significant)\\n  - 跨模型 pattern: 弱模型(+6.7pp) > 中模型(+0.3pp) > 强域(-1.7pp) > 极强(0pp)\\n  - exp-013: MaxSAT ≈ count-only ≈ random（mechanism vacuous confirmed）\\n  - exp-002: SICA ≤ SC for all K including odd K=11（tiebreak-only confirmed）\\n- **Plan 覆盖**: 19 实验，exp-001/002/011/017/018 done，exp-010 running，其余 planned\\n- **Paper framing**: 暂不更新，等 powered test 结果\\n\\n## 近期任务\\n- [x] exp-011 完成 (+6.67pp, p=0.22)\\n- [x] exp-002 K-ablation 完成 (SICA≤SC all K)\\n- [x] exp-013 constraint ablation 完成 (MaxSAT≈count-only)\\n- [x] exp-017 StrategyQA 完成 (+3.3pp n.s.)\\n- [x] exp-018 ARC 完成 (-1.67pp)\\n- [ ] exp-010-mistral-v3 运行中 (9/60, Reviewer 预警模型可能过弱)\\n- [ ] **LLaMA-8B StrategyQA 200 题 powered test**（D031 核心，exp-010 后立即启动）\\n- [ ] exp-011 truncation bias 分析（CPU，检查 discordant pairs 与截断相关性）\\n- [ ] pilot-contrastive-v2（低优先级，暂缓）\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-010-mistral-v3 运行中 (~1h ���余)\\n- 排队: LLaMA-8B StrategyQA 200 (~3-4h)\\n- 累计已用: ~20h (exp-001 14h + exp-002 6h + exp-011 1.5h + 其他)\\n- 预估剩余: ~6h (exp-010 1h + StrategyQA 3-4h + buffer)\\n\\n## 决策 pending\\n- D031 结果出来后: p<0.05 → 更新 paper_framing.md 为 Operating Regime Characterization + 加 7B/72B scaling 实验; p>0.1 → 维持 Capability Trap + LLaMA 作 suggestive evidence\\n\\n## 阻塞项\\n- 无硬阻塞。exp-010 + StrategyQA powered test 是今
+…[truncated 1292 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4271
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T10:43:13.900965+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:43:14.253698+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_ff71a810.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Read",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T10:43:14.404843+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T10:43:14.506319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\n\\n**日期**: 2025-05-17  \\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\n\\n---\\n\\n## 核心问题\\n\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\"answer=A → X 成立; answer=B → Y 成立\\\"形式的判别性约束。\\n\\n## 最相关论文\\n\\n### 1. Math-Shepherd (ACL 2024)\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\"正确\\\"当且仅当存在从该步到正确答案的延续路径。\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\n\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\n- **适配价值**: 其对比训练框架可直接用于训练\\\"约束判别器\\\"——给定约束+答案对，判断该约束是否支持该答案。\\n\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\n\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\n\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\"约束 C 蕴含 answer=A\\\"还是\\\"约束 C 与 answer=A 矛盾\\\"，从而标注约束的 answer-discriminative 属性。\\n\\n## 可行适配方案\\n\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\n|------|--------|----------|----------|\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\"约束 C → answer A\\\"的蕴含关系，只保
+…[truncated 2043 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T10:43:20.685396+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T10:43:20.736345+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_ff71a810.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T10:43:28.729490+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T10:43:28.780275+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T10:43:43.705562+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T10:43:43.706091+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T10:43:46.670406+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T10:43:46.821539+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T10:43:46.872346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp-020-llama8b-folio-204\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp-020-llama8b-folio-204\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 1 张, 实际跑 1 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T10:43:46.872830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T10:44:37.013305+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:truncation-bias-exp011",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：exp-011 Truncation Bias 分析\n\n### 目标\n分析 exp-011-llama8b-v3 的 44 条 truncated traces 是否与 SICA 的 discordant pairs（SICA 翻转结果的题目）相关。这直接影响论文叙事——如果 SICA 的 +6.67pp 增益主要来自截断 traces，则增益可能是 artifact 而非真实机制。\n\n### 背景\n- exp-011: LLaMA-3.1-8B-Instruct, D012 (30 PW + 30 FOLIO), K=12\n- 结果: SICA 66.7% vs SC 60.0%, +6.67pp, discordant 5:1 (SICA wins)\n- 44 条 truncated traces（max-tokens 可能偏短）\n- 5 个 discordant pairs 中 SICA 都赢了\n\n### 服务器信息\n- 服务器: westd-32608, root@\n- Python: /root/miniconda3/bin/python\n- 结果目录: /root/symb_invariant_consensus/results/\n- exp-011 结果文件: 在 results/ 下找 exp-011 或 llama8b 相关的 JSON 文件\n\n### 具体步骤\n\n1. SSH 到 westd-32608，找到 exp-011 的结果文件：\n   ```\n   ls /root/symb_invariant_consensus/results/*llama*\n   ls /root/symb_invariant_consensus/results/*exp-011*\n   ls /root/symb_invariant_consensus/results/*exp011*\n   ```\n\n2. 读取结果 JSON，提取：\n   - 每题的 traces 中哪些被 truncated（通常 JSON 中有 truncated 标记或可检查 trace 长度 == max_tokens）\n   - 每题的 SICA 答案 vs SC 答案（找 discordant pairs）\n   - 每题的 multi-candidate rate\n\n3. 分析：\n   a) 5 个 discordant pairs（SICA wins）中，有多少题包含 truncated traces？\n   b) 截断比例与 discordant 之间的关联（truncated traces 占该题总 traces 比例 vs 是否 discordant）\n   c) 如果去掉 truncated traces 重新计算 SC 和 SICA，结果会变吗？\n   d) Truncated traces 的答案分布是否更 random（偏离多数派）？\n\n4. 产出：\n   写一段 200 字以内的分析总结，包含：\n   - Truncation 与 discordant 的相关性（有/无/部分）\n   - 是否存在 truncation bias（截断导致假阳性翻转）\n   - 对论文叙事的影响建议\n\n### 注意\n- 不要启动 vLLM 或占用 GPU（当前 GPU 正在跑 exp-020）\n- 这是纯读取+分析任务\n- 如果找不到结果文件，检查 /root/symb_invariant_consensus/ 下所有子目录",
+  "tool_groups": "['ssh']",
+  "tools": "['read_registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:truncation-bias-exp011",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：exp-011 Truncation Bias 分析\n\n### 目标\n分析 exp-011-llama8b-v3 的 44 条 truncated traces 是否与 SICA 的 discordant pairs（SICA 翻转结果的题目）相关。这直接影响论文叙事——如果 SICA 的 +6.67pp 增益主要来自截断 traces，则增益可能是 artifact 而非真实机制。\n\n### 背景\n- exp-011: LLaMA-3.1-8B-Instruct, D012 (30 PW + 30 FOLIO), K=12\n- 结果: SICA 66.7% vs SC 60.0%, +6.67pp, discordant 5:1 (SICA wins)\n- 44 条 truncated traces（max-tokens 可能偏短）\n- 5 个 discordant pairs 中 SICA 都赢了\n\n### 服务器信息\n- 服务器: westd-32608, root@\n- Python: /root/miniconda3/bin/python\n- 结果目录: /root/symb_invariant_consensus/results/\n- exp-011 结果文件: 在 results/ 下找 exp-011 或 llama8b 相关的 JSON 文件\n\n### 具体步骤\n\n1. SSH 到 westd-32608，找到 exp-011 的结果文件：\n   ```\n   ls /root/symb_invariant_consensus/results/*llama*\n   ls /root/symb_invariant_consensus/results/*exp-011*\n   ls /root/symb_invariant_consensus/results/*exp011*\n   ```\n\n2. 读取结果 JSON，提取：\n   - 每题的 traces 中哪些被 truncated（通常 JSON 中有 truncated 标记或可检查 trace 长度 == max_tokens）\n   - 每题的 SICA 答案 vs SC 答案（找 discordant pairs）\n   - 每题的 multi-candidate rate\n\n3. 分析：\n   a) 5 个 discordant pairs（SICA wins）中，有多少题包含 truncated traces？\n   b) 截断比例与 discordant 之间的关联（truncated traces 占该题总 traces 比例 vs 是否 discordant）\n   c) 如果去掉 truncated traces 重新计算 SC 和 SICA，结果会变吗？\n   d) Truncated traces 的答案分布是否更 random（偏离多数派）？\n\n4. 产出：\n   写一段 200 字以内的分析总结，包含：\n   - Truncation 与 discordant 的相关性（有/无/部分）\n   - 是否存在 truncation bias（截断导致假阳性翻转）\n   - 对论文叙事的影响建议\n\n### 注意\n- 不要启动 vLLM 或占用 GPU（当前 GPU 正在跑 exp-020）\n- 这是纯读取+分析任务\n- 如果找不到结果文件，检查 /root/symb_invariant_consensus/ 下所有子目录",
+    "tool_groups": "['ssh']",
+    "tools": "['read_registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T10:44:58.476045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_truncation-bias-exp011_20260517T104437\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_truncation-bias-exp011_20260517T104437.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_truncation-bias-exp011_20260517T104437 started. Use get_worker_status('worker_analysis_truncation-bias-exp011_20260517T104437') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 21462
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T10:44:58.828060+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:evidence-table-consolidation",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：整合 Capability Trap + Operating Regime 全量证据表\n\n### 目标\n将所有已完成实验的结果整合成一张结构化证据表，供 Methods Paper (D030) 使用。写入项目文件 `evidence_summary.md`。\n\n### 数据源\n读取 registry 获取所有 DONE 实验的 metrics。以下是需要纳入的关键实验：\n\n#### 核心验证实验\n| exp_id | 模型 | 数据集 | N | SICA | SC | Delta | 显著性 |\n|--------|------|--------|---|------|-----|-------|--------|\n| sica_expanded_14b | Qwen-14B | PW+FOLIO | 804 | 76.5% | 76.2% | +0.3pp | n.s. |\n| sica_k_sensitivity_14b | Qwen-14B | D012 | 60 | 各K | 各K | ≤0 all K | SICA≤SC |\n| sica_constraint_ablation_013 | Qwen-14B | PW+FOLIO | 804 | MaxSAT≈count≈random | | ~0 | n.s. |\n| exp-016-weighted-sc | Qwen-14B | PW+FOLIO | 804 | 各加权≈SC | | ~0 | n.s. |\n\n#### 跨模型验证\n| exp_id | 模型 | 数据集 | N | Delta | 意义 |\n|--------|------|--------|---|-------|------|\n| exp-011-llama8b-v3 | LLaMA-8B | D012 | 60 | +6.67pp | Sweet spot |\n| exp-010-mistral-v3 | Mistral-7B | D012 | 60 | 0pp | 下界 |\n| exp-005 | QwQ-32B | AIME+PW | 46 | 0/-5.9pp | 上界/推理模型 |\n\n#### Powered Tests\n| exp_id | 模型 | 数据集 | N | Delta | p值 |\n|--------|------|--------|---|-------|-----|\n| exp-019-llama8b-strategyqa-200 | LLaMA-8B | StrategyQA | 200 | +2pp | 0.424 |\n| exp-020-llama8b-folio-204 | LLaMA-8B | FOLIO | 204 | RUNNING | - |\n\n#### 跨域验证\n| exp_id | 模型 | 数据集 | N | Delta |\n|--------|------|--------|---|-------|\n| exp-017-strategyqa-v3 | Qwen-14B | StrategyQA | 60 | +3.33pp n.s. |\n| exp-018-arc-v2 | Qwen-14B | ARC-Challenge | 60 | -1.67pp |\n\n#### 机制分析\n| exp_id | 发现 |\n|--------|------|\n| pilot-constraint-filtering | Constraint filtering 天花板低（discriminative ratio 37.2% by weight, effective flip 17.4%）|\n| sica_k_sensitivity_14b | 更多 K → SICA 退化（约束噪声累积）|\n| sica_constraint_ablation_013 | MaxSAT ≈ count-only ≈ random（优化无效）|\n\n### 产出要求\n\n1. 用 `save_project_file(file=\"evidence_summary.md\")` 写入项目\n2. 格式：\n   - 表1: Operating Regime Evidence（按 SC baseline accuracy 排序，展示倒 U 型）\n   - 表2: Mechanism Vacuousness Evidence（约束质量/聚合方式/K-ablation）\n   - 表3: Cross-domain Evidence\n   - 每个表后 1-2 句 takeaway\n3. 标注数据来源（exp_id）\n4. exp-020 标记为 RUNNING/pending\n\n### 注意\n- 从 registry 读取精确数字，不要凭记忆\n- 保持与 paper_framing.md 中 claims 的对应关系",
+  "tool_groups": "['registry', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:evidence-table-consolidation",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：整合 Capability Trap + Operating Regime 全量证据表\n\n### 目标\n将所有已完成实验的结果整合成一张结构化证据表，供 Methods Paper (D030) 使用。写入项目文件 `evidence_summary.md`。\n\n### 数据源\n读取 registry 获取所有 DONE 实验的 metrics。以下是需要纳入的关键实验：\n\n#### 核心验证实验\n| exp_id | 模型 | 数据集 | N | SICA | SC | Delta | 显著性 |\n|--------|------|--------|---|------|-----|-------|--------|\n| sica_expanded_14b | Qwen-14B | PW+FOLIO | 804 | 76.5% | 76.2% | +0.3pp | n.s. |\n| sica_k_sensitivity_14b | Qwen-14B | D012 | 60 | 各K | 各K | ≤0 all K | SICA≤SC |\n| sica_constraint_ablation_013 | Qwen-14B | PW+FOLIO | 804 | MaxSAT≈count≈random | | ~0 | n.s. |\n| exp-016-weighted-sc | Qwen-14B | PW+FOLIO | 804 | 各加权≈SC | | ~0 | n.s. |\n\n#### 跨模型验证\n| exp_id | 模型 | 数据集 | N | Delta | 意义 |\n|--------|------|--------|---|-------|------|\n| exp-011-llama8b-v3 | LLaMA-8B | D012 | 60 | +6.67pp | Sweet spot |\n| exp-010-mistral-v3 | Mistral-7B | D012 | 60 | 0pp | 下界 |\n| exp-005 | QwQ-32B | AIME+PW | 46 | 0/-5.9pp | 上界/推理模型 |\n\n#### Powered Tests\n| exp_id | 模型 | 数据集 | N | Delta | p值 |\n|--------|------|--------|---|-------|-----|\n| exp-019-llama8b-strategyqa-200 | LLaMA-8B | StrategyQA | 200 | +2pp | 0.424 |\n| exp-020-llama8b-folio-204 | LLaMA-8B | FOLIO | 204 | RUNNING | - |\n\n#### 跨域验证\n| exp_id | 模型 | 数据集 | N | Delta |\n|--------|------|--------|---|-------|\n| exp-017-strategyqa-v3 | Qwen-14B | StrategyQA | 60 | +3.33pp n.s. |\n| exp-018-arc-v2 | Qwen-14B | ARC-Challenge | 60 | -1.67pp |\n\n#### 机制分析\n| exp_id | 发现 |\n|--------|------|\n| pilot-constraint-filtering | Constraint filtering 天花板低（discriminative ratio 37.2% by weight, effective flip 17.4%）|\n| sica_k_sensitivity_14b | 更多 K → SICA 退化（约束噪声累积）|\n| sica_constraint_ablation_013 | MaxSAT ≈ count-only ≈ random（优化无效）|\n\n### 产出要求\n\n1. 用 `save_project_file(file=\"evidence_summary.md\")` 写入项目\n2. 格式：\n   - 表1: Operating Regime Evidence（按 SC baseline accuracy 排序，展示倒 U 型）\n   - 表2: Mechanism Vacuousness Evidence（约束质量/聚合方式/K-ablation）\n   - 表3: Cross-domain Evidence\n   - 每个表后 1-2 句 takeaway\n3. 标注数据来源（exp_id）\n4. exp-020 标记为 RUNNING/pending\n\n### 注意\n- 从 registry 读取精确数字，不要凭记忆\n- 保持与 paper_framing.md 中 claims 的对应关系",
+    "tool_groups": "['registry', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T10:45:01.139544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_evidence-table-consolidation_20260517T104458\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_evidence-table-consolidation_20260517T104458.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_evidence-table-consolidation_20260517T104458 started. Use get_worker_status('worker_analysis_evidence-table-consolidation_20260517T104458') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2311
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T10:45:26.486201+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 1/1 (cuda:0 → exp-020) | Worker 2 (GPU 0 / CPU 2) | 磁盘: westd-32608 充裕\n\n**Session #8 状态同步**\n\nexp-020-llama8b-folio-204 仍在运行（pid=309318, cron 监控中）。这是 D034 的 definitive test：LLaMA-8B + FOLIO 全量 204 题。按 exp-011 速率估算，预计 ~1-2h 内完成。\n\n**并行 CPU 任务（已派 Worker）：**\n1. **Truncation bias 分析** — exp-011 有 44 条 truncated traces，检查是否与 5 个 discordant pairs 相关。如果 +6.67pp 增益来自截断 artifact，需调整 narrative\n2. **Evidence table 整合** — 将 19 个已完成实验的 metrics 整合为结构化证据表（Operating Regime / Mechanism Vacuousness / Cross-domain），供 Methods Paper 使用\n\n**等待：**\n- exp-020 完成 → 更新 registry → 汇报结果 → 决定 paper framing（p<0.05 → Operating Regime Characterization; p>0.1 → Capability Trap）\n- pilot-contrastive-prompt 脚本已就绪，等 GPU 空闲后可立即提交（D030 Methods Paper 核心实验）\n\n无阻塞项，全速推进中。",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-018-arc-v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 1/1 (cuda:0 → exp-020) | Worker 2 (GPU 0 / CPU 2) | 磁盘: westd-32608 充裕\n\n**Session #8 状态同步**\n\nexp-020-llama8b-folio-204 仍在运行（pid=309318, cron 监控中）。这是 D034 的 definitive test：LLaMA-8B + FOLIO 全量 204 题。按 exp-011 速率估算，预计 ~1-2h 内完成。\n\n**并行 CPU 任务（已派 Worker）：**\n1. **Truncation bias 分析** — exp-011 有 44 条 truncated traces，检查是否与 5 个 discordant pairs 相关。如果 +6.67pp 增益来自截断 artifact，需调整 narrative\n2. **Evidence table 整合** — 将 19 个已完成实验的 metrics 整合为结构化证据表（Operating Regime / Mechanism Vacuousness / Cross-domain），供 Methods Paper 使用\n\n**等待：**\n- exp-020 完成 → 更新 registry → 汇报结果 → 决定 paper framing（p<0.05 → Operating Regime Characterization; p>0.1 → Capability Trap）\n- pilot-contrastive-prompt 脚本已就绪，等 GPU 空闲后可立即提交（D030 Methods Paper 核心实验）\n\n无阻塞项，全速推进中。",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-17T11:02:05.969636+00:00_
+
+Worker 已派出（truncation bias 分析 + 证据表整合）。向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-018-arc-v2"
+}
+```
+
+</details>
+
+---

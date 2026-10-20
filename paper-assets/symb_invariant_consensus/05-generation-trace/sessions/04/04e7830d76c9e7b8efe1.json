@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04e7830d76c9e7b8efe1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "deploy exp 081 082 seed123 16639",
+  "task_key": "worker_deploy_exp-081-082-seed123-16639_20260519T203928",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_exp-081-082-seed123-16639_20260519T203928_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "ebd6ed5dfb45d7b8d8d1961335b37e590e59d559cf3613a892daef5608347606"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**westd-16639 部署状态**\n\n| 实验 | tmux session | GPU | vLLM port | PID | 状态 |\n|------|-------------|-----|-----------|-----|------|\n| exp-081 (Debate×Mistral×FOLIO-204 seed=123) | `exp-081-debate-mistral-folio-seed123` | cuda:0 | 8020 | 211057 | RUNNING |\n| exp-082 (Contrastive×Mistral×FOLIO-204 seed=123) | `exp-082-contrastive-mistral-folio-seed123` | cuda:1 | 8021 | 211081 | RUNNING |\n\n**完成步骤**：\n1. run_contrastive.py 从 westd-25068 同步到 westd-16639（MD5 验证通过）\n2. 两个 vLLM Mistral-7B 实例启动（port 8020/8021）\n3. 两个 dry-run 均通过（Debate 2.6min, Contrastive 5.3min）\n4. 全量实验已通过 submit_training_job 提交\n5. Registry 已注册，含 hypothesis 和 parent 信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-081-082-seed123-16639.md"
+}

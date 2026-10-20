@@ -1,0 +1,1403 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-481_Q23",
+    "problem": "The bald eagle needs the mouse. The bald eagle visits the mouse. The dog is young. The dog needs the mouse. The dog visits the mouse. The mouse is red. The mouse is rough. The mouse visits the bald eagle. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog. If the mouse visits the dog then the mouse visits the tiger. If something needs the tiger and the tiger is cold then it is green. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. If something needs the mouse then it visits the bald eagle. If something is young then it needs the tiger. If something visits the dog and the dog is green then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nVisits(BaldEagle, Mouse, True) ::: The bald eagle visits the mouse.\nYoung(Dog, True) ::: The dog is young.\nNeeds(Dog, Mouse, True) ::: The dog needs the mouse.\nVisits(Dog, Mouse, True) ::: The dog visits the mouse.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nVisits(Mouse, BaldEagle, True) ::: The mouse visits the bald eagle.\nCold(Tiger, True) ::: The tiger is cold.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Dog, True) ::: The tiger needs the dog.\nVisits(Tiger, Dog, True) ::: The tiger visits the dog.\n\nRules:\nVisits(Mouse, Dog, True) >>> Visits(Mouse, Tiger, True) ::: If the mouse visits the dog then the mouse visits the tiger.\nNeeds($x, Tiger, True) && Cold(Tiger, True) >>> Green($x, True) ::: If something needs the tiger and the tiger is cold then it is green.\nCold($x, True) && Needs($x, BaldEagle, True) >>> Visits(BaldEagle, Mouse, True) ::: If something is cold and it needs the bald eagle then the bald eagle visits the mouse.\nNeeds($x, Mouse, True) >>> Visits($x, BaldEagle, True) ::: If something needs the mouse then it visits the bald eagle.\nYoung($x, True) >>> Needs($x, Tiger, True) ::: If something is young then it needs the tiger.\nVisits($x, Dog, True) && Green(Dog, True) >>> Young($x, True) ::: If something visits the dog and the dog is green then it is young.\n\nQuery:\nRough(BaldEagle, False) ::: The bald eagle is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 119.0,
+      "True": 164.5,
+      "Unknown": 154.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we want to evaluate is: The bald eagle is not rough.\n2. The given information does not directly state that the bald eagle is rough. However, we have a statement: The mouse is rough. \n3. There's also a statement: If something needs the mouse then it visits the bald eagle. \n4. The bald eagle needs the mouse. \n5. From steps 3 and 4, we can infer that the bald eagle visits the mouse.\n6. However, we cannot infer that the mouse visits the bald eagle from steps 3 and 4.\n7. We do have a statement: The mouse visits the bald eagle. However, this statement is in the given information, not something we can infer.\n8. From the given information, the only statement we can make about the mouse's actions is that the mouse visits the bald eagle.\n\nHowever, we cannot make any conclusions about the bald eagle's properties, specifically whether it is rough or not.\n\nTherefore, we cannot determine whether the statement \"The bald eagle is not rough\" is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. The mouse is rough. (This statement provides information about the mouse, but it does not directly relate to the bald eagle.)\n\n2. The mouse visits the bald eagle. (This statement provides information about the mouse and the bald eagle, but it does not directly tell us about the bald eagle's characteristics.)\n\n3. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog. (This set of statements provides information about the tiger's needs and actions but does not provide any information about the bald eagle's characteristics.)\n\n4. If something needs the tiger and the tiger is cold then it is green. (This statement introduces a new characteristic, \"green,\" but does not directly relate to the bald eagle.)\n\n5. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (This statement introduces a condition for the bald eagle's action, but it does not provide information about the bald eagle's characteristics.)\n\n6. If something needs the mouse then it visits the bald eagle. (This statement introduces a condition for an action, but it does not provide information about the bald eagle's characteristics.)\n\n7. If something is young then it needs the tiger. (This statement introduces a new characteristic, \"young,\" and its relationship to the tiger, but it does not provide information about the bald eagle's characteristics.)\n\n8. The dog is young. The dog needs the mouse. The dog visits the mouse. The mouse is red. The mouse is rough. The mouse visits the bald eagle. (This set of statements provides more information about the dog and the mouse, but it does not provide any information about the bald eagle's characteristics.)\n\n9. If the mouse visits the dog then the mouse visits the tiger. (This statement introduces a new condition for the mouse's action, but it does not provide information about the bald eagle's characteristics.)\n\n10. If something visits the dog and the dog is green then it is young. (This statement introduces a new condition for an action, but it does not provide information about the bald eagle's characteristics.)\n\nSince none of the given statements directly relate to the bald eagle's characteristics (e.g., roughness), we cannot determine the truth value of the statement \"The bald eagle is not rough.\" Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'The bald eagle is not rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. The mouse is rough. (This tells us the color and texture of the mouse but doesn't provide any information about the bald eagle.)\n\n2. The mouse visits the bald eagle. (This information doesn't tell us anything about the bald eagle's characteristics, just their interaction.)\n\n3. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog. (This information tells us about the tiger's condition and its interactions with the dog and the bald eagle, but it doesn't provide any information about the bald eagle's characteristics.)\n\n4. If something needs the tiger and the tiger is cold then it is green. (This rule doesn't apply to the bald eagle since we don't have information that the tiger needs the bald eagle.)\n\n5. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (This rule doesn't apply to the bald eagle since we don't have information that the tiger is cold and needs the bald eagle.)\n\n6. If something needs the mouse then it visits the bald eagle. The dog needs the mouse. The dog visits the bald eagle. (This rule tells us the bald eagle visits the mouse because the dog needs the mouse, but it doesn't provide any information about the bald eagle's characteristics.)\n\n7. If something is young then it needs the tiger. The dog is young. The dog needs the tiger. (This rule tells us the dog is young because it needs the tiger, but it doesn't provide any information about the bald eagle's characteristics.)\n\n8. If something visits the dog and the dog is green then it is young. (This rule tells us nothing about the bald eagle's characteristics since we don't know if the dog is green or not.)\n\nSince none of the given information directly states that the bald eagle is rough, or directly states that the bald eagle is not rough, we can't determine the truth value of the statement 'The bald eagle is not rough.' Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information and deduce the properties of the bald eagle.\n\nFrom the problem statement, we know the following:\n\n1. The mouse is red.\n2. The mouse is rough.\n3. The mouse is not mentioned to be green or cold.\n4. The mouse visits the bald eagle.\n\nSince the mouse is rough, and the mouse visits the bald eagle, we can't directly conclude the properties of the bald eagle. However, we can analyze the relationships between the entities:\n\n1. The dog is young.\n2. The dog needs the mouse.\n3. The dog visits the mouse.\n4. If something visits the dog and the dog is green, then it is young.\n\nWe don't have any information about the color or temperature of the dog. But we do know the following:\n\n1. The tiger needs the bald eagle.\n2. The tiger needs the dog.\n3. The tiger is cold.\n4. The tiger visits the dog.\n5. If something needs the tiger and the tiger is cold, then it is green.\n\nSince the tiger needs the dog and the tiger is cold, it implies that the dog is green.\n\nNow, from the statement \"If something visits the dog and the dog is green, then it is young,\" we can conclude that the entity that visits the dog (in this case, the tiger) is young.\n\nBut we already knew that the dog is young. This means the tiger is also young because the tiger visits the dog.\n\nNow, we have a new piece of information:\n\n1. If something is young then it needs the tiger.\n\nSince the tiger is young, it needs the tiger, which is a paradox. However, we can still analyze the relationships:\n\n1. The tiger is cold.\n2. The tiger needs the bald eagle.\n3. If something is cold and it needs the bald eagle, then the bald eagle visits the mouse.\n4. The mouse visits the bald eagle.\n\nFrom the given information, we can't directly conclude the properties of the bald eagle. However, we can analyze the relationships:\n\n1. The mouse is red.\n2. The mouse is rough.\n3. The mouse visits the bald eagle.\n\nNow, we can conclude that the mouse is not green. However, we still can't conclude whether the bald eagle is rough or not.\n\nTo determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the information given about the mouse:\n\n1. The mouse is red.\n2. The mouse is rough.\n3. The mouse visits the bald eagle.\n\nWe don't have any information about the bald eagle's color or texture. However, we can analyze the following:\n\n1. The tiger needs the dog.\n2. The tiger is cold.\n3. The tiger visits the dog.\n\nSince the tiger is cold and the tiger needs the dog, it implies that the dog is green. \n\nNow, we have a new piece of information:\n\n1. If something visits the dog and the dog is green then it is young.\n\nSince the tiger visits the dog and the dog is green, it implies that the tiger is young.\n\nNow, we have a new piece of information:\n\n1. If something is young then it needs the tiger.\n\nSince the tiger is young, it needs the tiger, which is a paradox. However, we can still analyze the relationships:\n\n1. The tiger is cold.\n2. The tiger needs the bald eagle.\n\nSince the tiger is cold and the tiger needs the bald eagle, it implies that the bald eagle visits the mouse.\n\nNow, we have a new piece of information:\n\n1. The mouse visits the bald eagle.\n\nHowever, we don't have any information about the bald eagle's properties. \n\nTherefore, based on the given information, we can't determine whether the statement \"The bald eagle is not rough\" is true or false. It is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. The mouse is rough. \n   - This information tells us that the mouse has two attributes: it is red and rough.\n\n2. The mouse visits the bald eagle. \n   - This information tells us that the mouse has interacted with the bald eagle.\n\n3. If something needs the mouse then it visits the bald eagle. \n   - This information tells us that the bald eagle needs the mouse.\n\n4. Since the bald eagle needs the mouse, it visits the mouse (from step 3).\n\n5. The dog is young. The dog needs the mouse. The dog visits the mouse. \n   - This information tells us that the dog is young and has interacted with the mouse.\n\n6. If the mouse visits the dog then the mouse visits the tiger. \n   - This information tells us that since the mouse visited the dog, it also visited the tiger.\n\n7. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog. \n   - This information tells us that the tiger needs the bald eagle and the dog, and it has interacted with the dog.\n\n8. If something visits the dog and the dog is green then it is young. \n   - This information tells us that since the tiger visited the dog, and the dog is not mentioned as being green, we do not know if the dog is green or not.\n\n9. If something is young then it needs the tiger. \n   - This information tells us that since the dog is young, it needs the tiger.\n\n10. The dog needs the tiger, and the tiger is cold. \n   - This information tells us that since the dog needs the tiger, and the tiger is cold, we can use the rule: If something needs the tiger and the tiger is cold then it is green. \n    So, the dog is green.\n\n11. Since the dog is green, and the tiger visited the dog, we can use the rule: If something visits the dog and the dog is green then it is young. \n    So, the tiger is young.\n\n12. If something is young then it needs the tiger. \n   - This information tells us that since the tiger is young, it needs the tiger (which is a contradiction).\n\n13. We have a contradiction, which means that our previous assumption that the dog is young must be false.\n\n14. Since the dog is not young, we can use the rule: If something is young then it needs the tiger. \n    We can conclude that the dog does not need the tiger, and therefore, the bald eagle does not need the tiger.\n\n15. The tiger needs the bald eagle. \n   - This information tells us that the tiger needs the bald eagle.\n\n16. Since the tiger is cold, and the tiger needs the bald eagle, we can use the rule: If something is cold and it needs the bald eagle then the bald eagle visits the mouse. \n    So, the bald eagle visits the mouse.\n\n17. Since the mouse is rough, and the bald eagle is not mentioned as having any attributes, we can conclude that the bald eagle is not rough.\n\nThe final answer is: $\\boxed{True}$",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information.\n\n1. We are given that the mouse is red, but this does not provide any information about the bald eagle.\n2. We are given that the mouse is rough, but this does not provide any information about the bald eagle.\n3. The statement \"If something needs the mouse then it visits the bald eagle\" is given, but we do not know if the bald eagle needs the mouse.\n4. The statement \"If something visits the dog and the dog is green then it is young\" is given, but we do not know if the dog is green.\n\nHowever, we can deduce some information from the given statements:\n\n- From \"The tiger is cold\" and \"If something needs the tiger and the tiger is cold then it is green\", we can conclude that the tiger is green.\n- From \"The dog needs the mouse\" and \"If something needs the mouse then it visits the bald eagle\", we can conclude that the dog visits the bald eagle.\n- Since the dog is young, we know that the dog needs the tiger, but we already know that the tiger is green.\n- From \"The dog visits the bald eagle\" and \"If something visits the dog and the dog is green then it is young\", we can conclude that the dog is young. However, we do not know if the dog is green or not.\n- However, the tiger is green, and the tiger needs the dog. Since the tiger is cold and needs the dog, we can conclude that the dog is green.\n- Since the dog is green, we can conclude that the mouse visits the bald eagle.\n\nNow, we can analyze the given statement \"The bald eagle is not rough\". We do not have any direct information about the bald eagle being rough or not. However, we can use the statement \"If the mouse visits the dog then the mouse visits the tiger\" and the fact that the mouse visits the bald eagle to infer that the mouse visits the tiger.\n\nFrom \"The tiger is cold\" and \"If something needs the bald eagle then the bald eagle visits the mouse\", we can conclude that the bald eagle visits the mouse.\n\nSince the mouse is red and rough, but we do not have any information about the bald eagle being rough or not, we cannot conclude whether the statement \"The bald eagle is not rough\" is true or false.\n\nTherefore, the answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. The mouse is rough. \n   - From this statement, we know the mouse is rough.\n\n2. The dog visits the mouse.\n   - We don't know anything about the dog from this statement.\n\n3. The mouse visits the bald eagle.\n   - This statement tells us that the mouse visits the bald eagle, but it doesn't tell us anything about the bald eagle's properties.\n\n4. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog.\n   - From the statements, we know the tiger is cold.\n\n5. If something needs the tiger and the tiger is cold then it is green.\n   - Since the tiger is cold, we can apply this rule. However, the tiger needs the bald eagle and the dog, so we need to find out if the bald eagle and the dog are green or not.\n\n6. If something is young then it needs the tiger.\n   - This statement tells us that if something is young, it needs the tiger.\n\n7. The dog is young.\n   - From this statement, we know the dog is young.\n\n8. The dog needs the mouse.\n   - This statement tells us that the dog needs the mouse.\n\n9. If something needs the mouse then it visits the bald eagle.\n   - Since the dog needs the mouse, the dog must visit the bald eagle.\n\n10. The mouse visits the bald eagle.\n    - We already knew this from statement 3.\n\n11. If something visits the dog and the dog is green then it is young.\n    - Since the mouse visits the dog, the dog is green (from the rule in statement 5), so the mouse must be young (from this statement).\n\n12. If something is young then it needs the tiger.\n    - Since the mouse is young (from statement 11), the mouse needs the tiger.\n\n13. The mouse is red. The mouse is rough.\n    - We already knew this from statement 1.\n\n14. If the mouse visits the dog then the mouse visits the tiger.\n    - Since the mouse visits the dog, the mouse must visit the tiger.\n\n15. The tiger visits the dog.\n    - We already knew this from statement 4.\n\n16. The bald eagle visits the mouse.\n    - We don't know anything about the bald eagle from this statement.\n\nFrom the above analysis, we know the following:\n\n- The mouse is rough (statement 1).\n- The dog is green (statement 7 and rule in statement 5).\n- The mouse is young (from statement 11).\n- The mouse needs the tiger (from statement 12).\n\nHowever, we still don't know if the bald eagle is rough or not. We know that the mouse is rough, but we don't have any information about the bald eagle's properties.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. (Given information)\n2. The mouse is rough. (Given information)\n3. The mouse visits the bald eagle. (Given information)\n4. If something visits the dog and the dog is green then it is young. (Given information)\n5. The dog is young. (Given information)\n6. The dog needs the mouse. (Given information)\n7. If something needs the mouse then it visits the bald eagle. (Given information)\n   - This implies that the dog visits the bald eagle.\n   - Since the mouse visits the bald eagle (statement 3), it is not possible to directly conclude that the mouse is rough from this information alone.\n   - However, we can still analyze other given information.\n\n8. The tiger is cold. (Given information)\n9. The tiger needs the bald eagle. (Given information)\n10. The tiger needs the dog. (Given information)\n11. The tiger visits the dog. (Given information)\n12. If something visits the dog and the dog is green then it is young. (Given information)\n   - Since the tiger visits the dog, we cannot conclude that the tiger is young because we do not know the color of the dog.\n   - We do know that the dog is young (statement 5), but we cannot directly apply this information to the tiger.\n13. If something is young then it needs the tiger. (Given information)\n   - Since the dog is young (statement 5), the dog needs the tiger (which is already known from statement 10).\n14. The mouse is red. (Statement 1)\n15. The mouse visits the bald eagle. (Statement 3)\n16. The mouse is rough. (Statement 2)\n\nNow, to determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information regarding the bald eagle.\n\n17. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (Given information)\n   - This statement does not directly relate to the bald eagle's roughness.\n   - However, we can analyze other given information.\n\n18. The mouse visits the bald eagle. (Statement 3)\n19. The mouse is rough. (Statement 2)\n   - We still do not have any direct information about the bald eagle's roughness.\n\nTo determine the roughness of the bald eagle, we need to find a condition that can relate to it.\n\n20. The tiger is cold. (Statement 8)\n21. The tiger needs the bald eagle. (Statement 9)\n22. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (Given information)\n   - Since the tiger is cold and needs the bald eagle, the bald eagle must visit the mouse.\n   - The statement \"The bald eagle visits the mouse\" is true.\n\nNow, we can analyze the conditions that relate to the mouse's roughness.\n\n23. The mouse is red. (Statement 1)\n24. The mouse is rough. (Statement 2)\n   - We still do not have any direct information about the mouse's roughness from these statements alone.\n\n25. If the mouse visits the dog then the mouse visits the tiger. (Given information)\n   - Since the dog visits the bald eagle (statement 7) and the mouse visits the bald eagle (statement 3), we can conclude that the mouse visits the dog.\n   - Therefore, the mouse visits the tiger.\n\nNow, we can analyze the conditions that relate to the tiger's color.\n\n26. The tiger is cold. (Statement 8)\n27. The tiger needs the bald eagle. (Statement 9)\n28. The tiger needs the dog. (Statement 10)\n29. If something needs the tiger and the tiger is cold then it is green. (Given information)\n   - Since the tiger is cold and needs the bald eagle (statement 27) and the dog (statement 10), the tiger must be green.\n   - The statement \"The tiger is green\" is true.\n\nNow, we can analyze the conditions that relate to the dog's color.\n\n30. The dog is young. (Statement 5)\n31. If something is young then it needs the tiger. (Given information)\n   - Since the dog is young, the dog needs the tiger (which is already known from statement 10).\n32. The dog visits the tiger. (Statement 11)\n33. If something visits the dog and the dog is green then it is young. (Given information)\n   - Since the tiger visits the dog, we can conclude that the tiger is young because the dog is green.\n\n34. If something needs the tiger and the tiger is cold then it is green. (Statement 29)\n35. The tiger is cold. (Statement 8)\n36. The tiger needs the dog. (Statement 10)\n37. The dog is green. (Statement 33)\n   - Since the tiger needs the dog and the dog is green, the tiger must be green.\n   - The statement \"The tiger is green\" is true.\n\nNow, we can analyze the conditions that relate to the mouse's color.\n\n38. The mouse is red. (Statement 1)\n39. The mouse is rough. (Statement 2)\n   - We still do not have any direct information about the mouse's color from these statements alone.\n\nNow, we can analyze the conditions that relate to the mouse's roughness.\n\n40. The mouse visits the bald eagle. (Statement 3)\n41. The mouse is rough. (Statement 2)\n42. If the mouse visits the dog then the mouse visits the tiger. (Statement 25)\n   - Since the dog visits the bald eagle (statement 7) and the mouse visits the bald eagle (statement 3), we can conclude that the mouse visits the dog.\n   - Therefore, the mouse visits the tiger.\n\n43. The tiger is cold. (Statement 8)\n44. The tiger needs the bald eagle. (Statement 9)\n45. The tiger needs the dog. (Statement 10)\n46. If something needs the tiger and the tiger is cold then it is green. (Given information)\n   - Since the tiger is cold and needs the bald eagle (statement 44) and the dog (statement 45), the tiger must be green.\n   - The statement \"The tiger is green\" is true.\n\nNow, we can analyze the conditions that relate to the mouse's roughness.\n\n47. The mouse is red. (Statement 1)\n48. The mouse visits the bald eagle. (Statement 3)\n49. The mouse is rough. (Statement 2)\n   - We still do not have any direct information about the mouse's roughness from these statements alone.\n\n50. If the mouse visits the dog then the mouse visits the tiger. (Statement 25)\n   - Since the dog visits the bald eagle (statement 7) and the mouse visits the bald eagle (statement 3), we can conclude that the mouse visits the dog.\n   - Therefore, the mouse visits the tiger.\n\n51. The tiger is cold. (Statement 8)\n52. The tiger needs the bald eagle. (Statement 9)\n53. The tiger needs the dog. (Statement 10)\n54. If something needs the tiger and the tiger is cold then it is green. (Given information)\n   - Since the tiger is cold and needs the bald eagle (statement 52) and the dog (statement 53), the tiger must be green.\n   - The statement \"The tiger is green\" is true.\n\nNow, we can analyze the conditions that relate to the bald eagle's roughness.\n\n55. The bald eagle visits the mouse. (Statement 22)\n56. The mouse is rough. (Statement 2)\n   - Since the bald eagle visits the mouse and the mouse is rough, we can conclude that the bald eagle is not rough.\n\nTherefore, the statement \"The bald eagle is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions provided. We will use a process of elimination and logical reasoning to determine the truth value of the statement \"The bald eagle is not rough.\"\n\nLet's break down the given statements:\n\n1. The bald eagle needs the mouse.\n2. The bald eagle visits the mouse.\n3. The dog is young.\n4. The dog needs the mouse.\n5. The dog visits the mouse.\n6. The mouse is red.\n7. The mouse is rough.\n8. The mouse visits the bald eagle.\n9. The tiger is cold.\n10. The tiger needs the bald eagle.\n11. The tiger needs the dog.\n12. The tiger visits the dog.\n13. If the mouse visits the dog then the mouse visits the tiger.\n14. If something needs the tiger and the tiger is cold then it is green.\n15. If something is cold and it needs the bald eagle then the bald eagle visits the mouse.\n16. If something needs the mouse then it visits the bald eagle.\n17. If something is young then it needs the tiger.\n18. If something visits the dog and the dog is green then it is young.\n\nNow, let's consider the statement \"The bald eagle is not rough.\" To determine the truth value of this statement, we need to find out if the bald eagle is rough or not.\n\nFrom statement 7, we know that the mouse is rough. But we cannot directly infer the roughness of the bald eagle from this statement. We need more information.\n\nFrom statement 8, we know that the mouse visits the bald eagle. This means the mouse needs the bald eagle (statement 1), and since the mouse needs the bald eagle, it visits the bald eagle (statement 16).\n\nNow, let's consider the conditions related to the tiger's coldness. Statement 14 says that if something needs the tiger and the tiger is cold then it is green. Statement 9 says the tiger is cold, but we do not have any information about the bald eagle needing the tiger or the tiger being green.\n\nHowever, we do know that the dog is young (statement 3), and if something is young then it needs the tiger (statement 17). Statement 11 says the tiger needs the dog, which means the tiger visits the dog (statement 12). Since the tiger visits the dog, and the dog is green (we will infer this later), it implies that the tiger is green due to being cold and needing something that visits the dog (statement 14).\n\nNow, we can use the fact that the tiger is green to infer some information. Statement 18 says that if something visits the dog and the dog is green then it is young. Since the tiger visits the dog and the dog is green, the tiger is young (statement 18). \n\nHowever, we cannot infer that the tiger is rough from this information. But statement 11 says the tiger needs the dog, and statement 3 says the dog is young. Since the tiger is young, it needs the tiger (statement 17). Statement 13 says that if the mouse visits the dog then the mouse visits the tiger. Since the dog is young and needs the mouse, the mouse visits the bald eagle (statement 16), and then the mouse visits the tiger (statement 13). \n\nThis implies that the mouse visits the tiger when the tiger is young, which is the case. Therefore, the mouse is young when the tiger is young, and since the mouse is young, it needs the tiger (statement 17). However, we cannot infer that the mouse is rough from this information.\n\nHowever, we do know that the mouse is red (statement 6). Now, let's consider the conditions related to the bald eagle's need for the mouse. Statement 1 says the bald eagle needs the mouse. Since the mouse is red and rough (statements 6 and 7), and the mouse visits the bald eagle, the bald eagle needs the mouse (statements 1 and 16). \n\nNow, let's consider the conditions related to the bald eagle's visit to the mouse. Statement 2 says the bald eagle visits the mouse. Since the mouse is red and rough (statements 6 and 7), and the mouse visits the bald eagle, it implies that the bald eagle is red and rough.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. (This doesn't directly relate to the bald eagle, so we can ignore it for now.)\n2. The mouse is rough. (This information will be crucial later on.)\n3. The mouse visits the bald eagle. (This tells us that the bald eagle is somehow related to the mouse, but we don't know what it means yet.)\n4. The tiger is cold. (This tells us that the tiger is in a certain state, but we don't know what it means yet.)\n5. The tiger needs the bald eagle. The tiger needs the dog. (This tells us that the tiger has needs, but we don't know what it means yet.)\n6. The tiger visits the dog. (This tells us that the tiger and the dog are interacting, but we don't know what it means yet.)\n7. If the mouse visits the dog then the mouse visits the tiger. (This tells us that if the mouse visits the dog, it will also visit the tiger, but we don't know if this is true or false yet.)\n8. If something needs the tiger and the tiger is cold then it is green. (This tells us that if something needs the tiger and the tiger is cold, the thing is green, but we don't know what it means yet.)\n9. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (This tells us that if something is cold and needs the bald eagle, the bald eagle will visit the mouse, but we don't know what it means yet.)\n10. If something needs the mouse then it visits the bald eagle. (This tells us that if something needs the mouse, it will visit the bald eagle, but we don't know what it means yet.)\n11. If something is young then it needs the tiger. (This tells us that if something is young, it needs the tiger, but we don't know what it means yet.)\n12. If something visits the dog and the dog is green then it is young. (This tells us that if something visits the dog and the dog is green, the thing is young, but we don't know what it means yet.)\n\nNow, let's try to find a connection between the bald eagle and the statement \"The bald eagle is not rough.\"\n\nFrom statement 2, we know that the mouse is rough. However, we don't have any direct information about the bald eagle's roughness.\n\nLet's try to use the information we have about the mouse and the bald eagle. From statement 3, we know that the mouse visits the bald eagle. Since the mouse is rough (statement 2), we can infer that the mouse is rough when it visits the bald eagle.\n\nNow, let's consider statement 6, which tells us that the tiger visits the dog. We also know that the tiger is cold (statement 4). From statement 8, we can infer that if the tiger is cold and something needs the tiger, the thing is green.\n\nLet's try to find a connection between the bald eagle and the tiger. From statement 5, we know that the tiger needs the bald eagle. However, we don't have any direct information about the bald eagle's greenness.\n\nHowever, we can use statement 9, which tells us that if something is cold and it needs the bald eagle, then the bald eagle visits the mouse. Since the tiger is cold (statement 4), we can infer that if the tiger needs the bald eagle, the bald eagle will visit the mouse.\n\nNow, let's consider statement 10, which tells us that if something needs the mouse, it will visit the bald eagle. Since the dog needs the mouse (statement 5), we can infer that the dog will visit the bald eagle.\n\nHowever, we can't determine if the dog is young or not yet, because we don't know if the dog is green or not.\n\nLet's try to find a connection between the dog and the tiger. From statement 11, we know that if something is young, it needs the tiger. However, we don't have any direct information about the dog's age.\n\nHowever, we can use statement 12, which tells us that if something visits the dog and the dog is green, then the thing is young. Since the tiger visits the dog (statement 6), we can infer that if the dog is green, the tiger is young.\n\nFrom statement 11, we know that if something is young, it needs the tiger. Therefore, we can infer that the tiger needs the tiger, which is a contradiction.\n\nHowever, this means that the tiger cannot be young, because if it were, it would need itself, which is a contradiction.\n\nSince the tiger cannot be young, we know that the dog is not green, because if it were, the tiger would be young, which is a contradiction.\n\nHowever, this means that the dog does not visit the tiger, because if it did, the tiger would be young, which is a contradiction.\n\nSince the dog does not visit the tiger, we know that the mouse does not visit the tiger, because if it did, the mouse would visit the dog, which is not the case.\n\nHowever, this means that the mouse does not visit the tiger, which means that the tiger is not green, because if it were, the mouse would visit the tiger, which is not the case.\n\nSince the tiger is not green, we know that the bald eagle does not visit the mouse, because if it did, the mouse would be young, which is not the case.\n\nHowever, this means that the dog does not need the mouse, because if it did, the dog would visit the bald eagle, which is not the case.\n\nSince the dog does not need the mouse, we know that the bald eagle is not rough, because if it were, the mouse would be young, which is not the case.\n\nTherefore, the statement \"The bald eagle is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information.\n\n1. The mouse is red. The mouse is rough. \nWe know the mouse is rough.\n\n2. The mouse visits the bald eagle.\nWe don't know anything about the bald eagle from this statement.\n\n3. The dog is young. The dog needs the mouse. The dog visits the mouse.\nWe know the dog is young.\n\n4. If something is young then it needs the tiger.\nFrom statement 3, we know the dog is young, so the dog needs the tiger.\n\n5. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog.\nWe know the tiger is cold and it needs the bald eagle.\n\n6. If something is cold and it needs the bald eagle then the bald eagle visits the mouse.\nFrom statement 5, we know the tiger is cold and it needs the bald eagle, so the bald eagle visits the mouse.\n\n7. The mouse is red. The mouse visits the bald eagle. From statement 6, we know the bald eagle visits the mouse.\nWe know the mouse is rough.\n\n8. The mouse visits the dog.\nWe don't know anything about the mouse from this statement.\n\n9. If the mouse visits the dog then the mouse visits the tiger.\nFrom statement 8, we know the mouse visits the dog, so the mouse visits the tiger.\n\n10. The tiger visits the dog.\nWe know the tiger is cold.\n\n11. The tiger is cold. The tiger needs the dog.\nWe know the tiger is cold.\n\n12. The tiger needs the mouse.\nWe don't know anything about the tiger from this statement.\n\n13. The tiger needs the bald eagle. The tiger visits the dog.\nWe know the tiger is cold.\n\n14. If something needs the tiger and the tiger is cold then it is green.\nFrom statement 13, we know the tiger is cold, but we don't know what needs the tiger.\n\n15. The mouse is rough. The mouse visits the bald eagle.\nWe know the mouse is rough.\n\n16. If something visits the dog and the dog is green then it is young.\nWe don't know anything about the dog from this statement.\n\n17. The dog is young. The dog visits the mouse.\nWe know the dog is young.\n\n18. The mouse is red. The mouse is rough.\nWe know the mouse is rough.\n\n19. The mouse is green.\nThis is not a given statement, so we cannot determine it from the information given.\n\n20. If something is green then it needs the tiger.\nWe don't know anything about the mouse from this statement.\n\n21. The mouse needs the dog.\nWe don't know anything about the mouse from this statement.\n\n22. If something needs the mouse then it visits the bald eagle.\nWe don't know anything about the mouse from this statement.\n\n23. The bald eagle needs the mouse.\nWe don't know anything about the mouse from this statement.\n\nNow, to determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to look at the given information that is relevant to the statement. We know the mouse is rough, but we don't know anything about the bald eagle from the information given.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red.\n2. The mouse is rough.\n3. If something needs the mouse then it visits the bald eagle. (This means the mouse needs the bald eagle.)\n4. The dog is young.\n5. The dog needs the mouse.\n6. The dog visits the mouse.\n7. The mouse visits the bald eagle. (From statement 3 and statement 6)\n8. The tiger is cold.\n9. The tiger needs the bald eagle.\n10. The tiger needs the dog.\n11. The tiger visits the dog.\n12. If something visits the dog and the dog is green then it is young. (This implies that the tiger is not young, since the dog is not green.)\n13. If the mouse visits the dog then the mouse visits the tiger. (But we know the mouse visits the bald eagle, not the dog.)\n14. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. (But we know the tiger is cold and it needs the bald eagle, but this statement does not directly apply to the bald eagle.)\n15. If something needs the tiger and the tiger is cold then it is green. (Since the tiger is cold, we need to find out if anything needs the tiger and is green.)\n\nFrom the given statements, we know:\n\n- The mouse visits the bald eagle.\n- The tiger is cold.\n- The tiger needs the bald eagle.\n\nStatement 14 implies that the bald eagle might visit the mouse if it needs the tiger and the tiger is cold, but since the tiger does not need the bald eagle because it needs the dog, this statement does not apply to the bald eagle.\n\nNow let's consider the statement \"The bald eagle is rough.\" If it is rough, then it is not young, and it does not need the mouse. However, statement 3 says that if something needs the mouse then it visits the bald eagle. This implies that the mouse needs the bald eagle, so it visits the bald eagle.\n\nFrom the above analysis, we have two possibilities:\n\n- The bald eagle is rough, and it needs the mouse.\n- The bald eagle is not rough.\n\nIf the bald eagle is not rough, then we have a contradiction with statement 2 that says \"The mouse is rough.\" This statement does not directly say that the bald eagle is rough, but if the mouse is rough and it needs the bald eagle, then it visits the bald eagle.\n\nNow let's analyze the statement \"The bald eagle is not rough.\"\n\nWe have the following:\n\n- If the mouse is rough, then the bald eagle is not rough (contradiction).\n- If the bald eagle is rough, then it is not young and it does not need the mouse.\n\nFrom statement 4, we know that the dog is young. Statement 5 says that the dog needs the mouse. Statement 6 says that the dog visits the mouse.\n\nNow, let's analyze statement 12. If something visits the dog and the dog is green, then it is young. But the dog is not green, so this statement does not apply to the dog.\n\nSince the dog is young and it needs the mouse, and the mouse visits the bald eagle, the mouse must be young.\n\nFrom statement 13, if the mouse visits the dog, then the mouse visits the tiger. However, we know the mouse visits the bald eagle, not the dog.\n\nNow let's analyze statement 15. If something needs the tiger and the tiger is cold, then it is green. Since the tiger is cold and it needs the dog, we need to find out if the dog is green.\n\nFrom statement 12, if something visits the dog and the dog is green, then it is young. However, the dog is not green.\n\nNow, let's analyze the statement \"The dog is green.\" If the dog is green, then it is young from statement 12. However, we know the dog is young from statement 4, so the dog being green does not change its status as young.\n\nNow, let's analyze the statement \"The tiger is green.\" From statement 15, if something needs the tiger and the tiger is cold, then it is green. The tiger is cold, and it needs the dog, so the dog must be green.\n\nHowever, we already know that the dog is not green.\n\nNow, let's analyze the statement \"The mouse is green.\" From statement 15, if something needs the tiger and the tiger is cold, then it is green. The tiger is cold, and it needs the dog, so the dog must be green. However, we already know that the dog is not green.\n\nNow, let's analyze the statement \"The mouse needs the tiger.\" If the mouse needs the tiger and the tiger is cold, then the mouse is green from statement 15. However, we already know that the mouse is not green.\n\nNow, let's analyze the statement \"The mouse is young.\" From statement 1, we know the mouse is red. However, we do not have any information that the mouse is not young.\n\nNow, let's analyze the statement \"The bald eagle is young.\" We do not have any information that the bald eagle is young or not young.\n\nNow, let's analyze the statement \"The bald eagle is green.\" From statement 15, if something needs the tiger and the tiger is cold, then it is green. The tiger is cold, and it needs the dog, so the dog must be green. However, we already know that the dog is not green.\n\nFrom the above analysis, we cannot determine whether the bald eagle is green or not.\n\nHowever, we can determine that the statement \"The bald eagle is not rough\" is not false. We cannot determine whether the statement is true or false.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(needs_bald_eagle_mouse, visits_bald_eagle_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(tiger) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, cold_tiger), green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, eagle) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(And(cold_X, needs_X_eagle), visits_eagle_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, visits_X_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, green_dog), young_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, cold_X), green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) & cold(X) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(And(needs_X_eagle, cold_X), visits_eagle_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, visits_X_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, eagle)",
+          "z3_formula": "visits_dog_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_X_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, green_X), young_X)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_tiger_dog, green_dog), young_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(cold_tiger, needs_tiger_bald_eagle), visits_bald_eagle_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bald_eagle)",
+          "z3_formula": "Not(rough_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, eagle)",
+          "z3_formula": "Implies(needs_mouse_eagle, visits_mouse_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> visits(X, tiger)",
+          "z3_formula": "Implies(visits_dog_tiger, visits_mouse_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_dog_tiger, green_dog), young_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(needs_dog_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_dog, needs_dog_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, tiger)",
+          "z3_formula": "Not(needs_dog_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, eagle) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(And(cold_tiger, needs_tiger_eagle), visits_eagle_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(eagle)",
+          "z3_formula": "Not(rough_eagle)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(needs_mouse_bald_eagle, visits_bald_eagle_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_dog_bald_eagle, green_dog), young_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(tiger) -> green(X)",
+          "z3_formula": "Implies(And(needs_tiger_bald_eagle, cold_tiger), green_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "bald_eagle_visits_mouse",
+          "z3_formula": "bald_eagle_visits_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(bald_eagle))",
+          "z3_formula": "Not(rough_bald_eagle)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & cold(Y) -> green(X)",
+          "z3_formula": "Implies(And(needs_tiger_X, cold_tiger), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_young_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(needs_dog_bald_eagle, visits_dog_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & green(Y) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, green_dog), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_young_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, green_dog), young_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(needs_dog_bald_eagle, visits_dog_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> visits(X, tiger)",
+          "z3_formula": "Implies(visits_mouse_dog, visits_mouse_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_dog, needs_dog_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, bald_eagle) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(cold_tiger, needs_tiger_bald_eagle), visits_bald_eagle_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(needs_dog_tiger, cold_tiger), green_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(needs_dog_tiger, cold_tiger), green_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(needs_dog_tiger, cold_tiger), green_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> visits(X, tiger)",
+          "z3_formula": "Implies(visits_mouse_dog, visits_mouse_tiger)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(needs_dog_tiger, cold_tiger), green_dog)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & rough(X) -> not(rough(bald_eagle))",
+          "z3_formula": "Implies(And(visits_mouse_bald_eagle, rough_mouse), not(rough_bald_eagle))",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(bald_eagle))",
+          "z3_formula": "not(rough_bald_eagle) == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bald_eagle)",
+          "z3_formula": "visits_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(visits_mouse_dog, visits_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(tiger) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, cold_tiger), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, bald_eagle) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(cold_X, needs_X_bald_eagle), visits_bald_eagle_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(needs_X_mouse, visits_bald_eagle_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, green_dog), young_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle) == True",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> visits(X, Z) if visits(X, Z) -> visits(X, Y)",
+          "z3_formula": "Implies(visits_mouse_eagle, Implies(visits_mouse_dog, visits_mouse_tiger))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(tiger) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, cold_tiger), green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, eagle) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(And(cold_X, needs_X_eagle), visits_eagle_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, visits_X_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & green(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, green_dog), young_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_dog, needs_dog_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & needs(X, eagle) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(And(cold_tiger, needs_tiger_eagle), visits_eagle_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(visits_mouse_dog, visits_mouse_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, dog)",
+          "z3_formula": "needs_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & cold(tiger) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, cold_tiger), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(X)",
+          "z3_formula": "green_X == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, eagle)",
+          "z3_formula": "visits_mouse_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> young(X)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), young_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(X)",
+          "z3_formula": "young_X == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(green_X, needs_X_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(X, tiger)",
+          "z3_formula": "needs_X_tiger == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, needs_X_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(X, eagle)",
+          "z3_formula": "needs_X_eagle == Unknown",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) -> visits(eagle, mouse)",
+          "z3_formula": "Implies(needs_X_eagle, visits_eagle_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, mouse)",
+          "z3_formula": "needs_eagle_mouse == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> visits(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, visits_X_eagle)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(X, eagle)",
+          "z3_formula": "visits_X_eagle == Unknown",
+          "source_step": 23
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 212,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 73
+    },
+    "maxsat_stats": {
+      "satisfied": 70,
+      "excluded": 3,
+      "total_weight": 206,
+      "solve_time_ms": 1.4401106163859367
+    },
+    "timing": {
+      "trace_gen_s": 20.412,
+      "extraction_s": 49.721,
+      "dedup_s": 2.712,
+      "maxsat_s": 0.005,
+      "total_s": 72.85
+    }
+  }
+}

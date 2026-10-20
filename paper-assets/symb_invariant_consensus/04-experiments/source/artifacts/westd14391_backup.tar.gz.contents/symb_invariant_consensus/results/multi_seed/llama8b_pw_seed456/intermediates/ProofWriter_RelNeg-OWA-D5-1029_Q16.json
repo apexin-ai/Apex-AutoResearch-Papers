@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-1029_Q16",
+    "problem": "The bear is young. The bear visits the lion. The cat is round. The cat needs the bear. The lion is cold. The lion is not green. The lion is round. The lion does not need the bear. The lion sees the bear. The lion visits the bear. The lion visits the cat. The lion visits the rabbit. The rabbit is green. The rabbit is rough. The rabbit sees the lion. The rabbit visits the cat. If something visits the cat then the cat sees the lion. If something visits the lion and the lion visits the rabbit then it needs the lion. If something needs the lion and the lion is round then it needs the cat. If something is green and it needs the rabbit then the rabbit is green. If something is round then it visits the lion. If something sees the cat and the cat visits the lion then it is not rough. If something needs the cat and it is not green then it sees the cat. If something is young and it visits the bear then it sees the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit needs the cat.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nYoung(Bear, True) ::: The bear is young.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nRound(Cat, True) ::: The cat is round.\nNeeds(Cat, Bear, True) ::: The cat needs the bear.\nCold(Lion, True) ::: The lion is cold.\nGreen(Lion, False) ::: The lion is not green.\nRound(Lion, True) ::: The lion is round.\nNeeds(Lion, Bear, False) ::: The lion does not need the bear.\nSees(Lion, Bear, True) ::: The lion sees the bear.\nVisits(Lion, Bear, True) ::: The lion visits the bear.\nVisits(Lion, Cat, True) ::: The lion visits the cat.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nGreen(Rabbit, True) ::: The rabbit is green.\nRough(Rabbit, True) ::: The rabbit is rough.\nSees(Rabbit, Lion, True) ::: The rabbit sees the lion.\nVisits(Rabbit, Cat, True) ::: The rabbit visits the cat.\n\nRules:\nVisits($x, Cat, True) >>> Sees(Cat, Lion, True) ::: If something visits the cat then the cat sees the lion.\nVisits($x, Lion, True) && Visits(Lion, Rabbit, True) >>> Needs($x, Lion, True) ::: If something visits the lion and the lion visits the rabbit then it needs the lion.\nNeeds($x, Lion, True) && Round(Lion, True) >>> Needs($x, Cat, True) ::: If something needs the lion and the lion is round then it needs the cat.\nGreen($x, True) && Needs($x, Rabbit, True) >>> Green(Rabbit, True) ::: If something is green and it needs the rabbit then the rabbit is green.\nRound($x, True) >>> Visits($x, Lion, True) ::: If something is round then it visits the lion.\nSees($x, Cat, True) && Visits(Cat, Lion, True) >>> Rough($x, False) ::: If something sees the cat and the cat visits the lion then it is not rough.\nNeeds($x, Cat, True) && Green($x, False) >>> Sees($x, Cat, True) ::: If something needs the cat and it is not green then it sees the cat.\nYoung($x, True) && Visits($x, Bear, True) >>> Sees($x, Cat, True) ::: If something is young and it visits the bear then it sees the cat.\n\nQuery:\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

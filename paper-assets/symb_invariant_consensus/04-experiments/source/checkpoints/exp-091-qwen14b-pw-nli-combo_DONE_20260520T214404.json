@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-091-qwen14b-pw-nli-combo",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:43:24.690Z",
+    "updated_at": "2026-05-20T21:44:03.847Z",
+    "hypothesis": "Qwen2.5-14B ProofWriter NLI combo: DeBERTa-large-MNLI standalone (55%) < SC (73.50%)，capability gap = -18.50pp。根据 Push A capability gap 单调关系，combo gain 应介于 Qwen3 (+1.83pp) 和 Mistral (+10.67pp) 之间。",
+    "parent": "exp-090-r-nli-proofwriter",
+    "spec": {
+      "command": "python direction_r_deberta_qwen14b_pw.py",
+      "server": "westd-16639",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen2.5-14B-Instruct + microsoft/deberta-large-mnli",
+      "seed": 42,
+      "checkpoint_path": "results/qwen14b_pw_nli_combo/results.json",
+      "log_path": "results/qwen14b_pw_nli_combo/",
+      "checkpoint_source": "exp046_qwen14b_pw600 traces",
+      "eval_data": "data/proofwriter_full.json (ProofWriter-D5 OWA, n=600)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 600,
+      "sc_accuracy": 0.735,
+      "nli_standalone": 0.55,
+      "capability_gap_pp": -18.5,
+      "combo_w1": 0.7417,
+      "combo_w3": 0.7433,
+      "combo_w5": 0.7533,
+      "delta_w1_pp": 0.67,
+      "delta_w3_pp": 0.83,
+      "delta_w5_pp": 1.83,
+      "mcnemar_w1_p": 0.344,
+      "mcnemar_w3_p": 0.405,
+      "mcnemar_w5_p": 0.144
+    },
+    "completed_at": "2026-05-20T21:44:03.847Z"
+  },
+  "timestamp": "2026-05-20T21:44:04.293147+00:00",
+  "trigger": "update_registry"
+}

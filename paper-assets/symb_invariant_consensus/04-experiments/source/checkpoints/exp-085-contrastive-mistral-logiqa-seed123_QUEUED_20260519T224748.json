@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-085-contrastive-mistral-logiqa-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:37:05.631Z",
+    "updated_at": "2026-05-19T22:47:48.445Z",
+    "hypothesis": "Contrastive × Mistral-7B × LogiQA-200 seed=123 replication. exp-080 (seed=42) 运行中. Multi-seed 确认 Contrastive 在 LogiQA 上的结果跨 seed 稳定性。",
+    "parent": "exp-080-contrastive-mistral-logiqa200",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --dataset logiqa --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_200.json --output results/exp085_contrastive_mistral_logiqa_seed123/results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "295533",
+      "log_path": "~/runs/symb_invariant_consensus/exp-085-contrastive-mistral-logiqa-seed123.log",
+      "submitted_at": "2026-05-19T22:38:24.759Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T22:47:48.658918+00:00",
+  "trigger": "update_registry"
+}

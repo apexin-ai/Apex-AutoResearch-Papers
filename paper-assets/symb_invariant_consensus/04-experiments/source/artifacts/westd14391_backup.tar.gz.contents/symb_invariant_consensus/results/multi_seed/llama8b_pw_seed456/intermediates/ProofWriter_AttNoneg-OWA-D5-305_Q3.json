@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-305_Q3",
+    "problem": "Bob is big. Bob is blue. Bob is cold. Bob is furry. Bob is green. Bob is round. Dave is round. Erin is red. Fiona is cold. Fiona is green. All green things are blue. If something is round and cold then it is red. Blue, big things are round. If something is furry and blue then it is round. All red, green things are furry. If something is round then it is red. If Bob is furry and Bob is red then Bob is round. Red things are big. All blue things are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is red.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nRound(Bob, True) ::: Bob is round.\nRound(Dave, True) ::: Dave is round.\nRed(Erin, True) ::: Erin is red.\nCold(Fiona, True) ::: Fiona is cold.\nGreen(Fiona, True) ::: Fiona is green.\n\nRules:\nGreen($x, True) >>> Blue($x, True) ::: All green things are blue.\nRound($x, True) && Cold($x, True) >>> Red($x, True) ::: If something is round and cold then it is red.\nBlue($x, True) && Big($x, True) >>> Round($x, True) ::: Blue, big things are round.\nFurry($x, True) && Blue($x, True) >>> Round($x, True) ::: If something is furry and blue then it is round.\nRed($x, True) && Green($x, True) >>> Furry($x, True) ::: All red, green things are furry.\nRound($x, True) >>> Red($x, True) ::: If something is round then it is red.\nFurry(Bob, True) && Red(Bob, True) >>> Round(Bob, True) ::: If Bob is furry and Bob is red then Bob is round.\nRed($x, True) >>> Big($x, True) ::: Red things are big.\nBlue($x, True) >>> Furry($x, True) ::: All blue things are furry.\n\nQuery:\nRed(Bob, True) ::: Bob is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

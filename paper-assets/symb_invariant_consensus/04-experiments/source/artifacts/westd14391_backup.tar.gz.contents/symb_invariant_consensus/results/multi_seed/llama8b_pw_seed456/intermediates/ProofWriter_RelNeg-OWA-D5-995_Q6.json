@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-995_Q6",
+    "problem": "The bear is blue. The bear is young. The cow chases the mouse. The cow eats the mouse. The cow does not visit the rabbit. The mouse is not round. The rabbit chases the bear. If something is young and blue then it visits the mouse. If something chases the rabbit and the rabbit does not visit the bear then it does not visit the rabbit. If something chases the rabbit then it visits the rabbit. If something is round then it chases the rabbit. If something chases the rabbit then the rabbit is young. If something chases the bear then the bear eats the rabbit. If something visits the cow then the cow eats the bear. If something eats the bear then the bear is round. If the bear visits the mouse then the bear visits the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not visit the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBlue(Bear, True) ::: The bear is blue.\nYoung(Bear, True) ::: The bear is young.\nChases(Cow, Mouse, True) ::: The cow chases the mouse.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nVisits(Cow, Rabbit, False) ::: The cow does not visit the rabbit.\nRound(Mouse, False) ::: The mouse is not round.\nChases(Rabbit, Bear, True) ::: The rabbit chases the bear.\n\nRules:\nYoung($x, True) && Blue($x, True) >>> Visits($x, Mouse, True) ::: If something is young and blue then it visits the mouse.\nChases($x, Rabbit, True) && Visits(Rabbit, Bear, False) >>> Visits($x, Rabbit, False) ::: If something chases the rabbit and the rabbit does not visit the bear then it does not visit the rabbit.\nChases($x, Rabbit, True) >>> Visits($x, Rabbit, True) ::: If something chases the rabbit then it visits the rabbit.\nRound($x, True) >>> Chases($x, Rabbit, True) ::: If something is round then it chases the rabbit.\nChases($x, Rabbit, True) >>> Young(Rabbit, True) ::: If something chases the rabbit then the rabbit is young.\nChases($x, Bear, True) >>> Eats(Bear, Rabbit, True) ::: If something chases the bear then the bear eats the rabbit.\nVisits($x, Cow, True) >>> Eats(Cow, Bear, True) ::: If something visits the cow then the cow eats the bear.\nEats($x, Bear, True) >>> Round(Bear, True) ::: If something eats the bear then the bear is round.\nVisits(Bear, Mouse, True) >>> Visits(Bear, Cow, True) ::: If the bear visits the mouse then the bear visits the cow.\n\nQuery:\nVisits(Bear, Cow, False) ::: The bear does not visit the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "061c77169ee0d05304aa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diagnose exp 042 premise formalization",
+  "task_key": "worker_diagnose_exp-042-premise-formalization_20260518T190415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_exp-042-premise-formalization_20260518T190415_result.json",
+    "occurrence": 1,
+    "bytes": 2931,
+    "sha256": "12c0e92c8783946cf8a0fb1e878cc361cf75de921875f3b40e5f2929a7c2df56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\"root_cause\":\"vLLM server on port 8002 (GPU 2) was not started for exp-042. The previous vLLM (exp-028, Qwen3-14B) gracefully shut down at 02:11:18 ('INFO: Shutting down' in /tmp/vllm_exp028.log). exp-042 launched ~33min later at ~02:44 with no vLLM on port 8002. Script never produced Python output — spent 533s in the wrapper (likely health-check retries or sleep waiting for vLLM) before being SIGTERM'd by watchdog.\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"Start vLLM on GPU 2 port 8002 with Qwen2.5-14B-Instruct: CUDA_VISIBLE_DEVICES=2 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager\",\"Wait for health check: curl http://localhost:8002/v1/models returns 200\",\"mkdir -p results/exp042_premise_formalization && re-run: python -u premise_formalization.py --api-base http://localhost:8002/v1 --model auto --k 12 --data data/folio_full.json --output results/exp042_premise_formalization/results.json --seed 42\"],\"can_auto_fix\":true,\"partial_results\":\"无，0/204题已完成（输出目录不存在）\"}\n```\n\n**关键证据链**:\n- `/tmp/vllm_exp028.log` 尾部: `INFO: Shutting down` → `Shutdown complete` @ 02:11:18\n- exp-042 log 只有 3 行（conda warning + Terminated + EXIT_CODE=143），无 Python 输出\n- `nvidia-smi`: GPU 2 = 0 MiB，无 vLLM 进程\n- 无 `/tmp/vllm_exp042*.log` — 没有为 exp-042 启动过 vLLM\n- 注意：exp-028 用的是 **Qwen3-14B**（thinking mode），而 exp-042 需要 **Qwen2.5-14B-Instruct**，模型不同"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "vLLM server on port 8002 (GPU 2) was not started for exp-042. The previous vLLM (exp-028, Qwen3-14B) gracefully shut down at 02:11:18 ('INFO: Shutting down' in /tmp/vllm_exp028.log). exp-042 launched ~33min later at ~02:44 with no vLLM on port 8002. Script never produced Python output — spent 533s in the wrapper (likely health-check retries or sleep waiting for vLLM) before being SIGTERM'd by watchdog.",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "Start vLLM on GPU 2 port 8002 with Qwen2.5-14B-Instruct: CUDA_VISIBLE_DEVICES=2 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager",
+                "Wait for health check: curl http://localhost:8002/v1/models returns 200",
+                "mkdir -p results/exp042_premise_formalization && re-run: python -u premise_formalization.py --api-base http://localhost:8002/v1 --model auto --k 12 --data data/folio_full.json --output results/exp042_premise_formalization/results.json --seed 42"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "无，0/204题已完成（输出目录不存在）"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-042-premise-formalization.md"
+}

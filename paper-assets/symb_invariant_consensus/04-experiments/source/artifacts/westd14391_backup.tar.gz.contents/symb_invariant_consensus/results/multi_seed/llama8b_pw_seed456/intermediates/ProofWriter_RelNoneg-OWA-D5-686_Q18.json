@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-686_Q18",
+    "problem": "The bald eagle chases the squirrel. The bald eagle is blue. The bald eagle likes the cow. The bald eagle likes the lion. The cow chases the lion. The cow is green. The cow likes the bald eagle. The cow likes the lion. The lion likes the cow. The squirrel chases the bald eagle. The squirrel is big. The squirrel is green. The squirrel is red. The squirrel sees the bald eagle. If someone is red and they chase the bald eagle then the bald eagle is green. If someone likes the bald eagle then they like the lion. If someone is green then they see the lion. If the cow is blue then the cow likes the squirrel. If the bald eagle sees the lion then the lion sees the squirrel. If someone sees the squirrel then they are green. If someone likes the bald eagle then the bald eagle is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle chases the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nLikes($x, $y, bool) ::: Does x like y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nLikes(BaldEagle, Lion, True) ::: The bald eagle likes the lion.\nChases(Cow, Lion, True) ::: The cow chases the lion.\nGreen(Cow, True) ::: The cow is green.\nLikes(Cow, BaldEagle, True) ::: The cow likes the bald eagle.\nLikes(Cow, Lion, True) ::: The cow likes the lion.\nLikes(Lion, Cow, True) ::: The lion likes the cow.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nBig(Squirrel, True) ::: The squirrel is big.\nGreen(Squirrel, True) ::: The squirrel is green.\nRed(Squirrel, True) ::: The squirrel is red.\nSees(Squirrel, BaldEagle, True) ::: The squirrel sees the bald eagle.\n\nRules:\nRed($x, True) && Chases($x, BaldEagle, True) >>> Green(BaldEagle, True) ::: If someone is red and they chase the bald eagle then the bald eagle is green.\nLikes($x, BaldEagle, True) >>> Likes($x, Lion, True) ::: If someone likes the bald eagle then they like the lion.\nGreen($x, True) >>> Sees($x, Lion, True) ::: If someone is green then they see the lion.\nBlue(Cow, True) >>> Likes(Cow, Squirrel, True) ::: If the cow is blue then the cow likes the squirrel.\nSees(BaldEagle, Lion, True) >>> Sees(Lion, Squirrel, True) ::: If the bald eagle sees the lion then the lion sees the squirrel.\nSees($x, Squirrel, True) >>> Green($x, True) ::: If someone sees the squirrel then they are green.\nLikes($x, BaldEagle, True) >>> Blue(BaldEagle, True) ::: If someone likes the bald eagle then the bald eagle is blue.\n\nQuery:\nChases(BaldEagle, Lion, True) ::: The bald eagle chases the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

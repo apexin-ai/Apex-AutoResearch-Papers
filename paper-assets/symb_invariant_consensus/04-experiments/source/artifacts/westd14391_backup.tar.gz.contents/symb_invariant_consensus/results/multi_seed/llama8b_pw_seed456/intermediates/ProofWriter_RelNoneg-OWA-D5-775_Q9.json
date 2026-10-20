@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-775_Q9",
+    "problem": "The dog chases the squirrel. The dog chases the tiger. The dog eats the tiger. The dog is young. The dog needs the squirrel. The rabbit chases the dog. The rabbit chases the tiger. The squirrel chases the dog. The squirrel is round. The squirrel needs the rabbit. The squirrel needs the tiger. The tiger chases the dog. The tiger eats the dog. The tiger eats the squirrel. The tiger is green. The tiger is round. If someone is green then they eat the rabbit. If someone needs the squirrel and the squirrel is green then they need the tiger. If someone eats the rabbit then they need the squirrel. If the tiger needs the rabbit then the rabbit is green. If someone is nice then they need the rabbit. If the tiger is round then the tiger is young. If someone chases the tiger and the tiger is kind then the tiger eats the rabbit. If someone needs the squirrel then they are nice. If someone chases the tiger then the tiger chases the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger needs the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nChases(Dog, Tiger, True) ::: The dog chases the tiger.\nEats(Dog, Tiger, True) ::: The dog eats the tiger.\nYoung(Dog, True) ::: The dog is young.\nNeeds(Dog, Squirrel, True) ::: The dog needs the squirrel.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nChases(Rabbit, Tiger, True) ::: The rabbit chases the tiger.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nRound(Squirrel, True) ::: The squirrel is round.\nNeeds(Squirrel, Rabbit, True) ::: The squirrel needs the rabbit.\nNeeds(Squirrel, Tiger, True) ::: The squirrel needs the tiger.\nChases(Tiger, Dog, True) ::: The tiger chases the dog.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nEats(Tiger, Squirrel, True) ::: The tiger eats the squirrel.\nGreen(Tiger, True) ::: The tiger is green.\nRound(Tiger, True) ::: The tiger is round.\n\nRules:\nGreen($x, True) >>> Eats($x, Rabbit, True) ::: If someone is green then they eat the rabbit.\nNeeds($x, Squirrel, True) && Green(Squirrel, True) >>> Needs($x, Tiger, True) ::: If someone needs the squirrel and the squirrel is green then they need the tiger.\nEats($x, Rabbit, True) >>> Needs($x, Squirrel, True) ::: If someone eats the rabbit then they need the squirrel.\nNeeds(Tiger, Rabbit, True) >>> Green(Rabbit, True) ::: If the tiger needs the rabbit then the rabbit is green.\nNice($x, True) >>> Needs($x, Rabbit, True) ::: If someone is nice then they need the rabbit.\nRound(Tiger, True) >>> Young(Tiger, True) ::: If the tiger is round then the tiger is young.\nChases($x, Tiger, True) && Kind(Tiger, True) >>> Eats(Tiger, Rabbit, True) ::: If someone chases the tiger and the tiger is kind then the tiger eats the rabbit.\nNeeds($x, Squirrel, True) >>> Nice($x, True) ::: If someone needs the squirrel then they are nice.\nChases($x, Tiger, True) >>> Chases(Tiger, Squirrel, True) ::: If someone chases the tiger then the tiger chases the squirrel.\n\nQuery:\nNeeds(Tiger, Rabbit, True) ::: The tiger needs the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

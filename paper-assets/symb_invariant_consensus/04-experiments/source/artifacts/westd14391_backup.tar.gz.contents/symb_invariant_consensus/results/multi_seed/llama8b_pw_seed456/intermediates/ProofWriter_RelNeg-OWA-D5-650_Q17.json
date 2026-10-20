@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-650_Q17",
+    "problem": "The bald eagle chases the squirrel. The cat eats the squirrel. The cat is rough. The cat is young. The cat does not see the bald eagle. The squirrel is blue. The tiger chases the squirrel. If the tiger eats the bald eagle then the tiger chases the bald eagle. If something chases the cat then the cat eats the bald eagle. If the cat sees the squirrel and the cat is not rough then the squirrel is big. If something sees the bald eagle and it does not chase the cat then the cat chases the bald eagle. If something eats the tiger then the tiger is young. If something chases the squirrel then it eats the tiger. If something eats the squirrel then it eats the bald eagle. If the squirrel sees the bald eagle and the cat does not chase the squirrel then the cat does not eat the squirrel. If something is young then it eats the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle does not eat the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(Cat, Squirrel, True) ::: The cat eats the squirrel.\nRough(Cat, True) ::: The cat is rough.\nYoung(Cat, True) ::: The cat is young.\nSees(Cat, BaldEagle, False) ::: The cat does not see the bald eagle.\nBlue(Squirrel, True) ::: The squirrel is blue.\nChases(Tiger, Squirrel, True) ::: The tiger chases the squirrel.\n\nRules:\nEats(Tiger, BaldEagle, True) >>> Chases(Tiger, BaldEagle, True) ::: If the tiger eats the bald eagle then the tiger chases the bald eagle.\nChases($x, Cat, True) >>> Eats(Cat, BaldEagle, True) ::: If something chases the cat then the cat eats the bald eagle.\nSees(Cat, Squirrel, True) && Rough(Cat, False) >>> Big(Squirrel, True) ::: If the cat sees the squirrel and the cat is not rough then the squirrel is big.\nSees($x, BaldEagle, True) && Chases($x, Cat, False) >>> Chases(Cat, BaldEagle, True) ::: If something sees the bald eagle and it does not chase the cat then the cat chases the bald eagle.\nEats($x, Tiger, True) >>> Young(Tiger, True) ::: If something eats the tiger then the tiger is young.\nChases($x, Squirrel, True) >>> Eats($x, Tiger, True) ::: If something chases the squirrel then it eats the tiger.\nEats($x, Squirrel, True) >>> Eats($x, BaldEagle, True) ::: If something eats the squirrel then it eats the bald eagle.\nSees(Squirrel, BaldEagle, True) && Chases(Cat, Squirrel, False) >>> Eats(Cat, Squirrel, False) ::: If the squirrel sees the bald eagle and the cat does not chase the squirrel then the cat does not eat the squirrel.\nYoung($x, True) >>> Eats($x, Squirrel, True) ::: If something is young then it eats the squirrel.\n\nQuery:\nEats(BaldEagle, Squirrel, False) ::: The bald eagle does not eat the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

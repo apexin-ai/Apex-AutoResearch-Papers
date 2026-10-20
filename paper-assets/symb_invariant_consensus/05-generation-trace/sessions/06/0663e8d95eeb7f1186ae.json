@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0663e8d95eeb7f1186ae",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "cpu table1 data compilation",
+  "task_key": "worker_cpu_table1-data-compilation_20260519T120146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cpu_table1-data-compilation_20260519T120146_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "95ece4978c887b574c46215c0aeecad129b0f12926cd680ae4556ae7b96e6d19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `memory.md`。汇总结果：\n\n**Table 1 主表数据：**\n- **FOLIO-204**: 9 条（Mistral 4seeds 其中 s789 metrics 待补、LLaMA-8B、Qwen2.5-7B ×2、Qwen2.5-14B、Qwen3-14B）\n- **ProofWriter-600**: 3 条有效 + 1 条 incomplete（exp-034 仅 93/600，不纳入）\n- **LogiQA-200**: 2 条（Mistral-7B、Qwen2.5-14B）\n\n**补充表：** 温度消融 5 点、K 敏感性 5 点\n\n**覆盖率：** 10/21 格 DONE (48%)，5 格 RUNNING (24%)，6 格无实验 (28%)。RUNNING 全部完成后 71%。\n\n**待处理：**\n1. exp-067 (Mistral s789) metrics 为空，需从服务器提取\n2. exp-035 vs exp-061 (Qwen2.5-7B FOLIO) 两次结果不一致，需选定\n3. DeepSeek-R1-8B 全缺、Gemma-27B 仅 FOLIO 在跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-table1-data-compilation.md"
+}

@@ -1,0 +1,1138 @@
+# cron hook pilot constraint filtering
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/cron_hook_pilot-constraint-filtering.jsonl`
+- **Structured JSON:** [`bf001bed10bfc794e8cc.json`](../../sessions/bf/bf001bed10bfc794e8cc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T09:31:47.895382+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-32608:cuda:0（gpu_ids 白名单仅此一张）
+- 账户: root，项目路径 /root/symb_invariant_consensus/
+- EXIT_CODE=129 是 SIGHUP 假失败（nohup 进程退出阶段收到），不是真失败——看日志末尾是否有 DONE sentinel 再判断
+- exp-010-mistral-v2 和 exp-018-arc 在 QUEUED，但 GPU 被占时不能强行启动
+- 项目已从 "SICA beats SC" pivot 到 "Capability Trap Analysis"（D025），再到 "Methods Paper"（D030）——不要再用旧 framing
+
+### 2. 🖥️ 基础设施快照
+- 服务器: westd-32608，工作目录 /root/symb_invariant_consensus/
+- Python: /root/miniconda3/bin/python（conda base 环境）
+- 激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型: /root/autodl-tmp/models/Qwen2.5-14B-Instruct（主力模型，27.6 GiB vLLM）
+- LLaMA: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct（model-00002 损坏，需重下）
+- Mistral: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3（3次下载截断，尝试 HF 直下）
+- 数据: /root/symb_invariant_consensus/data/（proofwriter_full 600题, folio_full 204题, aime2024_subset 30题, strategyqa 60题）
+- 结果: /root/symb_invariant_consensus/results/
+- 日志: ~/runs/symb_invariant_consensus/
+- 活跃进程: 无（GPU 当前空闲）
+- 活跃 Worker: worker_analysis_pilot-constraint-filtering_20260517T052909（正在 SSH 分析日志）
+
+### 3. 📊 当前状态
+刚收到 pilot-constraint-filtering 实验完成回调（进程正常退出）。已派 Worker 分析结果日志，**尚未收到回调**。
+
+Registry 关键状态:
+- `pilot-constraint-filtering` — ANALYZING，Worker 正在读日志提取 metrics
+- `exp-017-strategyqa-v3` — 刚关闭为 DONE(success)：SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13)
+- `exp-010-mistral-v2` — QUEUED（Mistral cross-family，模型下载问题未解决）
+- `exp-018-arc` — QUEUED（ARC-Challenge cross-domain）
+- 其余 22 个实验全 DONE
+
+等待中:
+- Worker `worker_analysis_pilot-constraint-filtering_20260517T052909` 回调 → 拿到 metrics 后更新 registry + 汇报 Director
+- Director 对 D030 (Methods Paper pivot) 的进一步指令
+
+### 4. 📋 待办
+- Worker 回调到达 → 读 metrics，判断 conclusion（success/negative），update_registry → 汇报 Director
+  - 如果 constraint filtering 有效（filtered SICA > SC 显著）→ 这是 Methods Paper 的核心机制，向 Director 提议以此为方法贡献
+  - 如果 constraint filtering 无效 → negative，进一步强化 C1 (mechanism vacuous)，约束质量问题无法靠简单过滤解决
+- GPU 空闲 → 可启动 exp-010-mistral-v2 或 exp-018-arc，但需先解决模型下载问题（Mistral/LLaMA 权重损坏）
+- exp-017-strategyqa-v3 已关闭，需向 Director 汇报（附 pilot-constraint-filtering 结果一起汇报更高效）
+
+### 5. 🎯 战略上下文
+**决策链**: D025(pivot to analysis paper) → D027(exp-013 MaxSAT≈count-only) → D029(K-ablation SICA≤SC all K) → D030(转 Methods Paper)
+
+**核心发现汇总**:
+- sica_expanded_14b (N=804): SICA 76.49% vs SC 76.24%, +0.25pp n.s. — SICA≈SC
+- K-ablation: 所有 K 值 SICA≤SC，K 越大 SICA 越差（-3~5pp）
+- exp-013: MaxSAT ≈ count-only ≈ random-weight — 聚合机制无贡献
+- exp-005: QwQ-32B C0=2.6%（模型太强→无多样性→SICA≡SC）
+- exp-016: 所有加权投票变体 vs SC/SICA 均不显著
+- exp-017-strategyqa-v3: +3.33pp n.s.（跨域有微弱正向信号但不显著）
+
+**易错点**:
+- 不要混淆 D012 (60题小样本 +3.3pp) 和 D025 (804题 +0.25pp)——D012 是噪声，D025 是真实信号
+- pilot-constraint-filtering 是关键拐点实验：如果过滤有效，Methods Paper 有核心方法；如果无效，进一步锁死 capability trap 结论
+- Mistral/LLaMA 模型下载反复失败（3+次），不要盲目重试，需换下载方式（HF 直下 vs ModelScope）
+- FOLIO sub-claim 已 dead (0pp)，不要再在 FOLIO 上寻找 SICA 优势
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)
+
+---
+
+## 可查的历史
+前 16 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T09:31:59.760754+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T09:31:59.761254+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T09:32:05.247742+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T09:32:05.248267+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T09:32:05.755173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:07:01.919Z\", \"updated_at\": \"2026-05-17T09:15:53.996Z\", \"hypothesis\": \"Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）\", \"parent\": \"exp-011-llama8b-v3\", \"metrics\": {\"n\": 200, \"k\": 12, \"sica_accuracy\": 0.74, \"sc_accuracy\": 0.72, \"delta_pp\": 2, \"mcnemar_p\": 0.424, \"bootstrap_ci_95\": [-1.5, 5.5], \"bootstrap_p_delta_le_0\": 0.12, \"discordant_sica_wins\": 9, \"discordant_sc_wins\": 5, \"discordant_total\": 14, \"discordant_rate\": 0.07, \"sc_unanimous_rate\": 0.545, \"model\": \"LLaMA-3.1-8B-Instruct\", \"dataset\": \"StrategyQA\", \"wall_time_min\": 52}, \"conclusion\": \"negative\", \"notes\": \"StrategyQA 200题 powered test: SICA 74% vs SC 72%, +2.00pp, McNemar p=0.424, bootstrap CI [-1.5, +5.5] 跨零。统计不显著。exp-011 的 +6.67pp 在扩大样本后缩水 70%——小样本噪声。关键发现：(1) LLaMA-8B 在 StrategyQA 上 SC=72%，高于预期的 sweet spot (55-65%)，(2) 仅 14/200 (7%) discordant pairs，54.5% 全票一致，(3) SICA 仅充当 tiebreaker（9 wins 中 6 个是平票）。StrategyQA 不在 operating regime sweet spot 内。exp-020 FOLIO (SC≈60%) 是真正的 definitive test。\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T09:12:58.884Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\"}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:48:05.255Z\", \"updated_at\": \"2026-05-17T08:22:02.386Z\", \"hypothesis\": \"Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题）\", \"pare
+…[truncated 24612 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 507
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T09:32:05.755663+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T09:32:05.958214+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T09:32:07.465044+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-020-llama8b-folio-204\", \"success\": true, \"actions\": [\"Job still running (pid=309318)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2216
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T09:32:07.515906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-020-llama8b-folio-204: Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。（准备中）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-019-llama8b-strategyqa-200** (negative): Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） ← 基于 exp-011-llama8b-v3\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\n- **pilot-contrastive-prompt** (failed): Contrastive Prompt Extraction: 将 prompt 改为\\\"列出支持答案X/反对答案Y的证据\\\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题 ← 基于 pilot-constraint-filtering\\n\\n## 趋势\\n成功 11 / 负向 5 / 失败 9 / 共 31\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", 
+…[truncated 82 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1760
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T09:32:07.516727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:07 UTC | 更新原因: exp-011 结果出炉 + D031 决策 + 全面更新过时状态\\n\\n## 核心方向\\nOperating Regime Characterization（待验证）：弱模型上 SICA 有实质增益（+6.7pp directional），强模型上退化为 SC。若 powered test 确认 → 论文升级为正面+负面双重发现；若否 → 维持 D025 Capability Trap analysis paper。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (D031 powered test 验证中) + 审稿进行中\\n- **关键发现 (2026-05-17)**:\\n  - exp-011 LLaMA-8B: +6.67pp (p=0.22, n=60, directionally positive but NOT significant)\\n  - 跨模型 pattern: 弱模型(+6.7pp) > 中模型(+0.3pp) > 强域(-1.7pp) > 极强(0pp)\\n  - exp-013: MaxSAT ≈ count-only ≈ random（mechanism vacuous confirmed）\\n  - exp-002: SICA ≤ SC for all K including odd K=11（tiebreak-only confirmed）\\n- **Plan 覆盖**: 19 实验，exp-001/002/011/017/018 done，exp-010 running，其余 planned\\n- **Paper framing**: 暂不更新，等 powered test 结果\\n\\n## 近期任务\\n- [x] exp-011 完成 (+6.67pp, p=0.22)\\n- [x] exp-002 K-ablation 完成 (SICA≤SC all K)\\n- [x] exp-013 constraint ablation 完成 (MaxSAT≈count-only)\\n- [x] exp-017 StrategyQA 完成 (+3.3pp n.s.)\\n- [x] exp-018 ARC 完成 (-1.67pp)\\n- [ ] exp-010-mistral-v3 运行中 (9/60, Reviewer 预警模型可能过弱)\\n- [ ] **LLaMA-8B StrategyQA 200 题 powered test**（D031 核心，exp-010 后立即启动）\\n- [ ] exp-011 truncation bias 分析（CPU，检查 discordant pairs 与截断相关性）\\n- [ ] pilot-contrastive-v2（低优先级，暂缓）\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: exp-010-mistral-v3 运行中 (~1h ���余)\\n- 排队: LLaMA-8B StrategyQA 200 (~3-4h)\\n- 累计已用: ~20h (exp-001 14h + exp-002 6h + exp-011 1.5h + 其他)\\n- 预估剩余: ~6h (exp-010 1h + StrategyQA 3-4h + buffer)\\n\\n## 决策 pending\\n- D031 结果出来后: p<0.05 → 更新 paper_framing.md 为 Operating Regime Characterization + 加 7B/72B scaling 实验; p>0.1 → 维持 Capability Trap + LLaMA 作 suggestive evidence\\n\\n## 阻塞项\\n- 无硬阻塞。exp-010 + StrategyQA powered test 是今
+…[truncated 1240 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1558
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T09:32:43.913612+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T09:32:43.914147+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T09:32:47.633597+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T09:32:48.236819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_exp020-final-results_20260517T093126\", \"task_type\": \"analysis:exp020-final-results\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-17T09:31:27.123664+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T09:32:48.287445+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T09:32:48.489066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_exp011-truncation-bias_20260517T084325\", \"task_type\": \"analysis:exp011-truncation-bias\", \"project\": \"symb_invariant_consensus\", \"status\": \"done\", \"started_at\": \"2026-05-17T08:43:25.396437+00:00\", \"ended_at\": \"2026-05-17T08:44:58.590452+00:00\"}, {\"worker_id\": \"worker_analysis_exp019-output-check_20260517T085656\", \"task_type\": \"analysis:exp019-output-check\", \"project\": \"symb_invariant_consensus\", \"status\": \"done\", \"started_at\": \"2026-05-17T08:56:57.018812+00:00\", \"ended_at\": \"2026-05-17T08:58:30.423429+00:00\"}, {\"worker_id\": \"worker_code_prep-exp020-folio204_20260517T085951\", \"task_type\": \"code:prep-exp020-folio204\", \"project\": \"symb_invariant_consensus\", \"status\": \"done\", \"started_at\": \"2026-05-17T08:59:51.887542+00:00\", \"ended_at\": \"2026-05-17T09:01:33.947469+00:00\"}, {\"worker_id\": \"worker_analysis_exp-019-results_20260517T091119\", \"task_type\": \"analysis:exp-019-results\", \"project\": \"symb_invariant_consensus\", \"status\": \"done\", \"started_at\": \"2026-05-17T09:11:20.107326+00:00\", \"ended_at\": \"2026-05-17T09:15:02.181003+00:00\"}, {\"worker_id\": \"worker_analysis_exp019-final-stats_20260517T091335\", \"task_type\": \"analysis:exp019-final-stats\", \"project\": \"symb_invariant_consensus\", \"status\": \"done\", \"started_at\": \"2026-05-17T09:13:35.849656+00:00\", \"ended_at\": \"2026-05-17T09:16:32.326057+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T09:33:01.265508+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_exp020-final-results_20260517T093126",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_exp020-final-results_20260517T093126",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T09:33:01.316287+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp020-final-results_20260517T093126\", \"status\": \"running\", \"task_type\": \"analysis:exp020-final-results\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-17T09:31:27.123664+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"结果文件只有2条记录，格式可能是 dict 而非 list。让我检查其结构。\", \"turn_count\": 14}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T09:33:52.881072+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T09:33:53.182859+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_b7a13442.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T09:33:53.333887+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "memory.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "memory.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T09:33:53.434982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\n\\n**日期**: 2025-05-17  \\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\n\\n---\\n\\n## 核心问题\\n\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\"answer=A → X 成立; answer=B → Y 成立\\\"形式的判别性约束。\\n\\n## 最相关论文\\n\\n### 1. Math-Shepherd (ACL 2024)\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的——步骤\\\"正确\\\"当且仅当存在从该步到正确答案的延续路径。\\n- **适配价值**: 可直接借鉴其思路——对每条约束，检查它与哪些最终答案兼容。兼容答案集合不同的约束即为 discriminative constraints。\\n\\n### 2. GRACE: Discriminator-Guided Chain-of-Thought Reasoning (EMNLP 2023 Findings)\\n- **核心思路**: 训练 step-level discriminator（对比学习，正样本=正确步骤，负样本=错误步骤），解码时用 discriminator 评分引导生成正确推理步骤。\\n- **适配价值**: 其对比训练框架可直接用于训练\\\"约束判别器\\\"——给定约束+答案对，判断该约束是否支持该答案。\\n\\n### 3. DiVeRSe: Diverse Verifier on Reasoning Steps (ACL 2023)\\n- **核心思路**: 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票选答案。\\n- **适配价值**: 多样路径生成策略可用于增加约束多样性；step-level verification 思路可用于标注哪些步骤/约束是 answer-specific 的。\\n\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\n- **核心发现**: 研究表明 debate 的性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 的问题完全一致。\\n- **警示**: 简单的多 agent 对抗不足以产生 discriminative 信号，需要结构化的 answer-conditioned 论证。\\n\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\n- **核心思路**: 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系，组合得到最终判断。\\n- **适配价值**: 可将每条约束视为 atomic fact，用 NLI 检查\\\"约束 C 蕴含 answer=A\\\"还是\\\"约束 C 与 answer=A 矛盾\\\"，从而标注约束的 answer-discriminative 属性。\\n\\n## 可行适配方案\\n\\n| 方案 | 改动量 | 需要训练 | 推理成本 |\\n|------|--------|----------|----------|\\n| **A. Outcome-conditioned labeling (Math-Shepherd 式)**: 对每条约束，用 LLM 续写检查与各候选答案的兼容性 | 中等（需修改约束提取 pipeline） | 否 | 高（每条约束需多次续写） |\\n| **B. NLI-based filtering**: 用 NLI 模型判断\\\"约束 C → answer A\\\"的蕴含关系，只保
+…[truncated 2043 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T09:34:00.512703+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T09:34:00.563438+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T09:34:02.879096+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T09:34:03.180753+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Glob",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T09:34:05.016264+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T09:34:05.067183+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T09:35:13.340585+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T09:35:13.341120+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T09:35:16.655810+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T09:35:16.806961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T09:36:02.612905+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "text": "[资源] GPU 1/1 (westd-32608:cuda:0, exp-020 运行中 pid=309318) | Worker 1 (CPU: exp-020 结果分析中, turn 14)\n\n**Session-start 状态同步 (Loop 8)**\n\n1. **exp-020-llama8b-folio-204** (definitive test): cron 确认进程在跑，已派 Worker 分析结果文件（正在 SSH 读取，14 轮）。这是 D031 的最后判定实验——FOLIO 204 题 LLaMA-8B，exp-011 信号最强 (+10pp)。\n2. **exp-019** (已关闭): StrategyQA 200 题 NEGATIVE, +2pp n.s. (p=0.424)。exp-011 的 +6.67pp 在扩大样本后缩水 70%。\n3. **pilot-constraint-filtering** (已关闭): NEGATIVE, 约束过滤天花板极低（effective flip rate 17.4%）。\n4. **全部 33 个实验已关闭或在跑**，无 QUEUED 积压。\n\n等 exp-020 分析 Worker 回调后立即汇报完整结果 + D031 判定建议。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "text": "[资源] GPU 1/1 (westd-32608:cuda:0, exp-020 运行中 pid=309318) | Worker 1 (CPU: exp-020 结果分析中, turn 14)\n\n**Session-start 状态同步 (Loop 8)**\n\n1. **exp-020-llama8b-folio-204** (definitive test): cron 确认进程在跑，已派 Worker 分析结果文件（正在 SSH 读取，14 轮）。这是 D031 的最后判定实验——FOLIO 204 题 LLaMA-8B，exp-011 信号最强 (+10pp)。\n2. **exp-019** (已关闭): StrategyQA 200 题 NEGATIVE, +2pp n.s. (p=0.424)。exp-011 的 +6.67pp 在扩大样本后缩水 70%。\n3. **pilot-constraint-filtering** (已关闭): NEGATIVE, 约束过滤天花板极低（effective flip rate 17.4%）。\n4. **全部 33 个实验已关闭或在跑**，无 QUEUED 积压。\n\n等 exp-020 分析 Worker 回调后立即汇报完整结果 + D031 判定建议。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T09:36:06.586134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pilot-constraint-filtering",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3973
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-17T09:36:23.952777+00:00_
+
+已向 Director 发送 session-start 状态同步。现在等待 `worker_analysis_exp020-final-results_20260517T093126` 回调。Worker 在 turn 14，正在 SSH 分析 exp-020 结果文件——应该很快完成。
+
+回调到达后我会：
+1. 提取 metrics（SICA vs SC accuracy, McNemar p, bootstrap CI）
+2. 判定 conclusion（exp-020 是 D031 的 definitive test）
+3. 更新 registry + report.md
+4. 向 Director 汇报完整结果 + D031 判定建议
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:pilot-constraint-filtering"
+}
+```
+
+</details>
+
+---

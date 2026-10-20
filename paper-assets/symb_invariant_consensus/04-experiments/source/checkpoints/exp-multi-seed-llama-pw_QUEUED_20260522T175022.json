@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-multi-seed-llama-pw",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:20:25.478Z",
+    "updated_at": "2026-05-22T17:50:22.240Z",
+    "hypothesis": "Multi-seed replication (seeds 42,123,456) of LLaMA-3.1-8B × ProofWriter-600 adds cross-dataset evidence for the third model family. If Δ(SICA-SC)≤0 holds on PW as well as FOLIO, it confirms SCB is dataset-invariant within LLaMA-8B. Addresses W4 reviewer concern.",
+    "spec": {
+      "command": "bash -c \"cd /root/symb_invariant_consensus && bash scripts/multiseed_llama8b_pw_cuda3.sh\"",
+      "server": "westd-16639",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "614142",
+      "log_path": "~/runs/symb_invariant_consensus/exp-multi-seed-llama-pw.log",
+      "submitted_at": "2026-05-22T13:22:26.637Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "disk full crash. Seed 42 crashed at 223/600. Seeds 123/456 not started. Recovery planned on westd-14391.",
+    "metrics": {
+      "pw_seed42": {
+        "status": "running",
+        "progress": "60/600"
+      },
+      "pw_seed123": {
+        "status": "pending"
+      },
+      "pw_seed456": {
+        "status": "pending"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T17:43:13.830Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T17:43:18.767541+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T17:50:22.540617+00:00",
+  "trigger": "update_registry"
+}

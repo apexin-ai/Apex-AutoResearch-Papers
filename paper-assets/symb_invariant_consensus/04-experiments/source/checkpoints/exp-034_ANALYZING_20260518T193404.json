@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp-034",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:15:24.666Z",
+    "updated_at": "2026-05-18T19:34:03.927Z",
+    "hypothesis": "Qwen2.5-14B-Instruct 在 ProofWriter-600 上 SICA vs SC（westd-25068 重跑）：在 full 600 题上验证 capability trap，复现 sica_expanded_14b 的 PW 子集结果（delta=+0.3pp）。代替原 StrategyQA 实验（exp-034 v1 因 extraction prompt bug + 平台 kill 失败）。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8001 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp034.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/proofwriter_full.json --folio-data data/empty.json --output results/exp034_qwen25_14b_proofwriter/exp034_results.json --save-intermediates 2>&1 | tee results/exp034_qwen25_14b_proofwriter/exp034.log\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "68543",
+      "log_path": "~/runs/symb_invariant_consensus/exp-034.log",
+      "submitted_at": "2026-05-18T17:44:32.378Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed",
+    "notes": "v2: westd-25068 cuda:1, Qwen2.5-14B PW-600. ⚠️ Cron 误判退出（检测旧 PID 68543），实际仍在运行 PID 69808。中间结果 (65/600, 全 D5): SICA 76.92% vs SC 70.77%, delta=+6.15pp。首次看到 SICA 显著超越 SC 的信号！ETA ~10h from 19:04 UTC。",
+    "checkpoint_path": "N/A (platform kill + wrong extraction prompt)",
+    "reproduce": {
+      "finished_at": "2026-05-18T19:02:28.841Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:02:32.634997+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n_problems": 93,
+      "n_target": 600,
+      "completion_pct": 15.5,
+      "sica_accuracy": 77.42,
+      "sc_accuracy": 74.19,
+      "delta_pp": 3.23,
+      "sica_correct": 72,
+      "sc_correct": 69,
+      "mcnemar_discordant_b": 6,
+      "mcnemar_discordant_c": 3,
+      "mcnemar_p_value": 0.5078,
+      "c0_non_unanimous_rate": 0.581,
+      "avg_majority_frac": 0.8324,
+      "extraction_rate": 99.19,
+      "contradiction_rate": 11.83,
+      "problems_with_contradictions": 11,
+      "avg_unique_constraints": 35.6,
+      "total_constraints": 14437,
+      "unique_constraints": 3308,
+      "dedup_ratio": 22.9,
+      "k": 12,
+      "level": "OWA-D5",
+      "gt_distribution": {
+        "True": 32,
+        "False": 28,
+        "Unknown": 33
+      },
+      "wall_time_s": 6086.4,
+      "status_note": "INCOMPLETE: crashed at 93/600 (python not found after conda env lost)"
+    }
+  },
+  "timestamp": "2026-05-18T19:34:04.113900+00:00",
+  "trigger": "update_registry"
+}

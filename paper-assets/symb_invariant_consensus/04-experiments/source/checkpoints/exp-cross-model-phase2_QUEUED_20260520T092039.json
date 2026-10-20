@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-cross-model-phase2",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:20:34.520Z",
+    "updated_at": "2026-05-20T09:20:39.492Z",
+    "hypothesis": "Cross-model SICA: Aggregating traces from 3 model families (Mistral+LLaMA+Qwen, K=12 total) via SICA MAX-SAT will outperform cross-model SC by leveraging constraint diversity across architectures."
+  },
+  "timestamp": "2026-05-20T09:20:39.750930+00:00",
+  "trigger": "update_registry"
+}

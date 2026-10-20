@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "077ee193db2eee1b4759",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code discriminative filtering",
+  "task_key": "worker_code_discriminative-filtering_20260519T014631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_discriminative-filtering_20260519T014631.log",
+    "occurrence": 1,
+    "bytes": 1115575,
+    "sha256": "935a0bb3eb2c675f5679bc0e351d93c9be020c03dd799df5ee0df8fce6524d46"
+  },
+  "statistics": {
+    "messages": 746,
+    "user_turns": 1,
+    "tool_calls": 325,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 325,
+      "tool_result": 325,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 731,
+      "chunks": [
+        {
+          "path": "077ee193db2eee1b4759-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "077ee193db2eee1b4759-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "077ee193db2eee1b4759-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "077ee193db2eee1b4759-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "077ee193db2eee1b4759-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "077ee193db2eee1b4759-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-discriminative-filtering.md"
+}

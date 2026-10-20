@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-035",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:02:20.251Z",
+    "updated_at": "2026-05-18T16:02:30.887Z",
+    "hypothesis": "SICA's symbolic constraint verification provides accuracy gains over Self-Consistency on ARC-Challenge multiple-choice science questions with Qwen2.5-14B, because science reasoning contains extractable logical constraints (scientific facts, causal rules) that Z3 can verify for consistency."
+  },
+  "timestamp": "2026-05-18T16:02:31.038628+00:00",
+  "trigger": "update_registry"
+}

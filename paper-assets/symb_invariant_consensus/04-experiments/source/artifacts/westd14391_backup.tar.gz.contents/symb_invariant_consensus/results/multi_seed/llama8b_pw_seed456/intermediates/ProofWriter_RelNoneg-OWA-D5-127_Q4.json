@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-127_Q4",
+    "problem": "The bear is blue. The bear is green. The bear is red. The bear sees the rabbit. The cow is blue. The cow needs the tiger. The cow visits the rabbit. The rabbit is cold. The rabbit is nice. The rabbit needs the cow. The rabbit sees the cow. The rabbit sees the tiger. The tiger needs the bear. The tiger needs the rabbit. The tiger visits the bear. The tiger visits the cow. If something is green then it visits the tiger. If something sees the bear and it is cold then the bear is green. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. If something is green then it needs the cow. If something visits the tiger then the tiger is red. If something needs the tiger and the tiger sees the cow then the cow needs the bear. If something sees the bear and it needs the bear then it sees the cow. If something visits the rabbit then the rabbit needs the tiger. If something needs the bear and the bear visits the tiger then it sees the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not need the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Bear, True) ::: The bear is blue.\nGreen(Bear, True) ::: The bear is green.\nRed(Bear, True) ::: The bear is red.\nSees(Bear, Rabbit, True) ::: The bear sees the rabbit.\nBlue(Cow, True) ::: The cow is blue.\nNeeds(Cow, Tiger, True) ::: The cow needs the tiger.\nVisits(Cow, Rabbit, True) ::: The cow visits the rabbit.\nCold(Rabbit, True) ::: The rabbit is cold.\nNice(Rabbit, True) ::: The rabbit is nice.\nNeeds(Rabbit, Cow, True) ::: The rabbit needs the cow.\nSees(Rabbit, Cow, True) ::: The rabbit sees the cow.\nSees(Rabbit, Tiger, True) ::: The rabbit sees the tiger.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nNeeds(Tiger, Rabbit, True) ::: The tiger needs the rabbit.\nVisits(Tiger, Bear, True) ::: The tiger visits the bear.\nVisits(Tiger, Cow, True) ::: The tiger visits the cow.\n\nRules:\nGreen($x, True) >>> Visits($x, Tiger, True) ::: If something is green then it visits the tiger.\nSees($x, Bear, True) && Cold($x, True) >>> Green(Bear, True) ::: If something sees the bear and it is cold then the bear is green.\nNeeds(Cow, Rabbit, True) && Needs(Rabbit, Cow, True) >>> Red(Rabbit, True) ::: If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\nGreen($x, True) >>> Needs($x, Cow, True) ::: If something is green then it needs the cow.\nVisits($x, Tiger, True) >>> Red(Tiger, True) ::: If something visits the tiger then the tiger is red.\nNeeds($x, Tiger, True) && Sees(Tiger, Cow, True) >>> Needs(Cow, Bear, True) ::: If something needs the tiger and the tiger sees the cow then the cow needs the bear.\nSees($x, Bear, True) && Needs($x, Bear, True) >>> Sees($x, Cow, True) ::: If something sees the bear and it needs the bear then it sees the cow.\nVisits($x, Rabbit, True) >>> Needs(Rabbit, Tiger, True) ::: If something visits the rabbit then the rabbit needs the tiger.\nNeeds($x, Bear, True) && Visits(Bear, Tiger, True) >>> Sees($x, Bear, True) ::: If something needs the bear and the bear visits the tiger then it sees the bear.\n\nQuery:\nNeeds(Bear, Cow, False) ::: The bear does not need the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

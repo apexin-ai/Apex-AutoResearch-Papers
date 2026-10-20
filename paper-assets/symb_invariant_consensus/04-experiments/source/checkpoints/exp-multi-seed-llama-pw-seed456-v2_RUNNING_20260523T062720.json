@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-multi-seed-llama-pw-seed456-v2",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:56:25.703Z",
+    "updated_at": "2026-05-23T06:27:20.398Z",
+    "hypothesis": "LLaMA-3.1-8B PW seed456 多种子复制（westd-30973 cuda:2 全新运行）。验证 SCB 在 ProofWriter 上跨 seed 稳定性（Δ(SICA-SC)≤0）。配合 seed42/123/789 组成 4-seed 覆盖。",
+    "parent": "exp-multi-seed-llama-pw",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python run_cross_dataset_replication.py --dataset proofwriter --data-path data/proofwriter_full.json --k 12 --vllm-port 8002 --seed 456 --temperature 0.7 --max-tokens 2048 --output results/multi_seed/llama8b_pw_seed456_v2/results.json\"",
+      "server": "westd-30973",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "6088",
+      "log_path": "~/runs/symb_invariant_consensus/exp-multi-seed-llama-pw-seed456-v2.log",
+      "submitted_at": "2026-05-23T06:09:35.633Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "vllm-served:/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct",
+      "eval_data": "data/proofwriter_full.json"
+    }
+  },
+  "timestamp": "2026-05-23T06:27:20.762966+00:00",
+  "trigger": "update_registry"
+}

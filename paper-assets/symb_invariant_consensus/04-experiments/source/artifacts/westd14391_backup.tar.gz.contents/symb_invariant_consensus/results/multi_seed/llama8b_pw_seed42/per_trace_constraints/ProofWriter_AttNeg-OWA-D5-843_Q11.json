@@ -1,0 +1,1121 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-843_Q11",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(round(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(round_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(dave))",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(Not(blue_dave), Not(blue_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_erin, cold_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin) & green(erin) -> green(erin)",
+          "z3_formula": "Implies(And(blue_erin, green_erin), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary) & round(gary) -> Not(cold(gary))",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(charlie))",
+          "z3_formula": "Not(furry_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, Not(quiet_X)), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not furry(X)",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_gary, Not(furry_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, Not(quiet_X)), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "all round(X) -> not furry(X)",
+          "z3_formula": "Implies(all_round_X, Not(furry_X))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(Not(furry_charlie), white_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_dave, round_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue, cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not furry(X)",
+          "z3_formula": "Implies(round_dave, Not(furry_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(furry_erin)), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not round(charlie)",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-285_Q16",
+    "problem": "Bob is big. Bob is cold. Bob is furry. Bob is smart. Fiona is cold. Fiona is not green. Fiona is white. Gary is smart. Harry is big. Harry is cold. Harry is smart. All green people are furry. If Gary is furry and Gary is not smart then Gary is white. Smart people are green. If Bob is not green and Bob is not white then Bob is furry. Big people are cold. If someone is smart and furry then they are big. If someone is white and not cold then they are not blue. All cold people are not blue.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nCold(Bob, True) ::: Bob is cold.\nFurry(Bob, True) ::: Bob is furry.\nSmart(Bob, True) ::: Bob is smart.\nCold(Fiona, True) ::: Fiona is cold.\nGreen(Fiona, False) ::: Fiona is not green.\nWhite(Fiona, True) ::: Fiona is white.\nSmart(Gary, True) ::: Gary is smart.\nBig(Harry, True) ::: Harry is big.\nCold(Harry, True) ::: Harry is cold.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nGreen($x, True) >>> Furry($x, True) ::: All green people are furry.\nFurry(Gary, True) && Smart(Gary, False) >>> White(Gary, True) ::: If Gary is furry and Gary is not smart then Gary is white.\nSmart($x, True) >>> Green($x, True) ::: Smart people are green.\nGreen(Bob, False) && White(Bob, False) >>> Furry(Bob, True) ::: If Bob is not green and Bob is not white then Bob is furry.\nBig($x, True) >>> Cold($x, True) ::: Big people are cold.\nSmart($x, True) && Furry($x, True) >>> Big($x, True) ::: If someone is smart and furry then they are big.\nWhite($x, True) && Cold($x, False) >>> Blue($x, False) ::: If someone is white and not cold then they are not blue.\nCold($x, True) >>> Blue($x, False) ::: All cold people are not blue.\n\nQuery:\nWhite(Bob, True) ::: Bob is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

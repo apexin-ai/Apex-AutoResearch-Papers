@@ -1,0 +1,1336 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-649_Q1",
+    "problem": "The bald eagle is nice. The bald eagle is rough. The bald eagle needs the mouse. The bald eagle needs the squirrel. The mouse is kind. The mouse is young. The mouse likes the tiger. The mouse sees the bald eagle. The squirrel is kind. The squirrel is nice. The squirrel needs the bald eagle. The tiger is kind. If someone likes the bald eagle then they are rough. If someone is blue and they see the tiger then the tiger needs the squirrel. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. If the mouse needs the squirrel then the squirrel likes the mouse. If someone is rough then they see the mouse. If someone needs the tiger and the tiger is kind then they like the bald eagle. If someone sees the mouse then they need the squirrel. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle needs the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nNice(BaldEagle, True) ::: The bald eagle is nice.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nKind(Mouse, True) ::: The mouse is kind.\nYoung(Mouse, True) ::: The mouse is young.\nLikes(Mouse, Tiger, True) ::: The mouse likes the tiger.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nKind(Squirrel, True) ::: The squirrel is kind.\nNice(Squirrel, True) ::: The squirrel is nice.\nKind(Tiger, True) ::: The tiger is kind.\n\nRules:\nLikes($x, BaldEagle, True) >>> Rough($x, True) ::: If someone likes the bald eagle then they are rough.\nBlue($x, True) && Sees($x, Tiger, True) >>> Needs(Tiger, Squirrel, True) ::: If someone is blue and they see the tiger then the tiger needs the squirrel.\nNeeds(Mouse, BaldEagle, True) && Likes(BaldEagle, Mouse, True) >>> Rough(BaldEagle, True) ::: If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\nNeeds(Mouse, Squirrel, True) >>> Likes(Squirrel, Mouse, True) ::: If the mouse needs the squirrel then the squirrel likes the mouse.\nRough($x, True) >>> Sees($x, Mouse, True) ::: If someone is rough then they see the mouse.\nNeeds($x, Tiger, True) && Kind(Tiger, True) >>> Likes($x, BaldEagle, True) ::: If someone needs the tiger and the tiger is kind then they like the bald eagle.\nSees($x, Mouse, True) >>> Needs($x, Squirrel, True) ::: If someone sees the mouse then they need the squirrel.\nNeeds($x, Squirrel, True) && Nice(Squirrel, True) >>> Needs(Squirrel, Tiger, True) ::: If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nQuery:\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 160.0,
+      "Unknown": 192.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is nice. (Statement 1)\n2. The bald eagle is rough. (Statement 2)\n3. The bald eagle needs the mouse. (Statement 4 - This is the statement we are trying to determine)\n4. The mouse is kind. (Statement 5)\n5. The mouse is young. (Statement 6)\n6. The mouse likes the tiger. (Statement 7)\n7. The mouse sees the bald eagle. (Statement 9)\n8. The squirrel is kind. (Statement 10)\n9. The squirrel is nice. (Statement 11)\n10. The squirrel needs the bald eagle. (Statement 12)\n11. The tiger is kind. (Statement 13)\n\nWe have multiple rules based on the given information. Let's analyze them one by one:\n\nRule 1: If someone likes the bald eagle then they are rough.\n   - This does not directly apply to the bald eagle's characteristics.\n\nRule 2: If someone is blue and they see the tiger then the tiger needs the squirrel.\n   - There is no information about the color blue, so this rule is irrelevant.\n\nRule 3: If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\n   - This rule implies a relationship between the mouse and the bald eagle, but we do not know if the mouse needs the bald eagle or if the bald eagle likes the mouse.\n\nRule 4: If the mouse needs the squirrel then the squirrel likes the mouse.\n   - This rule is useful for determining the relationship between the mouse and the squirrel.\n\nRule 5: If someone is rough then they see the mouse.\n   - This does not provide any direct information about the bald eagle's needs.\n\nRule 6: If someone needs the tiger and the tiger is kind then they like the bald eagle.\n   - This rule implies a relationship between the tiger and the bald eagle, but we do not have enough information to determine if this applies.\n\nRule 7: If someone sees the mouse then they need the squirrel.\n   - This rule provides a possible connection between the mouse and the squirrel, but we do not know if this applies to the bald eagle.\n\nRule 8: If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n   - This rule provides a possible connection between the squirrel and the tiger, but we do not know if this applies to the bald eagle.\n\nWe can start by analyzing Statement 4: \"The bald eagle needs the mouse.\" \n\nFrom Rule 3, we know that if the mouse needs the bald eagle and the bald eagle likes the mouse, then the bald eagle is rough. However, we do not have enough information to determine if the mouse needs the bald eagle. \n\nFrom Statement 7, \"The mouse sees the bald eagle,\" we can apply Rule 7: If someone sees the mouse then they need the squirrel. However, this does not directly apply to the bald eagle's needs.\n\nFrom Statement 12, \"The squirrel needs the bald eagle,\" we can apply Rule 4: If the mouse needs the squirrel then the squirrel likes the mouse. However, this does not directly apply to the bald eagle's needs.\n\nSince we do not have enough information to determine if the mouse needs the bald eagle, the statement \"The bald eagle needs the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller parts and use a truth table to analyze the given statements.\n\nLet's define the following variables:\n- B: The bald eagle needs the mouse.\n- E: The bald eagle is rough.\n- M: The mouse is kind.\n- S: The squirrel is kind.\n- T: The tiger is kind.\n- L: The mouse likes the tiger.\n- N: The mouse needs the squirrel.\n- K: The squirrel needs the tiger.\n\nNow, let's analyze the given statements:\n\n1. If someone likes the bald eagle then they are rough. (E)\n2. If someone is blue and they see the tiger then the tiger needs the squirrel. (We don't have information about the color blue, so we can't use this statement.)\n3. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. (B \u2192 E)\n4. If the mouse needs the squirrel then the squirrel likes the mouse. (N \u2192 L)\n5. If someone is rough then they see the mouse. (E \u2192 M)\n6. If someone needs the tiger and the tiger is kind then they like the bald eagle. (T \u2192 L)\n7. If someone sees the mouse then they need the squirrel. (M \u2192 N)\n8. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. (K)\n\nWe are interested in determining the truth value of statement B: \"The bald eagle needs the mouse.\"\n\nUsing statement 3, we can analyze the truth value of B and E.\n\nFrom statement 3, if B (the mouse needs the bald eagle) is true and E (the bald eagle is rough) is true, then E is true. However, we don't have any information about E being true or false. We also don't have any information about B being true or false. \n\nTherefore, we can't determine the truth value of B (the bald eagle needs the mouse) using the given statements. Hence, the truth value of B is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to identify the relevant statements and use them to deduce whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown.\n\n1. The bald eagle needs the mouse.  (Given statement)\n2. The mouse is kind. \n3. The mouse is young. \n4. The mouse likes the tiger. \n5. The mouse sees the bald eagle. \n6. The squirrel is kind. \n7. The squirrel is nice. \n8. The squirrel needs the bald eagle. \n9. The tiger is kind.\n\nHowever, the problem is not directly answering the question with the information provided. \n\nWe have to look for any statements that relate to the bald eagle needing the mouse:\n\n1. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. (This statement implies that the bald eagle can like the mouse, but it does not say the bald eagle needs the mouse)\n2. If the mouse needs the squirrel then the squirrel likes the mouse. (This does not relate to the bald eagle needing the mouse)\n3. If someone is rough then they see the mouse. (This does not relate to the bald eagle needing the mouse)\n4. If someone sees the mouse then they need the squirrel. (This does not relate to the bald eagle needing the mouse)\n5. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. (This does not relate to the bald eagle needing the mouse)\n\nHowever, there is one statement that might seem relevant but doesn't really state anything useful for this problem: \n\"If someone is blue and they see the tiger then the tiger needs the squirrel.\" (This statement is irrelevant to the bald eagle and mouse)\n\nWe can also look at the given statements to see if there are any conclusions we can draw about the bald eagle needing the mouse.\n\nThe statement \"The bald eagle needs the mouse\" is the given statement. However, there is no information that directly supports or disproves it.\n\nSince we don't have any information that directly supports or disproves the statement \"The bald eagle needs the mouse,\" we can conclude that the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will analyze each statement and use the given rules to find the answer.\n\n1. The bald eagle is nice. \n2. The bald eagle is rough.\n3. The bald eagle needs the mouse.\n4. The bald eagle needs the squirrel.\n5. The mouse is kind.\n6. The mouse is young.\n7. The mouse likes the tiger.\n8. The mouse sees the bald eagle.\n9. The squirrel is kind.\n10. The squirrel is nice.\n11. The squirrel needs the bald eagle.\n12. The tiger is kind.\n\nNow, let's analyze the given rules:\n\n1. If someone likes the bald eagle then they are rough.\n2. If someone is blue and they see the tiger then the tiger needs the squirrel.\n3. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\n4. If the mouse needs the squirrel then the squirrel likes the mouse.\n5. If someone is rough then they see the mouse.\n6. If someone needs the tiger and the tiger is kind then they like the bald eagle.\n7. If someone sees the mouse then they need the squirrel.\n8. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nWe need to determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown. Let's break down the given statement and the rules to find the answer.\n\nStatement: The bald eagle needs the mouse.\n\nRule 4 states that if the mouse needs the squirrel then the squirrel likes the mouse. However, we are given that the bald eagle needs the mouse (statement 3), but there is no rule that directly connects the bald eagle's needs to the mouse's needs.\n\nHowever, we can use rule 3 to analyze this further. Rule 3 states that if the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. But we already know that the bald eagle is rough (statement 2), so this rule does not provide any new information.\n\nAnother approach is to use rule 7, which states that if someone sees the mouse then they need the squirrel. However, we are given that the mouse sees the bald eagle (statement 8), but we cannot directly connect this to the bald eagle's needs.\n\nHowever, let's examine another rule. Rule 5 states that if someone is rough then they see the mouse. We know that the bald eagle is rough (statement 2), so we can conclude that the bald eagle sees the mouse. Then, using rule 7, we can conclude that the bald eagle needs the squirrel.\n\nNow, let's examine statement 3 again. We have concluded that the bald eagle needs the squirrel, but this does not necessarily mean that the bald eagle needs the mouse.\n\nHowever, let's examine another rule. Rule 1 states that if someone likes the bald eagle then they are rough. We are not given any information about someone liking the bald eagle, but we can use this rule to analyze other statements.\n\nNow, let's examine statement 11. We are given that the squirrel needs the bald eagle (statement 11). If the squirrel needs the bald eagle, then using rule 1, we can conclude that the squirrel is rough. However, we know that the squirrel is nice (statement 10), so this conclusion is false.\n\nHowever, let's examine rule 8. Rule 8 states that if someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. We are given that the squirrel is nice (statement 10) and the squirrel needs the bald eagle (statement 11). Using rule 8, we can conclude that the squirrel needs the tiger.\n\nNow, let's examine statement 4 again. We are given that the bald eagle needs the squirrel. If the bald eagle needs the squirrel, then using rule 4, we can conclude that the squirrel likes the mouse. However, we are not given any information about the squirrel liking the mouse.\n\nHowever, let's examine another rule. Rule 6 states that if someone needs the tiger and the tiger is kind then they like the bald eagle. We are given that the tiger is kind (statement 12), but we are not given any information about someone needing the tiger.\n\nHowever, let's examine statement 7 again. We are given that the mouse sees the bald eagle (statement 8). If the mouse sees the bald eagle, then using rule 5, we can conclude that the mouse is rough. However, we know that the mouse is kind (statement 5), so this conclusion is false.\n\nHowever, let's examine another rule. Rule 3 states that if the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. We are given that the mouse is kind (statement 5) and the mouse sees the bald eagle (statement 8), but we are not given any information about the mouse needing the bald eagle.\n\nHowever, let's examine statement 3 again. We have concluded that the bald eagle needs the squirrel, but we are not given any information about the bald eagle needing the mouse.\n\nHowever, let's examine rule 4 again. Rule 4 states that if the mouse needs the squirrel then the squirrel likes the mouse. However, we are not given any information about the mouse needing the squirrel.\n\nHowever, let's examine statement 3 one more time. We are given that the bald eagle needs the mouse. Since the bald eagle needs the squirrel (which we concluded earlier) and the mouse sees the bald eagle (statement 8), we can conclude that the mouse needs the squirrel (using rule 7).\n\nHowever, we can conclude that the mouse needs the squirrel, but we are not given any information about the mouse needing the bald eagle.\n\nHowever, let's examine rule 4 one more time. Rule 4 states that if the mouse needs the squirrel then the squirrel likes the mouse. We have concluded that the mouse needs the squirrel, so we can conclude that the squirrel likes the mouse.\n\nHowever, we have concluded that the squirrel likes the mouse, but we are not given any information about the mouse needing the bald eagle.\n\nHowever, let's examine statement 3 one more time. We are given that the bald eagle needs the mouse.\n\nWe can conclude that the statement \"The bald eagle needs the mouse\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information and its implications step by step.\n\n1. The bald eagle is nice. (Information 1)\n2. The bald eagle is rough. (Information 2)\n3. The bald eagle needs the mouse. (Statement to be evaluated, which is Information 4)\n4. The mouse is kind. (Information 5)\n5. The mouse is young. (Information 6)\n6. The mouse likes the tiger. (Information 7)\n7. The mouse sees the bald eagle. (Information 8)\n8. The squirrel is kind. (Information 9)\n9. The squirrel is nice. (Information 10)\n10. The squirrel needs the bald eagle. (Information 11)\n11. The tiger is kind. (Information 12)\n\nLet's consider the implications of these statements:\n\n- If someone likes the bald eagle then they are rough. (Rule 1)\n  - From Information 2, we know the bald eagle is rough. We don't have any information about someone liking the bald eagle, so we can't directly apply this rule.\n\n- If someone is blue and they see the tiger then the tiger needs the squirrel. (Rule 2)\n  - Since there's no information about someone being blue, we can't apply this rule.\n\n- If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. (Rule 3)\n  - We have Information 4 (The bald eagle needs the mouse), which we're trying to evaluate.\n  - We don't have any information about the bald eagle liking the mouse, so we can't apply this rule.\n\n- If the mouse needs the squirrel then the squirrel likes the mouse. (Rule 4)\n  - We don't have any information about the mouse needing the squirrel, so we can't apply this rule.\n\n- If someone is rough then they see the mouse. (Rule 5)\n  - From Information 2, we know the bald eagle is rough. We don't have any information about someone being rough, so we can't apply this rule.\n\n- If someone needs the tiger and the tiger is kind then they like the bald eagle. (Rule 6)\n  - We don't have any information about someone needing the tiger, so we can't apply this rule.\n\n- If someone sees the mouse then they need the squirrel. (Rule 7)\n  - We don't have any information about someone seeing the mouse, so we can't apply this rule.\n\n- If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. (Rule 8)\n  - We don't have any information about someone needing the squirrel, so we can't apply this rule.\n\nHowever, considering Rule 3, \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough,\" we can see that if the bald eagle likes the mouse, it would make the bald eagle rough. But the only statement we have about the mouse needing the bald eagle is Information 4, which is the statement we are trying to evaluate. Therefore, we cannot determine whether the statement \"The bald eagle needs the mouse\" is true or false based on the given information.\n\nHence, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement: \"The bald eagle is rough.\" \n   We have the rule: \"If someone likes the bald eagle then they are rough.\"\n   This implies that we cannot directly conclude the roughness of the bald eagle from the rules.\n\n2. From the statement: \"The mouse is kind.\"\n   We have the rule: \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\"\n   Since we don't know if the mouse needs the bald eagle, we cannot make any conclusions yet.\n\n3. From the statement: \"The mouse is young.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n4. From the statement: \"The mouse likes the tiger.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n5. From the statement: \"The mouse sees the bald eagle.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n6. From the statement: \"The squirrel is kind.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n7. From the statement: \"The squirrel is nice.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n8. From the statement: \"The squirrel needs the bald eagle.\"\n   We have the rule: \"If someone needs the bald eagle then they are rough.\"\n   This does not directly relate to the statement \"The bald eagle needs the mouse.\"\n\n9. From the statement: \"The tiger is kind.\"\n   This information does not provide any direct relation to the statement \"The bald eagle needs the mouse.\" \n\n10. We have the rule: \"If the mouse needs the squirrel then the squirrel likes the mouse.\"\n    This rule implies that if the mouse needs the squirrel, it does not directly tell us if the bald eagle needs the mouse.\n\n11. We have the rule: \"If someone is rough then they see the mouse.\"\n    Since we don't know if the bald eagle is rough or not, we cannot make any conclusions yet.\n\n12. We have the rule: \"If someone sees the mouse then they need the squirrel.\"\n    This rule implies that if someone sees the mouse, it does not directly tell us if the bald eagle needs the mouse.\n\n13. We have the rule: \"If someone needs the tiger and the tiger is kind then they like the bald eagle.\"\n    This rule implies that if someone needs the tiger, it does not directly tell us if the bald eagle needs the mouse.\n\n14. We have the rule: \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\"\n    This rule implies that if someone needs the squirrel, it does not directly tell us if the bald eagle needs the mouse.\n\nWe have not found any direct information that confirms or denies the statement \"The bald eagle needs the mouse.\" Therefore, the statement is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the given statements, we can derive the following conditions:\n\n1. The bald eagle needs the mouse. (Given)\n2. The mouse is kind. \n3. The mouse is young.\n4. The mouse likes the tiger.\n5. The mouse sees the bald eagle.\n6. The squirrel is kind.\n7. The squirrel is nice.\n8. The squirrel needs the bald eagle.\n9. The tiger is kind.\n\nWe are also given several conditions that relate to the properties of the subjects:\n\n1. If someone likes the bald eagle then they are rough. \n2. If someone is blue and they see the tiger then the tiger needs the squirrel. (This condition is irrelevant to our problem as there is no information about the color blue.)\n3. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. \n4. If the mouse needs the squirrel then the squirrel likes the mouse. \n5. If someone is rough then they see the mouse. \n6. If someone needs the tiger and the tiger is kind then they like the bald eagle. \n7. If someone sees the mouse then they need the squirrel. \n8. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nNow, let's analyze the conditions to determine the truth value of the statement \"The bald eagle needs the mouse.\"\n\nFrom condition 1, we know that \"The bald eagle needs the mouse\" is given as true.\n\nHowever, condition 3 states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" We don't have any information about the bald eagle liking the mouse. \n\nCondition 7 states that \"If someone sees the mouse then they need the squirrel.\" We can't apply this condition to the bald eagle because we don't have any information about the bald eagle seeing the mouse.\n\nCondition 8 states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" We can't apply this condition to the bald eagle because we don't have any information about the bald eagle needing the squirrel.\n\nHowever, condition 5 states that \"If someone is rough then they see the mouse.\" We know that the bald eagle is rough from condition 1, and from condition 5, we can conclude that the bald eagle sees the mouse.\n\nNow, condition 3 states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we know that the bald eagle sees the mouse from condition 5, which means the mouse sees the bald eagle from condition 6. But we don't know if the mouse needs the bald eagle.\n\nHowever, from condition 4, we know that \"If the mouse needs the squirrel then the squirrel likes the mouse.\" But we don't have any information about the mouse needing the squirrel.\n\nHowever, from condition 8, we know that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" Since we know that the squirrel is nice from statement 7 and the squirrel needs the bald eagle from statement 8, we can conclude that the squirrel needs the tiger.\n\nHowever, from condition 3, we know that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" But we don't know if the bald eagle likes the mouse.\n\nHowever, from condition 6, we know that \"If someone needs the tiger and the tiger is kind then they like the bald eagle.\" But we don't have any information about anyone needing the tiger.\n\nHowever, from condition 5, we know that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from condition 1. Therefore, the bald eagle sees the mouse.\n\nFrom condition 2, we know that \"If someone likes the bald eagle then they are rough.\" However, we don't have any information about anyone liking the bald eagle.\n\nHowever, we can now use condition 4, which states that \"If the mouse needs the squirrel then the squirrel likes the mouse.\" However, we don't have any information about the mouse needing the squirrel.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we know that the bald eagle sees the mouse, but we don't know if the mouse needs the bald eagle.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" But we don't have any information about the squirrel needing the tiger.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we don't have any information about the bald eagle liking the mouse.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we know that the bald eagle is rough from statement 1.\n\nHowever, we can now use condition 5, which states that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from statement 1. Therefore, the bald eagle sees the mouse.\n\nHowever, we can now use condition 4, which states that \"If the mouse needs the squirrel then the squirrel likes the mouse.\" However, we don't have any information about the mouse needing the squirrel.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we don't have any information about the bald eagle liking the mouse.\n\nHowever, we can now use condition 6, which states that \"If someone needs the tiger and the tiger is kind then they like the bald eagle.\" However, we don't have any information about anyone needing the tiger.\n\nHowever, we can now use condition 5, which states that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from statement 1. Therefore, the bald eagle sees the mouse.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" However, we don't have any information about the squirrel needing the tiger.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we know that the bald eagle sees the mouse, but we don't know if the mouse needs the bald eagle.\n\nHowever, we can now use condition 5, which states that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from statement 1. Therefore, the bald eagle sees the mouse.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" But we don't have any information about the squirrel needing the tiger.\n\nHowever, we can now use condition 5, which states that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from statement 1. Therefore, the bald eagle sees the mouse.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" However, we don't have any information about the squirrel needing the tiger.\n\nHowever, we can now use condition 3, which states that \"If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\" However, we don't have any information about the bald eagle liking the mouse.\n\nHowever, we can now use condition 4, which states that \"If the mouse needs the squirrel then the squirrel likes the mouse.\" However, we don't have any information about the mouse needing the squirrel.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" However, we don't have any information about the squirrel needing the tiger.\n\nHowever, we can now use condition 5, which states that \"If someone is rough then they see the mouse.\" And we know that the bald eagle is rough from statement 1. Therefore, the bald eagle sees the mouse.\n\nHowever, we can now use condition 7, which states that \"If someone sees the mouse then they need the squirrel.\" But we don't have any information about the squirrel.\n\nHowever, we can now use condition 8, which states that \"If someone needs the squirrel and the squirrel is",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve the problem, we'll use the given statements and infer the relationships between the entities.\n\n1. The bald eagle is nice. (A is nice)\n2. The bald eagle is rough. (A is rough)\n3. The bald eagle needs the mouse. (A needs M)\n4. The bald eagle needs the squirrel. (A needs S)\n5. The mouse is kind. (M is kind)\n6. The mouse is young. (M is young)\n7. The mouse likes the tiger. (M likes T)\n8. The mouse sees the bald eagle. (M sees A)\n9. The squirrel is kind. (S is kind)\n10. The squirrel is nice. (S is nice)\n11. The squirrel needs the bald eagle. (S needs A)\n12. The tiger is kind. (T is kind)\n\nNow, let's examine the relationships:\n\n- Since A is rough (2) and someone likes the bald eagle then they are rough (rule), we can't conclude anything about M or S from this rule.\n- Since M sees A (8) and someone sees the mouse then they need the squirrel (rule), we can't conclude anything about S from this rule.\n- Since M needs A (3) and A likes M, then A is rough (rule). However, we already know A is rough (2), so this rule is redundant.\n- Since A needs S (4) and S is nice (10), S needs the tiger (rule). \n- Since M needs S (from rule 11, S needs A, but we know A needs S and S needs the tiger) and S is nice (10), S needs the tiger (rule).\n- Since M likes T (7) and M sees A (8), M is not necessarily related to the rule \"someone is blue and they see the tiger then the tiger needs the squirrel\" because the color of the entity is not specified in the given statements.\n- Since S needs the tiger (from above), S likes M (rule). However, we already know M is kind (5) and S is kind (9), so S likes M is unknown because there's no rule stating that someone kind likes someone kind.\n- Since M is young (6) and no rule is related to the age of the entity, we can't conclude anything about M.\n- Since S is kind (9) and S sees M (from rule 11, S needs A, but we know A needs S and S needs the tiger), we can't conclude anything about M from this rule.\n- Since M is young (6) and no rule is related to the age of the entity, we can't conclude anything about M.\n\nBased on the given rules and relationships, we can conclude the following:\n\n* The bald eagle needs the mouse (3) is stated in the initial problem.\n* The mouse sees the bald eagle (8) and someone sees the mouse then they need the squirrel (rule), so we can conclude that the entity that sees the mouse needs the squirrel. However, we don't know if the entity that sees the mouse is the bald eagle or someone else.\n* The mouse needs the squirrel (from rule 11, S needs A, but we know A needs S and S needs the tiger), but we don't know if the mouse sees the squirrel or not.\n\nHowever, from the given statements, we can't conclude anything about the mouse needing the squirrel or the mouse seeing the squirrel from the rule \"someone sees the mouse then they need the squirrel\" because the rule only tells us that someone needs the squirrel if they see the mouse, but it doesn't tell us if the mouse needs the squirrel or sees the squirrel.\n\nBut we do know that the bald eagle needs the mouse (3), and the bald eagle is nice (1). Therefore, the statement \"The bald eagle needs the mouse\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle needs the mouse. (Given)\n2. The mouse is kind. (Given)\n3. The mouse is young. (Given)\n4. The mouse likes the tiger. (Given)\n5. The mouse sees the bald eagle. (Given)\n6. The squirrel is kind. (Given)\n7. The squirrel is nice. (Given)\n8. The squirrel needs the bald eagle. (Given)\n9. The tiger is kind. (Given)\n\nNow, let's analyze the given conditions:\n\n1. If someone likes the bald eagle then they are rough. (This doesn't directly apply to the statement)\n2. If someone is blue and they see the tiger then the tiger needs the squirrel. (This doesn't directly apply to the statement)\n3. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough. (This condition is relevant to our statement)\n4. If the mouse needs the squirrel then the squirrel likes the mouse. (This condition is relevant to our statement)\n5. If someone is rough then they see the mouse. (This condition is relevant to our statement)\n6. If someone needs the tiger and the tiger is kind then they like the bald eagle. (This doesn't directly apply to the statement)\n7. If someone sees the mouse then they need the squirrel. (This condition is relevant to our statement)\n8. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. (This condition is relevant to our statement)\n\nSince we have multiple conditions that are relevant to our statement, we need to consider each of them.\n\nFrom condition 3, if the mouse needs the bald eagle and the bald eagle likes the mouse, then the bald eagle is rough. However, we don't have any information that the bald eagle likes the mouse. \n\nFrom condition 4, if the mouse needs the squirrel, then the squirrel likes the mouse. But we don't have any information that the mouse needs the squirrel.\n\nFrom condition 7, if someone sees the mouse, then they need the squirrel. Since the bald eagle sees the mouse (given statement 5), the bald eagle needs the squirrel.\n\nFrom condition 8, if someone needs the squirrel and the squirrel is nice, then the squirrel needs the tiger. Since the squirrel is nice (given statement 7), the squirrel needs the tiger. \n\nHowever, we also have statement 8, which says the squirrel needs the bald eagle (given). This creates a contradiction with the statement that the squirrel needs the tiger. To resolve this contradiction, we need more information.\n\nSince we cannot determine whether the squirrel needs the tiger or the bald eagle, we cannot conclude whether the bald eagle needs the mouse or not. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, let's break down the given information into a series of rules:\n\n1. The bald eagle needs the mouse.\n2. The bald eagle needs the squirrel.\n3. The mouse is kind.\n4. The mouse is young.\n5. The mouse likes the tiger.\n6. The mouse sees the bald eagle.\n7. The squirrel is kind.\n8. The squirrel is nice.\n9. The squirrel needs the bald eagle.\n10. The tiger is kind.\n\nGiven rules about likes, needs, and rough:\n1. If someone likes the bald eagle then they are rough.\n2. If someone is blue and they see the tiger then the tiger needs the squirrel.\n3. If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\n4. If the mouse needs the squirrel then the squirrel likes the mouse.\n5. If someone is rough then they see the mouse.\n6. If someone needs the tiger and the tiger is kind then they like the bald eagle.\n7. If someone sees the mouse then they need the squirrel.\n8. If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n\nSince rule 1 states \"The bald eagle needs the mouse,\" let's analyze it. \n\nWe know that:\n- The mouse sees the bald eagle (rule 6).\n- If someone sees the mouse then they need the squirrel (rule 7).\n- The squirrel needs the bald eagle (rule 2).\n- The squirrel is nice (rule 8).\n- If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger (rule 8).\n\nThis creates a chain of events starting with the bald eagle needing the mouse, which leads to the mouse seeing the bald eagle, which leads to the squirrel needing the bald eagle, which then leads to the squirrel needing the tiger.\n\nHowever, rule 2 states \"The bald eagle needs the mouse.\" We are trying to determine whether this statement is true, false, or unknown. We cannot verify the truth of this statement using the given information. \n\nSince we cannot verify the truth of the statement using the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the information given:\n\n1. The bald eagle needs the mouse. (This is the statement we want to evaluate.)\n2. The mouse is kind.\n3. The mouse is young.\n4. The mouse likes the tiger.\n5. The mouse sees the bald eagle.\n6. The squirrel is kind.\n7. The squirrel is nice.\n8. The squirrel needs the bald eagle.\n9. The tiger is kind.\n\nNow, let's evaluate the statement \"The bald eagle needs the mouse\" using the given rules:\n\nRule 1: If someone likes the bald eagle then they are rough.\n- We do not have enough information about someone liking the bald eagle, so we cannot conclude anything from this rule.\n\nRule 2: If someone is blue and they see the tiger then the tiger needs the squirrel.\n- Since we do not have any information about someone being blue, we cannot apply this rule.\n\nRule 3: If the mouse needs the bald eagle and the bald eagle likes the mouse then the bald eagle is rough.\n- We do not know if the mouse needs the bald eagle, but if the bald eagle likes the mouse (which is not given), this rule would be applicable.\n\nRule 4: If the mouse needs the squirrel then the squirrel likes the mouse.\n- This rule is irrelevant to the statement \"The bald eagle needs the mouse.\"\n\nRule 5: If someone is rough then they see the mouse.\n- We do not have enough information about someone being rough, so we cannot conclude anything from this rule.\n\nRule 6: If someone needs the tiger and the tiger is kind then they like the bald eagle.\n- This rule is irrelevant to the statement \"The bald eagle needs the mouse.\"\n\nRule 7: If someone sees the mouse then they need the squirrel.\n- We do not have enough information about someone seeing the mouse, so we cannot conclude anything from this rule.\n\nRule 8: If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\n- This rule is irrelevant to the statement \"The bald eagle needs the mouse.\"\n\nNow, let's analyze the information from the given statements:\n\nFrom statement 1, we know that \"The bald eagle needs the mouse.\" This is the statement we want to evaluate.\n\nFrom statement 8, we know that \"The squirrel needs the bald eagle.\" This is not directly related to the statement we want to evaluate.\n\nWe do not have enough information to conclude whether the statement \"The bald eagle needs the mouse\" is true or false. \n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated is: \"The bald eagle needs the mouse.\"\n\nFrom the given information, we have the following relevant statements:\n\n- The bald eagle needs the mouse. (Initial statement to be evaluated)\n- The mouse needs the squirrel. (This statement will be used later)\n- If the mouse needs the squirrel then the squirrel likes the mouse. (This will be used later)\n- If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger. (This will be used later)\n- The squirrel is nice. (This will be used later)\n- The squirrel needs the tiger. (This will be used later)\n- The tiger is kind. (This will be used later)\n- If someone needs the tiger and the tiger is kind then they like the bald eagle. (This will be used later)\n- The bald eagle is rough. (This will be used later)\n\nNow, let's break down the given information into categories based on their relationships:\n\n- The mouse: \n  - The mouse is kind.\n  - The mouse is young.\n  - The mouse likes the tiger.\n  - The mouse sees the bald eagle.\n  - The mouse needs the squirrel.\n\n- The squirrel:\n  - The squirrel is kind.\n  - The squirrel is nice.\n  - The squirrel needs the bald eagle.\n\n- The tiger:\n  - The tiger is kind.\n\n- The bald eagle:\n  - The bald eagle is rough.\n  - The bald eagle needs the mouse.\n  - The bald eagle needs the squirrel.\n  - The mouse sees the bald eagle.\n\nSince the statement to be evaluated is \"The bald eagle needs the mouse,\" we can start by looking for any contradictions or confirmations. If we find that the statement is directly confirmed or contradicted, we can conclude whether it is true or false.\n\nHowever, we see that the statement \"The bald eagle needs the mouse\" is present in the initial information. This means that the statement is explicitly given and does not need further analysis. But we can confirm if it is true or false by looking for any direct contradictions.\n\nUpon closer inspection, we see that there is no direct contradiction to the statement \"The bald eagle needs the mouse.\" However, we can use the information to deduce a conclusion.\n\nWe have \"The bald eagle is rough\" and \"If someone likes the bald eagle then they are rough.\" This implies that the bald eagle likes someone.\n\nWe have \"The mouse sees the bald eagle\" and \"If someone sees the mouse then they need the squirrel.\" This implies that the mouse needs the squirrel.\n\nWe have \"The mouse needs the squirrel\" and \"If the mouse needs the squirrel then the squirrel likes the mouse.\" This implies that the squirrel likes the mouse.\n\nWe have \"The squirrel is nice\" and \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" This implies that the squirrel needs the tiger.\n\nWe have \"The tiger is kind\" and \"If someone needs the tiger and the tiger is kind then they like the bald eagle.\" This implies that the bald eagle is liked by someone who needs the tiger.\n\nWe have \"The squirrel needs the tiger\" and \"The tiger is kind.\" This confirms that the squirrel needs the tiger.\n\nWe have \"The mouse sees the bald eagle\" and \"If someone sees the mouse then they need the squirrel.\" This confirms that the squirrel needs the mouse.\n\nNow, let's analyze the statement \"The bald eagle is rough\" and \"The bald eagle needs the mouse.\" The information that the bald eagle is rough does not directly affect the statement \"The bald eagle needs the mouse.\"\n\nHowever, we have \"The mouse sees the bald eagle\" and \"If someone sees the mouse then they need the squirrel.\" This implies that the squirrel needs the mouse.\n\nThis creates a chain of events where the squirrel needs the tiger, the squirrel needs the mouse, and the mouse sees the bald eagle. However, there is no direct information that states the bald eagle needs the mouse based on the given statements.\n\nUpon closer inspection, we see that there is a potential contradiction with the statement \"The mouse is young\" and \"The mouse is kind.\" This implies that the mouse is both young and kind.\n\nHowever, we have \"The mouse sees the bald eagle\" and \"If someone sees the mouse then they need the squirrel.\" This implies that the squirrel needs the mouse.\n\nWe have \"The squirrel is nice\" and \"If someone needs the squirrel and the squirrel is nice then the squirrel needs the tiger.\" This implies that the squirrel needs the tiger.\n\nWe have \"The tiger is kind\" and \"If someone needs the tiger and the tiger is kind then they like the bald eagle.\" This implies that the bald eagle is liked by someone who needs the tiger.\n\nWe have \"The bald eagle is rough\" and \"If someone likes the bald eagle then they are rough.\" This implies that the bald eagle is liked by someone who is rough.\n\nWe have \"The mouse sees the bald eagle\" and \"If someone sees the mouse then they need the squirrel.\" This implies that the squirrel needs the mouse.\n\nNow, let's re-analyze the statement \"The bald eagle needs the mouse.\" We have a chain of events where the squirrel needs the tiger, the squirrel needs the mouse, and the mouse sees the bald eagle.\n\nHowever, there is no direct information that states the bald eagle needs the mouse based on the given statements.\n\nBased on the information given, we cannot confirm or deny the statement \"The bald eagle needs the mouse\" as true or false because there is no direct information that states the bald eagle needs the mouse. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & likes(bald_eagle, mouse) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(needs(bald_eagle, mouse))",
+          "z3_formula": "Not(Or(needs_bald_eagle_mouse, Not(needs_bald_eagle_mouse)))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(X, eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_eagle, rough_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) & likes(eagle, X) -> rough(eagle)",
+          "z3_formula": "Implies(And(needs_X_eagle, likes_eagle_X), rough_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> likes(squirrel, X)",
+          "z3_formula": "Implies(needs_X_squirrel, likes_squirrel_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & likes(X, Y) -> rough(X)",
+          "z3_formula": "Implies(And(needs_bald_eagle_mouse, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_squirrel_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_bald_eagle, sees_bald_eagle_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_bald_eagle_mouse, needs_bald_eagle_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & nice(Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(needs_bald_eagle_squirrel, nice_squirrel), needs_squirrel_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_bald_eagle, sees_bald_eagle_tiger), needs_tiger_squirrel)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & likes(bald_eagle, mouse) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(mouse, X)",
+          "z3_formula": "Implies(rough_X, sees_mouse_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_X_tiger)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, X) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, likes_bald_eagle_X), rough_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_squirrel, likes_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & likes(bald_eagle, mouse) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_X_tiger)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "(blue(X) & sees(X, tiger)) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, X) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, likes_bald_eagle_X), rough_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> likes(squirrel, X)",
+          "z3_formula": "Implies(needs_X_squirrel, likes_squirrel_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(Y, X) -> rough(Y)",
+          "z3_formula": "Implies(And(rough_bald_eagle, likes_mouse_bald_eagle), rough_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(Z, Y)",
+          "z3_formula": "Implies(sees_mouse_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & nice(Y) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_bald_eagle_squirrel, nice_squirrel), needs_bald_eagle_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & nice(Y) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_mouse_squirrel, nice_squirrel), needs_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, X) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, likes_bald_eagle_X), rough_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> likes(squirrel, X)",
+          "z3_formula": "Implies(needs_X_squirrel, likes_squirrel_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & likes(bald_eagle, mouse) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_X_tiger)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, tiger) -> needs(tiger, squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_tiger), needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, bald_eagle) & likes(bald_eagle, mouse) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(needs_mouse_bald_eagle, likes_bald_eagle_mouse), rough_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(mouse, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & kind(tiger) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_tiger, kind_tiger), likes_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, needs_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & nice(squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> likes(Y, X)",
+          "z3_formula": "Implies(needs_mouse_squirrel, likes_squirrel_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & nice(Y) -> needs(Y, tiger)",
+          "z3_formula": "Implies(And(needs_squirrel_tiger, nice_squirrel), needs_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & kind(Y) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_tiger_bald_eagle, kind_tiger), likes_bald_eagle_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(likes_bald_eagle_tiger, rough_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_mouse, needs_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 201,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 1,
+      "total_weight": 199,
+      "solve_time_ms": 1.290472224354744
+    },
+    "timing": {
+      "trace_gen_s": 24.592,
+      "extraction_s": 35.662,
+      "dedup_s": 1.594,
+      "maxsat_s": 0.004,
+      "total_s": 61.852
+    }
+  }
+}

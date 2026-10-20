@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-012-gsm8k-pilot",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:47:20.559Z",
+    "updated_at": "2026-05-17T16:49:08.830Z",
+    "hypothesis": "Cross-domain validation: Qwen2.5-14B-Instruct 在 GSM8K (开放答案数学域) 30 题上 SICA vs SC。预期 C0<20%（14B 在 GSM8K 太强），验证 C0 作为 SICA 无效性预测指标。",
+    "parent": "sica_expanded_14b"
+  },
+  "timestamp": "2026-05-17T16:49:08.967503+00:00",
+  "trigger": "update_registry"
+}

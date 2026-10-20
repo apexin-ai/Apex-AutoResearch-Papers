@@ -1,0 +1,1072 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-136_Q10",
+    "problem": "The bald eagle is rough. The bear eats the dog. The bear is big. The bear needs the dog. The bear sees the cat. The bear sees the dog. The cat eats the dog. The dog is nice. The dog is rough. The dog needs the bear. The dog needs the cat. The dog sees the bald eagle. If something eats the bear then the bear eats the bald eagle. If something needs the cat then the cat eats the bald eagle. If something sees the cat and the cat is green then the cat eats the bear. If something eats the bear and it eats the dog then the bear is rough. If something eats the bald eagle then it is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear is not rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nRough(BaldEagle, True) ::: The bald eagle is rough.\nEats(Bear, Dog, True) ::: The bear eats the dog.\nBig(Bear, True) ::: The bear is big.\nNeeds(Bear, Dog, True) ::: The bear needs the dog.\nSees(Bear, Cat, True) ::: The bear sees the cat.\nSees(Bear, Dog, True) ::: The bear sees the dog.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nNice(Dog, True) ::: The dog is nice.\nRough(Dog, True) ::: The dog is rough.\nNeeds(Dog, Bear, True) ::: The dog needs the bear.\nNeeds(Dog, Cat, True) ::: The dog needs the cat.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\n\nRules:\nEats($x, Bear, True) >>> Eats(Bear, BaldEagle, True) ::: If something eats the bear then the bear eats the bald eagle.\nNeeds($x, Cat, True) >>> Eats(Cat, BaldEagle, True) ::: If something needs the cat then the cat eats the bald eagle.\nSees($x, Cat, True) && Green(Cat, True) >>> Eats(Cat, Bear, True) ::: If something sees the cat and the cat is green then the cat eats the bear.\nEats($x, Bear, True) && Eats($x, Dog, True) >>> Rough(Bear, True) ::: If something eats the bear and it eats the dog then the bear is rough.\nEats($x, BaldEagle, True) >>> Green($x, True) ::: If something eats the bald eagle then it is green.\n\nQuery:\nRough(Bear, False) ::: The bear is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 134.5,
+      "Unknown": 124.0
+    },
+    "answer_counts": {
+      "False": 6,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a combination of logical reasoning and rules provided.\n\nGiven information:\n1. The bear is big.\n2. The bear eats the dog.\n3. The cat eats the dog.\n4. If something eats the bear and it eats the dog then the bear is rough.\n5. If something sees the cat and the cat is green then the cat eats the bear.\n6. If something eats the bald eagle then it is green.\n7. The bear sees the cat.\n8. The dog sees the bald eagle.\n9. The bear needs the dog.\n10. The bear is not mentioned as green.\n11. The dog is nice.\n12. The dog is rough.\n13. The dog needs the bear and the cat.\n14. The cat is not mentioned as green.\n\nNow, let's use the given information to determine the truth value of the statement \"The bear is not rough.\"\n\nFrom point 12, we know that the dog is rough. This does not directly affect the bear's roughness. However, from point 4, if something eats the bear and it eats the dog, then the bear is rough. \n\nFrom point 3, we know the cat eats the dog, but from point 8, the dog sees the bald eagle, which means the dog has information about the bald eagle but does not eat the bear. So, the condition in point 4 is not met here.\n\nHowever, there's another condition that could affect the bear's roughness. We need to examine the rules involving the cat and the bear. Since the cat is not green and we don't know if it is green, we cannot conclude anything using point 5.\n\nFrom point 2, we know the bear eats the dog. This means the bear eats the dog and, by point 4, the bear is rough.\n\nSince the bear is rough, the statement \"The bear is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear eats the dog.\n   - This statement does not provide any information about the bear's roughness.\n\n2. The bear is big.\n   - This statement also does not provide any information about the bear's roughness.\n\n3. The bear needs the dog.\n   - This statement does not provide any information about the bear's roughness.\n\n4. The bear sees the cat.\n   - This statement also does not provide any information about the bear's roughness.\n\n5. The bear sees the dog.\n   - This statement also does not provide any information about the bear's roughness.\n\n6. The cat eats the dog.\n   - This statement does not provide any information about the bear's roughness.\n\n7. The dog is nice.\n   - This statement does not provide any information about the bear's roughness.\n\n8. The dog is rough.\n   - This statement does not provide any information about the bear's roughness.\n\n9. The dog needs the bear.\n   - This statement does not provide any information about the bear's roughness.\n\n10. The dog needs the cat.\n    - This statement does not provide any information about the bear's roughness.\n\n11. The dog sees the bald eagle.\n    - This statement also does not provide any information about the bear's roughness.\n\n12. If something eats the bear then the bear eats the bald eagle.\n    - This statement does not provide any information about the bear's roughness.\n\n13. If something needs the cat then the cat eats the bald eagle.\n    - This statement does not provide any information about the bear's roughness.\n\n14. If something sees the cat and the cat is green then the cat eats the bear.\n    - This statement does not provide any information about the bear's roughness.\n\n15. If something eats the bear and it eats the dog then the bear is rough.\n    - This statement is the key to determining the bear's roughness. It implies that if the bear is rough, then there must be a situation where the bear eats the dog.\n\n16. We need to analyze the statements to find any situation where the bear eats the dog. Since we already know that the cat eats the dog (statement 6), we can infer that the bear does not eat the dog.\n\n17. However, we need to check the other conditions as well. Statement 15 implies that if the bear eats the dog, then the bear is rough. But since the bear does not eat the dog, we cannot directly conclude that the bear is not rough.\n\n18. The other conditions also do not provide any information about the bear's roughness. However, there is a condition that states \"If something eats the bald eagle then it is green.\"\n\n19. Since we do not have any information about the bear eating the bald eagle, we cannot directly conclude that the bear is green or not green.\n\n20. However, we can infer that the bear is not green because there is no condition that states the bear is green.\n\n21. We are now going to check the condition \"If something sees the cat and the cat is green then the cat eats the bear.\" This condition implies that if the cat is green, then the cat eats the bear.\n\n22. We do not know if the cat is green, but we do know that there is no situation where the bear eats the cat. However, we do not have any information about the cat eating the bear.\n\n23. Now we are going to check the condition \"If something eats the bear and it eats the dog then the bear is rough.\" This condition implies that if the bear is rough, then there must be a situation where the bear eats the dog.\n\n24. However, as we previously inferred, the bear does not eat the dog. But we also have another condition that states \"If something eats the bear then the bear eats the bald eagle.\"\n\n25. This condition implies that if the bear eats the bald eagle, then the bear is not rough. But we do not know if the bear eats the bald eagle.\n\n26. Now we are going to check the condition \"If something eats the bald eagle then it is green.\"\n\n27. This condition implies that if the bear eats the bald eagle, then the bear is green. But we do not know if the bear eats the bald eagle.\n\n28. However, we can infer that if the bear eats the bald eagle, then the bear is not rough. But we do not know if the bear eats the bald eagle.\n\n29. Since we do not have enough information to conclude that the bear is rough or not rough, we cannot determine the truth value of the statement \"The bear is not rough.\" Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the information given:\n1. The bear is big.\n2. The bear needs the dog.\n3. The bear sees the cat.\n4. The bear sees the dog.\n5. If something eats the bear then the bear eats the bald eagle.\n6. If something needs the cat then the cat eats the bald eagle.\n7. If something sees the cat and the cat is green then the cat eats the bear.\n8. If something eats the bear and it eats the dog then the bear is rough.\n9. If something eats the bald eagle then it is green.\n\nFrom the rules provided, we know that if something eats the bear and it eats the dog, then the bear is rough. We need to find out if the bear eats the dog.\n\nFrom the given information:\n1. The cat eats the dog.\n2. The bear sees the cat.\n3. The bear sees the dog.\n\nHowever, we do not have any information that the bear eats the dog or that the bear eats the cat.\n\nNow, we need to consider the rule that if something sees the cat and the cat is green then the cat eats the bear. We do not know if the cat is green or not, so this rule does not provide any information about the bear.\n\nNow let's consider the rule that if something eats the bear then the bear eats the bald eagle. We do not know if anything eats the bear, so we cannot determine if the bear eats the bald eagle.\n\nHowever, let's analyze the statement \"If something eats the bear and it eats the dog then the bear is rough.\" We do not know if anything eats the bear and the dog, but we do know that the cat eats the dog (from point 1).\n\nNow, let's apply the rule that if something eats the bear and it eats the dog then the bear is rough. We know that the cat eats the dog, but we do not know if the cat eats the bear. However, we also know that if the cat sees the bear and the cat is green, then the cat eats the bear. We do not know if the cat is green or not.\n\nHowever, we do know that the cat sees the bear (from point 3). If the cat eats the bear, then it eats the dog (from point 1) and the bear is rough (from the rule).\n\nBut if the cat eats the bear, then it is green (from the rule). We can now apply this new information to the rule that if something sees the cat and the cat is green then the cat eats the bear.\n\nThe rule now says that the cat eats the bear. From this, we know that the cat eats the dog (from point 1) and the bear is rough (from the rule).\n\nHowever, this conclusion is based on the assumption that the cat is green. We do not know if the cat is green or not. \n\nTherefore, based on the given information and the rules provided, we cannot determine whether the bear is rough or not. \n\nSo, the statement \"The bear is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is big. (This statement doesn't give any information about the bear being rough or not.)\n2. The bear needs the dog. (This statement also doesn't give any information about the bear being rough or not.)\n3. The bear sees the cat. (This statement doesn't give any information about the bear being rough or not.)\n4. The bear sees the dog. (This statement doesn't give any information about the bear being rough or not.)\n5. If something eats the bear then the bear eats the bald eagle. (This is a conditional statement that doesn't affect the bear's roughness.)\n6. If something needs the cat then the cat eats the bald eagle. (This is a conditional statement that doesn't affect the bear's roughness.)\n7. If something sees the cat and the cat is green then the cat eats the bear. (This is a conditional statement that doesn't affect the bear's roughness.)\n8. If something eats the bear and it eats the dog then the bear is rough. (This statement is crucial. Since the cat eats the dog, and the cat also eats the bear, this statement is triggered.)\n9. The cat eats the dog. (This statement triggers the condition in statement 8.)\n10. The cat eats the bear. (This statement is a result of the condition in statement 8 being triggered.)\n11. If something eats the bald eagle then it is green. (This statement doesn't affect the bear's roughness, but it provides information about the cat's color.)\n\nNow, let's analyze the given information again.\n\nFrom statement 8, we know that if something eats the bear and it eats the dog, then the bear is rough. Since the cat eats both the bear and the dog, the condition is met, and the bear is rough.\n\nTherefore, the statement \"The bear is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear eats the dog. \n   - This statement doesn't provide any information about the bear's roughness.\n\n2. The bear is big. \n   - This statement also doesn't provide any information about the bear's roughness.\n\n3. The bear needs the dog. \n   - Similar to the previous two statements, this one doesn't provide any information about the bear's roughness.\n\n4. The bear sees the cat. \n   - This statement doesn't provide any information about the bear's roughness.\n\n5. The bear sees the dog. \n   - This statement also doesn't provide any information about the bear's roughness.\n\n6. The cat eats the dog. \n   - This statement doesn't provide any information about the bear's roughness.\n\n7. The dog is nice. \n   - This statement doesn't provide any information about the bear's roughness.\n\n8. The dog is rough. \n   - This statement doesn't provide any information about the bear's roughness.\n\n9. The dog needs the bear. \n   - Similar to the previous statements, this one doesn't provide any information about the bear's roughness.\n\n10. The dog needs the cat. \n    - Similar to the previous statements, this one doesn't provide any information about the bear's roughness.\n\n11. The dog sees the bald eagle. \n    - This statement doesn't provide any information about the bear's roughness.\n\nNow let's analyze the given rules:\n\n1. If something eats the bear then the bear eats the bald eagle. \n   - This rule doesn't provide any information about the bear's roughness.\n\n2. If something needs the cat then the cat eats the bald eagle. \n   - This rule also doesn't provide any information about the bear's roughness.\n\n3. If something sees the cat and the cat is green then the cat eats the bear. \n   - This rule also doesn't provide any information about the bear's roughness.\n\n4. If something eats the bear and it eats the dog then the bear is rough. \n   - Let's consider this rule. The cat eats the dog, which means it also eats the bear. But the bear is not rough according to this rule because there is no statement saying the cat eats the dog and the bear. However, we know the cat eats the dog. So this rule doesn't provide any information about the bear's roughness.\n\n5. If something eats the bald eagle then it is green. \n   - This rule also doesn't provide any information about the bear's roughness.\n\nHowever, we can use rule 4 in combination with another statement to determine whether the bear is rough or not. Let's analyze the rule 4 again:\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that the cat eats the dog. But we don't know whether the cat eats the bear or not. However, we can use statement 3 and rule 3 to determine whether the cat is green or not.\n\n3. If something sees the cat and the cat is green then the cat eats the bear.\n- We don't know whether the cat is green or not. But we know the bear sees the cat (statement 4), and the cat eats the dog (statement 6).\n\nNow, let's consider the bear's relationship with the cat and the dog. We know the bear sees the cat and the cat eats the dog. But we don't know whether the bear eats the cat or not. However, if the bear eats the cat, then the cat is green (rule 5). If the cat is green, then the bear eats the bald eagle (rule 3).\n\nBut we know the dog sees the bald eagle (statement 11). If the bear eats the bald eagle, then the dog needs the bear (statement 9).\n\nHowever, we also know the dog needs the cat (statement 10). If the dog needs the cat, then the cat eats the bald eagle (rule 2). This creates a contradiction because we already know the bear eats the bald eagle.\n\nHowever, we can use rule 4 in combination with another statement to determine whether the bear is rough or not. Let's analyze the rule 4 again:\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that the cat eats the dog. And we also know that if the cat eats the bear then the bear eats the bald eagle. This means the bear is not rough according to this rule because there is no statement saying the cat eats the bear and the cat eats the dog. However, we know the cat eats the dog. So this rule doesn't provide any information about the bear's roughness.\n\nHowever, let's consider another scenario. What if the dog eats the bear? Then the bear eats the bald eagle (rule 1). But we know the dog sees the bald eagle (statement 11). If the dog eats the bear, then it also eats the cat because the dog needs the cat (statement 10). But if the dog eats the cat, then the cat is green (rule 5). This creates a contradiction because we already know the cat eats the dog.\n\nNow let's go back to the statement \"The bear is not rough\". We can use rule 4 in combination with another statement to determine whether the bear is rough or not.\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that the cat eats the dog. And we also know that if the cat eats the bear then the bear eats the bald eagle. This means the bear is not rough according to this rule because there is no statement saying the cat eats the bear and the cat eats the dog. However, we know the cat eats the dog. So this rule doesn't provide any information about the bear's roughness.\n\nHowever, let's consider another scenario. What if the dog eats the bear? Then the bear eats the bald eagle (rule 1). But we know the dog sees the bald eagle (statement 11). If the dog eats the bear, then it also eats the cat because the dog needs the cat (statement 10). But if the dog eats the cat, then the cat is green (rule 5). This creates a contradiction because we already know the cat eats the dog.\n\nHowever, there is one statement left. Statement 8 says \"The dog is rough\". Statement 8 also says \"The dog is nice\". Let's consider the dog's relationship with the bear and the cat. We know the dog sees the bald eagle (statement 11). We also know the bear eats the bald eagle (rule 1).\n\nBut we also know the dog needs the bear (statement 9) and the dog needs the cat (statement 10). This creates a contradiction because the dog can't need both the bear and the cat.\n\nHowever, we can use rule 4 in combination with another statement to determine whether the bear is rough or not.\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that the cat eats the dog. And we also know that if the cat eats the bear then the bear eats the bald eagle. This means the bear is not rough according to this rule because there is no statement saying the cat eats the bear and the cat eats the dog. However, we know the cat eats the dog. So this rule doesn't provide any information about the bear's roughness.\n\nHowever, let's consider another scenario. What if the bear eats the dog? Then the bear eats the cat because the bear sees the cat (statement 4) and the cat eats the dog (statement 6). But if the bear eats the cat, then the cat is green (rule 5). This creates a contradiction because we already know the cat eats the dog.\n\nHowever, there is one statement left. Statement 8 says \"The dog is rough\". Statement 8 also says \"The dog is nice\". We know the dog sees the bald eagle (statement 11). We also know the bear eats the bald eagle (rule 1).\n\nBut we also know the dog needs the bear (statement 9) and the dog needs the cat (statement 10). This creates a contradiction because the dog can't need both the bear and the cat.\n\nHowever, we can use rule 4 in combination with another statement to determine whether the bear is rough or not.\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that the cat eats the dog. And we also know that if the cat eats the bear then the bear eats the bald eagle. This means the bear is not rough according to this rule because there is no statement saying the cat eats the bear and the cat eats the dog. However, we know the cat eats the dog. So this rule doesn't provide any information about the bear's roughness.\n\nHowever, let's consider another scenario. What if the bear eats the cat? Then the bear eats the bald eagle (rule 1). But we know the dog sees the bald eagle (statement 11). If the bear eats the cat, then the bear is rough (rule 4) because the cat eats the dog (statement 6) and the cat eats the bear (because the bear eats the cat). This creates a contradiction because we already know the bear sees the cat (statement 4) and the cat eats the dog (statement 6).\n\nHowever, we can use rule 4 in combination with another statement to determine whether the bear is rough or not.\n\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe know from statement 6 that",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any information about the bear being rough. \n\nStatement 1: The bear is big.\nStatement 2: The bear needs the dog.\nStatement 3: The bear eats the dog.\n\nWe can see that the bear eats the dog, which means the bear interacts with the dog. However, we still need to find a connection between the bear being rough and the given statements.\n\nLet's look for any statements that can help us determine whether the bear is rough or not.\n\nStatement 4: The bear sees the cat.\nStatement 5: The cat eats the dog.\n\nWe still don't have any information about the bear being rough, so let's continue to the next statements.\n\nStatement 6: The dog is nice.\nStatement 7: The dog is rough.\nStatement 8: The dog needs the bear.\nStatement 9: The dog needs the cat.\nStatement 10: The dog sees the bald eagle.\n\nWe can see that the dog is rough, but this doesn't necessarily mean that the bear is rough. However, let's look at the next statements.\n\nStatement 11: If something eats the bear then the bear eats the bald eagle.\nStatement 12: If something needs the cat then the cat eats the bald eagle.\nStatement 13: If something sees the cat and the cat is green then the cat eats the bear.\nStatement 14: If something eats the bear and it eats the dog then the bear is rough.\nStatement 15: If something eats the bald eagle then it is green.\n\nStatement 14 is the one that can help us determine whether the bear is rough or not. It states that if something eats the bear and it eats the dog, then the bear is rough.\n\nFrom statement 3, we know that the bear eats the dog. However, we still need to find something that eats the bear. \n\nLet's look at the next statements.\n\nStatement 16: The cat eats the dog.\nStatement 17: The dog sees the bald eagle.\n\nWe still don't have any information about something that eats the bear. Let's continue to the next statements.\n\nStatement 18: The dog is nice.\nStatement 19: The dog is rough.\nStatement 20: The dog needs the bear.\nStatement 21: The dog needs the cat.\nStatement 22: The dog sees the bald eagle.\n\nWe still don't have any information about something that eats the bear. However, let's look at the next statements.\n\nStatement 23: If something eats the bear then the bear eats the bald eagle.\nStatement 24: If something needs the cat then the cat eats the bald eagle.\nStatement 25: If something sees the cat and the cat is green then the cat eats the bear.\nStatement 26: If something eats the bald eagle then it is green.\n\nStatement 23 can help us determine whether the bear is rough or not. However, we still need to find something that eats the bear.\n\nUnfortunately, we don't have enough information to determine whether the bear is rough or not. The bear eats the dog, but we don't know what eats the bear. If we knew what eats the bear, we could use statement 14 to determine whether the bear is rough.\n\nTherefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bear is big.\n2. The bear eats the dog.\n3. The bear needs the dog.\n4. The bear sees the cat.\n5. The bear sees the dog.\n6. The cat eats the dog.\n7. The dog is nice.\n8. The dog is rough.\n9. The dog needs the bear.\n10. The dog needs the cat.\n11. The dog sees the bald eagle.\n\nRules:\n1. If something eats the bear then the bear eats the bald eagle. (No direct relation to the bear's roughness)\n2. If something needs the cat then the cat eats the bald eagle. (No direct relation to the bear's roughness)\n3. If something sees the cat and the cat is green then the cat eats the bear. (No direct relation to the bear's roughness)\n4. If something eats the bear and it eats the dog then the bear is rough. (This rule might be relevant)\n5. If something eats the bald eagle then it is green. (No direct relation to the bear's roughness)\n\nFrom the given information, we know that the bear sees the dog (statement 5). However, we do not have any information that directly connects the bear's roughness with the cat's color or the cat's actions.\n\nHowever, we do have information about the cat eating the dog (statement 6). Now let's analyze the relevant rule:\n4. If something eats the bear and it eats the dog then the bear is rough.\n\nWe can infer that the cat eats the dog (statement 6). Since the cat eats the dog and also eats the bear (because it eats the dog which also eats the bear as per statement 2), we can apply the relevant rule.\n\nSo, the cat eats the bear and it eats the dog, which means the bear is rough according to rule 4.\n\nSince we have found that the bear is rough (rule 4), we can conclude that the statement \"The bear is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. The bear eats the dog. (Direct information)\n2. If something eats the bear and it eats the dog then the bear is rough. (Condition)\n3. The cat eats the dog. (Direct information)\n4. The bear sees the cat. (Direct information)\n5. The cat eats the bald eagle. (Direct information)\n6. If something sees the cat and the cat is green then the cat eats the bear. (Condition)\n7. If something eats the bald eagle then it is green. (Condition)\n\nFrom point 5, we know that the cat eats the bald eagle. \nFrom point 7, we know that the cat is green because it eats the bald eagle.\n\nNow, looking at point 6, if something sees the cat and the cat is green, then the cat eats the bear. However, the bear sees the cat (point 4), and the cat is green (point 7), so we cannot conclude anything from this condition yet.\n\nFrom point 1, we know that the bear eats the dog. \nFrom point 3, we know that the cat eats the dog. \nFrom point 2, if something eats the bear and it eats the dog, then the bear is rough. However, in this case, it's the cat that eats the dog, not the bear.\n\nHowever, we need to consider another condition: if something eats the bear, then the bear eats the bald eagle. But we know that the cat eats the bald eagle (point 5), which means the cat eats the bear (point 6). But we also know that the bear eats the dog (point 1) and the cat eats the dog (point 3), so the condition in point 2 is fulfilled: something (the cat) eats the bear and it eats the dog.\n\nSo, according to point 2, if something eats the bear and it eats the dog, then the bear is rough.\n\nTherefore, the statement \"The bear is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The bear is not rough' is true, false, or unknown, we need to analyze the given information.\n\n1. The bear is big.\n2. The bear needs the dog.\n3. If something eats the bear then the bear eats the bald eagle. (This rule is not directly applicable to our statement, so we will ignore it for now.)\n4. If something needs the cat then the cat eats the bald eagle. (This rule is not directly applicable to our statement, so we will ignore it for now.)\n5. If something sees the cat and the cat is green then the cat eats the bear. (This rule is not directly applicable to our statement, so we will ignore it for now.)\n6. If something eats the bear and it eats the dog then the bear is rough. \n7. The cat eats the dog.\n8. Since the cat eats the dog and the dog sees the bald eagle, we can't apply any new information from the remaining rules.\n\nFrom rule 7, we know the cat eats the dog. Now let's look at rule 6. This rule states that if something eats the bear and it eats the dog, then the bear is rough. Since the cat eats the bear (this is a new piece of information we didn't have before - it can be deduced from rule 5 if the cat was green, but we are not given that the cat is green) and the cat also eats the dog (rule 7), then we can apply rule 6.\n\nSince the cat eats the bear and the cat eats the dog, then according to rule 6, the bear is rough.\n\nNow that we know the bear is rough (rule 6), we can look at the statement 'The bear is not rough'. Since we have found that the bear is indeed rough, the statement 'The bear is not rough' is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is big. (This statement does not provide any information about the bear's roughness.)\n2. The bear eats the dog. (This statement does not provide any information about the bear's roughness.)\n3. The bear needs the dog. (This statement does not provide any information about the bear's roughness.)\n4. The bear sees the cat. (This statement does not provide any information about the bear's roughness.)\n5. The bear sees the dog. (This statement does not provide any information about the bear's roughness.)\n\nWe need to look at the conditional statements:\n\n6. If something eats the bear then the bear eats the bald eagle. (This does not affect the bear's roughness.)\n7. If something needs the cat then the cat eats the bald eagle. (This does not affect the bear's roughness.)\n8. If something sees the cat and the cat is green then the cat eats the bear. (This does not affect the bear's roughness.)\n9. If something eats the bear and it eats the dog then the bear is rough. (This statement might provide information about the bear's roughness, but we need more information.)\n10. If something eats the bald eagle then it is green. (This does not affect the bear's roughness.)\n\nWe also need to analyze the statement \"The cat eats the dog.\" (This statement might provide information about the bear's roughness through statement 9.)\n\nLet's analyze statement 9: \"If something eats the bear and it eats the dog then the bear is rough.\" Since the cat eats the dog (statement 10 is not directly applicable here), we need to see if there is any statement that says the cat eats the bear.\n\nStatement 8 says \"If something sees the cat and the cat is green then the cat eats the bear.\" This does not directly tell us that the cat eats the bear, but it does tell us that if the cat is green and the cat sees something, then the cat eats the bear.\n\nHowever, we have no statement that says the cat is green. Statement 10 says \"If something eats the bald eagle then it is green.\" We don't have any information that the cat eats the bald eagle, so we cannot conclude that the cat is green.\n\nSince we cannot conclude that the cat is green, we also cannot conclude that the cat eats the bear. Therefore, we cannot use statement 9 to conclude that the bear is rough.\n\nHowever, we can analyze the situation where the cat eats the bear. If the cat eats the bear, then statement 1 says the bear is big, but statement 9 does not apply here because the cat eating the bear does not imply that the cat eats the dog. \n\nHowever, if the cat sees the bear and the cat is green then the cat eats the bear. Since the cat sees the bear (statement 4), if the cat is green, then the cat eats the bear.\n\nLet's analyze the situation where the cat sees the bear and the cat is green. If the cat is green, then statement 10 says \"If something eats the bald eagle then it is green.\" This statement implies that the cat eats the bald eagle. However, there is no statement that says the cat eats the bald eagle. \n\nHowever, we can analyze the situation where the dog eats the bear and the dog eats the cat. If the dog eats the bear, then statement 9 says \"If something eats the bear and it eats the dog then the bear is rough.\" Since the cat eats the dog (statement 5), the dog eats the bear and the dog eats the cat.\n\nTherefore, the bear is rough.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that determine the properties of the animals.\n\n1. The bear eats the dog.\n2. The bear is big.\n3. The bear needs the dog.\n4. The bear sees the cat.\n5. The bear sees the dog.\n6. The cat eats the dog.\n7. The dog is nice.\n8. The dog is rough.\n9. The dog needs the bear.\n10. The dog needs the cat.\n11. The dog sees the bald eagle.\n12. If something eats the bear then the bear eats the bald eagle.\n13. If something needs the cat then the cat eats the bald eagle.\n14. If something sees the cat and the cat is green then the cat eats the bear.\n15. If something eats the bear and it eats the dog then the bear is rough.\n16. If something eats the bald eagle then it is green.\n\nFrom statement 16, if something eats the bald eagle, then it is green. This means the cat or the bear could be green if they eat the bald eagle.\n\nFrom statements 1 and 6, we know the bear eats the dog. Statement 8 says the dog is rough. Statement 15 says if something eats the bear and it eats the dog, then the bear is rough. However, statement 1 indicates the bear eats the dog, not the other way around. So, the bear is not rough due to eating the dog.\n\nHowever, statement 4 says the bear sees the cat. We don't have any information about the color of the cat, so we can't determine if the cat is green or not.\n\nStatement 12 says if something eats the bear, then the bear eats the bald eagle. However, we don't know who eats the bear, so we can't determine if the bear eats the bald eagle or not.\n\nStatement 13 says if something needs the cat, then the cat eats the bald eagle. We know the dog needs the cat (statement 10), so the cat could eat the bald eagle if the dog is not green.\n\nFrom statements 5 and 6, we know the bear sees the dog and the cat eats the dog. However, we don't know if the cat eats the bear or not because we don't know if the cat is green or not.\n\nStatement 14 says if something sees the cat and the cat is green, then the cat eats the bear. We know the bear sees the cat, but we don't know if the cat is green.\n\nBased on the given statements, we can't determine if the bear is rough or not. We know the bear eats the dog, but we don't have enough information to determine if the bear is rough due to eating the dog or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is big. (This statement is not relevant to the question, but it is a given fact.)\n\n2. The bear eats the dog. (This statement is not relevant to the question, but it is a given fact.)\n\n3. The bear is big. (This statement is a repeat of statement 1 and is not relevant to the question.)\n\n4. The bear needs the dog. (This statement is not relevant to the question, but it is a given fact.)\n\n5. The bear sees the cat. (This statement is not relevant to the question, but it is a given fact.)\n\n6. The bear sees the dog. (This statement is not relevant to the question, but it is a given fact.)\n\n7. The cat eats the dog. (This statement is not relevant to the question, but it is a given fact.)\n\n8. The dog is nice. (This statement is not relevant to the question, but it is a given fact.)\n\n9. The dog is rough. (This statement is not relevant to the question, but it is a given fact.)\n\n10. The dog needs the bear. (This statement is not relevant to the question, but it is a given fact.)\n\n11. The dog needs the cat. (This statement is not relevant to the question, but it is a given fact.)\n\n12. The dog sees the bald eagle. (This statement is not relevant to the question, but it is a given fact.)\n\n13. If something eats the bear then the bear eats the bald eagle. (This is a rule that we will use to determine if the bear is rough.)\n\n14. If something needs the cat then the cat eats the bald eagle. (This is a rule that we will use to determine if the bear is rough.)\n\n15. If something sees the cat and the cat is green then the cat eats the bear. (This is a rule that we will use to determine if the bear is rough.)\n\n16. If something eats the bear and it eats the dog then the bear is rough. (This is a rule that we will use to determine if the bear is rough.)\n\n17. If something eats the bald eagle then it is green. (This is a rule that we will use to determine if the bear is rough.)\n\nFrom statements 1-12, we have not found any information that directly states whether the bear is rough or not.\n\nHowever, we can use rule 16 to determine if the bear is rough. To use rule 16, we need to find something that eats the bear and eats the dog. \n\nFrom statement 7, we know that the cat eats the dog. From statement 3, we know that the bear eats the dog. However, we do not know if the bear eats the dog or the cat eats the dog.\n\nIf the cat eats the dog, then the cat eats the bear (rule 15 is not applicable because we do not know that the cat is green). However, we do not know if the cat eats the bear.\n\nIf the bear eats the dog, then we do not have enough information to determine if the bear is rough.\n\nTherefore, the statement \"The bear is not rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_bear_dog, eats_X_bear), rough_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(cat, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_eagle, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear) & needs(dog, cat)",
+          "z3_formula": "And(needs_dog_bear, needs_dog_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not green(cat)",
+          "z3_formula": "Not(green_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats_bear(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_bear_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats_cat(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_cat_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats_cat(X, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats_X_dog -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bear)",
+          "z3_formula": "Not(rough_bear) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bear)",
+          "z3_formula": "Not(rough_bear) == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_bear_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_cat_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(cat, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_eagle, green_X)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(X)",
+          "z3_formula": "Implies(And(eats_bear_dog, eats_bear_dog), rough_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(sees_bear_cat, green_cat), eats_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_bear_bald_eagle, green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> green(X)",
+          "z3_formula": "Implies(eats_bear_cat, green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_dog, eats_bear_bald_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(needs_dog_cat, eats_bear_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(needs_dog_cat, eats_bear_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_bear_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(cat, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_bear_bear, eats_bear_dog), rough_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, eagle)",
+          "z3_formula": "eats_cat_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(sees_bear_cat, green_cat), eats_bear_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> green(X)",
+          "z3_formula": "Implies(eats_cat_eagle, green_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats_bear_eagle",
+          "z3_formula": "Implies(eats_bear_something, eats_bear_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats_cat_eagle",
+          "z3_formula": "Implies(needs_bear_cat, eats_cat_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats_cat_bear",
+          "z3_formula": "Implies(And(sees_something_cat, green_cat), eats_cat_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_something_bear, eats_something_dog), rough_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_bear_dog, eats_dog_cat), rough_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_bear_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(cat, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, green_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(needs_X_cat, eats_cat_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> eats(cat, bear)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), eats_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & eats(X, dog) -> rough(bear)",
+          "z3_formula": "Implies(And(eats_X_bear, eats_X_dog), rough_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> green(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, green_X)",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 157,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 4,
+      "total_weight": 152,
+      "solve_time_ms": 1.7919959500432014
+    },
+    "timing": {
+      "trace_gen_s": 24.303,
+      "extraction_s": 30.605,
+      "dedup_s": 1.432,
+      "maxsat_s": 0.004,
+      "total_s": 56.345
+    }
+  }
+}

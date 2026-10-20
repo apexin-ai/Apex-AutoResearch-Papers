@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-333_Q16",
+    "problem": "Bob is round. Erin is quiet. Erin is smart. Erin is not white. Fiona is green. Fiona is quiet. Fiona is smart. Gary is big. Gary is green. Gary is quiet. Gary is white. All quiet things are smart. Round things are quiet. All green, round things are white. If Fiona is not quiet then Fiona is white. Smart, white things are big. If something is nice and quiet then it is big. If something is quiet and not smart then it is not green. All quiet, smart things are green. If something is big then it is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, False) ::: Erin is not white.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nSmart(Fiona, True) ::: Fiona is smart.\nBig(Gary, True) ::: Gary is big.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nQuiet($x, True) >>> Smart($x, True) ::: All quiet things are smart.\nRound($x, True) >>> Quiet($x, True) ::: Round things are quiet.\nGreen($x, True) && Round($x, True) >>> White($x, True) ::: All green, round things are white.\nQuiet(Fiona, False) >>> White(Fiona, True) ::: If Fiona is not quiet then Fiona is white.\nSmart($x, True) && White($x, True) >>> Big($x, True) ::: Smart, white things are big.\nNice($x, True) && Quiet($x, True) >>> Big($x, True) ::: If something is nice and quiet then it is big.\nQuiet($x, True) && Smart($x, False) >>> Green($x, False) ::: If something is quiet and not smart then it is not green.\nQuiet($x, True) && Smart($x, True) >>> Green($x, True) ::: All quiet, smart things are green.\nBig($x, True) >>> Nice($x, True) ::: If something is big then it is nice.\n\nQuery:\nBig(Erin, True) ::: Erin is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

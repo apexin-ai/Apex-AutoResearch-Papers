@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-40_Q24",
+    "problem": "The bald eagle is big. The bald eagle likes the cat. The bald eagle sees the squirrel. The cat chases the squirrel. The cat sees the squirrel. The squirrel likes the cat. The squirrel does not like the tiger. The tiger is big. The tiger is not young. The tiger sees the squirrel. If the tiger likes the bald eagle then the bald eagle sees the squirrel. If something likes the tiger and it does not chase the cat then the cat is not big. If something sees the cat then the cat is big. If something is big then it sees the bald eagle. If something sees the bald eagle then the bald eagle is young. Cold things are big. If something chases the tiger and it sees the cat then the tiger is big. If something is big then it chases the tiger. If something sees the bald eagle then it sees the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nLikes(BaldEagle, Cat, True) ::: The bald eagle likes the cat.\nSees(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nChases(Cat, Squirrel, True) ::: The cat chases the squirrel.\nSees(Cat, Squirrel, True) ::: The cat sees the squirrel.\nLikes(Squirrel, Cat, True) ::: The squirrel likes the cat.\nLikes(Squirrel, Tiger, False) ::: The squirrel does not like the tiger.\nBig(Tiger, True) ::: The tiger is big.\nYoung(Tiger, False) ::: The tiger is not young.\nSees(Tiger, Squirrel, True) ::: The tiger sees the squirrel.\n\nRules:\nLikes(Tiger, BaldEagle, True) >>> Sees(BaldEagle, Squirrel, True) ::: If the tiger likes the bald eagle then the bald eagle sees the squirrel.\nLikes($x, Tiger, True) && Chases($x, Cat, False) >>> Big(Cat, False) ::: If something likes the tiger and it does not chase the cat then the cat is not big.\nSees($x, Cat, True) >>> Big(Cat, True) ::: If something sees the cat then the cat is big.\nBig($x, True) >>> Sees($x, BaldEagle, True) ::: If something is big then it sees the bald eagle.\nSees($x, BaldEagle, True) >>> Young(BaldEagle, True) ::: If something sees the bald eagle then the bald eagle is young.\nCold($x, True) >>> Big($x, True) ::: Cold things are big.\nChases($x, Tiger, True) && Sees($x, Cat, True) >>> Big(Tiger, True) ::: If something chases the tiger and it sees the cat then the tiger is big.\nBig($x, True) >>> Chases($x, Tiger, True) ::: If something is big then it chases the tiger.\nSees($x, BaldEagle, True) >>> Sees($x, Cat, True) ::: If something sees the bald eagle then it sees the cat.\n\nQuery:\nRough(Squirrel, True) ::: The squirrel is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

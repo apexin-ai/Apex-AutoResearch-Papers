@@ -1,0 +1,1048 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-566_Q22",
+    "problem": "The bald eagle chases the squirrel. The bald eagle eats the dog. The bear eats the bald eagle. The bear eats the dog. The dog chases the bald eagle. The dog chases the bear. The dog chases the squirrel. The dog eats the squirrel. The dog is big. The dog is blue. The dog is green. The squirrel is green. If someone likes the squirrel then they chase the dog. If someone eats the bald eagle then they are red. If someone is green and they eat the bear then they like the squirrel. If someone eats the dog then the dog eats the bald eagle. If someone eats the bear then the bear is big. If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. If someone is red and green then they eat the bear. If someone likes the bear and they eat the bear then the bear eats the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Dog, True) ::: The bald eagle eats the dog.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nEats(Bear, Dog, True) ::: The bear eats the dog.\nChases(Dog, BaldEagle, True) ::: The dog chases the bald eagle.\nChases(Dog, Bear, True) ::: The dog chases the bear.\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nEats(Dog, Squirrel, True) ::: The dog eats the squirrel.\nBig(Dog, True) ::: The dog is big.\nBlue(Dog, True) ::: The dog is blue.\nGreen(Dog, True) ::: The dog is green.\nGreen(Squirrel, True) ::: The squirrel is green.\n\nRules:\nLikes($x, Squirrel, True) >>> Chases($x, Dog, True) ::: If someone likes the squirrel then they chase the dog.\nEats($x, BaldEagle, True) >>> Red($x, True) ::: If someone eats the bald eagle then they are red.\nGreen($x, True) && Eats($x, Bear, True) >>> Likes($x, Squirrel, True) ::: If someone is green and they eat the bear then they like the squirrel.\nEats($x, Dog, True) >>> Eats(Dog, BaldEagle, True) ::: If someone eats the dog then the dog eats the bald eagle.\nEats($x, Bear, True) >>> Big(Bear, True) ::: If someone eats the bear then the bear is big.\nEats($x, Squirrel, True) && Chases($x, Bear, True) >>> Chases(Bear, BaldEagle, True) ::: If someone eats the squirrel and they chase the bear then the bear chases the bald eagle.\nRed($x, True) && Green($x, True) >>> Eats($x, Bear, True) ::: If someone is red and green then they eat the bear.\nLikes($x, Bear, True) && Eats($x, Bear, True) >>> Eats(Bear, BaldEagle, True) ::: If someone likes the bear and they eat the bear then the bear eats the bald eagle.\n\nQuery:\nBlue(Squirrel, True) ::: The squirrel is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 66.0,
+      "Unknown": 145.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel is green. (Given information)\n2. We need to find if there is any information that directly states the squirrel is blue or indirectly implies it through a series of statements.\n\nWe can start by looking for any statements that might imply the squirrel is blue. \n\n- The dog is blue. (Given information)\n- The dog chases the squirrel. (Given information)\n- If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. (Given information)\n- If someone eats the dog then the dog eats the bald eagle. (Given information)\n- If someone eats the bear then the bear is big. (Given information)\n- If someone is red and green then they eat the bear. (Given information)\n- If someone likes the bear and they eat the bear then the bear eats the bald eagle. (Given information)\n- If someone likes the squirrel then they chase the dog. (Given information)\n- If someone is green and they eat the bear then they like the squirrel. (Given information)\n- The bear eats the bald eagle. (Given information)\n- The bald eagle eats the dog. (Given information)\n- The bear eats the dog. (Given information)\n- The bald eagle chases the squirrel. (Given information)\n- The bear eats the bald eagle. (Given information)\n\nWe see that there's a series of statements but none of them directly imply or state the squirrel is blue. However, we have the following statement: \n\n- The squirrel is green. (Given information)\nSince we know the squirrel is green, we can't conclude that it's blue because there's no information directly or indirectly stating that the squirrel is blue.\n\nTherefore, the statement \"The squirrel is blue\" is unknown because we cannot confirm it to be true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, let's analyze the given information step by step:\n\n1. The given statements are:\n   - The bald eagle chases the squirrel.\n   - The bald eagle eats the dog.\n   - The bear eats the bald eagle.\n   - The bear eats the dog.\n   - The dog chases the bald eagle.\n   - The dog chases the bear.\n   - The dog chases the squirrel.\n   - The dog eats the squirrel.\n   - The dog is big.\n   - The dog is blue.\n   - The dog is green.\n   - The squirrel is green.\n   - If someone likes the squirrel then they chase the dog.\n   - If someone eats the bald eagle then they are red.\n   - If someone is green and they eat the bear then they like the squirrel.\n   - If someone eats the dog then the dog eats the bald eagle.\n   - If someone eats the bear then the bear is big.\n   - If someone eats the squirrel and they chase the bear then the bear chases the bald eagle.\n   - If someone is red and green then they eat the bear.\n   - If someone likes the bear and they eat the bear then the bear eats the bald eagle.\n\n2. The only statement directly related to the color of the squirrel is:\n   - The squirrel is green.\n\n3. There is no statement directly related to the color of the squirrel being blue. However, we can deduce information about the color of the dog and its relation to the squirrel.\n\n   - The dog is blue.\n   - The dog eats the squirrel.\n   - If someone eats the squirrel then it does not provide any information about the color of the squirrel.\n\n4. Since there is no direct statement about the squirrel being blue, we cannot determine if the statement \"The squirrel is blue\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement given that the dog is blue is given.\n2. The statement given that the squirrel is green is also given.\n3. The statement that if someone eats the squirrel and they chase the bear then the bear chases the bald eagle is irrelevant to determining if the squirrel is blue or not.\n4. The statement that if someone likes the squirrel then they chase the dog is also irrelevant to determining if the squirrel is blue or not.\n5. There is no statement given that directly links the color of the squirrel to any other information.\n6. There is no statement given that the squirrel is blue.\n\nSince there is no information that directly states the color of the squirrel or links it to any other information that would make it blue, we cannot determine the color of the squirrel with certainty.\n\nTherefore, the answer to the question is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The bald eagle chases the squirrel. (This does not provide any information about the color of the squirrel.)\n2. The bald eagle eats the dog. (This does not provide any information about the color of the squirrel.)\n3. The bear eats the bald eagle. (This does not provide any information about the color of the squirrel.)\n4. The bear eats the dog. (This does not provide any information about the color of the squirrel.)\n5. The dog chases the bald eagle. (This does not provide any information about the color of the squirrel.)\n6. The dog chases the bear. (This does not provide any information about the color of the squirrel.)\n7. The dog chases the squirrel. (This does not provide any information about the color of the squirrel.)\n8. The dog eats the squirrel. (This statement implies that the squirrel exists, but it does not provide any information about its color.)\n9. The dog is big. (This statement does not provide any information about the color of the squirrel.)\n10. The dog is blue. (This statement does not provide any information about the color of the squirrel.)\n11. The dog is green. (This statement does not provide any information about the color of the squirrel.)\n12. The squirrel is green. (This statement implies that the squirrel exists and is green, but it does not provide any information about its blue color.)\n\nNow, let's analyze the given rules:\n\n1. If someone likes the squirrel then they chase the dog. (This rule does not provide any information about the color of the squirrel.)\n2. If someone eats the bald eagle then they are red. (This rule does not provide any information about the color of the squirrel.)\n3. If someone is green and they eat the bear then they like the squirrel. (This rule does not provide any information about the color of the squirrel.)\n4. If someone eats the dog then the dog eats the bald eagle. (This rule does not provide any information about the color of the squirrel.)\n5. If someone eats the bear then the bear is big. (This rule does not provide any information about the color of the squirrel.)\n6. If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. (This rule does not provide any information about the color of the squirrel.)\n7. If someone is red and green then they eat the bear. (This rule does not provide any information about the color of the squirrel.)\n8. If someone likes the bear and they eat the bear then the bear eats the bald eagle. (This rule does not provide any information about the color of the squirrel.)\n\nThe only rule that mentions the color of the squirrel is rule 12, which states that \"The squirrel is green.\" However, this rule does not provide any information about the color blue.\n\nTherefore, based on the given information and rules, we cannot determine whether the squirrel is blue or not. The statement \"The squirrel is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The information provided includes a series of statements about various animals and their properties, such as colors, eating habits, and relationships.\n\n2. We are told that the dog is big, the dog is blue, and the dog is green. This implies that the dog has multiple properties, but it does not directly relate to the squirrel.\n\n3. The squirrel is described as green, which is one of its properties.\n\n4. There is a statement that says \"If someone likes the squirrel then they chase the dog.\" However, we do not have enough information to determine whether anyone likes the squirrel, or whether anyone chases the dog due to this reason.\n\n5. Another statement says \"If someone is green and they eat the bear then they like the squirrel.\" However, we cannot infer that the squirrel itself is green from this statement.\n\n6. A crucial statement is \"If someone eats the dog then the dog eats the bald eagle.\" This statement does not provide any information about the squirrel.\n\n7. There is no statement that directly mentions the color of the squirrel being blue.\n\nHowever, we can use a combination of statements to see if we can derive the information about the squirrel being blue indirectly.\n\nStatement \"If someone is red and green then they eat the bear.\" does not provide any information about the squirrel.\n\nStatement \"If someone likes the bear and they eat the bear then the bear eats the bald eagle.\" does not provide any information about the squirrel.\n\nStatement \"If someone eats the squirrel and they chase the bear then the bear chases the bald eagle.\" This statement also does not provide any information about the squirrel's color.\n\nBut we can use the following statement \"If someone eats the dog then the dog eats the bald eagle.\" and another statement \"The dog chases the squirrel. The dog eats the squirrel.\" \n\nThis means the dog eats the squirrel. \n\nUsing the statement \"If someone eats the squirrel and they chase the bear then the bear chases the bald eagle.\" \n\nWe can infer that the dog chases the bear since it is eating the squirrel.\n\nThe statement \"The dog chases the bear. The dog chases the squirrel.\" indicates that the dog has chased the squirrel, but it does not say that the dog is blue.\n\nHowever, since \"The dog is blue.\" we can infer that the dog is blue but the dog's color does not determine the squirrel's color.\n\nSo, we can conclude that the statement \"The squirrel is blue\" is unknown because we cannot derive this information from the given statements.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given information and the rules provided step by step.\n\nFrom the information given:\n1. The squirrel is green.\n2. The dog is blue.\n\nWe need to determine if the squirrel is blue.\n\nFrom the given rules:\n1. If someone likes the squirrel then they chase the dog. (This is not directly relevant to our problem.)\n2. If someone eats the bald eagle then they are red. (This is not directly relevant to our problem.)\n3. If someone is green and they eat the bear then they like the squirrel. (This is not directly relevant to our problem.)\n4. If someone eats the dog then the dog eats the bald eagle. (This is not directly relevant to our problem.)\n5. If someone eats the bear then the bear is big. (This is not directly relevant to our problem.)\n6. If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. (This is not directly relevant to our problem.)\n7. If someone is red and green then they eat the bear. (This is not directly relevant to our problem.)\n8. If someone likes the bear and they eat the bear then the bear eats the bald eagle. (This is not directly relevant to our problem.)\n\nHowever, we can use the following rule to infer that the squirrel is not blue:\n- The dog is blue and the dog is big.\n- If someone eats the bear then the bear is big. \n- The bear eats the dog. \n- Therefore, the bear is big.\n- The bear is big and the bear eats the bald eagle and the bear eats the dog.\n- The dog chases the bear.\n- The bear eats the dog. \n- The dog eats the squirrel.\n- Therefore, the bear and the dog eat the squirrel and the bear chases the squirrel.\n- The squirrel is green.\n- If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. \n- However, we don't know who eats the squirrel or who chases the bear.\n- But we do know that the squirrel is green.\n- The rule \"If someone is green and they eat the bear then they like the squirrel\" implies that if someone eats the bear and is green, they like the squirrel.\n- Since the squirrel is green, then it could be that the squirrel is green because it is the subject of the sentence, \"the squirrel is green\".\n- However, we also know that the dog chases the squirrel and the dog eats the squirrel.\n- The dog is green. \n- The rule \"If someone is green and they eat the bear then they like the squirrel\" does not apply to the dog because it is the one eating the squirrel, not the bear.\n- Therefore, the fact that the dog is green and it eats the squirrel does not imply that the squirrel is green because of a rule that involves the bear.\n\nHowever, the following rule is not directly relevant to our problem, but it is the closest we can get to infer that the squirrel is blue:\n- If someone eats the squirrel and they chase the bear then the bear chases the bald eagle. (This is not directly relevant to our problem.)\n- However, we do know that the dog eats the squirrel.\n- The rule \"If someone eats the squirrel and they chase the bear then the bear chases the bald eagle\" implies that the dog chases the bear because the dog eats the squirrel.\n- However, we also know that the dog chases the bear.\n- The dog is big and the dog is blue.\n- The bear eats the dog. \n- Therefore, the bear is big.\n- The bear eats the dog. \n- The dog is blue.\n- However, we don't know if the bear chases the bald eagle.\n- But we do know that the bear is big and the bear eats the dog.\n- The dog is blue.\n- The bear eats the dog.\n- However, we don't know if the bear is blue.\n\nWe don't have enough information to determine if the squirrel is blue.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller statements and use logical deductions.\n\nFrom the problem statement, we have:\n\n1. The dog chases the squirrel.\n2. The dog eats the squirrel.\n3. The dog is big.\n4. The dog is blue.\n5. The dog is green.\n6. The squirrel is green.\n\nWe are asked to determine if the following statement is true, false, or unknown:\nThe squirrel is blue.\n\nFrom statement 6, we know that the squirrel is green, not blue. This means we can immediately conclude that the statement \"The squirrel is blue\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We know that the squirrel is green (from the statement \"The squirrel is green\").\n2. We don't have any information about the color of the squirrel being blue (directly or indirectly).\n\nHowever, we can make a connection using the following statements:\n- \"If someone eats the bear then the bear is big.\"\n- \"The bear eats the bald eagle.\"\n- \"The bear eats the dog.\"\n- \"The dog is blue.\"\n- \"If someone eats the dog then the dog eats the bald eagle.\"\n- \"The bald eagle chases the squirrel.\"\n\nFrom the above statements, we can conclude that the bear eats the dog, which means the dog eats the bald eagle. This implies that the bald eagle is chased by the dog, and the bald eagle chases the squirrel.\n\nBut, we still don't have any information about the color of the squirrel being blue.\n\nGiven that we cannot deduce the color of the squirrel being blue using the provided information, we conclude that the statement \"The squirrel is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel is green. (Given)\n\n2. The dog eats the squirrel. (Given)\n\n3. If someone eats the dog, then the dog eats the bald eagle. (Given)\n   We know the dog eats the squirrel, so it means the squirrel eats the dog.\n\n4. If someone eats the squirrel and they chase the bear, then the bear chases the bald eagle. (Given)\n   Since the squirrel eats the dog, we can say the squirrel chases the bear.\n\n5. The squirrel chases the bear. (From step 4)\n\n6. The bear eats the bald eagle. (Given)\n\n7. The bear eats the dog. (Given)\n\n8. The dog is big. (Given)\n\n9. The dog is blue. (Given)\n   The dog can be both blue and green.\n\n10. If someone likes the squirrel, then they chase the dog. (Given)\n    We do not have any information about someone liking the squirrel.\n\n11. If someone is green and they eat the bear, then they like the squirrel. (Given)\n    We know the squirrel is green, but we do not have any information about someone eating the bear.\n\n12. The bear is big. (If someone eats the bear, then the bear is big. Given)\n\n13. If someone is red and green, then they eat the bear. (Given)\n    We do not have any information about someone being red and green.\n\n14. If someone eats the bald eagle, then they are red. (Given)\n    We know the bear eats the bald eagle, so the bear is red.\n\n15. Since the bear is red and green, it means the bear eats the bear. (From step 14 and the given information that the bear is red and green)\n\n16. The bear is big. (From step 15, since the bear eats the bear)\n\n17. The squirrel is green. (Given)\n\nFrom the given information, we cannot directly determine if the squirrel is blue or not. However, we can see that the statement \"The squirrel is blue\" is not explicitly true or false based on the given information. \n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The initial statements don't mention the color of the squirrel or the dog, so we can't determine the color of the squirrel directly from the initial statements.\n\n2. The statement \"The dog is blue\" is mentioned. However, this information doesn't relate to the squirrel.\n\n3. The statement \"The dog is green\" is also mentioned. This information doesn't directly relate to the squirrel.\n\n4. The statement \"The squirrel is green\" is mentioned, but this doesn't tell us about the blue color of the squirrel.\n\n5. The statement \"If someone likes the squirrel then they chase the dog\" is mentioned. We don't know if the squirrel is liked or not, so we can't determine the color of the squirrel based on this statement.\n\n6. The statement \"If someone eats the bald eagle then they are red\" is mentioned. We don't know who eats the bald eagle or if they are red, so we can't use this information to determine the color of the squirrel.\n\n7. The statement \"If someone is green and they eat the bear then they like the squirrel\" is mentioned. We don't know who eats the bear or if they are green, so we can't use this information to determine the color of the squirrel.\n\n8. The statement \"If someone eats the dog then the dog eats the bald eagle\" is mentioned. We don't know who eats the dog or if the dog eats the bald eagle, so we can't use this information to determine the color of the squirrel.\n\n9. The statement \"If someone eats the bear then the bear is big\" is mentioned. We don't know who eats the bear or if the bear is big, so we can't use this information to determine the color of the squirrel.\n\n10. The statement \"If someone eats the squirrel and they chase the bear then the bear chases the bald eagle\" is mentioned. We don't know who eats the squirrel or if they chase the bear, so we can't use this information to determine the color of the squirrel.\n\n11. The statement \"If someone is red and green then they eat the bear\" is mentioned. We don't know who is red and green, so we can't use this information to determine the color of the squirrel.\n\n12. The statement \"If someone likes the bear and they eat the bear then the bear eats the bald eagle\" is mentioned. We don't know who likes the bear or eats the bear, so we can't use this information to determine the color of the squirrel.\n\nFrom the given information, we can't determine the color of the squirrel directly or indirectly. Therefore, the statement \"The squirrel is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is blue\" is true, false, or unknown, we need to analyze the given information and the logical implications.\n\nFrom the given information:\n- The dog chases the squirrel.\n- The dog eats the squirrel.\n- The squirrel is green.\n\nWe can conclude that the squirrel is indeed green, but we cannot conclude that the squirrel is blue because there is no direct information that links the squirrel to the color blue.\n\nHowever, we also know:\n- The dog is blue.\n- If someone eats the squirrel, then they chase the bear.\n- If someone eats the squirrel, then they chase the dog.\n\nBut none of these statements give us any information about the squirrel's color.\n\nAdditionally, we have some complex logical implications:\n- If someone is green and they eat the bear then they like the squirrel.\n- If someone eats the bear, then the bear is big.\n- If someone eats the squirrel and they chase the bear then the bear chases the bald eagle.\n\nThese implications do not directly help us determine the color of the squirrel.\n\nHowever, there is another statement that indirectly helps us determine the color of the squirrel:\n- If someone is red and green then they eat the bear.\n- The bear eats the bald eagle.\n\nBut this statement does not provide any information about the squirrel's color.\n\nWe also know:\n- The bear eats the bald eagle.\n- The bear eats the dog.\n\nHowever, none of these statements help us determine the color of the squirrel.\n\nThere is one more statement that indirectly helps us determine the color of the squirrel:\n- If someone eats the dog then the dog eats the bald eagle.\n- The dog is blue.\n\nHowever, this statement also does not provide any information about the squirrel's color.\n\nIn conclusion, we cannot determine the color of the squirrel based on the given information. The statement \"The squirrel is blue\" is unknown because we do not have enough information to confirm or deny it.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'The squirrel is blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog chases the squirrel. (This is a fact given in the problem.)\n2. The dog eats the squirrel. (This is a fact given in the problem.)\n3. If someone eats the squirrel, then they chase the bear. (This is a rule given in the problem.)\n   From step 2, we know the dog eats the squirrel.\n   So, the dog chases the bear. (From the rule in step 3)\n\n4. The dog is blue. (This is a fact given in the problem.)\n5. If someone eats the dog, then the dog eats the bald eagle. (This is a rule given in the problem.)\n   Since the dog chases the bear (from step 3), it implies that the dog eats the bear. (Given the bear eats the dog, the bear is big, this does not give any information about the color of the dog or the squirrel.)\n   However, this is an assumption we made. But there is no other information about the dog eating the bear or vice versa. Therefore, from step 4, we know the dog is blue.\n\n6. The squirrel is green. (This is a fact given in the problem.)\n7. If someone eats the bear and they are green, then they like the squirrel. (This is a rule given in the problem.)\n   We do not have any information about someone eating the bear and being green. Therefore, we do not have any information about the person liking the squirrel.\n\n8. If someone likes the squirrel, then they chase the dog. (This is a rule given in the problem.)\n   We do not have any information about someone liking the squirrel. Therefore, we do not have any information about someone chasing the dog.\n\nSince we have established that the dog is blue (from step 4) and the squirrel is green (from step 6), we can conclude that 'The squirrel is blue' is false because it contradicts the information given that the squirrel is green.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chase(Y, bear) -> chase(bear, eagle)",
+          "z3_formula": "Implies(And(eats_dog_squirrel, chase_dog_bear), chase_bear_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(dog, eagle)",
+          "z3_formula": "Implies(eats_dog_eagle, eats_dog_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(bear)",
+          "z3_formula": "Implies(eats_bear_eagle, big_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_X, green_X), eats_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & eats(X, bear) -> eats(bear, eagle)",
+          "z3_formula": "Implies(And(likes_X_bear, eats_X_bear), eats_bear_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chase(X, dog)",
+          "z3_formula": "Implies(likes_X_squirrel, chase_X_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(green_X, eats_X_bear), likes_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(eagle, dog)",
+          "z3_formula": "eats_eagle_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chase(eagle, squirrel)",
+          "z3_formula": "chase_eagle_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == False",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, dog)",
+          "z3_formula": "eats_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_X_squirrel, chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(green_X, eats_X_bear), likes_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats_dog_bald_eagle",
+          "z3_formula": "Implies(eats_X_dog, eats_dog_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(X)",
+          "z3_formula": "Implies(eats_X_bear, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chases(X, bear) -> chases_bear_bald_eagle",
+          "z3_formula": "Implies(And(eats_X_squirrel, chases_X_bear), chases_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_X, green_X), eats_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & eats(X, bear) -> eats_bear_bald_eagle",
+          "z3_formula": "Implies(And(likes_X_bear, eats_X_bear), eats_bear_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chase(X, bear) -> chase(bear, bald_eagle)",
+          "z3_formula": "Implies(And(eats_squirrel_bear, chase_squirrel_bear), chase_bear_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chase(X, dog)",
+          "z3_formula": "Implies(likes_squirrel_dog, chase_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, dog)",
+          "z3_formula": "eats_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_X_squirrel, chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(green_X, eats_X_bear), likes_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(dog, bald_eagle)",
+          "z3_formula": "Implies(eats_X_dog, eats_dog_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(X)",
+          "z3_formula": "Implies(eats_X_bear, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chases(X, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_squirrel, chases_X_bear), chases_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_X, green_X), eats_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & eats(X, bear) -> eats(bear, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_bear, eats_X_bear), eats_bear_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_dog_squirrel, likes_dog_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_dog_squirrel, chases_dog_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(dog, bald_eagle)",
+          "z3_formula": "Implies(eats_dog_dog, eats_dog_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, squirrel)",
+          "z3_formula": "Implies(chases_dog_squirrel, eats_dog_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(bear)",
+          "z3_formula": "Implies(eats_bear_dog, big_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) & eats(bear, dog) & eats(dog, squirrel) -> chases(bear, squirrel)",
+          "z3_formula": "Implies(And(big_bear, eats_bear_dog, eats_dog_squirrel), chases_bear_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, squirrel)",
+          "z3_formula": "chases_bear_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> Not(blue(X))",
+          "z3_formula": "Implies(green_squirrel, Not(blue_squirrel))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(squirrel))",
+          "z3_formula": "Not(blue_squirrel) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_squirrel, Not(blue_squirrel))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "Not(blue_squirrel) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(bear)",
+          "z3_formula": "Implies(eats_dog_bear, big_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_dog_dog, eats_dog_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> chases(bald_eagle, squirrel)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, chases_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(dog, X)",
+          "z3_formula": "Implies(eats_dog_squirrel, eats_squirrel_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chases(X, bear) -> chases(bear, eagle)",
+          "z3_formula": "Implies(And(eats_squirrel_dog, chases_squirrel_bear), chases_bear_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_squirrel, chases_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(squirrel)",
+          "z3_formula": "Implies(And(green_squirrel, eats_squirrel_bear), likes_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_bear, green_bear), eats_bear_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> red(X)",
+          "z3_formula": "Implies(eats_bear_eagle, red_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_squirrel, chases_something_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(eats_bald_eagle, red_something)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(green_something, eats_something_bear), likes_something_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(dog, bald_eagle)",
+          "z3_formula": "Implies(eats_something_dog, eats_dog_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(bear)",
+          "z3_formula": "Implies(eats_something_bear, big_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chases(X, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(eats_something_squirrel, chases_something_bear), chases_bear_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_something, green_something), eats_something_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & eats(X, bear) -> eats(bear, bald_eagle)",
+          "z3_formula": "Implies(And(likes_something_bear, eats_something_bear), eats_bear_bald_eagle)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_dog_squirrel, chases_dog_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(eats_dog_squirrel, chases_dog_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bear) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(green_squirrel, eats_bear_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(bear)",
+          "z3_formula": "Implies(eats_bear_bald_eagle, big_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & chases(X, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(eats_dog_squirrel, chases_dog_bear), chases_bear_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> eats(X, bear)",
+          "z3_formula": "Implies(And(red_X, green_X), eats_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, dog)",
+          "z3_formula": "eats_bear_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_dog, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, squirrel)",
+          "z3_formula": "eats_dog_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_dog_squirrel, chases_dog_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_dog_bear, eats_dog_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & green(X) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(eats_dog_bear, green_dog), likes_dog_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_dog_squirrel, chases_dog_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, dog)",
+          "z3_formula": "chases_dog_dog == Unknown",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 153,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 74
+    },
+    "maxsat_stats": {
+      "satisfied": 73,
+      "excluded": 1,
+      "total_weight": 152,
+      "solve_time_ms": 1.4644330367445946
+    },
+    "timing": {
+      "trace_gen_s": 10.086,
+      "extraction_s": 27.959,
+      "dedup_s": 2.174,
+      "maxsat_s": 0.005,
+      "total_s": 40.225
+    }
+  }
+}

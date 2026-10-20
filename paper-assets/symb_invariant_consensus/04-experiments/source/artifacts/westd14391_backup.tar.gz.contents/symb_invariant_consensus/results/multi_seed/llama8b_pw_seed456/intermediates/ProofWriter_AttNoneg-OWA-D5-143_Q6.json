@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-143_Q6",
+    "problem": "Anne is round. Bob is blue. Bob is kind. Bob is red. Dave is big. Dave is kind. Dave is smart. Fiona is big. Fiona is red. Fiona is rough. Fiona is round. If Bob is round and Bob is red then Bob is rough. Big people are kind. All blue people are big. All round people are blue. All smart, red people are kind. All kind people are rough. All rough, big people are smart. Round, smart people are blue. If Fiona is smart and Fiona is red then Fiona is big.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nBlue(Bob, True) ::: Bob is blue.\nKind(Bob, True) ::: Bob is kind.\nRed(Bob, True) ::: Bob is red.\nBig(Dave, True) ::: Dave is big.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nBig(Fiona, True) ::: Fiona is big.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\n\nRules:\nRound(Bob, True) && Red(Bob, True) >>> Rough(Bob, True) ::: If Bob is round and Bob is red then Bob is rough.\nBig($x, True) >>> Kind($x, True) ::: Big people are kind.\nBlue($x, True) >>> Big($x, True) ::: All blue people are big.\nRound($x, True) >>> Blue($x, True) ::: All round people are blue.\nSmart($x, True) && Red($x, True) >>> Kind($x, True) ::: All smart, red people are kind.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nRough($x, True) && Big($x, True) >>> Smart($x, True) ::: All rough, big people are smart.\nRound($x, True) && Smart($x, True) >>> Blue($x, True) ::: Round, smart people are blue.\nSmart(Fiona, True) && Red(Fiona, True) >>> Big(Fiona, True) ::: If Fiona is smart and Fiona is red then Fiona is big.\n\nQuery:\nSmart(Bob, False) ::: Bob is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

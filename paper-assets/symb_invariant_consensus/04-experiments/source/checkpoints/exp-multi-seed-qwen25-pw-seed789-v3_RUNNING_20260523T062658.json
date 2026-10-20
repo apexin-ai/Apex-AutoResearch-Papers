@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-multi-seed-qwen25-pw-seed789-v3",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:56:23.947Z",
+    "updated_at": "2026-05-23T06:26:57.790Z",
+    "hypothesis": "Qwen2.5-14B PW seed789 多种子复制（westd-30973 cuda:0 全新运行）。替代 v2 在 16639 cuda:2 上的慢速运行（53/600）。验证 SCB 在 ProofWriter 上跨 seed 稳定性。",
+    "parent": "exp-multi-seed-qwen25",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python run_cross_dataset_replication.py --dataset proofwriter --data-path data/proofwriter_full.json --k 12 --vllm-port 8000 --seed 789 --temperature 0.7 --max-tokens 2048 --output results/multi_seed/qwen25_pw_seed789_v3/results.json\"",
+      "server": "westd-30973",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "6049",
+      "log_path": "~/runs/symb_invariant_consensus/exp-multi-seed-qwen25-pw-seed789-v3.log",
+      "submitted_at": "2026-05-23T06:09:22.234Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 789,
+      "checkpoint_source": "vllm-served:/root/autodl-tmp/models/Qwen2.5-14B-Instruct",
+      "eval_data": "data/proofwriter_full.json"
+    }
+  },
+  "timestamp": "2026-05-23T06:26:58.116362+00:00",
+  "trigger": "update_registry"
+}

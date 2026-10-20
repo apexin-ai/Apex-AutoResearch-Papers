@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bf50be530d8a479e5b4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment dir l thinking single trace",
+  "task_key": "worker_experiment_dir-l-thinking-single-trace_20260520T181344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_dir-l-thinking-single-trace_20260520T181344_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "eb6ab1e2161049f4571b3b1dc906eedf002182c89b125bc0c4501381c1795855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `results.json`。\n\n| Model | N | Single Trace Mean ± Std | SC@12 | Agg Gain |\n|---|---|---|---|---|\n| **Mistral-7B** | 204 | 46.41% ± 2.80% | 54.41% | +8.00 pp |\n| **Qwen3-14B nonthinking** | 204 | 79.37% ± 1.98% | 83.82% | +4.45 pp |\n| **Qwen3-14B thinking** | 166 | 83.28% ± 0.99% | 83.73% | +0.45 pp |\n\n要点：\n- Mistral SC@12=54.41% 与 baseline 一致\n- Mistral 的 aggregation gain 最大（+8pp），thinking 模型几乎无 gain（+0.45pp）——thinking 模型 traces 间一致性极高（std 仅 0.99%），SC 没什么可聚合的\n- Per-problem agreement 中位数：Mistral 0.42, nonthinking 1.0, thinking 1.0\n- Qwen3-thinking 只有 166 题（exp028b 未跑完 folio_166-203）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-dir-l-thinking-single-trace.md"
+}

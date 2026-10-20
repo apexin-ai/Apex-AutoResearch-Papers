@@ -1,0 +1,816 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-1_Q5",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, nice_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, nice_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, round_anne), kind_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_anne, round_anne), kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind_white_round(X)",
+          "z3_formula": "kind_white_round == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, white_anne), kind_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round_white_kind(X)",
+          "z3_formula": "round_white_kind == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), kind_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_anne, nice_anne)",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

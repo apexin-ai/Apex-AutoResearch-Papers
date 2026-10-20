@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-042b-premise-formal",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:13:55.356Z",
+    "updated_at": "2026-05-18T19:16:38.233Z",
+    "hypothesis": "Premise-Only Formalization (重启): 绕过 CoT trace extraction，直接让 LLM 将 FOLIO premises + conclusion 形式化为 FOL，用 Z3 验证逻辑蕴含。K=12 独立 formalization + majority vote。如果 extraction quality 是 capability trap 的瓶颈，直接 formalization 应能产生更准确的约束，使 Premise-FOL > vanilla SICA。exp-042 因 vLLM 未启动失败，本次重启。",
+    "parent": "exp-042-premise-formalization",
+    "server": "westd-25068",
+    "gpu": "cuda:2",
+    "reproduce": {
+      "server": "westd-25068",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-18T19:16:36.261Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_premise_formalization.sh 2 8002\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_premise_formalization.sh 2 8002\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "83150",
+      "log_path": "~/runs/symb_invariant_consensus/exp-042b-premise-formal.log",
+      "submitted_at": "2026-05-18T19:16:37.520Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "83150",
+    "log_path": "~/runs/symb_invariant_consensus/exp-042b-premise-formal.log"
+  },
+  "timestamp": "2026-05-18T19:16:38.812575+00:00",
+  "trigger": "update_registry"
+}

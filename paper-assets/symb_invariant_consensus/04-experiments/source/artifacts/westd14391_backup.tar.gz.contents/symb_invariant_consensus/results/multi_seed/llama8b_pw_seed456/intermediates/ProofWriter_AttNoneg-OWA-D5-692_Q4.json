@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-692_Q4",
+    "problem": "Charlie is quiet. Dave is big. Dave is red. Dave is smart. Dave is young. Erin is big. Erin is blue. Erin is quiet. Erin is smart. Harry is big. Harry is furry. Harry is young. Blue people are red. If someone is quiet then they are big. If someone is furry then they are quiet. All quiet, big people are furry. If someone is young then they are blue. If someone is young then they are quiet. If Erin is furry then Erin is young. Blue people are quiet. If someone is furry then they are young.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nQuiet(Charlie, True) ::: Charlie is quiet.\nBig(Dave, True) ::: Dave is big.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nYoung(Dave, True) ::: Dave is young.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nBig(Harry, True) ::: Harry is big.\nFurry(Harry, True) ::: Harry is furry.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue($x, True) >>> Red($x, True) ::: Blue people are red.\nQuiet($x, True) >>> Big($x, True) ::: If someone is quiet then they are big.\nFurry($x, True) >>> Quiet($x, True) ::: If someone is furry then they are quiet.\nQuiet($x, True) && Big($x, True) >>> Furry($x, True) ::: All quiet, big people are furry.\nYoung($x, True) >>> Blue($x, True) ::: If someone is young then they are blue.\nYoung($x, True) >>> Quiet($x, True) ::: If someone is young then they are quiet.\nFurry(Erin, True) >>> Young(Erin, True) ::: If Erin is furry then Erin is young.\nBlue($x, True) >>> Quiet($x, True) ::: Blue people are quiet.\nFurry($x, True) >>> Young($x, True) ::: If someone is furry then they are young.\n\nQuery:\nRed(Erin, False) ::: Erin is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

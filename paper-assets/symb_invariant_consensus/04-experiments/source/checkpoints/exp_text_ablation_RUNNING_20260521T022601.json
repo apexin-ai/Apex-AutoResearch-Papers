@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_text_ablation",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:25:46.771Z",
+    "updated_at": "2026-05-21T02:26:01.098Z",
+    "hypothesis": "Constraint extraction temperature (T_ext) does not significantly affect SICA accuracy because confirmation bias is inherent to self-extraction regardless of temperature — constraints at any T_ext will project the model's distributional bias rather than provide independent verification signal",
+    "spec": {
+      "command": "python text_ablation.py --t_ext 0.1 0.5 0.7 1.0 --k 12 --T 0.7",
+      "server": "westd-25068",
+      "data_path": "FOLIO validation set",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct",
+      "seed": 42,
+      "pid": 452128
+    }
+  },
+  "timestamp": "2026-05-21T02:26:01.581106+00:00",
+  "trigger": "update_registry"
+}

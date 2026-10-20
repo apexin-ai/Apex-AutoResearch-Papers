@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-151_Q4",
+    "problem": "The cat chases the tiger. The cat is red. The lion is nice. The lion is red. The lion sees the cat. The lion sees the rabbit. The lion sees the tiger. The rabbit chases the tiger. The rabbit sees the tiger. The tiger chases the cat. The tiger chases the rabbit. The tiger is nice. If someone is red and they eat the rabbit then they are blue. If the lion eats the cat and the lion chases the rabbit then the cat is kind. If the rabbit eats the tiger then the tiger is nice. If someone is rough then they see the cat. If someone is nice and they chase the rabbit then the rabbit is nice. If someone eats the cat and they are kind then they see the tiger. If someone is nice and they chase the tiger then they are blue. If someone is blue then they eat the cat. If someone eats the cat then the cat is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(Cat, Tiger, True) ::: The cat chases the tiger.\nRed(Cat, True) ::: The cat is red.\nNice(Lion, True) ::: The lion is nice.\nRed(Lion, True) ::: The lion is red.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nSees(Lion, Rabbit, True) ::: The lion sees the rabbit.\nSees(Lion, Tiger, True) ::: The lion sees the tiger.\nChases(Rabbit, Tiger, True) ::: The rabbit chases the tiger.\nSees(Rabbit, Tiger, True) ::: The rabbit sees the tiger.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nChases(Tiger, Rabbit, True) ::: The tiger chases the rabbit.\nNice(Tiger, True) ::: The tiger is nice.\n\nRules:\nRed($x, True) && Eats($x, Rabbit, True) >>> Blue($x, True) ::: If someone is red and they eat the rabbit then they are blue.\nEats(Lion, Cat, True) && Chases(Lion, Rabbit, True) >>> Kind(Cat, True) ::: If the lion eats the cat and the lion chases the rabbit then the cat is kind.\nEats(Rabbit, Tiger, True) >>> Nice(Tiger, True) ::: If the rabbit eats the tiger then the tiger is nice.\nRough($x, True) >>> Sees($x, Cat, True) ::: If someone is rough then they see the cat.\nNice($x, True) && Chases($x, Rabbit, True) >>> Nice(Rabbit, True) ::: If someone is nice and they chase the rabbit then the rabbit is nice.\nEats($x, Cat, True) && Kind($x, True) >>> Sees($x, Tiger, True) ::: If someone eats the cat and they are kind then they see the tiger.\nNice($x, True) && Chases($x, Tiger, True) >>> Blue($x, True) ::: If someone is nice and they chase the tiger then they are blue.\nBlue($x, True) >>> Eats($x, Cat, True) ::: If someone is blue then they eat the cat.\nEats($x, Cat, True) >>> Blue(Cat, True) ::: If someone eats the cat then the cat is blue.\n\nQuery:\nNice(Rabbit, False) ::: The rabbit is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

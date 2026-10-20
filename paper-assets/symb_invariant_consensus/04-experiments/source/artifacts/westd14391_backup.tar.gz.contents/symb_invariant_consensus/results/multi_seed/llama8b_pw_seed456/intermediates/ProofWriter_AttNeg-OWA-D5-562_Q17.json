@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-562_Q17",
+    "problem": "Charlie is round. Charlie is not young. Dave is rough. Dave is not young. Erin is cold. Erin is young. Harry is furry. Round people are white. If someone is young then they are white. All round, rough people are big. All young, big people are not cold. Round, big people are not cold. Furry people are round. White, round people are furry. If Dave is furry and Dave is round then Dave is rough. If someone is furry then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nRound(Charlie, True) ::: Charlie is round.\nYoung(Charlie, False) ::: Charlie is not young.\nRough(Dave, True) ::: Dave is rough.\nYoung(Dave, False) ::: Dave is not young.\nCold(Erin, True) ::: Erin is cold.\nYoung(Erin, True) ::: Erin is young.\nFurry(Harry, True) ::: Harry is furry.\n\nRules:\nRound($x, True) >>> White($x, True) ::: Round people are white.\nYoung($x, True) >>> White($x, True) ::: If someone is young then they are white.\nRound($x, True) && Rough($x, True) >>> Big($x, True) ::: All round, rough people are big.\nYoung($x, True) && Big($x, True) >>> Cold($x, False) ::: All young, big people are not cold.\nRound($x, True) && Big($x, True) >>> Cold($x, False) ::: Round, big people are not cold.\nFurry($x, True) >>> Round($x, True) ::: Furry people are round.\nWhite($x, True) && Round($x, True) >>> Furry($x, True) ::: White, round people are furry.\nFurry(Dave, True) && Round(Dave, True) >>> Rough(Dave, True) ::: If Dave is furry and Dave is round then Dave is rough.\nFurry($x, True) >>> Rough($x, True) ::: If someone is furry then they are rough.\n\nQuery:\nWhite(Dave, False) ::: Dave is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

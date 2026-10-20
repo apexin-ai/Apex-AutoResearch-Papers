@@ -1,0 +1,1137 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-341_Q3",
+    "problem": "The bald eagle is cold. The bald eagle is nice. The bald eagle likes the cow. The bald eagle likes the tiger. The bald eagle sees the cow. The bald eagle sees the dog. The bald eagle sees the tiger. The bald eagle visits the cow. The cow is young. The cow visits the bald eagle. The dog sees the bald eagle. The dog visits the tiger. The tiger is blue. The tiger is cold. The tiger is young. The tiger visits the cow. If something is big and it visits the bald eagle then it visits the cow. If something likes the tiger and the tiger is big then it is big. If something visits the cow and the cow is young then it is big. If something visits the tiger then it is young. If the tiger likes the dog then the tiger visits the bald eagle. If something is big then it visits the dog. If something visits the dog then it is cold. If something is young then it likes the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nNice(BaldEagle, True) ::: The bald eagle is nice.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nLikes(BaldEagle, Tiger, True) ::: The bald eagle likes the tiger.\nSees(BaldEagle, Cow, True) ::: The bald eagle sees the cow.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nSees(BaldEagle, Tiger, True) ::: The bald eagle sees the tiger.\nVisits(BaldEagle, Cow, True) ::: The bald eagle visits the cow.\nYoung(Cow, True) ::: The cow is young.\nVisits(Cow, BaldEagle, True) ::: The cow visits the bald eagle.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nVisits(Dog, Tiger, True) ::: The dog visits the tiger.\nBlue(Tiger, True) ::: The tiger is blue.\nCold(Tiger, True) ::: The tiger is cold.\nYoung(Tiger, True) ::: The tiger is young.\nVisits(Tiger, Cow, True) ::: The tiger visits the cow.\n\nRules:\nBig($x, True) && Visits($x, BaldEagle, True) >>> Visits($x, Cow, True) ::: If something is big and it visits the bald eagle then it visits the cow.\nLikes($x, Tiger, True) && Big(Tiger, True) >>> Big($x, True) ::: If something likes the tiger and the tiger is big then it is big.\nVisits($x, Cow, True) && Young(Cow, True) >>> Big($x, True) ::: If something visits the cow and the cow is young then it is big.\nVisits($x, Tiger, True) >>> Young($x, True) ::: If something visits the tiger then it is young.\nLikes(Tiger, Dog, True) >>> Visits(Tiger, BaldEagle, True) ::: If the tiger likes the dog then the tiger visits the bald eagle.\nBig($x, True) >>> Visits($x, Dog, True) ::: If something is big then it visits the dog.\nVisits($x, Dog, True) >>> Cold($x, True) ::: If something visits the dog then it is cold.\nYoung($x, True) >>> Likes($x, Tiger, True) ::: If something is young then it likes the tiger.\n\nQuery:\nYoung(Dog, True) ::: The dog is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 165.0,
+      "Unknown": 85.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The given statement about the dog is: The dog sees the bald eagle.\n2. The bald eagle sees the dog, but this does not provide any information about the age of the dog.\n3. The bald eagle likes the tiger, but this also does not provide any information about the age of the dog.\n4. The dog visits the tiger. \n   - Rule 6: If something visits the tiger, then it is young.\n   - Therefore, the dog is young.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we'll use logical deductions based on the given statements. \n\n1. The given statements are:\n   - The bald eagle is cold.\n   - The bald eagle is nice.\n   - The bald eagle likes the cow.\n   - The bald eagle likes the tiger.\n   - The bald eagle sees the cow.\n   - The bald eagle sees the dog.\n   - The bald eagle sees the tiger.\n   - The bald eagle visits the cow.\n   - The cow is young.\n   - The cow visits the bald eagle.\n   - The dog sees the bald eagle.\n   - The dog visits the tiger.\n   - The tiger is blue.\n   - The tiger is cold.\n   - The tiger is young.\n   - The tiger visits the cow.\n   - If something is big and it visits the bald eagle then it visits the cow.\n   - If something likes the tiger and the tiger is big then it is big.\n   - If something visits the cow and the cow is young then it is big.\n   - If something visits the tiger then it is young.\n   - If the tiger likes the dog then the tiger visits the bald eagle.\n   - If something is big then it visits the dog.\n   - If something visits the dog then it is cold.\n   - If something is young then it likes the tiger.\n\n2. We need to determine whether the statement \"The dog is young\" is true, false, or unknown. To do this, we'll analyze the information provided.\n\nFrom statement 12, we know that the tiger visits the cow. \nFrom statement 3, we know that the bald eagle likes the tiger. \nFrom statement 14, if something likes the tiger and the tiger is big, then it is big. We don't know if the tiger is big or not, so we can't conclude that the bald eagle is big.\n\nFrom statement 13, we know that the tiger is young.\nFrom statement 19, if something is young, then it likes the tiger. However, this statement doesn't provide information about the dog.\n\nNow, let's analyze the statement \"The dog is young\". We don't have any direct information about the dog's age from the given statements.\n\nHowever, from statement 8, we know that the bald eagle visits the cow. \nFrom statement 17, if something visits the cow and the cow is young, then it is big. We don't have any information about the age of the thing that visits the cow, but we can say that it is big.\n\nFrom statement 18, if something is big, then it visits the dog. This is a crucial piece of information. We know that the bald eagle is nice (statement 2) and it visits the cow (statement 8). Therefore, the bald eagle is big (statement 17). \n\nNow, since the bald eagle is big and it likes the tiger (statement 3), it follows that the tiger is big (statement 14). We already know that the tiger is young (statement 13). \n\nFrom statement 6, we know that the bald eagle sees the dog. However, we still can't conclude anything about the dog's age.\n\nBut from statement 10, we know that the dog visits the tiger. \nFrom statement 15, if something visits the tiger, then it is young. Therefore, the dog is young.\n\nSo, our final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: If something is big and it visits the bald eagle then it visits the cow.\nRule 2: If something likes the tiger and the tiger is big then it is big.\nRule 3: If something visits the cow and the cow is young then it is big.\nRule 4: If something visits the tiger then it is young.\nRule 5: If the tiger likes the dog then the tiger visits the bald eagle.\nRule 6: If something is big then it visits the dog.\nRule 7: If something visits the dog then it is cold.\nRule 8: If something is young then it likes the tiger.\n\nWe are given the following information:\n\n- The bald eagle sees the dog.\n- The dog visits the tiger.\n- The tiger is blue.\n- The tiger is cold.\n- The tiger is young.\n- The tiger visits the cow.\n- The dog sees the bald eagle.\n\nWe can analyze the rules and information to see if we can infer any information about the dog.\n\nFrom Rule 3, we can't directly apply it to the dog since we don't know if the cow is young. However, Rule 3 tells us that if something visits the cow and the cow is young then it is big. We don't know if the dog is big or not, but we can see that the tiger is young and it visits the cow. This means the cow is young, and from Rule 3, we can conclude that the dog is big.\n\nFrom Rule 6, if something is big then it visits the dog. We have already concluded that the dog is big. Therefore, the dog visits the dog. However, this doesn't give us any information about the dog's age.\n\nFrom Rule 7, if something visits the dog then it is cold. We can see that the tiger visits the dog, and the tiger is cold. However, this doesn't give us any information about the dog's age.\n\nFrom Rule 8, if something is young then it likes the tiger. We don't know if the dog is young or not, but we can see that the tiger is young and it is liked by the bald eagle (since the bald eagle likes the tiger). However, this doesn't give us any information about the dog's age.\n\nFrom the information given, we can conclude that the dog is big, but we can't conclude whether the dog is young or not.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information states: \"If something visits the tiger then it is young.\" \nThis implies that anything that visits the tiger is considered young.\n\n2. The given information states: \"The dog visits the tiger.\"\nFrom this, we can conclude that the dog is young, because it visits the tiger.\n\nHowever, before we can confidently state that the dog is young, we need to consider other possible implications from the given information that might contradict this conclusion.\n\n3. The given information states: \"If something is young then it likes the tiger.\"\nThis implies that anything that is young likes the tiger.\n\n4. The given information states: \"The dog sees the bald eagle.\"\nThere is no direct connection between this information and the age of the dog, but we can see that it does not contradict the fact that the dog is young.\n\n5. The given information states: \"The dog sees the tiger.\"\nThis implies that the dog is aware of the tiger, but it does not provide any information about the dog's age.\n\n6. The given information states: \"The dog visits the tiger.\"\nAs we previously concluded, this implies that the dog is young.\n\nConsidering all the given information, we have found that the statement \"The dog is young\" is indeed true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. The tiger visits the bald eagle. (Direct Information)\n   We have the rule: If the tiger likes the dog then the tiger visits the bald eagle.\n   However, we don't have information about the tiger liking the dog. \n   But we do have the following information:\n   - The tiger is blue. (Direct Information)\n   - The tiger is cold. (Direct Information)\n   - The tiger is young. (Direct Information)\n   - The tiger likes the cow. (Direct Information)\n\n2. The dog sees the bald eagle. (Direct Information)\n   We have the rule: If something is big and it visits the bald eagle then it visits the cow.\n   However, we don't have information about the dog being big or not.\n   But we do have the following information:\n   - The dog visits the tiger. (Direct Information)\n\n3. The dog visits the tiger. (Direct Information)\n   We have the rule: If something visits the tiger then it is young.\n   This is consistent with our information about the tiger being young.\n\n4. The tiger is young. (Direct Information)\n   We have the rule: If something is young then it likes the tiger.\n   This rule does not provide any information about the dog's age, as we do not know if the dog likes the tiger or not.\n\nNow, considering all the information, we know that the dog visits the tiger, which makes the dog young. However, we cannot conclude that the dog is young based on the rule \"If something is young then it likes the tiger.\" because we do not have information about the dog liking the tiger.\n\nBut we can conclude the dog is young based on the rule \"If something visits the tiger then it is young.\" The rule directly tells us that the dog visiting the tiger makes the dog young.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFirst, let's identify the relevant information and rules:\n\n1. The tiger is young. (Given)\n2. If the tiger likes the dog then the tiger visits the bald eagle. (Rule)\n3. The tiger visits the dog. (Given)\n   - From rule 2, if the tiger likes the dog, then the tiger visits the bald eagle. But we have that the tiger visits the dog. We do not know if the tiger likes the dog, so we cannot conclude this statement from the given information.\n\n4. If something visits the tiger then it is young. (Rule)\n   - We cannot conclude that the dog is young from this rule since we do not know if the dog visits the tiger.\n\nHowever, we do have some information about the dog:\n1. The dog sees the bald eagle. (Given)\n2. If something is big and it visits the bald eagle then it visits the cow. (Rule)\n   - We cannot conclude that the dog is big from this rule since we do not know if the dog visits the cow.\n3. If something likes the tiger and the tiger is big then it is big. (Rule)\n   - We do not know if the dog likes the tiger.\n4. If something is big then it visits the dog. (Rule)\n   - We cannot conclude that the dog is big from this rule since we do not know if the dog visits the dog.\n5. If something visits the dog then it is cold. (Rule)\n   - The dog sees the bald eagle, and the dog visits the tiger. We do not know if the dog is cold.\n6. The dog visits the tiger. (Given)\n   - From rule 4, if something visits the tiger then it is young.\n\nBased on the given information and the rules, we can conclude that the dog visits the tiger, and from rule 4, we can conclude that the dog is young.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the dog is young, we need to analyze the given statements and rules. We will break down the problem step by step.\n\n1. Analyze the given rules:\n   - If something is big and it visits the bald eagle then it visits the cow.\n   - If something likes the tiger and the tiger is big then it is big.\n   - If something visits the cow and the cow is young then it is big.\n   - If something visits the tiger then it is young.\n   - If the tiger likes the dog then the tiger visits the bald eagle.\n   - If something is big then it visits the dog.\n   - If something visits the dog then it is cold.\n   - If something is young then it likes the tiger.\n\n2. Analyze the given statements:\n   - The bald eagle is cold.\n   - The bald eagle is nice.\n   - The bald eagle likes the cow.\n   - The bald eagle likes the tiger.\n   - The bald eagle sees the cow.\n   - The bald eagle sees the dog.\n   - The bald eagle sees the tiger.\n   - The bald eagle visits the cow.\n   - The cow is young.\n   - The cow visits the bald eagle.\n   - The dog sees the bald eagle.\n   - The dog visits the tiger.\n   - The tiger is blue.\n   - The tiger is cold.\n   - The tiger is young.\n   - The tiger visits the cow.\n\n3. Determine the size of the tiger:\n   - The tiger is blue. (This statement does not provide information about the size of the tiger.)\n   - The tiger is cold. (This statement does not provide information about the size of the tiger.)\n   - The tiger is young. (This statement provides information about the age of the tiger, but not the size.)\n\n4. Determine the size of the tiger based on its relationship with the dog:\n   - If the tiger likes the dog then the tiger visits the bald eagle. (This statement does not provide information about the size of the tiger.)\n   - The dog sees the bald eagle. (This statement does not provide information about the size of the dog or the tiger.)\n   - The dog visits the tiger. (This statement implies that the dog is not big because if it were, it would visit the bald eagle and then the cow based on rule 1.)\n   - The tiger is young. (This statement implies that the tiger is not big based on rule 4.)\n\n5. Determine the size of the tiger based on rule 3:\n   - If something likes the tiger and the tiger is big then it is big. (This statement implies that if the tiger is big, then the dog is big because it likes the tiger. However, we have already established that the tiger is not big because the dog visits it, not the other way around.)\n   - The dog sees the bald eagle. (This statement does not provide information about the size of the dog or the tiger.)\n   - The dog visits the tiger. (This statement implies that the dog is not big because if it were, it would visit the bald eagle and then the cow based on rule 1.)\n   - The tiger is young. (This statement implies that the tiger is not big based on rule 4.)\n   - Based on rule 3, if the tiger is big, then the dog is big. However, this is not possible because if the dog were big, it would visit the bald eagle and then the cow, not the tiger.\n\n6. Determine the size of the dog:\n   - The dog sees the bald eagle. (This statement does not provide information about the size of the dog.)\n   - The dog visits the tiger. (This statement implies that the dog is not big because if it were, it would visit the bald eagle and then the cow based on rule 1.)\n   - The tiger is young. (This statement implies that the tiger is not big based on rule 4.)\n   - The dog is not big. (This statement is implied by the analysis above.)\n\n7. Determine whether the dog is young based on its relationship with the tiger and the given rules:\n   - The dog visits the tiger. (This statement implies that the dog is young based on rule 4.)\n   - The tiger is young. (This statement implies that the tiger is not big based on rule 4.)\n   - The dog is young. (This statement is true based on the analysis above.)\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - The bald eagle is cold.\n   - The bald eagle is nice.\n   - The bald eagle likes the cow.\n   - The bald eagle likes the tiger.\n   - The bald eagle sees the cow.\n   - The bald eagle sees the dog.\n   - The bald eagle sees the tiger.\n   - The bald eagle visits the cow.\n   - The cow is young.\n   - The cow visits the bald eagle.\n   - The dog sees the bald eagle.\n   - The dog visits the tiger.\n   - The tiger is blue.\n   - The tiger is cold.\n   - The tiger is young.\n   - The tiger visits the cow.\n   - If something is big and it visits the bald eagle then it visits the cow.\n   - If something likes the tiger and the tiger is big then it is big.\n   - If something visits the cow and the cow is young then it is big.\n   - If something visits the tiger then it is young.\n   - If the tiger likes the dog then the tiger visits the bald eagle.\n   - If something is big then it visits the dog.\n   - If something visits the dog then it is cold.\n   - If something is young then it likes the tiger.\n\n2. Analyze the statement \"The dog is young.\"\n\nFrom the given statements, we have:\n- If something visits the tiger then it is young. (Statement 14)\n- The dog visits the tiger. (Statement 12)\n\nUsing Statement 14, we can infer that since the dog visits the tiger, the dog is young.\n\nTherefore, the statement \"The dog is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we will analyze the given information step by step.\n\n1.  The statement we need to determine the truth value of is \"The dog is young.\"\n2.  From the information given, we have the following rules:\n    *   If something visits the dog then it is cold.\n    *   If something is young then it likes the tiger.\n    *   The tiger is young.\n    *   If the tiger likes the dog then the tiger visits the bald eagle. (This is not directly relevant, but it provides information that the tiger likes the dog.)\n    *   If something is big and it visits the bald eagle then it visits the cow.\n    *   If something likes the tiger and the tiger is big then it is big.\n    *   If something visits the cow and the cow is young then it is big.\n    *   If something visits the tiger then it is young.\n    *   The tiger is young.\n3.  We need to find any information that directly or indirectly relates to the dog being young.\n4.  From the information given, we know the following about the dog:\n    *   The dog sees the bald eagle. (This is not directly relevant to determining the dog's age.)\n    *   The dog visits the tiger. (This rule states that if something visits the tiger, then it is young.)\n    *   The tiger likes the dog. (This is not directly relevant, but it provides information that the tiger likes the dog.)\n    *   The tiger is young. (This rule states that if something visits the tiger, then it is young, but we already know the dog visits the tiger.)\n5.  Based on the information given, since the dog visits the tiger and the tiger is young, we can apply the rule that if something visits the tiger then it is young. Therefore, the dog is young.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine the truth value of the statement \"The dog is young.\"\n\nGiven statements:\n1. The bald eagle is cold.\n2. The bald eagle is nice.\n3. The bald eagle likes the cow.\n4. The bald eagle likes the tiger.\n5. The bald eagle sees the cow.\n6. The bald eagle sees the dog.\n7. The bald eagle sees the tiger.\n8. The bald eagle visits the cow.\n9. The cow is young.\n10. The cow visits the bald eagle.\n11. The dog sees the bald eagle.\n12. The dog visits the tiger.\n13. The tiger is blue.\n14. The tiger is cold.\n15. The tiger is young.\n16. The tiger visits the cow.\n17. If something is big and it visits the bald eagle then it visits the cow.\n18. If something likes the tiger and the tiger is big then it is big.\n19. If something visits the cow and the cow is young then it is big.\n20. If something visits the tiger then it is young.\n21. If the tiger likes the dog then the tiger visits the bald eagle.\n22. If something is big then it visits the dog.\n23. If something visits the dog then it is cold.\n24. If something is young then it likes the tiger.\n\nWe need to find the truth value of the statement \"The dog is young.\" To do this, let's analyze the given information:\n\n* From statement 6, we know the bald eagle sees the dog.\n* From statement 12, we know the dog visits the tiger.\n* From statement 20, since the dog visits the tiger, the dog is young.\n\nTherefore, based on the given statements and the rules, we can conclude that the statement \"The dog is young\" is TRUE.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the dog is young, we need to analyze the given statements and the conditions provided.\n\nFrom the conditions:\n\n1. If something is big and it visits the bald eagle then it visits the cow.\n2. If something likes the tiger and the tiger is big then it is big.\n3. If something visits the cow and the cow is young then it is big.\n4. If something visits the tiger then it is young.\n5. If the tiger likes the dog then the tiger visits the bald eagle.\n6. If something is big then it visits the dog.\n7. If something visits the dog then it is cold.\n8. If something is young then it likes the tiger.\n\nFrom the given statements:\n\n- The tiger is blue.\n- The tiger is cold.\n- The tiger is young.\n- The tiger visits the cow.\n- The cow is young.\n- The cow visits the bald eagle.\n- The dog sees the bald eagle.\n- The dog visits the tiger.\n- The tiger is blue (this statement doesn't affect the conditions directly).\n\nWe can conclude the following:\n\n- The tiger is young (Statement 7).\n- The dog visits the tiger (Statement 9).\n- Since the dog visits the tiger, the dog is young (Condition 4).\n\nTherefore, the statement \"The dog is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The given information:\n- The bald eagle is cold. \n- The bald eagle is nice. \n- The bald eagle likes the cow. \n- The bald eagle likes the tiger. \n- The bald eagle sees the cow. \n- The bald eagle sees the dog. \n- The bald eagle sees the tiger. \n- The bald eagle visits the cow. \n- The cow is young. \n- The cow visits the bald eagle. \n- The dog sees the bald eagle. \n- The dog visits the tiger. \n- The tiger is blue. \n- The tiger is cold. \n- The tiger is young. \n- The tiger visits the cow.\n\n2. The rules:\n- If something is big and it visits the bald eagle then it visits the cow.\n- If something likes the tiger and the tiger is big then it is big.\n- If something visits the cow and the cow is young then it is big.\n- If something visits the tiger then it is young.\n- If the tiger likes the dog then the tiger visits the bald eagle.\n- If something is big then it visits the dog.\n- If something visits the dog then it is cold.\n- If something is young then it likes the tiger.\n\nNow, let's analyze the statement \"The dog is young.\"\n\nFrom the rules, we have:\n- Rule 4: If something visits the tiger then it is young.\n- Rule 7: If something is young then it likes the tiger.\n- Rule 2: The tiger is young, so it is likely that the dog is young.\n\nHowever, there's a missing step. We need to determine if the dog visits the tiger or if the dog is young.\n\nFrom the given information, we have:\n- The dog sees the bald eagle.\n- The dog visits the tiger.\n\nNow, let's check if the dog is young or not.\n\nUsing Rule 4 and the information that the dog visits the tiger, we can infer that the dog is young.\n\nHowever, there's a missing step in our reasoning. We assumed that visiting the tiger means being young, but we have to confirm that the tiger is big.\n\nFrom the rules, we have:\n- Rule 1: The tiger is big.\n\nNow, let's check if the dog is young.\n\nUsing Rule 7, we can infer that the dog likes the tiger because the dog is young.\n\nNow, let's check if the tiger likes the dog.\n\nFrom the rules, we have:\n- Rule 8: If the tiger likes the dog then the tiger visits the bald eagle.\n\nHowever, this rule does not apply because we don't know if the tiger likes the dog.\n\nBut we can use the following information and rule to find the answer:\n\n- The dog sees the bald eagle.\n- The dog visits the tiger.\n- The tiger is young.\n- The tiger is big.\n- Rule 5: If something likes the tiger and the tiger is big then it is big.\n- Rule 8: If the tiger likes the dog then the tiger visits the bald eagle.\n\nThe dog sees the bald eagle, visits the tiger, and the tiger is big. Now, let's check if the dog is big or not.\n\nUsing Rule 5, we can infer that the dog likes the tiger because the dog is big.\n\nNow, let's check if the tiger likes the dog.\n\nUsing Rule 8 and the information that the tiger likes the dog, we can infer that the tiger visits the bald eagle.\n\nHowever, this does not help us to find the answer.\n\nNow, let's check if the dog is young or not.\n\nUsing Rule 4 and the information that the dog visits the tiger, we can infer that the dog is young.\n\nSo, the statement \"The dog is young\" is true.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_dog_tiger, young_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bald_eagle)",
+          "z3_formula": "visits_cow_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bald_eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_X_bald_eagle), visits_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & big(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_tiger, big_tiger), big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_X_cow, young_cow), big_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_X_tiger, young_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, dog) -> visits(tiger, bald_eagle)",
+          "z3_formula": "Implies(likes_tiger_dog, visits_tiger_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_X_dog, cold_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bald_eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_X_bald_eagle), visits_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & big(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_tiger, big_tiger), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_X_cow, young_cow), big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_X_tiger, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, dog) -> visits(tiger, bald_eagle)",
+          "z3_formula": "Implies(likes_tiger_dog, visits_tiger_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_X_dog, cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_tiger, young_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_dog, likes_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, eagle)",
+          "z3_formula": "visits_tiger_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger) -> likes(tiger, tiger)",
+          "z3_formula": "Implies(young_tiger, likes_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(X, eagle)",
+          "z3_formula": "Implies(likes_X_dog, visits_X_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_X_eagle), visits_X_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_X_tiger, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(X, eagle)",
+          "z3_formula": "Implies(likes_tiger_dog, visits_tiger_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_dog_tiger, young_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, eagle)",
+          "z3_formula": "sees_dog_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_dog, sees_dog_eagle), visits_dog_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & young(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_dog_tiger, young_tiger), big_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_dog, visits_dog_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_dog_dog, cold_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bald_eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_X_bald_eagle), visits_X_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & big(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_tiger, big_tiger), big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_X_cow, young_cow), big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_X_tiger, young_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, X) -> visits(tiger, bald_eagle)",
+          "z3_formula": "Implies(likes_tiger_X, visits_tiger_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_X_dog, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bald_eagle)",
+          "z3_formula": "visits_cow_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bald_eagle)",
+          "z3_formula": "visits_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_tiger_cow, young_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & big(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_tiger_tiger, big_tiger), big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_cow_cow, young_cow), big_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_tiger_tiger, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, dog) -> visits(tiger, bald_eagle)",
+          "z3_formula": "Implies(likes_tiger_dog, visits_tiger_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bald_eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_bald_eagle, visits_bald_eagle_cow), visits_bald_eagle_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_dog_dog, cold_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_tiger, likes_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_dog, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_dog, likes_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & young(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_dog_tiger, young_tiger), big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_eagle), visits_X_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_eagle, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_X_cow, young_cow), big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_tiger, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, eagle)",
+          "z3_formula": "visits_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bald_eagle)",
+          "z3_formula": "visits_cow_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_dog_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bald_eagle) -> visits(X, cow)",
+          "z3_formula": "Implies(And(big_X, visits_X_bald_eagle), visits_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & big(tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_tiger, big_tiger), big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & young(cow) -> big(X)",
+          "z3_formula": "Implies(And(visits_X_cow, young_cow), big_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> young(X)",
+          "z3_formula": "Implies(visits_X_tiger, young_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, dog) -> visits(tiger, bald_eagle)",
+          "z3_formula": "Implies(likes_tiger_dog, visits_tiger_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> cold(X)",
+          "z3_formula": "Implies(visits_X_dog, cold_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 25
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 1
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 168,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 0,
+      "total_weight": 168,
+      "solve_time_ms": 1.2165866792201996
+    },
+    "timing": {
+      "trace_gen_s": 11.057,
+      "extraction_s": 42.823,
+      "dedup_s": 1.726,
+      "maxsat_s": 0.004,
+      "total_s": 55.612
+    }
+  }
+}

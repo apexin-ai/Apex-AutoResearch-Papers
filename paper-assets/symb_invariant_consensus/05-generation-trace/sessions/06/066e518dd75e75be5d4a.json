@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "066e518dd75e75be5d4a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis process kappa cross model",
+  "task_key": "worker_analysis_process-kappa-cross-model_20260520T223556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_process-kappa-cross-model_20260520T223556_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "99c5b62a88e36626f4c6627dc406fe3aedd2504d5382eccfdf2a0efa1de669b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。以下是完整分析：\n\n## 结果（Common subset, N=166）\n\n| Model | ProcessSim (mean±std) | Answer κ | Gap |\n|-------|----------------------|----------|-----|\n| Mistral-7B | 0.529±0.117 | 0.312 | **+0.218** |\n| Qwen2.5-14B | 0.596±0.097 | 0.722 | **-0.126** |\n| Qwen3-14B (nothink) | 0.608±0.095 | 0.763 | **-0.155** |\n| Qwen3-14B (think) | 0.801±0.081 | 0.912 | **-0.111** |\n\n## 关键发现\n\n**\"ProcessSim >> κ\" 现象不跨模型泛化。** 只在 Mistral-7B 上成立（Gap=+0.22），三个更强的模型上 Gap 全部反转为负值：κ 显著高于 ProcessSim。\n\n解读：\n- **Mistral-7B**：推理过程高度相似但答案不一致——符合 confirmation bias 叙事（模型用相似模板推理但结论摇摆）\n- **Qwen 系列**：答案一致性远超过程相似度——说明更强的模型能通过多样化推理路径收敛到一致答案，与 confirmation bias 假设相反\n\n**注意**：论文中报告的 Mistral-7B 数值（ProcessSim=0.69, κ=0.41）与此处（0.53, 0.32）有差异，可能因温度设置或 TF-IDF 参数不同。但 Gap 方向一致（ProcessSim > κ）。\n\n这个结果**不支持** \"confirmation bias 是 same-model aggregation 通病\"的 claim——它是弱模型特有现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-process-kappa-cross-model.md"
+}

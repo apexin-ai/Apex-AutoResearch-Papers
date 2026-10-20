@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp-multi-seed-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:44:11.464Z",
+    "updated_at": "2026-05-22T12:17:41.160Z",
+    "hypothesis": "Multi-seed replication (seeds 123,456,789) of Mistral-7B × FOLIO-204 shows consistent Δ(SICA-SC) direction across seeds. Baseline seed=42 already available. Combined with Mistral×PW and Qwen2.5×FOLIO/PW multi-seed, provides comprehensive reproducibility evidence for W4 reviewer response.",
+    "notes": "seed=789 COMPLETE (PID 576938): SC=59.31%, SICA=56.86%, Δ=-2.45pp, n=204. WARNING: PID 575733 (master script, thought killed as 575732) still alive on cuda:3, re-running seeds sequentially. Completed seed=123 (SC=57.84% vs exp052's 53.92% — config discrepancy), now on seed=456. Need Director decision: kill 575733 to free cuda:3 for Qwen2.5-7B? Qwen2.5-7B model downloading via ModelScope PID 605164 (~300KB/s, hours remaining).",
+    "reproduce": {
+      "finished_at": "2026-05-22T12:17:39.174Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T11:25:59.217138+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "seed789": {
+        "sc_acc": 59.31,
+        "sica_acc": 56.86,
+        "delta": -2.45,
+        "n": 204,
+        "source": "multi_seed/mistral_folio_seed789",
+        "pid": 576938,
+        "status": "COMPLETE"
+      },
+      "seed123_rerun": {
+        "sc_acc": 57.84,
+        "sica_acc": 57.84,
+        "delta": 0,
+        "n": 204,
+        "source": "multi_seed/mistral_folio_seed123 (PID 575733 rerun)",
+        "note": "DISCREPANCY: exp052 seed=123 had SC=53.92% SICA=57.35%. This rerun shows SC=57.84% SICA=57.84%. Different pipeline config suspected."
+      },
+      "seed456": {
+        "status": "running_rerun",
+        "pid": 575733,
+        "note": "PID 575733 master script still running seed=456 on cuda:3"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T12:17:41.472550+00:00",
+  "trigger": "update_registry"
+}

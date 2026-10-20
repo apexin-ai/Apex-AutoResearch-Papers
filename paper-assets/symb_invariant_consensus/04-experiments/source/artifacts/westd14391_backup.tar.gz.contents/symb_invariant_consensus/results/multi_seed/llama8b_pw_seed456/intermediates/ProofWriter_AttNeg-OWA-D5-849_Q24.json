@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-849_Q24",
+    "problem": "Anne is green. Bob is kind. Bob is rough. Erin is not rough. Fiona is nice. Fiona is not red. Fiona is rough. If something is green then it is not blue. Green things are red. Green, red things are rough. If Bob is blue then Bob is kind. All kind things are smart. Rough, red things are kind. If something is green and not kind then it is nice. All smart things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nKind(Bob, True) ::: Bob is kind.\nRough(Bob, True) ::: Bob is rough.\nRough(Erin, False) ::: Erin is not rough.\nNice(Fiona, True) ::: Fiona is nice.\nRed(Fiona, False) ::: Fiona is not red.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nGreen($x, True) >>> Blue($x, False) ::: If something is green then it is not blue.\nGreen($x, True) >>> Red($x, True) ::: Green things are red.\nGreen($x, True) && Red($x, True) >>> Rough($x, True) ::: Green, red things are rough.\nBlue(Bob, True) >>> Kind(Bob, True) ::: If Bob is blue then Bob is kind.\nKind($x, True) >>> Smart($x, True) ::: All kind things are smart.\nRough($x, True) && Red($x, True) >>> Kind($x, True) ::: Rough, red things are kind.\nGreen($x, True) && Kind($x, False) >>> Nice($x, True) ::: If something is green and not kind then it is nice.\nSmart($x, True) >>> Nice($x, True) ::: All smart things are nice.\n\nQuery:\nBlue(Fiona, True) ::: Fiona is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-deberta-ft-combo",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:54:25.357Z",
+    "updated_at": "2026-05-22T18:54:41.583Z",
+    "hypothesis": "Fine-tuned DeBERTa-large on ProofWriter OWA depth-5 achieves near-perfect NLI accuracy (99.67%) and provides massive combo gains over SC baseline when used as external verifier, demonstrating that domain-specific NLI fine-tuning breaks the SCB ceiling by providing truly independent verification signal.",
+    "metrics": {
+      "standalone_acc": 99.67,
+      "standalone_n": 600,
+      "errors": 2,
+      "llama8b_sc_baseline": 72.5,
+      "llama8b_w1": {
+        "acc": 76,
+        "delta": 3.5,
+        "p": "<0.0001"
+      },
+      "llama8b_w3": {
+        "acc": 84.17,
+        "delta": 11.67,
+        "p": "<0.0001"
+      },
+      "llama8b_w5": {
+        "acc": 91.67,
+        "delta": 19.17,
+        "p": "<0.0001"
+      },
+      "llama8b_complementarity": {
+        "nli_up_sc_down": 164,
+        "sc_up_nli_down": 1,
+        "agreement_rate": 72.5,
+        "agreement_accuracy": 99.77
+      },
+      "mistral_sc_baseline": 39.17,
+      "mistral_w1": {
+        "acc": 42.33,
+        "delta": 3.17,
+        "p": "<0.0001"
+      },
+      "mistral_w3": {
+        "acc": 52.17,
+        "delta": 13,
+        "p": "<0.0001"
+      },
+      "mistral_w5": {
+        "acc": 65.5,
+        "delta": 26.33,
+        "p": "<0.0001"
+      },
+      "mistral_complementarity": {
+        "nli_up_sc_down": 365,
+        "sc_up_nli_down": 2,
+        "agreement_rate": 38.83,
+        "agreement_accuracy": 100
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T18:54:41.887703+00:00",
+  "trigger": "update_registry"
+}

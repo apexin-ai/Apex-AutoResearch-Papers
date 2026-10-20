@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-877_Q16",
+    "problem": "Anne is cold. Bob is cold. Bob is young. Fiona is big. Fiona is young. Harry is big. Harry is blue. Harry is cold. Harry is furry. Harry is quiet. Harry is red. Harry is young. Cold, young people are red. Furry people are young. Young, big people are blue. Red, big people are quiet. Quiet people are furry. Blue people are red. Young people are big. All quiet, big people are furry. If someone is blue and furry then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nCold(Bob, True) ::: Bob is cold.\nYoung(Bob, True) ::: Bob is young.\nBig(Fiona, True) ::: Fiona is big.\nYoung(Fiona, True) ::: Fiona is young.\nBig(Harry, True) ::: Harry is big.\nBlue(Harry, True) ::: Harry is blue.\nCold(Harry, True) ::: Harry is cold.\nFurry(Harry, True) ::: Harry is furry.\nQuiet(Harry, True) ::: Harry is quiet.\nRed(Harry, True) ::: Harry is red.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nCold($x, True) && Young($x, True) >>> Red($x, True) ::: Cold, young people are red.\nFurry($x, True) >>> Young($x, True) ::: Furry people are young.\nYoung($x, True) && Big($x, True) >>> Blue($x, True) ::: Young, big people are blue.\nRed($x, True) && Big($x, True) >>> Quiet($x, True) ::: Red, big people are quiet.\nQuiet($x, True) >>> Furry($x, True) ::: Quiet people are furry.\nBlue($x, True) >>> Red($x, True) ::: Blue people are red.\nYoung($x, True) >>> Big($x, True) ::: Young people are big.\nQuiet($x, True) && Big($x, True) >>> Furry($x, True) ::: All quiet, big people are furry.\nBlue($x, True) && Furry($x, True) >>> Cold($x, True) ::: If someone is blue and furry then they are cold.\n\nQuery:\nQuiet(Anne, True) ::: Anne is quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

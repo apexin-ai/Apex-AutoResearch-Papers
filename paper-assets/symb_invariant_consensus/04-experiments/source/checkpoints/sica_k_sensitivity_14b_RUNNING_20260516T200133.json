@@ -1,0 +1,43 @@
+{
+  "exp_id": "sica_k_sensitivity_14b",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:12:03.025Z",
+    "updated_at": "2026-05-16T20:01:33.352Z",
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_k_ablation.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "237939",
+      "log_path": "~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log",
+      "submitted_at": "2026-05-16T20:00:54Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/proofwriter_30.json + data/folio_30.json",
+      "data_count": 60,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "k_values": [
+        6,
+        8,
+        11,
+        12,
+        16,
+        20
+      ],
+      "eta_hours": 5.9,
+      "checkpoint_source": "Qwen2.5-14B-Instruct (base, no fine-tuning)",
+      "eval_data": "D012 60 problems (PW30+FOLIO30)"
+    },
+    "hypothesis": "K-ablation: K={6,8,11,12,16,20} 对 SICA 效果的影响。K=11(奇数)无平票，若 gap=0 则证明 SICA 仅靠 tiebreak 生效",
+    "parent": "sica_expanded_14b"
+  },
+  "timestamp": "2026-05-16T20:01:33.416388+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-998_Q6",
+    "problem": "Anne is kind. Anne is nice. Charlie is not big. Charlie is cold. Charlie is kind. Charlie is smart. Charlie is young. Erin is cold. Erin is kind. Erin is nice. Erin is young. Fiona is big. If Fiona is young then Fiona is nice. If something is nice and kind then it is smart. Big, kind things are young. All big things are round. If something is round then it is kind. If Charlie is big then Charlie is young. If something is smart and not round then it is not cold. All round, smart things are cold. Nice things are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nBig(Charlie, False) ::: Charlie is not big.\nCold(Charlie, True) ::: Charlie is cold.\nKind(Charlie, True) ::: Charlie is kind.\nSmart(Charlie, True) ::: Charlie is smart.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Erin, True) ::: Erin is cold.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nYoung(Erin, True) ::: Erin is young.\nBig(Fiona, True) ::: Fiona is big.\n\nRules:\nYoung(Fiona, True) >>> Nice(Fiona, True) ::: If Fiona is young then Fiona is nice.\nNice($x, True) && Kind($x, True) >>> Smart($x, True) ::: If something is nice and kind then it is smart.\nBig($x, True) && Kind($x, True) >>> Young($x, True) ::: Big, kind things are young.\nBig($x, True) >>> Round($x, True) ::: All big things are round.\nRound($x, True) >>> Kind($x, True) ::: If something is round then it is kind.\nBig(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is big then Charlie is young.\nSmart($x, True) && Round($x, False) >>> Cold($x, False) ::: If something is smart and not round then it is not cold.\nRound($x, True) && Smart($x, True) >>> Cold($x, True) ::: All round, smart things are cold.\nNice($x, True) >>> Cold($x, True) ::: Nice things are cold.\n\nQuery:\nKind(Fiona, False) ::: Fiona is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

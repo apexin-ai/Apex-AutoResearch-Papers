@@ -1,0 +1,2755 @@
+# fix caption and narrative correction
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_fix_caption-and-narrative-correction_20260523T001013.log`
+- **Structured JSON:** [`cb1315694c8ec59c55ac.json`](../../sessions/cb/cb1315694c8ec59c55ac.json)
+
+## Before a recorded user message
+
+59 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a52e69b2-b4a7-410c-ad75-96a3d93f84a4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779890400,
+    "rateLimitType": "seven_day",
+    "utilization": 0.52,
+    "isUsingOverage": false
+  },
+  "uuid": "d93817e8-ba76-4d89-aaf7-81ee72cb9759",
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the current state of the files first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "b6bc2b50-3fd0-4f10-b8a0-4c1388c59dd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VpAd5AZ2XMeTgnJPeYYQVX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ETuSMHZStSb4QCprSsUwjt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "cbc6e16b-f0ca-40d9-ac10-f6b1591be1de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VpAd5AZ2XMeTgnJPeYYQVX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T00:10:26.968Z_
+
+<details><summary>↩ Tool result · `toolu_01ETuSMHZStSb4QCprSsUwjt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "da5483a2-da09-4f23-ac1c-99fe12fadb89",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current state of both files to understand what needs to be changed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "f0b74620-5a28-438e-96a5-a1169860dcfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Et7LESBMj2CNKJS3sijZ44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 682,
+      "cache_read_input_tokens": 24334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 682
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G8qq4iCVPpNiSgCHSkfCWL`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sed -n '1080,1110p' /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "b95eb59e-d5f9-477c-8c7a-e9bc2f7c06ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Et7LESBMj2CNKJS3sijZ44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 682,
+      "cache_read_input_tokens": 24334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 682
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T00:10:30.347Z_
+
+<details><summary>↩ Tool result · `toolu_01G8qq4iCVPpNiSgCHSkfCWL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "8cf5cdf5-6b16-426c-acdc-10d307088daf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LMczT26P2i4ECgHoNSvn9R`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sed -n '45,75p' /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "cf27bc81-ae15-4b62-bfcc-9b41d30c1c20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Et7LESBMj2CNKJS3sijZ44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 682,
+      "cache_read_input_tokens": 24334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 682
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T00:10:30.913Z_
+
+<details><summary>↩ Tool result · `toolu_01LMczT26P2i4ECgHoNSvn9R`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "c55eeeec-33fe-4e51-a8b0-f6d12ea1c3b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KRjmsxMnqpa9XYmvB4EpUP`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Three of four conditions\" /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "2ef5ee5d-4af5-4537-a1a5-e8447196c83e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JLCqaP7Rttic2jPQPHZgH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 487,
+      "cache_read_input_tokens": 25016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 487
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T00:10:34.836Z_
+
+<details><summary>↩ Tool result · `toolu_01KRjmsxMnqpa9XYmvB4EpUP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Three of four conditions show consistent $\\\\Delta \\\\leq 0$ across all seeds; Mistral-7B $\\\\times$ FOLIO is the exception ($+0.16 \\\\pm 2.70$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "77456a0a-5f71-4d92-ba5e-cbf62359f3d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1089:\\\\\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\\\\\pm$ SD computed across seeds. Three of four conditions show consistent $\\\\\\\\Delta \\\\\\\\leq 0$ across all seeds; Mistral-7B $\\\\\\\\times$ FOLIO is the exception ($+0.16 \\\\\\\\pm 2.70$\\\\\\\\,pp).}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Three of four conditions show consistent $\\\\Delta \\\\leq 0$ across all seeds; Mistral-7B $\\\\times$ FOLIO is the exception ($+0.16 \\\\pm 2.70$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VBVBjwEHESnrmEfQogv7MD`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Four-seed replication\\|multi.seed\\|Multi-seed\\|seeds.*Mistral\\|Mistral.*seed\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "74b59462-3e3e-4fa4-832c-5269deeecf14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JLCqaP7Rttic2jPQPHZgH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 487,
+      "cache_read_input_tokens": 25016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 487
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T00:10:34.928Z_
+
+<details><summary>↩ Tool result · `toolu_01VBVBjwEHESnrmEfQogv7MD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "9b3591f3-502a-42f2-bfdc-3be2fcdcfeee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UFWr33T2YVuzXm4X7Q8joG`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"multi.seed\\|Multi-seed\\|Four-seed\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "9d725a3e-7405-4b3f-94f0-009f1f1ae683",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EHWTfWhyVUv41Ra6mssdB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 25503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T00:10:37.896Z_
+
+<details><summary>↩ Tool result · `toolu_01UFWr33T2YVuzXm4X7Q8joG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "543c0b10-9711-4b76-b9bf-69b1e9e90143",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019P1rk7hdnGorUi29WGBqVa`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Multi-seed\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "15d00b28-5051-466d-bf8d-d91dfe1ae737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rRyF5G12oUkMyC6R9qBno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 26074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T00:10:41.327Z_
+
+<details><summary>↩ Tool result · `toolu_019P1rk7hdnGorUi29WGBqVa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "b0457923-602c-4015-b085-ae249b492db7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WYbYotLVDXz2vDqmeYrSTA`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Four-seed\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "8ae7696f-4e7a-4a74-93b2-0cbf2d5b954d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rRyF5G12oUkMyC6R9qBno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 26074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T00:10:42.275Z_
+
+<details><summary>↩ Tool result · `toolu_01WYbYotLVDXz2vDqmeYrSTA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\times$ ProofWriter ($\\\\bar{\\\\Delta}{=}{-}2.38 \\\\pm 1.12$\\\\,pp, 4/4 seeds $\\\\Delta \\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\times$ FOLIO ($\\\\bar{\\\\Delta}{=}{-}0.98 \\\\pm 2.25$\\\\,pp) confirm that the SICA${\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\times$ FOLIO confirms the single-seed pattern: $\\\\Delta \\\\in [0.00, -2.01]$\\\\,pp (mean $-1.24 \\\\pm 0.86$; Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "4400684c-191e-4e58-85e1-0ca76024ec00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"57:\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\\\\\times$ ProofWriter ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}2.38 \\\\\\\\pm 1.12$\\\\\\\\,pp, 4/4 seeds $\\\\\\\\Delta \\\\\\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\\\\\times$ FOLIO ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp) confirm that the SICA${\\\\\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\\\\\times$ FOLIO confirms the single-seed pattern: $\\\\\\\\Delta \\\\\\\\in [0.00, -2.01]$\\\\\\\\,pp (mean $-1.24 \\\\\\\\pm 0.86$; Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\times$ ProofWriter ($\\\\bar{\\\\Delta}{=}{-}2.38 \\\\pm 1.12$\\\\,pp, 4/4 seeds $\\\\Delta \\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\times$ FOLIO ($\\\\bar{\\\\Delta}{=}{-}0.98 \\\\pm 2.25$\\\\,pp) confirm that the SICA${\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\times$ FOLIO confirms the single-seed pattern: $\\\\Delta \\\\in [0.00, -2.01]$\\\\,pp (mean $-1.24 \\\\pm 0.86$; Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C8v7XWEoH6F8AGWMgAwUgL`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"multi-seed\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "8ffe3157-1952-405f-9e39-7437a3904d0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rRyF5G12oUkMyC6R9qBno",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 26074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T00:10:42.816Z_
+
+<details><summary>↩ Tool result · `toolu_01C8v7XWEoH6F8AGWMgAwUgL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\times$ ProofWriter ($\\\\bar{\\\\Delta}{=}{-}2.38 \\\\pm 1.12$\\\\,pp, 4/4 seeds $\\\\Delta \\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\times$ FOLIO ($\\\\bar{\\\\Delta}{=}{-}0.98 \\\\pm 2.25$\\\\,pp) confirm that the SICA${\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\times$ FOLIO confirms the single-seed pattern: $\\\\Delta \\\\in [0.00, -2.01]$\\\\,pp (mean $-1.24 \\\\pm 0.86$; Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "cf140cc5-54a4-4044-8272-9b19d7d41765",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"57:\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\\\\\times$ ProofWriter ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}2.38 \\\\\\\\pm 1.12$\\\\\\\\,pp, 4/4 seeds $\\\\\\\\Delta \\\\\\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\\\\\times$ FOLIO ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp) confirm that the SICA${\\\\\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\\\\\times$ FOLIO confirms the single-seed pattern: $\\\\\\\\Delta \\\\\\\\in [0.00, -2.01]$\\\\\\\\,pp (mean $-1.24 \\\\\\\\pm 0.86$; Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Four-seed replication on Mistral-7B $\\\\times$ ProofWriter ($\\\\bar{\\\\Delta}{=}{-}2.38 \\\\pm 1.12$\\\\,pp, 4/4 seeds $\\\\Delta \\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\times$ FOLIO ($\\\\bar{\\\\Delta}{=}{-}0.98 \\\\pm 2.25$\\\\,pp) confirm that the SICA${\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\times$ FOLIO confirms the single-seed pattern: $\\\\Delta \\\\in [0.00, -2.01]$\\\\,pp (mean $-1.24 \\\\pm 0.86$; Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have the current text for both files. Let me also check the Qwen2.5-14B FOLIO numbers - the user says Δ̄=−1.79±0.25pp but the current text says mean −1.24 ± 0.86. I need to use the user's provided numbers.
+
+Let me now construct the edits.
+
+**Task 1: appendix.tex L1089 caption fix**
+
+Current caption text (the part to change):
+```
+Three of four conditions show consistent $\Delta \leq 0$ across all seeds; Mistral-7B $\times$ FOLIO is the exception ($+0.16 \pm 2.70$\,pp).
+
+
+```
+
+Replace with:
+```
+Two of four conditions (Mistral-7B $\times$ PW, Qwen2.5-14B $\times$ FOLIO) show $\Delta \leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \pm 2.70$, $-0.98 \pm 2.25$\,pp).
+```
+
+**Task 2: experiments.tex L57 multi-seed narrative update**
+
+The current multi-seed sentences are:
+```
+Four-seed replication on Mistral-7B $\times$ ProofWriter ($\bar{\Delta}{=}{-}2.38 \pm 1.12$\,pp
+```
+
+Updating the narrative...
+
+Multi-seed replication across Mistral-7B $\times$ ProofWriter (four seeds, all showing $\Delta \leq 0$), LLaMA-3.1-8B $\times$ FOLIO (three seeds, $\bar{\Delta}{=}{-}0.98 \pm 2.25$\,pp), and Qwen2.5-14B $\times$ FOLIO (four seeds, $\bar{\Delta}{=}{-}1.24 \pm 0.86$\,pp) consistently demonstrates that the SICA${\leq}$SC pattern holds robustly across different random seeds, model architectures, and benchmark datasets. I'm updating the text in two files to reflect the corrected findings. In appendix.tex, I need to change the statement about which conditions show consistent non-positive deltas, specifying that Mistral-7B × ProofWriter and Qwen2.5-14B × FOLIO both maintain $\Delta \leq 0$ across all seeds while the other two show mixed signs with their respective means. For experiments.tex, I'm revising the description of the multi-seed replications to clarify which models and datasets were tested and how many seeds were used for each condition. I'll use Python to handle the string replacements safely with all the special characters involved.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "6f3a5bea-371f-4c01-9343-f384335e190a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhUBkXna8MHq2iZWXP1gH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2152,
+      "cache_read_input_tokens": 26287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2152
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Found both targets. Now applying the edits.
+
+**Task 1** — appendix.tex L1089 caption: "Three of four conditions..." → corrected two-of-four statement.
+**Task 2** — experiments.tex L57: replacing the two multi-seed sentences with a unified narrative.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "0b5edf3a-5737-447c-98c3-24373d253df8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhUBkXna8MHq2iZWXP1gH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2152,
+      "cache_read_input_tokens": 26287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2152
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0157TjR1Ztv6tanQE8ZpfTEN`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && python3 -c \"\nimport re\n\n# Task 1: appendix.tex caption fix\nwith open('appendix.tex', 'r') as f:\n    content = f.read()\n\nold = r'Three of four conditions show consistent $\\Delta \\leq 0$ across all seeds; Mistral-7B $\\times$ FOLIO is the exception ($+0.16 \\pm 2.70$\\,pp).'\nnew = r'Two of four conditions (Mistral-7B $\\times$ PW, Qwen2.5-14B $\\times$ FOLIO) show $\\Delta \\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\pm 2.70$, $-0.98 \\pm 2.25$\\,pp).'\n\nassert old in content, 'OLD TEXT NOT FOUND in appendix.tex'\ncontent = content.replace(old, new)\n\nwith open('appendix.tex', 'w') as f:\n    f.write(content)\nprint('appendix.tex: OK')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "0f1130ad-9ccd-4cc6-9b0b-8e9dc6c5ad20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhUBkXna8MHq2iZWXP1gH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2152,
+      "cache_read_input_tokens": 26287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2152
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T00:11:12.442Z_
+
+<details><summary>↩ Tool result · `toolu_0157TjR1Ztv6tanQE8ZpfTEN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"appendix.tex: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "fcb98b05-7865-4ee3-afea-dc206ca38d6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"appendix.tex: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"appendix.tex: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CEdq54XXF8DFRTG5yV9iDz`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && python3 -c \"\n# Task 2: experiments.tex multi-seed narrative update\nwith open('experiments.tex', 'r') as f:\n    content = f.read()\n\nold = r'Four-seed replication on Mistral-7B $\\times$ ProofWriter ($\\bar{\\Delta}{=}{-}2.38 \\pm 1.12$\\,pp, 4/4 seeds $\\Delta \\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\times$ FOLIO ($\\bar{\\Delta}{=}{-}0.98 \\pm 2.25$\\,pp) confirm that the SICA${\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\times$ FOLIO confirms the single-seed pattern: $\\Delta \\in [0.00, -2.01]$\\,pp (mean $-1.24 \\pm 0.86$; Table~\\ref{tab:multi-seed}).'\n\nnew = r'Multi-seed replication confirms robustness: Mistral-7B $\\times$ ProofWriter (4 seeds, $\\bar\\Delta=-2.38\\pm1.12$\\,pp, all $\\Delta\\leq0$) and Qwen2.5-14B $\\times$ FOLIO (4 seeds, $\\bar\\Delta=-1.79\\pm0.25$\\,pp, all $\\Delta\\leq0$) show uniformly non-positive $\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\ref{tab:multi-seed}).'\n\nassert old in content, 'OLD TEXT NOT FOUND in experiments.tex'\ncontent = content.replace(old, new)\n\nwith open('experiments.tex', 'w') as f:\n    f.write(content)\nprint('experiments.tex: OK')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "267d2084-82fd-4bfa-b801-1b285ba1580d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HefvFuA5hgZshmRsE1pxw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28439,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T00:11:20.428Z_
+
+<details><summary>↩ Tool result · `toolu_01CEdq54XXF8DFRTG5yV9iDz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus/docs/paper && python3 -c \\\"\\\\n# Task 2: experiments.tex multi-seed narrative update\\\\nwith open(\\\\'experiments.tex\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold = r\\\\'Four-seed replication on Mistral-7B $\\\\\\\\times$ ProofWriter ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}2.38 \\\\\\\\pm 1.12$\\\\\\\\,pp, 4/4 seeds $\\\\\\\\Delta \\\\\\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\\\\\times$ FOLIO ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp) confirm that the SICA${\\\\\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\\\\\times$ FOLIO confirms the single-seed pattern: $\\\\\\\\Delta \\\\\\\\in [0.00, -2.01]$\\\\\\\\,pp (mean $-1.24 \\\\\\\\pm 0.86$; Table~\\\\\\\\ref{tab:multi-seed}).\\\\'\\\\n\\\\nnew = r\\\\'Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}).\\\\'\\\\n\\\\nassert old in content, \\\\'OLD TEXT NOT FOUND in experiments.tex\\\\'\\\\ncontent = content.replace(old, new)\\\\n\\\\nwith open(\\\\'experiments.tex\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'experiments.tex: OK\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\nnew = r'Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}).'\\n\\nassert old in content, 'OLD TEXT NOT FOUND in experiments.tex'\\ncontent = content.replace(old, new)\\n\\nwith open('experiments.tex', 'w') as f:\\n    f.write(content)\\nprint('experiments.tex: OK')\\n: bad substitution\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "9fe8fe52-e7ec-408f-ab6f-1f840e296dd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/symb_invariant_consensus/docs/paper && python3 -c \\\\\\\"\\\\\\\\n# Task 2: experiments.tex multi-seed narrative update\\\\\\\\nwith open(\\\\\\\\'experiments.tex\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\nold = r\\\\\\\\'Four-seed replication on Mistral-7B $\\\\\\\\\\\\\\\\times$ ProofWriter ($\\\\\\\\\\\\\\\\bar{\\\\\\\\\\\\\\\\Delta}{=}{-}2.38 \\\\\\\\\\\\\\\\pm 1.12$\\\\\\\\\\\\\\\\,pp, 4/4 seeds $\\\\\\\\\\\\\\\\Delta \\\\\\\\\\\\\\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\\\\\\\\\\\\\times$ FOLIO ($\\\\\\\\\\\\\\\\bar{\\\\\\\\\\\\\\\\Delta}{=}{-}0.98 \\\\\\\\\\\\\\\\pm 2.25$\\\\\\\\\\\\\\\\,pp) confirm that the SICA${\\\\\\\\\\\\\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\\\\\\\\\\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\\\\\\\\\\\\\times$ FOLIO confirms the single-seed pattern: $\\\\\\\\\\\\\\\\Delta \\\\\\\\\\\\\\\\in [0.00, -2.01]$\\\\\\\\\\\\\\\\,pp (mean $-1.24 \\\\\\\\\\\\\\\\pm 0.86$; Table~\\\\\\\\\\\\\\\\ref{tab:multi-seed}).\\\\\\\\'\\\\\\\\n\\\\\\\\nnew = r\\\\\\\\'Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\\\\\\\\\bar\\\\\\\\\\\\\\\\Delta=-2.38\\\\\\\\\\\\\\\\pm1.12$\\\\\\\\\\\\\\\\,pp, all $\\\\\\\\\\\\\\\\Delta\\\\\\\\\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\\\\\\\\\bar\\\\\\\\\\\\\\\\Delta=-1.79\\\\\\\\\\\\\\\\pm0.25$\\\\\\\\\\\\\\\\,pp, all $\\\\\\\\\\\\\\\\Delta\\\\\\\\\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\\\\\\\\\ref{tab:multi-seed}).\\\\\\\\'\\\\\\\\n\\\\\\\\nassert old in content, \\\\\\\\'OLD TEXT NOT FOUND in experiments.tex\\\\\\\\'\\\\\\\\ncontent = content.replace(old, new)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'experiments.tex\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\nprint(\\\\\\\\'experiments.tex: OK\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\nnew = r'Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}).'\\\\n\\\\nassert old in content, 'OLD TEXT NOT FOUND in experiments.tex'\\\\ncontent = content.replace(old, new)\\\\n\\\\nwith open('experiments.tex', 'w') as f:\\\\n    f.write(content)\\\\nprint('experiments.tex: OK')\\\\n: bad substitution\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/symb_invariant_consensus/docs/paper && python3 -c \\\"\\\\n# Task 2: experiments.tex multi-seed narrative update\\\\nwith open(\\\\'experiments.tex\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold = r\\\\'Four-seed replication on Mistral-7B $\\\\\\\\times$ ProofWriter ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}2.38 \\\\\\\\pm 1.12$\\\\\\\\,pp, 4/4 seeds $\\\\\\\\Delta \\\\\\\\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\\\\\\\times$ FOLIO ($\\\\\\\\bar{\\\\\\\\Delta}{=}{-}0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp) confirm that the SICA${\\\\\\\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\\\\\\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\\\\\\\times$ FOLIO confirms the single-seed pattern: $\\\\\\\\Delta \\\\\\\\in [0.00, -2.01]$\\\\\\\\,pp (mean $-1.24 \\\\\\\\pm 0.86$; Table~\\\\\\\\ref{tab:multi-seed}).\\\\'\\\\n\\\\nnew = r\\\\'Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}).\\\\'\\\\n\\\\nassert old in content, \\\\'OLD TEXT NOT FOUND in experiments.tex\\\\'\\\\ncontent = content.replace(old, new)\\\\n\\\\nwith open(\\\\'experiments.tex\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\nprint(\\\\'experiments.tex: OK\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\nnew = r'Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}).'\\n\\nassert old in content, 'OLD TEXT NOT FOUND in experiments.tex'\\ncontent = content.replace(old, new)\\n\\nwith open('experiments.tex', 'w') as f:\\n    f.write(content)\\nprint('experiments.tex: OK')\\n: bad substitution\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is with shell escaping. Let me write a Python script to a file first, then execute it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "c0e19986-ac64-4341-867f-5def3c9f843f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gw65kn8WpaEDbDHTFFBmju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 30215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Shell escaping issue. Let me write a script file instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "e1ad7b37-2a55-444e-82a3-aa0360d08644",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gw65kn8WpaEDbDHTFFBmju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 30215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MEnCfefTAihYvcHyJ5JSeD`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /tmp/fix_experiments.py << 'PYEOF'\nwith open('/root/symb_invariant_consensus/docs/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\nold = r'Four-seed replication on Mistral-7B $\\times$ ProofWriter ($\\bar{\\Delta}{=}{-}2.38 \\pm 1.12$\\,pp, 4/4 seeds $\\Delta \\leq 0$) and three-seed replication on LLaMA-3.1-8B $\\times$ FOLIO ($\\bar{\\Delta}{=}{-}0.98 \\pm 2.25$\\,pp) confirm that the SICA${\\leq}$SC pattern is stable across seeds, models, and datasets (Table~\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\times$ FOLIO confirms the single-seed pattern: $\\Delta \\in [0.00, -2.01]$\\,pp (mean $-1.24 \\pm 0.86$; Table~\\ref{tab:multi-seed}).'\n\nnew = r'Multi-seed replication confirms robustness: Mistral-7B $\\times$ ProofWriter (4 seeds, $\\bar\\Delta=-2.38\\pm1.12$\\,pp, all $\\Delta\\leq0$) and Qwen2.5-14B $\\times$ FOLIO (4 seeds, $\\bar\\Delta=-1.79\\pm0.25$\\,pp, all $\\Delta\\leq0$) show uniformly non-positive $\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\ref{tab:multi-seed}).'\n\nassert old in content, 'OLD TEXT NOT FOUND in experiments.tex'\ncontent = content.replace(old, new)\n\nwith open('/root/symb_invariant_consensus/docs/paper/experiments.tex', 'w') as f:\n    f.write(content)\nprint('experiments.tex: OK')\nPYEOF\npython3 /tmp/fix_experiments.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "c74fb9ae-27a8-44dd-9f81-93758d8abf2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gw65kn8WpaEDbDHTFFBmju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 30215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T00:11:30.837Z_
+
+<details><summary>↩ Tool result · `toolu_01MEnCfefTAihYvcHyJ5JSeD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"experiments.tex: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "2ffd9aba-a357-4343-a630-848b5e80b6ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"experiments.tex: OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"experiments.tex: OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Both files edited. Now verifying the changes and compiling.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "5cc1bee8-ac03-4db9-bfcd-dc3b3732dcbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhn5QRagNjwXRr4idUSS2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 31826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EhzuwVjPT9SCH6bui31nKP`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Two of four conditions\" /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "824402ab-9e54-41ae-9c2a-14baa9dc4751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhn5QRagNjwXRr4idUSS2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 31826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Vfup52v3UJrNHgXE6LodX`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Multi-seed replication confirms\" /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "f8baf4c5-8b3d-4063-89ae-dc87a9d31bd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhn5QRagNjwXRr4idUSS2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 31826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T00:11:37.832Z_
+
+<details><summary>↩ Tool result · `toolu_01EhzuwVjPT9SCH6bui31nKP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, hBc0.98 \\\\pm 2.25$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "90ea44ef-04a5-478e-b808-55438f44070b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1089:\\\\\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\\\\\times$ PW, Qwen2.5-14B $\\\\\\\\times$ FOLIO) show $\\\\\\\\Delta \\\\\\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\\\\\pm 2.70$, hBc0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp).}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, hBc0.98 \\\\pm 2.25$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KWDop1YBjtEk1V2RRFF5J7`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "7137424d-afa6-4ab9-99bb-e94722512812",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhn5QRagNjwXRr4idUSS2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 735,
+      "cache_read_input_tokens": 31826,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 735
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T00:11:38.370Z_
+
+<details><summary>↩ Tool result · `toolu_017Vfup52v3UJrNHgXE6LodX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "c328d7ee-07c9-44e4-a0dc-90f6fdcd36eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"57:\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T00:11:38.896Z_
+
+<details><summary>↩ Tool result · `toolu_01KWDop1YBjtEk1V2RRFF5J7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "8152d73f-e44e-44c8-90c0-ec5003bf087d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: latexmk: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix.tex grep shows "hBc0.98" which looks corrupted — it should be "$-0.98". Let me check the actual file content more carefully. The grep output shows `hBc0.98` where it should be `$-0.98`. This looks like a display/encoding artifact from the grep tool, but let me verify the actual file content.
+
+Wait, the original text I used was: `$-0.98 \pm 2.25$\,pp` — but in the grep output it shows `hBc0.98 \\pm 2.25$`. 
+
+I'm wondering if this is a character encoding issue from the SSH tool rather than actual file corruption. Let me pull the raw file content directly to see what's really stored there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "7b102408-b973-447e-b963-828329f0076d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMoraRDgi6trWpyPxmMGcd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1433,
+      "cache_read_input_tokens": 32561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1433
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+The appendix.tex output shows `hBc0.98` which looks corrupted. Let me verify.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "ffc24717-1a44-4464-bd4e-a554bf38f542",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMoraRDgi6trWpyPxmMGcd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1433,
+      "cache_read_input_tokens": 32561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1433
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BC5P2T6c5oyDvyBHYwg9vt`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -1090 /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "fbebd9e8-0c0c-40b3-bf5a-7f6f6ca1f32a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMoraRDgi6trWpyPxmMGcd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1433,
+      "cache_read_input_tokens": 32561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1433
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T00:11:49.493Z_
+
+<details><summary>↩ Tool result · `toolu_01BC5P2T6c5oyDvyBHYwg9vt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Regime Scatter Plot}\\n\\\\label{app:regime-scatter}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{f2_regime_scatter}\\n\\\\caption{SICA $\\\\Delta$ (pp) vs.\\\\ SC baseline. Filled: $n \\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\ $p = 0.112$).}\\n\\\\label{fig:regime-scatter}\\n\\\\end{figure}\\n\\n\\\\section{Prompt Templates}\\n\\\\label{app:prompts}\\n\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\n\\n\\\\paragraph{System Prompt.}\\n\\n\\\\begin{lstlisting}\\nYou are a constraint extraction tool. Output ONLY\\nvalid JSON. Do NOT solve problems, reason about\\ncorrectness, or think step-by-step. Extract\\nconstraints from the given trace exactly as stated.\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\_PROMPT).}\\n\\nUsed for GSM8K and AIME datasets. The placeholder \\\\texttt{\\\\{trace\\\\}} is replaced with the reasoning trace at runtime.\\n\\n\\\\begin{lstlisting}\\nExtract mathematical constraints from this reasoning\\ntrace as a JSON object.\\n\\nRules:\\n- type: \\\"equation\\\", \\\"inequality\\\", or \\\"predicate\\\"\\n- expression: human-readable, e.g. \\\"x + y == 14\\\"\\n- z3_formula: a single comparison expression in\\n  Python Z3 syntax\\n- source_step: step number where the constraint\\n  appears\\n- Use variable names from the trace\\n\\nz3_formula MUST follow these rules:\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\n  /, **, %\\n- Use individual named variables: a1, a2, a3...\\n  NOT arrays a[1] or sets A\\n- Expand all sums explicitly:\\n  \\\"a1 + a2 + a3 == 55\\\" NOT \\\"sum([a1,a2,a3])\\\"\\n- NO Python builtins: sum(), len(), max(), min(),\\n  list(), set(), range(), int()\\n- Each z3_formula must be exactly ONE comparison\\n  (==, !=, <, >, <=, >=)\\n- For multiple values, write separate constraints\\n  for each\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"equation\\\",\\n  \\\"expression\\\": \\\"x + y == 14\\\",\\n  \\\"z3_formula\\\": \\\"x + y == 14\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"final_answer\\\",\\n \\\"variables\\\": [\\\"x\\\", \\\"y\\\"]}\\n\\nTrace:\\n{trace}\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\_EXTRACTION\\\\_PROMPT).}\\n\\nUsed for ProofWriter and FOLIO datasets.\\n\\n\\\\begin{lstlisting}\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\nsolver.\\n- Do NOT re-solve or re-reason about the problem.\\n- Do NOT verify whether the trace's reasoning is\\n  correct.\\n- ONLY extract the logical constraints that are\\n  explicitly stated or used in the trace below.\\n- Output ONLY the JSON object, nothing else.\\n\\nExtract logical constraints from this reasoning trace\\nabout a logic problem.\\n\\nThe problem has facts (base assertions), rules\\n(grounded implications), and derived conclusions.\\nConvert each into a Z3 boolean formula.\\n\\nVariable naming:\\n- Unary property: property_entity\\n  (e.g., kind_anne, red_charlie, round_fiona)\\n- Binary relation: relation_subject_object\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\n- Use lowercase with underscores only\\n\\nConstraint types:\\n- \\\"fact\\\": a given assertion,\\n  e.g., kind_anne == True\\n- \\\"rule\\\": a grounded implication over specific\\n  entities, e.g., Implies(kind_anne, nice_anne)\\n- \\\"derived\\\": an inferred conclusion from facts +\\n  rules, e.g., nice_anne == True\\n\\nZ3 operators:\\n- Implies(a, b) for if-then rules\\n- And(a, b, ...) for conjunctive conditions\\n- Or(a, b, ...) for disjunctive conditions\\n- Not(a) for negation\\n- == True / == False for boolean assertions\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"fact\\\",\\n  \\\"expression\\\": \\\"kind(anne)\\\",\\n  \\\"z3_formula\\\": \\\"kind_anne == True\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"True or False or Unkno\\n\\n... [截断: 输出过长，省略 60995 字符] ...\\n\\nrts the full $2{\\\\times}2$ generator${\\\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\\\sim}25$\\\\,pp vs.\\\\ column difference ${\\\\sim}3$\\\\,pp), contrasting with ProofWriter where the extractor dominates ($\\\\Delta$ range ${\\\\pm}40$--$50$\\\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\\\Delta = +2.94$\\\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\\\Delta = +2.94$\\\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{FOLIO $2{\\\\times}2$ generator${\\\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\\n\\\\label{tab:2x2-folio}\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{@{}llcccc@{}}\\n\\\\toprule\\nGenerator & Extractor & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) & BR \\\\\\\\\\n\\\\midrule\\n\\\\multirow{2}{*}{\\\\shortstack[l]{Mistral-7B\\\\\\\\{\\\\scriptsize $\\\\kappa{=}0.46$}}}\\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\\\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\\\\\\n\\\\addlinespace\\n\\\\multirow{2}{*}{\\\\shortstack[l]{Qwen3-14B\\\\\\\\{\\\\scriptsize $\\\\kappa{=}0.79$}}}\\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\\\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\section{Single-Trace and Aggregation Statistics}\\n\\\\label{app:single-trace}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Single-trace accuracy (mean $\\\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\\\ref{tab:main_results}).}\\n\\\\label{tab:single-trace-stats}\\n\\\\begin{tabular}{@{}lrrrr@{}}\\n\\\\toprule\\nModel & Single (\\\\%) & Std & SC@12 (\\\\%) & Gain (pp) \\\\\\\\\\n\\\\midrule\\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\\\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\\\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\\\\\\\[2pt]\\n{\\\\footnotesize Inter-trace standard deviation shrinks $2.8\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\S\\\\ref{sec:cross-arch}).}\\n\\\\end{table}\\n\\n\\\\paragraph{Extraction temperature sensitivity.}\\n\\\\label{app:text-sensitivity}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Effect of extraction temperature $T_{\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\dagger$\\\\,Uses a different trace set (SC $= 54.41\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\%$).}\\n\\\\label{tab:text-sensitivity}\\n\\\\begin{tabular}{@{}cccr@{}}\\n\\\\toprule\\n$T_{\\\\text{ext}}$ & SICA (\\\\%) & $\\\\Delta$ vs.\\\\ SC (pp) & Avg.\\\\ \\\\#Constr. \\\\\\\\\\n\\\\midrule\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\n$0.3^\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nControlling for the trace set (excluding $T_{\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\Delta \\\\leq +1.47$\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\n\\n\\\\paragraph{Multi-seed replication.}\\n\\\\label{app:multi-seed}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, hBc0.98 \\\\pm 2.25$\\\\,pp).}\\n\\\\label{tab:multi-seed}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "4bf76cb4-2b25-4ecf-95cb-137344a0c317",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Regime Scatter Plot}\\\\n\\\\\\\\label{app:regime-scatter}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{f2_regime_scatter}\\\\n\\\\\\\\caption{SICA $\\\\\\\\Delta$ (pp) vs.\\\\\\\\ SC baseline. Filled: $n \\\\\\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\\\\\ $p = 0.112$).}\\\\n\\\\\\\\label{fig:regime-scatter}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\section{Prompt Templates}\\\\n\\\\\\\\label{app:prompts}\\\\n\\\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\\\n\\\\n\\\\\\\\paragraph{System Prompt.}\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nYou are a constraint extraction tool. Output ONLY\\\\nvalid JSON. Do NOT solve problems, reason about\\\\ncorrectness, or think step-by-step. Extract\\\\nconstraints from the given trace exactly as stated.\\\\n\\\\\\\\end{lstlisting}\\\\n\\\\n\\\\\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\\\\\_PROMPT).}\\\\n\\\\nUsed for GSM8K and AIME datasets. The placeholder \\\\\\\\texttt{\\\\\\\\{trace\\\\\\\\}} is replaced with the reasoning trace at runtime.\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nExtract mathematical constraints from this reasoning\\\\ntrace as a JSON object.\\\\n\\\\nRules:\\\\n- type: \\\\\\\"equation\\\\\\\", \\\\\\\"inequality\\\\\\\", or \\\\\\\"predicate\\\\\\\"\\\\n- expression: human-readable, e.g. \\\\\\\"x + y == 14\\\\\\\"\\\\n- z3_formula: a single comparison expression in\\\\n  Python Z3 syntax\\\\n- source_step: step number where the constraint\\\\n  appears\\\\n- Use variable names from the trace\\\\n\\\\nz3_formula MUST follow these rules:\\\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\\\n  /, **, %\\\\n- Use individual named variables: a1, a2, a3...\\\\n  NOT arrays a[1] or sets A\\\\n- Expand all sums explicitly:\\\\n  \\\\\\\"a1 + a2 + a3 == 55\\\\\\\" NOT \\\\\\\"sum([a1,a2,a3])\\\\\\\"\\\\n- NO Python builtins: sum(), len(), max(), min(),\\\\n  list(), set(), range(), int()\\\\n- Each z3_formula must be exactly ONE comparison\\\\n  (==, !=, <, >, <=, >=)\\\\n- For multiple values, write separate constraints\\\\n  for each\\\\n\\\\nOutput ONLY the JSON below, nothing else:\\\\n{\\\\\\\"constraints\\\\\\\": [{\\\\\\\"type\\\\\\\": \\\\\\\"equation\\\\\\\",\\\\n  \\\\\\\"expression\\\\\\\": \\\\\\\"x + y == 14\\\\\\\",\\\\n  \\\\\\\"z3_formula\\\\\\\": \\\\\\\"x + y == 14\\\\\\\",\\\\n  \\\\\\\"source_step\\\\\\\": 1}],\\\\n \\\\\\\"answer\\\\\\\": \\\\\\\"final_answer\\\\\\\",\\\\n \\\\\\\"variables\\\\\\\": [\\\\\\\"x\\\\\\\", \\\\\\\"y\\\\\\\"]}\\\\n\\\\nTrace:\\\\n{trace}\\\\n\\\\\\\\end{lstlisting}\\\\n\\\\n\\\\\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\\\\\_EXTRACTION\\\\\\\\_PROMPT).}\\\\n\\\\nUsed for ProofWriter and FOLIO datasets.\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\\\nsolver.\\\\n- Do NOT re-solve or re-reason about the problem.\\\\n- Do NOT verify whether the trace's reasoning is\\\\n  correct.\\\\n- ONLY extract the logical constraints that are\\\\n  explicitly stated or used in the trace below.\\\\n- Output ONLY the JSON object, nothing else.\\\\n\\\\nExtract logical constraints from this reasoning trace\\\\nabout a logic problem.\\\\n\\\\nThe problem has facts (base assertions), rules\\\\n(grounded implications), and derived conclusions.\\\\nConvert each into a Z3 boolean formula.\\\\n\\\\nVariable naming:\\\\n- Unary property: property_entity\\\\n  (e.g., kind_anne, red_charlie, round_fiona)\\\\n- Binary relation: relation_subject_object\\\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\\\n- Use lowercase with underscores only\\\\n\\\\nConstraint types:\\\\n- \\\\\\\"fact\\\\\\\": a given assertion,\\\\n  e.g., kind_anne == True\\\\n- \\\\\\\"rule\\\\\\\": a grounded implication over specific\\\\n  entities, e.g., Implies(kind_anne, nice_anne)\\\\n- \\\\\\\"derived\\\\\\\": an inferred conclusion from facts +\\\\n  rules, e.g., nice_anne == True\\\\n\\\\nZ3 operators:\\\\n- Implies(a, b) for if-then rules\\\\n- And(a, b, ...) for conjunctive conditions\\\\n- Or(a, b, ...) for disjunctive conditions\\\\n- Not(a) for negation\\\\n- == True / == False for boolean assertions\\\\n\\\\nOutput ONLY the JSON below, nothing else:\\\\n{\\\\\\\"constraints\\\\\\\": [{\\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n  \\\\\\\"expression\\\\\\\": \\\\\\\"kind(anne)\\\\\\\",\\\\n  \\\\\\\"z3_formula\\\\\\\": \\\\\\\"kind_anne == True\\\\\\\",\\\\n  \\\\\\\"source_step\\\\\\\": 1}],\\\\n \\\\\\\"answer\\\\\\\": \\\\\\\"True or False or Unkno\\\\n\\\\n... [截断: 输出过长，省略 60995 字符] ...\\\\n\\\\nrts the full $2{\\\\\\\\times}2$ generator${\\\\\\\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\\\\\\\sim}25$\\\\\\\\,pp vs.\\\\\\\\ column difference ${\\\\\\\\sim}3$\\\\\\\\,pp), contrasting with ProofWriter where the extractor dominates ($\\\\\\\\Delta$ range ${\\\\\\\\pm}40$--$50$\\\\\\\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\\\\\\\Delta = +2.94$\\\\\\\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\\\\\\\Delta = +2.94$\\\\\\\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\\\\\\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{FOLIO $2{\\\\\\\\times}2$ generator${\\\\\\\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\\\\\\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\\\\n\\\\\\\\label{tab:2x2-folio}\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\begin{tabular}{@{}llcccc@{}}\\\\n\\\\\\\\toprule\\\\nGenerator & Extractor & SC (\\\\\\\\%) & SICA (\\\\\\\\%) & $\\\\\\\\Delta$ (pp) & BR \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{2}{*}{\\\\\\\\shortstack[l]{Mistral-7B\\\\\\\\\\\\\\\\{\\\\\\\\scriptsize $\\\\\\\\kappa{=}0.46$}}}\\\\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\\\\\\\\\\\\\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\addlinespace\\\\n\\\\\\\\multirow{2}{*}{\\\\\\\\shortstack[l]{Qwen3-14B\\\\\\\\\\\\\\\\{\\\\\\\\scriptsize $\\\\\\\\kappa{=}0.79$}}}\\\\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\\\\\\\\\\\\\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\section{Single-Trace and Aggregation Statistics}\\\\n\\\\\\\\label{app:single-trace}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Single-trace accuracy (mean $\\\\\\\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\\\\\\\ref{tab:main_results}).}\\\\n\\\\\\\\label{tab:single-trace-stats}\\\\n\\\\\\\\begin{tabular}{@{}lrrrr@{}}\\\\n\\\\\\\\toprule\\\\nModel & Single (\\\\\\\\%) & Std & SC@12 (\\\\\\\\%) & Gain (pp) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\\\\\\\\\\\\\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\\\\\\\\\\\\\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\\\\\\\\\\\\\[2pt]\\\\n{\\\\\\\\footnotesize Inter-trace standard deviation shrinks $2.8\\\\\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\\\\\S\\\\\\\\ref{sec:cross-arch}).}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Extraction temperature sensitivity.}\\\\n\\\\\\\\label{app:text-sensitivity}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Effect of extraction temperature $T_{\\\\\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\\\\\dagger$\\\\\\\\,Uses a different trace set (SC $= 54.41\\\\\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\\\\\%$).}\\\\n\\\\\\\\label{tab:text-sensitivity}\\\\n\\\\\\\\begin{tabular}{@{}cccr@{}}\\\\n\\\\\\\\toprule\\\\n$T_{\\\\\\\\text{ext}}$ & SICA (\\\\\\\\%) & $\\\\\\\\Delta$ vs.\\\\\\\\ SC (pp) & Avg.\\\\\\\\ \\\\\\\\#Constr. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\\\\\\\\\\\n$0.3^\\\\\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\\\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\\\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\\\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nControlling for the trace set (excluding $T_{\\\\\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\\\\\Delta \\\\\\\\leq +1.47$\\\\\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\\\n\\\\n\\\\\\\\paragraph{Multi-seed replication.}\\\\n\\\\\\\\label{app:multi-seed}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\\\\\times$ PW, Qwen2.5-14B $\\\\\\\\times$ FOLIO) show $\\\\\\\\Delta \\\\\\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\\\\\pm 2.70$, hBc0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:multi-seed}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Regime Scatter Plot}\\n\\\\label{app:regime-scatter}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{f2_regime_scatter}\\n\\\\caption{SICA $\\\\Delta$ (pp) vs.\\\\ SC baseline. Filled: $n \\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\ $p = 0.112$).}\\n\\\\label{fig:regime-scatter}\\n\\\\end{figure}\\n\\n\\\\section{Prompt Templates}\\n\\\\label{app:prompts}\\n\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\n\\n\\\\paragraph{System Prompt.}\\n\\n\\\\begin{lstlisting}\\nYou are a constraint extraction tool. Output ONLY\\nvalid JSON. Do NOT solve problems, reason about\\ncorrectness, or think step-by-step. Extract\\nconstraints from the given trace exactly as stated.\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\_PROMPT).}\\n\\nUsed for GSM8K and AIME datasets. The placeholder \\\\texttt{\\\\{trace\\\\}} is replaced with the reasoning trace at runtime.\\n\\n\\\\begin{lstlisting}\\nExtract mathematical constraints from this reasoning\\ntrace as a JSON object.\\n\\nRules:\\n- type: \\\"equation\\\", \\\"inequality\\\", or \\\"predicate\\\"\\n- expression: human-readable, e.g. \\\"x + y == 14\\\"\\n- z3_formula: a single comparison expression in\\n  Python Z3 syntax\\n- source_step: step number where the constraint\\n  appears\\n- Use variable names from the trace\\n\\nz3_formula MUST follow these rules:\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\n  /, **, %\\n- Use individual named variables: a1, a2, a3...\\n  NOT arrays a[1] or sets A\\n- Expand all sums explicitly:\\n  \\\"a1 + a2 + a3 == 55\\\" NOT \\\"sum([a1,a2,a3])\\\"\\n- NO Python builtins: sum(), len(), max(), min(),\\n  list(), set(), range(), int()\\n- Each z3_formula must be exactly ONE comparison\\n  (==, !=, <, >, <=, >=)\\n- For multiple values, write separate constraints\\n  for each\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"equation\\\",\\n  \\\"expression\\\": \\\"x + y == 14\\\",\\n  \\\"z3_formula\\\": \\\"x + y == 14\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"final_answer\\\",\\n \\\"variables\\\": [\\\"x\\\", \\\"y\\\"]}\\n\\nTrace:\\n{trace}\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\_EXTRACTION\\\\_PROMPT).}\\n\\nUsed for ProofWriter and FOLIO datasets.\\n\\n\\\\begin{lstlisting}\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\nsolver.\\n- Do NOT re-solve or re-reason about the problem.\\n- Do NOT verify whether the trace's reasoning is\\n  correct.\\n- ONLY extract the logical constraints that are\\n  explicitly stated or used in the trace below.\\n- Output ONLY the JSON object, nothing else.\\n\\nExtract logical constraints from this reasoning trace\\nabout a logic problem.\\n\\nThe problem has facts (base assertions), rules\\n(grounded implications), and derived conclusions.\\nConvert each into a Z3 boolean formula.\\n\\nVariable naming:\\n- Unary property: property_entity\\n  (e.g., kind_anne, red_charlie, round_fiona)\\n- Binary relation: relation_subject_object\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\n- Use lowercase with underscores only\\n\\nConstraint types:\\n- \\\"fact\\\": a given assertion,\\n  e.g., kind_anne == True\\n- \\\"rule\\\": a grounded implication over specific\\n  entities, e.g., Implies(kind_anne, nice_anne)\\n- \\\"derived\\\": an inferred conclusion from facts +\\n  rules, e.g., nice_anne == True\\n\\nZ3 operators:\\n- Implies(a, b) for if-then rules\\n- And(a, b, ...) for conjunctive conditions\\n- Or(a, b, ...) for disjunctive conditions\\n- Not(a) for negation\\n- == True / == False for boolean assertions\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"fact\\\",\\n  \\\"expression\\\": \\\"kind(anne)\\\",\\n  \\\"z3_formula\\\": \\\"kind_anne == True\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"True or False or Unkno\\n\\n... [截断: 输出过长，省略 60995 字符] ...\\n\\nrts the full $2{\\\\times}2$ generator${\\\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\\\sim}25$\\\\,pp vs.\\\\ column difference ${\\\\sim}3$\\\\,pp), contrasting with ProofWriter where the extractor dominates ($\\\\Delta$ range ${\\\\pm}40$--$50$\\\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\\\Delta = +2.94$\\\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\\\Delta = +2.94$\\\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{FOLIO $2{\\\\times}2$ generator${\\\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\\n\\\\label{tab:2x2-folio}\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{@{}llcccc@{}}\\n\\\\toprule\\nGenerator & Extractor & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) & BR \\\\\\\\\\n\\\\midrule\\n\\\\multirow{2}{*}{\\\\shortstack[l]{Mistral-7B\\\\\\\\{\\\\scriptsize $\\\\kappa{=}0.46$}}}\\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\\\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\\\\\\n\\\\addlinespace\\n\\\\multirow{2}{*}{\\\\shortstack[l]{Qwen3-14B\\\\\\\\{\\\\scriptsize $\\\\kappa{=}0.79$}}}\\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\\\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\section{Single-Trace and Aggregation Statistics}\\n\\\\label{app:single-trace}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Single-trace accuracy (mean $\\\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\\\ref{tab:main_results}).}\\n\\\\label{tab:single-trace-stats}\\n\\\\begin{tabular}{@{}lrrrr@{}}\\n\\\\toprule\\nModel & Single (\\\\%) & Std & SC@12 (\\\\%) & Gain (pp) \\\\\\\\\\n\\\\midrule\\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\\\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\\\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\\\\\\\[2pt]\\n{\\\\footnotesize Inter-trace standard deviation shrinks $2.8\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\S\\\\ref{sec:cross-arch}).}\\n\\\\end{table}\\n\\n\\\\paragraph{Extraction temperature sensitivity.}\\n\\\\label{app:text-sensitivity}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Effect of extraction temperature $T_{\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\dagger$\\\\,Uses a different trace set (SC $= 54.41\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\%$).}\\n\\\\label{tab:text-sensitivity}\\n\\\\begin{tabular}{@{}cccr@{}}\\n\\\\toprule\\n$T_{\\\\text{ext}}$ & SICA (\\\\%) & $\\\\Delta$ vs.\\\\ SC (pp) & Avg.\\\\ \\\\#Constr. \\\\\\\\\\n\\\\midrule\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\n$0.3^\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nControlling for the trace set (excluding $T_{\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\Delta \\\\leq +1.47$\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\n\\n\\\\paragraph{Multi-seed replication.}\\n\\\\label{app:multi-seed}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, hBc0.98 \\\\pm 2.25$\\\\,pp).}\\n\\\\label{tab:multi-seed}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I can see the corruption: `hBc0.98` should be `$-0.98`. The `$-` got mangled during the replacement. This happened because in the first task's replacement, my `new` string had `$-0.98` and the shell or Python somehow corrupted it. Let me fix this.
+
+Looking at the actual file content at line 1089:
+```
+($+0.16 \pm 2.70$, hBc0.98 \pm 2.25$\,pp).
+
+
+```
+
+It should be:
+```
+($+0.16 \pm 2.70$, $-0.98 \pm 2.25$\,pp).
+```
+
+So `hBc` should be `$-`. Let me fix this.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "342bc492-06d7-4c0b-bc72-5c8fbd362271",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFgMbYRPgYBqsXfTy3oS3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4095,
+      "cache_read_input_tokens": 33994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4095
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+There's corruption in appendix.tex: `hBc0.98` should be `$-0.98`. Fixing now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "5b1e9631-eb79-4259-9c36-37b6fda327ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFgMbYRPgYBqsXfTy3oS3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4095,
+      "cache_read_input_tokens": 33994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4095
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0119hzxX5s7UzEPsesep8NjH`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /tmp/fix_appendix.py << 'PYEOF'\nwith open('/root/symb_invariant_consensus/docs/paper/appendix.tex', 'r') as f:\n    content = f.read()\n\nold = 'hBc0.98'\nnew = '$-0.98'\n\nassert old in content, 'NOT FOUND'\ncontent = content.replace(old, new)\n\nwith open('/root/symb_invariant_consensus/docs/paper/appendix.tex', 'w') as f:\n    f.write(content)\nprint('Fixed: hBc0.98 -> $-0.98')\nPYEOF\npython3 /tmp/fix_appendix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "30e2673d-b100-45e6-bdf9-0b25d597fb46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFgMbYRPgYBqsXfTy3oS3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4095,
+      "cache_read_input_tokens": 33994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4095
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T00:12:01.055Z_
+
+<details><summary>↩ Tool result · `toolu_0119hzxX5s7UzEPsesep8NjH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed: hBc0.98 -> $-0.98\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "d6f963af-a1c2-4dcf-933e-498d5478b40d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed: hBc0.98 -> $-0.98\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed: hBc0.98 -> $-0.98\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Now verify the fix and compile.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "9b10e367-6338-45c9-ab29-e36c93741cda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V12CwdMATLLGVjZbhRVj2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 574,
+      "cache_read_input_tokens": 38089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 574
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011aMYpsEq63V1YfeGBWLdAU`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"Two of four conditions\" /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "052d183c-3f4f-4239-ac32-94f6881cc46a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V12CwdMATLLGVjZbhRVj2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 574,
+      "cache_read_input_tokens": 38089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 574
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T00:12:04.907Z_
+
+<details><summary>↩ Tool result · `toolu_011aMYpsEq63V1YfeGBWLdAU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, $-0.98 \\\\pm 2.25$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "f72d6457-743f-4b8e-973f-133b87781294",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1089:\\\\\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\\\\\times$ PW, Qwen2.5-14B $\\\\\\\\times$ FOLIO) show $\\\\\\\\Delta \\\\\\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\\\\\pm 2.70$, $-0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp).}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1089:\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, $-0.98 \\\\pm 2.25$\\\\,pp).}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Gm69FBKwgJf4CYctV19TgJ`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "e70c20d0-cfb8-4c4b-be7c-66c4b4987d00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V12CwdMATLLGVjZbhRVj2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 574,
+      "cache_read_input_tokens": 38089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 574
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T00:12:05.546Z_
+
+<details><summary>↩ Tool result · `toolu_01Gm69FBKwgJf4CYctV19TgJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "cc889bd9-2077-44e4-b153-53854900f957",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: latexmk: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AdpDmcn7sUzqMfkVXKoMbd`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "0b01d436-4edf-43fd-a30c-15f4caa714a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A56tvdgw9QkCtum2TXCvSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 38663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T00:12:11.585Z_
+
+<details><summary>↩ Tool result · `toolu_01AdpDmcn7sUzqMfkVXKoMbd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/tex\\nmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\\n/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/he\\nlvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (27 pages, 659076 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "47b82afc-8d9f-49c7-b33c-0796659073b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/tex\\\\nmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\\\\n/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/he\\\\nlvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (27 pages, 659076 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/usr/share/texlive/tex\\nmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\\n/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/he\\nlvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (27 pages, 659076 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XTwqqJ8V1NBJQqUU4JoDSK`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -c \"^!\" /root/symb_invariant_consensus/docs/paper/main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "d205236e-7409-4aa5-b0fe-6ed1843473b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ADGCzeFPvFFCtzHs4pXuv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 463,
+      "cache_read_input_tokens": 39263,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 463
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T00:12:14.683Z_
+
+<details><summary>↩ Tool result · `toolu_01XTwqqJ8V1NBJQqUU4JoDSK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "06fac898-6333-4781-9bb6-5df0e042ab23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+编译通过，27 页，0 error。
+
+**Diff 汇总：**
+
+**appendix.tex L1089** — `\caption` 内：
+```diff
+- Three of four conditions show consistent $\Delta \leq 0$ across all seeds; Mistral-7B $\times$ FOLIO is the exception ($+0.16 \pm 2.70$\,pp).
++ Two of four conditions (Mistral-7B $\times$ PW, Qwen2.5-14B $\times$ FOLIO) show $\Delta \leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \pm 2.70$, $-0.98 \pm 2.25$\,pp).
+```
+
+**experiments.tex L57** — 多种子叙事：
+```diff
+- Four-seed replication on Mistral-7B $\times$ ProofWriter ($\bar{\Delta}{=}{-}2.38 \pm 1.12$\,pp, 4/4 seeds $\Delta \leq 0$) and three-seed replication on LLaMA-3.1-8B $\times$ FOLIO ($\bar{\Delta}{=}{-}0.98 \pm 2.25$\,pp) confirm that the SICA${\leq}$SC pattern is stable across seeds, models, and datasets (Table~\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\times$ FOLIO confirms the single-seed pattern: $\Delta \in [0.00, -2.01]$\,pp (mean $-1.24 \pm 0.86$; Table~\ref{tab:multi-seed}).
++ Multi-seed replication confirms robustness: Mistral-7B $\times$ ProofWriter (4 seeds, $\bar\Delta=-2.38\pm1.12$\,pp, all $\Delta\leq0$) and Qwen2.5-14B $\times$ FOLIO (4 seeds, $\bar\Delta=-1.79\pm0.25$\,pp, all $\Delta\leq0$) show uniformly non-positive $\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\ref{tab:multi-seed}).
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "uuid": "639831c6-5443-432f-ab84-29cb1e4c6212",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ex8WkwHp2tMYMjcHduP9yA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 189,
+      "cache_read_input_tokens": 39726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 189
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 59_
+
+编译通过，27 页，0 error。
+
+**Diff 汇总：**
+
+**appendix.tex L1089** — `\caption` 内：
+```diff
+- Three of four conditions show consistent $\Delta \leq 0$ across all seeds; Mistral-7B $\times$ FOLIO is the exception ($+0.16 \pm 2.70$\,pp).
++ Two of four conditions (Mistral-7B $\times$ PW, Qwen2.5-14B $\times$ FOLIO) show $\Delta \leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \pm 2.70$, $-0.98 \pm 2.25$\,pp).
+```
+
+**experiments.tex L57** — 多种子叙事：
+```diff
+- Four-seed replication on Mistral-7B $\times$ ProofWriter ($\bar{\Delta}{=}{-}2.38 \pm 1.12$\,pp, 4/4 seeds $\Delta \leq 0$) and three-seed replication on LLaMA-3.1-8B $\times$ FOLIO ($\bar{\Delta}{=}{-}0.98 \pm 2.25$\,pp) confirm that the SICA${\leq}$SC pattern is stable across seeds, models, and datasets (Table~\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\times$ FOLIO confirms the single-seed pattern: $\Delta \in [0.00, -2.01]$\,pp (mean $-1.24 \pm 0.86$; Table~\ref{tab:multi-seed}).
++ Multi-seed replication confirms robustness: Mistral-7B $\times$ ProofWriter (4 seeds, $\bar\Delta=-2.38\pm1.12$\,pp, all $\Delta\leq0$) and Qwen2.5-14B $\times$ FOLIO (4 seeds, $\bar\Delta=-1.79\pm0.25$\,pp, all $\Delta\leq0$) show uniformly non-positive $\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\ref{tab:multi-seed}).
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 125658,
+  "duration_api_ms": 120814,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "dda44e98-c80f-4cdc-9f9b-76cc8d90bee4",
+  "total_cost_usd": 0.5576289999999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 28074,
+    "cache_read_input_tokens": 451831,
+    "output_tokens": 6180,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28074,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 584,
+        "cache_read_input_tokens": 39726,
+        "cache_creation_input_tokens": 189,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 189
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1566,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001656,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 6180,
+      "cacheReadInputTokens": 451831,
+      "cacheCreationInputTokens": 28074,
+      "webSearchRequests": 0,
+      "costUSD": 0.5559729999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ef233de4-6584-402b-ac46-97077b727625"
+}
+```
+
+</details>
+
+---

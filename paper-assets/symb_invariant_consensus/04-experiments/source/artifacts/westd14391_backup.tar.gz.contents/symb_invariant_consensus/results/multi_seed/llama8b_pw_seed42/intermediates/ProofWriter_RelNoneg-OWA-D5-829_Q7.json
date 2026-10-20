@@ -1,0 +1,1281 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-829_Q7",
+    "problem": "The cow eats the lion. The cow eats the mouse. The cow is green. The cow visits the lion. The cow visits the mouse. The lion eats the cow. The lion eats the rabbit. The lion is big. The lion is green. The lion is round. The mouse eats the lion. The mouse is big. The mouse visits the cow. The rabbit is round. The rabbit needs the cow. The rabbit visits the lion. If someone eats the lion and the lion is green then they are blue. If someone visits the cow and they eat the rabbit then the rabbit is cold. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. If someone visits the cow and they are big then the cow visits the mouse. If someone is green and they need the rabbit then they eat the rabbit. If someone is blue then they eat the rabbit. All cold people are blue. If someone visits the cow then the cow is green. If someone eats the lion then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(Cow, Lion, True) ::: The cow eats the lion.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nGreen(Cow, True) ::: The cow is green.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nVisits(Cow, Mouse, True) ::: The cow visits the mouse.\nEats(Lion, Cow, True) ::: The lion eats the cow.\nEats(Lion, Rabbit, True) ::: The lion eats the rabbit.\nBig(Lion, True) ::: The lion is big.\nGreen(Lion, True) ::: The lion is green.\nRound(Lion, True) ::: The lion is round.\nEats(Mouse, Lion, True) ::: The mouse eats the lion.\nBig(Mouse, True) ::: The mouse is big.\nVisits(Mouse, Cow, True) ::: The mouse visits the cow.\nRound(Rabbit, True) ::: The rabbit is round.\nNeeds(Rabbit, Cow, True) ::: The rabbit needs the cow.\nVisits(Rabbit, Lion, True) ::: The rabbit visits the lion.\n\nRules:\nEats($x, Lion, True) && Green(Lion, True) >>> Blue($x, True) ::: If someone eats the lion and the lion is green then they are blue.\nVisits($x, Cow, True) && Eats($x, Rabbit, True) >>> Cold(Rabbit, True) ::: If someone visits the cow and they eat the rabbit then the rabbit is cold.\nNeeds($x, Mouse, True) && Needs(Mouse, Rabbit, True) >>> Needs(Mouse, Cow, True) ::: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\nVisits($x, Cow, True) && Big($x, True) >>> Visits(Cow, Mouse, True) ::: If someone visits the cow and they are big then the cow visits the mouse.\nGreen($x, True) && Needs($x, Rabbit, True) >>> Eats($x, Rabbit, True) ::: If someone is green and they need the rabbit then they eat the rabbit.\nBlue($x, True) >>> Eats($x, Rabbit, True) ::: If someone is blue then they eat the rabbit.\nCold($x, True) >>> Blue($x, True) ::: All cold people are blue.\nVisits($x, Cow, True) >>> Green(Cow, True) ::: If someone visits the cow then the cow is green.\nEats($x, Lion, True) >>> Cold($x, True) ::: If someone eats the lion then they are cold.\n\nQuery:\nCold(Rabbit, True) ::: The rabbit is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 160.0,
+      "Unknown": 53.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information step by step and apply the logical rules provided.\n\n1. The given rules are:\n   - If someone eats the lion and the lion is green then they are blue.\n   - If someone visits the cow and they eat the rabbit then the rabbit is cold.\n   - If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\n   - If someone visits the cow and they are big then the cow visits the mouse.\n   - If someone is green and they need the rabbit then they eat the rabbit.\n   - If someone is blue then they eat the rabbit.\n   - All cold people are blue.\n   - If someone visits the cow then the cow is green.\n   - If someone eats the lion then they are cold.\n\n2. From the given statements, we know:\n   - The lion is green.\n   - The rabbit is round.\n   - The rabbit needs the cow.\n   - The rabbit visits the lion.\n   - The lion eats the rabbit.\n\nHowever, there is no direct statement that the rabbit is cold. We can use the rules to find the connection between the rabbit and being cold.\n\nFrom the statement \"The lion eats the rabbit,\" we can apply the rule \"If someone eats the lion then they are cold.\" However, the lion is not the one visiting the cow. Instead, the rabbit visits the lion. \n\nLet's analyze the statement \"The rabbit visits the lion.\" If the rabbit visits the cow and the rabbit eats the rabbit, then the rabbit is cold. However, the given statements don't directly imply that the rabbit eats the rabbit. \n\nWe have the statement \"If someone visits the cow and they eat the rabbit then the rabbit is cold.\" We also know \"The rabbit visits the lion\" but do not have any information about the rabbit visiting the cow. However, from the statement \"If someone visits the cow then the cow is green,\" we can infer that the rabbit must be green.\n\nFrom the given statement \"The lion is green\" and the rule \"If someone is green and they need the rabbit then they eat the rabbit,\" we can infer that the lion needs the rabbit. However, there is no direct connection between the lion needing the rabbit and the rabbit being cold.\n\nHowever, we can use the rule \"If someone visits the cow then the cow is green\" to infer that the lion must be green because the lion visits the cow. This does not directly relate to the rabbit being cold.\n\nHowever, from the rule \"If someone eats the lion then they are cold\" we can infer that the rabbit is cold because the lion eats the rabbit.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the rabbit is cold, we need to analyze the given statements and their implications.\n\n1. The lion is green.\n   Given statement: If someone eats the lion and the lion is green then they are blue.\n   Since we don't know anyone who eats the lion, we can't conclude anything from this statement.\n\n2. The rabbit is round.\n   This statement doesn't provide any information about the color or temperature of the rabbit.\n\n3. The rabbit needs the cow.\n   Given statement: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\n   This statement implies that the mouse needs the cow, but it doesn't provide any information about the rabbit.\n\n4. The rabbit visits the lion.\n   Given statement: If someone visits the cow and they are big then the cow visits the mouse.\n   This statement doesn't provide any information about the rabbit's temperature.\n\n5. The lion eats the rabbit.\n   Given statement: If someone eats the lion then they are cold.\n   This statement implies that the lion is cold, but it doesn't provide any information about the rabbit.\n\n6. The lion is big.\n   Given statement: If someone visits the cow and they are big then the cow visits the mouse.\n   This statement implies that the lion is big, but it doesn't provide any information about the rabbit.\n\n7. If someone is blue then they eat the rabbit.\n   This statement doesn't provide any information about the rabbit's temperature.\n\n8. All cold people are blue.\n   Given statement: If someone eats the lion then they are cold.\n   This statement implies that the lion is cold, but it doesn't provide any information about the rabbit.\n\n9. If someone visits the cow then the cow is green.\n   Given statement: The cow visits the mouse.\n   This statement implies that the cow is green, but it doesn't provide any information about the rabbit.\n\n10. The mouse eats the lion.\n    Given statement: If someone eats the lion and the lion is green then they are blue.\n    This statement implies that the mouse is blue, but it doesn't provide any information about the rabbit.\n\n11. The mouse is big.\n    Given statement: If someone visits the cow and they are big then the cow visits the mouse.\n    This statement implies that the mouse is big, but it doesn't provide any information about the rabbit.\n\n12. The mouse visits the cow.\n    Given statement: If someone visits the cow and they eat the rabbit then the rabbit is cold.\n    This statement implies that the rabbit is cold if someone visits the cow and eats the rabbit. However, we don't know if the mouse eats the rabbit.\n\n13. The rabbit is cold.\n    Given statement: If someone visits the cow and they eat the rabbit then the rabbit is cold.\n    Given statement: The cow visits the mouse.\n    Given statement: The mouse eats the lion.\n    Given statement: If someone eats the lion then they are cold.\n    This implies that the mouse is cold.\n    Given statement: All cold people are blue.\n    This implies that the mouse is blue.\n    Given statement: If someone is blue then they eat the rabbit.\n    This implies that the mouse eats the rabbit.\n    Therefore, the rabbit is cold.\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information and the conditions that affect the rabbit's temperature.\n\n1. The rabbit needs the cow. (No information about the cow's relationship to the rabbit's temperature)\n2. The rabbit is round. (No information about the rabbit's temperature)\n3. The rabbit visits the lion. (No information about the lion's relationship to the rabbit's temperature)\n\nHowever, there are no direct conditions that affect the rabbit's temperature. We can infer that if someone visits the cow and they eat the rabbit, then the rabbit is cold. But we do not have any information about someone visiting the cow and eating the rabbit.\n\nHowever, we can analyze the conditions related to the rabbit's temperature indirectly:\n- If someone eats the lion and the lion is green then they are blue. This implies that someone being blue has no direct relationship with the rabbit's temperature.\n- If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. This implies that the mouse's need for the rabbit does not affect the rabbit's temperature.\n- If someone is blue then they eat the rabbit. This implies that being blue has no direct relationship with the rabbit's temperature.\n- All cold people are blue. This implies that being blue is a condition for being cold, but there is no direct relationship with the rabbit's temperature.\n- If someone visits the cow then the cow is green. This implies that visiting the cow does not affect the rabbit's temperature directly.\n- If someone eats the lion then they are cold. This implies that eating the lion is a condition for being cold, but there is no direct relationship with the rabbit's temperature.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The lion eats the rabbit. This implies that the rabbit is not directly related to this condition, but it could be related to the conditions that affect the lion.\n\nSince there is no direct condition that affects the rabbit's temperature, we need to analyze the lion's conditions:\n- The lion is big.\n- The lion is green.\n- The lion is round.\n- The lion eats the rabbit.\n\nHowever, we have a condition that affects the lion's color:\n- If someone eats the lion and the lion is green then they are blue.\n\nSince we do not have any information about someone eating the lion, we cannot conclude that the rabbit is cold.\n\nHowever, we have a condition that affects the rabbit's temperature:\n- If someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nWe can analyze the conditions related to visiting the cow:\n- The cow visits the mouse.\n- The lion visits the cow.\n- The mouse visits the cow.\n- If someone visits the cow then the cow is green.\n\nHowever, we do not have any information about someone visiting the cow and eating the rabbit.\n\nWe can analyze the conditions related to eating the rabbit:\n- The lion eats the rabbit.\n- If someone is green and they need the rabbit then they eat the rabbit.\n- If someone is blue then they eat the rabbit.\n\nHowever, we do not have any information about someone eating the rabbit.\n\nWe can analyze the conditions related to the rabbit's need for the cow:\n- The rabbit needs the cow.\n- If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\n\nHowever, we do not have any information about the rabbit's need for the cow affecting its temperature.\n\nSince there is no direct condition that affects the rabbit's temperature, we need to analyze the conditions that affect the rabbit's relationship with the other animals:\n- The cow eats the mouse.\n- The mouse eats the lion.\n- The lion eats the rabbit.\n- The rabbit visits the lion.\n\nWe can analyze the conditions related to the cow's relationship with the mouse:\n- The cow eats the mouse.\n- The cow visits the mouse.\n- If someone visits the cow and they are big then the cow visits the mouse.\n\nHowever, we do not have any information about the cow's relationship with the mouse affecting the rabbit's temperature.\n\nWe can analyze the conditions related to the mouse's relationship with the lion:\n- The mouse eats the lion.\n- The mouse visits the cow.\n\nHowever, we do not have any information about the mouse's relationship with the lion affecting the rabbit's temperature.\n\nWe can analyze the conditions related to the lion's relationship with the rabbit:\n- The lion eats the rabbit.\n- The lion visits the cow.\n\nHowever, we do not have any information about the lion's relationship with the rabbit affecting the rabbit's temperature.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The lion visits the cow.\n\nSince we know that if someone visits the cow then the cow is green, and the cow visits the mouse, we can infer that the lion is green.\n\nHowever, we do not have any information about someone eating the lion and the lion being green.\n\nHowever, we have a condition that affects the lion's color:\n- If someone eats the lion and the lion is green then they are blue.\n\nSince we do not have any information about someone eating the lion, we cannot conclude that the rabbit is cold.\n\nHowever, we can analyze the conditions related to the lion's relationship with the rabbit:\n- The lion eats the rabbit.\n\nSince we know that if someone eats the lion then they are cold, and the lion eats the rabbit, we can infer that someone who eats the lion is cold.\n\nHowever, we do not have any information about the rabbit's temperature being affected by someone who eats the lion.\n\nHowever, we can analyze the conditions related to the rabbit's temperature:\n- If someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nWe can analyze the conditions related to someone visiting the cow:\n- The cow visits the mouse.\n- The lion visits the cow.\n- The mouse visits the cow.\n- If someone visits the cow then the cow is green.\n\nHowever, we do not have any information about someone visiting the cow and eating the rabbit.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The mouse eats the lion.\n\nSince we know that if someone eats the lion then they are cold, and the mouse eats the lion, we can infer that the mouse is cold.\n\nHowever, we do not have any information about the rabbit's temperature being affected by the mouse being cold.\n\nHowever, we can analyze the conditions related to the mouse's relationship with the rabbit:\n- The mouse visits the cow.\n\nHowever, we do not have any information about the mouse's relationship with the cow affecting the rabbit's temperature.\n\nHowever, we can analyze the conditions related to the rabbit's relationship with the lion:\n- The lion eats the rabbit.\n\nHowever, we do not have any information about the lion's relationship with the rabbit affecting the rabbit's temperature.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The lion visits the cow.\n\nSince we know that if someone visits the cow then the cow is green, and the lion visits the cow, we can infer that the lion is green.\n\nHowever, we do not have any information about someone eating the lion and the lion being green.\n\nHowever, we can analyze the conditions related to the lion's relationship with the rabbit:\n- The lion eats the rabbit.\n\nHowever, we do not have any information about the lion's relationship with the rabbit affecting the rabbit's temperature.\n\nHowever, we can analyze the conditions related to the rabbit's temperature:\n- If someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nWe can analyze the conditions related to someone visiting the cow:\n- The cow visits the mouse.\n- The lion visits the cow.\n- The mouse visits the cow.\n- If someone visits the cow then the cow is green.\n\nHowever, we do not have any information about someone visiting the cow and eating the rabbit.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The rabbit visits the lion.\n\nSince we know that the lion eats the rabbit, we can infer that the rabbit's visit to the lion will result in the rabbit being eaten.\n\nHowever, we do not have any information about someone visiting the cow and eating the rabbit.\n\nHowever, we can analyze the conditions related to the rabbit's relationship with the cow:\n- The rabbit needs the cow.\n\nHowever, we do not have any information about the rabbit's need for the cow affecting its temperature.\n\nHowever, we can analyze the conditions related to the rabbit's relationship with the mouse:\n- The rabbit visits the lion.\n\nHowever, we do not have any information about the rabbit's relationship with the lion affecting its temperature.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The mouse eats the lion.\n\nSince we know that if someone eats the lion then they are cold, and the mouse eats the lion, we can infer that the mouse is cold.\n\nHowever, we do not have any information about the rabbit's temperature being affected by the mouse being cold.\n\nHowever, we can analyze the conditions related to the mouse's relationship with the rabbit:\n- The mouse visits the cow.\n\nHowever, we do not have any information about the mouse's relationship with the cow affecting the rabbit's temperature.\n\nHowever, we can analyze the conditions related to the rabbit's relationship with the lion:\n- The lion eats the rabbit.\n\nHowever, we do not have any information about the lion's relationship with the rabbit affecting the rabbit's temperature.\n\nHowever, we can find a condition that affects the rabbit's temperature indirectly:\n- The lion visits the cow.\n\nSince we know that if someone visits the cow then the cow is green, and the lion visits the cow, we can infer that the lion is green.\n\nHowever, we do not have any information about someone eating the lion and the lion being green.\n\nHowever, we can analyze the conditions related to the lion's relationship with the rabbit:\n- The lion eats the rabbit.\n\nHowever, we do not have any information about the lion's relationship with the rabbit affecting the rabbit",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information and use the rules to deduce the outcome.\n\nGiven statements:\n\n1. The cow eats the lion. \n2. The cow eats the mouse. \n3. The cow is green. \n4. The cow visits the lion. \n5. The cow visits the mouse. \n6. The lion eats the cow. \n7. The lion eats the rabbit. \n8. The lion is big. \n9. The lion is green. \n10. The lion is round. \n11. The mouse eats the lion. \n12. The mouse is big. \n13. The mouse visits the cow. \n14. The rabbit is round. \n15. The rabbit needs the cow. \n16. The rabbit visits the lion. \n\nRules:\n\n1. If someone eats the lion and the lion is green then they are blue. \n2. If someone visits the cow and they eat the rabbit then the rabbit is cold. \n3. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. \n4. If someone visits the cow and they are big then the cow visits the mouse. \n5. If someone is green and they need the rabbit then they eat the rabbit. \n6. If someone is blue then they eat the rabbit. \n7. All cold people are blue. \n8. If someone visits the cow then the cow is green. \n9. If someone eats the lion then they are cold.\n\nStep-by-step analysis:\n\n- From statement 8, we know that the cow is green.\n- From statement 4, we know that the cow visits the mouse.\n- Since the cow is green, it satisfies rule 8, and thus the mouse is green (rule 8: If someone visits the cow then the cow is green).\n\nWe know the mouse is big from statement 12. From rule 4, we can conclude that the mouse visits the cow. This does not add any new information.\n\nFrom statement 6, we know that the lion eats the rabbit.\n\n- Since the lion is green (from statement 9), we can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom statement 15, we know that the rabbit needs the cow. From statement 4, we know that the lion is big. Since the lion is big and it visits the cow, we can conclude that the cow visits the mouse (rule 4: If someone visits the cow and they are big then the cow visits the mouse).\n\nFrom statement 5, we know that the cow is green. We also know that the rabbit needs the cow. Since the cow is green and the rabbit needs the cow, we can conclude that the rabbit is eaten by the cow (rule 5: If someone is green and they need the rabbit then they eat the rabbit).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit. We cannot conclude that the rabbit is cold from this alone.\n\nWe know that the mouse eats the lion from statement 11. From statement 3, we can conclude that the mouse needs the rabbit.\n\nFrom statement 14, we know that the rabbit visits the lion.\n\nFrom rule 2, we can conclude that if someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nFrom statement 3, we know that the mouse needs the rabbit. From statement 2, we know that the mouse eats the lion.\n\nSince the mouse needs the rabbit and the mouse eats the lion, we can conclude that the mouse needs the cow (rule 3: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow).\n\nFrom statement 13, we know that the mouse visits the cow.\n\nWe know that the lion is big from statement 8 and that the lion visits the cow from statement 4. Since the lion is big and it visits the cow, we can conclude that the cow visits the mouse (rule 4: If someone visits the cow and they are big then the cow visits the mouse).\n\nHowever, this does not add any new information.\n\nFrom rule 2, we can conclude that if someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nThe mouse eats the lion (statement 11). We can conclude that the mouse is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe mouse is blue (from above). Therefore, the mouse is cold (rule 7: All cold people are blue).\n\nSince the mouse is cold, we can conclude that the mouse eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe lion is blue (from above). Therefore, the lion is cold (rule 7: All cold people are blue).\n\nSince the lion is cold, we can conclude that the lion eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe lion is blue (from above). Therefore, the lion is cold (rule 7: All cold people are blue).\n\nSince the lion is cold, we can conclude that the lion eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe lion is blue (from above). Therefore, the lion is cold (rule 7: All cold people are blue).\n\nSince the lion is cold, we can conclude that the lion eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nFrom statement 7, we know that the lion eats the rabbit.\n\nFrom statement 3, we know that the mouse needs the rabbit.\n\nSince the lion eats the rabbit, we can conclude that the mouse needs the cow (rule 3: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow).\n\nFrom statement 11, we know that the mouse eats the lion.\n\nSince the lion is green (from statement 9), we can conclude that the mouse is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom statement 2, we know that the cow eats the mouse.\n\nSince the mouse is blue, we can conclude that the rabbit is cold (rule 6: If someone is blue then they eat the rabbit).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe rabbit is blue (from above). Therefore, the rabbit is cold (rule 7: All cold people are blue).\n\nHowever, this contradicts the initial analysis where we concluded that the rabbit is eaten by the cow.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe lion is blue (from above). Therefore, the lion is cold (rule 7: All cold people are blue).\n\nSince the lion is cold, we can conclude that the lion eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is green then they are blue).\n\nFrom rule 7, we know that all cold people are blue.\n\nThe lion is blue (from above). Therefore, the lion is cold (rule 7: All cold people are blue).\n\nSince the lion is cold, we can conclude that the lion eats the rabbit (rule 9: If someone eats the lion then they are cold).\n\nHowever, this contradicts statement 6, where the lion eats the rabbit.\n\nWe already know that the lion eats the rabbit (statement 7). We also know that the lion visits the cow (statement 4).\n\nWe can conclude that the lion is blue (rule 1: If someone eats the lion and the lion is",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit needs the cow. (Given)\n2. The rabbit is round. (Given)\n3. The rabbit visits the lion. (Given)\n\nFrom the information given, we have several conditions that could affect the rabbit's status:\n\n- If someone is green and they need the rabbit, then they eat the rabbit.\n- If someone is blue then they eat the rabbit.\n- If someone visits the cow and they are big then the cow visits the mouse.\n- If someone eats the lion then they are cold.\n\nHowever, we don't have any direct information that indicates the rabbit is cold. \n\nNow, let's examine the information given about the lion and its relation to the rabbit and the cow:\n\n- The lion eats the rabbit. (Given)\n- The lion is big. (Given)\n- The lion is green. (Given)\n- The lion is round. (Given)\n- If someone eats the lion then they are cold.\n\nFrom this information, we can conclude that the lion is green and it eats the rabbit. \n\nNow, let's analyze the statement \"If someone eats the lion and the lion is green then they are blue.\" \n\nThis statement means that eating a green lion makes someone blue. But from the previous conclusion, we know that the lion is green, and it eats the rabbit. \n\nHowever, we don't know if the rabbit is blue or not. We only know that all cold people are blue. \n\nNow, let's analyze the statement \"If someone eats the lion then they are cold.\"\n\nFrom this statement, we know that eating the lion makes someone cold. But we also know that the lion eats the rabbit. \n\nThis means that the rabbit could be cold because it eats the lion. \n\nHowever, we are trying to determine whether the rabbit is cold, not the lion. \n\nSo, we need to analyze the statement \"If someone eats the lion then they are cold\" in the context of the rabbit. \n\nThe statement means that eating the lion makes someone cold. But in this case, the lion is not eating the rabbit, the rabbit is eating the lion. \n\nSo, we can't conclude that the rabbit is cold based on this statement. \n\nHowever, we also know that the rabbit visits the lion. \n\nNow, let's analyze the statement \"If someone visits the cow then the cow is green.\" \n\nThis statement means that visiting the cow makes it green. But we don't know if this statement applies to the rabbit. \n\nHowever, we do know that the cow visits the mouse. \n\nNow, let's analyze the statement \"If someone visits the cow and they eat the rabbit then the rabbit is cold.\" \n\nThis statement means that visiting the cow and eating the rabbit makes the rabbit cold. \n\nBut we don't know if the rabbit eats the cow or not. \n\nHowever, we do know that the lion eats the rabbit. \n\nNow, let's analyze the statement \"If someone is blue then they eat the rabbit.\" \n\nThis statement means that being blue makes someone eat the rabbit. But we don't know if the rabbit is blue or not. \n\nHowever, we do know that all cold people are blue. \n\nSo, if the rabbit is cold, it could be blue. \n\nBut we also know that eating the lion makes someone cold. \n\nAnd we know that the lion eats the rabbit. \n\nSo, if the rabbit is cold, it could be because it eats the lion. \n\nBut we also know that eating the lion makes someone blue. \n\nAnd we know that the lion is green. \n\nSo, if the rabbit is cold, it could be blue. \n\nBut we also know that the rabbit visits the lion. \n\nNow, let's analyze the statement \"If someone eats the rabbit then the rabbit is cold.\" \n\nThis statement is not given in the problem, so we can't conclude that the rabbit is cold based on this statement.\n\nHowever, we can conclude that the rabbit is cold based on the following sequence of events:\n\n1. The lion eats the rabbit. (Given)\n2. The lion is green. (Given)\n3. If someone eats the lion and the lion is green then they are blue. (Given)\n4. If someone is blue then they eat the rabbit. (Given)\n5. The lion is blue. (From 3)\n6. The lion eats the rabbit. (From 1)\n7. The lion is cold. (From 5 and 6)\n8. If someone eats the lion then they are cold. (Given)\n9. The rabbit eats the lion. (From 6 and 7)\n10. The rabbit is cold. (From 8 and 9)\n\nSo, we can conclude that the rabbit is cold.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements, we have:\n\n1. If someone eats the lion and the lion is green then they are blue.\n2. If someone visits the cow and they eat the rabbit then the rabbit is cold.\n3. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\n4. If someone visits the cow and they are big then the cow visits the mouse.\n5. If someone is green and they need the rabbit then they eat the rabbit.\n6. If someone is blue then they eat the rabbit.\n7. All cold people are blue.\n8. If someone visits the cow then the cow is green.\n9. If someone eats the lion then they are cold.\n\nWe are asked to determine whether \"The rabbit is cold\" is true, false, or unknown. \n\nLet's start by analyzing the given statements:\n\n- Statement 1 does not directly relate to the rabbit.\n- Statement 2 is relevant, but we need more information to determine whether it applies to the rabbit.\n- Statement 3 does not directly relate to the rabbit.\n- Statement 4 does not directly relate to the rabbit.\n- Statement 5 is relevant, but we need more information to determine whether it applies to the rabbit.\n- Statement 6 does not directly relate to the rabbit.\n- Statement 7 is relevant, but we need more information to determine whether it applies to the rabbit.\n- Statement 8 does not directly relate to the rabbit.\n- Statement 9 is relevant, but we need more information to determine whether it applies to the rabbit.\n\nNow, let's analyze the statements that directly relate to the rabbit:\n\n1. The rabbit is round.\n2. The rabbit needs the cow.\n3. The rabbit visits the lion.\n\nWe also have the following statements that directly relate to other animals:\n\n1. The cow eats the lion.\n2. The cow eats the mouse.\n3. The cow visits the lion.\n4. The cow visits the mouse.\n5. The lion eats the cow.\n6. The lion eats the rabbit.\n7. The lion is big.\n8. The lion is green.\n9. The lion is round.\n10. The mouse eats the lion.\n11. The mouse is big.\n12. The mouse visits the cow.\n\nNow, let's analyze the statement \"The rabbit is cold.\" \n\nFor the rabbit to be cold, we need to find a scenario where someone visits the cow and eats the rabbit. \n\nFrom the given statements, we have:\n\n- The rabbit visits the lion (Statement 3).\n- The rabbit needs the cow (Statement 2).\n- The lion eats the rabbit (Statement 6).\n\nHowever, the lion is big (Statement 7) and is green (Statement 8), but we do not have any information that the lion is blue.\n\nAlso, we have the statement \"If someone eats the lion then they are cold\" (Statement 9). \n\nFrom the given statements, we have:\n\n- The cow eats the lion (Statement 1).\n- The mouse eats the lion (Statement 10).\n\nWe also have the statement \"All cold people are blue\" (Statement 7).\n\nSince the lion is green and not blue, we cannot conclude that the rabbit is cold based on Statement 9.\n\nHowever, we have another statement \"If someone visits the cow and they eat the rabbit then the rabbit is cold\" (Statement 2).\n\nFrom the given statements, we have:\n\n- The cow visits the lion (Statement 3).\n- The cow eats the mouse (Statement 2).\n\nHowever, we do not have any information that the cow eats the rabbit.\n\nAlso, we have the statement \"If someone visits the cow and they are big then the cow visits the mouse\" (Statement 4).\n\nFrom the given statements, we have:\n\n- The mouse visits the cow (Statement 11).\n- The mouse is big (Statement 11).\n\nHowever, we do not have any information that the mouse eats the rabbit.\n\nNow, let's analyze the statement \"The mouse eats the lion\" (Statement 10).\n\nFrom the given statements, we have:\n\n- The mouse eats the lion (Statement 10).\n\nSince the mouse eats the lion, we can conclude that the mouse is cold (Statement 9).\n\nHowever, we also have the statement \"All cold people are blue\" (Statement 7).\n\nSince the mouse is blue, we can conclude that the mouse eats the rabbit (Statement 6).\n\nNow, we have the statement \"The mouse eats the rabbit\" (Statement 6).\n\nHowever, we do not have any information that the rabbit is cold.\n\nTherefore, we cannot conclude whether \"The rabbit is cold\" is true, false, or unknown.\n\nHowever, we can conclude that the rabbit is not cold based on the statement \"The rabbit visits the lion\" (Statement 3) and the statement \"The lion eats the rabbit\" (Statement 6).\n\nAlso, we have the statement \"If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow\" (Statement 3).\n\nFrom the given statements, we have:\n\n- The rabbit needs the cow (Statement 2).\n- The mouse needs the rabbit (Statement 3).\n\nHowever, we do not have any information that the mouse needs the cow.\n\nNow, let's analyze the statement \"The rabbit is round\" (Statement 1).\n\nFrom the given statements, we have:\n\n- The rabbit is round (Statement 1).\n\nHowever, we do not have any information that the rabbit is cold.\n\nTherefore, we cannot conclude whether \"The rabbit is cold\" is true, false, or unknown.\n\nHowever, based on the given statements, we can conclude that the statement \"The rabbit is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is cold\" is true, false, or unknown, let's analyze the given statements and their implications step by step.\n\n1. Given statement: If someone eats the lion and the lion is green then they are blue. \n   - This statement does not give us any direct information about the color or temperature of the rabbit.\n\n2. Given statement: If someone visits the cow and they eat the rabbit then the rabbit is cold. \n   - This statement does not tell us if the rabbit is cold or not, but it gives us a condition under which it would be cold.\n\n3. Given statement: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n4. Given statement: If someone visits the cow and they are big then the cow visits the mouse. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n5. Given statement: If someone is green and they need the rabbit then they eat the rabbit. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n6. Given statement: If someone is blue then they eat the rabbit. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n7. Given statement: All cold people are blue. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n8. Given statement: If someone visits the cow then the cow is green. \n   - This statement does not give us any information about the temperature of the rabbit.\n\n9. Given statement: If someone eats the lion then they are cold. \n   - The lion is eaten by the mouse (statement: The mouse eats the lion), so the mouse is cold.\n\n10. Given statement: The mouse is cold.\n    - From statement 7: All cold people are blue, the mouse is blue.\n\n11. Given statement: The mouse is blue.\n    - From statement 6: If someone is blue then they eat the rabbit, the mouse eats the rabbit.\n\n12. Given statement: The rabbit is eaten by the mouse.\n    - There is no statement that directly links the rabbit being eaten by the mouse to the rabbit being cold.\n\nHowever, we can use the information that the mouse visits the cow (statement: The mouse visits the cow) and the condition that if someone visits the cow and they eat the rabbit then the rabbit is cold (statement 2).\n\nSince the mouse eats the rabbit, it also visits the cow (given condition). Now, we know the mouse is blue, and from statement 2, if someone visits the cow and they eat the rabbit then the rabbit is cold.\n\nTherefore, we can conclude that the rabbit is cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the conditions that lead to the conclusion that the rabbit is cold. We can start by breaking down the information:\n\n1. The lion is green.\n2. If someone eats the lion and the lion is green then they are blue.\n   - This implies that the lion is eaten by someone who is blue.\n\n3. The mouse eats the lion.\n   - Since the mouse eats the lion, and the lion is green, the mouse is blue.\n\n4. If someone is blue then they eat the rabbit.\n   - Since the mouse is blue, it eats the rabbit.\n\nHowever, there's another condition to consider:\n5. All cold people are blue.\n   - This means that being blue implies being cold.\n\n6. If someone eats the lion then they are cold.\n   - Since the mouse eats the lion, it is cold.\n\nNow, let's examine the conditions related to the rabbit being cold:\n7. If someone visits the cow and they eat the rabbit then the rabbit is cold.\n   - We need to determine if anyone visits the cow and eats the rabbit.\n\nFrom the given statements:\n8. The rabbit is round.\n9. The rabbit needs the cow.\n10. The rabbit visits the lion.\n\nHowever, visiting the lion doesn't necessarily mean eating the rabbit. We need to find someone who visits the cow and eats the rabbit.\n\n11. The rabbit is cold.\n   - This is the statement we're trying to evaluate.\n\nLet's analyze the remaining information:\n12. The cow eats the mouse.\n13. The cow eats the lion.\n   - Since the cow eats the lion, it is cold.\n\n14. If someone visits the cow and they eat the rabbit then the rabbit is cold.\n   - The cow visits the lion and the cow visits the mouse. However, we know the cow eats the lion and the lion is green, so the cow is blue and cold.\n\nSince the cow is cold and visits the cow (itself), we can use this information to conclude that the rabbit is cold.\n\nTherefore, the statement \"The rabbit is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit is cold' is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. The statement 'If someone eats the lion and the lion is green then they are blue' implies that if the lion is green and someone eats it, the result is blue. However, the information provided doesn't specify that the lion is green, so we can't directly apply this statement. We can't determine the color of the person who eats the lion based on this information.\n\n2. The statement 'If someone visits the cow and they eat the rabbit then the rabbit is cold' implies that for the rabbit to be cold, we need to find a person who visits the cow and eats the rabbit. Let's look for such a person.\n\n   - The lion visits the rabbit (Statement 10), but we don't know if it eats the rabbit.\n   - The rabbit visits the lion (Statement 13), but we don't know if it eats the lion.\n   - The mouse eats the lion (Statement 8), but it's not visiting the cow.\n   - The rabbit needs the cow (Statement 9), but we don't have any information about the rabbit visiting the cow.\n   - The cow visits the lion (Statement 4) and the cow visits the mouse (Statement 5), but we don't have any information about it eating the rabbit.\n\n3. Now let's analyze other statements related to the rabbit being cold.\n\n   - The statement 'All cold people are blue' tells us that if someone is cold, they are blue. However, we can't determine if the rabbit is cold based on this statement alone.\n\n4. The statement 'If someone eats the lion then they are cold' tells us that eating the lion results in being cold. However, we don't have any information about someone eating the lion and the rabbit being cold.\n\n5. Let's look for other information related to the rabbit.\n\n   - The rabbit is round (Statement 11).\n   - The rabbit needs the cow (Statement 9).\n   - The rabbit visits the lion (Statement 13).\n\n6. Now let's analyze the statements related to the cow and the rabbit.\n\n   - The cow visits the lion (Statement 4) and the cow visits the mouse (Statement 5). We don't have any information about the cow eating the rabbit.\n   - The statement 'If someone is green and they need the rabbit then they eat the rabbit' tells us that if someone is green and needs the rabbit, they eat the rabbit. However, we don't have any information about someone being green and needing the rabbit.\n   - The statement 'If someone is blue then they eat the rabbit' tells us that if someone is blue, they eat the rabbit. However, we don't have any information about someone being blue.\n\n7. Now let's analyze the statements related to the mouse.\n\n   - The mouse eats the lion (Statement 8).\n   - The mouse is big (Statement 12).\n   - The mouse visits the cow (Statement 14).\n\n8. The statement 'If someone visits the cow and they are big then the cow visits the mouse' tells us that if someone visits the cow and is big, the cow visits the mouse. Since the mouse is big (Statement 12) and visits the cow (Statement 14), this statement is true.\n\n9. The statement 'If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow' tells us that if someone needs the mouse and the mouse needs the rabbit, then the mouse needs the cow. Since the rabbit needs the cow (Statement 9) and the mouse needs the rabbit (Statement 15), this statement is true.\n\n10. The statement 'The mouse eats the lion and the lion is green' doesn't specify that the lion is green, so we can't directly apply this statement.\n\n11. The statement 'The mouse is big' tells us that the mouse is indeed big.\n\n12. The statement 'The lion eats the cow' tells us that someone eats the cow. Since the lion eats the cow, the lion is cold (Statement 7).\n\n13. The statement 'The lion is green' tells us that the lion is indeed green.\n\n14. Since the lion is green and the mouse eats the lion, the mouse is blue (Statement 1).\n\n15. Since the mouse is blue, the mouse eats the rabbit (Statement 6).\n\n16. Since the mouse eats the rabbit and visits the cow, the rabbit is cold (Statement 2).\n\nTherefore, based on the given information and applying the statements step by step, we can determine that the statement 'The rabbit is cold' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step. We have several statements and conditions that we need to apply to determine whether the statement 'The rabbit is cold' is true, false, or unknown.\n\n1. From the statement 'The rabbit needs the cow,' and 'If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow,' we cannot directly determine the relationship between the mouse and the cow, but we do know the rabbit needs the cow.\n\n2. From 'The cow visits the mouse,' and 'If someone visits the cow and they are big then the cow visits the mouse,' we know the cow visits the mouse but we cannot determine if the cow is big or not from this information alone.\n\n3. The statement 'If someone visits the cow then the cow is green' tells us that the cow is green because it visits itself in the statement 'The cow visits the mouse.' This is possible since the cow can visit the mouse and the cow can be green.\n\n4. The statement 'If someone eats the lion and the lion is green then they are blue' does not apply to our problem directly because the lion is not green. The lion is big and round.\n\n5. The statement 'If someone needs the rabbit and they are green then they eat the rabbit' tells us that someone needs the rabbit and is green, but the rabbit is not eaten by this person because we are trying to determine the coldness of the rabbit.\n\n6. The statement 'If someone is blue then they eat the rabbit' does not apply to the rabbit because we have not established anyone as blue yet.\n\n7. The statement 'All cold people are blue' will be used later to determine the coldness of the rabbit.\n\n8. The statement 'If someone eats the lion then they are cold' will be used later to determine the coldness of the rabbit.\n\n9. From 'The lion eats the rabbit,' we know the lion eats the rabbit, but we do not know if the lion is cold or not because it is not established that the lion eats the lion. However, we do know the lion is big and round.\n\n10. The statement 'The rabbit is round' is not necessary for determining the coldness of the rabbit.\n\n11. The statement 'The rabbit visits the lion' does not determine the coldness of the rabbit.\n\n12. From 'The rabbit needs the cow,' we cannot determine if the rabbit is cold or not directly.\n\n13. The statement 'If someone eats the lion and the lion is green then they are blue' does not apply to the rabbit.\n\n14. From 'The lion eats the rabbit,' we can use the statement 'If someone eats the lion then they are cold' to determine if the rabbit is cold.\n\nSince the lion eats the rabbit, and 'If someone eats the lion then they are cold,' we can conclude that the rabbit is cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. (Given)\n2. The rabbit needs the cow. (Given)\n3. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. (Given)\n   Since the rabbit needs the cow, it implies that the mouse needs the rabbit, and subsequently the mouse needs the cow. However, this information does not help us determine if the rabbit is cold or not.\n\n4. The rabbit visits the lion. (Given)\n5. If someone visits the cow and they eat the rabbit then the rabbit is cold. (Given)\n   However, the rabbit is not visiting the cow; it's visiting the lion. So, this information does not help us determine if the rabbit is cold or not.\n\n6. The lion eats the rabbit. (Given)\n7. If someone eats the lion and the lion is green then they are blue. (Given)\n   This implies that the lion is green, which is true (The lion is green. Given). However, we are interested in the rabbit's condition, not the lion's or the one that eats it.\n\n8. If someone is blue then they eat the rabbit. (Given)\n   Since the rabbit is not blue, this information does not help us determine if the rabbit is cold or not.\n\n9. If someone is blue then they eat the rabbit. (Given)\n   Since the lion is blue when someone eats the lion and the lion is green, the lion is blue when it eats the rabbit (The lion eats the rabbit. Given). However, this information still does not help us determine if the rabbit is cold or not.\n\n10. If someone eats the lion then they are cold. (Given)\n    The lion eats the rabbit. (Given)\n    This implies that the one that eats the rabbit (lion) is cold. However, this information still does not help us determine if the rabbit is cold or not.\n\n11. All cold people are blue. (Given)\n    The lion is blue when it eats the rabbit. (From statement 7 and 9)\n    Since the lion is blue, it implies that the lion is cold. However, we are interested in the rabbit's condition, not the lion's.\n\n12. If someone visits the cow then the cow is green. (Given)\n    This information does not help us determine if the rabbit is cold or not.\n\n13. If someone eats the lion then they are cold. (Given)\n    The lion eats the rabbit. (Given)\n    This implies that the lion is cold. However, we are interested in the rabbit's condition, not the lion's.\n\nHowever, we can infer that the statement \"The rabbit is cold\" is true because it is not directly mentioned that the rabbit is cold, but we have all the information we need to conclude that the rabbit is eaten by the lion. And since the lion is cold when it eats the rabbit, it implies that the rabbit is cold.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. (This statement does not provide any useful information about the color of the rabbit.)\n\n2. The rabbit needs the cow. (This statement does not provide any useful information about the color of the rabbit.)\n\n3. The rabbit visits the lion. (This statement does not provide any useful information about the color of the rabbit.)\n\n4. If someone eats the lion and the lion is green then they are blue. (This statement will be useful later, but it does not directly affect the color of the rabbit.)\n\n5. If someone visits the cow and they eat the rabbit then the rabbit is cold. (This statement is the most relevant to our problem. To determine if the rabbit is cold, we need to find out if someone visits the cow and eats the rabbit.)\n\n   a. The cow eats the lion. (This statement does not provide any useful information about someone eating the rabbit.)\n\n   b. The lion eats the rabbit. (This statement is very useful. Since the lion eats the rabbit, someone (the lion) visits the cow (the cow eats the lion, so the cow visits the lion is a contradiction) and eats the rabbit.)\n\n   c. Since someone (the lion) visits the cow and eats the rabbit, according to statement 5, the rabbit is cold.\n\nHowever, there is another relevant statement: \n6. If someone eats the lion then they are cold. \n   a. The cow eats the lion. (This statement is very useful. Since the cow eats the lion, the cow is cold.)\n\n   b. The lion eats the rabbit. (This statement is very useful. Since the lion eats the rabbit, the lion is cold.)\n\n   c. If the lion is cold, then the lion eats the rabbit (from statement 6). Since the lion eats the rabbit, the rabbit is cold.\n\nHowever, we also have the statement: \n7. If someone visits the cow then the cow is green. \n   a. The mouse visits the cow. (This statement is very useful. Since the mouse visits the cow, the cow is green.)\n\n   b. The lion visits the cow. (This statement is very useful. Since the lion visits the cow, the cow is green.)\n\n   c. The cow is green. (This statement is very useful. Since the cow is green, the rabbit is cold, because someone (the lion) visits the cow and eats the rabbit.)\n\nHowever, we also have the statement: \n8. If someone is blue then they eat the rabbit. \n   a. The lion is blue. (This statement is very useful. Since the lion is blue, the lion eats the rabbit.)\n\n   b. The mouse is blue. (This statement is very useful. Since the mouse is blue, the mouse eats the rabbit.)\n\n   c. The cow is blue. (This statement is very useful. Since the cow is blue, the cow eats the rabbit.)\n\nHowever, we also have the statement: \n9. All cold people are blue. \n   a. The lion is cold. (This statement is very useful. Since the lion is cold, the lion is blue.)\n\n   b. The cow is cold. (This statement is very useful. Since the cow is cold, the cow is blue.)\n\n   c. The mouse eats the lion. (This statement is very useful. Since the mouse eats the lion, the mouse is cold, and the mouse is blue.)\n\n   d. The mouse visits the cow. (This statement is very useful. Since the mouse visits the cow, the cow is green.)\n\n   e. The cow is green. (This statement is very useful. Since the cow is green, the rabbit is cold.)\n\nHowever, we also have the statement: \n10. If someone visits the cow and they are big then the cow visits the mouse. \n   a. The lion is big. (This statement is very useful. Since the lion is big, the lion visits the cow, and the cow visits the mouse.)\n\n   b. The mouse is big. (This statement is very useful. Since the mouse is big, the mouse visits the cow, and the cow visits the mouse.)\n\n   c. The lion visits the cow. (This statement is very useful. Since the lion visits the cow, the cow visits the mouse.)\n\n   d. The mouse visits the cow. (This statement is very useful. Since the mouse visits the cow, the cow visits the mouse.)\n\n   e. The cow visits the mouse. (This statement is very useful. Since the cow visits the mouse, the rabbit is cold, because someone (the lion) visits the cow and eats the rabbit.)\n\nHowever, we also have the statement: \n11. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. \n   a. The mouse needs the rabbit. (This statement is very useful. Since the mouse needs the rabbit, the mouse needs the cow.)\n\n   b. The rabbit needs the cow. (This statement is very useful. Since the rabbit needs the cow, the mouse needs the cow.)\n\n   c. The rabbit is cold. (This statement will be true if we can confirm that the mouse needs the cow.)\n\nHowever, we also have the statement: \n12. The lion eats the rabbit. (This statement is very useful. Since the lion eats the rabbit, the lion is cold, and the lion is blue.)\n\n   a. The lion is cold. (This statement is very useful. Since the lion is cold, the lion is blue.)\n\n   b. The lion is blue. (This statement is very useful. Since the lion is blue, the lion eats the rabbit.)\n\nHowever, we also have the statement: \n13. The mouse eats the lion. (This statement is very useful. Since the mouse eats the lion, the mouse is cold, and the mouse is blue.)\n\n   a. The mouse is cold. (This statement is very useful. Since the mouse is cold, the mouse is blue.)\n\n   b. The mouse is blue. (This statement is very useful. Since the mouse is blue, the mouse eats the lion.)\n\nHowever, we also have the statement: \n14. The mouse visits the cow. (This statement is very useful. Since the mouse visits the cow, the cow is green.)\n\n   a. The cow is green. (This statement is very useful. Since the cow is green, the rabbit is cold.)\n\nHowever, we also have the statement: \n15. The lion is big. (This statement is very useful. Since the lion is big, the lion visits the cow, and the cow visits the mouse.)\n\n   a. The lion visits the cow. (This statement is very useful. Since the lion visits the cow, the cow visits the mouse.)\n\n   b. The cow visits the mouse. (This statement is very useful. Since the cow visits the mouse, the rabbit is cold.)\n\nHowever, we also have the statement: \n16. The mouse is big. (This statement is very useful. Since the mouse is big, the mouse visits the cow, and the cow visits the mouse.)\n\n   a. The mouse visits the cow. (This statement is very useful. Since the mouse visits the cow, the cow is green.)\n\n   b. The cow is green. (This statement is very useful. Since the cow is green, the rabbit is cold.)\n\nHowever, we also have the statement: \n17. The cow is green. (This statement is very useful. Since the cow is green, the rabbit is cold.)\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_rabbit), eats_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_rabbit, eats_rabbit_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_rabbit, blue_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion_rabbit, green_lion), blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(mouse, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, big_lion), visits_cow_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_lion, eats_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_lion, blue_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_cow_mouse, green_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_mouse_lion, green_lion), blue_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_mouse_cow, big_mouse), visits_cow_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_cow, green_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_cow, eats_rabbit), cold_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion, green_lion), blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_mouse_rabbit), needs_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, lion)",
+          "z3_formula": "eats_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_lion), blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_cow, eats_X_rabbit), cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_mouse_rabbit), needs_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_cow, big_X), visits_X_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), eats_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), eats_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_X_cow, big_X), visits_cow_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & eats(lion, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, eats_lion_rabbit), eats_rabbit_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_X_cow, eats_X_rabbit), cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, lion) -> green(lion)",
+          "z3_formula": "Implies(visits_cow_lion, green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(lion) -> Not(blue(lion))",
+          "z3_formula": "Implies(green_lion, Not(blue_lion))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, mouse) & big(mouse) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_cow_mouse, big_mouse), visits_cow_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(mouse) -> visits(mouse, cow)",
+          "z3_formula": "Implies(big_mouse, visits_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, lion) -> cold(mouse)",
+          "z3_formula": "Implies(eats_mouse_lion, cold_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(mouse) -> blue(mouse)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(mouse) -> eats(mouse, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(eats_mouse_rabbit, cold_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_mouse, cold_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "lion_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_someone_lion, lion_green), blue_someone)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_mouse, cold_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_mouse_lion, cold_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, lion)",
+          "z3_formula": "eats_cow_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_someone_cow, eats_someone_rabbit), cold_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cow)",
+          "z3_formula": "visits_cow_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, rabbit)",
+          "z3_formula": "eats_cow_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, X)",
+          "z3_formula": "Implies(And(visits_mouse_cow, big_mouse), visits_cow_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_mouse_lion, green_lion), blue_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, cow) -> cold(X)",
+          "z3_formula": "Implies(And(visits_lion_cow, eats_lion_cow), cold_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_mouse, cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_rabbit), eats_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_rabbit_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_cow_X, big_X), visits_cow_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(X)",
+          "z3_formula": "Implies(visits_cow_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_lion), blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, Y) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_cow), needs_rabbit_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, Y) -> cold(Y)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, eats_rabbit_rabbit), cold_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion_lion, green_lion), blue_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_lion, eats_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_lion, cold_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 13
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 192,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 85
+    },
+    "maxsat_stats": {
+      "satisfied": 83,
+      "excluded": 2,
+      "total_weight": 188,
+      "solve_time_ms": 1.9711898639798164
+    },
+    "timing": {
+      "trace_gen_s": 25.0,
+      "extraction_s": 48.83,
+      "dedup_s": 3.402,
+      "maxsat_s": 0.007,
+      "total_s": 77.24
+    }
+  }
+}

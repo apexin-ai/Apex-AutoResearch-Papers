@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-481_Q23",
+    "problem": "The bald eagle needs the mouse. The bald eagle visits the mouse. The dog is young. The dog needs the mouse. The dog visits the mouse. The mouse is red. The mouse is rough. The mouse visits the bald eagle. The tiger is cold. The tiger needs the bald eagle. The tiger needs the dog. The tiger visits the dog. If the mouse visits the dog then the mouse visits the tiger. If something needs the tiger and the tiger is cold then it is green. If something is cold and it needs the bald eagle then the bald eagle visits the mouse. If something needs the mouse then it visits the bald eagle. If something is young then it needs the tiger. If something visits the dog and the dog is green then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nVisits(BaldEagle, Mouse, True) ::: The bald eagle visits the mouse.\nYoung(Dog, True) ::: The dog is young.\nNeeds(Dog, Mouse, True) ::: The dog needs the mouse.\nVisits(Dog, Mouse, True) ::: The dog visits the mouse.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nVisits(Mouse, BaldEagle, True) ::: The mouse visits the bald eagle.\nCold(Tiger, True) ::: The tiger is cold.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Dog, True) ::: The tiger needs the dog.\nVisits(Tiger, Dog, True) ::: The tiger visits the dog.\n\nRules:\nVisits(Mouse, Dog, True) >>> Visits(Mouse, Tiger, True) ::: If the mouse visits the dog then the mouse visits the tiger.\nNeeds($x, Tiger, True) && Cold(Tiger, True) >>> Green($x, True) ::: If something needs the tiger and the tiger is cold then it is green.\nCold($x, True) && Needs($x, BaldEagle, True) >>> Visits(BaldEagle, Mouse, True) ::: If something is cold and it needs the bald eagle then the bald eagle visits the mouse.\nNeeds($x, Mouse, True) >>> Visits($x, BaldEagle, True) ::: If something needs the mouse then it visits the bald eagle.\nYoung($x, True) >>> Needs($x, Tiger, True) ::: If something is young then it needs the tiger.\nVisits($x, Dog, True) && Green(Dog, True) >>> Young($x, True) ::: If something visits the dog and the dog is green then it is young.\n\nQuery:\nRough(BaldEagle, False) ::: The bald eagle is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

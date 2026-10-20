@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-428_Q12",
+    "problem": "The cat is rough. The mouse likes the rabbit. The mouse sees the rabbit. The rabbit sees the squirrel. The squirrel eats the cat. The squirrel eats the rabbit. The squirrel is red. All red people are young. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. If someone sees the cat and they like the squirrel then the squirrel sees the cat. If someone is young then they see the mouse. If someone eats the rabbit and they see the mouse then the mouse is red. If someone is cold then they eat the squirrel. If someone sees the rabbit and the rabbit is green then they are young. If someone likes the squirrel and they are red then they are young. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not see the mouse.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nRough(cat, True) ::: The cat is rough.\nLikes(mouse, rabbit, True) ::: The mouse likes the rabbit.\nSees(mouse, rabbit, True) ::: The mouse sees the rabbit.\nSees(rabbit, squirrel, True) ::: The rabbit sees the squirrel.\nEats(squirrel, cat, True) ::: The squirrel eats the cat.\nEats(squirrel, rabbit, True) ::: The squirrel eats the rabbit.\nRed(squirrel, True) ::: The squirrel is red.\n\nRules:\nRed($x, True) >>> Young($x, True) ::: All red people are young.\nGreen(squirrel, True) && Likes(squirrel, rabbit, True) >>> Eats(rabbit, mouse, True) ::: If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\nSees($x, cat, True) && Likes($x, squirrel, True) >>> Sees(squirrel, cat, True) ::: If someone sees the cat and they like the squirrel then the squirrel sees the cat.\nYoung($x, True) >>> Sees($x, mouse, True) ::: If someone is young then they see the mouse.\nEats($x, rabbit, True) && Sees($x, mouse, True) >>> Red(mouse, True) ::: If someone eats the rabbit and they see the mouse then the mouse is red.\nCold($x, True) >>> Eats($x, squirrel, True) ::: If someone is cold then they eat the squirrel.\nSees($x, rabbit, True) && Green(rabbit, True) >>> Young($x, True) ::: If someone sees the rabbit and the rabbit is green then they are young.\nLikes($x, squirrel, True) && Red($x, True) >>> Young($x, True) ::: If someone likes the squirrel and they are red then they are young.\nSees($x, squirrel, True) && Sees(squirrel, mouse, True) >>> Likes($x, rabbit, True) ::: If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nQuery:\nSees(mouse, mouse, False) ::: The mouse does not see the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

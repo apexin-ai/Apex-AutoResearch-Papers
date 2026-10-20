@@ -1,0 +1,1505 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-977_Q14",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(mouse, X)",
+          "z3_formula": "Implies(And(cold_X, red_X), likes_mouse_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_X_cow, cold_X), young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_X, visits_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, likes_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_X_cat, likes_X_lion), blue_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_X, blue_X), needs_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(mouse, lion)",
+          "z3_formula": "unknown_mouse_lion == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_lion_cow, cold_lion), young_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_X, visits_X_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(lion, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_lion_cat, likes_lion_cat), blue_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_X, blue_X), needs_X_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == Unknown",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == Unknown",
+          "source_step": 25
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> young(X)",
+          "z3_formula": "Implies(needs_mouse_cow, young_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, mouse) -> red(X)",
+          "z3_formula": "Implies(And(young_mouse, needs_mouse_mouse), red_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, mouse)",
+          "z3_formula": "needs_mouse_mouse == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_lion, red_lion), likes_lion_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_lion, blue_lion), needs_lion_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(red_mouse, needs_mouse_cat), blue_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(lion, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_cat_mouse, likes_lion_cat), blue_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == Unknown",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> needs(X, cat)",
+          "z3_formula": "Implies(And(young_mouse, red_mouse), needs_mouse_cat)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == Unknown",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not young(mouse)",
+          "z3_formula": "Not(young_mouse) == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(mouse)",
+          "z3_formula": "Not(young_mouse) == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(lion, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_lion_cat), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_cat, blue_cat), needs_cat_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(X)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_lion_cat), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(X)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_mouse), blue_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(cat, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_cat_lion), blue_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, red_cat), blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_X_cow, cold_X), young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, likes_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_lion_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(cat, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_cat_lion), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(visits_mouse_lion)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_mouse, blue_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> cold(X)",
+          "z3_formula": "Implies(And(blue_mouse, needs_mouse_lion), cold_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_mouse, blue_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> cold(X)",
+          "z3_formula": "Implies(And(blue_mouse, needs_mouse_lion), cold_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, Y) -> blue(Y)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & cat is blue -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, blue_cat), blue_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & lion likes X -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_cat_lion, likes_lion_cat), visits_cat_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(mouse, X)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(mouse))",
+          "z3_formula": "Not(cold_mouse) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(mouse, mouse))",
+          "z3_formula": "Not(likes_mouse_mouse) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(lion, X) -> blue(X)",
+          "z3_formula": "Implies(And(visits_cat_lion, likes_lion_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(mouse))",
+          "z3_formula": "Not(cold_mouse) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(mouse, lion))",
+          "z3_formula": "Not(needs_mouse_lion) == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_cat, visits_cat_lion)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(Y, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_cat_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(mouse, X)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(cat, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_cat_lion), blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == Unknown",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

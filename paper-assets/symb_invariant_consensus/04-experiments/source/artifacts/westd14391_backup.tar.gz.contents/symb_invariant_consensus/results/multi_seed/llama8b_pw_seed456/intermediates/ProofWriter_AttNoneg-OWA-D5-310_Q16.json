@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-310_Q16",
+    "problem": "Anne is big. Anne is nice. Anne is round. Bob is nice. Bob is round. Dave is blue. Dave is red. Dave is smart. Erin is red. Erin is round. If someone is big and round then they are smart. All rough people are blue. Nice people are big. If someone is nice then they are round. Round, red people are rough. All round, smart people are red.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nNice(Anne, True) ::: Anne is nice.\nRound(Anne, True) ::: Anne is round.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nBlue(Dave, True) ::: Dave is blue.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nRed(Erin, True) ::: Erin is red.\nRound(Erin, True) ::: Erin is round.\n\nRules:\nBig($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is big and round then they are smart.\nRough($x, True) >>> Blue($x, True) ::: All rough people are blue.\nNice($x, True) >>> Big($x, True) ::: Nice people are big.\nNice($x, True) >>> Round($x, True) ::: If someone is nice then they are round.\nRound($x, True) && Red($x, True) >>> Rough($x, True) ::: Round, red people are rough.\nRound($x, True) && Smart($x, True) >>> Red($x, True) ::: All round, smart people are red.\n\nQuery:\nRough(Dave, True) ::: Dave is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

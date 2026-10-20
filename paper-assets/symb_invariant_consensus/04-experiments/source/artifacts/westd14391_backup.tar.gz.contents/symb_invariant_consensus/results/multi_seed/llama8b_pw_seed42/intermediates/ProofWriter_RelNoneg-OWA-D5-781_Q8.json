@@ -1,0 +1,841 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-781_Q8",
+    "problem": "The bald eagle chases the rabbit. The bald eagle is red. The bald eagle is round. The bald eagle likes the squirrel. The lion chases the squirrel. The lion is round. The rabbit is green. The rabbit is nice. The rabbit likes the bald eagle. The rabbit sees the squirrel. The squirrel is round. The squirrel sees the bald eagle. If something likes the rabbit then the rabbit sees the lion. If something chases the squirrel and it likes the bald eagle then the squirrel is nice. If something is nice and it likes the squirrel then the squirrel chases the rabbit. If something likes the bald eagle and it sees the rabbit then it likes the squirrel. If something likes the squirrel and it likes the lion then the lion likes the bald eagle. If something is young then it sees the rabbit. Green things are round. All round things are young. If the squirrel is nice then the squirrel likes the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the rabbit.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nRed(BaldEagle, True) ::: The bald eagle is red.\nRound(BaldEagle, True) ::: The bald eagle is round.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nChases(Lion, Squirrel, True) ::: The lion chases the squirrel.\nRound(Lion, True) ::: The lion is round.\nGreen(Rabbit, True) ::: The rabbit is green.\nNice(Rabbit, True) ::: The rabbit is nice.\nLikes(Rabbit, BaldEagle, True) ::: The rabbit likes the bald eagle.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nRound(Squirrel, True) ::: The squirrel is round.\nSees(Squirrel, BaldEagle, True) ::: The squirrel sees the bald eagle.\n\nRules:\nLikes($x, Rabbit, True) >>> Sees(Rabbit, Lion, True) ::: If something likes the rabbit then the rabbit sees the lion.\nChases($x, Squirrel, True) && Likes($x, BaldEagle, True) >>> Nice(Squirrel, True) ::: If something chases the squirrel and it likes the bald eagle then the squirrel is nice.\nNice($x, True) && Likes($x, Squirrel, True) >>> Chases(Squirrel, Rabbit, True) ::: If something is nice and it likes the squirrel then the squirrel chases the rabbit.\nLikes($x, BaldEagle, True) && Sees($x, Rabbit, True) >>> Likes($x, Squirrel, True) ::: If something likes the bald eagle and it sees the rabbit then it likes the squirrel.\nLikes($x, Squirrel, True) && Likes($x, Lion, True) >>> Likes(Lion, BaldEagle, True) ::: If something likes the squirrel and it likes the lion then the lion likes the bald eagle.\nYoung($x, True) >>> Sees($x, Rabbit, True) ::: If something is young then it sees the rabbit.\nGreen($x, True) >>> Round($x, True) ::: Green things are round.\nRound($x, True) >>> Young($x, True) ::: All round things are young.\nNice(Squirrel, True) >>> Likes(Squirrel, Rabbit, True) ::: If the squirrel is nice then the squirrel likes the rabbit.\n\nQuery:\nSees(Rabbit, Rabbit, False) ::: The rabbit does not see the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 106.5,
+      "Unknown": 63.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll break it down into smaller steps based on the given information.\n\n1. All round things are young. \n   - Since the rabbit is round, it is young.\n   - Since the lion is round, it is young.\n   - Since the squirrel is round, it is young.\n\n2. Green things are round.\n   - Since the rabbit is green, it is round (we already knew this, but this statement confirms it).\n   - Since the rabbit is round, it is young (we already knew this).\n\n3. If something is young then it sees the rabbit.\n   - Since the rabbit is young, it sees the rabbit. \n   - Since the lion is young, it sees the rabbit.\n   - Since the squirrel is young, it sees the rabbit.\n\n4. The rabbit sees the squirrel.\n   - This is given in the problem statement.\n\n5. The squirrel sees the bald eagle.\n   - This is given in the problem statement.\n\n6. If something likes the bald eagle and it sees the rabbit then it likes the squirrel.\n   - Since the rabbit likes the bald eagle (given in the problem statement), and the rabbit sees the squirrel, then the rabbit likes the squirrel. \n   - However, we're asked about the statement \"The rabbit does not see the rabbit.\" We'll come back to this later.\n\n7. If something likes the squirrel and it likes the lion then the lion likes the bald eagle.\n   - This statement does not apply to the problem at hand. We're trying to determine if the rabbit does not see the rabbit, so we'll focus on that.\n\n8. The rabbit is nice.\n   - This is given in the problem statement.\n\n9. If something chases the squirrel and it likes the bald eagle then the squirrel is nice.\n   - Since the lion chases the squirrel and the lion likes the bald eagle, then the squirrel is nice (which we already knew).\n\n10. If something is nice and it likes the squirrel then the squirrel chases the rabbit.\n    - Since the rabbit is nice (given in the problem statement) and the rabbit likes the squirrel, then the squirrel chases the rabbit. \n    - However, this statement is irrelevant to the problem at hand.\n\n11. The rabbit does not see the rabbit.\n    - We've established that the rabbit sees the rabbit (based on the fact that the rabbit is young). Therefore, this statement is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the problem, we need to break it down into smaller statements and use the given information to determine the truth of the statement \"The rabbit does not see the rabbit.\"\n\n1. From the statement \"Green things are round\" and \"The rabbit is green,\" we can conclude that \"The rabbit is round.\"\n\n2. Since \"All round things are young,\" we can conclude that \"The rabbit is young.\"\n\n3. Now, let's examine the statement \"If something is young then it sees the rabbit.\" Since \"The rabbit is young,\" we can conclude that \"The rabbit sees the rabbit.\" This contradicts the statement \"The rabbit does not see the rabbit.\"\n\nTherefore, the statement \"The rabbit does not see the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit does not see the rabbit' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given that the rabbit is green and green things are round, we can conclude that the rabbit is round. \n2. Since all round things are young, we can conclude that the rabbit is young.\n3. According to the given information, if something is young, then it sees the rabbit. However, this rule does not directly apply to the rabbit, as it is the subject of the rule (something), not the predicate (sees the rabbit). Therefore, we cannot directly conclude whether the rabbit sees the rabbit based on this rule.\n4. We know that the rabbit sees the squirrel, but this does not provide any information about whether the rabbit sees itself.\n\nBased on the given information, we cannot conclude that the rabbit does or does not see the rabbit. Therefore, the statement 'The rabbit does not see the rabbit' is **unknown**.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the statement, we need to analyze the given information and the rules provided.\n\n1. The rabbit is green. (Given)\n2. Green things are round. (Rule 1)\n3. All round things are young. (Rule 2)\n4. The rabbit is nice. (Given)\n5. The rabbit likes the bald eagle. (Given)\n6. The rabbit sees the squirrel. (Given)\n\nFrom rule 3, we can deduce that the rabbit is young because it is round.\n\nNow, let's analyze the rules that involve the statement \"The rabbit does not see the rabbit.\"\n\n- If something likes the rabbit then the rabbit sees the lion. (Rule 4)\n  - The lion does not like the rabbit because the lion chases the squirrel (not the rabbit).\n  - The bald eagle likes the rabbit, but this rule does not apply because the rabbit sees the lion, not the bald eagle.\n  - Therefore, we cannot conclude that the rabbit sees the lion from this rule.\n\n- If something chases the squirrel and it likes the bald eagle then the squirrel is nice. (Rule 5)\n  - The lion chases the squirrel and likes the bald eagle (because if something likes the squirrel and it likes the lion then the lion likes the bald eagle, rule 8).\n  - From rule 5, we can conclude that the squirrel is nice.\n\n- If something is nice and it likes the squirrel then the squirrel chases the rabbit. (Rule 6)\n  - The squirrel is nice (from rule 5).\n  - The squirrel sees the bald eagle (given).\n  - The squirrel does not like the rabbit (because the squirrel likes the bald eagle, and if something likes the bald eagle and it sees the rabbit then it likes the squirrel, rule 7).\n  - Therefore, this rule does not apply.\n\n- If something likes the bald eagle and it sees the rabbit then it likes the squirrel. (Rule 7)\n  - The rabbit likes the bald eagle (given).\n  - The rabbit sees the squirrel (given).\n  - Therefore, the rabbit likes the squirrel.\n\n- If something likes the squirrel and it likes the lion then the lion likes the bald eagle. (Rule 8)\n  - The lion likes the squirrel (because the lion chases the squirrel).\n  - The lion likes the bald eagle (from rule 8).\n\nFrom rule 1, we can conclude that the rabbit is round and, therefore, young.\n\nNow, let's analyze the statement \"The rabbit does not see the rabbit.\"\n\nIf the rabbit sees the lion, then it sees the rabbit because the lion is young (rule 3). However, we cannot conclude that the rabbit sees the lion from the given information. \n\nHowever, we can conclude that the rabbit likes the squirrel (rule 7). If the rabbit likes the squirrel, then the squirrel is round (because all round things are young, rule 3), and the squirrel is nice (because the lion chases the squirrel and likes the bald eagle, rule 5). The squirrel likes the rabbit (if the squirrel is nice then the squirrel likes the rabbit, rule 9). \n\nTherefore, the rabbit sees the squirrel, and the squirrel sees the rabbit. The squirrel is round, and the squirrel is nice.\n\nThe statement \"The rabbit does not see the rabbit\" is false because the rabbit sees the squirrel, and the squirrel sees the rabbit.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is green.\n2. Green things are round.\n3. All round things are young.\n\nFrom these premises, we can conclude that the rabbit is round and young.\n\n4. If something is young then it sees the rabbit.\nSince the rabbit is young (from premise 3), it must see the rabbit.\n\nHowever, this conclusion is not directly relevant to the statement \"The rabbit does not see the rabbit.\" We need to find a different path to analyze this statement.\n\nThe statement \"The rabbit does not see the rabbit\" can be rewritten as \"It is not the case that the rabbit sees the rabbit.\" To determine whether this statement is true, we need to check if there is any information that contradicts it.\n\nFrom the given information, we know that the rabbit sees the squirrel (premise 8). However, this does not directly affect the statement \"The rabbit does not see the rabbit.\"\n\nWe also know that if something likes the bald eagle and it sees the rabbit then it likes the squirrel (premise 7). However, there is no information that indicates the rabbit likes the bald eagle, so we cannot use this premise to determine whether the rabbit sees the rabbit.\n\nNow, let's consider the statement \"If something chases the squirrel and it likes the bald eagle then the squirrel is nice\" (premise 5). This premise is irrelevant to the statement \"The rabbit does not see the rabbit.\"\n\nWe can also consider the statement \"If something likes the bald eagle and it sees the rabbit then it likes the squirrel\" (premise 7). This premise is also irrelevant to the statement \"The rabbit does not see the rabbit.\"\n\nHowever, we can use the statement \"If something likes the squirrel and it likes the lion then the lion likes the bald eagle\" (premise 6) to find a contradiction. \n\nSince the lion chases the squirrel (premise 3), and the lion is round (premise 4), the lion is also young. \n\nFrom premise 4, we know that all round things are young, so the lion is young.\n\nWe can now analyze the statement \"If something likes the squirrel and it likes the lion then the lion likes the bald eagle\" (premise 6). \n\nSince the lion likes the bald eagle, the lion is round (premise 2), and the lion is young (from premise 4), the lion sees the rabbit (from premise 4).\n\nHowever, we know that the rabbit sees the lion (from premise 1). \n\nThis creates a paradox: if the rabbit sees the lion, then the lion sees the rabbit, and if the lion sees the rabbit, then the rabbit sees the lion.\n\nThis paradox is a contradiction to the statement \"The rabbit does not see the rabbit.\"\n\nTherefore, the statement \"The rabbit does not see the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. The rabbit is green (given)\n2. Green things are round (given)\n3. All round things are young (given)\n\nFrom step 1 and step 2, we can conclude that the rabbit is round because it is green.\n\n4. All round things are young (given)\nSince the rabbit is round, we can conclude that the rabbit is young.\n\nNow, let's examine the statement: \"The rabbit sees the lion.\"\n\n5. If something likes the rabbit then the rabbit sees the lion (given)\nWe need to find out if there is something that likes the rabbit. \n\n6. The rabbit likes the bald eagle (given)\nSince the rabbit likes the bald eagle and the bald eagle is round, we can conclude that the bald eagle is young.\n\n7. The bald eagle sees the rabbit (given)\nNow we have something that sees the rabbit (the bald eagle) and likes the rabbit (the bald eagle). According to rule 5, this means the rabbit sees the lion.\n\nHowever, the statement we are trying to evaluate is \"The rabbit does not see the rabbit.\" \n\nFrom the information given, we cannot conclude that the rabbit sees the rabbit or does not see the rabbit. The only thing we know is that the rabbit sees the lion, but there is no information about whether the rabbit sees itself.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is green. (From the problem statement)\n\n2. Green things are round. (From the problem statement)\n   Since the rabbit is green, it must be round.\n\n3. All round things are young. (From the problem statement)\n   Since the rabbit is round, it must be young.\n\n4. If something is young then it sees the rabbit. (From the problem statement)\n   Since the rabbit is young, it sees the rabbit.\n\nNow, considering the statement \"The rabbit does not see the rabbit,\" we know from the previous steps that the rabbit is young and therefore sees the rabbit. This directly contradicts the statement \"The rabbit does not see the rabbit.\"\n\nTherefore, the statement \"The rabbit does not see the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to break down the given information and apply logical reasoning.\n\n1. The rabbit is green (given).\n2. Green things are round (given).\n3. All round things are young (given).\n4. The rabbit is round (from 1 and 2).\n5. Since the rabbit is round, it is young (from 3).\n\nNow, let's analyze the statement: \"The rabbit does not see the rabbit.\"\n\nIf we apply the rule \"If something is young then it sees the rabbit\" (given), since the rabbit is young (from 4 and 3), it should see the rabbit.\n\nHowever, the statement says \"The rabbit does not see the rabbit.\" To resolve this, let's consider the fact that the statement is about the rabbit's own perception of itself.\n\nIn this context, we can create a new rule: \"If something sees itself, then it sees itself\" (this is a basic assumption about self-awareness). \n\nApplying this rule, the rabbit should see itself, which contradicts the original statement.\n\nHowever, the original statement cannot be directly proven as false using the given information. The statement remains uncertain because the rules provided do not explicitly state what happens when an individual sees itself.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical reasoning. We will break down the information into smaller parts and use deductions to arrive at the conclusion.\n\n1. Given statement: The rabbit does not see the rabbit.\n   We need to check if this statement is true, false, or unknown.\n\n2. From the statement \"All round things are young,\" we can infer that the rabbit is young because it is green and round.\n   So, we have: The rabbit is young.\n\n3. Since the rabbit is young, it sees the rabbit. (From the statement \"If something is young then it sees the rabbit.\")\n   So, we have: The rabbit sees the rabbit.\n\nBased on the deductions above, we can conclude that the statement \"The rabbit does not see the rabbit\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is green. (Given)\n2. Green things are round. (Given)\n3. All round things are young. (Given)\n4. The rabbit is round. (From 1 and 2)\n5. The rabbit is young. (From 3 and 4)\n\nNow, let's find out if the rabbit sees the rabbit or not.\n\n6. If something likes the rabbit then the rabbit sees the lion. (Given)\n7. The rabbit likes the bald eagle. (Given)\n8. If something likes the bald eagle and it sees the rabbit then it likes the squirrel. (Given)\n9. The bald eagle sees the rabbit. (From 7 and 8)\n10. The rabbit sees the lion. (From 6 and 9)\n\nNow, let's determine if the rabbit sees the rabbit.\n\n11. The statement to check is: The rabbit does not see the rabbit.\n12. We have found out that the rabbit sees the lion. (From 10)\n13. We do not have any information that the lion sees the rabbit or the rabbit sees the lion directly, but we can infer some things.\n14. The lion chases the squirrel. (Given)\n15. The squirrel sees the bald eagle. (Given)\n16. The squirrel is round. (From 2 and the fact that the squirrel is green)\n17. The squirrel is young. (From 3 and 16)\n18. The squirrel likes the rabbit. (From 5 and the fact that if the squirrel is nice then the squirrel likes the rabbit)\n\nNow, we have a chain of events:\n- The lion chases the squirrel.\n- The squirrel sees the bald eagle.\n- The bald eagle sees the rabbit.\n- The rabbit sees the lion.\n\nWe can conclude that the rabbit sees the lion, but we do not have any information that the lion sees the rabbit directly or indirectly. \n\nHowever, we can infer that the lion sees the squirrel because the lion chases the squirrel.\n\nWe can conclude that the rabbit sees the lion, the lion sees the squirrel, and the squirrel sees the bald eagle, but we cannot conclude whether the rabbit sees the rabbit or not directly.\n\nBut we can say that the statement \"The rabbit does not see the rabbit\" is not true because the rabbit sees the lion.\n\nSo, the statement is False.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that the rabbit is green (Statement 7) and green things are round (Statement 14). \n   Since the rabbit is green, it must be round.\n\n2. Since all round things are young (Statement 15), the rabbit is young.\n\n3. The statement \"If something is young then it sees the rabbit\" is not explicitly given in the problem, but we can use the information given to infer that it does not directly support the statement. \n\n4. However, we have information about the relationship between the rabbit and other animals. The statement \"If something likes the bald eagle and it sees the rabbit then it likes the squirrel\" (Statement 12) can be applied to the bald eagle. Since we have no information that the bald eagle sees the rabbit, we cannot directly apply this statement.\n\n5. The statement \"If something chases the squirrel and it likes the bald eagle then the squirrel is nice\" (Statement 9) can be applied to the bald eagle. However, we have no information that the bald eagle chases the squirrel.\n\n6. The statement \"If something likes the squirrel and it likes the lion then the lion likes the bald eagle\" (Statement 13) can be applied to the rabbit. Since the rabbit likes the squirrel (Statement 10) and the lion (Statement 8), we can apply this statement.\n\n7. From statement 13, we know the lion likes the bald eagle. Since the bald eagle is round (Statement 3) and all round things are young (Statement 15), the bald eagle is young.\n\n8. The statement \"If something is young then it sees the rabbit\" (Statement 16) can be applied to the bald eagle and the squirrel. Since the bald eagle and the squirrel are young (Steps 7 and 2), they must see the rabbit.\n\n9. Since the squirrel is round (Statement 11) and green (Statement 7) and round things are young (Statement 15) and all round things are green, the squirrel is young. \n\n10. The statement \"If the squirrel is nice then the squirrel likes the rabbit\" (Statement 17) can be applied. However, we have no information about whether the squirrel is nice.\n\n11. From statement 17, we know that if the squirrel is nice, it likes the rabbit. Since the rabbit is young (Step 2) and the squirrel is young (Step 9), the squirrel sees the rabbit.\n\n12. Since the rabbit is green (Statement 7) and green things are round (Statement 14), the rabbit is round.\n\n13. From statement 9, we know that if something chases the squirrel and it likes the bald eagle, the squirrel is nice. However, we have no information about whether the rabbit chases the squirrel.\n\n14. The statement \"If something is nice and it likes the squirrel then the squirrel chases the rabbit\" (Statement 10) can be applied to the rabbit. However, we have no information that the rabbit is nice.\n\n15. Since the rabbit is young (Step 2) and all round things are young (Statement 15), the rabbit is round.\n\n16. From statement 9, we know that if something chases the squirrel and it likes the bald eagle, the squirrel is nice. However, we have no information about whether the rabbit chases the squirrel.\n\n17. The statement \"If something likes the bald eagle then the rabbit sees the lion\" (Statement 6) can be applied to the bald eagle. Since the bald eagle likes the squirrel (Statement 4), we can apply this statement.\n\n18. From statement 6, we know the rabbit sees the lion.\n\nNow we have all the information needed to determine whether the statement \"The rabbit does not see the rabbit\" is true, false, or unknown.\n\nSince the rabbit is round (Steps 1 and 12), it must be young (Step 2). The statement \"If something is young then it sees the rabbit\" (Statement 16) can be applied. Since the rabbit is young, it sees the rabbit. \n\nHowever, the statement \"If the squirrel is nice then the squirrel likes the rabbit\" (Statement 17) can be applied. Since the squirrel sees the rabbit (Step 11), it must be nice. The statement \"If something is nice and it likes the squirrel then the squirrel chases the rabbit\" (Statement 10) can be applied to the rabbit. However, we have no information about whether the rabbit is nice. If the squirrel is nice, it chases the rabbit. \n\nThis creates a contradiction in the statements. \n\nThe statement \"The rabbit does not see the rabbit\" is unknown because we cannot determine whether it is true or false.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to use the given information and logical reasoning.\n\n1. All round things are young.\n2. The rabbit is round (given).\n3. The rabbit is round, therefore, the rabbit is young (from 1 and 2).\n\nNow, we need to find out if the rabbit sees the rabbit. \n\nGiven information: \n- If something is young then it sees the rabbit.\n- The rabbit is young (from 3).\n\nHowever, there is no information that directly states that young things see themselves or not.\n\nBut let's consider another given information to see if it helps:\n- Green things are round.\n- The rabbit is green (given).\n- The rabbit is round (given), therefore the rabbit is green (from the above two points).\n\nBut this does not directly help us determine whether the rabbit sees itself or not. \n\nHowever, there is another piece of given information that could be useful:\n- If something likes the rabbit then the rabbit sees the lion. \n- There is no information that the rabbit likes something else but we know the rabbit sees the lion, however, there is no information that the rabbit sees the rabbit.\n\nHowever, we know the rabbit sees the lion. Let's try to find the connection between the rabbit and the lion using the given information.\n- If something likes the squirrel and it likes the lion then the lion likes the bald eagle. \n- The rabbit sees the squirrel (given).\n- The rabbit likes the bald eagle (given).\n- The lion chases the squirrel (given).\n- The lion is round (given), therefore the lion is young (from 1 and 2).\n- The rabbit sees the lion (from the previous conclusion).\n- The lion is young (from the previous conclusion).\n- The lion likes the bald eagle (from the given information).\n\nHowever, we still cannot determine whether the rabbit sees the rabbit. But we can use another piece of given information that could be useful:\n- If something is nice and it likes the squirrel then the squirrel chases the rabbit.\n- There is no information that the rabbit is nice but we know the rabbit likes the squirrel (given).\n\nHowever, this does not directly help us determine whether the rabbit sees itself or not. \n\nBut let's consider another piece of given information that could be useful:\n- If something chases the squirrel and it likes the bald eagle then the squirrel is nice.\n- The lion chases the squirrel (given).\n- The lion likes the bald eagle (from the previous conclusion).\n- The squirrel is nice (from the previous conclusion).\n- If the squirrel is nice then the squirrel likes the rabbit (from the given information).\n- The rabbit sees the squirrel (given).\n\nHowever, we still cannot determine whether the rabbit sees the rabbit. But we can use another piece of given information that could be useful:\n- If something likes the bald eagle and it sees the rabbit then it likes the squirrel.\n- The rabbit likes the bald eagle (given).\n- The rabbit sees the rabbit (we are trying to find out if this statement is true or not).\n\nHowever, this creates a circular dependency as we are using the information that the rabbit sees the rabbit to determine if the rabbit sees the rabbit.\n\nTherefore, we cannot determine whether the statement is true or false because it creates a circular dependency. Hence, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_lion, sees_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bald_eagle)",
+          "z3_formula": "sees_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, rabbit) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_rabbit_bald_eagle, sees_rabbit_rabbit), likes_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(X, lion) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, likes_rabbit_lion), likes_rabbit_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & likes(X, bald_eagle) -> nice(squirrel)",
+          "z3_formula": "Implies(And(chases_lion_squirrel, likes_lion_bald_eagle), nice_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & likes(X, squirrel) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(nice_rabbit, likes_rabbit_squirrel), chases_rabbit_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(nice_rabbit, sees_rabbit_rabbit)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(likes_X_rabbit, sees_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & likes(X, bald_eagle) -> nice(squirrel)",
+          "z3_formula": "Implies(And(chases_X_squirrel, likes_X_bald_eagle), nice_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & likes(X, squirrel) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, likes_X_squirrel), chases_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, rabbit) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, sees_X_rabbit), likes_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & likes(X, lion) -> likes(lion, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_squirrel, likes_X_lion), likes_lion_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(sees_rabbit_rabbit)",
+          "source_step": 20
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & sees(X, rabbit) -> sees(rabbit, lion)",
+          "z3_formula": "Implies(And(likes_rabbit_bald_eagle, sees_bald_eagle_rabbit), sees_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(rabbit, rabbit)",
+          "z3_formula": "Not(sees_rabbit_rabbit) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees_rabbit(X)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees_rabbit(rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(rabbit, rabbit)",
+          "z3_formula": "not sees_rabbit_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, X) -> sees(X, X)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, sees_rabbit_rabbit)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not sees(rabbit, rabbit)",
+          "z3_formula": "Not(sees_rabbit_rabbit) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit) & green(rabbit)",
+          "z3_formula": "And(round_rabbit, green_rabbit) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_rabbit, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> sees(rabbit, lion)",
+          "z3_formula": "Implies(likes_bald_eagle_rabbit, sees_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_bald_eagle, sees_rabbit_bald_eagle), likes_rabbit_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> sees(rabbit, lion)",
+          "z3_formula": "Implies(likes_squirrel_rabbit, sees_rabbit_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bald_eagle)",
+          "z3_formula": "sees_squirrel_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_squirrel, young_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, squirrel)",
+          "z3_formula": "sees_lion_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, bald_eagle)",
+          "z3_formula": "sees_squirrel_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, rabbit)",
+          "z3_formula": "Not(sees_rabbit_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(sees_rabbit_rabbit)",
+          "source_step": 12
+        }
+      ],
+      [],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 119,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 1,
+      "total_weight": 114,
+      "solve_time_ms": 1.4539174735546112
+    },
+    "timing": {
+      "trace_gen_s": 12.146,
+      "extraction_s": 42.539,
+      "dedup_s": 1.249,
+      "maxsat_s": 0.004,
+      "total_s": 55.937
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-262_Q17",
+    "problem": "The cat is not big. The cat is kind. The cat sees the rabbit. The cow chases the rabbit. The cow chases the squirrel. The cow sees the squirrel. The cow visits the cat. The cow visits the squirrel. The rabbit chases the cat. The rabbit chases the cow. The rabbit is green. The rabbit visits the squirrel. The squirrel is blue. The squirrel is kind. The squirrel sees the rabbit. The squirrel visits the rabbit. If something visits the cow then it chases the rabbit. If something chases the cat then the cat chases the cow. If something chases the cow and the cow sees the squirrel then the squirrel is big. If something chases the cat then it visits the rabbit. If something visits the rabbit then it sees the cow. If something chases the cat and it sees the cow then the cow chases the cat. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not chase the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Cat, False) ::: The cat is not big.\nKind(Cat, True) ::: The cat is kind.\nSees(Cat, Rabbit, True) ::: The cat sees the rabbit.\nChases(Cow, Rabbit, True) ::: The cow chases the rabbit.\nChases(Cow, Squirrel, True) ::: The cow chases the squirrel.\nSees(Cow, Squirrel, True) ::: The cow sees the squirrel.\nVisits(Cow, Cat, True) ::: The cow visits the cat.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nChases(Rabbit, Cat, True) ::: The rabbit chases the cat.\nChases(Rabbit, Cow, True) ::: The rabbit chases the cow.\nGreen(Rabbit, True) ::: The rabbit is green.\nVisits(Rabbit, Squirrel, True) ::: The rabbit visits the squirrel.\nBlue(Squirrel, True) ::: The squirrel is blue.\nKind(Squirrel, True) ::: The squirrel is kind.\nSees(Squirrel, Rabbit, True) ::: The squirrel sees the rabbit.\nVisits(Squirrel, Rabbit, True) ::: The squirrel visits the rabbit.\n\nRules:\nVisits($x, Cow, True) >>> Chases($x, Rabbit, True) ::: If something visits the cow then it chases the rabbit.\nChases($x, Cat, True) >>> Chases(Cat, Cow, True) ::: If something chases the cat then the cat chases the cow.\nChases($x, Cow, True) && Sees(Cow, Squirrel, True) >>> Big(Squirrel, True) ::: If something chases the cow and the cow sees the squirrel then the squirrel is big.\nChases($x, Cat, True) >>> Visits($x, Rabbit, True) ::: If something chases the cat then it visits the rabbit.\nVisits($x, Rabbit, True) >>> Sees($x, Cow, True) ::: If something visits the rabbit then it sees the cow.\nChases($x, Cat, True) && Sees($x, Cow, True) >>> Chases(Cow, Cat, True) ::: If something chases the cat and it sees the cow then the cow chases the cat.\nSees($x, Rabbit, True) && Chases($x, Cat, True) >>> Chases(Rabbit, Squirrel, True) ::: If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nQuery:\nChases(Cat, Rabbit, False) ::: The cat does not chase the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

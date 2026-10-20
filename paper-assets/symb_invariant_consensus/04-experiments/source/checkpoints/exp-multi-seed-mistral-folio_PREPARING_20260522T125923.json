@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp-multi-seed-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:44:11.464Z",
+    "updated_at": "2026-05-22T12:59:23.666Z",
+    "hypothesis": "Multi-seed replication (seeds 123,456,789) of Mistral-7B × FOLIO-204 shows consistent Δ(SICA-SC) direction across seeds. Baseline seed=42 already available. Combined with Mistral×PW and Qwen2.5×FOLIO/PW multi-seed, provides comprehensive reproducibility evidence for W4 reviewer response.",
+    "notes": "COMPLETE. 3-seed table: exp052 (seed=123, SC=53.92%, SICA=57.35%, Δ=+3.43pp) + exp053 (seed=456, SC=56.37%, SICA=55.88%, Δ=-0.49pp) + PID 576938 (seed=789, SC=59.31%, SICA=56.86%, Δ=-2.45pp). Mean Δ=+0.16±2.94pp. Director decision: use exp052/exp053 original data + new seed=789. PID 575733 rerun data discarded. Orphan PID 575733 killed. Qwen2.5-7B abandoned (download too slow). cuda:3 idle standby.",
+    "reproduce": {
+      "finished_at": "2026-05-22T12:17:42.850Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T11:25:59.217138+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T12:17:49.422704+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "d064_corrected": true,
+      "seed123": {
+        "sc_acc": 54.41,
+        "sica_acc": 57.35,
+        "delta": 2.94,
+        "n": 204,
+        "source": "exp052 D064-reeval"
+      },
+      "seed456": {
+        "sc_acc": 55.88,
+        "sica_acc": 55.88,
+        "delta": 0,
+        "n": 204,
+        "source": "exp053 D064-reeval"
+      },
+      "seed789": {
+        "sc_acc": 59.31,
+        "sica_acc": 56.86,
+        "delta": -2.45,
+        "n": 204,
+        "source": "PID 576938 (D064 built-in)"
+      },
+      "mean_3seed": {
+        "sc": 56.53,
+        "sc_sd": 2.51,
+        "sica": 56.7,
+        "sica_sd": 0.75,
+        "delta": 0.16,
+        "delta_sd": 2.7,
+        "n_seeds": 3
+      }
+    }
+  },
+  "timestamp": "2026-05-22T12:59:23.958499+00:00",
+  "trigger": "update_registry"
+}

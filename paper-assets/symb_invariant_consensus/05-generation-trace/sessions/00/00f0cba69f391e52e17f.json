@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00f0cba69f391e52e17f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix final compile",
+  "task_key": "worker_fix_final-compile_20260522T232032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_final-compile_20260522T232032_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "bea73050cafee27cc0aab66b3acd91d74745676d5fafe41afb8a6c9ce60d20d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。\n\n- **状态**: 3遍编译完成（pdflatex + bibtex + pdflatex×2），无错误\n- **PDF**: `/root/symb_invariant_consensus/docs/paper/main.pdf`，657,792 bytes (642 KB)，27页\n- **时间戳**: 2026-05-23 07:24"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-final-compile.md"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-808_Q5",
+    "problem": "Charlie is cold. Charlie is rough. Erin is not big. Erin is blue. Erin is cold. Erin is furry. Erin is red. Erin is rough. Erin is smart. Fiona is big. Fiona is cold. Harry is blue. Harry is red. Harry is smart. If someone is blue then they are rough. Smart people are furry. All big people are blue. All furry people are red. All rough people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nRough(Charlie, True) ::: Charlie is rough.\nBig(Erin, False) ::: Erin is not big.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nRed(Erin, True) ::: Erin is red.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nCold(Fiona, True) ::: Fiona is cold.\nBlue(Harry, True) ::: Harry is blue.\nRed(Harry, True) ::: Harry is red.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBlue($x, True) >>> Rough($x, True) ::: If someone is blue then they are rough.\nSmart($x, True) >>> Furry($x, True) ::: Smart people are furry.\nBig($x, True) >>> Blue($x, True) ::: All big people are blue.\nFurry($x, True) >>> Red($x, True) ::: All furry people are red.\nRough($x, True) >>> Smart($x, True) ::: All rough people are smart.\n\nQuery:\nRough(Fiona, True) ::: Fiona is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

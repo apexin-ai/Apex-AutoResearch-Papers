@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-461_Q16",
+    "problem": "Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white. Fiona is big. Gary is big. Gary is cold. Gary is kind. Harry is kind. If something is kind then it is big. If something is white and kind then it is rough. If Harry is quiet and Harry is cold then Harry is big. If something is quiet then it is big. If something is cold and rough then it is quiet. All kind things are young. If Harry is kind and Harry is cold then Harry is white. If something is young and kind then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nBig(Fiona, True) ::: Fiona is big.\nBig(Gary, True) ::: Gary is big.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nKind($x, True) >>> Big($x, True) ::: If something is kind then it is big.\nWhite($x, True) && Kind($x, True) >>> Rough($x, True) ::: If something is white and kind then it is rough.\nQuiet(Harry, True) && Cold(Harry, True) >>> Big(Harry, True) ::: If Harry is quiet and Harry is cold then Harry is big.\nQuiet($x, True) >>> Big($x, True) ::: If something is quiet then it is big.\nCold($x, True) && Rough($x, True) >>> Quiet($x, True) ::: If something is cold and rough then it is quiet.\nKind($x, True) >>> Young($x, True) ::: All kind things are young.\nKind(Harry, True) && Cold(Harry, True) >>> White(Harry, True) ::: If Harry is kind and Harry is cold then Harry is white.\nYoung($x, True) && Kind($x, True) >>> Cold($x, True) ::: If something is young and kind then it is cold.\n\nQuery:\nYoung(Fiona, True) ::: Fiona is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

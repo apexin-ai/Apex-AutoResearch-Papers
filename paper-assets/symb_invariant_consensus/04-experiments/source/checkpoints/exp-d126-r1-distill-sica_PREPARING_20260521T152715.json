@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp-d126-r1-distill-sica",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:19:19.126Z",
+    "updated_at": "2026-05-21T15:27:15.647Z",
+    "hypothesis": "Reasoning-distilled model (DeepSeek-R1-Distill-LLaMA-8B) does not escape SCB: self-extracted constraints will show BR≥2× and SICA≈SC, demonstrating that SCB is a structural property of autoregressive self-extraction that reasoning training cannot eliminate.",
+    "notes": "Original pipeline exited (BPE bug in vLLM 0.21.0+R1-Distill). Two fix processes running: (1) PID 451915 re-extraction of 93 existing problems using Mistral-7B cross-model extraction, ETA ~15:40 UTC; (2) PID 451575 full pipeline re-run for 110 missing problems (13/113). Worker checking status. vLLM PID 449110 on cuda:3, max_model_len=16384.",
+    "reproduce": {
+      "finished_at": "2026-05-21T15:27:14.352Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T15:27:15.945002+00:00",
+  "trigger": "update_registry"
+}

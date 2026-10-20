@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dfe0410902a5e34bfdb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "diag westd 16639 gpu status",
+  "task_key": "worker_diag_westd-16639-gpu-status_20260519T121536",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_westd-16639-gpu-status_20260519T121536_result.json",
+    "occurrence": 1,
+    "bytes": 2014,
+    "sha256": "79831f5bab5828fd6b1dc239e10daf864a43198d979189c120746f4a6131a716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-16639 诊断结果\n\n### GPU 使用状态（4× NVIDIA RTX PRO 6000 Blackwell, 98GB）\n\n| GPU | PID | 实验 | 模型 | 端口 | 显存 | 利用率 |\n|-----|-----|------|------|------|------|--------|\n| **cuda:0** | 152729 | **exp-064** | DeepSeek-R1-0528-Qwen3-8B | 8002 | 88244/97887 MiB | 96% |\n| cuda:1 | 142896 | exp-068 | Qwen3-14B (non-thinking) | 8001 | 88278/97887 MiB | 97% |\n| cuda:2 | 151829 | exp-069 | Meta-Llama-3.1-8B-Instruct | 8012 | 88254/97887 MiB | 96% |\n| cuda:3 | 76474 | exp-048 | Meta-Llama-3.1-8B-Instruct | 8003 | 88254/97887 MiB | 97% |\n\n全部 4 张 GPU 满载运行 vLLM EngineCore。\n\n### Tmux Sessions（7 个）\n\n| Session | 创建时间 | 用途 |\n|---------|---------|------|\n| `exp-069-llama8b-logiqa200` | 20:05 | exp-069 run |\n| `exp064_vllm` | 20:05 | exp-064 vLLM |\n| `exp064_run` | 20:06 | exp-064 run |\n| `exp068_vllm` | 19:08 | exp-068 vLLM |\n| `exp068_run` | 19:13 | exp-068 run |\n| `exp048_vllm` | 10:19 | exp-048 vLLM |\n| `exp048_run` | 10:20 | exp-048 run |\n\n注：exp-069 的 vLLM 通过 nohup 启动（非 tmux），日志在 `/tmp/vllm_exp069_llama8b.log`。\n\n### 实验进度\n\n| 实验 | 数据集 | 进度 | 百分比 | 状态 |\n|------|--------|------|--------|------|\n| **exp-048** LLaMA-8B PW-600 | ProofWriter-600 | 457/600 | **76%** | 运行正常，自 10:20 启动 |\n| **exp-064** DeepSeek-R1-Qwen3-8B FOLIO | FOLIO-204 | 74/204 | **36%** | 运行中（--resume），有 retry |\n| **exp-068** Qwen3-14B LogiQA | LogiQA-200 | 121/200 | **60.5%** | 运行中，有 retry |\n| **exp-069** LLaMA-8B LogiQA | LogiQA-200 | 12/200 | **6%** | 刚启动 ~12 分钟 |\n\n### cuda:0 详情\n\n**DeepSeek-R1-0528-Qwen3-8B** 的 vLLM 实例（exp-064），`max-model-len=16384`，端口 8002。exp-064 和 exp-069 的 vLLM 均在 20:05 左右重新启动（之前可能有重启/重部署）。\n\nRegistry 已为 exp-069-llama8b-logiqa200 更新 notes 字段，包含 tmux_session、PID、GPU 映射等信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-16639-gpu-status.md"
+}

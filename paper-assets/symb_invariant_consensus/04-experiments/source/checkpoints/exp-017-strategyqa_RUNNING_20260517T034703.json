@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-017-strategyqa",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:19:50.628Z",
+    "updated_at": "2026-05-17T03:47:03.681Z",
+    "hypothesis": "Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（非逻辑/数学域）",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T03:46:30.089Z",
+      "command": "pkill -f vllm 2>/dev/null || true; sleep 2; bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T03:47:02.948Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "pkill -f vllm 2>/dev/null || true; sleep 2; bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/symb_invariant_consensus/exp-017-strategyqa.log",
+      "submitted_at": "2026-05-17T03:46:31.684Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/symb_invariant_consensus/exp-017-strategyqa.log",
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T03:47:03.744299+00:00",
+  "trigger": "update_registry"
+}

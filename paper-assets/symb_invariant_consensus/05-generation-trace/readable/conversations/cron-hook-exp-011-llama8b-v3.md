@@ -1,0 +1,2158 @@
+# cron hook exp 011 llama8b v3
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 70
+- **Recorded user turns:** 1
+- **Tool calls:** 34
+- **Original source:** `logs/chats/cron_hook_exp-011-llama8b-v3.jsonl`
+- **Structured JSON:** [`e24645f90df73df61a10.json`](../../sessions/e2/e24645f90df73df61a10.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+70 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T11:59:10.356681+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #8。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只分配 westd-32608:cuda:0 一张卡，严禁用其他 GPU
+- submit_training_job 命令必须 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹，否则 tmux 下 sh 执行会 EXIT_CODE=127
+- 禁止在 submit_training_job command 中写 `pkill -f vllm`——v1/v2 因此 SIGTERM 自杀。vLLM 清理必须写在脚本内部或单独执行
+- Mistral 模型下载历史：3 次 ModelScope 截断 + HF 直下成功，不要再尝试 ModelScope
+- sica_expanded_14b (exp-001) EXIT_CODE=129 和 sica_k_sensitivity_14b EXIT_CODE=129 都是 SIGHUP 伪失败，实际 conclusion=success，不要被 exit code 误导
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-32608，root 用户，工作目录 `/root/symb_invariant_consensus/`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型路径：
+  - Qwen2.5-14B-Instruct: `/root/autodl-tmp/models/Qwen2.5-14B-Instruct`
+  - LLaMA-3.1-8B-Instruct: 应在 `/root/autodl-tmp/models/` 下（v2 曾有 shard 损坏，v3 已修复）
+  - Mistral-7B-Instruct-v0.3: `/root/autodl-tmp/models/` 下（3 shards 4.95+5.00+4.55GB + consolidated 14.5GB）
+- 数据集：`/root/symb_invariant_consensus/data/`（proofwriter_30.json, folio_30.json, proofwriter_full.json, folio_full.json）
+- 结果：`/root/symb_invariant_consensus/results/`
+- 脚本：`/root/symb_invariant_consensus/scripts/run_exp0{10,11,17,18}_*.sh`
+- Git commit: 97aeaa572a6b6571b4bfea9c6ec6bcf915780425
+- 活跃进程：exp-010-mistral-v3 (PID 298717, tmux=exp-010-mistral-v3, cuda:0)，刚提交
+- 磁盘充裕：/autodl-pub 5.3T/7.3T 可用
+
+### 3. 📊 当前状态
+**刚做完**：exp-011-llama8b-v3 进程正常退出，已派 Worker (worker_analysis_exp-011-llama8b-v3_20260517T075618) SSH 分析结果，尚未回调。
+
+**正在跑**：
+- exp-010-mistral-v3 (RUNNING, PID 298717, cuda:0) — Mistral-7B cross-family validation，刚提交，预估 ~1-1.5h
+- Worker: analysis:exp-011-llama8b-v3 — 正在 SSH 读取 LLaMA 实验日志和结果 JSON
+
+**等待中**：
+- Worker 回调：exp-011-llama8b-v3 分析结果 → 需要 update_registry + 汇报 Director
+- Cron 回调：exp-010-mistral-v3 完成 → 同样需要分析+汇报
+- exp-011-llama8b-v3 的 registry 还在 ANALYZING，等 Worker 回来后需要设 conclusion/metrics/checkpoint_path
+
+**未汇报 Director**：exp-011-llama8b-v3 和 exp-010-mistral-v3 的状态都未汇报，等分析完一起报。
+
+### 4. 📋 待办（条件触发式）
+- Worker analysis:exp-011-llama8b-v3 回调 → 读取 metrics → update_registry(conclusion, metrics, checkpoint_path, log_path) → 按 on-experiment-done 分叉处理（success/negative） → 汇报 Director（带 [资源] 行）→ 更新 report.md
+- exp-010-mistral-v3 cron 完成回调 → 同上流程分析 Mistral 结果
+- 两个 cross-family 实验都完成后 → 汇总 3-family (Qwen/LLaMA/Mistral) 对比表 → 这是 Claim 2 的核心证据
+- 如果 LLaMA/Mistral 都 SICA≈SC → 强化 capability trap narrative，准备 exp-019 (constraint quality correlation CPU 分析)
+- 如果任一模型 SICA>SC 显著 → 必须汇报 Director，可能需调整 framing（"regime exists but narrow"）
+- GPU 空闲时（exp-010 完成后）→ 按 experiment_plan 优先级排下一个：exp-004 (7B scaling), exp-014 (DeepSeek-R1), exp-012 (GSM8K pilot)，需 Director 批准
+
+### 5. 🎯 战略上下文
+- **核心结论**：SICA≈SC everywhere（capability trap）。804 题 gap=+0.26pp n.s.。论文方向是 D025 Analysis Paper Pivot："为什么 symbolic consensus 不能 beat voting"
+- **决策链**：D025(pivot to analysis) → D027(MaxSAT≈count-only) → D028(K-ablation 确认 tiebreak-only) → D029(所有 K SICA≤SC) → D030(转 Methods Paper 利用诊断数据)
+- **D030 最新决策**：从 Analysis Paper 转向 Methods Paper。这个决策可能影响后续实验优先级，新 session 应先 read decisions.yaml 确认 D030 具体内容
+- **已完成的关键实验**：exp-001(804题 baseline), exp-002(K-ablation 全负), exp-013(MaxSAT≈count-only), exp-005(QwQ operating regime), exp-016(weighted SC 全不显著), exp-017-v3(StrategyQA +3.33pp n.s.), exp-018-v2(ARC -1.67pp)
+- **易错点**：
+  - EXIT_CODE=129 是 SIGHUP 伪失败，不要自动标 failed
+  - exp-010 系列历史：v1 进程死亡(auto-resolved failed), v2 pkill SIGTERM → v3 脚本内置清理，如果 v3 还失败就需要完全不同的方法
+  - paper_framing.md 的 headline numbers 标注 "PENDING FINAL UPDATE"，cross-family 数据回来后需要更新
+  - Claim 2 要求 "4 domains × 7 models"，目前只有 Qwen-14B 覆盖 4 domain，cross-family 只跑 D012(PW+FOLIO)。还差 7B/72B/DeepSeek-R1 数据点
+  - 目标 deadline: ARR May 25 (8 天后)，时间紧迫
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，或使用 bash wrapper 脚本（脚本内含激活）。(2026-05-17, pilot-contrastive-prompt)
+
+---
+
+## 可查的历史
+前 21 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T11:59:21.723044+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T11:59:21.774233+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T11:59:24.745126+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T11:59:25.196783+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T11:59:25.198568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-014-deepseek-r1-7b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T11:52:19.224Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\"}, \"exp-009-overhead-analysis\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T11:51:51.175Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\"}, \"exp-020-llama8b-folio-204\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:12:49.897Z\", \"updated_at\": \"2026-05-17T11:50:57.467Z\", \"hypothesis\": \"Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。\", \"parent\": \"exp-011-llama8b-v3\", \"metrics\": {\"n\": 204, \"k\": 12, \"sica_accuracy\": 0.608, \"sc_accuracy\": 0.632, \"delta_pp\": -2.45, \"mcnemar_p\": 0.2668,
+…[truncated 26954 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T11:59:25.650613+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T11:59:25.801551+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T11:59:30.922618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-014-deepseek-r1-7b\", \"success\": true, \"actions\": [\"Job still running (pid=324400)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5725
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T11:59:30.973562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-020-llama8b-folio-204** (negative): Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。 ← 基于 exp-011-llama8b-v3\\n- **exp-019-llama8b-strategyqa-200** (negative): Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp） ← 基于 exp-011-llama8b-v3\\n- **exp-010-mistral-v3** (negative): Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v3: 脚本内含 vLLM 清理+conda 环境，解决 v2 SIGTERM 问题） ← 基于 sica_expanded_14b\\n\\n## 趋势\\n成功 11 / 负向 6 / 失败 9 / 共 32\\ndelta_pp: 6.67 ↑（近 3 次 success）\\ndiscordant_sc_wins: 1 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", \"total_chars\": 1519, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5322
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T11:59:30.974230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-17 11:29 UTC | 更新原因: D035: exp-020 确认 SICA≤SC，Operating Regime 死亡，进入写作阶段\\n\\n## 核心方向\\n**D025 Capability Trap Analysis Paper (FINAL)**：SICA ≈ SC everywhere。Symbolic consensus 因 diversity-quality 反向相关而失效。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research → Writing transition（D035 确认最终方向）+ 审稿进行中\\n- **关键结论 (D035)**:\\n  - 四个 powered test 全部 negative: exp-001 +0.25pp n.s., exp-010 0.0pp, exp-019 +2.0pp p=0.424, exp-020 -2.4pp\\n  - exp-013: MaxSAT ≈ count-only（mechanism vacuous）\\n  - exp-002: SICA ≤ SC all K including odd K=11（tiebreak-only）\\n  - exp-011 +10pp 是 n=30 噪声（exp-020 同任务 n=204 反转为 -2.4pp）\\n- **已完成实验**: exp-001/002/010/011/013/017/018/019/020 (9 个核心实验)\\n- **Plan 覆盖**: 19 实验中 9 个 done，剩余多为 CPU ablation\\n\\n## 近期任务（按优先级排序）\\n- [ ] exp-009: overhead analysis（CPU，P1，论文必需）\\n- [ ] exp-015: Logic-LM baseline（CPU，P1，Reviewer concern #9）\\n- [ ] exp-016: weighted SC baseline（CPU，P1，Reviewer concern #10）\\n- [ ] exp-014: DeepSeek-R1-Distill-7B（GPU ~2h，第二个 reasoning model）\\n- [ ] exp-019 plan: constraint quality correlation 分析（CPU，hero figure F2 数据）\\n- [ ] dream_simulate(review_mode=\\\"full\\\") 验证 framing\\n- [ ] 启动 Paper Agent 写作\\n\\n## GPU 预算\\n- 分配: 1× RTX PRO 6000 Blackwell 98GB (cuda:0) on westd-32608\\n- 当前: **空闲**（exp-020 已完成）\\n- 剩余 GPU 实验: exp-014 (~2h), exp-004 (~2h), exp-007 (~4h) — 按优先级排\\n- 累计已用: ~24h\\n\\n## 阻塞项\\n- 无硬阻塞。CPU ablations 可立即并行启动。ARR May 25 还剩 8 天。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D036 | 2026-05-17 | D036: Manager 要求实验覆盖自查——补 temperature ablation (T= | temperature-ablation, exp-012, exp-004, mistral-strategyqa |\\n| D035 | 2026-05-17 | D035: exp-020 FOLIO 204 确认 SICA≤SC (-2.4pp)，Operat | exp-020-llama8b-folio-204, exp-019-llama8b-strategyqa-200, exp-
+…[truncated 1032 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 5172
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T11:59:56.283971+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T11:59:56.284335+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T12:00:02.839113+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'unknown (submitted in prior session)', 'server': 'westd-32608', 'pid': 324400, 'gpu': 'cuda:0'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'unknown (submitted in prior session)', 'server': 'westd-32608', 'pid': 324400, 'gpu': 'cuda:0'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T12:00:03.040831+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1663}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T12:00:03.041345+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "DONE",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T12:00:03.192377+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T12:00:03.243150+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1709}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T12:00:03.293886+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T12:00:03.696617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"name\": \"sica_expanded_14b\", \"claim\": [1, 2], \"description\": \"Full-scale evaluation: PW D5 600 + FOLIO 204 = 804 questions, K=12, T=0.7. Maximizes statistical power for C3 significance.\", \"priority\": \"P0\", \"gpu_budget_hours\": 14, \"deps\": [], \"registry_id\": \"sica_expanded_14b\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sica_accuracy\": 0.765, \"sc_accuracy\": 0.762, \"sica_sc_gap_pp\": 0.3, \"n_problems\": 804, \"folio_sica\": 0.794, \"folio_sc\": 0.794, \"folio_gap_pp\": 0, \"folio_n\": 204, \"proofwriter_sica\": 0.755, \"proofwriter_sc\": 0.752, \"proofwriter_gap_pp\": 0.3, \"proofwriter_n\": 600, \"extraction_rate\": 0.89, \"answer_extraction_rate\": 1, \"contradiction_rate\": 0.022, \"problems_with_contradictions\": 331, \"truncated_traces\": 0, \"wall_time_min\": 826}}, {\"id\": \"exp-002\", \"name\": \"sica_k_ablation_14b\", \"claim\": [1], \"description\": \"K sensitivity (K=6,8,11,12,16,20) on D012's 60 questions. Includes odd K=11 to test if SICA value persists without exact ties. Key questions: does SICA benefit depend on tiebreaks? What happens at odd K? How does tiebreak frequency change with K?\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [], \"status\": \"planned\", \"note\": \"D024 增加 K=11（odd-K test, Dream 三档一致要求）。如 K=11 gap=0 → 确认 tie-only mechanism；如 gap>0 → SICA has value beyond tiebreaking。\"}, {\"id\": \"exp-003\", \"name\": \"tiebreak_baseline_analysis\", \"claim\": [1], \"description\": \"Compare SICA vs SC-random-tiebreak vs SC-deterministic on all available data. CPU-only reanalysis. Quantify how much of SICA's gain survives against fair baselines.\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"sica_d012_14b\"], \"status\": \"planned\", \"note\": \"Completed as CPU analysis, no registry entry. Results: SICA tiebreak 80% (4/5) vs random 50% vs alphabetical 60% vs first-seen 40%. Artifac
+…[truncated 8503 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T12:00:03.697407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T12:00:03.898586+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "decisions.yaml",
+  "max_chars": "5000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "decisions.yaml",
+    "max_chars": "5000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T12:00:03.949817+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/decisions.yaml\", \"content\": \"_next_id: 37\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 08:47 UTC\\n  summary: MVP 验证方案：50 题 MATH-500 分层子集，SICA vs SC@K=12\\n  rationale: SICA 核心价值取决于两个前提：(1) 能从推理 trace 可靠提取符号约束；(2) 跨路径矛盾率足够高（>5%）使形式化验证有意义。Reviewer\\n    给 impact 3/5，核心担忧是\\\"若矛盾率<5%则动机不成立\\\"。MVP 直接验证这两个前提，50 题按难度分层可同时观察 Extraction-Verification\\n    Paradox（难题提取差但矛盾多）。Pass 则进入全量实验冲 EMNLP/AAAI，Fail 则及时止损。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 08:52 UTC\\n  summary: 拒绝 CRD pivot，要求回归 SICA 原始方案\\n  rationale: Reviewer critical 审查发现 Agent 实施的是\\\"跨表征分歧诊断\\\"(CRD)，与 IDEA_BRIEF 定义的 SICA\\n    完全不同：CRD 用双表征（FOL+SymPy）做单解分歧检测，无多路径采样、无 MAX-SAT 共识——这正是 SICA 区别于 VERGE/D&P 的核心创新点。CRD\\n    的 novelty 定位与 VERGE 高度重叠（单输出验证+修复），无法支撑 EMNLP 投稿。同时 MVP 标准被静默替换，ROADMAP 的三条 pass\\n    criteria 从未测试。98GB GPU 完全能跑 QwQ-32B，无理由换 Qwen3-32B-AWQ。必须回归 SICA：K=12 多路径采样 →\\n    符号约束提取 → Z3 加权 partial MAX-SAT → 不变量共识打分。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 08:54 UTC\\n  summary: MVP 标准 v2：三档判定 + 矛盾绝对数 ≥5 + accuracy ≥SC+2pp + ProofWriter sanity check\\n  rationale: Reviewer warning 指出：(1) 5% 矛盾率阈值在 50 题上仅 2.5 题，置信区间极宽——改为绝对数 ≥5 题；(2)\\n    ≥SC+0.1pp 也过关无意义——改为 ≥2pp 或 p<0.1；(3) 灰色区间无处理——新增 Inconclusive 档，触发扩展到 100 题重测；(4)\\n    单域 MATH-500 不够——加 10 题 ProofWriter 做逻辑域 sanity check；(5) 模型不能模糊——固定 QwQ-32B，不可替换。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-15 12:02 UTC\\n  summary: MVP T=0.7 继续跑完（需要完整数据），diagnostic 自然结束后 GPU 带宽恢复；AIME 30 题排在 MVP 之后\\n  rationale: Temperature 诊断 4/5 题显示 T=0.7/0.9/1.0 均几乎不产生答案分歧——C2/C3 高风险 FAIL。但仍决定让\\n    MVP 跑完：(1) 50 题完整数据无论正负都有价值（负面结果=SICA 在强模型上无信号，本身是发现）；(2) GPU 已分配且无其他实验排队；(3)\\n    smoke test L5 有 3 条矛盾，50 题中 L4-5 有 20 题可能产生更多信号。MVP 完成后立即跑 AIME 30 题（QwQ-32B ~79.5%，分歧应更明显），作为\\\"高难度\\n    sweet 
+…[truncated 3560 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T12:00:26.125241+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T12:00:26.578715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/decisions.yaml\", \"content\": \"_next_id: 37\\ndecisions:\\n- id: D001\\n  date: 2026-05-15 08:47 UTC\\n  summary: MVP 验证方案：50 题 MATH-500 分层子集，SICA vs SC@K=12\\n  rationale: SICA 核心价值取决于两个前提：(1) 能从推理 trace 可靠提取符号约束；(2) 跨路径矛盾率足够高（>5%）使形式化验证有意义。Reviewer\\n    给 impact 3/5，核心担忧是\\\"若矛盾率<5%则动机不成立\\\"。MVP 直接验证这两个前提，50 题按难度分层可同时观察 Extraction-Verification\\n    Paradox（难题提取差但矛盾多）。Pass 则进入全量实验冲 EMNLP/AAAI，Fail 则及时止损。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-15 08:52 UTC\\n  summary: 拒绝 CRD pivot，要求回归 SICA 原始方案\\n  rationale: Reviewer critical 审查发现 Agent 实施的是\\\"跨表征分歧诊断\\\"(CRD)，与 IDEA_BRIEF 定义的 SICA\\n    完全不同：CRD 用双表征（FOL+SymPy）做单解分歧检测，无多路径采样、无 MAX-SAT 共识——这正是 SICA 区别于 VERGE/D&P 的核心创新点。CRD\\n    的 novelty 定位与 VERGE 高度重叠（单输出验证+修复），无法支撑 EMNLP 投稿。同时 MVP 标准被静默替换，ROADMAP 的三条 pass\\n    criteria 从未测试。98GB GPU 完全能跑 QwQ-32B，无理由换 Qwen3-32B-AWQ。必须回归 SICA：K=12 多路径采样 →\\n    符号约束提取 → Z3 加权 partial MAX-SAT → 不变量共识打分。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-15 08:54 UTC\\n  summary: MVP 标准 v2：三档判定 + 矛盾绝对数 ≥5 + accuracy ≥SC+2pp + ProofWriter sanity check\\n  rationale: Reviewer warning 指出：(1) 5% 矛盾率阈值在 50 题上仅 2.5 题，置信区间极宽——改为绝对数 ≥5 题；(2)\\n    ≥SC+0.1pp 也过关无意义——改为 ≥2pp 或 p<0.1；(3) 灰色区间无处理——新增 Inconclusive 档，触发扩展到 100 题重测；(4)\\n    单域 MATH-500 不够——加 10 题 ProofWriter 做逻辑域 sanity check；(5) 模型不能模糊——固定 QwQ-32B，不可替换。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-15 12:02 UTC\\n  summary: MVP T=0.7 继续跑完（需要完整数据），diagnostic 自然结束后 GPU 带宽恢复；AIME 30 题排在 MVP 之后\\n  rationale: Temperature 诊断 4/5 题显示 T=0.7/0.9/1.0 均几乎不产生答案分歧——C2/C3 高风险 FAIL。但仍决定让\\n    MVP 跑完：(1) 50 题完整数据无论正负都有价值（负面结果=SICA 在强模型上无信号，本身是发现）；(2) GPU 已分配且无其他实验排队；(3)\\n    smoke test L5 有 3 条矛盾，50 题中 L4-5 有 20 题可能产生更多信号。MVP 完成后立即跑 AIME 30 题（QwQ-32B ~79.5%，分歧应更明显），作为\\\"高难度\\n    sweet 
+…[truncated 26228 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T12:00:27.081641+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "PENDING",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "PENDING",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T12:00:28.085838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-014-deepseek-r1-7b\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T12:00:27.179Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"324400\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4702}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T12:00:28.086320+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "PENDING",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "PENDING",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T12:00:28.688791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:00:28.209Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4037}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T12:00:28.689521+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T12:00:28.740157+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_59766726.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T12:00:34.380812+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T12:00:34.832694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-014-deepseek-r1-7b\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T12:00:34.489Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"324400\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3966}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T12:00:35.336073+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T12:00:35.788112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:00:35.416Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.401}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T12:00:35.788624+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T12:00:35.839193+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T12:00:40.008980+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T12:00:40.462144+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T12:00:40.914484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-014-deepseek-r1-7b\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T12:00:40.102Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"324400\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4994}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T12:00:40.965241+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T12:00:41.066294+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:00:40.620Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5172}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T12:00:41.217528+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Glob",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T12:00:46.168662+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'gpu': ['cuda:0'], 'pid': 324400, 'data_path': '/root/symb_invariant_consensus/data/', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'gpu': ['cuda:0'], 'pid': 324400, 'data_path': '/root/symb_invariant_consensus/data/', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T12:00:46.673301+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.1132}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-17T12:00:48.184541+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'CPU-only analysis of exp-001 timing data', 'server': 'westd-32608', 'data_path': '/root/symb_invariant_consensus/results/', 'data_count': 804, 'model_name': 'Qwen2.5-14B-Instruct', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'CPU-only analysis of exp-001 timing data', 'server': 'westd-32608', 'data_path': '/root/symb_invariant_consensus/results/', 'data_count': 804, 'model_name': 'Qwen2.5-14B-Instruct', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T12:00:48.235265+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T12:00:48.639356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:00:48.301Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\", \"spec\": {\"command\": \"CPU-only analysis of exp-001 timing data\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4535}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T12:00:48.639974+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "Read",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T12:00:57.037381+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-014-deepseek-r1-7b",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'gpu': ['cuda:0'], 'pid': 324400, 'data_path': '/root/symb_invariant_consensus/data/', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42, 'checkpoint_source': 'HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', 'eval_data': 'D012 (30PW+30FOLIO)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-014-deepseek-r1-7b",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\"', 'server': 'westd-32608', 'gpu': ['cuda:0'], 'pid': 324400, 'data_path': '/root/symb_invariant_consensus/data/', 'data_count': 60, 'model_name': 'DeepSeek-R1-Distill-Qwen-7B', 'seed': 42, 'checkpoint_source': 'HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', 'eval_data': 'D012 (30PW+30FOLIO)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T12:00:57.541282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-014-deepseek-r1-7b\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:52:10.748Z\", \"updated_at\": \"2026-05-17T12:00:57.157Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B（reasoning distill 模型）在 D012 上 SICA vs SC——预期 C0<5%（类似 QwQ-32B，reasoning model 的确定性链消灭多样性），作为第二个 reasoning model 数据点验证 capability trap\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": 324400, \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"D012 (30PW+30FOLIO)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.423}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-17T12:00:57.541806+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "DONE",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T12:00:57.693239+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.118}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T12:01:01.358079+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "checkpoint_path",
+  "value": "N/A (CPU-only analysis)",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "checkpoint_path",
+    "value": "N/A (CPU-only analysis)",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T12:01:01.559451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:01:01.458Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\", \"spec\": {\"command\": \"CPU-only analysis of exp-001 timing data\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}, \"checkpoint_path\": \"N/A (CPU-only analysis)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2036}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-17T12:01:04.679755+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "log_path",
+  "value": "N/A (CPU-only analysis)",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "log_path",
+    "value": "N/A (CPU-only analysis)",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T12:01:04.931307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:01:04.786Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\", \"spec\": {\"command\": \"CPU-only analysis of exp-001 timing data\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}, \"checkpoint_path\": \"N/A (CPU-only analysis)\", \"log_path\": \"N/A (CPU-only analysis)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2081}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-17T12:01:08.309057+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-009-overhead-analysis",
+    "field": "status",
+    "value": "DONE",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-17T12:01:09.165605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-009-overhead-analysis\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:51:43.293Z\", \"updated_at\": \"2026-05-17T12:01:08.521Z\", \"hypothesis\": \"SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本\", \"metrics\": {\"n\": 804, \"mean_total_wall_s\": 61.6, \"mean_trace_gen_s\": 31.6, \"trace_gen_pct\": 51.3, \"mean_extract_s\": 29, \"extract_pct\": 47, \"mean_dedup_s\": 1, \"dedup_pct\": 1.6, \"mean_maxsat_s\": 0.003, \"maxsat_pct\": 0.005, \"sica_overhead_s\": 30, \"sica_overhead_pct\": 48.7, \"pw_overhead_pct\": 51.3, \"folio_overhead_pct\": 38.6, \"p50_overhead_pct\": 48.9, \"p90_overhead_pct\": 57.6}, \"conclusion\": \"success\", \"notes\": \"SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。\", \"spec\": {\"command\": \"CPU-only analysis of exp-001 timing data\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42}, \"checkpoint_path\": \"N/A (CPU-only analysis)\", \"log_path\": \"N/A (CPU-only analysis)\", \"completed_at\": \"2026-05-17T12:01:08.521Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8301}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-17T12:01:28.032834+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T12:01:28.184227+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-17T12:01:41.750430+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T12:01:41.901492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [{\"server\": \"westd-32608\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp-014-deepseek-r1-7b\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp-014-deepseek-r1-7b\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 1 张, 实际跑 1 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-17T12:02:14.967955+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:exp-019-constraint-quality",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：exp-019 Constraint Quality Correlation 分析\n\n### 目标\n计算 constraint precision per domain × model，correlate with C0 (multi-candidate rate) 和 SICA-SC gap。这是论文 hero figure (F2) 的数据来源。\n\n### 背景\nSICA (Symbolic Invariant Consensus Aggregation) 是一种用约束提取+MaxSAT打分来替代简单多数投票(SC)的方法。核心发现：SICA≈SC everywhere（capability trap）。原因是 diversity (C0) 和 constraint quality 反向相关。\n\n### 数据位置\n服务器：westd-32608，root 用户\n结果目录：`/root/symb_invariant_consensus/results/`\n\n已完成实验及其结果文件（SSH 上去 ls results/ 确认具体文件名）：\n- **exp-001 (Qwen-14B, PW+FOLIO 804题)**: sica_expanded_results*.json\n- **exp-010 (Mistral-7B, D012 60题)**: exp010*.json 或 mistral*.json\n- **exp-011 (LLaMA-8B, D012 60题)**: exp011*.json 或 llama*.json  \n- **exp-017 (Qwen-14B, StrategyQA 60题)**: strategyqa*.json\n- **exp-018 (Qwen-14B, ARC 60题)**: arc*.json\n- **exp-019 (LLaMA-8B, StrategyQA 200题)**: exp019*.json\n- **exp-020 (LLaMA-8B, FOLIO 204题)**: exp020*.json\n\n代码目录：`/root/symb_invariant_consensus/`，pipeline.py 是主代码\n\n### 分析步骤\n\n1. SSH 连接 westd-32608，列出 results/ 目录找到所有结果文件\n2. 读取每个实验的结果 JSON，提取：\n   - 每题的 constraints 列表（每条 constraint 关联到哪个 trace/answer）\n   - ground truth answer\n   - 每题的 SC answer 和 SICA answer\n3. 计算 constraint precision：\n   - **定义**：一条 constraint 是 \"discriminative\" 的，如果它只在正确答案的 traces 中出现（或只在错误答案的 traces 中出现）\n   - **constraint precision** = discriminative constraints / total constraints\n   - 也计算：constraints consistent with ground truth / total constraints\n4. 按 domain × model 聚合：\n   - Qwen-14B × ProofWriter\n   - Qwen-14B × FOLIO  \n   - Qwen-14B × StrategyQA\n   - Qwen-14B × ARC\n   - LLaMA-8B × ProofWriter\n   - LLaMA-8B × FOLIO\n   - LLaMA-8B × StrategyQA\n   - Mistral-7B × ProofWriter\n   - Mistral-7B × FOLIO\n5. 对每个 (domain, model) 组合记录：\n   - C0 (multi-candidate rate)\n   - SICA-SC gap (pp)\n   - Constraint precision (如上定义)\n   - Extraction rate\n   - Contradiction rate\n6. 做相关性分析：\n   - C0 vs constraint_precision (预期负相关 = capability trap)\n   - C0 vs SICA-SC gap\n   - constraint_precision vs SICA-SC gap\n7. 输出 CSV 表格和 correlation 统计\n\n### 产出\n1. 在服务器上创建 `/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json`，包含所有 (domain, model) 的指标\n2. 创建 `/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv`，方便论文制图\n3. 如果 JSON 结构不包含 per-constraint 信息（只有聚合统计），说明哪些实验有详细数据、哪些没有，以及可以做什么近似\n\n### 注意事项\n- 结果 JSON 的 schema 可能不完全一致（不同实验版本），先 SSH 上去读一个文件看结构\n- 如果某些实验的 JSON 不包含 raw constraints，用可用的统计信息（extraction_rate, contradiction_rate, multi_candidate_rate）做近似分析\n- 重点是得出 \"C0 vs constraint quality 负相关\" 的数据证据\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp-019-constraint-quality",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：exp-019 Constraint Quality Correlation 分析\n\n### 目标\n计算 constraint precision per domain × model，correlate with C0 (multi-candidate rate) 和 SICA-SC gap。这是论文 hero figure (F2) 的数据来源。\n\n### 背景\nSICA (Symbolic Invariant Consensus Aggregation) 是一种用约束提取+MaxSAT打分来替代简单多数投票(SC)的方法。核心发现：SICA≈SC everywhere（capability trap）。原因是 diversity (C0) 和 constraint quality 反向相关。\n\n### 数据位置\n服务器：westd-32608，root 用户\n结果目录：`/root/symb_invariant_consensus/results/`\n\n已完成实验及其结果文件（SSH 上去 ls results/ 确认具体文件名）：\n- **exp-001 (Qwen-14B, PW+FOLIO 804题)**: sica_expanded_results*.json\n- **exp-010 (Mistral-7B, D012 60题)**: exp010*.json 或 mistral*.json\n- **exp-011 (LLaMA-8B, D012 60题)**: exp011*.json 或 llama*.json  \n- **exp-017 (Qwen-14B, StrategyQA 60题)**: strategyqa*.json\n- **exp-018 (Qwen-14B, ARC 60题)**: arc*.json\n- **exp-019 (LLaMA-8B, StrategyQA 200题)**: exp019*.json\n- **exp-020 (LLaMA-8B, FOLIO 204题)**: exp020*.json\n\n代码目录：`/root/symb_invariant_consensus/`，pipeline.py 是主代码\n\n### 分析步骤\n\n1. SSH 连接 westd-32608，列出 results/ 目录找到所有结果文件\n2. 读取每个实验的结果 JSON，提取：\n   - 每题的 constraints 列表（每条 constraint 关联到哪个 trace/answer）\n   - ground truth answer\n   - 每题的 SC answer 和 SICA answer\n3. 计算 constraint precision：\n   - **定义**：一条 constraint 是 \"discriminative\" 的，如果它只在正确答案的 traces 中出现（或只在错误答案的 traces 中出现）\n   - **constraint precision** = discriminative constraints / total constraints\n   - 也计算：constraints consistent with ground truth / total constraints\n4. 按 domain × model 聚合：\n   - Qwen-14B × ProofWriter\n   - Qwen-14B × FOLIO  \n   - Qwen-14B × StrategyQA\n   - Qwen-14B × ARC\n   - LLaMA-8B × ProofWriter\n   - LLaMA-8B × FOLIO\n   - LLaMA-8B × StrategyQA\n   - Mistral-7B × ProofWriter\n   - Mistral-7B × FOLIO\n5. 对每个 (domain, model) 组合记录：\n   - C0 (multi-candidate rate)\n   - SICA-SC gap (pp)\n   - Constraint precision (如上定义)\n   - Extraction rate\n   - Contradiction rate\n6. 做相关性分析：\n   - C0 vs constraint_precision (预期负相关 = capability trap)\n   - C0 vs SICA-SC gap\n   - constraint_precision vs SICA-SC gap\n7. 输出 CSV 表格和 correlation 统计\n\n### 产出\n1. 在服务器上创建 `/root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json`，包含所有 (domain, model) 的指标\n2. 创建 `/root/symb_invariant_consensus/results/exp019_constraint_quality_summary.csv`，方便论文制图\n3. 如果 JSON 结构不包含 per-constraint 信息（只有聚合统计），说明哪些实验有详细数据、哪些没有，以及可以做什么近似\n\n### 注意事项\n- 结果 JSON 的 schema 可能不完全一致（不同实验版本），先 SSH 上去读一个文件看结构\n- 如果某些实验的 JSON 不包含 raw constraints，用可用的统计信息（extraction_rate, contradiction_rate, multi_candidate_rate）做近似分析\n- 重点是得出 \"C0 vs constraint quality 负相关\" 的数据证据\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T12:02:41.559751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-019-constraint-quality_20260517T120215\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_analysis_exp-019-constraint-quality_20260517T120215.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-019-constraint-quality_20260517T120215 started. Use get_worker_status('worker_analysis_exp-019-constraint-quality_20260517T120215') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 26591
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-17T12:02:42.112323+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:d036-gpu-experiment-prep",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：为 D036 补充实验准备 GPU 脚本\n\n### 背景\nManager 要求补充实验覆盖（D036）。当前 GPU (westd-32608 cuda:0) 被 exp-014 占用，需要预先准备好脚本，exp-014 完成后立即依次提交。\n\n服务器：westd-32608，root 用户\n工作目录：`/root/symb_invariant_consensus/`\nPython：`/root/miniconda3/bin/python`（conda base 环境）\n模型路径：`/root/autodl-tmp/models/`\n数据集：`/root/symb_invariant_consensus/data/`\n现有脚本参考：`/root/symb_invariant_consensus/scripts/run_exp0*.sh`\n\n### 需要准备的实验（按优先级）\n\n#### 1. Temperature Ablation (CRITICAL, ~3h GPU)\n- 模型：Qwen2.5-14B-Instruct (`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`)\n- 数据：D012 (30PW + 30FOLIO = 60题)\n- 设置：T=0.3, T=0.5, T=1.0（现有实验用的 T=0.7）\n- 其他参数与 exp-001 一致：K=12\n- 目的：验证 capability trap 核心机制——temperature 提高 diversity 但降低 quality，SICA 仍无效\n- 脚本名：`run_temperature_ablation.sh`\n- 结果输出：`results/temperature_ablation_T{0.3,0.5,1.0}_*.json`\n\n#### 2. GSM8K Pilot (CRITICAL, ~1h GPU)\n- 模型：Qwen2.5-14B-Instruct\n- 数据：GSM8K 30 题 pilot（需要准备数据集）\n- K=12, T=0.7\n- 目的：数学域缺失，LLM reasoning 最标准 benchmark\n- 脚本名：`run_exp012_gsm8k.sh`\n- 注意：需要先确认 GSM8K 数据是否已在服务器上，如果没有需要下载/准备\n- GSM8K 是 open-answer math (数值答案)，answer extraction 要匹配数值格式\n\n#### 3. Qwen-7B Scaling (IMPORTANT, ~2h GPU)  \n- 模型：Qwen2.5-7B-Instruct（需确认模型是否已下载）\n- 数据：D012 (30PW + 30FOLIO)\n- K=12, T=0.7\n- 目的：补 scaling curve，C0 gradient claim\n- 脚本名：`run_exp004_qwen7b.sh`\n\n#### 4. Mistral StrategyQA (IMPORTANT, ~1.5h GPU)\n- 模型：Mistral-7B-Instruct-v0.3 (`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` 或类似路径)\n- 数据：StrategyQA 60 题\n- K=12, T=0.7\n- 目的：Mistral 跨域验证，消除 model-specific 质疑\n- 脚本名：`run_mistral_strategyqa.sh`\n\n### 执行步骤\n\n1. SSH 连接 westd-32608\n2. 读取现有脚本（如 `run_exp010_mistral_v3.sh`, `run_exp011_llama8b_v3.sh`）了解脚本模板格式\n3. 读取 `pipeline.py` 的命令行参数（`python pipeline.py --help` 或看 argparse 部分）\n4. 检查所需模型和数据集是否已在服务器上：\n   - `ls /root/autodl-tmp/models/` 看有哪些模型\n   - `ls /root/symb_invariant_consensus/data/` 看有哪些数据集\n   - 如果 GSM8K 数据不在，准备一个下载/转换脚本\n   - 如果 Qwen-7B 模型不在，准备下载命令\n5. 为每个实验创建 bash 脚本到 `/root/symb_invariant_consensus/scripts/`\n6. 每个脚本必须：\n   - 顶部注释说明实验目的和预期运行时间\n   - 包含 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 先清理可能残留的 vLLM 进程（但不用 pkill，而是检查端口是否被占用，如被占用则等待或报错退出）\n   - 启动 vLLM serve（指定正确的 model path, max-model-len, gpu-memory-utilization）\n   - 等待 vLLM ready\n   - 运行 pipeline.py 并将结果保存到 results/\n   - 关闭 vLLM\n7. Dry-run 验证：`bash -n scripts/run_*.sh` 检查语法\n\n### 硬约束\n- 不要在脚本中用 `pkill -f vllm`（会 SIGTERM 导致自杀）\n- vLLM 清理用检查端口或正常 shutdown 方式\n- 所有命令假设在 conda base 环境下\n- 结果文件名要包含实验标识，不要覆盖现有结果\n",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:d036-gpu-experiment-prep",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：为 D036 补充实验准备 GPU 脚本\n\n### 背景\nManager 要求补充实验覆盖（D036）。当前 GPU (westd-32608 cuda:0) 被 exp-014 占用，需要预先准备好脚本，exp-014 完成后立即依次提交。\n\n服务器：westd-32608，root 用户\n工作目录：`/root/symb_invariant_consensus/`\nPython：`/root/miniconda3/bin/python`（conda base 环境）\n模型路径：`/root/autodl-tmp/models/`\n数据集：`/root/symb_invariant_consensus/data/`\n现有脚本参考：`/root/symb_invariant_consensus/scripts/run_exp0*.sh`\n\n### 需要准备的实验（按优先级）\n\n#### 1. Temperature Ablation (CRITICAL, ~3h GPU)\n- 模型：Qwen2.5-14B-Instruct (`/root/autodl-tmp/models/Qwen2.5-14B-Instruct`)\n- 数据：D012 (30PW + 30FOLIO = 60题)\n- 设置：T=0.3, T=0.5, T=1.0（现有实验用的 T=0.7）\n- 其他参数与 exp-001 一致：K=12\n- 目的：验证 capability trap 核心机制——temperature 提高 diversity 但降低 quality，SICA 仍无效\n- 脚本名：`run_temperature_ablation.sh`\n- 结果输出：`results/temperature_ablation_T{0.3,0.5,1.0}_*.json`\n\n#### 2. GSM8K Pilot (CRITICAL, ~1h GPU)\n- 模型：Qwen2.5-14B-Instruct\n- 数据：GSM8K 30 题 pilot（需要准备数据集）\n- K=12, T=0.7\n- 目的：数学域缺失，LLM reasoning 最标准 benchmark\n- 脚本名：`run_exp012_gsm8k.sh`\n- 注意：需要先确认 GSM8K 数据是否已在服务器上，如果没有需要下载/准备\n- GSM8K 是 open-answer math (数值答案)，answer extraction 要匹配数值格式\n\n#### 3. Qwen-7B Scaling (IMPORTANT, ~2h GPU)  \n- 模型：Qwen2.5-7B-Instruct（需确认模型是否已下载）\n- 数据：D012 (30PW + 30FOLIO)\n- K=12, T=0.7\n- 目的：补 scaling curve，C0 gradient claim\n- 脚本名：`run_exp004_qwen7b.sh`\n\n#### 4. Mistral StrategyQA (IMPORTANT, ~1.5h GPU)\n- 模型：Mistral-7B-Instruct-v0.3 (`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3` 或类似路径)\n- 数据：StrategyQA 60 题\n- K=12, T=0.7\n- 目的：Mistral 跨域验证，消除 model-specific 质疑\n- 脚本名：`run_mistral_strategyqa.sh`\n\n### 执行步骤\n\n1. SSH 连接 westd-32608\n2. 读取现有脚本（如 `run_exp010_mistral_v3.sh`, `run_exp011_llama8b_v3.sh`）了解脚本模板格式\n3. 读取 `pipeline.py` 的命令行参数（`python pipeline.py --help` 或看 argparse 部分）\n4. 检查所需模型和数据集是否已在服务器上：\n   - `ls /root/autodl-tmp/models/` 看有哪些模型\n   - `ls /root/symb_invariant_consensus/data/` 看有哪些数据集\n   - 如果 GSM8K 数据不在，准备一个下载/转换脚本\n   - 如果 Qwen-7B 模型不在，准备下载命令\n5. 为每个实验创建 bash 脚本到 `/root/symb_invariant_consensus/scripts/`\n6. 每个脚本必须：\n   - 顶部注释说明实验目的和预期运行时间\n   - 包含 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 先清理可能残留的 vLLM 进程（但不用 pkill，而是检查端口是否被占用，如被占用则等待或报错退出）\n   - 启动 vLLM serve（指定正确的 model path, max-model-len, gpu-memory-utilization）\n   - 等待 vLLM ready\n   - 运行 pipeline.py 并将结果保存到 results/\n   - 关闭 vLLM\n7. Dry-run 验证：`bash -n scripts/run_*.sh` 检查语法\n\n### 硬约束\n- 不要在脚本中用 `pkill -f vllm`（会 SIGTERM 导致自杀）\n- vLLM 清理用检查端口或正常 shutdown 方式\n- 所有命令假设在 conda base 环境下\n- 结果文件名要包含实验标识，不要覆盖现有结果\n",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T12:03:00.962211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_d036-gpu-experiment-prep_20260517T120242\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_code_d036-gpu-experiment-prep_20260517T120242.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_d036-gpu-experiment-prep_20260517T120242 started. Use get_worker_status('worker_code_d036-gpu-experiment-prep_20260517T120242') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 18849
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-17T12:03:01.163415+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:exp-015-logic-lm-baseline",
+  "project": "symb_invariant_consensus",
+  "task_prompt": "## 任务：exp-015 Logic-LM Baseline 分析\n\n### 目标\n实现 Logic-LM × K + majority vote baseline，与 SICA 和 SC 对比。这是论文 Reviewer Concern #9 要求的 baseline。\n\n### 背景\nLogic-LM 是一种方法：给模型一个问题，让它生成 FOL (First-Order Logic) 表达式，然后用 solver 验证。我们需要实现的是：运行 Logic-LM 风格的 single-trace FOL 验证 K 次，然后 majority vote。目的是看 MAX-SAT multi-trace aggregation 是否比 \"FOL extraction + independent verification × K\" 更好。\n\n### 数据\n服务器：westd-32608，root 用户\n已有数据：exp-001 的结果 (Qwen-14B, 804题 PW+FOLIO)\n路径：`/root/symb_invariant_consensus/results/` 下的 exp-001 / sica_expanded 结果文件\n\n### 分析方法\n\n这是 CPU-only reanalysis，使用 exp-001 已经生成的 K=12 traces 和 constraints：\n\n1. SSH 连接 westd-32608，找到 exp-001 的结果文件\n2. 读取结果 JSON 了解数据结构（每题有 K 条 traces，每条 trace 有 extracted constraints）\n3. 实现 Logic-LM × K baseline：\n   - 对每题的每条 trace 独立做 \"single-trace verification\"：\n     - 取该 trace 的 constraints\n     - 检查 constraints 内部是否 satisfiable（用 Z3）\n     - 如果 satisfiable → 该 trace 的答案有效\n     - 如果 unsatisfiable → 该 trace 的答案可能有误（可降权或排除）\n   - 然后对有效 traces 做 majority vote\n4. 与已有 baseline 对比：\n   - SC (simple majority vote): 76.24% (804题)\n   - SICA (MaxSAT cross-trace aggregation): 76.49%\n   - Logic-LM × K (本实验)\n5. 统计检验：McNemar test / paired bootstrap 与 SC 和 SICA 对比\n\n### 实现细节\n- 如果结果 JSON 不包含 per-trace raw constraints（只有聚合后的），说明这一点并建议替代方案\n- 如果有 raw constraints，用 z3-solver Python 包做 satisfiability check\n- 注意区分 FOLIO（有 FOL 标注）和 ProofWriter，分别报告\n- 代码写到 `/root/symb_invariant_consensus/scripts/analysis_logic_lm_baseline.py`\n\n### 产出\n1. 分析脚本：`/root/symb_invariant_consensus/scripts/analysis_logic_lm_baseline.py`\n2. 结果 JSON：`/root/symb_invariant_consensus/results/exp015_logic_lm_baseline.json`\n3. 包含：Logic-LM accuracy, SC accuracy, SICA accuracy, McNemar p-values, per-domain breakdown\n\n### 注意\n- 代码顶部写文件注释说明目的、输入输出\n- 如果 z3 包未安装，先 `pip install z3-solver`\n- 如果发现 per-trace constraints 不可用，退而用 \"constraint count > 0\" 作为 validity proxy，并在输出中说明限制\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp-015-logic-lm-baseline",
+    "project": "symb_invariant_consensus",
+    "task_prompt": "## 任务：exp-015 Logic-LM Baseline 分析\n\n### 目标\n实现 Logic-LM × K + majority vote baseline，与 SICA 和 SC 对比。这是论文 Reviewer Concern #9 要求的 baseline。\n\n### 背景\nLogic-LM 是一种方法：给模型一个问题，让它生成 FOL (First-Order Logic) 表达式，然后用 solver 验证。我们需要实现的是：运行 Logic-LM 风格的 single-trace FOL 验证 K 次，然后 majority vote。目的是看 MAX-SAT multi-trace aggregation 是否比 \"FOL extraction + independent verification × K\" 更好。\n\n### 数据\n服务器：westd-32608，root 用户\n已有数据：exp-001 的结果 (Qwen-14B, 804题 PW+FOLIO)\n路径：`/root/symb_invariant_consensus/results/` 下的 exp-001 / sica_expanded 结果文件\n\n### 分析方法\n\n这是 CPU-only reanalysis，使用 exp-001 已经生成的 K=12 traces 和 constraints：\n\n1. SSH 连接 westd-32608，找到 exp-001 的结果文件\n2. 读取结果 JSON 了解数据结构（每题有 K 条 traces，每条 trace 有 extracted constraints）\n3. 实现 Logic-LM × K baseline：\n   - 对每题的每条 trace 独立做 \"single-trace verification\"：\n     - 取该 trace 的 constraints\n     - 检查 constraints 内部是否 satisfiable（用 Z3）\n     - 如果 satisfiable → 该 trace 的答案有效\n     - 如果 unsatisfiable → 该 trace 的答案可能有误（可降权或排除）\n   - 然后对有效 traces 做 majority vote\n4. 与已有 baseline 对比：\n   - SC (simple majority vote): 76.24% (804题)\n   - SICA (MaxSAT cross-trace aggregation): 76.49%\n   - Logic-LM × K (本实验)\n5. 统计检验：McNemar test / paired bootstrap 与 SC 和 SICA 对比\n\n### 实现细节\n- 如果结果 JSON 不包含 per-trace raw constraints（只有聚合后的），说明这一点并建议替代方案\n- 如果有 raw constraints，用 z3-solver Python 包做 satisfiability check\n- 注意区分 FOLIO（有 FOL 标注）和 ProofWriter，分别报告\n- 代码写到 `/root/symb_invariant_consensus/scripts/analysis_logic_lm_baseline.py`\n\n### 产出\n1. 分析脚本：`/root/symb_invariant_consensus/scripts/analysis_logic_lm_baseline.py`\n2. 结果 JSON：`/root/symb_invariant_consensus/results/exp015_logic_lm_baseline.json`\n3. 包含：Logic-LM accuracy, SC accuracy, SICA accuracy, McNemar p-values, per-domain breakdown\n\n### 注意\n- 代码顶部写文件注释说明目的、输入输出\n- 如果 z3 包未安装，先 `pip install z3-solver`\n- 如果发现 per-trace constraints 不可用，退而用 \"constraint count > 0\" 作为 validity proxy，并在输出中说明限制\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T12:09:38.785313+00:00_
+
+MCP error -32000: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-011-llama8b-v3",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 397621
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-17T12:09:39.278775+00:00_
+
+GPU 1/1 在跑，Worker 0 — 立即派 CPU Worker。同时向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-011-llama8b-v3"
+}
+```
+
+</details>
+
+---

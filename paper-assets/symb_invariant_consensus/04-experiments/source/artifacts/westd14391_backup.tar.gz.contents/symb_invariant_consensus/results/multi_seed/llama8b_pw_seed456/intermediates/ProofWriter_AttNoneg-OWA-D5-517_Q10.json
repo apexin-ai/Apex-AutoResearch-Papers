@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-517_Q10",
+    "problem": "Charlie is cold. Charlie is quiet. Charlie is young. Erin is cold. Erin is green. Erin is kind. Erin is round. Erin is young. Fiona is big. Fiona is round. Harry is green. Harry is kind. All cold, kind people are quiet. All quiet, big people are young. Green people are young. If Erin is young then Erin is cold. If someone is cold then they are big. All kind, round people are green. All big people are kind. Young people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, True) ::: Charlie is quiet.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Erin, True) ::: Erin is cold.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nRound(Erin, True) ::: Erin is round.\nYoung(Erin, True) ::: Erin is young.\nBig(Fiona, True) ::: Fiona is big.\nRound(Fiona, True) ::: Fiona is round.\nGreen(Harry, True) ::: Harry is green.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nCold($x, True) && Kind($x, True) >>> Quiet($x, True) ::: All cold, kind people are quiet.\nQuiet($x, True) && Big($x, True) >>> Young($x, True) ::: All quiet, big people are young.\nGreen($x, True) >>> Young($x, True) ::: Green people are young.\nYoung(Erin, True) >>> Cold(Erin, True) ::: If Erin is young then Erin is cold.\nCold($x, True) >>> Big($x, True) ::: If someone is cold then they are big.\nKind($x, True) && Round($x, True) >>> Green($x, True) ::: All kind, round people are green.\nBig($x, True) >>> Kind($x, True) ::: All big people are kind.\nYoung($x, True) >>> Cold($x, True) ::: Young people are cold.\n\nQuery:\nCold(Fiona, False) ::: Fiona is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

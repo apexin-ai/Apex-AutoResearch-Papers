@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-046-mistral-pw600",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:16:46.346Z",
+    "updated_at": "2026-05-18T20:17:23.638Z",
+    "hypothesis": "Mistral-7B-Instruct-v0.3 在 ProofWriter-600 上 SICA vs SC：验证 regime boundary 跨域泛化。exp-033 (Mistral FOLIO-204) 显示 +4.90pp (p=0.013)，如果 PW-600 也显示正向 delta，则 regime-dependent capability trap 不是 FOLIO-specific artifact。"
+  },
+  "timestamp": "2026-05-18T20:17:23.911866+00:00",
+  "trigger": "update_registry"
+}

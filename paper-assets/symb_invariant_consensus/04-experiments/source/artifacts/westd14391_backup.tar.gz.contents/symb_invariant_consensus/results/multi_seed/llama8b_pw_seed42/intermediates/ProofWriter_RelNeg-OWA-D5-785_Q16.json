@@ -1,0 +1,851 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-785_Q16",
+    "problem": "The bald eagle is round. The bear needs the bald eagle. The cat eats the bear. The cat does not eat the lion. The cat is round. The lion needs the bear. The lion sees the bald eagle. If something is round then it sees the bald eagle. If something is red and not young then it needs the lion. If something sees the bald eagle then it needs the lion. If something needs the lion and it needs the bear then the bear is round. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. If something needs the lion and the lion sees the bald eagle then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle needs the cat.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nRound(BaldEagle, True) ::: The bald eagle is round.\nNeeds(Bear, BaldEagle, True) ::: The bear needs the bald eagle.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nEats(Cat, Lion, False) ::: The cat does not eat the lion.\nRound(Cat, True) ::: The cat is round.\nNeeds(Lion, Bear, True) ::: The lion needs the bear.\nSees(Lion, BaldEagle, True) ::: The lion sees the bald eagle.\n\nRules:\nRound($x, True) >>> Sees($x, BaldEagle, True) ::: If something is round then it sees the bald eagle.\nRed($x, True) && Young($x, False) >>> Needs($x, Lion, True) ::: If something is red and not young then it needs the lion.\nSees($x, BaldEagle, True) >>> Needs($x, Lion, True) ::: If something sees the bald eagle then it needs the lion.\nNeeds($x, Lion, True) && Needs($x, Bear, True) >>> Round(Bear, True) ::: If something needs the lion and it needs the bear then the bear is round.\nRound(Lion, True) && Eats(Lion, Cat, False) >>> Eats(Cat, BaldEagle, True) ::: If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\nNeeds($x, Lion, True) && Sees(Lion, BaldEagle, True) >>> Red($x, True) ::: If something needs the lion and the lion sees the bald eagle then it is red.\n\nQuery:\nNeeds(BaldEagle, Cat, True) ::: The bald eagle needs the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 110.0
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will break down the given information into smaller steps and use logical reasoning.\n\nGiven statements:\n\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n8. If something is round then it sees the bald eagle.\n9. If something is red and not young then it needs the lion.\n10. If something sees the bald eagle then it needs the lion.\n11. If something needs the lion and it needs the bear then the bear is round.\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n13. If something needs the lion and the lion sees the bald eagle then it is red.\n\nNow, let's analyze the statement \"The bald eagle needs the cat.\"\n\nFrom statement 1, we know the bald eagle is round.\n\nFrom statement 8, if something is round, then it sees the bald eagle. But we already know the bald eagle is round, so the statement is still true.\n\nHowever, we don't know whether the bald eagle sees the bald eagle, or any other entity, so the statement \"If something is round then it sees the bald eagle\" does not directly apply to the bald eagle.\n\nLet's continue:\n\nFrom statement 1, we know the bald eagle is round.\nFrom statement 5, we know the cat is round.\nFrom statement 8, if something is round then it sees the bald eagle. However, this does not apply to the cat directly. We need to find more information.\n\nFrom statement 7, we know the lion sees the bald eagle. However, this does not help us determine whether the bald eagle needs the cat.\n\nFrom statement 10, if something sees the bald eagle then it needs the lion. But this does not directly apply to the bald eagle.\n\nHowever, we can find a connection:\n\nFrom statement 1, we know the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 10, if something sees the bald eagle then it needs the lion. So the lion needs the bald eagle.\n\nNow, let's look at the bear:\n\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\nFrom statement 11, if something needs the lion and it needs the bear then the bear is round. However, we don't have enough information to determine whether the bear is round or not.\n\nFrom statement 3, the cat eats the bear. However, we still don't know whether the bear is round or not.\n\nNow, let's look at the statement \"The lion is round.\" We don't have enough information to determine this.\n\nFrom statement 12, if the lion is round and the lion does not eat the cat then the cat eats the bald eagle. However, we still don't know whether the lion is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 1, we know the bald eagle is round.\nFrom statement 5, we know the cat is round.\nFrom statement 8, if something is round then it sees the bald eagle. However, this does not apply to the cat directly.\n\nHowever, we can find a connection:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 1, the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat eats the bald eagle or not.\n\nNow, let's look at the statement \"The cat needs the lion.\" We don't have enough information to determine this.\n\nHowever, we can make some connections:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 10, if something sees the bald eagle then it needs the lion. So the lion needs the bald eagle.\n\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\n\nFrom statement 11, if something needs the lion and it needs the bear then the bear is round.\n\nFrom statement 3, the cat eats the bear.\n\nHowever, we still don't know whether the cat needs the lion or not.\n\nHowever, we can make some connections:\n\nFrom statement 13, if something needs the lion and the lion sees the bald eagle then it is red. However, we still don't know whether the cat needs the lion or not.\n\nHowever, we can make some connections:\n\nFrom statement 9, if something is red and not young then it needs the lion. However, we still don't know whether the cat needs the lion or not.\n\nHowever, we can make some connections:\n\nFrom statement 4, the cat does not eat the lion.\n\nFrom statement 12, if the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n\nHowever, we still don't know whether the lion is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat eats the bald eagle or not.\n\nHowever, we can make some connections:\n\nFrom statement 1, we know the bald eagle is round.\nFrom statement 5, we know the cat is round.\nFrom statement 8, if something is round then it sees the bald eagle. However, this does not apply to the cat directly.\n\nHowever, we can find a connection:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 1, the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat eats the bald eagle or not.\n\nHowever, we can make some connections:\n\nFrom statement 3, the cat eats the bear.\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\n\nHowever, we still don't know whether the lion needs the cat or not.\n\nHowever, we can make some connections:\n\nFrom statement 10, if something sees the bald eagle then it needs the lion.\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\n\nHowever, we still don't know whether the bear is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 11, if something needs the lion and it needs the bear then the bear is round.\n\nHowever, we still don't know whether the bear is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 1, we know the bald eagle is round.\nFrom statement 5, we know the cat is round.\nFrom statement 8, if something is round then it sees the bald eagle. However, this does not apply to the cat directly.\n\nHowever, we can find a connection:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 1, the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat eats the bald eagle or not.\n\nHowever, we can make some connections:\n\nFrom statement 12, if the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n\nHowever, we still don't know whether the lion is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 1, the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat needs the lion or not.\n\nHowever, we can make some connections:\n\nFrom statement 9, if something is red and not young then it needs the lion.\n\nHowever, we still don't know whether the cat needs the lion or not.\n\nHowever, we can make some connections:\n\nFrom statement 4, the cat does not eat the lion.\n\nFrom statement 12, if the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n\nHowever, we still don't know whether the lion is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 1, the bald eagle is round.\nFrom statement 8, if something is round then it sees the bald eagle.\n\nHowever, we still don't know whether the cat eats the bald eagle or not.\n\nHowever, we can make some connections:\n\nFrom statement 3, the cat eats the bear.\n\nHowever, we still don't know whether the bear is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 11, if something needs the lion and it needs the bear then the bear is round.\n\nHowever, we still don't know whether the bear is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\n\nHowever, we still don't know whether the lion needs the cat or not.\n\nHowever, we can make some connections:\n\nFrom statement 10, if something sees the bald eagle then it needs the lion.\nFrom statement 7, the lion sees the bald eagle.\nFrom statement 2, the bear needs the bald eagle.\nFrom statement 6, the lion needs the bear.\n\nHowever, we still don't know whether the bear is round or not.\n\nHowever, we can make some connections:\n\nFrom statement 11, if something needs the lion and it needs the bear then the bear is round",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is round. (Given)\n2. The cat is round. (Given)\n3. If something is round then it sees the bald eagle. (Given)\n   Since the bald eagle and the cat are both round, they both see the bald eagle.\n\n4. The bald eagle sees the bald eagle. (From step 3)\n   The lion sees the bald eagle. (From step 3)\n   The cat sees the bald eagle. (From step 3)\n\n5. If something sees the bald eagle then it needs the lion. (Given)\n   The lion sees the bald eagle. (From step 4)\n   The cat sees the bald eagle. (From step 4)\n   The bald eagle sees the bald eagle. (From step 4)\n\n   The lion needs the lion. (From step 5) - This is a paradox, so we cannot use this information.\n   The cat needs the lion. (From step 5)\n   The bald eagle needs the lion. (From step 5)\n\n6. If something needs the lion and it needs the bear then the bear is round. (Given)\n   The cat needs the lion. (From step 5)\n   The cat also needs the bear. (This is not given directly, so let's continue analyzing)\n\n7. The lion needs the bear. (Given)\n8. If something is red and not young then it needs the lion. (Given)\n   We cannot determine the age of the bear or the cat, so we cannot use this information.\n9. The lion is not red (There is no information that states the lion is red)\n10. If something sees the bald eagle then it needs the lion. (Given)\n    The lion sees the bald eagle. (From step 4)\n    The lion needs the lion. (From step 5) - This is a paradox, so we cannot use this information.\n    The cat sees the bald eagle. (From step 4)\n    The cat needs the lion. (From step 5)\n    The bald eagle sees the bald eagle. (From step 4)\n    The bald eagle needs the lion. (From step 5)\n\n11. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. (Given)\n    We do not know if the lion is round or not, but we do know that the lion sees the bald eagle. (From step 4)\n    We also know that the lion does not eat the cat. (Given)\n    The lion sees the bald eagle. (From step 4)\n    The lion needs the lion. (From step 5) - This is a paradox, so we cannot use this information.\n    The cat sees the bald eagle. (From step 4)\n    The cat needs the lion. (From step 5)\n    The bald eagle sees the bald eagle. (From step 4)\n    The bald eagle needs the lion. (From step 5)\n    So, the lion is not round or the lion eats the cat, or the cat eats the bald eagle.\n\n12. If something needs the lion and the lion sees the bald eagle then it is red. (Given)\n    The cat sees the bald eagle. (From step 4)\n    The cat needs the lion. (From step 5)\n    The cat is not red (There is no information that states the cat is red)\n\n13. The bear needs the lion. (Given)\n14. The lion sees the bald eagle. (From step 4)\n15. The cat sees the bald eagle. (From step 4)\n16. The cat does not eat the lion. (Given)\n17. The lion does not eat the cat. (Given)\n18. The cat is round. (From step 2)\n19. The lion is round. (From step 18 and step 11, if the lion is round, the cat eats the bald eagle, but we do not know if the lion is round or not)\n20. The lion does not eat the cat. (From step 17)\n   If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. (From step 11)\n   The lion is not round or the lion eats the cat, or the cat eats the bald eagle. (From step 11)\n\nFrom steps 1-20, we can conclude that the cat needs the lion. However, we do not know if the lion needs the cat or not. We do not have enough information to determine if the bald eagle needs the cat.\n\nThe final answer is: $\\boxed{unknown}$",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is round. \nThis statement implies that the bald eagle sees the lion because the statement \"If something is round then it sees the bald eagle.\" \n\n2. The bear needs the bald eagle. \nThis statement is given.\n\n3. The cat eats the bear. \nThis statement is given.\n\n4. The cat does not eat the lion. \nThis statement is given.\n\n5. The cat is round. \nThis statement implies that the cat sees the lion because the statement \"If something is round then it sees the bald eagle.\" \n\nHowever, since the cat does not eat the lion, we cannot conclude anything from this statement alone.\n\n6. The lion needs the bear. \nThis statement is given.\n\n7. The lion sees the bald eagle. \nThis statement is given, and we know from statement 1 that the lion sees the bald eagle.\n\n8. If something is round then it sees the bald eagle. \nThis statement has already been used in statement 1.\n\n9. If something is red and not young then it needs the lion. \nThis statement does not affect our current problem, so we can ignore it.\n\n10. If something sees the bald eagle then it needs the lion. \nThis statement has already been used in statement 7.\n\n11. If something needs the lion and it needs the bear then the bear is round. \nSince the lion needs the bear (statement 6), we cannot conclude anything from this statement alone.\n\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. \nSince the lion is not round (from statement 1), we cannot use this statement.\n\n13. If something needs the lion and the lion sees the bald eagle then it is red. \nSince the lion sees the bald eagle (statement 7), we cannot conclude anything from this statement alone.\n\nNow, let's analyze the statement \"The bald eagle needs the cat.\" \n\nFrom statement 1, we know that the bald eagle is round, and from statement 5, we know that the cat is round. \n\nStatement 10 says that if something sees the bald eagle then it needs the lion. \n\nHowever, statement 10 does not directly imply that the bald eagle needs the lion or the cat.\n\nSince the bald eagle is round and the lion sees the bald eagle, the lion needs the bald eagle (statement 7). \n\nHowever, we cannot conclude that the bald eagle needs the cat from the given statements.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is round. \n   - This statement is given directly.\n\n2. If something is round then it sees the bald eagle. \n   - This statement is also given directly.\n\n3. The cat is round. \n   - This statement is given directly.\n\n4. If something sees the bald eagle then it needs the lion. \n   - This statement is given directly.\n\nFrom the above statements, we can conclude that since the bald eagle is round, it sees the bald eagle. However, there is no direct information about the cat needing the lion.\n\n5. The cat eats the bear. \n   - This statement is given directly.\n\n6. The bear needs the bald eagle. \n   - This statement is given directly.\n\n7. If something needs the lion and it needs the bear then the bear is round. \n   - This statement is given directly.\n\nFrom the above statements, we can conclude that the bear is round because it needs the lion and it also needs the bald eagle.\n\n8. The lion sees the bald eagle. \n   - This statement is given directly.\n\n9. If something sees the bald eagle then it needs the lion. \n   - This statement is given directly.\n\nFrom the above statements, we can conclude that the lion needs the bald eagle.\n\n10. The lion is not mentioned as being round or not round in the given statements. However, it is not mentioned that the lion sees the bald eagle in the context of it being round. \n\n11. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. \n   - This statement is given directly.\n\n12. The cat does not eat the lion. \n   - This statement is given directly.\n\nFrom the above statements, we cannot conclude whether the lion is round or not. However, since the cat does not eat the lion, the lion is not round because if it was round, the cat would eat the bald eagle.\n\n13. If something needs the lion and the lion sees the bald eagle then it is red. \n   - This statement is given directly.\n\nHowever, we cannot conclude whether the bald eagle is red or not.\n\n14. If something is red and not young then it needs the lion. \n   - This statement is given directly.\n\nHowever, we cannot conclude whether the bald eagle is red or not, and it is not mentioned as being young or not young.\n\nNow, we need to analyze the statement \"The bald eagle needs the cat.\" \n\nFrom the given information, we can conclude that the bald eagle sees the bald eagle (because it is round), and it sees the bald eagle (because it is round). However, there is no direct information about the cat needing the lion.\n\nHowever, if the lion sees the bald eagle, then it needs the lion (because it sees the bald eagle). Since the lion sees the bald eagle, it needs the lion.\n\nFrom the statement \"If something needs the lion and it needs the bear then the bear is round,\" we can conclude that the bear is round.\n\nNow, from the statement \"The lion needs the bald eagle,\" and \"If something sees the bald eagle then it needs the lion,\" we can conclude that the lion needs the bald eagle.\n\nFrom the statement \"The lion sees the bald eagle,\" we can conclude that the lion needs the bald eagle.\n\nFrom the statement \"If something needs the lion and the lion sees the bald eagle then it is red,\" we cannot conclude that the bald eagle is red.\n\nHowever, from the statement \"The lion sees the bald eagle,\" we can conclude that the lion needs the bald eagle.\n\nSince the lion sees the bald eagle, it needs the lion. However, there is no direct information about the bald eagle needing the lion.\n\nFrom the statement \"If something needs the lion and it needs the bear then the bear is round,\" we can conclude that the bear is round.\n\nHowever, we cannot conclude that the bald eagle needs the bear.\n\nNow, we can analyze the statement \"The bald eagle needs the cat.\"\n\nFrom the statement \"The lion sees the bald eagle,\" we can conclude that the lion needs the bald eagle. However, we cannot conclude that the bald eagle needs the lion.\n\nHowever, from the statement \"The bear needs the bald eagle,\" we can conclude that the bear needs the bald eagle.\n\nSince the bear needs the bald eagle, and the lion needs the bald eagle, we can conclude that the lion needs the bear. \n\nFrom the statement \"If something needs the lion and it needs the bear then the bear is round,\" we can conclude that the bear is round.\n\nHowever, we cannot conclude that the bald eagle is round.\n\nHowever, from the statement \"If the lion is round and the lion does not eat the cat then the cat eats the bald eagle,\" we cannot conclude that the lion is round.\n\nHowever, from the statement \"The lion sees the bald eagle,\" we can conclude that the lion needs the bald eagle.\n\nNow, we can analyze the statement \"The bald eagle needs the cat.\"\n\nFrom the statement \"The lion needs the bald eagle,\" we can conclude that the lion sees the bald eagle. \n\nHowever, there is no direct information about the bald eagle needing the cat.\n\nHowever, from the statement \"The cat eats the bear,\" we can conclude that the cat eats the bear.\n\nHowever, we cannot conclude that the bald eagle needs the bear.\n\nNow, we can analyze the statement \"The bald eagle needs the cat.\"\n\nFrom the statement \"The lion needs the bald eagle,\" we can conclude that the lion sees the bald eagle. \n\nHowever, there is no direct information about the bald eagle needing the cat.\n\nHowever, from the statement \"If something needs the lion and it sees the bald eagle then it is red,\" we cannot conclude that the bald eagle is red.\n\nHowever, from the statement \"If something is red and not young then it needs the lion,\" we cannot conclude that the bald eagle is red.\n\nHowever, from the statement \"The lion sees the bald eagle,\" we can conclude that the lion needs the bald eagle.\n\nHowever, we cannot conclude that the bald eagle needs the lion.\n\nNow, we can analyze the statement \"The bald eagle needs the cat.\"\n\nSince there is no direct information about the bald eagle needing the cat, and the lion needs the bald eagle, we cannot conclude that the bald eagle needs the cat.\n\nTherefore, the statement \"The bald eagle needs the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown, we need to break down the information given and apply the rules.\n\n1. The bald eagle is round.\n2. If something is round then it sees the bald eagle.\n   Since the bald eagle is round, it sees the bald eagle, which is true. However, this doesn't directly relate to the statement \"The bald eagle needs the cat.\"\n\n3. The cat eats the bear.\n4. The lion sees the bald eagle.\n5. If something sees the bald eagle then it needs the lion.\n   Since the lion sees the bald eagle, it needs the lion, which is true. However, this still doesn't directly relate to the statement \"The bald eagle needs the cat.\"\n\n6. If something needs the lion and it needs the bear then the bear is round.\n   Since the lion needs the bear and the lion needs the cat (from rule 5), we can't directly conclude anything about the bear's roundness from this information.\n\n7. The cat is round.\n8. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n   Since the cat is round, this statement is irrelevant to our problem.\n\n9. The lion needs the bear.\n10. If something is red and not young then it needs the lion.\n    Since the lion needs the bear, we don't know if the lion is red or not. We also can't conclude the lion's age.\n\nNow, let's directly address the statement \"The bald eagle needs the cat.\" The information given does not directly state that the bald eagle needs the cat. However, we can infer that if the bald eagle needs the cat, it must see the lion (rule 2), and the lion must see the bald eagle (rule 4). We also know the lion needs the bear (rule 9).\n\nSince the lion sees the bald eagle (rule 4), it needs the lion (rule 5). However, this still doesn't tell us anything about the bald eagle's needs.\n\nTo conclude, we have the following information:\n- The bald eagle is round.\n- The cat is round.\n- The lion sees the bald eagle.\n- The lion needs the bear.\n\nHowever, we still can't determine whether the statement \"The bald eagle needs the cat\" is true or false based on the information given.\n\nTherefore, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to the question.\n\nGiven statements:\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n8. If something is round then it sees the bald eagle.\n9. If something is red and not young then it needs the lion.\n10. If something sees the bald eagle then it needs the lion.\n11. If something needs the lion and it needs the bear then the bear is round.\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n13. If something needs the lion and the lion sees the bald eagle then it is red.\n\nNow, let's apply these rules to the question: \"The bald eagle needs the cat.\"\n\nFrom rule 1, we know that the bald eagle is round.\nFrom rule 8, if something is round then it sees the bald eagle. Since the bald eagle is round, it sees the bald eagle, which is itself.\n\nFrom rule 10, if something sees the bald eagle then it needs the lion. So, the bald eagle needs the lion.\n\nNow, we have two possibilities:\n1. The bald eagle needs the lion and the lion needs the bear. \n2. The bald eagle needs the lion and the lion sees the bald eagle.\n\nLet's analyze the first possibility:\nFrom rule 6, the lion needs the bear.\nFrom rule 2, the bear needs the bald eagle.\nFrom rule 11, if something needs the lion and it needs the bear then the bear is round. So, the bear is round.\n\nNow, we have a new possibility:\nFrom rule 5, the cat is round.\nFrom rule 1, the bald eagle is round.\nFrom rule 12, if the lion is round and the lion does not eat the cat then the cat eats the bald eagle. Since the lion does not eat the cat (rule 4), the cat eats the bald eagle.\n\nFrom rule 3, the cat eats the bear. \nFrom rule 11, we already know that the bear is round.\n\nHowever, this scenario creates a paradox: the cat eats the bear, and the bear is round. However, if the cat is round, then it sees the bald eagle, which would mean it needs the lion (rule 10). But if the cat needs the lion, then the cat should not eat the bald eagle (rule 12).\n\nLet's analyze the second possibility:\nFrom rule 7, the lion sees the bald eagle.\nFrom rule 13, if something needs the lion and the lion sees the bald eagle then it is red. So, the bald eagle is red.\n\nHowever, this is a contradiction with rule 1, which states that the bald eagle is round.\n\nSince both possibilities create a paradox, we cannot determine whether the statement \"The bald eagle needs the cat\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions to determine the relationship between the bald eagle and the cat.\n\nFrom the given statements:\n\n1. The bald eagle is round. (Statement 1)\n2. The cat is round. (Statement 6)\n3. If something is round then it sees the bald eagle. (Statement 5)\n4. The cat sees the bald eagle. (From statement 3 and 2)\n5. If something sees the bald eagle then it needs the lion. (Statement 4)\n6. The cat needs the lion. (From statement 5 and 4)\n7. The lion sees the bald eagle. (Statement 7)\n8. If something needs the lion and the lion sees the bald eagle then it is red. (Statement 8)\n9. The cat is not red. (From statement 6, 7, and 8)\n10. The cat does not eat the lion. (Statement 3)\n11. The cat eats the bear. (Statement 2)\n\nNow, we need to determine whether the bald eagle needs the cat.\n\nFrom the statements:\n\n1. If something needs the lion and it needs the bear then the bear is round. (Statement 7)\n2. The bear is round. (From statement 1 and 6)\n3. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. (Statement 9)\n4. The cat eats the bald eagle. (From statement 3 and 2)\n5. If something is round then it sees the bald eagle. (Statement 5)\n6. The cat sees the bald eagle. (From statement 5 and 2)\n7. If something sees the bald eagle then it needs the lion. (Statement 4)\n8. The cat needs the lion. (From statement 7 and 6)\n9. If something needs the lion and the lion sees the bald eagle then it is red. (Statement 8)\n10. The cat is not red. (From statement 6, 7, and 8)\n11. The cat does not eat the lion. (Statement 10)\n\nHowever, this does not give us a direct connection between the bald eagle and the cat. We need to look at the other conditions:\n\n1. The lion needs the bear. (Statement 3)\n2. The bear needs the cat. (We need to determine this)\n\nIf the bear needs the cat, then from statement 1, the bear is round. From statement 6, the cat is round. From statement 3, the cat needs the lion. From statement 6, the cat sees the bald eagle. From statement 7, the cat needs the lion. From statement 8, the cat is red, which is incorrect (from statement 9). Therefore, the bear cannot need the cat.\n\nHowever, the problem statement also says: If the lion sees the bald eagle, then it needs the lion. If the lion sees the bald eagle and it needs the bear, then the bear is round. If the lion is round and the lion does not eat the cat, then the cat eats the bald eagle. From the statement 7, the lion sees the bald eagle. From statement 7, the lion needs the bear. However, we don't know if the lion is round.\n\nIf the lion is not round, then the cat does not eat the bald eagle. From statement 2, the cat eats the bear. From statement 10, the cat does not eat the lion. This creates a contradiction.\n\nIf the lion is round, then from statement 3, the cat eats the bald eagle. From statement 2, the cat eats the bear. This creates a contradiction with statement 10.\n\nTherefore, we conclude that the lion cannot see the bald eagle and need the bear at the same time.\n\nHowever, the problem statement also says: If something is red and not young then it needs the lion. If something sees the bald eagle then it needs the lion. If something needs the lion and it needs the bear then the bear is round. From statement 2, the cat is round. From statement 7, the lion sees the bald eagle. From statement 6, the cat needs the lion. From statement 8, the cat is not red. \n\nHowever, we don't know the age of the cat. If the cat is young, then it does not need the lion. However, from statement 6, the cat needs the lion. This creates a contradiction.\n\nIf the cat is not young, then from statement 8, the cat needs the lion. However, we already know that the cat needs the lion from statement 6. \n\nHowever, we don't know if the lion sees the bald eagle and needs the bear at the same time.\n\nHowever, we know that the cat is round. From statement 5, the cat sees the bald eagle. From statement 4, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, we don't know the age of the cat.\n\nHowever, the problem statement also says: If something needs the lion and the lion sees the bald eagle then it is red. If something is red and not young then it needs the lion. From statement 6, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, we don't know the age of the cat. If the cat is young, then it does not need the lion. However, from statement 6, the cat needs the lion. This creates a contradiction.\n\nIf the cat is not young, then from statement 8, the cat is red. From statement 7, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, we know that the cat sees the bald eagle. From statement 4, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, we don't know if the lion sees the bald eagle and needs the bear at the same time.\n\nHowever, the problem statement also says: If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. From statement 7, the lion sees the bald eagle. From statement 7, the lion needs the bear. However, we don't know if the lion is round.\n\nIf the lion is not round, then from statement 3, the cat does not eat the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nIf the lion is round, then from statement 3, the cat eats the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nTherefore, we conclude that the lion cannot be round and not eat the cat at the same time.\n\nHowever, the problem statement also says: If something needs the lion and the lion sees the bald eagle then it is red. If something is red and not young then it needs the lion. From statement 7, the lion sees the bald eagle. However, we don't know if the lion needs the bear.\n\nHowever, the problem statement also says: If something sees the bald eagle then it needs the lion. If something needs the lion and it needs the bear then the bear is round. From statement 7, the lion sees the bald eagle. From statement 6, the lion needs the bear. However, we don't know if the lion is round.\n\nIf the lion is not round, then from statement 3, the cat does not eat the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nIf the lion is round, then from statement 3, the cat eats the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nHowever, we know that the cat is round. From statement 5, the cat sees the bald eagle. From statement 4, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, the problem statement also says: If the lion sees the bald eagle then it needs the lion. If the lion sees the bald eagle and it needs the bear then the bear is round. From statement 7, the lion sees the bald eagle. From statement 7, the lion needs the bear. However, we don't know if the lion is round.\n\nIf the lion is not round, then from statement 3, the cat does not eat the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nIf the lion is round, then from statement 3, the cat eats the bald eagle. From statement 2, the cat eats the bear. However, this creates a contradiction with statement 10.\n\nTherefore, we conclude that the lion cannot be round and need the bear at the same time.\n\nHowever, the problem statement also says: If something is red and not young then it needs the lion. If something sees the bald eagle then it needs the lion. If something needs the lion and it needs the bear then the bear is round. From statement 7, the lion sees the bald eagle. However, we don't know if the lion needs the bear.\n\nHowever, the problem statement also says: If something needs the lion and the lion sees the bald eagle then it is red. If something is red and not young then it needs the lion. From statement 6, the cat needs the lion. However, we already know that the cat needs the lion from statement 6.\n\nHowever, we don't know the age of the cat.\n\nHowever, the problem statement also says: If",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the information provided, we know that:\n\n1. The bald eagle is round.\n2. The cat sees the bald eagle.\n3. If something is round then it sees the bald eagle.\n4. If something sees the bald eagle then it needs the lion.\n5. If something needs the lion and it needs the bear then the bear is round.\n6. The cat eats the bear.\n7. The lion needs the bear.\n8. If something needs the lion and the lion sees the bald eagle then it is red.\n9. The lion is not mentioned as round in any of the previous statements.\n10. The cat is round.\n11. The lion does not eat the cat.\n\nNow, let's analyze the given statement: \"The bald eagle needs the cat.\"\n\nWe can start by looking at the given statements to see if they provide any direct information about the bald eagle needing the cat. However, there's no direct statement that the bald eagle needs the cat. \n\nHowever, we can use the information that the bald eagle is round (Statement 1) and the cat sees the bald eagle (Statement 2). From Statement 3, we know that if something is round then it sees the bald eagle, which means the cat being round is not a necessary condition for the cat seeing the bald eagle. However, we do know that the cat does see the bald eagle. So we can't conclude that the cat is round from the fact that it sees the bald eagle.\n\nUsing Statement 4, we know that if something sees the bald eagle then it needs the lion. However, this doesn't provide any information about the bald eagle needing the cat.\n\nUsing Statement 8, we know that if something needs the lion and the lion sees the bald eagle then it is red. However, this doesn't provide any information about the bald eagle needing the cat.\n\nSince there's no direct information or logical deduction that the bald eagle needs the cat, we can conclude that the statement \"The bald eagle needs the cat\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The bald eagle needs the cat' is true, false, or unknown, we need to analyze the given statements and their logical implications.\n\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n\nFrom statement 1, we can infer that since the bald eagle is round, it sees the bald eagle (statement 7). This is based on the rule: If something is round then it sees the bald eagle.\n\nSince the bald eagle sees the bald eagle, it implies that the bald eagle needs the lion (rule: If something sees the bald eagle then it needs the lion).\n\nHowever, we also have statement 2, which states that the bear needs the bald eagle. Now, we need to consider the implications of the bear needing the bald eagle.\n\nWe know that the cat eats the bear (statement 3). If the bear needs the bald eagle, and we know that the lion sees the bald eagle, then we can infer that the bear is red (rule: If something sees the bald eagle then it is red).\n\nHowever, this would imply that the bear is red, but we also know that the bear needs the lion, and the lion needs the bear. This creates a cycle where we cannot definitively determine the color or roundness of the bear, lion, or cat.\n\nThe rule that states 'If the lion is round and the lion does not eat the cat then the cat eats the bald eagle' implies that we need to know if the lion is round and does not eat the cat. However, we cannot determine this with certainty.\n\nWe cannot determine whether the bald eagle needs the cat based on the given information. The statement is 'unknown' because we cannot deduce the truth or falsity of the statement from the given premises.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and analyze the relationships between the entities (bald eagle, bear, cat, lion). \n\nGiven statements:\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n8. If something is round then it sees the bald eagle.\n9. If something is red and not young then it needs the lion.\n10. If something sees the bald eagle then it needs the lion.\n11. If something needs the lion and it needs the bear then the bear is round.\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n13. If something needs the lion and the lion sees the bald eagle then it is red.\n\nWe need to determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown.\n\nFrom statement 8, if something is round, then it sees the bald eagle. Since the bald eagle is round (statement 1), the bald eagle sees itself. However, this does not directly relate to the statement we need to determine.\n\nFrom statement 2, the bear needs the bald eagle. But there's no direct information about the bald eagle needing something else.\n\nFrom statement 7, the lion sees the bald eagle. Statement 10 says that if something sees the bald eagle, then it needs the lion. So, the lion needs the lion, which does not make sense. However, this doesn't directly relate to the statement \"The bald eagle needs the cat\".\n\nFrom statement 6, the lion needs the bear. Statement 11 says that if something needs the lion and it needs the bear, then the bear is round. Since the lion needs the bear, the bear is round (statement 1 already states that the bald eagle is round, but this might be a red herring).\n\nFrom statement 13, if something needs the lion and the lion sees the bald eagle, then it is red. We already know the lion sees the bald eagle (statement 7). However, this does not directly relate to the statement we need to determine.\n\nFrom statement 5, the cat is round. Statement 8 says that if something is round, then it sees the bald eagle. Since the cat is round, the cat sees the bald eagle.\n\nNow, let's consider the statement \"The bald eagle needs the cat\". To determine whether this statement is true, false, or unknown, we need to examine all the possible relationships and conditions mentioned in the given statements.\n\nFrom statement 10, if something sees the bald eagle, then it needs the lion. Since the cat sees the bald eagle (from statement 8 and 5), the cat needs the lion. However, this doesn't directly relate to the statement we need to determine.\n\nFrom statement 5, the cat is round, and from statement 8, if something is round, then it sees the bald eagle. This already confirms that the cat sees the bald eagle.\n\nHowever, we have not found any direct evidence or information that would suggest the bald eagle needs the cat.\n\nThe given statements do not explicitly state that the bald eagle needs the cat. Since there is no direct information or relationship that would make the statement \"The bald eagle needs the cat\" true, we cannot conclude that the statement is true. Similarly, there is no information that would make the statement false. Therefore, the statement \"The bald eagle needs the cat\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and use the rules provided.\n\nGiven information:\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n8. If something is round then it sees the bald eagle.\n9. If something is red and not young then it needs the lion.\n10. If something sees the bald eagle then it needs the lion.\n11. If something needs the lion and it needs the bear then the bear is round.\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n13. If something needs the lion and the lion sees the bald eagle then it is red.\n\nStatement to be evaluated: The bald eagle needs the cat.\n\nWe will analyze this statement by applying the given rules.\n\nFrom rule 1, the bald eagle is round.\n\nFrom rule 8, since the bald eagle is round, it sees the bald eagle. However, this statement is self-referential and seems to be a contradiction. We will disregard it for now and continue with other rules.\n\nFrom rule 2, the bear needs the bald eagle.\n\nWe cannot directly apply any rule to determine if the bald eagle needs the cat. However, we can use the information to try to find a connection between the bald eagle and the cat.\n\nFrom rule 3, the cat eats the bear.\n\nFrom rule 6, the lion needs the bear.\n\nFrom rule 11, if something needs the lion and it needs the bear, then the bear is round.\n\nHowever, from rule 5, the cat is round, and from rule 3, the cat eats the bear.\n\nNow, let's consider rule 12: If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n\nThis rule implies that if the lion is round, the cat eats the bald eagle. However, this does not help us directly determine if the bald eagle needs the cat.\n\nWe will analyze the lion's properties next. From rule 7, the lion sees the bald eagle.\n\nFrom rule 10, since the lion sees the bald eagle, the lion needs the lion. However, this is also self-referential and does not provide any useful information.\n\nFrom rule 13, if something needs the lion and the lion sees the bald eagle then it is red. However, this rule cannot be applied to the bald eagle because it is round, not red.\n\nNow, let's consider the properties of the cat and the bear.\n\nFrom rule 3, the cat eats the bear.\n\nFrom rule 5, the cat is round.\n\nFrom rule 3, the cat eats the bear.\n\nWe cannot determine if the bald eagle needs the cat using the given rules. Therefore, the statement \"The bald eagle needs the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle needs the cat\" is true, false, or unknown, we need to analyze the given information and the logical deductions.\n\nFrom the given information:\n\n1. The bald eagle is round.\n2. The bear needs the bald eagle.\n3. The cat eats the bear.\n4. The cat does not eat the lion.\n5. The cat is round.\n6. The lion needs the bear.\n7. The lion sees the bald eagle.\n8. If something is round then it sees the bald eagle. (From 1 and 7, we can infer that the cat sees the bald eagle because it is round.)\n9. If something is red and not young then it needs the lion.\n10. If something sees the bald eagle then it needs the lion.\n11. If something needs the lion and it needs the bear then the bear is round.\n12. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\n13. If something needs the lion and the lion sees the bald eagle then it is red.\n\nWe need to analyze the statement: \"The bald eagle needs the cat.\"\n\nFrom the information given, we can infer the following:\n\n- The bald eagle is round (1).\n- The bald eagle sees the lion because it is round (8).\n- The lion sees the bald eagle (7).\n- The lion needs the bear (6).\n- The bear needs the bald eagle (2).\n- Since the lion sees the bald eagle, the lion is red because it needs the lion (13).\n\nNow, we need to determine whether the lion needs the cat. Since the lion is red and not young, it needs the lion (9). However, this creates a paradox, as the lion needs itself.\n\nHowever, we don't have information that the bald eagle needs the cat. But we can analyze the cat's behavior:\n\n- The cat eats the bear (3).\n- The cat is round (5).\n- The cat sees the bald eagle (8).\n\nNow, we need to determine whether the cat needs the lion. Since the cat sees the bald eagle, it needs the lion (10). We already know the lion needs the bear.\n\nGiven the information, we cannot directly determine whether the bald eagle needs the cat. However, we can make some deductions:\n\n- The cat eats the bear (3).\n- The bear needs the bald eagle (2).\n\nWe can now determine whether the bear is round. Since the lion needs the bear and the lion sees the bald eagle, the bear is round (11). However, this information does not help us determine whether the bald eagle needs the cat.\n\nSince we cannot directly determine whether the bald eagle needs the cat, we conclude that the statement \"The bald eagle needs the cat\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees_bald_eagle(X)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees_bald_eagle(lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bald_eagle(X) -> needs_lion(X)",
+          "z3_formula": "Implies(sees_bald_eagle_lion, needs_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs_lion(lion)",
+          "z3_formula": "needs_lion_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs_bald_eagle(bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_lion(X) & needs_bear(X) -> round(bear)",
+          "z3_formula": "Implies(And(needs_lion_lion, needs_bald_eagle_bear), round_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats_bear(cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & !eats_cat(X) -> eats_bald_eagle(cat)",
+          "z3_formula": "Implies(And(round_lion, Not(eats_cat_lion)), eats_bald_eagle_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & !young(X) -> needs_lion(X)",
+          "z3_formula": "Implies(And(red_cat, Not(young_cat)), needs_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats_cat(lion)",
+          "z3_formula": "eats_cat_lion == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs_lion(X) & sees_bald_eagle(X) -> red(X)",
+          "z3_formula": "Implies(And(needs_lion_cat, sees_bald_eagle_lion), red_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs_cat(lion)",
+          "z3_formula": "needs_cat_lion == Unknown",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, lion))",
+          "z3_formula": "not_eats_cat_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_cat, sees_cat_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(Y, X)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, needs_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & needs(X, bear) -> round(bear)",
+          "z3_formula": "Implies(And(needs_lion_lion, needs_lion_bear), round_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(eats(lion, X)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_cat, Not(eats_lion_cat)), eats_cat_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(young(X)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(red_X, Not(young_X)), needs_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, lion))",
+          "z3_formula": "not_eats_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_bald_eagle_bald_eagle, needs_bald_eagle_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & needs(X, bear) -> round(bear)",
+          "z3_formula": "Implies(And(needs_bald_eagle_lion, needs_bear_bald_eagle), round_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(lion) & not(eats(lion, cat)) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(And(round_lion, not_eats_lion_cat), eats_cat_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & sees(lion, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(And(needs_bald_eagle_lion, sees_lion_bald_eagle), red_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 20
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_cat_bald_eagle, needs_cat_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(needs(X, lion) & needs(X, bear)) -> round(bear)",
+          "z3_formula": "Implies(And(needs_cat_lion, needs_cat_bear), round_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "(needs(X, lion) & sees(lion, bald_eagle)) -> red(X)",
+          "z3_formula": "Implies(And(needs_cat_lion, sees_lion_bald_eagle), red_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_eat(lion, cat)",
+          "z3_formula": "does_not_eat_lion_cat == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, lion))",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_bald_eagle_bald_eagle, needs_bald_eagle_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(lion, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, sees_lion_bald_eagle), red_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(eats(X, cat)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_lion, Not(eats_lion_cat)), eats_lion_bald_eagle)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_cat, sees_cat_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not young(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(red_X, Not(young_X)), needs_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_X_bald_eagle, needs_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & needs(X, bear) -> round(bear)",
+          "z3_formula": "Implies(And(needs_X_lion, needs_X_bear), round_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(lion) & not eats(lion, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(And(round_lion, Not(eats_lion_cat)), eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & sees(lion, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(And(needs_X_lion, sees_lion_bald_eagle), red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not young(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(red_X, not young_X), needs_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_X_bald_eagle, needs_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & needs(X, bear) -> round(bear)",
+          "z3_formula": "Implies(And(needs_X_lion, needs_X_bear), round_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(lion) & not eats(lion, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(And(round_lion, not eats_lion_cat), eats_cat_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & sees(lion, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(And(needs_X_lion, sees_lion_bald_eagle), red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, lion)",
+          "z3_formula": "needs_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_cat, sees_cat_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not young(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(red_lion, Not(young_lion)), needs_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, needs_lion_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & needs(X, bear) -> round(bear)",
+          "z3_formula": "Implies(And(needs_bear_lion, needs_bear_bear), round_bear == True)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(lion) & not eats(lion, cat) -> eats(cat, bald_eagle)",
+          "z3_formula": "Implies(And(round_lion, Not(eats_lion_cat)), eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> red(X)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, red_lion)",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 121,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 0,
+      "total_weight": 119,
+      "solve_time_ms": 1.4196308329701424
+    },
+    "timing": {
+      "trace_gen_s": 24.857,
+      "extraction_s": 44.211,
+      "dedup_s": 1.431,
+      "maxsat_s": 0.004,
+      "total_s": 70.503
+    }
+  }
+}

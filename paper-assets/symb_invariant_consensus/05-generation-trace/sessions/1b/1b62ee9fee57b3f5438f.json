@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b62ee9fee57b3f5438f",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis mistral folio 789 mcnemar",
+  "task_key": "worker_analysis_mistral-folio-789-mcnemar_20260522T130518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mistral-folio-789-mcnemar_20260522T130518_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "0b48d4ad82ba2d58068737b10208d41d7687cf9d717cc10ca59c6391f09f2ecb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral FOLIO seed=789 McNemar exact test 结果：\n\n| 指标 | 值 |\n|------|-----|\n| n | 204 |\n| both_correct | 112 |\n| **b (SC✓ SICA✗)** | **9** |\n| **c (SC✗ SICA✓)** | **4** |\n| both_wrong | 79 |\n| Discordant pairs | 13 |\n| **McNemar exact p** | **0.2668** |\n| Direction | SC > SICA by 5 discordant pairs |\n\n差异不显著（p=0.267），仅 13 个 discordant pairs，样本量不足以检测 2.45pp 的差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-folio-789-mcnemar.md"
+}

@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-multi-seed-llama-folio",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:09:17.058Z",
+    "updated_at": "2026-05-22T17:50:28.378Z",
+    "hypothesis": "Multi-seed replication (seeds 123,456,789) of LLaMA-3.1-8B × FOLIO-204 shows consistent Δ(SICA-SC) direction across seeds, adding a third model family (beyond Qwen2.5 and Mistral) for cross-family consistency evidence. Addresses W4 reviewer concern.",
+    "notes": "disk full crash. Seeds 123/456 completed (204/204). Seed 789 crashed at 189/204 — only 15 samples short. Recovery planned on westd-14391.",
+    "metrics": {
+      "seed123": {
+        "sc_acc": 67.16,
+        "sica_acc": 63.73,
+        "delta": -3.43,
+        "n": 204,
+        "extraction_rate": 0.959,
+        "status": "COMPLETE"
+      },
+      "seed456": {
+        "status": "running",
+        "progress": "125/204"
+      },
+      "seed789": {
+        "status": "pending"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T17:43:01.884Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T17:43:10.456647+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "multiseed_llama8b_folio_cuda1.sh",
+      "server": "westd-16639",
+      "data_path": "FOLIO-204",
+      "data_count": 204,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": "123,456,789"
+    }
+  },
+  "timestamp": "2026-05-22T17:50:28.790951+00:00",
+  "trigger": "update_registry"
+}

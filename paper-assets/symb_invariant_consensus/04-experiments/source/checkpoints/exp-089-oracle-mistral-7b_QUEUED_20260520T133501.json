@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-089-oracle-mistral-7b",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:34:37.133Z",
+    "updated_at": "2026-05-20T13:35:01.179Z",
+    "hypothesis": "Mistral-7B的oracle SICA（用FOLIO gold FOL替换自提取FOL）ceiling gap应显著大于Qwen-14B的+14.22pp，因为更弱模型的自提取FOL质量更差，gold FOL替换带来的提升更大。",
+    "parent": "exp-oracle-folio"
+  },
+  "timestamp": "2026-05-20T13:35:01.507425+00:00",
+  "trigger": "update_registry"
+}

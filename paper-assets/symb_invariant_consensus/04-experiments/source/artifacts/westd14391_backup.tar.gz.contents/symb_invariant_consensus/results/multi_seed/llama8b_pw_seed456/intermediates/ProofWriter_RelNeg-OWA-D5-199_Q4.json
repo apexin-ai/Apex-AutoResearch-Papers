@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-199_Q4",
+    "problem": "The dog is blue. The dog sees the mouse. The mouse is not round. The mouse sees the dog. The rabbit is cold. The rabbit is red. The rabbit sees the mouse. The squirrel is green. The squirrel needs the mouse. The squirrel sees the dog. The squirrel does not visit the dog. If something sees the dog then it sees the squirrel. If something is red and blue then it sees the squirrel. If something needs the squirrel and it is green then it visits the rabbit. If something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. If the mouse needs the rabbit and the rabbit is cold then the mouse is green. If something sees the squirrel then it needs the rabbit. If something sees the rabbit then it needs the mouse. If something is blue then it needs the dog. If something is green and it sees the dog then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not see the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nBlue(Dog, True) ::: The dog is blue.\nSees(Dog, Mouse, True) ::: The dog sees the mouse.\nRound(Mouse, False) ::: The mouse is not round.\nSees(Mouse, Dog, True) ::: The mouse sees the dog.\nCold(Rabbit, True) ::: The rabbit is cold.\nRed(Rabbit, True) ::: The rabbit is red.\nSees(Rabbit, Mouse, True) ::: The rabbit sees the mouse.\nGreen(Squirrel, True) ::: The squirrel is green.\nNeeds(Squirrel, Mouse, True) ::: The squirrel needs the mouse.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\nVisits(Squirrel, Dog, False) ::: The squirrel does not visit the dog.\n\nRules:\nSees($x, Dog, True) >>> Sees($x, Squirrel, True) ::: If something sees the dog then it sees the squirrel.\nRed($x, True) && Blue($x, True) >>> Sees($x, Squirrel, True) ::: If something is red and blue then it sees the squirrel.\nNeeds($x, Squirrel, True) && Green($x, True) >>> Visits($x, Rabbit, True) ::: If something needs the squirrel and it is green then it visits the rabbit.\nNeeds($x, Rabbit, True) && Blue(Rabbit, True) >>> Needs(Rabbit, Dog, False) ::: If something needs the rabbit and the rabbit is blue then the rabbit does not need the dog.\nNeeds(Mouse, Rabbit, True) && Cold(Rabbit, True) >>> Green(Mouse, True) ::: If the mouse needs the rabbit and the rabbit is cold then the mouse is green.\nSees($x, Squirrel, True) >>> Needs($x, Rabbit, True) ::: If something sees the squirrel then it needs the rabbit.\nSees($x, Rabbit, True) >>> Needs($x, Mouse, True) ::: If something sees the rabbit then it needs the mouse.\nBlue($x, True) >>> Needs($x, Dog, True) ::: If something is blue then it needs the dog.\nGreen($x, True) && Sees($x, Dog, True) >>> Blue($x, True) ::: If something is green and it sees the dog then it is blue.\n\nQuery:\nSees(Squirrel, Squirrel, False) ::: The squirrel does not see the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

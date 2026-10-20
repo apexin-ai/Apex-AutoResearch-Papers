@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-595_Q3",
+    "problem": "The bald eagle sees the lion. The bald eagle sees the rabbit. The dog chases the lion. The lion chases the rabbit. The lion is kind. The lion is rough. The lion needs the rabbit. The rabbit chases the dog. The rabbit is blue. The rabbit is nice. The rabbit sees the lion. If something sees the bald eagle then the bald eagle sees the rabbit. If something needs the dog then the dog sees the rabbit. If something needs the dog and the dog is kind then the dog chases the rabbit. If something needs the rabbit and the rabbit is blue then the rabbit sees the bald eagle. If something sees the rabbit and the rabbit sees the lion then it is kind. If the lion is rough and the lion needs the rabbit then the lion is kind. If something sees the bald eagle then the bald eagle needs the dog. If something sees the rabbit then the rabbit sees the dog. If the bald eagle chases the rabbit and the bald eagle is nice then the rabbit chases the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nChases(Dog, Lion, True) ::: The dog chases the lion.\nChases(Lion, Rabbit, True) ::: The lion chases the rabbit.\nKind(Lion, True) ::: The lion is kind.\nRough(Lion, True) ::: The lion is rough.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nBlue(Rabbit, True) ::: The rabbit is blue.\nNice(Rabbit, True) ::: The rabbit is nice.\nSees(Rabbit, Lion, True) ::: The rabbit sees the lion.\n\nRules:\nSees($x, BaldEagle, True) >>> Sees(BaldEagle, Rabbit, True) ::: If something sees the bald eagle then the bald eagle sees the rabbit.\nNeeds($x, Dog, True) >>> Sees(Dog, Rabbit, True) ::: If something needs the dog then the dog sees the rabbit.\nNeeds($x, Dog, True) && Kind(Dog, True) >>> Chases(Dog, Rabbit, True) ::: If something needs the dog and the dog is kind then the dog chases the rabbit.\nNeeds($x, Rabbit, True) && Blue(Rabbit, True) >>> Sees(Rabbit, BaldEagle, True) ::: If something needs the rabbit and the rabbit is blue then the rabbit sees the bald eagle.\nSees($x, Rabbit, True) && Sees(Rabbit, Lion, True) >>> Kind($x, True) ::: If something sees the rabbit and the rabbit sees the lion then it is kind.\nRough(Lion, True) && Needs(Lion, Rabbit, True) >>> Kind(Lion, True) ::: If the lion is rough and the lion needs the rabbit then the lion is kind.\nSees($x, BaldEagle, True) >>> Needs(BaldEagle, Dog, True) ::: If something sees the bald eagle then the bald eagle needs the dog.\nSees($x, Rabbit, True) >>> Sees(Rabbit, Dog, True) ::: If something sees the rabbit then the rabbit sees the dog.\nChases(BaldEagle, Rabbit, True) && Nice(BaldEagle, True) >>> Chases(Rabbit, Dog, True) ::: If the bald eagle chases the rabbit and the bald eagle is nice then the rabbit chases the dog.\n\nQuery:\nKind(BaldEagle, True) ::: The bald eagle is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1286_Q7",
+    "problem": "Anne is green. Fiona is cold. Fiona is white. Fiona is young. Gary is green. Harry is cold. Harry is rough. All young, cold things are white. If something is cold then it is green. Young things are white. White things are blue. If something is blue then it is red. If something is green then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nCold(Fiona, True) ::: Fiona is cold.\nWhite(Fiona, True) ::: Fiona is white.\nYoung(Fiona, True) ::: Fiona is young.\nGreen(Gary, True) ::: Gary is green.\nCold(Harry, True) ::: Harry is cold.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nYoung($x, True) && Cold($x, True) >>> White($x, True) ::: All young, cold things are white.\nCold($x, True) >>> Green($x, True) ::: If something is cold then it is green.\nYoung($x, True) >>> White($x, True) ::: Young things are white.\nWhite($x, True) >>> Blue($x, True) ::: White things are blue.\nBlue($x, True) >>> Red($x, True) ::: If something is blue then it is red.\nGreen($x, True) >>> Young($x, True) ::: If something is green then it is young.\n\nQuery:\nBlue(Gary, True) ::: Gary is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-68_Q7",
+    "problem": "The cat chases the rabbit. The cat likes the mouse. The dog is blue. The dog is not cold. The dog likes the cat. The dog likes the mouse. The mouse is cold. The mouse does not like the cat. The rabbit chases the mouse. The rabbit is nice. If someone chases the dog then the dog likes the cat. If someone is nice and they eat the mouse then the mouse chases the dog. If someone likes the mouse then they are blue. If someone eats the cat and they chase the rabbit then the rabbit likes the mouse. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. If the cat chases the rabbit then the cat chases the dog. If someone eats the rabbit then they like the rabbit. If someone is blue then they eat the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit likes the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nChases(cat, rabbit, True) ::: The cat chases the rabbit.\nLikes(cat, mouse, True) ::: The cat likes the mouse.\nBlue(dog, True) ::: The dog is blue.\nCold(dog, False) ::: The dog is not cold.\nLikes(dog, cat, True) ::: The dog likes the cat.\nLikes(dog, mouse, True) ::: The dog likes the mouse.\nCold(mouse, True) ::: The mouse is cold.\nLikes(mouse, cat, False) ::: The mouse does not like the cat.\nChases(rabbit, mouse, True) ::: The rabbit chases the mouse.\nNice(rabbit, True) ::: The rabbit is nice.\n\nRules:\nChases($x, dog, True) >>> Likes(dog, cat, True) ::: If someone chases the dog then the dog likes the cat.\nNice($x, True) && Eats($x, mouse, True) >>> Chases(mouse, dog, True) ::: If someone is nice and they eat the mouse then the mouse chases the dog.\nLikes($x, mouse, True) >>> Blue($x, True) ::: If someone likes the mouse then they are blue.\nEats($x, cat, True) && Chases($x, rabbit, True) >>> Likes(rabbit, mouse, True) ::: If someone eats the cat and they chase the rabbit then the rabbit likes the mouse.\nEats(dog, rabbit, True) && Likes(rabbit, mouse, True) >>> Likes(dog, mouse, True) ::: If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\nChases(cat, rabbit, True) >>> Chases(cat, dog, True) ::: If the cat chases the rabbit then the cat chases the dog.\nEats($x, rabbit, True) >>> Likes($x, rabbit, True) ::: If someone eats the rabbit then they like the rabbit.\nBlue($x, True) >>> Eats($x, cat, True) ::: If someone is blue then they eat the cat.\n\nQuery:\nLikes(rabbit, mouse, True) ::: The rabbit likes the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,888 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-903_Q6",
+    "problem": "The bear is nice. The bear visits the tiger. The dog does not chase the bear. The dog sees the mouse. The mouse does not chase the bear. The mouse is nice. The mouse is round. The mouse is young. The mouse visits the bear. The tiger chases the bear. The tiger sees the mouse. If someone chases the mouse and they see the tiger then the tiger is round. If the dog sees the mouse then the dog visits the tiger. If someone chases the mouse then they see the bear. If someone is nice and cold then they chase the mouse. If someone visits the mouse and they see the mouse then the mouse visits the dog. If the mouse visits the dog then the dog does not visit the bear. If someone sees the bear then they visit the dog. All nice people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not chase the mouse.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nNice(Bear, True) ::: The bear is nice.\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nChases(Dog, Bear, False) ::: The dog does not chase the bear.\nSees(Dog, Mouse, True) ::: The dog sees the mouse.\nChases(Mouse, Bear, False) ::: The mouse does not chase the bear.\nNice(Mouse, True) ::: The mouse is nice.\nRound(Mouse, True) ::: The mouse is round.\nYoung(Mouse, True) ::: The mouse is young.\nVisits(Mouse, Bear, True) ::: The mouse visits the bear.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nSees(Tiger, Mouse, True) ::: The tiger sees the mouse.\n\nRules:\nChases($x, Mouse, True) && Sees($x, Tiger, True) >>> Round(Tiger, True) ::: If someone chases the mouse and they see the tiger then the tiger is round.\nSees(Dog, Mouse, True) >>> Visits(Dog, Tiger, True) ::: If the dog sees the mouse then the dog visits the tiger.\nChases($x, Mouse, True) >>> Sees($x, Bear, True) ::: If someone chases the mouse then they see the bear.\nNice($x, True) && Cold($x, True) >>> Chases($x, Mouse, True) ::: If someone is nice and cold then they chase the mouse.\nVisits($x, Mouse, True) && Sees($x, Mouse, True) >>> Visits(Mouse, Dog, True) ::: If someone visits the mouse and they see the mouse then the mouse visits the dog.\nVisits(Mouse, Dog, True) >>> Visits(Dog, Bear, False) ::: If the mouse visits the dog then the dog does not visit the bear.\nSees($x, Bear, True) >>> Visits($x, Dog, True) ::: If someone sees the bear then they visit the dog.\nNice($x, True) >>> Cold($x, True) ::: All nice people are cold.\n\nQuery:\nChases(Mouse, Mouse, False) ::: The mouse does not chase the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 70.0,
+      "True": 54.0,
+      "Unknown": 118.0
+    },
+    "answer_counts": {
+      "False": 4,
+      "True": 1,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given: The mouse does not chase the bear.\n2. Given: If someone chases the mouse then they see the bear. This means the mouse does not see the bear when the mouse is chasing.\n3. Given: The mouse is nice. From the information \"All nice people are cold\", we can conclude that the mouse is cold.\n4. Given: If someone is nice and cold then they chase the mouse. Since the mouse is both nice and cold, we can conclude that the mouse chases the mouse.\n\nHowever, from steps 1 and 4, we can deduce the mouse is both nice and cold and also that the mouse chases the bear and the mouse chases the mouse. This seems to create a contradiction.\n\nWe should then check the premises given for any other information that could help determine the statement's validity. \n\n5. Given: The mouse is young.\n6. Given: The mouse is round.\n7. Given: The mouse visits the bear.\n8. Given: If the mouse visits the dog then the dog does not visit the bear. We don't have enough information to determine if the dog visits the bear or not from this premise alone.\n9. Given: If the mouse visits the dog then the dog does not visit the bear. We have information that the mouse visits the bear, but we also have information that the mouse visits the dog. However, this information is not in conflict, it's in fact a true statement. If the mouse visits the dog, then the dog does not visit the bear. We do not have enough information to determine if the mouse visits the dog or not from the premises given.\n\nBased on step 4, we can conclude that the mouse chases the mouse. Therefore, the statement \"The mouse does not chase the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The mouse does not chase the bear.\n- The mouse visits the bear.\n- The mouse is nice.\n- The mouse is round.\n- The mouse is young.\n\nRules:\n1. If someone chases the mouse and they see the tiger then the tiger is round. (This rule is not relevant to the statement we are evaluating.)\n2. If the dog sees the mouse then the dog visits the tiger. (This rule is not relevant to the statement we are evaluating.)\n3. If someone chases the mouse then they see the bear. (This rule is not relevant to the statement we are evaluating.)\n4. If someone is nice and cold then they chase the mouse. (This rule is not relevant to the statement we are evaluating.)\n5. If someone visits the mouse and they see the mouse then the mouse visits the dog. (This rule is not relevant to the statement we are evaluating.)\n6. If the mouse visits the dog then the dog does not visit the bear. (This rule is not directly relevant, but it implies a relationship between mouse, dog, and bear.)\n7. If someone sees the bear then they visit the dog. (This rule is not directly relevant to the statement we are evaluating.)\n8. All nice people are cold. (This rule is not directly relevant to the statement we are evaluating.)\n\nHowever, we can use rule 6 to derive a relationship between the mouse, dog, and bear. Since the mouse visits the bear (given information), we can apply rule 6: If the mouse visits the dog then the dog does not visit the bear. But this rule does not directly apply because it implies a different condition. However, we can apply it to other statements by assuming the mouse does visit the dog. \n\nTo evaluate the statement \"The mouse does not chase the mouse,\" we need to look for any information that implies the mouse does chase the mouse. Since there is no direct information about the mouse chasing the mouse, we will use the given rules to infer the possibility of the mouse chasing the mouse.\n\nNow, let's look at rule 4: If someone is nice and cold then they chase the mouse. Since the mouse is nice (given information), this rule could imply that the mouse might chase the mouse if it were cold. However, we do not have information about the mouse being cold. \n\nSince the statement \"The mouse does not chase the mouse\" is being evaluated, we need to look for any information that could contradict this statement. However, we do not have any direct information that the mouse chases the mouse.\n\nGiven that there is no information that directly contradicts the statement \"The mouse does not chase the mouse\" and that there is no information that directly implies the mouse chases the mouse, we can conclude that we do not have enough information to determine whether the statement \"The mouse does not chase the mouse\" is true or false.\n\nHowever, based on the lack of information and the rules provided, the statement \"The mouse does not chase the mouse\" could be considered as true, since there is no information that contradicts it.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The mouse does not chase the mouse,\" we need to analyze the given information and apply logical reasoning.\n\nFrom the given information, we have the following statements:\n\n1. The mouse does not chase the bear.\n2. The mouse is nice.\n3. The mouse is round.\n4. The mouse is young.\n5. The mouse visits the bear.\n6. If someone chases the mouse, then they see the bear.\n7. If someone is nice and cold, then they chase the mouse.\n8. All nice people are cold.\n\nSince the mouse is nice (statement 2) and all nice people are cold (statement 8), it follows that the mouse is cold. \n\nNow, let's apply the information from statement 7: If someone is nice and cold, then they chase the mouse. Since the mouse is nice and cold, it implies that the mouse chases the mouse.\n\nHowever, we need to verify if this conclusion is consistent with the given information. From statement 1, we know that the mouse does not chase the bear. Since the mouse visits the bear (statement 5), it suggests that the mouse does not chase the bear while visiting the bear. This information is consistent with statement 1.\n\nNow, we need to analyze the statement \"The mouse does not chase the mouse.\" Given that we have concluded that the mouse chases the mouse from the information in statement 7, this statement seems to be false.\n\nHowever, we need to verify if there's any other piece of information that could potentially contradict our conclusion or make the truth value of the statement \"The mouse does not chase the mouse\" unknown.\n\nUpon further analysis, we notice that there's no information that directly contradicts the conclusion that the mouse chases the mouse. However, we also notice that the conclusion is based on the assumption that all nice people are cold (statement 8). If there's any information that contradicts this assumption, it could potentially make the truth value of the statement \"The mouse does not chase the mouse\" unknown.\n\nAfter re-examining the information, we find that there's no information that contradicts the assumption that all nice people are cold. Therefore, the conclusion that the mouse chases the mouse remains valid.\n\nIn conclusion, based on the given information and logical reasoning, we can conclude that the statement \"The mouse does not chase the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is nice. (From the given statements)\n   Since all nice people are cold, we can infer that the mouse is cold as well.\n\n2. If someone is nice and cold then they chase the mouse. (From the given statements)\n   Since the mouse is both nice and cold, it implies that the mouse chases the mouse. However, this is not directly possible, so we'll continue analyzing the statements.\n\n3. The mouse does not chase the bear. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n4. The mouse visits the bear. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n5. If the mouse visits the dog then the dog does not visit the bear. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n6. If the dog sees the mouse then the dog visits the tiger. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n7. The dog does not chase the bear. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n8. The tiger chases the bear. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\n9. The tiger sees the mouse. (From the given statements)\n   This statement does not provide any information about the mouse chasing the mouse, so we'll continue.\n\nNow, let's consider the statement we need to determine: \"The mouse does not chase the mouse.\"\n\nGiven statement 2, we have a contradiction with our current statement. However, we can conclude that we do not have enough information to determine if the mouse chases the mouse. Therefore, we can say that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals. \n\n1. The mouse visits the bear.\n2. The mouse is nice.\n3. The mouse is round.\n4. The mouse is young.\n5. The mouse does not chase the bear.\n6. The tiger chases the bear.\n7. The tiger sees the mouse.\n8. If someone chases the mouse and they see the tiger then the tiger is round.\n9. If the dog sees the mouse then the dog visits the tiger.\n10. If someone chases the mouse then they see the bear.\n11. If someone is nice and cold then they chase the mouse.\n12. If someone visits the mouse and they see the mouse then the mouse visits the dog.\n13. If the mouse visits the dog then the dog does not visit the bear.\n14. If someone sees the bear then they visit the dog.\n15. All nice people are cold.\n\nSince we are looking for information about the statement \"The mouse does not chase the mouse,\" let's analyze the relevant statements:\n\n- Statement 5: \"The mouse does not chase the bear.\"\n- Statement 10: \"If someone chases the mouse then they see the bear.\"\n- Statement 11: \"If someone is nice and cold then they chase the mouse.\"\n- Statement 12: \"If someone visits the mouse and they see the mouse then the mouse visits the dog.\"\n\nFrom statement 2, we know that the mouse is nice, and from statement 15, we know that all nice people are cold. Therefore, the mouse is cold.\n\nFrom statement 10, if the mouse chases the mouse, it means someone chases the mouse. Since the mouse is nice and cold, it fits the description in statement 11, which would imply that the mouse sees the bear.\n\nHowever, from statement 5, we know that the mouse does not chase the bear. \n\nNow, let's examine statement 10: \"If someone chases the mouse then they see the bear.\" If the mouse chases the mouse, it implies that someone chases the mouse. However, the mouse does not chase the bear, so it cannot be the case that the mouse chases the mouse.\n\nHowever, from statement 12: \"If someone visits the mouse and they see the mouse then the mouse visits the dog.\" We don't have any information that says the mouse visits the mouse. \n\nBut we can say that the mouse visits the bear from statement 1. Therefore, from statement 14: \"If someone sees the bear then they visit the dog,\" we can say that the mouse visits the dog. From statement 13: \"If the mouse visits the dog then the dog does not visit the bear,\" we can say that the dog does not visit the bear.\n\nWe also know that the dog sees the mouse from statement 4, which doesn't mention anything about the mouse chasing the mouse. However, from statement 9: \"If the dog sees the mouse then the dog visits the tiger,\" we know that the dog visits the tiger.\n\nSince the dog visits the tiger from statement 9 and the tiger sees the mouse from statement 7, we can use statement 8: \"If someone chases the mouse and they see the tiger then the tiger is round.\" However, this statement does not provide any information about the mouse chasing the mouse.\n\nTherefore, we cannot determine whether the statement \"The mouse does not chase the mouse\" is true or false from the given information. The answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements into a set of logical rules and use them to derive the desired conclusion. We'll represent the bear as B, the tiger as T, the dog as D, the mouse as M, and the statements as follows:\n\n1. B is nice.\n2. B visits T.\n3. D does not chase B.\n4. D sees M.\n5. M does not chase B.\n6. M is nice.\n7. M is round.\n8. M is young.\n9. M visits B.\n10. T chases B.\n11. T sees M.\n12. If someone chases M and they see T, then T is round.\n13. If D sees M, then D visits T.\n14. If someone chases M, then they see B.\n15. If someone is nice and cold, then they chase M.\n16. If someone visits M and they see M, then M visits D.\n17. If M visits D, then D does not visit B.\n18. If someone sees B, then they visit D.\n19. All nice people are cold.\n\nNow, we need to apply these rules to determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown.\n\nGiven the statement \"The mouse does not chase the mouse\", let's call this statement P. We can use the rules to derive the truth value of P.\n\nFrom rules 1 and 19, we know that M is nice and cold. However, these rules do not directly affect the statement P.\n\nNow, let's examine rule 15. It states that \"If someone is nice and cold, then they chase M.\" Since we know that M is nice and cold, we can apply this rule to conclude that M chases M. However, this conclusion is in conflict with the statement P.\n\nTo resolve this conflict, let's re-examine the rules. We can use rule 14, which states that \"If someone chases M, then they see B.\" Since M chases M, we can apply this rule to conclude that M sees B. However, this conclusion is not directly related to the statement P.\n\nHowever, we can apply rule 14 again. M chases M and M sees B. This conclusion is directly related to the statement P.\n\nHowever, we can't conclude whether M chases M or not. We only know that M is nice and cold. We need to use the other rules to derive the truth value of P.\n\nLet's use rule 12, which states that \"If someone chases M and they see T, then T is round.\" We don't have any information that M chases M and sees T. We only know that M sees T.\n\nLet's use rule 16, which states that \"If someone visits M and they see M, then M visits D.\" We don't have any information that someone visits M and sees M. We only know that M visits B.\n\nLet's use rule 17, which states that \"If M visits D, then D does not visit B.\" We don't have any information that M visits D.\n\nLet's use rule 18, which states that \"If someone sees B, then they visit D.\" We don't have any information that someone sees B.\n\nNow, we have exhausted all the rules that can be applied to the statement P. We have not been able to conclude whether M chases M or not.\n\nTherefore, the statement \"The mouse does not chase the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is nice. (From the given information)\n2. All nice people are cold. (From the given information)\n3. If someone is nice and cold then they chase the mouse. (From the given information)\n   Since the mouse is nice, it is also cold. Therefore, the mouse chases the mouse.\n\nHowever, the problem statement also says \"The mouse does not chase the bear.\" From this, we cannot conclude that the mouse does not chase the mouse. It is possible that the mouse chases the bear but does not chase itself.\n\nBut given that the mouse chases the mouse, the statement is actually \"The mouse does chase the mouse.\" This means that the statement \"The mouse does not chase the mouse\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is nice. (From the given statements)\n\n2. All nice people are cold. (From the given statements)\n   Therefore, the mouse is cold.\n\n3. If someone is nice and cold then they chase the mouse. (From the given statements)\n   Since the mouse is both nice and cold, it follows that the mouse chases the mouse.\n\nHowever, the initial statement to be evaluated is \"The mouse does not chase the mouse.\"\n\nFrom the given analysis, we know that the mouse chases the mouse. This contradicts the initial statement. Hence, the statement \"The mouse does not chase the mouse\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is nice. \n2. All nice people are cold.\n   From (1) and (2), we can conclude that the mouse is cold.\n\n3. If someone is nice and cold then they chase the mouse.\n   Since the mouse is cold (from step 2) and nice (from step 1), it can be concluded that the mouse chases the mouse.\n\nHowever, we also know that the mouse does not chase the bear (from the given information). This statement does not directly conflict with the mouse chasing the mouse. The mouse can have multiple behaviors.\n\nTherefore, the statement \"The mouse does not chase the mouse\" can be considered unknown, because we know that the mouse does not chase the bear, but we cannot conclude whether the mouse chases itself or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to deduce the relationship between the mouse and itself.\n\nStatement 1: The mouse does not chase the mouse.\nWe will try to prove this statement using the given rules.\n\nLet's analyze the rules:\n\n1. If someone chases the mouse and they see the tiger then the tiger is round.\n2. If the dog sees the mouse then the dog visits the tiger.\n3. If someone chases the mouse then they see the bear.\n4. If someone is nice and cold then they chase the mouse.\n5. If someone visits the mouse and they see the mouse then the mouse visits the dog.\n6. If the mouse visits the dog then the dog does not visit the bear.\n7. If someone sees the bear then they visit the dog.\n8. All nice people are cold.\n\nGiven statements:\n- The mouse is nice. (rule 8 implies this)\n- The mouse is round.\n- The mouse is young.\n- The mouse does not chase the bear.\n- The mouse visits the bear.\n\nFrom rule 4, since the mouse is nice, it must be cold. However, being cold is not a property of the mouse in this context.\n\nFrom rule 3, if someone chases the mouse, they see the bear. This implies that the bear has a connection to the mouse.\n\nFrom rule 5, if someone visits the mouse and they see the mouse, then the mouse visits the dog. Since the mouse visits the bear, it implies that the bear sees the mouse.\n\nFrom rule 7, if someone sees the bear, they visit the dog. Since the bear sees the mouse, it implies that someone visits the dog. However, we cannot conclude that the mouse visits the dog from this rule alone.\n\nFrom rule 6, if the mouse visits the dog, then the dog does not visit the bear. However, we already know that the dog sees the mouse, and it does not imply that the dog visits the bear.\n\nNow, let's analyze the original statement: \"The mouse does not chase the mouse.\"\n\nFrom rule 1, if someone chases the mouse and they see the tiger, then the tiger is round. However, this rule does not imply that the mouse cannot chase the mouse.\n\nFrom rule 2, if the dog sees the mouse, then the dog visits the tiger. However, this rule does not imply that the mouse cannot chase the mouse.\n\nFrom rule 3, if someone chases the mouse, then they see the bear. This implies that the bear has a connection to the mouse. However, this rule does not imply that the mouse cannot chase the mouse.\n\nFrom rule 5, if someone visits the mouse and they see the mouse, then the mouse visits the dog. However, this rule does not imply that the mouse cannot chase the mouse.\n\nFrom rule 6, if the mouse visits the dog, then the dog does not visit the bear. However, this rule does not imply that the mouse cannot chase the mouse.\n\nFrom rule 7, if someone sees the bear, they visit the dog. Since the bear sees the mouse, it implies that someone visits the dog. However, we cannot conclude that the mouse visits the dog from this rule alone.\n\nFrom rule 8, all nice people are cold. Since the mouse is nice, it is cold. However, this rule does not imply that the mouse cannot chase the mouse.\n\nBased on the given rules and statements, we cannot conclude that the mouse does or does not chase the mouse. Therefore, the statement \"The mouse does not chase the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the statement \"The mouse does not chase the mouse,\" we need to analyze the given conditions and find any information that is relevant to this statement.\n\n1. Given statement: The mouse does not chase the mouse.\n\nFrom the problem statement, we have the following relevant conditions:\n\n- The mouse is nice.\n- All nice people are cold.\n- If someone is nice and cold then they chase the mouse.\n\nHowever, this condition only tells us that if someone is nice and cold, they chase the mouse. It does not tell us that the mouse, being nice and cold, chases the mouse. We cannot conclude that the mouse chases the mouse based on the given conditions.\n\n- The mouse does not chase the bear.\n\nThis condition does not provide any information about the mouse chasing the mouse.\n\n- The mouse visits the bear.\n\nThis condition also does not provide any information about the mouse chasing the mouse.\n\n- If the mouse visits the dog then the dog does not visit the bear.\n\nThis condition is also irrelevant to the mouse chasing the mouse.\n\n- If someone chases the mouse and they see the tiger then the tiger is round.\n\nThis condition is also irrelevant to the mouse chasing the mouse.\n\n- If the dog sees the mouse then the dog visits the tiger.\n\nThis condition is also irrelevant to the mouse chasing the mouse.\n\n- The mouse is young.\n- The mouse is round.\n\nThese conditions are also irrelevant to the mouse chasing the mouse.\n\nSince we cannot conclude that the mouse chases the mouse based on the given conditions, we cannot determine the truth of the statement \"The mouse does not chase the mouse\" as true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated is: \"The mouse does not chase the mouse.\"\n2. We have the following information:\n   - The mouse does not chase the bear. (Given fact)\n   - The mouse is nice. (Given fact)\n   - All nice people are cold. (Given fact)\n   - If someone chases the mouse and they see the tiger then the tiger is round. (This fact is not relevant to the statement to be evaluated)\n   - If the dog sees the mouse then the dog visits the tiger. (This fact is not relevant to the statement to be evaluated)\n   - If someone chases the mouse then they see the bear. (This fact is not relevant to the statement to be evaluated)\n   - If someone is nice and cold then they chase the mouse. (This fact is not relevant to the statement to be evaluated)\n   - If someone visits the mouse and they see the mouse then the mouse visits the dog. (This fact is not relevant to the statement to be evaluated)\n   - If the mouse visits the dog then the dog does not visit the bear. (This fact is not relevant to the statement to be evaluated)\n   - If someone sees the bear then they visit the dog. (This fact is not relevant to the statement to be evaluated)\n   - The mouse is young. (Given fact)\n   - The mouse is round. (Given fact)\n   - The mouse visits the bear. (Given fact)\n   - The tiger chases the bear. (Given fact)\n   - The tiger sees the mouse. (Given fact)\n3. The only relevant information is:\n   - The mouse does not chase the bear.\n   - The mouse is nice.\n   - All nice people are cold.\n\nFrom the given information, we cannot directly determine whether the mouse chases itself or not. However, we can infer some information. Since the mouse is nice and all nice people are cold, we cannot conclude that the mouse chases itself. \n\nTo determine whether the mouse chases itself, we need to look for any information that suggests the mouse chases another entity. We already know that the mouse does not chase the bear.\n\nNow, we need to find any information that might indicate the mouse chases itself. The given statement does not explicitly state that the mouse chases itself. However, the statement to be evaluated is: \"The mouse does not chase the mouse.\" This statement is a negation of the statement \"The mouse chases the mouse.\"\n\nFrom the given information, we know that the mouse does not chase the bear. However, we cannot directly infer whether the mouse chases itself or not.\n\nGiven the information provided, we cannot determine whether the mouse chases itself or not. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_mouse_mouse, sees_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> not visits(dog, bear)",
+          "z3_formula": "Implies(visits_mouse_dog, Not(visits_dog_bear))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> not visits(dog, bear)",
+          "z3_formula": "Implies(visits_mouse_dog, Not(visits_dog_bear))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_chases(mouse, mouse)",
+          "z3_formula": "Not(chases_mouse_mouse) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_chases(mouse, bear)",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & sees(X, mouse) -> visits(X, dog)",
+          "z3_formula": "Implies(And(visits_mouse_mouse, sees_mouse_mouse), visits_mouse_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> Not(visits(dog, bear))",
+          "z3_formula": "Implies(visits_mouse_dog, Not(visits_dog_bear))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> visits(X, dog)",
+          "z3_formula": "Implies(sees_X_bear, visits_X_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(visits(dog, bear))",
+          "z3_formula": "Not(visits_dog_bear) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, bear) == False",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == False",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> !visits(dog, bear)",
+          "z3_formula": "Implies(visits_mouse_dog, !visits_dog_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(dog, mouse) -> visits(dog, tiger)",
+          "z3_formula": "Implies(sees_dog_mouse, visits_dog_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & sees(X, tiger) -> round(tiger)",
+          "z3_formula": "Implies(And(chases_X_mouse, sees_X_tiger), round_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(dog, mouse) -> visits(dog, tiger)",
+          "z3_formula": "Implies(sees_dog_mouse, visits_dog_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_X, cold_X), chases_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & sees(X, mouse) -> visits(mouse, dog)",
+          "z3_formula": "Implies(And(visits_X_mouse, sees_X_mouse), visits_mouse_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> not(visits(dog, bear))",
+          "z3_formula": "Implies(visits_mouse_dog, not(visits_dog_bear))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> visits(X, dog)",
+          "z3_formula": "Implies(sees_X_bear, visits_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(m)",
+          "z3_formula": "nice_m == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(m)",
+          "z3_formula": "cold_m == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(b)",
+          "z3_formula": "nice_b == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(b, m)",
+          "z3_formula": "visits_b_m == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_chase(d, b)",
+          "z3_formula": "does_not_chase_d_b == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(d, m)",
+          "z3_formula": "sees_d_m == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(m)",
+          "z3_formula": "nice_m == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(m)",
+          "z3_formula": "round_m == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(m)",
+          "z3_formula": "young_m == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(m, b)",
+          "z3_formula": "visits_m_b == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(t, b)",
+          "z3_formula": "chases_t_b == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(t, m)",
+          "z3_formula": "sees_t_m == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, m) & sees(X, t) -> round(t)",
+          "z3_formula": "Implies(And(chases_X_m, sees_X_t), round_t)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(d, m) -> visits(d, t)",
+          "z3_formula": "Implies(sees_d_m, visits_d_t)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, m) -> sees(X, b)",
+          "z3_formula": "Implies(chases_X_m, sees_X_b)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, m)",
+          "z3_formula": "Implies(And(nice_X, cold_X), chases_X_m)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, m) & sees(X, m) -> visits(m, d)",
+          "z3_formula": "Implies(And(visits_X_m, sees_X_m), visits_m_d)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(m, d) -> does_not_visit(d, b)",
+          "z3_formula": "Implies(visits_m_d, does_not_visit_d_b)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, b) -> visits(X, d)",
+          "z3_formula": "Implies(sees_X_b, visits_X_d)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, nice(X) -> cold(X))",
+          "z3_formula": "Implies(nice_b, cold_b)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_chase(m, m)",
+          "z3_formula": "does_not_chase_m_m == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases_mouse(X)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases_mouse(mouse)",
+          "z3_formula": "chases_mouse_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not chases_mouse(bear)",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases_mouse(X)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases_mouse(mouse)",
+          "z3_formula": "chases_mouse_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases_mouse(bear, mouse)",
+          "z3_formula": "Not(chases_bear_mouse) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & sees(X, tiger) -> round(tiger)",
+          "z3_formula": "Implies(And(chases_X_mouse, sees_X_tiger), round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(dog, mouse) -> visits(dog, tiger)",
+          "z3_formula": "Implies(sees_dog_mouse, visits_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & sees(X, mouse) -> visits(mouse, dog)",
+          "z3_formula": "Implies(And(visits_X_mouse, sees_X_mouse), visits_mouse_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, dog) -> not(visits(dog, bear))",
+          "z3_formula": "Implies(visits_mouse_dog, Not(visits_dog_bear))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> visits(X, dog)",
+          "z3_formula": "Implies(sees_X_bear, visits_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, mouse)",
+          "z3_formula": "sees_bear_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == Unknown",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_mouse, cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> chases_mouse(X)",
+          "z3_formula": "Implies(And(nice_mouse, cold_mouse), chases_mouse_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases_mouse(mouse, bear)",
+          "z3_formula": "chases_mouse_mouse_bear == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> visits(Y, Z)",
+          "z3_formula": "Implies(visits_mouse_bear, visits_bear_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases_mouse(X) & sees(X, Y) -> round(Y)",
+          "z3_formula": "Implies(And(chases_mouse_mouse, sees_mouse_tiger), round_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> visits(X, Z)",
+          "z3_formula": "Implies(sees_dog_mouse, visits_dog_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_X, nice_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, mouse)",
+          "z3_formula": "chases_mouse_mouse == Unknown",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 126,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 1,
+      "total_weight": 122,
+      "solve_time_ms": 1.223093830049038
+    },
+    "timing": {
+      "trace_gen_s": 9.026,
+      "extraction_s": 20.831,
+      "dedup_s": 1.183,
+      "maxsat_s": 0.004,
+      "total_s": 31.045
+    }
+  }
+}

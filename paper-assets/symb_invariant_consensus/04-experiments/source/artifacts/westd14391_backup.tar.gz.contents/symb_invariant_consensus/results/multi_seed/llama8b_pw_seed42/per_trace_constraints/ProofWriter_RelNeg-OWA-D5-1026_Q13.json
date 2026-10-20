@@ -1,0 +1,1331 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-1026_Q13",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, needs_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_cat, needs_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, needs_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cat, squirrel)",
+          "z3_formula": "Not(needs_cat_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "Not(needs_rabbit_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, rabbit)",
+          "z3_formula": "Not(chases_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, X)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, Not(needs_rabbit_tiger)), likes_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_squirrel_tiger, likes_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(likes_rabbit_rabbit)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_tiger_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, X)",
+          "z3_formula": "Implies(And(likes_tiger_squirrel, not needs_tiger_tiger), likes_squirrel_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, rabbit)",
+          "z3_formula": "not likes_rabbit_rabbit == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_tiger, likes_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, rabbit)",
+          "z3_formula": "likes_rabbit_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_rabbit_rabbit, not needs_rabbit_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_cat_squirrel, not needs_cat_tiger), likes_squirrel_tiger)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, rabbit)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_tiger_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_tiger_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_cat, likes_cat_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_cat_rabbit, likes_cat_rabbit), chases_rabbit_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, not needs_tiger_rabbit), likes_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, squirrel)",
+          "z3_formula": "not likes_rabbit_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, tiger)",
+          "z3_formula": "not likes_rabbit_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, needs_squirrel_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_squirrel_cat, likes_squirrel_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cat) & likes(cat, rabbit) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, needs_squirrel_cat, likes_cat_rabbit), needs_rabbit_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & likes(cat, rabbit) -> not likes(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, likes_cat_rabbit), not likes_rabbit_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, cat)",
+          "z3_formula": "not likes_rabbit_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, rabbit)",
+          "z3_formula": "not likes_rabbit_rabbit == True",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(rabbit, cat)",
+          "z3_formula": "does_not_need_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(chases_tiger_cat, needs_squirrel_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_tiger, likes_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_rabbit_rabbit), chases_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> does_not_need(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, does_not_need_rabbit_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & does_not_need(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, does_not_need_rabbit_tiger), likes_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_like(rabbit, rabbit)",
+          "z3_formula": "does_not_like_rabbit_rabbit == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_squirrel_tiger, likes_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_rabbit_tiger))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, Not(likes_tiger_squirrel))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_rabbit, Not(needs_rabbit_tiger)), likes_squirrel_tiger)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_cat, likes_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_tiger_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, X)",
+          "z3_formula": "Implies(And(likes_cat_squirrel, not needs_tiger_cat), likes_squirrel_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, rabbit)",
+          "z3_formula": "not likes_rabbit_rabbit == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_tiger_tiger))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, X)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, Not(needs_tiger_tiger)), likes_squirrel_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not(need(X, tiger))",
+          "z3_formula": "Implies(chases_tiger_rabbit, not(need_tiger_tiger))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> need(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), need_tiger_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "need(rabbit, squirrel)",
+          "z3_formula": "need_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "need(squirrel, cat)",
+          "z3_formula": "need_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> need(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, need_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "need(tiger, cat)",
+          "z3_formula": "need_tiger_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(need_X_tiger, likes_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not(need(X, tiger)) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(likes_X_squirrel, not(need_X_tiger)), likes_X_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, rabbit)",
+          "z3_formula": "likes_rabbit_rabbit == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_cat, likes_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> rabbit_chases_squirrel",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), rabbit_chases_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_tiger_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes_squirrel_tiger",
+          "z3_formula": "Implies(And(likes_tiger_squirrel, not needs_tiger_tiger), likes_squirrel_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_rabbit_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(tiger, tiger)",
+          "z3_formula": "not needs_tiger_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "not likes_tiger_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not likes_squirrel_tiger",
+          "z3_formula": "not likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, rabbit)",
+          "z3_formula": "not likes_rabbit_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, rabbit)",
+          "z3_formula": "likes_rabbit_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit_chases_squirrel",
+          "z3_formula": "rabbit_chases_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not rabbit_chases_squirrel",
+          "z3_formula": "not rabbit_chases_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "True",
+          "z3_formula": "True",
+          "source_step": 21
+        }
+      ]
+    }
+  ]
+}

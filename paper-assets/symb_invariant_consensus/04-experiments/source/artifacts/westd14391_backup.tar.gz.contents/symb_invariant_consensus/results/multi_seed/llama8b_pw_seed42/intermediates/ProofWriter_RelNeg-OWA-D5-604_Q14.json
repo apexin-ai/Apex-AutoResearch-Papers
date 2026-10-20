@@ -1,0 +1,1170 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-604_Q14",
+    "problem": "The cat chases the dog. The cat chases the mouse. The cat chases the tiger. The cat eats the dog. The dog is big. The dog sees the cat. The mouse does not eat the cat. The mouse eats the tiger. The mouse does not see the tiger. The tiger eats the dog. The tiger is nice. If something is young and it eats the tiger then it eats the dog. If something sees the mouse and it eats the mouse then the mouse sees the tiger. If something sees the mouse then it is big. If something chases the dog then the dog chases the cat. If something chases the dog then it chases the cat. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. If something sees the dog and it chases the tiger then the tiger chases the dog. If the tiger is green and the tiger is big then the tiger sees the dog. If something chases the cat then it sees the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse eats the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(Cat, Dog, True) ::: The cat chases the dog.\nChases(Cat, Mouse, True) ::: The cat chases the mouse.\nChases(Cat, Tiger, True) ::: The cat chases the tiger.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nBig(Dog, True) ::: The dog is big.\nSees(Dog, Cat, True) ::: The dog sees the cat.\nEats(Mouse, Cat, False) ::: The mouse does not eat the cat.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nSees(Mouse, Tiger, False) ::: The mouse does not see the tiger.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nNice(Tiger, True) ::: The tiger is nice.\n\nRules:\nYoung($x, True) && Eats($x, Tiger, True) >>> Eats($x, Dog, True) ::: If something is young and it eats the tiger then it eats the dog.\nSees($x, Mouse, True) && Eats($x, Mouse, True) >>> Sees(Mouse, Tiger, True) ::: If something sees the mouse and it eats the mouse then the mouse sees the tiger.\nSees($x, Mouse, True) >>> Big($x, True) ::: If something sees the mouse then it is big.\nChases($x, Dog, True) >>> Chases(Dog, Cat, True) ::: If something chases the dog then the dog chases the cat.\nChases($x, Dog, True) >>> Chases($x, Cat, True) ::: If something chases the dog then it chases the cat.\nChases($x, Tiger, True) && Eats(Tiger, Cat, True) >>> Sees(Cat, Mouse, True) ::: If something chases the tiger and the tiger eats the cat then the cat sees the mouse.\nSees($x, Dog, True) && Chases($x, Tiger, True) >>> Chases(Tiger, Dog, True) ::: If something sees the dog and it chases the tiger then the tiger chases the dog.\nGreen(Tiger, True) && Big(Tiger, True) >>> Sees(Tiger, Dog, True) ::: If the tiger is green and the tiger is big then the tiger sees the dog.\nChases($x, Cat, True) >>> Sees($x, Dog, True) ::: If something chases the cat then it sees the dog.\n\nQuery:\nEats(Mouse, Dog, True) ::: The mouse eats the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 20.5,
+      "True": 45.0,
+      "Unknown": 161.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nGiven information:\n1. The cat chases the dog.\n2. The cat chases the mouse.\n3. The cat chases the tiger.\n4. The cat eats the dog.\n5. The dog is big.\n6. The dog sees the cat.\n7. The mouse does not eat the cat.\n8. The mouse eats the tiger.\n9. The mouse does not see the tiger.\n10. The tiger eats the dog.\n11. The tiger is nice.\n12. If something is young and it eats the tiger then it eats the dog.\n13. If something sees the mouse and it eats the mouse then the mouse sees the tiger.\n14. If something sees the mouse then it is big.\n15. If something chases the dog then the dog chases the cat.\n16. If something chases the dog then it chases the cat.\n17. If something chases the tiger and the tiger eats the cat then the cat sees the mouse.\n18. If something sees the dog and it chases the tiger then the tiger chases the dog.\n19. If the tiger is green and the tiger is big then the tiger sees the dog.\n20. If something chases the cat then it sees the dog.\n\nNow, we need to determine whether the mouse eats the dog. Let's analyze the given information step by step:\n\n- The mouse eats the tiger (given information, point 8).\n- The tiger eats the dog (given information, point 10).\n- If something is young and it eats the tiger then it eats the dog (rule, point 12).\n\nHowever, there is no information available about the age of the mouse or the cat. We cannot assume that the mouse or the cat is young based on the given information. \n\nSo, we cannot conclude that the mouse eats the dog based on the information given. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, let's analyze the given information step by step:\n\n1. The cat chases the mouse.\n2. The cat eats the dog.\n3. The dog is big.\n4. The dog sees the cat.\n5. The mouse does not eat the cat.\n6. The mouse eats the tiger.\n7. The mouse does not see the tiger.\n8. The tiger eats the dog.\n9. The tiger is nice.\n10. If something is young and it eats the tiger then it eats the dog. (This is a rule we can use later.)\n11. If something sees the mouse and it eats the mouse then the mouse sees the tiger. (We cannot use this rule because it is impossible for something to see the mouse and eat the mouse at the same time.)\n12. If something sees the mouse then it is big. (This is a rule we can use later.)\n13. If something chases the dog then the dog chases the cat. (We cannot use this rule because we don't know who chases the dog.)\n14. If something chases the dog then it chases the cat. (This is a rule we can use later.)\n15. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. (We cannot use this rule because we don't know who chases the tiger.)\n16. If something sees the dog and it chases the tiger then the tiger chases the dog. (We cannot use this rule because we don't know who sees the dog.)\n17. If the tiger is green and the tiger is big then the tiger sees the dog. (We cannot use this rule because the tiger is not green.)\n18. If something chases the cat then it sees the dog. (This is a rule we can use later.)\n\nNow, let's try to find the relationship between the mouse and the dog using the given rules:\n\nFrom rule 10, we know that if something is young and it eats the tiger then it eats the dog. We don't know if the mouse is young, but if it is, then it would eat the dog.\n\nFrom rule 6, we know that the mouse eats the tiger.\n\nFrom rule 12, we know that if something sees the mouse then it is big. However, we don't know who sees the mouse.\n\nFrom rule 4, we know that the dog sees the cat.\n\nFrom rule 8, we know that the tiger eats the dog.\n\nFrom rule 18, we know that if something chases the cat then it sees the dog.\n\nWe can conclude that the mouse is not big because it does not see the tiger (rule 7), and the dog is big (rule 3). However, we don't know if the mouse is young or not.\n\nWe can also conclude that the cat chases the mouse (rule 1), and the cat eats the dog (rule 2). Therefore, the cat sees the dog (rule 18), and the cat is not young.\n\nFrom rule 8, we know that the tiger eats the dog.\n\nNow, let's try to find the relationship between the cat and the tiger:\n\nFrom rule 2, we know that the cat eats the dog.\n\nFrom rule 8, we know that the tiger eats the dog.\n\nFrom rule 15, we know that if something chases the tiger and the tiger eats the cat then the cat sees the mouse. However, we don't know who chases the tiger.\n\nWe can conclude that the cat does not chase the tiger because the cat eats the dog (rule 2), and the tiger eats the dog (rule 8).\n\nFrom rule 18, we know that if something chases the cat then it sees the dog. However, we don't know who chases the cat.\n\nNow, let's try to find the relationship between the mouse and the dog:\n\nFrom rule 6, we know that the mouse eats the tiger.\n\nFrom rule 8, we know that the tiger eats the dog.\n\nHowever, we don't know if the mouse eats the dog or not.\n\nFrom rule 4, we know that the dog sees the cat.\n\nFrom rule 18, we know that if something chases the cat then it sees the dog. However, we don't know who chases the cat.\n\nWe can conclude that the mouse does not see the tiger (rule 7), and the mouse does not eat the cat (rule 5).\n\nHowever, we can also conclude that the mouse eats the tiger (rule 6).\n\nTherefore, the statement \"The mouse eats the dog\" is unknown because we cannot determine whether the mouse eats the dog or not based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse eats the tiger. (Given)\n2. If something is young and it eats the tiger then it eats the dog. (Given)\n   - We don't have information about the mouse's age, so we cannot directly conclude that the mouse eats the dog based on this rule. This information is not enough to determine the statement's truth.\n\n3. The tiger eats the dog. (Given)\n   - This information contradicts our initial statement. If the tiger eats the dog, then it is impossible for the mouse to eat the dog.\n\nHowever, since the tiger eats the dog, the mouse eating the dog is impossible. So, the initial statement is false.\n\nThe other given rules do not provide any additional information that would affect the conclusion.\n\nTherefore, the statement \"The mouse eats the dog\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat chases the dog.\n2. The cat chases the mouse.\n3. The cat chases the tiger.\n4. The cat eats the dog.\nFrom statement 4, we know that the cat eats the dog. \n\nHowever, this does not directly tell us about the mouse eating the dog. We need to find a connection between the cat and the mouse to the dog.\n\n5. The dog is big.\n6. The dog sees the cat.\n7. The mouse does not eat the cat.\n8. The mouse eats the tiger.\n9. The mouse does not see the tiger.\n10. The tiger eats the dog.\n11. The tiger is nice.\n \nNow, we need to analyze the given rules:\n\n- If something is young and it eats the tiger then it eats the dog. (This rule is not applicable here as we do not have any information about the age of the mouse or the cat.)\n- If something sees the mouse and it eats the mouse then the mouse sees the tiger. (This rule is not applicable here as we do not have any information about something seeing the mouse and eating the mouse.)\n- If something sees the mouse then it is big. (This rule is not applicable here as we do not have any information about something seeing the mouse.)\n- If something chases the dog then the dog chases the cat. (This rule is not applicable here as we do not have any information about something chasing the dog.)\n- If something chases the dog then it chases the cat. (This rule is not applicable here as we do not have any information about something chasing the dog.)\n- If something chases the tiger and the tiger eats the cat then the cat sees the mouse. (This rule is not applicable here as we do not have any information about something chasing the tiger and the tiger eating the cat.)\n- If something sees the dog and it chases the tiger then the tiger chases the dog. (This rule is not applicable here as we do not have any information about something seeing the dog and chasing the tiger.)\n- If the tiger is green and the tiger is big then the tiger sees the dog. (This rule is not applicable here as we do not have any information about the tiger being green.)\n- If something chases the cat then it sees the dog. \n\nNow, we know that the cat sees the dog (statement 6). Also, the cat chases the mouse (statement 2). \n\nGiven this information, we can apply the rule: If something sees the mouse then it is big. (This rule is applicable here as the cat sees the mouse.) So, the cat is big.\n\nHowever, this still does not tell us about the mouse eating the dog. We need to find a connection between the cat and the mouse to the dog.\n\nNow, we know that the mouse eats the tiger (statement 8). Also, the tiger eats the dog (statement 10). \n\nHowever, this still does not tell us about the mouse eating the dog. We need to find a connection between the mouse and the dog.\n\nNow, we know that the mouse does not eat the cat (statement 7) and the cat eats the dog (statement 4). However, we do not have any information about the mouse eating the cat.\n\nHowever, we know that the cat chases the dog and the dog chases the cat. This creates a cycle, where neither the cat nor the dog can be the predator of the other.\n\nHowever, we know that the cat chases the mouse. This creates a possibility that the mouse is the predator of the cat. \n\nHowever, we do not have any information that the mouse eats the cat. But we do know that the mouse eats the tiger and the tiger eats the dog.\n\nUsing the rule: If something is young and it eats the tiger then it eats the dog. (This rule is not applicable here as we do not have any information about the age of the mouse or the cat.)\n\nHowever, we know that the mouse eats the tiger and the tiger eats the dog. This does not necessarily mean that the mouse eats the dog.\n\nHowever, we know that the cat chases the mouse and the cat eats the dog. This creates a possibility that the mouse is the predator of the cat.\n\nHowever, we do not have any information that the mouse eats the cat. But we do know that the mouse eats the tiger and the tiger eats the dog.\n\nUsing the rule: If something sees the mouse then it is big. (This rule is applicable here as the cat sees the mouse.) So, the cat is big.\n\nHowever, this still does not tell us about the mouse eating the dog. We need to find a connection between the mouse and the dog.\n\nNow, we know that the mouse eats the tiger (statement 8) and the tiger eats the dog (statement 10). Also, the mouse does not see the tiger (statement 9).\n\nHowever, this still does not tell us about the mouse eating the dog. We need to find a connection between the mouse and the dog.\n\nNow, we know that the cat chases the mouse and the cat eats the dog. However, the cat does not eat the mouse (statement 7).\n\nHowever, we do not have any information that the mouse eats the cat. But we do know that the mouse eats the tiger and the tiger eats the dog.\n\nGiven this information, we can conclude that we do not have enough information to determine whether the mouse eats the dog or not. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. The cat chases the dog. \n2. The cat chases the mouse. \n3. The cat chases the tiger. \n4. The cat eats the dog. \n5. The dog is big. \n6. The dog sees the cat. \n7. The mouse does not eat the cat. \n8. The mouse eats the tiger. \n9. The mouse does not see the tiger. \n10. The tiger eats the dog. \n11. The tiger is nice. \n\nThere are 12 rules given, so let's consider them:\n\n1. If something is young and it eats the tiger then it eats the dog. \n   (This rule is not applicable here as we do not know if the mouse is young or not)\n\n2. If something sees the mouse and it eats the mouse then the mouse sees the tiger. \n   (There is no information that anything sees the mouse and eats the mouse)\n\n3. If something sees the mouse then it is big. \n   (We know the dog sees the mouse, so the dog is big. But this does not help in determining if the mouse eats the dog)\n\n4. If something chases the dog then the dog chases the cat. \n   (The cat chases the dog, so the dog chases the cat. But this does not help in determining if the mouse eats the dog)\n\n5. If something chases the dog then it chases the cat. \n   (The cat chases the dog, so the cat chases the cat. But this does not help in determining if the mouse eats the dog)\n\n6. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. \n   (There is no information that anything chases the tiger and the tiger eats the cat)\n\n7. If something sees the dog and it chases the tiger then the tiger chases the dog. \n   (There is no information that anything sees the dog and chases the tiger)\n\n8. If the tiger is green and the tiger is big then the tiger sees the dog. \n   (We do not know if the tiger is green or not, so this rule is not applicable)\n\n9. If something chases the cat then it sees the dog. \n   (The cat chases the mouse, so the mouse does not necessarily see the dog)\n\nNow let's analyze the given statement \"The mouse eats the dog\" based on the information provided:\n\nFrom rule 8, we know that the mouse eats the tiger. But we do not know if the mouse eats the dog or not.\n\nWe can use rule 4 and rule 5 to find a relationship between the mouse and the dog. Since the cat chases the dog (rule 1), the dog chases the cat (rule 4). And the cat chases the mouse (rule 2). But we do not know if the cat eats the mouse or not.\n\nConsidering all the given information and rules, we cannot determine if the mouse eats the dog or not.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. We are given that the mouse eats the tiger (Statement 8).\n2. We are also given that if something is young and it eats the tiger then it eats the dog (Rule 1).\n3. However, the text does not specify whether the mouse is young or not.\n\nTo determine whether the mouse is young, let's analyze the given information and the rules:\n\n1. We are given that the cat chases the mouse (Statement 1).\n2. We are also given that if something chases the dog then the dog chases the cat (Rule 3).\n3. Since the cat chases the mouse, it implies that the cat chases the dog (Rule 3).\n4. If the cat chases the dog, then the dog chases the cat (Rule 3).\n5. The dog is big (Statement 5).\n\nHowever, to determine whether the mouse is young or not, we need more information about the relationship between the cat and the mouse.\n\n1. We are given that the cat eats the dog (Statement 4).\n2. We are also given that if something sees the mouse then it is big (Rule 4).\n3. Since the cat eats the dog, it implies that the cat sees the mouse (Rule 4).\n4. Therefore, the cat is big (Rule 4).\n5. However, this does not provide any information about the age of the mouse.\n\nUnfortunately, the given information and rules are not sufficient to determine whether the mouse is young or not. Therefore, we cannot conclude whether the mouse eats the dog or not.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. The cat chases the dog.\n2. The cat chases the mouse.\n3. The cat chases the tiger.\n4. The cat eats the dog.\n5. The dog is big.\n6. The dog sees the cat.\n7. The mouse does not eat the cat.\n8. The mouse eats the tiger.\n9. The mouse does not see the tiger.\n10. The tiger eats the dog.\n11. The tiger is nice.\n12. If something is young and it eats the tiger then it eats the dog.\n13. If something sees the mouse and it eats the mouse then the mouse sees the tiger.\n14. If something sees the mouse then it is big.\n15. If something chases the dog then the dog chases the cat.\n16. If something chases the dog then it chases the cat.\n17. If something chases the tiger and the tiger eats the cat then the cat sees the mouse.\n18. If something sees the dog and it chases the tiger then the tiger chases the dog.\n19. If the tiger is green and the tiger is big then the tiger sees the dog.\n20. If something chases the cat then it sees the dog.\n\nNow, we will analyze the given statement \"The mouse eats the dog\" using the provided rules.\n\nFrom rule 12, we can see that there is no rule that states if something eats the tiger then it eats the dog. However, we can see from rule 8 that the mouse eats the tiger, but we do not have enough information to determine if the mouse eats the dog or not.\n\nHowever, from rule 10, we know that the tiger eats the dog. And from rule 8, we know that the mouse eats the tiger. \n\nWe can use rule 20 to analyze further. We do not know if the mouse chases the cat or not, but if the mouse chases the cat, then it sees the dog. However, we can see from rule 4 that the cat eats the dog. If the mouse chases the cat, then the cat sees the mouse from rule 7.\n\nHowever, there is no rule that states if the mouse sees the cat then it eats the cat or if it sees the dog then it eats the dog.\n\nWe can use rule 6 to analyze further. We know that the dog sees the cat, but we do not have enough information to determine if the mouse sees the dog or not.\n\nHowever, we can use rule 18 to analyze further. If something sees the dog and it chases the tiger then the tiger chases the dog. However, we can see from rule 10 that the tiger eats the dog.\n\nNow, we can analyze the statement using rule 14. If something sees the mouse then it is big. However, we can see from rule 9 that the mouse does not see the tiger.\n\nWe can use rule 15 to analyze further. If something chases the dog then the dog chases the cat. However, we can see from rule 1 that the cat chases the dog.\n\nNow, we can analyze the statement using rule 16. If something chases the dog then it chases the cat. However, we can see from rule 1 that the cat chases the dog.\n\nNow, we can analyze the statement using rule 17. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. However, we can see from rule 3 that the cat chases the tiger.\n\nNow, we can analyze the statement using rule 19. If the tiger is green and the tiger is big then the tiger sees the dog. However, we can see from rule 11 that the tiger is nice, not green.\n\nNow, we can analyze the statement using rule 8. We know that the mouse eats the tiger.\n\nTherefore, based on the given rules, we cannot determine whether the statement \"The mouse eats the dog\" is true, false, or unknown.\n\nHowever, we can see from the rules that there is no direct information that the mouse eats the dog. The mouse eats the tiger from rule 8, and the tiger eats the dog from rule 10.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse does not eat the cat. \n2. The mouse eats the tiger.\n3. The cat chases the dog.\n4. The cat eats the dog.\n\nFrom (2), we know that the mouse eats the tiger, but we cannot conclude that the mouse eats the dog directly.\n\nHowever, we can see that the cat eats the dog in (4). Since the cat chases the dog, we can use the rule \"If something chases the dog then the dog chases the cat\" (let's call this rule R1). \n\nFrom (3) and R1, we can conclude that the dog chases the cat. \n\nNow, let's use the rule \"If something sees the mouse then it is big\" (let's call this rule R2).\n\nSince the dog sees the cat (from (3)), we can conclude that the dog is big using R2.\n\nWe also know that the tiger is big (from the fact that the tiger is nice), and the tiger eats the dog (from the fact that the tiger eats the dog). \n\nHowever, we also know that the tiger chases the dog (from the fact that the tiger eats the dog), and the dog chases the cat (from R1). \n\nNow, let's use the rule \"If something chases the cat then it sees the dog\" (let's call this rule R3).\n\nFrom (3) and R3, we can conclude that the cat sees the dog.\n\nNow, let's go back to the fact that the mouse eats the tiger. \n\nUsing the rule \"If something is young and it eats the tiger then it eats the dog\" (let's call this rule R4), we cannot directly apply it to the mouse because we don't know the age of the mouse.\n\nHowever, we can use the rule \"If something sees the mouse and it eats the mouse then the mouse sees the tiger\" (let's call this rule R5) and the fact that the cat sees the mouse (from the fact that the cat chases the mouse) to conclude that the mouse does not see the cat.\n\nBut since the cat sees the dog (from R3), we can use the rule \"If something sees the dog and it chases the tiger then the tiger chases the dog\" (let's call this rule R6) to conclude that the cat does not chase the tiger.\n\nHowever, we also know that the cat chases the tiger (from the fact that the cat eats the dog and the tiger eats the dog).\n\nSince the cat chases the tiger, we can use the rule \"If something chases the tiger and the tiger eats the cat then the cat sees the mouse\" (let's call this rule R7).\n\nHowever, we already know that the cat sees the mouse (from the fact that the cat chases the mouse). \n\nUsing the fact that the cat sees the mouse and the mouse eats the tiger, we can use R5 to conclude that the mouse does not see the tiger.\n\nHowever, we know that the mouse eats the tiger (from the fact that the mouse eats the tiger).\n\nSince the cat sees the dog (from R3), we can use the rule \"If something sees the dog then the dog is big\" (let's call this rule R8) to conclude that the dog is big.\n\nHowever, we already know that the dog is big (from the fact that the dog sees the cat).\n\nSince the cat eats the dog (from the fact that the cat eats the dog), we can use the rule \"If the tiger is green and the tiger is big then the tiger sees the dog\" (let's call this rule R9).\n\nHowever, we don't know that the tiger is green, so we cannot conclude that the tiger sees the dog.\n\nHowever, we know that the tiger sees the dog (from the fact that the tiger eats the dog).\n\nSince the cat eats the dog (from the fact that the cat eats the dog), we can use the rule \"If something chases the dog then the dog chases the cat\" (let's call this rule R1) to conclude that the dog chases the cat.\n\nHowever, we already know that the dog chases the cat (from (3) and R1).\n\nSince the cat sees the mouse (from the fact that the cat chases the mouse), we can use the rule \"If something sees the mouse then it is big\" (let's call this rule R2) to conclude that the cat is big.\n\nHowever, we already know that the cat is big (from the fact that the cat chases the dog).\n\nSince the mouse eats the tiger (from the fact that the mouse eats the tiger), we can use the rule \"If something is young and it eats the tiger then it eats the dog\" (let's call this rule R4).\n\nHowever, we don't know the age of the mouse, so we cannot conclude that the mouse eats the dog.\n\nHowever, we can use the fact that the cat eats the dog (from the fact that the cat eats the dog) to conclude that the mouse eats the dog.\n\nUsing the rule \"If the cat eats the dog then the mouse eats the dog\" (let's call this rule R10), we can conclude that the mouse eats the dog.\n\nTherefore, the statement \"The mouse eats the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the dog. \n   - This statement directly tells us that the dog is eaten by the cat, not the mouse.\n\n2. If something is young and it eats the tiger then it eats the dog. \n   - However, there is no information that the mouse is young.\n\n3. The mouse eats the tiger. \n   - This statement tells us that the mouse eats the tiger, but it does not tell us whether the mouse eats the dog.\n\n4. The mouse does not see the tiger. \n   - This statement is irrelevant to the question of whether the mouse eats the dog.\n\n5. If something sees the mouse and it eats the mouse then the mouse sees the tiger. \n   - This statement does not apply to the mouse eating the dog.\n\n6. If something sees the mouse then it is big. \n   - This statement does not apply to the mouse eating the dog.\n\n7. If something chases the dog then the dog chases the cat. \n   - This statement is not relevant to the question of whether the mouse eats the dog.\n\n8. If something chases the dog then it chases the cat. \n   - This statement is not relevant to the question of whether the mouse eats the dog.\n\n9. If something chases the tiger and the tiger eats the cat then the cat sees the mouse. \n   - This statement is not relevant to the question of whether the mouse eats the dog.\n\n10. If something sees the dog and it chases the tiger then the tiger chases the dog. \n    - This statement is not relevant to the question of whether the mouse eats the dog.\n\n11. If the tiger is green and the tiger is big then the tiger sees the dog. \n    - There is no information that the tiger is green or that it sees the dog.\n\n12. If something chases the cat then it sees the dog. \n    - This statement is not relevant to the question of whether the mouse eats the dog.\n\nNow, looking at the original statements again, we find that the statement \"The mouse eats the tiger\" is given, and the statement \"The cat eats the dog\" is given. However, there is no direct or indirect information that links the mouse eating the tiger to the mouse eating the dog.\n\nTherefore, the statement \"The mouse eats the dog\" is unknown because there is no information that directly or indirectly implies this relationship.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\nGiven statements:\n\n1. The cat chases the dog.\n2. The cat chases the mouse.\n3. The cat chases the tiger.\n4. The cat eats the dog.\n5. The dog is big.\n6. The dog sees the cat.\n7. The mouse does not eat the cat.\n8. The mouse eats the tiger.\n9. The mouse does not see the tiger.\n10. The tiger eats the dog.\n11. The tiger is nice.\n12. If something is young and it eats the tiger then it eats the dog.\n13. If something sees the mouse and it eats the mouse then the mouse sees the tiger.\n14. If something sees the mouse then it is big.\n15. If something chases the dog then the dog chases the cat.\n16. If something chases the dog then it chases the cat.\n17. If something chases the tiger and the tiger eats the cat then the cat sees the mouse.\n18. If something sees the dog and it chases the tiger then the tiger chases the dog.\n19. If the tiger is green and the tiger is big then the tiger sees the dog.\n20. If something chases the cat then it sees the dog.\n\nWe need to find any information related to the mouse eating the dog.\n\nFrom statement 8, we know that the mouse eats the tiger. However, we need to determine if this implies that the mouse eats the dog.\n\nFrom statement 12, we can infer that since the tiger eats the dog (from statement 10), the mouse (which is young) eating the tiger would imply that the mouse eats the dog.\n\nHowever, we can't directly infer that the mouse eats the dog from the given information. The mouse eating the tiger does not necessarily imply that it eats the dog, as there's no explicit rule connecting the mouse eating the tiger to the mouse eating the dog.\n\nTherefore, based on the given information and applying the rules step by step, we cannot conclude that the mouse eats the dog with certainty.\n\nThe statement \"The mouse eats the dog\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nGiven information:\n\n1. The mouse eats the tiger.\n2. If something is young and it eats the tiger then it eats the dog.\n3. The tiger eats the dog.\n\nFrom the given information, we know that the mouse eats the tiger (Rule 1).\n\nNow, we need to check if the mouse is young and if it eats the tiger. \n\nThe information about the age of the mouse is not provided. However, it is not explicitly stated that the mouse is young either. So, we cannot conclude that the mouse is young.\n\nHowever, Rule 2 states that if something is young and it eats the tiger then it eats the dog. But we cannot confirm that the mouse is young because the age of the mouse is unknown. Therefore, we cannot apply this rule to conclude that the mouse eats the dog.\n\nOn the other hand, Rule 3 states that the tiger eats the dog. Since the mouse eats the tiger, it is possible that the mouse eats the dog. But we cannot conclude it for sure.\n\nNow, let's check for other possible conclusions based on the given rules.\n\nRule 5 states that if something chases the dog then the dog chases the cat. We don't have any information about the mouse chasing the dog.\n\nRule 6 states that if something chases the dog then it chases the cat. We don't have any information about the mouse chasing the dog.\n\nRule 7 states that if something chases the tiger and the tiger eats the cat then the cat sees the mouse. We don't have any information about the mouse chasing the tiger.\n\nRule 8 states that if something sees the dog and it chases the tiger then the tiger chases the dog. We don't have any information about the mouse seeing the dog.\n\nRule 9 states that if the tiger is green and the tiger is big then the tiger sees the dog. We don't have any information about the color or size of the tiger.\n\nRule 10 states that if something chases the cat then it sees the dog. We don't have any information about the mouse chasing the cat.\n\nHowever, Rule 4 states that if something sees the mouse then it is big. The dog sees the mouse, so the dog is big.\n\nThe problem statement also mentions that the dog is big (Rule 2). However, we don't know if the mouse sees the dog. If the mouse sees the dog, then the mouse would be big.\n\nRule 5 states that if something chases the dog then the dog chases the cat. But we don't have any information about the mouse chasing the dog.\n\nHowever, the information that the dog chases the cat is not directly related to the mouse eating the dog.\n\nNow let's consider the statement that \"The mouse eats the dog.\"\n\nFrom the information given, we know that the mouse eats the tiger (Rule 1). We also know that the tiger eats the dog (Rule 3).\n\nHowever, we don't have any direct information about the mouse eating the dog. The given rules do not provide any direct conclusion about the mouse eating the dog.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse eats the dog\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse eats the tiger. (Given statement)\n2. If something is young and it eats the tiger then it eats the dog. (Rule)\nWe can conclude that the mouse is young because there is no information about its age, but we also do not have any information that contradicts the mouse's age. So, we can apply this rule.\n\nFrom the given statements and rules, we cannot determine the age of the mouse. But we know that the mouse eats the tiger and according to the rule, if something is young and it eats the tiger then it eats the dog.\n\nHowever, since we do not have enough information to determine the mouse's age, we cannot apply this rule to conclude that the mouse eats the dog. Therefore, the statement \"The mouse eats the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not(eats_mouse_cat) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not(sees_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_cat, chases_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse_tiger, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(mouse, dog)",
+          "z3_formula": "Not(eats_mouse_dog) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, cat)",
+          "z3_formula": "not eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, tiger)",
+          "z3_formula": "not sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(dog, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_dog_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(mouse, dog))",
+          "z3_formula": "not_eats_mouse_dog == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(dog, X)",
+          "z3_formula": "Implies(chases_cat_dog, chases_dog_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_cat_mouse, big_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(eats_mouse_dog, Not(eats_mouse_dog)))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(mouse, dog))",
+          "z3_formula": "not_eats_mouse_dog == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, cat)",
+          "z3_formula": "Not(eats_mouse_cat) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(dog, X)",
+          "z3_formula": "Implies(chases_cat_dog, chases_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_dog_mouse, big_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_cat_mouse, eats_cat_mouse), sees_cat_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_cat_dog, chases_cat_tiger), chases_tiger_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(chases_cat_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_cat_mouse, big_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cat eats dog -> mouse eats dog",
+          "z3_formula": "Implies(eats_cat_dog, eats_mouse_dog)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, tiger)",
+          "z3_formula": "Not(sees_mouse_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_X_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(cat, dog)",
+          "z3_formula": "Implies(chases_X_dog, chases_cat_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(dog, cat)",
+          "z3_formula": "Implies(chases_mouse_dog, chases_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_mouse_dog, chases_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_mouse_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_mouse_dog, chases_mouse_tiger), chases_tiger_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_mouse_cat, sees_mouse_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, mouse)",
+          "z3_formula": "sees_dog_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_mouse_dog, big_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_mouse, eats_mouse_tiger), eats_mouse_dog)",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 173,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 2,
+      "total_weight": 171,
+      "solve_time_ms": 1.7395364120602608
+    },
+    "timing": {
+      "trace_gen_s": 14.135,
+      "extraction_s": 31.795,
+      "dedup_s": 1.462,
+      "maxsat_s": 0.004,
+      "total_s": 47.396
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "020c407b40b0e9933e61",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix exp026 temperature restart",
+  "task_key": "worker_code_fix-exp026-temperature-restart_20260518T114541",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-exp026-temperature-restart_20260518T114541_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "9f9a113cbd3f04ce53c203100627059ad834dbc45d0d6c341981d92a73c70cc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 产出报告\n\n### 1. 旧进程\n- PID 25172 (exp-026 worker) — 已 kill ✓\n- PID 25162 (父进程) — 已 kill ✓\n\n### 2. 修改的文件\n\n| 文件 | 行号 | 修改 |\n|------|------|------|\n| `run_full_mvp.py` | 201 | `default=0.3` → `default=0.7` |\n| `scripts/run_folio_trace_regen.sh` | 65 | `--temperature 0.3` → `--temperature 0.7` |\n| `scripts/run_case_study_extract.sh` | 64 | `--temperature 0.3` → `--temperature 0.7` |\n\n`constraint_extractor.py` 的 VLLMBackend 默认 T_ext=0.3 未改（已正确），且 `build_extractor()` 不传 `args.temperature` 给 VLLMBackend。\n\n### 3. 温度验证\n- `run_full_mvp.py --temperature` default = **0.7** ✓\n- `run_folio_trace_regen.sh --temperature` = **0.7** ✓\n- `run_case_study_extract.sh --temperature` = **0.7** ✓\n- VLLMBackend (constraint_extractor.py:120) default = **0.3** ✓\n\n### 4. 新进程\n- **PID 25650** — `python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 ...`\n- 已加载 204 FOLIO 问题，正在处理 folio_0\n- 错误结果目录 `results/folio_204_14b/` 已清空\n- 日志：`logs/folio_regen_restart_20260518_194658.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp026-temperature-restart.md"
+}

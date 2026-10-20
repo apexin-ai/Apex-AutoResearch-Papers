@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-200_Q12",
+    "problem": "Anne is quiet. Charlie is cold. Charlie is not quiet. Charlie is young. Erin is nice. Erin is quiet. Erin is smart. Fiona is not quiet. Fiona is round. Fiona is young. All smart, cold people are round. If someone is cold then they are young. If someone is young and quiet then they are blue. If someone is round and not quiet then they are blue. Nice, blue people are cold. If someone is quiet then they are cold. If someone is quiet then they are cold. All blue people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, False) ::: Charlie is not quiet.\nYoung(Charlie, True) ::: Charlie is young.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nRound(Fiona, True) ::: Fiona is round.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nSmart($x, True) && Cold($x, True) >>> Round($x, True) ::: All smart, cold people are round.\nCold($x, True) >>> Young($x, True) ::: If someone is cold then they are young.\nYoung($x, True) && Quiet($x, True) >>> Blue($x, True) ::: If someone is young and quiet then they are blue.\nRound($x, True) && Quiet($x, False) >>> Blue($x, True) ::: If someone is round and not quiet then they are blue.\nNice($x, True) && Blue($x, True) >>> Cold($x, True) ::: Nice, blue people are cold.\nQuiet($x, True) >>> Cold($x, True) ::: If someone is quiet then they are cold.\nBlue($x, True) >>> Smart($x, True) ::: All blue people are smart.\n\nQuery:\nRound(Anne, False) ::: Anne is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

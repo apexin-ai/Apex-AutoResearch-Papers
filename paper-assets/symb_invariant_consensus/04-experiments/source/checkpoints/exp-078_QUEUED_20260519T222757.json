@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-078",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:27:35.893Z",
+    "updated_at": "2026-05-19T22:27:57.065Z",
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.5,
+      "debate_accuracy": 0.27,
+      "delta": -0.23,
+      "n_samples": 200,
+      "fallbacks": 16,
+      "wall_time_min": 211.5
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp078_debate_mistral_logiqa200/results.json",
+    "log_path": "/tmp/exp078_debate_logiqa.log"
+  },
+  "timestamp": "2026-05-19T22:27:57.274241+00:00",
+  "trigger": "update_registry"
+}

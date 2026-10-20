@@ -1,0 +1,1115 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-251_Q10",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, squirrel) -> nice(squirrel)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & chases(X, squirrel) -> needs(squirrel, cat)",
+          "z3_formula": "Implies(And(young_squirrel, chases_cow_squirrel), needs_squirrel_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == Unknown",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & rough(X) -> chases(X, Y)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, rough_lion), chases_lion_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & big(Y) -> big(X)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, big_squirrel), big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_cat_squirrel, visits_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, squirrel) -> nice(squirrel)",
+          "z3_formula": "Implies(And(visits_cat_squirrel, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_cat, visits_cat_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_nice_are_big",
+          "z3_formula": "all_nice_are_big == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_nice",
+          "z3_formula": "lion_is_nice == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_red",
+          "z3_formula": "lion_is_red == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(lion_is_nice, lion_is_big)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_squirrel",
+          "z3_formula": "lion_needs_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "lion_needs_squirrel -> lion_visits_squirrel",
+          "z3_formula": "Implies(lion_needs_squirrel, lion_visits_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(lion_is_big, lion_visits_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cow_visits_lion",
+          "z3_formula": "cow_visits_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cow_is_nice",
+          "z3_formula": "cow_is_nice == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(cow_is_nice, cow_is_big)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cow_needs_cat",
+          "z3_formula": "cow_needs_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_cat",
+          "z3_formula": "lion_needs_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_big",
+          "z3_formula": "lion_is_big == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_lion -> lion_is_rough",
+          "z3_formula": "Implies(cow_visits_lion, lion_is_rough)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cow_is_rough",
+          "z3_formula": "cow_is_rough == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cow_visits_lion",
+          "z3_formula": "cow_visits_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cow_visits_cat",
+          "z3_formula": "Implies(cow_is_rough, cow_visits_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cat_is_nice",
+          "z3_formula": "cat_is_nice == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cat_needs_lion",
+          "z3_formula": "cat_needs_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(cat_is_nice, cat_is_big)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cat_visits_squirrel & cat_is_big -> squirrel_is_nice",
+          "z3_formula": "Implies(And(cat_visits_squirrel, cat_is_big), squirrel_is_nice)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_squirrel",
+          "z3_formula": "cat_visits_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cat_is_big",
+          "z3_formula": "cat_is_big == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases_squirrel & young -> squirrel_needs_cat",
+          "z3_formula": "Implies(And(chases_squirrel, young), squirrel_needs_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_is_nice",
+          "z3_formula": "squirrel_is_nice == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(squirrel_is_nice, squirrel_is_big)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "squirrel_is_big",
+          "z3_formula": "squirrel_is_big == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> rough(X)",
+          "z3_formula": "Implies(visits_lion_cow, rough_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_lion), nice_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & young(squirrel) -> needs(squirrel, cat)",
+          "z3_formula": "Implies(And(chases_something_squirrel, young_squirrel), needs_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == Unknown",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel) & young(squirrel)",
+          "z3_formula": "And(visits_lion_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion) & big(lion)",
+          "z3_formula": "And(visits_cat_lion, big_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, cat)",
+          "z3_formula": "needs_cow_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat) & red(cat)",
+          "z3_formula": "And(visits_squirrel_cat, red_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & red(cat) -> chases(X, cow)",
+          "z3_formula": "Implies(And(visits_squirrel_cat, red_cat), chases_squirrel_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion) & needs(lion, cow) & needs(lion, squirrel)",
+          "z3_formula": "And(young_lion, And(needs_lion_cow, needs_lion_squirrel))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion) & needs(lion, squirrel)",
+          "z3_formula": "And(big_lion, needs_lion_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, lion) & chases(cow, squirrel)",
+          "z3_formula": "And(needs_cow_lion, chases_cow_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat) & visits(cat, squirrel)",
+          "z3_formula": "And(visits_lion_cat, visits_cat_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, Y) -> nice(Y)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel)",
+          "source_step": 30
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_lion",
+          "z3_formula": "cat_visits_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_squirrel",
+          "z3_formula": "lion_needs_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> visits(X, squirrel)",
+          "z3_formula": "Implies(needs_lion_cow, visits_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> visits(X, squirrel)",
+          "z3_formula": "Implies(visits_cat_lion, visits_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_cat_squirrel, visits_squirrel_cat), nice_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & visits(Y, Z) -> nice(Z)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_visits_squirrel",
+          "z3_formula": "Implies(needs_cow_lion, lion_visits_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_squirrel & big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(And(lion_visits_squirrel, big_lion), lion_visits_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_squirrel & big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(And(lion_visits_squirrel, big_lion), lion_visits_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & lion_visits_squirrel -> nice_squirrel",
+          "z3_formula": "Implies(And(visits_cat_lion, lion_visits_squirrel), nice_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice_squirrel",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "nice_squirrel",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "big_squirrel",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "big_squirrel",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not(big_squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 29
+        }
+      ]
+    }
+  ]
+}

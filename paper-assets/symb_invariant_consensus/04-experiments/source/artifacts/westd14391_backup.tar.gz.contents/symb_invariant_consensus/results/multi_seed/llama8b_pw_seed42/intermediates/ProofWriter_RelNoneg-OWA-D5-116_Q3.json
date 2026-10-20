@@ -1,0 +1,765 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-116_Q3",
+    "problem": "The cow is young. The cow sees the lion. The dog likes the cow. The dog likes the rabbit. The dog sees the rabbit. The lion is young. The lion sees the cow. The lion sees the dog. The lion sees the rabbit. The rabbit is round. The rabbit likes the cow. If someone visits the rabbit then the rabbit likes the lion. If someone likes the rabbit and the rabbit is red then the rabbit is big. If someone likes the lion and they see the rabbit then the lion likes the rabbit. If someone is young then they like the rabbit. If someone is young then they see the lion. If the lion is big then the lion visits the dog. If the rabbit likes the lion then the rabbit is young. If someone is young and they like the rabbit then they visit the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion sees the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\n\nFacts:\nYoung(Cow, True) ::: The cow is young.\nSees(Cow, Lion, True) ::: The cow sees the lion.\nLikes(Dog, Cow, True) ::: The dog likes the cow.\nLikes(Dog, Rabbit, True) ::: The dog likes the rabbit.\nSees(Dog, Rabbit, True) ::: The dog sees the rabbit.\nYoung(Lion, True) ::: The lion is young.\nSees(Lion, Cow, True) ::: The lion sees the cow.\nSees(Lion, Dog, True) ::: The lion sees the dog.\nSees(Lion, Rabbit, True) ::: The lion sees the rabbit.\nRound(Rabbit, True) ::: The rabbit is round.\nLikes(Rabbit, Cow, True) ::: The rabbit likes the cow.\n\nRules:\nVisits($x, Rabbit, True) >>> Likes(Rabbit, Lion, True) ::: If someone visits the rabbit then the rabbit likes the lion.\nLikes($x, Rabbit, True) && Red(Rabbit, True) >>> Big(Rabbit, True) ::: If someone likes the rabbit and the rabbit is red then the rabbit is big.\nLikes($x, Lion, True) && Sees($x, Rabbit, True) >>> Likes(Lion, Rabbit, True) ::: If someone likes the lion and they see the rabbit then the lion likes the rabbit.\nYoung($x, True) >>> Likes($x, Rabbit, True) ::: If someone is young then they like the rabbit.\nYoung($x, True) >>> Sees($x, Lion, True) ::: If someone is young then they see the lion.\nBig(Lion, True) >>> Visits(Lion, Dog, True) ::: If the lion is big then the lion visits the dog.\nLikes(Rabbit, Lion, True) >>> Young(Rabbit, True) ::: If the rabbit likes the lion then the rabbit is young.\nYoung($x, True) && Likes($x, Rabbit, True) >>> Visits($x, Rabbit, True) ::: If someone is young and they like the rabbit then they visit the rabbit.\n\nQuery:\nSees(Lion, Lion, True) ::: The lion sees the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 94.0,
+      "Unknown": 80.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is young. \n   From this, we can't directly determine if the lion sees the lion or not, so let's move to the next statements.\n\n2. The lion sees the dog.\n   Still, we can't directly determine if the lion sees the lion, so let's move to the next statements.\n\n3. The lion sees the rabbit.\n   Still, we can't directly determine if the lion sees the lion, so let's move to the next statements.\n\n4. The lion is young.\n   This statement is already mentioned in statement 1. We still can't directly determine if the lion sees the lion, so let's move to the next statements.\n\n5. The lion sees the cow.\n   Still, we can't directly determine if the lion sees the lion, so let's move to the next statements.\n\n6. The dog sees the rabbit.\n   This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n7. The dog likes the rabbit.\n   This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n8. The rabbit is round.\n   This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n9. The rabbit likes the cow.\n   This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n10. If someone visits the rabbit then the rabbit likes the lion.\n    This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n11. If someone likes the rabbit and the rabbit is red then the rabbit is big.\n    This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n12. If someone likes the lion and they see the rabbit then the lion likes the rabbit.\n    This doesn't directly relate to whether the lion sees the lion or not, so let's move to the next statements.\n\n13. If someone is young then they like the rabbit.\n    Since the lion is young (statement 1), this means the lion likes the rabbit.\n\n14. If someone is young then they see the lion.\n    Since the lion is young (statement 1), this means the lion sees the lion.\n\nFrom statement 14, we can conclude that the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is young. \n   - From the statement \"If someone is young then they like the rabbit\", we can conclude that the lion likes the rabbit.\n   - From the statement \"If someone is young then they see the lion\", we can conclude that the lion sees the lion.\n\nHowever, we need to check if the statement \"The lion sees the lion\" is a logical consequence of the information given. \n\n- The lion sees the cow.\n- The lion sees the dog.\n- The lion sees the rabbit.\n\nThere is no statement that directly connects the lion seeing the cow or the dog to seeing the lion. However, the statement \"If someone sees the rabbit and someone likes the lion and they are not the same person then the lion sees the rabbit\" is not present, but we have the statement \"If someone is young then they like the rabbit\", which is true for the lion, but we don't have a direct connection between seeing the rabbit and seeing the lion.\n\nHowever, we have another statement \"If the lion is big then the lion visits the dog.\" which is not relevant here.\n\nSo, from the given information, we can conclude that the lion sees the lion because the lion is young and the statement \"If someone is young then they see the lion\" is true for the lion.\n\nTherefore, the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"The lion is young.\"\n   From the rule \"If someone is young then they like the rabbit,\" we can conclude that the lion likes the rabbit.\n\n2. We are given that \"The lion likes the rabbit\" and \"The lion sees the rabbit.\"\n   From the rule \"If someone likes the lion and they see the rabbit then the lion likes the rabbit,\" this statement is actually a tautology and doesn't give us any new information. \n   However, we do know that the lion sees the rabbit.\n\n3. We are given that \"The lion sees the rabbit\" and \"The rabbit is round.\"\n   From the rule \"If someone likes the rabbit and the rabbit is red then the rabbit is big,\" there is no information about the color of the rabbit, so we can't conclude anything about the size or color of the rabbit.\n\n4. We are given that \"The lion is young\" and \"The lion sees the dog.\"\n   From the rule \"If someone is young then they see the lion,\" this statement is actually a tautology and doesn't give us any new information. \n   However, we do know that the lion sees the dog.\n\n5. We are given that \"The lion sees the dog\" and \"The dog likes the rabbit.\"\n   From the rule \"If someone likes the rabbit and they see the rabbit then the lion likes the rabbit,\" this statement is actually a tautology and doesn't give us any new information. \n   However, we do know that the lion sees the dog.\n\n6. We are given that \"The lion sees the dog\" and \"The dog likes the cow.\"\n   From the rule \"If someone likes the lion and they see the rabbit then the lion likes the rabbit,\" there is no information about the cow, so we can't conclude anything about the lion.\n\n7. We are given that \"The lion sees the rabbit\" and \"The rabbit sees the cow.\"\n   From the rule \"If someone visits the rabbit then the rabbit likes the lion,\" we can't conclude that the rabbit sees the cow, but we do know that the rabbit likes the lion.\n\n8. We are given that \"The lion is young\" and \"The lion sees the lion.\"\n   From the rule \"If someone is young then they see the lion,\" this statement could be true.\n\nHowever, we cannot conclude that the lion sees the lion based on the given information alone. The statement could be true, but it is not definitively true or false.\n\nSince we cannot determine whether the statement is true or false, we conclude that the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. The lion is young. (From statement 6)\n2. If someone is young then they see the lion. (From statement 12)\n   - Since the lion is young, it implies that the lion sees the lion. \n\nHowever, there is another statement that might affect this conclusion:\n3. If someone likes the lion and they see the rabbit then the lion likes the rabbit. (From statement 9)\n   - But we don't have enough information about the lion liking the lion, so we cannot conclude that the lion likes the lion.\n\nAnd there's another statement that is more relevant to our case:\n4. If someone is young then they like the rabbit. (From statement 10)\n   - Since the lion is young, it implies that the lion likes the rabbit. (From statement 10)\n\nNow, let's analyze the given statements again with this new information:\n- We have a statement that says \"If someone likes the lion and they see the rabbit then the lion likes the rabbit.\" (From statement 9)\n- We also have a statement that says \"The lion likes the rabbit.\" (From statement 4)\n- So we have both conditions met: the lion likes the lion (we can imply this since the lion likes the rabbit) and the lion sees the rabbit (from statement 14)\n   - This implies that the lion likes the rabbit (from statement 9) but it does not directly imply that the lion sees the lion.\n\nHowever, we have another statement that says \"If the lion sees the rabbit then the lion sees the dog.\" (We cannot find this statement in the given problem, but we can find its inverse: If the lion sees the dog, then the lion sees the rabbit.)  \nWe can rewrite the inverse statement as:\n- \"If the lion sees the dog, then the lion sees the rabbit.\" \n\nBut the original statement we are trying to solve is \"The lion sees the lion.\" We don't have enough information to determine this, but we can imply that the lion sees the lion using a different statement: \"The lion sees the dog.\" (We cannot find this statement in the given problem, but we can find its inverse: If the dog sees the rabbit, then the lion sees the rabbit. We can also imply that the lion sees the dog using statement 13)\n- \"The lion sees the dog.\" \n\nNow we can use this statement to imply that the lion sees the lion using a different statement:\n- If the lion sees the dog then the lion sees the lion. (We cannot find this statement in the given problem, but we can imply this statement using the inverse of statement 13)\n- If the lion sees the rabbit, then the lion sees the dog. (From the inverse of statement 13)\n- If the lion sees the dog, then the lion sees the lion. (We cannot find this statement in the given problem, but we can imply this statement using the inverse of statement 13)\n- Therefore, we can conclude that the lion sees the lion.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step and use the rules provided.\n\n1. The lion is young. (Given)\n2. If someone is young then they like the rabbit. (Given)\n3. The lion is young, so the lion likes the rabbit. (From step 1 and step 2)\n4. If someone likes the rabbit and the rabbit is red then the rabbit is big. (Given) However, the rabbit's color is not given as red, so we cannot conclude the rabbit's size.\n5. The lion likes the rabbit. (From step 3)\n6. If someone likes the lion and they see the rabbit then the lion likes the rabbit. (Given) However, this rule is already known, so we cannot conclude anything new from this.\n7. The lion sees the rabbit. (Given)\n8. If someone is young then they see the lion. (Given)\n9. The lion is young, so the lion sees the lion. (From step 1 and step 8)\n\nNow, we have concluded that the lion sees the lion. But we need to check if this conclusion is valid based on the given information. However, upon closer inspection, we realize that rule 8 is the key. Rule 8 states that \"If someone is young then they see the lion.\" This implies that the young person (in this case, the lion) must see the lion, but this does not mean the lion sees the lion in the same sense. This is a trick in the statement. The rule 8 is actually talking about the third person's perspective, not the lion's own perspective.\n\nSo, to be precise, we need to look at the rules again, and we see that the rule \"If someone is young then they see the lion\" is indeed talking about someone else's perspective, not the lion's own perspective. And the rule \"If someone is young then they like the rabbit\" is indeed talking about someone else's perspective, not the lion's own perspective.\n\nThe only rule that actually talks about the lion seeing itself is actually the rule 9, but we just proved that it's actually a trick statement.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into steps and use the given information.\n\n1. The lion sees the cow: \n   - We know that the lion sees the cow from the statement \"The lion sees the cow.\"\n\n2. The dog sees the rabbit: \n   - We know that the dog sees the rabbit from the statement \"The dog sees the rabbit.\"\n\n3. The lion is young: \n   - We know that the lion is young from the statement \"The lion is young.\"\n\n4. If someone is young then they like the rabbit: \n   - Since the lion is young, then the lion likes the rabbit.\n\n5. If someone likes the lion and they see the rabbit then the lion likes the rabbit: \n   - We already know the lion likes the rabbit.\n\n6. If the lion is big then the lion visits the dog: \n   - We do not have any information that the lion is big, so we cannot conclude this.\n\n7. The lion sees the dog: \n   - We know that the lion sees the dog from the statement \"The lion sees the dog.\"\n\n8. The rabbit is round: \n   - We know that the rabbit is round from the statement \"The rabbit is round.\"\n\n9. The rabbit likes the cow: \n   - We know that the rabbit likes the cow from the statement \"The rabbit likes the cow.\"\n\n10. If the rabbit likes the lion then the rabbit is young: \n    - We know that the rabbit likes the lion from the statement \"The rabbit likes the lion\" and we also know that the lion is young from the statement \"The lion is young.\"\n\n11. The rabbit is young: \n    - We can conclude that the rabbit is young from the previous step.\n\n12. If someone is young then they like the rabbit: \n    - Since the lion is young and the rabbit is young, then both the lion and the rabbit like the rabbit.\n\n13. If someone visits the rabbit then the rabbit likes the lion: \n    - We do not have any information that someone visits the rabbit.\n\n14. If someone likes the rabbit and the rabbit is red then the rabbit is big: \n    - We do not have any information that the rabbit is red.\n\n15. The lion sees the rabbit: \n    - We know that the lion sees the rabbit from the statement \"The lion sees the rabbit.\"\n\n16. The lion sees the lion: \n    - To conclude this, we need to determine if the lion sees the lion. We know the lion sees the cow, the dog, and the rabbit. We do not have any information that the lion sees itself.\n\nHowever, we can use the information in step 15 and the fact that the lion sees the rabbit to try and deduce the answer.\n\n- We know the lion sees the rabbit.\n- We know the rabbit likes the lion.\n- We know the rabbit is young.\n- We know if someone is young then they like the rabbit.\n- We know if someone likes the lion and they see the rabbit then the lion likes the rabbit.\n\nWe can use the information in steps 3 and 11 to try and conclude that the lion sees the lion. \n\nHowever, we still do not have enough information to conclude that the lion sees the lion.\n\nTherefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if the statement \"The lion sees the lion\" is true, false, or unknown, we'll use the given information and apply it step by step using logical reasoning and deduction.\n\nFrom the given information, we know the following:\n\n1. The lion is young.\n2. If someone is young then they see the lion.\n3. The lion sees the dog.\n4. The lion sees the rabbit.\n5. If someone is young then they like the rabbit.\n6. The lion is young.\n7. If someone is young then they like the rabbit.\n8. The lion sees the rabbit.\n9. If someone likes the lion and they see the rabbit then the lion likes the rabbit. (However, we don't know if the lion likes the rabbit or not.)\n10. If the lion is big then the lion visits the dog.\n11. If someone visits the rabbit then the rabbit likes the lion.\n12. If the rabbit likes the lion then the rabbit is young.\n\nNow, let's analyze the statement \"The lion sees the lion\" using the given information:\n\nFrom statement 2, we know that since the lion is young (statement 1), it must see the lion.\n\nHowever, we need to check if there's any information that contradicts or makes this statement unknown.\n\nFrom statement 8, we know that the lion sees the rabbit, but there's no direct information that the lion sees itself.\n\nTherefore, the statement \"The lion sees the lion\" is false because there's no information that the lion sees itself, but we know the lion is young and should see the lion.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce the relationship between the lion and itself. We'll analyze each statement step by step.\n\n1. The lion is young. (Statement 6)\n2. If someone is young then they like the rabbit. (Statement 9)\n   - From statement 1, the lion is young. \n   - Using statement 9, the lion likes the rabbit.\n\n3. The lion sees the rabbit. (Statement 7)\n4. If someone likes the lion and they see the rabbit then the lion likes the rabbit. (Statement 5, but we are using the inverse)\n   - This statement can be rewritten as: If the lion likes the lion and the lion sees the rabbit then the lion likes the rabbit. \n   - However, in our case, the lion sees the rabbit (statement 3) and we can't directly apply this statement to our problem.\n\n5. The lion sees the dog. (Statement 8)\n6. If the lion is big then the lion visits the dog. (Statement 10)\n   - We don't have enough information to determine if the lion is big or not.\n\n7. The rabbit is round. (Statement 4)\n   - This statement doesn't provide any information about the lion.\n\n8. The rabbit likes the cow. (Statement 3)\n   - This statement doesn't provide any information about the lion.\n\n9. If someone visits the rabbit then the rabbit likes the lion. (Statement 2)\n   - We don't have any information about someone visiting the rabbit.\n\n10. If someone likes the rabbit and the rabbit is red then the rabbit is big. (Statement 3)\n    - We don't have enough information to determine if the rabbit is red or not.\n\n11. The lion sees the cow. (Statement 7)\n12. The cow is young. (Statement 1)\n13. If someone is young then they see the lion. (Statement 10, but we are using the inverse)\n   - From statement 12, the cow is young.\n   - Using statement 10 (inverse), the cow sees the lion.\n\n14. The cow sees the lion. (Statement 3)\n   - This statement is given.\n\nNow, we need to analyze the relationship between the lion and itself. We know that the lion likes the rabbit (statement 2) and the lion sees the rabbit (statement 7). We also know that the lion is young (statement 6). However, we don't have any information that directly states the lion sees the lion.\n\nFrom statement 11, the lion sees the cow. We don't have enough information to determine if the lion sees the lion.\n\nHowever, the statement \"If someone is young then they see the lion\" (Statement 10) can be rewritten as \"If the lion is young then the lion sees the lion\". This statement is not given, but it can be derived from the given statements. But, we don't know for sure if the lion is young (Statement 6), so we can't conclude that the lion sees the lion.\n\nHowever, there is another statement which can be used: \"If someone is young then they like the rabbit\" (Statement 9). This statement can be rewritten as \"If the lion is young then the lion likes the rabbit\" (Statement 2). We know that the lion is young (Statement 6). But, we also know that \"If someone likes the lion and they see the rabbit then the lion likes the rabbit\" (Statement 5, but we are using the inverse). Since the lion sees the rabbit (Statement 7) and the lion likes the rabbit (Statement 2), we can use the inverse of the statement 5 to conclude that the lion likes the lion. However, we can't conclude that the lion sees the lion.\n\nBut there is a statement which can be used to conclude that the lion sees the lion: \"If the lion is young then the lion sees the lion\". But we don't know for sure if the lion is young (Statement 6). However, from statement 6, we know that the lion is young. \n\nFrom statement 10 (inverse), \"If the lion is young then the lion sees the lion\". Using statement 6, we can conclude that the lion is young. Therefore, from the inverse of statement 10, we can conclude that the lion sees the lion.\n\nHence, the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we will use the given information and apply it step by step.\n\n1. The lion is young. (Given)\n2. If someone is young then they see the lion. (Given)\n3. Since the lion is young, we can conclude that the lion sees the lion. (From rule 2 and statement 1)\n\nHowever, let's also examine the information related to the lion seeing the lion from another perspective using the given statements:\n\n4. The lion sees the dog. (Given)\n5. The lion sees the rabbit. (Given)\n6. The lion is young. (Given)\n7. If someone likes the lion and they see the rabbit then the lion likes the rabbit. (Given)\n8. Since the lion sees the rabbit (statement 5), we can't directly apply rule 7.\n9. If someone is young then they see the lion. (Given)\n10. If someone is young then they like the rabbit. (Given)\n11. The rabbit is round. (Given)\n12. The rabbit likes the cow. (Given)\n13. If someone visits the rabbit then the rabbit likes the lion. (Given)\n14. The dog likes the rabbit. (Given)\n15. The dog sees the rabbit. (Given)\n16. If someone is young then they like the rabbit. (Given)\n17. The lion is young. (Given)\n18. The lion sees the cow. (Given)\n19. The lion sees the dog. (Given)\n20. The lion sees the rabbit. (Given)\n21. The rabbit is round. (Given)\n22. The rabbit is red. (Not given, but there's no rule that suggests the rabbit's color)\n23. If the lion is big then the lion visits the dog. (Given)\n24. If someone is young then they like the rabbit. (Given)\n25. If someone is young and they like the rabbit then they visit the rabbit. (Given)\n26. The rabbit likes the lion. (Given)\n27. If the rabbit likes the lion then the rabbit is young. (Given)\n28. Since the lion sees the rabbit (statement 20) and the rabbit likes the lion (statement 26), we can't directly apply rule 7.\n29. We need to check if the rabbit's youth affects our conclusion or not.\n\nThe key information about the lion seeing the lion is found in the rules related to the lion's behavior when it is young. Since the lion is young, we can directly apply rule 2: If someone is young then they see the lion. This implies that the lion sees the lion.\n\nThe conclusion that the lion sees the lion is supported by the information that the lion is young and, based on rule 2, young individuals see the lion.\n\nTherefore, the statement \"The lion sees the lion\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll analyze each statement and apply it to the given statement \"The lion sees the lion.\"\n\n1. The cow is young. \n   - No direct relation to the given statement.\n\n2. The cow sees the lion.\n   - No direct relation to the given statement.\n\n3. The dog likes the cow.\n   - No direct relation to the given statement.\n\n4. The dog likes the rabbit.\n   - No direct relation to the given statement.\n\n5. The dog sees the rabbit.\n   - No direct relation to the given statement.\n\n6. The lion is young.\n   - This statement could be related to the given statement if we find any rules that connect being young to seeing the lion.\n\n7. The lion sees the cow.\n   - No direct relation to the given statement.\n\n8. The lion sees the dog.\n   - No direct relation to the given statement.\n\n9. The lion sees the rabbit.\n   - This statement could be related to the given statement if we find any rules that connect seeing the rabbit to seeing the lion.\n\n10. The rabbit is round.\n    - No direct relation to the given statement.\n\n11. The rabbit likes the cow.\n    - No direct relation to the given statement.\n\n12. If someone visits the rabbit then the rabbit likes the lion.\n    - No direct relation to the given statement.\n\n13. If someone likes the rabbit and the rabbit is red then the rabbit is big.\n    - No direct relation to the given statement.\n\n14. If someone likes the lion and they see the rabbit then the lion likes the rabbit.\n    - This statement could be related to the given statement if we find any rules that connect liking the lion to seeing the lion.\n\n15. If someone is young then they like the rabbit.\n    - Statement 6 says the lion is young, so this might be related to the given statement.\n\n16. If someone is young then they see the lion.\n    - Statement 6 says the lion is young, so this might be related to the given statement.\n\n17. If the lion is big then the lion visits the dog.\n    - No direct relation to the given statement.\n\n18. If the rabbit likes the lion then the rabbit is young.\n    - Statement 11 says the rabbit likes the cow, which does not directly relate to the given statement.\n\n19. If someone is young and they like the rabbit then they visit the rabbit.\n    - Statement 6 says the lion is young, and statement 15 says that being young means liking the rabbit, so the lion might visit the rabbit.\n\nNow, let's analyze the statements that are related to the given statement:\n\n- Statement 6 says the lion is young.\n- Statement 15 says that being young means liking the rabbit, and statement 16 says that being young means seeing the lion.\n- Statement 9 says the lion sees the rabbit.\n- Statement 19 says that being young and liking the rabbit means visiting the rabbit, but it does not directly relate to the given statement.\n\nHowever, from statement 6, we know the lion is young. From statement 15, we know that being young means liking the rabbit, but we do not have enough information to determine if the lion likes the rabbit. From statement 16, we know that being young means seeing the lion, but this is not directly related to the given statement.\n\nBut from statement 15 and 16, we can conclude that the lion likes the rabbit and sees the lion.\n\nHowever, we need to make sure if the lion sees the lion when the lion is young. Let's check the conditions.\n\nIf the lion is big then the lion visits the dog (statement 17). This implies that when the lion is young, it may not visit the dog, but it does not directly imply that the lion sees the lion.\n\nHowever, if the rabbit likes the lion then the rabbit is young (statement 18). Statement 11 says the rabbit likes the cow. This does not imply that the lion is big, so we cannot conclude if the lion sees the lion when the lion is young.\n\nBut we can conclude that the lion sees the rabbit (statement 9) and the lion is young (statement 6). \n\nNow let's look at the statements that might help us conclude if the lion sees the lion when the lion is young:\n\n- Statement 6 says the lion is young.\n- Statement 9 says the lion sees the rabbit.\n- Statement 15 says that being young means liking the rabbit, but we do not have enough information to determine if the lion likes the rabbit.\n- Statement 16 says that being young means seeing the lion, but this is not directly related to the given statement.\n- Statement 19 says that being young and liking the rabbit means visiting the rabbit, but it does not directly relate to the given statement.\n\nHowever, we know the lion is young (statement 6), the lion sees the rabbit (statement 9), and if the lion is young then it sees the lion (statement 16).\n\nSo, the answer to the statement \"The lion sees the lion\" is unknown because we cannot determine the truth value of this statement with the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is young. (From the given statement)\n2. If someone is young then they see the lion. (From the given statement)\n   Since the lion is young, it implies that the lion sees the lion. \n\nHowever, in the given information, there is another statement: \"The lion sees the lion\" might be possible if the conditions of the statement \"If someone is young then they see the lion\" is satisfied with \"someone\" being the lion itself. But there is also another given statement that says \"If someone is young then they like the rabbit\" and \"If someone is young then they see the lion\" which implies that the conditions for \"someone\" to see the lion are met. Therefore, \"The lion sees the lion\" is a possible conclusion based on the given information.\n\nTherefore, the statement \"The lion sees the lion\" is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nStep 1: The lion is young. (Given)\nStep 2: If someone is young then they like the rabbit. (Given)\nStep 3: Since the lion is young, the lion likes the rabbit. (From Step 1 and Step 2)\n\nStep 4: The lion likes the rabbit. (From Step 3)\nStep 5: The lion sees the rabbit. (Given)\nStep 6: If someone likes the lion and they see the rabbit then the lion likes the rabbit. (Given) \nThis does not help determine the truth of \"The lion sees the lion.\" \n\nStep 7: If someone is young then they see the lion. (Given)\nStep 8: Since the lion is young, the lion sees the lion. (From Step 1 and Step 7)\n\nHowever, since the lion likes the rabbit and sees the rabbit, it implies that the lion can indeed see the rabbit. But it does not imply that the lion can see the lion. This means that the statement \"The lion sees the lion\" can be true or false based on other given information.\n\nStep 9: The lion is young. (From Step 1)\nStep 10: If the rabbit likes the lion then the rabbit is young. (Given)\nStep 11: Since the rabbit likes the lion, the rabbit is young. (From Step 4 and Step 10)\n\nStep 12: If the rabbit is young then the rabbit sees the lion. (Given)\nStep 13: Since the rabbit is young, the rabbit sees the lion. (From Step 11 and Step 12)\n\nStep 14: The lion sees the rabbit. (From Step 5)\nStep 15: If the lion sees the rabbit and the rabbit sees the lion then the lion sees the lion. (This is a conditional statement that is not given but can be derived from the other statements.)\n\nSince the lion sees the rabbit and the rabbit sees the lion, it implies that the lion sees the lion. Therefore, the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & red(rabbit) -> big(X)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, red_rabbit), big_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> likes(rabbit, X)",
+          "z3_formula": "Implies(visits_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees_lion(X)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes_lion(X) & sees_rabbit(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(young_lion, likes_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes_rabbit(lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes_lion(X) & sees_rabbit(X) -> likes_rabbit(X)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes_rabbit(lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit(X) -> sees_lion(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit(X) -> sees_dog(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, sees_dog_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees_dog(X) -> sees_lion(X)",
+          "z3_formula": "Implies(sees_dog_lion, sees_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees_lion(lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & red(rabbit) -> big(rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, red_rabbit), big_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(lion, rabbit)",
+          "z3_formula": "Implies(And(likes_lion_lion, sees_lion_rabbit), likes_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_lion, visits_lion_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(visits_lion_rabbit, likes_rabbit_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, lion) -> young(rabbit)",
+          "z3_formula": "Implies(likes_rabbit_lion, young_rabbit)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, X) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> ? (sees(X, lion) | Not(sees(X, lion)))",
+          "z3_formula": "Implies(sees_lion_rabbit, Or(sees_lion_lion, Not(sees_lion_lion)))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == ? (sees_lion_rabbit, young_lion)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(young_lion, likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & sees(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_lion, sees_rabbit_lion), likes_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_lion, sees_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_lion, young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, lion)",
+          "z3_formula": "Implies(young_rabbit, sees_rabbit_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & sees(Y, X) -> sees(X, X)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, sees_rabbit_lion), sees_lion_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 106,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 0,
+      "total_weight": 105,
+      "solve_time_ms": 0.9597772732377052
+    },
+    "timing": {
+      "trace_gen_s": 12.695,
+      "extraction_s": 29.908,
+      "dedup_s": 0.607,
+      "maxsat_s": 0.003,
+      "total_s": 43.213
+    }
+  }
+}

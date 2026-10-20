@@ -1,0 +1,1458 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-77_Q15",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_bear, need_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_bear, need_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "need(dog, cow)",
+          "z3_formula": "need_dog_cow == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, cow))",
+          "z3_formula": "not_eats_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(needs_cow_bear, green_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not(needs(X, cow))",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), Not(needs_X_cow))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, cow)",
+          "z3_formula": "needs_bear_cow == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(dog, cow))",
+          "z3_formula": "Not(needs_dog_cow)",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, cow)",
+          "z3_formula": "not needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(not green_bear, eats_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(needs_cow_bear, green_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(X, cow)",
+          "z3_formula": "Implies(And(eats_dog_dog, not red_dog), not needs_dog_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, cow)",
+          "z3_formula": "not needs_dog_cow == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, cat)",
+          "z3_formula": "Not(needs_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, cow)",
+          "z3_formula": "Not(needs_cat_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "Not(needs_dog_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "Not(round_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> eats(X, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bear)",
+          "z3_formula": "needs_cow_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bear)",
+          "z3_formula": "Not(nice_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(X)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bear, nice_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), Not(needs_X_cow))",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "not red(cat)",
+          "z3_formula": "Not(red_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), Not(needs_X_cow))",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cat, cow)",
+          "z3_formula": "Not(needs_cat_cow)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, needs_X_bear)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cat, bear)",
+          "z3_formula": "Not(needs_cat_bear)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, cow)",
+          "z3_formula": "Not(needs_dog_cow)",
+          "source_step": 30
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "does_not_need(dog, cow)",
+          "z3_formula": "does_not_need_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cow)",
+          "z3_formula": "chases_dog_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cat) & does_not_need(cat, cow) -> does_not_need(dog, cow)",
+          "z3_formula": "Implies(And(chases_dog_cat, does_not_need_cat_cow), does_not_need_dog_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(cat, cow)",
+          "z3_formula": "does_not_need_cat_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(bear))",
+          "z3_formula": "not(green_bear) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(cow, bear))",
+          "z3_formula": "not(needs_cow_bear) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & not(red(X)) -> does_not_need(Y, cow)",
+          "z3_formula": "Implies(And(eats_cat_dog, not(red_cat)), does_not_need_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(cat))",
+          "z3_formula": "not(red_cat) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_need(dog, cow)",
+          "z3_formula": "does_not_need_dog_cow == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, cow)",
+          "z3_formula": "Not(needs_dog_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not round_cow",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cow, dog)",
+          "z3_formula": "not needs_cow_dog",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cat)",
+          "z3_formula": "not red_cat",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(dog, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, not red_X), not needs_dog_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, cow)",
+          "z3_formula": "Not(needs_dog_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, dog)",
+          "z3_formula": "not needs_cat_dog",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not green(cow)",
+          "z3_formula": "not green_cow",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> need(X, bear)",
+          "z3_formula": "Implies(chases_dog_bear, need_dog_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> need(X, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_X, need_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not need(dog, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, not_red_X), not_need_dog_cow)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_needs(cat, cow)",
+          "z3_formula": "not_needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> needs(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, needs_dog_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(needs_cow_bear, green_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cow, needs_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not_needs(dog, cow)",
+          "z3_formula": "Implies(And(eats_cat_dog, Not(red_cat)), not_needs_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not_needs(dog, cow)",
+          "z3_formula": "not_needs_dog_cow == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not need(dog, cow)",
+          "z3_formula": "not_need_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & Not(red(X)) -> not need(dog, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), not_need_dog_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not need(dog, cow)",
+          "z3_formula": "not_need_dog_cow == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), red_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> False",
+          "z3_formula": "Implies(blue_bear, False)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> eats(X, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> nice(X)",
+          "z3_formula": "Implies(eats_bear_cat, nice_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(eats_bear_cat, nice_bear), red_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not need(X, cow)",
+          "z3_formula": "Implies(And(eats_dog_dog, Not(red_dog)), not_need_dog_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bear, cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not need(dog, cow)",
+          "z3_formula": "not_need_dog_cow == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not(round_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(bear))",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(cat, cow))",
+          "z3_formula": "Not(needs_cat_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(cat, dog))",
+          "z3_formula": "Not(needs_cat_dog) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(cow, bear))",
+          "z3_formula": "Not(needs_cow_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(needs_cow_bear, green_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(dog, cow))",
+          "z3_formula": "Not(chases_dog_cow) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not(needs(dog, cow))",
+          "z3_formula": "Implies(And(eats_dog_cat, Not(red_cat)), Not(needs_dog_cow))",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(cat))",
+          "z3_formula": "Not(red_cat) == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(dog, cow))",
+          "z3_formula": "Not(needs_dog_cow) == True",
+          "source_step": 26
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, cow))",
+          "z3_formula": "Not(eats_cat_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, dog))",
+          "z3_formula": "Not(eats_cat_dog) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "Not(round_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(needs_cow_bear, green_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not(needs(dog, cow))",
+          "z3_formula": "Implies(And(eats_dog_dog, Not(red_dog_dog)), Not(needs_dog_cow))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(dog, cow))",
+          "z3_formula": "Not(needs_dog_cow) == True",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

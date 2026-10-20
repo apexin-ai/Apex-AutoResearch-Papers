@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp-085-contrastive-mistral-logiqa-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T22:37:05.631Z",
+    "updated_at": "2026-05-20T00:21:11.042Z",
+    "hypothesis": "Contrastive × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-080 (seed=42) Δ=-4.5pp (negative)。跨 seed 确认 Contrastive 在 LogiQA 上的 negative 结果稳定性，排除单 seed 偶然。",
+    "parent": "exp-080-contrastive-mistral-logiqa200",
+    "reproduce": {
+      "finished_at": "2026-05-20T00:20:02.889Z"
+    },
+    "failure_reason": "",
+    "completed_at": "",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T22:48:02.587865+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T00:20:06.822424+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --dataset logiqa --k 12 --k-contrast 3 --temperature 0.7 --seed 123 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_200.json --output results/exp085_contrastive_mistral_logiqa_seed123/results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 123,
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (inference-only, no fine-tuning)",
+      "eval_data": "data/logiqa_200.json (200 problems, 4-choice multichoice)"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n": 200,
+      "contrastive_accuracy": 0.535,
+      "sc_accuracy": 0.56,
+      "delta": -0.025,
+      "delta_pp": -2.5,
+      "contrastive_correct": 107,
+      "sc_correct": 112,
+      "k": 12,
+      "k_contrast": 3,
+      "temperature": 0.7,
+      "seed": 123,
+      "degenerate_count": 51,
+      "total_pro_constraints": 736,
+      "total_con_constraints": 1059,
+      "wall_time_min": 100.9
+    },
+    "log_path": "/root/runs/symb_invariant_consensus/exp-085-contrastive-mistral-logiqa-seed123.log",
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123/results.json"
+  },
+  "timestamp": "2026-05-20T00:21:11.440053+00:00",
+  "trigger": "update_registry"
+}

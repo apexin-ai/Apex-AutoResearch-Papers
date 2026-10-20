@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-498_Q14",
+    "problem": "The cow eats the dog. The cow eats the mouse. The cow is blue. The cow is nice. The cow does not like the mouse. The cow sees the mouse. The dog eats the cow. The dog is blue. The dog is round. The dog sees the tiger. The mouse is kind. The mouse likes the cow. The mouse sees the cow. The tiger is not nice. The tiger does not like the mouse. The tiger sees the mouse. If someone is round then they are nice. If someone is green then they like the tiger. If someone likes the tiger then the tiger sees the cow. If someone sees the mouse and they do not like the mouse then the mouse is blue. If someone is nice then they eat the dog. If the tiger is nice then the tiger does not like the cow. If someone is round and they eat the dog then they are green. If someone eats the cow then they like the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse eats the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nEats(Cow, Dog, True) ::: The cow eats the dog.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nBlue(Cow, True) ::: The cow is blue.\nNice(Cow, True) ::: The cow is nice.\nLikes(Cow, Mouse, False) ::: The cow does not like the mouse.\nSees(Cow, Mouse, True) ::: The cow sees the mouse.\nEats(Dog, Cow, True) ::: The dog eats the cow.\nBlue(Dog, True) ::: The dog is blue.\nRound(Dog, True) ::: The dog is round.\nSees(Dog, Tiger, True) ::: The dog sees the tiger.\nKind(Mouse, True) ::: The mouse is kind.\nLikes(Mouse, Cow, True) ::: The mouse likes the cow.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\nNice(Tiger, False) ::: The tiger is not nice.\nLikes(Tiger, Mouse, False) ::: The tiger does not like the mouse.\nSees(Tiger, Mouse, True) ::: The tiger sees the mouse.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: If someone is round then they are nice.\nGreen($x, True) >>> Likes($x, Tiger, True) ::: If someone is green then they like the tiger.\nLikes($x, Tiger, True) >>> Sees(Tiger, Cow, True) ::: If someone likes the tiger then the tiger sees the cow.\nSees($x, Mouse, True) && Likes($x, Mouse, False) >>> Blue(Mouse, True) ::: If someone sees the mouse and they do not like the mouse then the mouse is blue.\nNice($x, True) >>> Eats($x, Dog, True) ::: If someone is nice then they eat the dog.\nNice(Tiger, True) >>> Likes(Tiger, Cow, False) ::: If the tiger is nice then the tiger does not like the cow.\nRound($x, True) && Eats($x, Dog, True) >>> Green($x, True) ::: If someone is round and they eat the dog then they are green.\nEats($x, Cow, True) >>> Likes($x, Cow, True) ::: If someone eats the cow then they like the cow.\n\nQuery:\nEats(Mouse, Dog, True) ::: The mouse eats the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

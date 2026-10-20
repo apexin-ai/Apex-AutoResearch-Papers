@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-983_Q24",
+    "problem": "The bald eagle chases the tiger. The bald eagle is cold. The bald eagle is rough. The dog chases the rabbit. The dog eats the rabbit. The rabbit chases the dog. The rabbit is round. The tiger chases the dog. The tiger eats the rabbit. The tiger is cold. If someone visits the dog and the dog eats the bald eagle then the bald eagle is green. If someone is red then they chase the rabbit. If someone eats the dog then they eat the rabbit. If someone chases the rabbit and the rabbit is green then they are green. If someone is green then they eat the dog. If someone visits the bald eagle and they are round then the bald eagle is green. If someone visits the rabbit and they eat the bald eagle then they eat the dog. If someone chases the dog then they visit the bald eagle. If someone is rough and they eat the rabbit then they eat the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog visits the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nEats($x, $y, bool) ::: Does x eat y?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nChases(Dog, Rabbit, True) ::: The dog chases the rabbit.\nEats(Dog, Rabbit, True) ::: The dog eats the rabbit.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nRound(Rabbit, True) ::: The rabbit is round.\nChases(Tiger, Dog, True) ::: The tiger chases the dog.\nEats(Tiger, Rabbit, True) ::: The tiger eats the rabbit.\nCold(Tiger, True) ::: The tiger is cold.\n\nRules:\nVisits($x, Dog, True) && Eats(Dog, BaldEagle, True) >>> Green(BaldEagle, True) ::: If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\nRed($x, True) >>> Chases($x, Rabbit, True) ::: If someone is red then they chase the rabbit.\nEats($x, Dog, True) >>> Eats($x, Rabbit, True) ::: If someone eats the dog then they eat the rabbit.\nChases($x, Rabbit, True) && Green(Rabbit, True) >>> Green($x, True) ::: If someone chases the rabbit and the rabbit is green then they are green.\nGreen($x, True) >>> Eats($x, Dog, True) ::: If someone is green then they eat the dog.\nVisits($x, BaldEagle, True) && Round($x, True) >>> Green(BaldEagle, True) ::: If someone visits the bald eagle and they are round then the bald eagle is green.\nVisits($x, Rabbit, True) && Eats($x, BaldEagle, True) >>> Eats($x, Dog, True) ::: If someone visits the rabbit and they eat the bald eagle then they eat the dog.\nChases($x, Dog, True) >>> Visits($x, BaldEagle, True) ::: If someone chases the dog then they visit the bald eagle.\nRough($x, True) && Eats($x, Rabbit, True) >>> Eats($x, Tiger, True) ::: If someone is rough and they eat the rabbit then they eat the tiger.\n\nQuery:\nVisits(Dog, Rabbit, True) ::: The dog visits the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

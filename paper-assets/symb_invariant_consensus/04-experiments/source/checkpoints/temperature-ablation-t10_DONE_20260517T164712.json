@@ -1,0 +1,46 @@
+{
+  "exp_id": "temperature-ablation-t10",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:46:01.069Z",
+    "updated_at": "2026-05-17T16:47:11.985Z",
+    "hypothesis": "Temperature ablation T=1.0: 高温下 Qwen2.5-14B trace diversity 最大化（C0 预期>60%），SICA-SC gap 预期≈0 或负——验证最大 diversity 仍不能拯救 SICA，因为 constraint discriminative power 不随 diversity 增加",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash scripts/run_temperature_ablation.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/proofwriter_30.json + data/folio_30.json",
+      "data_count": 60,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-14B-Instruct",
+      "eval_data": "D012 (30 ProofWriter + 30 FOLIO)",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T1.0_results.json",
+      "log_path": "/tmp/temperature_ablation.log"
+    },
+    "notes": "T=1.0 高温：C0=43.3%（高于 T=0.7 的 53% 预期但合理），SICA=SC=75.00%，delta=0，discordant=0。最大 diversity 仍不能拯救 SICA。Temperature ablation 结论：T=0.3/0.5/0.7/1.0 四点 C0 从 30%→43% 单调递增，delta 始终=0，直接证明 diversity 不是瓶颈。",
+    "metrics": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.75,
+      "sc_accuracy": 0.75,
+      "delta_pp": 0,
+      "multi_candidate_rate": 0.433,
+      "discordant_total": 0,
+      "model": "Qwen2.5-14B-Instruct",
+      "dataset": "D012",
+      "temperature": 1
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T16:47:11.985Z"
+  },
+  "timestamp": "2026-05-17T16:47:12.074208+00:00",
+  "trigger": "update_registry"
+}

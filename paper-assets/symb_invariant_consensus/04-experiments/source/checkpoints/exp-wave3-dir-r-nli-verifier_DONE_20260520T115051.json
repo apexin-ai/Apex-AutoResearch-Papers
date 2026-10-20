@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp-wave3-dir-r-nli-verifier",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:54:26.690Z",
+    "updated_at": "2026-05-20T11:50:51.231Z",
+    "hypothesis": "DeBERTa External Verifier: encoder-only NLI 模型 (cross-encoder/nli-deberta-v3-base) 与 decoder-only LLM 架构独立，作为额外 vote 加入 SC traces 可打破 confirmation bias。NLI 擅长 contradiction 检测（False label），LLM 擅长 Unknown 推理，两者互补。",
+    "spec": {
+      "command": "python direction_r_nli_verifier.py --model cross-encoder/nli-deberta-v3-base --data data/folio_full.json --traces-dir results/exp033_mistral_folio204/ --output results/direction_r_nli_small/results.json",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "cross-encoder/nli-deberta-v3-base + Mistral-7B-Instruct-v0.3 SC traces",
+      "seed": 42,
+      "checkpoint_path": "/root/symb_invariant_consensus/results/direction_r_nli_small/results.json",
+      "log_path": "/root/symb_invariant_consensus/results/direction_r_nli_large/"
+    },
+    "metrics": {
+      "sc_accuracy": 0.5441,
+      "nli_standalone": 0.4951,
+      "combo_w1": 0.5784,
+      "combo_w3": 0.5882,
+      "intersection_acc": 0.6848,
+      "intersection_coverage": 0.451,
+      "delta_w1_pp": 3.43,
+      "delta_w3_pp": 4.41,
+      "mcnemar_p": 0.0391,
+      "mcnemar_b": 1,
+      "mcnemar_c": 8,
+      "discordant_pairs": 9,
+      "ci95_lower": 0.59,
+      "ci95_upper": 6.28,
+      "nli_false_acc": 0.7143,
+      "sc_false_acc": 0.381,
+      "nli_unknown_acc": 0.1884,
+      "sc_unknown_acc": 0.6812,
+      "model_nli": "microsoft/deberta-large-mnli",
+      "n": 204
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T11:50:51.231Z"
+  },
+  "timestamp": "2026-05-20T11:50:51.480592+00:00",
+  "trigger": "update_registry"
+}

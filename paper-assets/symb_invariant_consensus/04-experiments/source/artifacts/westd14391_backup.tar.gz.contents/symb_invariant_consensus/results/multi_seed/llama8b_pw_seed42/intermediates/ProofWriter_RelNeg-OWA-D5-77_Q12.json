@@ -1,0 +1,1319 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-77_Q12",
+    "problem": "The bear is blue. The cat eats the cow. The cat is red. The cat is round. The cat does not need the cow. The cat does not need the dog. The cow is not round. The dog chases the bear. The dog chases the cat. The dog is round. If the bear is not green then the bear eats the cat. If the dog needs the cat then the dog chases the bear. If the cow needs the bear then the cow is green. If the dog chases the cow then the dog needs the bear. Red things are nice. If something is green then it needs the cow. If something is nice then it eats the bear. If something is nice and it eats the bear then the bear is red. If something eats the dog and it is not red then the dog does not need the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not eat the bear.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nNeed($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Bear, True) ::: The bear is blue.\nEats(Cat, Cow, True) ::: The cat eats the cow.\nRed(Cat, True) ::: The cat is red.\nRound(Cat, True) ::: The cat is round.\nNeed(Cat, Cow, False) ::: The cat does not need the cow.\nNeed(Cat, Dog, False) ::: The cat does not need the dog.\nRound(Cow, False) ::: The cow is not round.\nChases(Dog, Bear, True) ::: The dog chases the bear.\nChases(Dog, Cat, True) ::: The dog chases the cat.\nRound(Dog, True) ::: The dog is round.\n\nRules:\nBlue(Bear, False) >>> Eats(Bear, Cat, True) ::: If the bear is not green then the bear eats the cat.\nNeed(Dog, Cat, True) >>> Chases(Dog, Bear, True) ::: If the dog needs the cat then the dog chases the bear.\nNeed(Cow, Bear, True) >>> Green(Cow, True) ::: If the cow needs the bear then the cow is green.\nChases(Dog, Cow, True) >>> Need(Dog, Bear, True) ::: If the dog chases the cow then the dog needs the bear.\nRed($x, True) >>> Nice($x, True) ::: Red things are nice.\nGreen($x, True) >>> Need($x, Cow, True) ::: If something is green then it needs the cow.\nNice($x, True) >>> Eats($x, Bear, True) ::: If something is nice then it eats the bear.\nNice($x, True) && Eats($x, Bear, True) >>> Red(Bear, True) ::: If something is nice and it eats the bear then the bear is red.\nEats($x, Dog, True) && Red($x, False) >>> Need($x, Cow, False) ::: If something eats the dog and it is not red then the dog does not need the cow.\n\nQuery:\nEats(Bear, Bear, False) ::: The bear does not eat the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 0.0,
+      "True": 167.0,
+      "Unknown": 180.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a process of elimination and logical deduction. We will break down the given information and the statement we need to evaluate into smaller parts.\n\nGiven information:\n\n1. The bear is blue.\n2. The cat eats the cow.\n3. The cat is red.\n4. The cat is round.\n5. The cat does not need the cow.\n6. The cat does not need the dog.\n7. The cow is not round.\n8. The dog chases the bear.\n9. The dog chases the cat.\n10. The dog is round.\n11. If the bear is not green then the bear eats the cat.\n12. If the dog needs the cat then the dog chases the bear.\n13. If the cow needs the bear then the cow is green.\n14. If the dog chases the cow then the dog needs the bear.\n15. Red things are nice.\n16. If something is green then it needs the cow.\n17. If something is nice then it eats the bear.\n18. If something is nice and it eats the bear then the bear is red.\n19. If something eats the dog and it is not red then the dog does not need the cow.\n\nStatement to evaluate: The bear does not eat the bear.\n\nTo evaluate this statement, we need to find the condition that makes it true or false.\n\nFrom statement 1, we know the bear is blue. From statement 15, we know red things are nice. However, there's no information that blue things are nice.\n\nFrom statement 17, we know if something is nice then it eats the bear. Since the bear is blue and we don't know if blue things are nice, we cannot conclude that the bear eats the bear based on this statement.\n\nFrom statement 11, we know if the bear is not green then the bear eats the cat. However, we cannot directly apply this to the bear eating itself, so we cannot conclude that the bear eats the bear based on this statement.\n\nFrom statement 18, we know if something is nice and it eats the bear then the bear is red. However, we don't know if the bear eats itself, and we also don't know if the bear is red.\n\nFrom statement 19, we know if something eats the dog and it is not red then the dog does not need the cow. This statement does not provide any information about the bear eating itself.\n\nBased on the given information, we cannot determine whether the bear eats itself or not. Therefore, we cannot conclude that the statement \"The bear does not eat the bear\" is true or false.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is blue.\n   - This statement alone does not provide any information about the bear eating itself.\n\n2. The cat eats the cow.\n   - This statement alone does not provide any information about the bear eating itself.\n\n3. The cat is red.\n   - This statement alone does not provide any information about the bear eating itself.\n\n4. The cat is round.\n   - This statement alone does not provide any information about the bear eating itself.\n\n5. The cat does not need the cow.\n   - This statement alone does not provide any information about the bear eating itself.\n\n6. The cat does not need the dog.\n   - This statement alone does not provide any information about the bear eating itself.\n\n7. The cow is not round.\n   - This statement alone does not provide any information about the bear eating itself.\n\n8. The dog chases the bear.\n   - This statement alone does not provide any information about the bear eating itself.\n\n9. The dog chases the cat.\n   - This statement alone does not provide any information about the bear eating itself.\n\n10. The dog is round.\n    - This statement alone does not provide any information about the bear eating itself.\n\n11. If the bear is not green then the bear eats the cat.\n    - This statement alone does not provide any information about the bear eating itself.\n\n12. If the dog needs the cat then the dog chases the bear.\n    - This statement alone does not provide any information about the bear eating itself.\n\n13. If the cow needs the bear then the cow is green.\n    - This statement alone does not provide any information about the bear eating itself.\n\n14. If the dog chases the cow then the dog needs the bear.\n    - This statement alone does not provide any information about the bear eating itself.\n\n15. Red things are nice.\n    - This statement alone does not provide any information about the bear eating itself.\n\n16. If something is green then it needs the cow.\n    - This statement alone does not provide any information about the bear eating itself.\n\n17. If something is nice then it eats the bear.\n    - We have not established that the bear is nice yet, so this statement alone does not provide any information about the bear eating itself.\n\n18. If something is nice and it eats the bear then the bear is red.\n    - We have not established that the bear is nice yet, so this statement alone does not provide any information about the bear eating itself.\n\n19. If something eats the dog and it is not red then the dog does not need the cow.\n    - This statement alone does not provide any information about the bear eating itself.\n\nNow let's analyze the information together to find out whether the bear eats itself.\n\nFrom statement 16: If something is green then it needs the cow.\nWe know that the bear is not green from statement 11. Since the bear is not green, it does not need the cow.\n\nFrom statement 17: If something is nice then it eats the bear.\nWe know that red things are nice from statement 15, and the cat is red from statement 3. So, the cat is nice.\n\nFrom statement 18: If something is nice and it eats the bear then the bear is red.\nSince the cat is nice and eats the bear, the bear is red.\n\nFrom statement 11: If the bear is not green then the bear eats the cat.\nSince the bear is not green (it is blue), the bear eats the cat.\n\nHowever, statement 11 does not say that the bear eats itself. It says that the bear eats the cat.\n\nTherefore, we cannot conclude that the bear eats itself based on the given information.\n\nThe statement \"The bear does not eat the bear\" is unknown because we cannot determine whether the bear eats itself or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given statements and the conditions that lead to the bear eating the cat. \n\nFrom the given information, we have the following relevant statements:\n1. The bear is blue.\n2. If the bear is not green then the bear eats the cat.\n3. The cat eats the cow.\n4. Red things are nice.\n5. If something is nice then it eats the bear.\n6. If something is nice and it eats the bear then the bear is red.\n\nFrom statement 1, we know the bear is blue, not green.\n\nNow, let's analyze the statement \"If the bear is not green then the bear eats the cat.\" If the bear is blue, then it satisfies the condition of \"not green.\" Therefore, according to statement 2, the bear eats the cat.\n\nHowever, there is no statement that directly says the bear eats the bear. Instead, we have statement 5, which says that if something is nice, then it eats the bear. Since the bear is blue and not red, we cannot conclude that it is nice.\n\nBut we can infer from statement 6 that if something is nice and it eats the bear, then the bear is red. However, since we know the bear is not red, we cannot conclude that the bear is nice.\n\nNow, let's consider the statement \"The bear does not eat the bear.\" This statement seems unrelated to the conditions that we have analyzed so far. However, if the bear eats the cat, and the cat eats the cow, then we can infer that the bear ultimately eats the cow indirectly.\n\nWe can conclude that the bear is not nice because the bear is blue and not red, and there is no statement that directly says the bear is nice.\n\nHowever, we can also conclude that the cow is not nice because it is green and it eats the cow. Therefore, we can infer from statement 5 that the cow does not eat the bear.\n\nSince the bear does not eat the bear directly and the bear does not eat the bear indirectly, we can conclude that the statement \"The bear does not eat the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is blue. (This statement does not provide any useful information about the bear's eating habits.)\n\n2. The cat eats the cow. (This statement does not provide any information about the bear's eating habits.)\n\n3. The cat is red. (This statement does not provide any information about the bear's eating habits.)\n\n4. The cat is round. (This statement does not provide any information about the bear's eating habits.)\n\n5. The cat does not need the cow. (This statement does not provide any information about the bear's eating habits.)\n\n6. The cat does not need the dog. (This statement does not provide any information about the bear's eating habits.)\n\n7. The cow is not round. (This statement does not provide any information about the bear's eating habits.)\n\n8. The dog chases the bear. (This statement does not provide any information about the bear's eating habits.)\n\n9. The dog chases the cat. (This statement does not provide any information about the bear's eating habits.)\n\n10. The dog is round. (This statement does not provide any information about the bear's eating habits.)\n\n11. If the bear is not green then the bear eats the cat. (This statement gives us a condition about the bear's eating habits. However, we do not know if the bear is green or not.)\n\n12. If the dog needs the cat then the dog chases the bear. (This statement gives us a condition about the dog's actions. However, we do not know if the dog needs the cat or not.)\n\n13. If the cow needs the bear then the cow is green. (This statement gives us a condition about the cow's color. However, we do not know if the cow needs the bear or not.)\n\n14. If the dog chases the cow then the dog needs the bear. (This statement gives us a condition about the dog's needs. However, we do not know if the dog chases the cow or not.)\n\n15. Red things are nice. (This statement does not provide any information about the bear's eating habits.)\n\n16. If something is green then it needs the cow. (This statement gives us a condition about the needs of green things. However, we do not know if the bear is green or not.)\n\n17. If something is nice then it eats the bear. (This statement gives us a condition about the eating habits of nice things. However, we do not know if the bear is nice or not.)\n\n18. If something is nice and it eats the bear then the bear is red. (This statement gives us a condition about the color of the bear. However, we do not know if the bear is nice or not.)\n\n19. If something eats the dog and it is not red then the dog does not need the cow. (This statement gives us a condition about the dog's needs. However, we do not know if the dog needs the cow or not.)\n\nNow, we need to determine the color of the bear. We can do this by analyzing the given information.\n\nFrom statement 11, we know that if the bear is not green then the bear eats the cat. However, we do not know if the bear is green or not. We can analyze the other statements to find out if the bear is green or not.\n\nFrom statement 13, we know that if the cow needs the bear then the cow is green. However, we do not know if the cow needs the bear or not.\n\nFrom statement 16, we know that if something is green then it needs the cow. However, we do not know if the bear is green or not.\n\nFrom statement 17, we know that if something is nice then it eats the bear. However, we do not know if the bear is nice or not.\n\nFrom statement 18, we know that if something is nice and it eats the bear then the bear is red. However, we do not know if the bear is nice or not.\n\nWe can try to find out if the bear is green or not by analyzing the given information.\n\nFrom statement 3, we know that the cat is red. From statement 15, we know that red things are nice. Therefore, the cat is nice.\n\nFrom statement 2, we know that the cat eats the cow. From statement 17, we know that if something is nice then it eats the bear. Therefore, the cat eats the bear. From statement 18, we know that if something is nice and it eats the bear then the bear is red. Therefore, the bear is red.\n\nFrom statement 16, we know that if something is green then it needs the cow. Since the bear is not green (because it is red), it does not need the cow.\n\nFrom statement 11, we know that if the bear is not green then the bear eats the cat. Therefore, the bear eats the cat.\n\nNow, we can analyze the given statement \"The bear does not eat the bear.\" From our previous analysis, we know that the bear eats the cat. However, we do not know if the bear eats the bear or not. Since we do not have any information that the bear eats the bear, we cannot conclude whether the statement is true or false.\n\nTherefore, the final answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that determine the behavior of the bear, cat, cow, and dog. \n\n1. The bear is blue.\n2. The cat eats the cow.\n3. The cat is red.\n4. The cat is round.\n5. The cat does not need the cow.\n6. The cat does not need the dog.\n7. The cow is not round.\n8. The dog chases the bear.\n9. The dog chases the cat.\n10. The dog is round.\n11. If the bear is not green then the bear eats the cat.\n12. If the dog needs the cat then the dog chases the bear.\n13. If the cow needs the bear then the cow is green.\n14. If the dog chases the cow then the dog needs the bear.\n15. Red things are nice.\n16. If something is green then it needs the cow.\n17. If something is nice then it eats the bear.\n18. If something is nice and it eats the bear then the bear is red.\n19. If something eats the dog and it is not red then the dog does not need the cow.\n\nNow, let's break down the statement to be determined: \"The bear does not eat the bear.\"\n\nWe need to find the conditions under which the bear eats the bear. We can start by analyzing the statements that relate to the bear's behavior.\n\nFrom statement 11, we know that if the bear is not green, then the bear eats the cat. However, we don't have any information about the bear eating itself.\n\nTo determine whether the bear eats the bear, we can use a process of elimination. We can look for conditions that might lead to the bear eating the bear.\n\nFrom statement 17, we know that if something is nice, then it eats the bear. We can also use this statement in conjunction with statement 18, which states that if something is nice and it eats the bear, then the bear is red.\n\nHowever, the bear is blue, not red (statement 1). This means that the bear cannot be nice, according to statement 15, which states that red things are nice.\n\nNow, let's consider the possibilities:\n\n* If the bear is nice, then it eats the bear (statement 17). However, we've already determined that the bear is not nice.\n* If the bear is not green, then the bear eats the cat (statement 11). However, this does not necessarily mean that the bear eats the bear.\n\nWe need to find another condition that relates to the bear eating the bear. Let's look at statement 19, which states that if something eats the dog and it is not red, then the dog does not need the cow.\n\nHowever, this statement does not provide any information about the bear eating the bear.\n\nWe can also use statement 12, which states that if the dog needs the cat, then the dog chases the bear. However, this statement does not provide any information about the bear eating the bear.\n\nLet's look at statement 18, which states that if something is nice and it eats the bear, then the bear is red. However, we've already determined that the bear is not nice.\n\nWe can also use statement 14, which states that if the dog chases the cow, then the dog needs the bear. However, this statement does not provide any information about the bear eating the bear.\n\nWe can also use statement 13, which states that if the cow needs the bear, then the cow is green. However, this statement does not provide any information about the bear eating the bear.\n\nWe can also use statement 15, which states that red things are nice. However, we've already determined that the bear is not nice.\n\nAt this point, we have not found any conditions that lead to the bear eating the bear. However, we can use the process of elimination to determine that the statement \"The bear does not eat the bear\" is true.\n\nThe bear does not eat the bear because there are no conditions that lead to the bear eating the bear. The bear is not nice (statement 1), and there are no other conditions that relate to the bear eating the bear.\n\nTherefore, the statement \"The bear does not eat the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bear is blue. (Given)\n2. The cat eats the cow. (Given)\n3. The cat is red. (Given)\n4. The cat is round. (Given)\n5. The cat does not need the cow. (Given)\n6. The cat does not need the dog. (Given)\n7. The cow is not round. (Given)\n8. The dog chases the bear. (Given)\n9. The dog chases the cat. (Given)\n10. The dog is round. (Given)\n11. If the bear is not green then the bear eats the cat. (Given)\n12. If the dog needs the cat then the dog chases the bear. (Given)\n13. If the cow needs the bear then the cow is green. (Given)\n14. If the dog chases the cow then the dog needs the bear. (Given)\n15. Red things are nice. (Given)\n16. If something is green then it needs the cow. (Given)\n17. If something is nice then it eats the bear. (Given)\n18. If something is nice and it eats the bear then the bear is red. (Given)\n19. If something eats the dog and it is not red then the dog does not need the cow. (Given)\n\nNow, let's use the given information to determine the color of the bear. \n\nFrom statement 1, the bear is blue. \nFrom statement 11, if the bear is not green then the bear eats the cat. However, we do not know the color of the cat. \nWe can start by analyzing the possible colors of the cat. Since the cat is red (statement 3), we can conclude that the bear is not red, because the bear is blue (statement 1).\n\nNow, let's analyze the color of the cow. From statement 13, if the cow needs the bear then the cow is green. However, we do not know if the cow needs the bear.\n\nFrom statement 8, the dog chases the bear. From statement 9, the dog chases the cat. From statement 10, the dog is round. \n\nFrom statement 12, if the dog needs the cat then the dog chases the bear. Since the dog chases the bear, we can conclude that the dog needs the cat.\n\nFrom statement 14, if the dog chases the cow then the dog needs the bear. However, we do not know if the dog chases the cow.\n\nFrom statement 4, the cat is round. From statement 10, the dog is round. \n\nNow, let's analyze the relationship between the bear, the cat, and the dog. \n\nFrom statement 1, the bear is blue. From statement 8, the dog chases the bear. From statement 9, the dog chases the cat. From statement 12, if the dog needs the cat then the dog chases the bear. Since the dog chases the bear, we can conclude that the dog needs the cat.\n\nNow, let's analyze the color of the dog. From statement 10, the dog is round. Since the dog is round and the cat is red (statement 3), we can conclude that the dog is not red.\n\nFrom statement 19, if something eats the dog and it is not red then the dog does not need the cow. However, we do not know what eats the dog.\n\nFrom statement 8, the dog chases the bear. From statement 12, if the dog needs the cat then the dog chases the bear. Since the dog chases the bear, we can conclude that the dog needs the cat.\n\nNow, let's analyze the relationship between the bear and the dog. \n\nFrom statement 8, the dog chases the bear. From statement 11, if the bear is not green then the bear eats the cat. However, we do not know the color of the cat.\n\nFrom statement 1, the bear is blue. Since the bear is blue and the bear is not red, we can conclude that the bear is not nice. \n\nFrom statement 17, if something is nice then it eats the bear. Since the bear is not nice, we can conclude that the bear is not eaten.\n\nNow, let's analyze the statement \"The bear does not eat the bear\". \n\nSince the bear is not nice (from statement 1 and the fact that the bear is not red), we can conclude that the bear does not eat the bear.\n\nTherefore, the statement \"The bear does not eat the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and the logical rules to determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown.\n\nStep 1: Analyze the given information.\n- The bear is blue.\n- The cat eats the cow.\n- The cat is red.\n- The cat is round.\n- The cat does not need the cow.\n- The cat does not need the dog.\n- The cow is not round.\n- The dog chases the bear.\n- The dog chases the cat.\n- The dog is round.\n\nStep 2: Analyze the logical rules.\n- If the bear is not green then the bear eats the cat.\n- If the dog needs the cat then the dog chases the bear.\n- If the cow needs the bear then the cow is green.\n- If the dog chases the cow then the dog needs the bear.\n- Red things are nice.\n- If something is green then it needs the cow.\n- If something is nice then it eats the bear.\n- If something is nice and it eats the bear then the bear is red.\n- If something eats the dog and it is not red then the dog does not need the cow.\n\nStep 3: Apply the logical rules to the given information.\n\nFrom the given information, we know that the bear is blue (not green) and the cat eats the cow. Since the cat is red, we can conclude that the cat is nice (rule 5). According to rule 7, if something is nice, then it eats the bear. Therefore, the cat eats the bear.\n\nNow, we have a contradiction. The statement says \"The bear does not eat the bear,\" but we found that the cat eats the bear. This means that the statement \"The bear does not eat the bear\" is false.\n\nHowever, we can also try to prove that the statement \"The bear does not eat the bear\" is true by assuming that it is false. If the bear eats the bear, then we can apply rule 1 (if the bear is not green then the bear eats the cat). Since the bear eats the cat, the cat must be green. According to rule 4, if the cow needs the bear, then the cow is green. Since the cow is green, the cat must be green. However, the cat is red, which is a contradiction. Therefore, our assumption that the bear eats the bear is false.\n\nSince we have a contradiction, we can conclude that the statement \"The bear does not eat the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is blue. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n2. The cat eats the cow. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n3. The cat is red. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n4. The cat is round. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n5. The cat does not need the cow. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n6. The cat does not need the dog. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n7. The cow is not round. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n8. The dog chases the bear. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n9. The dog chases the cat. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n10. The dog is round. (This statement does not provide any useful information regarding the bear's eating habits.)\n\nNow, let's analyze the conditional statements:\n\n11. If the bear is not green then the bear eats the cat. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n12. If the dog needs the cat then the dog chases the bear. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n13. If the cow needs the bear then the cow is green. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n14. If the dog chases the cow then the dog needs the bear. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n15. Red things are nice. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n16. If something is green then it needs the cow. (This statement does not provide any useful information regarding the bear's eating habits.)\n\n17. If something is nice then it eats the bear. (This statement is relevant to the problem. We need to find out if the bear is nice or not.)\n\n18. If something is nice and it eats the bear then the bear is red. (This statement is relevant to the problem. We need to find out if the bear is red or not.)\n\nNow, we can analyze the given information regarding the bear's eating habits.\n\nFrom statement 11, we know that if the bear is not green, then it eats the cat. However, there is no information about the bear's color. Therefore, we cannot determine if the bear is nice or not.\n\nFrom statement 17, we know that if something is nice then it eats the bear. However, we cannot determine if the bear is nice or not.\n\nFrom statement 18, we know that if something is nice and it eats the bear then the bear is red. However, we cannot determine if the bear is nice or not.\n\nHowever, we can analyze the statement \"The bear does not eat the bear\" in terms of the given information. The statement is essentially asking if the bear eats itself. If the bear eats the cat, it does not mean that the bear eats itself. Therefore, we cannot determine if the bear does not eat the bear.\n\nHowever, we can determine that the bear does not need to eat itself. There is a statement \"If something eats the dog and it is not red then the dog does not need the cow\" and it does not say anything about the bear. We can also analyze the statement \"The bear eats the cat\" from statement 11. If the bear eats the cat and it is not red, then we cannot determine if the bear is nice or not.\n\nHowever, we can determine that the bear is blue. If the bear is nice then it eats the bear. However, we do not know if the bear is nice or not. Therefore, we cannot determine if the bear eats the bear. However, the statement \"The bear does not eat the bear\" can be true or false depending on whether the bear is nice or not. However, we cannot determine if the bear is nice or not.\n\nHowever, we can determine that the bear is not green. If the bear is not green, then it eats the cat (statement 11). However, we cannot determine if the bear eats the bear or not. \n\nHowever, we can conclude that the statement \"The bear does not eat the bear\" can be either true or false. But we do not know if it is true or false. Therefore, the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given statements and rules.\n\n1. The bear is blue. \n2. The cat eats the cow. \n3. The cat is red. \n4. The cat is round. \n5. The cat does not need the cow. \n6. The cat does not need the dog. \n7. The cow is not round. \n8. The dog chases the bear. \n9. The dog chases the cat. \n10. The dog is round. \n11. If the bear is not green then the bear eats the cat. \n12. If the dog needs the cat then the dog chases the bear. \n13. If the cow needs the bear then the cow is green. \n14. If the dog chases the cow then the dog needs the bear. \n15. Red things are nice. \n16. If something is green then it needs the cow. \n17. If something is nice then it eats the bear. \n18. If something is nice and it eats the bear then the bear is red. \n19. If something eats the dog and it is not red then the dog does not need the cow.\n\nWe need to check if the bear eats the bear. Let's assume that the bear eats the bear. \n\nIf the bear eats the bear, then the bear is not blue. We cannot conclude anything about the color of the bear yet.\n\nThe bear is not green. From statement 11, we know that if the bear is not green then the bear eats the cat. However, we have the assumption that the bear eats the bear. \n\nLet's check if the bear eats the cat. If the bear eats the cat, then the bear eats the cow (from statement 2). However, we don't have any information that the bear eats the cow.\n\nNow, let's check if the dog needs the cow. We don't have enough information to determine this.\n\nHowever, if the bear eats the cat, then the bear is nice (from statement 17). If the bear is nice, then the bear eats the bear (from statement 18). This is a circular reasoning and does not help us to determine if the bear eats the bear or not.\n\nWe also have the statement \"If the dog eats the dog, then the dog does not need the cow.\" However, we have no information that the bear eats the dog.\n\nFrom statement 19, we can conclude that if the dog does not need the cow, then the dog does not eat the bear or the bear is red. However, we cannot conclude anything from this statement.\n\nSince we have a circular reasoning and no information that the bear eats the dog, we cannot determine if the bear eats the bear or not.\n\nTherefore, the statement \"The bear does not eat the bear\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. We are given that the bear is blue. (From the statement: The bear is blue.)\n   We do not know the color of the bear yet, so we will proceed with the given information.\n\n2. The cat eats the cow. (From the statement: The cat eats the cow.)\n   This statement does not provide any information about the bear.\n\n3. The cat is red. (From the statement: The cat is red.)\n   This statement does not provide any information about the bear.\n\n4. The cat is round. (From the statement: The cat is round.)\n   This statement does not provide any information about the bear.\n\n5. The cat does not need the cow. (From the statement: The cat does not need the cow.)\n   This statement does not provide any information about the bear.\n\n6. The cow is not round. (From the statement: The cow is not round.)\n   This statement does not provide any information about the bear.\n\n7. The dog chases the bear. (From the statement: The dog chases the bear.)\n   This statement does not provide any information about what the bear eats.\n\n8. The dog chases the cat. (From the statement: The dog chases the cat.)\n   This statement does not provide any information about what the bear eats.\n\n9. The dog is round. (From the statement: The dog is round.)\n   This statement does not provide any information about what the bear eats.\n\n10. If the bear is not green then the bear eats the cat. (From the statement: If the bear is not green then the bear eats the cat.)\n    This statement does not provide any information about whether the bear eats itself.\n\n11. If the dog needs the cat then the dog chases the bear. (From the statement: If the dog needs the cat then the dog chases the bear.)\n    We do not know whether the dog needs the cat yet.\n\n12. If the cow needs the bear then the cow is green. (From the statement: If the cow needs the bear then the cow is green.)\n    This statement does not provide any information about what the bear eats.\n\n13. If the dog chases the cow then the dog needs the bear. (From the statement: If the dog chases the cow then the dog needs the bear.)\n    We do not know whether the dog chases the cow yet.\n\n14. Red things are nice. (From the statement: Red things are nice.)\n    This statement does not provide any information about what the bear eats.\n\n15. If something is green then it needs the cow. (From the statement: If something is green then it needs the cow.)\n    This statement does not provide any information about what the bear eats.\n\n16. If something is nice then it eats the bear. (From the statement: If something is nice then it eats the bear.)\n    This statement does not provide any information about whether the bear eats itself.\n\n17. If something is nice and it eats the bear then the bear is red. (From the statement: If something is nice and it eats the bear then the bear is red.)\n    This statement does not provide any information about whether the bear eats itself.\n\n18. If the bear is not green then the bear eats the cat. (From the statement: If the bear is not green then the bear eats the cat.)\n    We do not know whether the bear is green yet.\n\n19. If the dog needs the cat then the dog chases the bear. (From the statement: If the dog needs the cat then the dog chases the bear.)\n    We do not know whether the dog needs the cat yet.\n\n20. The statement we need to evaluate is \"The bear does not eat the bear.\"\n   We know that if the bear is nice and it eats the bear then the bear is red. (From statement 16 and 17)\n   We know that the cat is red. (From statement 3)\n   We know that if something is red then it is nice. (From statement 14)\n   So the cat is nice and it eats the bear. (From statements 14, 3, and 16)\n   However, we do not know whether the cat is round or not. (From statement 4)\n   We know that if something eats the dog and it is not red then the dog does not need the cow. (From statement 19)\n   We know that the dog chases the cat. (From statement 8)\n   We know that if the dog chases the cow then the dog needs the bear. (From statement 13)\n   We know that the dog is round. (From statement 9)\n   We know that the cow is not round. (From statement 6)\n   We know that if the dog needs the cat then the dog chases the bear. (From statement 11)\n   We know that the bear is blue. (From statement 1)\n   We know that the bear does not eat the cat. (From statement 2)\n   We know that if the bear is not green then the bear eats the cat. (From statement 10)\n   However, we do not know whether the bear is green or not. (From statement 18)\n   We know that if the bear eats the cat then the bear is red. (From statement 18 and 16)\n   However, we do not know whether the bear eats the cat or not. (From statement 2)\n   We know that if the bear is red then it is nice and it eats the bear. (From statement 17)\n   However, we do not know whether the bear is red or not. (From statement 3)\n   We know that the bear does not eat the dog. (From statement 7)\n   We know that the dog does not chase the bear if the dog does not need the bear. (From statement 13)\n   We know that if the dog needs the bear then the dog chases the bear. (From statement 11)\n   However, we do not know whether the dog needs the bear or not. (From statement 11)\n   We know that the dog needs the bear if the dog chases the cow and the cow is not round. (From statement 13)\n   We know that the cow is not round. (From statement 6)\n   We know that the dog chases the cow. (From statement 13)\n   We know that the dog needs the bear. (From statement 13)\n   We know that if the dog needs the bear then the dog chases the bear. (From statement 11)\n   We know that the dog chases the bear. (From statement 11)\n   We know that if the bear eats the dog then the dog does not need the cow. (From statement 19)\n   However, we do not know whether the bear eats the dog or not. (From statement 7)\n   We know that the bear does not eat the cat. (From statement 2)\n   We know that the cat eats the cow. (From statement 2)\n   We know that the dog does not need the cow. (From statement 5)\n   We know that the bear is blue. (From statement 1)\n   We know that the bear does not eat the dog. (From statement 7)\n   We know that the bear is not green. (From statement 18 and the fact that the bear is blue)\n   We know that the bear eats the cat. (From statement 18)\n   We know that if something is nice and it eats the bear then the bear is red. (From statement 17)\n   We know that the cat is nice. (From statement 14)\n   We know that the cat eats the bear. (From statement 2 and the fact that the bear eats the cat)\n   We know that the bear is red. (From statement 17)\n   However, this contradicts the fact that the bear is blue.\n   Since the bear is red and it eats the bear, then the statement \"The bear does not eat the bear\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. The bear is blue. \n2. The cat eats the cow. \n3. The cat is red. \n4. The cat is round. \n5. The cat does not need the cow. \n6. The cat does not need the dog. \n7. The cow is not round. \n8. The dog chases the bear. \n9. The dog chases the cat. \n10. The dog is round. \n\nNow, let's analyze the rules:\n\n1. If the bear is not green then the bear eats the cat.\nFrom this rule, we cannot directly determine whether the bear eats the cat or not. So, this rule does not provide any information about the statement we are trying to evaluate.\n\n2. If the dog needs the cat then the dog chases the bear.\nWe do not know whether the dog needs the cat or not. So, we cannot use this rule to determine the statement.\n\n3. If the cow needs the bear then the cow is green.\nWe do not know whether the cow needs the bear or not. So, we cannot use this rule to determine the statement.\n\n4. If the dog chases the cow then the dog needs the bear.\nWe do not know whether the dog chases the cow or not. So, we cannot use this rule to determine the statement.\n\n5. Red things are nice.\nThis rule does not provide any information about the statement we are trying to evaluate.\n\n6. If something is green then it needs the cow.\nThis rule does not provide any information about the statement we are trying to evaluate.\n\n7. If something is nice then it eats the bear.\nThis rule does not provide any information about the statement we are trying to evaluate.\n\n8. If something is nice and it eats the bear then the bear is red.\nThis rule does not provide any information about the statement we are trying to evaluate.\n\n9. If something eats the dog and it is not red then the dog does not need the cow.\nWe do not know who eats the dog or whether the dog needs the cow or not. So, we cannot use this rule to determine the statement.\n\nLet's analyze the rules again and look for any possible information about the bear eating the bear:\n\nFrom rule 1, we know that if the bear is not green then the bear eats the cat. However, we do not know whether the bear eats the cat or not. \n\nFrom rule 8, we know that if something is nice and it eats the bear then the bear is red. However, we do not know whether something is nice and it eats the bear or not.\n\nHowever, from rule 7, we know that if something is nice then it eats the bear. We can combine this rule with rule 8 to get: if something is nice and it eats the bear, then the bear is red.\n\nNow, let's look at the given information:\n\nThe bear is blue (rule 1) \nand the bear is not red (because red things are nice, rule 5)\n\nHowever, we do not know whether the bear is nice or not.\n\nNow, let's look at the bear eating the bear:\n\nIf the bear eats the bear, then it is nice (rule 7) \nand the bear is red (rule 8) \nand the bear is not blue (because red things are nice, rule 5)\n\nHowever, we already know that the bear is blue (rule 1). \n\nThis creates a contradiction, and we can conclude that the bear does not eat the bear.\n\nTherefore, the statement \"The bear does not eat the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"The bear is blue.\"\n   - No information about the bear eating itself is mentioned, so we can continue.\n\n2. We are given that \"If the bear is not green then the bear eats the cat.\"\n   - We don't know the color of the bear yet, so we can't conclude anything.\n\n3. We are given that \"If the bear is not green then the bear eats the cat.\"\n   - This rule implies that the bear is green, it would not eat the cat.\n   - This implies that the bear might eat something else.\n\n4. We are given that \"If something is nice then it eats the bear.\"\n   - We are not given any information that the bear is nice, so we can't conclude anything from this.\n\n5. We are given that \"The cat eats the cow.\"\n   - No information about the bear eating itself is mentioned.\n\n6. We are given that \"If something eats the dog and it is not red then the dog does not need the cow.\"\n   - This rule is not relevant to our statement about the bear eating itself.\n\n7. We are given that \"The cat is red.\"\n   - No information about the bear eating itself is mentioned.\n\n8. We are given that \"The cat is round.\"\n   - No information about the bear eating itself is mentioned.\n\n9. We are given that \"The cow is not round.\"\n   - No information about the bear eating itself is mentioned.\n\n10. We are given that \"The dog chases the bear.\"\n    - This implies that the bear is not eating the dog.\n\n11. We are given that \"If the dog needs the cat then the dog chases the bear.\"\n    - This implies that the dog does not need the cat, as the dog chases the bear.\n\n12. We are given that \"The dog is round.\"\n    - No information about the bear eating itself is mentioned.\n\n13. We are given that \"If the dog chases the cow then the dog needs the bear.\"\n    - This implies that the dog does not chase the cow, as the dog chases the bear.\n\n14. We are given that \"If something is green then it needs the cow.\"\n    - No information about the bear eating itself is mentioned.\n\n15. We are given that \"Red things are nice.\"\n    - We know the cat is red, but this does not help us with the statement about the bear eating itself.\n\n16. We are given that \"If something is nice and it eats the bear then the bear is red.\"\n    - We are not given any information that the bear is nice, so we can't conclude anything from this.\n\n17. We are given that \"The bear does not eat the bear.\"\n   - We are asked to determine whether this statement is true, false, or unknown.\n\nFrom the given information, we cannot conclude whether the bear eats itself or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not_green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(not_green_bear, eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(need_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(need_cow_bear, green_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> need(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not_need(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, not_red_X), not_need_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(bear, bear))",
+          "z3_formula": "not_eats_bear_bear == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(need_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(need_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> need(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_X, need_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not_need(dog, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), not_need_dog_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bear)",
+          "z3_formula": "Not(nice_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(cow)",
+          "z3_formula": "Not(nice_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(bear, bear)",
+          "z3_formula": "Not(eats_bear_bear)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_cat, eats_cat_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_cat, eats_cat_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not_need(dog, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), not_need_dog_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bear, cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not_need(bear, cow)",
+          "z3_formula": "not_need_bear_cow == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not_need(bear, dog)",
+          "z3_formula": "not_need_bear_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not_need(bear, cow)",
+          "z3_formula": "not_need_bear_cow == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bear, cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(bear, bear)",
+          "z3_formula": "Not(eats_bear_bear)",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, cow)",
+          "z3_formula": "Not(needs_cat_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, dog)",
+          "z3_formula": "Not(needs_cat_dog) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "Not(round_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), Not(needs_X_cow))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(bear, bear)",
+          "z3_formula": "Not(eats_bear_bear) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(cow))",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(need_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(need_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> need(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_cat, nice_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_X, need_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not(red(X)) -> not_need(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), not_need_X_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, cow)",
+          "z3_formula": "Not(needs_cat_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cat, dog)",
+          "z3_formula": "Not(needs_cat_dog) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "Not(round_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "Not(green(bear)) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(needs_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(needs_cow_bear, green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> needs(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, needs_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) == True",
+          "z3_formula": "red_X == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & Not(red(X)) -> Not(needs(X, cow))",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), Not(needs_X_cow))",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not(green(X)) -> eats(X, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_bear, eats_bear_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(X)",
+          "z3_formula": "Implies(And(nice_bear, eats_bear_bear), red_bear)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(need_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(cow, bear) -> green(bear)",
+          "z3_formula": "Implies(need_cow_bear, green_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> need(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) == True",
+          "z3_formula": "red_X == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_X, need_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not need(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, Not(red_X)), not_need_X_cow)",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, cow)",
+          "z3_formula": "not_need_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not need(cat, dog)",
+          "z3_formula": "not_need_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "not_round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> eats(bear, cat)",
+          "z3_formula": "Implies(not_green_bear, eats_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(dog, cat) -> chases(dog, bear)",
+          "z3_formula": "Implies(need_dog_cat, chases_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(cow, bear) -> green(cow)",
+          "z3_formula": "Implies(need_cow_bear, green_cow)",
+          "source_step": "13"
+        },
+        {
+          "type": "rule",
+          "expression": "chases(dog, cow) -> need(dog, bear)",
+          "z3_formula": "Implies(chases_dog_cow, need_dog_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) == True",
+          "z3_formula": "red_X == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> need(X, cow)",
+          "z3_formula": "Implies(green_X, need_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_X, eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(bear)",
+          "z3_formula": "Implies(And(nice_X, eats_X_bear), red_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not need(X, cow)",
+          "z3_formula": "Implies(And(eats_X_dog, not_red_X), not_need_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(bear, bear)",
+          "z3_formula": "not_eats_bear_bear == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> eats(X, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> eats(X, cat)",
+          "z3_formula": "Implies(Not(green_bear), eats_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, bear)",
+          "z3_formula": "Implies(nice_bear, eats_bear_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & not red(X) -> not needs(X, cow)",
+          "z3_formula": "Implies(And(eats_something_dog, Not(red_something)), Not(needs_something, cow))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(cow)",
+          "z3_formula": "Not(round_cow) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> chases(X, bear)",
+          "z3_formula": "Implies(needs_something, cat), chases_something, bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(chases_something, cow), needs_something, bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_something, needs_something, cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(red(X))",
+          "z3_formula": "nice(red_something) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, bear) -> red(X)",
+          "z3_formula": "Implies(And(nice_something, eats_something, bear)), red_something) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(bear, bear)",
+          "z3_formula": "Not(eats_bear_bear) == True",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 198,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 1,
+      "total_weight": 193,
+      "solve_time_ms": 1.5281513333320618
+    },
+    "timing": {
+      "trace_gen_s": 20.564,
+      "extraction_s": 46.531,
+      "dedup_s": 1.892,
+      "maxsat_s": 0.004,
+      "total_s": 68.991
+    }
+  }
+}

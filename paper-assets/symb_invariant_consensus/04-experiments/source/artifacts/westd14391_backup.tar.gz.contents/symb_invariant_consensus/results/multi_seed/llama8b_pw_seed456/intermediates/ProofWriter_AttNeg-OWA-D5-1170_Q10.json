@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1170_Q10",
+    "problem": "Bob is kind. Charlie is quiet. Charlie is rough. Fiona is kind. Fiona is rough. Fiona is white. Gary is nice. If Gary is red and Gary is white then Gary is quiet. All white things are rough. If something is rough then it is red. If something is nice then it is white. All smart things are white. Rough, quiet things are not kind. If something is quiet and not smart then it is kind. Smart things are quiet. If something is smart and not rough then it is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRough(Charlie, True) ::: Charlie is rough.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nWhite(Fiona, True) ::: Fiona is white.\nNice(Gary, True) ::: Gary is nice.\n\nRules:\nRed(Gary, True) && White(Gary, True) >>> Quiet(Gary, True) ::: If Gary is red and Gary is white then Gary is quiet.\nWhite($x, True) >>> Rough($x, True) ::: All white things are rough.\nRough($x, True) >>> Red($x, True) ::: If something is rough then it is red.\nNice($x, True) >>> White($x, True) ::: If something is nice then it is white.\nSmart($x, True) >>> White($x, True) ::: All smart things are white.\nRough($x, True) && Quiet($x, True) >>> Kind($x, False) ::: Rough, quiet things are not kind.\nQuiet($x, True) && Smart($x, False) >>> Kind($x, True) ::: If something is quiet and not smart then it is kind.\nSmart($x, True) >>> Quiet($x, True) ::: Smart things are quiet.\nSmart($x, True) && Rough($x, False) >>> Quiet($x, True) ::: If something is smart and not rough then it is quiet.\n\nQuery:\nQuiet(Gary, False) ::: Gary is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

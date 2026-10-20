@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-033-qwen3-pw600-nonthinking",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:01:55.209Z",
+    "updated_at": "2026-05-18T18:00:09.156Z",
+    "hypothesis": "Qwen3-14B in non-thinking mode on ProofWriter 600 will show whether SICA's constraint-based consensus improves over SC@K for a model without chain-of-thought reasoning overhead, providing a controlled comparison against thinking-mode results.",
+    "spec": {
+      "command": "bash scripts/run_exp033_qwen3_pw600.sh",
+      "server": "westd-16639 (via westd-25068)",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen3-14B (non-thinking)",
+      "seed": 42,
+      "gpu": "cuda:1 (NVIDIA RTX PRO 6000 Blackwell 97GB)",
+      "port": 8001,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 4096,
+      "max_model_len": 8192,
+      "enable_thinking": false,
+      "tmux_session": "exp033",
+      "output_dir": "results/qwen3_14b_pw600_nonthinking/",
+      "log_path": "results/qwen3_14b_pw600_nonthinking/run.log"
+    },
+    "conclusion": "failed",
+    "notes": "FAILED: AutoDL 平台级 SIGTERM 导致 vLLM EngineCore 崩溃 (00:05:54)，后紧急清理 Worker 误杀 tmux server 连带终止。518/600 intermediates 有效可恢复。",
+    "checkpoint_path": "westd-16639:/root/symb_invariant_consensus/results/qwen3_14b_pw600_nonthinking/intermediates/ (518/600, instance reset lost)",
+    "completed_at": "2026-05-18T18:00:09.156Z"
+  },
+  "timestamp": "2026-05-18T18:00:09.287161+00:00",
+  "trigger": "update_registry"
+}

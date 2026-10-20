@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-843_Q11",
+    "problem": "Charlie is blue. Charlie is quiet. Dave is not blue. Dave is green. Dave is quiet. Dave is round. Dave is not white. Erin is blue. Erin is green. Erin is quiet. Gary is green. Gary is quiet. If someone is blue and not quiet then they are round. If someone is green then they are round. Blue, cold people are green. All blue people are cold. If Charlie is not quiet then Charlie is not round. If Gary is blue and Gary is round then Gary is not cold. All round people are not furry. If someone is cold and not furry then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is white.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nBlue(Charlie, True) ::: Charlie is blue.\nQuiet(Charlie, True) ::: Charlie is quiet.\nBlue(Dave, False) ::: Dave is not blue.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nRound(Dave, True) ::: Dave is round.\nWhite(Dave, False) ::: Dave is not white.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Erin, True) ::: Erin is green.\nQuiet(Erin, True) ::: Erin is quiet.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nBlue($x, True) && Quiet($x, False) >>> Round($x, True) ::: If someone is blue and not quiet then they are round.\nGreen($x, True) >>> Round($x, True) ::: If someone is green then they are round.\nBlue($x, True) && Cold($x, True) >>> Green($x, True) ::: Blue, cold people are green.\nBlue($x, True) >>> Cold($x, True) ::: All blue people are cold.\nQuiet(Charlie, False) >>> Round(Charlie, False) ::: If Charlie is not quiet then Charlie is not round.\nBlue(Gary, True) && Round(Gary, True) >>> Cold(Gary, False) ::: If Gary is blue and Gary is round then Gary is not cold.\nRound($x, True) >>> Furry($x, False) ::: All round people are not furry.\nCold($x, True) && Furry($x, False) >>> White($x, True) ::: If someone is cold and not furry then they are white.\n\nQuery:\nWhite(Charlie, True) ::: Charlie is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

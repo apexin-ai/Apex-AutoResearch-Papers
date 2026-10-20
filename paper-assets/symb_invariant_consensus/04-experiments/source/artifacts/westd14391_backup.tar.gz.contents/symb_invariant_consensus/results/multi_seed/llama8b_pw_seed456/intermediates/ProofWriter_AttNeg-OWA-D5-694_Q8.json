@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-694_Q8",
+    "problem": "Anne is young. Charlie is not red. Gary is not blue. Gary is kind. Gary is not rough. Gary is not young. Harry is green. If Gary is green then Gary is not blue. All young people are blue. If Harry is white and Harry is young then Harry is not green. All red people are green. Blue, young people are red. If someone is green then they are white. If someone is blue and white then they are kind. All red people are not rough. If someone is young and not white then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nYoung(Anne, True) ::: Anne is young.\nRed(Charlie, False) ::: Charlie is not red.\nBlue(Gary, False) ::: Gary is not blue.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, False) ::: Gary is not rough.\nYoung(Gary, False) ::: Gary is not young.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nGreen(Gary, True) >>> Blue(Gary, False) ::: If Gary is green then Gary is not blue.\nYoung($x, True) >>> Blue($x, True) ::: All young people are blue.\nWhite(Harry, True) && Young(Harry, True) >>> Green(Harry, False) ::: If Harry is white and Harry is young then Harry is not green.\nRed($x, True) >>> Green($x, True) ::: All red people are green.\nBlue($x, True) && Young($x, True) >>> Red($x, True) ::: Blue, young people are red.\nGreen($x, True) >>> White($x, True) ::: If someone is green then they are white.\nBlue($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is blue and white then they are kind.\nRed($x, True) >>> Rough($x, False) ::: All red people are not rough.\nYoung($x, True) && White($x, False) >>> Rough($x, True) ::: If someone is young and not white then they are rough.\n\nQuery:\nRough(Anne, True) ::: Anne is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

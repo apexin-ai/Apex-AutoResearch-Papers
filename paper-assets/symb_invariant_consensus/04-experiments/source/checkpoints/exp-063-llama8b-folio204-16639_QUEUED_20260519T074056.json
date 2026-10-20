@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-063-llama8b-folio204-16639",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:40:38.262Z",
+    "updated_at": "2026-05-19T07:40:56.788Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct 在 FOLIO-204 上 SICA vs SC。此前 exp-020 在不同服务器上跑过 (SC=63.2%, delta=-2.45pp)，本实验在 westd-16639 复现并用修正后的 alphabetical tie-breaking SC。parent=exp-020",
+    "parent": "exp-020"
+  },
+  "timestamp": "2026-05-19T07:40:56.984149+00:00",
+  "trigger": "update_registry"
+}

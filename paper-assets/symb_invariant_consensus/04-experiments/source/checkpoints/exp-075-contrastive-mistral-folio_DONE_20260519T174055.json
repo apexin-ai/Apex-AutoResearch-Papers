@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-075-contrastive-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:27:29.909Z",
+    "updated_at": "2026-05-19T17:40:54.883Z",
+    "hypothesis": "Contrastive Constraint Generation: 对每个候选答案生成 pro/con FOL 约束，用对比评分代替同源约束。在 Mistral-7B FOLIO-204 上测试。如果 contrastive 约束提供独立于 traces 的判别信号，delta(Contrastive vs SC) > delta(SICA vs SC)。parent=exp-033",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_contrastive.py --mode vllm --k 12 --k-contrast 3 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/folio_full.json --output results/exp075_contrastive_mistral_folio/results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": "cuda:2",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T17:40:54.883Z"
+  },
+  "timestamp": "2026-05-19T17:40:55.066272+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-007-qwen72b-awq",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:47.099Z",
+    "updated_at": "2026-05-18T16:58:35.787Z",
+    "hypothesis": "Qwen2.5-72B-Instruct-AWQ (4-bit) 在 D012 60 题上 SICA vs SC：72B scaling 是否打破 capability trap？预期 SC baseline 更高（模型更强），但 SICA≈SC（extraction quality bottleneck 不随 model scale 改善），证明 scaling 不是 rescue path。",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/symb_invariant_consensus/scripts/run_exp007_72b_awq.sh\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "56225",
+      "log_path": "~/runs/symb_invariant_consensus/exp-007-qwen72b-awq.log",
+      "submitted_at": "2026-05-18T16:21:30.961Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T16:58:35.939152+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1039e1e5d474b88e1dd8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis dir n oracle qwen3t n204",
+  "task_key": "worker_analysis_dir-n-oracle-qwen3t-n204_20260520T213804",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_dir-n-oracle-qwen3t-n204_20260520T213804_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "0223e489135a60ff7058de5b99d650b1cb3e48fcf4299738f621ad3014217ce4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。N=204 重算结果：\n\n| | Dir-N (n=166) | N=204 (本次) |\n|---|---|---|\n| SC@12 | 83.7% | **86.27%** |\n| Oracle@12 | 89.8% | **91.18%** |\n| Oracle Gap | 6.0pp | **4.90pp** |\n\nOracle curve (N=204):\n- Oracle@1: 85.48% ± 1.05%\n- Oracle@2: 87.99% ± 0.82%\n- Oracle@3: 88.81% ± 0.68%\n- Oracle@4: 89.38% ± 0.68%\n- Oracle@6: 90.16% ± 0.52%\n- Oracle@8: 90.53% ± 0.47%\n- Oracle@12: 91.18% ± 0.00%\n\n结果写入 `/root/symb_invariant_consensus/results/dir_n_oracle_qwen3t_n204/results.json`。\n\n补充的 38 题整体偏简单（多数 12 traces 全部一致），SC 和 Oracle 都涨，但 Oracle Gap 从 6.0pp 缩小到 4.90pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dir-n-oracle-qwen3t-n204.md"
+}

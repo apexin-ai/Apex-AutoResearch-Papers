@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-301_Q16",
+    "problem": "Bob is cold. Bob is kind. Bob is red. Bob is smart. Bob is young. Fiona is blue. Gary is blue. Gary is kind. Harry is kind. Harry is young. All red people are blue. All blue people are smart. All young people are cold. Cold people are red. If someone is kind and smart then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Bob, True) ::: Bob is cold.\nKind(Bob, True) ::: Bob is kind.\nRed(Bob, True) ::: Bob is red.\nSmart(Bob, True) ::: Bob is smart.\nYoung(Bob, True) ::: Bob is young.\nBlue(Fiona, True) ::: Fiona is blue.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRed($x, True) >>> Blue($x, True) ::: All red people are blue.\nBlue($x, True) >>> Smart($x, True) ::: All blue people are smart.\nYoung($x, True) >>> Cold($x, True) ::: All young people are cold.\nCold($x, True) >>> Red($x, True) ::: Cold people are red.\nKind($x, True) && Smart($x, True) >>> White($x, True) ::: If someone is kind and smart then they are white.\n\nQuery:\nCold(Fiona, True) ::: Fiona is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

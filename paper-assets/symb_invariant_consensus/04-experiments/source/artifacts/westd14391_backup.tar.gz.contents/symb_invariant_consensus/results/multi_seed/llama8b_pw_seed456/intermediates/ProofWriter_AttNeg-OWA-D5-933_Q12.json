@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-933_Q12",
+    "problem": "Anne is cold. Anne is round. Bob is big. Charlie is cold. Charlie is nice. Charlie is round. Charlie is young. Erin is nice. Erin is not rough. Erin is round. If Charlie is cold then Charlie is not quiet. If someone is cold and quiet then they are not big. All young, quiet people are not big. Cold, big people are round. If Bob is round then Bob is nice. If someone is nice and young then they are rough. Big people are young. Young people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nRound(Anne, True) ::: Anne is round.\nBig(Bob, True) ::: Bob is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nRound(Charlie, True) ::: Charlie is round.\nYoung(Charlie, True) ::: Charlie is young.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, False) ::: Erin is not rough.\nRound(Erin, True) ::: Erin is round.\n\nRules:\nCold(Charlie, True) >>> Quiet(Charlie, False) ::: If Charlie is cold then Charlie is not quiet.\nCold($x, True) && Quiet($x, True) >>> Big($x, False) ::: If someone is cold and quiet then they are not big.\nYoung($x, True) && Quiet($x, True) >>> Big($x, False) ::: All young, quiet people are not big.\nCold($x, True) && Big($x, True) >>> Round($x, True) ::: Cold, big people are round.\nRound(Bob, True) >>> Nice(Bob, True) ::: If Bob is round then Bob is nice.\nNice($x, True) && Young($x, True) >>> Rough($x, True) ::: If someone is nice and young then they are rough.\nBig($x, True) >>> Young($x, True) ::: Big people are young.\nYoung($x, True) >>> Cold($x, True) ::: Young people are cold.\n\nQuery:\nRough(Bob, False) ::: Bob is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

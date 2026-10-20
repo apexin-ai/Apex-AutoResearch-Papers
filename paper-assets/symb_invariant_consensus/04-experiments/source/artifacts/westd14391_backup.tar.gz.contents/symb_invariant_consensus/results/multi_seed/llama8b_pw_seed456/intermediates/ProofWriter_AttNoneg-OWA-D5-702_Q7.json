@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-702_Q7",
+    "problem": "Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. Dave is big. Dave is nice. Fiona is big. Fiona is nice. Gary is cold. Gary is nice. All rough, young things are red. All rough, cold things are young. All nice, red things are round. If Charlie is cold and Charlie is rough then Charlie is young. All round, red things are rough. All cold, big things are red. Cold things are big. If Dave is rough then Dave is cold. If Fiona is cold then Fiona is red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nBig(Dave, True) ::: Dave is big.\nNice(Dave, True) ::: Dave is nice.\nBig(Fiona, True) ::: Fiona is big.\nNice(Fiona, True) ::: Fiona is nice.\nCold(Gary, True) ::: Gary is cold.\nNice(Gary, True) ::: Gary is nice.\n\nRules:\nRough($x, True) && Young($x, True) >>> Red($x, True) ::: All rough, young things are red.\nRough($x, True) && Cold($x, True) >>> Young($x, True) ::: All rough, cold things are young.\nNice($x, True) && Red($x, True) >>> Round($x, True) ::: All nice, red things are round.\nCold(Charlie, True) && Rough(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is cold and Charlie is rough then Charlie is young.\nRound($x, True) && Red($x, True) >>> Rough($x, True) ::: All round, red things are rough.\nCold($x, True) && Big($x, True) >>> Red($x, True) ::: All cold, big things are red.\nCold($x, True) >>> Big($x, True) ::: Cold things are big.\nRough(Dave, True) >>> Cold(Dave, True) ::: If Dave is rough then Dave is cold.\nCold(Fiona, True) >>> Red(Fiona, True) ::: If Fiona is cold then Fiona is red.\n\nQuery:\nRound(Gary, True) ::: Gary is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

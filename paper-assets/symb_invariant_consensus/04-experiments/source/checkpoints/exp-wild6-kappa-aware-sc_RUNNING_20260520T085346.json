@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp-wild6-kappa-aware-sc",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:57.421Z",
+    "updated_at": "2026-05-20T08:53:46.400Z",
+    "hypothesis": "κ-aware SC: Weighting traces by per-question agreement level (inverse κ) in majority voting will improve SC by giving more weight to diverse-opinion questions where voting has more signal.",
+    "spec": {
+      "command": "python wild6_kappa_aware_sc.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 + cross-model traces",
+      "data_count": 204,
+      "model_name": "multi-model",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T08:53:46.685209+00:00",
+  "trigger": "update_registry"
+}

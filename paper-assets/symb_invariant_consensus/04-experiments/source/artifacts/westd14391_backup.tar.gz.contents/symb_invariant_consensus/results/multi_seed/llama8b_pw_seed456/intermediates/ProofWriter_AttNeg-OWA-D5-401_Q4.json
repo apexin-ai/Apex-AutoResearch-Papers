@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-401_Q4",
+    "problem": "Anne is cold. Anne is kind. Charlie is blue. Charlie is round. Dave is blue. Fiona is not green. Fiona is kind. If Charlie is cold then Charlie is quiet. If Charlie is big then Charlie is not green. If Anne is kind then Anne is big. All big people are blue. Blue people are quiet. If Dave is kind then Dave is cold. If someone is round then they are green. Quiet people are round. If someone is kind and not blue then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nKind(Anne, True) ::: Anne is kind.\nBlue(Charlie, True) ::: Charlie is blue.\nRound(Charlie, True) ::: Charlie is round.\nBlue(Dave, True) ::: Dave is blue.\nGreen(Fiona, False) ::: Fiona is not green.\nKind(Fiona, True) ::: Fiona is kind.\n\nRules:\nCold(Charlie, True) >>> Quiet(Charlie, True) ::: If Charlie is cold then Charlie is quiet.\nBig(Charlie, True) >>> Green(Charlie, False) ::: If Charlie is big then Charlie is not green.\nKind(Anne, True) >>> Big(Anne, True) ::: If Anne is kind then Anne is big.\nBig($x, True) >>> Blue($x, True) ::: All big people are blue.\nBlue($x, True) >>> Quiet($x, True) ::: Blue people are quiet.\nKind(Dave, True) >>> Cold(Dave, True) ::: If Dave is kind then Dave is cold.\nRound($x, True) >>> Green($x, True) ::: If someone is round then they are green.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nKind($x, True) && Blue($x, False) >>> Round($x, True) ::: If someone is kind and not blue then they are round.\n\nQuery:\nGreen(Charlie, False) ::: Charlie is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

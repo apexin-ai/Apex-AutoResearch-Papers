@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "135fda006a50f06e9daa",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "experiment folio 2x2 continuation",
+  "task_key": "worker_experiment_folio-2x2-continuation_20260521T233801",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_experiment_folio-2x2-continuation_20260521T233801_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "55fa62df611bc866ba9d3210f1f452604890c74bca2bb7c8b03d8d33188f55d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个后台进程确认在跑：\n- **Cell A** (Mistral→Mistral): ~90/204, ETA ~34min\n- **Qwen3 traces**: 62/204, ETA ~55min\n\n2 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-folio-2x2-continuation.md"
+}

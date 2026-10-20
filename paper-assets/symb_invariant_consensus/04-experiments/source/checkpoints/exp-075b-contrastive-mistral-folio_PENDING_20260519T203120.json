@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-075b-contrastive-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:31:03.796Z",
+    "updated_at": "2026-05-19T20:31:19.848Z",
+    "hypothesis": "Contrastive × Mistral-7B × FOLIO-204 重跑（修复 normalization bug 后）。对每个候选答案生成 pro/con FOL 约束，用 normalized contrastive 评分代替同源约束。exp-075 因 session crash + normalization bug 失败。如果 normalized contrastive 约束提供独立于 traces 的判别信号，delta(Contrastive vs SC) > delta(SICA vs SC)。",
+    "parent": "exp-075-contrastive-mistral-folio"
+  },
+  "timestamp": "2026-05-19T20:31:20.061258+00:00",
+  "trigger": "update_registry"
+}

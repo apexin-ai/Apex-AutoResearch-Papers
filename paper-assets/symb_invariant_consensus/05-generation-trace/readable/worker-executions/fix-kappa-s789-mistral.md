@@ -1,0 +1,3230 @@
+# fix kappa s789 mistral
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_fix_kappa-s789-mistral_20260522T225503.log`
+- **Structured JSON:** [`18262ec17a6253681378.json`](../../sessions/18/18262ec17a6253681378.json)
+
+## Before a recorded user message
+
+67 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e2532e84-e69d-49c4-a600-37b511c904ba",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779508200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f6dbafe4-31e2-48dc-801f-7af04cb7c1b0",
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to fix the Mistral-7B FOLIO s789 row in the appendix kappa table. Let me start by reading the current state and finding the data sources.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "d854ca82-80e7-4878-8773-2eaa61ea580c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFfE1QeaEMgrDhavMnvytL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12697,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12697
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VtfaZPA1t4Syz7ba2ctcvd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "347bf482-f9cb-4d65-95d9-584b2f3083b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFfE1QeaEMgrDhavMnvytL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12697,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12697
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T22:55:18.401Z_
+
+<details><summary>↩ Tool result · `toolu_01VtfaZPA1t4Syz7ba2ctcvd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "b1a38e28-ff37-4461-9f32-b1f3a8bdb36b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013Gpf5rT9Cdu7cGHnNfVCcV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6194f617-19a6-4ada-9eba-8c01557021ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016KArsDPKyRaRJcLzgjdnG6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 24538,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T22:55:21.604Z_
+
+<details><summary>↩ Tool result · `toolu_013Gpf5rT9Cdu7cGHnNfVCcV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "1bdb81e3-366f-49e6-be77-7861a624d73c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current appendix.tex content around the kappa table, and simultaneously search for kappa-related data sources.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "18477eca-739f-46b2-a472-7b2ccb3742fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Af4hLPP8AzRSdcZXacgdL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 25010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B3aL57efShrqXhQvECNM3y`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sed -n '700,750p' /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "c68a3ddf-6cbb-47dc-ad82-fc3f4b9b059d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Af4hLPP8AzRSdcZXacgdL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 25010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T22:55:28.986Z_
+
+<details><summary>↩ Tool result · `toolu_01B3aL57efShrqXhQvECNM3y`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "91f374ea-a1d7-4135-a1b8-abab3dce2bb2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N4hBugzZiNZAeKcbxm3Agi`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/ -name \"*kappa*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "36dc18c1-89bf-48d4-9417-6c28d359d07b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Af4hLPP8AzRSdcZXacgdL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 25010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PwaUxpPzDFa9bieGhkuzBm`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/results/ -path \"*mistral*789*\" -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "e56dad98-e147-49a7-94da-9d5bcebe540c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Af4hLPP8AzRSdcZXacgdL9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 25010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 347
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T22:55:31.175Z_
+
+<details><summary>↩ Tool result · `toolu_01N4hBugzZiNZAeKcbxm3Agi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py.part1\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/run_kappa_generalization.py\\n/root/symb_invariant_consensus/r11_sbert_process_kappa.json\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\n/root/symb_invariant_consensus/results/fleiss_kappa_batch2.json\\n/root/symb_invariant_consensus/results/fleiss_kappa_unified_16639.json\\n/root/symb_invariant_consensus/results/process_kappa_summary_16639.json\\n/root/symb_invariant_consensus/results/exp_r1_distill_8b_sica/br_kappa_metrics.json\\n/root/symb_invariant_consensus/__pycache__/run_kappa_generalization.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "380cf8b2-bff6-4dd4-8228-df7646489f84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py.part1\\\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\\\n/root/symb_invariant_consensus/run_kappa_generalization.py\\\\n/root/symb_invariant_consensus/r11_sbert_process_kappa.json\\\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\\\n/root/symb_invariant_consensus/results/fleiss_kappa_batch2.json\\\\n/root/symb_invariant_consensus/results/fleiss_kappa_unified_16639.json\\\\n/root/symb_invariant_consensus/results/process_kappa_summary_16639.json\\\\n/root/symb_invariant_consensus/results/exp_r1_distill_8b_sica/br_kappa_metrics.json\\\\n/root/symb_invariant_consensus/__pycache__/run_kappa_generalization.cpython-312.pyc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py.part1\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/run_kappa_generalization.py\\n/root/symb_invariant_consensus/r11_sbert_process_kappa.json\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\n/root/symb_invariant_consensus/results/fleiss_kappa_batch2.json\\n/root/symb_invariant_consensus/results/fleiss_kappa_unified_16639.json\\n/root/symb_invariant_consensus/results/process_kappa_summary_16639.json\\n/root/symb_invariant_consensus/results/exp_r1_distill_8b_sica/br_kappa_metrics.json\\n/root/symb_invariant_consensus/__pycache__/run_kappa_generalization.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T22:55:31.926Z_
+
+<details><summary>↩ Tool result · `toolu_01PwaUxpPzDFa9bieGhkuzBm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_0.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_1.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_2.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_3.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_4.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_5.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_6.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_7.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_8.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_9.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_10.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_11.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_12.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_13.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_14.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_15.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_16.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_17.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_18.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_19.json\\n/root/symb_invariant_conse\\n\\n... [截断: 输出过长，省略 82339 字符] ...\\n\\nnsus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_170.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_171.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_172.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_173.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_174.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_175.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_176.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_177.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_178.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_179.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_180.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_181.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_182.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_183.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_184.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_185.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_186.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_187.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_188.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_189.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_190.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_191.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_192.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_193.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_194.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_195.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_196.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_197.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_198.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_199.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_200.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_201.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_202.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_203.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "bce1f97f-aa8c-48fd-94f9-ba76a9c48b45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_0.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_1.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_2.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_3.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_4.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_5.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_6.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_7.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_8.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_9.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_10.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_11.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_12.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_13.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_14.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_15.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_16.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_17.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_18.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_19.json\\\\n/root/symb_invariant_conse\\\\n\\\\n... [截断: 输出过长，省略 82339 字符] ...\\\\n\\\\nnsus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_170.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_171.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_172.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_173.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_174.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_175.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_176.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_177.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_178.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_179.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_180.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_181.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_182.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_183.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_184.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_185.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_186.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_187.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_188.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_189.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_190.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_191.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_192.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_193.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_194.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_195.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_196.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_197.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_198.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_199.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_200.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_201.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_202.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_203.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/mistral_traces/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_same/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_mistral_cross_qwen3/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral_buggy/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q21.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q23.json\\n/root/symb_invariant_consensus/results/exp_d126_crossmodel_sica/extraction_qwen3_cross_mistral/ProofWriter_RelNoneg-OWA-D5-789_Q9.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_0.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_1.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_2.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_3.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_4.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_5.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_6.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_7.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_8.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_9.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_10.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_11.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_12.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_13.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_14.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_15.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_16.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_17.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_18.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/intermediates/folio_19.json\\n/root/symb_invariant_conse\\n\\n... [截断: 输出过长，省略 82339 字符] ...\\n\\nnsus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_170.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_171.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_172.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_173.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_174.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_175.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_176.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_177.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_178.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_179.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_180.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_181.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_182.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_183.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_184.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_185.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_186.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_187.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_188.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_189.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_190.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_191.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_192.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_193.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_194.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_195.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_196.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_197.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_198.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_199.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_200.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_201.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_202.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789_backup/per_trace_constraints/folio_203.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found the kappa-related files and the s789 traces. Let me now read the appendix.tex content around line 714, the kappa results files, and the unified kappa computation script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "2703d1e6-13b6-4f1f-8aeb-7f93441bd5e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYCnrzXsugoia4Qno7xyN2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4132,
+      "cache_read_input_tokens": 25357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Found the kappa scripts and s789 traces. Let me read the appendix content and the kappa results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "740d7ef9-980f-4a10-91eb-f6d8f7e4f1f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYCnrzXsugoia4Qno7xyN2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4132,
+      "cache_read_input_tokens": 25357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QwZLc3pngv65EPzrt6QgEy`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -750 /root/symb_invariant_consensus/docs/paper/appendix.tex | tail -55"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "f4652bae-ac29-4b5a-9e04-09d479483cb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYCnrzXsugoia4Qno7xyN2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4132,
+      "cache_read_input_tokens": 25357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T22:55:47.118Z_
+
+<details><summary>↩ Tool result · `toolu_01QwZLc3pngv65EPzrt6QgEy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "b507c703-33b1-4263-94a7-af4f3648098f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0158PKbGtdoaRSYy7M2gqkah`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/fleiss_kappa_unified_16639.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "db017413-22c6-4648-abd4-d009d5a3536d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYCnrzXsugoia4Qno7xyN2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4132,
+      "cache_read_input_tokens": 25357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PwiTUegjQZP6B3LrWDq1YU`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/fleiss_kappa_batch2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "ce1bf3ab-9c23-423d-9618-331bd918dec1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYCnrzXsugoia4Qno7xyN2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4132,
+      "cache_read_input_tokens": 25357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T22:55:48.693Z_
+
+<details><summary>↩ Tool result · `toolu_0158PKbGtdoaRSYy7M2gqkah`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formula\\\": \\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\",\\n  \\\"answer_normalization\\\": \\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\",\\n  \\\"experiments\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp028b\\\",\\n      \\\"exp_dir\\\": \\\"exp028b_dryrun\\\",\\n      \\\"model\\\": \\\"\\\",\\n      \\\"dataset\\\": \\\"FOLIO-3\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": -0.0286,\\n      \\\"eff_k\\\": 17.5,\\n      \\\"sc_accuracy\\\": 100.0,\\n      \\\"sica_accuracy\\\": 100.0,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"n_problems\\\": 3,\\n      \\\"n_valid_problems_kappa\\\": 3,\\n      \\\"n_valid_votes\\\": 36,\\n      \\\"n_total_votes\\\": 36,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 0,\\n      \\\"unanimous_rate_pct\\\": 66.7,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 97.22222222222221,\\n        \\\"False\\\": 2.7777777777777777,\\n        \\\"Unknown\\\": 0.0\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp032\\\",\\n      \\\"exp_dir\\\": \\\"exp032_qwen25_14b_pw600\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"PW-571\\\",\\n      \\\"dataset_type\\\": \\\"proofwriter\\\",\\n      \\\"kappa\\\": 0.617,\\n      \\\"eff_k\\\": 1.54,\\n      \\\"sc_accuracy\\\": 73.56,\\n      \\\"sica_accuracy\\\": 71.28,\\n      \\\"delta_pp\\\": -2.28,\\n      \\\"n_problems\\\": 571,\\n      \\\"n_valid_problems_kappa\\\": 571,\\n      \\\"n_valid_votes\\\": 6852,\\n      \\\"n_total_votes\\\": 6852,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 17,\\n      \\\"unanimous_rate_pct\\\": 36.3,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 32.2533566841798,\\n        \\\"False\\\": 29.217746643315824,\\n        \\\"Unknown\\\": 38.528896672504374\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp033\\\",\\n      \\\"exp_dir\\\": \\\"exp033_qwen3_14b_pw600_nonthinking\\\",\\n      \\\"model\\\": \\\"Qwen3-14B\\\",\\n      \\\"dataset\\\": \\\"PW-362\\\",\\n      \\\"dataset_type\\\": \\\"proofwriter\\\",\\n      \\\"kappa\\\": 0.7681,\\n      \\\"eff_k\\\": 1.27,\\n      \\\"sc_accuracy\\\": 86.19,\\n      \\\"sica_accuracy\\\": 85.08,\\n      \\\"delta_pp\\\": -1.1,\\n      \\\"n_problems\\\": 362,\\n      \\\"n_valid_problems_kappa\\\": 362,\\n      \\\"n_valid_votes\\\": 4344,\\n      \\\"n_total_votes\\\": 4344,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 13,\\n      \\\"unanimous_rate_pct\\\": 56.4,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 31.008287292817684,\\n        \\\"False\\\": 25.89779005524862,\\n        \\\"Unknown\\\": 43.0939226519337\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp036\\\",\\n      \\\"exp_dir\\\": \\\"exp036_qwen25_14b_folio204\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.7442,\\n      \\\"eff_k\\\": 1.31,\\n      \\\"sc_accuracy\\\": 76.47,\\n      \\\"sica_accuracy\\\": 75.49,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2448,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 2,\\n      \\\"unanimous_rate_pct\\\": 58.3,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 43.1781045751634,\\n        \\\"False\\\": 36.31535947712418,\\n        \\\"Unknown\\\": 20.50653594771242\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp038\\\",\\n      \\\"exp_dir\\\": \\\"exp038_qwen25_14b_logiqa200\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"LogiQA-200\\\",\\n      \\\"dataset_type\\\": \\\"logiqa\\\",\\n      \\\"kappa\\\": 0.821,\\n      \\\"eff_k\\\": 1.2,\\n      \\\"sc_accuracy\\\": 79.0,\\n      \\\"sica_accuracy\\\": 78.0,\\n      \\\"delta_pp\\\": -1.0,\\n      \\\"n_problems\\\": 200,\\n      \\\"n_valid_problems_kappa\\\": 200,\\n      \\\"n_valid_votes\\\": 2400,\\n      \\\"n_total_votes\\\": 2400,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 0,\\n      \\\"unanimous_rate_pct\\\": 63.0,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"A\\\": 20.083333333333332,\\n       \\n\\n... [截断: 输出过长，省略 1924 字符] ...\\n\\n \\\"model\\\": \\\"\\\",\\n      \\\"dataset\\\": \\\"FOLIO-63\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.5073,\\n      \\\"eff_k\\\": 1.82,\\n      \\\"sc_accuracy\\\": 66.67,\\n      \\\"sica_accuracy\\\": 61.9,\\n      \\\"delta_pp\\\": -4.76,\\n      \\\"n_problems\\\": 63,\\n      \\\"n_valid_problems_kappa\\\": 63,\\n      \\\"n_valid_votes\\\": 670,\\n      \\\"n_total_votes\\\": 756,\\n      \\\"valid_vote_rate\\\": 0.8862,\\n      \\\"n_excluded_empty\\\": 86,\\n      \\\"n_nonstandard_mapped\\\": 34,\\n      \\\"unanimous_rate_pct\\\": 28.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 22.83582089552239,\\n        \\\"False\\\": 24.17910447761194,\\n        \\\"Unknown\\\": 52.98507462686567\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.63,\\n      \\\"min_valid_votes\\\": 7,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp050b\\\",\\n      \\\"exp_dir\\\": \\\"exp050b_mistral_icl_oracle\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-199\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4206,\\n      \\\"eff_k\\\": 2.13,\\n      \\\"sc_accuracy\\\": 56.78,\\n      \\\"sica_accuracy\\\": 55.78,\\n      \\\"delta_pp\\\": -1.01,\\n      \\\"n_problems\\\": 199,\\n      \\\"n_valid_problems_kappa\\\": 199,\\n      \\\"n_valid_votes\\\": 2112,\\n      \\\"n_total_votes\\\": 2388,\\n      \\\"valid_vote_rate\\\": 0.8844,\\n      \\\"n_excluded_empty\\\": 276,\\n      \\\"n_nonstandard_mapped\\\": 134,\\n      \\\"unanimous_rate_pct\\\": 18.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 24.10037878787879,\\n        \\\"False\\\": 21.306818181818183,\\n        \\\"Unknown\\\": 54.59280303030303\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.61,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp052\\\",\\n      \\\"exp_dir\\\": \\\"exp052_mistral_folio204_seed123\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4572,\\n      \\\"eff_k\\\": 1.99,\\n      \\\"sc_accuracy\\\": 54.41,\\n      \\\"sica_accuracy\\\": 57.35,\\n      \\\"delta_pp\\\": 2.94,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2132,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8709,\\n      \\\"n_excluded_empty\\\": 316,\\n      \\\"n_nonstandard_mapped\\\": 111,\\n      \\\"unanimous_rate_pct\\\": 19.1,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 23.874296435272043,\\n        \\\"False\\\": 22.607879924953096,\\n        \\\"Unknown\\\": 53.51782363977486\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.45,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp053\\\",\\n      \\\"exp_dir\\\": \\\"exp053_mistral_folio204_seed456\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4565,\\n      \\\"eff_k\\\": 1.99,\\n      \\\"sc_accuracy\\\": 54.41,\\n      \\\"sica_accuracy\\\": 55.88,\\n      \\\"delta_pp\\\": 1.47,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2133,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8713,\\n      \\\"n_excluded_empty\\\": 315,\\n      \\\"n_nonstandard_mapped\\\": 137,\\n      \\\"unanimous_rate_pct\\\": 18.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 23.95686826066573,\\n        \\\"False\\\": 23.39428035630567,\\n        \\\"Unknown\\\": 52.64885138302859\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.46,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp055\\\",\\n      \\\"exp_dir\\\": \\\"exp055_multitemp_mistral_folio\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4272,\\n      \\\"eff_k\\\": 2.11,\\n      \\\"sc_accuracy\\\": 57.35,\\n      \\\"sica_accuracy\\\": 57.84,\\n      \\\"delta_pp\\\": 0.49,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2095,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8558,\\n      \\\"n_excluded_empty\\\": 353,\\n      \\\"n_nonstandard_mapped\\\": 159,\\n      \\\"unanimous_rate_pct\\\": 19.1,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 24.057279236276848,\\n        \\\"False\\\": 22.100238663484486,\\n        \\\"Unknown\\\": 53.84248210023866\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.27,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "086728e4-3f50-4483-9706-c9b32c698407",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"formula\\\\\\\": \\\\\\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\\\\\",\\\\n  \\\\\\\"answer_normalization\\\\\\\": \\\\\\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\\\\\",\\\\n  \\\\\\\"experiments\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp028b\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp028b_dryrun\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-3\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": -0.0286,\\\\n      \\\\\\\"eff_k\\\\\\\": 17.5,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 100.0,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 100.0,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"n_problems\\\\\\\": 3,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 3,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 36,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 36,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 0,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 0,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 66.7,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 97.22222222222221,\\\\n        \\\\\\\"False\\\\\\\": 2.7777777777777777,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 12.0,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 12,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp032\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp032_qwen25_14b_pw600\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B-Instruct\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"PW-571\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.617,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.54,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 73.56,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 71.28,\\\\n      \\\\\\\"delta_pp\\\\\\\": -2.28,\\\\n      \\\\\\\"n_problems\\\\\\\": 571,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 571,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 6852,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 6852,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 0,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 17,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 36.3,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 32.2533566841798,\\\\n        \\\\\\\"False\\\\\\\": 29.217746643315824,\\\\n        \\\\\\\"Unknown\\\\\\\": 38.528896672504374\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 12.0,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 12,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp033\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp033_qwen3_14b_pw600_nonthinking\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-14B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"PW-362\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.7681,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.27,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 86.19,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 85.08,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.1,\\\\n      \\\\\\\"n_problems\\\\\\\": 362,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 362,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 4344,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 4344,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 0,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 13,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 56.4,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 31.008287292817684,\\\\n        \\\\\\\"False\\\\\\\": 25.89779005524862,\\\\n        \\\\\\\"Unknown\\\\\\\": 43.0939226519337\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 12.0,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 12,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp036\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp036_qwen25_14b_folio204\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B-Instruct\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.7442,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.31,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 76.47,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 75.49,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"n_problems\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2448,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2448,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 0,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 2,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 58.3,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 43.1781045751634,\\\\n        \\\\\\\"False\\\\\\\": 36.31535947712418,\\\\n        \\\\\\\"Unknown\\\\\\\": 20.50653594771242\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 12.0,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 12,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp038\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp038_qwen25_14b_logiqa200\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B-Instruct\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"LogiQA-200\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"logiqa\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.821,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.2,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 79.0,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 78.0,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.0,\\\\n      \\\\\\\"n_problems\\\\\\\": 200,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 200,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2400,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2400,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 0,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 0,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 63.0,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"A\\\\\\\": 20.083333333333332,\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 1924 字符] ...\\\\n\\\\n \\\\\\\"model\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-63\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.5073,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.82,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 66.67,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 61.9,\\\\n      \\\\\\\"delta_pp\\\\\\\": -4.76,\\\\n      \\\\\\\"n_problems\\\\\\\": 63,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 63,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 670,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 756,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 0.8862,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 86,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 34,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 28.6,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 22.83582089552239,\\\\n        \\\\\\\"False\\\\\\\": 24.17910447761194,\\\\n        \\\\\\\"Unknown\\\\\\\": 52.98507462686567\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 10.63,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 7,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp050b\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp050b_mistral_icl_oracle\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-199\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.4206,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.13,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 56.78,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 55.78,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.01,\\\\n      \\\\\\\"n_problems\\\\\\\": 199,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 199,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2112,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2388,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 0.8844,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 276,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 134,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 18.6,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 24.10037878787879,\\\\n        \\\\\\\"False\\\\\\\": 21.306818181818183,\\\\n        \\\\\\\"Unknown\\\\\\\": 54.59280303030303\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 10.61,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 6,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp052\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp052_mistral_folio204_seed123\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.4572,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.99,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 54.41,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 57.35,\\\\n      \\\\\\\"delta_pp\\\\\\\": 2.94,\\\\n      \\\\\\\"n_problems\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2132,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2448,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 0.8709,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 316,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 111,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 19.1,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 23.874296435272043,\\\\n        \\\\\\\"False\\\\\\\": 22.607879924953096,\\\\n        \\\\\\\"Unknown\\\\\\\": 53.51782363977486\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 10.45,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 6,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp053\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp053_mistral_folio204_seed456\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.4565,\\\\n      \\\\\\\"eff_k\\\\\\\": 1.99,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 54.41,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 55.88,\\\\n      \\\\\\\"delta_pp\\\\\\\": 1.47,\\\\n      \\\\\\\"n_problems\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2133,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2448,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 0.8713,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 315,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 137,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 18.6,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 23.95686826066573,\\\\n        \\\\\\\"False\\\\\\\": 23.39428035630567,\\\\n        \\\\\\\"Unknown\\\\\\\": 52.64885138302859\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 10.46,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 6,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp055\\\\\\\",\\\\n      \\\\\\\"exp_dir\\\\\\\": \\\\\\\"exp055_multitemp_mistral_folio\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"dataset_type\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"kappa\\\\\\\": 0.4272,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.11,\\\\n      \\\\\\\"sc_accuracy\\\\\\\": 57.35,\\\\n      \\\\\\\"sica_accuracy\\\\\\\": 57.84,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"n_problems\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_problems_kappa\\\\\\\": 204,\\\\n      \\\\\\\"n_valid_votes\\\\\\\": 2095,\\\\n      \\\\\\\"n_total_votes\\\\\\\": 2448,\\\\n      \\\\\\\"valid_vote_rate\\\\\\\": 0.8558,\\\\n      \\\\\\\"n_excluded_empty\\\\\\\": 353,\\\\n      \\\\\\\"n_nonstandard_mapped\\\\\\\": 159,\\\\n      \\\\\\\"unanimous_rate_pct\\\\\\\": 19.1,\\\\n      \\\\\\\"category_distribution_pct\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 24.057279236276848,\\\\n        \\\\\\\"False\\\\\\\": 22.100238663484486,\\\\n        \\\\\\\"Unknown\\\\\\\": 53.84248210023866\\\\n      },\\\\n      \\\\\\\"mean_valid_votes_per_q\\\\\\\": 10.27,\\\\n      \\\\\\\"min_valid_votes\\\\\\\": 6,\\\\n      \\\\\\\"max_valid_votes\\\\\\\": 12\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formula\\\": \\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\",\\n  \\\"answer_normalization\\\": \\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\",\\n  \\\"experiments\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp028b\\\",\\n      \\\"exp_dir\\\": \\\"exp028b_dryrun\\\",\\n      \\\"model\\\": \\\"\\\",\\n      \\\"dataset\\\": \\\"FOLIO-3\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": -0.0286,\\n      \\\"eff_k\\\": 17.5,\\n      \\\"sc_accuracy\\\": 100.0,\\n      \\\"sica_accuracy\\\": 100.0,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"n_problems\\\": 3,\\n      \\\"n_valid_problems_kappa\\\": 3,\\n      \\\"n_valid_votes\\\": 36,\\n      \\\"n_total_votes\\\": 36,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 0,\\n      \\\"unanimous_rate_pct\\\": 66.7,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 97.22222222222221,\\n        \\\"False\\\": 2.7777777777777777,\\n        \\\"Unknown\\\": 0.0\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp032\\\",\\n      \\\"exp_dir\\\": \\\"exp032_qwen25_14b_pw600\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"PW-571\\\",\\n      \\\"dataset_type\\\": \\\"proofwriter\\\",\\n      \\\"kappa\\\": 0.617,\\n      \\\"eff_k\\\": 1.54,\\n      \\\"sc_accuracy\\\": 73.56,\\n      \\\"sica_accuracy\\\": 71.28,\\n      \\\"delta_pp\\\": -2.28,\\n      \\\"n_problems\\\": 571,\\n      \\\"n_valid_problems_kappa\\\": 571,\\n      \\\"n_valid_votes\\\": 6852,\\n      \\\"n_total_votes\\\": 6852,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 17,\\n      \\\"unanimous_rate_pct\\\": 36.3,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 32.2533566841798,\\n        \\\"False\\\": 29.217746643315824,\\n        \\\"Unknown\\\": 38.528896672504374\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp033\\\",\\n      \\\"exp_dir\\\": \\\"exp033_qwen3_14b_pw600_nonthinking\\\",\\n      \\\"model\\\": \\\"Qwen3-14B\\\",\\n      \\\"dataset\\\": \\\"PW-362\\\",\\n      \\\"dataset_type\\\": \\\"proofwriter\\\",\\n      \\\"kappa\\\": 0.7681,\\n      \\\"eff_k\\\": 1.27,\\n      \\\"sc_accuracy\\\": 86.19,\\n      \\\"sica_accuracy\\\": 85.08,\\n      \\\"delta_pp\\\": -1.1,\\n      \\\"n_problems\\\": 362,\\n      \\\"n_valid_problems_kappa\\\": 362,\\n      \\\"n_valid_votes\\\": 4344,\\n      \\\"n_total_votes\\\": 4344,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 13,\\n      \\\"unanimous_rate_pct\\\": 56.4,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 31.008287292817684,\\n        \\\"False\\\": 25.89779005524862,\\n        \\\"Unknown\\\": 43.0939226519337\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp036\\\",\\n      \\\"exp_dir\\\": \\\"exp036_qwen25_14b_folio204\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.7442,\\n      \\\"eff_k\\\": 1.31,\\n      \\\"sc_accuracy\\\": 76.47,\\n      \\\"sica_accuracy\\\": 75.49,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2448,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 2,\\n      \\\"unanimous_rate_pct\\\": 58.3,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 43.1781045751634,\\n        \\\"False\\\": 36.31535947712418,\\n        \\\"Unknown\\\": 20.50653594771242\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 12.0,\\n      \\\"min_valid_votes\\\": 12,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp038\\\",\\n      \\\"exp_dir\\\": \\\"exp038_qwen25_14b_logiqa200\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B-Instruct\\\",\\n      \\\"dataset\\\": \\\"LogiQA-200\\\",\\n      \\\"dataset_type\\\": \\\"logiqa\\\",\\n      \\\"kappa\\\": 0.821,\\n      \\\"eff_k\\\": 1.2,\\n      \\\"sc_accuracy\\\": 79.0,\\n      \\\"sica_accuracy\\\": 78.0,\\n      \\\"delta_pp\\\": -1.0,\\n      \\\"n_problems\\\": 200,\\n      \\\"n_valid_problems_kappa\\\": 200,\\n      \\\"n_valid_votes\\\": 2400,\\n      \\\"n_total_votes\\\": 2400,\\n      \\\"valid_vote_rate\\\": 1.0,\\n      \\\"n_excluded_empty\\\": 0,\\n      \\\"n_nonstandard_mapped\\\": 0,\\n      \\\"unanimous_rate_pct\\\": 63.0,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"A\\\": 20.083333333333332,\\n       \\n\\n... [截断: 输出过长，省略 1924 字符] ...\\n\\n \\\"model\\\": \\\"\\\",\\n      \\\"dataset\\\": \\\"FOLIO-63\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.5073,\\n      \\\"eff_k\\\": 1.82,\\n      \\\"sc_accuracy\\\": 66.67,\\n      \\\"sica_accuracy\\\": 61.9,\\n      \\\"delta_pp\\\": -4.76,\\n      \\\"n_problems\\\": 63,\\n      \\\"n_valid_problems_kappa\\\": 63,\\n      \\\"n_valid_votes\\\": 670,\\n      \\\"n_total_votes\\\": 756,\\n      \\\"valid_vote_rate\\\": 0.8862,\\n      \\\"n_excluded_empty\\\": 86,\\n      \\\"n_nonstandard_mapped\\\": 34,\\n      \\\"unanimous_rate_pct\\\": 28.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 22.83582089552239,\\n        \\\"False\\\": 24.17910447761194,\\n        \\\"Unknown\\\": 52.98507462686567\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.63,\\n      \\\"min_valid_votes\\\": 7,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp050b\\\",\\n      \\\"exp_dir\\\": \\\"exp050b_mistral_icl_oracle\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-199\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4206,\\n      \\\"eff_k\\\": 2.13,\\n      \\\"sc_accuracy\\\": 56.78,\\n      \\\"sica_accuracy\\\": 55.78,\\n      \\\"delta_pp\\\": -1.01,\\n      \\\"n_problems\\\": 199,\\n      \\\"n_valid_problems_kappa\\\": 199,\\n      \\\"n_valid_votes\\\": 2112,\\n      \\\"n_total_votes\\\": 2388,\\n      \\\"valid_vote_rate\\\": 0.8844,\\n      \\\"n_excluded_empty\\\": 276,\\n      \\\"n_nonstandard_mapped\\\": 134,\\n      \\\"unanimous_rate_pct\\\": 18.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 24.10037878787879,\\n        \\\"False\\\": 21.306818181818183,\\n        \\\"Unknown\\\": 54.59280303030303\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.61,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp052\\\",\\n      \\\"exp_dir\\\": \\\"exp052_mistral_folio204_seed123\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4572,\\n      \\\"eff_k\\\": 1.99,\\n      \\\"sc_accuracy\\\": 54.41,\\n      \\\"sica_accuracy\\\": 57.35,\\n      \\\"delta_pp\\\": 2.94,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2132,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8709,\\n      \\\"n_excluded_empty\\\": 316,\\n      \\\"n_nonstandard_mapped\\\": 111,\\n      \\\"unanimous_rate_pct\\\": 19.1,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 23.874296435272043,\\n        \\\"False\\\": 22.607879924953096,\\n        \\\"Unknown\\\": 53.51782363977486\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.45,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp053\\\",\\n      \\\"exp_dir\\\": \\\"exp053_mistral_folio204_seed456\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4565,\\n      \\\"eff_k\\\": 1.99,\\n      \\\"sc_accuracy\\\": 54.41,\\n      \\\"sica_accuracy\\\": 55.88,\\n      \\\"delta_pp\\\": 1.47,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2133,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8713,\\n      \\\"n_excluded_empty\\\": 315,\\n      \\\"n_nonstandard_mapped\\\": 137,\\n      \\\"unanimous_rate_pct\\\": 18.6,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 23.95686826066573,\\n        \\\"False\\\": 23.39428035630567,\\n        \\\"Unknown\\\": 52.64885138302859\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.46,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp055\\\",\\n      \\\"exp_dir\\\": \\\"exp055_multitemp_mistral_folio\\\",\\n      \\\"model\\\": \\\"Mistral-7B-Instruct-v0.3\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"dataset_type\\\": \\\"folio\\\",\\n      \\\"kappa\\\": 0.4272,\\n      \\\"eff_k\\\": 2.11,\\n      \\\"sc_accuracy\\\": 57.35,\\n      \\\"sica_accuracy\\\": 57.84,\\n      \\\"delta_pp\\\": 0.49,\\n      \\\"n_problems\\\": 204,\\n      \\\"n_valid_problems_kappa\\\": 204,\\n      \\\"n_valid_votes\\\": 2095,\\n      \\\"n_total_votes\\\": 2448,\\n      \\\"valid_vote_rate\\\": 0.8558,\\n      \\\"n_excluded_empty\\\": 353,\\n      \\\"n_nonstandard_mapped\\\": 159,\\n      \\\"unanimous_rate_pct\\\": 19.1,\\n      \\\"category_distribution_pct\\\": {\\n        \\\"True\\\": 24.057279236276848,\\n        \\\"False\\\": 22.100238663484486,\\n        \\\"Unknown\\\": 53.84248210023866\\n      },\\n      \\\"mean_valid_votes_per_q\\\": 10.27,\\n      \\\"min_valid_votes\\\": 6,\\n      \\\"max_valid_votes\\\": 12\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T22:55:49.222Z_
+
+<details><summary>↩ Tool result · `toolu_01PwiTUegjQZP6B3LrWDq1YU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp027_qwen3_14b_nonthinking\\\": {\\n    \\\"model\\\": \\\"Qwen3-14B (non-thinking)\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.7726,\\n    \\\"eff_k\\\": 1.26,\\n    \\\"sc_acc\\\": 84.31,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-25068\\\"\\n  },\\n  \\\"exp035_qwen25_7b_folio204\\\": {\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.6581,\\n    \\\"eff_k\\\": 1.46,\\n    \\\"sc_acc\\\": 76.47,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-25068\\\"\\n  },\\n  \\\"exp036_qwen25_14b_folio204\\\": {\\n    \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.7437,\\n    \\\"eff_k\\\": 1.31,\\n    \\\"sc_acc\\\": 75.49,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp052_mistral_folio204_seed123\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.4249,\\n    \\\"eff_k\\\": 2.12,\\n    \\\"sc_acc\\\": 57.35,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.5,\\n    \\\"note\\\": \\\"single-temp T=0.7, seed=123\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp053_mistral_folio204_seed456\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.4246,\\n    \\\"eff_k\\\": 2.12,\\n    \\\"sc_acc\\\": 55.88,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.5,\\n    \\\"note\\\": \\\"single-temp T=0.7, seed=456\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp055_multitemp_mistral_folio\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.391,\\n    \\\"eff_k\\\": 2.26,\\n    \\\"sc_acc\\\": 57.84,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.3,\\n    \\\"note\\\": \\\"multi-temp T=0.3/0.7/1.2 x4 traces, delta=0.00pp\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6b87bbee-a969-4df4-b04b-79fd59f89696",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp027_qwen3_14b_nonthinking\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-14B (non-thinking)\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.7726,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.26,\\\\n    \\\\\\\"sc_acc\\\\\\\": 84.31,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 12.0,\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-25068\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp035_qwen25_7b_folio204\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-7B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.6581,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.46,\\\\n    \\\\\\\"sc_acc\\\\\\\": 76.47,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 12.0,\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-25068\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp036_qwen25_14b_folio204\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.7437,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.31,\\\\n    \\\\\\\"sc_acc\\\\\\\": 75.49,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 12.0,\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-16639\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp052_mistral_folio204_seed123\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.4249,\\\\n    \\\\\\\"eff_k\\\\\\\": 2.12,\\\\n    \\\\\\\"sc_acc\\\\\\\": 57.35,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 10.5,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"single-temp T=0.7, seed=123\\\\\\\",\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-16639\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp053_mistral_folio204_seed456\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.4246,\\\\n    \\\\\\\"eff_k\\\\\\\": 2.12,\\\\n    \\\\\\\"sc_acc\\\\\\\": 55.88,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 10.5,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"single-temp T=0.7, seed=456\\\\\\\",\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-16639\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp055_multitemp_mistral_folio\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n    \\\\\\\"K\\\\\\\": 12,\\\\n    \\\\\\\"kappa\\\\\\\": 0.391,\\\\n    \\\\\\\"eff_k\\\\\\\": 2.26,\\\\n    \\\\\\\"sc_acc\\\\\\\": 57.84,\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"avg_votes\\\\\\\": 10.3,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"multi-temp T=0.3/0.7/1.2 x4 traces, delta=0.00pp\\\\\\\",\\\\n    \\\\\\\"server\\\\\\\": \\\\\\\"westd-16639\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp027_qwen3_14b_nonthinking\\\": {\\n    \\\"model\\\": \\\"Qwen3-14B (non-thinking)\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.7726,\\n    \\\"eff_k\\\": 1.26,\\n    \\\"sc_acc\\\": 84.31,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-25068\\\"\\n  },\\n  \\\"exp035_qwen25_7b_folio204\\\": {\\n    \\\"model\\\": \\\"Qwen2.5-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.6581,\\n    \\\"eff_k\\\": 1.46,\\n    \\\"sc_acc\\\": 76.47,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-25068\\\"\\n  },\\n  \\\"exp036_qwen25_14b_folio204\\\": {\\n    \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.7437,\\n    \\\"eff_k\\\": 1.31,\\n    \\\"sc_acc\\\": 75.49,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 12.0,\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp052_mistral_folio204_seed123\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.4249,\\n    \\\"eff_k\\\": 2.12,\\n    \\\"sc_acc\\\": 57.35,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.5,\\n    \\\"note\\\": \\\"single-temp T=0.7, seed=123\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp053_mistral_folio204_seed456\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.4246,\\n    \\\"eff_k\\\": 2.12,\\n    \\\"sc_acc\\\": 55.88,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.5,\\n    \\\"note\\\": \\\"single-temp T=0.7, seed=456\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  },\\n  \\\"exp055_multitemp_mistral_folio\\\": {\\n    \\\"model\\\": \\\"Mistral-7B\\\",\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"K\\\": 12,\\n    \\\"kappa\\\": 0.391,\\n    \\\"eff_k\\\": 2.26,\\n    \\\"sc_acc\\\": 57.84,\\n    \\\"n_problems\\\": 204,\\n    \\\"avg_votes\\\": 10.3,\\n    \\\"note\\\": \\\"multi-temp T=0.3/0.7/1.2 x4 traces, delta=0.00pp\\\",\\n    \\\"server\\\": \\\"westd-16639\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see the unified JSON has exp052 (seed123) and exp053 (seed456), but I don't see a seed789 entry. Let me look for the s789 kappa data. Let me also read the appendix.tex to see what's currently in the table.
+
+Let me search for exp054 or any seed789 kappa entry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "9c270557-27dd-4c9e-8907-32085243e974",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TezcAC4Y3SS9k21Mf6ghB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 29489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+I see the unified JSON has seed123 (exp052) and seed456 (exp053) but no seed789 entry. Let me read the appendix table and search for seed789 kappa data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6171108b-8d58-407f-bd9e-34f835b33642",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TezcAC4Y3SS9k21Mf6ghB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 29489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PJtXbwHiyVX16J9jL2uedf`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -750 /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6cdcf80a-06e2-4f9a-9a1b-2219d0488aeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TezcAC4Y3SS9k21Mf6ghB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 29489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T22:55:58.396Z_
+
+<details><summary>↩ Tool result · `toolu_01PJtXbwHiyVX16J9jL2uedf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/symb_invariant_consensus/docs/paper/appendix.tex' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "86a64e1f-93ed-488b-949b-9039fd20e84d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/symb_invariant_consensus/docs/paper/appendix.tex' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/symb_invariant_consensus/docs/paper/appendix.tex' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AgiZCYxQR3m7wVn3rjYsHH`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"s789\\|seed789\\|789\" /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6a877b80-433e-4fc0-a423-90ac9bdb408c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TezcAC4Y3SS9k21Mf6ghB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 29489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T22:55:58.894Z_
+
+<details><summary>↩ Tool result · `toolu_01AgiZCYxQR3m7wVn3rjYsHH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "52658ec7-17b0-40dc-8d5f-b988293a3ed1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XQk4R7eyBViRKh5dPgFX2y`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "dc9cf46f-c205-40e6-ad27-db796d36651d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TezcAC4Y3SS9k21Mf6ghB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 29489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T22:56:00.334Z_
+
+<details><summary>↩ Tool result · `toolu_01XQk4R7eyBViRKh5dPgFX2y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"intermediates\\nper_trace_constraints\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "a173ae27-c7ce-455b-a848-b0fd21c90983",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"intermediates\\\\nper_trace_constraints\\\\nresults.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"intermediates\\nper_trace_constraints\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix.tex file doesn't exist at that path on the server. It's probably in the local project directory. Let me check the local path and also look at the results.json for the seed789 experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "debe79a9-bd44-4562-84e9-ccff4d812b52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2t1aG5y6Xx9kTD52G4u5f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 36413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+The appendix.tex isn't at that server path. Let me find it and read the s789 results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "afc8b236-93db-4fbf-8dac-55d624e920d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2t1aG5y6Xx9kTD52G4u5f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 36413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BcFjagWumezjgqSF8czHt9`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/docs -name \"appendix.tex\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "b6069de1-4174-4f5a-b0f9-95dc7311ebfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2t1aG5y6Xx9kTD52G4u5f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 36413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DxvER13KdZfyBbEJtvQwFD`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/multi_seed/mistral_folio_seed789/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "79c1d13b-219f-484c-a47e-6ee03c1c4ac8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2t1aG5y6Xx9kTD52G4u5f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 36413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T22:56:10.715Z_
+
+<details><summary>↩ Tool result · `toolu_01BcFjagWumezjgqSF8czHt9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/symb_invariant_consensus/docs': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "f61d41ca-b743-4ccc-b4f6-2d788152d75b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/symb_invariant_consensus/docs': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/symb_invariant_consensus/docs': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T22:56:11.597Z_
+
+<details><summary>↩ Tool result · `toolu_01DxvER13KdZfyBbEJtvQwFD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5686274509803921,\\n    \\\"sc_accuracy\\\": 0.5931372549019608,\\n    \\\"sica_correct\\\": 116,\\n    \\\"sc_correct\\\": 121,\\n    \\\"extraction_rate\\\": 0.9705882352941176,\\n    \\\"total_constraints_extracted\\\": 14063,\\n    \\\"total_unique_constraints\\\": 8076,\\n    \\\"contradiction_rate\\\": 0.0295938583457157,\\n    \\\"problems_with_contradictions\\\": 110,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5686274509803921,\\n        \\\"sc\\\": 0.5931372549019608,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5686274509803921,\\n        \\\"sc\\\": 0.5931372549019608,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4798.4\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 8.0,\\n        \\\"Unknown\\\": 60.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 10,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 10,\\n        \\\"True\\\": 1\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 79,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 59\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 59,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 68,\\n        \\\"solve_time_ms\\\": 1.394703984260559\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 7.185,\\n        \\\"extraction_s\\\": 26.931,\\n        \\\"dedup_s\\\": 0.92,\\n        \\\"maxsat_s\\\": 0.004,\\n        \\\"total_s\\\": 35.041\\n      },\\n      \\\"wall_time_s\\\": 35.04\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"folio_1\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\",\\n      \\\"datase\\n\\n... [截断: 输出过长，省略 308151 字符] ...\\n\\n    \\\"problem_id\\\": \\\"folio_201\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton was not loaned out to a football club.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 58.5\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"False\\\": 11\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 63,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 35\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 34,\\n        \\\"excluded\\\": 1,\\n        \\\"total_weight\\\": 61,\\n        \\\"solve_time_ms\\\": 0.9066611528396606\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 3.301,\\n        \\\"extraction_s\\\": 13.876,\\n        \\\"dedup_s\\\": 0.389,\\n        \\\"maxsat_s\\\": 0.003,\\n        \\\"total_s\\\": 17.569\\n      },\\n      \\\"wall_time_s\\\": 17.57\\n    },\\n    {\\n      \\\"problem_idx\\\": 202,\\n      \\\"problem_id\\\": \\\"folio_202\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton Silva played for Fluminense.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"Unknown\\\": 50.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 11\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 60,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 31\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 31,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 53,\\n        \\\"solve_time_ms\\\": 0.7372312247753143\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 3.395,\\n        \\\"extraction_s\\\": 17.196,\\n        \\\"dedup_s\\\": 0.267,\\n        \\\"maxsat_s\\\": 0.002,\\n        \\\"total_s\\\": 20.86\\n      },\\n      \\\"wall_time_s\\\": 20.86\\n    },\\n    {\\n      \\\"problem_idx\\\": 203,\\n      \\\"problem_id\\\": \\\"folio_203\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton Silva was loaned out to a football club.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 80.0,\\n        \\\"Unknown\\\": 15.0\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"True\\\": 11,\\n        \\\"Unknown\\\": 1\\n      },\\n      \\\"sc_correct\\\": false,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 81,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 49\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 49,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 80,\\n        \\\"solve_time_ms\\\": 0.8318684995174408\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 4.78,\\n        \\\"extraction_s\\\": 21.365,\\n        \\\"dedup_s\\\": 0.647,\\n        \\\"maxsat_s\\\": 0.003,\\n        \\\"total_s\\\": 26.796\\n      },\\n      \\\"wall_time_s\\\": 26.8\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "13d90c6d-466e-49d6-b86c-a36801be9f32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 204,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.5686274509803921,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.5931372549019608,\\\\n    \\\\\\\"sica_correct\\\\\\\": 116,\\\\n    \\\\\\\"sc_correct\\\\\\\": 121,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.9705882352941176,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 14063,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 8076,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.0295938583457157,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 110,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"validation\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5686274509803921,\\\\n        \\\\\\\"sc\\\\\\\": 0.5931372549019608,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.5686274509803921,\\\\n        \\\\\\\"sc\\\\\\\": 0.5931372549019608,\\\\n        \\\\\\\"n\\\\\\\": 204\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 4798.4\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 8.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 10,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 10,\\\\n        \\\\\\\"True\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 79,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 59\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 59,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 68,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.394703984260559\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 7.185,\\\\n        \\\\\\\"extraction_s\\\\\\\": 26.931,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.92,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.004,\\\\n        \\\\\\\"total_s\\\\\\\": 35.041\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 35.04\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_1\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\\\\\",\\\\n      \\\\\\\"datase\\\\n\\\\n... [截断: 输出过长，省略 308151 字符] ...\\\\n\\\\n    \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_201\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nAilton was not loaned out to a football club.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 58.5\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 11,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 63,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 35\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 34,\\\\n        \\\\\\\"excluded\\\\\\\": 1,\\\\n        \\\\\\\"total_weight\\\\\\\": 61,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 0.9066611528396606\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 3.301,\\\\n        \\\\\\\"extraction_s\\\\\\\": 13.876,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.389,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.003,\\\\n        \\\\\\\"total_s\\\\\\\": 17.569\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 17.57\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 202,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_202\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nAilton Silva played for Fluminense.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 50.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 11,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 60,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 11,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 31\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 31,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 53,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 0.7372312247753143\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 3.395,\\\\n        \\\\\\\"extraction_s\\\\\\\": 17.196,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.267,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.002,\\\\n        \\\\\\\"total_s\\\\\\\": 20.86\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 20.86\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 203,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_203\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nAilton Silva was loaned out to a football club.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 80.0,\\\\n        \\\\\\\"Unknown\\\\\\\": 15.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 11,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 11,\\\\n        \\\\\\\"Unknown\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 81,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 12,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 49\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 49,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 80,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 0.8318684995174408\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 4.78,\\\\n        \\\\\\\"extraction_s\\\\\\\": 21.365,\\\\n        \\\\\\\"dedup_s\\\\\\\": 0.647,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.003,\\\\n        \\\\\\\"total_s\\\\\\\": 26.796\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 26.8\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5686274509803921,\\n    \\\"sc_accuracy\\\": 0.5931372549019608,\\n    \\\"sica_correct\\\": 116,\\n    \\\"sc_correct\\\": 121,\\n    \\\"extraction_rate\\\": 0.9705882352941176,\\n    \\\"total_constraints_extracted\\\": 14063,\\n    \\\"total_unique_constraints\\\": 8076,\\n    \\\"contradiction_rate\\\": 0.0295938583457157,\\n    \\\"problems_with_contradictions\\\": 110,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5686274509803921,\\n        \\\"sc\\\": 0.5931372549019608,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5686274509803921,\\n        \\\"sc\\\": 0.5931372549019608,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4798.4\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 8.0,\\n        \\\"Unknown\\\": 60.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 10,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 10,\\n        \\\"True\\\": 1\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 79,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 59\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 59,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 68,\\n        \\\"solve_time_ms\\\": 1.394703984260559\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 7.185,\\n        \\\"extraction_s\\\": 26.931,\\n        \\\"dedup_s\\\": 0.92,\\n        \\\"maxsat_s\\\": 0.004,\\n        \\\"total_s\\\": 35.041\\n      },\\n      \\\"wall_time_s\\\": 35.04\\n    },\\n    {\\n      \\\"problem_idx\\\": 1,\\n      \\\"problem_id\\\": \\\"folio_1\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\\",\\n      \\\"datase\\n\\n... [截断: 输出过长，省略 308151 字符] ...\\n\\n    \\\"problem_id\\\": \\\"folio_201\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton was not loaned out to a football club.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 58.5\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"False\\\": 11\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 63,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 35\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 34,\\n        \\\"excluded\\\": 1,\\n        \\\"total_weight\\\": 61,\\n        \\\"solve_time_ms\\\": 0.9066611528396606\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 3.301,\\n        \\\"extraction_s\\\": 13.876,\\n        \\\"dedup_s\\\": 0.389,\\n        \\\"maxsat_s\\\": 0.003,\\n        \\\"total_s\\\": 17.569\\n      },\\n      \\\"wall_time_s\\\": 17.57\\n    },\\n    {\\n      \\\"problem_idx\\\": 202,\\n      \\\"problem_id\\\": \\\"folio_202\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton Silva played for Fluminense.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"Unknown\\\": 50.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 11\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 60,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 31\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 31,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 53,\\n        \\\"solve_time_ms\\\": 0.7372312247753143\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 3.395,\\n        \\\"extraction_s\\\": 17.196,\\n        \\\"dedup_s\\\": 0.267,\\n        \\\"maxsat_s\\\": 0.002,\\n        \\\"total_s\\\": 20.86\\n      },\\n      \\\"wall_time_s\\\": 20.86\\n    },\\n    {\\n      \\\"problem_idx\\\": 203,\\n      \\\"problem_id\\\": \\\"folio_203\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nAilton Silva was loaned out to a football club.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 80.0,\\n        \\\"Unknown\\\": 15.0\\n      },\\n      \\\"sica_correct\\\": false,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 11,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"True\\\": 11,\\n        \\\"Unknown\\\": 1\\n      },\\n      \\\"sc_correct\\\": false,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 81,\\n        \\\"traces_with_constraints\\\": 12,\\n        \\\"unique_after_dedup\\\": 49\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 49,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 80,\\n        \\\"solve_time_ms\\\": 0.8318684995174408\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 4.78,\\n        \\\"extraction_s\\\": 21.365,\\n        \\\"dedup_s\\\": 0.647,\\n        \\\"maxsat_s\\\": 0.003,\\n        \\\"total_s\\\": 26.796\\n      },\\n      \\\"wall_time_s\\\": 26.8\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01TXMhgqhvcQxN5jgvw9w7a4`</summary>
+
+```json
+{
+  "pattern": "**/appendix.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "0ba72fa7-7852-489f-b369-7ffcd054e839",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D2t1aG5y6Xx9kTD52G4u5f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 36413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T22:56:11.834Z_
+
+<details><summary>↩ Tool result · `toolu_01TXMhgqhvcQxN5jgvw9w7a4`</summary>
+
+```text
+docs/paper/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "567dc709-230f-4772-a669-124255a02c4c",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/appendix.tex"
+    ],
+    "durationMs": 19,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results.json for seed789 confirms: SC=59.31% (0.5931372549019608), SICA=56.86% (0.5686274509803921). The delta would be SICA - SC = 56.86 - 59.31 = -2.45.
+
+Now I found the appendix.tex is at `docs/paper/appendix.tex` in the local project directory. Let me read it to find the kappa table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6aa0e55f-eb42-4bb7-b48f-a987c6df9615",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kssMKGn4Vz4JRm3Nzx9p3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4141,
+      "cache_read_input_tokens": 37234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4141
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Found the s789 results: SC=59.31%, SICA=56.86%, Δ=-2.45. Now let me read the appendix.tex locally and compute kappa for s789.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6ccf9ed2-767b-4bf8-90b6-3ab7cfb9d98e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kssMKGn4Vz4JRm3Nzx9p3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4141,
+      "cache_read_input_tokens": 37234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4141
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MfNw8tYSnzpipiDErQr84i`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+  "offset": 695,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6ba8b29f-6cbb-4c1e-9252-c112799a2fe3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kssMKGn4Vz4JRm3Nzx9p3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4141,
+      "cache_read_input_tokens": 37234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4141
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T22:56:21.226Z_
+
+<details><summary>↩ Tool result · `toolu_01MfNw8tYSnzpipiDErQr84i`</summary>
+
+```text
+695	\small
+696	\setlength{\tabcolsep}{3pt}
+697	\caption{Trace independence metrics ($K = 12$, sorted by $\kappa$ descending). $\kappa$: Fleiss' Kappa. $K_{\text{eff}}$: Effective-K (Eq.~\ref{eq:effk}). SC: Self-Consistency baseline. $\Delta$: SICA $-$ SC (pp). {*}\,$p < 0.05$ (uncorrected; BH adj.\ $p = 0.112$, $m{=}16$); positive $\Delta$ values do not reach significance. multi-T $= T \in \{0.3, 0.7, 1.2\}$, 4 traces each.}
+698	\label{tab:independence}
+699	\begin{tabular}{@{}llccrr@{}}
+700	\toprule
+701	Model & Condition & $\kappa$ & $K_{\text{eff}}$ & SC (\%) & $\Delta$ (pp) \\
+702	\midrule
+703	Qwen3 (think) & FOLIO & 0.91 & 1.09 & 86.27 & $+$0.49 \\
+704	Qwen2.5-14B & LogiQA & 0.82 & 1.20 & 79.00 & $-$1.00 \\
+705	Qwen3 & FOLIO & 0.77 & 1.26 & 83.33 & $+$1.47 \\
+706	Qwen2.5-14B & FOLIO & 0.74 & 1.30 & 75.98 & $-$0.49 \\
+707	Qwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 & $+$0.49 \\
+708	\addlinespace
+709	Mistral-7B ($T{=}0.3$) & FOLIO & 0.53 & 1.77 & 58.33 & $-$1.47 \\
+710	Mistral-7B & LogiQA & 0.51 & 1.81 & 50.00 & $+$1.50 \\
+711	Mistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\
+712	Mistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\
+713	Mistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\
+714	Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\
+715	Mistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\
+716	Mistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\
+717	Mistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\
+718	Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\mathbf{-2.83}${*} \\
+719	\bottomrule
+720	\end{tabular}
+721	\end{table}
+722	
+723	\section{Cross-Model Kappa Analysis}
+724	\label{app:cross-model-kappa}
+725	
+726	Table~\ref{tab:cross_model_kappa} compares trace independence across three model families on the same benchmarks. On FOLIO ($n = 204$), all four models produce $\kappa \geq 0.41$: LLaMA-3.1-8B ($\kappa = 0.41$), Mistral-7B ($\kappa = 0.44$), Qwen2.5-7B ($\kappa = 0.66$), and Qwen2.5-14B ($\kappa = 0.74$). The bottleneck is architecture-independent---no family escapes the correlation floor. Within the Qwen family, $\kappa$ increases from 0.66 (7B) to 0.74 (14B), but Mistral-7B (7B) and LLaMA-3.1-8B (8B) differ by $\Delta\kappa = 0.03$ despite belonging to different families, suggesting that cross-family variation ($\Delta\kappa$ up to 0.22 at similar scale) exceeds within-family scale effects ($\Delta\kappa = 0.08$). Disentangling scale from architecture requires controlled same-family experiments across $\geq$3 scales.
+727	
+728	\begin{table}[h]
+729	\centering
+730	\small
+731	\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\kappa$ indicates stronger correlation and lower effective sample size.}
+732	\label{tab:cross_model_kappa}
+733	\begin{tabular}{@{}llccr@{}}
+734	\toprule
+735	Model & Dataset & $\kappa$ & $K_{\text{eff}}$ & SC (\%) \\
+736	\midrule
+737	Qwen2.5-14B & FOLIO & 0.74 & 1.32 & 75.98 \\
+738	Qwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 \\
+739	Mistral-7B & FOLIO & 0.44 & 2.02 & 56.86 \\
+740	LLaMA-3.1-8B & FOLIO & 0.41 & 2.17 & 66.18 \\
+741	\addlinespace
+742	Qwen2.5-14B & PW-D5 & 0.62 & 1.54 & --- \\
+743	Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\
+744	\bottomrule
+745	\end{tabular}
+746	\end{table}
+747	
+748	
+749	\section{Cross-Model Process-Level Independence}
+750	\label{app:cross-model-process}
+751	
+752	Table~\ref{tab:cross-model-process} extends the process-level independence analysis (\S\ref{sec:process-kappa}) to four model families on FOLIO ($n = 204$). Mean pairwise cosine similarity of TF-IDF trace representations exceeds answer-level $\kappa$ in every family, but the gap is model-strength dependent: it narrows from $0.31$ (LLaMA) and $0.23$ (Mistral) to $0.02$ (Qwen-14B). For weaker models ($r \approx 0$), answer diversity does not reflect reasoning diversity---process-convergent but answer-divergent trace pairs constitute 9.5\% of all pairs on Mistral-7B versus 2.5--3.2\% on other families. For stronger models ($r \approx 0.23$, $p \leq 0.001$), process and answer agreement align, and answer-level $\kappa$ already captures the bottleneck. Process-$\kappa$ thus provides a crucial additional diagnostic specifically for weaker models, where answer-level metrics underestimate reasoning homogeneity.
+753	
+754	\begin{table}[h]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "f245df96-82bc-4093-9ff8-df61a6029cd0",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+      "content": "\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$ (uncorrected; BH adj.\\ $p = 0.112$, $m{=}16$); positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\n\\label{tab:independence}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nQwen3 (think) & FOLIO & 0.91 & 1.09 & 86.27 & $+$0.49 \\\\\nQwen2.5-14B & LogiQA & 0.82 & 1.20 & 79.00 & $-$1.00 \\\\\nQwen3 & FOLIO & 0.77 & 1.26 & 83.33 & $+$1.47 \\\\\nQwen2.5-14B & FOLIO & 0.74 & 1.30 & 75.98 & $-$0.49 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 & $+$0.49 \\\\\n\\addlinespace\nMistral-7B ($T{=}0.3$) & FOLIO & 0.53 & 1.77 & 58.33 & $-$1.47 \\\\\nMistral-7B & LogiQA & 0.51 & 1.81 & 50.00 & $+$1.50 \\\\\nMistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\\\\nMistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\\\\nMistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\\\\nMistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\\nMistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\\\\nMistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\\\\nMistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Cross-Model Kappa Analysis}\n\\label{app:cross-model-kappa}\n\nTable~\\ref{tab:cross_model_kappa} compares trace independence across three model families on the same benchmarks. On FOLIO ($n = 204$), all four models produce $\\kappa \\geq 0.41$: LLaMA-3.1-8B ($\\kappa = 0.41$), Mistral-7B ($\\kappa = 0.44$), Qwen2.5-7B ($\\kappa = 0.66$), and Qwen2.5-14B ($\\kappa = 0.74$). The bottleneck is architecture-independent---no family escapes the correlation floor. Within the Qwen family, $\\kappa$ increases from 0.66 (7B) to 0.74 (14B), but Mistral-7B (7B) and LLaMA-3.1-8B (8B) differ by $\\Delta\\kappa = 0.03$ despite belonging to different families, suggesting that cross-family variation ($\\Delta\\kappa$ up to 0.22 at similar scale) exceeds within-family scale effects ($\\Delta\\kappa = 0.08$). Disentangling scale from architecture requires controlled same-family experiments across $\\geq$3 scales.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\\kappa$ indicates stronger correlation and lower effective sample size.}\n\\label{tab:cross_model_kappa}\n\\begin{tabular}{@{}llccr@{}}\n\\toprule\nModel & Dataset & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 0.74 & 1.32 & 75.98 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 \\\\\nMistral-7B & FOLIO & 0.44 & 2.02 & 56.86 \\\\\nLLaMA-3.1-8B & FOLIO & 0.41 & 2.17 & 66.18 \\\\\n\\addlinespace\nQwen2.5-14B & PW-D5 & 0.62 & 1.54 & --- \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Cross-Model Process-Level Independence}\n\\label{app:cross-model-process}\n\nTable~\\ref{tab:cross-model-process} extends the process-level independence analysis (\\S\\ref{sec:process-kappa}) to four model families on FOLIO ($n = 204$). Mean pairwise cosine similarity of TF-IDF trace representations exceeds answer-level $\\kappa$ in every family, but the gap is model-strength dependent: it narrows from $0.31$ (LLaMA) and $0.23$ (Mistral) to $0.02$ (Qwen-14B). For weaker models ($r \\approx 0$), answer diversity does not reflect reasoning diversity---process-convergent but answer-divergent trace pairs constitute 9.5\\% of all pairs on Mistral-7B versus 2.5--3.2\\% on other families. For stronger models ($r \\approx 0.23$, $p \\leq 0.001$), process and answer agreement align, and answer-level $\\kappa$ already captures the bottleneck. Process-$\\kappa$ thus provides a crucial additional diagnostic specifically for weaker models, where answer-level metrics underestimate reasoning homogeneity.\n\n\\begin{table}[h]",
+      "numLines": 60,
+      "startLine": 695,
+      "totalLines": 1210
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016p21zybALa7m9GcxaRpFxV`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "4292c4f2-de4b-496d-aa29-20bfa27c277d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kssMKGn4Vz4JRm3Nzx9p3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4141,
+      "cache_read_input_tokens": 37234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4141
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T22:56:22.795Z_
+
+<details><summary>↩ Tool result · `toolu_016p21zybALa7m9GcxaRpFxV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nUnified Fleiss' kappa computation for all SICA experiments.\\nNon-standard answers mapped to Unknown (FOLIO/ProofWriter) or excluded (LogiQA).\\nOutput: Table 3 data for the paper.\\n\\nUsage:\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --output fleiss_kappa_unified.json\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --exp exp033_mistral_7b_folio204\\n\\\"\\\"\\\"\\nimport json, os, glob, sys, argparse\\nimport numpy as np\\nfrom collections import Counter\\n\\nFOLIO_PW_CATEGORIES = ['True', 'False', 'Unknown']\\nLOGIQA_CATEGORIES = ['A', 'B', 'C', 'D']\\n\\nK_NOMINAL = 12\\n\\n\\ndef detect_dataset(intermediates_dir):\\n    \\\"\\\"\\\"Detect dataset type from the first JSON file's 'dataset' field.\\\"\\\"\\\"\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\"*.json\\\")))\\n    if not files:\\n        return None\\n    with open(files[0]) as f:\\n        data = json.load(f)\\n    return data.get(\\\"problem\\\", {}).get(\\\"dataset\\\", \\\"unknown\\\")\\n\\n\\ndef get_categories(dataset):\\n    if dataset in (\\\"folio\\\", \\\"proofwriter\\\"):\\n        return FOLIO_PW_CATEGORIES\\n    elif dataset == \\\"logiqa\\\":\\n        return LOGIQA_CATEGORIES\\n    else:\\n        return FOLIO_PW_CATEGORIES\\n\\n\\ndef normalize_answer(ans, categories, raw=False):\\n    \\\"\\\"\\\"Map answer to one of the valid categories.\\n    None/empty -> None (excluded from vote count).\\n    Non-standard -> Unknown for FOLIO/PW, None for LogiQA.\\n    \\\"\\\"\\\"\\n    if ans is None:\\n        return None\\n    ans_str = str(ans).strip()\\n    if not ans_str:\\n        return None\\n\\n    lower_map = {c.lower(): c for c in categories}\\n    if ans_str.lower() in lower_map:\\n        return lower_map[ans_str.lower()]\\n\\n    if not raw and categories == FOLIO_PW_CATEGORIES:\\n        return 'Unknown'\\n\\n    return None\\n\\n\\ndef fleiss_kappa_variable_n(M):\\n    \\\"\\\"\\\"Fleiss' kappa allowing variable n_i (raters per subject).\\n\\n    M: (n_subjects, n_categories) matrix.\\n    Rows with < 2 raters are excluded.\\n    \\\"\\\"\\\"\\n    n_i = M.sum(axis=1)\\n    valid = n_i >= 2\\n    M = M[valid]\\n    n_i = n_i[valid]\\n    n = M.shape[0]\\n\\n    if n == 0:\\n        return float('nan'), 0\\n\\n    P_i = (np.sum(M ** 2, axis=1) - n_i) / (n_i * (n_i - 1))\\n    P_bar = np.mean(P_i)\\n\\n    p_j = M.sum(axis=0) / n_i.sum()\\n    P_e = np.sum(p_j ** 2)\\n\\n    if (1 - P_e) == 0:\\n        return 1.0, int(n)\\n\\n    kappa = (P_bar - P_e) / (1 - P_e)\\n    return float(kappa), int(n)\\n\\n\\ndef eff_k(kappa, K=K_NOMINAL):\\n    \\\"\\\"\\\"Eff-K = K / (1 + (K-1) * kappa), K=12 fixed.\\\"\\\"\\\"\\n    denom = 1 + (K - 1) * kappa\\n    if denom == 0:\\n        return float('inf')\\n    return K / denom\\n\\n\\ndef process_experiment(intermediates_dir, exp_name, raw=False, K_used=K_NOMINAL):\\n    dataset = detect_dataset(intermediates_dir)\\n    if dataset is None:\\n        print(f\\\"  SKIP {exp_name}: no files in {intermediates_dir}\\\", file=sys.stderr)\\n        return None\\n\\n    categories = get_categories(dataset)\\n    cat_idx = {c: i for i, c in enumerate(categories)}\\n    n_cat = len(categories)\\n\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\"*.json\\\")))\\n    ratings = []\\n    n_valid_votes = 0\\n    n_total_traces = 0\\n    n_excluded = 0\\n    n_nonstandard = 0\\n    correct_sica = 0\\n    correct_sc = 0\\n    ground_truths = []\\n    sica_answers = []\\n\\n    for fpath in files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n\\n        gt = data.get(\\\"problem\\\", {}).get(\\\"answer\\\", None)\\n        sr = data.get(\\\"sica_result\\\", {})\\n        traces = sr.get(\\\"traces\\\", [])\\n        sica_answer = sr.get(\\\"answer\\\", None)\\n\\n        row = [0] * n_cat\\n        n_total_traces += len(traces)\\n\\n        for t in traces:\\n            ans_raw = t.get(\\\"answer\\\", None)\\n            ans_norm = normalize_answer(ans_raw, categories, raw=raw)\\n            if ans_norm is None:\\n                n_excluded += 1\\n                continue\\n            if ans_raw is not None and str(ans_raw).strip() != \\\"\\\" and ans_norm != str(ans_raw).strip():\\n                if not any(str(ans_raw).strip().lower() == c.lower() for c in categories):\\n                    n_nonstandard += 1\\n            row[ca\\n\\n... [截断: 输出过长，省略 2359 字符] ...\\n\\n\\\"dataset\\\": dataset_label,\\n        \\\"dataset_type\\\": dataset,\\n        \\\"kappa\\\": round(kappa, 4),\\n        \\\"eff_k\\\": round(ek, 2),\\n        \\\"K_used\\\": K_used,\\n        \\\"sc_accuracy\\\": round(sc_acc, 2),\\n        \\\"sica_accuracy\\\": round(sica_acc, 2),\\n        \\\"delta_pp\\\": round(delta_pp, 2),\\n        \\\"n_problems\\\": n_problems,\\n        \\\"n_valid_problems_kappa\\\": n_valid_problems,\\n        \\\"n_valid_votes\\\": int(n_valid_votes),\\n        \\\"n_total_votes\\\": int(n_total_votes),\\n        \\\"valid_vote_rate\\\": round(n_valid_votes / n_total_votes, 4) if n_total_votes > 0 else 0,\\n        \\\"n_excluded_empty\\\": int(n_excluded),\\n        \\\"n_nonstandard_mapped\\\": int(n_nonstandard),\\n        \\\"unanimous_rate_pct\\\": round(unanimous, 1),\\n        \\\"category_distribution_pct\\\": cat_dist,\\n        \\\"mean_valid_votes_per_q\\\": round(float(n_per_q.mean()), 2) if n_problems > 0 else 0,\\n        \\\"min_valid_votes\\\": int(n_per_q.min()) if n_problems > 0 else 0,\\n        \\\"max_valid_votes\\\": int(n_per_q.max()) if n_problems > 0 else 0,\\n    }\\n\\n    print(f\\\"\\\\n{'=' * 60}\\\")\\n    print(f\\\"  {exp_name}  ({dataset})\\\")\\n    print(f\\\"{'=' * 60}\\\")\\n    print(f\\\"  n_problems:          {n_problems}\\\")\\n    print(f\\\"  Mean valid votes/q:  {result['mean_valid_votes_per_q']}\\\")\\n    print(f\\\"  Valid vote rate:     {result['valid_vote_rate']}\\\")\\n    print(f\\\"  Non-standard->Unk:  {n_nonstandard}\\\")\\n    print(f\\\"  Excluded (empty):   {n_excluded}\\\")\\n    print(f\\\"  ---\\\")\\n    print(f\\\"  Fleiss' kappa:       {kappa:.4f}\\\")\\n    print(f\\\"  Eff-K (K={K_used}):       {ek:.2f}\\\")\\n    print(f\\\"  SC accuracy:        {sc_acc:.2f}%\\\")\\n    print(f\\\"  SICA accuracy:      {sica_acc:.2f}%\\\")\\n    print(f\\\"  Delta (pp):         {delta_pp:+.2f}\\\")\\n    print(f\\\"  Unanimous rate:     {unanimous:.1f}%\\\")\\n    print(f\\\"  Category dist:      {cat_dist}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Unified Fleiss' kappa for SICA experiments\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Path to results/ directory\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"fleiss_kappa_unified.json\\\", help=\\\"Output JSON path\\\")\\n    parser.add_argument(\\\"--exp\\\", nargs=\\\"*\\\", help=\\\"Specific experiment dir names (default: all with intermediates/)\\\")\\n    parser.add_argument(\\\"--raw\\\", action=\\\"store_true\\\", help=\\\"Skip T/F/U normalization (non-standard answers excluded, not mapped to Unknown)\\\")\\n    parser.add_argument(\\\"--K\\\", type=int, default=None, help=\\\"Override K for Eff-K computation (default: 12)\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = args.results_dir\\n\\n    if args.exp:\\n        exp_dirs = []\\n        for e in args.exp:\\n            d = os.path.join(results_dir, e, \\\"intermediates\\\")\\n            if os.path.isdir(d):\\n                exp_dirs.append((e, d))\\n            else:\\n                print(f\\\"  WARN: {d} not found, skipping\\\", file=sys.stderr)\\n    else:\\n        exp_dirs = []\\n        for entry in sorted(os.listdir(results_dir)):\\n            inter = os.path.join(results_dir, entry, \\\"intermediates\\\")\\n            if os.path.isdir(inter):\\n                exp_dirs.append((entry, inter))\\n\\n    all_results = []\\n    for exp_name, inter_dir in exp_dirs:\\n        K_val = args.K if args.K else K_NOMINAL\\n        r = process_experiment(inter_dir, exp_name, raw=args.raw, K_used=K_val)\\n        if r is not None:\\n            all_results.append(r)\\n\\n    output = {\\n        \\\"formula\\\": \\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\",\\n        \\\"answer_normalization\\\": \\\"raw (non-standard excluded, not mapped)\\\" if args.raw else \\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\",\\n        \\\"raw_mode\\\": args.raw,\\n        \\\"experiments\\\": all_results,\\n    }\\n\\n    out_path = args.output\\n    if not os.path.isabs(out_path):\\n        out_path = os.path.join(results_dir, out_path)\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n\\n    print(f\\\"\\\\n{'=' * 60}\\\")\\n    print(f\\\"Results saved to {out_path}\\\")\\n    print(f\\\"Total experiments processed: {len(all_results)}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "6f9e096a-1d1c-490b-a463-5614c77150a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nUnified Fleiss' kappa computation for all SICA experiments.\\\\nNon-standard answers mapped to Unknown (FOLIO/ProofWriter) or excluded (LogiQA).\\\\nOutput: Table 3 data for the paper.\\\\n\\\\nUsage:\\\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --output fleiss_kappa_unified.json\\\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --exp exp033_mistral_7b_folio204\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, glob, sys, argparse\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\n\\\\nFOLIO_PW_CATEGORIES = ['True', 'False', 'Unknown']\\\\nLOGIQA_CATEGORIES = ['A', 'B', 'C', 'D']\\\\n\\\\nK_NOMINAL = 12\\\\n\\\\n\\\\ndef detect_dataset(intermediates_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Detect dataset type from the first JSON file's 'dataset' field.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\\\\\"*.json\\\\\\\")))\\\\n    if not files:\\\\n        return None\\\\n    with open(files[0]) as f:\\\\n        data = json.load(f)\\\\n    return data.get(\\\\\\\"problem\\\\\\\", {}).get(\\\\\\\"dataset\\\\\\\", \\\\\\\"unknown\\\\\\\")\\\\n\\\\n\\\\ndef get_categories(dataset):\\\\n    if dataset in (\\\\\\\"folio\\\\\\\", \\\\\\\"proofwriter\\\\\\\"):\\\\n        return FOLIO_PW_CATEGORIES\\\\n    elif dataset == \\\\\\\"logiqa\\\\\\\":\\\\n        return LOGIQA_CATEGORIES\\\\n    else:\\\\n        return FOLIO_PW_CATEGORIES\\\\n\\\\n\\\\ndef normalize_answer(ans, categories, raw=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map answer to one of the valid categories.\\\\n    None/empty -> None (excluded from vote count).\\\\n    Non-standard -> Unknown for FOLIO/PW, None for LogiQA.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if ans is None:\\\\n        return None\\\\n    ans_str = str(ans).strip()\\\\n    if not ans_str:\\\\n        return None\\\\n\\\\n    lower_map = {c.lower(): c for c in categories}\\\\n    if ans_str.lower() in lower_map:\\\\n        return lower_map[ans_str.lower()]\\\\n\\\\n    if not raw and categories == FOLIO_PW_CATEGORIES:\\\\n        return 'Unknown'\\\\n\\\\n    return None\\\\n\\\\n\\\\ndef fleiss_kappa_variable_n(M):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fleiss' kappa allowing variable n_i (raters per subject).\\\\n\\\\n    M: (n_subjects, n_categories) matrix.\\\\n    Rows with < 2 raters are excluded.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_i = M.sum(axis=1)\\\\n    valid = n_i >= 2\\\\n    M = M[valid]\\\\n    n_i = n_i[valid]\\\\n    n = M.shape[0]\\\\n\\\\n    if n == 0:\\\\n        return float('nan'), 0\\\\n\\\\n    P_i = (np.sum(M ** 2, axis=1) - n_i) / (n_i * (n_i - 1))\\\\n    P_bar = np.mean(P_i)\\\\n\\\\n    p_j = M.sum(axis=0) / n_i.sum()\\\\n    P_e = np.sum(p_j ** 2)\\\\n\\\\n    if (1 - P_e) == 0:\\\\n        return 1.0, int(n)\\\\n\\\\n    kappa = (P_bar - P_e) / (1 - P_e)\\\\n    return float(kappa), int(n)\\\\n\\\\n\\\\ndef eff_k(kappa, K=K_NOMINAL):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Eff-K = K / (1 + (K-1) * kappa), K=12 fixed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    denom = 1 + (K - 1) * kappa\\\\n    if denom == 0:\\\\n        return float('inf')\\\\n    return K / denom\\\\n\\\\n\\\\ndef process_experiment(intermediates_dir, exp_name, raw=False, K_used=K_NOMINAL):\\\\n    dataset = detect_dataset(intermediates_dir)\\\\n    if dataset is None:\\\\n        print(f\\\\\\\"  SKIP {exp_name}: no files in {intermediates_dir}\\\\\\\", file=sys.stderr)\\\\n        return None\\\\n\\\\n    categories = get_categories(dataset)\\\\n    cat_idx = {c: i for i, c in enumerate(categories)}\\\\n    n_cat = len(categories)\\\\n\\\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\\\\\"*.json\\\\\\\")))\\\\n    ratings = []\\\\n    n_valid_votes = 0\\\\n    n_total_traces = 0\\\\n    n_excluded = 0\\\\n    n_nonstandard = 0\\\\n    correct_sica = 0\\\\n    correct_sc = 0\\\\n    ground_truths = []\\\\n    sica_answers = []\\\\n\\\\n    for fpath in files:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n\\\\n        gt = data.get(\\\\\\\"problem\\\\\\\", {}).get(\\\\\\\"answer\\\\\\\", None)\\\\n        sr = data.get(\\\\\\\"sica_result\\\\\\\", {})\\\\n        traces = sr.get(\\\\\\\"traces\\\\\\\", [])\\\\n        sica_answer = sr.get(\\\\\\\"answer\\\\\\\", None)\\\\n\\\\n        row = [0] * n_cat\\\\n        n_total_traces += len(traces)\\\\n\\\\n        for t in traces:\\\\n            ans_raw = t.get(\\\\\\\"answer\\\\\\\", None)\\\\n            ans_norm = normalize_answer(ans_raw, categories, raw=raw)\\\\n            if ans_norm is None:\\\\n                n_excluded += 1\\\\n                continue\\\\n            if ans_raw is not None and str(ans_raw).strip() != \\\\\\\"\\\\\\\" and ans_norm != str(ans_raw).strip():\\\\n                if not any(str(ans_raw).strip().lower() == c.lower() for c in categories):\\\\n                    n_nonstandard += 1\\\\n            row[ca\\\\n\\\\n... [截断: 输出过长，省略 2359 字符] ...\\\\n\\\\n\\\\\\\"dataset\\\\\\\": dataset_label,\\\\n        \\\\\\\"dataset_type\\\\\\\": dataset,\\\\n        \\\\\\\"kappa\\\\\\\": round(kappa, 4),\\\\n        \\\\\\\"eff_k\\\\\\\": round(ek, 2),\\\\n        \\\\\\\"K_used\\\\\\\": K_used,\\\\n        \\\\\\\"sc_accuracy\\\\\\\": round(sc_acc, 2),\\\\n        \\\\\\\"sica_accuracy\\\\\\\": round(sica_acc, 2),\\\\n        \\\\\\\"delta_pp\\\\\\\": round(delta_pp, 2),\\\\n        \\\\\\\"n_problems\\\\\\\": n_problems,\\\\n        \\\\\\\"n_valid_problems_kappa\\\\\\\": n_valid_problems,\\\\n        \\\\\\\"n_valid_votes\\\\\\\": int(n_valid_votes),\\\\n        \\\\\\\"n_total_votes\\\\\\\": int(n_total_votes),\\\\n        \\\\\\\"valid_vote_rate\\\\\\\": round(n_valid_votes / n_total_votes, 4) if n_total_votes > 0 else 0,\\\\n        \\\\\\\"n_excluded_empty\\\\\\\": int(n_excluded),\\\\n        \\\\\\\"n_nonstandard_mapped\\\\\\\": int(n_nonstandard),\\\\n        \\\\\\\"unanimous_rate_pct\\\\\\\": round(unanimous, 1),\\\\n        \\\\\\\"category_distribution_pct\\\\\\\": cat_dist,\\\\n        \\\\\\\"mean_valid_votes_per_q\\\\\\\": round(float(n_per_q.mean()), 2) if n_problems > 0 else 0,\\\\n        \\\\\\\"min_valid_votes\\\\\\\": int(n_per_q.min()) if n_problems > 0 else 0,\\\\n        \\\\\\\"max_valid_votes\\\\\\\": int(n_per_q.max()) if n_problems > 0 else 0,\\\\n    }\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 60}\\\\\\\")\\\\n    print(f\\\\\\\"  {exp_name}  ({dataset})\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * 60}\\\\\\\")\\\\n    print(f\\\\\\\"  n_problems:          {n_problems}\\\\\\\")\\\\n    print(f\\\\\\\"  Mean valid votes/q:  {result['mean_valid_votes_per_q']}\\\\\\\")\\\\n    print(f\\\\\\\"  Valid vote rate:     {result['valid_vote_rate']}\\\\\\\")\\\\n    print(f\\\\\\\"  Non-standard->Unk:  {n_nonstandard}\\\\\\\")\\\\n    print(f\\\\\\\"  Excluded (empty):   {n_excluded}\\\\\\\")\\\\n    print(f\\\\\\\"  ---\\\\\\\")\\\\n    print(f\\\\\\\"  Fleiss' kappa:       {kappa:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Eff-K (K={K_used}):       {ek:.2f}\\\\\\\")\\\\n    print(f\\\\\\\"  SC accuracy:        {sc_acc:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  SICA accuracy:      {sica_acc:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  Delta (pp):         {delta_pp:+.2f}\\\\\\\")\\\\n    print(f\\\\\\\"  Unanimous rate:     {unanimous:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  Category dist:      {cat_dist}\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Unified Fleiss' kappa for SICA experiments\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results-dir\\\\\\\", required=True, help=\\\\\\\"Path to results/ directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"fleiss_kappa_unified.json\\\\\\\", help=\\\\\\\"Output JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exp\\\\\\\", nargs=\\\\\\\"*\\\\\\\", help=\\\\\\\"Specific experiment dir names (default: all with intermediates/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--raw\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip T/F/U normalization (non-standard answers excluded, not mapped to Unknown)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=None, help=\\\\\\\"Override K for Eff-K computation (default: 12)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    results_dir = args.results_dir\\\\n\\\\n    if args.exp:\\\\n        exp_dirs = []\\\\n        for e in args.exp:\\\\n            d = os.path.join(results_dir, e, \\\\\\\"intermediates\\\\\\\")\\\\n            if os.path.isdir(d):\\\\n                exp_dirs.append((e, d))\\\\n            else:\\\\n                print(f\\\\\\\"  WARN: {d} not found, skipping\\\\\\\", file=sys.stderr)\\\\n    else:\\\\n        exp_dirs = []\\\\n        for entry in sorted(os.listdir(results_dir)):\\\\n            inter = os.path.join(results_dir, entry, \\\\\\\"intermediates\\\\\\\")\\\\n            if os.path.isdir(inter):\\\\n                exp_dirs.append((entry, inter))\\\\n\\\\n    all_results = []\\\\n    for exp_name, inter_dir in exp_dirs:\\\\n        K_val = args.K if args.K else K_NOMINAL\\\\n        r = process_experiment(inter_dir, exp_name, raw=args.raw, K_used=K_val)\\\\n        if r is not None:\\\\n            all_results.append(r)\\\\n\\\\n    output = {\\\\n        \\\\\\\"formula\\\\\\\": \\\\\\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\\\\\",\\\\n        \\\\\\\"answer_normalization\\\\\\\": \\\\\\\"raw (non-standard excluded, not mapped)\\\\\\\" if args.raw else \\\\\\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\\\\\",\\\\n        \\\\\\\"raw_mode\\\\\\\": args.raw,\\\\n        \\\\\\\"experiments\\\\\\\": all_results,\\\\n    }\\\\n\\\\n    out_path = args.output\\\\n    if not os.path.isabs(out_path):\\\\n        out_path = os.path.join(results_dir, out_path)\\\\n\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * 60}\\\\\\\")\\\\n    print(f\\\\\\\"Results saved to {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"Total experiments processed: {len(all_results)}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nUnified Fleiss' kappa computation for all SICA experiments.\\nNon-standard answers mapped to Unknown (FOLIO/ProofWriter) or excluded (LogiQA).\\nOutput: Table 3 data for the paper.\\n\\nUsage:\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --output fleiss_kappa_unified.json\\n    python compute_fleiss_kappa_unified.py --results-dir results/ --exp exp033_mistral_7b_folio204\\n\\\"\\\"\\\"\\nimport json, os, glob, sys, argparse\\nimport numpy as np\\nfrom collections import Counter\\n\\nFOLIO_PW_CATEGORIES = ['True', 'False', 'Unknown']\\nLOGIQA_CATEGORIES = ['A', 'B', 'C', 'D']\\n\\nK_NOMINAL = 12\\n\\n\\ndef detect_dataset(intermediates_dir):\\n    \\\"\\\"\\\"Detect dataset type from the first JSON file's 'dataset' field.\\\"\\\"\\\"\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\"*.json\\\")))\\n    if not files:\\n        return None\\n    with open(files[0]) as f:\\n        data = json.load(f)\\n    return data.get(\\\"problem\\\", {}).get(\\\"dataset\\\", \\\"unknown\\\")\\n\\n\\ndef get_categories(dataset):\\n    if dataset in (\\\"folio\\\", \\\"proofwriter\\\"):\\n        return FOLIO_PW_CATEGORIES\\n    elif dataset == \\\"logiqa\\\":\\n        return LOGIQA_CATEGORIES\\n    else:\\n        return FOLIO_PW_CATEGORIES\\n\\n\\ndef normalize_answer(ans, categories, raw=False):\\n    \\\"\\\"\\\"Map answer to one of the valid categories.\\n    None/empty -> None (excluded from vote count).\\n    Non-standard -> Unknown for FOLIO/PW, None for LogiQA.\\n    \\\"\\\"\\\"\\n    if ans is None:\\n        return None\\n    ans_str = str(ans).strip()\\n    if not ans_str:\\n        return None\\n\\n    lower_map = {c.lower(): c for c in categories}\\n    if ans_str.lower() in lower_map:\\n        return lower_map[ans_str.lower()]\\n\\n    if not raw and categories == FOLIO_PW_CATEGORIES:\\n        return 'Unknown'\\n\\n    return None\\n\\n\\ndef fleiss_kappa_variable_n(M):\\n    \\\"\\\"\\\"Fleiss' kappa allowing variable n_i (raters per subject).\\n\\n    M: (n_subjects, n_categories) matrix.\\n    Rows with < 2 raters are excluded.\\n    \\\"\\\"\\\"\\n    n_i = M.sum(axis=1)\\n    valid = n_i >= 2\\n    M = M[valid]\\n    n_i = n_i[valid]\\n    n = M.shape[0]\\n\\n    if n == 0:\\n        return float('nan'), 0\\n\\n    P_i = (np.sum(M ** 2, axis=1) - n_i) / (n_i * (n_i - 1))\\n    P_bar = np.mean(P_i)\\n\\n    p_j = M.sum(axis=0) / n_i.sum()\\n    P_e = np.sum(p_j ** 2)\\n\\n    if (1 - P_e) == 0:\\n        return 1.0, int(n)\\n\\n    kappa = (P_bar - P_e) / (1 - P_e)\\n    return float(kappa), int(n)\\n\\n\\ndef eff_k(kappa, K=K_NOMINAL):\\n    \\\"\\\"\\\"Eff-K = K / (1 + (K-1) * kappa), K=12 fixed.\\\"\\\"\\\"\\n    denom = 1 + (K - 1) * kappa\\n    if denom == 0:\\n        return float('inf')\\n    return K / denom\\n\\n\\ndef process_experiment(intermediates_dir, exp_name, raw=False, K_used=K_NOMINAL):\\n    dataset = detect_dataset(intermediates_dir)\\n    if dataset is None:\\n        print(f\\\"  SKIP {exp_name}: no files in {intermediates_dir}\\\", file=sys.stderr)\\n        return None\\n\\n    categories = get_categories(dataset)\\n    cat_idx = {c: i for i, c in enumerate(categories)}\\n    n_cat = len(categories)\\n\\n    files = sorted(glob.glob(os.path.join(intermediates_dir, \\\"*.json\\\")))\\n    ratings = []\\n    n_valid_votes = 0\\n    n_total_traces = 0\\n    n_excluded = 0\\n    n_nonstandard = 0\\n    correct_sica = 0\\n    correct_sc = 0\\n    ground_truths = []\\n    sica_answers = []\\n\\n    for fpath in files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n\\n        gt = data.get(\\\"problem\\\", {}).get(\\\"answer\\\", None)\\n        sr = data.get(\\\"sica_result\\\", {})\\n        traces = sr.get(\\\"traces\\\", [])\\n        sica_answer = sr.get(\\\"answer\\\", None)\\n\\n        row = [0] * n_cat\\n        n_total_traces += len(traces)\\n\\n        for t in traces:\\n            ans_raw = t.get(\\\"answer\\\", None)\\n            ans_norm = normalize_answer(ans_raw, categories, raw=raw)\\n            if ans_norm is None:\\n                n_excluded += 1\\n                continue\\n            if ans_raw is not None and str(ans_raw).strip() != \\\"\\\" and ans_norm != str(ans_raw).strip():\\n                if not any(str(ans_raw).strip().lower() == c.lower() for c in categories):\\n                    n_nonstandard += 1\\n            row[ca\\n\\n... [截断: 输出过长，省略 2359 字符] ...\\n\\n\\\"dataset\\\": dataset_label,\\n        \\\"dataset_type\\\": dataset,\\n        \\\"kappa\\\": round(kappa, 4),\\n        \\\"eff_k\\\": round(ek, 2),\\n        \\\"K_used\\\": K_used,\\n        \\\"sc_accuracy\\\": round(sc_acc, 2),\\n        \\\"sica_accuracy\\\": round(sica_acc, 2),\\n        \\\"delta_pp\\\": round(delta_pp, 2),\\n        \\\"n_problems\\\": n_problems,\\n        \\\"n_valid_problems_kappa\\\": n_valid_problems,\\n        \\\"n_valid_votes\\\": int(n_valid_votes),\\n        \\\"n_total_votes\\\": int(n_total_votes),\\n        \\\"valid_vote_rate\\\": round(n_valid_votes / n_total_votes, 4) if n_total_votes > 0 else 0,\\n        \\\"n_excluded_empty\\\": int(n_excluded),\\n        \\\"n_nonstandard_mapped\\\": int(n_nonstandard),\\n        \\\"unanimous_rate_pct\\\": round(unanimous, 1),\\n        \\\"category_distribution_pct\\\": cat_dist,\\n        \\\"mean_valid_votes_per_q\\\": round(float(n_per_q.mean()), 2) if n_problems > 0 else 0,\\n        \\\"min_valid_votes\\\": int(n_per_q.min()) if n_problems > 0 else 0,\\n        \\\"max_valid_votes\\\": int(n_per_q.max()) if n_problems > 0 else 0,\\n    }\\n\\n    print(f\\\"\\\\n{'=' * 60}\\\")\\n    print(f\\\"  {exp_name}  ({dataset})\\\")\\n    print(f\\\"{'=' * 60}\\\")\\n    print(f\\\"  n_problems:          {n_problems}\\\")\\n    print(f\\\"  Mean valid votes/q:  {result['mean_valid_votes_per_q']}\\\")\\n    print(f\\\"  Valid vote rate:     {result['valid_vote_rate']}\\\")\\n    print(f\\\"  Non-standard->Unk:  {n_nonstandard}\\\")\\n    print(f\\\"  Excluded (empty):   {n_excluded}\\\")\\n    print(f\\\"  ---\\\")\\n    print(f\\\"  Fleiss' kappa:       {kappa:.4f}\\\")\\n    print(f\\\"  Eff-K (K={K_used}):       {ek:.2f}\\\")\\n    print(f\\\"  SC accuracy:        {sc_acc:.2f}%\\\")\\n    print(f\\\"  SICA accuracy:      {sica_acc:.2f}%\\\")\\n    print(f\\\"  Delta (pp):         {delta_pp:+.2f}\\\")\\n    print(f\\\"  Unanimous rate:     {unanimous:.1f}%\\\")\\n    print(f\\\"  Category dist:      {cat_dist}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Unified Fleiss' kappa for SICA experiments\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Path to results/ directory\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"fleiss_kappa_unified.json\\\", help=\\\"Output JSON path\\\")\\n    parser.add_argument(\\\"--exp\\\", nargs=\\\"*\\\", help=\\\"Specific experiment dir names (default: all with intermediates/)\\\")\\n    parser.add_argument(\\\"--raw\\\", action=\\\"store_true\\\", help=\\\"Skip T/F/U normalization (non-standard answers excluded, not mapped to Unknown)\\\")\\n    parser.add_argument(\\\"--K\\\", type=int, default=None, help=\\\"Override K for Eff-K computation (default: 12)\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = args.results_dir\\n\\n    if args.exp:\\n        exp_dirs = []\\n        for e in args.exp:\\n            d = os.path.join(results_dir, e, \\\"intermediates\\\")\\n            if os.path.isdir(d):\\n                exp_dirs.append((e, d))\\n            else:\\n                print(f\\\"  WARN: {d} not found, skipping\\\", file=sys.stderr)\\n    else:\\n        exp_dirs = []\\n        for entry in sorted(os.listdir(results_dir)):\\n            inter = os.path.join(results_dir, entry, \\\"intermediates\\\")\\n            if os.path.isdir(inter):\\n                exp_dirs.append((entry, inter))\\n\\n    all_results = []\\n    for exp_name, inter_dir in exp_dirs:\\n        K_val = args.K if args.K else K_NOMINAL\\n        r = process_experiment(inter_dir, exp_name, raw=args.raw, K_used=K_val)\\n        if r is not None:\\n            all_results.append(r)\\n\\n    output = {\\n        \\\"formula\\\": \\\"Eff-K = K / (1 + (K-1) * kappa), K=12\\\",\\n        \\\"answer_normalization\\\": \\\"raw (non-standard excluded, not mapped)\\\" if args.raw else \\\"non-standard answers mapped to Unknown (FOLIO/PW) or excluded (LogiQA), None/empty excluded\\\",\\n        \\\"raw_mode\\\": args.raw,\\n        \\\"experiments\\\": all_results,\\n    }\\n\\n    out_path = args.output\\n    if not os.path.isabs(out_path):\\n        out_path = os.path.join(results_dir, out_path)\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n\\n    print(f\\\"\\\\n{'=' * 60}\\\")\\n    print(f\\\"Results saved to {out_path}\\\")\\n    print(f\\\"Total experiments processed: {len(all_results)}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see line 714:
+```
+Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\
+```
+
+The task says SC=54.41% is wrong (should be 59.31%), and Δ=-0.49 is wrong (should be -2.45).
+
+From the results.json for seed789:
+- SC = 59.31% (0.5931372549019608)
+
+
+- SICA = 56.86% (0.5686274509803921)
+- Δ = SICA - SC = 56.86 - 59.31 = -2.45
+
+Now I need to compute the kappa for s789. The unified JSON doesn't have s789, but I know the multi_seed directory has the seed789 intermediates at `results/multi_seed/mistral_folio_seed789/intermediates/` with folio_0.json through folio_19.json. Let me run the kappa computation script on that data.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "8eb8bb3e-8056-41ba-bcad-540bdb08d2fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tDpdRj6tnfTZb4syXeMJL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6136,
+      "cache_read_input_tokens": 41375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6136
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Line 714 confirmed: `Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49`. SC and Δ are wrong. Need to also verify kappa. Let me run the kappa script on the s789 traces.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "91032a80-5fc9-4842-b24f-dacb93dbe564",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tDpdRj6tnfTZb4syXeMJL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6136,
+      "cache_read_input_tokens": 41375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6136
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RDJ4Wnorf9yayLTc6C4UWh`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && python3 scripts/compute_fleiss_kappa_unified.py --results-dir results/multi_seed/ --exp mistral_folio_seed789 --output /tmp/kappa_s789.json 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "fb10c97f-e189-4c7f-b6b4-39dba6d04aca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tDpdRj6tnfTZb4syXeMJL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6136,
+      "cache_read_input_tokens": 41375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6136
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T22:56:36.108Z_
+
+<details><summary>↩ Tool result · `toolu_01RDJ4Wnorf9yayLTc6C4UWh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  mistral_folio_seed789  (folio)\\n============================================================\\n  n_problems:          204\\n  Mean valid votes/q:  10.67\\n  Valid vote rate:     0.8889\\n  Non-standard->Unk:  140\\n  Excluded (empty):   272\\n  ---\\n  Fleiss' kappa:       0.4474\\n  Eff-K (K=12):       2.03\\n  SC accuracy:        59.31%\\n  SICA accuracy:      56.86%\\n  Delta (pp):         -2.45\\n  Unanimous rate:     22.1%\\n  Category dist:      {'True': 24.034926470588236, 'False': 22.058823529411764, 'Unknown': 53.90625}\\n\\n============================================================\\nResults saved to /tmp/kappa_s789.json\\nTotal experiments processed: 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "0b03b3d4-e497-4937-b189-68ebd621e0be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  mistral_folio_seed789  (folio)\\\\n============================================================\\\\n  n_problems:          204\\\\n  Mean valid votes/q:  10.67\\\\n  Valid vote rate:     0.8889\\\\n  Non-standard->Unk:  140\\\\n  Excluded (empty):   272\\\\n  ---\\\\n  Fleiss' kappa:       0.4474\\\\n  Eff-K (K=12):       2.03\\\\n  SC accuracy:        59.31%\\\\n  SICA accuracy:      56.86%\\\\n  Delta (pp):         -2.45\\\\n  Unanimous rate:     22.1%\\\\n  Category dist:      {'True': 24.034926470588236, 'False': 22.058823529411764, 'Unknown': 53.90625}\\\\n\\\\n============================================================\\\\nResults saved to /tmp/kappa_s789.json\\\\nTotal experiments processed: 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  mistral_folio_seed789  (folio)\\n============================================================\\n  n_problems:          204\\n  Mean valid votes/q:  10.67\\n  Valid vote rate:     0.8889\\n  Non-standard->Unk:  140\\n  Excluded (empty):   272\\n  ---\\n  Fleiss' kappa:       0.4474\\n  Eff-K (K=12):       2.03\\n  SC accuracy:        59.31%\\n  SICA accuracy:      56.86%\\n  Delta (pp):         -2.45\\n  Unanimous rate:     22.1%\\n  Category dist:      {'True': 24.034926470588236, 'False': 22.058823529411764, 'Unknown': 53.90625}\\n\\n============================================================\\nResults saved to /tmp/kappa_s789.json\\nTotal experiments processed: 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the correct values for s789:
+- kappa = 0.4474 → rounds to 0.45 in the table (currently shows 0.41)
+- K_eff = 2.03 (currently shows 2.17)
+- SC = 59.31% (currently shows 54.41%)
+- Δ = -2.45 (currently shows -0.49)
+
+So ALL four values in the s789 row are wrong. They were indeed using s123 data. Let me verify by checking the s123 values:
+- From the unified JSON, exp052 (seed123): kappa=0.4572, eff_k=1.99, sc=54.41, delta=+2.94
+
+
+- But I'm noticing the batch2 JSON shows different values for the same experiment: kappa=0.4249, eff_k=2.12, which doesn't match the unified JSON either. There's an inconsistency between the two data sources I need to track down.
+
+Looking at the table more carefully, that 0.41/2.17 combination actually matches the LLaMA-3.1-8B entry exactly—it looks like the s789 row got copied from the LLaMA row by mistake. The correct values for s789 should be kappa=0.4474, K_eff=2.03, with SC at 59.31% and SICA at 56.86%. Generating markdown table...
+
+Wait, I'm noticing the sort order isn't quite right when I look at the kappa scores—they're not in descending order as they should be, with 0.52 appearing after 0.41. Looking at the kappa values in sequence, I see the issue—0.41 is appearing out of place between 0.49 and 0.52, breaking the descending order that the table caption claims. With the corrected s789 value of 0.45, it would fit between 0.48 and 0.21, but that still leaves the overall Mistral block unsorted. 0.45 would still leave them misaligned since 0.52 should come before 0.45. So the table has sorting issues beyond just the s789 value—but the task is specifically to fix the data in that row, not reorganize the entire table. The table structure seems to group experiments by type rather than maintaining strict kappa ordering, so I should focus on correcting the actual data values instead of reorganizing rows. Looking more carefully at the temperature variants, they're scattered across different sections—T=0.3 appears early while T=0.5 and T=1.0 are placed later, which suggests the grouping is intentional rather than sorted by kappa descending.
+
+Since the task only asks me to fix the s789 row data, I'll leave the row order as-is and just correct the values. I'm also checking the cross-model kappa table to see if there are any s789 references there that need updating. I'm verifying the rounding for each column—kappa rounds to 0.45, K_eff stays at 2.03, SC is 59.31, and the delta value is -2.45, all formatted to two decimal places to match the existing entries in the table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "c2e25b8f-01ba-474d-8a0c-4495f6b3ee54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NyJC8FYjXTKT1MHARw6j4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 47511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Kappa computation complete. All four values in the s789 row are wrong:
+
+| Field | Current (wrong) | Correct |
+|-------|----------------|---------|
+| κ | 0.41 | 0.45 |
+| K_eff | 2.17 | 2.03 |
+| SC | 54.41 | 59.31 |
+| Δ | -0.49 | -2.45 |
+
+The current values (0.41, 2.17) match the LLaMA-3.1-8B row on L740 — a copy-paste error. The cross-model table (L737-744) has no s789 reference, so no change needed there.
+
+Fixing the local appendix.tex now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "93b95c38-e31a-42bf-9329-47e62bee8bdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NyJC8FYjXTKT1MHARw6j4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 47511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_011kDDvCFkAF4AgZDCwrtY5q`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+  "old_string": "Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\",
+  "new_string": "Mistral-7B (s789) & FOLIO & 0.45 & 2.03 & 59.31 & $-$2.45 \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "e2a6cc32-d7eb-4a4e-9b27-48f3c9cf29a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018NyJC8FYjXTKT1MHARw6j4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 47511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-22T22:57:40.765Z_
+
+<details><summary>↩ Tool result · `toolu_011kDDvCFkAF4AgZDCwrtY5q`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "2edd86d0-2c1d-46ef-ae75-07864d5c946e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+    "oldString": "Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\",
+    "newString": "Mistral-7B (s789) & FOLIO & 0.45 & 2.03 & 59.31 & $-$2.45 \\\\",
+    "originalFile": "\\section{Regime Scatter Plot}\n\\label{app:regime-scatter}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{f2_regime_scatter}\n\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\n\\label{fig:regime-scatter}\n\\end{figure}\n\n\\section{Prompt Templates}\n\\label{app:prompts}\n\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n\n\\paragraph{System Prompt.}\n\n\\begin{lstlisting}\nYou are a constraint extraction tool. Output ONLY\nvalid JSON. Do NOT solve problems, reason about\ncorrectness, or think step-by-step. Extract\nconstraints from the given trace exactly as stated.\n\\end{lstlisting}\n\n\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n\nUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n\n\\begin{lstlisting}\nExtract mathematical constraints from this reasoning\ntrace as a JSON object.\n\nRules:\n- type: \"equation\", \"inequality\", or \"predicate\"\n- expression: human-readable, e.g. \"x + y == 14\"\n- z3_formula: a single comparison expression in\n  Python Z3 syntax\n- source_step: step number where the constraint\n  appears\n- Use variable names from the trace\n\nz3_formula MUST follow these rules:\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\n  /, **, %\n- Use individual named variables: a1, a2, a3...\n  NOT arrays a[1] or sets A\n- Expand all sums explicitly:\n  \"a1 + a2 + a3 == 55\" NOT \"sum([a1,a2,a3])\"\n- NO Python builtins: sum(), len(), max(), min(),\n  list(), set(), range(), int()\n- Each z3_formula must be exactly ONE comparison\n  (==, !=, <, >, <=, >=)\n- For multiple values, write separate constraints\n  for each\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"equation\",\n  \"expression\": \"x + y == 14\",\n  \"z3_formula\": \"x + y == 14\",\n  \"source_step\": 1}],\n \"answer\": \"final_answer\",\n \"variables\": [\"x\", \"y\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Logical Constraint Extraction (LOGIC\\_EXTRACTION\\_PROMPT).}\n\nUsed for ProofWriter and FOLIO datasets.\n\n\\begin{lstlisting}\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\nsolver.\n- Do NOT re-solve or re-reason about the problem.\n- Do NOT verify whether the trace's reasoning is\n  correct.\n- ONLY extract the logical constraints that are\n  explicitly stated or used in the trace below.\n- Output ONLY the JSON object, nothing else.\n\nExtract logical constraints from this reasoning trace\nabout a logic problem.\n\nThe problem has facts (base assertions), rules\n(grounded implications), and derived conclusions.\nConvert each into a Z3 boolean formula.\n\nVariable naming:\n- Unary property: property_entity\n  (e.g., kind_anne, red_charlie, round_fiona)\n- Binary relation: relation_subject_object\n  (e.g., eats_bear_squirrel, likes_lion_cat)\n- Use lowercase with underscores only\n\nConstraint types:\n- \"fact\": a given assertion,\n  e.g., kind_anne == True\n- \"rule\": a grounded implication over specific\n  entities, e.g., Implies(kind_anne, nice_anne)\n- \"derived\": an inferred conclusion from facts +\n  rules, e.g., nice_anne == True\n\nZ3 operators:\n- Implies(a, b) for if-then rules\n- And(a, b, ...) for conjunctive conditions\n- Or(a, b, ...) for disjunctive conditions\n- Not(a) for negation\n- == True / == False for boolean assertions\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"fact\",\n  \"expression\": \"kind(anne)\",\n  \"z3_formula\": \"kind_anne == True\",\n  \"source_step\": 1}],\n \"answer\": \"True or False or Unknown\",\n \"variables\": [\"kind_anne\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Output Schema.}\n\nBoth prompts produce a JSON object with the following structure:\n\n\\begin{lstlisting}\n{\n  \"constraints\": [\n    {\n      \"type\": \"&lt;equation|inequality|predicate>\n               or &lt;fact|rule|derived>\",\n      \"expression\": \"&lt;human-readable description>\",\n      \"z3_formula\": \"&lt;Z3-compatible expression>\",\n      \"source_step\": &lt;integer>\n    }\n  ],\n  \"answer\": \"&lt;final answer string>\",\n  \"variables\": [\"&lt;var1>\", \"&lt;var2>\", \"...\"]\n}\n\\end{lstlisting}\n\nThe pipeline additionally injects an \\texttt{answer\\_assertion} constraint per trace (not produced by the LLM):\n\n\\begin{lstlisting}\n{\"type\": \"answer_assertion\",\n \"expression\": \"answer is &lt;ans>\",\n \"z3_formula\": \"__sica_answer_&lt;ans> == True\",\n \"source_step\": -1}\n\\end{lstlisting}\n\n\\paragraph{Prompt Selection Logic.}\n\nDomain assignment is determined by dataset: FOLIO and ProofWriter use \\textsc{Logic\\_Extraction\\_Prompt}; GSM8K, AIME, StrategyQA, and ARC-Challenge use \\textsc{Extraction\\_Prompt}. StrategyQA and ARC-Challenge are assigned to the mathematical prompt because their reasoning structure does not involve formal logic predicates or implications, despite StrategyQA producing boolean answers.\n\n\n\\section{Z3 MaxSAT Evaluation Pseudocode}\n\\label{app:z3-pseudocode}\n\nAlgorithm~\\ref{alg:maxsat} describes the Z3 MaxSAT solving procedure. Algorithm~\\ref{alg:scorer} describes the source-trace attribution scoring.\n\nDomain constraint variables (e.g., \\texttt{x + y == 14}) and answer assertion variables (e.g., \\texttt{\\_\\_sica\\_answer\\_42 == True}) are logically independent in the Z3 formulation. Discriminative signal arises solely from conflicts among domain constraints: when traces supporting different answers produce mutually contradictory constraints, the solver excludes the lower-weight subset, and the scorer penalizes the corresponding answers.\n\n\\begin{algorithm}[h]\n\\caption{Z3 Weighted Partial MAX-SAT}\n\\label{alg:maxsat}\n\\begin{algorithmic}[1]\n\\Require Deduplicated constraint set $\\mathcal{C} = \\{(c_m, w_m, S_m)\\}_{m=1}^M$ where $c_m$ is a Z3 formula, $w_m$ is weight, $S_m$ is the set of source trace indices\n\\Ensure Partition $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$ where $\\mathcal{C}^*$ is the max-weight satisfiable subset\n\\State $\\textit{opt} \\gets \\textsc{Z3.Optimize()}$\n\\For{$m = 1, \\ldots, M$}\n    \\State $b_m \\gets$ fresh Boolean indicator\n    \\State $\\textit{opt}.\\textsc{Add}(b_m \\Rightarrow c_m)$ \\Comment{soft clause guarded by indicator}\n    \\State $\\textit{opt}.\\textsc{AddSoft}(b_m,\\; \\text{weight}=w_m)$\n\\EndFor\n\\State $\\textit{result} \\gets \\textit{opt}.\\textsc{Check}()$\n\\State $\\textit{model} \\gets \\textit{opt}.\\textsc{Model}()$\n\\State $\\mathcal{C}^* \\gets \\{(c_m, w_m, S_m) : \\textit{model}(b_m) = \\top\\}$\n\\State $\\mathcal{C}^{\\setminus} \\gets \\mathcal{C} \\setminus \\mathcal{C}^*$\n\\State \\Return $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\begin{algorithm}[h]\n\\caption{Source-Trace Attribution Scoring}\n\\label{alg:scorer}\n\\begin{algorithmic}[1]\n\\Require Satisfied set $\\mathcal{C}^*$, excluded set $\\mathcal{C}^{\\setminus}$, candidate answers $\\mathcal{A}$, trace-answer mapping $\\tau: \\text{trace\\_idx} \\to a$, penalty weight $\\alpha$\n\\Ensure Score $s(a)$ for each $a \\in \\mathcal{A}$\n\\For{each $a \\in \\mathcal{A}$}\n    \\State $T_a \\gets \\{i : \\tau(i) = a\\}$ \\Comment{trace indices producing answer $a$}\n    \\State $\\textit{pos}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^*} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $\\textit{neg}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^{\\setminus}} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $s(a) \\gets \\textit{pos}(a) - \\alpha \\cdot \\textit{neg}(a)$\n\\EndFor\n\\State \\Return $a^* = \\arg\\max_{a \\in \\mathcal{A}} s(a)$\n\\end{algorithmic}\n\\end{algorithm}\n\n\n\\section{Capability-Accuracy Constraint Diagnostics}\n\\label{app:diagnostics}\n\\label{app:cil}\n\n\\paragraph{Conditional Correction Ratio.}\nWe define the \\textit{Conditional Correction Ratio} (CCR) to summarize verifier--generator complementarity:\n\\begin{equation}\n\\label{eq:cil}\n\\text{CCR}(V, G) = \\log \\frac{P(V \\text{ correct} \\mid G \\text{ wrong})}{P(V \\text{ correct} \\mid G \\text{ correct})}.\n\\end{equation}\n$\\text{CCR} > 0$ means $V$ preferentially corrects $G$'s errors; $\\text{CCR} < 0$ indicates shared bias. CCR links our findings: (1)~SCB corresponds to $\\text{CCR}(\\text{self}, G) \\approx 0$; (2)~Finding~2 predicts $\\text{CCR}(V, G) > 0$ when $V$ is independent and capable.\n\n\\paragraph{Empirical CCR across verifier--generator pairs.}\nTable~\\ref{tab:cil_empirical} reports CCR for eight verifier--generator--dataset conditions, sorted by CCR descending. All three cross-architecture NLI pairs on ProofWriter yield $\\text{CCR} > 0$ (verifier preferentially corrects generator errors), while all three same-model SICA conditions yield $\\text{CCR} < 0$ (shared bias). CCR correlates with combo gain: Spearman $\\rho = 0.839$, 95\\% bootstrap CI $[0.338, 0.990]$; LOO-robust (min $p = 0.014$). Four of eight conditions share the DeBERTa verifier, yielding effective $n < 10$; results should be interpreted as a consistent pattern rather than a precise effect size.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\n\\label{tab:cil_empirical}\n\\begin{tabular}{@{}lllrr@{}}\n\\toprule\nGenerator & Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & BART-MNLI & PW-600 & $+$1.86 & $+$5.17 \\\\\nMistral-7B & DeBERTa-MNLI & PW-600 & $+$1.67 & $+$6.67 \\\\\nMistral-7B & RoBERTa-MNLI & PW-600 & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen2.5-14B & DeBERTa-MNLI & PW-600 & $-$0.21 & $+$0.33 \\\\\nMistral-7B & DeBERTa-MNLI & FOLIO-204 & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral-7B & SICA & FOLIO-204 & $-$2.93 & $+$3.43 \\\\\nQwen2.5-14B & SICA & PW-600 & $-$4.21 & $-$2.50 \\\\\nMistral-7B & SICA & PW-600 & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-condition diagnostics.}\nTable~\\ref{tab:capability_trap} reports per-condition diagnostic metrics referenced in \\S\\ref{sec:entropy}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Domain & $C_0$ (\\%) & Extr.\\ Rate & Contr.\\ Rate & $\\Delta$ (pp) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 35.3 & 0.89 & 0.022 & 0.00 \\\\\nQwen2.5-14B & ProofWriter & 39.2 & 0.89 & 0.022 & $+$0.33 \\\\\nQwen2.5-14B & StrategyQA$^\\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\\\\nQwen2.5-14B & ARC-Chall.$^\\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\\\\nQwen2.5-7B & FOLIO+PW$^\\dagger$ & 42.1 & 0.94 & 0.027 & 0.00 \\\\\nMistral-7B & FOLIO+PW$^\\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\\\\nLLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\\\\nLLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$4.41 \\\\\nDeepSeek-R1-7B & FOLIO+PW$^\\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\\\\nQwQ-32B & Combined$^\\dagger$ & 2.6 & --- & --- & 0.00 \\\\\nQwen2.5-14B & GSM8K$^\\dagger$ & 13.3 & 0.15 & --- & 0.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capability-accuracy constraint diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable logical constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\\Delta$: SICA$-$SC gap (pp). $\\dagger$: $n \\leq 60$. Dashes indicate conditions where extraction diagnostics were not computed (StrategyQA uses boolean answers without symbolic extraction; QwQ-32B Combined had near-zero $C_0$, making extraction analysis uninformative). This table includes additional exploratory conditions not reported in Table~\\ref{tab:main_results}.}\n\\label{tab:capability_trap}\n\\end{table}\n\n\n\\section{Statistical Power Analysis}\n\\label{app:power}\n\nWe compute the minimum detectable effect (MDE) for each condition at $\\alpha = 0.05$ and 80\\% power using exact binomial power calculations over McNemar discordant pairs. Table~\\ref{tab:power} reports three grouped conditions with $n \\geq 200$ (Qwen2.5-14B FOLIO and ProofWriter are pooled into a single $n{=}804$ analysis, corresponding to four Table~\\ref{tab:main_results} rows), which constitute our confirmatory analyses. The remaining seven conditions ($n \\leq 60$) yield infinite MDE due to insufficient discordant pairs and serve only as regime characterization.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrrrr}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{MDE} & \\textbf{Obs.\\ $\\Delta$} & \\textbf{Obs.\\ Pow.} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & 1.86pp & $+$0.25pp & 5.7\\%  \\\\\nLLaMA-8B StrategyQA  & 200 & 4.64pp & $+$2.00pp & 20.6\\% \\\\\nLLaMA-8B FOLIO       & 204 & 4.84pp & $-$4.41pp & 18.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Power analysis for confirmatory conditions ($n \\geq 200$). MDE = minimum detectable effect at 80\\% power. All observed effects fall below their respective MDEs, and observed power remains below 21\\% in every case.}\n\\label{tab:power}\n\\end{table}\n\nThe largest study (Qwen-14B, $n{=}804$, 30 discordant pairs) can detect effects as small as 1.86pp, yet the observed $\\Delta$ of $+$0.25pp is an order of magnitude smaller. The two LLaMA-8B conditions require effects of 4.64pp and 4.84pp to reach significance; neither observed $\\Delta$ approaches these thresholds. All three conditions are consistent with the null hypothesis that SICA provides no accuracy gain over self-consistency.\n\n\n\\section{Bootstrap Confidence Intervals}\n\\label{app:bootstrap}\n\nWe compute 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ via 10{,}000 bootstrap resamples (percentile method, seed 42). Table~\\ref{tab:bootstrap} reports the results for the three confirmatory conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrl}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{Obs.\\ $\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & $+$0.25pp & [$-$1.12, $+$1.62] \\\\\nLLaMA-8B StrategyQA  & 200 & $+$2.00pp & [$-$1.50, $+$5.50] \\\\\nLLaMA-8B FOLIO       & 204 & $-$4.41pp & [$-$5.88, $+$0.98] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Bootstrap 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference.}\n\\label{tab:bootstrap}\n\\end{table}\n\nAll three intervals contain zero. The narrowest interval (Qwen-14B, [$-$1.12, $+$1.62]) rules out practically meaningful gains ($>$2pp) even in the most favorable case. The widest interval (LLaMA-8B FOLIO, [$-$5.88, $+$0.98]) skews negative, indicating that SICA may slightly hurt accuracy in this condition. These results corroborate the McNemar tests and power analysis: no condition provides evidence that logical constraint aggregation improves over majority voting.\n\n\n\\section{Case Studies: Discordant Predictions}\n\\label{app:case-studies}\n\nAmong 804 problems, SICA and SC agree on 773 (96.1\\%). The 31 discordant cases comprise 16 SICA wins (SICA correct, SC wrong), 14 SC wins (SC correct, SICA wrong), and 1 where both select different wrong answers. All 31 occur at exact ties (entropy${=}1.0$, 6:6 vote split) or near-ties (entropy${\\geq}0.9183$, 8:4 at most), since SICA can differ from SC only when constraint weights shift the majority away from SC's tiebreak choice. We present three representative cases that illustrate the mechanism behind capability-accuracy constraint failures.\n\n\\paragraph{Case 1: SICA Wins (folio\\_134, FOLIO).}\n\n\\emph{Premises}: Some mammals have teeth. Platypus have no teeth. Platypus are mammals. Humans have teeth. \\emph{Conclusion}: Humans are mammals. \\emph{Gold}: Unknown.\n\nThe premises state that \\emph{some} mammals have teeth and that humans have teeth, but ``having teeth'' is not sufficient for ``being a mammal'' under open-world semantics. SC produces a 6:6 split (Unknown:6, True:6) and tiebreaks alphabetically to True (wrong). SICA extracts 7 constraints; MaxSAT excludes 1 constraint inconsistent with the rest, reducing the weighted score for True-voting traces and tipping the aggregation to Unknown (correct). The excluded constraint likely captured an incorrect inference step (e.g., affirming the consequent) present only in True-voting traces. While SICA succeeds here, the success is coincidental: the excluded constraint happens to anti-correlate with the correct answer.\n\n\\paragraph{Case 2: SC Wins (ProofWriter-1066\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: White(Bob)$\\to$Round(Bob) [white things are round] $\\to$ Young(Bob) [all round things are young]. \\emph{Conclusion}: ``Bob is not young.'' \\emph{Gold}: False (Bob IS young).\n\nSC produces a 6:6 split (False:6, True:6) and tiebreaks to False (correct). SICA extracts 17 constraints; MaxSAT excludes 2 that appear preferentially in False-voting traces. These excluded constraints likely captured correct intermediate derivations (e.g., \\texttt{young\\_bob == True}) that appeared only in traces completing the full deduction chain. By excluding them, MaxSAT removes evidence supporting the correct answer. SICA selects True (wrong). This case illustrates how self-extracted constraints can systematically mislead: correct reasoning steps become discriminative signals that the solver mistakenly penalizes.\n\n\\paragraph{Case 3: Non-discriminative Constraints (ProofWriter-903\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: Nice(Mouse)$\\to$Cold(Mouse) [all nice people are cold] $\\to$ Chases(Mouse,Mouse) [nice and cold $\\to$ chase mouse]. \\emph{Conclusion}: ``The mouse does not chase the mouse.'' \\emph{Gold}: False.\n\nSC produces a 6:6 split (False:6, Unknown:6) and tiebreaks to False (correct). SICA extracts 44 constraints but excludes only 1 (2.3\\%). The remaining 43 are domain facts and grounded rules (\\texttt{nice\\_mouse == True}, \\texttt{Implies(nice\\_mouse, cold\\_mouse)}, etc.) that Z3 satisfies identically regardless of the final answer. Both False-voting and Unknown-voting traces share the same premises and grounded rules; they differ only in whether the trace completed the full derivation chain. The single excluded constraint carries negligible weight against 43 shared constraints, so SICA collapses to SC.\n\n\\paragraph{Pattern.}\n\nThese cases exemplify the general pattern across the 773 agreeing problems: the vast majority of extracted constraints encode shared domain structure rather than answer-specific reasoning, and MaxSAT aggregation degenerates to majority vote. Table~\\ref{tab:case_summary} summarizes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Summary of three representative discordant cases. All occur at exact 6:6 vote ties. Constraint exclusion can break ties in either direction (Cases 1--2) or have no effect (Case 3).}\n\\label{tab:case_summary}\n\\begin{tabular}{@{}lllcccc@{}}\n\\toprule\nCase & ID & Gold & SC & SICA & \\#Constr. & Excl.\\ (\\%) \\\\\n\\midrule\n1 (SICA win) & folio\\_134 & Unknown & True $\\times$ & Unknown $\\checkmark$ & 7 & 1 (14.3\\%) \\\\\n2 (SC win) & PW-1066\\_Q6 & False & False $\\checkmark$ & True $\\times$ & 17 & 2 (11.8\\%) \\\\\n3 (Non-disc.) & PW-903\\_Q6 & False & False $\\checkmark$ & False $\\checkmark$ & 44 & 1 (2.3\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Oracle Control}\n\\label{app:oracle}\n\\label{sec:oracle}\n\\label{app:pw-oracle-subtype}\n\nReplacing self-extracted constraints with gold annotations (FOLIO logical formulae, ProofWriter DSL), Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+13.73$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+17.17$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter). The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted $\\Delta$ ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling. For Qwen2.5-14B on ProofWriter, the gap is wider still: self-extraction degrades accuracy ($-2.50$\\,pp) against an oracle ceiling of $+17.17$\\,pp, indicating that stronger models do not self-extract more effectively.\n\n\\paragraph{ProofWriter per-subtype analysis.} ProofWriter problems encode deductive rules as Domain-Specific Language (DSL) logic programs. Each problem uses one of four predicate subtypes: attribute predicates with or without negation (AttNeg, AttNoneg), and relation predicates with or without negation (RelNeg, RelNoneg). Relation predicates involve binary relations between entities (e.g., \\texttt{eats(bear, squirrel)}), while attribute predicates assign unary properties (e.g., \\texttt{kind(anne)}).\n\nThe oracle pipeline parses these DSL annotations deterministically into Z3 formulas without any LLM involvement. Of the 600 ProofWriter problems, 594 (99.0\\%) produce valid Z3 parses; the remaining 6 fail due to unsupported DSL constructs. Across all 7{,}128 trace-problem pairs submitted to Z3, the solver returns a result in every case (0\\% solver errors). Z3 evaluations agree with ground-truth labels on 577 of 594 parseable problems (97.14\\%), confirming that the deterministic DSL-to-Z3 translation faithfully preserves problem semantics.\n\nTable~\\ref{tab:pw_oracle_subtype} reports the per-subtype breakdown. Relation-predicate subtypes show substantially larger gains than attribute-predicate subtypes: RelNeg improves by $+17.86$~pp and RelNoneg by $+13.01$~pp, compared to $+9.09$~pp for AttNoneg and $+6.87$~pp for AttNeg. Relation predicates involve longer reasoning chains with more intermediate entities, producing greater answer diversity across traces ($C_0$) and more opportunities for oracle constraints to correct errors.\n\n\\begin{table}[h]\n\\centering\n\\caption{ProofWriter oracle experiment per-subtype breakdown. Oracle-SICA uses gold DSL annotations parsed deterministically to Z3 for consistency checking. Relation-predicate subtypes (RelNeg, RelNoneg) show larger gains than attribute-predicate subtypes; relation subtypes involve longer reasoning chains and benefit more from oracle constraints. Bold indicates best accuracy per row.}\n\\label{tab:pw_oracle_subtype}\n\\begin{tabular}{lcccc}\n\\toprule\nSubtype & $n$ & SC Acc (\\%) & Oracle Acc (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nAttNoneg & 154 & 87.01 & \\textbf{98.70} & +11.69 \\\\\nAttNeg & 160 & 85.00 & \\textbf{91.90} & +6.90 \\\\\nRelNoneg & 146 & 66.44 & \\textbf{84.20} & +17.76 \\\\\nRelNeg & 140 & 60.00 & \\textbf{89.30} & +29.30 \\\\\n\\midrule\nOverall & 600 & 74.00 & \\textbf{91.17} & +17.17 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Constraint Ablation Details}\n\\label{app:ablation}\n\\label{sec:ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts.}\n\\label{tab:ablation}\n\\begin{tabular}{@{}lrc@{}}\n\\toprule\nAggregation & Acc.\\ (\\%) & Agreement w/ SC \\\\\n\\midrule\nSC (majority vote) & 76.24 & --- \\\\\nSICA (MAX-SAT) & 76.49 & 773\\,/\\,804 \\\\\nCount-only & 76.62 & 774\\,/\\,804 \\\\\nRandom-weight & 75.87 & 764\\,/\\,804 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MAX-SAT vs.\\ count-only agreement across constraint weight $\\alpha$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\\times$, seed 42); Qwen2.5-14B (BR $= 3.85\\times$, seed 123). Agreement $\\geq 99\\%$ at all $\\alpha$, confirming vacuity is weight-insensitive.}\n\\label{tab:alpha-ablation}\n\\begin{tabular}{@{}crr@{}}\n\\toprule\n$\\alpha$ & Mistral Agr.\\ (\\%) & Qwen2.5 Agr.\\ (\\%) \\\\\n\\midrule\n0.1 & 100 & 100 \\\\\n0.3 & 100 & 100 \\\\\n0.5 & 100 & 100 \\\\\n0.7 & 99 & 100 \\\\\n0.9 & 99 & 100 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Remediation Strategy Details}\n\\label{app:remediation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.98\\%$, $\\Delta = -0.49$\\,pp. None reaches significance. Three method-level strategies are reported in Table~\\ref{tab:method_interventions}.}\n\\label{tab:remediation}\n\\begin{tabular}{@{}llrl@{}}\n\\toprule\nStrategy & Target & $\\Delta$ (pp) & Key finding \\\\\n\\midrule\nContrastive$^a$ & Prompt & $-$1.10 & non-disc.\\ 6.0\\% ($\\downarrow$ from 8.2\\%) \\\\\nCross-model$^b$ & Architecture & 0.00 & disc.\\ 0\\% (weak$\\to$strong); $\\pm$1\\,pp (strong$\\to$weak) \\\\\nQwen3-14B$^c$ & Capability & $-$0.49 & $p = 0.655$ \\\\\nZ3 feedback & Solver & --- & 0.9\\% UNSAT trigger \\\\\nCons.\\ filtering & Noise & 0.00 & $T{\\geq}4 \\to$ SC \\\\\nCross-trace UNSAT & Independence & --- & 56.4\\% $\\emptyset$ vars \\\\\n$T{=}1.0$$^d$ & Diversity & 0.00 & isolated peak at $T{=}0.7$ only \\\\\nMulti-temp$^e$ & Diversity & 0.00 & $b{=}5$, $c{=}5$ (balanced) \\\\\nDisc.\\ filtering$^f$ & Filtering & 0.00 & 803/804 agree w/ SICA \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize $^a$\\,$n{=}182$ (extraction failures excluded). $^b$\\,Weak$\\to$strong: Mistral-7B extracts from Qwen2.5-14B traces. Strong$\\to$weak: Qwen3-14B (60.29\\%) and Qwen2.5-14B (58.33\\%) extract from Mistral-7B FOLIO traces ($n{=}204$); self-extraction baseline 59.31\\%. $^c$\\,$n{=}204$, SC $= 83.33\\%$. $^d$\\,Mistral-7B FOLIO, $n{=}204$. $^e$\\,Mistral-7B FOLIO, $T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each, $n{=}204$. $^f$\\,Qwen2.5-14B, $n{=}804$; removing non-discriminative constraints.}\n\\end{table}\n\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Method-level interventions on Mistral-7B with McNemar's paired test. All produce neutral-to-catastrophic results. ICG shows two FOLIO seeds; $p$ for the first. {*}{*}{*}\\,$p < 0.001$; {*}{*}\\,$p < 0.01$.}\n\\label{tab:method_interventions}\n\\begin{tabular}{@{}ll rc rc@{}}\n\\toprule\n& & \\multicolumn{2}{c}{FOLIO ($n = 204$)} & \\multicolumn{2}{c}{LogiQA ($n = 200$)} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\nMethod & Target & $\\Delta$ (pp) & $p$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nSC baseline & --- & 0.00 & --- & 0.00 & --- \\\\\nICG & Trace coupling & $-$1.96\\,/\\,$+$1.47 & .206 & $-$0.50 & .706 \\\\\nContrastive & Scoring bias & $\\mathbf{-9.31}$ & .007 & $-$4.50 & .160 \\\\\nDebate & Role diversity & $\\mathbf{-18.63}$ & ${<}.001$ & $\\mathbf{-23.00}$ & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Additional Intervention Results}\n\\label{app:additional-interventions}\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Additional intervention results beyond the nine prompt-level and three method-level strategies reported in the main text. All produce neutral-to-negative results, completing the exhaustive remediation analysis across 27 distinct approaches.}\n\\label{tab:additional_interventions}\n\\begin{tabular}{@{}llllrl@{}}\n\\toprule\n\\# & Method & Type & Target & $\\Delta$ (pp) & Key Finding \\\\\n\\midrule\n13 & PROVE (code verif.) & Paradigm & Formal proof & $-$1.9 & 15.2\\% compilable; conclusive acc.\\ = 50\\% \\\\\n14 & CEGIS (iterative) & Multi-round & Consistency & 0.0$^\\dagger$ & R1 $+$3.43\\,pp then oscillates \\\\\n15 & DeepConf (logprob) & Filtering & Confidence & 0.0 & $\\Delta_{\\text{logprob}} = 0.006$ (no separation) \\\\\n16 & Cross-model SICA & Cross-model & Independence & $-$0.49 & $\\kappa_{\\text{cross}}{=}0.42$ vs $\\kappa_{\\text{within}}{=}0.53$ \\\\\n17 & Problem perturbation & Input diversity & Trace diversity & $<$0 & $\\kappa$ \\emph{increased} to 0.70 (anti-effect) \\\\\n18 & MIN-UNSAT & Solver objective & Constraint sel.\\ & $-$6.5 & Mean excluded constraints $= 1.3$ \\\\\n19 & $\\kappa$-aware SC & Voting rule & Weighted voting & 0.0 & 11/11 conditions $\\Delta = 0$ \\\\\n20 & Z3 trace filter & Trace filtering & Quality & $-$0.49 & Precision 49.1\\%, 7 questions affected \\\\\n21 & Bootstrapped gold & Iterative & Self-improvement & 0.0$^\\dagger$ & R1 $+$2.45\\,pp then oscillates \\\\\n22 & Selective abstention & Diagnostic & Confidence & $+$4.4$^*$ & AUROC $= 0.673$, at 80\\% coverage \\\\\n23 & ASCII perturbation & Input diversity & Format diversity & 0.0 & $\\kappa$: $0.39 \\to 0.36$ (negligible) \\\\\n\\addlinespace\n24 & Atom pipeline & Paradigm & Decomposition & $-$10.0 & Atomic extraction degrades \\\\\n25 & Premise-only filter & Constraint sel.\\ & Bias isolation & $+$2.45 & $p = 0.359$; halves conclusion-bias \\\\\n26 & DPP trace selection & Trace diversity & Determinantal & $+$1.47 & $p = 0.629$; $K_{\\text{sel}}{=}8$ \\\\\n27 & Z3 strict-mode & Solver config & UNSAT filtering & 0.0 & McNemar $b{=}1, c{=}1$; 63\\% UNSAT \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All experiments on Mistral-7B FOLIO ($n{=}204$) unless noted. $^\\dagger$\\,Oscillates without convergence; net effect $\\approx 0$. $^*$\\,Accuracy gain only at reduced coverage (diagnostic value, not a general improvement). Methods 1--12 are reported in Table~\\ref{tab:remediation} and Table~\\ref{tab:method_interventions}.}\n\\end{table*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig3_process_kappa_scatter.pdf}\n\\caption{Answer agreement vs.\\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$); stronger models show significant positive correlation ($r = +0.24$, Qwen-14B; Table~\\ref{tab:cross-model-process}).}\n\\label{fig:process-kappa}\n\\end{figure}\n\n\n\\section{Extraction Error Taxonomy}\n\\label{app:extraction}\n\\label{sec:extraction-taxonomy}\n\nConstraints must discriminate between candidate answers for MAX-SAT to produce a ranking different from majority vote. We measure discriminative power at two levels on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). At the source-trace level, 39.2\\% of total constraint weight originates from traces whose answer differs from the plurality, but only 12.1\\% of individual constraints fall into this minority category. At the Z3 semantic level, 91.8\\% of constraints [95\\% CI: 91.2, 92.4] are technically discriminative, producing different satisfiability outcomes when evaluated against different candidate answers. Only 8.2\\% are non-discriminative.\n\nThe high discriminative rate does not translate into accuracy gains because discrimination mirrors the model's own answer distribution. Each trace produces constraints with its own variable names, so Z3 treats identically-intended propositions as unrelated symbols; among cross-answer constraint pairs, 56.4\\% share zero Z3 variables. This variable isolation means constraints from different traces are trivially jointly satisfiable, and MAX-SAT retains nearly all of them regardless of source answer. Removing the 8.2\\% non-discriminative constraints yields zero accuracy improvement. The discriminative majority does not provide independent signal; it reinforces the majority answer that SC would already select. This confirmation bias, not a lack of discrimination, explains why SICA degenerates to majority voting (Appendix~\\ref{app:ablation}).\n\n\n\\section{Hyperparameter Sensitivity}\n\\label{app:sensitivity}\n\\label{sec:k-sensitivity}\n\\label{sec:t-sensitivity}\n\n\\subsection{K Sensitivity}\n\nFigure~\\ref{fig:k-sensitivity} shows SICA $\\Delta$ as a function of the number of sampled traces $K$ for Mistral-7B on FOLIO ($n = 204$, no fixed seed). The relationship is non-monotonic: $K = 4$ yields $\\Delta = -1.47$\\,pp, $K = 8$ yields $\\Delta = -1.96$\\,pp, $K = 12$ reaches $\\Delta = +3.43$\\,pp, $K = 16$ drops to $\\Delta = +1.47$\\,pp, and $K = 20$ partially recovers to $\\Delta = +1.96$\\,pp. The recovery at $K = 20$ rules out a simple peaked pattern, but $K = 12$ remains the only setting with $\\Delta > 2$\\,pp ($p = 0.092$, marginal).\n\nThe apparent $\\Delta$ peak at $K = 12$ is confounded with SC baseline. SICA absolute accuracy plateaus at 59.31\\% (121/204) for $K \\geq 12$: identical at $K = 12$ and $K = 20$. The $\\Delta$ variation across these settings is driven primarily by SC fluctuations rather than by SICA improvement. $K = 12$ produces a relatively low SC (55.88\\%), placing it in the intermediate-SC region; $K = 8$ (SC $= 58.33\\%$) and $K = 20$ (SC $= 57.35\\%$) have higher baselines, compressing $\\Delta$ even though SICA accuracy does not change for $K \\geq 12$. Additional traces beyond $K = 12$ provide no benefit to SICA absolute performance, consistent with the constraint quality bottleneck. The $K = 12$ $\\Delta$ captures only 25.0\\% of the oracle ceiling ($+13.73$\\,pp).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{f3_k_sensitivity}\n\\caption{SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\\% for $K \\geq 12$; the apparent $\\Delta$ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\\%) at that point. Error bars: 95\\% bootstrap CI.}\n\\label{fig:k-sensitivity}\n\\end{figure}\n\n\\subsection{Temperature Sensitivity}\n\nTemperature sensitivity on Mistral-7B FOLIO ($n = 204$, default seed) reveals a sharp isolated peak rather than a smooth trend. Across four temperature settings, only $T = 0.7$ produces a positive effect: $T = 0.3$ yields $\\Delta = -1.47$\\,pp (SC $= 58.33\\%$), $T = 0.5$ yields $\\Delta = -0.98$\\,pp (SC $= 58.33\\%$), $T = 0.7$ yields $\\Delta = +3.43$\\,pp (SC $= 55.88\\%$), and $T = 1.0$ yields $\\Delta = 0.00$\\,pp (SC $= 55.39\\%$). All other temperatures yield negative or null effects, and the single positive result at $T = 0.7$ is confounded with SC baseline. Combined with the seed sensitivity (0 of 4 seeds reaching $p < 0.05$ at $T = 0.7$), the positive trend depends on a specific combination of temperature, seed, and baseline accuracy that same-model sampling rarely achieves.\n\nThe parallel between $K$ and $T$ sensitivity points to a common underlying variable. In both sweeps, the setting that produces the largest SICA gain also produces a relatively low SC baseline (55.88\\%), which places it in the intermediate-SC region. The hyperparameters themselves ($K$, $T$) are not the causal driver; they modulate SC level, and it is the SC level that determines whether SICA has operating room.\n\n\n\\section{Entropy Decomposition}\n\\label{app:entropy}\n\\label{sec:entropy}\n\nWe partition problems by trace agreement: high-entropy (majority count $\\leq 8$ out of $K = 12$) and low-entropy (majority count $\\geq 9$). Table~\\ref{tab:entropy} reports SICA $\\Delta$ within each partition across eight model-dataset conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entropy decomposition of SICA $\\Delta$ (pp). High-entropy: majority count $\\leq 8$; low-entropy: majority count $\\geq 9$. $^\\dagger$Partial data (180/600). Pre-tiebreaking SC values; pattern robust to D064 correction.}\n\\label{tab:entropy}\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Dataset & \\multicolumn{2}{c}{High-entropy} & \\multicolumn{2}{c}{Low-entropy} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n & & $n$ & $\\Delta$ & $n$ & $\\Delta$ \\\\\n\\midrule\nMistral-7B & FOLIO & 78 & $\\mathbf{+12.8}$ & 126 & 0.0 \\\\\nMistral-7B (s123) & FOLIO & 77 & $\\mathbf{+9.1}$ & 127 & 0.0 \\\\\nMistral-7B (s456) & FOLIO & 75 & $-$1.3 & 129 & 0.0 \\\\\nMistral-7B & PW-D5 & 267 & $-$4.9 & 333 & $-$1.2 \\\\\nQwen2.5-14B & FOLIO & 37 & $-$8.2 & 167 & $-$0.6 \\\\\nQwen2.5-14B & LogiQA & 23 & $-$4.3 & 177 & 0.0 \\\\\nQwen2.5-7B & FOLIO & 47 & $-$2.1 & 157 & 0.0 \\\\\nLLaMA-3.1-8B$^\\dagger$ & PW-D5 & 76 & $-$3.9 & 104 & $-$1.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTwo patterns emerge. First, low-entropy problems produce $\\Delta \\approx 0$\\,pp across all eight conditions: when traces agree, constraints carry no information beyond the majority vote.\n\nSecond, the direction of SICA's effect on high-entropy problems depends on the accuracy regime, not on entropy alone. In the intermediate-SC region (Mistral-7B on FOLIO, default-seed and seed-123 runs), high-entropy $\\Delta$ reaches $+12.8$ and $+9.1$\\,pp: traces genuinely disagree, and constraints from correct-answer traces provide discriminative signal that resolves the disagreement. In Type~A conditions (Qwen2.5-14B on FOLIO, $\\Delta = -8.2$\\,pp), high-entropy problems represent rare deviations from a strong model's consensus; constraints inherit the model's confirmation bias. In Type~C (Mistral-7B on ProofWriter, $\\Delta = -4.9$\\,pp), high-entropy problems reflect systematic errors. The mechanism is not entropy per se but the interaction of entropy with model capability.\n\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\\label{sec:failure-modes}\n\nThe regime-dependent pattern in Table~\\ref{tab:main_results} reflects three distinct failure modes of self-extracted logical constraints.\n\n\\paragraph{Type A: confirmation bias (SC $\\geq$ $\\sim$60\\%).} Strong models produce consistent reasoning traces, and constraints extracted from those traces mirror the answer distribution. When most constraints support the same candidate, MAX-SAT excludes few clauses ($|\\mathcal{C}^{\\setminus}| \\approx 0$), the penalty term in Eq.~\\ref{eq:score} vanishes, and the scoring function degenerates to weighted vote counting (Eq.~\\ref{eq:degenerate}). SICA and SC then produce identical predictions. The ablation in Appendix~\\ref{app:ablation} confirms this empirically: on Qwen2.5-14B (FOLIO + ProofWriter, $n = 804$), MAX-SAT and count-only baselines agree on 803 of 804 predictions.\n\n\\paragraph{Type B: non-formalizable domains.} LogiQA problems require pragmatic and contextual reasoning that resists clean logical formalization. Qwen2.5-14B on LogiQA achieves an extraction rate of 86.4\\%, but the resulting constraints have a contradiction rate of only 0.8\\%: extracted formulas rarely conflict across traces, leaving MAX-SAT with no logical tension to exploit. Mistral-7B on LogiQA sits in the same SC range (50.00\\%) yet produces $\\Delta = +1.50$\\,pp ($p = 0.581$); Qwen2.5-14B on the same domain yields $\\Delta = -1.00$\\,pp ($p = 0.625$). Neither model benefits, confirming that the right accuracy regime is necessary but not sufficient when the domain resists formalization.\n\n\\paragraph{Type C: error amplification (SC $\\leq$ $\\sim$40\\%).} When model accuracy is low, the majority of traces reach incorrect answers. Constraints extracted from wrong traces encode incorrect reasoning as formal rules. Z3 treats these rules as soft clauses with weight proportional to their frequency, so the solver preferentially satisfies the wrong constraints and penalizes traces that happen to reach the correct answer. Mistral-7B on ProofWriter ($\\Delta = -2.83$\\,pp, raw $p = 0.014$; BH adj.\\ $p = 0.112$) demonstrates this effect: SICA converts a weak positive signal in trace diversity into a net negative by formalizing the errors.\n\n\n\\section{Cross-Model Confirmation Bias}\n\\label{app:cross-model-bias}\n\nTable~\\ref{tab:cross-model-bias} reports MaxSAT-weighted confirmation bias metrics across three model families on FOLIO ($n = 204$). Weighted bias ratio and wrong-supporting constraint percentage both decrease with model capability, while SICA's accuracy effect shifts from positive (Mistral, intermediate-SC regime) to negative (LLaMA, high-SC regime). Raw bias ratios ($4.97\\times$, $3.85\\times$, $2.88\\times$) are reported in \\S\\ref{sec:confirmation-bias}. LLaMA weighted BR CI: [2.19, 3.28].\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\\ correct problems. Wrong \\%: weighted fraction of constraints supporting the incorrect majority on error problems. $\\Delta$: SICA $-$ SC (pp).}\n\\label{tab:cross-model-bias}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & BR (wtd.) & Wrong (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $4.24\\times$ & 80.9 & $+$4.90 \\\\\nQwen2.5-14B & $3.69\\times$ & 78.7 & $-$0.98 \\\\\nLLaMA-3.1-8B & $2.66\\times$ & 72.7 & $-$4.41 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Frontier model universality.}\n\\label{app:frontier-scb}\nTable~\\ref{tab:frontier-scb} (main text, \\S\\ref{sec:confirmation-bias}) extends confirmation bias analysis to nine models spanning 7B open-source to frontier closed-source. All models exhibit $\\text{BR} > 1$ (range: $1.66$--$4.97\\times$). Extraction context varies: open-source models use self-extraction (the model extracts constraints from its own traces); frontier models use cross-model extraction (Mistral-7B extracts FOL from the target model's traces), as closed-source APIs do not expose internal representations suitable for direct symbolic extraction.\n\n\\paragraph{ProcessSim definition.}\n\\label{app:process-sim}\nProcess similarity is the mean pairwise cosine similarity of TF-IDF trace representations:\n\\begin{equation}\n\\label{eq:process-sim}\n\\text{ProcessSim}(q) = \\frac{2}{K(K{-}1)} \\sum_{i < j} \\cos(\\mathbf{v}_i^q, \\mathbf{v}_j^q),\n\\end{equation}\nwhere $\\mathbf{v}_i^q$ is the TF-IDF vector of trace $t_i$ for question $q$.\n\n\\paragraph{Process-$\\kappa$ gradient.}\n\\label{app:process-gradient}\nUnder cross-model extraction (Mistral-7B extracts FOL from other models' traces), SICA gain decreases monotonically with process-level cosine similarity (Table~\\ref{tab:process-gradient}; Spearman $\\rho = -1.0$, $n = 5$, one-tailed $p = 0.0083$). Gain requires two conditions: diverse traces (low $\\kappa_{\\text{proc}}$) \\emph{and} substantial self-bias (high BR). R1-Distill-8B satisfies both ($\\kappa_{\\text{proc}} = 0.248$, $\\text{BR} = 2.92$) and gains $+2.45$\\,pp; o3 has moderate trace diversity ($\\kappa_{\\text{proc}} = 0.596$) but near-minimal bias ($\\text{BR} = 1.66$, exhibiting a bimodal error pattern: 82\\% of error problems have $\\text{BR} = \\infty$ but low finite-BR), yielding $\\Delta = 0$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Process-$\\kappa$ gradient under cross-model extraction (Mistral-7B $\\rightarrow$ target model traces, FOLIO). $\\kappa_{\\text{proc}}$: process-level cosine similarity. $\\Delta$: SICA $-$ SC (pp). Spearman $\\rho(\\kappa_{\\text{proc}} \\rightarrow \\Delta) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}\n\\label{tab:process-gradient}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & $\\kappa_{\\text{proc}}$ & $\\Delta$ (pp) & BR \\\\\n\\midrule\nR1-Distill-8B & 0.248 & $+$2.45 & 2.92 \\\\\ngpt-5.5 & 0.563 & $+$0.49 & 3.48 \\\\\no3 & 0.596 & 0.00 & 1.66 \\\\\nGemini-2.5-Pro$^*$ & 0.790 & $-$1.05 & 2.79 \\\\\ngpt-4.1 & 0.792 & $-$1.47 & 2.70 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Independence-Accuracy Scatter Plot}\n\\label{app:kappa-scatter}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/f6_kappa_accuracy_scatter}\n\\caption{Independence-accuracy trade-off across aggregation methods (Mistral-7B, filled markers) and model families (LLaMA-3.1-8B, Qwen2.5-7B, Qwen2.5-14B; open markers) on FOLIO ($n = 204$). Same-model methods cluster at $\\kappa \\approx 0.40$--$0.47$ (gray band), while cross-model SC shows stronger correlations ($\\kappa = 0.41$--$0.74$) at higher accuracy. Debate breaks correlation ($\\kappa = 0.15$) at catastrophic accuracy cost. Dashed line: Mistral-7B SC baseline.}\n\\label{fig:kappa-accuracy}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\n\\label{tab:kappa_generalization}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Aggregation & $\\kappa$ & Eff-$K$ & $K$ & Acc.\\ (\\%) \\\\\n\\midrule\nMistral-7B & Debate & 0.15 & 4.44 & 12 & 38.24 \\\\\n& Diverse-Prompt & 0.40 & 2.21 & 12 & 54.41 \\\\\n& Self-Consistency & 0.44 & 2.02 & 10 & 56.86 \\\\\n& ICG & 0.47 & 1.93 & 10 & 51.96 \\\\\n\\addlinespace\nLLaMA-3.1-8B & Self-Consistency & 0.41 & 2.17 & 12 & 66.18 \\\\\nQwen2.5-7B & Self-Consistency & 0.66 & 1.46 & 12 & 75.98 \\\\\nQwen2.5-14B & Self-Consistency & 0.74 & 1.32 & 12 & 75.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Trace independence metrics.}\n\\label{app:trace-independence}\n\nTable~\\ref{tab:independence} reports the full 15-condition breakdown of Fleiss' $\\kappa$ and Effective-K at $K = 12$, referenced in \\S\\ref{sec:effective-k}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$ (uncorrected; BH adj.\\ $p = 0.112$, $m{=}16$); positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\n\\label{tab:independence}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nQwen3 (think) & FOLIO & 0.91 & 1.09 & 86.27 & $+$0.49 \\\\\nQwen2.5-14B & LogiQA & 0.82 & 1.20 & 79.00 & $-$1.00 \\\\\nQwen3 & FOLIO & 0.77 & 1.26 & 83.33 & $+$1.47 \\\\\nQwen2.5-14B & FOLIO & 0.74 & 1.30 & 75.98 & $-$0.49 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 & $+$0.49 \\\\\n\\addlinespace\nMistral-7B ($T{=}0.3$) & FOLIO & 0.53 & 1.77 & 58.33 & $-$1.47 \\\\\nMistral-7B & LogiQA & 0.51 & 1.81 & 50.00 & $+$1.50 \\\\\nMistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\\\\nMistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\\\\nMistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\\\\nMistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\\nMistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\\\\nMistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\\\\nMistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Cross-Model Kappa Analysis}\n\\label{app:cross-model-kappa}\n\nTable~\\ref{tab:cross_model_kappa} compares trace independence across three model families on the same benchmarks. On FOLIO ($n = 204$), all four models produce $\\kappa \\geq 0.41$: LLaMA-3.1-8B ($\\kappa = 0.41$), Mistral-7B ($\\kappa = 0.44$), Qwen2.5-7B ($\\kappa = 0.66$), and Qwen2.5-14B ($\\kappa = 0.74$). The bottleneck is architecture-independent---no family escapes the correlation floor. Within the Qwen family, $\\kappa$ increases from 0.66 (7B) to 0.74 (14B), but Mistral-7B (7B) and LLaMA-3.1-8B (8B) differ by $\\Delta\\kappa = 0.03$ despite belonging to different families, suggesting that cross-family variation ($\\Delta\\kappa$ up to 0.22 at similar scale) exceeds within-family scale effects ($\\Delta\\kappa = 0.08$). Disentangling scale from architecture requires controlled same-family experiments across $\\geq$3 scales.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\\kappa$ indicates stronger correlation and lower effective sample size.}\n\\label{tab:cross_model_kappa}\n\\begin{tabular}{@{}llccr@{}}\n\\toprule\nModel & Dataset & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 0.74 & 1.32 & 75.98 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 \\\\\nMistral-7B & FOLIO & 0.44 & 2.02 & 56.86 \\\\\nLLaMA-3.1-8B & FOLIO & 0.41 & 2.17 & 66.18 \\\\\n\\addlinespace\nQwen2.5-14B & PW-D5 & 0.62 & 1.54 & --- \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Cross-Model Process-Level Independence}\n\\label{app:cross-model-process}\n\nTable~\\ref{tab:cross-model-process} extends the process-level independence analysis (\\S\\ref{sec:process-kappa}) to four model families on FOLIO ($n = 204$). Mean pairwise cosine similarity of TF-IDF trace representations exceeds answer-level $\\kappa$ in every family, but the gap is model-strength dependent: it narrows from $0.31$ (LLaMA) and $0.23$ (Mistral) to $0.02$ (Qwen-14B). For weaker models ($r \\approx 0$), answer diversity does not reflect reasoning diversity---process-convergent but answer-divergent trace pairs constitute 9.5\\% of all pairs on Mistral-7B versus 2.5--3.2\\% on other families. For stronger models ($r \\approx 0.23$, $p \\leq 0.001$), process and answer agreement align, and answer-level $\\kappa$ already captures the bottleneck. Process-$\\kappa$ thus provides a crucial additional diagnostic specifically for weaker models, where answer-level metrics underestimate reasoning homogeneity.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model process-level independence on FOLIO ($n = 204$, $K = 12$). Mean Cosine: mean pairwise TF-IDF cosine similarity of reasoning traces (Eq.~\\ref{eq:process-sim}). Answer $\\kappa$: per-question answer agreement. Gap: Cosine $-$ $\\kappa$. $r$: Pearson correlation between ProcessSim and answer agreement. Conv.: fraction of process-convergent but answer-divergent trace pairs. {*}{*}\\,$p < 0.01$; {*}{*}{*}\\,$p < 0.001$.}\n\\label{tab:cross-model-process}\n\\begin{tabular}{@{}lcccrlr@{}}\n\\toprule\nModel & Mean Cos. & Ans.\\ $\\kappa$ & Gap & $r$ & $p$ & Conv.\\ (\\%) \\\\\n\\midrule\nMistral-7B & 0.690 & 0.460 & 0.230 & $-$0.064 & 0.362 & 9.5 \\\\\nLLaMA-3.1-8B & 0.759 & 0.447 & 0.312 & $-$0.001 & 0.985 & 3.2 \\\\\nQwen2.5-7B & 0.790 & 0.658 & 0.132 & $+$0.226 & 0.001{*}{*} & 2.8 \\\\\nQwen2.5-14B & 0.766 & 0.744 & 0.022 & $+$0.244 & ${<}$0.001{*}{*}{*} & 2.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Representation robustness.} Replacing TF-IDF with SBERT embeddings (all-MiniLM-L6-v2) yields ProcessSim $= 0.91$ (vs.\\ TF-IDF $0.74$), widening the gap over answer-level $\\kappa = 0.55$. The process homogeneity finding is robust to representation choice.\n\n\\section{Constraint Quality Across Methods}\n\\label{app:constraint-quality}\n\nTable~\\ref{tab:constraint_quality} compares constraint quality metrics across the three method-level interventions on Mistral-7B FOLIO ($n = 204$). Standard SICA extracts from reasoning traces and achieves the highest parse rate (97.1\\%) but also the highest redundancy (42.9\\%): nearly half of all constraints are syntactic duplicates across the 12 traces, quantifying the co-sourcing effect of same-model generation. ICG generates constraints directly from the problem statement without trace conditioning. Its lower parse rate (74.6\\%) reflects the difficulty of standalone formalization at the 7B scale, though successfully parsed constraints compile at a higher rate (99.4\\% vs.\\ 96.5\\%). ICG produces fewer unique constraints per question (24.9 vs.\\ 39.3) with lower redundancy (32.3\\%), consistent with the absence of trace-level repetition. Contrastive scoring generates pro and con constraint sets for each candidate answer. The format yields far fewer unique constraints per question (9.2) with zero redundancy (each pro/con pair is structurally distinct), but 62.7\\% of constraints are trivially satisfied by Z3---they impose no logical tension and cannot discriminate between candidates. Only 51.0\\% of Contrastive constraints are discriminative, compared to 81.4\\% for standard SICA and 77.0\\% for ICG.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint quality metrics across method-level interventions (Mistral-7B, FOLIO, $n = 204$). Parse: fraction of extraction attempts yielding valid JSON. Z3 Compile: fraction compiling to Z3 formulas. Unique/q: mean unique constraints per question. Redundancy: fraction of constraints duplicated across traces. Disc.: fraction discriminative (different Z3 outcome per candidate). Triv.\\ Sat.: fraction trivially satisfied (no logical tension).}\n\\label{tab:constraint_quality}\n\\begin{tabular}{@{}l rrrrrr@{}}\n\\toprule\nMethod & Parse & Z3 & Uniq/q & Redund. & Disc. & Triv.\\ Sat. \\\\\n\\midrule\nStandard SICA & 97.1\\% & 96.5\\% & 39.3 & 42.9\\% & 81.4\\% & --- \\\\\nICG & 74.6\\% & 99.4\\% & 24.9 & 32.3\\% & 77.0\\% & --- \\\\\nContrastive & 74.0\\% & 94.4\\% & 9.2 & 0.0\\% & 51.0\\% & 62.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Error Categorization of Method-Level Interventions}\n\\label{app:error-categorization}\n\nWe categorize discordant predictions (where the method and SC disagree) for Debate and Contrastive on FOLIO ($n = 204$) to understand why these interventions degrade accuracy.\n\n\\paragraph{Debate discordant analysis.} Debate produces 60 correct$\\to$wrong flips and 22 wrong$\\to$correct flips on FOLIO. Answer-type breakdown reveals that False-labeled questions are most vulnerable: 82.8\\% of False questions that SC answers correctly are flipped by Debate, compared to 63.9\\% for True and 25.5\\% for Unknown. Counterintuitively, failures concentrate not where debate breaks down but where it succeeds most thoroughly: discordant questions average 2.93 effective debate rounds (proposer-critic exchanges producing substantive updates) versus 2.52 for concordant ones. More extensive same-model debate produces more confident but incorrect constraints, consistent with the independence limitation---the critic draws on the same model distribution as the proposer, reinforcing shared biases rather than correcting them.\n\n\\paragraph{Contrastive discordant analysis.} Contrastive produces 34 discordant questions on FOLIO. All 34 produced non-degenerate scores (both pro and con constraint sets non-empty), compared to 20.1\\% degenerate scores in the full sample. This indicates that scoring failures on discordant questions stem from systematic pro-bias rather than missing constraints. Among discordant questions, 97.1\\% contain negation words in the problem statement versus 76.5\\% in the full sample, suggesting that negation-bearing problems are particularly susceptible to pro-constraint imbalance. The average pro/con score ratio is 1.0 for discordant questions versus 0.68 for the full sample: the method generates balanced-looking scores that mask directional errors.\n\n\\paragraph{Cross-method overlap.} Of the 79 unique questions on which either method disagrees with SC, only 15 overlap between Debate and Contrastive (Jaccard index $= 0.19$). All 15 shared discordant questions contain negation words. The low overlap confirms that the two methods attack different vulnerability types---Debate through extended same-model argumentation that amplifies confident errors, Contrastive through pro-bias in constraint generation---while sharing a common root cause in correlated same-model voting: both methods rely on the same model's output distribution and cannot introduce genuinely independent signal.\n\n\n\\section{TOST Equivalence Tests}\n\\label{app:tost}\n\nWe apply two one-sided tests (TOST) \\citep{lakens2017equivalence} with equivalence margin $\\pm 2$\\,pp to all 16 non-degenerate SICA--SC comparisons, classifying each condition as \\emph{equivalent} (TOST significant), \\emph{genuinely different} (McNemar $p < 0.05$ and TOST not significant), or \\emph{underpowered} (neither test significant). Four conditions are equivalent, confirming that SICA and SC produce statistically indistinguishable accuracy. Two conditions show genuine differences, both negative: Mistral-7B ProofWriter ($-2.83$\\,pp, $p = 0.014$) and Qwen2.5-14B ProofWriter ($-2.50$\\,pp, $p = 0.011$). The remaining ten conditions are underpowered, reflecting the limited statistical power at $n{=}200$--$204$ for detecting $|\\Delta| \\leq 2$\\,pp effects.\n\n\\paragraph{Margin sensitivity.} Table~\\ref{tab:tost-sensitivity} shows that the classification is robust across margins: regardless of the chosen margin, no condition shows a significant positive SICA effect.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{TOST classification sensitivity across equivalence margins (16 non-degenerate conditions).}\n\\label{tab:tost-sensitivity}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nMargin & Equivalent & Different & Underpowered \\\\\n\\midrule\n$\\pm 1$\\,pp & 0 & 2 & 14 \\\\\n$\\pm 2$\\,pp & 4 & 2 & 10 \\\\\n$\\pm 3$\\,pp & 10 & 0 & 6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Relative-margin TOST.}\n\\label{app:relative_tost}\nThe absolute $\\pm 2$\\,pp margin is more stringent at high baselines ($\\pm 2.4\\%$ relative at SC $= 85\\%$) than low ones ($\\pm 5.1\\%$ at SC $= 39\\%$). A relative $\\pm 5\\%$ of SC margin addresses this asymmetry: 8 conditions are equivalent, 2 genuinely different (both negative), and 6 underpowered. The additional four equivalent conditions are all high-SC ($\\geq 75\\%$), where the wider relative band captures practical indistinguishability. No condition shows a significant positive effect under either margin.\n\n\\paragraph{Conditional Correction Ratio data.}\n\\label{app:cil-data}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\n\\label{tab:cil_main}\n\\begin{tabular}{@{}llrr@{}}\n\\toprule\nGenerator--Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral $\\times$ BART-NLI & PW & $+$1.86 & $+$5.17 \\\\\nMistral $\\times$ DeBERTa-NLI & PW & $+$1.67 & $+$6.67 \\\\\nMistral $\\times$ RoBERTa-NLI & PW & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen-14B $\\times$ DeBERTa-NLI & PW & $-$0.21 & $+$0.33 \\\\\nMistral $\\times$ DeBERTa-NLI & FOLIO & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral $\\times$ SICA & FOLIO & $-$2.93 & $+$3.43 \\\\\nQwen-14B $\\times$ SICA & PW & $-$4.21 & $-$2.50 \\\\\nMistral $\\times$ SICA & PW & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Disagreement-Routed Cascade details.}\n\\label{app:drc}\nDRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\\tau{=}0.7$ recovers 83--90\\% of full-combo gain at 35--39\\% NLI cost across both datasets.}\n\\label{tab:drc}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Method & Acc.\\ & NLI Calls & Cost & Recovery \\\\\n\\midrule\n\\multirow{3}{*}{PW-D5} & SC only & 39.33\\% & 0/600 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{45.33\\%} & \\textbf{233/600} & \\textbf{38.8\\%} & \\textbf{90.0\\%} \\\\\n& Full combo & 46.00\\% & 600/600 & 100\\% & 100\\% \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO} & SC only & 55.88\\% & 0/204 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{58.33\\%} & \\textbf{71/204} & \\textbf{34.8\\%} & \\textbf{83.3\\%} \\\\\n& Full combo & 58.82\\% & 204/204 & 100\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Multi-Verifier NLI Results}\n\\label{app:multi-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\n\\label{tab:multi-nli}\n\\begin{tabular}{@{}llrrl@{}}\n\\toprule\nVerifier & Standalone & $w$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nDeBERTa-MNLI & 55.00\\% & 1 & $+$0.83 & n.s. \\\\\n & & 3 & $+$6.67 & ${<}0.001${***} \\\\\n & & 5 & $+$11.00 & ${<}0.001${***} \\\\\n\\addlinespace\nRoBERTa-MNLI & 37.67\\% & 1 & $-$0.17 & n.s. \\\\\n & & 3 & $+$4.17 & 0.003{**} \\\\\n & & 5 & $+$4.33 & 0.037{*} \\\\\n\\addlinespace\nBART-MNLI & 46.17\\% & 1 & 0.00 & n.s. \\\\\n & & 3 & $+$5.17 & ${<}0.001${***} \\\\\n & & 5 & $+$6.33 & 0.003{**} \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All verifiers fine-tuned on MultiNLI. Unknown recall ${<}3.5\\%$ across all verifiers.}\n\\end{table}\n\n\\paragraph{Three-verifier BH correction.}\n\\label{app:3verifier-bh}\nTable~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BH correction across 3 verifiers $\\times$ 5 weights on Mistral-7B ProofWriter ($n{=}600$, $m{=}15$). \\checkmark: $p_{\\text{BH}} < 0.05$.}\n\\label{tab:3verifier-bh}\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nVerifier & $w{=}1$ & $w{=}2$ & $w{=}3$ & $w{=}4$ & $w{=}5$ \\\\\n\\midrule\nDeBERTa-MNLI & & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\nRoBERTa-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\nBART-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize 10/15 significant at $\\alpha{=}0.05$ after BH correction. All $w{=}1$ conditions and RoBERTa $w{=}2$ are non-significant.}\n\\end{table}\n\n\\section{Capability Gap Data Points}\n\\label{app:capability-gap}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.78\\columnwidth]{figures/capability_gap_scatter}\n\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur only for generators below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (99.67\\% standalone, Table~\\ref{tab:finetuned-nli}).}\n\\label{fig:capability-gap}\n\\end{figure}\n\nTable~\\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\\% standalone, combo $+5.17$\\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\\% standalone, combo $+4.17$\\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \\geq 3$.\n\nAcross all six ProofWriter verifier-generator pairs at $w{=}3$ (three verifiers $\\times$ Mistral-7B plus three negative-gap generators $\\times$ DeBERTa), combo gain decreases monotonically with the capability gap (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n = 6$; however, four of six conditions share the DeBERTa verifier, which may reduce effective degrees of freedom---see Limitations; Figure~\\ref{fig:capability-gap}). Significant gains are observed only for Mistral-7B (SC 39.33\\%, below the verifier); all generators with SC $\\geq 72\\%$ show no significant improvement. After BH correction ($m{=}12$), two of twelve conditions survive: Mistral-7B $w{=}3$ (adj.\\ $p = 6.78 \\times 10^{-5}$) and $w{=}5$ (adj.\\ $p = 7.42 \\times 10^{-6}$).\n\n\\paragraph{Robustness check.} Including all nine conditions (three verifiers $\\times$ three weight levels on Mistral-7B) yields Spearman $\\rho = 0.836$ (exact permutation $p = 0.007$, $n = 9$), confirming that the monotonic trend is robust to the choice of weight parameter.\n\n\\paragraph{Full NLI combo with BH correction.}\n\\label{app:nli-combo-full}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Full cross-generator NLI combo results on ProofWriter depth-5 ($n{=}600$) with Benjamini--Hochberg correction ($m{=}12$, $\\alpha{=}0.05$). All conditions use DeBERTa-large-mnli verifier (55.00\\% standalone). Two of twelve conditions survive correction (Mistral-7B $w{=}3$ and $w{=}5$). {***}\\,$p_{\\text{BH}} < 0.001$.}\n\\label{tab:nli-combo-full}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{raw}}$ & $p_{\\text{BH}}$ & \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%, gap\\,$+$15.67}}}\n  & 1 & 40.17 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 46.00 & $+$6.67 & $1.13{\\times}10^{-5}$ & $6.78{\\times}10^{-5}$ & {***} \\\\\n  & 5 & 50.33 & $+$11.00 & $6.18{\\times}10^{-7}$ & $7.42{\\times}10^{-6}$ & {***} \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%, gap\\,$-$17.50}}}\n  & 1 & 73.33 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 73.33 & $+$0.83 & .665 & .887 & \\\\\n  & 5 & 72.00 & $-$0.50 & .871 & 1.0 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen2.5-14B\\\\{\\scriptsize SC\\,74.00\\%, gap\\,$-$19.00}}}\n  & 1 & 74.17 & $+$0.17 & 1.000 & 1.0 & \\\\\n  & 3 & 74.67 & $+$0.67 & .503 & .755 & \\\\\n  & 5 & 75.17 & $+$1.17 & .360 & .720 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize SC\\,85.83\\%, gap\\,$-$30.83}}}\n  & 1 & 86.00 & $+$0.17 & 1.0 & 1.0 & \\\\\n  & 3 & 86.33 & $+$0.50 & .4531 & .755 & \\\\\n  & 5 & 87.00 & $+$1.17 & .2100 & .720 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect.}\n\\label{tab:finetuned-nli}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}lrrrrc@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%}}}\n  & 1 & 42.33 & $+$3.00 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$12.83 & \\\\\n  & 5 & 65.50 & $+$26.17 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%}}}\n  & 1 & 76.00 & $+$3.50 & \\multirow{3}{*}{164:1} \\\\\n  & 3 & 84.17 & $+$11.67 & \\\\\n  & 5 & 91.67 & $+$19.17 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}\n\\label{app:2x2}\n\nTable~\\ref{tab:2x2-folio} reports the full $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\sim}25$\\,pp vs.\\ column difference ${\\sim}3$\\,pp), contrasting with ProofWriter where the extractor dominates ($\\Delta$ range ${\\pm}40$--$50$\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\Delta = +2.94$\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\Delta = +2.94$\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\n\\label{tab:2x2-folio}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\n\\midrule\n\\multirow{2}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize $\\kappa{=}0.46$}}}\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\n\\addlinespace\n\\multirow{2}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize $\\kappa{=}0.79$}}}\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Single-Trace and Aggregation Statistics}\n\\label{app:single-trace}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Single-trace accuracy (mean $\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\ref{tab:main_results}).}\n\\label{tab:single-trace-stats}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nModel & Single (\\%) & Std & SC@12 (\\%) & Gain (pp) \\\\\n\\midrule\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize Inter-trace standard deviation shrinks $2.8\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\S\\ref{sec:cross-arch}).}\n\\end{table}\n\n\\paragraph{Extraction temperature sensitivity.}\n\\label{app:text-sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Effect of extraction temperature $T_{\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\dagger$\\,Uses a different trace set (SC $= 54.41\\%$); all other conditions share the same traces (SC $= 55.88\\%$).}\n\\label{tab:text-sensitivity}\n\\begin{tabular}{@{}cccr@{}}\n\\toprule\n$T_{\\text{ext}}$ & SICA (\\%) & $\\Delta$ vs.\\ SC (pp) & Avg.\\ \\#Constr. \\\\\n\\midrule\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\n$0.3^\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nControlling for the trace set (excluding $T_{\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\Delta \\leq +1.47$\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\n\n\\paragraph{Multi-seed replication.}\n\\label{app:multi-seed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\pm$ SD computed across seeds. Mistral-7B shows directionally unstable $\\Delta$ ($+0.16 \\pm 2.70$\\,pp); all Qwen2.5-14B seeds show $\\Delta \\leq 0$.}\n\\label{tab:multi-seed}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nSeed & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Mistral-7B $\\times$ FOLIO ($n{=}204$)\\textsuperscript{a}}} \\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\n\\midrule\nMean $\\pm$ SD & 56.53 $\\pm$ 2.51 & 56.70 $\\pm$ 0.75 & $+$0.16 $\\pm$ 2.70 \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Qwen2.5-14B $\\times$ FOLIO ($n{=}204$)}} \\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\n\\midrule\nMean $\\pm$ SD & 75.01 $\\pm$ 1.67 & 73.78 $\\pm$ 1.30 & $-$1.24 $\\pm$ 0.86 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\n\\end{table}\n\n\\subsection{Sub-population Analysis}\n\\label{app:subpopulation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\Delta$\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\n\\label{tab:subpop-answer-type}\n\\begin{tabular}{ll rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Label} & $n$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{4}{*}{FOLIO-204}\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\n & False   &  63 & 42.9 & 42.9 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\n & \\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\n\\midrule\n\\multirow{4}{*}{PW-600}\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\n & Unknown & 200 & 90.0 & 89.0 & $-$1.0 & .774 \\\\\n & \\textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\\rlap{*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}\n\\label{tab:subpop-constraint}\n\\begin{tabular}{ll rr rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Tertile} & $n$ & $\\bar{c}$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO-204}\n & Low \\scriptsize{[0--32]}   &  74 & 21.7 & 62.2 & 63.5 & $+$1.4 & 1.0\\hphantom{00} \\\\\n & Mid \\scriptsize{[33--47]}  &  64 & 39.7 & 50.0 & 59.4 & $+$9.4 & .031\\rlap{*} \\\\\n & High \\scriptsize{[48--83]} &  66 & 58.7 & 54.5 & 54.5 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n\\midrule\n\\multirow{3}{*}{PW-600}\n & Low \\scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\\\\n & Mid \\scriptsize{[40--52]}  & 196 & 45.8 & 40.8 & 37.2 & $-$3.6 & .143 \\\\\n & High \\scriptsize{[53--99]} & 192 & 63.7 & 32.8 & 32.3 & $-$0.5 & 1.0\\hphantom{00} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn FOLIO-204 with the corrected SC baseline (alphabetical tiebreaking), SICA improves over SC by $+$3.4\\,pp overall (55.9\\% $\\to$ 59.3\\%), though the aggregate McNemar test is marginally non-significant ($p{=}.092$).\nThe gain concentrates in the mid-constraint tertile ($+$9.4\\,pp, $p{=}.031$), where sufficient symbolic evidence exists for MaxSAT to meaningfully re-rank answers; in the low- and high-constraint groups the methods perform comparably.\nOn ProofWriter-600, SICA shows a small uniform degradation consistent with the main results, attenuating in the high-constraint tertile ($\\Delta{=}{-}0.5$\\,pp, $p{=}1.0$).\nWe note that with six subgroup tests, one significant result at $\\alpha{=}0.05$ is expected by chance; the mid-constraint finding should be interpreted as exploratory.\n\n\\paragraph{Individual intervention significance.}\n\\label{app:intervention-individual}\nOf the 27 training-free remediation strategies (Figure~\\ref{fig:interventions-summary}), the two largest positive effects are Cross-model Qwen3$\\to$Mistral ($+0.98$\\,pp) and Generational ($+0.49$\\,pp); neither approaches statistical significance ($p > 0.5$ for both). The largest negative effects are LLM-Debate ($-18.6$\\,pp, $p < 0.001$) and Contrastive Scoring ($-9.3$\\,pp, $p < 0.001$). After BH correction across all 27 comparisons, only these two negative results remain significant. No strategy produces a significant positive effect under any correction procedure.\n\n\\section{Extended Discussion and Limitations}\n\\label{app:extended-discussion}\n\\label{app:limitations-extended}\n\n\\paragraph{SCB versus CoT unfaithfulness.}\nSCB is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}. CoT unfaithfulness concerns whether stated reasoning reflects actual computation; SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution. Even if traces were perfectly faithful, self-extraction would still inherit the distributional bias---the constraint $P(\\text{answer\\_A})$ reflects vote share, not logical validity. The shuffle control (\\S\\ref{sec:confirmation-bias}) confirms this: randomizing constraint--answer associations preserves BR, showing the bias is in the trace-count distribution, not in extraction-specific errors. However, if traces are unfaithful, the mirage may be worse than our measurements suggest, because constraints would reflect not the model's reasoning but its post-hoc rationalization.\n\n\\paragraph{Implications for neuro-symbolic practitioners.}\nOur results do not imply that neuro-symbolic methods are inherently flawed---they imply that \\emph{self-extracted} constraints cannot provide independent verification. The key distinction is \\emph{when} formalization occurs relative to answer generation. Specification-generation approaches (e.g., SatLM \\citep{ye2024satlm}, Logic-LM \\citep{pan2023logiclm}) formalize the problem \\emph{before} generating candidate answers, avoiding the extraction bottleneck; SatLM's success confirms that the formal verification mechanism is sound when constraints are independently derived. Trace-extraction (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting the distributional prior that generates SCB. When post-hoc verification is unavoidable, practitioners should employ external verifiers from a different architecture family (\\S\\ref{sec:cross-arch}) and use the diagnostic framework in \\S\\ref{sec:discussion} to assess feasibility before deployment. The SCB diagnostic toolkit (below) provides detailed computation methods and threshold recommendations.\n\n\\paragraph{Test-time scaling implications.}\nVote diversity decreases with model capability: $K_\\text{eff}$ drops from 3.62 (Mistral-7B on ProofWriter) to 1.09 (Qwen3-14B thinking mode). This creates a fundamental tension for o1/R1-style scaling \\citep{guo2025deepseekr1}: longer reasoning chains produce more coherent but less diverse traces, reducing the marginal value of additional samples. Our Process-$\\kappa$ analysis (\\S\\ref{sec:process-kappa}) reveals that this homogenization operates at the reasoning-process level, not just answer level---traces that disagree on final answers still share 69\\% of their reasoning structure. Cross-architecture ensembles offer a path forward, but the capability-gap condition (\\S\\ref{sec:cross-arch}) implies that the verifier must be genuinely complementary, not just different.\n\n\\paragraph{SCB diagnostic toolkit.}\n\\label{app:diagnostic-toolkit}\nWe recommend four zero-cost diagnostics, computable from sampled traces alone, to predict whether symbolic self-verification will help or hurt before deployment.\n\\emph{Bias Ratio} (BR; \\S\\ref{sec:confirmation-bias}): for each problem, compute the fraction of constraints supporting the majority answer, divided by majority vote share. $\\text{BR} > 1$ indicates constraints are biased toward the majority; $\\text{BR} \\gg 2$ (as in all nine models tested; Table~\\ref{tab:frontier-scb}) signals that extraction amplifies rather than checks the model's prior. Report as mean $\\pm$ bootstrap 95\\% CI.\n\\emph{Effective-K} ($K_\\text{eff}$; Eq.~\\ref{eq:effk}): compute Fleiss' $\\kappa$ across $K$ traces, then $K_\\text{eff} = 1 + (K-1)(1-\\kappa)$. Threshold: $K_\\text{eff} \\leq 1.3$ never improves in our experiments---aggregation collapses to majority voting. $K_\\text{eff} > 1.8$ is a necessary (not sufficient) condition for gain.\n\\emph{Degenerate Consensus} ($C_0$; \\S\\ref{sec:condorcet}): the fraction of problems where all $K$ traces agree. $C_0 > 95\\%$ renders aggregation moot; $C_0 < 5\\%$ means the model is maximally uncertain and constraints tend to amplify noise.\n\\emph{ProcessSim} (Eq.~\\ref{eq:process-sim}): mean pairwise cosine similarity of TF-IDF trace vectors. $\\text{ProcessSim} > 0.6$ indicates homogeneous reasoning; combined with $\\text{BR} > 2$, this predicts SCB will dominate.\nA practitioner should compute all four on a held-out sample ($n \\geq 50$). If $K_\\text{eff} \\leq 1.3$ or $C_0 > 95\\%$ or ($\\text{BR} > 2$ and $\\text{ProcessSim} > 0.6$), symbolic self-verification is unlikely to help.\n\n\\paragraph{Future directions: trained extractors and beyond.}\n\\label{app:future-directions}\nOur oracle controls reveal that perfect extraction would yield $+29.90$\\,pp over SC on Mistral-7B FOLIO---self-extraction captures only ${\\sim}12\\%$ of this ceiling. This gap motivates several future directions.\n\\emph{Trained constraint extractors}: fine-tuning a small model (e.g., encoder-only) on human-annotated FOL from logic benchmarks could produce genuinely discriminative constraints that break the distributional prior. The key design constraint is structural independence---the extractor should not share training data or architecture with the generator, mirroring the cross-architecture NLI escape (\\S\\ref{sec:cross-arch}).\n\\emph{Multi-model ensembles}: rather than single cross-architecture pairs, combining $M$ structurally independent verifiers could further reduce correlated errors. The capability-gap condition (\\S\\ref{sec:cross-arch}) predicts that each verifier must exceed the generator on the target task to contribute positively; empirical verification across heterogeneous verifier pools is needed.\n\\emph{External knowledge grounding}: connecting to knowledge bases (Wikidata, domain ontologies) could inject verification signal absent from any model's parameters. This avoids SCB entirely by grounding constraints in external facts rather than self-generated traces.\n\\emph{SCB-aware aggregation}: current MAX-SAT aggregation treats all constraints equally. Weighting constraints by estimated independence (e.g., inverse ProcessSim with other traces' constraints) or by discriminative power (e.g., cross-validation on held-out traces) could partially mitigate SCB without requiring external verifiers.\n\n\\paragraph{SCB as an evaluation framework.}\n\\label{app:scb-evaluation}\nThe SCB metrics---BR, $K_\\text{eff}$, ProcessSim, and CCR---can serve as a general evaluation framework for self-improvement methods beyond SICA. Any method that extracts structured representations from a model's own outputs (self-verification \\citep{huang2024selfcorrect}, self-refinement \\citep{madaan2023selfrefine}, chain-of-verification \\citep{dhuliawala2023chainofverification}, self-consistency \\citep{wang2023sc}) faces the distributional prior that generates SCB. We propose that future work on self-improvement methods report: (1)~BR on error cases (does the method's verification signal correlate with the model's majority answer, or does it provide independent information?); (2)~$K_\\text{eff}$ or an analogous diversity metric (does the method generate genuinely diverse candidates, or does it amplify a single mode?); (3)~CCR (does the method preferentially correct errors, or does it preferentially confirm them?). A method with $\\text{BR} < 1$, high $K_\\text{eff}$, and $\\text{CCR} > 0$ demonstrates genuine self-improvement; $\\text{BR} > 1$ with $\\text{CCR} < 0$ indicates that the method suffers from SCB regardless of aggregate accuracy gains, which may reflect favorable base rates rather than corrective signal.\n\n\\paragraph{Extended limitations.}\n\nBeyond the limitations discussed in the main text, several additional constraints bound our conclusions. Seven of our eleven model-domain conditions have $n \\leq 60$, providing insufficient statistical power for confirmatory claims; power analysis shows that the minimum detectable effect exceeds 5\\,pp for these conditions (Table~\\ref{tab:power}), so they serve as regime characterization rather than definitive tests. Our extraction prompts use a single zero-shot template per domain; alternative prompting strategies (few-shot exemplars, chain-of-thought extraction, or iterative refinement) might yield higher-quality constraints, though the oracle gap suggests the bottleneck is structural rather than prompt-specific. The constraint quality analysis (91.8\\% discriminative rate, 39.2\\% source-trace minority weight) covers Qwen2.5-14B on FOLIO + ProofWriter ($N = 804$); other model-domain combinations may exhibit different characteristics. Constraint extraction uses $T_{\\text{ext}} = 0.3$ while trace sampling uses $T = 0.7$; alternative extraction temperatures might yield different results. Although we prompt for first-order logic formalizations, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers ($\\forall$/$\\exists$); whether models capable of genuine quantified reasoning would yield higher discriminative rates is untested. Deduplication uses syntactic equivalence (global average dedup ratio: 46.0\\%), so semantically equivalent constraints with different surface forms receive separate weights; Z3-based semantic deduplication removes an additional ${\\sim}$10\\% of constraints and yields a small but significant improvement over no deduplication ($p = 0.013$), suggesting room for better dedup strategies. The GSM8K pilot ($n = 30$) illustrates the constraint-absent regime and should not be interpreted as confirmatory evidence.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 711,
+        "oldLines": 7,
+        "newStart": 711,
+        "newLines": 7,
+        "lines": [
+          " Mistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\\\",
+          " Mistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\\\",
+          " Mistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\\\",
+          "-Mistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\",
+          "+Mistral-7B (s789) & FOLIO & 0.45 & 2.03 & 59.31 & $-$2.45 \\\\",
+          " Mistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\\\",
+          " Mistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\\\",
+          " Mistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Now sync to server and compile.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "55b16243-df84-4a6b-8517-5bf28e9e4304",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJg9FXBSvED6rBoUftEKY1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3764,
+      "cache_read_input_tokens": 48331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3764
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RZ4dJWc5B7pS3PhGeKzkvT`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && cat docs/paper/appendix.tex 2>/dev/null | head -1 || echo \"NO_DOCS_DIR_ON_SERVER\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "784d73b9-a536-4aa6-bfa3-a16ac586de72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJg9FXBSvED6rBoUftEKY1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3764,
+      "cache_read_input_tokens": 48331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3764
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T22:57:46.137Z_
+
+<details><summary>↩ Tool result · `toolu_01RZ4dJWc5B7pS3PhGeKzkvT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "367e2a7b-b835-4239-9a7e-3447476e9d7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The docs directory doesn't exist on the server (empty output). Let me check where the paper lives on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "96fb00a1-d16b-4e4c-8c8f-bab82f1af649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fPouZf3YQcyUd18GZzFc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 52095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 226
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GNKNWkCRiUigWu2LwVxs7k`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"appendix.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "61be614e-6ab7-48b3-8c40-7cf5f3e7f389",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fPouZf3YQcyUd18GZzFc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 52095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 226
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-22T22:57:49.701Z_
+
+<details><summary>↩ Tool result · `toolu_01GNKNWkCRiUigWu2LwVxs7k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "2284658c-1449-4c34-84fc-284ec9a45880",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix.tex doesn't exist on the server at all. It's only local. Let me check if there's a paper directory on the server or if the paper is only in the local project.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "cf76920a-c4db-4d5a-9339-8d1bc310b798",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122JCEESPtW9pFqXwVJk1AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 52321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+The paper files only exist locally, not on the server. Let me check if pdflatex is available locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "8cf844e0-b6e4-469c-813d-e203a2d10ffb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122JCEESPtW9pFqXwVJk1AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 52321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ScJE3nc7JutXv2kHfZKWPi`</summary>
+
+```json
+{
+  "command": "which pdflatex 2>/dev/null || echo \"NO_PDFLATEX\"",
+  "description": "Check if pdflatex is available locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "933c8268-1ad3-4066-b818-30908810ddd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122JCEESPtW9pFqXwVJk1AL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 52321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T22:57:56.032Z_
+
+<details><summary>↩ Tool result · `toolu_01ScJE3nc7JutXv2kHfZKWPi`</summary>
+
+```text
+/usr/bin/pdflatex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "39095936-5437-4a92-a46c-d161b7cd48ed",
+  "tool_use_result": {
+    "stdout": "/usr/bin/pdflatex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GNTU7tHVP6tvmxkf8ggzsv`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -15",
+  "description": "Compile LaTeX to verify no errors",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "a3cf72f8-a2dd-4fab-a5ac-be2dfe3f38e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkU1ZAcAzRS5YuNNXiuVa4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 52539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T22:58:01.251Z_
+
+<details><summary>↩ Tool result · `toolu_01GNTU7tHVP6tvmxkf8ggzsv`</summary>
+
+```text
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/u
+sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
+1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+r8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (27 pages, 652496 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "cd7ebd30-b159-4175-b0aa-b12e6a90ab1c",
+  "tool_use_result": {
+    "stdout": "f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/u\nsr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dis\nt/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type\n1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\nr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 652496 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+编译成功（27 pages, 无错误）。
+
+**修改前后对比：**
+
+| 字段 | 修改前（错误） | 修改后（正确） |
+|------|---------------|---------------|
+| κ | 0.41 | 0.45 |
+| K_eff | 2.17 | 2.03 |
+| SC | 54.41% | 59.31% |
+| Δ | −0.49 | −2.45 |
+
+**错因：** s789 行的全部四个值都是错的。κ=0.41 / K_eff=2.17 与 cross-model 表中 LLaMA-3.1-8B 行完全一致（L740），SC=54.41 则与 s123 行相同——是 copy-paste 错误。正确值通过 `compute_fleiss_kappa_unified.py` 在 `mistral_folio_seed789` traces 上重算验证。
+
+**Cross-model 表（L735-745）** 无 s789 引用，不需要修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "uuid": "a0ae1bda-a130-464f-b007-03f60f40f15d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Umx2yA1zLWmahr9D5kq8sk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 52739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 67_
+
+编译成功（27 pages, 无错误）。
+
+**修改前后对比：**
+
+| 字段 | 修改前（错误） | 修改后（正确） |
+|------|---------------|---------------|
+| κ | 0.41 | 0.45 |
+| K_eff | 2.17 | 2.03 |
+| SC | 54.41% | 59.31% |
+| Δ | −0.49 | −2.45 |
+
+**错因：** s789 行的全部四个值都是错的。κ=0.41 / K_eff=2.17 与 cross-model 表中 LLaMA-3.1-8B 行完全一致（L740），SC=54.41 则与 s123 行相同——是 copy-paste 错误。正确值通过 `compute_fleiss_kappa_unified.py` 在 `mistral_folio_seed789` traces 上重算验证。
+
+**Cross-model 表（L735-745）** 无 s789 引用，不需要修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 178062,
+  "duration_api_ms": 172768,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "99c80600-ace7-42dc-a6d7-c76fa5b9fc7d",
+  "total_cost_usd": 0.7128449999999998,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 41714,
+    "cache_read_input_tokens": 536793,
+    "output_tokens": 7269,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41714,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 293,
+        "cache_read_input_tokens": 52739,
+        "cache_creation_input_tokens": 816,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 816
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1771,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001911,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 7269,
+      "cacheReadInputTokens": 536793,
+      "cacheCreationInputTokens": 41714,
+      "webSearchRequests": 0,
+      "costUSD": 0.7109339999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "abfa4f0e-9774-4838-b94e-9b71cb5e5cf4"
+}
+```
+
+</details>
+
+---

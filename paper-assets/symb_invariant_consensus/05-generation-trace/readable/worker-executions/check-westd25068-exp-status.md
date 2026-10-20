@@ -1,0 +1,4635 @@
+# check westd25068 exp status
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 98
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/workers/worker_check_westd25068-exp-status_20260518T153301.log`
+- **Structured JSON:** [`71e8a9625c88705d004a.json`](../../sessions/71/71e8a9625c88705d004a.json)
+
+## Before a recorded user message
+
+98 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b9400be7-003f-4a86-a1bb-f23ca7101ae2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779132000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0f503bb2-ae55-4e46-8dd6-33c8c8a0b49f",
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the status of 3 experiments on a remote server and fix their registry entries. Let me execute the steps systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "014ff4c9-c590-434c-b5ed-b2026481f5e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011sAZmMtH4AuvLLtzaPwRd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13530
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查 westd-25068 上的实验状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c48f385b-94bd-4f01-b0ae-fef69790aab4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011sAZmMtH4AuvLLtzaPwRd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13530
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LGTF9mTdzcMK2di61MEgaP`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "f6968ffe-e39b-42bd-9ade-9146a9a73ed4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011sAZmMtH4AuvLLtzaPwRd4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13530
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T15:33:14.562Z_
+
+<details><summary>↩ Tool result · `toolu_01LGTF9mTdzcMK2di61MEgaP`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "339f97af-84ef-4d63-9d0b-dbabb5422259",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the checks in parallel - process status, GPU status, and registry read.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "89e51203-17ad-4f81-b814-c26729a88ab1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xz3tD6wg1zgWhk128NiTZ7`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps -p 38106 -o pid,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "1080d1a5-dffe-42c3-88df-db8f01b1c0d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018uN5kHv1Bzftg4khMLPZrE`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps -p 40990 -o pid,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "2c6cb594-6dce-4c02-bdd1-c2d2e797e9d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016zo9ZYYCzpNVE3twYEB8cP`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps -p 46525 -o pid,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c008dd12-938f-40a9-a3bb-71bb8f033953",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MMPqqDp2zr8nE7AGs1TnXn`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "nvidia-smi",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "33764375-b241-48a9-960f-3a263b76915d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WrhLtzx2AEcxzhcZhHBsAW`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "bc5839c7-a10c-4dd8-99ba-b07247952e4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WEZ8XnWudwcy85Zf8iv3si`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "status": "PREPARING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "786ba3db-bff0-4ec8-bef4-6f9f940ce8ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJ52iid6Erthgcj5LWZU3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 25371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T15:33:22.880Z_
+
+<details><summary>↩ Tool result · `toolu_01Xz3tD6wg1zgWhk128NiTZ7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 38106 bash -c rm -f /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh'; } > ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "21f3bd53-bc1d-4dcf-8eb2-ef16c997c658",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 38106 bash -c rm -f /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh'; } > ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \" 38106 bash -c rm -f /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh'; } > ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T15:33:25.818Z_
+
+<details><summary>↩ Tool result · `toolu_018uN5kHv1Bzftg4khMLPZrE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 40990 bash -c rm -f /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "2fbfad9f-284f-46a8-971e-83eacf6ce786",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 40990 bash -c rm -f /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \" 40990 bash -c rm -f /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-028-qwen3-14b-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T15:33:28.762Z_
+
+<details><summary>↩ Tool result · `toolu_016zo9ZYYCzpNVE3twYEB8cP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 46525 bash -c rm -f /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "eb8f818e-25d6-4e64-b15f-a27099ee178e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 46525 bash -c rm -f /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\\\\\"'; } > ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \" 46525 bash -c rm -f /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-030-crossmodel-mistral-folio204.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/symb_invariant_consensus && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"'; } > ~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T15:33:30.032Z_
+
+<details><summary>↩ Tool result · `toolu_01MMPqqDp2zr8nE7AGs1TnXn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 23:33:29 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   60C    P0            340W /  600W |   88463MiB /  97887MiB |     96%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\n| N/A   60C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   61C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   26C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A           47121      C   VLLM::EngineCore                      88454MiB |\\n|    1   N/A  N/A           38534      C   VLLM::EngineCore                      88278MiB |\\n|    2   N/A  N/A           41404      C   VLLM::EngineCore                      88278MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "5b23a0a7-355f-4366-8c46-e39c420428bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 23:33:29 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   60C    P0            340W /  600W |   88463MiB /  97887MiB |     96%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   60C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\\\n| N/A   61C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   26C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A           47121      C   VLLM::EngineCore                      88454MiB |\\\\n|    1   N/A  N/A           38534      C   VLLM::EngineCore                      88278MiB |\\\\n|    2   N/A  N/A           41404      C   VLLM::EngineCore                      88278MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 23:33:29 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   60C    P0            340W /  600W |   88463MiB /  97887MiB |     96%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\n| N/A   60C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   61C    P0            352W /  600W |   88287MiB /  97887MiB |     97%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   26C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A           47121      C   VLLM::EngineCore                      88454MiB |\\n|    1   N/A  N/A           38534      C   VLLM::EngineCore                      88278MiB |\\n|    2   N/A  N/A           41404      C   VLLM::EngineCore                      88278MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T15:33:30.045Z_
+
+<details><summary>↩ Tool result · `toolu_01WrhLtzx2AEcxzhcZhHBsAW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "cbeb017f-9c10-4fcf-8f1c-7a017a3fa032",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T15:33:30.238Z_
+
+<details><summary>↩ Tool result · `toolu_01WEZ8XnWudwcy85Zf8iv3si`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-030-crossmodel-mistral-folio204\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T14:50:48.117Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T14:21:41.032Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T14:08:02.186Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:22:09.665Z\", \"updated_at\": \"2026-05-15T11:22:09.666Z\", \"conclusion\": \"failed\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1801}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "83286d23-5be3-4188-9c0a-91ae726254b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-030-crossmodel-mistral-folio204\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:47:46.451Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:50:48.117Z\\\", \\\"hypothesis\\\": \\\"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46525\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:50:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-028-qwen3-14b-thinking\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:12.168Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:21:41.032Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40990\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:21:40.871Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-027-qwen3-14b-non-thinking\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:11.425Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:08:02.186Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"38106\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:08:01.969Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"smoke-test-5q\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:22:09.665Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:22:09.666Z\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1801}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-030-crossmodel-mistral-folio204\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T14:50:48.117Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T14:21:41.032Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T14:08:02.186Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:22:09.665Z\", \"updated_at\": \"2026-05-15T11:22:09.666Z\", \"conclusion\": \"failed\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1801}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+3 个进程全部存活，3 张 GPU 满载运行。现在检查日志进度和 vLLM 端口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "46c79100-50cf-4d34-96c3-df70fe483886",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y1fhH2zCaujMKQxs1sdMtM`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -20 /root/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "315f890b-9e4b-45b9-8d3f-97f9414251fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017BYQ9YCPAaWZmsodUaNTjj`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -20 /root/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "f0c0668d-54ae-455a-9a25-6afa36dce679",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UyBuTD5vxuE1tmEsGW9NFE`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -20 /root/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "705de837-5617-41d6-bd47-894b6dbffc52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018RNDhQTZS4JQcnUsWBme3R`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps aux | grep vllm | grep -v grep | head -10",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "ea561331-71c5-4bac-921f-927246c7d80f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T15:33:38.666Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1fhH2zCaujMKQxs1sdMtM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Q: Given the following premises:\\nIf animals are loved by tourists, then they are Max's favorite animals.  All animals from ...\\nGT: Unknown\\n2026-05-18 23:32:56,361 INFO Retrying request to /chat/completions in 0.425514 seconds\\n2026-05-18 23:33:16,445 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:18,810 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:20,872 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:21,431 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:21,941 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:22,919 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:23,382 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,500 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,521 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,703 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,726 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:26,685 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:32,954 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:33,711 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:34,652 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:35,447 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "48b99a85-0b1a-4f71-bcfd-13619aa64ac9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Q: Given the following premises:\\\\nIf animals are loved by tourists, then they are Max's favorite animals.  All animals from ...\\\\nGT: Unknown\\\\n2026-05-18 23:32:56,361 INFO Retrying request to /chat/completions in 0.425514 seconds\\\\n2026-05-18 23:33:16,445 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:18,810 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:20,872 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:21,431 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:21,941 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:22,919 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:23,382 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:25,500 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:25,521 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:25,703 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:25,726 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:26,685 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:32,954 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:33,711 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:34,652 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:35,447 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Q: Given the following premises:\\nIf animals are loved by tourists, then they are Max's favorite animals.  All animals from ...\\nGT: Unknown\\n2026-05-18 23:32:56,361 INFO Retrying request to /chat/completions in 0.425514 seconds\\n2026-05-18 23:33:16,445 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:18,810 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:20,872 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:21,431 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:21,941 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:22,919 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:23,382 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,500 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,521 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,703 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,726 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:26,685 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:32,954 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:33,711 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:34,652 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:35,447 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SQ9mKpVGXxiMDRJgshs8D4`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "curl -s http://localhost:8000/v1/models 2>/dev/null && echo \"port 8000 OK\" || echo \"port 8000 DOWN\"; curl -s http://localhost:8001/v1/models 2>/dev/null && echo \"port 8001 OK\" || echo \"port 8001 DOWN\"; curl -s http://localhost:8002/v1/models 2>/dev/null && echo \"port 8002 OK\" || echo \"port 8002 DOWN\"; curl -s http://localhost:8003/v1/models 2>/dev/null && echo \"port 8003 OK\" || echo \"port 8003 DOWN\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "a4e657e9-5613-423b-a9c6-f6ce08ba2a1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WvirdkJcRUhozKJihPzUn2`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps -p 42353 -o pid,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "0d44b8c5-0e5a-4b97-bc05-0e4132aef577",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9aDANWEEk3DQqNLAvSSXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4217,
+      "cache_read_input_tokens": 26944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T15:33:40.270Z_
+
+<details><summary>↩ Tool result · `toolu_017BYQ9YCPAaWZmsodUaNTjj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 23:30:10,757 INFO Retrying request to /chat/completions in 0.412334 seconds\\n2026-05-18 23:30:23,389 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:25,778 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,512 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,603 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,763 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:28,667 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:28,873 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:29,464 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:31,473 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:34,034 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:34,412 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:37,985 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:31:59,909 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:01,333 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:13,693 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:13,697 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:07,331 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:27,472 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,182 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "cf86f672-c041-4f9f-b9a9-e9bc0bc1d707",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 23:30:10,757 INFO Retrying request to /chat/completions in 0.412334 seconds\\\\n2026-05-18 23:30:23,389 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:25,778 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:26,512 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:26,603 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:26,763 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:28,667 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:28,873 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:29,464 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:31,473 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:34,034 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:34,412 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:30:37,985 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:31:59,909 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:32:01,333 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:32:13,693 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:32:13,697 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:07,331 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:27,472 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:37,182 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 23:30:10,757 INFO Retrying request to /chat/completions in 0.412334 seconds\\n2026-05-18 23:30:23,389 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:25,778 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,512 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,603 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:26,763 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:28,667 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:28,873 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:29,464 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:31,473 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:34,034 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:34,412 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:30:37,985 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:31:59,909 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:01,333 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:13,693 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:32:13,697 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:07,331 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:27,472 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,182 INFO HTTP Request: POST http://localhost:8002/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T15:33:42.398Z_
+
+<details><summary>↩ Tool result · `toolu_01UyBuTD5vxuE1tmEsGW9NFE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 23:33:17,039 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:17,534 INFO Scorer mode=NORMAL  satisfied_ratio=0.900 (36/40)  alpha=0.50  threshold=0.20\\n  Cross-model: Unknown (V) | Original: Unknown (V) | SC: Unknown (V)\\n  Constraints: 79 extracted -> 40 unique\\n  Time: 20.8s\\n  ETA: 20.1 min (66 remaining)\\n\\n--- [139/204] folio_4 (folio) ---\\n2026-05-18 23:33:21,195 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:23,928 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,724 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:26,242 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:27,416 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:31,126 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:33,508 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:34,231 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,839 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,996 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:41,390 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:41,716 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "5165108a-bc36-4600-9f78-fa18a6805d1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 23:33:17,039 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:17,534 INFO Scorer mode=NORMAL  satisfied_ratio=0.900 (36/40)  alpha=0.50  threshold=0.20\\\\n  Cross-model: Unknown (V) | Original: Unknown (V) | SC: Unknown (V)\\\\n  Constraints: 79 extracted -> 40 unique\\\\n  Time: 20.8s\\\\n  ETA: 20.1 min (66 remaining)\\\\n\\\\n--- [139/204] folio_4 (folio) ---\\\\n2026-05-18 23:33:21,195 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:23,928 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:25,724 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:26,242 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:27,416 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:31,126 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:33,508 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:34,231 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:37,839 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:37,996 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:41,390 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-18 23:33:41,716 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 23:33:17,039 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:17,534 INFO Scorer mode=NORMAL  satisfied_ratio=0.900 (36/40)  alpha=0.50  threshold=0.20\\n  Cross-model: Unknown (V) | Original: Unknown (V) | SC: Unknown (V)\\n  Constraints: 79 extracted -> 40 unique\\n  Time: 20.8s\\n  ETA: 20.1 min (66 remaining)\\n\\n--- [139/204] folio_4 (folio) ---\\n2026-05-18 23:33:21,195 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:23,928 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:25,724 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:26,242 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:27,416 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:31,126 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:33,508 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:34,231 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,839 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:37,996 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:41,390 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:33:41,716 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T15:33:44.695Z_
+
+<details><summary>↩ Tool result · `toolu_018RNDhQTZS4JQcnUsWBme3R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      38128  4.8  0.1 34027484 1469932 pts/3 Sl  22:08   4:08 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8001 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3 --default-chat-template-kwargs {\\\"enable_thinking\\\": false}\\nroot      39043  1.1  0.0 726416 144592 pts/3   Sl   22:08   0:58 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp027_qwen3_14b_nonthinking/exp027_results.json --save-intermediates --resume\\nroot      41014  4.7  0.1 34018780 1460108 pts/1 Sl  22:21   3:24 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 16384 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3\\nroot      41907  0.2  0.0 724784 143008 pts/1   Sl   22:22   0:09 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --api-base http://localhost:8002/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp028_qwen3_14b_thinking/exp028_results.json --save-intermediates --resume\\nroot      46544  7.4  0.1 34043836 1157396 pts/2 Sl  22:50   3:11 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "b6c55db2-be64-428c-9b97-725a8315971f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      38128  4.8  0.1 34027484 1469932 pts/3 Sl  22:08   4:08 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8001 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3 --default-chat-template-kwargs {\\\\\\\"enable_thinking\\\\\\\": false}\\\\nroot      39043  1.1  0.0 726416 144592 pts/3   Sl   22:08   0:58 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp027_qwen3_14b_nonthinking/exp027_results.json --save-intermediates --resume\\\\nroot      41014  4.7  0.1 34018780 1460108 pts/1 Sl  22:21   3:24 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 16384 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3\\\\nroot      41907  0.2  0.0 724784 143008 pts/1   Sl   22:22   0:09 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --api-base http://localhost:8002/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp028_qwen3_14b_thinking/exp028_results.json --save-intermediates --resume\\\\nroot      46544  7.4  0.1 34043836 1157396 pts/2 Sl  22:50   3:11 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root      38128  4.8  0.1 34027484 1469932 pts/3 Sl  22:08   4:08 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8001 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3 --default-chat-template-kwargs {\\\"enable_thinking\\\": false}\\nroot      39043  1.1  0.0 726416 144592 pts/3   Sl   22:08   0:58 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp027_qwen3_14b_nonthinking/exp027_results.json --save-intermediates --resume\\nroot      41014  4.7  0.1 34018780 1460108 pts/1 Sl  22:21   3:24 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 16384 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager --reasoning-parser qwen3\\nroot      41907  0.2  0.0 724784 143008 pts/1   Sl   22:22   0:09 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --api-base http://localhost:8002/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp028_qwen3_14b_thinking/exp028_results.json --save-intermediates --resume\\nroot      46544  7.4  0.1 34043836 1157396 pts/2 Sl  22:50   3:11 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T15:35:18.528Z_
+
+<details><summary>↩ Tool result · `toolu_01SQ9mKpVGXxiMDRJgshs8D4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"parent\\\":null,\\\"max_model_len\\\":8192,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-973498c80090bb5b\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8000 OK\\n{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"parent\\\":null,\\\"max_model_len\\\":8192,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-a7b07a25ff1fb4d8\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8001 OK\\n{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"parent\\\":null,\\\"max_model_len\\\":16384,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-b9f3d038d1e945c5\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8002 OK\\nport 8003 DOWN\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 93.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "295b9df9-8a05-442d-9083-4964da26863e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":8192,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-973498c80090bb5b\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_search_indices\\\\\\\":false,\\\\\\\"allow_view\\\\\\\":true,\\\\\\\"allow_fine_tuning\\\\\\\":false,\\\\\\\"organization\\\\\\\":\\\\\\\"*\\\\\\\",\\\\\\\"group\\\\\\\":null,\\\\\\\"is_blocking\\\\\\\":false}]}]}port 8000 OK\\\\n{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":8192,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-a7b07a25ff1fb4d8\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_search_indices\\\\\\\":false,\\\\\\\"allow_view\\\\\\\":true,\\\\\\\"allow_fine_tuning\\\\\\\":false,\\\\\\\"organization\\\\\\\":\\\\\\\"*\\\\\\\",\\\\\\\"group\\\\\\\":null,\\\\\\\"is_blocking\\\\\\\":false}]}]}port 8001 OK\\\\n{\\\\\\\"object\\\\\\\":\\\\\\\"list\\\\\\\",\\\\\\\"data\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"owned_by\\\\\\\":\\\\\\\"vllm\\\\\\\",\\\\\\\"root\\\\\\\":\\\\\\\"/root/autodl-tmp/models/Qwen3-14B\\\\\\\",\\\\\\\"parent\\\\\\\":null,\\\\\\\"max_model_len\\\\\\\":16384,\\\\\\\"permission\\\\\\\":[{\\\\\\\"id\\\\\\\":\\\\\\\"modelperm-b9f3d038d1e945c5\\\\\\\",\\\\\\\"object\\\\\\\":\\\\\\\"model_permission\\\\\\\",\\\\\\\"created\\\\\\\":1779118518,\\\\\\\"allow_create_engine\\\\\\\":false,\\\\\\\"allow_sampling\\\\\\\":true,\\\\\\\"allow_logprobs\\\\\\\":true,\\\\\\\"allow_search_indices\\\\\\\":false,\\\\\\\"allow_view\\\\\\\":true,\\\\\\\"allow_fine_tuning\\\\\\\":false,\\\\\\\"organization\\\\\\\":\\\\\\\"*\\\\\\\",\\\\\\\"group\\\\\\\":null,\\\\\\\"is_blocking\\\\\\\":false}]}]}port 8002 OK\\\\nport 8003 DOWN\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 93.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"parent\\\":null,\\\"max_model_len\\\":8192,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-973498c80090bb5b\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8000 OK\\n{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"parent\\\":null,\\\"max_model_len\\\":8192,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-a7b07a25ff1fb4d8\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8001 OK\\n{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779118518,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Qwen3-14B\\\",\\\"parent\\\":null,\\\"max_model_len\\\":16384,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-b9f3d038d1e945c5\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779118518,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}port 8002 OK\\nport 8003 DOWN\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 93.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T15:35:26.219Z_
+
+<details><summary>↩ Tool result · `toolu_01WvirdkJcRUhozKJihPzUn2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 7.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "891077fc-a5f0-4fc6-a5e7-9dafc4c2998d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 7.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also check exp-027 and exp-028 progress more specifically to see how many questions they've processed. Let me grep for progress indicators.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "146a511a-e82d-4392-8555-828738345e43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+exp-029 PID 42353 已死。检查 exp-027/028 的具体进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "f22dd8be-ec4a-4434-a620-f876929ee01b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UMhaSqNA8zsTA5sENxRdfk`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -c \"^\\-\\-\\-\" /root/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "8f92870c-c4eb-46f8-9114-f5cfb9098e99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ERyhyRZ6WSZTXniMfaTRMD`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -c \"^\\-\\-\\-\" /root/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "3a246e24-2b27-4702-9bd1-65828f8bb060",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LK7WEdDy9T5Dv7CcmzvLaw`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep \"ETA\" /root/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "44aed8aa-64fb-4846-a757-6018c2457792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T15:35:34.643Z_
+
+<details><summary>↩ Tool result · `toolu_01UMhaSqNA8zsTA5sENxRdfk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"99\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "18d27149-2a28-44de-8c74-7eaf175ecae4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"99\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"99\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBLSJrCPvcBg67KefExWCm`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep \"ETA\" /root/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "73c2b4cf-f7fa-49ef-90cd-c26cbdd5b84e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T963sqEbfPmbG63PZhNRgW`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep \"ETA\" /root/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "27974545-4165-45ce-9b28-5b65f503b88a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TW6LLWq3EHN4dT5ebiLxwF`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -20 /root/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c7137ab4-1a1b-43ba-8e87-d5457c743a6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Lnnx3imnwMQwCLtFF8qf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5692,
+      "cache_read_input_tokens": 31161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5692
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T15:35:36.638Z_
+
+<details><summary>↩ Tool result · `toolu_01ERyhyRZ6WSZTXniMfaTRMD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "654b27bb-c0e4-4ef1-9436-79f9149fd6fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T15:35:38.991Z_
+
+<details><summary>↩ Tool result · `toolu_01LK7WEdDy9T5Dv7CcmzvLaw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ETA: 98.2 min (203 remaining)\\n  ETA: 86.2 min (202 remaining)\\n  ETA: 75.7 min (201 remaining)\\n  ETA: 77.9 min (200 remaining)\\n  ETA: 75.8 min (199 remaining)\\n  ETA: 77.7 min (198 remaining)\\n  ETA: 77.3 min (197 remaining)\\n  ETA: 75.4 min (196 remaining)\\n  ETA: 75.5 min (195 remaining)\\n  ETA: 70.3 min (194 remaining)\\n  ETA: 67.7 min (193 remaining)\\n  ETA: 66.2 min (192 remaining)\\n  ETA: 67.4 min (191 remaining)\\n  ETA: 66.7 min (190 remaining)\\n  ETA: 67.5 min (189 remaining)\\n  ETA: 65.3 min (188 remaining)\\n  ETA: 64.8 min (187 remaining)\\n  ETA: 64.1 min (186 remaining)\\n  ETA: 63.7 min (185 remaining)\\n  ETA: 62.8 min (184 remaining)\\n  ETA: 64.1 min (183 remaining)\\n  ETA: 64.1 min (182 remaining)\\n  ETA: 63.8 min (181 remaining)\\n  ETA: 63.5 min (180 remaining)\\n  ETA: 62.5 min (179 remaining)\\n  ETA: 61.5 min (178 remaining)\\n  ETA: 59.8 min (177 remaining)\\n  ETA: 59.8 min (176 remaining)\\n  ETA: 59.3 min (175 remaining)\\n  ETA: 59.2 min (174 remaining)\\n  ETA: 58.9 min (173 remaining)\\n  ETA: 58.5 min (172 remaining)\\n  ETA: 58.6 min (171 remaining)\\n  ETA: 58.5 min (170 remaining)\\n  ETA: 58.2 min (169 remaining)\\n  ETA: 57.5 min (168 remaining)\\n  ETA: 57.2 min (167 remaining)\\n  ETA: 57.2 min (166 remaining)\\n  ETA: 56.0 min (165 remaining)\\n  ETA: 54.8 min (164 remaining)\\n  ETA: 54.0 min (163 remaining)\\n  ETA: 53.2 min (162 remaining)\\n  ETA: 52.3 min (161 remaining)\\n  ETA: 51.5 min (160 remaining)\\n  ETA: 51.2 min (159 remaining)\\n  ETA: 50.8 min (158 remaining)\\n  ETA: 50.3 min (157 remaining)\\n  ETA: 49.8 min (156 remaining)\\n  ETA: 49.6 min (155 remaining)\\n  ETA: 49.4 min (154 remaining)\\n  ETA: 48.6 min (153 remaining)\\n  ETA: 48.1 min (152 remaining)\\n  ETA: 47.7 min (151 remaining)\\n  ETA: 47.3 min (150 remaining)\\n  ETA: 47.0 min (149 remaining)\\n  ETA: 46.8 min (148 remaining)\\n  ETA: 46.5 min (147 remaining)\\n  ETA: 45.7 min (146 remaining)\\n  ETA: 45.6 min (145 remaining)\\n  ETA: 45.3 min (144 remaining)\\n  ETA: 45.3 min (143 remaining)\\n  ETA: 45.3 min (142 remaining)\\n  ETA: 45.5 min (141 remaining)\\n  ETA: 45.6 min (140 remaining)\\n  ETA: 44.9 min (139 remaining)\\n  ETA: 44.7 min (138 remaining)\\n  ETA: 44.5 min (137 remaining)\\n  ETA: 44.2 min (136 remaining)\\n  ETA: 43.7 min (135 remaining)\\n  ETA: 43.4 min (134 remaining)\\n  ETA: 43.0 min (133 remaining)\\n  ETA: 42.7 min (132 remaining)\\n  ETA: 42.0 min (131 remaining)\\n  ETA: 41.6 min (130 remaining)\\n  ETA: 41.2 min (129 remaining)\\n  ETA: 40.6 min (128 remaining)\\n  ETA: 40.1 min (127 remaining)\\n  ETA: 39.7 min (126 remaining)\\n  ETA: 39.1 min (125 remaining)\\n  ETA: 38.8 min (124 remaining)\\n  ETA: 38.6 min (123 remaining)\\n  ETA: 38.7 min (122 remaining)\\n  ETA: 38.7 min (121 remaining)\\n  ETA: 38.4 min (120 remaining)\\n  ETA: 38.3 min (119 remaining)\\n  ETA: 38.1 min (118 remaining)\\n  ETA: 37.5 min (117 remaining)\\n  ETA: 36.9 min (116 remaining)\\n  ETA: 36.5 min (115 remaining)\\n  ETA: 35.9 min (114 remaining)\\n  ETA: 35.6 min (113 remaining)\\n  ETA: 35.1 min (112 remaining)\\n  ETA: 34.6 min (111 remaining)\\n  ETA: 34.3 min (110 remaining)\\n  ETA: 34.0 min (109 remaining)\\n  ETA: 33.7 min (108 remaining)\\n  ETA: 33.3 min (107 remaining)\\n  ETA: 32.8 min (106 remaining)\\n  ETA: 32.4 min (105 remaining)\\n  ETA: 32.0 min (104 remaining)\\n  ETA: 31.6 min (103 remaining)\\n  ETA: 31.3 min (102 remaining)\\n  ETA: 30.9 min (101 remaining)\\n  ETA: 30.5 min (100 remaining)\\n  ETA: 30.2 min (99 remaining)\\n  ETA: 29.7 min (98 remaining)\\n  ETA: 29.4 min (97 remaining)\\n  ETA: 29.2 min (96 remaining)\\n  ETA: 29.0 min (95 remaining)\\n  ETA: 28.8 min (94 remaining)\\n  ETA: 28.5 min (93 remaining)\\n  ETA: 28.1 min (92 remaining)\\n  ETA: 27.8 min (91 remaining)\\n  ETA: 27.5 min (90 remaining)\\n  ETA: 27.1 min (89 remaining)\\n  ETA: 26.7 min (88 remaining)\\n  ETA: 26.4 min (87 remaining)\\n  ETA: 26.0 min (86 remaining)\\n  ETA: 25.7 min (85 remaining)\\n  ETA: 25.4 min (84 remaining)\\n  ETA: 25.2 min (83 remaining)\\n  ETA: 24.8 min (82 remaining)\\n  ETA: 24.4 min (81 remaining)\\n  ETA: 24.1 min (80 remaining)\\n  ETA: 23.8 min (79 remaining)\\n  ETA: 23.5 min (78 remaining)\\n  ETA: 23.2 min (77 remaining)\\n  ETA: 23.1 min (76 remaining)\\n  ETA: 22.9 min (75 remaining)\\n  ETA: 22.6 min (74 remaining)\\n  ETA: 22.4 min (73 remaining)\\n  ETA: 22.0 min (72 remaining)\\n  ETA: 21.6 min (71 remaining)\\n  ETA: 21.3 min (70 remaining)\\n  ETA: 20.9 min (69 remaining)\\n  ETA: 20.6 min (68 remaining)\\n  ETA: 20.3 min (67 remaining)\\n  ETA: 20.1 min (66 remaining)\\n  ETA: 19.8 min (65 remaining)\\n  ETA: 19.5 min (64 remaining)\\n  ETA: 19.3 min (63 remaining)\\n  ETA: 19.0 min (62 remaining)\\n  ETA: 18.8 min (61 remaining)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c87bc953-6c19-4bbe-81c1-14a6fa23cde9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  ETA: 98.2 min (203 remaining)\\\\n  ETA: 86.2 min (202 remaining)\\\\n  ETA: 75.7 min (201 remaining)\\\\n  ETA: 77.9 min (200 remaining)\\\\n  ETA: 75.8 min (199 remaining)\\\\n  ETA: 77.7 min (198 remaining)\\\\n  ETA: 77.3 min (197 remaining)\\\\n  ETA: 75.4 min (196 remaining)\\\\n  ETA: 75.5 min (195 remaining)\\\\n  ETA: 70.3 min (194 remaining)\\\\n  ETA: 67.7 min (193 remaining)\\\\n  ETA: 66.2 min (192 remaining)\\\\n  ETA: 67.4 min (191 remaining)\\\\n  ETA: 66.7 min (190 remaining)\\\\n  ETA: 67.5 min (189 remaining)\\\\n  ETA: 65.3 min (188 remaining)\\\\n  ETA: 64.8 min (187 remaining)\\\\n  ETA: 64.1 min (186 remaining)\\\\n  ETA: 63.7 min (185 remaining)\\\\n  ETA: 62.8 min (184 remaining)\\\\n  ETA: 64.1 min (183 remaining)\\\\n  ETA: 64.1 min (182 remaining)\\\\n  ETA: 63.8 min (181 remaining)\\\\n  ETA: 63.5 min (180 remaining)\\\\n  ETA: 62.5 min (179 remaining)\\\\n  ETA: 61.5 min (178 remaining)\\\\n  ETA: 59.8 min (177 remaining)\\\\n  ETA: 59.8 min (176 remaining)\\\\n  ETA: 59.3 min (175 remaining)\\\\n  ETA: 59.2 min (174 remaining)\\\\n  ETA: 58.9 min (173 remaining)\\\\n  ETA: 58.5 min (172 remaining)\\\\n  ETA: 58.6 min (171 remaining)\\\\n  ETA: 58.5 min (170 remaining)\\\\n  ETA: 58.2 min (169 remaining)\\\\n  ETA: 57.5 min (168 remaining)\\\\n  ETA: 57.2 min (167 remaining)\\\\n  ETA: 57.2 min (166 remaining)\\\\n  ETA: 56.0 min (165 remaining)\\\\n  ETA: 54.8 min (164 remaining)\\\\n  ETA: 54.0 min (163 remaining)\\\\n  ETA: 53.2 min (162 remaining)\\\\n  ETA: 52.3 min (161 remaining)\\\\n  ETA: 51.5 min (160 remaining)\\\\n  ETA: 51.2 min (159 remaining)\\\\n  ETA: 50.8 min (158 remaining)\\\\n  ETA: 50.3 min (157 remaining)\\\\n  ETA: 49.8 min (156 remaining)\\\\n  ETA: 49.6 min (155 remaining)\\\\n  ETA: 49.4 min (154 remaining)\\\\n  ETA: 48.6 min (153 remaining)\\\\n  ETA: 48.1 min (152 remaining)\\\\n  ETA: 47.7 min (151 remaining)\\\\n  ETA: 47.3 min (150 remaining)\\\\n  ETA: 47.0 min (149 remaining)\\\\n  ETA: 46.8 min (148 remaining)\\\\n  ETA: 46.5 min (147 remaining)\\\\n  ETA: 45.7 min (146 remaining)\\\\n  ETA: 45.6 min (145 remaining)\\\\n  ETA: 45.3 min (144 remaining)\\\\n  ETA: 45.3 min (143 remaining)\\\\n  ETA: 45.3 min (142 remaining)\\\\n  ETA: 45.5 min (141 remaining)\\\\n  ETA: 45.6 min (140 remaining)\\\\n  ETA: 44.9 min (139 remaining)\\\\n  ETA: 44.7 min (138 remaining)\\\\n  ETA: 44.5 min (137 remaining)\\\\n  ETA: 44.2 min (136 remaining)\\\\n  ETA: 43.7 min (135 remaining)\\\\n  ETA: 43.4 min (134 remaining)\\\\n  ETA: 43.0 min (133 remaining)\\\\n  ETA: 42.7 min (132 remaining)\\\\n  ETA: 42.0 min (131 remaining)\\\\n  ETA: 41.6 min (130 remaining)\\\\n  ETA: 41.2 min (129 remaining)\\\\n  ETA: 40.6 min (128 remaining)\\\\n  ETA: 40.1 min (127 remaining)\\\\n  ETA: 39.7 min (126 remaining)\\\\n  ETA: 39.1 min (125 remaining)\\\\n  ETA: 38.8 min (124 remaining)\\\\n  ETA: 38.6 min (123 remaining)\\\\n  ETA: 38.7 min (122 remaining)\\\\n  ETA: 38.7 min (121 remaining)\\\\n  ETA: 38.4 min (120 remaining)\\\\n  ETA: 38.3 min (119 remaining)\\\\n  ETA: 38.1 min (118 remaining)\\\\n  ETA: 37.5 min (117 remaining)\\\\n  ETA: 36.9 min (116 remaining)\\\\n  ETA: 36.5 min (115 remaining)\\\\n  ETA: 35.9 min (114 remaining)\\\\n  ETA: 35.6 min (113 remaining)\\\\n  ETA: 35.1 min (112 remaining)\\\\n  ETA: 34.6 min (111 remaining)\\\\n  ETA: 34.3 min (110 remaining)\\\\n  ETA: 34.0 min (109 remaining)\\\\n  ETA: 33.7 min (108 remaining)\\\\n  ETA: 33.3 min (107 remaining)\\\\n  ETA: 32.8 min (106 remaining)\\\\n  ETA: 32.4 min (105 remaining)\\\\n  ETA: 32.0 min (104 remaining)\\\\n  ETA: 31.6 min (103 remaining)\\\\n  ETA: 31.3 min (102 remaining)\\\\n  ETA: 30.9 min (101 remaining)\\\\n  ETA: 30.5 min (100 remaining)\\\\n  ETA: 30.2 min (99 remaining)\\\\n  ETA: 29.7 min (98 remaining)\\\\n  ETA: 29.4 min (97 remaining)\\\\n  ETA: 29.2 min (96 remaining)\\\\n  ETA: 29.0 min (95 remaining)\\\\n  ETA: 28.8 min (94 remaining)\\\\n  ETA: 28.5 min (93 remaining)\\\\n  ETA: 28.1 min (92 remaining)\\\\n  ETA: 27.8 min (91 remaining)\\\\n  ETA: 27.5 min (90 remaining)\\\\n  ETA: 27.1 min (89 remaining)\\\\n  ETA: 26.7 min (88 remaining)\\\\n  ETA: 26.4 min (87 remaining)\\\\n  ETA: 26.0 min (86 remaining)\\\\n  ETA: 25.7 min (85 remaining)\\\\n  ETA: 25.4 min (84 remaining)\\\\n  ETA: 25.2 min (83 remaining)\\\\n  ETA: 24.8 min (82 remaining)\\\\n  ETA: 24.4 min (81 remaining)\\\\n  ETA: 24.1 min (80 remaining)\\\\n  ETA: 23.8 min (79 remaining)\\\\n  ETA: 23.5 min (78 remaining)\\\\n  ETA: 23.2 min (77 remaining)\\\\n  ETA: 23.1 min (76 remaining)\\\\n  ETA: 22.9 min (75 remaining)\\\\n  ETA: 22.6 min (74 remaining)\\\\n  ETA: 22.4 min (73 remaining)\\\\n  ETA: 22.0 min (72 remaining)\\\\n  ETA: 21.6 min (71 remaining)\\\\n  ETA: 21.3 min (70 remaining)\\\\n  ETA: 20.9 min (69 remaining)\\\\n  ETA: 20.6 min (68 remaining)\\\\n  ETA: 20.3 min (67 remaining)\\\\n  ETA: 20.1 min (66 remaining)\\\\n  ETA: 19.8 min (65 remaining)\\\\n  ETA: 19.5 min (64 remaining)\\\\n  ETA: 19.3 min (63 remaining)\\\\n  ETA: 19.0 min (62 remaining)\\\\n  ETA: 18.8 min (61 remaining)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  ETA: 98.2 min (203 remaining)\\n  ETA: 86.2 min (202 remaining)\\n  ETA: 75.7 min (201 remaining)\\n  ETA: 77.9 min (200 remaining)\\n  ETA: 75.8 min (199 remaining)\\n  ETA: 77.7 min (198 remaining)\\n  ETA: 77.3 min (197 remaining)\\n  ETA: 75.4 min (196 remaining)\\n  ETA: 75.5 min (195 remaining)\\n  ETA: 70.3 min (194 remaining)\\n  ETA: 67.7 min (193 remaining)\\n  ETA: 66.2 min (192 remaining)\\n  ETA: 67.4 min (191 remaining)\\n  ETA: 66.7 min (190 remaining)\\n  ETA: 67.5 min (189 remaining)\\n  ETA: 65.3 min (188 remaining)\\n  ETA: 64.8 min (187 remaining)\\n  ETA: 64.1 min (186 remaining)\\n  ETA: 63.7 min (185 remaining)\\n  ETA: 62.8 min (184 remaining)\\n  ETA: 64.1 min (183 remaining)\\n  ETA: 64.1 min (182 remaining)\\n  ETA: 63.8 min (181 remaining)\\n  ETA: 63.5 min (180 remaining)\\n  ETA: 62.5 min (179 remaining)\\n  ETA: 61.5 min (178 remaining)\\n  ETA: 59.8 min (177 remaining)\\n  ETA: 59.8 min (176 remaining)\\n  ETA: 59.3 min (175 remaining)\\n  ETA: 59.2 min (174 remaining)\\n  ETA: 58.9 min (173 remaining)\\n  ETA: 58.5 min (172 remaining)\\n  ETA: 58.6 min (171 remaining)\\n  ETA: 58.5 min (170 remaining)\\n  ETA: 58.2 min (169 remaining)\\n  ETA: 57.5 min (168 remaining)\\n  ETA: 57.2 min (167 remaining)\\n  ETA: 57.2 min (166 remaining)\\n  ETA: 56.0 min (165 remaining)\\n  ETA: 54.8 min (164 remaining)\\n  ETA: 54.0 min (163 remaining)\\n  ETA: 53.2 min (162 remaining)\\n  ETA: 52.3 min (161 remaining)\\n  ETA: 51.5 min (160 remaining)\\n  ETA: 51.2 min (159 remaining)\\n  ETA: 50.8 min (158 remaining)\\n  ETA: 50.3 min (157 remaining)\\n  ETA: 49.8 min (156 remaining)\\n  ETA: 49.6 min (155 remaining)\\n  ETA: 49.4 min (154 remaining)\\n  ETA: 48.6 min (153 remaining)\\n  ETA: 48.1 min (152 remaining)\\n  ETA: 47.7 min (151 remaining)\\n  ETA: 47.3 min (150 remaining)\\n  ETA: 47.0 min (149 remaining)\\n  ETA: 46.8 min (148 remaining)\\n  ETA: 46.5 min (147 remaining)\\n  ETA: 45.7 min (146 remaining)\\n  ETA: 45.6 min (145 remaining)\\n  ETA: 45.3 min (144 remaining)\\n  ETA: 45.3 min (143 remaining)\\n  ETA: 45.3 min (142 remaining)\\n  ETA: 45.5 min (141 remaining)\\n  ETA: 45.6 min (140 remaining)\\n  ETA: 44.9 min (139 remaining)\\n  ETA: 44.7 min (138 remaining)\\n  ETA: 44.5 min (137 remaining)\\n  ETA: 44.2 min (136 remaining)\\n  ETA: 43.7 min (135 remaining)\\n  ETA: 43.4 min (134 remaining)\\n  ETA: 43.0 min (133 remaining)\\n  ETA: 42.7 min (132 remaining)\\n  ETA: 42.0 min (131 remaining)\\n  ETA: 41.6 min (130 remaining)\\n  ETA: 41.2 min (129 remaining)\\n  ETA: 40.6 min (128 remaining)\\n  ETA: 40.1 min (127 remaining)\\n  ETA: 39.7 min (126 remaining)\\n  ETA: 39.1 min (125 remaining)\\n  ETA: 38.8 min (124 remaining)\\n  ETA: 38.6 min (123 remaining)\\n  ETA: 38.7 min (122 remaining)\\n  ETA: 38.7 min (121 remaining)\\n  ETA: 38.4 min (120 remaining)\\n  ETA: 38.3 min (119 remaining)\\n  ETA: 38.1 min (118 remaining)\\n  ETA: 37.5 min (117 remaining)\\n  ETA: 36.9 min (116 remaining)\\n  ETA: 36.5 min (115 remaining)\\n  ETA: 35.9 min (114 remaining)\\n  ETA: 35.6 min (113 remaining)\\n  ETA: 35.1 min (112 remaining)\\n  ETA: 34.6 min (111 remaining)\\n  ETA: 34.3 min (110 remaining)\\n  ETA: 34.0 min (109 remaining)\\n  ETA: 33.7 min (108 remaining)\\n  ETA: 33.3 min (107 remaining)\\n  ETA: 32.8 min (106 remaining)\\n  ETA: 32.4 min (105 remaining)\\n  ETA: 32.0 min (104 remaining)\\n  ETA: 31.6 min (103 remaining)\\n  ETA: 31.3 min (102 remaining)\\n  ETA: 30.9 min (101 remaining)\\n  ETA: 30.5 min (100 remaining)\\n  ETA: 30.2 min (99 remaining)\\n  ETA: 29.7 min (98 remaining)\\n  ETA: 29.4 min (97 remaining)\\n  ETA: 29.2 min (96 remaining)\\n  ETA: 29.0 min (95 remaining)\\n  ETA: 28.8 min (94 remaining)\\n  ETA: 28.5 min (93 remaining)\\n  ETA: 28.1 min (92 remaining)\\n  ETA: 27.8 min (91 remaining)\\n  ETA: 27.5 min (90 remaining)\\n  ETA: 27.1 min (89 remaining)\\n  ETA: 26.7 min (88 remaining)\\n  ETA: 26.4 min (87 remaining)\\n  ETA: 26.0 min (86 remaining)\\n  ETA: 25.7 min (85 remaining)\\n  ETA: 25.4 min (84 remaining)\\n  ETA: 25.2 min (83 remaining)\\n  ETA: 24.8 min (82 remaining)\\n  ETA: 24.4 min (81 remaining)\\n  ETA: 24.1 min (80 remaining)\\n  ETA: 23.8 min (79 remaining)\\n  ETA: 23.5 min (78 remaining)\\n  ETA: 23.2 min (77 remaining)\\n  ETA: 23.1 min (76 remaining)\\n  ETA: 22.9 min (75 remaining)\\n  ETA: 22.6 min (74 remaining)\\n  ETA: 22.4 min (73 remaining)\\n  ETA: 22.0 min (72 remaining)\\n  ETA: 21.6 min (71 remaining)\\n  ETA: 21.3 min (70 remaining)\\n  ETA: 20.9 min (69 remaining)\\n  ETA: 20.6 min (68 remaining)\\n  ETA: 20.3 min (67 remaining)\\n  ETA: 20.1 min (66 remaining)\\n  ETA: 19.8 min (65 remaining)\\n  ETA: 19.5 min (64 remaining)\\n  ETA: 19.3 min (63 remaining)\\n  ETA: 19.0 min (62 remaining)\\n  ETA: 18.8 min (61 remaining)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T15:35:50.246Z_
+
+<details><summary>↩ Tool result · `toolu_01PBLSJrCPvcBg67KefExWCm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ETA: 228.9 min (203 remaining, avg 67.6s/prob)\\nETA: 253.1 min (202 remaining, avg 75.2s/prob)\\nETA: 251.4 min (201 remaining, avg 75.1s/prob)\\nETA: 251.1 min (200 remaining, avg 75.3s/prob)\\nETA: 261.7 min (199 remaining, avg 78.9s/prob)\\nETA: 265.8 min (198 remaining, avg 80.5s/prob)\\nETA: 243.1 min (197 remaining, avg 74.0s/prob)\\nETA: 227.0 min (196 remaining, avg 69.5s/prob)\\nETA: 212.1 min (195 remaining, avg 65.3s/prob)\\nETA: 204.1 min (194 remaining, avg 63.1s/prob)\\nETA: 195.7 min (193 remaining, avg 60.8s/prob)\\nETA: 188.2 min (192 remaining, avg 58.8s/prob)\\nETA: 182.3 min (191 remaining, avg 57.3s/prob)\\nETA: 177.5 min (190 remaining, avg 56.1s/prob)\\nETA: 172.3 min (189 remaining, avg 54.7s/prob)\\nETA: 165.0 min (188 remaining, avg 52.7s/prob)\\nETA: 166.4 min (187 remaining, avg 53.4s/prob)\\nETA: 167.2 min (186 remaining, avg 53.9s/prob)\\nETA: 166.8 min (185 remaining, avg 54.1s/prob)\\nETA: 167.7 min (184 remaining, avg 54.7s/prob)\\nETA: 168.8 min (183 remaining, avg 55.3s/prob)\\nETA: 167.3 min (182 remaining, avg 55.2s/prob)\\nETA: 166.6 min (181 remaining, avg 55.2s/prob)\\nETA: 165.5 min (180 remaining, avg 55.2s/prob)\\nETA: 163.4 min (179 remaining, avg 54.8s/prob)\\nETA: 158.6 min (178 remaining, avg 53.4s/prob)\\nETA: 154.9 min (177 remaining, avg 52.5s/prob)\\nETA: 156.5 min (176 remaining, avg 53.4s/prob)\\nETA: 156.9 min (175 remaining, avg 53.8s/prob)\\nETA: 157.9 min (174 remaining, avg 54.4s/prob)\\nETA: 158.9 min (173 remaining, avg 55.1s/prob)\\nETA: 159.6 min (172 remaining, avg 55.7s/prob)\\nETA: 160.1 min (171 remaining, avg 56.2s/prob)\\nETA: 156.9 min (170 remaining, avg 55.4s/prob)\\nETA: 154.0 min (169 remaining, avg 54.7s/prob)\\nETA: 152.0 min (168 remaining, avg 54.3s/prob)\\nETA: 150.9 min (167 remaining, avg 54.2s/prob)\\nETA: 149.5 min (166 remaining, avg 54.0s/prob)\\nETA: 148.4 min (165 remaining, avg 54.0s/prob)\\nETA: 147.8 min (164 remaining, avg 54.1s/prob)\\nETA: 147.2 min (163 remaining, avg 54.2s/prob)\\nETA: 147.3 min (162 remaining, avg 54.6s/prob)\\nETA: 147.9 min (161 remaining, avg 55.1s/prob)\\nETA: 148.0 min (160 remaining, avg 55.5s/prob)\\nETA: 148.7 min (159 remaining, avg 56.1s/prob)\\nETA: 146.2 min (158 remaining, avg 55.5s/prob)\\nETA: 144.0 min (157 remaining, avg 55.0s/prob)\\nETA: 141.4 min (156 remaining, avg 54.4s/prob)\\nETA: 139.4 min (155 remaining, avg 54.0s/prob)\\nETA: 138.3 min (154 remaining, avg 53.9s/prob)\\nETA: 137.8 min (153 remaining, avg 54.0s/prob)\\nETA: 137.1 min (152 remaining, avg 54.1s/prob)\\nETA: 135.8 min (151 remaining, avg 54.0s/prob)\\nETA: 134.5 min (150 remaining, avg 53.8s/prob)\\nETA: 132.4 min (149 remaining, avg 53.3s/prob)\\nETA: 130.7 min (148 remaining, avg 53.0s/prob)\\nETA: 129.1 min (147 remaining, avg 52.7s/prob)\\nETA: 127.5 min (146 remaining, avg 52.4s/prob)\\nETA: 127.0 min (145 remaining, avg 52.6s/prob)\\nETA: 126.5 min (144 remaining, avg 52.7s/prob)\\nETA: 125.3 min (143 remaining, avg 52.6s/prob)\\nETA: 124.1 min (142 remaining, avg 52.4s/prob)\\nETA: 122.9 min (141 remaining, avg 52.3s/prob)\\nETA: 122.1 min (140 remaining, avg 52.3s/prob)\\nETA: 121.2 min (139 remaining, avg 52.3s/prob)\\nETA: 120.4 min (138 remaining, avg 52.3s/prob)\\nETA: 118.7 min (137 remaining, avg 52.0s/prob)\\nETA: 116.8 min (136 remaining, avg 51.5s/prob)\\nETA: 114.8 min (135 remaining, avg 51.0s/prob)\\nETA: 113.5 min (134 remaining, avg 50.8s/prob)\\nETA: 112.2 min (133 remaining, avg 50.6s/prob)\\nETA: 111.3 min (132 remaining, avg 50.6s/prob)\\nETA: 110.4 min (131 remaining, avg 50.6s/prob)\\nETA: 109.9 min (130 remaining, avg 50.7s/prob)\\nETA: 108.6 min (129 remaining, avg 50.5s/prob)\\nETA: 107.7 min (128 remaining, avg 50.5s/prob)\\nETA: 107.3 min (127 remaining, avg 50.7s/prob)\\nETA: 106.8 min (126 remaining, avg 50.9s/prob)\\nETA: 106.5 min (125 remaining, avg 51.1s/prob)\\nETA: 106.5 min (124 remaining, avg 51.5s/prob)\\nETA: 106.3 min (123 remaining, avg 51.8s/prob)\\nETA: 105.9 min (122 remaining, avg 52.1s/prob)\\nETA: 105.5 min (121 remaining, avg 52.3s/prob)\\nETA: 105.1 min (120 remaining, avg 52.6s/prob)\\nETA: 104.7 min (119 remaining, avg 52.8s/prob)\\nETA: 103.8 min (118 remaining, avg 52.8s/prob)\\nETA: 102.9 min (117 remaining, avg 52.8s/prob)\\nETA: 102.8 min (116 remaining, avg 53.2s/prob)\\nETA: 101.4 min (115 remaining, avg 52.9s/prob)\\nETA: 100.1 min (114 remaining, avg 52.7s/prob)\\nETA: 98.9 min (113 remaining, avg 52.5s/prob)\\nETA: 97.5 min (112 remaining, avg 52.2s/prob)\\nETA: 96.4 min (111 remaining, avg 52.1s/prob)\\nETA: 96.2 min (110 remaining, avg 52.5s/prob)\\nETA: 95.8 min (109 remaining, avg 52.7s/prob)\\nETA: 94.9 min (108 remaining, avg 52.7s/prob)\\nETA: 94.1 min (107 remaining, avg 52.8s/prob)\\nETA: 93.3 min (106 remaining, avg 52.8s/prob)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "070f7531-1840-4e46-aef9-1e13591d571b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ETA: 228.9 min (203 remaining, avg 67.6s/prob)\\\\nETA: 253.1 min (202 remaining, avg 75.2s/prob)\\\\nETA: 251.4 min (201 remaining, avg 75.1s/prob)\\\\nETA: 251.1 min (200 remaining, avg 75.3s/prob)\\\\nETA: 261.7 min (199 remaining, avg 78.9s/prob)\\\\nETA: 265.8 min (198 remaining, avg 80.5s/prob)\\\\nETA: 243.1 min (197 remaining, avg 74.0s/prob)\\\\nETA: 227.0 min (196 remaining, avg 69.5s/prob)\\\\nETA: 212.1 min (195 remaining, avg 65.3s/prob)\\\\nETA: 204.1 min (194 remaining, avg 63.1s/prob)\\\\nETA: 195.7 min (193 remaining, avg 60.8s/prob)\\\\nETA: 188.2 min (192 remaining, avg 58.8s/prob)\\\\nETA: 182.3 min (191 remaining, avg 57.3s/prob)\\\\nETA: 177.5 min (190 remaining, avg 56.1s/prob)\\\\nETA: 172.3 min (189 remaining, avg 54.7s/prob)\\\\nETA: 165.0 min (188 remaining, avg 52.7s/prob)\\\\nETA: 166.4 min (187 remaining, avg 53.4s/prob)\\\\nETA: 167.2 min (186 remaining, avg 53.9s/prob)\\\\nETA: 166.8 min (185 remaining, avg 54.1s/prob)\\\\nETA: 167.7 min (184 remaining, avg 54.7s/prob)\\\\nETA: 168.8 min (183 remaining, avg 55.3s/prob)\\\\nETA: 167.3 min (182 remaining, avg 55.2s/prob)\\\\nETA: 166.6 min (181 remaining, avg 55.2s/prob)\\\\nETA: 165.5 min (180 remaining, avg 55.2s/prob)\\\\nETA: 163.4 min (179 remaining, avg 54.8s/prob)\\\\nETA: 158.6 min (178 remaining, avg 53.4s/prob)\\\\nETA: 154.9 min (177 remaining, avg 52.5s/prob)\\\\nETA: 156.5 min (176 remaining, avg 53.4s/prob)\\\\nETA: 156.9 min (175 remaining, avg 53.8s/prob)\\\\nETA: 157.9 min (174 remaining, avg 54.4s/prob)\\\\nETA: 158.9 min (173 remaining, avg 55.1s/prob)\\\\nETA: 159.6 min (172 remaining, avg 55.7s/prob)\\\\nETA: 160.1 min (171 remaining, avg 56.2s/prob)\\\\nETA: 156.9 min (170 remaining, avg 55.4s/prob)\\\\nETA: 154.0 min (169 remaining, avg 54.7s/prob)\\\\nETA: 152.0 min (168 remaining, avg 54.3s/prob)\\\\nETA: 150.9 min (167 remaining, avg 54.2s/prob)\\\\nETA: 149.5 min (166 remaining, avg 54.0s/prob)\\\\nETA: 148.4 min (165 remaining, avg 54.0s/prob)\\\\nETA: 147.8 min (164 remaining, avg 54.1s/prob)\\\\nETA: 147.2 min (163 remaining, avg 54.2s/prob)\\\\nETA: 147.3 min (162 remaining, avg 54.6s/prob)\\\\nETA: 147.9 min (161 remaining, avg 55.1s/prob)\\\\nETA: 148.0 min (160 remaining, avg 55.5s/prob)\\\\nETA: 148.7 min (159 remaining, avg 56.1s/prob)\\\\nETA: 146.2 min (158 remaining, avg 55.5s/prob)\\\\nETA: 144.0 min (157 remaining, avg 55.0s/prob)\\\\nETA: 141.4 min (156 remaining, avg 54.4s/prob)\\\\nETA: 139.4 min (155 remaining, avg 54.0s/prob)\\\\nETA: 138.3 min (154 remaining, avg 53.9s/prob)\\\\nETA: 137.8 min (153 remaining, avg 54.0s/prob)\\\\nETA: 137.1 min (152 remaining, avg 54.1s/prob)\\\\nETA: 135.8 min (151 remaining, avg 54.0s/prob)\\\\nETA: 134.5 min (150 remaining, avg 53.8s/prob)\\\\nETA: 132.4 min (149 remaining, avg 53.3s/prob)\\\\nETA: 130.7 min (148 remaining, avg 53.0s/prob)\\\\nETA: 129.1 min (147 remaining, avg 52.7s/prob)\\\\nETA: 127.5 min (146 remaining, avg 52.4s/prob)\\\\nETA: 127.0 min (145 remaining, avg 52.6s/prob)\\\\nETA: 126.5 min (144 remaining, avg 52.7s/prob)\\\\nETA: 125.3 min (143 remaining, avg 52.6s/prob)\\\\nETA: 124.1 min (142 remaining, avg 52.4s/prob)\\\\nETA: 122.9 min (141 remaining, avg 52.3s/prob)\\\\nETA: 122.1 min (140 remaining, avg 52.3s/prob)\\\\nETA: 121.2 min (139 remaining, avg 52.3s/prob)\\\\nETA: 120.4 min (138 remaining, avg 52.3s/prob)\\\\nETA: 118.7 min (137 remaining, avg 52.0s/prob)\\\\nETA: 116.8 min (136 remaining, avg 51.5s/prob)\\\\nETA: 114.8 min (135 remaining, avg 51.0s/prob)\\\\nETA: 113.5 min (134 remaining, avg 50.8s/prob)\\\\nETA: 112.2 min (133 remaining, avg 50.6s/prob)\\\\nETA: 111.3 min (132 remaining, avg 50.6s/prob)\\\\nETA: 110.4 min (131 remaining, avg 50.6s/prob)\\\\nETA: 109.9 min (130 remaining, avg 50.7s/prob)\\\\nETA: 108.6 min (129 remaining, avg 50.5s/prob)\\\\nETA: 107.7 min (128 remaining, avg 50.5s/prob)\\\\nETA: 107.3 min (127 remaining, avg 50.7s/prob)\\\\nETA: 106.8 min (126 remaining, avg 50.9s/prob)\\\\nETA: 106.5 min (125 remaining, avg 51.1s/prob)\\\\nETA: 106.5 min (124 remaining, avg 51.5s/prob)\\\\nETA: 106.3 min (123 remaining, avg 51.8s/prob)\\\\nETA: 105.9 min (122 remaining, avg 52.1s/prob)\\\\nETA: 105.5 min (121 remaining, avg 52.3s/prob)\\\\nETA: 105.1 min (120 remaining, avg 52.6s/prob)\\\\nETA: 104.7 min (119 remaining, avg 52.8s/prob)\\\\nETA: 103.8 min (118 remaining, avg 52.8s/prob)\\\\nETA: 102.9 min (117 remaining, avg 52.8s/prob)\\\\nETA: 102.8 min (116 remaining, avg 53.2s/prob)\\\\nETA: 101.4 min (115 remaining, avg 52.9s/prob)\\\\nETA: 100.1 min (114 remaining, avg 52.7s/prob)\\\\nETA: 98.9 min (113 remaining, avg 52.5s/prob)\\\\nETA: 97.5 min (112 remaining, avg 52.2s/prob)\\\\nETA: 96.4 min (111 remaining, avg 52.1s/prob)\\\\nETA: 96.2 min (110 remaining, avg 52.5s/prob)\\\\nETA: 95.8 min (109 remaining, avg 52.7s/prob)\\\\nETA: 94.9 min (108 remaining, avg 52.7s/prob)\\\\nETA: 94.1 min (107 remaining, avg 52.8s/prob)\\\\nETA: 93.3 min (106 remaining, avg 52.8s/prob)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ETA: 228.9 min (203 remaining, avg 67.6s/prob)\\nETA: 253.1 min (202 remaining, avg 75.2s/prob)\\nETA: 251.4 min (201 remaining, avg 75.1s/prob)\\nETA: 251.1 min (200 remaining, avg 75.3s/prob)\\nETA: 261.7 min (199 remaining, avg 78.9s/prob)\\nETA: 265.8 min (198 remaining, avg 80.5s/prob)\\nETA: 243.1 min (197 remaining, avg 74.0s/prob)\\nETA: 227.0 min (196 remaining, avg 69.5s/prob)\\nETA: 212.1 min (195 remaining, avg 65.3s/prob)\\nETA: 204.1 min (194 remaining, avg 63.1s/prob)\\nETA: 195.7 min (193 remaining, avg 60.8s/prob)\\nETA: 188.2 min (192 remaining, avg 58.8s/prob)\\nETA: 182.3 min (191 remaining, avg 57.3s/prob)\\nETA: 177.5 min (190 remaining, avg 56.1s/prob)\\nETA: 172.3 min (189 remaining, avg 54.7s/prob)\\nETA: 165.0 min (188 remaining, avg 52.7s/prob)\\nETA: 166.4 min (187 remaining, avg 53.4s/prob)\\nETA: 167.2 min (186 remaining, avg 53.9s/prob)\\nETA: 166.8 min (185 remaining, avg 54.1s/prob)\\nETA: 167.7 min (184 remaining, avg 54.7s/prob)\\nETA: 168.8 min (183 remaining, avg 55.3s/prob)\\nETA: 167.3 min (182 remaining, avg 55.2s/prob)\\nETA: 166.6 min (181 remaining, avg 55.2s/prob)\\nETA: 165.5 min (180 remaining, avg 55.2s/prob)\\nETA: 163.4 min (179 remaining, avg 54.8s/prob)\\nETA: 158.6 min (178 remaining, avg 53.4s/prob)\\nETA: 154.9 min (177 remaining, avg 52.5s/prob)\\nETA: 156.5 min (176 remaining, avg 53.4s/prob)\\nETA: 156.9 min (175 remaining, avg 53.8s/prob)\\nETA: 157.9 min (174 remaining, avg 54.4s/prob)\\nETA: 158.9 min (173 remaining, avg 55.1s/prob)\\nETA: 159.6 min (172 remaining, avg 55.7s/prob)\\nETA: 160.1 min (171 remaining, avg 56.2s/prob)\\nETA: 156.9 min (170 remaining, avg 55.4s/prob)\\nETA: 154.0 min (169 remaining, avg 54.7s/prob)\\nETA: 152.0 min (168 remaining, avg 54.3s/prob)\\nETA: 150.9 min (167 remaining, avg 54.2s/prob)\\nETA: 149.5 min (166 remaining, avg 54.0s/prob)\\nETA: 148.4 min (165 remaining, avg 54.0s/prob)\\nETA: 147.8 min (164 remaining, avg 54.1s/prob)\\nETA: 147.2 min (163 remaining, avg 54.2s/prob)\\nETA: 147.3 min (162 remaining, avg 54.6s/prob)\\nETA: 147.9 min (161 remaining, avg 55.1s/prob)\\nETA: 148.0 min (160 remaining, avg 55.5s/prob)\\nETA: 148.7 min (159 remaining, avg 56.1s/prob)\\nETA: 146.2 min (158 remaining, avg 55.5s/prob)\\nETA: 144.0 min (157 remaining, avg 55.0s/prob)\\nETA: 141.4 min (156 remaining, avg 54.4s/prob)\\nETA: 139.4 min (155 remaining, avg 54.0s/prob)\\nETA: 138.3 min (154 remaining, avg 53.9s/prob)\\nETA: 137.8 min (153 remaining, avg 54.0s/prob)\\nETA: 137.1 min (152 remaining, avg 54.1s/prob)\\nETA: 135.8 min (151 remaining, avg 54.0s/prob)\\nETA: 134.5 min (150 remaining, avg 53.8s/prob)\\nETA: 132.4 min (149 remaining, avg 53.3s/prob)\\nETA: 130.7 min (148 remaining, avg 53.0s/prob)\\nETA: 129.1 min (147 remaining, avg 52.7s/prob)\\nETA: 127.5 min (146 remaining, avg 52.4s/prob)\\nETA: 127.0 min (145 remaining, avg 52.6s/prob)\\nETA: 126.5 min (144 remaining, avg 52.7s/prob)\\nETA: 125.3 min (143 remaining, avg 52.6s/prob)\\nETA: 124.1 min (142 remaining, avg 52.4s/prob)\\nETA: 122.9 min (141 remaining, avg 52.3s/prob)\\nETA: 122.1 min (140 remaining, avg 52.3s/prob)\\nETA: 121.2 min (139 remaining, avg 52.3s/prob)\\nETA: 120.4 min (138 remaining, avg 52.3s/prob)\\nETA: 118.7 min (137 remaining, avg 52.0s/prob)\\nETA: 116.8 min (136 remaining, avg 51.5s/prob)\\nETA: 114.8 min (135 remaining, avg 51.0s/prob)\\nETA: 113.5 min (134 remaining, avg 50.8s/prob)\\nETA: 112.2 min (133 remaining, avg 50.6s/prob)\\nETA: 111.3 min (132 remaining, avg 50.6s/prob)\\nETA: 110.4 min (131 remaining, avg 50.6s/prob)\\nETA: 109.9 min (130 remaining, avg 50.7s/prob)\\nETA: 108.6 min (129 remaining, avg 50.5s/prob)\\nETA: 107.7 min (128 remaining, avg 50.5s/prob)\\nETA: 107.3 min (127 remaining, avg 50.7s/prob)\\nETA: 106.8 min (126 remaining, avg 50.9s/prob)\\nETA: 106.5 min (125 remaining, avg 51.1s/prob)\\nETA: 106.5 min (124 remaining, avg 51.5s/prob)\\nETA: 106.3 min (123 remaining, avg 51.8s/prob)\\nETA: 105.9 min (122 remaining, avg 52.1s/prob)\\nETA: 105.5 min (121 remaining, avg 52.3s/prob)\\nETA: 105.1 min (120 remaining, avg 52.6s/prob)\\nETA: 104.7 min (119 remaining, avg 52.8s/prob)\\nETA: 103.8 min (118 remaining, avg 52.8s/prob)\\nETA: 102.9 min (117 remaining, avg 52.8s/prob)\\nETA: 102.8 min (116 remaining, avg 53.2s/prob)\\nETA: 101.4 min (115 remaining, avg 52.9s/prob)\\nETA: 100.1 min (114 remaining, avg 52.7s/prob)\\nETA: 98.9 min (113 remaining, avg 52.5s/prob)\\nETA: 97.5 min (112 remaining, avg 52.2s/prob)\\nETA: 96.4 min (111 remaining, avg 52.1s/prob)\\nETA: 96.2 min (110 remaining, avg 52.5s/prob)\\nETA: 95.8 min (109 remaining, avg 52.7s/prob)\\nETA: 94.9 min (108 remaining, avg 52.7s/prob)\\nETA: 94.1 min (107 remaining, avg 52.8s/prob)\\nETA: 93.3 min (106 remaining, avg 52.8s/prob)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T15:35:51.866Z_
+
+<details><summary>↩ Tool result · `toolu_01T963sqEbfPmbG63PZhNRgW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ETA: 1360.5 min (203 remaining, avg 402.1s/prob)\\nETA: 1096.8 min (202 remaining, avg 325.8s/prob)\\nETA: 990.0 min (201 remaining, avg 295.5s/prob)\\nETA: 1108.0 min (200 remaining, avg 332.4s/prob)\\nETA: 1193.9 min (199 remaining, avg 360.0s/prob)\\nETA: 1101.6 min (198 remaining, avg 333.8s/prob)\\nETA: 1075.8 min (197 remaining, avg 327.6s/prob)\\nETA: 1042.8 min (196 remaining, avg 319.2s/prob)\\nETA: 995.6 min (195 remaining, avg 306.3s/prob)\\nETA: 970.8 min (194 remaining, avg 300.3s/prob)\\nETA: 936.5 min (193 remaining, avg 291.1s/prob)\\nETA: 898.0 min (192 remaining, avg 280.6s/prob)\\nETA: 892.9 min (191 remaining, avg 280.5s/prob)\\nETA: 876.7 min (190 remaining, avg 276.8s/prob)\\nETA: 857.1 min (189 remaining, avg 272.1s/prob)\\nETA: 856.3 min (188 remaining, avg 273.3s/prob)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c2bc5209-bff6-459b-bc5a-9b78b761ceeb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ETA: 1360.5 min (203 remaining, avg 402.1s/prob)\\\\nETA: 1096.8 min (202 remaining, avg 325.8s/prob)\\\\nETA: 990.0 min (201 remaining, avg 295.5s/prob)\\\\nETA: 1108.0 min (200 remaining, avg 332.4s/prob)\\\\nETA: 1193.9 min (199 remaining, avg 360.0s/prob)\\\\nETA: 1101.6 min (198 remaining, avg 333.8s/prob)\\\\nETA: 1075.8 min (197 remaining, avg 327.6s/prob)\\\\nETA: 1042.8 min (196 remaining, avg 319.2s/prob)\\\\nETA: 995.6 min (195 remaining, avg 306.3s/prob)\\\\nETA: 970.8 min (194 remaining, avg 300.3s/prob)\\\\nETA: 936.5 min (193 remaining, avg 291.1s/prob)\\\\nETA: 898.0 min (192 remaining, avg 280.6s/prob)\\\\nETA: 892.9 min (191 remaining, avg 280.5s/prob)\\\\nETA: 876.7 min (190 remaining, avg 276.8s/prob)\\\\nETA: 857.1 min (189 remaining, avg 272.1s/prob)\\\\nETA: 856.3 min (188 remaining, avg 273.3s/prob)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ETA: 1360.5 min (203 remaining, avg 402.1s/prob)\\nETA: 1096.8 min (202 remaining, avg 325.8s/prob)\\nETA: 990.0 min (201 remaining, avg 295.5s/prob)\\nETA: 1108.0 min (200 remaining, avg 332.4s/prob)\\nETA: 1193.9 min (199 remaining, avg 360.0s/prob)\\nETA: 1101.6 min (198 remaining, avg 333.8s/prob)\\nETA: 1075.8 min (197 remaining, avg 327.6s/prob)\\nETA: 1042.8 min (196 remaining, avg 319.2s/prob)\\nETA: 995.6 min (195 remaining, avg 306.3s/prob)\\nETA: 970.8 min (194 remaining, avg 300.3s/prob)\\nETA: 936.5 min (193 remaining, avg 291.1s/prob)\\nETA: 898.0 min (192 remaining, avg 280.6s/prob)\\nETA: 892.9 min (191 remaining, avg 280.5s/prob)\\nETA: 876.7 min (190 remaining, avg 276.8s/prob)\\nETA: 857.1 min (189 remaining, avg 272.1s/prob)\\nETA: 856.3 min (188 remaining, avg 273.3s/prob)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T15:35:53.315Z_
+
+<details><summary>↩ Tool result · `toolu_01TW6LLWq3EHN4dT5ebiLxwF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Contrastive: False (V)\\n  SC baseline: False (V)\\n  Scores: {'Unknown': 0.0, 'False': 41.0, 'True': -42.0}\\n  Constraints: {'total_extracted': 24, 'unique_after_dedup': 7, 'stance_distribution': {'supporting': 12, 'opposing': 12}}\\n  Time: 13.5s\\n\\n============================================================\\nFINAL RESULTS (182 problems)\\n  Contrastive SICA: 0.7253 (132/182)\\n  SC baseline:      0.7363 (134/182)\\n  Delta:            -0.0110\\n  Wall time:        47.2 min\\nResults saved to results/exp-029-contrastive-folio204/contrastive_results.json\\nCONTRASTIVE_FOLIO_DONE\\nStopping vLLM (PID: 42366)...\\n\\n=== [Mon May 18 23:12:09 CST 2026] exp-029 done ===\\nResults: results/exp-029-contrastive-folio204/contrastive_results.json\\nEXP029_CONTRASTIVE_FOLIO_DONE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "33004aa8-575b-4a88-8d18-7ed90b9621a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Contrastive: False (V)\\\\n  SC baseline: False (V)\\\\n  Scores: {'Unknown': 0.0, 'False': 41.0, 'True': -42.0}\\\\n  Constraints: {'total_extracted': 24, 'unique_after_dedup': 7, 'stance_distribution': {'supporting': 12, 'opposing': 12}}\\\\n  Time: 13.5s\\\\n\\\\n============================================================\\\\nFINAL RESULTS (182 problems)\\\\n  Contrastive SICA: 0.7253 (132/182)\\\\n  SC baseline:      0.7363 (134/182)\\\\n  Delta:            -0.0110\\\\n  Wall time:        47.2 min\\\\nResults saved to results/exp-029-contrastive-folio204/contrastive_results.json\\\\nCONTRASTIVE_FOLIO_DONE\\\\nStopping vLLM (PID: 42366)...\\\\n\\\\n=== [Mon May 18 23:12:09 CST 2026] exp-029 done ===\\\\nResults: results/exp-029-contrastive-folio204/contrastive_results.json\\\\nEXP029_CONTRASTIVE_FOLIO_DONE\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Contrastive: False (V)\\n  SC baseline: False (V)\\n  Scores: {'Unknown': 0.0, 'False': 41.0, 'True': -42.0}\\n  Constraints: {'total_extracted': 24, 'unique_after_dedup': 7, 'stance_distribution': {'supporting': 12, 'opposing': 12}}\\n  Time: 13.5s\\n\\n============================================================\\nFINAL RESULTS (182 problems)\\n  Contrastive SICA: 0.7253 (132/182)\\n  SC baseline:      0.7363 (134/182)\\n  Delta:            -0.0110\\n  Wall time:        47.2 min\\nResults saved to results/exp-029-contrastive-folio204/contrastive_results.json\\nCONTRASTIVE_FOLIO_DONE\\nStopping vLLM (PID: 42366)...\\n\\n=== [Mon May 18 23:12:09 CST 2026] exp-029 done ===\\nResults: results/exp-029-contrastive-folio204/contrastive_results.json\\nEXP029_CONTRASTIVE_FOLIO_DONE\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information. Let me summarize:
+
+**exp-027** (PID 38106, GPU 1): ALIVE, ~99 questions processed out of 204, ETA ~93 min (106 remaining)
+**exp-028** (PID 40990, GPU 2): ALIVE, ~17 questions processed out of 204, ETA ~856 min (188 remaining) - this is very slow, likely because thinking mode generates much longer outputs
+**exp-030** (PID 46525, GPU 0): ALIVE, 139/204 done, ETA ~20 min (66 remaining)
+
+
+**exp-029** (PID 42353): Just finished successfully with contrastive SICA scoring 0.7253 versus the baseline's 0.7363, showing a slight performance dip of 0.011.
+
+Looking at the GPU allocation, all three active experiments are running at high utilization - Mistral-7B on GPU 0 for exp-030, Qwen3-14B non-thinking mode on GPU 1 for exp-027, and Qwen3-14B thinking mode on GPU 2 for exp-028.
+
+Now I need to update the registry to mark exp-029 as complete and transition the other three experiments from PREPARING to RUNNING status, since they're all actively processing their workloads.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "0cf92c9c-eed4-47e9-b0c5-af0fd2f7719b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsHysUB3atY56vpDwCPPmb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6926,
+      "cache_read_input_tokens": 36853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+所有信息收集完毕。exp-029 已完成（EXIT_CODE=0）。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "664d0820-e857-4e72-9dd2-aee461088561",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsHysUB3atY56vpDwCPPmb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6926,
+      "cache_read_input_tokens": 36853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01JtTo4V38tXYEjVCHb9F7ez`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": {
+    "exp_id": "exp-029-contrastive-folio204"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "99d0e112-5667-4362-b75f-a75f99b6ae60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsHysUB3atY56vpDwCPPmb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6926,
+      "cache_read_input_tokens": 36853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T15:36:07.887Z_
+
+<details><summary>↩ Tool result · `toolu_01JtTo4V38tXYEjVCHb9F7ez`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4183}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "08568305-475f-4593-954c-9bc2f1462bd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4183}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4183}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp-029 doesn't have "exp_id" as a filter field. Let me try filtering differently or just search for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c5288e67-fa35-4540-8bb1-4c3b9dd54fb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HQgiCphigRSCZp5acUmhkP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 43779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 756
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017rK6uN1rmF5kbHEQ4dhZyN`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": 20,
+  "fields": [
+    "status",
+    "spec"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "5c7d7fbe-c12a-4c06-b764-639d61115d80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HQgiCphigRSCZp5acUmhkP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 43779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 756
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T15:36:11.992Z_
+
+<details><summary>↩ Tool result · `toolu_017rK6uN1rmF5kbHEQ4dhZyN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-030-crossmodel-mistral-folio204\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-026-folio204-trace-regen\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_folio_trace_regen.sh\", \"server\": \"westd-25068\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\"], \"pid\": 27245, \"log_path\": \"/root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log\", \"output_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\", \"temperature_trace\": 0.7, \"temperature_extraction\": 0.3, \"K\": 12, \"checkpoint_source\": \"Qwen/Qwen2.5-14B-Instruct (HuggingFace)\", \"eval_data\": \"FOLIO-204 validation set\"}}, \"exp-029-contrastive-folio204\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-023-discriminative-rate\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/analyze_discriminative_rate.py\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/symb_invariant_consensus/results/discriminative_rate_analysis.json\", \"checkpoint_source\": \"sica_expanded_14b traces\", \"eval_data\": \"FOLIO 204 + ProofWriter 600 = 804\"}}, \"exp-022-oracle-proofwriter\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/run_exp022_oracle_proofwriter.py\", \"server\": \"westd-32608\", \"data_path\": \"/root/autodl-tmp/crdd/data/proofwriter/proofwriter-OWA-D5-validation.jsonl\", \"data_count\": 600, \"model_name\": \"Qwen2.5-14B-Instruct (traces) + Z3 (oracle)\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (CPU-only oracle)\", \"log_path\": \"/root/symb_invariant_consensus/results/exp022_oracle_pw.log\", \"checkpoint_source\": \"sica_expanded_14b traces (no model checkpoint)\", \"eval_data\": \"ProofWriter OWA-D5 validation 600 problems\"}}, \"temperature-ablation-t07\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/autodl-tmp/symb_invariant_consensus/scripts/run_temperature_ablation_t07.sh\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"tmux_session\": \"temperature-ablation-t07\"}}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/extract_constraints_for_ablation.py\", \"server\": \"westd-32608\", \"data_path\": \"results/sica_expanded_14b/\", \"data_count\": 804, \"model_name\": \"N/A (CPU ablation on exp-001 outputs)\", \"seed\": \"N/A\"}}, \"exp-004-qwen7b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp004_qwen7b.sh\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"tmux_session\": \"exp-004-qwen7b\", \"checkpoint_source\": \"Qwen/Qwen2.5-7B-Instruct (base pretrained, symlink at /root/autodl-tmp/models/Qwen2.5-7B-Instruct)\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\"}}, \"temperature-ablation-t10\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T1.0_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"exp-012-gsm8k-pilot\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_exp012_gsm8k.sh\", \"server\": \"westd-32608\", \"data_path\": \"data/gsm8k_200.json\", \"data_count\": 30, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen2.5-14B-Instruct\", \"eval_data\": \"data/gsm8k_200.json\", \"gpu\": [\"cuda:0\"], \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp012_gsm8k/\", \"log_path\": \"/root/symb_invariant_consensus/results/exp012_gsm8k/\"}}, \"exp-021-oracle-folio\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/run_exp021_oracle_folio.py\", \"server\": \"westd-32608\", \"data_path\": \"data/folio_full.json + results/sica_expanded_14b.json\", \"data_count\": 204, \"model_name\": \"Qwen2.5-14B-Instruct (traces) + Z3 (oracle constraints)\", \"seed\": 42, \"checkpoint_path\": \"results/exp021_oracle_folio/exp021_results.json\", \"log_path\": \"results/exp021_oracle_folio/exp021_summary.json\", \"checkpoint_source\": \"results/sica_expanded_14b.json\", \"eval_data\": \"data/folio_full.json\"}}, \"temperature-ablation-t05\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.5_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"temperature-ablation-t03\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.3_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"exp-014-deepseek-r1-7b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": 324400, \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"D012 (30PW+30FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp014_deepseek_r1_7b/exp014_results.json\"}}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"data_count\": 60, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"huggingface:mistralai/Mistral-7B-Instruct-v0.3\", \"eval_data\": \"ProofWriter-D5 + FOLIO (D012 split)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp010_mistral_v3/\", \"wall_clock_seconds\": 1506.4, \"gpu_hours\": 0.42}}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"pid\": \"181491\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/symb_invariant_consensus/sica_expanded_14b.log\", \"submitted_at\": \"2026-05-16T05:19:00.966Z\", \"backend\": \"nohup\", \"account\": \"root\", \"eta_hours\": 13.4, \"wall_clock_seconds\": 50368.9, \"gpu_hours\": 13.99}}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"submitted_at\": \"2026-05-17T08:18:24.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\", \"wall_clock_seconds\": 3450.0, \"gpu_hours\": 0.96}}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"289541\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\", \"submitted_at\": \"2026-05-17T06:19:19.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1433.8, \"gpu_hours\": 0.4}}}, \"count\": 20, \"total\": 49, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4014}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "5b57a721-7c8a-44df-aea3-e0cf7e108d0f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-030-crossmodel-mistral-folio204\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46525\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:50:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-026-folio204-trace-regen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_folio_trace_regen.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 27245, \\\"log_path\\\": \\\"/root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log\\\", \\\"output_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\\\", \\\"temperature_trace\\\": 0.7, \\\"temperature_extraction\\\": 0.3, \\\"K\\\": 12, \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-14B-Instruct (HuggingFace)\\\", \\\"eval_data\\\": \\\"FOLIO-204 validation set\\\"}}, \\\"exp-029-contrastive-folio204\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}}, \\\"exp-028-qwen3-14b-thinking\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40990\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:21:40.871Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-027-qwen3-14b-non-thinking\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"38106\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:08:01.969Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-023-discriminative-rate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/analyze_discriminative_rate.py\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/sica_expanded_14b.json\\\", \\\"data_count\\\": 804, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/root/symb_invariant_consensus/results/discriminative_rate_analysis.json\\\", \\\"checkpoint_source\\\": \\\"sica_expanded_14b traces\\\", \\\"eval_data\\\": \\\"FOLIO 204 + ProofWriter 600 = 804\\\"}}, \\\"exp-022-oracle-proofwriter\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp022_oracle_proofwriter.py\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crdd/data/proofwriter/proofwriter-OWA-D5-validation.jsonl\\\", \\\"data_count\\\": 600, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct (traces) + Z3 (oracle)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (CPU-only oracle)\\\", \\\"log_path\\\": \\\"/root/symb_invariant_consensus/results/exp022_oracle_pw.log\\\", \\\"checkpoint_source\\\": \\\"sica_expanded_14b traces (no model checkpoint)\\\", \\\"eval_data\\\": \\\"ProofWriter OWA-D5 validation 600 problems\\\"}}, \\\"temperature-ablation-t07\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/symb_invariant_consensus/scripts/run_temperature_ablation_t07.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"data/proofwriter_30.json + data/folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\", \\\"eval_data\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"tmux_session\\\": \\\"temperature-ablation-t07\\\"}}, \\\"sica_constraint_ablation_013\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/extract_constraints_for_ablation.py\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"results/sica_expanded_14b/\\\", \\\"data_count\\\": 804, \\\"model_name\\\": \\\"N/A (CPU ablation on exp-001 outputs)\\\", \\\"seed\\\": \\\"N/A\\\"}}, \\\"exp-004-qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_exp004_qwen7b.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"tmux_session\\\": \\\"exp-004-qwen7b\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-7B-Instruct (base pretrained, symlink at /root/autodl-tmp/models/Qwen2.5-7B-Instruct)\\\", \\\"eval_data\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\"}}, \\\"temperature-ablation-t10\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_temperature_ablation.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"data/proofwriter_30.json + data/folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\", \\\"eval_data\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T1.0_results.json\\\", \\\"log_path\\\": \\\"/tmp/temperature_ablation.log\\\"}}, \\\"exp-012-gsm8k-pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_exp012_gsm8k.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"data/gsm8k_200.json\\\", \\\"data_count\\\": 30, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-14B-Instruct\\\", \\\"eval_data\\\": \\\"data/gsm8k_200.json\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp012_gsm8k/\\\", \\\"log_path\\\": \\\"/root/symb_invariant_consensus/results/exp012_gsm8k/\\\"}}, \\\"exp-021-oracle-folio\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp021_oracle_folio.py\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"data/folio_full.json + results/sica_expanded_14b.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct (traces) + Z3 (oracle constraints)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"results/exp021_oracle_folio/exp021_results.json\\\", \\\"log_path\\\": \\\"results/exp021_oracle_folio/exp021_summary.json\\\", \\\"checkpoint_source\\\": \\\"results/sica_expanded_14b.json\\\", \\\"eval_data\\\": \\\"data/folio_full.json\\\"}}, \\\"temperature-ablation-t05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_temperature_ablation.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"data/proofwriter_30.json + data/folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\", \\\"eval_data\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.5_results.json\\\", \\\"log_path\\\": \\\"/tmp/temperature_ablation.log\\\"}}, \\\"temperature-ablation-t03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_temperature_ablation.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"data/proofwriter_30.json + data/folio_30.json\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\", \\\"eval_data\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.3_results.json\\\", \\\"log_path\\\": \\\"/tmp/temperature_ablation.log\\\"}}, \\\"exp-014-deepseek-r1-7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 324400, \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:52:19.117Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\\\", \\\"eval_data\\\": \\\"D012 (30PW+30FOLIO)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp014_deepseek_r1_7b/exp014_results.json\\\"}}, \\\"exp-010-mistral-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"298717\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:56:55.973Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"D012 (30 ProofWriter + 30 FOLIO)\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"huggingface:mistralai/Mistral-7B-Instruct-v0.3\\\", \\\"eval_data\\\": \\\"ProofWriter-D5 + FOLIO (D012 split)\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp010_mistral_v3/\\\", \\\"wall_clock_seconds\\\": 1506.4, \\\"gpu_hours\\\": 0.42}}, \\\"sica_expanded_14b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"data_path\\\": \\\"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\\\", \\\"data_count\\\": 804, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"181491\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/sica_expanded_14b.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T05:19:00.966Z\\\", \\\"backend\\\": \\\"nohup\\\", \\\"account\\\": \\\"root\\\", \\\"eta_hours\\\": 13.4, \\\"wall_clock_seconds\\\": 50368.9, \\\"gpu_hours\\\": 13.99}}, \\\"exp-019-llama8b-strategyqa-200\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"302372\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T08:18:24.001Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\\\", \\\"wall_clock_seconds\\\": 3450.0, \\\"gpu_hours\\\": 0.96}}, \\\"exp-018-arc-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\\\", \\\"server\\\": \\\"westd-32608\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"289541\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:19:19.350Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1433.8, \\\"gpu_hours\\\": 0.4}}}, \\\"count\\\": 20, \\\"total\\\": 49, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4014}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-030-crossmodel-mistral-folio204\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-026-folio204-trace-regen\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_folio_trace_regen.sh\", \"server\": \"westd-25068\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\"], \"pid\": 27245, \"log_path\": \"/root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log\", \"output_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\", \"temperature_trace\": 0.7, \"temperature_extraction\": 0.3, \"K\": 12, \"checkpoint_source\": \"Qwen/Qwen2.5-14B-Instruct (HuggingFace)\", \"eval_data\": \"FOLIO-204 validation set\"}}, \"exp-029-contrastive-folio204\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}}, \"exp-028-qwen3-14b-thinking\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-027-qwen3-14b-non-thinking\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-023-discriminative-rate\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/analyze_discriminative_rate.py\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/results/sica_expanded_14b.json\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/symb_invariant_consensus/results/discriminative_rate_analysis.json\", \"checkpoint_source\": \"sica_expanded_14b traces\", \"eval_data\": \"FOLIO 204 + ProofWriter 600 = 804\"}}, \"exp-022-oracle-proofwriter\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/run_exp022_oracle_proofwriter.py\", \"server\": \"westd-32608\", \"data_path\": \"/root/autodl-tmp/crdd/data/proofwriter/proofwriter-OWA-D5-validation.jsonl\", \"data_count\": 600, \"model_name\": \"Qwen2.5-14B-Instruct (traces) + Z3 (oracle)\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (CPU-only oracle)\", \"log_path\": \"/root/symb_invariant_consensus/results/exp022_oracle_pw.log\", \"checkpoint_source\": \"sica_expanded_14b traces (no model checkpoint)\", \"eval_data\": \"ProofWriter OWA-D5 validation 600 problems\"}}, \"temperature-ablation-t07\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/autodl-tmp/symb_invariant_consensus/scripts/run_temperature_ablation_t07.sh\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"tmux_session\": \"temperature-ablation-t07\"}}, \"sica_constraint_ablation_013\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/extract_constraints_for_ablation.py\", \"server\": \"westd-32608\", \"data_path\": \"results/sica_expanded_14b/\", \"data_count\": 804, \"model_name\": \"N/A (CPU ablation on exp-001 outputs)\", \"seed\": \"N/A\"}}, \"exp-004-qwen7b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp004_qwen7b.sh\", \"server\": \"westd-32608\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"tmux_session\": \"exp-004-qwen7b\", \"checkpoint_source\": \"Qwen/Qwen2.5-7B-Instruct (base pretrained, symlink at /root/autodl-tmp/models/Qwen2.5-7B-Instruct)\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\"}}, \"temperature-ablation-t10\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T1.0_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"exp-012-gsm8k-pilot\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_exp012_gsm8k.sh\", \"server\": \"westd-32608\", \"data_path\": \"data/gsm8k_200.json\", \"data_count\": 30, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen2.5-14B-Instruct\", \"eval_data\": \"data/gsm8k_200.json\", \"gpu\": [\"cuda:0\"], \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp012_gsm8k/\", \"log_path\": \"/root/symb_invariant_consensus/results/exp012_gsm8k/\"}}, \"exp-021-oracle-folio\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python scripts/run_exp021_oracle_folio.py\", \"server\": \"westd-32608\", \"data_path\": \"data/folio_full.json + results/sica_expanded_14b.json\", \"data_count\": 204, \"model_name\": \"Qwen2.5-14B-Instruct (traces) + Z3 (oracle constraints)\", \"seed\": 42, \"checkpoint_path\": \"results/exp021_oracle_folio/exp021_results.json\", \"log_path\": \"results/exp021_oracle_folio/exp021_summary.json\", \"checkpoint_source\": \"results/sica_expanded_14b.json\", \"eval_data\": \"data/folio_full.json\"}}, \"temperature-ablation-t05\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.5_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"temperature-ablation-t03\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash scripts/run_temperature_ablation.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/proofwriter_30.json + data/folio_30.json\", \"data_count\": 60, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\", \"eval_data\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.3_results.json\", \"log_path\": \"/tmp/temperature_ablation.log\"}}, \"exp-014-deepseek-r1-7b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp014_deepseek_r1_7b.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": 324400, \"log_path\": \"~/runs/symb_invariant_consensus/exp-014-deepseek-r1-7b.log\", \"submitted_at\": \"2026-05-17T11:52:19.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/\", \"data_count\": 60, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"HuggingFace deepseek-ai/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"D012 (30PW+30FOLIO)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp014_deepseek_r1_7b/exp014_results.json\"}}, \"exp-010-mistral-v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"298717\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-010-mistral-v3.log\", \"submitted_at\": \"2026-05-17T07:56:55.973Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"D012 (30 ProofWriter + 30 FOLIO)\", \"data_count\": 60, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"huggingface:mistralai/Mistral-7B-Instruct-v0.3\", \"eval_data\": \"ProofWriter-D5 + FOLIO (D012 split)\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp010_mistral_v3/\", \"wall_clock_seconds\": 1506.4, \"gpu_hours\": 0.42}}, \"sica_expanded_14b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --pw-data data/proofwriter_full.json --folio-data data/folio_full.json --math-data data/empty.json --output results/sica_expanded_14b.json --save-intermediates\", \"server\": \"westd-32608\", \"data_path\": \"data/proofwriter_full.json (600 D5) + data/folio_full.json (204)\", \"data_count\": 804, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"pid\": \"181491\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/symb_invariant_consensus/sica_expanded_14b.log\", \"submitted_at\": \"2026-05-16T05:19:00.966Z\", \"backend\": \"nohup\", \"account\": \"root\", \"eta_hours\": 13.4, \"wall_clock_seconds\": 50368.9, \"gpu_hours\": 13.99}}, \"exp-019-llama8b-strategyqa-200\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp019_strategyqa_200.sh\\\"\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"302372\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-019-llama8b-strategyqa-200.log\", \"submitted_at\": \"2026-05-17T08:18:24.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/symb_invariant_consensus/results/exp019_strategyqa_200/\", \"wall_clock_seconds\": 3450.0, \"gpu_hours\": 0.96}}, \"exp-018-arc-v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh\", \"server\": \"westd-32608\", \"gpu\": [\"cuda:0\"], \"pid\": \"289541\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-018-arc-v2.log\", \"submitted_at\": \"2026-05-17T06:19:19.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1433.8, \"gpu_hours\": 0.4}}}, \"count\": 20, \"total\": 49, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4014}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp-029 is already in RUNNING status. It has completed (EXIT_CODE=0), so I need to update it to DONE(success). The three PREPARING experiments need to be updated to RUNNING.
+
+Let me update all 4 experiments now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "90b763c9-b79f-4464-8137-570b0cc3d2ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+exp-029 已经是 RUNNING 但实际已完成。现在批量更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "38d7d7d4-a48d-4553-919f-f101d1d16087",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Qkpu9hoeYWohQbmU1WUxio`</summary>
+
+```json
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42,
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "38106",
+    "log_path": "~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "9dfff54c-4000-4b91-8a51-832d4985e752",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T15:36:20.038Z_
+
+<details><summary>↩ Tool result · `toolu_01Qkpu9hoeYWohQbmU1WUxio`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1792}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "187aa9d9-14ea-4ca1-be22-1f4db55643a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1792}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1792}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KF9szGShW8Sp3srR9qPGrX`</summary>
+
+```json
+{
+  "exp_id": "exp-028-qwen3-14b-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash -c \"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\"",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42,
+    "gpu": [
+      "cuda:2"
+    ],
+    "pid": "40990",
+    "log_path": "~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "7cf5d08e-ae03-4bb1-aacf-2eb4c90281e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T15:36:23.505Z_
+
+<details><summary>↩ Tool result · `toolu_01KF9szGShW8Sp3srR9qPGrX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3401}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "14004fe6-0884-403d-bab7-f036701f21cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3401}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3401}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HvxY5pRsgP5ycMkYrmwYuK`</summary>
+
+```json
+{
+  "exp_id": "exp-030-crossmodel-mistral-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash -c \"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\"",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/results/folio_204_14b/intermediates/",
+    "data_count": 204,
+    "model_name": "Mistral-7B-Instruct-v0.3",
+    "seed": 42,
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "46525",
+    "log_path": "~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "b1dcc116-4868-4ade-af96-4b89c1c0855e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T15:36:26.248Z_
+
+<details><summary>↩ Tool result · `toolu_01HvxY5pRsgP5ycMkYrmwYuK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "74ae973d-0d31-4d3b-9e90-e6a3f685dd06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JJKyynYxznGaG391A52pne`</summary>
+
+```json
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "47a55acb-1033-47e8-88cb-4448c3a17e8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1ukpuCnboMaAdd6QGiGms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5416,
+      "cache_read_input_tokens": 44535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T15:36:26.927Z_
+
+<details><summary>↩ Tool result · `toolu_01JJKyynYxznGaG391A52pne`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.2304}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "770a9e72-f614-4222-871d-ec76a2f55410",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2304}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.2304}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to set conclusion for exp-029 first, and for the PREPARING → RUNNING transitions, need to go through QUEUED first. Let me try setting status to QUEUED first, then RUNNING.
+
+Actually wait - the error says PREPARING → RUNNING allowed transitions are ['PENDING', 'QUEUED']. This means from PREPARING, I can only go to PENDING or QUEUED. Let me check what the full state machine looks like. Probably PREPARING → QUEUED → RUNNING.
+
+For exp-029, I need to set conclusion first before setting status to DONE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "30ffc892-bb38-4c17-b8f4-75194c14b740",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+需要先过渡到 QUEUED 状态，再到 RUNNING。exp-029 需要先设 conclusion。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "5703130f-431c-421d-a15e-33da19f8a5df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CK2MJ9oyGMCVM3c53asp4x`</summary>
+
+```json
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "7157f852-7069-4375-9fd9-88d40e61b4be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Uns1pamgiLFAXSDUdrQkVp`</summary>
+
+```json
+{
+  "exp_id": "exp-028-qwen3-14b-thinking",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "f39d2488-4007-4567-ab52-3bac79fc7d17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T15:36:34.801Z_
+
+<details><summary>↩ Tool result · `toolu_01CK2MJ9oyGMCVM3c53asp4x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-027-qwen3-14b-non-thinking\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T15:36:34.114Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.894}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "9d8ba3dc-b157-4421-85e3-8fe690435ad6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-027-qwen3-14b-non-thinking\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:11.425Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:34.114Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"38106\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:08:01.969Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.894}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-027-qwen3-14b-non-thinking\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T15:36:34.114Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.894}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01D7GkzU3nMndRC8E77JNKoH`</summary>
+
+```json
+{
+  "exp_id": "exp-030-crossmodel-mistral-folio204",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "278fc931-cdb5-424d-8aa6-ce370c4da2c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T15:36:35.531Z_
+
+<details><summary>↩ Tool result · `toolu_01Uns1pamgiLFAXSDUdrQkVp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-028-qwen3-14b-thinking\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T15:36:34.998Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7168}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "6a490672-bbc7-48fb-9497-6ec38bcd0d36",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-028-qwen3-14b-thinking\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:12.168Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:34.998Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40990\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:21:40.871Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7168}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-028-qwen3-14b-thinking\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T15:36:34.998Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7168}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AjCxAx7xnC6hapy6Txy937`</summary>
+
+```json
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "field": "conclusion",
+  "value": "success",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "494fd7d7-ca94-454c-936e-ba973e7f39b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWRNDzs67FYGJjJJ2wgGYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1543,
+      "cache_read_input_tokens": 49951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T15:36:36.362Z_
+
+<details><summary>↩ Tool result · `toolu_01D7GkzU3nMndRC8E77JNKoH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-030-crossmodel-mistral-folio204\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T15:36:35.770Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8198}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "7a0a338d-228b-4e0d-ac71-d102eca07b54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-030-crossmodel-mistral-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:47:46.451Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:35.770Z\\\", \\\"hypothesis\\\": \\\"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46525\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:50:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8198}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-030-crossmodel-mistral-folio204\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T15:36:35.770Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c \\\"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8198}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T15:36:36.772Z_
+
+<details><summary>↩ Tool result · `toolu_01AjCxAx7xnC6hapy6Txy937`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:36.585Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3953}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "3b11b187-bc6b-4e22-a1f2-0ec75d0624b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-029-contrastive-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:22:03.513Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:36.585Z\\\", \\\"hypothesis\\\": \\\"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3953}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:36.585Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3953}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+QUEUED 成功。现在把 3 个实验从 QUEUED → RUNNING，并把 exp-029 从 RUNNING → DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "128f85ff-3a2b-4578-82ff-5b01955aa81b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnJ7YTqg4Bk6nbwBQgcmYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2825,
+      "cache_read_input_tokens": 51494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2825
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MH8rf8sFq9MuaqAqJieNV4`</summary>
+
+```json
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "63bf64d5-c5c6-4e6f-a67c-e35a65b744cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnJ7YTqg4Bk6nbwBQgcmYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2825,
+      "cache_read_input_tokens": 51494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2825
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-18T15:36:43.022Z_
+
+<details><summary>↩ Tool result · `toolu_01MH8rf8sFq9MuaqAqJieNV4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6498}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "ab0cded4-e703-464c-a595-83419da064ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6498}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6498}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015StJVNS5Vd3Vnu5mZ1W27p`</summary>
+
+```json
+{
+  "exp_id": "exp-028-qwen3-14b-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash scripts/run_qwen3_14b_thinking.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "0cf70738-fe3a-4736-8afb-92e19e7a986f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnJ7YTqg4Bk6nbwBQgcmYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2825,
+      "cache_read_input_tokens": 51494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2825
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-18T15:36:44.504Z_
+
+<details><summary>↩ Tool result · `toolu_015StJVNS5Vd3Vnu5mZ1W27p`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2206}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "8e9f86fe-28cf-451a-b116-0ed120b0a2c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2206}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2206}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SyWjRMSE1qeeCZyXHwv3Rd`</summary>
+
+```json
+{
+  "exp_id": "exp-030-crossmodel-mistral-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/results/folio_204_14b/intermediates/",
+    "data_count": 204,
+    "model_name": "Mistral-7B-Instruct-v0.3",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "cba05dc4-30eb-4bd0-83f7-3d4cdb16988c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnJ7YTqg4Bk6nbwBQgcmYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2825,
+      "cache_read_input_tokens": 51494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2825
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-18T15:36:45.768Z_
+
+<details><summary>↩ Tool result · `toolu_01SyWjRMSE1qeeCZyXHwv3Rd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.1943}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "c71e6db5-bc06-48d5-9753-6db2fc16206d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1943}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.1943}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011xdkgs1HPGj8bjqBLBgspt`</summary>
+
+```json
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "field": "checkpoint_path",
+  "value": "results/exp-029-contrastive-folio204/contrastive_results.json",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "bd002f71-0a42-4207-a793-f1aca18f053b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnJ7YTqg4Bk6nbwBQgcmYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2825,
+      "cache_read_input_tokens": 51494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2825
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-18T15:36:47.015Z_
+
+<details><summary>↩ Tool result · `toolu_011xdkgs1HPGj8bjqBLBgspt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:46.868Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3414}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "acb7a38e-f1ff-419e-afe1-6e95a62cbded",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-029-contrastive-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:22:03.513Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:46.868Z\\\", \\\"hypothesis\\\": \\\"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"results/exp-029-contrastive-folio204/contrastive_results.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3414}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:46.868Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3414}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to add checkpoint_source and eval_data to the spec for the RUNNING transitions. These experiments have a parent field, so they're treated as eval experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "d776c3a6-8763-459e-a3cc-4cd9901011e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+需要加 checkpoint_source 和 eval_data 字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "3103d29b-774d-487e-ae65-00dfe840dd34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01U37fS1oqiDYGm6N9puAKL4`</summary>
+
+```json
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42,
+    "checkpoint_source": "Qwen/Qwen3-14B (HuggingFace)",
+    "eval_data": "FOLIO-204"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "08fc5d71-a827-470b-8777-cd88aa4e533e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-18T15:36:53.517Z_
+
+<details><summary>↩ Tool result · `toolu_01U37fS1oqiDYGm6N9puAKL4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-027-qwen3-14b-non-thinking\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T15:36:52.994Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-14B (HuggingFace)\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6933}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "a1bcd967-f299-43f4-b43f-74e81d3ef3f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-027-qwen3-14b-non-thinking\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:11.425Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:52.994Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"38106\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:08:01.969Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-14B (HuggingFace)\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6933}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-027-qwen3-14b-non-thinking\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:11.425Z\", \"updated_at\": \"2026-05-18T15:36:52.994Z\", \"hypothesis\": \"Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"38106\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log\", \"submitted_at\": \"2026-05-18T14:08:01.969Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-14B (HuggingFace)\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6933}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0174UwCfgpQpBBMkCBZJmNjD`</summary>
+
+```json
+{
+  "exp_id": "exp-028-qwen3-14b-thinking",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash scripts/run_qwen3_14b_thinking.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+    "data_count": 204,
+    "model_name": "Qwen3-14B",
+    "seed": 42,
+    "checkpoint_source": "Qwen/Qwen3-14B (HuggingFace)",
+    "eval_data": "FOLIO-204"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "95f7beb0-221d-404f-baf9-c4a723f5f8d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-18T15:36:55.571Z_
+
+<details><summary>↩ Tool result · `toolu_0174UwCfgpQpBBMkCBZJmNjD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-028-qwen3-14b-thinking\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T15:36:55.058Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash scripts/run_qwen3_14b_thinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-14B (HuggingFace)\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "72b3fed3-1365-4dec-9510-637d9551863c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-028-qwen3-14b-thinking\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:02:12.168Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:55.058Z\\\", \\\"hypothesis\\\": \\\"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\\\", \\\"parent\\\": \\\"sica_expanded_14b\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_qwen3_14b_thinking.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"40990\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:21:40.871Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/data/folio_full.json\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Qwen3-14B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-14B (HuggingFace)\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-028-qwen3-14b-thinking\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:02:12.168Z\", \"updated_at\": \"2026-05-18T15:36:55.058Z\", \"hypothesis\": \"Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。\", \"parent\": \"sica_expanded_14b\", \"spec\": {\"command\": \"bash scripts/run_qwen3_14b_thinking.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:2\"], \"pid\": \"40990\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log\", \"submitted_at\": \"2026-05-18T14:21:40.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/data/folio_full.json\", \"data_count\": 204, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-14B (HuggingFace)\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011vgW22yPSybdbmJESg4ckD`</summary>
+
+```json
+{
+  "exp_id": "exp-030-crossmodel-mistral-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": {
+    "command": "bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh",
+    "server": "westd-25068",
+    "data_path": "/root/symb_invariant_consensus/results/folio_204_14b/intermediates/",
+    "data_count": 204,
+    "model_name": "Mistral-7B-Instruct-v0.3",
+    "seed": 42,
+    "checkpoint_source": "exp-026-folio204-trace-regen",
+    "eval_data": "FOLIO-204"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "3e70e60c-3d91-4acd-98ae-8595cacbaa76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-18T15:36:57.371Z_
+
+<details><summary>↩ Tool result · `toolu_011vgW22yPSybdbmJESg4ckD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-030-crossmodel-mistral-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T15:36:56.809Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 204, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7279}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "33120cea-4795-4464-b4bb-8db9ce29ebc9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-030-crossmodel-mistral-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:47:46.451Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:56.809Z\\\", \\\"hypothesis\\\": \\\"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46525\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:50:47.962Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 204, \\\"model_name\\\": \\\"Mistral-7B-Instruct-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7279}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-030-crossmodel-mistral-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:47:46.451Z\", \"updated_at\": \"2026-05-18T15:36:56.809Z\", \"hypothesis\": \"Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:0\"], \"pid\": \"46525\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log\", \"submitted_at\": \"2026-05-18T14:50:47.962Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 204, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7279}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QV3KnPJMBZHesWffgsgTGs`</summary>
+
+```json
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "field": "log_path",
+  "value": "~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "64681f1a-2351-401a-b4fc-5f42580e6130",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ng1CbzGaWUVTb3L7Ug75L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1810,
+      "cache_read_input_tokens": 54319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1810
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-18T15:36:57.715Z_
+
+<details><summary>↩ Tool result · `toolu_01QV3KnPJMBZHesWffgsgTGs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:57.575Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "6e98ff7b-5111-419c-a62c-96e342ba60d6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-029-contrastive-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:22:03.513Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:36:57.575Z\\\", \\\"hypothesis\\\": \\\"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"results/exp-029-contrastive-folio204/contrastive_results.json\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:36:57.575Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+现在把 exp-029 转到 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "190a4f6c-5d14-4235-aed0-a67aedb6db53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjisR5D6DR7T5859aetpuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 56129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01D6KrSZN4vfpwKFFJAHR3SH`</summary>
+
+```json
+{
+  "exp_id": "exp-029-contrastive-folio204",
+  "field": "status",
+  "value": "DONE",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "86748010-6036-409d-9d33-43a986c2b1c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjisR5D6DR7T5859aetpuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 56129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T15:37:01.845Z_
+
+<details><summary>↩ Tool result · `toolu_01D6KrSZN4vfpwKFFJAHR3SH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:37:01.319Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\", \"wall_clock_seconds\": 4354.6, \"gpu_hours\": 1.21}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"completed_at\": \"2026-05-18T15:37:01.319Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7353}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "652df71b-2a15-4b80-8326-cb0d113dd9f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-029-contrastive-folio204\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T14:22:03.513Z\\\", \\\"updated_at\\\": \\\"2026-05-18T15:37:01.319Z\\\", \\\"hypothesis\\\": \\\"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\\\", \\\"parent\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\\\", \\\"server\\\": \\\"westd-25068\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"42353\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T14:24:26.683Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen2.5-14B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-026-folio204-trace-regen\\\", \\\"eval_data\\\": \\\"FOLIO-204\\\", \\\"wall_clock_seconds\\\": 4354.6, \\\"gpu_hours\\\": 1.21}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"results/exp-029-contrastive-folio204/contrastive_results.json\\\", \\\"log_path\\\": \\\"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\\\", \\\"completed_at\\\": \\\"2026-05-18T15:37:01.319Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7353}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-029-contrastive-folio204\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:22:03.513Z\", \"updated_at\": \"2026-05-18T15:37:01.319Z\", \"hypothesis\": \"Contrastive constraint extraction (answer-conditioned supporting/opposing constraints with structured JSON output and MaxSAT integration) will achieve discriminative_rate >20% (vs baseline 8.2%) and positive recovery_rate on FOLIO 204, because per-candidate opposing constraints provide stronger signal than simple majority voting for disambiguating closely-scored answers.\", \"parent\": \"exp-026-folio204-trace-regen\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && bash /root/symb_invariant_consensus/scripts/run_exp029_contrastive.sh'\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:3\"], \"pid\": \"42353\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"submitted_at\": \"2026-05-18T14:24:26.683Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/symb_invariant_consensus/results/folio_204_14b/intermediates/\", \"data_count\": 181, \"model_name\": \"Qwen2.5-14B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"exp-026-folio204-trace-regen\", \"eval_data\": \"FOLIO-204\", \"wall_clock_seconds\": 4354.6, \"gpu_hours\": 1.21}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/exp-029-contrastive-folio204/contrastive_results.json\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-029-contrastive-folio204.log\", \"completed_at\": \"2026-05-18T15:37:01.319Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7353}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+全部更新完成。报告如下：
+
+## 进程状态
+
+| 实验 | PID | 状态 | GPU | 进度 | ETA |
+|------|-----|------|-----|------|-----|
+| exp-027 (Qwen3 non-thinking) | 38106 | **ALIVE** | GPU 1 (97%, 88GB) | ~98/204 | ~93 min |
+| exp-028 (Qwen3 thinking) | 40990 | **ALIVE** | GPU 2 (97%, 88GB) | ~16/204 | ~856 min (~14h) |
+| exp-030 (Cross-model Mistral) | 46525 | **ALIVE** | GPU 0 (96%, 88GB) | 139/204 | ~20 min |
+| exp-029 (Contrastive) | 42353 | **DEAD (完成)** | GPU 3 (idle) | 182/182 | -- |
+
+## GPU 分配
+- **GPU 0**: vLLM Mistral-7B (port 8000) → exp-030
+- **GPU 1**: vLLM Qwen3-14B non-thinking (port 8001) → exp-027
+- **GPU 2**: vLLM Qwen3-14B thinking (port 8002) → exp-028
+- **GPU 3**: 空闲 (exp-029 已完成并释放)
+
+## exp-029 结果
+- Contrastive SICA: **0.7253** (132/182)
+- SC baseline: **0.7363** (134/182)
+- Delta: **-0.0110** (负值，contrastive 未带来增益)
+- EXIT_CODE=0，耗时 47.2 min
+
+## Registry 修复
+- exp-027: PREPARING → **RUNNING** ✓
+- exp-028: PREPARING → **RUNNING** ✓
+- exp-030: PREPARING → **RUNNING** ✓
+- exp-029: RUNNING → **DONE(success)** ✓
+
+注意：exp-028 (thinking mode) 速度极慢（~53s/题 vs exp-027 的正常速度），预计还需 14 小时，可能是 thinking mode 生成长 CoT 导致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "uuid": "0d386c7a-b4c7-496d-84bb-a70b442c9244",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ju1FCLufK9qrYfy7SKyT1T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 59578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 98_
+
+全部更新完成。报告如下：
+
+## 进程状态
+
+| 实验 | PID | 状态 | GPU | 进度 | ETA |
+|------|-----|------|-----|------|-----|
+| exp-027 (Qwen3 non-thinking) | 38106 | **ALIVE** | GPU 1 (97%, 88GB) | ~98/204 | ~93 min |
+| exp-028 (Qwen3 thinking) | 40990 | **ALIVE** | GPU 2 (97%, 88GB) | ~16/204 | ~856 min (~14h) |
+| exp-030 (Cross-model Mistral) | 46525 | **ALIVE** | GPU 0 (96%, 88GB) | 139/204 | ~20 min |
+| exp-029 (Contrastive) | 42353 | **DEAD (完成)** | GPU 3 (idle) | 182/182 | -- |
+
+## GPU 分配
+- **GPU 0**: vLLM Mistral-7B (port 8000) → exp-030
+- **GPU 1**: vLLM Qwen3-14B non-thinking (port 8001) → exp-027
+- **GPU 2**: vLLM Qwen3-14B thinking (port 8002) → exp-028
+- **GPU 3**: 空闲 (exp-029 已完成并释放)
+
+## exp-029 结果
+- Contrastive SICA: **0.7253** (132/182)
+- SC baseline: **0.7363** (134/182)
+- Delta: **-0.0110** (负值，contrastive 未带来增益)
+- EXIT_CODE=0，耗时 47.2 min
+
+## Registry 修复
+- exp-027: PREPARING → **RUNNING** ✓
+- exp-028: PREPARING → **RUNNING** ✓
+- exp-030: PREPARING → **RUNNING** ✓
+- exp-029: RUNNING → **DONE(success)** ✓
+
+注意：exp-028 (thinking mode) 速度极慢（~53s/题 vs exp-027 的正常速度），预计还需 14 小时，可能是 thinking mode 生成长 CoT 导致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 245243,
+  "duration_api_ms": 111583,
+  "num_turns": 39,
+  "stop_reason": "end_turn",
+  "session_id": "08919f5c-3f39-4393-89f7-d25172ecd236",
+  "total_cost_usd": 0.7385367500000001,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 48529,
+    "cache_read_input_tokens": 491955,
+    "output_tokens": 7492,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 48529,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 594,
+        "cache_read_input_tokens": 59578,
+        "cache_creation_input_tokens": 792,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 792
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1798,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0018729999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 7492,
+      "cacheReadInputTokens": 491955,
+      "cacheCreationInputTokens": 48529,
+      "webSearchRequests": 0,
+      "costUSD": 0.7366637500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "db8f96e1-74e7-4f79-a397-86f17a0758d5"
+}
+```
+
+</details>
+
+---

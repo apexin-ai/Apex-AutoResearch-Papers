@@ -1,0 +1,1167 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-251_Q10",
+    "problem": "The cat is nice. The cat needs the lion. The cat visits the lion. The cow is nice. The cow needs the cat. The lion is nice. The lion is red. The lion is young. The lion needs the cow. The lion needs the squirrel. The squirrel is young. If the cow needs the lion then the lion visits the squirrel. If something needs the squirrel then it visits the cat. If something needs the cow and it chases the squirrel then the cow is rough. If something chases the squirrel and it is young then the squirrel needs the cat. If something visits the cow then it is rough. If the squirrel visits the cat and the cat is red then the squirrel chases the cow. All nice things are big. If something is big then it visits the squirrel. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nChases($x, $y, bool) ::: Does x chase y?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(cat, True) ::: The cat is nice.\nNeeds(cat, lion, True) ::: The cat needs the lion.\nVisits(cat, lion, True) ::: The cat visits the lion.\nNice(cow, True) ::: The cow is nice.\nNeeds(cow, cat, True) ::: The cow needs the cat.\nNice(lion, True) ::: The lion is nice.\nRed(lion, True) ::: The lion is red.\nYoung(lion, True) ::: The lion is young.\nNeeds(lion, cow, True) ::: The lion needs the cow.\nNeeds(lion, squirrel, True) ::: The lion needs the squirrel.\nYoung(squirrel, True) ::: The squirrel is young.\n\nRules:\nNeeds(cow, lion, True) >>> Visits(lion, squirrel, True) ::: If the cow needs the lion then the lion visits the squirrel.\nNeeds($x, squirrel, True) >>> Visits($x, cat, True) ::: If something needs the squirrel then it visits the cat.\nNeeds($x, cow, True) && Chases($x, squirrel, True) >>> Rough(cow, True) ::: If something needs the cow and it chases the squirrel then the cow is rough.\nChases($x, squirrel, True) && Young($x, True) >>> Needs(squirrel, cat, True) ::: If something chases the squirrel and it is young then the squirrel needs the cat.\nVisits($x, cow, True) >>> Rough($x, True) ::: If something visits the cow then it is rough.\nVisits(squirrel, cat, True) && Red(cat, True) >>> Chases(squirrel, cow, True) ::: If the squirrel visits the cat and the cat is red then the squirrel chases the cow.\nNice($x, True) >>> Big($x, True) ::: All nice things are big.\nBig($x, True) >>> Visits($x, squirrel, True) ::: If something is big then it visits the squirrel.\nVisits($x, cat, True) && Visits(cat, squirrel, True) >>> Nice(squirrel, True) ::: If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n\nQuery:\nBig(squirrel, False) ::: The squirrel is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 149.5,
+      "Unknown": 53.0
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. All nice things are big.\n2. If something is big then it visits the squirrel.\n3. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n4. The lion is nice. (From this, we know the lion is big, as all nice things are big.)\n5. The lion visits the squirrel. (This implies that the lion is big, as it visits the squirrel.)\n6. The lion needs the squirrel.\n7. The cat visits the lion. (This implies that the cat is big, as the lion is big and all nice things are big.)\n8. The cat needs the lion.\n9. The cow is nice. (From this, we know the cow is big, as all nice things are big.)\n10. The cow needs the cat.\n11. The lion is red. (This information doesn't directly affect whether the squirrel is big or not, but it gives more context about the lion.)\n12. The lion is young. (This information doesn't directly affect whether the squirrel is big or not, but it gives more context about the lion.)\n13. If the squirrel visits the cat and the cat is red then the squirrel chases the cow. (This information doesn't directly affect whether the squirrel is big or not, but it gives more context about the squirrel's behavior.)\n14. If something needs the squirrel then it visits the cat. (From this, we know the lion and the cow need the squirrel, so they both visit the cat.)\n15. The lion needs the squirrel. (From this, we know the lion visits the cat, as it needs the squirrel.)\n16. The lion is big. (As previously established, the lion is big.)\n17. If something visits the cat and the cat visits the squirrel then the squirrel is nice. (This doesn't directly affect whether the squirrel is big or not, but it gives more context about the squirrel's behavior.)\n18. The cow is rough. (From this, we know the cow chases the squirrel, as it needs the cow and it chases the squirrel.)\n19. If something chases the squirrel and it is young then the squirrel needs the cat. (This information doesn't directly affect whether the squirrel is big or not, but it gives more context about the squirrel's behavior.)\n20. The squirrel is young. (This information doesn't directly affect whether the squirrel is big or not, but it gives more context about the squirrel.)\n\nNow, we need to analyze the statements related to the squirrel's size:\n\n- There is no statement that directly says the squirrel is big.\n- There is no statement that directly says the squirrel is not big.\n- However, we know that the lion and the cat are big because they are nice. Since the lion needs the squirrel, we can infer that the squirrel is not big, as the lion visits the cat and the cat visits the squirrel, making the squirrel nice, but not necessarily big.\n\nHowever, we cannot be sure if the squirrel is not big because there might be other statements that could imply the squirrel is big.\n\nFrom statement 4, we know the lion is big. From statement 5, we know the lion visits the squirrel. From statement 2, if something is big then it visits the squirrel. But since the lion is big and visits the squirrel, we can infer that the lion's bigness doesn't necessarily imply the squirrel is big.\n\nHowever, from statement 3, if something visits the cat and the cat visits the squirrel then the squirrel is nice. And from statement 14, the lion needs the squirrel and visits the cat. And from statement 5, the lion visits the squirrel. Since the lion is big, it visits the cat (statement 15), and the cat visits the squirrel (statement 5), we can infer that the squirrel is nice but not necessarily big.\n\nHowever, we cannot be sure if the squirrel is not big because there might be other statements that could imply the squirrel is big.\n\nHowever, we can infer that the cat is big because it is nice (statement 1), and the cat visits the lion (statement 7), making the lion visit the squirrel (statement 5), implying that the squirrel is nice (statement 3).\n\nHowever, if we analyze the statements again, we see that we have an inconsistency. The lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3). But since the lion is big and visits the squirrel, we can infer that the squirrel is not big.\n\nHowever, we see that from statement 1, all nice things are big. And from statement 3, if something visits the cat and the cat visits the squirrel then the squirrel is nice. And from statement 5, the lion visits the squirrel. And from statement 4, the lion is nice. Since the lion is nice, it is big. And the lion visits the cat (statement 15), and the cat visits the squirrel (statement 5), making the squirrel nice (statement 3). Since the squirrel is nice, it is big.\n\nHowever, this is a contradiction because we know the squirrel is young (statement 20), but we also know that if something is big then it visits the squirrel (statement 2), and the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3), implying that the squirrel is big, but it is young.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3). And from statement 2, if something is big then it visits the squirrel, and the lion is big, so the lion visits the squirrel. And the squirrel is nice (statement 3), and the squirrel is young (statement 20), and if something is young and chases the squirrel then the squirrel needs the cat (statement 19), but we don't know if the squirrel chases the squirrel, but we know that the squirrel is young (statement 20), and the squirrel needs the cat (statement 6).\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the cat (statement 15), and the cat visits the squirrel (statement 5), making the squirrel nice (statement 3). And the squirrel is young (statement 20), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and if the squirrel is young then it needs the cat (statement 19), and if the squirrel needs the cat then the squirrel visits the cat (statement 14), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the cat (statement 15), and the cat visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the cat (statement 15), and the cat visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12), and the cow is rough (statement 18), and the cow chases the squirrel (statement 18), making the squirrel need the cat (statement 19), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12), but we don't know if the squirrel is big or not.\n\nHowever, we can infer that the lion is big (statement 4), and the lion visits the cat (statement 15), and the cat visits the squirrel (statement 5), making the squirrel nice (statement 3), and the squirrel is young (statement 20), and the lion needs the squirrel (statement 6), and the lion is red (statement 11), and the lion is young (statement 12),",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'The squirrel is not big' is true, false, or unknown, we need to analyze the given information and infer whether the squirrel is big or not.\n\n1. All nice things are big.\n2. The lion is nice, so the lion is big.\n3. The lion visits the squirrel, which means the lion is not rough, because if it was, it would be chasing the squirrel.\n4. Since the lion visits the squirrel, and something visits the squirrel and it is big, then the squirrel is big.\n\nBased on steps 4, the squirrel is big. Therefore, the statement 'The squirrel is not big' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we need to find out whether the statement \"The squirrel is not big\" is true, false, or unknown. \n\nFirst, let's analyze the information given:\n\n1. All nice things are big.\n2. If something is big then it visits the squirrel.\n3. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n\nFrom statement 3, we know that the cat visits the squirrel. Since we are given that \"The cat is nice\", we can conclude that \"The cat is big\" using statement 1.\n\nNow, using statement 2, we can conclude that \"The squirrel is big\" because the cat visits the squirrel and the cat is big.\n\nNow, we can compare this with the statement \"The squirrel is not big\". Since we have concluded that \"The squirrel is big\", the statement \"The squirrel is not big\" is false.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All nice things are big. This tells us that if something is nice, it is big. However, we don't know if the squirrel is nice or not yet.\n\n2. The lion is nice. The lion is red. The lion is young. Since the lion is nice, it is big (from step 1).\n\n3. The lion needs the squirrel. The lion is young. This doesn't give us any information about the squirrel's size yet.\n\n4. If the lion needs the squirrel then the lion visits the squirrel. We already know that the lion is big (from step 2).\n\n5. If something is big then it visits the squirrel. Since the lion is big, it must visit the squirrel (from step 4).\n\n6. The cow visits the lion. The cow is nice. Since the cow is nice, it must be big (from step 1).\n\n7. The cow needs the cat. The lion needs the cat. Since the lion is big (from step 2) and visits the squirrel (from step 5), the lion is rough (from the given information). However, we cannot conclude that the lion is rough from the information that the lion visits the squirrel. We already know the lion is rough from the information that the lion visits the cow.\n\n8. The cow is rough. The cow visits the lion. Since the cow is rough, it must visit the cat (from the given information).\n\n9. The cat is nice. The cat needs the lion. Since the cat is nice, it must be big (from step 1).\n\n10. If something visits the cat and the cat visits the squirrel then the squirrel is nice. Since the cat is big (from step 9), the squirrel must be nice (from step 10).\n\n11. If something chases the squirrel and it is young then the squirrel needs the cat. However, we cannot determine if the squirrel is young or not from this information. We do know that the squirrel is nice (from step 10).\n\n12. Since the squirrel is nice (from step 10) and we know from step 1 that all nice things are big, the squirrel must be big.\n\nNow, we need to determine whether the statement \"The squirrel is not big\" is true or false based on this information.\n\nSince we have concluded that the squirrel is big (from step 12), we can determine that the statement \"The squirrel is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and logical deductions to find the relationship between the squirrel and the property \"big.\"\n\n1. The lion is nice. (Given)\n2. The lion is red. (Given)\n3. The lion is young. (Given)\n4. The lion needs the cow. (Given)\n5. The lion needs the squirrel. (Given)\n6. The squirrel is young. (Given)\n\nFrom the given statements, we can make the following deductions:\n\n- From statement 1, we know the lion is nice. Since all nice things are big (statement 9), we can conclude the lion is big.\n- Statement 8 says \"If something visits the cow then it is rough.\" However, statement 4 says \"The lion needs the cow.\" Since the lion is big (from the deduction above), it must visit the squirrel (statement 10). Therefore, the lion does not visit the cow, and it is not rough.\n- Statement 5 says \"The lion needs the squirrel.\" Statement 7 says \"If something needs the squirrel then it visits the cat.\" Therefore, the lion visits the cat.\n- Since the lion visits the cat (from the deduction above), statement 12 says \"If the squirrel visits the cat and the cat visits the squirrel then the squirrel is nice.\"\n- Statement 11 says \"If something chases the squirrel and it is young then the squirrel needs the cat.\" However, there is no information that the squirrel chases something or that it is not young.\n- Statement 9 says \"All nice things are big.\" Since the lion is nice (from statement 1) and big (from the deduction above), it can be concluded that the lion is indeed big.\n\nNow, let's determine the relationship between the squirrel and the property \"big.\"\n\n- Statement 10 says \"If something is big then it visits the squirrel.\" However, there is no information that something is big.\n- Statement 13 says \"If the squirrel visits the cat and the cat visits the squirrel then the squirrel is nice.\" However, there is no information that the squirrel visits the cat.\n- Statement 11 says \"If something chases the squirrel and it is young then the squirrel needs the cat.\" However, there is no information that the squirrel chases something or that it is not young.\n- Statement 4 says \"The lion needs the cow.\" Statement 7 says \"If something needs the squirrel then it visits the cat.\" Statement 6 says \"The squirrel is young.\" Statement 5 says \"The lion needs the squirrel.\" Since the lion is big (from the deduction above), it must visit the squirrel (statement 10). However, we don't have enough information to conclude whether the squirrel is big or not.\n\nTherefore, we cannot determine whether the squirrel is big or not. The answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and determine the characteristics of each animal. Let's break it down step by step:\n\n1. The lion is nice, and all nice things are big. Therefore, the lion is big.\n\n2. Since the lion is big, it visits the squirrel. (If something is big, then it visits the squirrel.)\n\n3. The lion visits the squirrel, and the squirrel is young. However, we don't know the color of the lion yet.\n\n4. The cat is nice, and the cat needs the lion. Therefore, the cat visits the lion. Since the cat is nice, it is also big. (All nice things are big.)\n\n5. The cow is nice, and the cow needs the cat. Therefore, the cow visits the cat. Since the cow is nice, it is also big.\n\n6. The lion is red. Therefore, the cat is red, as the cat visits the lion.\n\n7. The squirrel visits the cat, and the cat is red. However, this statement does not directly affect our conclusion about the squirrel's size.\n\n8. If the squirrel visits the cat and the cat is red, then the squirrel chases the cow. However, this statement does not directly affect our conclusion about the squirrel's size.\n\n9. Since the lion is young and needs the cow, and also needs the squirrel, the lion visits the squirrel. We already know that the lion is big.\n\n10. The cow needs the lion and it chases the squirrel. However, we don't know if the cow is rough or not yet.\n\n11. If something needs the squirrel, then it visits the cat. The lion needs the squirrel, so the lion visits the cat. However, we already know that the lion is big.\n\n12. If something visits the cat and the cat visits the squirrel, then the squirrel is nice. The lion visits the cat, and the cat visits the squirrel. Therefore, the squirrel is nice.\n\nNow, let's analyze the statement we need to evaluate: \"The squirrel is not big.\"\n\nSince the squirrel is nice (from step 12), and all nice things are big, the squirrel must be big. Therefore, the statement \"The squirrel is not big\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given information.\n\n1. All nice things are big.\n2. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n3. The cat visits the lion.\n4. The lion is nice.\n5. The squirrel is young.\n\nFrom (2), (3), and (4), we can conclude that the squirrel is nice because the cat visits the lion, and the lion is nice.\nFrom (1), we can conclude that since the squirrel is nice, it must be big.\n\nHowever, the given statement is \"The squirrel is not big.\" Based on the information we've analyzed, this statement is false.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller parts and use the given statements to determine the truth of the statement \"The squirrel is not big.\"\n\n1. Given statements:\n   - All nice things are big.\n   - The lion is nice.\n   - The lion is big. (from statement 1)\n   - The lion needs the cow.\n   - The cow is nice.\n   - The cow is big. (from statement 1)\n   - The squirrel is young.\n   - The squirrel needs the cat.\n   - If the cow needs the lion then the lion visits the squirrel.\n   - If something needs the squirrel then it visits the cat.\n   - If something needs the cow and it chases the squirrel then the cow is rough.\n   - If something chases the squirrel and it is young then the squirrel needs the cat.\n   - If something visits the cow then it is rough.\n   - If the squirrel visits the cat and the cat is red then the squirrel chases the cow.\n   - The cat is nice.\n   - The cat is big. (from statement 1)\n   - The cat needs the lion.\n   - The cat visits the lion.\n   - The lion is red.\n   - The lion is young.\n   - The lion needs the cow.\n   - The lion needs the squirrel.\n   - The cow is nice.\n   - The cow needs the cat.\n   - The lion is young.\n\n2. From statement 1, we know the cat is big. And the cat visits the lion. And the lion is young. And the lion needs the squirrel. If the squirrel visits the cat and the cat is big then the squirrel is nice. So, the squirrel is nice.\n\n3. Now we have the statement \"The squirrel is nice\" and the statement \"All nice things are big.\" We can conclude that the squirrel is big.\n\nNow, let's examine the statement \"The squirrel is not big.\" Since we've determined that the squirrel is big, this statement is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All nice things are big. (Rule 9)\n   We don't have any information about the squirrel being nice or not yet.\n\n2. The lion is nice. (Statement)\n   From Rule 9, since the lion is nice, it is big.\n\n3. The cat is nice. (Statement)\n   From Rule 9, since the cat is nice, it is big.\n\n4. The cow is nice. (Statement)\n   From Rule 9, since the cow is nice, it is big.\n\n5. The lion needs the cow. (Statement)\n   Since the lion needs the cow and it is big, we cannot conclude that the squirrel is not big.\n\n6. The squirrel is young. (Statement)\n   This information alone doesn't tell us about the size of the squirrel.\n\n7. The lion visits the squirrel. (Statement)\n   Since the lion is big, from Rule 10, it visits the squirrel.\n\n8. If something needs the squirrel then it visits the cat. (Rule 3)\n   We don't have any information about something needing the squirrel yet.\n\n9. The cat visits the lion. (Statement)\n   Since the cat is big, from Rule 10, it visits the squirrel.\n\n10. If the squirrel visits the cat and the cat visits the squirrel then the squirrel is nice. (Rule 8)\n    Since the cat visits the lion and the lion visits the squirrel, and the cat visits the squirrel, we can conclude that the squirrel is nice.\n\n11. All nice things are big. (Rule 9)\n    Since the squirrel is nice, it is big.\n\nNow, we can conclude that the statement \"The squirrel is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All nice things are big. This means that if something is nice, it is big.\n\n2. The lion is nice. So, the lion is big.\n\n3. The cow is nice. So, the cow is big.\n\n4. The cat visits the lion. This does not provide any information about the size of the cat.\n\n5. The lion is red. This information does not affect the size of the lion.\n\n6. The lion is young. This information does not affect the size of the lion.\n\n7. The lion needs the cow. This information does not affect the size of the lion.\n\n8. If the cow needs the lion then the lion visits the squirrel. The lion visits the squirrel, but this does not provide any information about the size of the squirrel.\n\n9. The squirrel is young. This information does not affect the size of the squirrel.\n\n10. If something needs the squirrel then it visits the cat. The lion needs the squirrel, but this does not provide any information about the size of the squirrel.\n\n11. If something needs the cow and it chases the squirrel then the cow is rough. The lion needs the cow, and the lion does not chase the squirrel, so this rule does not apply.\n\n12. If something chases the squirrel and it is young then the squirrel needs the cat. The lion needs the squirrel, but this does not provide any information about the size of the squirrel.\n\n13. If something visits the cow then it is rough. The lion visits the cow, but this does not provide any information about the size of the squirrel.\n\n14. The lion needs the squirrel. This information does not affect the size of the squirrel.\n\n15. If the squirrel visits the cat and the cat is red then the squirrel chases the cow. The squirrel does not visit the cat, so this rule does not apply.\n\n16. All nice things are big. We do not know if the squirrel is nice.\n\n17. If something is big then it visits the squirrel. We do not know if the squirrel is big, so we do not know if this rule applies.\n\n18. If something visits the cat and the cat visits the squirrel then the squirrel is nice. The lion visits the cat and the cat visits the squirrel, so the squirrel is nice. \n\nSince the squirrel is nice, we can use rule 16: All nice things are big. This means that the squirrel is big.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use them to deduce the properties of the entities (cat, cow, lion, squirrel).\n\nFrom the given statements:\n\n1. All nice things are big.\n2. If something is big then it visits the squirrel.\n3. The lion is nice.\n4. The lion is big (by statement 1).\n5. The lion visits the squirrel (by statement 2).\n6. If something needs the squirrel then it visits the cat. \n7. The lion needs the squirrel.\n8. The lion visits the cat (by statement 6).\n9. The cat visits the lion.\n10. The cat is nice.\n11. The cat is big (by statement 1).\n12. The cat visits the squirrel (by statement 2).\n\nSince the cat and lion are both big and nice, and we know that the lion visits the squirrel, the squirrel is nice (by statement 12 and statement 14).\n\n13. The squirrel is young.\n14. If something is young then it needs the cat.\n15. The squirrel needs the cat (by statement 14).\n16. If something needs the cat then it visits the cat.\n17. The squirrel visits the cat (by statement 16).\n\nNow, we need to determine whether the squirrel is big or not.\n\nGiven statements:\n\n18. If the squirrel visits the cat and the cat is red then the squirrel chases the cow.\n19. The cat is not mentioned as red in the given statements.\n\nHowever, statement 18 is not necessary to determine if the squirrel is big or not.\n\nFrom the given statements:\n\n20. If something visits the cow then it is rough.\n21. The lion is rough (by statement 20).\n22. The lion needs the cow (given).\n23. The lion is young (given).\n24. If something chases the squirrel and it is young then the squirrel needs the cat.\n25. The lion chases the squirrel (because the lion needs the cow, and the lion needs the squirrel, and the lion chases the squirrel).\n26. The lion is young (given), so the squirrel needs the cat (by statement 24).\n\nSince the lion is young and chases the squirrel, we know the squirrel needs the cat.\n\n27. The lion needs the cow (given).\n28. The lion chases the squirrel (because the lion needs the squirrel).\n29. The lion is rough (by statement 20).\n30. The cow needs the lion (given).\n31. The cow visits the lion (because the cow needs the lion).\n32. The cow is rough (because the cow visits the lion, by statement 20).\n\nNow we know the lion and the cow are rough. \n\nFrom the given statements:\n\n33. The cow is nice (given).\n34. The cow is not rough (because the cow needs the lion, and the cow does not chase the squirrel).\n35. The lion needs the cow (given).\n36. The lion is young (given).\n37. If something needs the cow and it chases the squirrel then the cow is rough.\n38. The lion chases the squirrel (because the lion needs the squirrel).\n39. The lion is young (given), so the cow is not rough (because the cow does not chase the squirrel, by statement 37).\n\nHowever, statement 38 is not necessary to determine if the squirrel is big or not.\n\nFrom the given statements:\n\n40. The cow needs the cat (given).\n41. The lion is big (by statement 1).\n42. The lion visits the squirrel (by statement 2).\n43. The lion is nice (given).\n44. The lion is red (given).\n45. The lion is young (given).\n\nSince the lion is big and nice, and we know that the lion visits the squirrel, the squirrel is nice (by statement 2 and statement 14).\n\nNow, we need to determine whether the squirrel is big or not.\n\nFrom the given statements:\n\n46. If the squirrel visits the cat and the cat is red then the squirrel chases the cow.\n47. The cat is not mentioned as red in the given statements.\n\nHowever, statement 46 is not necessary to determine if the squirrel is big or not.\n\nFrom the given statements:\n\n48. If something is big then it visits the squirrel.\n49. The lion is big (by statement 1).\n50. The lion visits the squirrel (by statement 2).\n51. The lion is nice (given).\n52. The cat is nice (given).\n53. The cat is big (by statement 1).\n54. The cat visits the squirrel (by statement 2).\n\nNow we know the lion and the cat are big and visit the squirrel. \n\nFrom the given statements:\n\n55. The squirrel visits the cat (by statement 16).\n56. The cat is nice (given).\n57. The cat is big (by statement 1).\n58. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n59. The squirrel is nice (by statement 58).\n\nNow, we need to determine whether the squirrel is big or not.\n\nFrom the given statements:\n\n60. All nice things are big.\n61. The squirrel is nice (by statement 58).\n62. If something is big then it visits the squirrel.\n63. The lion is big (by statement 1).\n64. The lion visits the squirrel (by statement 2).\n65. The cat is big (by statement 1).\n66. The cat visits the squirrel (by statement 2).\n\nSince the lion and the cat are big, we can't conclude that the squirrel is big or not, because the given statements do not contain any statement that says if a nice thing is not big.\n\nTherefore, the statement \"The squirrel is not big\" is unknown, because we do not have enough information to determine if the squirrel is big or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is young. (Given)\n2. The lion is red. (Given)\n3. The lion is nice. (Given)\n4. Since all nice things are big (From given information), the lion is big. (From rule 1)\n5. The lion needs the cow. (Given)\n6. The lion needs the squirrel. (Given)\n7. If the cow needs the lion then the lion visits the squirrel. (Given)\n8. Since the lion visits the squirrel, it is not the case that the lion visits the squirrel because the cow needs the lion. (From rule 7)\n9. This means the lion visits the squirrel because the lion needs the squirrel (From rule 8)\n10. The lion visits the squirrel (From rule 9)\n11. Since the lion visits the squirrel, it is not the case that the lion visits the squirrel because something visits the cat and the cat visits the squirrel (From rule 10)\n12. Since the lion visits the squirrel, it is not the case that the lion visits the squirrel because the lion is big (From rule 11)\n13. The lion is big (From rule 4)\n14. The lion visits the squirrel (From rule 10)\n15. If something visits the squirrel and it is big then the lion visits the squirrel (From rule 13)\n16. The lion is big (From rule 13)\n17. The lion visits the squirrel (From rule 14)\n18. From rule 17, we know that the lion visits the squirrel because something is big.\n19. From rule 13, we know that the lion is big.\n20. From rule 17, we know that the lion visits the squirrel because the lion is big.\n21. From rule 18 and rule 20, we conclude that the lion visits the squirrel because something is big and the lion is big.\n22. The lion visits the squirrel (From rule 14)\n23. From rule 17, we know that the lion visits the squirrel because something is big.\n24. The lion visits the squirrel (From rule 22)\n25. From rule 23 and rule 22, we conclude that the lion visits the squirrel because something is big.\n26. The cat visits the lion. (Given)\n27. The cat visits the lion. (From rule 26)\n28. The cat visits the lion. (From rule 27)\n29. The cat visits the lion. (From rule 28)\n30. The cat visits the lion. (From rule 29)\n31. Since the cat visits the lion and the lion visits the squirrel, the squirrel is nice. (From rule 25)\n32. The squirrel is nice. (From rule 31)\n33. Since the squirrel is nice, it is big. (From rule 1)\n34. The squirrel is big. (From rule 33)\n35. The statement \"The squirrel is not big\" is false because it contradicts rule 34.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, squirrel) -> nice(squirrel)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & chases(X, squirrel) -> needs(squirrel, cat)",
+          "z3_formula": "Implies(And(young_squirrel, chases_cow_squirrel), needs_squirrel_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & rough(X) -> chases(X, Y)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, rough_lion), chases_lion_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & big(Y) -> big(X)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, big_squirrel), big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_cat_squirrel, visits_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, squirrel) -> nice(squirrel)",
+          "z3_formula": "Implies(And(visits_cat_squirrel, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_cat, visits_cat_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_nice_are_big",
+          "z3_formula": "all_nice_are_big == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_nice",
+          "z3_formula": "lion_is_nice == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_red",
+          "z3_formula": "lion_is_red == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(lion_is_nice, lion_is_big)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_squirrel",
+          "z3_formula": "lion_needs_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "lion_needs_squirrel -> lion_visits_squirrel",
+          "z3_formula": "Implies(lion_needs_squirrel, lion_visits_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(lion_is_big, lion_visits_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cow_visits_lion",
+          "z3_formula": "cow_visits_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cow_is_nice",
+          "z3_formula": "cow_is_nice == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(cow_is_nice, cow_is_big)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cow_needs_cat",
+          "z3_formula": "cow_needs_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_cat",
+          "z3_formula": "lion_needs_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_big",
+          "z3_formula": "lion_is_big == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_lion -> lion_is_rough",
+          "z3_formula": "Implies(cow_visits_lion, lion_is_rough)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cow_is_rough",
+          "z3_formula": "cow_is_rough == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cow_visits_lion",
+          "z3_formula": "cow_visits_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cow_visits_cat",
+          "z3_formula": "Implies(cow_is_rough, cow_visits_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cat_is_nice",
+          "z3_formula": "cat_is_nice == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cat_needs_lion",
+          "z3_formula": "cat_needs_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(cat_is_nice, cat_is_big)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cat_visits_squirrel & cat_is_big -> squirrel_is_nice",
+          "z3_formula": "Implies(And(cat_visits_squirrel, cat_is_big), squirrel_is_nice)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_squirrel",
+          "z3_formula": "cat_visits_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cat_is_big",
+          "z3_formula": "cat_is_big == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases_squirrel & young -> squirrel_needs_cat",
+          "z3_formula": "Implies(And(chases_squirrel, young), squirrel_needs_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_is_nice",
+          "z3_formula": "squirrel_is_nice == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(squirrel_is_nice, squirrel_is_big)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "squirrel_is_big",
+          "z3_formula": "squirrel_is_big == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> rough(X)",
+          "z3_formula": "Implies(visits_lion_cow, rough_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_lion), nice_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & young(squirrel) -> needs(squirrel, cat)",
+          "z3_formula": "Implies(And(chases_something_squirrel, young_squirrel), needs_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(big_lion, visits_lion_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel) & young(squirrel)",
+          "z3_formula": "And(visits_lion_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion) & big(lion)",
+          "z3_formula": "And(visits_cat_lion, big_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, cat)",
+          "z3_formula": "needs_cow_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat) & red(cat)",
+          "z3_formula": "And(visits_squirrel_cat, red_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & red(cat) -> chases(X, cow)",
+          "z3_formula": "Implies(And(visits_squirrel_cat, red_cat), chases_squirrel_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion) & needs(lion, cow) & needs(lion, squirrel)",
+          "z3_formula": "And(young_lion, And(needs_lion_cow, needs_lion_squirrel))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion) & needs(lion, squirrel)",
+          "z3_formula": "And(big_lion, needs_lion_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, lion) & chases(cow, squirrel)",
+          "z3_formula": "And(needs_cow_lion, chases_cow_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, cat)",
+          "z3_formula": "Implies(needs_lion_squirrel, visits_lion_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat) & visits(cat, squirrel)",
+          "z3_formula": "And(visits_lion_cat, visits_cat_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, Y) -> nice(Y)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel)",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_lion",
+          "z3_formula": "cat_visits_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_young",
+          "z3_formula": "lion_is_young == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_squirrel",
+          "z3_formula": "lion_needs_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> visits(X, squirrel)",
+          "z3_formula": "Implies(needs_lion_cow, visits_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> visits(X, squirrel)",
+          "z3_formula": "Implies(visits_cat_lion, visits_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_cat_squirrel, visits_squirrel_cat), nice_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & visits(Y, Z) -> nice(Z)",
+          "z3_formula": "Implies(And(visits_lion_cat, visits_cat_squirrel), nice_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_lion, big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_visits_squirrel",
+          "z3_formula": "Implies(needs_cow_lion, lion_visits_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_squirrel & big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(And(lion_visits_squirrel, big_lion), lion_visits_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "lion_visits_squirrel & big(X) -> lion_visits_squirrel",
+          "z3_formula": "Implies(And(lion_visits_squirrel, big_lion), lion_visits_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & lion_visits_squirrel -> nice_squirrel",
+          "z3_formula": "Implies(And(visits_cat_lion, lion_visits_squirrel), nice_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice_squirrel",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "nice_squirrel",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_squirrel, big_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "big_squirrel",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "big_squirrel",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not(big_squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 29
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 173,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 85
+    },
+    "maxsat_stats": {
+      "satisfied": 84,
+      "excluded": 1,
+      "total_weight": 168,
+      "solve_time_ms": 1.4304444193840027
+    },
+    "timing": {
+      "trace_gen_s": 24.431,
+      "extraction_s": 34.966,
+      "dedup_s": 3.515,
+      "maxsat_s": 0.006,
+      "total_s": 62.918
+    }
+  }
+}

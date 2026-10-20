@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-796_Q6",
+    "problem": "The bald eagle chases the cat. The bald eagle likes the dog. The cat is green. The cat is red. The cat likes the lion. The dog chases the cat. The dog is red. The dog sees the bald eagle. The dog sees the lion. The lion is green. The lion is rough. The lion sees the cat. If someone is cold then they like the bald eagle. If someone sees the cat and they like the bald eagle then the cat is rough. If someone sees the bald eagle then the bald eagle likes the dog. All rough people are nice. If someone sees the lion then they are green. If the bald eagle is red then the bald eagle is nice. All nice people are cold. If someone chases the dog and the dog likes the cat then they see the bald eagle. If someone is rough then they like the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nGreen(Cat, True) ::: The cat is green.\nRed(Cat, True) ::: The cat is red.\nLikes(Cat, Lion, True) ::: The cat likes the lion.\nChases(Dog, Cat, True) ::: The dog chases the cat.\nRed(Dog, True) ::: The dog is red.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nGreen(Lion, True) ::: The lion is green.\nRough(Lion, True) ::: The lion is rough.\nSees(Lion, Cat, True) ::: The lion sees the cat.\n\nRules:\nCold($x, True) >>> Likes($x, BaldEagle, True) ::: If someone is cold then they like the bald eagle.\nSees($x, Cat, True) && Likes($x, BaldEagle, True) >>> Rough(Cat, True) ::: If someone sees the cat and they like the bald eagle then the cat is rough.\nSees($x, BaldEagle, True) >>> Likes(BaldEagle, Dog, True) ::: If someone sees the bald eagle then the bald eagle likes the dog.\nRough($x, True) >>> Nice($x, True) ::: All rough people are nice.\nSees($x, Lion, True) >>> Green($x, True) ::: If someone sees the lion then they are green.\nRed(BaldEagle, True) >>> Nice(BaldEagle, True) ::: If the bald eagle is red then the bald eagle is nice.\nNice($x, True) >>> Cold($x, True) ::: All nice people are cold.\nChases($x, Dog, True) && Likes(Dog, Cat, True) >>> Sees($x, BaldEagle, True) ::: If someone chases the dog and the dog likes the cat then they see the bald eagle.\nRough($x, True) >>> Likes($x, Dog, True) ::: If someone is rough then they like the dog.\n\nQuery:\nCold(Lion, False) ::: The lion is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

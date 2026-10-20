@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-668_Q14",
+    "problem": "The bald eagle chases the lion. The bald eagle chases the rabbit. The bald eagle is big. The cow needs the bald eagle. The cow needs the rabbit. The lion chases the cow. The lion chases the rabbit. The lion is kind. The lion is not round. The lion needs the bald eagle. The lion does not visit the cow. The lion visits the rabbit. The rabbit chases the bald eagle. The rabbit visits the bald eagle. If someone needs the rabbit then the rabbit chases the lion. If someone is rough and they do not chase the rabbit then they visit the bald eagle. If someone chases the lion then they do not need the cow. If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round. If someone chases the bald eagle and they do not need the cow then they visit the cow. If someone needs the rabbit and the rabbit visits the cow then the rabbit is big. If someone is big then they do not visit the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle visits the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(BaldEagle, Lion, True) ::: The bald eagle chases the lion.\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nBig(BaldEagle, True) ::: The bald eagle is big.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nNeeds(Cow, Rabbit, True) ::: The cow needs the rabbit.\nChases(Lion, Cow, True) ::: The lion chases the cow.\nChases(Lion, Rabbit, True) ::: The lion chases the rabbit.\nKind(Lion, True) ::: The lion is kind.\nRound(Lion, False) ::: The lion is not round.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\nVisits(Lion, Cow, False) ::: The lion does not visit the cow.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nChases(Rabbit, BaldEagle, True) ::: The rabbit chases the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nNeeds($x, Rabbit, True) >>> Chases(Rabbit, Lion, True) ::: If someone needs the rabbit then the rabbit chases the lion.\nRough($x, True) && Chases($x, Rabbit, False) >>> Visits($x, BaldEagle, True) ::: If someone is rough and they do not chase the rabbit then they visit the bald eagle.\nChases($x, Lion, True) >>> Needs($x, Cow, False) ::: If someone chases the lion then they do not need the cow.\nNeeds($x, BaldEagle, True) && Chases(BaldEagle, Cow, True) >>> Round(BaldEagle, False) ::: If someone needs the bald eagle and the bald eagle chases the cow then the bald eagle is not round.\nChases($x, BaldEagle, True) && Needs($x, Cow, False) >>> Visits($x, Cow, True) ::: If someone chases the bald eagle and they do not need the cow then they visit the cow.\nNeeds($x, Rabbit, True) && Visits(Rabbit, Cow, True) >>> Big(Rabbit, True) ::: If someone needs the rabbit and the rabbit visits the cow then the rabbit is big.\nBig($x, True) >>> Visits($x, Lion, False) ::: If someone is big then they do not visit the lion.\n\nQuery:\nVisits(BaldEagle, BaldEagle, True) ::: The bald eagle visits the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aec7cb73e8371d0c95b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp019 output check",
+  "task_key": "worker_analysis_exp019-output-check_20260517T085656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp019-output-check_20260517T085656_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "18f7397b4301e46707f8af0266d83ef04fbeb39b1dfabb850dd1af7839705a98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态: **RUNNING** (142/200)\n\n实验正在运行中，当前进度和中间统计：\n\n| 指标 | 值 |\n|---|---|\n| 已完成 | 143/200 (结果文件) |\n| 日志进度 | 正在处理 #142 |\n| GPU 利用率 | 99%, 88309/97887 MiB |\n| tmux session | `exp-019-llama8b-strategyqa-200` 活跃 |\n\n**中间统计 (n=143):**\n\n| 指标 | 值 |\n|---|---|\n| SICA accuracy | 74.13% (106/143) |\n| SC accuracy | 72.03% (103/143) |\n| Delta | **+2.10pp** |\n| k | 12 |\n| temperature | 0.7 |\n\nSICA 领先 SC 2.1 个百分点。实验预计还剩 57 题，按当前速度（约 40 分钟已完成 143 题）大约还需 ~15 分钟完成。结果文件实时写入，包含 `constraints_stats`、`maxsat_stats`、`wall_time_s` 等详细字段。\n\n完成后需要我跑完整统计（McNemar + bootstrap CI）吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp019-output-check.md"
+}

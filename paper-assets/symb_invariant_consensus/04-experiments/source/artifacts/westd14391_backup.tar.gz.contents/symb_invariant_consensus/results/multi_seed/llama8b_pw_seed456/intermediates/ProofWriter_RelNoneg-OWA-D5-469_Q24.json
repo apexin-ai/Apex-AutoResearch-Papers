@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-469_Q24",
+    "problem": "The cat chases the cow. The cat chases the lion. The cat chases the mouse. The cat eats the mouse. The cat visits the lion. The cow chases the cat. The cow is green. The lion chases the cow. The lion eats the cow. The lion eats the mouse. The lion visits the cat. The mouse eats the cow. The mouse is rough. The mouse is round. If something is cold then it visits the mouse. If something is round and it eats the mouse then the mouse chases the cow. If something visits the lion then it is big. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. If something is cold and it chases the cat then it eats the cow. If something eats the lion and the lion eats the cow then the lion is cold. If something is cold and it visits the mouse then the mouse eats the lion. Big things are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(cat, cow, True) ::: The cat chases the cow.\nChases(cat, lion, True) ::: The cat chases the lion.\nChases(cat, mouse, True) ::: The cat chases the mouse.\nEats(cat, mouse, True) ::: The cat eats the mouse.\nVisits(cat, lion, True) ::: The cat visits the lion.\nChases(cow, cat, True) ::: The cow chases the cat.\nGreen(cow, True) ::: The cow is green.\nChases(lion, cow, True) ::: The lion chases the cow.\nEats(lion, cow, True) ::: The lion eats the cow.\nEats(lion, mouse, True) ::: The lion eats the mouse.\nVisits(lion, cat, True) ::: The lion visits the cat.\nEats(mouse, cow, True) ::: The mouse eats the cow.\nRough(mouse, True) ::: The mouse is rough.\nRound(mouse, True) ::: The mouse is round.\n\nRules:\nCold($x, True) >>> Visits($x, mouse, True) ::: If something is cold then it visits the mouse.\nRound($x, True) && Eats($x, mouse, True) >>> Chases($x, cow, True) ::: If something is round and it eats the mouse then the mouse chases the cow.\nVisits($x, lion, True) >>> Big($x, True) ::: If something visits the lion then it is big.\nChases(mouse, cat, True) && Chases(mouse, lion, True) >>> Visits(mouse, cat, True) ::: If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat.\nCold($x, True) && Chases($x, cat, True) >>> Eats($x, cow, True) ::: If something is cold and it chases the cat then it eats the cow.\nEats($x, lion, True) && Eats(lion, cow, True) >>> Cold(lion, True) ::: If something eats the lion and the lion eats the cow then the lion is cold.\nCold($x, True) && Visits($x, mouse, True) >>> Eats(mouse, lion, True) ::: If something is cold and it visits the mouse then the mouse eats the lion.\nBig($x, True) >>> Cold($x, True) ::: Big things are cold.\n\nQuery:\nGreen(lion, True) ::: The lion is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

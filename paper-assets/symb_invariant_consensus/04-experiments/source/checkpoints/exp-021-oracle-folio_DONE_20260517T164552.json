@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp-021-oracle-folio",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:36:04.545Z",
+    "updated_at": "2026-05-17T16:45:52.279Z",
+    "hypothesis": "If we replace self-extracted constraints with gold FOL annotations verified by Z3, Oracle-SICA should significantly outperform both SC and SICA, demonstrating that constraint quality is the bottleneck for SICA gains on formal logic tasks.",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "python scripts/run_exp021_oracle_folio.py",
+      "server": "westd-32608",
+      "data_path": "data/folio_full.json + results/sica_expanded_14b.json",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct (traces) + Z3 (oracle constraints)",
+      "seed": 42,
+      "checkpoint_path": "results/exp021_oracle_folio/exp021_results.json",
+      "log_path": "results/exp021_oracle_folio/exp021_summary.json",
+      "checkpoint_source": "results/sica_expanded_14b.json",
+      "eval_data": "data/folio_full.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T16:45:52.280Z"
+  },
+  "timestamp": "2026-05-17T16:45:52.448154+00:00",
+  "trigger": "update_registry"
+}

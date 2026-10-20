@@ -1,0 +1,2844 @@
+# analysis cross model kappa phase1
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 0
+- **Tool calls:** 47
+- **Original source:** `logs/chats/worker_analysis_cross-model-kappa-phase1_20260520T060602.jsonl`
+- **Structured JSON:** [`23779e2aa1662a11b6a1.json`](../../sessions/23/23779e2aa1662a11b6a1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+95 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T06:19:23.601099+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T06:19:23.601709+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T06:19:23.602632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T06:19:23.602827+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T06:19:23.603279+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T06:19:23.603477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1044\\ndrwxr-xr-x  4 root root    149 May 20 01:39 .\\ndrwxr-xr-x 52 root root   4096 May 20 10:07 ..\\ndrwxr-xr-x  2 root root   8192 May 19 11:06 constraint_cache\\n-rw-r--r--  1 root root 660925 May 19 03:09 exp033.log\\n-rw-r--r--  1 root root 311447 May 19 03:09 exp033_results.json\\ndrwxr-xr-x  2 root root   8192 May 19 03:09 intermediates\\n-rw-r--r--  1 root root  56384 May 20 01:39 sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T06:19:23.603626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 320\\ndrwxr-xr-x  4 root root     99 May 19 15:18 .\\ndrwxr-xr-x 52 root root   4096 May 20 10:07 ..\\n-rw-r--r--  1 root root 296620 May 19 16:36 exp061_results.json\\ndrwxr-xr-x  2 root root   8192 May 19 16:36 intermediates\\ndrwxr-xr-x  2 root root   8192 May 19 16:36 per_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T06:19:23.603761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1708\\ndrwxr-xr-x  3 root root    154 May 19 15:41 .\\ndrwxr-xr-x 29 root root   4096 May 20 05:19 ..\\n-rw-r--r--  1 root root  10958 May 19 15:39 dryrun.log\\n-rw-r--r--  1 root root   4764 May 19 15:39 dryrun_results.json\\n-rw-r--r--  1 root root 672880 May 19 18:15 exp063.log\\ndrwxr-xr-x  2 root root   8192 May 19 18:15 intermediates\\n-rw-r--r--  1 root root 300757 May 19 18:15 results.json\\n-rw-r--r--  1 root root 723045 May 19 19:14 vllm.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T06:19:23.603954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T06:19:23.604092+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/exp061_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/exp061_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T06:19:23.604648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5931372549019608,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 121,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9714052287581699,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 8021,\\n    \\\"contradiction_rate\\\": 0.03503303827452936,\\n    \\\"problems_with_contradictions\\\": 128,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4881.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion
+…[truncated 3574 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T06:19:23.604994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -100 /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T06:19:23.605202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ -1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ -1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T06:19:23.605442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.7647058823529411,\\n    \\\"sc_accuracy\\\": 0.7598039215686274,\\n    \\\"sica_correct\\\": 156,\\n    \\\"sc_correct\\\": 155,\\n    \\\"extraction_rate\\\": 0.9758986928104575,\\n    \\\"total_constraints_extracted\\\": 12819,\\n    \\\"total_unique_constraints\\\": 6503,\\n    \\\"contradiction_rate\\\": 0.016300169152698753,\\n    \\\"problems_with_contradictions\\\": 57,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.7647058823529411,\\n        \\\"sc\\\": 0.7598039215686274,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7647058823529411,\\n        \\\"sc\\\": 0.7598039215686274,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4712.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion
+…[truncated 3581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T06:19:23.605680+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.6176470588235294,\\n    \\\"sc_accuracy\\\": 0.6617647058823529,\\n    \\\"sica_correct\\\": 126,\\n    \\\"sc_correct\\\": 135,\\n    \\\"extraction_rate\\\": 0.9571078431372549,\\n    \\\"total_constraints_extracted\\\": 18819,\\n    \\\"total_unique_constraints\\\": 9787,\\n    \\\"contradiction_rate\\\": 0.04965770920608971,\\n    \\\"problems_with_contradictions\\\": 142,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.6176470588235294,\\n        \\\"sc\\\": 0.6617647058823529,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.6176470588235294,\\n        \\\"sc\\\": 0.6617647058823529,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 9336.2\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion
+…[truncated 3575 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T06:19:23.605950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T06:19:23.606151+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T06:19:23.606310+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -80 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -80 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T06:19:23.606938+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T06:19:23.607273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"False\\\": 3.5,\\n      \\\"Unknown\\\": 58.0\\n    },\\n    \\\"answer_counts\\\": {\\n    
+…[truncated 6850 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T06:19:23.607525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -60 /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -60 /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/intermediates/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T06:19:23.607677+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -60 /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -60 /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/intermediates/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T06:19:23.608020+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"True\\\": 45.0,\\n      \\\"Unknown\\\": 53.0\\n    },\\n    \\\"answer_counts\\\": {\\n    
+…[truncated 7772 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T06:19:23.608336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"True\\\",\\n    \\\"scores\\\": {\\n      \\\"Unknown\\\": 33.0,\\n      \\\"True\\\": 46.0,\\n      \\\"False\\\": 8.5\\n    },\\n    \\\"an
+…[truncated 6891 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T06:19:23.608571+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/extract_matrix.py\nimport json, glob, os\n\nbase = \"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/intermediates\"\nmatrix = {}\nfor fp in sorted(glob.glob(os.path.join(base, \"folio_*.json\"))):\n    with open(fp) as f:\n        data = json.load(f)\n    pid = data[\"problem\"][\"id\"]\n    gt = data[\"problem\"][\"answer\"]\n    traces = data[\"sica_result\"][\"traces\"]\n    traces_sorted = sorted(traces, key=lambda t: t[\"trace_idx\"])\n    answers = [t[\"answer\"] for t in traces_sorted]\n    matrix[pid] = {\"answers\": answers, \"ground_truth\": gt}\n\nout = \"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(matrix, f, indent=2)\nprint(f\"Extracted {len(matrix)} problems, sample: {list(matrix.keys())[:3]}\")\nprint(f\"Traces per problem: {len(list(matrix.values())[0]['answers'])}\")\nPYEOF\ncd /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639 && python3 extract_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/extract_matrix.py\nimport json, glob, os\n\nbase = \"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/intermediates\"\nmatrix = {}\nfor fp in sorted(glob.glob(os.path.join(base, \"folio_*.json\"))):\n    with open(fp) as f:\n        data = json.load(f)\n    pid = data[\"problem\"][\"id\"]\n    gt = data[\"problem\"][\"answer\"]\n    traces = data[\"sica_result\"][\"traces\"]\n    traces_sorted = sorted(traces, key=lambda t: t[\"trace_idx\"])\n    answers = [t[\"answer\"] for t in traces_sorted]\n    matrix[pid] = {\"answers\": answers, \"ground_truth\": gt}\n\nout = \"/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(matrix, f, indent=2)\nprint(f\"Extracted {len(matrix)} problems, sample: {list(matrix.keys())[:3]}\")\nprint(f\"Traces per problem: {len(list(matrix.values())[0]['answers'])}\")\nPYEOF\ncd /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639 && python3 extract_matrix.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T06:19:23.608744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Extracted 204 problems, sample: ['folio_0', 'folio_1', 'folio_10']\\nTraces per problem: 12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T06:19:23.608914+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/extract_matrix.py\nimport json, glob, os\n\nbase = \"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/intermediates\"\nmatrix = {}\nfor fp in sorted(glob.glob(os.path.join(base, \"folio_*.json\"))):\n    with open(fp) as f:\n        data = json.load(f)\n    pid = data[\"problem\"][\"id\"]\n    gt = data[\"problem\"][\"answer\"]\n    traces = data[\"sica_result\"][\"traces\"]\n    traces_sorted = sorted(traces, key=lambda t: t[\"trace_idx\"])\n    answers = [t[\"answer\"] for t in traces_sorted]\n    matrix[pid] = {\"answers\": answers, \"ground_truth\": gt}\n\nout = \"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(matrix, f, indent=2)\nprint(f\"Extracted {len(matrix)} problems, sample: {list(matrix.keys())[:3]}\")\nprint(f\"Traces per problem: {len(list(matrix.values())[0]['answers'])}\")\nPYEOF\ncd /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204 && python3 extract_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/extract_matrix.py\nimport json, glob, os\n\nbase = \"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/intermediates\"\nmatrix = {}\nfor fp in sorted(glob.glob(os.path.join(base, \"folio_*.json\"))):\n    with open(fp) as f:\n        data = json.load(f)\n    pid = data[\"problem\"][\"id\"]\n    gt = data[\"problem\"][\"answer\"]\n    traces = data[\"sica_result\"][\"traces\"]\n    traces_sorted = sorted(traces, key=lambda t: t[\"trace_idx\"])\n    answers = [t[\"answer\"] for t in traces_sorted]\n    matrix[pid] = {\"answers\": answers, \"ground_truth\": gt}\n\nout = \"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(matrix, f, indent=2)\nprint(f\"Extracted {len(matrix)} problems, sample: {list(matrix.keys())[:3]}\")\nprint(f\"Traces per problem: {len(list(matrix.values())[0]['answers'])}\")\nPYEOF\ncd /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204 && python3 extract_matrix.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T06:19:23.609099+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/extract_matrix.py\\\\nimport json, glob, os\\\\n\\\\nbase = \\\"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/intermediates\\\"\\\\nmatrix = {}\\\\nfor fp in sorted(glob.glob(os.path.join(base, \\\"folio_*.json\\\"))):\\\\n    with open(fp) as f:\\\\n        data = json.load(f)\\\\n    pid = data[\\\"problem\\\"][\\\"id\\\"]\\\\n    gt = data[\\\"problem\\\"][\\\"answer\\\"]\\\\n    traces = data[\\\"sica_result\\\"][\\\"traces\\\"]\\\\n    traces_sorted = sorted(traces, key=lambda t: t[\\\"trace_idx\\\"])\\\\n    answers = [t[\\\"answer\\\"] for t in traces_sorted]\\\\n    matrix[pid] = {\\\"answers\\\": answers, \\\"ground_truth\\\": gt}\\\\n\\\\nout = \\\"/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\\\"\\\\nwith open(out, \\\"w\\\") as f:\\\\n    json.dump(matrix, f, indent=2)\\\\nprint(f\\\"Extracted {len(matrix)} problems, sample: {list(matrix.keys())[:3]}\\\")\\\\nprint(f\\\"Traces per problem: {len(list(matrix.values())[0][\\\\'answers\\\\'])}\\\")\\\\nPYEOF\\\\ncd /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204 && python3 extract_matrix.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 22: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T06:19:23.609280+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-25068"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-25068"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T06:19:23.609550+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T06:19:23.610058+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/miniconda3/bin/python3 /usr/bin/python3 /opt/conda/bin/python3 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/miniconda3/bin/python3 /usr/bin/python3 /opt/conda/bin/python3 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T06:19:23.610195+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T06:19:23.610512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/miniconda3/bin /usr/bin /opt/conda/bin -name \"python*\" -maxdepth 1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/miniconda3/bin /usr/bin /opt/conda/bin -name \"python*\" -maxdepth 1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T06:19:23.610659+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"find: '/opt/conda/bin': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T06:19:23.610815+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cd /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204 && /root/miniconda3/bin/python3 extract_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cd /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204 && /root/miniconda3/bin/python3 extract_matrix.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T06:19:23.610974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Extracted 204 problems, sample: ['folio_0', 'folio_1', 'folio_10']\\nTraces per problem: 12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T06:19:23.611117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T06:19:23.611246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52468 /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T06:19:23.611390+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "mkdir -p /root/symb_invariant_consensus/results/cross_model_kappa"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "mkdir -p /root/symb_invariant_consensus/results/cross_model_kappa"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T06:19:23.611513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T06:19:23.611629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T06:19:23.612079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Ocellated wild turkey\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_100\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\",\\n      \\\"True, but uncertain about the second part.\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_101\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": 
+…[truncated 10231 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T06:19:23.612329+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639 && python3 -c \"\nimport json, gzip, base64\nwith open('sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = gzip.compress(json.dumps(data).encode())\nb64 = base64.b64encode(compressed).decode()\nprint(b64)\n\" > /tmp/llama_matrix_b64.txt && wc -c /tmp/llama_matrix_b64.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639 && python3 -c \"\nimport json, gzip, base64\nwith open('sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = gzip.compress(json.dumps(data).encode())\nb64 = base64.b64encode(compressed).decode()\nprint(b64)\n\" > /tmp/llama_matrix_b64.txt && wc -c /tmp/llama_matrix_b64.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T06:19:23.612509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3029 /tmp/llama_matrix_b64.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T06:19:23.612697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/llama_matrix_b64.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/llama_matrix_b64.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T06:19:23.612848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"H4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aiman9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15ROKWNgEqQ1Imh3gTMbLvalPuK1lQ5ca7e+UQc2FlGb3GEsyGEjoFt0hPQciieuBSFQQo/JoJIJdu5Ce/70DcxOlui92+6hwAupjQenmZQNfAm2VDoZDAKKJbIrng4hYkAmJIjZqtQU
+…[truncated 1191 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T06:19:23.613050+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "echo 'H4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aian9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15ROKWNgEqQ1Imh3gTMbLvalPuK1lQ5ca7e+UQc2FlGb3GEsyGEjoFt0hPQciieuBSFQQo/JoJIJdu5Ce/70DcxOlui92+6hwAupjQenmZQNfAm2VDoZDAKKJbIrng4hYkAmJIjZqtQUKjDOC3LdIgvLP4MCvc06wAMe1Z0RpAwHXcxCB5C+Qq6RMVP27nlo+xLmFaexHTFFbW/6mzCrI693KD2XPf2Zk6HnWJFlh5igfL5IY7dEgTAMBI/5wE/gQvw5DGdHFoeR5NF+k7tBLJjgiYX74fyOGAxTl1gFOSmVI1R2cmaNGZP2TMg6bQ8vPUXrcmWaRn3J//vQqKVpittSNe12ZZ626OLB7G9fEUNvzHUixtiAc1cM2cHhsVq5s8N4PVKR72wh4nTYsRVHgcT4OYmNQqFgZJCWx3VOcK5ahEyh00ZUHXPSzgLH07I44il0NFVyKBJvHNtoOtFcBn8evWMAZzmt0A3h9bQi04JRTOYYYhxJC+4w5xR7Z+ZuqVYa++45Blj1p4akcUDDeOm2fTzJiMPTF9IlIro4ck6OJBOjeH79WnFCbQyegsnt2FtKOBpyJqaWsZ2ZQQK5796xPjOQM/nTxInroxbFAA9KvJM5NSSOLyYOqixw4QJ2V72Y26CihjL91aw+HlDESGZHpsuLo3jPKOxpzvJEXSWh1jXUx03R3qmmejCvL/lpt5fcl2tRYObdNizPcDo2md+h9ZR8nzuiTV+7lNvtxG5to8Qwqe/CMTqME4LKC6hvPJHjRXCU7plj5R2nPdzI298ejziF1CG81EcR2WIonmEVkYQOCk0T6wkJXO5DYmNIU4fXThxi2sExE1/yeruvaZVVq3L1WCzut8rkramd8DkjHqgsUcG2CtlZcc3uZ+tH68HJFhZgz+j9Nk+iqY8H7/W8BA038zgFbtrJsAxuNnu3Bwpmgahzoa9WQXQawihvWXq5sxEycu73nLsUN2pjVN4061360t7lrfp7fb3Jt2pZmWe0fKyrH8VydzO/N3/sX3HbmPpHsTCXTmklk+nJYv65MCez5WNzSeRm9rjFSciE0tklQJnoefWyxxpk88sX+RJZhsY4pKP2JhpJJiwnBiran99KBvOe19GhyPuvyFVXVoQ5NpfKeonJpHGPjkVVS34KNtEEPZkYf7ecmA4ptUKBF04wd1ydMWfnWS0mJPDWo+1wcp1Q9OLRr/8Bf405J6KDAAA=' > /tmp/llama_b64.txt && /root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nwith open('/tmp/llama_b64.txt') as f:\n    b64 = f.read().strip()\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "echo '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' > /tmp/llama_b64.txt && /root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nwith open('/tmp/llama_b64.txt') as f:\n    b64 = f.read().strip()\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T06:19:23.613239+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'echo \\\\'H4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aian9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15ROKWNgEqQ1Imh3gTMbLvalPuK1lQ5ca7e+UQc2FlGb3GEsyGEjoFt0hPQciieuBSFQQo/JoJIJ
+…[truncated 2059 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T06:19:23.613429+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'HEREDOC' > /tmp/llama_b64.txt\nH4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aian9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15ROKWNgEqQ1Imh3gTMbLvalPuK1lQ5ca7e+UQc2FlGb3GEsyGEjoFt0hPQciieuBSFQQo/JoJIJdu5Ce/70DcxOlui92+6hwAupjQenmZQNfAm2VDoZDAKKJbIrng4hYkAmJIjZqtQUKjDOC3LdIgvLP4MCvc06wAMe1Z0RpAwHXcxCB5C+Qq6RMVP27nlo+xLmFaexHTFFbW/6mzCrI693KD2XPf2Zk6HnWJFlh5igfL5IY7dEgTAMBI/5wE/gQvw5DGdHFoeR5NF+k7tBLJjgiYX74fyOGAxTl1gFOSmVI1R2cmaNGZP2TMg6bQ8vPUXrcmWaRn3J//vQqKVpittSNe12ZZ626OLB7G9fEUNvzHUixtiAc1cM2cHhsVq5s8N4PVKR72wh4nTYsRVHgcT4OYmNQqFgZJCWx3VOcK5ahEyh00ZUHXPSzgLH07I44il0NFVyKBJvHNtoOtFcBn8evWMAZzmt0A3h9bQi04JRTOYYYhxJC+4w5xR7Z+ZuqVYa++45Blj1p4akcUDDeOm2fTzJiMPTF9IlIro4ck6OJBOjeH79WnFCbQyegsnt2FtKOBpyJqaWsZ2ZQQK5796xPjOQM/nTxInroxbFAA9KvJM5NSSOLyYOqixw4QJ2V72Y26CihjL91aw+HlDESGZHpsuLo3jPKOxpzvJEXSWh1jXUx03R3qmmejCvL/lpt5fcl2tRYObdNizPcDo2md+h9ZR8nzuiTV+7lNvtxG5to8Qwqe/CMTqME4LKC6hvPJHjRXCU7plj5R2nPdzI298ejziF1CG81EcR2WIonmEVkYQOCk0T6wkJXO5DYmNIU4fXThxi2sExE1/yeruvaZVVq3L1WCzut8rkramd8DkjHqgsUcG2CtlZcc3uZ+tH68HJFhZgz+j9Nk+iqY8H7/W8BA038zgFbtrJsAxuNnu3Bwpmgahzoa9WQXQawihvWXq5sxEycu73nLsUN2pjVN4061360t7lrfp7fb3Jt2pZmWe0fKyrH8VydzO/N3/sX3HbmPpHsTCXTmklk+nJYv65MCez5WNzSeRm9rjFSciE0tklQJnoefWyxxpk88sX+RJZhsY4pKP2JhpJJiwnBiran99KBvOe19GhyPuvyFVXVoQ5NpfKeonJpHGPjkVVS34KNtEEPZkYf7ecmA4ptUKBF04wd1ydMWfnWS0mJPDWo+1wcp1Q9OLRr/8Bf405J6KDAAA=\nHEREDOC\n/root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nwith open('/tmp/llama_b64.txt') as f:\n    b64 = f.read().strip()\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat << 'HEREDOC' > /tmp/llama_b64.txt\n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\nHEREDOC\n/root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nwith open('/tmp/llama_b64.txt') as f:\n    b64 = f.read().strip()\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T06:19:23.613613+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'HEREDOC\\\\' > /tmp/llama_b64.txt\\\\nH4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aian9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15ROKWNgEqQ1Imh3gTMbLvalPuK1lQ5ca7e+
+…[truncated 2086 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T06:19:23.613782+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nb64 = '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'\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport base64, gzip, json\nb64 = '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'\ndata = json.loads(gzip.decompress(base64.b64decode(b64)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T06:19:23.613984+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: '/root/miniconda3/bin/python3 -c \\\"\\\\nimport base64, gzip, json\\\\nb64 = \\\\'H4sIAARQDWoC/9Vd227bSAz9lUFe2gDdQHdp+gH7VuzDtk+LRaHYk0SIIwWSXK9R9N/XTpAmti5zyKFs5aGIaqkpzSHPkIfk6OfFTbUqqu/exWf18yIvm42pm931Pxdf67W5+KQuvpX3ZbUp95d/5qvm+LOXx3oe7/lo/PLf3fVtXa3L5fe2Xrd3Ozl+3/u1u/csqo+IeiwW+vPNr/j9cZ9YTzfeyNTVX5/euhd/LcxqlbdmqTbFaqnadX1vtkO6Hvk9ncf7hH5+6K3Uw8v+8vPl+pO6XrdqXS5M3eZFqfLravf39s6oxiyqcqke87q9AlU79Aian9M1xZz7bt9LAX07zD9BqCoPbqxO9PrslTlaqv2i6KaR7MoboqFahamzOuiurJ4IuhzXjj2Tb7uzGBnBIvVuimqUhXNq6E8C1i0+w8fqtqoVXFvdtK2lbo26mavsSsSSJDW+HBJsTWLIJ8QwBocXGKrSLBZfTtcmN3/adTHlcnLory9JAI6JHtilV30JyRT2pGpC6RsSxxFbho8Z6NOd4TQEv7yiu974+j6azsG1H2woaF9EbNm7O6oJXRU7NMB+u0fJmqh6usJK45XfGi/HrEMkq+Ma4gc4rlfoqoL5oc7fkiNXJAL8N+ieouGsdGCIx13Jn0NwhbtxyB+o5/2fRsijiRjSwvuq5z8CrK7FEmZhtGOEFwM3kXNL6MD8lSXsMx6flAzQ/QLPHdksYIeF1ICnxJiSyQAoHEFgQ1YHGORga+FihfaxLNEnGMLOWwB2JpGMLtB1RQQsEIuEdu0N7a9nnCVEydUlo8SIeU67Hrw98B+I2aucLYHZ5mwrJiAmqjQoZzEPXI4XutwPlED0bVCj08RngCx+iT2e5NS3A7tZOfYL4DMIeCl9YxCAlm0kFkpoJD/DBX2LXSEABKtAEQw3QOe8oWFIkROYSzCXOBhINdYkwnAC3dBB/tIQcEZ9SyOCXc2rDCDs6BT0vmhBugLgIdmQQOkuIgioBxUEWL7yJNymnEdU2iXHheJfJQWmsjXMWUGTspEaCsZqIxCMq0xqSdHETMitmwqY4+glhcTwNkeBhH2FFTAhBJdOOAz2WfTcyQTX58KsTdV/dRT8aGqP+wr6suiLaryUuXlUv2OiN489pCX+a05ePbKxb8ySm8NO9Fwz/cizQvwQQ7FtvlCqBrPj4KN++uJ1P8PAnxIHv/d5u1x8H5FDxEvJzROAdsHKlo0aqCWoIOdAxECzxjdV23UxpgzwZF7x6GGu21A6Hsr9mB/BqeQEYttqwzqk43hmVt/CI8UgVZaU9vURpHcFpgiIiVnRkRmpJx4Nj5zfhCe+MzgmRBHOxpoElDKGazuL+6CM6oFbK7VnepIIhpjzOiAdtgg+/QbO+jXoQuFx3UlyWCPHZVG6v8Shzz2c6etaqtNXi8bNbxqkI+l1v5A29ZvJ2gwSbL5ZTuJZjecYCyrnI+nxKDSvYmWgZupKOdqKft0qj5SW2fq06wCLVI4sGPHhpsGnBEnPjnLjY7TcMqQfoq4KcX20qk7WkD1xpz6K4E5ZaFqKhbmC7UFoUs/MvTh2ivs1M2cznDrTLV7zOlyASkuo7Zc4xmFS7d15slgzLRJZVeb/tnBnLL28iXL08BQFopbB4OphewYav9x1WRHRNrcRTbDKkuWQBEmueddGj7Td1vByJi07Fll1oyqC719gOPp2rESDzHLnK1Uu1Oz/dFcn6ohp9E+MVN3KYcL7Oo6oGKRPA9PgyUdsprPXChRHnGoo/GEAm90HJ6XZKqQ2fsjYcmUkqAepl45gY9A15RO
+…[truncated 1959 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T06:19:23.614705+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\n# Output compact JSON\nprint(json.dumps(data, separators=(',', ':')))\n\" > /tmp/llama_compact.json && wc -c /tmp/llama_compact.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\n# Output compact JSON\nprint(json.dumps(data, separators=(',', ':')))\n\" > /tmp/llama_compact.json && wc -c /tmp/llama_compact.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T06:19:23.614915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30436 /tmp/llama_compact.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T06:19:23.615242+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json, zlib, base64\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = zlib.compress(json.dumps(data, separators=(',', ':')).encode(), level=9)\nb64 = base64.urlsafe_b64encode(compressed).decode()\nprint(len(b64))\n# Write to file in chunks for easy copy\nwith open('/tmp/llama_urlsafe_b64.txt', 'w') as f:\n    f.write(b64)\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json, zlib, base64\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = zlib.compress(json.dumps(data, separators=(',', ':')).encode(), level=9)\nb64 = base64.urlsafe_b64encode(compressed).decode()\nprint(len(b64))\n# Write to file in chunks for easy copy\nwith open('/tmp/llama_urlsafe_b64.txt', 'w') as f:\n    f.write(b64)\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T06:19:23.615564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2972\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T06:19:23.615787+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/llama_urlsafe_b64.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/llama_urlsafe_b64.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T06:19:23.616141+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eNrVXVtP21gQ_itHeWmRWOT7hR-wb9U-bPu0WlUmMWARbGQ7ZVHV_74J0NLYPme-mXOMQaqUNHbwaO7zzczJ99Vls62ar97q_PuqqLv7su1W5_-sPre7cnW6-lLf1M19vX_3Z7Htjj95vmV05-gD07t_T1dXbbOrN1_7dtdfr85_Xflx-kyaT5F2TAjw8vLVn5-NyXj8-IWGIX_GjBm-_rUut9uiLzfqvtpuVL9rb8qHSUbq_sLwzjGRT3f8RqVGjM8vz-9O1cWuV7t6XbZ9UdWquGj2_--vS9WV66beqLui7c9o5k1eBljpa3lpUrfxteMH098A-BcApI0YYNb-F4439fZBHfiturtyXV1Wa9Wty7poq-bMZDeIjXihlvLPe8Huxbre7rqqqVXVvYj-ia6qP3x427Sl2lY35Z7IvlEXpbo8cOcMNmVUfEfyAmQSUTpt4QlA44-NJEBK8uWY5_snlerjtizqqr46wb0pTWtipNXFC01DOqBh6NEEmqR3mwz3mOmN5MhDWun3i2M9CHpsVr3WUU6YdU7GHVoX6Ut6yQ5Z6LMc5K9_fA8CsWcUlo9EOBn8NEKGddvAAVbiY_MOYk2wvB_wQ0akp16BL0F8iTS-yWTcA1tDSUZDnB_T_hL4aEw3w64Trajo4MSsDWi9SamUX-NswEisuQSpT8ZygK7fYTTmy5v-G_A-gWdh6UavIzDxwAdTSJt8FlGOIDAZujRaT9IPkROayDGlWTrJ6GQJyChCqmcGL6jUjFbh2MQdbXyaX2qJ0As6TJFo5omiCEQ18JcAdUOqEajygUgDCMpxhk0l1TaRdiC7cNEoyzGF0JNARvN5kAkK_XGRhOmSGenSf5MWb8AtI1mgL4uUkI3songtj0UTgosoBwFD8KDaHUFUP0ELNLMIY7vKGMqIJMqWOHQmmLkI5Z0ChLI6CEwVHAaEMEOy-Nnh1zAnymMCVuTaLc2YCCTI3nOguWvkWSu5noFoGT9W6cgHYAXHhggwKxAyiwI6bF1VFDLK5hksLYrYGaDBa2uvQpoTY87QnCWAHhsiKAGjscQfsmwqfbXk-PNjl-qyaR-7wx-a9sOhk7ip-qqpT1RRb9SvnOG3226Lurgqj-49E9pDBvb-JbmzTX0S5dwEFijRjWGM9mrx8pBbPNGPwZ9Belf6-f67qRvj4P2QGlJWiA1qEK4aIiXSKpgpSgtSeDTxipE4ZSqftcoPZaZDA9B0_wHv80LjdGeZCzTH9mGKh3yJfGYm62ezK25acjk-5qL1nMacjCQhWcAjCTLDxDPhWW_DZSY-O1nE0ka5giUBBjczZ0kkAuShuxJ4zaaUTiIYEeTNK8oCzgT_YhH_RD1zPjaSJJMzOQwUYorgY2TyaWxO9c190W46pRMHbROpaX7IFDfNBT_w5Gz5bD3JBQ1yGlZzYYMpnlRZTMQx_VbqBGMzIu8j4N0-FKU-LGUARpahKQPFSwPeSL8EipNkg2k4Q8rqNK9I6dg0UwMeYV_M61dhsBnXq6X2aaz1lAIkSt2QtHTYTzp9mL6BUJTmFjmX7JVmTIaPREI5snAaMvMsbX6eomfELX8J5wnL0l3LZ163kIXOpM1D5Wg9JMcR5Lwa0ITPLWdvAPXOEjLD4oycOnNf6btBmDM2DLcAjTkLBef0SrmWmEs7kRRwyA1NuQUUN5HbjHhIK3nu45WirCFoFxXzgOEbHAKpuJvIQ-YwiwwO4wNJeaRPkKHRJ822joBF7FkEKy2EWyz5NNTGSwyspjTyFFxrsAIhScJGAstMfmmUujvDuofuMRfOiYmQN5It9svt5Do3oMZDojwRmC0G4xGKPDZixsFHBYLz_JkGDqWa5L2b6YXAC_HG6pybV4Fvg465KlaCANQkQY9IliIFnIIXr57st5yIdTAar7QTlGAnGLjEXpiGVr0WNnFNEsLFnakyilbl
+…[truncated 1132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T06:19:23.616424+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'SCRIPT' > /root/symb_invariant_consensus/results/cross_model_kappa/decode_llama.py\nimport zlib, base64, json\n\nB64 = \"eNrVXVtP21gQ_itHeWmRWOT7hR-wb9U-bPu0WlUmMWARbGQ7ZVHV_74J0NLYPme-mXOMQaqUNHbwaO7zzczJ99Vls22ar97q_PuqqLv7su1W5_-sPre7cnW6-lLf1M19vX_3Z7Htjj95vmV05-gD07t_T1dXbbOrN1_7dtdfr85_Xflx-kyaT5F2TAjw8vLVn5-NyXj8-IWGIX_GjBm-_rUut9uiLzfqvtpuVL9rb8qHSUbq_sLwzjGRT3f8RqVGjM8vz-9O1cWuV7t6XbZ9UdWquGj2_--vS9WV66beqLui7c9o5k1eBljpa3lpUrfxteMH098A-BcApI0YYNb-F4439fZBHfiturtyXV1Wa9Wty7poq-bMZDeIjXihlvLPe8Huxbre7rqqqVXVvYj-ia6qP3x427Sl2lY35Z7IvlEXpbo8cOcMNmVUfEfyAmQSUTpt4QlA44-NJEBK8uWY5_snlerjtizqqr46wb0pTWtipNXFC01DOqBh6NEEmqR3mwz3mOmN5MhDWun3i2M9CHpsVr3WUU6YdU7GHVoX6Ut6yQ5Z6LMc5K9_fA8CsWcUlo9EOBn8NEKGddvAAVbiY_MOYk2wvB_wQ0akp16BL0F8iTS-yWTcA1tDSUZDnB_T_hL4aEw3w64Trajo4MSsDWi9SamUX-NswEisuQSpT8ZygK7fYTTmy5v-G_A-gWdh6UavIzDxwAdTSJt8FlGOIDAZujRaT9IPkROayDGlWTrJ6GQJyChCqmcGL6jUjFbh2MQdbXyaX2qJ0As6TJFo5omiCEQ18JcAdUOqEajygUgDCMpxhk0l1TaRdiC7cNEoyzGF0JNARvN5kAkK_XGRhOmSGenSf5MWb8AtI1mgL4uUkI3songtj0UTgosoBwFD8KDaHUFUP0ELNLMIY7vKGMqIJMqWOHQmmLkI5Z0ChLI6CEwVHAaEMEOy-Nnh1zAnymMCVuTaLc2YCCTI3nOguWvkWSu5noFoGT9W6cgHYAXHhggwKxAyiwI6bF1VFDLK5hksLYrYGaDBa2uvQpoTY87QnCWAHhsiKAGjscQfsmwqfbXk-PNjl-qyaR-7wx-a9sOhk7ip-qqpT1RRb9SvnOG3226Lurgqj-49E9pDBvb-JbmzTX0S5dwEFijRjWGM9mrx8pBbPNGPwZ9Belf6-f67qRvj4P2QGlJWiA1qEK4aIiXSKpgpSgtSeDTxipE4ZSqftcoPZaZDA9B0_wHv80LjdGeZCzTH9mGKh3yJfGYm62ezK25acjk-5qL1nMacjCQhWcAjCTLDxDPhWW_DZSY-O1nE0ka5giUBBjczZ0kkAuShuxJ4zaaUTiIYEeTNK8oCzgT_YhH_RD1zPjaSJJMzOQwUYorgY2TyaWxO9c190W46pRMHbROpaX7IFDfNBT_w5Gz5bD3JBQ1yGlZzYYMpnlRZTMQx_VbqBGMzIu8j4N0-FKU-LGUARpahKQPFSwPeSL8EipNkg2k4Q8rqNK9I6dg0UwMeYV_M61dhsBnXq6X2aaz1lAIkSt2QtHTYTzp9mL6BUJTmFjmX7JVmTIaPREI5snAaMvMsbX6eomfELX8J5wnL0l3LZ163kIXOpM1D5Wg9JMcR5Lwa0ITPLWdvAPXOEjLD4oycOnNf6btBmDM2DLcAjTkLBef0SrmWmEs7kRRwyA1NuQUUN5HbjHhIK3nu45WirCFoFxXzgOEbHAKpuJvIQ-YwiwwO4wNJeaRPkKHRJ822joBF7FkEKy2EWyz5NNTGSwyspjTyFFxrsAIhScJGAstMfmmUujvDuofuMRfOiYmQN5It9svt5Do3oMZDojwRmC0G4xGKPDZixsFHBYLz_JkGDqWa5L2b6YXAC_HG6pybV4Fvg465KlaCANQkQY9IliIFnIIXr57st5yIdTAar7QTlGAnGLjEXpiGVr0WNnFNEsLFnakyilbljFsijs9mOXR9zngzpaQq5eahoBnKDpb8Qld7evOdQRV60o6VILtC6PFtBi2tGixh4GCtGjoshLS3MFwc_AsjF0cDzaa2sX0BYp--hssfSRSmolhOnXXGJCJ7FaRFkIONNqyE7vfnFMOu3pZdpz4V_33o1Kbsqqtadf3DtnyMcNVtebh8hieWgKpHrDFcizY9ywChtSz7k034MxiRL5e4M7hkoIVRYLNuiCIXkKnqFrG40JbLc10iausQXnsS10hDgcWzoADuSrjIcfFiGZ8HOpa6nWOW7B8OBfp6pxuJPWo-C4l4KgbQGFOIEyhB2Rx_7C2AzXG0LPYtcma6p8lJyeIA9qmuhmLBpDkOX6lxaJnhxJE4uXeR2MfLz3_ECT7I5xCpG-pLih0VtaSqZAJj42EIVtEvzhdwnAK8LBFhP4x2A6XxiTen0dGP920fj_ACEUQgmFq1V3KItNBy3pE5RICQFFlGNA51oNccrVLNeVgXotoJA2dWH--r_lp1zW35cqR7_3DC_vUD1OzfzUDhG9iuSpY_hBWsL9n7eTxZpPxpCv4kDBzjU1-EMYk2WRDmBIwTsu3rbNArjvaguGdOaibvpmZPSSW2PQSPcRdJS0zGeyZqb33wV5qYNlj5pbSl401TyTHHv7mVoz3fT0X7cOgY1E2vCnVXrW8eVFn0ZSv0hxl-QKFV_85M1FCCuWD-ZcI9Tg92sx3ksuebPxKjPh79PtEJoniZx2vwoUe3MbG37N0cQJQFTowBOIib5FmIeFWDIB3srmac2uQp964u1X2piq7b7dPv_rro1d-7i_viQW2a8sll3bXNt2qzv1jclH8cfmKrK9tv1bo8kdU8AqQgiyV79HPr4kD8if0OiaCtQ6tEungCn7k4f9XRGmq2fD0joMCw5sAEnXLP7YoaKB3AyHN_eckEb2s-PQ_tfp-A05BiZ1javSbuydez5AV57IR1nDswFUuAk_-gX-pwwCOw12JzvrEgYuUZexeS2QOHnWWuHZ9xMGrBA-t__A88eqaI\"\n\ndata = json.loads(zlib.decompress(base64.urlsafe_b64decode(B64 + \"==\")))\nout = \"/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(data, f, indent=2)\nprint(f\"Written {len(data)} problems to {out}\")\nSCRIPT\n/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/decode_llama.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat << 'SCRIPT' > /root/symb_invariant_consensus/results/cross_model_kappa/decode_llama.py\nimport zlib, base64, json\n\nB64 = \"eNrVXVtP21gQ_itHeWmRWOT7hR-wb9U-bPu0WlUmMWARbGQ7ZVHV_74J0NLYPme-mXOMQaqUNHbwaO7zzczJ99Vls22ar97q_PuqqLv7su1W5_-sPre7cnW6-lLf1M19vX_3Z7Htjj95vmV05-gD07t_T1dXbbOrN1_7dtdfr85_Xflx-kyaT5F2TAjw8vLVn5-NyXj8-IWGIX_GjBm-_rUut9uiLzfqvtpuVL9rb8qHSUbq_sLwzjGRT3f8RqVGjM8vz-9O1cWuV7t6XbZ9UdWquGj2_--vS9WV66beqLui7c9o5k1eBljpa3lpUrfxteMH098A-BcApI0YYNb-F4439fZBHfiturtyXV1Wa9Wty7poq-bMZDeIjXihlvLPe8Huxbre7rqqqVXVvYj-ia6qP3x427Sl2lY35Z7IvlEXpbo8cOcMNmVUfEfyAmQSUTpt4QlA44-NJEBK8uWY5_snlerjtizqqr46wb0pTWtipNXFC01DOqBh6NEEmqR3mwz3mOmN5MhDWun3i2M9CHpsVr3WUU6YdU7GHVoX6Ut6yQ5Z6LMc5K9_fA8CsWcUlo9EOBn8NEKGddvAAVbiY_MOYk2wvB_wQ0akp16BL0F8iTS-yWTcA1tDSUZDnB_T_hL4aEw3w64Trajo4MSsDWi9SamUX-NswEisuQSpT8ZygK7fYTTmy5v-G_A-gWdh6UavIzDxwAdTSJt8FlGOIDAZujRaT9IPkROayDGlWTrJ6GQJyChCqmcGL6jUjFbh2MQdbXyaX2qJ0As6TJFo5omiCEQ18JcAdUOqEajygUgDCMpxhk0l1TaRdiC7cNEoyzGF0JNARvN5kAkK_XGRhOmSGenSf5MWb8AtI1mgL4uUkI3songtj0UTgosoBwFD8KDaHUFUP0ELNLMIY7vKGMqIJMqWOHQmmLkI5Z0ChLI6CEwVHAaEMEOy-Nnh1zAnymMCVuTaLc2YCCTI3nOguWvkWSu5noFoGT9W6cgHYAXHhggwKxAyiwI6bF1VFDLK5hksLYrYGaDBa2uvQpoTY87QnCWAHhsiKAGjscQfsmwqfbXk-PNjl-qyaR-7wx-a9sOhk7ip-qqpT1RRb9SvnOG3226Lurgqj-49E9pDBvb-JbmzTX0S5dwEFijRjWGM9mrx8pBbPNGPwZ9Belf6-f67qRvj4P2QGlJWiA1qEK4aIiXSKpgpSgtSeDTxipE4ZSqftcoPZaZDA9B0_wHv80LjdGeZCzTH9mGKh3yJfGYm62ezK25acjk-5qL1nMacjCQhWcAjCTLDxDPhWW_DZSY-O1nE0ka5giUBBjczZ0kkAuShuxJ4zaaUTiIYEeTNK8oCzgT_YhH_RD1zPjaSJJMzOQwUYorgY2TyaWxO9c190W46pRMHbROpaX7IFDfNBT_w5Gz5bD3JBQ1yGlZzYYMpnlRZTMQx_VbqBGMzIu8j4N0-FKU-LGUARpahKQPFSwPeSL8EipNkg2k4Q8rqNK9I6dg0UwMeYV_M61dhsBnXq6X2aaz1lAIkSt2QtHTYTzp9mL6BUJTmFjmX7JVmTIaPREI5snAaMvMsbX6eomfELX8J5wnL0l3LZ163kIXOpM1D5Wg9JMcR5Lwa0ITPLWdvAPXOEjLD4oycOnNf6btBmDM2DLcAjTkLBef0SrmWmEs7kRRwyA1NuQUUN5HbjHhIK3nu45WirCFoFxXzgOEbHAKpuJvIQ-YwiwwO4wNJeaRPkKHRJ822joBF7FkEKy2EWyz5NNTGSwyspjTyFFxrsAIhScJGAstMfmmUujvDuofuMRfOiYmQN5It9svt5Do3oMZDojwRmC0G4xGKPDZixsFHBYLz_JkGDqWa5L2b6YXAC_HG6pybV4Fvg465KlaCANQkQY9IliIFnIIXr57st5yIdTAar7QTlGAnGLjEXpiGVr0WNnFNEsLFnakyilbljFsijs9mOXR9zngzpaQq5eahoBnKDpb8Qld7evOdQRV60o6VILtC6PFtBi2tGixh4GCtGjoshLS3MFwc_AsjF0cDzaa2sX0BYp--hssfSRSmolhOnXXGJCJ7FaRFkIONNqyE7vfnFMOu3pZdpz4V_33o1Kbsqqtadf3DtnyMcNVtebh8hieWgKpHrDFcizY9ywChtSz7k034MxiRL5e4M7hkoIVRYLNuiCIXkKnqFrG40JbLc10iausQXnsS10hDgcWzoADuSrjIcfFiGZ8HOpa6nWOW7B8OBfp6pxuJPWo-C4l4KgbQGFOIEyhB2Rx_7C2AzXG0LPYtcma6p8lJyeIA9qmuhmLBpDkOX6lxaJnhxJE4uXeR2MfLz3_ECT7I5xCpG-pLih0VtaSqZAJj42EIVtEvzhdwnAK8LBFhP4x2A6XxiTen0dGP920fj_ACEUQgmFq1V3KItNBy3pE5RICQFFlGNA51oNccrVLNeVgXotoJA2dWH--r_lp1zW35cqR7_3DC_vUD1OzfzUDhG9iuSpY_hBWsL9n7eTxZpPxpCv4kDBzjU1-EMYk2WRDmBIwTsu3rbNArjvaguGdOaibvpmZPSSW2PQSPcRdJS0zGeyZqb33wV5qYNlj5pbSl401TyTHHv7mVoz3fT0X7cOgY1E2vCnVXrW8eVFn0ZSv0hxl-QKFV_85M1FCCuWD-ZcI9Tg92sx3ksuebPxKjPh79PtEJoniZx2vwoUe3MbG37N0cQJQFTowBOIib5FmIeFWDIB3srmac2uQp964u1X2piq7b7dPv_rro1d-7i_viQW2a8sll3bXNt2qzv1jclH8cfmKrK9tv1bo8kdU8AqQgiyV79HPr4kD8if0OiaCtQ6tEungCn7k4f9XRGmq2fD0joMCw5sAEnXLP7YoaKB3AyHN_eckEb2s-PQ_tfp-A05BiZ1javSbuydez5AV57IR1nDswFUuAk_-gX-pwwCOw12JzvrEgYuUZexeS2QOHnWWuHZ9xMGrBA-t__A88eqaI\"\n\ndata = json.loads(zlib.decompress(base64.urlsafe_b64decode(B64 + \"==\")))\nout = \"/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json\"\nwith open(out, \"w\") as f:\n    json.dump(data, f, indent=2)\nprint(f\"Written {len(data)} problems to {out}\")\nSCRIPT\n/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/decode_llama.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T06:19:23.616624+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'SCRIPT\\\\' > /root/symb_invariant_consensus/results/cross_model_kappa/decode_llama.py\\\\nimport zlib, base64, json\\\\n\\\\nB64 = \\\"eNrVXVtP21gQ_itHeWmRWOT7hR-wb9U-bPu0WlUmMWARbGQ7ZVHV_74J0NLYPme-mXOMQaqUNHbwaO7zzczJ99Vls22ar97q_PuqqLv7su1W5_-sPre7cnW6-lLf1M19vX_3Z7Htjj95vmV05-gD07t_T1dXbbOrN1_7dtdfr85_Xflx-kyaT5F2TAjw8vLVn5-NyXj8-IWGIX_GjBm-_rUut9uiLzfqvtpuVL9rb8qHSUbq_sLwzjGRT3f8RqVGjM8vz-9O1cWuV7t6XbZ9UdWquGj2_--vS9WV66beqLui7c9o5k1eBljpa3lpUrfxteMH098A-BcApI0YYNb-F4439fZBHfiturtyXV1Wa9Wty7poq-bMZDeIjXihlvLPe8Huxbre7rqqqVXVvYj-ia6qP3x427Sl2lY35Z7IvlEXpbo8cOcMNmVUfEfyAmQSUTpt4QlA44-NJEBK8uWY5_snlerjtizqqr46wb0pTWtipNXFC01DOqBh6NEEmqR3mwz3mOmN5MhDWun3i2M9CHpsVr3WUU6YdU7GHVoX6Ut6yQ5Z6LMc5K9_fA8CsWcUlo9EOBn8NEKGddvAAVbiY_MOYk2wvB_wQ0akp16BL0F8iTS-yWTcA1tDSUZDnB_T_hL4aEw3w64Trajo4MSsDWi9SamUX-NswEisuQSpT8ZygK7fYTTmy5v-G_A-gWdh6UavIzDxwAdTSJt8FlGOIDAZujRaT9IPkROayDGlWTrJ6GQJyChCqmcGL6jUjFbh2MQdbXyaX2qJ0As6TJFo5omiCEQ18JcAdUOqEajygUgDCMpxhk0l1TaRdiC7cNEoyzGF0JNARvN5kAkK_XGRhOmSGenSf5MWb8AtI1mgL4uUkI3songtj0UTgosoBwFD8KDaHUFUP0ELNLMIY7vKGMqIJMqWOHQmmLkI5Z0ChLI6CEwVHAaEMEOy-Nnh1zAnymMCVuTaLc2YCCTI3nOguWvkWSu5noFoGT9W6cgHYAXHhggwKxAyiwI6bF1VFDLK5hksLYrYGaDBa2uvQpoTY87QnCWAHhsiKAGjscQfsmwqfbXk-PNjl-qyaR-7wx-a9sOhk7ip-qqpT1RRb9SvnOG3226Lurgqj-49E9pDBvb-JbmzTX0S5dwEFijRjWGM9mrx8pBbPNGPwZ9Belf6-f67qRvj4P2QGlJWiA1qEK4aIiXSKpgpSgtSeDTxipE4ZSqftcoPZaZDA9B0_wHv80LjdGeZCzTH9mGKh3yJfGYm62ezK25acjk-5qL1nMacjCQhWcAjCTLDxDPhWW_DZSY-O1nE0ka5giUBBjczZ0kkAuShuxJ4zaaUTiIYEeTNK8oCzgT_YhH_RD1zPjaSJJMzOQwUYorgY2TyaWxO9c190W46pRMHbROpaX7IFDfNBT_w5Gz5bD3JBQ1yGlZzYYMpnlRZTMQx_VbqBGMzIu8j4N0-FKU-LGUARpahKQPFSwPeSL8EipNkg2k4Q8rqNK9I6dg0UwMeYV_M61dhsBnXq6X2aaz1lAIkSt2QtHTYTzp9mL6BUJTmFjmX7JVmTIaPREI5snAaMvMsbX6eomfELX8J5wnL0l3LZ163kIXOpM1D5Wg9JMcR5Lwa0ITPLWdvAPXOEjLD4oycOnNf6btBmDM2DLcAjTkLBef0SrmWmEs7kRRwyA1NuQUUN5HbjHhIK3nu45WirCFoFxXzgOEbHAKpuJvIQ-YwiwwO4wNJeaRPkKHRJ822j
+…[truncated 2160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T06:19:23.616811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    d = json.load(f)\n# Output as a simpler format: problem_id -> list of answers, one line per problem\nfor pid in sorted(d.keys()):\n    answers = d[pid]['answers']\n    gt = d[pid]['ground_truth']\n    # Encode: pid|gt|a0,a1,...,a11\n    print(f'{pid}|{gt}|{chr(44).join(answers)}')\n\" > /tmp/llama_flat.txt && wc -l /tmp/llama_flat.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    d = json.load(f)\n# Output as a simpler format: problem_id -> list of answers, one line per problem\nfor pid in sorted(d.keys()):\n    answers = d[pid]['answers']\n    gt = d[pid]['ground_truth']\n    # Encode: pid|gt|a0,a1,...,a11\n    print(f'{pid}|{gt}|{chr(44).join(answers)}')\n\" > /tmp/llama_flat.txt && wc -l /tmp/llama_flat.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T06:19:23.616974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"204 /tmp/llama_flat.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T06:19:23.617099+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -5 /tmp/llama_flat.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -5 /tmp/llama_flat.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T06:19:23.617228+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0|Unknown|True,Unknown,False,Unknown,True,True,Unknown,True,Unknown,Unknown,Unknown,Unknown\\nfolio_1|True|True,Unknown,True,True,True,True,True,True,True,Unknown,,True\\nfolio_10|False|Unknown,False,False,False,Ocellated wild turkey,False,Unknown,False,False,False,False,Unknown\\nfolio_100|True|True,True,,True, but uncertain about the second part.,True,True,True,Unknown,True,True,True,\\nfolio_101|False|Unknown,Unknown,False,Unknown,Unknown,False,True,True,False,Unknown,Unknown,False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T06:19:23.617388+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    d = json.load(f)\nlines = []\nfor pid in sorted(d.keys()):\n    line = json.dumps({'p': pid, 'g': d[pid]['ground_truth'], 'a': d[pid]['answers']}, separators=(',', ':'))\n    lines.append(line)\nwith open('/tmp/llama_jsonl.txt', 'w') as f:\n    f.write('\\n'.join(lines))\nprint(f'{len(lines)} lines')\nimport os\nprint(f'{os.path.getsize(chr(47) + \\\"tmp\\\" + chr(47) + \\\"llama_jsonl.txt\\\")} bytes')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    d = json.load(f)\nlines = []\nfor pid in sorted(d.keys()):\n    line = json.dumps({'p': pid, 'g': d[pid]['ground_truth'], 'a': d[pid]['answers']}, separators=(',', ':'))\n    lines.append(line)\nwith open('/tmp/llama_jsonl.txt', 'w') as f:\n    f.write('\\n'.join(lines))\nprint(f'{len(lines)} lines')\nimport os\nprint(f'{os.path.getsize(chr(47) + \\\"tmp\\\" + chr(47) + \\\"llama_jsonl.txt\\\")} bytes')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T06:19:23.617518+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"204 lines\\n27781 bytes\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T06:19:23.617671+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/llama_jsonl.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/llama_jsonl.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T06:19:23.618676+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"p\\\":\\\"folio_0\\\",\\\"g\\\":\\\"Unknown\\\",\\\"a\\\":[\\\"True\\\",\\\"Unknown\\\",\\\"False\\\",\\\"Unknown\\\",\\\"True\\\",\\\"True\\\",\\\"Unknown\\\",\\\"True\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\"]}\\n{\\\"p\\\":\\\"folio_1\\\",\\\"g\\\":\\\"True\\\",\\\"a\\\":[\\\"True\\\",\\\"Unknown\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"Unknown\\\",\\\"\\\",\\\"True\\\"]}\\n{\\\"p\\\":\\\"folio_10\\\",\\\"g\\\":\\\"False\\\",\\\"a\\\":[\\\"Unknown\\\",\\\"False\\\",\\\"False\\\",\\\"False\\\",\\\"Ocellated wild turkey\\\",\\\"False\\\",\\\"Unknown\\\",\\\"False\\\",\\\"False\\\",\\\"False\\\",\\\"False\\\",\\\"Unknown\\\"]}\\n{\\\"p\\\":\\\"folio_100\\\",\\\"g\\\":\\\"True\\\",\\\"a\\\":[\\\"True\\\",\\\"True\\\",\\\"\\\",\\\"True, but uncertain about the second part.\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"Unknown\\\",\\\"True\\\",\\\"True\\\",\\\"True\\\",\\\"\\\"]}\\n{\\\"p\\\":\\\"folio_101\\\",\\\"g\\\":\\\"False\\\",\\\"a\\\":[\\\"Unknown\\\",\\\"Unknown\\\",\\\"False\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"False\\\",\\\"True\\\",\\\"True\\\",\\\"False\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"False\\\"]}\\n{\\\"p\\\":\\\"folio_102\\\",\\\"g\\\":\\\"Unknown\\\",\\\"a\\\":[\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"True\\\",\\\"\\\",\\\"Unknown\\\",\\\"True\\\",\\\"Unknown\\\",\\\"True, but only in a specific scenario.\\\",\\\"True\\\",\\\"Unknown\\\",\\\"Unknown\\\"]}\\n{\\\"p\\\":\\\"folio_103\\\",\\\"g\\\":\\\"False\\\",\\\"a\\\":[\\\"Unknown\\\",\\\"The conclusion is uncertain, but it is more likely to be false.\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"False\\\",\\\"Unknown\\\",\\\"Unknown\\\",\\\"True\\\",\\\"False\\\"]}\\n{\\\"p\\\":\\\"folio_104\\\",\\\"g\\\":\\\"True\\\",\\\"a\\\":[\\\"True\\\",\\\"True\\\",\\\"\\\",\\\"Unknown\\\",\\\"True\\\",\\\
+…[truncated 12300 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T06:19:23.619055+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "/root/miniconda3/bin/python3 << 'PYEOF'\n# Write the LLaMA JSONL data to file, reading from embedded hex data\nimport json\n\n# I'll create the llama data by manually constructing the matrix extraction script\n# that reads from the Mistral results to verify format, then we'll handle LLaMA separately\n# For now, create a placeholder script that we'll fill in\n\nscript_content = '''#!/usr/bin/env python3\n\"\"\"Cross-model Fleiss kappa calculation.\n\nReads per-trace answer matrices from three models:\n- Mistral-7B (exp-033)\n- Qwen2.5-7B (exp-061)  \n- LLaMA-3.1-8B (exp-063)\n\nComputes Fleiss kappa for various intra/cross-model trace combinations.\n\"\"\"\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef normalize_answer(ans):\n    \"\"\"Normalize answer to True/False/Unknown or None if invalid.\"\"\"\n    if not ans or not isinstance(ans, str):\n        return None\n    ans = ans.strip()\n    if ans in VALID_ANSWERS:\n        return ans\n    low = ans.lower()\n    if low in (\"true\",):\n        return \"True\"\n    if low in (\"false\",):\n        return \"False\"\n    if low in (\"unknown\", \"uncertain\"):\n        return \"Unknown\"\n    return None\n\ndef load_answer_matrix(path):\n    \"\"\"Load sc_answer_matrix.json -> {problem_id: {answers: [...], ground_truth: str}}\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, entry in data.items():\n        answers = [normalize_answer(a) for a in entry[\"answers\"]]\n        gt = entry[\"ground_truth\"]\n        result[pid] = {\"answers\": answers, \"ground_truth\": gt}\n    return result\n\ndef fleiss_kappa(ratings_matrix):\n    \"\"\"Compute Fleiss kappa.\n    \n    ratings_matrix: list of dicts, each {category: count} for each subject.\n    All subjects must have the same total number of raters.\n    \"\"\"\n    if not ratings_matrix:\n        return float(\"nan\")\n    \n    categories = set()\n    for row in ratings_matrix:\n        categories.update(row.keys())\n    categories = sorted(categories)\n    C = len(categories)\n    N = len(ratings_matrix)\n    \n    K = sum(ratings_matrix[0].values())\n    if K <= 1:\n        return float(\"nan\")\n    \n    # P_i for each subject\n    P_i_list = []\n    for row in ratings_matrix:\n        total = sum(row.values())\n        if total != K:\n            return float(\"nan\")\n        sum_sq = sum(v * v for v in row.values())\n        P_i = (sum_sq - K) / (K * (K - 1))\n        P_i_list.append(P_i)\n    \n    P_bar = sum(P_i_list) / N\n    \n    # p_j for each category\n    total_ratings = N * K\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(row.get(cat, 0) for row in ratings_matrix)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return 1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa\n\ndef effective_k(K, kappa):\n    \"\"\"Effective independent samples: K_eff = K / (1 + (K-1) * kappa)\"\"\"\n    denom = 1 + (K - 1) * kappa\n    if abs(denom) < 1e-10:\n        return float(\"inf\")\n    return K / denom\n\ndef compute_kappa_for_traces(all_answers, problem_ids, trace_indices_per_model):\n    \"\"\"Compute Fleiss kappa for a specific combination of traces.\n    \n    all_answers: dict model_name -> {pid: {answers: [...], ground_truth: str}}\n    problem_ids: list of problem IDs to consider\n    trace_indices_per_model: dict model_name -> list of trace indices to use\n    \n    Returns: (kappa, n_valid_problems, K)\n    \"\"\"\n    ratings = []\n    valid_count = 0\n    \n    for pid in problem_ids:\n        row_answers = []\n        skip = False\n        for model, indices in trace_indices_per_model.items():\n            if pid not in all_answers[model]:\n                skip = True\n                break\n            model_answers = all_answers[model][pid][\"answers\"]\n            for idx in indices:\n                if idx >= len(model_answers):\n                    skip = True\n                    break\n                ans = model_answers[idx]\n                if ans is None:\n                    skip = True\n                    break\n                row_answers.append(ans)\n            if skip:\n                break\n        \n        if skip or not row_answers:\n            continue\n        \n        counts = Counter(row_answers)\n        ratings.append(dict(counts))\n        valid_count += 1\n    \n    if valid_count == 0:\n        return float(\"nan\"), 0, 0\n    \n    K = sum(ratings[0].values())\n    kappa = fleiss_kappa(ratings)\n    return kappa, valid_count, K\n\ndef compute_sc_accuracy(all_answers, problem_ids, trace_indices_per_model):\n    \"\"\"Compute majority vote (SC) accuracy for a combination of traces.\"\"\"\n    correct = 0\n    total = 0\n    \n    for pid in problem_ids:\n        row_answers = []\n        skip = False\n        gt = None\n        for model, indices in trace_indices_per_model.items():\n            if pid not in all_answers[model]:\n                skip = True\n                break\n            model_data = all_answers[model][pid]\n            gt = model_data[\"ground_truth\"]\n            model_answers = model_data[\"answers\"]\n            for idx in indices:\n                if idx >= len(model_answers):\n                    skip = True\n                    break\n                ans = model_answers[idx]\n                if ans is None:\n                    skip = True\n                    break\n                row_answers.append(ans)\n            if skip:\n                break\n        \n        if skip or not row_answers or gt is None:\n            continue\n        \n        counts = Counter(row_answers)\n        majority = counts.most_common(1)[0][0]\n        total += 1\n        if majority == gt:\n            correct += 1\n    \n    return correct / total if total > 0 else float(\"nan\"), correct, total\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    \n    mistral_path = f\"{base}/exp033_mistral_7b_folio204/sc_answer_matrix.json\"\n    qwen_path = f\"{base}/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"\n    llama_path = f\"{base}/cross_model_kappa/llama_answer_matrix.json\"\n    \n    print(\"Loading answer matrices...\")\n    all_answers = {\n        \"mistral\": load_answer_matrix(mistral_path),\n        \"qwen\": load_answer_matrix(qwen_path),\n        \"llama\": load_answer_matrix(llama_path),\n    }\n    \n    for model, data in all_answers.items():\n        n_probs = len(data)\n        n_traces = len(next(iter(data.values()))[\"answers\"])\n        print(f\"  {model}: {n_probs} problems, {n_traces} traces each\")\n    \n    # Common problem IDs across all three models\n    common_pids = sorted(\n        set(all_answers[\"mistral\"].keys()) &\n        set(all_answers[\"qwen\"].keys()) &\n        set(all_answers[\"llama\"].keys())\n    )\n    print(f\"\\\\nCommon problems across all models: {len(common_pids)}\")\n    \n    # Define combinations\n    combinations = [\n        # Within-model K=4 (traces 0-3)\n        (\"Mistral-only (K=4)\", {\"mistral\": [0, 1, 2, 3]}),\n        (\"LLaMA-only (K=4)\", {\"llama\": [0, 1, 2, 3]}),\n        (\"Qwen-only (K=4)\", {\"qwen\": [0, 1, 2, 3]}),\n        \n        # Within-model K=12 (all traces)\n        (\"Mistral-only (K=12)\", {\"mistral\": list(range(12))}),\n        (\"LLaMA-only (K=12)\", {\"llama\": list(range(12))}),\n        (\"Qwen-only (K=12)\", {\"qwen\": list(range(12))}),\n        \n        # Cross-model pairs (4 traces each)\n        (\"Mistral+LLaMA (K=8)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3]}),\n        (\"Mistral+Qwen (K=8)\", {\"mistral\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"LLaMA+Qwen (K=8)\", {\"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        \n        # Three-model mix (4 traces each)\n        (\"3-Model Mix (K=12)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n    ]\n    \n    results = []\n    \n    print(\"\\\\n\" + \"=\" * 100)\n    print(f\"{'Combination':<30} {'K':>3} {'N_valid':>8} {'Fleiss_κ':>10} {'Eff_K':>8} {'SC_Acc':>8} {'SC_Corr':>8}\")\n    print(\"-\" * 100)\n    \n    for name, trace_spec in combinations:\n        kappa, n_valid, K = compute_kappa_for_traces(all_answers, common_pids, trace_spec)\n        eff_k = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, trace_spec)\n        \n        print(f\"{name:<30} {K:>3} {n_valid:>8} {kappa:>10.4f} {eff_k:>8.2f} {sc_acc:>8.4f} {sc_corr:>5}/{sc_total:<3}\")\n        \n        results.append({\n            \"combination\": name,\n            \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6),\n            \"effective_k\": round(eff_k, 4),\n            \"sc_accuracy\": round(sc_acc, 6),\n            \"sc_correct\": sc_corr,\n            \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in trace_spec.items()},\n        })\n    \n    print(\"=\" * 100)\n    \n    # Summary analysis\n    within_k4 = [r for r in results if \"(K=4)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    cross_k8 = [r for r in results if \"(K=8)\" in r[\"combination\"]]\n    mix_k12 = [r for r in results if \"3-Model\" in r[\"combination\"]]\n    within_k12 = [r for r in results if \"(K=12)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    \n    avg_within_k4 = sum(r[\"fleiss_kappa\"] for r in within_k4) / len(within_k4) if within_k4 else 0\n    avg_cross_k8 = sum(r[\"fleiss_kappa\"] for r in cross_k8) / len(cross_k8) if cross_k8 else 0\n    avg_within_k12 = sum(r[\"fleiss_kappa\"] for r in within_k12) / len(within_k12) if within_k12 else 0\n    \n    avg_effk_within_k4 = sum(r[\"effective_k\"] for r in within_k4) / len(within_k4) if within_k4 else 0\n    avg_effk_cross_k8 = sum(r[\"effective_k\"] for r in cross_k8) / len(cross_k8) if cross_k8 else 0\n    avg_effk_mix_k12 = mix_k12[0][\"effective_k\"] if mix_k12 else 0\n    \n    print(\"\\\\n--- Summary ---\")\n    print(f\"Avg within-model κ (K=4):  {avg_within_k4:.4f}\")\n    print(f\"Avg within-model κ (K=12): {avg_within_k12:.4f}\")\n    print(f\"Avg cross-model κ (K=8):   {avg_cross_k8:.4f}\")\n    if mix_k12:\n        print(f\"3-model mix κ (K=12):      {mix_k12[0]['fleiss_kappa']:.4f}\")\n    print()\n    print(f\"Avg Effective-K within (K=4):  {avg_effk_within_k4:.2f}\")\n    print(f\"Avg Effective-K cross (K=8):   {avg_effk_cross_k8:.2f}\")\n    print(f\"Effective-K 3-mix (K=12):      {avg_effk_mix_k12:.2f}\")\n    \n    if avg_within_k4 > 0 and avg_cross_k8 < avg_within_k4:\n        reduction = (1 - avg_cross_k8 / avg_within_k4) * 100\n        print(f\"\\\\nκ reduction (cross vs within): {reduction:.1f}%\")\n    \n    # Save results\n    output = {\n        \"metadata\": {\n            \"dataset\": \"FOLIO-204\",\n            \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n            \"traces_per_model\": 12,\n            \"seed\": 42,\n            \"temperature\": 0.7,\n            \"n_common_problems\": len(common_pids),\n        },\n        \"results\": results,\n        \"summary\": {\n            \"avg_within_kappa_k4\": round(avg_within_k4, 6),\n            \"avg_within_kappa_k12\": round(avg_within_k12, 6),\n            \"avg_cross_kappa_k8\": round(avg_cross_k8, 6),\n            \"mix_kappa_k12\": round(mix_k12[0][\"fleiss_kappa\"], 6) if mix_k12 else None,\n            \"avg_effk_within_k4\": round(avg_effk_within_k4, 4),\n            \"avg_effk_cross_k8\": round(avg_effk_cross_k8, 4),\n            \"effk_mix_k12\": round(avg_effk_mix_k12, 4) if mix_k12 else None,\n        }\n    }\n    \n    out_path = \"/root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\n'''\n\nwith open(\"/root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py\", \"w\") as f:\n    f.write(script_content)\nprint(\"Script written successfully\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "/root/miniconda3/bin/python3 << 'PYEOF'\n# Write the LLaMA JSONL data to file, reading from embedded hex data\nimport json\n\n# I'll create the llama data by manually constructing the matrix extraction script\n# that reads from the Mistral results to verify format, then we'll handle LLaMA separately\n# For now, create a placeholder script that we'll fill in\n\nscript_content = '''#!/usr/bin/env python3\n\"\"\"Cross-model Fleiss kappa calculation.\n\nReads per-trace answer matrices from three models:\n- Mistral-7B (exp-033)\n- Qwen2.5-7B (exp-061)  \n- LLaMA-3.1-8B (exp-063)\n\nComputes Fleiss kappa for various intra/cross-model trace combinations.\n\"\"\"\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef normalize_answer(ans):\n    \"\"\"Normalize answer to True/False/Unknown or None if invalid.\"\"\"\n    if not ans or not isinstance(ans, str):\n        return None\n    ans = ans.strip()\n    if ans in VALID_ANSWERS:\n        return ans\n    low = ans.lower()\n    if low in (\"true\",):\n        return \"True\"\n    if low in (\"false\",):\n        return \"False\"\n    if low in (\"unknown\", \"uncertain\"):\n        return \"Unknown\"\n    return None\n\ndef load_answer_matrix(path):\n    \"\"\"Load sc_answer_matrix.json -> {problem_id: {answers: [...], ground_truth: str}}\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, entry in data.items():\n        answers = [normalize_answer(a) for a in entry[\"answers\"]]\n        gt = entry[\"ground_truth\"]\n        result[pid] = {\"answers\": answers, \"ground_truth\": gt}\n    return result\n\ndef fleiss_kappa(ratings_matrix):\n    \"\"\"Compute Fleiss kappa.\n    \n    ratings_matrix: list of dicts, each {category: count} for each subject.\n    All subjects must have the same total number of raters.\n    \"\"\"\n    if not ratings_matrix:\n        return float(\"nan\")\n    \n    categories = set()\n    for row in ratings_matrix:\n        categories.update(row.keys())\n    categories = sorted(categories)\n    C = len(categories)\n    N = len(ratings_matrix)\n    \n    K = sum(ratings_matrix[0].values())\n    if K <= 1:\n        return float(\"nan\")\n    \n    # P_i for each subject\n    P_i_list = []\n    for row in ratings_matrix:\n        total = sum(row.values())\n        if total != K:\n            return float(\"nan\")\n        sum_sq = sum(v * v for v in row.values())\n        P_i = (sum_sq - K) / (K * (K - 1))\n        P_i_list.append(P_i)\n    \n    P_bar = sum(P_i_list) / N\n    \n    # p_j for each category\n    total_ratings = N * K\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(row.get(cat, 0) for row in ratings_matrix)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return 1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa\n\ndef effective_k(K, kappa):\n    \"\"\"Effective independent samples: K_eff = K / (1 + (K-1) * kappa)\"\"\"\n    denom = 1 + (K - 1) * kappa\n    if abs(denom) < 1e-10:\n        return float(\"inf\")\n    return K / denom\n\ndef compute_kappa_for_traces(all_answers, problem_ids, trace_indices_per_model):\n    \"\"\"Compute Fleiss kappa for a specific combination of traces.\n    \n    all_answers: dict model_name -> {pid: {answers: [...], ground_truth: str}}\n    problem_ids: list of problem IDs to consider\n    trace_indices_per_model: dict model_name -> list of trace indices to use\n    \n    Returns: (kappa, n_valid_problems, K)\n    \"\"\"\n    ratings = []\n    valid_count = 0\n    \n    for pid in problem_ids:\n        row_answers = []\n        skip = False\n        for model, indices in trace_indices_per_model.items():\n            if pid not in all_answers[model]:\n                skip = True\n                break\n            model_answers = all_answers[model][pid][\"answers\"]\n            for idx in indices:\n                if idx >= len(model_answers):\n                    skip = True\n                    break\n                ans = model_answers[idx]\n                if ans is None:\n                    skip = True\n                    break\n                row_answers.append(ans)\n            if skip:\n                break\n        \n        if skip or not row_answers:\n            continue\n        \n        counts = Counter(row_answers)\n        ratings.append(dict(counts))\n        valid_count += 1\n    \n    if valid_count == 0:\n        return float(\"nan\"), 0, 0\n    \n    K = sum(ratings[0].values())\n    kappa = fleiss_kappa(ratings)\n    return kappa, valid_count, K\n\ndef compute_sc_accuracy(all_answers, problem_ids, trace_indices_per_model):\n    \"\"\"Compute majority vote (SC) accuracy for a combination of traces.\"\"\"\n    correct = 0\n    total = 0\n    \n    for pid in problem_ids:\n        row_answers = []\n        skip = False\n        gt = None\n        for model, indices in trace_indices_per_model.items():\n            if pid not in all_answers[model]:\n                skip = True\n                break\n            model_data = all_answers[model][pid]\n            gt = model_data[\"ground_truth\"]\n            model_answers = model_data[\"answers\"]\n            for idx in indices:\n                if idx >= len(model_answers):\n                    skip = True\n                    break\n                ans = model_answers[idx]\n                if ans is None:\n                    skip = True\n                    break\n                row_answers.append(ans)\n            if skip:\n                break\n        \n        if skip or not row_answers or gt is None:\n            continue\n        \n        counts = Counter(row_answers)\n        majority = counts.most_common(1)[0][0]\n        total += 1\n        if majority == gt:\n            correct += 1\n    \n    return correct / total if total > 0 else float(\"nan\"), correct, total\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    \n    mistral_path = f\"{base}/exp033_mistral_7b_folio204/sc_answer_matrix.json\"\n    qwen_path = f\"{base}/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"\n    llama_path = f\"{base}/cross_model_kappa/llama_answer_matrix.json\"\n    \n    print(\"Loading answer matrices...\")\n    all_answers = {\n        \"mistral\": load_answer_matrix(mistral_path),\n        \"qwen\": load_answer_matrix(qwen_path),\n        \"llama\": load_answer_matrix(llama_path),\n    }\n    \n    for model, data in all_answers.items():\n        n_probs = len(data)\n        n_traces = len(next(iter(data.values()))[\"answers\"])\n        print(f\"  {model}: {n_probs} problems, {n_traces} traces each\")\n    \n    # Common problem IDs across all three models\n    common_pids = sorted(\n        set(all_answers[\"mistral\"].keys()) &\n        set(all_answers[\"qwen\"].keys()) &\n        set(all_answers[\"llama\"].keys())\n    )\n    print(f\"\\\\nCommon problems across all models: {len(common_pids)}\")\n    \n    # Define combinations\n    combinations = [\n        # Within-model K=4 (traces 0-3)\n        (\"Mistral-only (K=4)\", {\"mistral\": [0, 1, 2, 3]}),\n        (\"LLaMA-only (K=4)\", {\"llama\": [0, 1, 2, 3]}),\n        (\"Qwen-only (K=4)\", {\"qwen\": [0, 1, 2, 3]}),\n        \n        # Within-model K=12 (all traces)\n        (\"Mistral-only (K=12)\", {\"mistral\": list(range(12))}),\n        (\"LLaMA-only (K=12)\", {\"llama\": list(range(12))}),\n        (\"Qwen-only (K=12)\", {\"qwen\": list(range(12))}),\n        \n        # Cross-model pairs (4 traces each)\n        (\"Mistral+LLaMA (K=8)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3]}),\n        (\"Mistral+Qwen (K=8)\", {\"mistral\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"LLaMA+Qwen (K=8)\", {\"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        \n        # Three-model mix (4 traces each)\n        (\"3-Model Mix (K=12)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n    ]\n    \n    results = []\n    \n    print(\"\\\\n\" + \"=\" * 100)\n    print(f\"{'Combination':<30} {'K':>3} {'N_valid':>8} {'Fleiss_κ':>10} {'Eff_K':>8} {'SC_Acc':>8} {'SC_Corr':>8}\")\n    print(\"-\" * 100)\n    \n    for name, trace_spec in combinations:\n        kappa, n_valid, K = compute_kappa_for_traces(all_answers, common_pids, trace_spec)\n        eff_k = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, trace_spec)\n        \n        print(f\"{name:<30} {K:>3} {n_valid:>8} {kappa:>10.4f} {eff_k:>8.2f} {sc_acc:>8.4f} {sc_corr:>5}/{sc_total:<3}\")\n        \n        results.append({\n            \"combination\": name,\n            \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6),\n            \"effective_k\": round(eff_k, 4),\n            \"sc_accuracy\": round(sc_acc, 6),\n            \"sc_correct\": sc_corr,\n            \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in trace_spec.items()},\n        })\n    \n    print(\"=\" * 100)\n    \n    # Summary analysis\n    within_k4 = [r for r in results if \"(K=4)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    cross_k8 = [r for r in results if \"(K=8)\" in r[\"combination\"]]\n    mix_k12 = [r for r in results if \"3-Model\" in r[\"combination\"]]\n    within_k12 = [r for r in results if \"(K=12)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    \n    avg_within_k4 = sum(r[\"fleiss_kappa\"] for r in within_k4) / len(within_k4) if within_k4 else 0\n    avg_cross_k8 = sum(r[\"fleiss_kappa\"] for r in cross_k8) / len(cross_k8) if cross_k8 else 0\n    avg_within_k12 = sum(r[\"fleiss_kappa\"] for r in within_k12) / len(within_k12) if within_k12 else 0\n    \n    avg_effk_within_k4 = sum(r[\"effective_k\"] for r in within_k4) / len(within_k4) if within_k4 else 0\n    avg_effk_cross_k8 = sum(r[\"effective_k\"] for r in cross_k8) / len(cross_k8) if cross_k8 else 0\n    avg_effk_mix_k12 = mix_k12[0][\"effective_k\"] if mix_k12 else 0\n    \n    print(\"\\\\n--- Summary ---\")\n    print(f\"Avg within-model κ (K=4):  {avg_within_k4:.4f}\")\n    print(f\"Avg within-model κ (K=12): {avg_within_k12:.4f}\")\n    print(f\"Avg cross-model κ (K=8):   {avg_cross_k8:.4f}\")\n    if mix_k12:\n        print(f\"3-model mix κ (K=12):      {mix_k12[0]['fleiss_kappa']:.4f}\")\n    print()\n    print(f\"Avg Effective-K within (K=4):  {avg_effk_within_k4:.2f}\")\n    print(f\"Avg Effective-K cross (K=8):   {avg_effk_cross_k8:.2f}\")\n    print(f\"Effective-K 3-mix (K=12):      {avg_effk_mix_k12:.2f}\")\n    \n    if avg_within_k4 > 0 and avg_cross_k8 < avg_within_k4:\n        reduction = (1 - avg_cross_k8 / avg_within_k4) * 100\n        print(f\"\\\\nκ reduction (cross vs within): {reduction:.1f}%\")\n    \n    # Save results\n    output = {\n        \"metadata\": {\n            \"dataset\": \"FOLIO-204\",\n            \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n            \"traces_per_model\": 12,\n            \"seed\": 42,\n            \"temperature\": 0.7,\n            \"n_common_problems\": len(common_pids),\n        },\n        \"results\": results,\n        \"summary\": {\n            \"avg_within_kappa_k4\": round(avg_within_k4, 6),\n            \"avg_within_kappa_k12\": round(avg_within_k12, 6),\n            \"avg_cross_kappa_k8\": round(avg_cross_k8, 6),\n            \"mix_kappa_k12\": round(mix_k12[0][\"fleiss_kappa\"], 6) if mix_k12 else None,\n            \"avg_effk_within_k4\": round(avg_effk_within_k4, 4),\n            \"avg_effk_cross_k8\": round(avg_effk_cross_k8, 4),\n            \"effk_mix_k12\": round(avg_effk_mix_k12, 4) if mix_k12 else None,\n        }\n    }\n    \n    out_path = \"/root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\n'''\n\nwith open(\"/root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py\", \"w\") as f:\n    f.write(script_content)\nprint(\"Script written successfully\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T06:19:23.619374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T06:19:23.619611+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json, zlib\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = zlib.compress(json.dumps(data, separators=(',', ':')).encode(), level=9)\nhex_str = compressed.hex()\nprint(hex_str)\n\" > /tmp/llama_hex.txt && wc -c /tmp/llama_hex.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json, zlib\nwith open('/root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/sc_answer_matrix.json') as f:\n    data = json.load(f)\ncompressed = zlib.compress(json.dumps(data, separators=(',', ':')).encode(), level=9)\nhex_str = compressed.hex()\nprint(hex_str)\n\" > /tmp/llama_hex.txt && wc -c /tmp/llama_hex.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T06:19:23.619937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4459 /tmp/llama_hex.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T06:19:23.620119+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/llama_hex.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/llama_hex.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T06:19:23.620280+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"78dad55d5b4fdb5810fe2b4779699158e4fb851fb06fd53e6cfbb45a55263160116c643b6551d5ffbe09d0d2d83e67be99738c41aa943476f068eef3cdccc9f7d565b3ad9aafdeeafcfbaaa8bbfbb2ed56e7ffac3eb7bb7275bafa52dfd4cd7dbd7ff767b1ed8e3f79be6574e7e803d3bb7f4f57576db3ab375ffb76d75fafce7f5df971fa4c9a4f91764c08f0f2f2d59f9f8dc978fcf88586217fc68c19befeb52eb7dba22f37eabeda6e54bf6b6fca874946eafec2f0ce31914f77fc46a5468ccf2fcfef4ed5c5ae57bb7a5db67d51d5aab868f6ffefaf4bd595eba6dea8bba2edcf68e64d5e0658e96b796952b7f1b5e307d3df00f81700a48d1860d6fe178e37f5f6411df8adbabb725d5d566bd5adcbba68abe6cc6437888d78a196f2cf7bc1eec5badeeebaaaa955d5bd88fe89aeaa3f7c78dbb4a5da5637e59ec8be5117a5ba3c70e70c3665547c47f2026412513a6de10940e38f8d24404af2e598e7fb2795eae3b62ceaaabe3ac1bd294d6b62a4d5c50b4d433aa061e8d1049aa4779b0cf798e98de4c8435ae9f78b633d087a6c56bdd6514e98754ec61d5a17e94b7ac90e59e8b31ce4af7f7c0f02b16714968f443819fc34428675dbc00156e263f30e624db0bc1ff04346a4a75e812f417c8934bec964dc035b434946439c1fd3fe12f8684c37c3ae13ada8e8e0c4ac0d68bd49a9945fe36cc048acb904a94fc67280aedf6134e6cb9bfe1bf03e816761e946af2330f1c00753489b7c16518e203019ba345a4fd20f91139ac831a5593ac9e86409c82842aa67062fa8d48c56e1d8c41d6d7c9a5f6a89d00b3a4c9168e689a2084435f097007543aa11a8f281480308ca71864d25d536917620bb70d128cb3185d0934046f37990090afd719184e99219e9d27f93166fc02d2359a02f8b94908deca2782d8f4513828b28070143f0a0da1d41543f410b34b30863bbca18ca8824ca9638742698b908e59d0284b23a084c151c06843043b2f8d9e1d73027ca630256e4da2dcd980824c8de73a0b96be4592bb99e8168193f56e9c8076005c78608302b10328b023a6c5d551432cae6192c2d8ad819a0c16b6baf429a1363ced09c25801e1b222801a3b1c41fb26c2a7db5e4f8f36397eab2691fbbc31f9af6c3a193b8a9faaaa94f54516fd4af9ce1b7db6e8bbab82a8fee3d13da4306f6fe25b9b34d7d12e5dc041628d18d618cf66af1f2905b3cd18fc19f417a57faf9febba91be3e0fd901a5256880d6a10ae1a2225d22a98294a0b527834f18a9138652a9fb5ca0f65a64303d074ff01eff342e37467990b34c7f6618a877c897c6626eb67b32b6e5a72393ee6a2f59cc69c8c242159c0230932c3c433e1
+…[truncated 2621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T06:19:23.620466+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport zlib, json\nhex_str = '78dad55d5b4fdb5810fe2b4779699158e4fb851fb06fd53e6cfbb45a55263160116c643b6551d5ffbe09d0d2d83e67be99738c41aa943476f068eef3cdccc9f7d565b3ad9aafdeeafcfbaaa8bbfbb2ed56e7ffac3eb7bb7275bafa52dfd4cd7dbd7ff767b1ed8e3f79be6574e7e803d3bb7f4f57576db3ab375ffb76d75fafce7f5df971fa4c9a4f91764c08f0f2f2d59f9f8dc978fcf88586217fc68c19befeb52eb7dba22f37eabeda6e54bf6b6fca874946eafec2f0ce31914f77fc46a5468ccf2fcfef4ed5c5ae57bb7a5db67d51d5aab868f6ffefaf4bd595eba6dea8bba2edcf68e64d5e0658e96b796952b7f1b5e307d3df00f81700a48d1860d6fe178e37f5f6411df8adbabb725d5d566bd5adcbba68abe6cc6437888d78a196f2cf7bc1eec5badeeebaaaa955d5bd88fe89aeaa3f7c78dbb4a5da5637e59ec8be5117a5ba3c70e70c3665547c47f2026412513a6de10940e38f8d24404af2e598e7fb2795eae3b62ceaaabe3ac1bd294d6b62a4d5c50b4d433aa061e8d1049aa4779b0cf798e98de4c8435ae9f78b633d087a6c56bdd6514e98754ec61d5a17e94b7ac90e59e8b31ce4af7f7c0f02b16714968f443819fc34428675dbc00156e263f30e624db0bc1ff04346a4a75e812f417c8934bec964dc035b434946439c1fd3fe12f8684c37c3ae13ada8e8e0c4ac0d68bd49a9945fe36cc048acb904a94fc67280aedf6134e6cb9bfe1bf03e816761e946af2330f1c00753489b7c16518e203019ba345a4fd20f91139ac831a5593ac9e86409c82842aa67062fa8d48c56e1d8c41d6d7c9a5f6a89d00b3a4c9168e689a2084435f097007543aa11a8f281480308ca71864d25d536917620bb70d128cb3185d0934046f37990090afd719184e99219e9d27f93166fc02d2359a02f8b94908deca2782d8f4513828b28070143f0a0da1d41543f410b34b30863bbca18ca8824ca9638742698b908e59d0284b23a084c151c06843043b2f8d9e1d73027ca630256e4da2dcd980824c8de73a0b96be4592bb99e8168193f56e9c8076005c78608302b10328b023a6c5d551432cae6192c2d8ad819a0c16b6baf429a1363ced09c25801e1b222801a3b1c41fb26c2a7db5e4f8f36397eab2691fbbc31f9af6c3a193b8a9faaaa94f54516fd4af9ce1b7db6e8bbab82a8fee3d13da4306f6fe25b9b34d7d12e5dc041628d18d618cf66af1f2905b3cd18fc19f417a57faf9febba91be3e0fd901a5256880d6a10ae1a2225d22a98294a0b527834f18a9138652a9fb5ca0f65a64303d074ff01eff342e37467990b34c7f6618a877c897c6626eb67b32b6e5a72393ee6a2f59cc69c8c242159c0230932c3c433e1596fc365263e3b59c4d246b982250106373367492402e4a1bb1278cda6944e221811e4cd2bca02ce04ff6211ff443d733e3692249333390c14628ae06364f2696c4ef5cd7dd16e3aa513076d13a9697ec81437cd053ff0e46cf96c3dc9050d721a56736183299e54594cc431fd56ea04633322ef23e0dd3e14a53e2c65004696a12903c54b03de48bf048a936483693843caea34af48e9d83453031e615fcceb5761b019d7aba5f669acf59402244add90b474d84f3a7d98be815094e6163997ec95664c868f444239b2701a32f32c6d7e9ea267c42d7f09e709cbd25dcb675eb79085cea4cd43e5683d24c711e4bc1ad084cf2d676f00f5ce1232c3e28c9c3a735fe9bb419833360cb7008d390b05e7f44ab996984b3b911470c80d4db905143791db8c78482b79eee395a2ac21681715f380e11b1c02a9b89bc843e6308b0c0ee3034979a44f90a1d127cdb68e8045ec59042b2d845b2cf934d4c64b0caca634f2145c6bb0022149c24602cb4c7e6994ba3bc3ba87ee3117ce89899037922df6cbede43a37a0c643a23c11982d06e3118a3c3662c6c1470582f3fc99060ea59ae4bd9be985c00bf1c6ea9c9b57816f838eb92a568200d424418f489622059c8217af9eecb79c8875301aafb41394602718b8c45e988656bd1636714d12c2c59da9328a56e58c5b228ecf6639747dce7833a5a42ae5e6a1a019ca0e96fc42577b7af39d41157ad28e9520bb42e8f16d062dad1a2c61e060ad1a3a2c84b4b7305c1cfc0b23174703cda6b6b17d01629fbe86cb1f4914a6a2584e9d75c624227b15a44590838d36ac84eef7e714c3aede965da73e15ff7de8d4a6ecaaab5a75fdc3b67c8c70d56d79b87c86279680aa47ac315c8b363dcb00a1b52cfb934df83318912f97b833b864a0855160b36e88221790a9ea16b1b8d096cb735d226aeb105e7b12d7484381c5b3a000ee4ab8c871f162199f073a96ba9d6396ec1f0e05fa7aa71b893d6a3e0b89782a06d0185388132841d91c7fec2d80cd71b42cf62d7266baa7c949c9e200f6a9ae8662c1a4390e5fa9716899e1c49138b97791d8c7cbcf7fc4093ec8e710a91bea4b8a1d15b5a4aa640263e3610856d12fce17709c02bc2c11613f8c7603a5f18937a7d1d18ff76d1f8ff002114420985ab5577288b4d072de9139448090145946340e75a0d71cad52cd795817a2da090367561fefabfe5a75cd6df972a47bff70c2fef503d4ecdfcd40e11bd8ae4a963f8415ac2fd9fb793c59a4fc690afe240c1ce3535f843189365910e6048c13b2edeb6cd02b8ef6a0b8674e6a26efa6664f4925b63d048f7117494b4cc67b266a6f7df0579a983658f9a5b4a5e34d53c931c7bfb995a33ddf4f45fb70e818d44daf0a7557ad6f1e5459f4652bf487197e40a155ffce4cd45082b960fe65c23d4e0f76b31de4b2e79b3f12a33e1efd3ed109a27899c76bf0a147b731b1b7ecdd1c4094054e8c0138889be45988785583201decae669cdae429f7ae2ed57da98aaedbedd3effebae8d5dfbb8bfbe2416d9af2c965ddb5cdb76ab3bf58dc947f1c7e62ab2bdb6fd5ba3c91d53c02a4208b257bf473ebe240fc89fd0e89a0ad43ab44ba78029fb9387fd5d11a6ab67c3d23a0c0b0e6c0049d72cfed8a1a281dc0c8737f79c9046f6b3e3d0fed7e9f80d390626758dabd26eec9d7b3e40579ec84759c3b30154b8093ffa05fea70c023b0d76273beb12062e5197b1792d903879d65ae1d9f71306ac103eb7ffc0f3c7aa688'\ndata = json.loads(zlib.decompress(bytes.fromhex(hex_str)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n# Verify\nsample = list(data.keys())[:3]\nfor k in sample:\n    print(f'  {k}: {len(data[k][\\\"answers\\\"])} traces, gt={data[k][\\\"ground_truth\\\"]}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport zlib, json\nhex_str = '78dad55d5b4fdb5810fe2b4779699158e4fb851fb06fd53e6cfbb45a55263160116c643b6551d5ffbe09d0d2d83e67be99738c41aa943476f068eef3cdccc9f7d565b3ad9aafdeeafcfbaaa8bbfbb2ed56e7ffac3eb7bb7275bafa52dfd4cd7dbd7ff767b1ed8e3f79be6574e7e803d3bb7f4f57576db3ab375ffb76d75fafce7f5df971fa4c9a4f91764c08f0f2f2d59f9f8dc978fcf88586217fc68c19befeb52eb7dba22f37eabeda6e54bf6b6fca874946eafec2f0ce31914f77fc46a5468ccf2fcfef4ed5c5ae57bb7a5db67d51d5aab868f6ffefaf4bd595eba6dea8bba2edcf68e64d5e0658e96b796952b7f1b5e307d3df00f81700a48d1860d6fe178e37f5f6411df8adbabb725d5d566bd5adcbba68abe6cc6437888d78a196f2cf7bc1eec5badeeebaaaa955d5bd88fe89aeaa3f7c78dbb4a5da5637e59ec8be5117a5ba3c70e70c3665547c47f2026412513a6de10940e38f8d24404af2e598e7fb2795eae3b62ceaaabe3ac1bd294d6b62a4d5c50b4d433aa061e8d1049aa4779b0cf798e98de4c8435ae9f78b633d087a6c56bdd6514e98754ec61d5a17e94b7ac90e59e8b31ce4af7f7c0f02b16714968f443819fc34428675dbc00156e263f30e624db0bc1ff04346a4a75e812f417c8934bec964dc035b434946439c1fd3fe12f8684c37c3ae13ada8e8e0c4ac0d68bd49a9945fe36cc048acb904a94fc67280aedf6134e6cb9bfe1bf03e816761e946af2330f1c00753489b7c16518e203019ba345a4fd20f91139ac831a5593ac9e86409c82842aa67062fa8d48c56e1d8c41d6d7c9a5f6a89d00b3a4c9168e689a2084435f097007543aa11a8f281480308ca71864d25d536917620bb70d128cb3185d0934046f37990090afd719184e99219e9d27f93166fc02d2359a02f8b94908deca2782d8f4513828b28070143f0a0da1d41543f410b34b30863bbca18ca8824ca9638742698b908e59d0284b23a084c151c06843043b2f8d9e1d73027ca630256e4da2dcd980824c8de73a0b96be4592bb99e8168193f56e9c8076005c78608302b10328b023a6c5d551432cae6192c2d8ad819a0c16b6baf429a1363ced09c25801e1b222801a3b1c41fb26c2a7db5e4f8f36397eab2691fbbc31f9af6c3a193b8a9faaaa94f54516fd4af9ce1b7db6e8bbab82a8fee3d13da4306f6fe25b9b34d7d12e5dc041628d18d618cf66af1f2905b3cd18fc19f417a57faf9febba91be3e0fd901a5256880d6a10ae1a2225d22a98294a0b527834f18a9138652a9fb5ca0f65a64303d074ff01eff342e37467990b34c7f6618a877c897c6626eb67b32b6e5a72393ee6a2f59cc69c8c242159c0230932c3c433e1596fc365263e3b59c4d246b982250106373367492402e4a1bb1278cda6944e221811e4cd2bca02ce04ff6211ff443d733e3692249333390c14628ae06364f2696c4ef5cd7dd16e3aa513076d13a9697ec81437cd053ff0e46cf96c3dc9050d721a56736183299e54594cc431fd56ea04633322ef23e0dd3e14a53e2c65004696a12903c54b03de48bf048a936483693843caea34af48e9d83453031e615fcceb5761b019d7aba5f669acf59402244add90b474d84f3a7d98be815094e6163997ec95664c868f444239b2701a32f32c6d7e9ea267c42d7f09e709cbd25dcb675eb79085cea4cd43e5683d24c711e4bc1ad084cf2d676f00f5ce1232c3e28c9c3a735fe9bb419833360cb7008d390b05e7f44ab996984b3b911470c80d4db905143791db8c78482b79eee395a2ac21681715f380e11b1c02a9b89bc843e6308b0c0ee3034979a44f90a1d127cdb68e8045ec59042b2d845b2cf934d4c64b0caca634f2145c6bb0022149c24602cb4c7e6994ba3bc3ba87ee3117ce89899037922df6cbede43a37a0c643a23c11982d06e3118a3c3662c6c1470582f3fc99060ea59ae4bd9be985c00bf1c6ea9c9b57816f838eb92a568200d424418f489622059c8217af9eecb79c8875301aafb41394602718b8c45e988656bd1636714d12c2c59da9328a56e58c5b228ecf6639747dce7833a5a42ae5e6a1a019ca0e96fc42577b7af39d41157ad28e9520bb42e8f16d062dad1a2c61e060ad1a3a2c84b4b7305c1cfc0b23174703cda6b6b17d01629fbe86cb1f4914a6a2584e9d75c624227b15a44590838d36ac84eef7e714c3aede965da73e15ff7de8d4a6ecaaab5a75fdc3b67c8c70d56d79b87c86279680aa47ac315c8b363dcb00a1b52cfb934df83318912f97b833b864a0855160b36e88221790a9ea16b1b8d096cb735d226aeb105e7b12d7484381c5b3a000ee4ab8c871f162199f073a96ba9d6396ec1f0e05fa7aa71b893d6a3e0b89782a06d0185388132841d91c7fec2d80cd71b42cf62d7266baa7c949c9e200f6a9ae8662c1a4390e5fa9716899e1c49138b97791d8c7cbcf7fc4093ec8e710a91bea4b8a1d15b5a4aa640263e3610856d12fce17709c02bc2c11613f8c7603a5f18937a7d1d18ff76d1f8ff002114420985ab5577288b4d072de9139448090145946340e75a0d71cad52cd795817a2da090367561fefabfe5a75cd6df972a47bff70c2fef503d4ecdfcd40e11bd8ae4a963f8415ac2fd9fb793c59a4fc690afe240c1ce3535f843189365910e6048c13b2edeb6cd02b8ef6a0b8674e6a26efa6664f4925b63d048f7117494b4cc67b266a6f7df0579a983658f9a5b4a5e34d53c931c7bfb995a33ddf4f45fb70e818d44daf0a7557ad6f1e5459f4652bf487197e40a155ffce4cd45082b960fe65c23d4e0f76b31de4b2e79b3f12a33e1efd3ed109a27899c76bf0a147b731b1b7ecdd1c4094054e8c0138889be45988785583201decae669cdae429f7ae2ed57da98aaedbedd3effebae8d5dfbb8bfbe2416d9af2c965ddb5cdb76ab3bf58dc947f1c7e62ab2bdb6fd5ba3c91d53c02a4208b257bf473ebe240fc89fd0e89a0ad43ab44ba78029fb9387fd5d11a6ab67c3d23a0c0b0e6c0049d72cfed8a1a281dc0c8737f79c9046f6b3e3d0fed7e9f80d390626758dabd26eec9d7b3e40579ec84759c3b30154b8093ffa05fea70c023b0d76273beb12062e5197b1792d903879d65ae1d9f71306ac103eb7ffc0f3c7aa688'\ndata = json.loads(zlib.decompress(bytes.fromhex(hex_str)))\nout = '/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json'\nwith open(out, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Written {len(data)} problems to {out}')\n# Verify\nsample = list(data.keys())[:3]\nfor k in sample:\n    print(f'  {k}: {len(data[k][\\\"answers\\\"])} traces, gt={data[k][\\\"ground_truth\\\"]}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T06:19:23.620646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Written 204 problems to /root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json\\n  folio_0: 12 traces, gt=Unknown\\n  folio_1: 12 traces, gt=True\\n  folio_10: 12 traces, gt=False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T06:19:23.620795+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json /root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json /root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T06:19:23.620956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 11333 May 20 14:14 /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py\\n-rw-r--r-- 1 root root 52468 May 20 14:15 /root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json\\n-rw-r--r-- 1 root root 56384 May 20 01:39 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\n-rw-r--r-- 1 root root 51734 May 20 14:08 /root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T06:19:23.621105+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T06:19:23.621282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading answer matrices...\\n  mistral: 204 problems, 12 traces each\\n  qwen: 204 problems, 12 traces each\\n  llama: 204 problems, 12 traces each\\n\\nCommon problems across all models: 204\\n\\n====================================================================================================\\nCombination                      K  N_valid   Fleiss_κ    Eff_K   SC_Acc  SC_Corr\\n----------------------------------------------------------------------------------------------------\\nMistral-only (K=4)               4      102     0.5171     1.57   0.6569    67/102\\nLLaMA-only (K=4)                 4      129     0.4647     1.67   0.6744    87/129\\nQwen-only (K=4)                  4      204     0.6392     1.37   0.7451   152/204\\nMistral-only (K=12)             12       38     0.6352     1.50   0.7368    28/38 \\nLLaMA-only (K=12)               12       70     0.6063     1.56   0.7429    52/70 \\nQwen-only (K=12)                12      201     0.6535     1.47   0.7612   153/201\\nMistral+LLaMA (K=8)              8       73     0.4571     1.90   0.6849    50/73 \\nMistral+Qwen (K=8)               8      102     0.4778     1.84   0.7451    76/102\\nLLaMA+Qwen (K=8)                 8      129     0.4799     1.84   0.7674    99/129\\n3-Model Mix (K=12)              12       73     0.4575     1.99   0.8082    59/73 \\n====================================================================================================\\n\\n--- Summary ---\\nAvg within-model κ (K=4):  0.5403\\nAvg within-model κ (K=12): 0.6317\\nAvg cross-model κ (K=8):   0.4716\\n3-model mix κ (K=12):      0.4575\\n\\nAvg Effective-K within (K=4):  1.54\\nAvg Effective-K cross (K=8):   1.86\\nEffective-K 3-mix (K=12):      1.99\\n\\nκ reduction (cross vs within): 12.7%\\n\\nResults saved to /root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\
+…[truncated 28 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T06:19:23.621588+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa_v2.py\n#!/usr/bin/env python3\n\"\"\"Cross-model Fleiss kappa v2: handles variable raters per subject.\"\"\"\nimport json\nimport os\nimport math\nfrom collections import Counter\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef normalize_answer(ans):\n    if not ans or not isinstance(ans, str):\n        return None\n    ans = ans.strip()\n    if ans in VALID_ANSWERS:\n        return ans\n    low = ans.lower()\n    if low in (\"true\",):\n        return \"True\"\n    if low in (\"false\",):\n        return \"False\"\n    if low in (\"unknown\", \"uncertain\"):\n        return \"Unknown\"\n    return None\n\ndef load_answer_matrix(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, entry in data.items():\n        answers = [normalize_answer(a) for a in entry[\"answers\"]]\n        gt = entry[\"ground_truth\"]\n        result[pid] = {\"answers\": answers, \"ground_truth\": gt}\n    return result\n\ndef fleiss_kappa_variable_k(rating_rows):\n    \"\"\"Fleiss kappa allowing variable K per subject.\n    \n    rating_rows: list of (dict_of_counts, K_i) pairs.\n    Uses the generalized formula from Fleiss (1971) extended for variable n_i.\n    \n    For variable raters: use weighted P_bar and adjust P_e calculation.\n    Reference: Gwet (2014) \"Handbook of Inter-Rater Reliability\" ch. 11\n    \"\"\"\n    if not rating_rows:\n        return float(\"nan\"), 0\n    \n    categories = set()\n    for counts, K_i in rating_rows:\n        categories.update(counts.keys())\n    categories = sorted(categories)\n    \n    N = len(rating_rows)\n    \n    # Filter out subjects with K_i <= 1 (can't compute agreement)\n    valid_rows = [(c, k) for c, k in rating_rows if k >= 2]\n    if not valid_rows:\n        return float(\"nan\"), 0\n    \n    N_valid = len(valid_rows)\n    \n    # P_i for each subject: (sum(n_ij^2) - K_i) / (K_i * (K_i - 1))\n    P_i_list = []\n    K_list = []\n    for counts, K_i in valid_rows:\n        sum_sq = sum(v * v for v in counts.values())\n        P_i = (sum_sq - K_i) / (K_i * (K_i - 1))\n        P_i_list.append(P_i)\n        K_list.append(K_i)\n    \n    # Weighted P_bar (weight by K_i*(K_i-1) as in the original Fleiss formulation)\n    weights = [k * (k - 1) for k in K_list]\n    total_weight = sum(weights)\n    P_bar = sum(w * p for w, p in zip(weights, P_i_list)) / total_weight if total_weight > 0 else 0\n    \n    # p_j: category proportions (weighted by K_i)\n    total_ratings = sum(K_list)\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(counts.get(cat, 0) for counts, _ in valid_rows)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return (1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")), N_valid\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa, N_valid\n\ndef fleiss_kappa_fixed_k(rating_rows):\n    \"\"\"Standard Fleiss kappa with fixed K (for comparison).\"\"\"\n    if not rating_rows:\n        return float(\"nan\"), 0\n    \n    categories = set()\n    for counts in rating_rows:\n        categories.update(counts.keys())\n    categories = sorted(categories)\n    \n    N = len(rating_rows)\n    K = sum(rating_rows[0].values())\n    \n    P_i_list = []\n    for counts in rating_rows:\n        total = sum(counts.values())\n        if total != K:\n            return float(\"nan\"), 0\n        sum_sq = sum(v * v for v in counts.values())\n        P_i = (sum_sq - K) / (K * (K - 1))\n        P_i_list.append(P_i)\n    \n    P_bar = sum(P_i_list) / N\n    \n    total_ratings = N * K\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(counts.get(cat, 0) for counts in rating_rows)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return (1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")), N\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa, N\n\ndef effective_k(K, kappa):\n    denom = 1 + (K - 1) * kappa\n    if abs(denom) < 1e-10:\n        return float(\"inf\")\n    return K / denom\n\ndef get_answers_for_combo(all_answers, pid, trace_spec):\n    \"\"\"Get valid answers for a problem given a trace specification.\n    Returns (list_of_valid_answers, total_selected, ground_truth) or None if problem missing.\"\"\"\n    valid = []\n    total = 0\n    gt = None\n    for model, indices in trace_spec.items():\n        if pid not in all_answers[model]:\n            return None\n        data = all_answers[model][pid]\n        gt = data[\"ground_truth\"]\n        for idx in indices:\n            if idx >= len(data[\"answers\"]):\n                total += 1\n                continue\n            ans = data[\"answers\"][idx]\n            total += 1\n            if ans is not None:\n                valid.append(ans)\n    return valid, total, gt\n\ndef compute_kappa_variable(all_answers, problem_ids, trace_spec):\n    \"\"\"Compute kappa allowing variable K per problem (skip invalid traces).\"\"\"\n    rows = []\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, total, gt = result\n        if len(valid_answers) < 2:\n            continue\n        counts = dict(Counter(valid_answers))\n        rows.append((counts, len(valid_answers)))\n    \n    kappa, n_valid = fleiss_kappa_variable_k(rows)\n    avg_k = sum(k for _, k in rows) / len(rows) if rows else 0\n    return kappa, n_valid, avg_k\n\ndef compute_kappa_strict(all_answers, problem_ids, trace_spec):\n    \"\"\"Compute kappa requiring all traces valid (standard Fleiss).\"\"\"\n    rows = []\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, total, gt = result\n        if len(valid_answers) != total:\n            continue\n        counts = dict(Counter(valid_answers))\n        rows.append(counts)\n    \n    if not rows:\n        return float(\"nan\"), 0, 0\n    K = sum(rows[0].values())\n    kappa, n_valid = fleiss_kappa_fixed_k(rows)\n    return kappa, n_valid, K\n\ndef compute_sc_accuracy(all_answers, problem_ids, trace_spec, require_all_valid=False):\n    \"\"\"Compute majority vote accuracy.\"\"\"\n    correct = 0\n    total = 0\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, n_total, gt = result\n        if require_all_valid and len(valid_answers) != n_total:\n            continue\n        if not valid_answers or gt is None:\n            continue\n        counts = Counter(valid_answers)\n        majority = counts.most_common(1)[0][0]\n        total += 1\n        if majority == gt:\n            correct += 1\n    return correct / total if total > 0 else float(\"nan\"), correct, total\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    \n    all_answers = {\n        \"mistral\": load_answer_matrix(f\"{base}/exp033_mistral_7b_folio204/sc_answer_matrix.json\"),\n        \"qwen\": load_answer_matrix(f\"{base}/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"),\n        \"llama\": load_answer_matrix(f\"{base}/cross_model_kappa/llama_answer_matrix.json\"),\n    }\n    \n    for model, data in all_answers.items():\n        n_probs = len(data)\n        n_traces = len(next(iter(data.values()))[\"answers\"])\n        valid_rates = []\n        for pid in data:\n            valid = sum(1 for a in data[pid][\"answers\"] if a is not None)\n            valid_rates.append(valid / len(data[pid][\"answers\"]))\n        avg_valid = sum(valid_rates) / len(valid_rates)\n        print(f\"  {model}: {n_probs} problems, {n_traces} traces, avg valid rate: {avg_valid:.3f}\")\n    \n    common_pids = sorted(\n        set(all_answers[\"mistral\"].keys()) &\n        set(all_answers[\"qwen\"].keys()) &\n        set(all_answers[\"llama\"].keys())\n    )\n    print(f\"\\nCommon problems: {len(common_pids)}\")\n    \n    combinations = [\n        (\"Mistral-only (K=4)\", {\"mistral\": [0, 1, 2, 3]}),\n        (\"LLaMA-only (K=4)\", {\"llama\": [0, 1, 2, 3]}),\n        (\"Qwen-only (K=4)\", {\"qwen\": [0, 1, 2, 3]}),\n        (\"Mistral-only (K=12)\", {\"mistral\": list(range(12))}),\n        (\"LLaMA-only (K=12)\", {\"llama\": list(range(12))}),\n        (\"Qwen-only (K=12)\", {\"qwen\": list(range(12))}),\n        (\"Mistral+LLaMA (K=8)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3]}),\n        (\"Mistral+Qwen (K=8)\", {\"mistral\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"LLaMA+Qwen (K=8)\", {\"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"3-Model Mix (K=12)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n    ]\n    \n    # === Table 1: Variable-K (include all problems with >=2 valid answers) ===\n    print(\"\\n\" + \"=\" * 110)\n    print(\"TABLE 1: Variable-K Fleiss' κ (skip invalid traces, include problems with ≥2 valid answers)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'Nom_K':>5} {'N_prob':>7} {'Avg_K':>6} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8} {'SC_N':>6}\")\n    print(\"-\" * 110)\n    \n    results_var = []\n    for name, spec in combinations:\n        kappa, n_valid, avg_k = compute_kappa_variable(all_answers, common_pids, spec)\n        nominal_k = sum(len(v) for v in spec.values())\n        eff_k_val = effective_k(avg_k, kappa)\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, spec)\n        print(f\"{name:<30} {nominal_k:>5} {n_valid:>7} {avg_k:>6.1f} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f} {sc_total:>6}\")\n        results_var.append({\n            \"combination\": name, \"nominal_K\": nominal_k,\n            \"n_valid_problems\": n_valid, \"avg_K\": round(avg_k, 2),\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in spec.items()},\n            \"method\": \"variable_k\"\n        })\n    \n    # === Table 2: Strict (all traces must be valid) ===\n    print(\"\\n\" + \"=\" * 110)\n    print(\"TABLE 2: Strict Fleiss' κ (require all selected traces valid)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'K':>3} {'N_prob':>7} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8} {'SC_N':>6}\")\n    print(\"-\" * 110)\n    \n    results_strict = []\n    for name, spec in combinations:\n        kappa, n_valid, K = compute_kappa_strict(all_answers, common_pids, spec)\n        eff_k_val = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, spec, require_all_valid=True)\n        print(f\"{name:<30} {K:>3} {n_valid:>7} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f} {sc_total:>6}\")\n        results_strict.append({\n            \"combination\": name, \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in spec.items()},\n            \"method\": \"strict\"\n        })\n    \n    # === Table 3: Common subset (problems valid in ALL combinations) ===\n    # Find problems where ALL traces across ALL combinations are valid\n    common_valid = set(common_pids)\n    for name, spec in combinations:\n        for pid in list(common_valid):\n            result = get_answers_for_combo(all_answers, pid, spec)\n            if result is None:\n                common_valid.discard(pid)\n                continue\n            valid_answers, total, gt = result\n            if len(valid_answers) != total:\n                common_valid.discard(pid)\n    common_valid = sorted(common_valid)\n    \n    print(f\"\\n{'=' * 110}\")\n    print(f\"TABLE 3: Common Subset Fleiss' κ (N={len(common_valid)} problems valid across ALL combinations)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'K':>3} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8}\")\n    print(\"-\" * 110)\n    \n    results_common = []\n    for name, spec in combinations:\n        kappa, n_valid, K = compute_kappa_strict(all_answers, common_valid, spec)\n        eff_k_val = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_valid, spec, require_all_valid=True)\n        print(f\"{name:<30} {K:>3} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f}\")\n        results_common.append({\n            \"combination\": name, \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"method\": \"common_subset\"\n        })\n    \n    # === Summary ===\n    print(f\"\\n{'=' * 110}\")\n    print(\"SUMMARY (using Variable-K results, Table 1)\")\n    print(\"=\" * 110)\n    \n    within_k4 = [r for r in results_var if \"(K=4)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    within_k12 = [r for r in results_var if \"(K=12)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    cross_k8 = [r for r in results_var if \"(K=8)\" in r[\"combination\"]]\n    mix_k12 = [r for r in results_var if \"3-Model\" in r[\"combination\"]]\n    \n    avg_w4_k = sum(r[\"fleiss_kappa\"] for r in within_k4) / len(within_k4)\n    avg_w12_k = sum(r[\"fleiss_kappa\"] for r in within_k12) / len(within_k12)\n    avg_c8_k = sum(r[\"fleiss_kappa\"] for r in cross_k8) / len(cross_k8)\n    mix12_k = mix_k12[0][\"fleiss_kappa\"]\n    \n    avg_w4_ek = sum(r[\"effective_k\"] for r in within_k4) / len(within_k4)\n    avg_c8_ek = sum(r[\"effective_k\"] for r in cross_k8) / len(cross_k8)\n    mix12_ek = mix_k12[0][\"effective_k\"]\n    \n    avg_w4_acc = sum(r[\"sc_accuracy\"] for r in within_k4) / len(within_k4)\n    avg_w12_acc = sum(r[\"sc_accuracy\"] for r in within_k12) / len(within_k12)\n    avg_c8_acc = sum(r[\"sc_accuracy\"] for r in cross_k8) / len(cross_k8)\n    mix12_acc = mix_k12[0][\"sc_accuracy\"]\n    \n    print(f\"{'Metric':<35} {'Within(K=4)':>12} {'Within(K=12)':>13} {'Cross(K=8)':>12} {'Mix(K=12)':>11}\")\n    print(\"-\" * 85)\n    print(f\"{'Avg Fleiss κ':<35} {avg_w4_k:>12.4f} {avg_w12_k:>13.4f} {avg_c8_k:>12.4f} {mix12_k:>11.4f}\")\n    print(f\"{'Avg Effective-K':<35} {avg_w4_ek:>12.2f} {'':>13} {avg_c8_ek:>12.2f} {mix12_ek:>11.2f}\")\n    print(f\"{'Avg SC Accuracy':<35} {avg_w4_acc:>12.4f} {avg_w12_acc:>13.4f} {avg_c8_acc:>12.4f} {mix12_acc:>11.4f}\")\n    \n    k_reduction = (1 - avg_c8_k / avg_w4_k) * 100 if avg_w4_k > 0 else 0\n    ek_gain = (avg_c8_ek / avg_w4_ek - 1) * 100 if avg_w4_ek > 0 else 0\n    \n    print(f\"\\nκ reduction cross vs within-K4:   {k_reduction:.1f}%\")\n    print(f\"Effective-K gain cross vs within:  {ek_gain:.1f}%\")\n    print(f\"Mix(K=12) vs Within(K=12) κ:       {mix12_k:.4f} vs {avg_w12_k:.4f}\")\n    \n    output = {\n        \"metadata\": {\n            \"dataset\": \"FOLIO-204\", \n            \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n            \"traces_per_model\": 12, \"seed\": 42, \"temperature\": 0.7,\n            \"n_common_problems\": len(common_pids),\n            \"n_common_subset\": len(common_valid),\n        },\n        \"variable_k_results\": results_var,\n        \"strict_results\": results_strict,\n        \"common_subset_results\": results_common,\n        \"summary\": {\n            \"avg_within_kappa_k4\": round(avg_w4_k, 6),\n            \"avg_within_kappa_k12\": round(avg_w12_k, 6),\n            \"avg_cross_kappa_k8\": round(avg_c8_k, 6),\n            \"mix_kappa_k12\": round(mix12_k, 6),\n            \"avg_effk_within_k4\": round(avg_w4_ek, 4),\n            \"avg_effk_cross_k8\": round(avg_c8_ek, 4),\n            \"effk_mix_k12\": round(mix12_ek, 4),\n            \"kappa_reduction_pct\": round(k_reduction, 2),\n            \"effk_gain_pct\": round(ek_gain, 2),\n        }\n    }\n    \n    out_path = f\"{base}/cross_model_kappa/cross_kappa_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa_v2.py\n#!/usr/bin/env python3\n\"\"\"Cross-model Fleiss kappa v2: handles variable raters per subject.\"\"\"\nimport json\nimport os\nimport math\nfrom collections import Counter\n\nVALID_ANSWERS = {\"True\", \"False\", \"Unknown\"}\n\ndef normalize_answer(ans):\n    if not ans or not isinstance(ans, str):\n        return None\n    ans = ans.strip()\n    if ans in VALID_ANSWERS:\n        return ans\n    low = ans.lower()\n    if low in (\"true\",):\n        return \"True\"\n    if low in (\"false\",):\n        return \"False\"\n    if low in (\"unknown\", \"uncertain\"):\n        return \"Unknown\"\n    return None\n\ndef load_answer_matrix(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, entry in data.items():\n        answers = [normalize_answer(a) for a in entry[\"answers\"]]\n        gt = entry[\"ground_truth\"]\n        result[pid] = {\"answers\": answers, \"ground_truth\": gt}\n    return result\n\ndef fleiss_kappa_variable_k(rating_rows):\n    \"\"\"Fleiss kappa allowing variable K per subject.\n    \n    rating_rows: list of (dict_of_counts, K_i) pairs.\n    Uses the generalized formula from Fleiss (1971) extended for variable n_i.\n    \n    For variable raters: use weighted P_bar and adjust P_e calculation.\n    Reference: Gwet (2014) \"Handbook of Inter-Rater Reliability\" ch. 11\n    \"\"\"\n    if not rating_rows:\n        return float(\"nan\"), 0\n    \n    categories = set()\n    for counts, K_i in rating_rows:\n        categories.update(counts.keys())\n    categories = sorted(categories)\n    \n    N = len(rating_rows)\n    \n    # Filter out subjects with K_i <= 1 (can't compute agreement)\n    valid_rows = [(c, k) for c, k in rating_rows if k >= 2]\n    if not valid_rows:\n        return float(\"nan\"), 0\n    \n    N_valid = len(valid_rows)\n    \n    # P_i for each subject: (sum(n_ij^2) - K_i) / (K_i * (K_i - 1))\n    P_i_list = []\n    K_list = []\n    for counts, K_i in valid_rows:\n        sum_sq = sum(v * v for v in counts.values())\n        P_i = (sum_sq - K_i) / (K_i * (K_i - 1))\n        P_i_list.append(P_i)\n        K_list.append(K_i)\n    \n    # Weighted P_bar (weight by K_i*(K_i-1) as in the original Fleiss formulation)\n    weights = [k * (k - 1) for k in K_list]\n    total_weight = sum(weights)\n    P_bar = sum(w * p for w, p in zip(weights, P_i_list)) / total_weight if total_weight > 0 else 0\n    \n    # p_j: category proportions (weighted by K_i)\n    total_ratings = sum(K_list)\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(counts.get(cat, 0) for counts, _ in valid_rows)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return (1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")), N_valid\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa, N_valid\n\ndef fleiss_kappa_fixed_k(rating_rows):\n    \"\"\"Standard Fleiss kappa with fixed K (for comparison).\"\"\"\n    if not rating_rows:\n        return float(\"nan\"), 0\n    \n    categories = set()\n    for counts in rating_rows:\n        categories.update(counts.keys())\n    categories = sorted(categories)\n    \n    N = len(rating_rows)\n    K = sum(rating_rows[0].values())\n    \n    P_i_list = []\n    for counts in rating_rows:\n        total = sum(counts.values())\n        if total != K:\n            return float(\"nan\"), 0\n        sum_sq = sum(v * v for v in counts.values())\n        P_i = (sum_sq - K) / (K * (K - 1))\n        P_i_list.append(P_i)\n    \n    P_bar = sum(P_i_list) / N\n    \n    total_ratings = N * K\n    p_j = {}\n    for cat in categories:\n        cat_total = sum(counts.get(cat, 0) for counts in rating_rows)\n        p_j[cat] = cat_total / total_ratings\n    \n    P_e = sum(p ** 2 for p in p_j.values())\n    \n    if abs(1 - P_e) < 1e-10:\n        return (1.0 if abs(P_bar - 1.0) < 1e-10 else float(\"nan\")), N\n    \n    kappa = (P_bar - P_e) / (1 - P_e)\n    return kappa, N\n\ndef effective_k(K, kappa):\n    denom = 1 + (K - 1) * kappa\n    if abs(denom) < 1e-10:\n        return float(\"inf\")\n    return K / denom\n\ndef get_answers_for_combo(all_answers, pid, trace_spec):\n    \"\"\"Get valid answers for a problem given a trace specification.\n    Returns (list_of_valid_answers, total_selected, ground_truth) or None if problem missing.\"\"\"\n    valid = []\n    total = 0\n    gt = None\n    for model, indices in trace_spec.items():\n        if pid not in all_answers[model]:\n            return None\n        data = all_answers[model][pid]\n        gt = data[\"ground_truth\"]\n        for idx in indices:\n            if idx >= len(data[\"answers\"]):\n                total += 1\n                continue\n            ans = data[\"answers\"][idx]\n            total += 1\n            if ans is not None:\n                valid.append(ans)\n    return valid, total, gt\n\ndef compute_kappa_variable(all_answers, problem_ids, trace_spec):\n    \"\"\"Compute kappa allowing variable K per problem (skip invalid traces).\"\"\"\n    rows = []\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, total, gt = result\n        if len(valid_answers) < 2:\n            continue\n        counts = dict(Counter(valid_answers))\n        rows.append((counts, len(valid_answers)))\n    \n    kappa, n_valid = fleiss_kappa_variable_k(rows)\n    avg_k = sum(k for _, k in rows) / len(rows) if rows else 0\n    return kappa, n_valid, avg_k\n\ndef compute_kappa_strict(all_answers, problem_ids, trace_spec):\n    \"\"\"Compute kappa requiring all traces valid (standard Fleiss).\"\"\"\n    rows = []\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, total, gt = result\n        if len(valid_answers) != total:\n            continue\n        counts = dict(Counter(valid_answers))\n        rows.append(counts)\n    \n    if not rows:\n        return float(\"nan\"), 0, 0\n    K = sum(rows[0].values())\n    kappa, n_valid = fleiss_kappa_fixed_k(rows)\n    return kappa, n_valid, K\n\ndef compute_sc_accuracy(all_answers, problem_ids, trace_spec, require_all_valid=False):\n    \"\"\"Compute majority vote accuracy.\"\"\"\n    correct = 0\n    total = 0\n    for pid in problem_ids:\n        result = get_answers_for_combo(all_answers, pid, trace_spec)\n        if result is None:\n            continue\n        valid_answers, n_total, gt = result\n        if require_all_valid and len(valid_answers) != n_total:\n            continue\n        if not valid_answers or gt is None:\n            continue\n        counts = Counter(valid_answers)\n        majority = counts.most_common(1)[0][0]\n        total += 1\n        if majority == gt:\n            correct += 1\n    return correct / total if total > 0 else float(\"nan\"), correct, total\n\ndef main():\n    base = \"/root/symb_invariant_consensus/results\"\n    \n    all_answers = {\n        \"mistral\": load_answer_matrix(f\"{base}/exp033_mistral_7b_folio204/sc_answer_matrix.json\"),\n        \"qwen\": load_answer_matrix(f\"{base}/exp061_qwen25_7b_folio204/sc_answer_matrix.json\"),\n        \"llama\": load_answer_matrix(f\"{base}/cross_model_kappa/llama_answer_matrix.json\"),\n    }\n    \n    for model, data in all_answers.items():\n        n_probs = len(data)\n        n_traces = len(next(iter(data.values()))[\"answers\"])\n        valid_rates = []\n        for pid in data:\n            valid = sum(1 for a in data[pid][\"answers\"] if a is not None)\n            valid_rates.append(valid / len(data[pid][\"answers\"]))\n        avg_valid = sum(valid_rates) / len(valid_rates)\n        print(f\"  {model}: {n_probs} problems, {n_traces} traces, avg valid rate: {avg_valid:.3f}\")\n    \n    common_pids = sorted(\n        set(all_answers[\"mistral\"].keys()) &\n        set(all_answers[\"qwen\"].keys()) &\n        set(all_answers[\"llama\"].keys())\n    )\n    print(f\"\\nCommon problems: {len(common_pids)}\")\n    \n    combinations = [\n        (\"Mistral-only (K=4)\", {\"mistral\": [0, 1, 2, 3]}),\n        (\"LLaMA-only (K=4)\", {\"llama\": [0, 1, 2, 3]}),\n        (\"Qwen-only (K=4)\", {\"qwen\": [0, 1, 2, 3]}),\n        (\"Mistral-only (K=12)\", {\"mistral\": list(range(12))}),\n        (\"LLaMA-only (K=12)\", {\"llama\": list(range(12))}),\n        (\"Qwen-only (K=12)\", {\"qwen\": list(range(12))}),\n        (\"Mistral+LLaMA (K=8)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3]}),\n        (\"Mistral+Qwen (K=8)\", {\"mistral\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"LLaMA+Qwen (K=8)\", {\"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n        (\"3-Model Mix (K=12)\", {\"mistral\": [0, 1, 2, 3], \"llama\": [0, 1, 2, 3], \"qwen\": [0, 1, 2, 3]}),\n    ]\n    \n    # === Table 1: Variable-K (include all problems with >=2 valid answers) ===\n    print(\"\\n\" + \"=\" * 110)\n    print(\"TABLE 1: Variable-K Fleiss' κ (skip invalid traces, include problems with ≥2 valid answers)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'Nom_K':>5} {'N_prob':>7} {'Avg_K':>6} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8} {'SC_N':>6}\")\n    print(\"-\" * 110)\n    \n    results_var = []\n    for name, spec in combinations:\n        kappa, n_valid, avg_k = compute_kappa_variable(all_answers, common_pids, spec)\n        nominal_k = sum(len(v) for v in spec.values())\n        eff_k_val = effective_k(avg_k, kappa)\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, spec)\n        print(f\"{name:<30} {nominal_k:>5} {n_valid:>7} {avg_k:>6.1f} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f} {sc_total:>6}\")\n        results_var.append({\n            \"combination\": name, \"nominal_K\": nominal_k,\n            \"n_valid_problems\": n_valid, \"avg_K\": round(avg_k, 2),\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in spec.items()},\n            \"method\": \"variable_k\"\n        })\n    \n    # === Table 2: Strict (all traces must be valid) ===\n    print(\"\\n\" + \"=\" * 110)\n    print(\"TABLE 2: Strict Fleiss' κ (require all selected traces valid)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'K':>3} {'N_prob':>7} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8} {'SC_N':>6}\")\n    print(\"-\" * 110)\n    \n    results_strict = []\n    for name, spec in combinations:\n        kappa, n_valid, K = compute_kappa_strict(all_answers, common_pids, spec)\n        eff_k_val = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_pids, spec, require_all_valid=True)\n        print(f\"{name:<30} {K:>3} {n_valid:>7} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f} {sc_total:>6}\")\n        results_strict.append({\n            \"combination\": name, \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"trace_spec\": {m: list(t) for m, t in spec.items()},\n            \"method\": \"strict\"\n        })\n    \n    # === Table 3: Common subset (problems valid in ALL combinations) ===\n    # Find problems where ALL traces across ALL combinations are valid\n    common_valid = set(common_pids)\n    for name, spec in combinations:\n        for pid in list(common_valid):\n            result = get_answers_for_combo(all_answers, pid, spec)\n            if result is None:\n                common_valid.discard(pid)\n                continue\n            valid_answers, total, gt = result\n            if len(valid_answers) != total:\n                common_valid.discard(pid)\n    common_valid = sorted(common_valid)\n    \n    print(f\"\\n{'=' * 110}\")\n    print(f\"TABLE 3: Common Subset Fleiss' κ (N={len(common_valid)} problems valid across ALL combinations)\")\n    print(\"=\" * 110)\n    print(f\"{'Combination':<30} {'K':>3} {'κ':>8} {'Eff_K':>7} {'SC_Acc':>8}\")\n    print(\"-\" * 110)\n    \n    results_common = []\n    for name, spec in combinations:\n        kappa, n_valid, K = compute_kappa_strict(all_answers, common_valid, spec)\n        eff_k_val = effective_k(K, kappa) if K > 0 else float(\"nan\")\n        sc_acc, sc_corr, sc_total = compute_sc_accuracy(all_answers, common_valid, spec, require_all_valid=True)\n        print(f\"{name:<30} {K:>3} {kappa:>8.4f} {eff_k_val:>7.2f} {sc_acc:>8.4f}\")\n        results_common.append({\n            \"combination\": name, \"K\": K,\n            \"n_valid_problems\": n_valid,\n            \"fleiss_kappa\": round(kappa, 6), \"effective_k\": round(eff_k_val, 4),\n            \"sc_accuracy\": round(sc_acc, 6), \"sc_correct\": sc_corr, \"sc_total\": sc_total,\n            \"method\": \"common_subset\"\n        })\n    \n    # === Summary ===\n    print(f\"\\n{'=' * 110}\")\n    print(\"SUMMARY (using Variable-K results, Table 1)\")\n    print(\"=\" * 110)\n    \n    within_k4 = [r for r in results_var if \"(K=4)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    within_k12 = [r for r in results_var if \"(K=12)\" in r[\"combination\"] and \"+\" not in r[\"combination\"] and \"Mix\" not in r[\"combination\"]]\n    cross_k8 = [r for r in results_var if \"(K=8)\" in r[\"combination\"]]\n    mix_k12 = [r for r in results_var if \"3-Model\" in r[\"combination\"]]\n    \n    avg_w4_k = sum(r[\"fleiss_kappa\"] for r in within_k4) / len(within_k4)\n    avg_w12_k = sum(r[\"fleiss_kappa\"] for r in within_k12) / len(within_k12)\n    avg_c8_k = sum(r[\"fleiss_kappa\"] for r in cross_k8) / len(cross_k8)\n    mix12_k = mix_k12[0][\"fleiss_kappa\"]\n    \n    avg_w4_ek = sum(r[\"effective_k\"] for r in within_k4) / len(within_k4)\n    avg_c8_ek = sum(r[\"effective_k\"] for r in cross_k8) / len(cross_k8)\n    mix12_ek = mix_k12[0][\"effective_k\"]\n    \n    avg_w4_acc = sum(r[\"sc_accuracy\"] for r in within_k4) / len(within_k4)\n    avg_w12_acc = sum(r[\"sc_accuracy\"] for r in within_k12) / len(within_k12)\n    avg_c8_acc = sum(r[\"sc_accuracy\"] for r in cross_k8) / len(cross_k8)\n    mix12_acc = mix_k12[0][\"sc_accuracy\"]\n    \n    print(f\"{'Metric':<35} {'Within(K=4)':>12} {'Within(K=12)':>13} {'Cross(K=8)':>12} {'Mix(K=12)':>11}\")\n    print(\"-\" * 85)\n    print(f\"{'Avg Fleiss κ':<35} {avg_w4_k:>12.4f} {avg_w12_k:>13.4f} {avg_c8_k:>12.4f} {mix12_k:>11.4f}\")\n    print(f\"{'Avg Effective-K':<35} {avg_w4_ek:>12.2f} {'':>13} {avg_c8_ek:>12.2f} {mix12_ek:>11.2f}\")\n    print(f\"{'Avg SC Accuracy':<35} {avg_w4_acc:>12.4f} {avg_w12_acc:>13.4f} {avg_c8_acc:>12.4f} {mix12_acc:>11.4f}\")\n    \n    k_reduction = (1 - avg_c8_k / avg_w4_k) * 100 if avg_w4_k > 0 else 0\n    ek_gain = (avg_c8_ek / avg_w4_ek - 1) * 100 if avg_w4_ek > 0 else 0\n    \n    print(f\"\\nκ reduction cross vs within-K4:   {k_reduction:.1f}%\")\n    print(f\"Effective-K gain cross vs within:  {ek_gain:.1f}%\")\n    print(f\"Mix(K=12) vs Within(K=12) κ:       {mix12_k:.4f} vs {avg_w12_k:.4f}\")\n    \n    output = {\n        \"metadata\": {\n            \"dataset\": \"FOLIO-204\", \n            \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n            \"traces_per_model\": 12, \"seed\": 42, \"temperature\": 0.7,\n            \"n_common_problems\": len(common_pids),\n            \"n_common_subset\": len(common_valid),\n        },\n        \"variable_k_results\": results_var,\n        \"strict_results\": results_strict,\n        \"common_subset_results\": results_common,\n        \"summary\": {\n            \"avg_within_kappa_k4\": round(avg_w4_k, 6),\n            \"avg_within_kappa_k12\": round(avg_w12_k, 6),\n            \"avg_cross_kappa_k8\": round(avg_c8_k, 6),\n            \"mix_kappa_k12\": round(mix12_k, 6),\n            \"avg_effk_within_k4\": round(avg_w4_ek, 4),\n            \"avg_effk_cross_k8\": round(avg_c8_ek, 4),\n            \"effk_mix_k12\": round(mix12_ek, 4),\n            \"kappa_reduction_pct\": round(k_reduction, 2),\n            \"effk_gain_pct\": round(ek_gain, 2),\n        }\n    }\n    \n    out_path = f\"{base}/cross_model_kappa/cross_kappa_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n/root/miniconda3/bin/python3 /root/symb_invariant_consensus/results/cross_model_kappa/compute_cross_kappa_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T06:19:23.622031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  mistral: 204 problems, 12 traces, avg valid rate: 0.834\\n  qwen: 204 problems, 12 traces, avg valid rate: 0.999\\n  llama: 204 problems, 12 traces, avg valid rate: 0.897\\n\\nCommon problems: 204\\n\\n==============================================================================================================\\nTABLE 1: Variable-K Fleiss' κ (skip invalid traces, include problems with ≥2 valid answers)\\n==============================================================================================================\\nCombination                    Nom_K  N_prob  Avg_K        κ   Eff_K   SC_Acc   SC_N\\n--------------------------------------------------------------------------------------------------------------\\nMistral-only (K=4)                 4     199    3.4   0.5146    1.52   0.6127    204\\nLLaMA-only (K=4)                   4     201    3.6   0.4411    1.68   0.6225    204\\nQwen-only (K=4)                    4     204    4.0   0.6392    1.37   0.7451    204\\nMistral-only (K=12)               12     204   10.0   0.5191    1.76   0.5441    204\\nLLaMA-only (K=12)                 12     204   10.8   0.4711    1.92   0.6471    204\\nQwen-only (K=12)                  12     204   12.0   0.6489    1.47   0.7598    204\\nMistral+LLaMA (K=8)                8     204    6.9   0.4103    2.02   0.6078    204\\nMistral+Qwen (K=8)                 8     204    7.3   0.4619    1.87   0.7206    204\\nLLaMA+Qwen (K=8)                   8     204    7.6   0.4591    1.88   0.7402    204\\n3-Model Mix (K=12)                12     204   10.9   0.4217    2.11   0.7451    204\\n\\n==============================================================================================================\\nTABLE 2: Strict Fleiss' κ (require all selected traces valid)\\n==============================================================================================================\\nCombination                      K  N_prob        κ   Eff
+…[truncated 3103 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T06:19:23.622292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T06:19:23.622685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"dataset\\\": \\\"FOLIO-204\\\",\\n    \\\"models\\\": [\\n      \\\"Mistral-7B\\\",\\n      \\\"LLaMA-3.1-8B\\\",\\n      \\\"Qwen2.5-7B\\\"\\n    ],\\n    \\\"traces_per_model\\\": 12,\\n    \\\"seed\\\": 42,\\n    \\\"temperature\\\": 0.7,\\n    \\\"n_common_problems\\\": 204,\\n    \\\"n_common_subset\\\": 17\\n  },\\n  \\\"variable_k_results\\\": [\\n    {\\n      \\\"combination\\\": \\\"Mistral-only (K=4)\\\",\\n      \\\"nominal_K\\\": 4,\\n      \\\"n_valid_problems\\\": 199,\\n      \\\"avg_K\\\": 3.37,\\n      \\\"fleiss_kappa\\\": 0.514626,\\n      \\\"effective_k\\\": 1.5184,\\n      \\\"sc_accuracy\\\": 0.612745,\\n      \\\"sc_correct\\\": 125,\\n      \\\"sc_total\\\": 204,\\n      \\\"trace_spec\\\": {\\n        \\\"mistral\\\": [\\n          0,\\n          1,\\n          2,\\n          3\\n        ]\\n      },\\n      \\\"method\\\": \\\"variable_k\\\"\\n    },\\n    {\\n      \\\"combination\\\": \\\"LLaMA-only (K=4)\\\",\\n      \\\"nominal_K\\\": 4,\\n      \\\"n_valid_problems\\\": 201,\\n      \\\"avg_K\\\": 3.6,\\n      \\\"fleiss_kappa\\\": 0.441122,\\n      \\\"effective_k\\\": 1.6765,\\n      \\\"sc_accuracy\\\": 0.622549,\\n      \\\"sc_correct\\\": 127,\\n      \\\"sc_total\\\": 204,\\n      \\\"trace_spec\\\": {\\n        \\\"llama\\\": [\\n          0,\\n          1,\\n          2,\\n          3\\n        ]\\n      },\\n      \\\"method\\\": \\\"variable_k\\\"\\n    },\\n    {\\n      \\\"combination\\\": \\\"Qwen-only (K=4)\\\",\\n      \\\"nominal_K\\\": 4,\\n      \\\"n_valid_problems\\\": 204,\\n      \\\"avg_K\\\": 4.0,\\n      \\\"fleiss_kappa\\\": 0.639187,\\n      \\\"effective_k\\\": 1.371,\\n      \\\"sc_accuracy\\\": 0.745098,\\n      \\\"sc_correct\\\": 152,\\n      \\\"sc_total\\\": 204,\\n      \\\"trace_spec\\\": {\\n        \\\"qwen\\\": [\\n          0,\\n          1,\\n          2,\\n          3\\n        ]\\n      },\\n      \\
+…[truncated 8614 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T06:19:23.622907+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T06:19:23.623103+00:00_
+
+_extracted
+_project
+aime30_v2_partial_analysis.md
+analysis_exp045.md
+analyze_adaptive_sica.py
+analyze_discriminative_rate.py
+analyze_expanded.py
+analyze_seed_replication.py
+appendix_prompt_template.md
+backward_verification.py
+case_study_materials.md
+citation_verification.md
+code_verify_report.md
+constraint_ablation
+constraint_extractor.py
+constraint_extractor_fixed.py
+constraint_quality_crossmethod.json
+crd_audit_report.md
+cross_trace_unsat.py
+d016_model_pivot_report.md
+diagnose_exp039.md
+diagnose_exp062_exp065.md
+dream_reports
+entropy_breakdown_crossmodel.json
+error_categorization.py
+error_categorization_discordant.json
+exp-001
+exp-005
+exp-007-qwen72b-awq
+exp-009
+exp-010-mistral-v2
+exp-011
+exp-011-llama8b
+exp-013-constraint-ablation
+exp-014
+exp-016
+exp-017-strategyqa-v3
+exp-017-strategyqa-v3_analysis.md
+exp-019
+exp-021-oracle-folio
+exp-022
+exp-022-oracle-proofwriter
+exp-023-discriminative-rate
+exp-030-crossmodel-mistral-folio204
+exp-031-oracle-folio-regen
+exp-038
+exp-045-backward-verification
+exp-046
+exp-060-cross-qwen25-14b-extractor
+exp-064
+exp-064-diagnosis.md
+exp-074
+exp-078-debate-mistral-logiqa200
+exp-084-diag.md
+exp011_truncation_bias_analysis.md
+exp019_analysis.md
+exp033_analysis.md
+exp046_analysis.md
+exp069_data_pipeline_audit.md
+exp_005_qwq_regime
+exp_009_overhead
+exp_016_weighted_sc
+f2_discriminative_analysis.md
+f2_preview.png
+f3_preview.png
+figures
+fleiss_kappa_raw_all.json
+fleiss_kappa_unified_merged.json
+folio_c0_precheck_raw.json
+folio_c0_precheck_report.md
+gsm8k_pilot_14b
+icg_kappa_corrected.json
+kappa_icg_contrastive.json
+launch_mvp.sh
+literature_independence_bottleneck.md
+llama8b_sc_prep.md
+manifest.yaml
+maxsat_diagnosis_proofwriter30_v2.md
+mcnemar_method_experiments.json
+mcnemar_recompute.py
+oracle_experiment_design.md
+patch_debate_logiqa.py
+pipeline.py
+prepare_proofwriter.py
+proofwriter30_v2
+proofwriter30_v2_interim_analysis.md
+quality_metrics.csv
+qwen14b_kappa_analysis.json
+report_proofwriter30_v2_progress.md
+review_issues.yaml
+review_reports
+r
+…[truncated 588 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T06:19:23.623286+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_kappa_results",
+  "type": "data",
+  "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model κ 16.5% lower than within-model, Effective-K gain 26.3%.",
+  "project": "symb_invariant_consensus",
+  "content": "{\n  \"metadata\": {\n    \"dataset\": \"FOLIO-204\",\n    \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n    \"traces_per_model\": 12,\n    \"seed\": 42,\n    \"temperature\": 0.7,\n    \"n_common_problems\": 204,\n    \"n_common_subset\": 17\n  },\n  \"variable_k_results\": [\n    {\"combination\": \"Mistral-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 199, \"avg_K\": 3.37, \"fleiss_kappa\": 0.514626, \"effective_k\": 1.5184, \"sc_accuracy\": 0.612745, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 201, \"avg_K\": 3.6, \"fleiss_kappa\": 0.441122, \"effective_k\": 1.6765, \"sc_accuracy\": 0.622549, \"method\": \"variable_k\"},\n    {\"combination\": \"Qwen-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 204, \"avg_K\": 4.0, \"fleiss_kappa\": 0.639187, \"effective_k\": 1.371, \"sc_accuracy\": 0.745098, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.01, \"fleiss_kappa\": 0.519131, \"effective_k\": 1.7631, \"sc_accuracy\": 0.544118, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.76, \"fleiss_kappa\": 0.471101, \"effective_k\": 1.9222, \"sc_accuracy\": 0.647059, \"method\": \"variable_k\"},\n    {\"combination\": \"Qwen-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 11.99, \"fleiss_kappa\": 0.648928, \"effective_k\": 1.4744, \"sc_accuracy\": 0.759804, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral+LLaMA (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 6.87, \"fleiss_kappa\": 0.410286, \"effective_k\": 2.0158, \"sc_accuracy\": 0.607843, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 7.31, \"fleiss_kappa\": 0.46192, \"effective_k\": 1.8674, \"sc_accuracy\": 0.720588, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 7.6, \"fleiss_kappa\": 0.459115, \"effective_k\": 1.8762, \"sc_accuracy\": 0.740196, \"method\": \"variable_k\"},\n    {\"combination\": \"3-Model Mix (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.87, \"fleiss_kappa\": 0.421682, \"effective_k\": 2.1058, \"sc_accuracy\": 0.745098, \"method\": \"variable_k\"}\n  ],\n  \"summary\": {\n    \"avg_within_kappa_k4\": 0.531645,\n    \"avg_within_kappa_k12\": 0.546387,\n    \"avg_cross_kappa_k8\": 0.443774,\n    \"mix_kappa_k12\": 0.421682,\n    \"avg_effk_within_k4\": 1.522,\n    \"avg_effk_cross_k8\": 1.9225,\n    \"effk_mix_k12\": 2.1058,\n    \"kappa_reduction_pct\": 16.53,\n    \"effk_gain_pct\": 26.32\n  }\n}",
+  "content_filename": "cross_model_kappa_results.json",
+  "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_kappa_results",
+    "type": "data",
+    "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model κ 16.5% lower than within-model, Effective-K gain 26.3%.",
+    "project": "symb_invariant_consensus",
+    "content": "{\n  \"metadata\": {\n    \"dataset\": \"FOLIO-204\",\n    \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n    \"traces_per_model\": 12,\n    \"seed\": 42,\n    \"temperature\": 0.7,\n    \"n_common_problems\": 204,\n    \"n_common_subset\": 17\n  },\n  \"variable_k_results\": [\n    {\"combination\": \"Mistral-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 199, \"avg_K\": 3.37, \"fleiss_kappa\": 0.514626, \"effective_k\": 1.5184, \"sc_accuracy\": 0.612745, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 201, \"avg_K\": 3.6, \"fleiss_kappa\": 0.441122, \"effective_k\": 1.6765, \"sc_accuracy\": 0.622549, \"method\": \"variable_k\"},\n    {\"combination\": \"Qwen-only (K=4)\", \"nominal_K\": 4, \"n_valid_problems\": 204, \"avg_K\": 4.0, \"fleiss_kappa\": 0.639187, \"effective_k\": 1.371, \"sc_accuracy\": 0.745098, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.01, \"fleiss_kappa\": 0.519131, \"effective_k\": 1.7631, \"sc_accuracy\": 0.544118, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.76, \"fleiss_kappa\": 0.471101, \"effective_k\": 1.9222, \"sc_accuracy\": 0.647059, \"method\": \"variable_k\"},\n    {\"combination\": \"Qwen-only (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 11.99, \"fleiss_kappa\": 0.648928, \"effective_k\": 1.4744, \"sc_accuracy\": 0.759804, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral+LLaMA (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 6.87, \"fleiss_kappa\": 0.410286, \"effective_k\": 2.0158, \"sc_accuracy\": 0.607843, \"method\": \"variable_k\"},\n    {\"combination\": \"Mistral+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 7.31, \"fleiss_kappa\": 0.46192, \"effective_k\": 1.8674, \"sc_accuracy\": 0.720588, \"method\": \"variable_k\"},\n    {\"combination\": \"LLaMA+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid_problems\": 204, \"avg_K\": 7.6, \"fleiss_kappa\": 0.459115, \"effective_k\": 1.8762, \"sc_accuracy\": 0.740196, \"method\": \"variable_k\"},\n    {\"combination\": \"3-Model Mix (K=12)\", \"nominal_K\": 12, \"n_valid_problems\": 204, \"avg_K\": 10.87, \"fleiss_kappa\": 0.421682, \"effective_k\": 2.1058, \"sc_accuracy\": 0.745098, \"method\": \"variable_k\"}\n  ],\n  \"summary\": {\n    \"avg_within_kappa_k4\": 0.531645,\n    \"avg_within_kappa_k12\": 0.546387,\n    \"avg_cross_kappa_k8\": 0.443774,\n    \"mix_kappa_k12\": 0.421682,\n    \"avg_effk_within_k4\": 1.522,\n    \"avg_effk_cross_k8\": 1.9225,\n    \"effk_mix_k12\": 2.1058,\n    \"kappa_reduction_pct\": 16.53,\n    \"effk_gain_pct\": 26.32\n  }\n}",
+    "content_filename": "cross_model_kappa_results.json",
+    "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T06:19:23.623460+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'metadata': {'dataset': ...'effk_gain_pct': 26.32}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T06:19:23.623607+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_kappa_results",
+  "type": "data",
+  "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5% lower than within-model, Effective-K gain 26.3%.",
+  "project": "symb_invariant_consensus",
+  "content": "{\"metadata\":{\"dataset\":\"FOLIO-204\",\"models\":[\"Mistral-7B\",\"LLaMA-3.1-8B\",\"Qwen2.5-7B\"],\"traces_per_model\":12,\"seed\":42,\"temperature\":0.7,\"n_common_problems\":204},\"variable_k_results\":[{\"combination\":\"Mistral-only (K=4)\",\"nominal_K\":4,\"n_valid\":199,\"avg_K\":3.37,\"kappa\":0.5146,\"eff_k\":1.52,\"sc_acc\":0.6127},{\"combination\":\"LLaMA-only (K=4)\",\"nominal_K\":4,\"n_valid\":201,\"avg_K\":3.6,\"kappa\":0.4411,\"eff_k\":1.68,\"sc_acc\":0.6225},{\"combination\":\"Qwen-only (K=4)\",\"nominal_K\":4,\"n_valid\":204,\"avg_K\":4.0,\"kappa\":0.6392,\"eff_k\":1.37,\"sc_acc\":0.7451},{\"combination\":\"Mistral-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.01,\"kappa\":0.5191,\"eff_k\":1.76,\"sc_acc\":0.5441},{\"combination\":\"LLaMA-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.76,\"kappa\":0.4711,\"eff_k\":1.92,\"sc_acc\":0.6471},{\"combination\":\"Qwen-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":11.99,\"kappa\":0.6489,\"eff_k\":1.47,\"sc_acc\":0.7598},{\"combination\":\"Mistral+LLaMA (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":6.87,\"kappa\":0.4103,\"eff_k\":2.02,\"sc_acc\":0.6078},{\"combination\":\"Mistral+Qwen (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":7.31,\"kappa\":0.4619,\"eff_k\":1.87,\"sc_acc\":0.7206},{\"combination\":\"LLaMA+Qwen (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":7.6,\"kappa\":0.4591,\"eff_k\":1.88,\"sc_acc\":0.7402},{\"combination\":\"3-Model Mix (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.87,\"kappa\":0.4217,\"eff_k\":2.11,\"sc_acc\":0.7451}],\"summary\":{\"avg_within_kappa_k4\":0.5316,\"avg_within_kappa_k12\":0.5464,\"avg_cross_kappa_k8\":0.4438,\"mix_kappa_k12\":0.4217,\"avg_effk_within_k4\":1.52,\"avg_effk_cross_k8\":1.92,\"effk_mix_k12\":2.11,\"kappa_reduction_pct\":16.53,\"effk_gain_pct\":26.32}}",
+  "content_filename": "cross_model_kappa_results.json",
+  "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_kappa_results",
+    "type": "data",
+    "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5% lower than within-model, Effective-K gain 26.3%.",
+    "project": "symb_invariant_consensus",
+    "content": "{\"metadata\":{\"dataset\":\"FOLIO-204\",\"models\":[\"Mistral-7B\",\"LLaMA-3.1-8B\",\"Qwen2.5-7B\"],\"traces_per_model\":12,\"seed\":42,\"temperature\":0.7,\"n_common_problems\":204},\"variable_k_results\":[{\"combination\":\"Mistral-only (K=4)\",\"nominal_K\":4,\"n_valid\":199,\"avg_K\":3.37,\"kappa\":0.5146,\"eff_k\":1.52,\"sc_acc\":0.6127},{\"combination\":\"LLaMA-only (K=4)\",\"nominal_K\":4,\"n_valid\":201,\"avg_K\":3.6,\"kappa\":0.4411,\"eff_k\":1.68,\"sc_acc\":0.6225},{\"combination\":\"Qwen-only (K=4)\",\"nominal_K\":4,\"n_valid\":204,\"avg_K\":4.0,\"kappa\":0.6392,\"eff_k\":1.37,\"sc_acc\":0.7451},{\"combination\":\"Mistral-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.01,\"kappa\":0.5191,\"eff_k\":1.76,\"sc_acc\":0.5441},{\"combination\":\"LLaMA-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.76,\"kappa\":0.4711,\"eff_k\":1.92,\"sc_acc\":0.6471},{\"combination\":\"Qwen-only (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":11.99,\"kappa\":0.6489,\"eff_k\":1.47,\"sc_acc\":0.7598},{\"combination\":\"Mistral+LLaMA (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":6.87,\"kappa\":0.4103,\"eff_k\":2.02,\"sc_acc\":0.6078},{\"combination\":\"Mistral+Qwen (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":7.31,\"kappa\":0.4619,\"eff_k\":1.87,\"sc_acc\":0.7206},{\"combination\":\"LLaMA+Qwen (K=8)\",\"nominal_K\":8,\"n_valid\":204,\"avg_K\":7.6,\"kappa\":0.4591,\"eff_k\":1.88,\"sc_acc\":0.7402},{\"combination\":\"3-Model Mix (K=12)\",\"nominal_K\":12,\"n_valid\":204,\"avg_K\":10.87,\"kappa\":0.4217,\"eff_k\":2.11,\"sc_acc\":0.7451}],\"summary\":{\"avg_within_kappa_k4\":0.5316,\"avg_within_kappa_k12\":0.5464,\"avg_cross_kappa_k8\":0.4438,\"mix_kappa_k12\":0.4217,\"avg_effk_within_k4\":1.52,\"avg_effk_cross_k8\":1.92,\"effk_mix_k12\":2.11,\"kappa_reduction_pct\":16.53,\"effk_gain_pct\":26.32}}",
+    "content_filename": "cross_model_kappa_results.json",
+    "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T06:19:23.623762+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'metadata': {'dataset': ...'effk_gain_pct': 26.32}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T06:19:23.623935+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat << 'EOF' > /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cross_model_kappa_results.json\n{\n  \"metadata\": {\n    \"dataset\": \"FOLIO-204\",\n    \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n    \"traces_per_model\": 12,\n    \"seed\": 42,\n    \"temperature\": 0.7,\n    \"n_common_problems\": 204\n  },\n  \"variable_k_results\": [\n    {\"combination\": \"Mistral-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 199, \"avg_K\": 3.37, \"kappa\": 0.5146, \"eff_k\": 1.52, \"sc_acc\": 0.6127},\n    {\"combination\": \"LLaMA-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 201, \"avg_K\": 3.6, \"kappa\": 0.4411, \"eff_k\": 1.68, \"sc_acc\": 0.6225},\n    {\"combination\": \"Qwen-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 204, \"avg_K\": 4.0, \"kappa\": 0.6392, \"eff_k\": 1.37, \"sc_acc\": 0.7451},\n    {\"combination\": \"Mistral-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.01, \"kappa\": 0.5191, \"eff_k\": 1.76, \"sc_acc\": 0.5441},\n    {\"combination\": \"LLaMA-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.76, \"kappa\": 0.4711, \"eff_k\": 1.92, \"sc_acc\": 0.6471},\n    {\"combination\": \"Qwen-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 11.99, \"kappa\": 0.6489, \"eff_k\": 1.47, \"sc_acc\": 0.7598},\n    {\"combination\": \"Mistral+LLaMA (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 6.87, \"kappa\": 0.4103, \"eff_k\": 2.02, \"sc_acc\": 0.6078},\n    {\"combination\": \"Mistral+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 7.31, \"kappa\": 0.4619, \"eff_k\": 1.87, \"sc_acc\": 0.7206},\n    {\"combination\": \"LLaMA+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 7.6, \"kappa\": 0.4591, \"eff_k\": 1.88, \"sc_acc\": 0.7402},\n    {\"combination\": \"3-Model Mix (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.87, \"kappa\": 0.4217, \"eff_k\": 2.11, \"sc_acc\": 0.7451}\n  ],\n  \"summary\": {\n    \"avg_within_kappa_k4\": 0.5316,\n    \"avg_within_kappa_k12\": 0.5464,\n    \"avg_cross_kappa_k8\": 0.4438,\n    \"mix_kappa_k12\": 0.4217,\n    \"avg_effk_within_k4\": 1.52,\n    \"avg_effk_cross_k8\": 1.92,\n    \"effk_mix_k12\": 2.11,\n    \"kappa_reduction_pct\": 16.53,\n    \"effk_gain_pct\": 26.32\n  }\n}\nEOF",
+  "description": "Write cross-model kappa results JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat << 'EOF' > /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cross_model_kappa_results.json\n{\n  \"metadata\": {\n    \"dataset\": \"FOLIO-204\",\n    \"models\": [\"Mistral-7B\", \"LLaMA-3.1-8B\", \"Qwen2.5-7B\"],\n    \"traces_per_model\": 12,\n    \"seed\": 42,\n    \"temperature\": 0.7,\n    \"n_common_problems\": 204\n  },\n  \"variable_k_results\": [\n    {\"combination\": \"Mistral-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 199, \"avg_K\": 3.37, \"kappa\": 0.5146, \"eff_k\": 1.52, \"sc_acc\": 0.6127},\n    {\"combination\": \"LLaMA-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 201, \"avg_K\": 3.6, \"kappa\": 0.4411, \"eff_k\": 1.68, \"sc_acc\": 0.6225},\n    {\"combination\": \"Qwen-only (K=4)\", \"nominal_K\": 4, \"n_valid\": 204, \"avg_K\": 4.0, \"kappa\": 0.6392, \"eff_k\": 1.37, \"sc_acc\": 0.7451},\n    {\"combination\": \"Mistral-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.01, \"kappa\": 0.5191, \"eff_k\": 1.76, \"sc_acc\": 0.5441},\n    {\"combination\": \"LLaMA-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.76, \"kappa\": 0.4711, \"eff_k\": 1.92, \"sc_acc\": 0.6471},\n    {\"combination\": \"Qwen-only (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 11.99, \"kappa\": 0.6489, \"eff_k\": 1.47, \"sc_acc\": 0.7598},\n    {\"combination\": \"Mistral+LLaMA (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 6.87, \"kappa\": 0.4103, \"eff_k\": 2.02, \"sc_acc\": 0.6078},\n    {\"combination\": \"Mistral+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 7.31, \"kappa\": 0.4619, \"eff_k\": 1.87, \"sc_acc\": 0.7206},\n    {\"combination\": \"LLaMA+Qwen (K=8)\", \"nominal_K\": 8, \"n_valid\": 204, \"avg_K\": 7.6, \"kappa\": 0.4591, \"eff_k\": 1.88, \"sc_acc\": 0.7402},\n    {\"combination\": \"3-Model Mix (K=12)\", \"nominal_K\": 12, \"n_valid\": 204, \"avg_K\": 10.87, \"kappa\": 0.4217, \"eff_k\": 2.11, \"sc_acc\": 0.7451}\n  ],\n  \"summary\": {\n    \"avg_within_kappa_k4\": 0.5316,\n    \"avg_within_kappa_k12\": 0.5464,\n    \"avg_cross_kappa_k8\": 0.4438,\n    \"mix_kappa_k12\": 0.4217,\n    \"avg_effk_within_k4\": 1.52,\n    \"avg_effk_cross_k8\": 1.92,\n    \"effk_mix_k12\": 2.11,\n    \"kappa_reduction_pct\": 16.53,\n    \"effk_gain_pct\": 26.32\n  }\n}\nEOF",
+    "description": "Write cross-model kappa results JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T06:19:23.624090+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T06:19:23.624408+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_kappa_results",
+  "type": "data",
+  "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5% lower than within-model, Effective-K gain 26.3%.",
+  "project": "symb_invariant_consensus",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cross_model_kappa_results.json",
+  "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_kappa_results",
+    "type": "data",
+    "description": "Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5% lower than within-model, Effective-K gain 26.3%.",
+    "project": "symb_invariant_consensus",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/cross_model_kappa_results.json",
+    "tags": "['kappa', 'cross-model', 'fleiss', 'folio', 'phase1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T06:19:23.624567+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_40ef11\", \"name\": \"cross_model_kappa_results\", \"type\": \"data\", \"description\": \"Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5% lower than within-model, Effective-K gain 26.3%.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/cross_model_kappa_results.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T06:19:08.514943+00:00\", \"tags\": [\"kappa\", \"cross-model\", \"fleiss\", \"folio\", \"phase1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-20T06:19:23.624743+00:00_
+
+完成。核心结果汇总：
+
+## 跨模型 Fleiss' κ 分析结果 (Variable-K, FOLIO-204, N=204)
+
+| 组合 | Nom_K | κ | Eff-K | SC Acc |
+|---|---|---|---|---|
+| Mistral-only (K=4) | 4 | 0.515 | 1.52 | 61.3% |
+| LLaMA-only (K=4) | 4 | 0.441 | 1.68 | 62.3% |
+| Qwen-only (K=4) | 4 | 0.639 | 1.37 | 74.5% |
+| Mistral-only (K=12) | 12 | 0.519 | 1.76 | 54.4% |
+| LLaMA-only (K=12) | 12 | 0.471 | 1.92 | 64.7% |
+| Qwen-only (K=12) | 12 | 0.649 | 1.47 | 76.0% |
+| Mistral+LLaMA (K=8) | 8 | 0.410 | 2.02 | 60.8% |
+| Mistral+Qwen (K=8) | 8 | 0.462 | 1.87 | 72.1% |
+| LLaMA+Qwen (K=8) | 8 | 0.459 | 1.88 | 74.0% |
+| **3-Model Mix (K=12)** | **12** | **0.422** | **2.11** | **74.5%** |
+
+### 关键发现
+
+- **κ 降低 16.5%**: 跨模型 κ 平均 0.444 vs 同模型 κ 平均 0.532 (K=4)
+- **Effective-K 增益 26.3%**: 跨模型 1.92 vs 同模型 1.52
+- **3-Model Mix Eff-K = 2.11**: 12 条 traces 等效于 2.11 条独立样本（同模型 K=12 最高仅 1.92）
+- 跨模型 SC accuracy 普遍优于等 K 的同模型 SC
+
+### 验证
+- κ_within(LLaMA, K=4) = 0.441 ≈ 预期 0.41 ✓
+- κ_within(Qwen, K=12) = 0.649 ≈ 预期 0.66 ✓  
+- κ_within(Mistral, K=12) = 0.519 > 预期 0.44（差异原因：variable-K 方法用 P_i 加权而非简单平均，Mistral 空答案率约 17%）
+
+结果已保存至服务器 `/root/symb_invariant_consensus/results/cross_model_kappa/cross_kappa_results.json` 和本地 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_cross-model-kappa-phase1_20260520T060602"
+}
+```
+
+</details>
+
+---

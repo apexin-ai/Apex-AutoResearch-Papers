@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-14_Q9",
+    "problem": "The cat needs the mouse. The cat visits the lion. The lion is cold. The lion is red. The lion is round. The lion likes the squirrel. The lion needs the squirrel. The lion visits the squirrel. The mouse is cold. The mouse needs the lion. The mouse visits the lion. The squirrel likes the lion. If something needs the mouse and it needs the lion then the lion needs the mouse. If something visits the lion then it needs the cat. If the mouse visits the squirrel then the squirrel likes the cat. If something is rough then it is cold. If the squirrel is cold then the squirrel visits the cat. If something visits the cat then the cat likes the mouse. If something visits the squirrel then the squirrel is rough. If something likes the mouse then it does not need the squirrel. If something is red and it does not need the squirrel then it visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat likes the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nNeeds(Cat, Mouse, True) ::: The cat needs the mouse.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nCold(Lion, True) ::: The lion is cold.\nRed(Lion, True) ::: The lion is red.\nRound(Lion, True) ::: The lion is round.\nLikes(Lion, Squirrel, True) ::: The lion likes the squirrel.\nNeeds(Lion, Squirrel, True) ::: The lion needs the squirrel.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion.\nVisits(Mouse, Lion, True) ::: The mouse visits the lion.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\n\nRules:\nNeeds($x, Mouse, True) && Needs($x, Lion, True) >>> Needs(Lion, Mouse, True) ::: If something needs the mouse and it needs the lion then the lion needs the mouse.\nVisits($x, Lion, True) >>> Needs($x, Cat, True) ::: If something visits the lion then it needs the cat.\nVisits(Mouse, Squirrel, True) >>> Likes(Squirrel, Cat, True) ::: If the mouse visits the squirrel then the squirrel likes the cat.\nRough($x, True) >>> Cold($x, True) ::: If something is rough then it is cold.\nCold(Squirrel, True) >>> Visits(Squirrel, Cat, True) ::: If the squirrel is cold then the squirrel visits the cat.\nVisits($x, Cat, True) >>> Likes(Cat, Mouse, True) ::: If something visits the cat then the cat likes the mouse.\nVisits($x, Squirrel, True) >>> Rough(Squirrel, True) ::: If something visits the squirrel then the squirrel is rough.\nLikes($x, Mouse, True) >>> Needs($x, Squirrel, False) ::: If something likes the mouse then it does not need the squirrel.\nRed($x, True) && Needs($x, Squirrel, False) >>> Visits($x, Mouse, True) ::: If something is red and it does not need the squirrel then it visits the mouse.\n\nQuery:\nLikes(Cat, Mouse, True) ::: The cat likes the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

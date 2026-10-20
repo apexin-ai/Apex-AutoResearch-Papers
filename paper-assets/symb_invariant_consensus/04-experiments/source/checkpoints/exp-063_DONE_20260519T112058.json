@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp-063",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:40:39.276Z",
+    "updated_at": "2026-05-19T11:20:57.939Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct FOLIO-204 SICA vs SC（Meta 架构覆盖）。exp-020 旧数据 SC=63.2% delta=-2.45pp，本实验用修正 tie-breaking 重跑。parent=exp-020",
+    "parent": "exp-020",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8004/v1 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp-063-llama8b-folio204-16639/exp063_results.json --save-intermediates",
+      "server": "westd-16639",
+      "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "Meta-Llama-3.1-8B-Instruct (off-the-shelf)",
+      "eval_data": "FOLIO-204",
+      "log_path": "results/exp-063-llama8b-folio204-16639/exp063.log",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T11:20:57.939Z"
+  },
+  "timestamp": "2026-05-19T11:20:58.115382+00:00",
+  "trigger": "update_registry"
+}

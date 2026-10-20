@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-459_Q16",
+    "problem": "Bob is not cold. Bob is furry. Bob is round. Charlie is big. Charlie is furry. Charlie is quiet. Charlie is red. Charlie is not white. Erin is big. Gary is big. Gary is quiet. If someone is red and cold then they are furry. All furry people are round. If Charlie is furry then Charlie is round. Big people are red. Round people are quiet. If someone is red then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Bob, False) ::: Bob is not cold.\nFurry(Bob, True) ::: Bob is furry.\nRound(Bob, True) ::: Bob is round.\nBig(Charlie, True) ::: Charlie is big.\nFurry(Charlie, True) ::: Charlie is furry.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nWhite(Charlie, False) ::: Charlie is not white.\nBig(Erin, True) ::: Erin is big.\nBig(Gary, True) ::: Gary is big.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nRed($x, True) && Cold($x, True) >>> Furry($x, True) ::: If someone is red and cold then they are furry.\nFurry($x, True) >>> Round($x, True) ::: All furry people are round.\nFurry(Charlie, True) >>> Round(Charlie, True) ::: If Charlie is furry then Charlie is round.\nBig($x, True) >>> Red($x, True) ::: Big people are red.\nRound($x, True) >>> Quiet($x, True) ::: Round people are quiet.\nRed($x, True) >>> Cold($x, True) ::: If someone is red then they are cold.\n\nQuery:\nWhite(Erin, True) ::: Erin is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

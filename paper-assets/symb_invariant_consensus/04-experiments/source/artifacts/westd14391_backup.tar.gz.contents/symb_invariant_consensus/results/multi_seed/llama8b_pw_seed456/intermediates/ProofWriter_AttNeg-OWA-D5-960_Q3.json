@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-960_Q3",
+    "problem": "Anne is quiet. Anne is not round. Anne is young. Charlie is not quiet. Charlie is young. Dave is blue. Dave is not smart. Harry is blue. Harry is kind. Harry is young. All blue, kind things are rough. Rough, kind things are quiet. Round things are kind. If Anne is round then Anne is kind. If Anne is smart and Anne is quiet then Anne is not round. All blue things are round. If something is kind and not round then it is young. If something is quiet and not blue then it is young. Quiet things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, False) ::: Anne is not round.\nYoung(Anne, True) ::: Anne is young.\nQuiet(Charlie, False) ::: Charlie is not quiet.\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Dave, True) ::: Dave is blue.\nSmart(Dave, False) ::: Dave is not smart.\nBlue(Harry, True) ::: Harry is blue.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue($x, True) && Kind($x, True) >>> Rough($x, True) ::: All blue, kind things are rough.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: Rough, kind things are quiet.\nRound($x, True) >>> Kind($x, True) ::: Round things are kind.\nRound(Anne, True) >>> Kind(Anne, True) ::: If Anne is round then Anne is kind.\nSmart(Anne, True) && Quiet(Anne, True) >>> Round(Anne, False) ::: If Anne is smart and Anne is quiet then Anne is not round.\nBlue($x, True) >>> Round($x, True) ::: All blue things are round.\nKind($x, True) && Round($x, False) >>> Young($x, True) ::: If something is kind and not round then it is young.\nQuiet($x, True) && Blue($x, False) >>> Young($x, True) ::: If something is quiet and not blue then it is young.\nQuiet($x, True) >>> Young($x, True) ::: Quiet things are young.\n\nQuery:\nRough(Harry, True) ::: Harry is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

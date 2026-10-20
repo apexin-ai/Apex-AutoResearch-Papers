@@ -1,0 +1,58 @@
+{
+  "exp_id": "pilot-constraint-filtering",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:47:05.171Z",
+    "updated_at": "2026-05-17T06:10:48.874Z",
+    "hypothesis": "Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T04:47:13.762Z",
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T05:28:15.355Z",
+      "training_hours": 0.68
+    },
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "282213",
+      "log_path": "~/runs/symb_invariant_consensus/pilot-constraint-filtering.log",
+      "submitted_at": "2026-05-17T04:47:15.480Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 5013.4,
+      "gpu_hours": 1.39
+    },
+    "pid": "282213",
+    "log_path": "~/runs/symb_invariant_consensus/pilot-constraint-filtering.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T05:28:16.989563+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "notes": "NEGATIVE confirmed. T=1/2/3 结果完全一致(+2.33pp=1题翻转), T≥5 SICA退化为SC。Discriminative analysis: unique constraints 中 11.5% 是 discriminative (by count), 37.2% (by weight)。但有效 flip 率仅 4/23=17.4%。根本原因：提取的约束是 domain facts (kind_charlie==True, Implies(...)) — 无论答案是什么，中间推理步骤大部分共通。约束系统未提取答案级别判别谓词。Constraint filtering 天花板极低，不是 rescue path。",
+    "checkpoint_path": "N/A (analysis experiment, no checkpoint)",
+    "completed_at": "2026-05-17T06:10:48.874Z"
+  },
+  "timestamp": "2026-05-17T06:10:48.983926+00:00",
+  "trigger": "update_registry"
+}

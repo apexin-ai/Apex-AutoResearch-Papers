@@ -1,0 +1,1270 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-439_Q2",
+    "problem": "The bald eagle is cold. The bald eagle is green. The bald eagle needs the lion. The bald eagle visits the rabbit. The dog sees the lion. The lion is cold. The lion is green. The lion needs the dog. The lion needs the rabbit. The lion visits the bald eagle. The lion visits the dog. The rabbit is round. The rabbit visits the dog. The rabbit visits the lion. If something is round then it is rough. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle. If something is rough then it visits the lion. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. If the rabbit visits the lion and the rabbit needs the dog then the dog is round. If something visits the rabbit then the rabbit needs the bald eagle. If something visits the lion and the lion needs the dog then it needs the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle does not need the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nGreen(BaldEagle, True) ::: The bald eagle is green.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nVisits(BaldEagle, Rabbit, True) ::: The bald eagle visits the rabbit.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nCold(Lion, True) ::: The lion is cold.\nGreen(Lion, True) ::: The lion is green.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nVisits(Lion, BaldEagle, True) ::: The lion visits the bald eagle.\nVisits(Lion, Dog, True) ::: The lion visits the dog.\nRound(Rabbit, True) ::: The rabbit is round.\nVisits(Rabbit, Dog, True) ::: The rabbit visits the dog.\nVisits(Rabbit, Lion, True) ::: The rabbit visits the lion.\n\nRules:\nRound($x, True) >>> Rough($x, True) ::: If something is round then it is rough.\nVisits($x, Rabbit, True) && Needs($x, BaldEagle, True) >>> Visits(Rabbit, BaldEagle, True) ::: If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\nRough($x, True) >>> Visits($x, Lion, True) ::: If something is rough then it visits the lion.\nNeeds(Dog, Rabbit, True) && Sees(Rabbit, BaldEagle, True) >>> Sees(BaldEagle, Dog, True) ::: If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\nVisits(Rabbit, Lion, True) && Needs(Rabbit, Dog, True) >>> Round(Dog, True) ::: If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\nVisits($x, Rabbit, True) >>> Needs(Rabbit, BaldEagle, True) ::: If something visits the rabbit then the rabbit needs the bald eagle.\nVisits($x, Lion, True) && Needs(Lion, Dog, True) >>> Needs($x, Dog, True) ::: If something visits the lion and the lion needs the dog then it needs the dog.\n\nQuery:\nNeeds(BaldEagle, Lion, False) ::: The bald eagle does not need the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 152.0,
+      "True": 96.5,
+      "Unknown": 143.0
+    },
+    "answer_counts": {
+      "True": 2,
+      "False": 5,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"The bald eagle does not need the lion\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The bald eagle needs the lion. (This directly implies that the statement is false, but we will continue to verify)\n\n2. The lion needs the dog. (This is a separate fact, but we need to examine its implications)\n\n3. The lion needs the rabbit. (This is another separate fact)\n\n4. If something visits the lion and the lion needs the dog, then it needs the dog. (This fact doesn't directly apply to the bald eagle, so we can ignore it for now)\n\n5. The rabbit visits the lion. (This fact is crucial for our analysis)\n\n6. The rabbit needs the dog. (This fact is crucial for our analysis)\n\n7. The rabbit is round. (This fact doesn't directly apply to our analysis, but we will consider it later)\n\n8. If the rabbit visits the lion and the rabbit needs the dog, then the dog is round. (This fact is crucial for our analysis)\n\nGiven the information above, we can derive the following implications:\n\n- The rabbit needs the dog.\n- The rabbit visits the lion.\n- The lion needs the dog.\n\nFrom these implications, we can conclude that the statement \"The bald eagle does not need the lion\" is actually true because the bald eagle is not mentioned in any of the above implications.\n\nHowever, let's continue to analyze the problem:\n\n9. If something visits the rabbit and it needs the bald eagle, then the rabbit visits the bald eagle. (This fact is crucial for our analysis)\n\n10. The lion visits the rabbit. (This fact is crucial for our analysis)\n\n11. The lion needs the bald eagle. (This fact is crucial for our analysis)\n\nFrom these implications, we can conclude that the statement \"The bald eagle does not need the lion\" is actually unknown because the implications above show that the lion needs the bald eagle, which in turn implies that the bald eagle might not need the lion.\n\nHowever, as we previously concluded that the statement \"The bald eagle does not need the lion\" is actually true, we can confirm that the final answer is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement we want to determine.\n\nFrom the statements, we have the following:\n\n- The lion needs the dog. (Statement 3)\n- If the lion visits the rabbit and the lion needs the dog then the dog is round. (Statement 12)\n- The lion visits the rabbit. (Statement 9)\n- The lion needs the dog. (Statement 3)\n- Since the lion needs the dog, it must visit the rabbit before visiting the dog, and the dog is round. \n\n- The rabbit sees the bald eagle. (Statement 4)\n- The lion needs the rabbit. (Statement 4)\n- If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle. (Statement 7)\n- The lion visits the rabbit. (Statement 9)\n- The lion visits the dog. (Statement 10)\n- Since the lion needs the rabbit and it visits the rabbit, the rabbit visits the bald eagle. (Statement 7)\n- The rabbit visits the bald eagle. (Statement 7)\n\n- The rabbit is round. (Statement 8)\n- If something is round then it is rough. (Statement 5)\n- The rabbit is rough. (Statement 5)\n\n- If something is rough then it visits the lion. (Statement 6)\n- The rabbit visits the lion. (Statement 6)\n\n- The rabbit sees the bald eagle. (Statement 4)\n- The dog sees the lion. (Statement 5)\n- If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. (Statement 11)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion visits the rabbit. (Statement 9)\n- The lion visits the dog. (Statement 10)\n- Since the lion needs the rabbit, it must visit the rabbit before visiting the dog.\n- The rabbit sees the bald eagle. (Statement 4)\n- The rabbit visits the bald eagle. (Statement 7)\n- The dog needs the rabbit. (Statement 3)\n- The dog is round. (Statement 12)\n- If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. (Statement 11)\n- The bald eagle sees the dog. (Statement 11)\n\nNow, let's analyze the statement \"The bald eagle does not need the lion.\"\n\nFrom the given statements, we have:\n\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The rabbit visits the lion. (Statement 9)\n- The lion visits the rabbit. (Statement 9)\n- The lion visits the dog. (Statement 10)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The rabbit visits the lion. (Statement 9)\n- The rabbit is round. (Statement 8)\n- If something is round then it is rough. (Statement 5)\n- The rabbit is rough. (Statement 5)\n- If something is rough then it visits the lion. (Statement 6)\n- The rabbit visits the lion. (Statement 6)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion visits the rabbit. (Statement 9)\n- The lion visits the dog. (Statement 10)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The bald eagle is cold. (Statement 1)\n- The bald eagle is green. (Statement 1)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n\nThe lion is cold and green, but it is not explicitly stated that the bald eagle needs the lion. However, we can infer that the bald eagle needs the lion from the following statements:\n\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion visits the rabbit. (Statement 9)\n- The lion visits the dog. (Statement 10)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion needs the dog. (Statement 3)\n- The lion needs the rabbit. (Statement 4)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n- The lion is cold. (Statement 2)\n- The lion is green. (Statement 2)\n\nSince the lion needs the dog and the rabbit, and the bald eagle needs the lion, the bald eagle needs the lion.\n\nTherefore, the statement \"The bald eagle does not need the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table to determine the relationships between the given statements.\n\nLet's define the following variables:\n\n- B: The bald eagle is cold.\n- E: The bald eagle is green.\n- N1: The bald eagle needs the lion.\n- V1: The bald eagle visits the rabbit.\n- D: The dog sees the lion.\n- C: The lion is cold.\n- G: The lion is green.\n- N2: The lion needs the dog.\n- N3: The lion needs the rabbit.\n- V2: The lion visits the bald eagle.\n- V3: The lion visits the dog.\n- R: The rabbit is round.\n- V4: The rabbit visits the dog.\n- V5: The rabbit visits the lion.\n- S: If something is round, then it is rough.\n- T: If something visits the rabbit and it needs the bald eagle, then the rabbit visits the bald eagle.\n- U: If something is rough, then it visits the lion.\n- X: If the dog needs the rabbit and the rabbit sees the bald eagle, then the bald eagle sees the dog.\n- Y: If the rabbit visits the lion and the rabbit needs the dog, then the dog is round.\n- Z: If something visits the rabbit, then the rabbit needs the bald eagle.\n- W: If something visits the lion and the lion needs the dog, then it needs the dog.\n\nWe will start by determining the relationships between the given variables.\n\n1. From the statement \"If something is round then it is rough,\" we can conclude that R \u2192 S.\n\n2. From the statement \"If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle,\" we can conclude that (V1 \u2227 N1) \u2192 T.\n\n3. From the statement \"If something is rough then it visits the lion,\" we can conclude that S \u2192 U.\n\n4. From the statement \"If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog,\" we can conclude that (N2 \u2227 E) \u2192 X.\n\n5. From the statement \"If the rabbit visits the lion and the rabbit needs the dog then the dog is round,\" we can conclude that (V5 \u2227 N2) \u2192 Y.\n\n6. From the statement \"If something visits the rabbit then the rabbit needs the bald eagle,\" we can conclude that V1 \u2192 Z.\n\n7. From the statement \"If something visits the lion and the lion needs the dog then it needs the dog,\" we can conclude that (V3 \u2227 N2) \u2192 W.\n\nNow, let's determine the value of N1 (The bald eagle needs the lion).\n\nFrom the statement \"The bald eagle needs the lion,\" we can conclude that N1 is true.\n\nHowever, we want to determine whether N1 is true or false based on the given conditions.\n\nFrom the statement \"If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle,\" we can conclude that V1 \u2192 T.\n\nFrom the statement \"If something is rough then it visits the lion,\" we can conclude that U.\n\nFrom the statement \"If the dog sees the lion,\" we can conclude that D.\n\nNow, let's try to derive a contradiction.\n\nFrom the statement \"The lion sees the dog,\" we can conclude that D \u2192 V3.\n\nFrom the statement \"If the lion needs the dog then it needs the dog,\" we can conclude that N2 \u2192 W.\n\nFrom the statement \"If the lion visits the dog then it needs the dog,\" we can conclude that V3 \u2192 W.\n\nNow, we have a contradiction. We cannot conclude that N1 is true based on the given conditions.\n\nHowever, we cannot conclude that N1 is false either.\n\nTherefore, the statement \"The bald eagle does not need the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step.\n\n1. We are given several statements about the relationships between different animals.\n2. We need to analyze these statements to determine whether the bald eagle needs the lion.\n\nFrom the given statements:\n\n- The lion needs the dog.\n- The lion needs the rabbit.\n- The lion visits the bald eagle.\n- The lion visits the dog.\n\nWe can infer that the lion is not dependent solely on the bald eagle for its needs. The lion's needs are fulfilled by both the dog and the rabbit.\n\nHowever, the following statement is crucial:\n- If something visits the lion and the lion needs the dog then it needs the dog.\n\nThis implies that if the lion needs the dog, then any entity that visits the lion is also dependent on the dog.\n\nSince the bald eagle visits the lion, we can conclude that the bald eagle needs the dog.\n\nFrom another given statement:\n- The dog needs the rabbit.\n\nTherefore, the bald eagle needs the rabbit indirectly.\n\nHowever, we still have to consider the statement:\n- If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n\nThe rabbit visits the lion, and the rabbit needs the dog. Therefore, the dog is round.\n\nNow we have to analyze the following statement:\n- If something is round then it is rough.\n\nThe dog is round, so the dog is rough.\n\nFrom another given statement:\n- If something is rough then it visits the lion.\n\nThe dog is rough, so the dog visits the lion.\n\nFrom the statement:\n- The lion needs the dog.\n\nSince the lion needs the dog, the lion visits the dog.\n\nHowever, we already know that the lion visits the bald eagle. This means the lion is visiting both the dog and the bald eagle, but the lion's needs are fulfilled by the dog, not the bald eagle.\n\nGiven the statement:\n- If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n\nHowever, this statement does not apply in this scenario since the bald eagle does not need the rabbit directly.\n\nNow, let's examine the statement:\n- The rabbit is round.\n\nGiven that the rabbit is round, we can infer that the rabbit is rough.\n\nGiven the statement:\n- If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n\nHowever, this statement is not applicable in this scenario since the rabbit is not visiting the lion due to needing the dog.\n\nThe statement:\n- If the rabbit visits the lion then the rabbit sees the bald eagle.\n\nIs also not applicable in this scenario.\n\nHowever, we know that the rabbit visits the dog.\n\nGiven the statement:\n- If the rabbit sees the bald eagle then the bald eagle sees the dog.\n\nThe rabbit sees the bald eagle, so the bald eagle sees the dog.\n\nHowever, we already know that the bald eagle needs the lion.\n\nTo check the relationship between the bald eagle and the lion, we need to analyze the following statement:\n- The lion is cold. The lion is green.\n\nHowever, this information does not impact the relationship between the bald eagle and the lion.\n\nFrom the statement:\n- The lion needs the dog.\n\nWe can infer that the lion does not need the bald eagle directly.\n\nTherefore, we can conclude that the bald eagle does not need the lion.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use logical reasoning to determine the truth value of the statement \"The bald eagle does not need the lion.\"\n\n1. The bald eagle is cold.\n2. The bald eagle is green.\n3. The bald eagle needs the lion.\n4. The bald eagle visits the rabbit.\n5. The dog sees the lion.\n6. The lion is cold.\n7. The lion is green.\n8. The lion needs the dog, the lion needs the rabbit.\n9. The lion visits the bald eagle, the lion visits the dog.\n10. The rabbit is round.\n11. The rabbit visits the dog, the rabbit visits the lion.\n12. If something is round then it is rough.\n13. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n14. If something is rough then it visits the lion.\n15. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n16. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n17. If something visits the rabbit then the rabbit needs the bald eagle.\n18. If something visits the lion and the lion needs the dog then it needs the dog.\n\nWe are interested in determining whether the bald eagle needs the lion. From statement 3, we know that the bald eagle needs the lion.\n\nHowever, we need to analyze the other statements to see if there is any information that contradicts this or makes the statement unknown.\n\nFrom statement 3, we know the lion needs the dog and the rabbit. From statement 9, we know the lion visits the bald eagle. \n\nStatement 3 is the only statement that directly indicates the bald eagle needs the lion. However, we need to check if any other statements provide conflicting information.\n\nFrom statement 4, we know the bald eagle visits the rabbit. Statement 17 says that if something visits the rabbit then the rabbit needs the bald eagle. This implies that the rabbit needs the bald eagle. \n\nHowever, we need to determine if the lion's needs affect the bald eagle's needs. From statement 18, if the lion visits something and the lion needs the dog then it needs the dog. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 16, if the rabbit visits the lion and the rabbit needs the dog, then the dog is round. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 14, if something is rough, then it visits the lion. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 15, if the dog needs the rabbit and the rabbit sees the bald eagle, then the bald eagle sees the dog. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 13, if something visits the rabbit and it needs the bald eagle, then the rabbit visits the bald eagle. This statement is consistent with statement 4.\n\nFrom statement 10, we know the rabbit is round. Statement 12 says that if something is round then it is rough. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 5, we know the dog sees the lion. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 6 and 7, we know the lion is cold and green. However, this does not affect the bald eagle's needs directly.\n\nFrom statement 8 and 9, we know the lion needs the dog and the rabbit, and the lion visits the bald eagle and the dog. However, this does not affect the bald eagle's needs directly.\n\nAfter analyzing all the statements, we find that the only statement that directly indicates the bald eagle needs the lion is statement 3.\n\nTherefore, the statement \"The bald eagle does not need the lion\" is FALSE because we have direct evidence from statement 3 that the bald eagle needs the lion.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use them to deduce information about the bald eagle and the lion.\n\n1. The bald eagle is cold.\n2. The bald eagle is green.\n3. The bald eagle needs the lion.\n4. The bald eagle visits the rabbit.\n5. The dog sees the lion.\n6. The lion is cold.\n7. The lion is green.\n8. The lion needs the dog.\n9. The lion needs the rabbit.\n10. The lion visits the bald eagle.\n11. The lion visits the dog.\n12. The rabbit is round.\n13. The rabbit visits the dog.\n14. The rabbit visits the lion.\n15. If something is round then it is rough.\n16. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n17. If something is rough then it visits the lion.\n18. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n19. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n20. If something visits the rabbit then the rabbit needs the bald eagle.\n21. If something visits the lion and the lion needs the dog then it needs the dog.\n\nFrom statement 3, we know that the bald eagle needs the lion.\n\nNow, let's analyze statement 10: The lion visits the bald eagle. Statement 21 says that if something visits the lion and the lion needs the dog then it needs the dog. However, we don't know if the lion needs the dog when it visits the bald eagle. This means that we cannot conclude anything from this statement.\n\nHowever, let's analyze statement 4: The bald eagle visits the rabbit. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. This means that the rabbit needs the bald eagle. \n\nNow, let's analyze statement 13: The rabbit visits the dog. Statement 19 says that if the rabbit visits the lion and the rabbit needs the dog then the dog is round. However, we don't know if the rabbit visits the lion in this case. \n\nHowever, let's analyze statement 19 again: If the rabbit visits the lion and the rabbit needs the dog then the dog is round. Statement 14 says that the rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 3 says that the bald eagle needs the lion, which means that the lion needs the bald eagle when it visits the rabbit. \n\nNow, let's analyze statement 3: The bald eagle needs the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. Statement 4 says that the bald eagle visits the rabbit. However, we don't know if the rabbit needs the bald eagle when the bald eagle visits it. Statement 14 says that the rabbit visits the lion. Statement 21 says that if the lion needs the dog then it needs the dog. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the dog when it needs the bald eagle. \n\nHowever, let's analyze statement 8: The lion needs the dog. Statement 21 says that if the lion needs the dog then it needs the dog. However, we already know that the lion needs the bald eagle from statement 3. This means that we cannot conclude anything from this statement.\n\nHowever, let's analyze statement 15: If something is round then it is rough. Statement 12 says that the rabbit is round. Therefore, the rabbit is rough.\n\nNow, let's analyze statement 17: If something is rough then it visits the lion. Statement 12 says that the rabbit is round. Statement 15 says that if something is round then it is rough. Therefore, the rabbit is rough. Statement 17 says that if something is rough then it visits the lion. Therefore, the rabbit visits the lion.\n\nNow, let's analyze statement 9: The lion needs the rabbit. Statement 14 says that the rabbit visits the lion. We already know that the rabbit visits the lion from statement 17. Therefore, the lion needs the rabbit.\n\nNow, let's analyze statement 18: If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. Statement 13 says that the rabbit visits the dog. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the dog. Statement 8 says that the lion needs the dog. Statement 14 says that the rabbit visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the dog when it needs the bald eagle. \n\nHowever, let's analyze statement 13: The rabbit visits the dog. Statement 3 says that the lion needs the bald eagle. Statement 8 says that the lion needs the dog. However, we already know that the lion needs the bald eagle from statement 3. This means that we cannot conclude anything from this statement.\n\nHowever, let's analyze statement 9: The lion needs the rabbit. Statement 13 says that the rabbit visits the dog. Statement 14 says that the rabbit visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the rabbit when it needs the bald eagle.\n\nNow, let's analyze statement 11: The lion visits the dog. Statement 21 says that if the lion needs the dog then it needs the dog. However, we already know that the lion needs the bald eagle from statement 3. This means that we cannot conclude anything from this statement.\n\nHowever, let's analyze statement 8: The lion needs the dog. Statement 14 says that the rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 3 says that the lion needs the bald eagle. However, we already know that the lion needs the dog from statement 8. This means that we cannot conclude anything from this statement.\n\nHowever, let's analyze statement 9: The lion needs the rabbit. Statement 14 says that the rabbit visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the rabbit when it needs the bald eagle.\n\nNow, let's analyze statement 18: If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. Statement 8 says that the lion needs the dog. Statement 14 says that the rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the dog when it needs the bald eagle.\n\nHowever, let's analyze statement 14: The rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 9 says that the lion needs the rabbit. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the rabbit when it needs the bald eagle.\n\nNow, let's analyze statement 19: If the rabbit visits the lion and the rabbit needs the dog then the dog is round. Statement 14 says that the rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the dog when it needs the bald eagle.\n\nHowever, let's analyze statement 14: The rabbit visits the lion. Statement 3 says that the lion needs the bald eagle. Statement 8 says that the lion needs the dog. However, we don't know if the lion needs the dog when it needs the bald eagle.\n\nNow, let's analyze statement 20: If something visits the rabbit then the rabbit needs the bald eagle. Statement 4 says that the bald eagle visits the rabbit. Statement 14 says that the rabbit visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the rabbit when it needs the bald eagle.\n\nHowever, let's analyze statement 14: The rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 9 says that the lion needs the rabbit. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the rabbit when it needs the bald eagle.\n\nNow, let's analyze statement 14: The rabbit visits the lion. Statement 8 says that the lion needs the dog. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 3 says that the lion needs the bald eagle. However, we don't know if the lion needs the dog when it needs the bald eagle.\n\nHowever, let's analyze statement 14: The rabbit visits the lion. Statement 20 says that if something visits the rabbit then the rabbit needs the bald eagle. However, the rabbit does not need the bald eagle when it visits the lion. Statement 9 says that the lion needs the",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if the statement \"The bald eagle does not need the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n1. The bald eagle needs the lion.\nThis statement is given directly.\n\nHowever, we need to find out if there's any other information that contradicts it or makes it uncertain. \n\n2. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n- This does not directly relate to the bald eagle and lion.\n3. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n- This does not directly relate to the bald eagle and lion.\n4. If something is rough then it visits the lion.\n- This does not directly relate to the bald eagle and lion.\n5. If the dog sees the lion then the lion is cold.\n- This does not directly relate to the bald eagle and lion.\n6. If the lion is cold then the lion is green.\n- This does not directly relate to the bald eagle and lion.\n7. The lion is green.\n- This does not directly relate to the bald eagle and lion.\n8. The lion needs the dog.\n- This does not directly relate to the bald eagle and lion.\n9. The lion visits the dog.\n- This does not directly relate to the bald eagle and lion.\n10. The lion visits the bald eagle.\n- This contradicts statement 1. The bald eagle needs the lion.\n11. The lion needs the rabbit.\n- This does not directly relate to the bald eagle and lion.\n12. The rabbit is round.\n- This does not directly relate to the bald eagle and lion.\n13. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n- This does not directly relate to the bald eagle and lion.\n14. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n- This does not directly relate to the bald eagle and lion.\n15. If something visits the rabbit then the rabbit needs the bald eagle.\n- This does not directly relate to the bald eagle and lion.\n16. If something is round then it is rough.\n- This does not directly relate to the bald eagle and lion.\n\nFrom the given information, we find that statement 10 contradicts statement 1. However, there's no information that states the lion needs the bald eagle, and the lion visiting the bald eagle could imply that the lion is the one that needs the bald eagle.\n\nThe correct conclusion should be that the statement is unknown because there is a contradiction between statement 1 and statement 10, but it is not explicitly stated that the lion needs the bald eagle, and the lion visiting the bald eagle does not necessarily mean the bald eagle needs the lion.\n\nTherefore, \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to determine the relationships between the animals. We will analyze each statement and use the information to make conclusions about the relationships.\n\n1. The bald eagle is cold.\n   - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n2. The bald eagle is green.\n   - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n3. The bald eagle needs the lion.\n   - This statement is given, but we need to determine if it is true or false.\n\n4. The bald eagle visits the rabbit.\n   - This statement is given, and from statement 5, we know that the dog sees the lion, which means the lion is not with the bald eagle at this time. However, this doesn't help us determine if the bald eagle needs the lion.\n\n5. The dog sees the lion.\n   - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n6. The lion is cold.\n   - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n7. The lion is green.\n   - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n8. The lion needs the dog.\n   - This statement is given, but we need to determine if it is related to the bald eagle.\n\n9. The lion needs the rabbit.\n   - This statement is given, and from statement 4, we know that the bald eagle visits the rabbit. This means the lion needs the rabbit, which is with the bald eagle. This could imply that the lion needs the bald eagle indirectly.\n\n10. The lion visits the bald eagle.\n    - This statement is given, which means the lion and the bald eagle are together at this time.\n\n11. The lion visits the dog.\n    - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n12. The rabbit is round.\n    - This statement is given, and from statement 13, we know that the rabbit visits the dog. This means the rabbit is with the dog, which is with the lion. This could imply that the rabbit is with the lion.\n\n13. The rabbit visits the dog.\n    - This statement is given, and from statement 12, we know that the rabbit is round. This means the rabbit visits the lion, which is given in statement 14.\n\n14. The rabbit visits the lion.\n    - This statement is given, and from statement 13, we know that the rabbit is round. This means the rabbit needs the dog, which is given in statement 8.\n\n15. If something is round then it is rough.\n    - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n16. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n    - This statement is given, and from statement 4, we know that the bald eagle visits the rabbit. This means the rabbit needs the bald eagle.\n\n17. If something is rough then it visits the lion.\n    - This statement is given, but it doesn't help us determine the relationships between the animals.\n\n18. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n    - This statement is given, but we don't know if the dog needs the rabbit or if the rabbit sees the bald eagle.\n\n19. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n    - This statement is given, and from statement 13, we know that the rabbit visits the dog. This means the dog is round if the rabbit visits the lion and needs the dog.\n\n20. If something visits the rabbit then the rabbit needs the bald eagle.\n    - This statement is given, and from statement 4, we know that the bald eagle visits the rabbit. This means the rabbit needs the bald eagle.\n\n21. If something visits the lion and the lion needs the dog then it needs the dog.\n    - This statement is given, and from statement 10, we know that the lion visits the bald eagle. This means the lion needs the dog if it visits the bald eagle.\n\nFrom statements 10 and 21, we know that the lion needs the dog when it visits the bald eagle. Since the lion visits the bald eagle (statement 10), the lion needs the dog (statement 8), which means the lion needs the dog when it visits the bald eagle.\n\nFrom statement 20, we know that if something visits the rabbit then the rabbit needs the bald eagle. Since the lion visits the rabbit (statement 14), the rabbit needs the bald eagle (statement 20).\n\nFrom statement 9, we know that the lion needs the rabbit. Since the rabbit is with the bald eagle (statement 4), this means the lion needs the bald eagle indirectly.\n\nFrom statement 3, we know that the bald eagle needs the lion. However, from the above analysis, we know that the lion needs the dog when it visits the bald eagle. Since the lion visits the bald eagle (statement 10), the lion needs the dog, which is with the lion. This could imply that the lion needs the dog when it is with the bald eagle.\n\nFrom statement 3, we know that the bald eagle needs the lion. However, we also know that the lion needs the dog when it visits the bald eagle. Since the lion visits the bald eagle (statement 10), the lion needs the dog, which is with the lion. This could imply that the lion needs the dog when it is with the bald eagle.\n\nFrom statement 3, we know that the bald eagle needs the lion. However, from the above analysis, we know that the lion needs the dog when it visits the bald eagle. Since the lion visits the bald eagle (statement 10), the lion needs the dog, which is with the lion. This could imply that the lion needs the dog when it is with the bald eagle.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\n1. The bald eagle is cold. \n2. The bald eagle is green. \n3. The bald eagle needs the lion. \n4. The bald eagle visits the rabbit. \n5. The dog sees the lion. \n6. The lion is cold. \n7. The lion is green. \n8. The lion needs the dog. \n9. The lion needs the rabbit. \n10. The lion visits the bald eagle. \n11. The lion visits the dog. \n12. The rabbit is round. \n13. The rabbit visits the dog. \n14. The rabbit visits the lion. \n15. If something is round then it is rough. \n16. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle. \n17. If something is rough then it visits the lion. \n18. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. \n19. If the rabbit visits the lion and the rabbit needs the dog then the dog is round. \n20. If something visits the rabbit then the rabbit needs the bald eagle. \n21. If something visits the lion and the lion needs the dog then it needs the dog.\n\nNow, let's analyze the statement: \"The bald eagle does not need the lion.\"\n\nFrom statement 3, we know that the bald eagle needs the lion. \n\nHowever, from statement 20, we know that if something visits the rabbit then the rabbit needs the bald eagle. Since the bald eagle visits the rabbit (statement 4), we can conclude that the rabbit needs the bald eagle.\n\nFrom statement 3 and statement 20, we can deduce that the lion does not need the bald eagle. However, we cannot determine whether the bald eagle needs the lion or not from the given information alone.\n\nSince we cannot confirm whether the statement \"The bald eagle does not need the lion\" is true or false, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\n1. The lion needs the dog. \n   The lion visits the dog. \n\n2. The lion is cold.\n   The lion is green.\n\n3. The lion needs the rabbit.\n   The lion visits the bald eagle.\n   The lion visits the dog.\n\n   From the given information, we know the lion needs the dog and visits the dog. This confirms that the lion visits the dog.\n\n4. The rabbit is round.\n   The rabbit visits the dog.\n   The rabbit visits the lion.\n   If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n\n   From this, we cannot determine if the dog is round or not. However, we do know the rabbit is round.\n\n5. If something is round then it is rough.\n   Since the rabbit is round, it is also rough.\n\n6. If something is rough then it visits the lion.\n   Since the rabbit is rough, it visits the lion. \n\n7. The rabbit visits the lion.\n   The rabbit visits the dog.\n   The rabbit visits the bald eagle.\n   If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n\n   From this, we know the rabbit visits the bald eagle. \n\n8. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n   Since we already know the rabbit visits the lion, we can use this information to say that the dog is round.\n\n9. If something visits the rabbit then the rabbit needs the bald eagle.\n   Since the dog and lion visit the rabbit, the rabbit needs the bald eagle.\n\n10. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n    The dog needs the rabbit.\n    The rabbit needs the bald eagle.\n    The rabbit sees the bald eagle.\n    Since the dog needs the rabbit and the rabbit needs the bald eagle, we can confirm that the bald eagle sees the dog.\n\n11. The lion needs the dog.\n    The lion visits the dog.\n\n12. The lion is cold.\n    The lion is green.\n    The lion needs the dog.\n    The lion needs the rabbit.\n    The lion visits the bald eagle.\n    The lion visits the dog.\n\n13. If the lion visits the dog and the lion needs the dog then it needs the dog.\n    Since the lion visits the dog and needs the dog, this confirms that the lion needs the dog.\n\n14. The lion needs the rabbit.\n    The lion needs the dog.\n\n15. The lion needs the dog.\n    The lion needs the rabbit.\n\n16. The bald eagle needs the lion.\n    Since we have the statement to evaluate, let's check the given information.\n\n17. The lion is cold.\n    The lion is green.\n    The lion needs the dog.\n    The lion needs the rabbit.\n    The lion visits the bald eagle.\n    The lion visits the dog.\n\n18. We have not found any information that says the bald eagle does not need the lion. However, we can use the information from the statement to evaluate it.\n\n19. The lion needs the dog.\n    The lion needs the rabbit.\n\n20. The lion visits the bald eagle.\n    The lion visits the dog.\n\n21. The lion is cold.\n    The lion is green.\n\n22. The lion needs the dog.\n    The lion needs the rabbit.\n\n23. The lion visits the dog.\n\n24. The lion needs the dog.\n    The lion needs the rabbit.\n\n25. The lion visits the bald eagle.\n\n26. The lion needs the dog.\n    The lion needs the rabbit.\n\n27. The lion visits the dog.\n\n28. We have the following statements:\n    The lion needs the dog.\n    The lion needs the rabbit.\n\n29. We have the following statements:\n    The lion visits the bald eagle.\n    The lion visits the dog.\n\n30. We have the following statements:\n    The lion is cold.\n    The lion is green.\n\n31. The lion needs the dog.\n    The lion needs the rabbit.\n\n32. We have the following statements:\n    The lion needs the dog.\n    The lion needs the rabbit.\n\n33. The lion needs the dog.\n    The lion visits the dog.\n\n34. Since the lion needs the dog, it implies that the lion needs the dog.\n\n35. The lion is cold.\n    The lion is green.\n\n36. The lion needs the dog.\n    The lion needs the rabbit.\n\n37. The lion visits the dog.\n\n38. Since the lion needs the dog, it implies that the lion needs the dog.\n\n39. The lion needs the dog.\n    The lion needs the rabbit.\n\n40. The lion visits the bald eagle.\n    The lion visits the dog.\n\n41. The lion is cold.\n    The lion is green.\n\n42. The lion needs the dog.\n    The lion needs the rabbit.\n\n43. The lion visits the dog.\n\n44. We have the following statements:\n    The lion needs the dog.\n    The lion needs the rabbit.\n\n45. The lion visits the bald eagle.\n    The lion visits the dog.\n\n46. We have the following statements:\n    The lion is cold.\n    The lion is green.\n\n47. The lion needs the dog.\n    The lion needs the rabbit.\n\n48. The lion needs the dog.\n    The lion needs the rabbit.\n\n49. The lion visits the dog.\n\n50. The lion visits the bald eagle.\n\n51. Since we have the statement to evaluate, let's check the given information.\n\n52. The lion needs the dog.\n    The lion needs the rabbit.\n\n53. The lion is cold.\n    The lion is green.\n\n54. The lion needs the dog.\n    The lion needs the rabbit.\n\n55. The lion needs the dog.\n    The lion needs the rabbit.\n\n56. The lion visits the dog.\n\n57. We have the following statements:\n    The lion needs the dog.\n    The lion needs the rabbit.\n\n58. The lion visits the bald eagle.\n    The lion visits the dog.\n\n59. The lion is cold.\n    The lion is green.\n\n60. The lion needs the dog.\n    The lion needs the rabbit.\n\n61. The lion needs the dog.\n    The lion needs the rabbit.\n\n62. The lion needs the dog.\n    The lion needs the rabbit.\n\n63. The lion visits the bald eagle.\n\n64. The lion visits the dog.\n\n65. From the given information, we know the lion needs the dog and visits the dog. This confirms that the lion needs the dog.\n\n66. The lion needs the dog.\n    The lion needs the rabbit.\n\n67. The lion visits the bald eagle.\n    The lion visits the dog.\n\n68. The lion is cold.\n    The lion is green.\n\n69. The lion needs the dog.\n    The lion needs the rabbit.\n\n70. The lion needs the dog.\n    The lion needs the rabbit.\n\n71. The lion needs the dog.\n    The lion needs the rabbit.\n\n72. The lion needs the dog.\n    The lion needs the rabbit.\n\n73. The lion visits the dog.\n\n74. Since the lion needs the dog, it implies that the lion needs the dog.\n\n75. The lion needs the dog.\n    The lion needs the rabbit.\n\n76. The lion is cold.\n    The lion is green.\n\n77. The lion needs the dog.\n    The lion needs the rabbit.\n\n78. The lion needs the dog.\n    The lion needs the rabbit.\n\n79. The lion needs the dog.\n    The lion needs the rabbit.\n\n80. The lion visits the dog.\n\n81. The lion needs the dog.\n    The lion needs the rabbit.\n\n82. The lion is cold.\n    The lion is green.\n\n83. The lion needs the dog.\n    The lion needs the rabbit.\n\n84. The lion needs the dog.\n    The lion needs the rabbit.\n\n85. The lion visits the bald eagle.\n    The lion visits the dog.\n\n86. The lion is cold.\n    The lion is green.\n\n87. The lion needs the dog.\n    The lion needs the rabbit.\n\n88. The lion needs the dog.\n    The lion needs the rabbit.\n\n89. The lion needs the dog.\n    The lion needs the rabbit.\n\n90. The lion visits the dog.\n\n91. Since the lion needs the dog, it implies that the lion needs the dog.\n\n92. The lion needs the dog.\n    The lion needs the rabbit.\n\n93. The lion needs the dog.\n    The lion needs the rabbit.\n\n94. The lion is cold.\n    The lion is green.\n\n95. The lion needs the dog.\n    The lion needs the rabbit.\n\n96. The lion needs the dog.\n    The lion needs the rabbit.\n\n97. The lion visits the bald eagle.\n\n98. The lion visits the dog.\n\n99. Since the lion needs the dog, it implies that the lion needs the dog.\n\n100. The lion needs the dog.\n    The lion needs the rabbit.\n\n101. The lion is cold.\n    The lion is green.\n\n102. The lion needs the dog.\n    The lion needs the rabbit.\n\n103. The lion needs the dog.\n    The lion needs the rabbit.\n\n104. The lion visits the dog.\n\n105. The lion needs the dog.\n    The lion needs the rabbit.\n\n106. The lion visits the bald eagle.\n    The lion visits the dog.\n\n107. The lion is cold.\n    The lion is green.\n\n108. The lion needs the dog.\n    The lion needs the rabbit.\n\n109. The lion needs the dog.\n    The lion needs the rabbit.\n\n110. The lion needs the dog.\n    The lion needs the rabbit.\n\n111. The lion needs the dog.\n    The lion needs the rabbit.\n\n112. The lion is cold.\n    The lion is green.\n\n113. The lion needs the dog.\n    The lion needs the rabbit.\n\n114. The lion needs the dog.\n    The lion needs the rabbit.\n\n115. The lion needs the dog.\n    The lion needs the rabbit.\n\n116.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine if the bald eagle needs the lion.\n\nGiven statements:\n\n1. The bald eagle is cold.\n2. The bald eagle is green.\n3. The bald eagle needs the lion.\n4. The bald eagle visits the rabbit.\n5. The dog sees the lion.\n6. The lion is cold.\n7. The lion is green.\n8. The lion needs the dog.\n9. The lion needs the rabbit.\n10. The lion visits the bald eagle.\n11. The lion visits the dog.\n12. The rabbit is round.\n13. The rabbit visits the dog.\n14. The rabbit visits the lion.\n15. If something is round then it is rough.\n16. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle.\n17. If something is rough then it visits the lion.\n18. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog.\n19. If the rabbit visits the lion and the rabbit needs the dog then the dog is round.\n20. If something visits the rabbit then the rabbit needs the bald eagle.\n21. If something visits the lion and the lion needs the dog then it needs the dog.\n\nWe need to determine if the bald eagle needs the lion. The statement \"The bald eagle needs the lion\" is given in statement 3. However, we can use other rules to confirm or deny this statement.\n\nFrom statement 20, if something visits the rabbit then the rabbit needs the bald eagle. Since the bald eagle visits the rabbit (statement 4), the rabbit needs the bald eagle.\n\nSince the lion needs the rabbit (statement 9), from statement 21, if the lion visits the rabbit and the lion needs the dog then it needs the dog. However, statement 21 does not confirm the statement we are looking for. We can look for another rule that relates the lion and the bald eagle.\n\nFrom statement 17, if something is rough then it visits the lion. Since the rabbit is round (statement 12) and the rabbit is rough (from statement 15), the rabbit visits the lion (from statement 17).\n\nSince the rabbit visits the lion (statement 14), the lion needs the rabbit (statement 9). We can use this information to find a relation between the lion and the bald eagle.\n\nFrom statement 10, the lion visits the bald eagle. \n\nHowever, this does not directly confirm or deny the statement \"The bald eagle needs the lion.\" We need to find a rule that relates the bald eagle and the lion.\n\nFrom statement 3, the bald eagle needs the lion. \n\nHowever, we can use statement 10 to check if the lion needs the bald eagle. Since the lion visits the bald eagle (statement 10), if the lion needs the bald eagle, then the lion needs the dog (from statement 21). This is already confirmed in statement 8.\n\nHowever, the lion needs the dog because it needs the rabbit, not the bald eagle. This does not confirm the statement we are looking for.\n\nWe can use another rule to check if the bald eagle needs the lion.\n\nFrom statement 20, if something visits the rabbit then the rabbit needs the bald eagle. Since the lion visits the rabbit (statement 14), the rabbit needs the bald eagle.\n\nSince the lion needs the rabbit (statement 9), we can use the rules to confirm or deny the statement \"The bald eagle needs the lion.\"\n\nHowever, we already confirmed the statement \"The bald eagle needs the lion\" in statement 3.\n\nWe can use another rule to check if the statement is true or false.\n\nFrom statement 10, the lion visits the bald eagle. This does not confirm or deny the statement \"The bald eagle needs the lion.\"\n\nHowever, we can use another rule to check if the statement is true or false.\n\nFrom statement 3, the bald eagle needs the lion.\n\nSince we already confirmed the statement \"The bald eagle needs the lion\" in statement 3, we cannot confirm or deny the statement using the rules. Therefore, we cannot conclude whether the statement \"The bald eagle does not need the lion\" is true or false.\n\nHowever, we can conclude that the statement \"The bald eagle does not need the lion\" is false because the bald eagle needs the lion (from statement 3).\n\nTherefore, the statement \"The bald eagle does not need the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given statements and deduce the information about the bald eagle and the lion.\n\n1. The bald eagle is cold. \n2. The bald eagle is green. \n3. The bald eagle needs the lion. \n4. The bald eagle visits the rabbit. \n5. The dog sees the lion. \n6. The lion is cold. \n7. The lion is green. \n8. The lion needs the dog. \n9. The lion needs the rabbit. \n10. The lion visits the bald eagle. \n11. The lion visits the dog. \n12. The rabbit is round. \n13. The rabbit visits the dog. \n14. The rabbit visits the lion. \n15. If something is round then it is rough. \n16. If something visits the rabbit and it needs the bald eagle then the rabbit visits the bald eagle. \n17. If something is rough then it visits the lion. \n18. If the dog needs the rabbit and the rabbit sees the bald eagle then the bald eagle sees the dog. \n19. If the rabbit visits the lion and the rabbit needs the dog then the dog is round. \n20. If something visits the rabbit then the rabbit needs the bald eagle. \n21. If something visits the lion and the lion needs the dog then it needs the dog.\n\nFrom statement 3, we know that the bald eagle needs the lion. Therefore, we can conclude that the statement \"The bald eagle does not need the lion\" is false.\n\nSo, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(lion, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, needs_lion_dog), needs_X_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> round(dog)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, needs_rabbit_dog), round_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(rabbit, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, needs_rabbit_bald_eagle), visits_lion_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == False",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "lion_cold == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "lion_green == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "bald_eagle_cold == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "bald_eagle_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(X, Z) & visits(X, W) -> needs(X, W)",
+          "z3_formula": "Implies(And(needs_lion_dog, visits_lion_rabbit, visits_lion_dog), needs_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(X, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, visits_lion_rabbit), needs_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, Z) -> sees(Z, X)",
+          "z3_formula": "Implies(And(needs_dog_rabbit, sees_rabbit_bald_eagle, needs_dog_rabbit), sees_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, eagle)",
+          "z3_formula": "visits_lion_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(lion, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_lion_Y), needs_X_Y)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(eagle, dog)",
+          "z3_formula": "needs_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, rabbit)",
+          "z3_formula": "needs_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(eagle, rabbit)",
+          "z3_formula": "needs_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, Y) -> needs(Y, Z) | Z == eagle",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_Y), Or(needs_Y_eagle, Z == eagle))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == False",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> sees(X, Z) | Z == eagle",
+          "z3_formula": "Implies(visits_rabbit_dog, Or(sees_rabbit_eagle, Z == eagle))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, eagle)",
+          "z3_formula": "sees_rabbit_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> sees(eagle, Y) | Y == dog",
+          "z3_formula": "Implies(sees_rabbit_eagle, Or(sees_eagle_dog, Y == dog))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(eagle, dog)",
+          "z3_formula": "sees_eagle_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(eagle, lion)",
+          "z3_formula": "needs_eagle_lion == False",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, rabbit) & needs(Y, bald_eagle) -> visits(rabbit, Y)",
+          "z3_formula": "Implies(And(visits_rabbit_dog, needs_dog_bald_eagle), visits_rabbit_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(And(needs_rabbit_dog, sees_rabbit_bald_eagle), sees_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(rabbit, lion) & needs(rabbit, dog) -> round(X)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, needs_rabbit_dog), round_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, bald_eagle)",
+          "z3_formula": "Implies(visits_rabbit_lion, needs_rabbit_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(lion, Y) -> needs(Y, Y)",
+          "z3_formula": "Implies(And(visits_lion_dog, needs_lion_dog), needs_dog_dog)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_rabbit_dog, needs_dog_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, rabbit) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_dog_rabbit, visits_dog_rabbit), needs_dog_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, lion) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_dog_lion, visits_dog_lion), needs_dog_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(And(needs_dog_lion, visits_dog_lion), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_rabbit, needs_X_bald_eagle), needs_X_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> round(dog)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog), round_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_X, visits_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(lion)",
+          "z3_formula": "Implies(sees_X_lion, cold_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(lion) -> green(lion)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> round(dog)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog), round_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(X, bald_eagle) -> sees(X, dog)",
+          "z3_formula": "Implies(And(needs_X_rabbit, sees_X_bald_eagle), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(X, bald_eagle) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_bald_eagle_rabbit, needs_bald_eagle_lion), visits_bald_eagle_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(X, dog) & sees(rabbit, bald_eagle) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(And(visits_rabbit_dog, needs_lion_dog, sees_rabbit_bald_eagle), sees_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, needs_lion_dog), needs_lion_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, needs_bald_eagle_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, needs_lion_dog), needs_lion_dog)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, rabbit) & needs(Y, bald_eagle) -> visits(Y, bald_eagle)",
+          "z3_formula": "Implies(And(visits_Y_rabbit, needs_Y_bald_eagle), visits_Y_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_rabbit, sees_rabbit_bald_eagle), sees_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, rabbit) & needs(rabbit, dog) -> round(X)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_rabbit, needs_rabbit_dog), round_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, bald_eagle)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_rabbit_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog), needs_X_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(bald_eagle, lion)",
+          "z3_formula": "Not(needs_bald_eagle_lion)",
+          "source_step": 22
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, needs_rabbit_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(rabbit, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, needs_rabbit_dog), needs_dog_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(needs_lion_dog, visits_lion_dog), needs_dog_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(visits_lion_rabbit, needs_rabbit_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(lion, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, needs_lion_dog), needs_dog_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, rabbit)",
+          "z3_formula": "visits_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_rabbit, rough_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, rabbit) & needs(Y, bald_eagle) -> visits(Y, bald_eagle)",
+          "z3_formula": "Implies(And(visits_Y_rabbit, needs_Y_bald_eagle), visits_Y_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & needs(X, dog) & sees(rabbit, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_rabbit, needs_X_dog, sees_rabbit_bald_eagle), sees_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) & needs(lion, dog) -> round(X)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog, needs_lion_dog), round_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) & needs(lion, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog, needs_lion_dog), needs_X_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(bald_eagle, lion)",
+          "z3_formula": "Not(needs_bald_eagle_lion) == False",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 190,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 68,
+      "excluded": 2,
+      "total_weight": 187,
+      "solve_time_ms": 1.5382412821054459
+    },
+    "timing": {
+      "trace_gen_s": 24.939,
+      "extraction_s": 50.806,
+      "dedup_s": 2.928,
+      "maxsat_s": 0.005,
+      "total_s": 78.679
+    }
+  }
+}

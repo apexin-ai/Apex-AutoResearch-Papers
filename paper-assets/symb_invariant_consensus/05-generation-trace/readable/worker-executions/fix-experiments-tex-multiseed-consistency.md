@@ -1,0 +1,1725 @@
+# fix experiments tex multiseed consistency
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_fix_experiments-tex-multiseed-consistency_20260523T001421.log`
+- **Structured JSON:** [`6fdc295d9a15102f39f6.json`](../../sessions/6f/6fdc295d9a15102f39f6.json)
+
+## Before a recorded user message
+
+36 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "30020d98-aec5-4dc3-b25e-5825d2a693cc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779890400,
+    "rateLimitType": "seven_day",
+    "utilization": 0.52,
+    "isUsingOverage": false
+  },
+  "uuid": "10479824-f243-46c2-aa02-3d34311d2125",
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取附录表格和 experiments.tex 的相关内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "328f9e06-dc51-4e12-baaf-850f5054f6cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sbjom4jzuqKBTNeNNMucCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12430,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12430
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PzuZcrRxogdTJyEu9jKPKz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "1d7dc081-c86a-40fb-a72a-3052e4773320",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sbjom4jzuqKBTNeNNMucCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12430,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12430
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T00:14:34.026Z_
+
+<details><summary>↩ Tool result · `toolu_01PzuZcrRxogdTJyEu9jKPKz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "bd53ed10-d171-4e41-9863-709da3ae374a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the appendix table and experiments.tex in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "b3b5a5f8-a8ea-414c-9c63-766143c76a2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZXME7pWsbk5vxREEee57Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 24271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XonUUMcK85NLroFaoWewm9`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat -n /root/symb_invariant_consensus/docs/paper/appendix.tex | head -1200 | tail -130"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "d8c586da-3088-47fc-b3ff-1239b5fad1b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZXME7pWsbk5vxREEee57Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 24271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T00:14:39.179Z_
+
+<details><summary>↩ Tool result · `toolu_01XonUUMcK85NLroFaoWewm9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "e0117c9e-b394-42f2-b379-2bc69372d0c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016441qt8YixAh2iWWRLBn9Y`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat -n /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "714bfff5-36fc-43a0-bcb1-4c350263282a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YZXME7pWsbk5vxREEee57Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 24271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T00:14:40.631Z_
+
+<details><summary>↩ Tool result · `toolu_016441qt8YixAh2iWWRLBn9Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\\section{Experiments}\\n     2\\t\\\\label{sec:experiments}\\n     3\\t\\n     4\\t\\\\subsection{Setup}\\n     5\\t\\\\label{sec:exp-setup}\\n     6\\t\\n     7\\tWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\\\S\\\\ref{sec:analysis}).\\n     8\\t\\n     9\\t\\\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\\\citep{dubey2024llama3}, and QwQ-32B~\\\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\\n    10\\t\\n    11\\t\\\\paragraph{Datasets.} FOLIO~\\\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\\\%$).\\n    12\\t\\n    13\\t\\\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\\\text{ext}}{=}0.3$, $\\\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\\\alpha{=}0.05$); 95\\\\% bootstrap CIs ($10{,}000$ resamples) for $n \\\\geq 200$. SICA incurs $4.5{\\\\times}$ SC wall-clock; extraction accounts for 76\\\\% of overhead.\\n    14\\t\\n    15\\t\\n    16\\t\\\\subsection{Main Results}\\n    17\\t\\\\label{sec:main-results}\\n    18\\t\\n    19\\tTable~\\\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\\n    20\\t\\n    21\\t\\\\begin{table*}[t]\\n    22\\t\\\\centering\\n    23\\t\\\\small\\n    24\\t\\\\caption{SICA vs.\\\\ SC across all non-degenerate self-extraction conditions (sorted by SC). No condition shows a significant gain after BH correction ($m{=}16$). $\\\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\\\textbf{bold}: $p < 0.05$; {*}\\\\,uncorrected $p < 0.05$ (BH adj.\\\\ $p = 0.112$); $^{3s}$\\\\,3-seed; $^{4s}$\\\\,4-seed confirmatory (unmarked: single-seed exploratory). Degenerate conditions ($C_0 < 5\\\\%$: QwQ-32B AIME, Qwen2.5-14B GSM8K) yield $\\\\Delta = 0$; oracle upper bounds are reported in Appendix~\\\\ref{app:oracle}.}\\n    25\\t\\\\label{tab:main_results}\\n    26\\t\\\\begin{tabular}{@{}llrrrrl@{}}\\n    27\\t\\\\toprule\\n    28\\tModel & Domain & $n$ & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) & $p$ \\\\\\\\\\n    29\\t\\\\midrule\\n    30\\t\\\\multicolumn{7}{l}{\\\\textit{Type C: error amplification (SC $\\\\leq$ 40\\\\%)}} \\\\\\\\\\n    31\\tMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\\\mathbf{-2.83}$ & 0.014{*} \\\\\\\\\\n    32\\t\\\\midrule\\n    33\\t\\\\multicolumn{7}{l}{\\\\textit{Intermediate SC (SC $\\\\sim$50--60\\\\%, Mistral-7B only)}} \\\\\\\\\\n    34\\tMistral-7B & LogiQA & 200 & 50.00 & 51.50 & $+$1.50 & 0.581 \\\\\\\\\\n    35\\tMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\\\\\\n    36\\tMistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\\\\\\\\\n    37\\tMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\\\\\\n    38\\tMistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\\\\\\\\\n    39\\t\\\\midrule\\n    40\\t\\\\multicolumn{7}{l}{\\\\textit{Type A: confirmation bias (SC $\\\\geq$ 60\\\\%)}} \\\\\\\\\\n    41\\tLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\\\\\\n    42\\tLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\\\\\\n    43\\t\\\\addlinespace\\n    44\\tQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\\\\\\n    45\\tQwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\\\mathbf{-2.50}$ & 0.011{*} \\\\\\\\\\n    46\\tQwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.98 & 75.49 & $-$0.49 & 1.000 \\\\\\\\\\n    47\\tQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\\\\\\n    48\\tQwen2.5-14B & LogiQA & 200 & 79.00 & 78.00 & $-$1.00 & 0.625 \\\\\\\\\\n    49\\t\\\\addlinespace\\n    50\\tQwen3-14B & FOLIO & 204 & 83.33 & 84.80 & $+$1.47 & 1.000 \\\\\\\\\\n    51\\tQwen3-14B & PW-D5 & 600 & 85.83 & 85.67 & $-$0.17 & 1.000 \\\\\\\\\\n    52\\tQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\\\\\\n    53\\t\\\\bottomrule\\n    54\\t\\\\end{tabular}\\n    55\\t\\\\end{table*}\\n    56\\t\\n    57\\t\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n    58\\t\\n    59\\t\\n    60\\t\\\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+13.73$\\\\,pp FOLIO, $+17.17$\\\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\\\sim}$12\\\\% of this ceiling (Appendix~\\\\ref{app:oracle}).\\n    61\\t\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "a00dfcaa-b9c6-4cf3-b2e8-8a28279a3af2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\\section{Experiments}\\\\n     2\\\\t\\\\\\\\label{sec:experiments}\\\\n     3\\\\t\\\\n     4\\\\t\\\\\\\\subsection{Setup}\\\\n     5\\\\t\\\\\\\\label{sec:exp-setup}\\\\n     6\\\\t\\\\n     7\\\\tWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\\\\\\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\\\\\\\S\\\\\\\\ref{sec:analysis}).\\\\n     8\\\\t\\\\n     9\\\\t\\\\\\\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\\\\\\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\\\\\\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\\\\\\\citep{dubey2024llama3}, and QwQ-32B~\\\\\\\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\\\\\\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\\\\n    10\\\\t\\\\n    11\\\\t\\\\\\\\paragraph{Datasets.} FOLIO~\\\\\\\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\\\\\\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\\\\\\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\\\\\\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\\\\\\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\\\\\\\%$).\\\\n    12\\\\t\\\\n    13\\\\t\\\\\\\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\\\\\\\text{ext}}{=}0.3$, $\\\\\\\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\\\\\\\alpha{=}0.05$); 95\\\\\\\\% bootstrap CIs ($10{,}000$ resamples) for $n \\\\\\\\geq 200$. SICA incurs $4.5{\\\\\\\\times}$ SC wall-clock; extraction accounts for 76\\\\\\\\% of overhead.\\\\n    14\\\\t\\\\n    15\\\\t\\\\n    16\\\\t\\\\\\\\subsection{Main Results}\\\\n    17\\\\t\\\\\\\\label{sec:main-results}\\\\n    18\\\\t\\\\n    19\\\\tTable~\\\\\\\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\\\\n    20\\\\t\\\\n    21\\\\t\\\\\\\\begin{table*}[t]\\\\n    22\\\\t\\\\\\\\centering\\\\n    23\\\\t\\\\\\\\small\\\\n    24\\\\t\\\\\\\\caption{SICA vs.\\\\\\\\ SC across all non-degenerate self-extraction conditions (sorted by SC). No condition shows a significant gain after BH correction ($m{=}16$). $\\\\\\\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\\\\\\\textbf{bold}: $p < 0.05$; {*}\\\\\\\\,uncorrected $p < 0.05$ (BH adj.\\\\\\\\ $p = 0.112$); $^{3s}$\\\\\\\\,3-seed; $^{4s}$\\\\\\\\,4-seed confirmatory (unmarked: single-seed exploratory). Degenerate conditions ($C_0 < 5\\\\\\\\%$: QwQ-32B AIME, Qwen2.5-14B GSM8K) yield $\\\\\\\\Delta = 0$; oracle upper bounds are reported in Appendix~\\\\\\\\ref{app:oracle}.}\\\\n    25\\\\t\\\\\\\\label{tab:main_results}\\\\n    26\\\\t\\\\\\\\begin{tabular}{@{}llrrrrl@{}}\\\\n    27\\\\t\\\\\\\\toprule\\\\n    28\\\\tModel & Domain & $n$ & SC (\\\\\\\\%) & SICA (\\\\\\\\%) & $\\\\\\\\Delta$ (pp) & $p$ \\\\\\\\\\\\\\\\\\\\n    29\\\\t\\\\\\\\midrule\\\\n    30\\\\t\\\\\\\\multicolumn{7}{l}{\\\\\\\\textit{Type C: error amplification (SC $\\\\\\\\leq$ 40\\\\\\\\%)}} \\\\\\\\\\\\\\\\\\\\n    31\\\\tMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\\\\\\\mathbf{-2.83}$ & 0.014{*} \\\\\\\\\\\\\\\\\\\\n    32\\\\t\\\\\\\\midrule\\\\n    33\\\\t\\\\\\\\multicolumn{7}{l}{\\\\\\\\textit{Intermediate SC (SC $\\\\\\\\sim$50--60\\\\\\\\%, Mistral-7B only)}} \\\\\\\\\\\\\\\\\\\\n    34\\\\tMistral-7B & LogiQA & 200 & 50.00 & 51.50 & $+$1.50 & 0.581 \\\\\\\\\\\\\\\\\\\\n    35\\\\tMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\\\\\\\\\\\\\\\\n    36\\\\tMistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\\\\\\\\\\\\\\\\\\\n    37\\\\tMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\\\\\\\\\\\\\\\\n    38\\\\tMistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\\\\\\\\\\\\\\\\\\\n    39\\\\t\\\\\\\\midrule\\\\n    40\\\\t\\\\\\\\multicolumn{7}{l}{\\\\\\\\textit{Type A: confirmation bias (SC $\\\\\\\\geq$ 60\\\\\\\\%)}} \\\\\\\\\\\\\\\\\\\\n    41\\\\tLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\\\\\\\\\\\\\\\\n    42\\\\tLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\\\\\\\\\\\\\\\\n    43\\\\t\\\\\\\\addlinespace\\\\n    44\\\\tQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\\\\\\\\\\\\\\\\n    45\\\\tQwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\\\\\\\mathbf{-2.50}$ & 0.011{*} \\\\\\\\\\\\\\\\\\\\n    46\\\\tQwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.98 & 75.49 & $-$0.49 & 1.000 \\\\\\\\\\\\\\\\\\\\n    47\\\\tQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\\\\\\\\\\\\\\\\n    48\\\\tQwen2.5-14B & LogiQA & 200 & 79.00 & 78.00 & $-$1.00 & 0.625 \\\\\\\\\\\\\\\\\\\\n    49\\\\t\\\\\\\\addlinespace\\\\n    50\\\\tQwen3-14B & FOLIO & 204 & 83.33 & 84.80 & $+$1.47 & 1.000 \\\\\\\\\\\\\\\\\\\\n    51\\\\tQwen3-14B & PW-D5 & 600 & 85.83 & 85.67 & $-$0.17 & 1.000 \\\\\\\\\\\\\\\\\\\\n    52\\\\tQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\\\\\\\\\\\\\\\\n    53\\\\t\\\\\\\\bottomrule\\\\n    54\\\\t\\\\\\\\end{tabular}\\\\n    55\\\\t\\\\\\\\end{table*}\\\\n    56\\\\t\\\\n    57\\\\t\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n    58\\\\t\\\\n    59\\\\t\\\\n    60\\\\t\\\\\\\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+13.73$\\\\\\\\,pp FOLIO, $+17.17$\\\\\\\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\\\\\\\sim}$12\\\\\\\\% of this ceiling (Appendix~\\\\\\\\ref{app:oracle}).\\\\n    61\\\\t\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\\section{Experiments}\\n     2\\t\\\\label{sec:experiments}\\n     3\\t\\n     4\\t\\\\subsection{Setup}\\n     5\\t\\\\label{sec:exp-setup}\\n     6\\t\\n     7\\tWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\\\S\\\\ref{sec:analysis}).\\n     8\\t\\n     9\\t\\\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\\\citep{dubey2024llama3}, and QwQ-32B~\\\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\\n    10\\t\\n    11\\t\\\\paragraph{Datasets.} FOLIO~\\\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\\\%$).\\n    12\\t\\n    13\\t\\\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\\\text{ext}}{=}0.3$, $\\\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\\\alpha{=}0.05$); 95\\\\% bootstrap CIs ($10{,}000$ resamples) for $n \\\\geq 200$. SICA incurs $4.5{\\\\times}$ SC wall-clock; extraction accounts for 76\\\\% of overhead.\\n    14\\t\\n    15\\t\\n    16\\t\\\\subsection{Main Results}\\n    17\\t\\\\label{sec:main-results}\\n    18\\t\\n    19\\tTable~\\\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\\n    20\\t\\n    21\\t\\\\begin{table*}[t]\\n    22\\t\\\\centering\\n    23\\t\\\\small\\n    24\\t\\\\caption{SICA vs.\\\\ SC across all non-degenerate self-extraction conditions (sorted by SC). No condition shows a significant gain after BH correction ($m{=}16$). $\\\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\\\textbf{bold}: $p < 0.05$; {*}\\\\,uncorrected $p < 0.05$ (BH adj.\\\\ $p = 0.112$); $^{3s}$\\\\,3-seed; $^{4s}$\\\\,4-seed confirmatory (unmarked: single-seed exploratory). Degenerate conditions ($C_0 < 5\\\\%$: QwQ-32B AIME, Qwen2.5-14B GSM8K) yield $\\\\Delta = 0$; oracle upper bounds are reported in Appendix~\\\\ref{app:oracle}.}\\n    25\\t\\\\label{tab:main_results}\\n    26\\t\\\\begin{tabular}{@{}llrrrrl@{}}\\n    27\\t\\\\toprule\\n    28\\tModel & Domain & $n$ & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) & $p$ \\\\\\\\\\n    29\\t\\\\midrule\\n    30\\t\\\\multicolumn{7}{l}{\\\\textit{Type C: error amplification (SC $\\\\leq$ 40\\\\%)}} \\\\\\\\\\n    31\\tMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\\\mathbf{-2.83}$ & 0.014{*} \\\\\\\\\\n    32\\t\\\\midrule\\n    33\\t\\\\multicolumn{7}{l}{\\\\textit{Intermediate SC (SC $\\\\sim$50--60\\\\%, Mistral-7B only)}} \\\\\\\\\\n    34\\tMistral-7B & LogiQA & 200 & 50.00 & 51.50 & $+$1.50 & 0.581 \\\\\\\\\\n    35\\tMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\\\\\\n    36\\tMistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\\\\\\\\\n    37\\tMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\\\\\\n    38\\tMistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\\\\\\\\\n    39\\t\\\\midrule\\n    40\\t\\\\multicolumn{7}{l}{\\\\textit{Type A: confirmation bias (SC $\\\\geq$ 60\\\\%)}} \\\\\\\\\\n    41\\tLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\\\\\\n    42\\tLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\\\\\\n    43\\t\\\\addlinespace\\n    44\\tQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\\\\\\n    45\\tQwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\\\mathbf{-2.50}$ & 0.011{*} \\\\\\\\\\n    46\\tQwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.98 & 75.49 & $-$0.49 & 1.000 \\\\\\\\\\n    47\\tQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\\\\\\n    48\\tQwen2.5-14B & LogiQA & 200 & 79.00 & 78.00 & $-$1.00 & 0.625 \\\\\\\\\\n    49\\t\\\\addlinespace\\n    50\\tQwen3-14B & FOLIO & 204 & 83.33 & 84.80 & $+$1.47 & 1.000 \\\\\\\\\\n    51\\tQwen3-14B & PW-D5 & 600 & 85.83 & 85.67 & $-$0.17 & 1.000 \\\\\\\\\\n    52\\tQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\\\\\\n    53\\t\\\\bottomrule\\n    54\\t\\\\end{tabular}\\n    55\\t\\\\end{table*}\\n    56\\t\\n    57\\t\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n    58\\t\\n    59\\t\\n    60\\t\\\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+13.73$\\\\,pp FOLIO, $+17.17$\\\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\\\sim}$12\\\\% of this ceiling (Appendix~\\\\ref{app:oracle}).\\n    61\\t\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read the appendix table. Let me read the relevant section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "0363a584-8216-4762-b0db-4418a5373b15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQ8AgsBYsj3axG7CWkdYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 24964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+读到了 experiments.tex。现在读附录表格。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "2969a0e0-501a-45b0-a5ab-99a7e36e85ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQ8AgsBYsj3axG7CWkdYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 24964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019uCv2aoVFmz6H8Yvn7XmTW`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -1150 /root/symb_invariant_consensus/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "bf053540-2cf2-4922-8193-a7f04aeb0692",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQ8AgsBYsj3axG7CWkdYu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3582,
+      "cache_read_input_tokens": 24964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3582
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T00:14:46.529Z_
+
+<details><summary>↩ Tool result · `toolu_019uCv2aoVFmz6H8Yvn7XmTW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Regime Scatter Plot}\\n\\\\label{app:regime-scatter}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{f2_regime_scatter}\\n\\\\caption{SICA $\\\\Delta$ (pp) vs.\\\\ SC baseline. Filled: $n \\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\ $p = 0.112$).}\\n\\\\label{fig:regime-scatter}\\n\\\\end{figure}\\n\\n\\\\section{Prompt Templates}\\n\\\\label{app:prompts}\\n\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\n\\n\\\\paragraph{System Prompt.}\\n\\n\\\\begin{lstlisting}\\nYou are a constraint extraction tool. Output ONLY\\nvalid JSON. Do NOT solve problems, reason about\\ncorrectness, or think step-by-step. Extract\\nconstraints from the given trace exactly as stated.\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\_PROMPT).}\\n\\nUsed for GSM8K and AIME datasets. The placeholder \\\\texttt{\\\\{trace\\\\}} is replaced with the reasoning trace at runtime.\\n\\n\\\\begin{lstlisting}\\nExtract mathematical constraints from this reasoning\\ntrace as a JSON object.\\n\\nRules:\\n- type: \\\"equation\\\", \\\"inequality\\\", or \\\"predicate\\\"\\n- expression: human-readable, e.g. \\\"x + y == 14\\\"\\n- z3_formula: a single comparison expression in\\n  Python Z3 syntax\\n- source_step: step number where the constraint\\n  appears\\n- Use variable names from the trace\\n\\nz3_formula MUST follow these rules:\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\n  /, **, %\\n- Use individual named variables: a1, a2, a3...\\n  NOT arrays a[1] or sets A\\n- Expand all sums explicitly:\\n  \\\"a1 + a2 + a3 == 55\\\" NOT \\\"sum([a1,a2,a3])\\\"\\n- NO Python builtins: sum(), len(), max(), min(),\\n  list(), set(), range(), int()\\n- Each z3_formula must be exactly ONE comparison\\n  (==, !=, <, >, <=, >=)\\n- For multiple values, write separate constraints\\n  for each\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"equation\\\",\\n  \\\"expression\\\": \\\"x + y == 14\\\",\\n  \\\"z3_formula\\\": \\\"x + y == 14\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"final_answer\\\",\\n \\\"variables\\\": [\\\"x\\\", \\\"y\\\"]}\\n\\nTrace:\\n{trace}\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\_EXTRACTION\\\\_PROMPT).}\\n\\nUsed for ProofWriter and FOLIO datasets.\\n\\n\\\\begin{lstlisting}\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\nsolver.\\n- Do NOT re-solve or re-reason about the problem.\\n- Do NOT verify whether the trace's reasoning is\\n  correct.\\n- ONLY extract the logical constraints that are\\n  explicitly stated or used in the trace below.\\n- Output ONLY the JSON object, nothing else.\\n\\nExtract logical constraints from this reasoning trace\\nabout a logic problem.\\n\\nThe problem has facts (base assertions), rules\\n(grounded implications), and derived conclusions.\\nConvert each into a Z3 boolean formula.\\n\\nVariable naming:\\n- Unary property: property_entity\\n  (e.g., kind_anne, red_charlie, round_fiona)\\n- Binary relation: relation_subject_object\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\n- Use lowercase with underscores only\\n\\nConstraint types:\\n- \\\"fact\\\": a given assertion,\\n  e.g., kind_anne == True\\n- \\\"rule\\\": a grounded implication over specific\\n  entities, e.g., Implies(kind_anne, nice_anne)\\n- \\\"derived\\\": an inferred conclusion from facts +\\n  rules, e.g., nice_anne == True\\n\\nZ3 operators:\\n- Implies(a, b) for if-then rules\\n- And(a, b, ...) for conjunctive conditions\\n- Or(a, b, ...) for disjunctive conditions\\n- Not(a) for negation\\n- == True / == False for boolean assertions\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"fact\\\",\\n  \\\"expression\\\": \\\"kind(anne)\\\",\\n  \\\"z3_formula\\\": \\\"kind_anne == True\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"True or False or Unkno\\n\\n... [截断: 输出过长，省略 63239 字符] ...\\n\\ndeviation shrinks $2.8\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\S\\\\ref{sec:cross-arch}).}\\n\\\\end{table}\\n\\n\\\\paragraph{Extraction temperature sensitivity.}\\n\\\\label{app:text-sensitivity}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Effect of extraction temperature $T_{\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\dagger$\\\\,Uses a different trace set (SC $= 54.41\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\%$).}\\n\\\\label{tab:text-sensitivity}\\n\\\\begin{tabular}{@{}cccr@{}}\\n\\\\toprule\\n$T_{\\\\text{ext}}$ & SICA (\\\\%) & $\\\\Delta$ vs.\\\\ SC (pp) & Avg.\\\\ \\\\#Constr. \\\\\\\\\\n\\\\midrule\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\n$0.3^\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nControlling for the trace set (excluding $T_{\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\Delta \\\\leq +1.47$\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\n\\n\\\\paragraph{Multi-seed replication.}\\n\\\\label{app:multi-seed}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, $-0.98 \\\\pm 2.25$\\\\,pp).}\\n\\\\label{tab:multi-seed}\\n\\\\begin{tabular}{@{}lrrrr@{}}\\n\\\\toprule\\nSeed & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Mistral-7B $\\\\times$ FOLIO ($n{=}204$)\\\\textsuperscript{a}}} \\\\\\\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\\\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\\\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 56.53 $\\\\pm$ 2.51 & 56.70 $\\\\pm$ 0.75 & $+$0.16 $\\\\pm$ 2.70 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Mistral-7B $\\\\times$ PW-D5 ($n{=}600$)}} \\\\\\\\\\n42 & 40.00 & 36.67 & $-$3.33 \\\\\\\\\\n123 & 40.83 & 37.50 & $-$3.33 \\\\\\\\\\n456 & 39.83 & 38.67 & $-$1.17 \\\\\\\\\\n789 & 38.83 & 37.17 & $-$1.67 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 39.87 $\\\\pm$ 0.82 & 37.50 $\\\\pm$ 0.85 & $-$2.38 $\\\\pm$ 1.12 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Qwen2.5-14B $\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\\\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\\\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\\\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 75.01 $\\\\pm$ 1.67 & 73.78 $\\\\pm$ 1.30 & $-$1.24 $\\\\pm$ 0.86 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{LLaMA-3.1-8B $\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\n123 & 67.16 & 63.73 & $-$3.43 \\\\\\\\\\n456 & 61.76 & 61.27 & $-$0.49 \\\\\\\\\\n789 & 67.16 & 68.14 & $+$0.98 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 65.36 $\\\\pm$ 3.12 & 64.38 $\\\\pm$ 3.54 & $-$0.98 $\\\\pm$ 2.25 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\\n\\\\end{table}\\n\\n\\\\subsection{Sub-population Analysis}\\n\\\\label{app:subpopulation}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{SICA vs.\\\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\\\Delta$\\\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\\n\\\\label{tab:subpop-answer-type}\\n\\\\begin{tabular}{ll rrr rr}\\n\\\\toprule\\n\\\\textbf{Dataset} & \\\\textbf{Label} & $n$ & \\\\textbf{SC} & \\\\textbf{SICA} & $\\\\Delta$\\\\,pp & $p$ \\\\\\\\\\n\\\\midrule\\n\\\\multirow{4}{*}{FOLIO-204}\\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\\\\\\n & False   &  63 & 42.9 & 42.9 & $\\\\pm$0.0 & 1.0\\\\hphantom{00} \\\\\\\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\\\\\\n & \\\\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\\\\\\n\\\\midrule\\n\\\\multirow{4}{*}{PW-600}\\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\\\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "ff63b8a0-1fac-44d2-8d04-16a628306de0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Regime Scatter Plot}\\\\n\\\\\\\\label{app:regime-scatter}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{f2_regime_scatter}\\\\n\\\\\\\\caption{SICA $\\\\\\\\Delta$ (pp) vs.\\\\\\\\ SC baseline. Filled: $n \\\\\\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\\\\\ $p = 0.112$).}\\\\n\\\\\\\\label{fig:regime-scatter}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\section{Prompt Templates}\\\\n\\\\\\\\label{app:prompts}\\\\n\\\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\\\n\\\\n\\\\\\\\paragraph{System Prompt.}\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nYou are a constraint extraction tool. Output ONLY\\\\nvalid JSON. Do NOT solve problems, reason about\\\\ncorrectness, or think step-by-step. Extract\\\\nconstraints from the given trace exactly as stated.\\\\n\\\\\\\\end{lstlisting}\\\\n\\\\n\\\\\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\\\\\_PROMPT).}\\\\n\\\\nUsed for GSM8K and AIME datasets. The placeholder \\\\\\\\texttt{\\\\\\\\{trace\\\\\\\\}} is replaced with the reasoning trace at runtime.\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nExtract mathematical constraints from this reasoning\\\\ntrace as a JSON object.\\\\n\\\\nRules:\\\\n- type: \\\\\\\"equation\\\\\\\", \\\\\\\"inequality\\\\\\\", or \\\\\\\"predicate\\\\\\\"\\\\n- expression: human-readable, e.g. \\\\\\\"x + y == 14\\\\\\\"\\\\n- z3_formula: a single comparison expression in\\\\n  Python Z3 syntax\\\\n- source_step: step number where the constraint\\\\n  appears\\\\n- Use variable names from the trace\\\\n\\\\nz3_formula MUST follow these rules:\\\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\\\n  /, **, %\\\\n- Use individual named variables: a1, a2, a3...\\\\n  NOT arrays a[1] or sets A\\\\n- Expand all sums explicitly:\\\\n  \\\\\\\"a1 + a2 + a3 == 55\\\\\\\" NOT \\\\\\\"sum([a1,a2,a3])\\\\\\\"\\\\n- NO Python builtins: sum(), len(), max(), min(),\\\\n  list(), set(), range(), int()\\\\n- Each z3_formula must be exactly ONE comparison\\\\n  (==, !=, <, >, <=, >=)\\\\n- For multiple values, write separate constraints\\\\n  for each\\\\n\\\\nOutput ONLY the JSON below, nothing else:\\\\n{\\\\\\\"constraints\\\\\\\": [{\\\\\\\"type\\\\\\\": \\\\\\\"equation\\\\\\\",\\\\n  \\\\\\\"expression\\\\\\\": \\\\\\\"x + y == 14\\\\\\\",\\\\n  \\\\\\\"z3_formula\\\\\\\": \\\\\\\"x + y == 14\\\\\\\",\\\\n  \\\\\\\"source_step\\\\\\\": 1}],\\\\n \\\\\\\"answer\\\\\\\": \\\\\\\"final_answer\\\\\\\",\\\\n \\\\\\\"variables\\\\\\\": [\\\\\\\"x\\\\\\\", \\\\\\\"y\\\\\\\"]}\\\\n\\\\nTrace:\\\\n{trace}\\\\n\\\\\\\\end{lstlisting}\\\\n\\\\n\\\\\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\\\\\_EXTRACTION\\\\\\\\_PROMPT).}\\\\n\\\\nUsed for ProofWriter and FOLIO datasets.\\\\n\\\\n\\\\\\\\begin{lstlisting}\\\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\\\nsolver.\\\\n- Do NOT re-solve or re-reason about the problem.\\\\n- Do NOT verify whether the trace's reasoning is\\\\n  correct.\\\\n- ONLY extract the logical constraints that are\\\\n  explicitly stated or used in the trace below.\\\\n- Output ONLY the JSON object, nothing else.\\\\n\\\\nExtract logical constraints from this reasoning trace\\\\nabout a logic problem.\\\\n\\\\nThe problem has facts (base assertions), rules\\\\n(grounded implications), and derived conclusions.\\\\nConvert each into a Z3 boolean formula.\\\\n\\\\nVariable naming:\\\\n- Unary property: property_entity\\\\n  (e.g., kind_anne, red_charlie, round_fiona)\\\\n- Binary relation: relation_subject_object\\\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\\\n- Use lowercase with underscores only\\\\n\\\\nConstraint types:\\\\n- \\\\\\\"fact\\\\\\\": a given assertion,\\\\n  e.g., kind_anne == True\\\\n- \\\\\\\"rule\\\\\\\": a grounded implication over specific\\\\n  entities, e.g., Implies(kind_anne, nice_anne)\\\\n- \\\\\\\"derived\\\\\\\": an inferred conclusion from facts +\\\\n  rules, e.g., nice_anne == True\\\\n\\\\nZ3 operators:\\\\n- Implies(a, b) for if-then rules\\\\n- And(a, b, ...) for conjunctive conditions\\\\n- Or(a, b, ...) for disjunctive conditions\\\\n- Not(a) for negation\\\\n- == True / == False for boolean assertions\\\\n\\\\nOutput ONLY the JSON below, nothing else:\\\\n{\\\\\\\"constraints\\\\\\\": [{\\\\\\\"type\\\\\\\": \\\\\\\"fact\\\\\\\",\\\\n  \\\\\\\"expression\\\\\\\": \\\\\\\"kind(anne)\\\\\\\",\\\\n  \\\\\\\"z3_formula\\\\\\\": \\\\\\\"kind_anne == True\\\\\\\",\\\\n  \\\\\\\"source_step\\\\\\\": 1}],\\\\n \\\\\\\"answer\\\\\\\": \\\\\\\"True or False or Unkno\\\\n\\\\n... [截断: 输出过长，省略 63239 字符] ...\\\\n\\\\ndeviation shrinks $2.8\\\\\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\\\\\S\\\\\\\\ref{sec:cross-arch}).}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Extraction temperature sensitivity.}\\\\n\\\\\\\\label{app:text-sensitivity}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Effect of extraction temperature $T_{\\\\\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\\\\\dagger$\\\\\\\\,Uses a different trace set (SC $= 54.41\\\\\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\\\\\%$).}\\\\n\\\\\\\\label{tab:text-sensitivity}\\\\n\\\\\\\\begin{tabular}{@{}cccr@{}}\\\\n\\\\\\\\toprule\\\\n$T_{\\\\\\\\text{ext}}$ & SICA (\\\\\\\\%) & $\\\\\\\\Delta$ vs.\\\\\\\\ SC (pp) & Avg.\\\\\\\\ \\\\\\\\#Constr. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\\\\\\\\\\\n$0.3^\\\\\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\\\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\\\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\\\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nControlling for the trace set (excluding $T_{\\\\\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\\\\\Delta \\\\\\\\leq +1.47$\\\\\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\\\n\\\\n\\\\\\\\paragraph{Multi-seed replication.}\\\\n\\\\\\\\label{app:multi-seed}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\\\\\times$ PW, Qwen2.5-14B $\\\\\\\\times$ FOLIO) show $\\\\\\\\Delta \\\\\\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\\\\\pm 2.70$, $-0.98 \\\\\\\\pm 2.25$\\\\\\\\,pp).}\\\\n\\\\\\\\label{tab:multi-seed}\\\\n\\\\\\\\begin{tabular}{@{}lrrrr@{}}\\\\n\\\\\\\\toprule\\\\nSeed & SC (\\\\\\\\%) & SICA (\\\\\\\\%) & $\\\\\\\\Delta$ (pp) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{4}{@{}l}{\\\\\\\\textit{Mistral-7B $\\\\\\\\times$ FOLIO ($n{=}204$)\\\\\\\\textsuperscript{a}}} \\\\\\\\\\\\\\\\\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\\\\\\\\\\\\\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\\\\\\\\\\\\\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMean $\\\\\\\\pm$ SD & 56.53 $\\\\\\\\pm$ 2.51 & 56.70 $\\\\\\\\pm$ 0.75 & $+$0.16 $\\\\\\\\pm$ 2.70 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{4}{@{}l}{\\\\\\\\textit{Mistral-7B $\\\\\\\\times$ PW-D5 ($n{=}600$)}} \\\\\\\\\\\\\\\\\\\\n42 & 40.00 & 36.67 & $-$3.33 \\\\\\\\\\\\\\\\\\\\n123 & 40.83 & 37.50 & $-$3.33 \\\\\\\\\\\\\\\\\\\\n456 & 39.83 & 38.67 & $-$1.17 \\\\\\\\\\\\\\\\\\\\n789 & 38.83 & 37.17 & $-$1.67 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMean $\\\\\\\\pm$ SD & 39.87 $\\\\\\\\pm$ 0.82 & 37.50 $\\\\\\\\pm$ 0.85 & $-$2.38 $\\\\\\\\pm$ 1.12 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{4}{@{}l}{\\\\\\\\textit{Qwen2.5-14B $\\\\\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\\\\\\\\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\\\\\\\\\\\\\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\\\\\\\\\\\\\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\\\\\\\\\\\\\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMean $\\\\\\\\pm$ SD & 75.01 $\\\\\\\\pm$ 1.67 & 73.78 $\\\\\\\\pm$ 1.30 & $-$1.24 $\\\\\\\\pm$ 0.86 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{4}{@{}l}{\\\\\\\\textit{LLaMA-3.1-8B $\\\\\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\\\\\\\\\\\n123 & 67.16 & 63.73 & $-$3.43 \\\\\\\\\\\\\\\\\\\\n456 & 61.76 & 61.27 & $-$0.49 \\\\\\\\\\\\\\\\\\\\n789 & 67.16 & 68.14 & $+$0.98 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMean $\\\\\\\\pm$ SD & 65.36 $\\\\\\\\pm$ 3.12 & 64.38 $\\\\\\\\pm$ 3.54 & $-$0.98 $\\\\\\\\pm$ 2.25 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\vspace{2pt}\\\\n{\\\\\\\\footnotesize \\\\\\\\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Sub-population Analysis}\\\\n\\\\\\\\label{app:subpopulation}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{SICA vs.\\\\\\\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\\\\\\\Delta$\\\\\\\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\\\\n\\\\\\\\label{tab:subpop-answer-type}\\\\n\\\\\\\\begin{tabular}{ll rrr rr}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Dataset} & \\\\\\\\textbf{Label} & $n$ & \\\\\\\\textbf{SC} & \\\\\\\\textbf{SICA} & $\\\\\\\\Delta$\\\\\\\\,pp & $p$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{FOLIO-204}\\\\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\\\\\\\\\\\\\\\\n & False   &  63 & 42.9 & 42.9 & $\\\\\\\\pm$0.0 & 1.0\\\\\\\\hphantom{00} \\\\\\\\\\\\\\\\\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\\\\\\\\\\\\\\\\n & \\\\\\\\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multirow{4}{*}{PW-600}\\\\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\\\\\\\\\\\\\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Regime Scatter Plot}\\n\\\\label{app:regime-scatter}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{f2_regime_scatter}\\n\\\\caption{SICA $\\\\Delta$ (pp) vs.\\\\ SC baseline. Filled: $n \\\\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\\\ $p = 0.112$).}\\n\\\\label{fig:regime-scatter}\\n\\\\end{figure}\\n\\n\\\\section{Prompt Templates}\\n\\\\label{app:prompts}\\n\\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\\n\\n\\\\paragraph{System Prompt.}\\n\\n\\\\begin{lstlisting}\\nYou are a constraint extraction tool. Output ONLY\\nvalid JSON. Do NOT solve problems, reason about\\ncorrectness, or think step-by-step. Extract\\nconstraints from the given trace exactly as stated.\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\\\_PROMPT).}\\n\\nUsed for GSM8K and AIME datasets. The placeholder \\\\texttt{\\\\{trace\\\\}} is replaced with the reasoning trace at runtime.\\n\\n\\\\begin{lstlisting}\\nExtract mathematical constraints from this reasoning\\ntrace as a JSON object.\\n\\nRules:\\n- type: \\\"equation\\\", \\\"inequality\\\", or \\\"predicate\\\"\\n- expression: human-readable, e.g. \\\"x + y == 14\\\"\\n- z3_formula: a single comparison expression in\\n  Python Z3 syntax\\n- source_step: step number where the constraint\\n  appears\\n- Use variable names from the trace\\n\\nz3_formula MUST follow these rules:\\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\\n  /, **, %\\n- Use individual named variables: a1, a2, a3...\\n  NOT arrays a[1] or sets A\\n- Expand all sums explicitly:\\n  \\\"a1 + a2 + a3 == 55\\\" NOT \\\"sum([a1,a2,a3])\\\"\\n- NO Python builtins: sum(), len(), max(), min(),\\n  list(), set(), range(), int()\\n- Each z3_formula must be exactly ONE comparison\\n  (==, !=, <, >, <=, >=)\\n- For multiple values, write separate constraints\\n  for each\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"equation\\\",\\n  \\\"expression\\\": \\\"x + y == 14\\\",\\n  \\\"z3_formula\\\": \\\"x + y == 14\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"final_answer\\\",\\n \\\"variables\\\": [\\\"x\\\", \\\"y\\\"]}\\n\\nTrace:\\n{trace}\\n\\\\end{lstlisting}\\n\\n\\\\paragraph{Logical Constraint Extraction (LOGIC\\\\_EXTRACTION\\\\_PROMPT).}\\n\\nUsed for ProofWriter and FOLIO datasets.\\n\\n\\\\begin{lstlisting}\\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\\nsolver.\\n- Do NOT re-solve or re-reason about the problem.\\n- Do NOT verify whether the trace's reasoning is\\n  correct.\\n- ONLY extract the logical constraints that are\\n  explicitly stated or used in the trace below.\\n- Output ONLY the JSON object, nothing else.\\n\\nExtract logical constraints from this reasoning trace\\nabout a logic problem.\\n\\nThe problem has facts (base assertions), rules\\n(grounded implications), and derived conclusions.\\nConvert each into a Z3 boolean formula.\\n\\nVariable naming:\\n- Unary property: property_entity\\n  (e.g., kind_anne, red_charlie, round_fiona)\\n- Binary relation: relation_subject_object\\n  (e.g., eats_bear_squirrel, likes_lion_cat)\\n- Use lowercase with underscores only\\n\\nConstraint types:\\n- \\\"fact\\\": a given assertion,\\n  e.g., kind_anne == True\\n- \\\"rule\\\": a grounded implication over specific\\n  entities, e.g., Implies(kind_anne, nice_anne)\\n- \\\"derived\\\": an inferred conclusion from facts +\\n  rules, e.g., nice_anne == True\\n\\nZ3 operators:\\n- Implies(a, b) for if-then rules\\n- And(a, b, ...) for conjunctive conditions\\n- Or(a, b, ...) for disjunctive conditions\\n- Not(a) for negation\\n- == True / == False for boolean assertions\\n\\nOutput ONLY the JSON below, nothing else:\\n{\\\"constraints\\\": [{\\\"type\\\": \\\"fact\\\",\\n  \\\"expression\\\": \\\"kind(anne)\\\",\\n  \\\"z3_formula\\\": \\\"kind_anne == True\\\",\\n  \\\"source_step\\\": 1}],\\n \\\"answer\\\": \\\"True or False or Unkno\\n\\n... [截断: 输出过长，省略 63239 字符] ...\\n\\ndeviation shrinks $2.8\\\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\\\S\\\\ref{sec:cross-arch}).}\\n\\\\end{table}\\n\\n\\\\paragraph{Extraction temperature sensitivity.}\\n\\\\label{app:text-sensitivity}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Effect of extraction temperature $T_{\\\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\\\dagger$\\\\,Uses a different trace set (SC $= 54.41\\\\%$); all other conditions share the same traces (SC $= 55.88\\\\%$).}\\n\\\\label{tab:text-sensitivity}\\n\\\\begin{tabular}{@{}cccr@{}}\\n\\\\toprule\\n$T_{\\\\text{ext}}$ & SICA (\\\\%) & $\\\\Delta$ vs.\\\\ SC (pp) & Avg.\\\\ \\\\#Constr. \\\\\\\\\\n\\\\midrule\\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\\\\\\n$0.3^\\\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\\\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\\\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\\\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nControlling for the trace set (excluding $T_{\\\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\\\Delta \\\\leq +1.47$\\\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\\n\\n\\\\paragraph{Multi-seed replication.}\\n\\\\label{app:multi-seed}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\\\pm$ SD computed across seeds. Two of four conditions (Mistral-7B $\\\\times$ PW, Qwen2.5-14B $\\\\times$ FOLIO) show $\\\\Delta \\\\leq 0$ across all seeds; the remaining two show mixed signs with negative means ($+0.16 \\\\pm 2.70$, $-0.98 \\\\pm 2.25$\\\\,pp).}\\n\\\\label{tab:multi-seed}\\n\\\\begin{tabular}{@{}lrrrr@{}}\\n\\\\toprule\\nSeed & SC (\\\\%) & SICA (\\\\%) & $\\\\Delta$ (pp) \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Mistral-7B $\\\\times$ FOLIO ($n{=}204$)\\\\textsuperscript{a}}} \\\\\\\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\\\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\\\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 56.53 $\\\\pm$ 2.51 & 56.70 $\\\\pm$ 0.75 & $+$0.16 $\\\\pm$ 2.70 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Mistral-7B $\\\\times$ PW-D5 ($n{=}600$)}} \\\\\\\\\\n42 & 40.00 & 36.67 & $-$3.33 \\\\\\\\\\n123 & 40.83 & 37.50 & $-$3.33 \\\\\\\\\\n456 & 39.83 & 38.67 & $-$1.17 \\\\\\\\\\n789 & 38.83 & 37.17 & $-$1.67 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 39.87 $\\\\pm$ 0.82 & 37.50 $\\\\pm$ 0.85 & $-$2.38 $\\\\pm$ 1.12 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{Qwen2.5-14B $\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\\\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\\\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\\\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 75.01 $\\\\pm$ 1.67 & 73.78 $\\\\pm$ 1.30 & $-$1.24 $\\\\pm$ 0.86 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{4}{@{}l}{\\\\textit{LLaMA-3.1-8B $\\\\times$ FOLIO ($n{=}204$)}} \\\\\\\\\\n123 & 67.16 & 63.73 & $-$3.43 \\\\\\\\\\n456 & 61.76 & 61.27 & $-$0.49 \\\\\\\\\\n789 & 67.16 & 68.14 & $+$0.98 \\\\\\\\\\n\\\\midrule\\nMean $\\\\pm$ SD & 65.36 $\\\\pm$ 3.12 & 64.38 $\\\\pm$ 3.54 & $-$0.98 $\\\\pm$ 2.25 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\\n\\\\end{table}\\n\\n\\\\subsection{Sub-population Analysis}\\n\\\\label{app:subpopulation}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{SICA vs.\\\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\\\Delta$\\\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\\n\\\\label{tab:subpop-answer-type}\\n\\\\begin{tabular}{ll rrr rr}\\n\\\\toprule\\n\\\\textbf{Dataset} & \\\\textbf{Label} & $n$ & \\\\textbf{SC} & \\\\textbf{SICA} & $\\\\Delta$\\\\,pp & $p$ \\\\\\\\\\n\\\\midrule\\n\\\\multirow{4}{*}{FOLIO-204}\\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\\\\\\n & False   &  63 & 42.9 & 42.9 & $\\\\pm$0.0 & 1.0\\\\hphantom{00} \\\\\\\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\\\\\\n & \\\\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\\\\\\n\\\\midrule\\n\\\\multirow{4}{*}{PW-600}\\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\\\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the data from both files. Let me compare:
+
+**Appendix tab:multi-seed:**
+- Mistral-7B × FOLIO (3 seeds): mean = +0.16 ± 2.70
+- Mistral-7B × PW-D5 (4 seeds): mean = -2.38 ± 1.12
+- Qwen2.5-14B × FOLIO (4 seeds): mean = -1.24 ± 0.86
+
+
+- LLaMA-3.1-8B × FOLIO (3 seeds): mean = -0.98 ± 2.25
+
+But the experiments.tex file shows a different value for Qwen2.5-14B × FOLIO: -1.79±0.25 instead of -1.24±0.86. I need to figure out which one is correct or if they're measuring something different. I'm checking the appendix caption more carefully—it says the remaining two conditions show "mixed signs with negative means," but one value is positive (+0.16) while the other is negative (-0.98), so the phrasing is a bit ambiguous about whether "negative means" refers to each condition individually or the aggregate.
+
+Looking at experiments.tex line 57, the description "near-zero means with mixed signs" is actually accurate for those values. The only correction I need to make is updating the mean and standard error from `$\bar\Delta=-1.79\pm0.25$` to `$\bar\Delta=-1.24\pm0.86$`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "f5ddeb44-2ca7-4553-b3e3-e0ed913c2c59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjxXpR3wYJ7Y2KqjTVr35G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4209,
+      "cache_read_input_tokens": 28546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+附录表格确认：
+| 条件 | 附录 mean±SD | experiments.tex 当前值 | 状态 |
+|------|-------------|----------------------|------|
+| Mistral-7B × PW (4s) | -2.38±1.12 | -2.38±1.12 | ✓ |
+| Qwen2.5-14B × FOLIO (4s) | **-1.24±0.86** | **-1.79±0.25** | ✗ |
+| Mistral-7B × FOLIO (3s) | +0.16±2.70 | (未显式列出，仅说"near-zero") | ✓ |
+| LLaMA-8B × FOLIO (3s) | -0.98±2.25 | (未显式列出，仅说"near-zero") | ✓ |
+
+唯一不一致的是 Qwen2.5-14B × FOLIO。修复：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "78dd121f-980d-46a0-8366-257005e9eb5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjxXpR3wYJ7Y2KqjTVr35G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4209,
+      "cache_read_input_tokens": 28546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UJUpPH84C1EjKbmNkEbYQh`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && sed -i 's/\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25/\\\\\\\\bar\\\\\\\\Delta=-1.24\\\\\\\\pm0.86/g' experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "7156205c-255c-41b4-88d4-0364224bd672",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MjxXpR3wYJ7Y2KqjTVr35G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4209,
+      "cache_read_input_tokens": 28546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T00:15:55.144Z_
+
+<details><summary>↩ Tool result · `toolu_01UJUpPH84C1EjKbmNkEbYQh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "a4a41e14-da4d-47e9-96ea-40f4512d5022",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LZ8Nx8S3tJvApD7E6Fw3w2`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n 'bar.*Delta\\|\\\\\\\\pm' /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "5f8a3bcb-59c7-46b9-8d67-04d8e22d67fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbLaZGDgofS5aG9EvD1LQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 32755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1466
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T00:15:59.241Z_
+
+<details><summary>↩ Tool result · `toolu_01LZ8Nx8S3tJvApD7E6Fw3w2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "6fd7cb7d-ea80-4c44-8514-16a507d092f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GgccrmV3fTeDR53xdtd9gq`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n 'bar.*Delta' /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "fe1b9cd0-c29b-4c73-b679-d64bc621210f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RsWnUA58usVeoPENrsnD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 34221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 209
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T00:16:03.342Z_
+
+<details><summary>↩ Tool result · `toolu_01GgccrmV3fTeDR53xdtd9gq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "323f8c90-614f-4b0c-9973-431961bb8f34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"57:\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.79\\\\\\\\pm0.25$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.79\\\\pm0.25$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The sed didn't work - the value is still -1.79±0.25. The issue is that the backslashes in the sed command might not be matching correctly. Let me try a different approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "c6569432-3735-4df5-8887-e05f2d879393",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017m1Gruzi2kUGHBBPfuTmPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 34430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+sed 替换没生效，可能是转义问题。换一种方式：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "c70f1e0f-e501-4c57-8b5c-d379f8ae6a8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017m1Gruzi2kUGHBBPfuTmPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 34430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Vsa8GvqSvHdyG7VjSBk2Qx`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && python3 -c \"\ntext = open('experiments.tex').read()\nold = r'\\bar\\Delta=-1.79\\pm0.25'\nnew = r'\\bar\\Delta=-1.24\\pm0.86'\nif old in text:\n    text = text.replace(old, new)\n    open('experiments.tex', 'w').write(text)\n    print('REPLACED')\nelse:\n    print('NOT FOUND')\n    # show context\n    idx = text.find('bar')\n    for i in range(max(0,idx-50), min(len(text), idx+150)):\n        pass\n    print(repr(text[text.find('1.79')-30:text.find('1.79')+30]) if '1.79' in text else 'no 1.79')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "02d7847d-a852-4d2e-823a-bc2e74a3dd59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017m1Gruzi2kUGHBBPfuTmPc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 34430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 920
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T00:16:11.323Z_
+
+<details><summary>↩ Tool result · `toolu_01Vsa8GvqSvHdyG7VjSBk2Qx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"REPLACED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "f38e5459-2603-4631-ac81-cf136df02d78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"REPLACED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"REPLACED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+验证修改和编译：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "8d6e9476-f85e-4c5a-84a8-03714df395fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qMZAwaDyBADh9Jijue8iE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 35350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 455
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CydBuj86ByA5WytnJZ5brF`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n '1.24' /root/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "f2dc92ee-f9da-46c7-8ebb-039b02863d66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qMZAwaDyBADh9Jijue8iE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 35350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 455
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T00:16:15.361Z_
+
+<details><summary>↩ Tool result · `toolu_01CydBuj86ByA5WytnJZ5brF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.24\\\\pm0.86$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "8e453a7e-65bc-4ac2-b169-dd1028c95a54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"57:\\\\\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\\\\\times$ ProofWriter (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-2.38\\\\\\\\pm1.12$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) and Qwen2.5-14B $\\\\\\\\times$ FOLIO (4 seeds, $\\\\\\\\bar\\\\\\\\Delta=-1.24\\\\\\\\pm0.86$\\\\\\\\,pp, all $\\\\\\\\Delta\\\\\\\\leq0$) show uniformly non-positive $\\\\\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\\\\\citep{lakens2017equivalence} with margin $\\\\\\\\pm 2$\\\\\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\\\\\,pp at 80\\\\\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\\\\\,pp (Appendix~\\\\\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\\\\\pm 1$\\\\\\\\,pp, 0/16 equivalent; at $\\\\\\\\pm 3$\\\\\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\\\\\ref{tab:tost-sensitivity}). We adopt $\\\\\\\\pm 2$\\\\\\\\,pp based on the lower bound of SC literature gains (2--5\\\\\\\\,pp \\\\\\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"57:\\\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 8 positive and 7 negative $\\\\Delta$ values ($p = 1.00$, two-sided). Multi-seed replication confirms robustness: Mistral-7B $\\\\times$ ProofWriter (4 seeds, $\\\\bar\\\\Delta=-2.38\\\\pm1.12$\\\\,pp, all $\\\\Delta\\\\leq0$) and Qwen2.5-14B $\\\\times$ FOLIO (4 seeds, $\\\\bar\\\\Delta=-1.24\\\\pm0.86$\\\\,pp, all $\\\\Delta\\\\leq0$) show uniformly non-positive $\\\\Delta$; the remaining two conditions yield near-zero means with mixed signs (Table~\\\\ref{tab:multi-seed}). TOST equivalence tests \\\\citep{lakens2017equivalence} with margin $\\\\pm 2$\\\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\\\,pp at 80\\\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\\\,pp (Appendix~\\\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\\\pm 1$\\\\,pp, 0/16 equivalent; at $\\\\pm 3$\\\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\\\ref{tab:tost-sensitivity}). We adopt $\\\\pm 2$\\\\,pp based on the lower bound of SC literature gains (2--5\\\\,pp \\\\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ee1ZrGCBgatiHfKZPvn15e`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "c844cd6a-2cd9-447c-a8ad-22525eae7b61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qMZAwaDyBADh9Jijue8iE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 35350,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 455
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T00:16:16.361Z_
+
+<details><summary>↩ Tool result · `toolu_01Ee1ZrGCBgatiHfKZPvn15e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "da5b5136-01c3-47eb-96a8-aa44204b0fa4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: latexmk: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: latexmk: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01E9CitmkZC2kE6Agzwo2pe4`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "c74cdb6c-8998-49b8-aea5-7e699e0f1795",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTzj75fNGP6eQx6nc8LdSv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 35805,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1079
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T00:16:20.890Z_
+
+<details><summary>↩ Tool result · `toolu_01E9CitmkZC2kE6Agzwo2pe4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (27 pages, 658835 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "7f1f8d09-d46e-425f-81f3-fbefbc071539",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (27 pages, 658835 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"lvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (27 pages, 658835 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+修复完成。
+
+**Diff**: experiments.tex L57
+```
+- $\bar\Delta=-1.79\pm0.25$
++ $\bar\Delta=-1.24\pm0.86$
+```
+
+**附录 vs 主文对照（全部一致）**:
+
+| 条件 | 附录 tab:multi-seed | experiments.tex（修复后） |
+|------|-------------------|------------------------|
+| Mistral-7B × PW (4s) | -2.38±1.12 | -2.38±1.12 ✓ |
+| Qwen2.5-14B × FOLIO (4s) | -1.24±0.86 | -1.24±0.86 ✓ |
+| Mistral-7B × FOLIO (3s) | +0.16±2.70 | "near-zero...mixed signs" ✓ |
+| LLaMA-8B × FOLIO (3s) | -0.98±2.25 | "near-zero...mixed signs" ✓ |
+
+编译成功，27 页，无错误。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "uuid": "dadee6a7-1eb0-4167-b270-b16ba6b12b40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016FqxBJFrC9K81DKhT6EpLa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 36884,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 342
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 36_
+
+修复完成。
+
+**Diff**: experiments.tex L57
+```
+- $\bar\Delta=-1.79\pm0.25$
++ $\bar\Delta=-1.24\pm0.86$
+```
+
+**附录 vs 主文对照（全部一致）**:
+
+| 条件 | 附录 tab:multi-seed | experiments.tex（修复后） |
+|------|-------------------|------------------------|
+| Mistral-7B × PW (4s) | -2.38±1.12 | -2.38±1.12 ✓ |
+| Qwen2.5-14B × FOLIO (4s) | -1.24±0.86 | -1.24±0.86 ✓ |
+| Mistral-7B × FOLIO (3s) | +0.16±2.70 | "near-zero...mixed signs" ✓ |
+| LLaMA-8B × FOLIO (3s) | -0.98±2.25 | "near-zero...mixed signs" ✓ |
+
+编译成功，27 页，无错误。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 118534,
+  "duration_api_ms": 115195,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "d15b6f5b-490c-4d88-8f13-b0b8c4ef9d05",
+  "total_cost_usd": 0.38850274999999995,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 25385,
+    "cache_read_input_tokens": 299067,
+    "output_tokens": 3146,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25385,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 288,
+        "cache_read_input_tokens": 36884,
+        "cache_creation_input_tokens": 342,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 342
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1503,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001593,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 3146,
+      "cacheReadInputTokens": 299067,
+      "cacheCreationInputTokens": 25385,
+      "webSearchRequests": 0,
+      "costUSD": 0.38690975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "eda011c6-5084-4507-b4d1-e0288c7b02e8"
+}
+```
+
+</details>
+
+---

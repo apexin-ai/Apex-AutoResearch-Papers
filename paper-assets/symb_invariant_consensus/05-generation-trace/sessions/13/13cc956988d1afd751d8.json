@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13cc956988d1afd751d8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check exp 026 log diagnosis",
+  "task_key": "worker_check_exp-026-log-diagnosis_20260518T144334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_exp-026-log-diagnosis_20260518T144334_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "8f383bec82be138eb8591f1381ebc8a8b88e79222555ee26003d3ce8ee41c371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n| 项目 | 结果 |\n|------|------|\n| **完成数** | **204/204** (100%) |\n| **判定** | **success** |\n| **退出原因** | 正常完成后自然退出（非 crash） |\n| **SICA accuracy** | 74.51% (152/204) |\n| **SC accuracy** | 75.00% (153/204) |\n| **Extraction rate** | 98.53% |\n| **运行时间** | 20:11 → 22:39，约 2.5h |\n| **结果路径** | `/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json` |\n| **cuda:0** | vLLM (PID 23449) 仍在跑，0% 利用率（idle），exp-029 正在通过 port 8003/cuda:3 复用其 intermediates |\n\n日志仅 42 行（stdout 被重定向到别处，log 文件只捕获了初始化输出）。无 error/traceback。\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-026-log-diagnosis.md"
+}

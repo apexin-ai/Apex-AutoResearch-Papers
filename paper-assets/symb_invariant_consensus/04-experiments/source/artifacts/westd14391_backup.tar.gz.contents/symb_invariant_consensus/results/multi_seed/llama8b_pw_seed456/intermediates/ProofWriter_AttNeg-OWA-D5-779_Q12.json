@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-779_Q12",
+    "problem": "Bob is green. Charlie is nice. Charlie is smart. Charlie is white. Erin is nice. Harry is nice. Harry is white. If Charlie is green then Charlie is blue. All nice people are cold. All cold people are blue. Rough people are green. If someone is blue then they are green. Blue, green people are white. If Bob is smart and Bob is blue then Bob is not green. If Charlie is white then Charlie is nice. All white people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nNice(Charlie, True) ::: Charlie is nice.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nNice(Erin, True) ::: Erin is nice.\nNice(Harry, True) ::: Harry is nice.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nGreen(Charlie, True) >>> Blue(Charlie, True) ::: If Charlie is green then Charlie is blue.\nNice($x, True) >>> Cold($x, True) ::: All nice people are cold.\nCold($x, True) >>> Blue($x, True) ::: All cold people are blue.\nRough($x, True) >>> Green($x, True) ::: Rough people are green.\nBlue($x, True) >>> Green($x, True) ::: If someone is blue then they are green.\nBlue($x, True) && Green($x, True) >>> White($x, True) ::: Blue, green people are white.\nSmart(Bob, True) && Blue(Bob, True) >>> Green(Bob, False) ::: If Bob is smart and Bob is blue then Bob is not green.\nWhite(Charlie, True) >>> Nice(Charlie, True) ::: If Charlie is white then Charlie is nice.\nWhite($x, True) >>> Smart($x, True) ::: All white people are smart.\n\nQuery:\nSmart(Erin, False) ::: Erin is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

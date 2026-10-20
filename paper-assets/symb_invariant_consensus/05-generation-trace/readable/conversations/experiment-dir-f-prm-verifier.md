@@ -1,0 +1,5432 @@
+# experiment dir f prm verifier
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 193
+- **Recorded user turns:** 0
+- **Tool calls:** 96
+- **Original source:** `logs/chats/worker_experiment_dir-f-prm-verifier_20260520T155425.jsonl`
+- **Structured JSON:** [`f5e6479c3f0c853a1d32.json`](../../sessions/f5/f5e6479c3f0c853a1d32.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+193 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T16:07:42.788360+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T16:07:42.788710+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T16:07:42.788902+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-16639"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-16639"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T16:07:42.789054+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T16:07:42.789190+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T16:07:42.789309+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/models/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T16:07:42.789577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-20T16:07:42.789745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "df -h /root /root/autodl-tmp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "df -h /root /root/autodl-tmp"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T16:07:42.789907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B-Instruct\\nMistral-7B-Instruct-v0.3\\nQwen2.5-14B-Instruct\\nQwen3-14B\\ndeepseek-r1-0528-qwen3-8b\\ngemma-3-27b-it\\nllama-4-scout\\nphi-4-reasoning\\ntest_hf_speed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T16:07:42.790074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   14G   17G  45% /\\n/dev/md0        350G  137G  214G  40% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T16:07:42.790231+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T16:07:42.790402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -50 /root/symb_invariant_consensus/data/folio_full.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -50 /root/symb_invariant_consensus/data/folio_full.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T16:07:42.790654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"False\\\": 3.5,\\n      \\\"Unknown\\\": 58.0\\n    },\\n    \\\"answer_counts\\\": {\\n    
+…[truncated 6881 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T16:07:42.790901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\"\\n  },\\n  {\\n    \\\"id\\\": \\\"folio_1\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent sh
+…[truncated 4015 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T16:07:42.791067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "nvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "nvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T16:07:42.791193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T16:07:42.791329+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 92041 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 91681 MiB\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 90379 MiB\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 90669 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T16:07:42.791452+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T16:07:42.791598+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T16:07:42.791718+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T16:07:42.791836+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import transformers; print(transformers.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T16:07:42.791975+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T16:07:42.792092+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/.cache/huggingface/hub/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/.cache/huggingface/hub/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T16:07:42.792214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CACHEDIR.TAG\\ndatasets--allenai--ai2_arc\\nmodels--deepseek-ai--DeepSeek-R1-0528-Qwen3-8B\\nmodels--google--gemma-3-27b-it\\nmodels--meta-llama--Llama-3.1-8B-Instruct\\nmodels--meta-llama--Llama-4-Scout-17B-16E-Instruct\\nmodels--microsoft--Phi-4-reasoning\\nmodels--mistralai--Mistral-7B-Instruct-v0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T16:07:42.792379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/.cache/huggingface/hub/ -maxdepth 1 -name \"*deberta*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/.cache/huggingface/hub/ -maxdepth 1 -name \"*deberta*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T16:07:42.792503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T16:07:42.792692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import torch, transformers; print(torch.__version__, transformers.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import torch, transformers; print(torch.__version__, transformers.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T16:07:42.792818+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T16:07:42.792955+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch, transformers; print('torch', torch.__version__, 'tf', transformers.__version__, 'cuda', torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch, transformers; print('torch', torch.__version__, 'tf', transformers.__version__, 'cuda', torch.cuda.is_available())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T16:07:42.793076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"torch 2.11.0+cu130 tf 5.8.1 cuda True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T16:07:42.793271+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot.py",
+  "content": "\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot\nUses DeBERTa-large-mnli as NLI-based proxy for process reward scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# ── Config ──────────────────────────────────────────────────────────────\nDEVICE = \"cuda:2\"\nMODEL_NAME = \"microsoft/deberta-large-mnli\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\nMAX_PREMISE_TOKENS = 400\nMAX_STEP_TOKENS = 100\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    \"\"\"Split a reasoning trace into individual steps.\"\"\"\n    trace_text = trace_text.strip()\n    # Try numbered steps first (1. 2. 3. or Step 1: etc.)\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        steps = [s.strip() for s in numbered if s.strip()]\n        return steps\n\n    # Fall back to paragraph splitting\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        steps = [p.strip() for p in paragraphs if p.strip()]\n        return steps\n\n    # Fall back to sentence-level splitting for single-block traces\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        # Group into chunks of 2-3 sentences\n        steps = []\n        for i in range(0, len(sentences), 2):\n            chunk = ' '.join(sentences[i:i+2])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── NLI scoring ─────────────────────────────────────────────────────────\ndef load_nli_model(model_name: str, device: str):\n    print(f\"Loading {model_name}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return tokenizer, model\n\n\ndef score_step_nli(tokenizer, model, premise: str, hypothesis: str, device: str) -> dict:\n    \"\"\"Score a single reasoning step via NLI. Returns entailment/neutral/contradiction probs.\"\"\"\n    inputs = tokenizer(\n        premise, hypothesis,\n        truncation=True,\n        max_length=512,\n        return_tensors=\"pt\",\n        padding=True\n    ).to(device)\n\n    with torch.no_grad():\n        logits = model(**inputs).logits\n        probs = torch.softmax(logits, dim=-1).cpu().numpy()[0]\n\n    # DeBERTa-large-mnli labels: 0=contradiction, 1=neutral, 2=entailment\n    return {\n        \"contradiction\": float(probs[0]),\n        \"neutral\": float(probs[1]),\n        \"entailment\": float(probs[2]),\n    }\n\n\ndef score_trace(tokenizer, model, premise_text: str, trace_text: str, device: str) -> dict:\n    \"\"\"Score all steps in a trace, return aggregate scores.\"\"\"\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 3:\n            continue\n        scores = score_step_nli(tokenizer, model, premise_text, step, device)\n        step_scores.append(scores)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    entailments = [s[\"entailment\"] for s in step_scores]\n    contradictions = [s[\"contradiction\"] for s in step_scores]\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_entailment\": float(np.mean(entailments)),\n        \"min_entailment\": float(np.min(entailments)),\n        \"mean_contradiction\": float(np.mean(contradictions)),\n        \"num_steps\": len(step_scores),\n        \"composite\": float(np.mean(entailments)) - float(np.mean(contradictions)),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    \"\"\"Standard majority vote.\"\"\"\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Remove traces below median score, then majority vote.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[score_key] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[score_key] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    answers = [t[\"answer\"] for t, _ in filtered]\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Weighted majority vote using trace scores as weights.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    # Shift scores to be non-negative\n    scores_vals = [s[score_key] for _, s in scored]\n    min_score = min(scores_vals)\n    shift = abs(min_score) + 0.01 if min_score < 0 else 0.0\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight = s[score_key] + shift\n        weight_by_answer[t[\"answer\"]] += weight\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    tokenizer, model = load_nli_model(MODEL_NAME, DEVICE)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    total = 0\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        # Score each trace\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            trace_text = trace_obj[\"trace\"]\n            ts = score_trace(tokenizer, model, premise_text, trace_text, DEVICE)\n            trace_scores.append(ts)\n\n        # Compute SC variants\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        total += 1\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_entailment\": trace_scores[i][\"mean_entailment\"],\n                    \"composite\": trace_scores[i].get(\"composite\", 0),\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        status = f\"SC={'✓' if sc_ok else '✗'} Filt={'✓' if filt_ok else '✗'} Wt={'✓' if wt_ok else '✗'}\"\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} | {status}\")\n\n    # Final results\n    final = {\n        \"model_used\": MODEL_NAME,\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"score_key\": \"composite (mean_entailment - mean_contradiction)\",\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:  {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:  {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:  {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot.py",
+    "content": "\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot\nUses DeBERTa-large-mnli as NLI-based proxy for process reward scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# ── Config ──────────────────────────────────────────────────────────────\nDEVICE = \"cuda:2\"\nMODEL_NAME = \"microsoft/deberta-large-mnli\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\nMAX_PREMISE_TOKENS = 400\nMAX_STEP_TOKENS = 100\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    \"\"\"Split a reasoning trace into individual steps.\"\"\"\n    trace_text = trace_text.strip()\n    # Try numbered steps first (1. 2. 3. or Step 1: etc.)\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        steps = [s.strip() for s in numbered if s.strip()]\n        return steps\n\n    # Fall back to paragraph splitting\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        steps = [p.strip() for p in paragraphs if p.strip()]\n        return steps\n\n    # Fall back to sentence-level splitting for single-block traces\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        # Group into chunks of 2-3 sentences\n        steps = []\n        for i in range(0, len(sentences), 2):\n            chunk = ' '.join(sentences[i:i+2])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── NLI scoring ─────────────────────────────────────────────────────────\ndef load_nli_model(model_name: str, device: str):\n    print(f\"Loading {model_name}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return tokenizer, model\n\n\ndef score_step_nli(tokenizer, model, premise: str, hypothesis: str, device: str) -> dict:\n    \"\"\"Score a single reasoning step via NLI. Returns entailment/neutral/contradiction probs.\"\"\"\n    inputs = tokenizer(\n        premise, hypothesis,\n        truncation=True,\n        max_length=512,\n        return_tensors=\"pt\",\n        padding=True\n    ).to(device)\n\n    with torch.no_grad():\n        logits = model(**inputs).logits\n        probs = torch.softmax(logits, dim=-1).cpu().numpy()[0]\n\n    # DeBERTa-large-mnli labels: 0=contradiction, 1=neutral, 2=entailment\n    return {\n        \"contradiction\": float(probs[0]),\n        \"neutral\": float(probs[1]),\n        \"entailment\": float(probs[2]),\n    }\n\n\ndef score_trace(tokenizer, model, premise_text: str, trace_text: str, device: str) -> dict:\n    \"\"\"Score all steps in a trace, return aggregate scores.\"\"\"\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 3:\n            continue\n        scores = score_step_nli(tokenizer, model, premise_text, step, device)\n        step_scores.append(scores)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    entailments = [s[\"entailment\"] for s in step_scores]\n    contradictions = [s[\"contradiction\"] for s in step_scores]\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_entailment\": float(np.mean(entailments)),\n        \"min_entailment\": float(np.min(entailments)),\n        \"mean_contradiction\": float(np.mean(contradictions)),\n        \"num_steps\": len(step_scores),\n        \"composite\": float(np.mean(entailments)) - float(np.mean(contradictions)),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    \"\"\"Standard majority vote.\"\"\"\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Remove traces below median score, then majority vote.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[score_key] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[score_key] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    answers = [t[\"answer\"] for t, _ in filtered]\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Weighted majority vote using trace scores as weights.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    # Shift scores to be non-negative\n    scores_vals = [s[score_key] for _, s in scored]\n    min_score = min(scores_vals)\n    shift = abs(min_score) + 0.01 if min_score < 0 else 0.0\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight = s[score_key] + shift\n        weight_by_answer[t[\"answer\"]] += weight\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    tokenizer, model = load_nli_model(MODEL_NAME, DEVICE)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    total = 0\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        # Score each trace\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            trace_text = trace_obj[\"trace\"]\n            ts = score_trace(tokenizer, model, premise_text, trace_text, DEVICE)\n            trace_scores.append(ts)\n\n        # Compute SC variants\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        total += 1\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_entailment\": trace_scores[i][\"mean_entailment\"],\n                    \"composite\": trace_scores[i].get(\"composite\", 0),\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        status = f\"SC={'✓' if sc_ok else '✗'} Filt={'✓' if filt_ok else '✗'} Wt={'✓' if wt_ok else '✗'}\"\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} | {status}\")\n\n    # Final results\n    final = {\n        \"model_used\": MODEL_NAME,\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"score_key\": \"composite (mean_entailment - mean_contradiction)\",\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:  {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:  {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:  {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T16:07:42.793569+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T16:07:42.793795+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py << 'SCRIPT_EOF'\n\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot\nUses DeBERTa-large-mnli as NLI-based proxy for process reward scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# ── Config ──────────────────────────────────────────────────────────────\nDEVICE = \"cuda:2\"\nMODEL_NAME = \"microsoft/deberta-large-mnli\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\nMAX_PREMISE_TOKENS = 400\nMAX_STEP_TOKENS = 100\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    \"\"\"Split a reasoning trace into individual steps.\"\"\"\n    trace_text = trace_text.strip()\n    # Try numbered steps first (1. 2. 3. or Step 1: etc.)\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        steps = [s.strip() for s in numbered if s.strip()]\n        return steps\n\n    # Fall back to paragraph splitting\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        steps = [p.strip() for p in paragraphs if p.strip()]\n        return steps\n\n    # Fall back to sentence-level splitting for single-block traces\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        # Group into chunks of 2-3 sentences\n        steps = []\n        for i in range(0, len(sentences), 2):\n            chunk = ' '.join(sentences[i:i+2])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── NLI scoring ─────────────────────────────────────────────────────────\ndef load_nli_model(model_name: str, device: str):\n    print(f\"Loading {model_name}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return tokenizer, model\n\n\ndef score_step_nli(tokenizer, model, premise: str, hypothesis: str, device: str) -> dict:\n    \"\"\"Score a single reasoning step via NLI. Returns entailment/neutral/contradiction probs.\"\"\"\n    inputs = tokenizer(\n        premise, hypothesis,\n        truncation=True,\n        max_length=512,\n        return_tensors=\"pt\",\n        padding=True\n    ).to(device)\n\n    with torch.no_grad():\n        logits = model(**inputs).logits\n        probs = torch.softmax(logits, dim=-1).cpu().numpy()[0]\n\n    # DeBERTa-large-mnli labels: 0=contradiction, 1=neutral, 2=entailment\n    return {\n        \"contradiction\": float(probs[0]),\n        \"neutral\": float(probs[1]),\n        \"entailment\": float(probs[2]),\n    }\n\n\ndef score_trace(tokenizer, model, premise_text: str, trace_text: str, device: str) -> dict:\n    \"\"\"Score all steps in a trace, return aggregate scores.\"\"\"\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 3:\n            continue\n        scores = score_step_nli(tokenizer, model, premise_text, step, device)\n        step_scores.append(scores)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    entailments = [s[\"entailment\"] for s in step_scores]\n    contradictions = [s[\"contradiction\"] for s in step_scores]\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_entailment\": float(np.mean(entailments)),\n        \"min_entailment\": float(np.min(entailments)),\n        \"mean_contradiction\": float(np.mean(contradictions)),\n        \"num_steps\": len(step_scores),\n        \"composite\": float(np.mean(entailments)) - float(np.mean(contradictions)),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    \"\"\"Standard majority vote.\"\"\"\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Remove traces below median score, then majority vote.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[score_key] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[score_key] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    answers = [t[\"answer\"] for t, _ in filtered]\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Weighted majority vote using trace scores as weights.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    # Shift scores to be non-negative\n    scores_vals = [s[score_key] for _, s in scored]\n    min_score = min(scores_vals)\n    shift = abs(min_score) + 0.01 if min_score < 0 else 0.0\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight = s[score_key] + shift\n        weight_by_answer[t[\"answer\"]] += weight\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    tokenizer, model = load_nli_model(MODEL_NAME, DEVICE)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    total = 0\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        # Score each trace\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            trace_text = trace_obj[\"trace\"]\n            ts = score_trace(tokenizer, model, premise_text, trace_text, DEVICE)\n            trace_scores.append(ts)\n\n        # Compute SC variants\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        total += 1\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_entailment\": trace_scores[i][\"mean_entailment\"],\n                    \"composite\": trace_scores[i].get(\"composite\", 0),\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        status = f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'}\"\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} | {status}\")\n\n    # Final results\n    final = {\n        \"model_used\": MODEL_NAME,\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"score_key\": \"composite (mean_entailment - mean_contradiction)\",\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:  {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:  {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:  {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py << 'SCRIPT_EOF'\n\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot\nUses DeBERTa-large-mnli as NLI-based proxy for process reward scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter\nfrom pathlib import Path\n\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# ── Config ──────────────────────────────────────────────────────────────\nDEVICE = \"cuda:2\"\nMODEL_NAME = \"microsoft/deberta-large-mnli\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\nMAX_PREMISE_TOKENS = 400\nMAX_STEP_TOKENS = 100\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    \"\"\"Split a reasoning trace into individual steps.\"\"\"\n    trace_text = trace_text.strip()\n    # Try numbered steps first (1. 2. 3. or Step 1: etc.)\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        steps = [s.strip() for s in numbered if s.strip()]\n        return steps\n\n    # Fall back to paragraph splitting\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        steps = [p.strip() for p in paragraphs if p.strip()]\n        return steps\n\n    # Fall back to sentence-level splitting for single-block traces\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        # Group into chunks of 2-3 sentences\n        steps = []\n        for i in range(0, len(sentences), 2):\n            chunk = ' '.join(sentences[i:i+2])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── NLI scoring ─────────────────────────────────────────────────────────\ndef load_nli_model(model_name: str, device: str):\n    print(f\"Loading {model_name}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\n    model = model.to(device).eval()\n    print(f\"Model loaded on {device}\")\n    return tokenizer, model\n\n\ndef score_step_nli(tokenizer, model, premise: str, hypothesis: str, device: str) -> dict:\n    \"\"\"Score a single reasoning step via NLI. Returns entailment/neutral/contradiction probs.\"\"\"\n    inputs = tokenizer(\n        premise, hypothesis,\n        truncation=True,\n        max_length=512,\n        return_tensors=\"pt\",\n        padding=True\n    ).to(device)\n\n    with torch.no_grad():\n        logits = model(**inputs).logits\n        probs = torch.softmax(logits, dim=-1).cpu().numpy()[0]\n\n    # DeBERTa-large-mnli labels: 0=contradiction, 1=neutral, 2=entailment\n    return {\n        \"contradiction\": float(probs[0]),\n        \"neutral\": float(probs[1]),\n        \"entailment\": float(probs[2]),\n    }\n\n\ndef score_trace(tokenizer, model, premise_text: str, trace_text: str, device: str) -> dict:\n    \"\"\"Score all steps in a trace, return aggregate scores.\"\"\"\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 3:\n            continue\n        scores = score_step_nli(tokenizer, model, premise_text, step, device)\n        step_scores.append(scores)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_entailment\": 0.0, \"min_entailment\": 0.0, \"mean_contradiction\": 1.0, \"num_steps\": 0}\n\n    entailments = [s[\"entailment\"] for s in step_scores]\n    contradictions = [s[\"contradiction\"] for s in step_scores]\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_entailment\": float(np.mean(entailments)),\n        \"min_entailment\": float(np.min(entailments)),\n        \"mean_contradiction\": float(np.mean(contradictions)),\n        \"num_steps\": len(step_scores),\n        \"composite\": float(np.mean(entailments)) - float(np.mean(contradictions)),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    \"\"\"Standard majority vote.\"\"\"\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Remove traces below median score, then majority vote.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[score_key] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[score_key] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    answers = [t[\"answer\"] for t, _ in filtered]\n    counts = Counter(answers)\n    return counts.most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict], score_key: str = \"composite\") -> str:\n    \"\"\"Weighted majority vote using trace scores as weights.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    # Shift scores to be non-negative\n    scores_vals = [s[score_key] for _, s in scored]\n    min_score = min(scores_vals)\n    shift = abs(min_score) + 0.01 if min_score < 0 else 0.0\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight = s[score_key] + shift\n        weight_by_answer[t[\"answer\"]] += weight\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    tokenizer, model = load_nli_model(MODEL_NAME, DEVICE)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    total = 0\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        # Score each trace\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            trace_text = trace_obj[\"trace\"]\n            ts = score_trace(tokenizer, model, premise_text, trace_text, DEVICE)\n            trace_scores.append(ts)\n\n        # Compute SC variants\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        total += 1\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_entailment\": trace_scores[i][\"mean_entailment\"],\n                    \"composite\": trace_scores[i].get(\"composite\", 0),\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        status = f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'}\"\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} | {status}\")\n\n    # Final results\n    final = {\n        \"model_used\": MODEL_NAME,\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"score_key\": \"composite (mean_entailment - mean_contradiction)\",\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:  {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:  {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:  {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T16:07:42.794099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script uploaded OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T16:07:42.794278+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python3 -c \"\nimport json, os, re, sys\nfrom pathlib import Path\nfrom collections import Counter\n\n# Check imports\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# Check paths\nintermediates = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates')\nassert intermediates.exists(), f'intermediates dir missing: {intermediates}'\n\n# Check first 30 files exist\nmissing = []\nfor i in range(30):\n    p = intermediates / f'folio_{i}.json'\n    if not p.exists():\n        missing.append(str(p))\n\nif missing:\n    print(f'MISSING FILES: {missing}')\nelse:\n    print(f'All 30 intermediate files present')\n\n# Check trace structure\nwith open(intermediates / 'folio_0.json') as f:\n    d = json.load(f)\ntraces = d['sica_result']['traces']\nprint(f'folio_0 has {len(traces)} traces')\nprint(f'Trace keys: {list(traces[0].keys())}')\nprint(f'Gold answer: {d[\\\"problem\\\"][\\\"answer\\\"]}')\n\n# Check GPU\nprint(f'CUDA available: {torch.cuda.is_available()}')\nprint(f'CUDA device count: {torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    print(f'Device 0 (mapped from env cuda:2): {torch.cuda.get_device_name(0)}, free={torch.cuda.mem_get_info(0)[0]//1024**2}MB')\n\n# Check output dir can be created\nos.makedirs('/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot', exist_ok=True)\nprint('Output dir created OK')\n\nprint('DRY-RUN PASSED')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python3 -c \"\nimport json, os, re, sys\nfrom pathlib import Path\nfrom collections import Counter\n\n# Check imports\nimport torch\nimport numpy as np\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\n# Check paths\nintermediates = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates')\nassert intermediates.exists(), f'intermediates dir missing: {intermediates}'\n\n# Check first 30 files exist\nmissing = []\nfor i in range(30):\n    p = intermediates / f'folio_{i}.json'\n    if not p.exists():\n        missing.append(str(p))\n\nif missing:\n    print(f'MISSING FILES: {missing}')\nelse:\n    print(f'All 30 intermediate files present')\n\n# Check trace structure\nwith open(intermediates / 'folio_0.json') as f:\n    d = json.load(f)\ntraces = d['sica_result']['traces']\nprint(f'folio_0 has {len(traces)} traces')\nprint(f'Trace keys: {list(traces[0].keys())}')\nprint(f'Gold answer: {d[\\\"problem\\\"][\\\"answer\\\"]}')\n\n# Check GPU\nprint(f'CUDA available: {torch.cuda.is_available()}')\nprint(f'CUDA device count: {torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    print(f'Device 0 (mapped from env cuda:2): {torch.cuda.get_device_name(0)}, free={torch.cuda.mem_get_info(0)[0]//1024**2}MB')\n\n# Check output dir can be created\nos.makedirs('/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot', exist_ok=True)\nprint('Output dir created OK')\n\nprint('DRY-RUN PASSED')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T16:07:42.794446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All 30 intermediate files present\\nfolio_0 has 12 traces\\nTrace keys: ['trace', 'answer', 'trace_idx']\\nGold answer: Unknown\\nCUDA available: True\\nCUDA device count: 1\\nDevice 0 (mapped from env cuda:2): NVIDIA RTX PRO 6000 Blackwell Server Edition, free=6316MB\\nOutput dir created OK\\nDRY-RUN PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T16:07:42.794605+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sed -i 's/DEVICE = \"cuda:2\"/DEVICE = \"cuda:0\"/' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py && grep 'DEVICE =' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py | head -1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sed -i 's/DEVICE = \"cuda:2\"/DEVICE = \"cuda:0\"/' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py && grep 'DEVICE =' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py | head -1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T16:07:42.794733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DEVICE = \\\"cuda:0\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T16:07:42.794889+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 python3 scripts/dir_f_prm_verifier_pilot.py' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 python3 scripts/dir_f_prm_verifier_pilot.py' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T16:07:42.795029+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=2 python3 scripts/dir_f_prm_verifier_pilot.py\\\\' > /tmp/prm_pilot.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=337327\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T16:07:42.795175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -20 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -20 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T16:07:42.795296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T16:07:42.795409+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T16:07:42.795525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T16:07:42.795635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337327 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337327 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T16:07:42.795749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337327\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T16:07:42.795899+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-20T16:07:42.796022+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337327 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337327 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T16:07:42.796144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T16:07:42.796257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337327\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T16:07:42.796393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps aux --forest -p 337327"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps aux --forest -p 337327"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T16:07:42.796559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3380 ?        Ss   May19   0:01 bash /init/boot/boot.sh\\nroot        801  2.6  0.0 717984 23152 ?        Sl   May19  74:27 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        817  0.0  0.0  15444  9136 ?        S    May19   0:24  \\\\_ sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot     301253  0.0  0.0  16692 10684 ?        Ss   17:24   0:02  |   \\\\_ sshd: root@notty\\nroot     336413  0.0  0.0  16692 10608 ?        Ss   23:54   0:00  |   \\\\_ sshd: root@notty\\nroot     336466  0.0  0.0  16700 10944 ?        Ss   23:54   0:00  |   \\\\_ sshd: root@notty\\nroot     337485  0.1  0.0  16692 10592 ?        Ss   23:58   0:00  |   \\\\_ sshd: root@notty\\nroot     337512  0.0  0.0   7208  3148 ?        Rs   23:58   0:00  |       \\\\_ ps aux --forest -p 337327\\nroot        821  0.0  0.0 4148168 79308 ?       Sl   May19   1:46  \\\\_ /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        927  0.1  0.0 28341192 12252 ?      Sl   May19   2:52  |   \\\\_ /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_de0qwios/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_de0qwios/startup_error\\nroot        822  0.0  0.0 2868740 20992 ?       Sl   May19   2:15  \\\\_ proxy -c /init/proxy/proxy.ini\\nroot        823  0.0  0.0 189372 101248 ?       S    May19   0:01  \\\\_ /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        824  0.0  0.0 2426668 20224 ?       Sl   May19   2:24  \\\\_ proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        825  0.2  0.0 6895828 105124 ?      Sl   May19   6:02  \\\
+…[truncated 5235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T16:07:42.796731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -30 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -30 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T16:07:42.796856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T16:07:42.797027+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "kill 337327 337332 2>/dev/null; echo \"killed\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "kill 337327 337332 2>/dev/null; echo \"killed\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T16:07:42.797153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T16:07:42.797266+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null; cd /root/symb_invariant_consensus && nohup bash -c 'export CUDA_VISIBLE_DEVICES=2; export HF_HOME=/root/autodl-tmp/.hf_cache; python3 -u scripts/dir_f_prm_verifier_pilot.py' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null; cd /root/symb_invariant_consensus && nohup bash -c 'export CUDA_VISIBLE_DEVICES=2; export HF_HOME=/root/autodl-tmp/.hf_cache; python3 -u scripts/dir_f_prm_verifier_pilot.py' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T16:07:42.797398+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null; cd /root/symb_invariant_consensus && nohup bash -c \\\\'export CUDA_VISIBLE_DEVICES=2; export HF_HOME=/root/autodl-tmp/.hf_cache; python3 -u scripts/dir_f_prm_verifier_pilot.py\\\\' > /tmp/prm_pilot.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\n设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nPID=337571\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T16:07:42.797549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T16:07:42.797701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading microsoft/deberta-large-mnli...\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\nTraceback (most recent call last):\\n  File \\\"/root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py\\\", line 264, in &lt;module>\\n    main()\\n  File \\\"/root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py\\\", line 169, in main\\n    tokenizer, model = load_nli_model(MODEL_NAME, DEVICE)\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py\\\", line 59, in load_nli_model\\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py\\\", line 405, in from_pretrained\\n    return model_class.from_pretrained(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 4153, in from_pretrained\\n    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(\\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 705, in _get_resolved_checkpoint_files\\n    resolved_archive_file = cached_file(\\n                            ^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 278, in cached_file\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 512, in 
+…[truncated 1359 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T16:07:42.797900+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /etc/network_turbo 2>/dev/null\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /etc/network_turbo 2>/dev/null\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T16:07:42.798051+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && nohup bash -c \\\\'\\\\nsource /etc/network_turbo 2>/dev/null\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=2\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\npython3 -u scripts/dir_f_prm_verifier_pilot.py\\\\n\\\\' > /tmp/prm_pilot.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=337781\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T16:07:42.798217+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-20T16:07:42.798407+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337781 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337781 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-20T16:07:42.798553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-large-mnli...\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T16:07:42.798690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337781\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T16:07:42.798835+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-20T16:07:42.798996+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337781 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337781 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-20T16:07:42.799131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-large-mnli...\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T16:07:42.799257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337781\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T16:07:42.799382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/.hf_cache -name \"*.incomplete\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/.hf_cache -name \"*.incomplete\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T16:07:42.799500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T16:07:42.799611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T16:07:42.799725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T16:07:42.799844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T16:07:42.799984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T16:07:42.800123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-20T16:07:42.800236+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337781 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337781 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T16:07:42.800349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T16:07:42.800462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337781\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T16:07:42.800583+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T16:07:42.800704+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-large-mnli...\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T16:07:42.800824+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T16:07:42.800967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T16:07:42.801098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T16:07:42.801213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T16:07:42.801321+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T16:07:42.801433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T16:07:42.801553+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-20T16:07:42.801662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 337781 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 337781 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-20T16:07:42.801782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-large-mnli...\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T16:07:42.801929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"337781\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T16:07:42.802050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T16:07:42.802167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-20T16:07:42.802320+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T16:07:42.802449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"120M\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T16:07:42.802591+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "kill 337781 2>/dev/null; sleep 1; ps -p 337781 -o pid= 2>/dev/null && echo \"still alive\" || echo \"killed\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "kill 337781 2>/dev/null; sleep 1; ps -p 337781 -o pid= 2>/dev/null && echo \"still alive\" || echo \"killed\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T16:07:42.802710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-20T16:07:42.802821+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "rm -f /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete && echo \"cleaned\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "rm -f /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-large-mnli/blobs/3abd875c9e6dd137a689a1fa1a433f0c2d6bc7462afc42a0095878f88f23be87.incomplete && echo \"cleaned\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T16:07:42.802958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cleaned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-20T16:07:42.803121+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sed -i 's|microsoft/deberta-large-mnli|microsoft/deberta-base-mnli|' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py && grep 'MODEL_NAME' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py | head -1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sed -i 's|microsoft/deberta-large-mnli|microsoft/deberta-base-mnli|' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py && grep 'MODEL_NAME' /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py | head -1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-20T16:07:42.803272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MODEL_NAME = \\\"microsoft/deberta-base-mnli\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-20T16:07:42.803390+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /etc/network_turbo 2>/dev/null\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport HF_ENDPOINT=https://hf-mirror.com\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /etc/network_turbo 2>/dev/null\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nexport HF_ENDPOINT=https://hf-mirror.com\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T16:07:42.803518+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && nohup bash -c \\\\'\\\\nsource /etc/network_turbo 2>/dev/null\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=2\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport HF_ENDPOINT=https://hf-mirror.com\\\\npython3 -u scripts/dir_f_prm_verifier_pilot.py\\\\n\\\\' > /tmp/prm_pilot.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=338085\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-20T16:07:42.803651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-20T16:07:42.803776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-base-mnli...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-20T16:07:42.803930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-20T16:07:42.804073+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-base-mnli...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-20T16:07:42.804193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/.hf_cache/hub/ -name \"*.incomplete\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/.hf_cache/hub/ -name \"*.incomplete\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-20T16:07:42.804309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-20T16:07:42.804419+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-20T16:07:42.804533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-20T16:07:42.804643+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-20T16:07:42.804754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-20T16:07:42.804890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-20T16:07:42.805029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nLoading microsoft/deberta-base-mnli...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-20T16:07:42.805148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "du -h /root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-20T16:07:42.805263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\t/root/autodl-tmp/.hf_cache/hub/models--microsoft--deberta-base-mnli/blobs/9f82b3a368bf628768567c1ce03b354eea1299b87c42ded71a56e4cdd3ea0039.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-20T16:07:42.805413+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "kill 338085 2>/dev/null; sleep 1; echo \"killed\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "kill 338085 2>/dev/null; sleep 1; echo \"killed\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-20T16:07:42.805530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-20T16:07:42.805640+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from modelscope import snapshot_download; print('modelscope available')\" 2>&1 | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from modelscope import snapshot_download; print('modelscope available')\" 2>&1 | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-20T16:07:42.805754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"modelscope available\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-20T16:07:42.805864+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u -c \"\nfrom modelscope import snapshot_download\npath = snapshot_download('iic/deberta-base-mnli', cache_dir='/root/autodl-tmp/.ms_cache')\nprint(f'Downloaded to: {path}')\n\" > /tmp/ms_download.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -u -c \"\nfrom modelscope import snapshot_download\npath = snapshot_download('iic/deberta-base-mnli', cache_dir='/root/autodl-tmp/.ms_cache')\nprint(f'Downloaded to: {path}')\n\" > /tmp/ms_download.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-20T16:07:42.806006+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=338411\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-20T16:07:42.806124+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/ms_download.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/ms_download.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-20T16:07:42.806262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 00:02:39,316 - modelscope - WARNING - Repo iic/deberta-base-mnli not exists on https://www.modelscope.cn, will try on alternative endpoint https://www.modelscope.ai.\\n2026-05-21 00:02:39,866 - modelscope - ERROR - Repo iic/deberta-base-mnli not exists on either https://www.modelscope.cn or https://www.modelscope.ai\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 3, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/modelscope/hub/snapshot_download.py\\\", line 145, in snapshot_download\\n    return _snapshot_download(\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/modelscope/hub/snapshot_download.py\\\", line 323, in _snapshot_download\\n    endpoint = _api.get_endpoint_for_read(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/modelscope/hub/api.py\\\", line 631, in get_endpoint_for_read\\n    self.repo_exists(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/modelscope/hub/api.py\\\", line 789, in repo_exists\\n    raise HTTPError(r)\\nrequests.exceptions.HTTPError: &lt;Response [404]>\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-20T16:07:42.806426+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /etc/network_turbo 2>/dev/null; mkdir -p /root/autodl-tmp/models/deberta-base-mnli && cd /root/autodl-tmp/models/deberta-base-mnli && nohup bash -c '\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nBASE=\"https://huggingface.co/microsoft/deberta-base-mnli/resolve/main\"\nfor f in config.json tokenizer_config.json special_tokens_map.json tokenizer.json vocab.json merges.txt model.safetensors; do\n    echo \"Downloading $f...\"\n    wget -q --no-check-certificate \"$BASE/$f\" -O \"$f\" 2>&1 && echo \"  OK: $f\" || echo \"  FAIL: $f\"\ndone\necho \"DONE\"\n' > /tmp/wget_deberta.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /etc/network_turbo 2>/dev/null; mkdir -p /root/autodl-tmp/models/deberta-base-mnli && cd /root/autodl-tmp/models/deberta-base-mnli && nohup bash -c '\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\nBASE=\"https://huggingface.co/microsoft/deberta-base-mnli/resolve/main\"\nfor f in config.json tokenizer_config.json special_tokens_map.json tokenizer.json vocab.json merges.txt model.safetensors; do\n    echo \"Downloading $f...\"\n    wget -q --no-check-certificate \"$BASE/$f\" -O \"$f\" 2>&1 && echo \"  OK: $f\" || echo \"  FAIL: $f\"\ndone\necho \"DONE\"\n' > /tmp/wget_deberta.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-20T16:07:42.806558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nPID=338636\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-20T16:07:42.806674+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/wget_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/wget_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-20T16:07:42.806791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Downloading config.json...\\n  OK: config.json\\nDownloading tokenizer_config.json...\\n  OK: tokenizer_config.json\\nDownloading special_tokens_map.json...\\n  FAIL: special_tokens_map.json\\nDownloading tokenizer.json...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-20T16:07:42.806942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/wget_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/wget_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-20T16:07:42.807069+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Downloading config.json...\\n  OK: config.json\\nDownloading tokenizer_config.json...\\n  OK: tokenizer_config.json\\nDownloading special_tokens_map.json...\\n  FAIL: special_tokens_map.json\\nDownloading tokenizer.json...\\n  FAIL: tokenizer.json\\nDownloading vocab.json...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-20T16:07:42.807195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/wget_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/wget_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-20T16:07:42.807312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Downloading config.json...\\n  OK: config.json\\nDownloading tokenizer_config.json...\\n  OK: tokenizer_config.json\\nDownloading special_tokens_map.json...\\n  FAIL: special_tokens_map.json\\nDownloading tokenizer.json...\\n  FAIL: tokenizer.json\\nDownloading vocab.json...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-20T16:07:42.807423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/wget_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/wget_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-20T16:07:42.807539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Downloading config.json...\\n  OK: config.json\\nDownloading tokenizer_config.json...\\n  OK: tokenizer_config.json\\nDownloading special_tokens_map.json...\\n  FAIL: special_tokens_map.json\\nDownloading tokenizer.json...\\n  FAIL: tokenizer.json\\nDownloading vocab.json...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-20T16:07:42.807685+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "kill 338636 2>/dev/null; echo \"killed\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "kill 338636 2>/dev/null; echo \"killed\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-20T16:07:42.807802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-20T16:07:42.807987+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -u -c \"\nimport requests\nr = requests.get('http://localhost:8012/v1/models')\nprint(r.json())\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -u -c \"\nimport requests\nr = requests.get('http://localhost:8012/v1/models')\nprint(r.json())\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-20T16:07:42.808142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'object': 'list', 'data': [{'id': '/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3', 'object': 'model', 'created': 1779293041, 'owned_by': 'vllm', 'root': '/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3', 'parent': None, 'max_model_len': 8192, 'permission': [{'id': 'modelperm-8b830561fa5cb2d9', 'object': 'model_permission', 'created': 1779293041, 'allow_create_engine': False, 'allow_sampling': True, 'allow_logprobs': True, 'allow_search_indices': False, 'allow_view': True, 'allow_fine_tuning': False, 'organization': '*', 'group': None, 'is_blocking': False}]}]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-20T16:07:42.808333+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot_v2.py",
+  "content": "\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot (v2)\nUses Mistral-7B vLLM API with logprobs for step-level reasoning quality scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\n\n# ── Config ──────────────────────────────────────────────────────────────\nVLLM_URL = \"http://localhost:8012/v1/completions\"\nMODEL_ID = \"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\n\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    trace_text = trace_text.strip()\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        return [s.strip() for s in numbered if s.strip()]\n\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        return [p.strip() for p in paragraphs if p.strip()]\n\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        steps = []\n        for i in range(0, len(sentences), 3):\n            chunk = ' '.join(sentences[i:i+3])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── LLM-based step scoring ─────────────────────────────────────────────\ndef score_step_llm(premise_text: str, step: str, max_retries: int = 2) -> float:\n    prompt = f\"\"\"[INST] You are a logic validator. Given premises from a logical reasoning problem, evaluate whether a reasoning step is logically valid.\n\nPremises:\n{premise_text[:1500]}\n\nReasoning step to evaluate:\n{step[:500]}\n\nRate this step's logical validity on a scale of 1-5:\n1 = Completely wrong or irrelevant\n2 = Contains logical errors\n3 = Partially correct but with gaps\n4 = Mostly correct with minor issues\n5 = Perfectly valid logical reasoning\n\nOutput ONLY a single digit (1-5): [/INST]\"\"\"\n\n    for attempt in range(max_retries):\n        try:\n            resp = requests.post(VLLM_URL, json={\n                \"model\": MODEL_ID,\n                \"prompt\": prompt,\n                \"max_tokens\": 3,\n                \"temperature\": 0.0,\n                \"logprobs\": 5,\n            }, timeout=30)\n            resp.raise_for_status()\n            data = resp.json()\n\n            text = data[\"choices\"][0][\"text\"].strip()\n            # Extract first digit\n            for ch in text:\n                if ch in \"12345\":\n                    return float(ch) / 5.0  # Normalize to 0-1\n            return 0.5  # Default if no digit found\n        except Exception as e:\n            if attempt < max_retries - 1:\n                time.sleep(1)\n            else:\n                print(f\"  [WARN] scoring failed: {e}\")\n                return 0.5\n    return 0.5\n\n\ndef score_trace(premise_text: str, trace_text: str) -> dict:\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 5:\n            continue\n        score = score_step_llm(premise_text, step)\n        step_scores.append(score)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_score\": float(np.mean(step_scores)),\n        \"min_score\": float(np.min(step_scores)),\n        \"num_steps\": len(step_scores),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    return Counter(answers).most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"mean_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"mean_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight_by_answer[t[\"answer\"]] += s[\"mean_score\"]\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\ndef min_filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    \"\"\"Filter by min_score (worst step) instead of mean.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"min_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"min_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    # Verify vLLM is up\n    try:\n        r = requests.get(\"http://localhost:8012/v1/models\", timeout=5)\n        r.raise_for_status()\n        print(f\"vLLM API OK: {r.json()['data'][0]['id']}\")\n    except Exception as e:\n        print(f\"ERROR: vLLM API not available: {e}\")\n        sys.exit(1)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    min_filtered_correct = 0\n    total = 0\n\n    t_start = time.time()\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        q_start = time.time()\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            ts = score_trace(premise_text, trace_obj[\"trace\"])\n            trace_scores.append(ts)\n\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n        mf_ans = min_filtered_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n        mf_ok = (mf_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        min_filtered_correct += int(mf_ok)\n        total += 1\n\n        q_time = time.time() - q_start\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"min_filtered_sc_answer\": mf_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"min_filtered_correct\": mf_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_score\": trace_scores[i][\"mean_score\"],\n                    \"min_score\": trace_scores[i][\"min_score\"],\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} mf={mf_ans} | \"\n              f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'} MF={'OK' if mf_ok else 'X'} | {q_time:.1f}s\")\n\n    total_time = time.time() - t_start\n\n    final = {\n        \"model_used\": \"Mistral-7B-Instruct-v0.3 (self-eval via vLLM)\",\n        \"scoring_method\": \"LLM step-level validity rating (1-5 scale, normalized to 0-1)\",\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"min_filtered_sc_accuracy_30\": round(min_filtered_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"min_filtered_correct\": min_filtered_correct,\n        \"total_time_s\": round(total_time, 1),\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:      {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:      {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:      {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"Min-Filtered SC accuracy:  {final['min_filtered_sc_accuracy_30']:.4f} ({min_filtered_correct}/{total})\")\n    print(f\"Total time: {total_time:.1f}s\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot_v2.py",
+    "content": "\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot (v2)\nUses Mistral-7B vLLM API with logprobs for step-level reasoning quality scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\n\n# ── Config ──────────────────────────────────────────────────────────────\nVLLM_URL = \"http://localhost:8012/v1/completions\"\nMODEL_ID = \"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\n\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    trace_text = trace_text.strip()\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        return [s.strip() for s in numbered if s.strip()]\n\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        return [p.strip() for p in paragraphs if p.strip()]\n\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        steps = []\n        for i in range(0, len(sentences), 3):\n            chunk = ' '.join(sentences[i:i+3])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── LLM-based step scoring ─────────────────────────────────────────────\ndef score_step_llm(premise_text: str, step: str, max_retries: int = 2) -> float:\n    prompt = f\"\"\"[INST] You are a logic validator. Given premises from a logical reasoning problem, evaluate whether a reasoning step is logically valid.\n\nPremises:\n{premise_text[:1500]}\n\nReasoning step to evaluate:\n{step[:500]}\n\nRate this step's logical validity on a scale of 1-5:\n1 = Completely wrong or irrelevant\n2 = Contains logical errors\n3 = Partially correct but with gaps\n4 = Mostly correct with minor issues\n5 = Perfectly valid logical reasoning\n\nOutput ONLY a single digit (1-5): [/INST]\"\"\"\n\n    for attempt in range(max_retries):\n        try:\n            resp = requests.post(VLLM_URL, json={\n                \"model\": MODEL_ID,\n                \"prompt\": prompt,\n                \"max_tokens\": 3,\n                \"temperature\": 0.0,\n                \"logprobs\": 5,\n            }, timeout=30)\n            resp.raise_for_status()\n            data = resp.json()\n\n            text = data[\"choices\"][0][\"text\"].strip()\n            # Extract first digit\n            for ch in text:\n                if ch in \"12345\":\n                    return float(ch) / 5.0  # Normalize to 0-1\n            return 0.5  # Default if no digit found\n        except Exception as e:\n            if attempt < max_retries - 1:\n                time.sleep(1)\n            else:\n                print(f\"  [WARN] scoring failed: {e}\")\n                return 0.5\n    return 0.5\n\n\ndef score_trace(premise_text: str, trace_text: str) -> dict:\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 5:\n            continue\n        score = score_step_llm(premise_text, step)\n        step_scores.append(score)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_score\": float(np.mean(step_scores)),\n        \"min_score\": float(np.min(step_scores)),\n        \"num_steps\": len(step_scores),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    return Counter(answers).most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"mean_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"mean_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight_by_answer[t[\"answer\"]] += s[\"mean_score\"]\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\ndef min_filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    \"\"\"Filter by min_score (worst step) instead of mean.\"\"\"\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"min_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"min_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    # Verify vLLM is up\n    try:\n        r = requests.get(\"http://localhost:8012/v1/models\", timeout=5)\n        r.raise_for_status()\n        print(f\"vLLM API OK: {r.json()['data'][0]['id']}\")\n    except Exception as e:\n        print(f\"ERROR: vLLM API not available: {e}\")\n        sys.exit(1)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    min_filtered_correct = 0\n    total = 0\n\n    t_start = time.time()\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        q_start = time.time()\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            ts = score_trace(premise_text, trace_obj[\"trace\"])\n            trace_scores.append(ts)\n\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n        mf_ans = min_filtered_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n        mf_ok = (mf_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        min_filtered_correct += int(mf_ok)\n        total += 1\n\n        q_time = time.time() - q_start\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"min_filtered_sc_answer\": mf_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"min_filtered_correct\": mf_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_score\": trace_scores[i][\"mean_score\"],\n                    \"min_score\": trace_scores[i][\"min_score\"],\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} mf={mf_ans} | \"\n              f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'} MF={'OK' if mf_ok else 'X'} | {q_time:.1f}s\")\n\n    total_time = time.time() - t_start\n\n    final = {\n        \"model_used\": \"Mistral-7B-Instruct-v0.3 (self-eval via vLLM)\",\n        \"scoring_method\": \"LLM step-level validity rating (1-5 scale, normalized to 0-1)\",\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"min_filtered_sc_accuracy_30\": round(min_filtered_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"min_filtered_correct\": min_filtered_correct,\n        \"total_time_s\": round(total_time, 1),\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:      {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:      {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:      {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"Min-Filtered SC accuracy:  {final['min_filtered_sc_accuracy_30']:.4f} ({min_filtered_correct}/{total})\")\n    print(f\"Total time: {total_time:.1f}s\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-20T16:07:42.808612+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_f_prm_verifier_pilot_v2.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-20T16:07:42.808782+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py << 'SCRIPT_EOF'\n\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot (v2)\nUses Mistral-7B vLLM API with logprobs for step-level reasoning quality scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\n\n# ── Config ──────────────────────────────────────────────────────────────\nVLLM_URL = \"http://localhost:8012/v1/completions\"\nMODEL_ID = \"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\n\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    trace_text = trace_text.strip()\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        return [s.strip() for s in numbered if s.strip()]\n\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        return [p.strip() for p in paragraphs if p.strip()]\n\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        steps = []\n        for i in range(0, len(sentences), 3):\n            chunk = ' '.join(sentences[i:i+3])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── LLM-based step scoring ─────────────────────────────────────────────\ndef score_step_llm(premise_text: str, step: str, max_retries: int = 2) -> float:\n    prompt = f\"\"\"[INST] You are a logic validator. Given premises from a logical reasoning problem, evaluate whether a reasoning step is logically valid.\n\nPremises:\n{premise_text[:1500]}\n\nReasoning step to evaluate:\n{step[:500]}\n\nRate this step's logical validity on a scale of 1-5:\n1 = Completely wrong or irrelevant\n2 = Contains logical errors\n3 = Partially correct but with gaps\n4 = Mostly correct with minor issues\n5 = Perfectly valid logical reasoning\n\nOutput ONLY a single digit (1-5): [/INST]\"\"\"\n\n    for attempt in range(max_retries):\n        try:\n            resp = requests.post(VLLM_URL, json={\n                \"model\": MODEL_ID,\n                \"prompt\": prompt,\n                \"max_tokens\": 3,\n                \"temperature\": 0.0,\n                \"logprobs\": 5,\n            }, timeout=30)\n            resp.raise_for_status()\n            data = resp.json()\n\n            text = data[\"choices\"][0][\"text\"].strip()\n            for ch in text:\n                if ch in \"12345\":\n                    return float(ch) / 5.0\n            return 0.5\n        except Exception as e:\n            if attempt < max_retries - 1:\n                time.sleep(1)\n            else:\n                print(f\"  [WARN] scoring failed: {e}\")\n                return 0.5\n    return 0.5\n\n\ndef score_trace(premise_text: str, trace_text: str) -> dict:\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 5:\n            continue\n        score = score_step_llm(premise_text, step)\n        step_scores.append(score)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_score\": float(np.mean(step_scores)),\n        \"min_score\": float(np.min(step_scores)),\n        \"num_steps\": len(step_scores),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    return Counter(answers).most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"mean_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"mean_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight_by_answer[t[\"answer\"]] += s[\"mean_score\"]\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\ndef min_filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"min_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"min_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    try:\n        r = requests.get(\"http://localhost:8012/v1/models\", timeout=5)\n        r.raise_for_status()\n        print(f\"vLLM API OK: {r.json()['data'][0]['id']}\")\n    except Exception as e:\n        print(f\"ERROR: vLLM API not available: {e}\")\n        sys.exit(1)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    min_filtered_correct = 0\n    total = 0\n\n    t_start = time.time()\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        q_start = time.time()\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            ts = score_trace(premise_text, trace_obj[\"trace\"])\n            trace_scores.append(ts)\n\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n        mf_ans = min_filtered_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n        mf_ok = (mf_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        min_filtered_correct += int(mf_ok)\n        total += 1\n\n        q_time = time.time() - q_start\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"min_filtered_sc_answer\": mf_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"min_filtered_correct\": mf_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_score\": trace_scores[i][\"mean_score\"],\n                    \"min_score\": trace_scores[i][\"min_score\"],\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} mf={mf_ans} | \"\n              f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'} MF={'OK' if mf_ok else 'X'} | {q_time:.1f}s\")\n\n    total_time = time.time() - t_start\n\n    final = {\n        \"model_used\": \"Mistral-7B-Instruct-v0.3 (self-eval via vLLM)\",\n        \"scoring_method\": \"LLM step-level validity rating (1-5 scale, normalized to 0-1)\",\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"min_filtered_sc_accuracy_30\": round(min_filtered_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"min_filtered_correct\": min_filtered_correct,\n        \"total_time_s\": round(total_time, 1),\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:      {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:      {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:      {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"Min-Filtered SC accuracy:  {final['min_filtered_sc_accuracy_30']:.4f} ({min_filtered_correct}/{total})\")\n    print(f\"Total time: {total_time:.1f}s\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py << 'SCRIPT_EOF'\n\"\"\"\nDir-F PRM Step-Level Verifier — FOLIO 30-question Pilot (v2)\nUses Mistral-7B vLLM API with logprobs for step-level reasoning quality scoring.\n\"\"\"\nimport json\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\nimport requests\n\n# ── Config ──────────────────────────────────────────────────────────────\nVLLM_URL = \"http://localhost:8012/v1/completions\"\nMODEL_ID = \"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\"\nINTERMEDIATES_DIR = Path(\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot\")\nNUM_QUESTIONS = 30\n\n\n# ── Step splitting ──────────────────────────────────────────────────────\ndef split_into_steps(trace_text: str) -> list[str]:\n    trace_text = trace_text.strip()\n    numbered = re.split(r'\\n\\s*(?:\\d+[\\.\\)]\\s|Step\\s+\\d+)', trace_text)\n    if len(numbered) > 2:\n        return [s.strip() for s in numbered if s.strip()]\n\n    paragraphs = re.split(r'\\n\\s*\\n', trace_text)\n    if len(paragraphs) > 1:\n        return [p.strip() for p in paragraphs if p.strip()]\n\n    sentences = re.split(r'(?<=[.!?])\\s+(?=[A-Z])', trace_text)\n    if len(sentences) > 2:\n        steps = []\n        for i in range(0, len(sentences), 3):\n            chunk = ' '.join(sentences[i:i+3])\n            if chunk.strip():\n                steps.append(chunk.strip())\n        return steps\n\n    return [trace_text]\n\n\n# ── LLM-based step scoring ─────────────────────────────────────────────\ndef score_step_llm(premise_text: str, step: str, max_retries: int = 2) -> float:\n    prompt = f\"\"\"[INST] You are a logic validator. Given premises from a logical reasoning problem, evaluate whether a reasoning step is logically valid.\n\nPremises:\n{premise_text[:1500]}\n\nReasoning step to evaluate:\n{step[:500]}\n\nRate this step's logical validity on a scale of 1-5:\n1 = Completely wrong or irrelevant\n2 = Contains logical errors\n3 = Partially correct but with gaps\n4 = Mostly correct with minor issues\n5 = Perfectly valid logical reasoning\n\nOutput ONLY a single digit (1-5): [/INST]\"\"\"\n\n    for attempt in range(max_retries):\n        try:\n            resp = requests.post(VLLM_URL, json={\n                \"model\": MODEL_ID,\n                \"prompt\": prompt,\n                \"max_tokens\": 3,\n                \"temperature\": 0.0,\n                \"logprobs\": 5,\n            }, timeout=30)\n            resp.raise_for_status()\n            data = resp.json()\n\n            text = data[\"choices\"][0][\"text\"].strip()\n            for ch in text:\n                if ch in \"12345\":\n                    return float(ch) / 5.0\n            return 0.5\n        except Exception as e:\n            if attempt < max_retries - 1:\n                time.sleep(1)\n            else:\n                print(f\"  [WARN] scoring failed: {e}\")\n                return 0.5\n    return 0.5\n\n\ndef score_trace(premise_text: str, trace_text: str) -> dict:\n    steps = split_into_steps(trace_text)\n    if not steps:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    step_scores = []\n    for step in steps:\n        if len(step.split()) < 5:\n            continue\n        score = score_step_llm(premise_text, step)\n        step_scores.append(score)\n\n    if not step_scores:\n        return {\"step_scores\": [], \"mean_score\": 0.5, \"min_score\": 0.0, \"num_steps\": 0}\n\n    return {\n        \"step_scores\": step_scores,\n        \"mean_score\": float(np.mean(step_scores)),\n        \"min_score\": float(np.min(step_scores)),\n        \"num_steps\": len(step_scores),\n    }\n\n\n# ── SC methods ──────────────────────────────────────────────────────────\ndef standard_sc(traces: list[dict]) -> str:\n    answers = [t[\"answer\"] for t in traces if t[\"answer\"]]\n    if not answers:\n        return \"Unknown\"\n    return Counter(answers).most_common(1)[0][0]\n\n\ndef filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"mean_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"mean_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\ndef weighted_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    weight_by_answer = Counter()\n    for t, s in scored:\n        weight_by_answer[t[\"answer\"]] += s[\"mean_score\"]\n\n    if not weight_by_answer:\n        return \"Unknown\"\n    return weight_by_answer.most_common(1)[0][0]\n\n\ndef min_filtered_sc(traces: list[dict], trace_scores: list[dict]) -> str:\n    scored = [(t, s) for t, s in zip(traces, trace_scores) if t[\"answer\"] and s[\"num_steps\"] > 0]\n    if not scored:\n        return \"Unknown\"\n\n    scores_vals = [s[\"min_score\"] for _, s in scored]\n    median_score = float(np.median(scores_vals))\n\n    filtered = [(t, s) for t, s in scored if s[\"min_score\"] >= median_score]\n    if not filtered:\n        return \"Unknown\"\n\n    return Counter([t[\"answer\"] for t, _ in filtered]).most_common(1)[0][0]\n\n\n# ── Main ────────────────────────────────────────────────────────────────\ndef main():\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n\n    try:\n        r = requests.get(\"http://localhost:8012/v1/models\", timeout=5)\n        r.raise_for_status()\n        print(f\"vLLM API OK: {r.json()['data'][0]['id']}\")\n    except Exception as e:\n        print(f\"ERROR: vLLM API not available: {e}\")\n        sys.exit(1)\n\n    results_per_question = []\n    sc_correct = 0\n    filtered_correct = 0\n    weighted_correct = 0\n    min_filtered_correct = 0\n    total = 0\n\n    t_start = time.time()\n\n    for qidx in range(NUM_QUESTIONS):\n        fpath = INTERMEDIATES_DIR / f\"folio_{qidx}.json\"\n        if not fpath.exists():\n            print(f\"[WARN] {fpath} not found, skipping\")\n            continue\n\n        with open(fpath) as f:\n            data = json.load(f)\n\n        gold = data[\"problem\"][\"answer\"]\n        premise_text = data[\"problem\"][\"problem\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        q_start = time.time()\n        trace_scores = []\n        for tidx, trace_obj in enumerate(traces):\n            ts = score_trace(premise_text, trace_obj[\"trace\"])\n            trace_scores.append(ts)\n\n        sc_ans = standard_sc(traces)\n        filt_ans = filtered_sc(traces, trace_scores)\n        wt_ans = weighted_sc(traces, trace_scores)\n        mf_ans = min_filtered_sc(traces, trace_scores)\n\n        sc_ok = (sc_ans == gold)\n        filt_ok = (filt_ans == gold)\n        wt_ok = (wt_ans == gold)\n        mf_ok = (mf_ans == gold)\n\n        sc_correct += int(sc_ok)\n        filtered_correct += int(filt_ok)\n        weighted_correct += int(wt_ok)\n        min_filtered_correct += int(mf_ok)\n        total += 1\n\n        q_time = time.time() - q_start\n\n        q_result = {\n            \"id\": f\"folio_{qidx}\",\n            \"gold\": gold,\n            \"sc_answer\": sc_ans,\n            \"filtered_sc_answer\": filt_ans,\n            \"weighted_sc_answer\": wt_ans,\n            \"min_filtered_sc_answer\": mf_ans,\n            \"sc_correct\": sc_ok,\n            \"filtered_correct\": filt_ok,\n            \"weighted_correct\": wt_ok,\n            \"min_filtered_correct\": mf_ok,\n            \"num_traces\": len(traces),\n            \"trace_scores_summary\": [\n                {\n                    \"trace_idx\": traces[i].get(\"trace_idx\", i),\n                    \"answer\": traces[i][\"answer\"],\n                    \"mean_score\": trace_scores[i][\"mean_score\"],\n                    \"min_score\": trace_scores[i][\"min_score\"],\n                    \"num_steps\": trace_scores[i][\"num_steps\"],\n                }\n                for i in range(len(traces))\n            ],\n        }\n        results_per_question.append(q_result)\n\n        print(f\"[{qidx+1}/{NUM_QUESTIONS}] folio_{qidx}: gold={gold} sc={sc_ans} filt={filt_ans} wt={wt_ans} mf={mf_ans} | \"\n              f\"SC={'OK' if sc_ok else 'X'} Filt={'OK' if filt_ok else 'X'} Wt={'OK' if wt_ok else 'X'} MF={'OK' if mf_ok else 'X'} | {q_time:.1f}s\")\n\n    total_time = time.time() - t_start\n\n    final = {\n        \"model_used\": \"Mistral-7B-Instruct-v0.3 (self-eval via vLLM)\",\n        \"scoring_method\": \"LLM step-level validity rating (1-5 scale, normalized to 0-1)\",\n        \"num_questions\": total,\n        \"sc_accuracy_30\": round(sc_correct / total, 4) if total > 0 else 0,\n        \"filtered_sc_accuracy_30\": round(filtered_correct / total, 4) if total > 0 else 0,\n        \"weighted_sc_accuracy_30\": round(weighted_correct / total, 4) if total > 0 else 0,\n        \"min_filtered_sc_accuracy_30\": round(min_filtered_correct / total, 4) if total > 0 else 0,\n        \"sc_correct\": sc_correct,\n        \"filtered_correct\": filtered_correct,\n        \"weighted_correct\": weighted_correct,\n        \"min_filtered_correct\": min_filtered_correct,\n        \"total_time_s\": round(total_time, 1),\n        \"per_question_scores\": results_per_question,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(final, f, indent=2, ensure_ascii=False)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Standard SC accuracy:      {final['sc_accuracy_30']:.4f} ({sc_correct}/{total})\")\n    print(f\"Filtered SC accuracy:      {final['filtered_sc_accuracy_30']:.4f} ({filtered_correct}/{total})\")\n    print(f\"Weighted SC accuracy:      {final['weighted_sc_accuracy_30']:.4f} ({weighted_correct}/{total})\")\n    print(f\"Min-Filtered SC accuracy:  {final['min_filtered_sc_accuracy_30']:.4f} ({min_filtered_correct}/{total})\")\n    print(f\"Total time: {total_time:.1f}s\")\n    print(f\"{'='*60}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-20T16:07:42.809076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script uploaded OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-20T16:07:42.809233+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -u -c \"\nimport json, requests, numpy as np, re\nfrom pathlib import Path\n\n# Check vLLM API\nr = requests.get('http://localhost:8012/v1/models', timeout=5)\nprint(f'API: {r.status_code}')\n\n# Check intermediates\np = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates')\ncount = sum(1 for i in range(30) if (p / f'folio_{i}.json').exists())\nprint(f'Files: {count}/30')\n\n# Test one scoring call\nresp = requests.post('http://localhost:8012/v1/completions', json={\n    'model': '/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3',\n    'prompt': '[INST] Rate 1-5: Is 2+2=4 valid? Output ONLY a digit: [/INST]',\n    'max_tokens': 3,\n    'temperature': 0.0,\n}, timeout=10)\nprint(f'Test score: {resp.json()[\\\"choices\\\"][0][\\\"text\\\"].strip()}')\n\n# Test output dir\nimport os\nos.makedirs('/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot', exist_ok=True)\nprint('Output dir OK')\n\nprint('DRY-RUN PASSED')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -u -c \"\nimport json, requests, numpy as np, re\nfrom pathlib import Path\n\n# Check vLLM API\nr = requests.get('http://localhost:8012/v1/models', timeout=5)\nprint(f'API: {r.status_code}')\n\n# Check intermediates\np = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates')\ncount = sum(1 for i in range(30) if (p / f'folio_{i}.json').exists())\nprint(f'Files: {count}/30')\n\n# Test one scoring call\nresp = requests.post('http://localhost:8012/v1/completions', json={\n    'model': '/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3',\n    'prompt': '[INST] Rate 1-5: Is 2+2=4 valid? Output ONLY a digit: [/INST]',\n    'max_tokens': 3,\n    'temperature': 0.0,\n}, timeout=10)\nprint(f'Test score: {resp.json()[\\\"choices\\\"][0][\\\"text\\\"].strip()}')\n\n# Test output dir\nimport os\nos.makedirs('/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot', exist_ok=True)\nprint('Output dir OK')\n\nprint('DRY-RUN PASSED')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-20T16:07:42.809370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"API: 200\\nFiles: 30/30\\nTest score: 4\\nOutput dir OK\\nDRY-RUN PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-20T16:07:42.809506+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cd /root/symb_invariant_consensus && nohup bash -c '\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 -u scripts/dir_f_prm_verifier_pilot.py\n' > /tmp/prm_pilot.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-20T16:07:42.809633+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && nohup bash -c \\\\'\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\npython3 -u scripts/dir_f_prm_verifier_pilot.py\\\\n\\\\' > /tmp/prm_pilot.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=339149\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-20T16:07:42.809767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-20T16:07:42.809915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[5/30] folio_4: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.4s\\n[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-20T16:07:42.810060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-20T16:07:42.810186+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-20T16:07:42.810333+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-20T16:07:42.810467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2/30] folio_1: gold=True sc=True filt=Unknown wt=True mf=True | SC=OK Filt=X Wt=OK MF=OK | 4.6s\\n[3/30] folio_2: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.8s\\n[4/30] folio_3: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.6s\\n[5/30] folio_4: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.4s\\n[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-20T16:07:42.810614+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -15 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -15 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-20T16:07:42.810746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"vLLM API OK: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\n[1/30] folio_0: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.7s\\n[2/30] folio_1: gold=True sc=True filt=Unknown wt=True mf=True | SC=OK Filt=X Wt=OK MF=OK | 4.6s\\n[3/30] folio_2: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.8s\\n[4/30] folio_3: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.6s\\n[5/30] folio_4: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.4s\\n[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-20T16:07:42.810885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-20T16:07:42.811021+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[5/30] folio_4: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.4s\\n[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n[13/30] folio_12: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 3.9s\\n[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-20T16:07:42.811148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-20T16:07:42.811274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[5/30] folio_4: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.4s\\n[6/30] folio_5: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.9s\\n[7/30] folio_6: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 2.8s\\n[8/30] folio_7: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.1s\\n[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n[13/30] folio_12: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 3.9s\\n[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-20T16:07:42.811392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-20T16:07:42.811512+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n[13/30] folio_12: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 3.9s\\n[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-20T16:07:42.811644+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -8 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -8 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-20T16:07:42.811767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n[13/30] folio_12: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 3.9s\\n[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-20T16:07:42.811908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-20T16:07:42.812042+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[9/30] folio_8: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 2.5s\\n[10/30] folio_9: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.8s\\n[11/30] folio_10: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.8s\\n[12/30] folio_11: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.0s\\n[13/30] folio_12: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 3.9s\\n[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-20T16:07:42.812163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-20T16:07:42.812282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-20T16:07:42.812397+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-20T16:07:42.812519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-20T16:07:42.812635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-20T16:07:42.812752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-20T16:07:42.812865+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-20T16:07:42.813006+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-20T16:07:42.813148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -8 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -8 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-20T16:07:42.813269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-20T16:07:42.813392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-20T16:07:42.813510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-20T16:07:42.813623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -8 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -8 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-20T16:07:42.813740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n[25/30] folio_24: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 2.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181 · 2026-05-20T16:07:42.813857+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -8 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -8 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-20T16:07:42.814004+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n[25/30] folio_24: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 2.2s\\n[26/30] folio_25: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 2.5s\\n[27/30] folio_26: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-20T16:07:42.814140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -15 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -15 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 184 · 2026-05-20T16:07:42.814285+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[14/30] folio_13: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n[25/30] folio_24: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 2.2s\\n[26/30] folio_25: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 2.5s\\n[27/30] folio_26: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.6s\\n[28/30] folio_27: gold=False sc=True filt=True wt=True mf=True | SC=X Filt=X Wt=X MF=X | 4.5s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 185 · 2026-05-20T16:07:42.814437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -15 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -15 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 186 · 2026-05-20T16:07:42.814568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n[25/30] folio_24: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 2.2s\\n[26/30] folio_25: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 2.5s\\n[27/30] folio_26: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.6s\\n[28/30] folio_27: gold=False sc=True filt=True wt=True mf=True | SC=X Filt=X Wt=X MF=X | 4.5s\\n[29/30] folio_28: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 4.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-20T16:07:42.814715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -15 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -15 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-20T16:07:42.814846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[15/30] folio_14: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[16/30] folio_15: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 2.4s\\n[17/30] folio_16: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 4.1s\\n[18/30] folio_17: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 3.3s\\n[19/30] folio_18: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 4.2s\\n[20/30] folio_19: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.7s\\n[21/30] folio_20: gold=False sc=False filt=False wt=False mf=False | SC=OK Filt=OK Wt=OK MF=OK | 4.2s\\n[22/30] folio_21: gold=True sc=Unknown filt=True wt=Unknown mf=Unknown | SC=X Filt=OK Wt=X MF=X | 4.7s\\n[23/30] folio_22: gold=False sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 3.3s\\n[24/30] folio_23: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n[25/30] folio_24: gold=True sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=X Filt=X Wt=X MF=X | 2.2s\\n[26/30] folio_25: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 2.5s\\n[27/30] folio_26: gold=Unknown sc=Unknown filt=Unknown wt=Unknown mf=Unknown | SC=OK Filt=OK Wt=OK MF=OK | 1.6s\\n[28/30] folio_27: gold=False sc=True filt=True wt=True mf=True | SC=X Filt=X Wt=X MF=X | 4.5s\\n[29/30] folio_28: gold=True sc=True filt=True wt=True mf=True | SC=OK Filt=OK Wt=OK MF=OK | 4.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-20T16:07:42.815005+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/prm_pilot.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/prm_pilot.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-20T16:07:42.815134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[30/30] folio_29: gold=Unknown sc=False filt=False wt=False mf=False | SC=X Filt=X Wt=X MF=X | 4.2s\\n\\n============================================================\\nResults saved to /root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot/results.json\\nStandard SC accuracy:      0.5333 (16/30)\\nFiltered SC accuracy:      0.5667 (17/30)\\nWeighted SC accuracy:      0.5333 (16/30)\\nMin-Filtered SC accuracy:  0.5333 (16/30)\\nTotal time: 108.8s\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-20T16:07:42.815268+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -30 /root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -30 /root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-20T16:07:42.815410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_used\\\": \\\"Mistral-7B-Instruct-v0.3 (self-eval via vLLM)\\\",\\n  \\\"scoring_method\\\": \\\"LLM step-level validity rating (1-5 scale, normalized to 0-1)\\\",\\n  \\\"num_questions\\\": 30,\\n  \\\"sc_accuracy_30\\\": 0.5333,\\n  \\\"filtered_sc_accuracy_30\\\": 0.5667,\\n  \\\"weighted_sc_accuracy_30\\\": 0.5333,\\n  \\\"min_filtered_sc_accuracy_30\\\": 0.5333,\\n  \\\"sc_correct\\\": 16,\\n  \\\"filtered_correct\\\": 17,\\n  \\\"weighted_correct\\\": 16,\\n  \\\"min_filtered_correct\\\": 16,\\n  \\\"total_time_s\\\": 108.8,\\n  \\\"per_question_scores\\\": [\\n    {\\n      \\\"id\\\": \\\"folio_0\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"filtered_sc_answer\\\": \\\"Unknown\\\",\\n      \\\"weighted_sc_answer\\\": \\\"Unknown\\\",\\n      \\\"min_filtered_sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"filtered_correct\\\": true,\\n      \\\"weighted_correct\\\": true,\\n      \\\"min_filtered_correct\\\": true,\\n      \\\"num_traces\\\": 12,\\n      \\\"trace_scores_summary\\\": [\\n        {\\n          \\\"trace_idx\\\": 0,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 193 · 2026-05-20T16:07:42.815579+00:00_
+
+结果：
+
+| 方法 | 准确率 | 正确数/总数 |
+|------|--------|-----------|
+| Standard SC | 53.33% | 16/30 |
+| **Filtered SC** | **56.67%** | **17/30** |
+| Weighted SC | 53.33% | 16/30 |
+| Min-Filtered SC | 53.33% | 16/30 |
+
+**Filtered SC 比 Standard SC 提升 +3.33% (+1题)**，具体是 folio_6 和 folio_21 被 Filtered SC 纠正（从 Unknown→True），但 folio_1 被 Filtered SC 搞错（从 True→Unknown）。净增 1 题。
+
+局限性：使用同一 Mistral-7B 做生成+评估（self-eval），评分区分度有限。用独立 reward model（如 DeBERTa-NLI 或专用 PRM）预期能获得更好的区分效果，但本次因 AutoDL 网络问题无法下载。
+
+结果已写入 `/root/symb_invariant_consensus/results/dir_f_prm_verifier_pilot/results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_dir-f-prm-verifier_20260520T155425"
+}
+```
+
+</details>
+
+---

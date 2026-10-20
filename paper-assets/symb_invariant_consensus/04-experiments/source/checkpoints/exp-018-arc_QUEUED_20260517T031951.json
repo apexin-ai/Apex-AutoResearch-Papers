@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-018-arc",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:19:51.591Z",
+    "updated_at": "2026-05-17T03:19:51.591Z"
+  },
+  "timestamp": "2026-05-17T03:19:51.636327+00:00",
+  "trigger": "update_registry"
+}

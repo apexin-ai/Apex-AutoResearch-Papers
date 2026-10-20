@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1710a0944619f1882dca",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix multiseed table update",
+  "task_key": "worker_fix_multiseed-table-update_20260522T233652",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_multiseed-table-update_20260522T233652_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "fae927791b0c5cce8411c5c3200bfeedb79403f6f8ac14b767752a7a863d0b53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，27页，无错误。\n\n### 产出汇总\n\n**appendix.tex — 多种子表 (tab:multi-seed)**\n\n新增两组数据，表格现为 4 个条件：\n\n| 条件 | 新增行 |\n|------|--------|\n| Mistral-7B × PW-D5 (n=600) | 4 seeds (42/123/456/789), Mean Δ = −2.38±1.12, 4/4 Δ≤0 |\n| LLaMA-3.1-8B × FOLIO (n=204) | 3 seeds (123/456/789), Mean Δ = −0.98±2.25 |\n\n表格标题更新为：*\"Three of four conditions show consistent Δ≤0 across all seeds; Mistral-7B × FOLIO is the exception (+0.16±2.70 pp).\"*\n\n**experiments.tex — 叙事（L57）**\n\n旧：*\"Three-seed replication on Mistral-7B confirms seed-level noise: two of three seeds produce null or negative Δ (mean +0.16±2.70 pp; Table)\"*\n\n新：*\"Four-seed replication on Mistral-7B × ProofWriter (Δ̄=−2.38±1.12 pp, 4/4 seeds Δ≤0) and three-seed replication on LLaMA-3.1-8B × FOLIO (Δ̄=−0.98±2.25 pp) confirm that the SICA≤SC pattern is stable across seeds, models, and datasets (Table)\"*\n\nQwen2.5-14B × FOLIO 四种子句保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-multiseed-table-update.md"
+}

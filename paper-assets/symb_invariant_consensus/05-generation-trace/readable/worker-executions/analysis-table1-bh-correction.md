@@ -1,0 +1,1038 @@
+# analysis table1 bh correction
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_analysis_table1-bh-correction_20260521T021023.log`
+- **Structured JSON:** [`92c8873e9ab59a6ca0e4.json`](../../sessions/92/92c8873e9ab59a6ca0e4.json)
+
+## Before a recorded user message
+
+18 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9a8c80fe-618e-4b68-a662-e8add7ae2674",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779344400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "13e05e8f-216d-4c9e-966c-8f7daad65653",
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me start by reading the experiments.tex file to extract the p-values from Table 1.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "8b25bc49-1648-4603-a6d8-1559860d6a83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWskz1xji77AhiLoQkpubJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12688,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12688
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015LFYSBpTetJqWdBppQDdq7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "4fab36c2-5225-49a0-83d4-e3f9cbc0b3b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RWskz1xji77AhiLoQkpubJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12688,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12688
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T02:10:33.889Z_
+
+<details><summary>↩ Tool result · `toolu_015LFYSBpTetJqWdBppQDdq7`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Setup}
+5	\label{sec:exp-setup}
+6	
+7	We evaluate SICA against Self-Consistency (SC) across six models on three reasoning domains with over 3,000 condition-evaluations across ${\sim}$1,250 unique instances. Beyond accuracy comparisons, we conduct diagnostic analyses of symbolic confirmation bias and process-level trace independence (\S\ref{sec:analysis}).
+8	
+9	\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\citep{dubey2024llama3}, and QwQ-32B~\citep{qwen2024qwq} (7B--32B parameters).
+10	
+11	\paragraph{Datasets.} FOLIO~\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\citep{cobbe2021gsm8k} ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\%$).
+12	
+13	\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$; extraction at $T_{\text{ext}}{=}0.3$. Z3 timeout: 10s. $\alpha{=}0.5$. Statistical significance via McNemar exact test ($\alpha{=}0.05$); 95\% bootstrap CIs from 10,000 resamples for $n \geq 200$.
+14	
+15	\paragraph{Computational cost.} On Mistral-7B FOLIO ($K{=}12$), SICA takes $4.5{\times}$ SC wall-clock time; constraint extraction ($K$ additional LLM calls) accounts for 76\% of overhead, Z3 solving is negligible (${<}0.1\%$).
+16	
+17	
+18	\subsection{Main Results}
+19	\label{sec:main-results}
+20	
+21	Table~\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline. We identify three empirical regimes (thresholds observation-driven, not theoretically derived). SICA effectiveness depends sharply on this accuracy regime.
+22	
+23	\begin{table*}[t]
+24	\centering
+25	\small
+26	\caption{SICA vs.\ SC across all conditions sorted by SC accuracy. Results hold across the full capability range: from Mistral-7B (54.41\% SC) to Qwen3-14B thinking mode (86.27\% SC), SICA delivers no significant gain. $\Delta$ = SICA $-$ SC (pp). $^b$In-context learning with gold logical examples. $\dagger$\,$n < 100$ (suggestive only). \textbf{Bold $\Delta$}: $p < 0.05$ (McNemar). {*}\,$p < 0.05$;\enspace{**}\,$p < 0.01$;\enspace{***}\,$p < 0.001$. Failure modes detailed in Appendix~\ref{app:failure-modes}. $^{4s}$\,4-seed replication (confirmatory); unmarked single-seed conditions are exploratory.}
+27	\label{tab:main_results}
+28	\begin{tabular}{@{}llrrrrl@{}}
+29	\toprule
+30	Model & Domain & $n$ & SC (\%) & SICA (\%) & $\Delta$ (pp) & $p$ \\
+31	\midrule
+32	\multicolumn{7}{l}{\textit{Type C: error amplification (SC $\leq$ 40\%)}} \\
+33	Mistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\mathbf{-2.83}$ & 0.014{*} \\
+34	\midrule
+35	\multicolumn{7}{l}{\textit{Intermediate SC (SC $\sim$50--55\%, Mistral-7B only)}} \\
+36	Mistral-7B & LogiQA & 200 & 51.00 & 51.50 & $+$0.50 & 1.000 \\
+37	Mistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\
+38	Mistral-7B$^{4s}$ & FOLIO & 204 & 55.88 & 59.31 & $+$3.43 & 0.092 \\
+39	Mistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\
+40	Mistral-7B & FOLIO (s789) & 204 & 54.41 & 53.92 & $-$0.49 & 1.000 \\
+41	\midrule
+42	\multicolumn{7}{l}{\textit{Type A: confirmation bias (SC $\geq$ 60\%)}} \\
+43	LLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\
+44	LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\
+45	Qwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\
+46	Qwen2.5-14B & PW-D5 & 600 & 75.17 & 72.67 & $\mathbf{-2.50}$ & 0.011{*} \\
+47	Qwen2.5-14B & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\
+48	Qwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\
+49	Qwen2.5-14B & LogiQA & 200 & 78.50 & 78.00 & $-$0.50 & 1.000 \\
+50	Qwen3-14B & FOLIO & 204 & 84.80 & 84.31 & $-$0.49 & 1.000 \\
+51	Qwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\
+52	Qwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\
+53	\midrule
+54	\multicolumn{7}{l}{\textit{Degenerate ($C_0 < 5\%$)}} \\
+55	QwQ-32B & AIME 2024$^\dagger$ & 22 & 72.70 & 72.70 & 0.00 & \textrm{---} \\
+56	Qwen2.5-14B & GSM8K$^\dagger$ & 30 & 96.67 & 96.67 & 0.00 & \textrm{---} \\
+57	\midrule
+58	\multicolumn{7}{l}{\textit{Oracle upper bound (gold logical annotations + Z3)}} \\
+59	Mistral-7B & FOLIO & 204 & 55.88 & \textbf{85.78} & $\mathbf{+29.90}$ & $1.0{\times}10^{-13}${***} \\
+60	Qwen2.5-14B & FOLIO & 204 & 75.49 & \textbf{89.71} & $\mathbf{+14.22}$ & $2.0{\times}10^{-7}${***} \\
+61	Qwen2.5-14B & ProofWriter & 600 & 75.17 & \textbf{86.67} & $\mathbf{+11.50}$ & $9.21{\times}10^{-15}${***} \\
+62	\bottomrule
+63	\end{tabular}
+64	\end{table*}
+65	
+66	None of sixteen non-degenerate conditions shows a significant positive effect. Two show significant degradation: Mistral-7B on ProofWriter ($-2.83$\,pp, $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\,pp, $p = 0.011$). The intermediate-SC region (50--55\%) contains the only positive trends, none reaching $p < 0.05$. TOST equivalence tests \citep{lakens2017equivalence} ($\pm 2$\,pp) establish equivalence for 4 conditions; 5 show genuine differences (4 negative); 6 are underpowered (Appendix~\ref{app:tost}). We trace the failure to three mechanisms in \S\ref{sec:confirmation-bias}--\S\ref{sec:remediation}.
+67	
+68	
+69	\subsection{Oracle Control}
+70	\label{sec:oracle}
+71	
+72	Oracle variants replace self-extracted constraints with gold annotations: logical formulae from FOLIO ($n = 204$) and DSL from ProofWriter ($n = 600$). Oracle-SICA yields $+29.90$\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+14.22$\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \times 10^{-7}$), and $+11.50$\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\% (FOLIO) and 97.1\% (ProofWriter) of problems. The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted result ($+3.43$\,pp) captures only 11.5\% of its oracle ceiling, with ${\sim}$88\% lost to extraction quality.
+73	
+74	
+75	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "beecfa5e-f823-4517-92b6-5560c9ffeda4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Setup}\n\\label{sec:exp-setup}\n\nWe evaluate SICA against Self-Consistency (SC) across six models on three reasoning domains with over 3,000 condition-evaluations across ${\\sim}$1,250 unique instances. Beyond accuracy comparisons, we conduct diagnostic analyses of symbolic confirmation bias and process-level trace independence (\\S\\ref{sec:analysis}).\n\n\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B parameters).\n\n\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\citep{cobbe2021gsm8k} ($n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n\n\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$; extraction at $T_{\\text{ext}}{=}0.3$. Z3 timeout: 10s. $\\alpha{=}0.5$. Statistical significance via McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs from 10,000 resamples for $n \\geq 200$.\n\n\\paragraph{Computational cost.} On Mistral-7B FOLIO ($K{=}12$), SICA takes $4.5{\\times}$ SC wall-clock time; constraint extraction ($K$ additional LLM calls) accounts for 76\\% of overhead, Z3 solving is negligible (${<}0.1\\%$).\n\n\n\\subsection{Main Results}\n\\label{sec:main-results}\n\nTable~\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline. We identify three empirical regimes (thresholds observation-driven, not theoretically derived). SICA effectiveness depends sharply on this accuracy regime.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC across all conditions sorted by SC accuracy. Results hold across the full capability range: from Mistral-7B (54.41\\% SC) to Qwen3-14B thinking mode (86.27\\% SC), SICA delivers no significant gain. $\\Delta$ = SICA $-$ SC (pp). $^b$In-context learning with gold logical examples. $\\dagger$\\,$n < 100$ (suggestive only). \\textbf{Bold $\\Delta$}: $p < 0.05$ (McNemar). {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$. Failure modes detailed in Appendix~\\ref{app:failure-modes}. $^{4s}$\\,4-seed replication (confirmatory); unmarked single-seed conditions are exploratory.}\n\\label{tab:main_results}\n\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Domain & $n$ & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Type C: error amplification (SC $\\leq$ 40\\%)}} \\\\\nMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\mathbf{-2.83}$ & 0.014{*} \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Intermediate SC (SC $\\sim$50--55\\%, Mistral-7B only)}} \\\\\nMistral-7B & LogiQA & 200 & 51.00 & 51.50 & $+$0.50 & 1.000 \\\\\nMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\nMistral-7B$^{4s}$ & FOLIO & 204 & 55.88 & 59.31 & $+$3.43 & 0.092 \\\\\nMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\nMistral-7B & FOLIO (s789) & 204 & 54.41 & 53.92 & $-$0.49 & 1.000 \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Type A: confirmation bias (SC $\\geq$ 60\\%)}} \\\\\nLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\nLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\nQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\nQwen2.5-14B & PW-D5 & 600 & 75.17 & 72.67 & $\\mathbf{-2.50}$ & 0.011{*} \\\\\nQwen2.5-14B & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\\\\nQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\nQwen2.5-14B & LogiQA & 200 & 78.50 & 78.00 & $-$0.50 & 1.000 \\\\\nQwen3-14B & FOLIO & 204 & 84.80 & 84.31 & $-$0.49 & 1.000 \\\\\nQwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\\\\nQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Degenerate ($C_0 < 5\\%$)}} \\\\\nQwQ-32B & AIME 2024$^\\dagger$ & 22 & 72.70 & 72.70 & 0.00 & \\textrm{---} \\\\\nQwen2.5-14B & GSM8K$^\\dagger$ & 30 & 96.67 & 96.67 & 0.00 & \\textrm{---} \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Oracle upper bound (gold logical annotations + Z3)}} \\\\\nMistral-7B & FOLIO & 204 & 55.88 & \\textbf{85.78} & $\\mathbf{+29.90}$ & $1.0{\\times}10^{-13}${***} \\\\\nQwen2.5-14B & FOLIO & 204 & 75.49 & \\textbf{89.71} & $\\mathbf{+14.22}$ & $2.0{\\times}10^{-7}${***} \\\\\nQwen2.5-14B & ProofWriter & 600 & 75.17 & \\textbf{86.67} & $\\mathbf{+11.50}$ & $9.21{\\times}10^{-15}${***} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nNone of sixteen non-degenerate conditions shows a significant positive effect. Two show significant degradation: Mistral-7B on ProofWriter ($-2.83$\\,pp, $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\,pp, $p = 0.011$). The intermediate-SC region (50--55\\%) contains the only positive trends, none reaching $p < 0.05$. TOST equivalence tests \\citep{lakens2017equivalence} ($\\pm 2$\\,pp) establish equivalence for 4 conditions; 5 show genuine differences (4 negative); 6 are underpowered (Appendix~\\ref{app:tost}). We trace the failure to three mechanisms in \\S\\ref{sec:confirmation-bias}--\\S\\ref{sec:remediation}.\n\n\n\\subsection{Oracle Control}\n\\label{sec:oracle}\n\nOracle variants replace self-extracted constraints with gold annotations: logical formulae from FOLIO ($n = 204$) and DSL from ProofWriter ($n = 600$). Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+14.22$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+11.50$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter) of problems. The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted result ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling, with ${\\sim}$88\\% lost to extraction quality.\n\n\n",
+      "numLines": 75,
+      "startLine": 1,
+      "totalLines": 75
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me identify the 16 non-degenerate conditions. Looking at the table:
+
+**Type C (SC ≤ 40%):**
+1. Mistral-7B, PW-D5, n=600, SC=39.33, SICA=36.50, Δ=-2.83, p=0.014
+
+**Intermediate SC (50-55%):**
+2. Mistral-7B, LogiQA, n=200, SC=51.00, SICA=51.50, Δ=+0.50, p=1.000
+
+
+3. Mistral-7B, FOLIO (s123), n=204, SC=54.41, SICA=57.35, Δ=+2.94, p=0.070
+4. Mistral-7B (4s), FOLIO, n=204, SC=55.88, SICA=59.31, Δ=+3.43, p=0.092
+5. Mistral-7B, FOLIO (s456), n=204, SC=55.88, SICA=55.88, Δ=0.00, p=1.000
+
+Continuing through the remaining conditions... Looking at the performance metrics for additional models across different datasets, I'm seeing Qwen2.5 variants and Qwen3-14B showing strong results, with Qwen3-14B reaching 84.80% on FOLIO—the highest performance in this group.
+
+Now I'm applying the Benjamini-Hochberg correction to account for multiple comparisons across the 16 non-degenerate conditions. After sorting the p-values from smallest to largest, the most significant results cluster at the lower end: the Qwen2.5-14B on PW-D5 with p=0.011, followed by Mistral-7B on PW-D5 at p=0.014, and then three conditions hovering around p=0.070 to p=0.093. Continuing the Benjamini-Hochberg adjustment calculations, working through the remaining ranks where the adjusted p-values start dropping below 1.0 at rank 5, then propagating that constraint forward through ranks 4, 3, and 2 as each successive calculation gets capped by the previous result. Continuing down the ranks, I'm seeing that rank 5 is where the adjusted p-value drops significantly to 0.2976, and then it stays at that floor value for ranks 4, 3, and 2 since each subsequent calculation keeps hitting that minimum.
+
+For the final two ranks, the adjusted p-values are both 0.112, which means both Mistral-7B and Qwen2.5-14B lose statistical significance after correction. But I'm noticing a discrepancy—the reviewer expected Qwen2.5 to have an adjusted p around 0.176, not 0.112 like I calculated. I'm working through the Benjamini-Hochberg procedure step by step, computing adjusted p-values by multiplying each sorted p-value by m divided by its rank, then enforcing monotonicity by working backwards from the largest rank so each adjusted value is the minimum of itself and the previously computed one. Let me trace through with the actual p-values to verify the calculation. Continuing down the ranks, I'm applying the same monotonicity constraint to positions 4 through 1, which keeps them all capped at 0.2976 until position 2 where the raw p-value drops to 0.112. This suggests the reviewer's expectation of 0.176 for Qwen2.5 might not account for the monotonicity enforcement, or they calculated it differently. The reviewer's expected values might just be the raw BH critical values rather than the final adjusted p-values, but either way, neither result is significant at α=0.05. Let me write a Python script using scipy to verify this precisely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "40f88900-433b-4c01-bba3-b4515169a651",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtPkze4894rSVT8Zzr9b2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3037,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3037
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+I have the table. There are exactly 16 non-degenerate conditions (rows 33-52, excluding the 2 degenerate and 3 oracle rows). Let me run the BH correction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "5c6e289c-6804-4c0d-955c-31e045eaee4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtPkze4894rSVT8Zzr9b2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3037,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3037
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019VtKjMvtyu4SVxAJZzJ3Yx`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nimport numpy as np\n\nconditions = [\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 39.33, \"sica\": 36.50, \"delta\": -2.83, \"raw_p\": 0.014},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"LogiQA\",          \"n\": 200, \"sc\": 51.00, \"sica\": 51.50, \"delta\":  0.50, \"raw_p\": 1.000},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s123)\",    \"n\": 204, \"sc\": 54.41, \"sica\": 57.35, \"delta\":  2.94, \"raw_p\": 0.070},\n    {\"model\": \"Mistral-7B (4s)\",     \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 55.88, \"sica\": 59.31, \"delta\":  3.43, \"raw_p\": 0.092},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s456)\",    \"n\": 204, \"sc\": 55.88, \"sica\": 55.88, \"delta\":  0.00, \"raw_p\": 1.000},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s789)\",    \"n\": 204, \"sc\": 54.41, \"sica\": 53.92, \"delta\": -0.49, \"raw_p\": 1.000},\n    {\"model\": \"LLaMA-3.1-8B\",       \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 66.18, \"sica\": 61.76, \"delta\": -4.41, \"raw_p\": 0.093},\n    {\"model\": \"LLaMA-3.1-8B\",       \"dataset\": \"StrategyQA\",      \"n\": 200, \"sc\": 72.00, \"sica\": 74.00, \"delta\":  2.00, \"raw_p\": 0.424},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"FOLIO (ICL)\",     \"n\": 199, \"sc\": 74.37, \"sica\": 74.87, \"delta\":  0.50, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 75.17, \"sica\": 72.67, \"delta\": -2.50, \"raw_p\": 0.011},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 75.49, \"sica\": 74.51, \"delta\": -0.98, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-7B\",         \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 75.98, \"sica\": 76.47, \"delta\":  0.49, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"LogiQA\",          \"n\": 200, \"sc\": 78.50, \"sica\": 78.00, \"delta\": -0.50, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B\",          \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 84.80, \"sica\": 84.31, \"delta\": -0.49, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B\",          \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 85.00, \"sica\": 85.67, \"delta\":  0.67, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B (think)\",   \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 86.27, \"sica\": 86.76, \"delta\":  0.49, \"raw_p\": 1.000},\n]\n\nm = len(conditions)\nassert m == 16\n\nraw_ps = np.array([c[\"raw_p\"] for c in conditions])\n\n# BH correction\nsorted_indices = np.argsort(raw_ps)\nsorted_p = raw_ps[sorted_indices]\n\nadjusted = np.zeros(m)\nfor i in range(m - 1, -1, -1):\n    raw_adj = sorted_p[i] * m / (i + 1)\n    if i == m - 1:\n        adjusted[i] = min(raw_adj, 1.0)\n    else:\n        adjusted[i] = min(adjusted[i + 1], min(raw_adj, 1.0))\n\n# Map back to original order\nadj_p = np.zeros(m)\nfor i, idx in enumerate(sorted_indices):\n    adj_p[idx] = adjusted[i]\n\n# Also verify with scipy if available\ntry:\n    from scipy.stats import false_discovery_control\n    # scipy doesn't have BH directly as adjusted p-values, let's use statsmodels\n    raise ImportError\nexcept ImportError:\n    pass\n\ntry:\n    from statsmodels.stats.multitest import multipletests\n    reject, pvals_corrected, _, _ = multipletests(raw_ps, alpha=0.05, method='fdr_bh')\n    print(\"=== Scipy/statsmodels verification ===\")\n    for i in range(m):\n        match = \"OK\" if abs(adj_p[i] - pvals_corrected[i]) < 1e-10 else \"MISMATCH\"\n        if match == \"MISMATCH\":\n            print(f\"  {conditions[i]['model']:20s} {conditions[i]['dataset']:15s}  mine={adj_p[i]:.6f}  sm={pvals_corrected[i]:.6f}  {match}\")\n    if all(abs(adj_p[i] - pvals_corrected[i]) < 1e-10 for i in range(m)):\n        print(\"  All values match statsmodels.\\n\")\nexcept ImportError:\n    print(\"(statsmodels not available for cross-check)\\n\")\n\n# Build output\nalpha = 0.05\noutput_conditions = []\nfor i, c in enumerate(conditions):\n    entry = {\n        \"model\": c[\"model\"],\n        \"dataset\": c[\"dataset\"],\n        \"n\": c[\"n\"],\n        \"sc_pct\": c[\"sc\"],\n        \"sica_pct\": c[\"sica\"],\n        \"delta_pp\": c[\"delta\"],\n        \"raw_p\": c[\"raw_p\"],\n        \"adjusted_p\": round(adj_p[i], 6),\n        \"significant_raw\": c[\"raw_p\"] < alpha,\n        \"significant_bh\": adj_p[i] < alpha\n    }\n    output_conditions.append(entry)\n\nn_sig_raw = sum(1 for c in output_conditions if c[\"significant_raw\"])\nn_sig_bh = sum(1 for c in output_conditions if c[\"significant_bh\"])\nlosing = [f\"{c['model']} / {c['dataset']} (raw={c['raw_p']}, adj={c['adjusted_p']:.4f})\"\n          for c in output_conditions if c[\"significant_raw\"] and not c[\"significant_bh\"]]\n\nresult = {\n    \"m\": m,\n    \"alpha\": alpha,\n    \"method\": \"Benjamini-Hochberg\",\n    \"conditions\": output_conditions,\n    \"summary\": {\n        \"n_significant_raw\": n_sig_raw,\n        \"n_significant_bh\": n_sig_bh,\n        \"conditions_losing_significance\": losing\n    }\n}\n\n# Save JSON\noutpath = \"artifacts/table1_bh_correction.json\"\nwith open(outpath, \"w\") as f:\n    json.dump(result, f, indent=2)\nprint(f\"Saved to {outpath}\\n\")\n\n# Print table\nprint(f\"{'Model':<22s} {'Dataset':<16s} {'Δ(pp)':>7s} {'raw p':>8s} {'adj p':>8s} {'raw sig':>8s} {'BH sig':>8s}\")\nprint(\"-\" * 93)\nfor c in output_conditions:\n    raw_sig = \"*\" if c[\"significant_raw\"] else \"\"\n    bh_sig = \"*\" if c[\"significant_bh\"] else \"\"\n    print(f\"{c['model']:<22s} {c['dataset']:<16s} {c['delta_pp']:>+7.2f} {c['raw_p']:>8.4f} {c['adjusted_p']:>8.4f} {raw_sig:>8s} {bh_sig:>8s}\")\n\nprint(f\"\\nSignificant at α=0.05:  raw={n_sig_raw}, BH-corrected={n_sig_bh}\")\nprint(f\"Conditions losing significance after BH correction:\")\nfor l in losing:\n    print(f\"  - {l}\")\n\nPYEOF",
+  "description": "Compute BH correction for 16 conditions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "dfebbd3c-141a-4f64-92ee-b7782e73d444",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtPkze4894rSVT8Zzr9b2b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3037,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3037
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T02:11:53.982Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019VtKjMvtyu4SVxAJZzJ3Yx`</summary>
+
+```text
+Exit code 1
+(statsmodels not available for cross-check)
+
+Traceback (most recent call last):
+  File "&lt;stdin>", line 104, in &lt;module>
+  File "/usr/lib/python3.14/json/__init__.py", line 181, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 444, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.14/json/encoder.py", line 413, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.14/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/usr/lib/python3.14/json/encoder.py", line 413, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.14/json/encoder.py", line 451, in _iterencode
+    newobj = _default(o)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bool is not JSON serializable
+when serializing dict item 'significant_bh'
+when serializing list item 0
+when serializing dict item 'conditions'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "8c42893a-110c-4176-a798-e06ecf48ccb6",
+  "tool_use_result": "Error: Exit code 1\n(statsmodels not available for cross-check)\n\nTraceback (most recent call last):\n  File \"&lt;stdin>\", line 104, in &lt;module>\n  File \"/usr/lib/python3.14/json/__init__.py\", line 181, in dump\n    for chunk in iterable:\n                 ^^^^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 444, in _iterencode\n    yield from _iterencode_dict(o, _current_indent_level)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 326, in _iterencode_list\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 451, in _iterencode\n    newobj = _default(o)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'significant_bh'\nwhen serializing list item 0\nwhen serializing dict item 'conditions'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WQbDWZG9jBQ2mXdGnbA3kU`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nimport numpy as np\n\nconditions = [\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 39.33, \"sica\": 36.50, \"delta\": -2.83, \"raw_p\": 0.014},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"LogiQA\",          \"n\": 200, \"sc\": 51.00, \"sica\": 51.50, \"delta\":  0.50, \"raw_p\": 1.000},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s123)\",    \"n\": 204, \"sc\": 54.41, \"sica\": 57.35, \"delta\":  2.94, \"raw_p\": 0.070},\n    {\"model\": \"Mistral-7B (4s)\",     \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 55.88, \"sica\": 59.31, \"delta\":  3.43, \"raw_p\": 0.092},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s456)\",    \"n\": 204, \"sc\": 55.88, \"sica\": 55.88, \"delta\":  0.00, \"raw_p\": 1.000},\n    {\"model\": \"Mistral-7B\",          \"dataset\": \"FOLIO (s789)\",    \"n\": 204, \"sc\": 54.41, \"sica\": 53.92, \"delta\": -0.49, \"raw_p\": 1.000},\n    {\"model\": \"LLaMA-3.1-8B\",       \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 66.18, \"sica\": 61.76, \"delta\": -4.41, \"raw_p\": 0.093},\n    {\"model\": \"LLaMA-3.1-8B\",       \"dataset\": \"StrategyQA\",      \"n\": 200, \"sc\": 72.00, \"sica\": 74.00, \"delta\":  2.00, \"raw_p\": 0.424},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"FOLIO (ICL)\",     \"n\": 199, \"sc\": 74.37, \"sica\": 74.87, \"delta\":  0.50, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 75.17, \"sica\": 72.67, \"delta\": -2.50, \"raw_p\": 0.011},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 75.49, \"sica\": 74.51, \"delta\": -0.98, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-7B\",         \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 75.98, \"sica\": 76.47, \"delta\":  0.49, \"raw_p\": 1.000},\n    {\"model\": \"Qwen2.5-14B\",        \"dataset\": \"LogiQA\",          \"n\": 200, \"sc\": 78.50, \"sica\": 78.00, \"delta\": -0.50, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B\",          \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 84.80, \"sica\": 84.31, \"delta\": -0.49, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B\",          \"dataset\": \"PW-D5\",           \"n\": 600, \"sc\": 85.00, \"sica\": 85.67, \"delta\":  0.67, \"raw_p\": 1.000},\n    {\"model\": \"Qwen3-14B (think)\",  \"dataset\": \"FOLIO\",           \"n\": 204, \"sc\": 86.27, \"sica\": 86.76, \"delta\":  0.49, \"raw_p\": 1.000},\n]\n\nm = len(conditions)\nraw_ps = np.array([c[\"raw_p\"] for c in conditions])\n\n# BH correction\nsorted_indices = np.argsort(raw_ps)\nsorted_p = raw_ps[sorted_indices]\n\nadjusted = np.zeros(m)\nfor i in range(m - 1, -1, -1):\n    raw_adj = min(sorted_p[i] * m / (i + 1), 1.0)\n    if i == m - 1:\n        adjusted[i] = raw_adj\n    else:\n        adjusted[i] = min(adjusted[i + 1], raw_adj)\n\nadj_p = np.zeros(m)\nfor i, idx in enumerate(sorted_indices):\n    adj_p[idx] = adjusted[i]\n\nalpha = 0.05\noutput_conditions = []\nfor i, c in enumerate(conditions):\n    entry = {\n        \"model\": c[\"model\"],\n        \"dataset\": c[\"dataset\"],\n        \"n\": int(c[\"n\"]),\n        \"sc_pct\": float(c[\"sc\"]),\n        \"sica_pct\": float(c[\"sica\"]),\n        \"delta_pp\": float(c[\"delta\"]),\n        \"raw_p\": float(c[\"raw_p\"]),\n        \"adjusted_p\": round(float(adj_p[i]), 6),\n        \"significant_raw\": bool(c[\"raw_p\"] < alpha),\n        \"significant_bh\": bool(adj_p[i] < alpha)\n    }\n    output_conditions.append(entry)\n\nn_sig_raw = sum(1 for c in output_conditions if c[\"significant_raw\"])\nn_sig_bh = sum(1 for c in output_conditions if c[\"significant_bh\"])\nlosing = [f\"{c['model']} / {c['dataset']} (raw={c['raw_p']}, adj={c['adjusted_p']:.4f})\"\n          for c in output_conditions if c[\"significant_raw\"] and not c[\"significant_bh\"]]\n\nresult = {\n    \"m\": int(m),\n    \"alpha\": float(alpha),\n    \"method\": \"Benjamini-Hochberg\",\n    \"conditions\": output_conditions,\n    \"summary\": {\n        \"n_significant_raw\": int(n_sig_raw),\n        \"n_significant_bh\": int(n_sig_bh),\n        \"conditions_losing_significance\": losing\n    }\n}\n\noutpath = \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_correction.json\"\nwith open(outpath, \"w\") as f:\n    json.dump(result, f, indent=2)\nprint(f\"Saved to {outpath}\\n\")\n\n# Print table\nprint(f\"{'Model':<22s} {'Dataset':<16s} {'Δ(pp)':>7s} {'raw p':>8s} {'adj p':>8s} {'raw sig':>8s} {'BH sig':>8s}\")\nprint(\"-\" * 93)\nfor c in output_conditions:\n    raw_sig = \"*\" if c[\"significant_raw\"] else \"\"\n    bh_sig = \"*\" if c[\"significant_bh\"] else \"\"\n    print(f\"{c['model']:<22s} {c['dataset']:<16s} {c['delta_pp']:>+7.2f} {c['raw_p']:>8.4f} {c['adjusted_p']:>8.4f} {raw_sig:>8s} {bh_sig:>8s}\")\n\nprint(f\"\\nSignificant at α=0.05:  raw={n_sig_raw}, BH-corrected={n_sig_bh}\")\nprint(f\"Conditions losing significance after BH:\")\nfor l in losing:\n    print(f\"  - {l}\")\n\n# Also show the rank-by-rank BH detail for the non-trivial p-values\nprint(f\"\\n=== BH step-up detail (sorted by raw p) ===\")\nprint(f\"{'Rank':>4s} {'Model':<22s} {'Dataset':<16s} {'raw p':>8s} {'p*m/i':>8s} {'adj p':>8s}\")\nfor rank_idx in range(m):\n    orig_idx = sorted_indices[rank_idx]\n    c = conditions[orig_idx]\n    raw_bh = sorted_p[rank_idx] * m / (rank_idx + 1)\n    print(f\"{rank_idx+1:>4d} {c['model']:<22s} {c['dataset']:<16s} {sorted_p[rank_idx]:>8.4f} {raw_bh:>8.4f} {adjusted[rank_idx]:>8.4f}\")\n    if rank_idx >= 6:\n        print(f\"   ... (remaining 10 conditions all have raw p=1.000, adj p=1.000)\")\n        break\n\nPYEOF",
+  "description": "Compute BH correction with proper JSON serialization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "5bc01540-0c1b-43d9-a8d1-5ab6faa1316e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQa2RNDt2fdpbP6uuerYsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6354,
+      "cache_read_input_tokens": 27566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6354
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T02:12:26.441Z_
+
+<details><summary>↩ Tool result · `toolu_01WQbDWZG9jBQ2mXdGnbA3kU`</summary>
+
+```text
+Saved to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_correction.json
+
+Model                  Dataset            Δ(pp)    raw p    adj p  raw sig   BH sig
+---------------------------------------------------------------------------------------------
+Mistral-7B             PW-D5              -2.83   0.0140   0.1120        *         
+Mistral-7B             LogiQA             +0.50   1.0000   1.0000                  
+Mistral-7B             FOLIO (s123)       +2.94   0.0700   0.2976                  
+Mistral-7B (4s)        FOLIO              +3.43   0.0920   0.2976                  
+Mistral-7B             FOLIO (s456)       +0.00   1.0000   1.0000                  
+Mistral-7B             FOLIO (s789)       -0.49   1.0000   1.0000                  
+LLaMA-3.1-8B           FOLIO              -4.41   0.0930   0.2976                  
+LLaMA-3.1-8B           StrategyQA         +2.00   0.4240   1.0000                  
+Qwen2.5-14B            FOLIO (ICL)        +0.50   1.0000   1.0000                  
+Qwen2.5-14B            PW-D5              -2.50   0.0110   0.1120        *         
+Qwen2.5-14B            FOLIO              -0.98   1.0000   1.0000                  
+Qwen2.5-7B             FOLIO              +0.49   1.0000   1.0000                  
+Qwen2.5-14B            LogiQA             -0.50   1.0000   1.0000                  
+Qwen3-14B              FOLIO              -0.49   1.0000   1.0000                  
+Qwen3-14B              PW-D5              +0.67   1.0000   1.0000                  
+Qwen3-14B (think)      FOLIO              +0.49   1.0000   1.0000                  
+
+Significant at α=0.05:  raw=2, BH-corrected=0
+Conditions losing significance after BH:
+  - Mistral-7B / PW-D5 (raw=0.014, adj=0.1120)
+  - Qwen2.5-14B / PW-D5 (raw=0.011, adj=0.1120)
+
+=== BH step-up detail (sorted by raw p) ===
+Rank Model                  Dataset             raw p    p*m/i    adj p
+   1 Qwen2.5-14B            PW-D5              0.0110   0.1760   0.1120
+   2 Mistral-7B             PW-D5              0.0140   0.1120   0.1120
+   3 Mistral-7B             FOLIO (s123)       0.0700   0.3733   0.2976
+   4 Mistral-7B (4s)        FOLIO              0.0920   0.3680   0.2976
+   5 LLaMA-3.1-8B           FOLIO              0.0930   0.2976   0.2976
+   6 LLaMA-3.1-8B           StrategyQA         0.4240   1.1307   1.0000
+   7 Mistral-7B             FOLIO (s789)       1.0000   2.2857   1.0000
+   ... (remaining 10 conditions all have raw p=1.000, adj p=1.000)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "4cb508b0-a5cf-4dd8-b184-aabc919a5d28",
+  "tool_use_result": {
+    "stdout": "Saved to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_correction.json\n\nModel                  Dataset            Δ(pp)    raw p    adj p  raw sig   BH sig\n---------------------------------------------------------------------------------------------\nMistral-7B             PW-D5              -2.83   0.0140   0.1120        *         \nMistral-7B             LogiQA             +0.50   1.0000   1.0000                  \nMistral-7B             FOLIO (s123)       +2.94   0.0700   0.2976                  \nMistral-7B (4s)        FOLIO              +3.43   0.0920   0.2976                  \nMistral-7B             FOLIO (s456)       +0.00   1.0000   1.0000                  \nMistral-7B             FOLIO (s789)       -0.49   1.0000   1.0000                  \nLLaMA-3.1-8B           FOLIO              -4.41   0.0930   0.2976                  \nLLaMA-3.1-8B           StrategyQA         +2.00   0.4240   1.0000                  \nQwen2.5-14B            FOLIO (ICL)        +0.50   1.0000   1.0000                  \nQwen2.5-14B            PW-D5              -2.50   0.0110   0.1120        *         \nQwen2.5-14B            FOLIO              -0.98   1.0000   1.0000                  \nQwen2.5-7B             FOLIO              +0.49   1.0000   1.0000                  \nQwen2.5-14B            LogiQA             -0.50   1.0000   1.0000                  \nQwen3-14B              FOLIO              -0.49   1.0000   1.0000                  \nQwen3-14B              PW-D5              +0.67   1.0000   1.0000                  \nQwen3-14B (think)      FOLIO              +0.49   1.0000   1.0000                  \n\nSignificant at α=0.05:  raw=2, BH-corrected=0\nConditions losing significance after BH:\n  - Mistral-7B / PW-D5 (raw=0.014, adj=0.1120)\n  - Qwen2.5-14B / PW-D5 (raw=0.011, adj=0.1120)\n\n=== BH step-up detail (sorted by raw p) ===\nRank Model                  Dataset             raw p    p*m/i    adj p\n   1 Qwen2.5-14B            PW-D5              0.0110   0.1760   0.1120\n   2 Mistral-7B             PW-D5              0.0140   0.1120   0.1120\n   3 Mistral-7B             FOLIO (s123)       0.0700   0.3733   0.2976\n   4 Mistral-7B (4s)        FOLIO              0.0920   0.3680   0.2976\n   5 LLaMA-3.1-8B           FOLIO              0.0930   0.2976   0.2976\n   6 LLaMA-3.1-8B           StrategyQA         0.4240   1.1307   1.0000\n   7 Mistral-7B             FOLIO (s789)       1.0000   2.2857   1.0000\n   ... (remaining 10 conditions all have raw p=1.000, adj p=1.000)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results match the reviewer's expectation for Mistral PW (raw p=0.014 → adj p=0.112). For Qwen2.5 PW, the raw BH value is p*m/i = 0.011*16/1 = 0.176, but after monotonicity enforcement it becomes min(0.112, 0.176) = 0.112. The reviewer expected 0.176 — that's the unadjusted BH value before monotonicity. Both are correct depending on interpretation, but the standard BH procedure with monotonicity gives 0.112 for both.
+
+
+The important takeaway is that neither result crosses the significance threshold regardless. Now I'll draft this up in LaTeX.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "5bcb0c49-398b-4161-a9d2-e4d81156b103",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116phHYvprinG35ayqN9roK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3404,
+      "cache_read_input_tokens": 33920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Now let me write the LaTeX draft.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "2c138b7f-e016-4485-a5d9-c3ec6a69228f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116phHYvprinG35ayqN9roK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3404,
+      "cache_read_input_tokens": 33920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Write · `toolu_015eEYqgHMh6REDTeNeBjVwK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_draft.tex",
+  "content": "% BH correction paragraph — can be inserted in experiments.tex after Table 1 discussion,\n% or in appendix as a robustness note.\n\nApplying Benjamini-Hochberg correction for the $m{=}16$ non-degenerate comparisons,\nneither of the two nominally significant conditions survives\n(Mistral-7B ProofWriter: $p_{\\text{adj}}{=}0.112$;\n Qwen2.5-14B ProofWriter: $p_{\\text{adj}}{=}0.112$).\nZero of sixteen conditions show a significant SICA effect at $\\alpha{=}0.05$ after FDR control,\nreinforcing the conclusion that self-extracted symbolic constraints\nprovide no reliable accuracy benefit over Self-Consistency alone.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "66f06021-4ee2-4b23-93d9-663e7659db18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116phHYvprinG35ayqN9roK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3404,
+      "cache_read_input_tokens": 33920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3404
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T02:12:39.304Z_
+
+<details><summary>↩ Tool result · `toolu_015eEYqgHMh6REDTeNeBjVwK`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_draft.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "e5ced36f-74a3-4c6d-af3d-381bf5cc9d7f",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/table1_bh_draft.tex",
+    "content": "% BH correction paragraph — can be inserted in experiments.tex after Table 1 discussion,\n% or in appendix as a robustness note.\n\nApplying Benjamini-Hochberg correction for the $m{=}16$ non-degenerate comparisons,\nneither of the two nominally significant conditions survives\n(Mistral-7B ProofWriter: $p_{\\text{adj}}{=}0.112$;\n Qwen2.5-14B ProofWriter: $p_{\\text{adj}}{=}0.112$).\nZero of sixteen conditions show a significant SICA effect at $\\alpha{=}0.05$ after FDR control,\nreinforcing the conclusion that self-extracted symbolic constraints\nprovide no reliable accuracy benefit over Self-Consistency alone.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+完成。结果：
+
+- **raw 显著**: 2 条（Mistral-7B PW-D5 p=0.014, Qwen2.5-14B PW-D5 p=0.011）
+- **BH 校正后显著**: 0 条
+- 两条均调整为 adj p=0.112（Qwen2.5-14B 的未校正 BH 值为 0.176，经单调性约束降至 0.112）
+
+与 reviewer 预期一致：Mistral PW adj p≈0.112，Qwen2.5 PW 的 p\*m/i=0.176 但最终 adj=0.112。关键结论不变——BH 校正后无任何条件显著。
+
+产出文件：
+- `artifacts/table1_bh_correction.json` — 完整 16 条件数据
+- `artifacts/table1_bh_draft.tex` — 可插入论文的 LaTeX 段落
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "uuid": "d26a3a1e-616d-4fbb-81dc-c7a6a3d7e0bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXxLmKhADe9NxVMN2gEvUU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 546,
+      "cache_read_input_tokens": 37324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 546
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 18_
+
+完成。结果：
+
+- **raw 显著**: 2 条（Mistral-7B PW-D5 p=0.014, Qwen2.5-14B PW-D5 p=0.011）
+- **BH 校正后显著**: 0 条
+- 两条均调整为 adj p=0.112（Qwen2.5-14B 的未校正 BH 值为 0.176，经单调性约束降至 0.112）
+
+与 reviewer 预期一致：Mistral PW adj p≈0.112，Qwen2.5 PW 的 p\*m/i=0.176 但最终 adj=0.112。关键结论不变——BH 校正后无任何条件显著。
+
+产出文件：
+- `artifacts/table1_bh_correction.json` — 完整 16 条件数据
+- `artifacts/table1_bh_draft.tex` — 可插入论文的 LaTeX 段落
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 138001,
+  "duration_api_ms": 137192,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "98c6774d-3a7a-4393-b5c4-d4891613db60",
+  "total_cost_usd": 0.46456225,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 26029,
+    "cache_read_input_tokens": 135180,
+    "output_tokens": 9292,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26029,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 270,
+        "cache_read_input_tokens": 37324,
+        "cache_creation_input_tokens": 546,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 546
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1826,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001956,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 9292,
+      "cacheReadInputTokens": 135180,
+      "cacheCreationInputTokens": 26029,
+      "webSearchRequests": 0,
+      "costUSD": 0.46260625000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9fda8b58-d7ac-4ae3-b748-13f56e4ca9d5"
+}
+```
+
+</details>
+
+---

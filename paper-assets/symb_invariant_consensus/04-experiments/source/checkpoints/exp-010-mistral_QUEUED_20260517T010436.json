@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-010-mistral",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:04:36.900Z",
+    "updated_at": "2026-05-17T01:04:36.900Z"
+  },
+  "timestamp": "2026-05-17T01:04:36.986684+00:00",
+  "trigger": "update_registry"
+}

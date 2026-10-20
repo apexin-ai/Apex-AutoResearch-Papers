@@ -1,0 +1,104 @@
+{
+  "exp_id": "exp-d135-frontier-scb",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:52:18.586Z",
+    "updated_at": "2026-05-21T19:25:04.741Z",
+    "hypothesis": "2026 frontier closed-source models (Claude/GPT/Gemini via OpenRouter) also exhibit SCB: self-extracted constraints will show BR≥2× with SICA≈SC, extending the scale-invariance finding from open-source 7B-72B to frontier closed-source models.",
+    "notes": "Multi-model frontier SCB experiment, still active. Cron tracks PID 473361 (o3 extraction) which completed successfully 196/196 — cron escalation is false alarm, let it auto-clean on 5th miss. Active components: gemini SC (PID 19972 westd-25068, 80/204), 70B AWQ (PID 40007 westd-25068, 52/204). Completed: gpt-4o ✅, gpt-4.1 ✅, gpt-5.5 ✅, o3 extraction ✅ (metrics harvest in progress), R1-Distill ✅.",
+    "metrics": {
+      "gpt4o_folio": {
+        "completed": 161,
+        "total": 204,
+        "sc_accuracy": 0.7391,
+        "sica_accuracy": 0.7205,
+        "delta_pp": -1.86,
+        "n_sica_wrong": 45,
+        "mean_br": 2.94,
+        "median_br": 1.91,
+        "weighted_br": 3.07,
+        "n_br_finite": 25,
+        "n_br_infinite": 20,
+        "process_kappa_tfidf": 0.7884,
+        "answer_fleiss_kappa": 0.8009
+      },
+      "gpt41_folio": {
+        "completed": 204,
+        "total": 204,
+        "sc_accuracy": 0.8284,
+        "sica_accuracy": 0.8137,
+        "delta_pp": -1.47,
+        "n_sica_wrong": 38,
+        "mean_br": 2.697,
+        "median_br": 1.534,
+        "weighted_br": 3.2099,
+        "n_br_finite": 16,
+        "n_br_infinite": 22,
+        "extraction_rate": 1,
+        "process_kappa_tfidf": 0.7916,
+        "answer_fleiss_kappa": 0.862,
+        "extractor": "Mistral-7B",
+        "extraction_wall_time_min": 60.2
+      },
+      "o3_folio_cleaned": {
+        "total_questions": 204,
+        "valid_questions": 196,
+        "excluded_questions": 8,
+        "sc_accuracy_raw_204": 0.7941,
+        "sc_accuracy_clean_196": 0.8265,
+        "correct_clean": 162,
+        "empty_trace_rate": 0.2087,
+        "empty_traces": 511,
+        "total_traces": 2448,
+        "valid_traces": 1937,
+        "mean_valid_per_q": 9.88,
+        "median_valid_per_q": 12,
+        "per_label_true": 0.776,
+        "per_label_false": 0.767,
+        "per_label_unknown": 0.928,
+        "note": "8 excluded due to all-empty API responses"
+      },
+      "gpt55_folio": {
+        "completed": 204,
+        "total": 204,
+        "sc_accuracy": 0.8431,
+        "sica_accuracy": 0.848,
+        "delta_pp": 0.49,
+        "mean_br": 3.48,
+        "median_br": 3.49,
+        "weighted_br": 3.57,
+        "n_br_finite": 4,
+        "n_br_infinite": 27,
+        "extraction_rate": 1,
+        "process_kappa_tfidf": 0.5625,
+        "answer_fleiss_kappa": 0.9581,
+        "extractor": "Mistral-7B"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T19:23:45.838Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T17:01:28.722448+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T19:23:50.624203+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T19:25:05.018845+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "182e4fa0a3002d70b651",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "audit zeroshot d061 critical",
+  "task_key": "worker_audit_zeroshot-d061-critical_20260522T194703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_zeroshot-d061-critical_20260522T194703.log",
+    "occurrence": 1,
+    "bytes": 596934,
+    "sha256": "afeaaf9d183b8308be6e892f95b5983faddc230a7fb8041c955f2a3bc851c0ff"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "182e4fa0a3002d70b651-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "182e4fa0a3002d70b651-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-zeroshot-d061-critical.md"
+}

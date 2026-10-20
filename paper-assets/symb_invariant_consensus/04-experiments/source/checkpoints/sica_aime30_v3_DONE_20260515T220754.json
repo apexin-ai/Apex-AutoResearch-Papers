@@ -1,0 +1,67 @@
+{
+  "exp_id": "sica_aime30_v3",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:13:04.296Z",
+    "updated_at": "2026-05-15T22:07:54.048Z",
+    "hypothesis": "AIME 2024 上 SICA 能否检测跨路径矛盾并超越 SC@K=12（v3: timeout=1800s, 从v2 P5恢复继续）",
+    "spec": {
+      "command": "PYTHONUNBUFFERED=1 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_v2.json --no-proofwriter --seed 42 --resume",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "129992",
+      "log_path": "/root/runs/symb_invariant_consensus/sica_aime30_v2_resume.log",
+      "account": "root",
+      "method": "SICA",
+      "model_name": "QwQ-32B",
+      "data_path": "/root/symb_invariant_consensus/data/aime2024_subset.json",
+      "data_count": 30,
+      "seed": 42,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 10240,
+      "fixes": "timeout=1800s; n=4 batching on disk but not loaded by running process",
+      "resumed_from": "sica_aime30_v2 (4/30 completed)",
+      "remaining_problems": 26
+    },
+    "parent": "sica_aime30_v2",
+    "notes": "v3从v2 P5恢复。已应用修复: (1) timeout=1800s (2) z3 parse_z3_formula只接受布尔表达式 (3) n=4分批代码在磁盘但当前进程未加载。P2(Z3Exception)未包含在本次resume中，需后续单独重跑。",
+    "metrics": {
+      "progress": "22/30",
+      "sica_accuracy_interim": "16/22 (72.7%)",
+      "sc_accuracy_interim": "16/22 (72.7%)",
+      "sica_sc_gap_pp": 0,
+      "avg_time_per_problem_s": 645.9,
+      "runtime_h": 5.9,
+      "remaining_problems": 8,
+      "vote_diversity_analysis": {
+        "valid_problems": 16,
+        "total_problems": 22,
+        "multi_candidate_rate": 0,
+        "zero_vote_problems": 6,
+        "zero_vote_indices": [
+          1,
+          7,
+          8,
+          10,
+          13,
+          14
+        ],
+        "constraints_extracted": "19/22",
+        "exclusion_rate": 0.387,
+        "conclusion": "All 16 valid problems have exactly 1 candidate answer. SICA≡SC structurally. MaxSAT exclusion operates but cannot change final selection with only 1 candidate."
+      },
+      "process_status": "gone (cron miss 1/5)"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T22:07:52.491Z"
+  },
+  "timestamp": "2026-05-15T22:07:54.071078+00:00",
+  "trigger": "update_registry"
+}

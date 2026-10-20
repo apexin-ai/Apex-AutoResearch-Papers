@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-281_Q15",
+    "problem": "The bear eats the cow. The cat chases the bear. The cat eats the bear. The cat eats the tiger. The cat is green. The cat is kind. The cat is rough. The cat sees the bear. The cat sees the tiger. The cow eats the bear. The cow eats the tiger. The cow is green. The cow sees the cat. The tiger chases the bear. The tiger chases the cat. The tiger chases the cow. If someone chases the bear and the bear is cold then they eat the cat. If someone chases the bear and the bear chases the tiger then the bear sees the tiger. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger. If someone chases the tiger and they are green then the tiger chases the cow. Nice, kind people are cold. If someone chases the bear then the bear chases the cat. If someone chases the cat then they are nice. If someone is nice then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is not cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nEats(Bear, Cow, True) ::: The bear eats the cow.\nChases(Cat, Bear, True) ::: The cat chases the bear.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nEats(Cat, Tiger, True) ::: The cat eats the tiger.\nGreen(Cat, True) ::: The cat is green.\nKind(Cat, True) ::: The cat is kind.\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Tiger, True) ::: The cat sees the tiger.\nEats(Cow, Bear, True) ::: The cow eats the bear.\nEats(Cow, Tiger, True) ::: The cow eats the tiger.\nGreen(Cow, True) ::: The cow is green.\nSees(Cow, Cat, True) ::: The cow sees the cat.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nChases(Tiger, Cow, True) ::: The tiger chases the cow.\n\nRules:\nChases($x, Bear, True) && Cold(Bear, True) >>> Eats($x, Cat, True) ::: If someone chases the bear and the bear is cold then they eat the cat.\nChases($x, Bear, True) && Chases(Bear, Tiger, True) >>> Sees(Bear, Tiger, True) ::: If someone chases the bear and the bear chases the tiger then the bear sees the tiger.\nChases(Cat, Bear, True) && Sees(Cat, Tiger, True) >>> Chases(Bear, Tiger, True) ::: If the cat chases the bear and the cat sees the tiger then the bear chases the tiger.\nChases($x, Tiger, True) && Green($x, True) >>> Chases(Tiger, Cow, True) ::: If someone chases the tiger and they are green then the tiger chases the cow.\nNice($x, True) && Kind($x, True) >>> Cold($x, True) ::: Nice, kind people are cold.\nChases($x, Bear, True) >>> Chases(Bear, Cat, True) ::: If someone chases the bear then the bear chases the cat.\nChases($x, Cat, True) >>> Nice($x, True) ::: If someone chases the cat then they are nice.\nNice($x, True) >>> Kind($x, True) ::: If someone is nice then they are kind.\n\nQuery:\nCold(Cat, False) ::: The cat is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

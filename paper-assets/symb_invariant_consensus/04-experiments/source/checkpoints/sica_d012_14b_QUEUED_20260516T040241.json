@@ -1,0 +1,28 @@
+{
+  "exp_id": "sica_d012_14b",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:02:41.309Z",
+    "updated_at": "2026-05-16T04:02:41.309Z",
+    "spec": {
+      "hypothesis": "D012 全量评估：Qwen2.5-14B-Instruct 在 ProofWriter-30 + FOLIO-30 (60题) 上 SICA 能否检测跨路径矛盾并超越 SC@K=12",
+      "parent": "sica_d016_c0_precheck",
+      "model_name": "Qwen2.5-14B-Instruct",
+      "data_path": "ProofWriter-30 + FOLIO-30",
+      "data_count": 60,
+      "server": "westd-32608",
+      "seed": 42,
+      "hyperparams": {
+        "K": 12,
+        "temperature": 0.7,
+        "max_tokens": 4096
+      }
+    }
+  },
+  "timestamp": "2026-05-16T04:02:41.375610+00:00",
+  "trigger": "update_registry"
+}

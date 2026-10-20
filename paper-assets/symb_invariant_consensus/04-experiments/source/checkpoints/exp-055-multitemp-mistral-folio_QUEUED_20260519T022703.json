@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-055-multitemp-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:17:09.293Z",
+    "updated_at": "2026-05-19T02:27:02.995Z",
+    "hypothesis": "Multi-temperature sampling 通过强制 trace diversity 提升 Effective-K，预期 SICA delta > exp-033 的 +4.9pp。混合 T=0.3/0.7/1.2 各 4 traces 比单一 T=0.7 的 12 traces 产生更多独立视角，从而让 MAX-SAT 有更多 discriminative 信号。parent=exp-033, D059",
+    "parent": "exp-033"
+  },
+  "timestamp": "2026-05-19T02:27:03.282381+00:00",
+  "trigger": "update_registry"
+}

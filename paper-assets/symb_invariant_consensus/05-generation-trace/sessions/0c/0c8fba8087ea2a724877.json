@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c8fba8087ea2a724877",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper research oracle upper bound",
+  "task_key": "worker_paper_research_oracle_upper_bound_20260517T175752",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_research_oracle_upper_bound_20260517T175752_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "4c165fc73ab9f669610a52f7b056e78d84125ce5bfa38d32346f25e64f279103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files updated correctly. Here's a summary of the 3 papers added to the `oracle_upper_bound_experiments` dimension:\n\n| Paper | Venue | arXiv | Oracle Methodology |\n|-------|-------|-------|-------------------|\n| **Press et al.** \"Measuring and Narrowing the Compositionality Gap\" | EMNLP Findings 2023 | 2210.03350 | Oracle sub-question decomposition to diagnose that compositional reasoning (not knowledge) is the bottleneck |\n| **Trivedi et al.** \"IRCoT: Interleaving Retrieval with Chain-of-Thought\" | ACL 2023 | 2212.10509 | Gold supporting paragraphs as oracle retrieval upper bound to isolate retrieval as the multi-step QA bottleneck |\n| **Saparov & He** \"Language Models Are Greedy Reasoners\" | ICLR 2023 | 2210.01240 | Gold FOL proofs on synthetic data to diagnose that proof planning (not individual deduction) is the CoT bottleneck |\n\nAll three are verified, marked `status: should_cite`, and provide direct methodological precedent for the SICA oracle control experiment (replacing self-extracted FOL with gold FOLIO annotations to isolate extraction quality as the bottleneck)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-oracle-upper-bound.md"
+}

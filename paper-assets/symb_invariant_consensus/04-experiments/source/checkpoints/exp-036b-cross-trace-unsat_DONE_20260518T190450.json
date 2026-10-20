@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp-036b-cross-trace-unsat",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:04:24.962Z",
+    "updated_at": "2026-05-18T19:04:50.035Z",
+    "hypothesis": "Cross-trace UNSAT: 合并不同候选答案的 constraints，检查 answer_A 与 answer_B 的约束是否 UNSAT（矛盾）。预期 cross-answer 对比的 UNSAT rate 远高于 within-trace 检查，因为不同答案的约束应该矛盾。如果 UNSAT 信号强，可用于增强 SICA 打分的 discriminative power。",
+    "spec": {
+      "command": "python3 cross_trace_unsat.py",
+      "server": "westd-25068",
+      "data_path": "results/folio_204_14b/",
+      "data_count": 204,
+      "model_name": "N/A (CPU-only, reuses exp-001 constraints)",
+      "seed": 42,
+      "checkpoint_source": "exp-001/folio_204_14b intermediates",
+      "eval_data": "FOLIO-204",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp036b_cross_trace_unsat.json",
+      "log_path": "/root/symb_invariant_consensus/results/exp036b_cross_trace_unsat.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "cross_unsat_rate_pair": 0.087,
+      "cross_unsat_rate_problem": 0.107,
+      "within_trace_unsat_rate": 0.009,
+      "unsat_pairs": 11,
+      "total_pairs": 126,
+      "problems_with_unsat": 9,
+      "multi_answer_problems": 84,
+      "single_answer_skip": 120,
+      "zero_shared_var_pairs_pct": 0.564,
+      "avg_shared_vars": 2.7,
+      "false_true_unsat_rate": 0.467,
+      "sica_cross_ut_accuracy": 0.745,
+      "sc_accuracy": 0.75,
+      "accuracy_impact": 0
+    },
+    "completed_at": "2026-05-18T19:04:50.035Z"
+  },
+  "timestamp": "2026-05-18T19:04:50.177297+00:00",
+  "trigger": "update_registry"
+}

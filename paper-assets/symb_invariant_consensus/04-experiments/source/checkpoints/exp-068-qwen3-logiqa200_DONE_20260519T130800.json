@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-068-qwen3-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:13:19.371Z",
+    "updated_at": "2026-05-19T13:08:00.470Z",
+    "hypothesis": "Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040",
+    "parent": "exp-040",
+    "spec": {
+      "command": "python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp068_qwen3_logiqa200/exp068_results.json --save-intermediates",
+      "server": "westd-16639",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen3-14B",
+      "eval_data": "data/logiqa_200.json",
+      "gpu": "cuda:1",
+      "pid": "142896",
+      "tmux_session": "exp068_run",
+      "vllm_session": "exp068_vllm",
+      "port": 8001
+    },
+    "notes": "诊断 2026-05-19T20:01: 实验正常运行中。tmux sessions: exp068_vllm (port 8001, CUDA_VISIBLE_DEVICES=1) + exp068_run。进度: 88/200 (44%), ETA ~62min。结果文件已在写入 (exp068_results.json 155KB, intermediates/ 88 files)。GPU 1 使用率 97%。Registry spec 缺少 gpu/pid/tmux_session 字段但实验已正常启动。westd-16639 所有 4 GPU 均被占用 (GPU0: vLLM PID 149111, GPU1: exp068 vLLM PID 142896, GPU2: vLLM PID 125544, GPU3: vLLM PID 76474)。",
+    "reproduce": {
+      "finished_at": "2026-05-19T13:07:59.122Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T13:08:00.470Z"
+  },
+  "timestamp": "2026-05-19T13:08:00.646358+00:00",
+  "trigger": "update_registry"
+}

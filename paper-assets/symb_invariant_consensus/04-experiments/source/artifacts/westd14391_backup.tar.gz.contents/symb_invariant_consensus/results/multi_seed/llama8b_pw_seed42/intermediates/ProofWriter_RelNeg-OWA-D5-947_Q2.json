@@ -1,0 +1,700 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-947_Q2",
+    "problem": "The bear does not eat the lion. The bear likes the lion. The lion is big. The lion visits the mouse. The lion visits the squirrel. The mouse eats the squirrel. The mouse likes the bear. The mouse likes the lion. The mouse visits the squirrel. The squirrel is not cold. The squirrel is nice. If something eats the squirrel then the squirrel eats the mouse. If something visits the bear and it is green then it is nice. If something is green and blue then it visits the bear. If something likes the lion and it is blue then the lion is nice. If something eats the mouse then it likes the lion. If the bear is not green then the bear likes the lion. If something visits the bear then the bear likes the lion. If something likes the lion and the lion is blue then the lion likes the mouse. If something is nice then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nEats(Bear, Lion, False) ::: The bear does not eat the lion.\nLikes(Bear, Lion, True) ::: The bear likes the lion.\nBig(Lion, True) ::: The lion is big.\nVisits(Lion, Mouse, True) ::: The lion visits the mouse.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nEats(Mouse, Squirrel, True) ::: The mouse eats the squirrel.\nLikes(Mouse, Bear, True) ::: The mouse likes the bear.\nLikes(Mouse, Lion, True) ::: The mouse likes the lion.\nVisits(Mouse, Squirrel, True) ::: The mouse visits the squirrel.\nCold(Squirrel, False) ::: The squirrel is not cold.\nNice(Squirrel, True) ::: The squirrel is nice.\n\nRules:\nEats($x, Squirrel, True) >>> Eats(Squirrel, Mouse, True) ::: If something eats the squirrel then the squirrel eats the mouse.\nVisits($x, Bear, True) && Green($x, True) >>> Nice($x, True) ::: If something visits the bear and it is green then it is nice.\nGreen($x, True) && Blue($x, True) >>> Visits($x, Bear, True) ::: If something is green and blue then it visits the bear.\nLikes($x, Lion, True) && Blue($x, True) >>> Nice(Lion, True) ::: If something likes the lion and it is blue then the lion is nice.\nEats($x, Mouse, True) >>> Likes($x, Lion, True) ::: If something eats the mouse then it likes the lion.\nGreen(Bear, False) >>> Likes(Bear, Lion, True) ::: If the bear is not green then the bear likes the lion.\nVisits($x, Bear, True) >>> Likes(Bear, Lion, True) ::: If something visits the bear then the bear likes the lion.\nLikes($x, Lion, True) && Blue(Lion, True) >>> Likes(Lion, Mouse, True) ::: If something likes the lion and the lion is blue then the lion likes the mouse.\nNice($x, True) >>> Blue($x, True) ::: If something is nice then it is blue.\n\nQuery:\nCold(Squirrel, True) ::: The squirrel is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 65.0,
+      "True": 4.0
+    },
+    "answer_counts": {
+      "False": 8,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and deduction based on the given statements. \n\nFirst, let's identify the given statements and their implications:\n\n1. The bear does not eat the lion. \n2. The bear likes the lion. \n3. The lion is big. \n4. The lion visits the mouse. \n5. The lion visits the squirrel. \n6. The mouse eats the squirrel. \n7. The mouse likes the bear. \n8. The mouse likes the lion. \n9. The mouse visits the squirrel. \n10. The squirrel is not cold. \n11. The squirrel is nice. \n12. If something eats the squirrel then the squirrel eats the mouse. (This implies that the mouse was eaten by the squirrel, but statement 6 already says the mouse eats the squirrel. This statement seems to be a contradiction and we can ignore it for now.)\n13. If something visits the bear and it is green then it is nice. \n14. If something is green and blue then it visits the bear. \n15. If something likes the lion and it is blue then the lion is nice. \n16. If something eats the mouse then it likes the lion. \n17. If the bear is not green then the bear likes the lion. \n18. If something visits the bear then the bear likes the lion. \n19. If something likes the lion and the lion is blue then the lion likes the mouse. \n20. If something is nice then it is blue.\n\nNow, let's evaluate the statement \"The squirrel is cold\" in the context of the given statements.\n\nTo determine if the squirrel is cold, we need to check if there's any statement that implies the squirrel is cold. However, we only find statement 10, which says \"The squirrel is not cold.\" This directly contradicts the statement we're trying to evaluate.\n\nSince we have a direct statement that the squirrel is not cold, and no other statements that imply the squirrel is cold, we can conclude that the statement \"The squirrel is cold\" is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning to determine the truth value of the statement \"The squirrel is cold.\"\n\nLet's break down the given statements into rules and facts:\n\nRules:\n\n1. If something eats the squirrel then the squirrel eats the mouse. \n   (This rule is not applicable in this scenario as there is no information about the squirrel eating the mouse.)\n\n2. If something visits the bear and it is green then it is nice. \n   (This rule is not applicable in this scenario as there is no information about visiting the bear being green.)\n\n3. If something is green and blue then it visits the bear. \n   (This rule is not applicable in this scenario as there is no information about something being green and blue.)\n\n4. If something likes the lion and it is blue then the lion is nice. \n   (This rule is not applicable in this scenario as there is no information about something liking the lion being blue.)\n\n5. If something eats the mouse then it likes the lion. \n   (This rule is not applicable in this scenario as there is no information about eating the mouse.)\n\n6. If the bear is not green then the bear likes the lion. \n   (This rule is not applicable in this scenario as there is no information about the bear's color.)\n\n7. If something visits the bear then the bear likes the lion. \n   (This rule is applicable in this scenario as the lion visits the mouse and the mouse visits the squirrel, and the squirrel visits the bear.)\n\n8. If something likes the lion and the lion is blue then the lion likes the mouse. \n   (This rule is not applicable in this scenario as there is no information about the lion's color.)\n\n9. If something is nice then it is blue. \n   (This rule is not applicable in this scenario as there is no information about something being nice.)\n\nFacts:\n\n1. The bear does not eat the lion.\n2. The bear likes the lion.\n3. The lion is big.\n4. The lion visits the mouse.\n5. The lion visits the squirrel.\n6. The mouse eats the squirrel.\n7. The mouse likes the bear.\n8. The mouse likes the lion.\n9. The mouse visits the squirrel.\n10. The squirrel is not cold.\n11. The squirrel is nice.\n12. The squirrel visits the bear.\n\nFrom the facts, we know that the squirrel is nice and visits the bear.\n\nUsing rule 7, if something visits the bear, then the bear likes the lion. We can infer that the lion visits the mouse and the mouse visits the squirrel, so the squirrel visits the bear.\n\nFrom rule 7, we can conclude that the bear likes the lion.\n\nFrom fact 2, we know that the bear likes the lion.\n\nWe cannot determine the color of the bear or the lion from the given statements, so we cannot use rules 6 or 8.\n\nThe only relevant statement regarding coldness is fact 10, which states that the squirrel is not cold.\n\nTherefore, the statement \"The squirrel is cold\" is false because it contradicts fact 10.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The squirrel is not cold. (This statement is directly given)\n\nSince this statement is directly given, we can conclude that the statement \"The squirrel is cold\" is the opposite of this, so it must be false.\n\nTherefore, the answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The squirrel is not cold. (Direct information)\n\nFrom this, we can conclude that the statement \"The squirrel is cold\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. The squirrel is not cold.\n   - This statement directly contradicts the statement \"The squirrel is cold.\" Therefore, based on this information alone, we can conclude that \"The squirrel is cold\" is false.\n\nHowever, since we have already found sufficient information to conclude the statement as false, we do not need to analyze the rest of the rules.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The bear does not eat the lion. (No relevant information)\n2. The bear likes the lion. (No relevant information)\n3. The lion is big. (No relevant information)\n4. The lion visits the mouse. (No relevant information)\n5. The lion visits the squirrel. (No relevant information)\n6. The mouse eats the squirrel. (This statement is relevant)\n7. The mouse likes the bear. (No relevant information)\n8. The mouse likes the lion. (No relevant information)\n9. The mouse visits the squirrel. (This statement is relevant)\n10. The squirrel is not cold. (This statement is relevant)\n11. The squirrel is nice. (This statement is relevant)\n12. If something eats the squirrel then the squirrel eats the mouse. (This statement is relevant)\n13. If something visits the bear and it is green then it is nice. (No relevant information)\n14. If something is green and blue then it visits the bear. (No relevant information)\n15. If something likes the lion and it is blue then the lion is nice. (No relevant information)\n16. If something eats the mouse then it likes the lion. (This statement is relevant)\n17. If the bear is not green then the bear likes the lion. (No relevant information)\n18. If something visits the bear then the bear likes the lion. (No relevant information)\n19. If something likes the lion and the lion is blue then the lion likes the mouse. (No relevant information)\n20. If something is nice then it is blue. (This statement is relevant)\n\nNow, let's analyze the relevant statements:\n\n- From statement 6, we know that the mouse eats the squirrel.\n- From statement 12, if something eats the squirrel, then the squirrel eats the mouse. However, this statement is a contradiction because it implies the opposite of statement 6. Therefore, we can conclude that the mouse does not eat the squirrel (due to the contradiction).\n- However, since statement 6 is true, we know the mouse does eat the squirrel. But, due to the contradiction in statement 12, we can assume statement 6 is the only true statement, and the rest are false.\n- Statement 10 says the squirrel is not cold, but this statement is false, as it contradicts our assumption that the statement \"The squirrel is cold\" is true.\n- From statement 11, we know the squirrel is nice.\n- From statement 20, if something is nice, then it is blue. Therefore, the squirrel is blue.\n\nNow, let's analyze the implications:\n\n- Since the squirrel is blue, we can use statement 14: If something is green and blue, then it visits the bear. However, the squirrel is not green, so we cannot apply this statement.\n- We also know that the squirrel is blue (from statement 20), and we can use statement 15: If something likes the lion and it is blue, then the lion is nice. However, this statement is irrelevant because we do not know if the squirrel likes the lion.\n\nNow, let's try to find a statement that implies the squirrel is cold:\n\n- Statement 10 says the squirrel is not cold. However, we assumed this statement is false.\n- Statement 12 says that if something eats the squirrel, then the squirrel eats the mouse. However, this statement is a contradiction, and we cannot use it to conclude that the squirrel is cold.\n\nHowever, we can use statement 12 in a different way:\n\n- We know that the mouse eats the squirrel (from statement 6).\n- According to statement 12, if something eats the squirrel, then the squirrel eats the mouse. However, this statement is a contradiction, and we know that the mouse eats the squirrel. This implies that the squirrel does not eat the mouse.\n- Since the mouse eats the squirrel and the squirrel does not eat the mouse, we can conclude that the squirrel is cold (because the mouse is eating it).\n\nTherefore, we can conclude that \"The squirrel is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and deduction. We'll analyze each statement and rule to determine the properties of each entity (bear, lion, mouse, squirrel).\n\n1. The bear does not eat the lion. \n   - No information about the bear's color or the lion's color.\n\n2. The bear likes the lion. \n   - No information about the bear's color or the lion's color.\n\n3. The lion is big. \n   - No information about the lion's color.\n\n4. The lion visits the mouse. \n   - No information about the lion's color.\n\n5. The lion visits the squirrel. \n   - No information about the lion's color.\n\n6. The mouse eats the squirrel. \n   - The mouse has eaten the squirrel.\n\n7. The mouse likes the bear. \n   - No information about the mouse's color.\n\n8. The mouse likes the lion. \n   - No information about the mouse's color.\n\n9. The mouse visits the squirrel. \n   - The mouse has visited the squirrel.\n\n10. The squirrel is not cold. \n    - We want to find out if the squirrel is cold or not.\n\n11. The squirrel is nice. \n    - No information about the squirrel's color.\n\n12. If something eats the squirrel then the squirrel eats the mouse. \n    - Since the mouse has eaten the squirrel (statement 6), this rule does not apply.\n\n13. If something visits the bear and it is green then it is nice. \n    - No information about the bear's color.\n\n14. If something is green and blue then it visits the bear. \n    - No information about any entity being green and blue.\n\n15. If something likes the lion and it is blue then the lion is nice. \n    - No information about any entity being blue.\n\n16. If something eats the mouse then it likes the lion. \n    - The mouse has been eaten by the squirrel (statement 6), so this rule does not apply.\n\n17. If the bear is not green then the bear likes the lion. \n    - No information about the bear's color.\n\n18. If something visits the bear then the bear likes the lion. \n    - We know the lion visits the bear (statement 4), and the bear likes the lion (statement 2).\n\n19. If something likes the lion and the lion is blue then the lion likes the mouse. \n    - No information about any entity being blue.\n\n20. If something is nice then it is blue. \n    - We know the squirrel is nice (statement 11), but this does not necessarily mean the squirrel is blue.\n\nNow, we'll analyze the given statements to find any information about the squirrel's coldness. From statement 10, we know the squirrel is not cold. Therefore, the statement \"The squirrel is cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bear does not eat the lion. \n2. The bear likes the lion. \n3. The lion is big. \n4. The lion visits the mouse. \n5. The lion visits the squirrel. \n6. The mouse eats the squirrel. \n7. The mouse likes the bear. \n8. The mouse likes the lion. \n9. The mouse visits the squirrel. \n10. The squirrel is not cold. \n11. The squirrel is nice. \n12. If something eats the squirrel then the squirrel eats the mouse. (Let's call this rule R1)\n13. If something visits the bear and it is green then it is nice. (Let's call this rule R2)\n14. If something is green and blue then it visits the bear. (Let's call this rule R3)\n15. If something likes the lion and it is blue then the lion is nice. (Let's call this rule R4)\n16. If something eats the mouse then it likes the lion. (Let's call this rule R5)\n17. If the bear is not green then the bear likes the lion. (Let's call this rule R6)\n18. If something visits the bear then the bear likes the lion. (Let's call this rule R7)\n19. If something likes the lion and the lion is blue then the lion likes the mouse. (Let's call this rule R8)\n20. If something is nice then it is blue. (Let's call this rule R9)\n\nNow, let's analyze the statement \"The squirrel is cold.\" We are trying to determine whether this statement is true, false, or unknown.\n\nFrom rule 10, we know that the squirrel is not cold.\n\nFrom rule 12 (R1), if something eats the squirrel, then the squirrel eats the mouse. However, we do not have any information that says the squirrel eats the mouse. Therefore, we cannot conclude anything about the mouse's relationship with the squirrel.\n\nFrom rule 5, we know that the lion visits the squirrel. From rule 17 (R6), if the bear is not green, then the bear likes the lion. Since we do not have any information about the bear's color, we cannot conclude anything about the bear's relationship with the lion.\n\nFrom rule 16 (R5), if something eats the mouse, then it likes the lion. However, we do not have any information that says something eats the mouse. Therefore, we cannot conclude anything about the lion's relationship with the mouse.\n\nNow, let's consider the given statement \"The squirrel is cold.\" To determine whether this statement is true or false, we need to find a contradiction with one of the given rules.\n\nFrom rule 10, we know that the squirrel is not cold. If we assume that the squirrel is cold, then it contradicts rule 10. Therefore, we can conclude that the statement \"The squirrel is cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The squirrel is nice (rule: The squirrel is nice).\n2. The squirrel is not cold (rule: The squirrel is not cold).\n   - This statement directly tells us the state of the squirrel, which is not cold.\n\nSince we have a direct statement saying \"The squirrel is not cold,\" we can conclude that the statement \"The squirrel is cold\" is false.\n\nTherefore, the final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is cold\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. The bear does not eat the lion. \n2. The bear likes the lion.\n3. The lion is big.\n4. The lion visits the mouse.\n5. The lion visits the squirrel.\n6. The mouse eats the squirrel.\n7. The mouse likes the bear.\n8. The mouse likes the lion.\n9. The mouse visits the squirrel.\n10. The squirrel is not cold.\n11. The squirrel is nice.\n12. If something eats the squirrel then the squirrel eats the mouse.\n13. If something visits the bear and it is green then it is nice.\n14. If something is green and blue then it visits the bear.\n15. If something likes the lion and it is blue then the lion is nice.\n16. If something eats the mouse then it likes the lion.\n17. If the bear is not green then the bear likes the lion.\n18. If something visits the bear then the bear likes the lion.\n19. If something likes the lion and the lion is blue then the lion likes the mouse.\n20. If something is nice then it is blue.\n\nFrom statement 5, we know that the lion visits the squirrel. Using statement 16, since the lion eats the mouse (statement 4), then the lion likes the lion.\n\nStatement 12 implies that if the squirrel eats the mouse (which is true from statement 6), then the mouse eats the squirrel. However, statement 6 also implies that the mouse eats the squirrel, creating a contradiction.\n\nWe cannot determine the truth value of \"The squirrel is cold\" because statement 10 directly states that \"The squirrel is not cold.\" However, since we have a contradiction in the previous statements, it's hard to derive any conclusions based on the information given.\n\nHowever, to answer the question we must evaluate the truth of \"The squirrel is cold\" based on the statements.\n\nWe can conclude that the statement \"The squirrel is cold\" is true.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the statement \"The squirrel is cold,\" we need to analyze the given information and rules. \n\nFrom the information given:\n- The squirrel is not cold.\n- The squirrel is nice.\n\nSince the squirrel is nice, we can apply the rule: If something is nice then it is blue.\n\nSo, the squirrel is blue.\n\nNow, we need to find a connection between the squirrel and the color blue and the rules provided. \n\nIf something is green and blue then it visits the bear.\n\nSince the squirrel is blue, we can't apply this rule directly to the squirrel. However, we need to see if the squirrel is green.\n\nNo information is provided that the squirrel is green.\n\nHowever, we do know the following:\n- The mouse eats the squirrel.\n- The mouse likes the lion.\n- If the mouse eats the squirrel then the squirrel eats the mouse.\n\nIf the squirrel eats the mouse, we can apply the rule: If something eats the mouse then it likes the lion.\n\nSo, if the squirrel eats the mouse, the squirrel likes the lion. \n\nThe lion is big, but we don't know if it's blue. However, we do know the following:\n- The lion is big.\n- The lion visits the mouse.\n- The lion visits the squirrel.\n- The mouse likes the lion.\n- The lion is nice (if something likes the lion and it is blue then the lion is nice, or if it is not green then the lion likes the lion).\n\nSince the lion is nice, it is blue (If something is nice then it is blue).\n\nHowever, the statement we are trying to prove is \"The squirrel is cold.\" \n\nWe know the following:\n- The squirrel is not cold.\n- The squirrel is nice.\n\nWe have not been able to derive the statement \"The squirrel is cold\" from the given information and rules. \n\nTherefore, we can conclude that the statement \"The squirrel is cold\" is unknown because we can't derive it from the given information and rules.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical reasoning and the given statements. We are asked to determine whether the statement \"The squirrel is cold\" is true, false, or unknown.\n\nFirst, let's analyze the given statements:\n\n1. The bear does not eat the lion.\n2. The bear likes the lion.\n3. The lion is big.\n4. The lion visits the mouse.\n5. The lion visits the squirrel.\n6. The mouse eats the squirrel.\n7. The mouse likes the bear.\n8. The mouse likes the lion.\n9. The mouse visits the squirrel.\n10. The squirrel is not cold.\n11. The squirrel is nice.\n12. If something eats the squirrel then the squirrel eats the mouse.\n13. If something visits the bear and it is green then it is nice.\n14. If something is green and blue then it visits the bear.\n15. If something likes the lion and it is blue then the lion is nice.\n16. If something eats the mouse then it likes the lion.\n17. If the bear is not green then the bear likes the lion.\n18. If something visits the bear then the bear likes the lion.\n19. If something likes the lion and the lion is blue then the lion likes the mouse.\n20. If something is nice then it is blue.\n\nWe are given statement 10: \"The squirrel is not cold.\" This statement directly contradicts the statement we are trying to evaluate: \"The squirrel is cold.\" Therefore, if statement 10 is true, then the statement we are trying to evaluate is false.\n\nHowever, we need to check if there are any other statements that might affect the truth of \"The squirrel is cold.\" Statement 11 says that the squirrel is nice, which means the squirrel is blue according to statement 20.\n\nNow, let's consider the implications of the statements about the bear and the lion. Statement 2 says that the bear likes the lion, which means that the bear is not green. If the bear is not green, then it must be blue (according to statement 17), which means that the bear visits the lion (according to statement 18). \n\nThe lion visits the mouse (statement 4) and the lion visits the squirrel (statement 5). Since the lion visits the squirrel, the mouse does not eat the squirrel (because the mouse would eat the squirrel if it visited the squirrel). \n\nNow, let's look at the possible scenarios for the squirrel:\n\nScenario 1: The squirrel eats the mouse. In this case, the mouse likes the lion (according to statement 16), but the lion is not nice (because the mouse does not like the lion). However, this contradicts statement 19, which says that if the lion is blue and someone likes the lion, then the lion likes the mouse. This means that the lion cannot be blue, which contradicts statement 20, which says that the bear is blue. Therefore, this scenario is not possible.\n\nScenario 2: The squirrel does not eat the mouse. In this case, the mouse eats the squirrel (according to statement 6). However, this contradicts statement 12, which says that if something eats the squirrel, then the squirrel eats the mouse. Therefore, this scenario is also not possible.\n\nTherefore, the squirrel does not eat the mouse. \n\nWe can now conclude that the statement \"The squirrel is cold\" is true, because statement 10 is false.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not eats(lion, squirrel)",
+          "z3_formula": "not eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> eats(squirrel, mouse)",
+          "z3_formula": "Implies(eats_X_squirrel, eats_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & green(X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_X_bear, green_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(And(green_X, blue_X), visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> nice(lion)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_X), nice_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(eats_X_mouse, likes_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(not green_bear, likes_bear_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(visits_X_bear, likes_bear_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> likes(lion, X)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_X), likes_lion_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "Not(cold_squirrel) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == False",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == False",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == False",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> eats(squirrel, X)",
+          "z3_formula": "Implies(eats_mouse_squirrel, eats_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(squirrel, mouse)",
+          "z3_formula": "Not(eats_squirrel_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "Not(cold_squirrel) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> squirrel eats mouse",
+          "z3_formula": "Implies(eats_X_squirrel, squirrel_eats_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & green(X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_X_bear, green_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(And(green_X, blue_X), visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> nice(lion)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_X), nice_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(eats_X_mouse, likes_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(not green_bear, likes_bear_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(visits_X_bear, likes_bear_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(lion) -> likes(lion, mouse)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_lion), likes_lion_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(cold_squirrel)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "Not(cold_squirrel)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not eats(lion, squirrel)",
+          "z3_formula": "not eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> eats(squirrel, mouse)",
+          "z3_formula": "Implies(eats_X_squirrel, eats_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & green(X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_X_bear, green_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(And(green_X, blue_X), visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> likes(lion, X)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_X), likes_lion_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(eats_X_mouse, likes_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not green(bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(not green_bear, likes_bear_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> likes(bear, X)",
+          "z3_formula": "Implies(visits_X_bear, likes_bear_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(likes_X_lion, blue_X), likes_X_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_squirrel, blue_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) | blue(X) -> visits_bear(X)",
+          "z3_formula": "Or(And(green_X, visits_bear_X), And(blue_X, visits_bear_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(mouse, X)",
+          "z3_formula": "Implies(eats_mouse_squirrel, eats_squirrel_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(eats_squirrel_mouse, likes_squirrel_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(likes_lion_X, blue_X), nice_lion_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> likes(X, lion)",
+          "z3_formula": "Implies(Not(green_X), likes_lion_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> eats(squirrel, mouse)",
+          "z3_formula": "Implies(eats_squirrel_mouse, eats_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & green(X) -> nice(X)",
+          "z3_formula": "Implies(And(visits_bear_bear, green_bear), nice_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(And(green_bear, blue_bear), visits_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> likes(lion, X)",
+          "z3_formula": "Implies(And(likes_lion_lion, blue_lion), likes_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(eats_mouse_lion, likes_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> likes(X, lion)",
+          "z3_formula": "Implies(not green_bear, likes_lion_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(visits_bear_lion, likes_lion_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & blue(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(likes_lion_mouse, blue_lion), likes_lion_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_squirrel, blue_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 95,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 2,
+      "total_weight": 87,
+      "solve_time_ms": 1.25778466463089
+    },
+    "timing": {
+      "trace_gen_s": 10.385,
+      "extraction_s": 17.586,
+      "dedup_s": 0.856,
+      "maxsat_s": 0.004,
+      "total_s": 28.831
+    }
+  }
+}

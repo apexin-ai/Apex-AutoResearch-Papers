@@ -1,0 +1,1293 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-884_Q17",
+    "problem": "The bear is cold. The bear is rough. The bear needs the cat. The bear needs the rabbit. The bear sees the rabbit. The cat eats the bear. The cat is blue. The rabbit eats the cat. The rabbit eats the squirrel. The rabbit is big. The rabbit is rough. The rabbit is round. The squirrel eats the bear. The squirrel eats the cat. The squirrel is big. The squirrel is rough. If something eats the rabbit then the rabbit sees the bear. If something eats the rabbit then it needs the squirrel. If something sees the bear and it sees the cat then the cat sees the rabbit. If something sees the rabbit and the rabbit is rough then it sees the cat. All round, blue things are big. If the bear is big and the bear sees the squirrel then the bear is round. If something sees the cat then it sees the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not need the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nCold(bear, True) ::: The bear is cold.\nRough(bear, True) ::: The bear is rough.\nNeeds(bear, cat, True) ::: The bear needs the cat.\nNeeds(bear, rabbit, True) ::: The bear needs the rabbit.\nSees(bear, rabbit, True) ::: The bear sees the rabbit.\nEats(cat, bear, True) ::: The cat eats the bear.\nBlue(cat, True) ::: The cat is blue.\nEats(rabbit, cat, True) ::: The rabbit eats the cat.\nEats(rabbit, squirrel, True) ::: The rabbit eats the squirrel.\nBig(rabbit, True) ::: The rabbit is big.\nRough(rabbit, True) ::: The rabbit is rough.\nRound(rabbit, True) ::: The rabbit is round.\nEats(squirrel, bear, True) ::: The squirrel eats the bear.\nEats(squirrel, cat, True) ::: The squirrel eats the cat.\nBig(squirrel, True) ::: The squirrel is big.\nRough(squirrel, True) ::: The squirrel is rough.\n\nRules:\nEats($x, rabbit, True) >>> Sees(rabbit, bear, True) ::: If something eats the rabbit then the rabbit sees the bear.\nEats($x, rabbit, True) >>> Needs($x, squirrel, True) ::: If something eats the rabbit then it needs the squirrel.\nSees($x, bear, True) && Sees($x, cat, True) >>> Sees(cat, rabbit, True) ::: If something sees the bear and it sees the cat then the cat sees the rabbit.\nSees($x, rabbit, True) && Rough(rabbit, True) >>> Sees($x, cat, True) ::: If something sees the rabbit and the rabbit is rough then it sees the cat.\nRound($x, True) && Blue($x, True) >>> Big($x, True) ::: All round, blue things are big.\nBig(bear, True) && Sees(bear, squirrel, True) >>> Round(bear, True) ::: If the bear is big and the bear sees the squirrel then the bear is round.\nSees($x, cat, True) >>> Sees($x, bear, True) ::: If something sees the cat then it sees the bear.\n\nQuery:\nNeeds(bear, squirrel, False) ::: The bear does not need the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 118.0,
+      "Unknown": 186.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a series of logical deductions based on the given statements.\n\n1. From the statement \"All round, blue things are big,\" we can conclude that the cat is big because the cat is blue.\n2. From the statement \"If something eats the rabbit then the rabbit sees the bear,\" we can conclude that the squirrel sees the bear because the squirrel eats the rabbit.\n3. From the statement \"If something sees the bear and it sees the cat then the cat sees the rabbit,\" we can conclude that the squirrel sees the cat because the squirrel sees the bear and the cat, but we cannot conclude that the cat sees the rabbit from this information alone. However, we can conclude that the cat sees the rabbit because the squirrel sees the cat and the cat sees the rabbit is not a necessary conclusion from the information that the squirrel sees the cat and the squirrel sees the bear. However, it can be concluded that the cat sees the rabbit because the cat sees the rabbit is given in the problem statement.\n4. From the statement \"If the bear is big and the bear sees the squirrel then the bear is round,\" we cannot conclude whether the bear is round or not. However, we know that the bear is rough, so we cannot use this statement to conclude the roundness of the bear.\n5. From the statement \"If something sees the cat then it sees the bear,\" we can conclude that the rabbit sees the bear because the rabbit sees the cat.\n6. From the statement \"The rabbit is rough and the rabbit sees the bear,\" we can conclude that the rabbit sees the cat because the rabbit sees the bear and the bear sees the cat.\n7. From the statement \"The rabbit eats the cat,\" we can conclude that the rabbit needs the squirrel because the rabbit eats the cat is given in the problem statement.\n\nNow we will determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown.\n\nTo determine whether the statement is true or false, we need to find out whether the bear needs the squirrel or not.\n\nFrom the statement \"The bear is rough and the bear needs the cat,\" we can conclude that the bear sees the cat because the bear is rough. We know that the cat sees the rabbit, so the bear sees the rabbit.\n\nFrom the statement \"The bear sees the rabbit and the rabbit is rough,\" we can conclude that the bear sees the cat because the rabbit sees the cat.\n\nWe know that the cat eats the bear, so the bear is eaten by the cat.\n\nHowever, we do not have enough information to conclude that the bear needs the squirrel.\n\nThe statement \"The bear needs the squirrel\" is unknown, so the statement \"The bear does not need the squirrel\" is also unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nLet's break down the rules and the given information:\n\n1. The bear sees the rabbit.\n2. If something sees the rabbit, and the rabbit is rough, then it sees the cat. (Rule 4)\n   - From rule 1, we know the bear sees the rabbit.\n   - From rule 7, we know the rabbit is rough.\n   - Therefore, the bear sees the cat.\n\n3. If something sees the bear and it sees the cat, then the cat sees the rabbit. (Rule 5)\n   - From step 2, we know the bear sees the cat.\n   - Therefore, the cat sees the rabbit.\n\n4. The cat eats the bear.\n   - This is a given statement.\n\n5. The bear needs the cat.\n   - This is a given statement.\n\n6. The rabbit eats the cat.\n   - This is a given statement.\n\n7. The rabbit eats the squirrel.\n   - This is a given statement.\n\n8. If something eats the rabbit, then it needs the squirrel. (Rule 2)\n   - From step 6, we know the rabbit eats the cat.\n   - From step 3, we know the cat sees the rabbit.\n   - Therefore, the cat eats the rabbit.\n   - From rule 2, the cat needs the squirrel.\n\n9. The cat is blue.\n   - This is a given statement.\n\n10. All round, blue things are big. (Rule 6)\n   - From step 9, we know the cat is blue.\n   - Therefore, the cat is big.\n\n11. The cat eats the bear.\n   - From step 4, we know this is a given statement.\n\n12. If the bear is big and the bear sees the squirrel, then the bear is round. (Rule 8)\n   - We don't have enough information to determine if the bear is big or sees the squirrel.\n\n13. The squirrel eats the cat.\n   - This is a given statement.\n\n14. If something eats the rabbit, then it needs the squirrel. (Rule 2)\n   - From step 7, we know the rabbit eats the squirrel.\n   - This is a valid statement.\n\n15. The rabbit is big.\n   - This is a given statement.\n\n16. The rabbit is rough.\n   - This is a given statement.\n\n17. The rabbit is round.\n   - This is a given statement.\n\n18. If something sees the cat then it sees the bear. (Rule 7)\n   - This is a given rule.\n\n19. The squirrel eats the bear.\n   - This is a given statement.\n\n20. The squirrel eats the cat.\n   - From step 13, we know this is a given statement.\n\n21. If something eats the rabbit then it needs the squirrel. (Rule 2)\n   - From step 7, we know the rabbit eats the squirrel.\n   - This is a valid statement.\n\nNow, let's analyze the statement \"The bear does not need the squirrel.\"\n\nFrom rule 2, if something eats the rabbit, then it needs the squirrel. However, we don't have enough information to determine if the bear eats the rabbit.\n\nFrom rule 8, if the bear is big and the bear sees the squirrel, then the bear is round. We don't have enough information to determine if the bear is big or sees the squirrel.\n\nFrom the given information and the rules, we can conclude that the statement \"The bear does not need the squirrel\" is unknown because we don't have enough information to determine if the bear needs the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided in the problem step by step.\n\n1. From the statement \"The bear is cold. The bear is rough,\" we cannot determine any specific relationship between the bear and other animals.\n\n2. The bear needs the cat and the rabbit. This does not provide any information about the bear's relationship with the squirrel.\n\n3. The bear sees the rabbit. This statement is important as it gives us a relationship between the bear and the rabbit.\n\n4. The cat eats the bear. This statement is contradictory to the previous statement \"The bear sees the rabbit.\" However, it does not provide any information about the bear's relationship with the squirrel.\n\n5. The cat is blue, and the rabbit eats the cat. These statements do not provide any information about the bear's relationship with the squirrel.\n\n6. The rabbit eats the squirrel, but this statement is not directly related to the bear.\n\n7. If something eats the rabbit then the rabbit sees the bear. However, we already know that the bear sees the rabbit, which does not necessarily mean the bear eats the rabbit.\n\n8. If something eats the rabbit then it needs the squirrel. We know that the rabbit eats the cat, but we do not know if the cat needs the squirrel.\n\n9. If something sees the bear and it sees the cat then the cat sees the rabbit. We know that the bear sees the rabbit, but this does not necessarily mean the cat sees the rabbit.\n\n10. If something sees the rabbit and the rabbit is rough then it sees the cat. We know that the rabbit is rough, and the bear sees the rabbit, so the bear sees the cat.\n\n11. All round, blue things are big. The cat is blue, so the cat must be big.\n\n12. The rabbit is big, rough, and round. The rabbit sees the bear.\n\n13. If the bear is big and the bear sees the squirrel then the bear is round. However, we already know that the bear sees the rabbit and the rabbit is round.\n\n14. If something sees the cat then it sees the bear. We know that the cat sees the rabbit, so the cat sees the bear.\n\nNow, to determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the information provided.\n\nFrom statement 8, we know that if something eats the rabbit then it needs the squirrel. However, there is no direct information about the bear's relationship with the squirrel.\n\nWe know that the bear sees the rabbit, but we do not know if the bear eats the rabbit. However, the cat eats the bear, which means the cat needs the rabbit. This implies that the cat needs the rabbit because it needs the squirrel.\n\nSince the cat eats the bear and the cat needs the squirrel, it is likely that the bear needs the squirrel. This is because the cat needs the squirrel, and the cat eats the bear.\n\nHowever, this is not explicitly stated in the problem. Therefore, we cannot determine whether the statement \"The bear does not need the squirrel\" is true or false.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the given statements and rules. \n\n1. The bear needs the cat.\n2. The bear needs the rabbit.\n3. The cat eats the bear.\n4. The rabbit eats the cat.\n5. The rabbit eats the squirrel.\n6. The rabbit is big.\n7. The rabbit is rough.\n8. The rabbit is round.\n9. The squirrel eats the bear.\n10. The squirrel eats the cat.\n11. The squirrel is big.\n12. The squirrel is rough.\n\nNow, let's examine the given rules:\n\n1. If something eats the rabbit, then the rabbit sees the bear.\n2. If something eats the rabbit, then it needs the squirrel.\n3. If something sees the bear and it sees the cat, then the cat sees the rabbit.\n4. If something sees the rabbit and the rabbit is rough, then it sees the cat.\n5. All round, blue things are big.\n6. If the bear is big and the bear sees the squirrel, then the bear is round.\n7. If something sees the cat, then it sees the bear.\n\nWe can see that there is no direct statement or rule that says the bear does not need the squirrel. However, we can use the rules to find out if the bear needs the squirrel or not.\n\nFrom rule 2, we know that if something eats the rabbit, then it needs the squirrel. But we do not know if the bear eats the rabbit. We need to find out if the bear eats the rabbit or not.\n\nFrom statement 5, we know that the squirrel eats the bear, and from statement 10, we know that the squirrel eats the cat. This means that the squirrel is eating the bear and the cat, but we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 1: If something sees the rabbit and the rabbit is rough, then it sees the cat. Since the bear sees the rabbit (statement 5), and the rabbit is rough (statement 7), the bear sees the cat (rule 4). But we do not know if the bear eats the cat or not.\n\nFrom statement 3, we know that the cat eats the bear, and from statement 1, we know that the bear needs the cat. But we do not know if the bear needs the squirrel.\n\nNow, let's examine if the bear can eat the rabbit or not. If the bear eats the rabbit, then it needs the squirrel (rule 2). But we do not know if the bear eats the rabbit or not.\n\nFrom statement 9, we know that the squirrel eats the bear. This means that the squirrel is eating the bear, but we do not know if the bear eats the rabbit or not.\n\nFrom statement 5, we know that the bear sees the rabbit, and from statement 7, we know that the rabbit is rough. This means that the bear sees the cat (rule 4), but we do not know if the bear eats the cat or not.\n\nHowever, we can use rule 3: If something sees the bear and it sees the cat, then the cat sees the rabbit. Since the bear sees the rabbit (statement 5), and the bear sees the cat (rule 4), the cat sees the rabbit (rule 3). But we do not know if the cat eats the rabbit or not.\n\nFrom statement 4, we know that the rabbit eats the cat. This means that the rabbit is eating the cat, but we do not know if the rabbit eats the squirrel or not.\n\nHowever, we can use rule 1: If something eats the rabbit, then the rabbit sees the bear. Since the squirrel eats the rabbit (statement 5), the rabbit sees the bear (rule 1). But we do not know if the rabbit eats the squirrel or not.\n\nFrom statement 8, we know that the rabbit is round. This means that the rabbit is round, but we do not know if the rabbit is big or not.\n\nHowever, we can use rule 5: All round, blue things are big. Since the cat is blue (statement 12) and the rabbit is round (statement 8), the rabbit is big (rule 5).\n\nNow, let's examine if the bear needs the squirrel or not. From statement 6, we know that the bear is big, and from statement 5, we know that the bear sees the squirrel. This means that the bear is round (rule 6), but we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 2: If something eats the rabbit, then it needs the squirrel. Since the squirrel eats the rabbit (statement 5), the squirrel needs the squirrel (rule 2). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 1: If something eats the rabbit, then the rabbit sees the bear. Since the squirrel eats the rabbit (statement 5), the rabbit sees the bear (rule 1). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 6: If the bear is big and the bear sees the squirrel, then the bear is round. Since the bear is big (statement 6) and the bear sees the squirrel (statement 5), the bear is round (rule 6). But we do not know if the bear needs the squirrel or not.\n\nFrom statement 2, we know that the bear needs the rabbit. But we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 7: If something sees the cat, then it sees the bear. Since the cat sees the rabbit (rule 3), the cat sees the bear (rule 7). But we do not know if the bear sees the squirrel or not.\n\nNow, let's examine if the bear needs the squirrel or not. From statement 1, we know that the bear needs the cat. But we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 2: If something eats the rabbit, then it needs the squirrel. Since the squirrel eats the rabbit (statement 5), the squirrel needs the squirrel (rule 2). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 1: If something eats the rabbit, then the rabbit sees the bear. Since the squirrel eats the rabbit (statement 5), the rabbit sees the bear (rule 1). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 6: If the bear is big and the bear sees the squirrel, then the bear is round. Since the bear is big (statement 6) and the bear sees the squirrel (statement 5), the bear is round (rule 6). But we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 7: If something sees the cat, then it sees the bear. Since the cat sees the rabbit (rule 3), the cat sees the bear (rule 7). But we do not know if the bear sees the squirrel or not.\n\nFrom statement 11, we know that the squirrel is big. This means that the squirrel is big, but we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 2: If something eats the rabbit, then it needs the squirrel. Since the squirrel eats the rabbit (statement 5), the squirrel needs the squirrel (rule 2). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 1: If something eats the rabbit, then the rabbit sees the bear. Since the squirrel eats the rabbit (statement 5), the rabbit sees the bear (rule 1). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 6: If the bear is big and the bear sees the squirrel, then the bear is round. Since the bear is big (statement 6) and the bear sees the squirrel (statement 5), the bear is round (rule 6). But we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 7: If something sees the cat, then it sees the bear. Since the cat sees the rabbit (rule 3), the cat sees the bear (rule 7). But we do not know if the bear sees the squirrel or not.\n\nFrom statement 3, we know that the cat eats the bear. This means that the cat is eating the bear, but we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 2: If something eats the rabbit, then it needs the squirrel. Since the squirrel eats the rabbit (statement 5), the squirrel needs the squirrel (rule 2). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 1: If something eats the rabbit, then the rabbit sees the bear. Since the squirrel eats the rabbit (statement 5), the rabbit sees the bear (rule 1). But we do not know if the bear eats the rabbit or not.\n\nHowever, we can use rule 6: If the bear is big and the bear sees the squirrel, then the bear is round. Since the bear is big (statement 6) and the bear sees the squirrel (statement 5), the bear is round (rule 6). But we do not know if the bear needs the squirrel or not.\n\nHowever, we can use rule 7: If something sees the cat, then it sees the bear. Since the cat sees the rabbit (rule 3), the cat sees the bear (rule 7). But we do not know",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and analyze the relationships between the different statements.\n\n1. The bear is cold. The bear is rough. The bear needs the cat. The bear needs the rabbit. The bear sees the rabbit. \n   - This information gives us some initial facts about the bear, but we need to consider the other statements to determine the relationships between the bear and the other animals.\n\n2. The cat eats the bear. The cat is blue. \n   - This information tells us that the cat is blue, but we don't know if the bear is dead or alive after this statement.\n\n3. The rabbit eats the cat. The rabbit eats the squirrel. The rabbit is big. The rabbit is rough. The rabbit is round. \n   - This information gives us some characteristics of the rabbit and its actions.\n\n4. The squirrel eats the bear. The squirrel eats the cat. The squirrel is big. The squirrel is rough. \n   - This information tells us that the squirrel is a significant animal in this scenario.\n\n5. If something eats the rabbit then the rabbit sees the bear.\n   - This statement implies that the rabbit sees the bear only if it is eaten by something.\n\n6. If something eats the rabbit then it needs the squirrel.\n   - This statement implies that the eater of the rabbit needs the squirrel.\n\n7. If something sees the bear and it sees the cat then the cat sees the rabbit.\n   - This statement implies a specific sequence of events.\n\n8. If something sees the rabbit and the rabbit is rough then it sees the cat.\n   - This statement implies that the observer sees the cat only if it sees a rough rabbit.\n\n9. All round, blue things are big.\n   - This statement gives us a characteristic of round, blue things.\n\n10. If the bear is big and the bear sees the squirrel then the bear is round.\n    - This statement implies a condition for the bear to be round.\n\n11. If something sees the cat then it sees the bear.\n    - This statement implies a specific relationship between the observer and the bear.\n\nNow, let's analyze the given statement: \"The bear does not need the squirrel.\"\n\nTo determine if this statement is true, false, or unknown, we need to consider the information given in the problem.\n\nFrom statement 5, we know that if something eats the rabbit, then it sees the bear. \n\nHowever, the rabbit eats the cat and the squirrel in statements 3 and 4, respectively. This means that the rabbit sees the bear because it eats the cat (statement 5).\n\nNow, let's consider the condition for the bear to be round, which is given in statement 10: If the bear is big and the bear sees the squirrel then the bear is round.\n\nHowever, the bear sees the squirrel in statement 4, but we don't know if the bear is big or not. If the bear is not big, then we cannot determine if the bear is round or not.\n\nNow, let's analyze the given statement again: \"The bear does not need the squirrel.\"\n\nFrom statement 6, we know that if something eats the rabbit, then it needs the squirrel. \n\nHowever, the rabbit eats the cat and the squirrel in statements 3 and 4, respectively. This means that the eater of the rabbit needs the squirrel.\n\nNow, let's consider the given statement again: \"The bear does not need the squirrel.\"\n\nThe bear sees the rabbit, and the rabbit eats the squirrel (statement 3). This implies that the bear sees the squirrel through the rabbit.\n\nHowever, the bear needs the rabbit (statement 1), and the rabbit eats the squirrel (statement 3). This implies that the bear needs the squirrel indirectly through the rabbit.\n\nTherefore, we cannot determine if the statement \"The bear does not need the squirrel\" is true or false.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and logical deductions based on the given information.\n\n1. The statement we need to evaluate is: \"The bear does not need the squirrel.\"\n\n2. From the given information, we know that \"The bear needs the cat\" and \"The bear needs the rabbit.\"\n\n3. Now, let's analyze the relationships between the bear, the cat, and the rabbit. The cat eats the bear, so the cat cannot need the bear. However, we cannot directly conclude the relationship between the bear and the squirrel from this information.\n\n4. To find the relationship between the bear and the squirrel, we need to consider other statements. One statement is: \"If something eats the rabbit then it needs the squirrel.\" However, we do not know who eats the rabbit.\n\n5. Another statement is: \"If something sees the bear and it sees the cat then the cat sees the rabbit.\" We know the bear sees the cat, but we do not know if the cat sees the rabbit.\n\n6. The statement \"The rabbit eats the cat\" implies that the rabbit sees the cat. Since the cat sees the rabbit, and the rabbit is big, the cat must also see the bear.\n\n7. The statement \"The rabbit sees the bear\" implies that the rabbit needs the squirrel.\n\n8. Now, we have a contradiction. We know the rabbit sees the bear, but we also know that the rabbit needs the squirrel. If the rabbit sees the bear, then the statement \"If something sees the bear and it sees the cat then the cat sees the rabbit\" is true. \n\n9. We know the rabbit is rough, and the statement \"If something sees the rabbit and the rabbit is rough then it sees the cat\" is true. Since the rabbit is rough and sees the cat, it must see the bear.\n\n10. From the statement \"If the bear is big and the bear sees the squirrel then the bear is round,\" we cannot directly conclude if the bear is round or not.\n\n11. Considering the statement \"All round, blue things are big,\" we can conclude that if the bear is round, then it must be blue.\n\n12. However, the information provided does not directly state the color of the bear. Therefore, we cannot conclude that the bear is blue or round based on this information.\n\n13. We know that the rabbit is big and rough, and the statement \"If something sees the rabbit and the rabbit is rough then it sees the cat\" is true. Since the rabbit is rough and sees the cat, it must see the bear.\n\n14. We also know that the squirrel eats the cat and sees the bear. Since the squirrel sees the bear, the statement \"If something sees the bear then it sees the cat\" is true.\n\n15. Therefore, the squirrel sees the cat, which means the squirrel must see the rabbit.\n\n16. Now, considering the statement \"If something sees the rabbit then it needs the squirrel,\" we can conclude that the squirrel needs the rabbit.\n\n17. However, the statement \"The bear needs the squirrel\" cannot be directly concluded from this information.\n\n18. To determine if the statement \"The bear does not need the squirrel\" is true or false, we need to consider the information that \"The bear is rough\" and the statement \"If something eats the rabbit then it needs the squirrel.\"\n\n19. Since the squirrel eats the rabbit, the squirrel needs the rabbit. However, we cannot directly conclude the relationship between the bear and the squirrel from this information.\n\n20. Now, let's analyze the statement \"The squirrel is rough.\" This implies that the bear sees the squirrel.\n\n21. Since the bear sees the squirrel, and the statement \"If something sees the cat then it sees the bear\" is true, we can conclude that the bear sees the cat.\n\n22. However, we cannot directly conclude the relationship between the bear and the squirrel from this information.\n\n23. Now, let's consider the statement \"The rabbit is round.\" This implies that the rabbit sees the bear.\n\n24. Since the rabbit sees the bear, and the statement \"If something sees the bear then it sees the cat\" is true, we can conclude that the rabbit sees the cat.\n\n25. However, we cannot directly conclude the relationship between the bear and the squirrel from this information.\n\n26. Now, let's analyze the statement \"The squirrel eats the bear.\" This implies that the squirrel sees the bear.\n\n27. Since the squirrel sees the bear, and the statement \"If something sees the cat then it sees the bear\" is true, we can conclude that the squirrel sees the cat.\n\n28. However, we cannot directly conclude the relationship between the bear and the squirrel from this information.\n\n29. Based on the information provided, we cannot directly conclude the relationship between the bear and the squirrel.\n\nTherefore, the statement \"The bear does not need the squirrel\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to determine the properties of each animal and the relationships between them. \n\nLet's break down the given information:\n\n1. The bear is cold. \n2. The bear is rough.\n3. The bear needs the cat. \n4. The bear needs the rabbit. \n5. The bear sees the rabbit. \n6. The cat eats the bear. \n7. The cat is blue. \n8. The rabbit eats the cat. \n9. The rabbit eats the squirrel. \n10. The rabbit is big. \n11. The rabbit is rough. \n12. The rabbit is round. \n13. The squirrel eats the bear. \n14. The squirrel eats the cat. \n15. The squirrel is big. \n16. The squirrel is rough.\n\nNow, let's analyze the given conditions:\n\n1. If something eats the rabbit then the rabbit sees the bear. \n2. If something eats the rabbit then it needs the squirrel. \n3. If something sees the bear and it sees the cat then the cat sees the rabbit. \n4. If something sees the rabbit and the rabbit is rough then it sees the cat. \n5. All round, blue things are big. \n6. If the bear is big and the bear sees the squirrel then the bear is round. \n7. If something sees the cat then it sees the bear.\n\nNow, we will analyze the statements one by one:\n\n- From statement 3, we know the rabbit sees the bear. \n- From statement 4, we know the rabbit is rough, so it sees the cat. \n- From statement 6, we know the bear is big and sees the squirrel, so the bear is round. \n- From statement 7, we know if something sees the cat, it sees the bear. \n\nNow, we need to determine whether the bear needs the squirrel. Let's analyze the given conditions again:\n\n- From statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 8, the rabbit eats the cat. \n- From statement 13, the squirrel eats the bear. \n\nNow, let's check if the squirrel eats the rabbit:\n\n- The squirrel is big (statement 15).\n- The squirrel is rough (statement 15).\n- From statement 4, if something sees the rabbit and the rabbit is rough then it sees the cat. \n- The squirrel sees the rabbit because the rabbit is rough.\n\nNow, from statement 2, if the squirrel eats the rabbit then the squirrel needs the squirrel. \n\nHowever, we don't have any information that the squirrel eats the rabbit. But we have information that the rabbit eats the squirrel (statement 9). \n\nHowever, we can still determine that the bear does not need the squirrel. \n\nFrom statement 1, the bear is rough. \nFrom statement 4, if something sees the rabbit and the rabbit is rough then it sees the cat. \nFrom statement 5, the cat is blue. \nFrom statement 6, all round, blue things are big. \nFrom statement 11, the rabbit is big. \n\nHowever, we cannot determine if the bear sees the squirrel or the rabbit eats the squirrel. \n\nBut we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n- From statement 8, the rabbit eats the cat. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- The cat eats the bear (statement 6).\n- The cat sees the rabbit (because the cat sees the bear and the bear sees the rabbit). \n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the bear but the rabbit also eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n- From statement 8, the rabbit eats the cat. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- The cat sees the rabbit (because the cat sees the bear and the bear sees the rabbit). \n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- The cat sees the rabbit (because the cat sees the bear and the bear sees the rabbit). \n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- The cat sees the rabbit (because the cat sees the bear and the bear sees the rabbit). \n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if something eats the rabbit then it needs the squirrel. \n- From statement 1, the bear is rough. \n- From statement 3, the bear sees the rabbit. \n\nHowever, we don't have any information that the bear eats the rabbit. \n\nBut we have information that the cat eats the bear (statement 6).\n\nNow, let's check if the cat eats the rabbit:\n\n- The cat sees the rabbit (because the cat sees the bear and the bear sees the rabbit). \n- From statement 8, the rabbit eats the cat. \n\nNow, we have a contradiction, the cat eats the rabbit but the rabbit eats the cat. This is not possible.\n\nHowever, we can still determine if the bear needs the squirrel. \n\nFrom statement 2, if",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is rough. (Given)\n\n2. If something sees the bear and it sees the cat then the cat sees the rabbit. (Given)\n   However, we cannot conclude anything about the bear from this statement. It is just a conditional statement that is not relevant to our problem.\n\n3. If something sees the rabbit and the rabbit is rough then it sees the cat. (Given)\n   Again, this statement does not provide any information about the bear's needs.\n\n4. The rabbit eats the cat. (Given)\n   This statement does not provide any information about the bear's needs.\n\n5. The rabbit eats the squirrel. (Given)\n   This statement does not provide any information about the bear's needs.\n\n6. If something eats the rabbit then it needs the squirrel. (Given)\n   We don't know who eats the rabbit yet. So, we cannot conclude anything about the bear's needs from this statement.\n\n7. If the bear is big and the bear sees the squirrel then the bear is round. (Given)\n   We don't know if the bear is big or not. However, we know the bear is rough (Statement 1). This statement is not relevant to our problem.\n\n8. If something sees the cat then it sees the bear. (Given)\n   This statement does not provide any information about the bear's needs.\n\n9. The bear sees the rabbit. (Given)\n   This statement does not provide any information about the cat or the squirrel. It only tells us about the bear's perception.\n\n10. The cat eats the bear. (Given)\n    This statement does not provide any information about the bear's needs.\n\n11. The cat is blue. (Given)\n    This statement does not provide any information about the bear's needs.\n\n12. The rabbit is big. (Given)\n    This statement does not provide any information about the bear's needs.\n\n13. The rabbit is rough. (Given)\n    This statement does not provide any information about the bear's needs.\n\n14. The rabbit is round. (Given)\n    This statement does not provide any information about the bear's needs.\n\n15. The squirrel eats the bear. (Given)\n    This statement does not provide any information about the bear's needs.\n\n16. The squirrel eats the cat. (Given)\n    This statement does not provide any information about the bear's needs.\n\n17. The squirrel is big. (Given)\n    This statement does not provide any information about the bear's needs.\n\n18. The squirrel is rough. (Given)\n    This statement does not provide any information about the bear's needs.\n\n19. If something eats the rabbit then the rabbit sees the bear. (Given)\n   This statement is relevant to our problem. Let's analyze it.\n\nFrom Statement 6, we know that if something eats the rabbit then it needs the squirrel. \n\nFrom Statement 19, we know that if something eats the rabbit then the rabbit sees the bear.\n\nNow, let's analyze Statement 6 and Statement 19 together.\n\nIf something eats the rabbit, then:\n- It needs the squirrel (Statement 6).\n- The rabbit sees the bear (Statement 19).\n\nNow, let's analyze the possibilities:\n\n- The cat eats the rabbit: \n  - The rabbit sees the bear (Statement 19).\n  - The cat sees the rabbit (Statement 2, which is not relevant to our problem).\n  - The cat needs the squirrel (Statement 6).\n- The squirrel eats the rabbit: \n  - The rabbit sees the bear (Statement 19).\n  - The squirrel sees the cat (Statement 8).\n  - The squirrel needs the squirrel (Statement 6).\n\nNow, let's analyze the bear's needs.\n\nFrom Statement 19, we know that if something eats the rabbit then the rabbit sees the bear. This means that the rabbit sees the bear regardless of who eats it.\n\nNow, let's analyze the possibilities:\n\n- The cat eats the rabbit: \n  - The rabbit sees the bear (Statement 19).\n  - The cat eats the bear (Statement 10).\n- The squirrel eats the rabbit: \n  - The rabbit sees the bear (Statement 19).\n  - The squirrel eats the bear (Statement 15).\n\nIn both possibilities, the bear is eaten by either the cat or the squirrel. This means that the bear needs the squirrel in both possibilities.\n\nTherefore, the statement \"The bear does not need the squirrel\" is false.\n\nThe final answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we can establish the following relationships:\n   - The bear needs the cat.\n   - The rabbit eats the cat.\n   - The rabbit eats the squirrel.\n   - The squirrel eats the cat.\n\n2. If the bear needs the cat, it implies that the bear sees the cat. From this, we can infer that the bear sees the rabbit because the rabbit eats the cat. This is based on the rule: \"If something sees the bear and it sees the cat then the cat sees the rabbit.\"\n\n3. However, we don't have any information that directly relates to the bear and the squirrel in a \"needs\" context.\n\n4. Given the relationships established, we can't determine whether the bear needs the squirrel based on the information provided.\n\nTherefore, the answer to the statement \"The bear does not need the squirrel\" is unknown, as we lack sufficient information to make a conclusion.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The bear needs the cat. \n2. The rabbit eats the cat.\n3. The rabbit eats the squirrel. \n4. If something eats the rabbit then it needs the squirrel. \n\nFrom statement 4, we can infer that the rabbit needs the squirrel because it eats the rabbit. \n\nNow, we need to find out if the cat needs the squirrel. We don't have any information that directly states the cat needs the squirrel. But statement 2 implies that the rabbit eats the cat, and statement 3 implies that the rabbit eats the squirrel. Therefore, it can be inferred that the cat is eaten by the rabbit, which in turn eats the squirrel. This suggests that the cat needs the squirrel indirectly.\n\nNow, we need to determine if the bear needs the squirrel. We know that the bear needs the cat (statement 1), and the cat needs the squirrel indirectly. Therefore, it can be inferred that the bear needs the squirrel.\n\nSo, the statement \"The bear does not need the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not need the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is rough.\n2. The bear needs the rabbit. (From statement 4)\n3. The bear sees the rabbit. (From statement 5)\n4. The rabbit eats the cat. (From statement 7)\n5. The rabbit eats the squirrel. (From statement 8)\n6. The rabbit is big. (From statement 9)\n7. The rabbit is rough. (From statement 10)\n8. The rabbit is round. (From statement 11)\n\nFrom the given statements, we know that the rabbit eats the squirrel, but we don't directly know if the bear eats the squirrel or not.\n\n9. If something eats the rabbit then the rabbit sees the bear. \n10. If something eats the rabbit then it needs the squirrel. (This statement is relevant to us, as it implies a relationship between eating the rabbit and needing the squirrel)\n\n11. Since we don't know if the bear eats the rabbit or not, we can't directly conclude that the bear needs the squirrel from statement 10.\n\nHowever, we know that the squirrel eats the bear. (From statement 12)\n12. The squirrel eats the cat. (From statement 13)\n13. The squirrel is big. (From statement 14)\n14. The squirrel is rough. (From statement 15)\n\nNow, let's examine the statements that relate to seeing and needing:\n15. If something sees the bear and it sees the cat then the cat sees the rabbit. \n16. If something sees the rabbit and the rabbit is rough then it sees the cat.\n\n17. The cat eats the bear. (From statement 6)\n18. The cat is blue. (From statement 7)\n\n19. The cat sees the rabbit because the cat eats the bear (from statement 17), and the cat sees the rabbit. \n   Also, since the cat sees the rabbit, and the rabbit is rough, it follows that the cat sees the cat (from statement 16).\n\n20. Since the cat sees the bear (from statement 17), it follows that the cat sees the bear (from statement 17).\n\n21. The cat sees the bear and the cat sees the rabbit, so it follows that the cat sees the rabbit (from statement 15).\n\n22. Since the cat sees the rabbit, and the rabbit is rough, it follows that the cat sees the cat (from statement 16).\n\nNow, let's examine the statements that relate to round and big objects:\n23. All round, blue things are big. \n24. The cat is blue. (From statement 7)\n25. The rabbit is round. (From statement 11)\n26. The rabbit is big. (From statement 9)\n\n27. The rabbit sees the bear because the rabbit is rough (from statement 10), and the rabbit sees the bear. \n\n28. The bear sees the rabbit (from statement 5), and the bear is rough (from statement 1). \n\n29. Since the bear sees the rabbit and the rabbit is rough, it follows that the bear sees the cat (from statement 16).\n\n30. The bear sees the cat, and the cat is blue. \n\n31. Since the cat is blue and round, it follows that the cat is big (from statement 23).\n\n32. The bear sees the squirrel (from statement 12), and the bear is big (from statement 1).\n\n33. Since the bear is big and the bear sees the squirrel, it follows that the bear is round (from statement 18).\n\nNow, let's go back to the original statement: \"The bear does not need the squirrel.\"\n\nFrom the statements above, we don't have direct information about the bear needing the squirrel. However, we can use the information from statement 10: \"If something eats the rabbit then it needs the squirrel.\" \n\nSince the squirrel eats the bear (from statement 12), we can't directly conclude that the bear needs the squirrel from statement 10. \n\nHowever, the statement also says that \"If something sees the bear and it sees the cat then the cat sees the rabbit.\" \n\nSince the cat eats the bear (from statement 6), the cat sees the bear, and the cat sees the rabbit (from statement 17 and 15).\n\nThe cat sees the rabbit, and the rabbit is rough, so the cat sees the cat (from statement 16). \n\nThe cat sees the rabbit, so the cat sees the bear (from statement 15).\n\nThe cat sees the bear, and the cat sees the rabbit, so it follows that the cat sees the rabbit (from statement 15).\n\nSince the cat sees the rabbit, and the rabbit is rough, it follows that the cat sees the cat (from statement 16).\n\nNow, let's examine the statements that relate to needing and eating:\n34. The squirrel eats the bear. (From statement 12)\n35. The squirrel eats the cat. (From statement 13)\n\n36. If something eats the rabbit then it needs the squirrel. (This statement is relevant to us, as it implies a relationship between eating the rabbit and needing the squirrel)\n\n37. Since the squirrel eats the bear (from statement 12), it follows that the squirrel sees the bear (from statement 17).\n\n38. Since the squirrel eats the bear, it follows that the squirrel sees the rabbit (from statement 6 and 15).\n\n39. Since the squirrel sees the rabbit, and the rabbit is rough, it follows that the squirrel sees the cat (from statement 16).\n\n40. Since the squirrel sees the cat, it follows that the squirrel needs the squirrel (from statement 10).\n\nHowever, the statement \"The bear does not need the squirrel\" is a negation of the statement \"The bear needs the squirrel.\"\n\nTo determine if the bear needs the squirrel, we need to examine the statements that relate to needing and eating.\n\n41. The bear needs the rabbit. (From statement 4)\n\n42. The rabbit eats the cat. (From statement 7)\n\n43. The rabbit eats the squirrel. (From statement 8)\n\n44. Since the rabbit eats the squirrel, it follows that the rabbit needs the squirrel (from statement 10).\n\nHowever, the statement does not directly say that the bear needs the squirrel.\n\n45. The bear sees the squirrel. (From statement 12)\n\n46. Since the bear sees the squirrel, and the squirrel is big, it follows that the squirrel is round (from statement 18).\n\nHowever, we don't have enough information to conclude that the bear needs the squirrel.\n\nTherefore, the statement \"The bear does not need the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The bear needs the cat. (Given)\n2. The cat eats the bear. (Given)\n   However, the cat also eats the rabbit. This means the cat is not safe to be around the bear, and we cannot directly conclude that the bear needs the squirrel based on this.\n\n3. The bear sees the rabbit. (Given)\n   However, this does not directly relate to the bear needing the squirrel. We need more information.\n\n4. If something eats the rabbit then it needs the squirrel. (Given)\n   Since we do not have information that something eats the rabbit, we cannot directly apply this rule.\n\n5. The rabbit eats the cat. (Given)\n   This means the rabbit sees the bear because the rabbit sees the cat and the cat sees the bear (Rule 7). However, this still does not directly relate to the bear needing the squirrel.\n\n6. The rabbit sees the bear. (From Rule 5)\n7. The rabbit needs the squirrel. (From Rule 4, since the rabbit eats the cat and the cat eats the bear, implying that something eats the rabbit)\n8. The rabbit needs the squirrel. (From Rule 4, since the rabbit eats the cat and the cat eats the bear, implying that something eats the rabbit)\n\nHowever, we cannot directly conclude that the bear needs the squirrel. There is an implication that if the bear is big and the bear sees the squirrel then the bear is round. However, we cannot conclude that the bear sees the squirrel based on the given information.\n\nWe can conclude that the statement is unknown because we cannot determine the relationship between the bear needing the squirrel based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, rough_rabbit), sees_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_cat, needs_cat_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_cat, blue_cat), big_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, squirrel) -> round(X)",
+          "z3_formula": "Implies(And(big_bear, sees_bear_squirrel), round_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_squirrel, needs_squirrel_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, squirrel)",
+          "z3_formula": "needs_squirrel_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_cat_bear, sees_bear_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_squirrel, needs_squirrel_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, squirrel)",
+          "z3_formula": "needs_squirrel_squirrel == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_bear, sees_X_cat), sees_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_cat, blue_cat), big_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, squirrel) -> round(X)",
+          "z3_formula": "Implies(And(big_bear, sees_bear_squirrel), round_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, squirrel) -> round(X)",
+          "z3_formula": "Implies(And(big_X, sees_X_squirrel), round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_bear)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_bear, sees_X_cat), sees_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) & sees(bear, squirrel) -> round(bear)",
+          "z3_formula": "Implies(And(big_bear, sees_bear_squirrel), round_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(bear, squirrel)",
+          "z3_formula": "Not(needs_bear_squirrel)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_bear, sees_X_cat), sees_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_X_cat, sees_X_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(sees_X_rabbit, needs_X_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bear, sees_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(rough_X, sees_X_rabbit), sees_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bear, sees_X_cat)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(big_X, blue_X), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == Unknown",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_bear, sees_X_cat), sees_X_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, squirrel) -> round(X)",
+          "z3_formula": "Implies(And(big_X, sees_X_squirrel), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> sees(X, bear)",
+          "z3_formula": "Implies(sees_X_cat, sees_X_bear)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_cat_bear, sees_cat_bear), sees_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(rabbit, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_rabbit_bear)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(needs_bear_cat, sees_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & sees(Y, cat) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_bear_cat, sees_cat_rabbit), sees_bear_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & sees(X, cat) -> sees(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_X_bear, sees_X_cat), sees_cat_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & rough(rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_rabbit, rough_rabbit), sees_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), big_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, squirrel)",
+          "z3_formula": "needs_squirrel_squirrel == True",
+          "source_step": 40
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 44
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == Unknown",
+          "source_step": 47
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, rabbit)",
+          "z3_formula": "eats_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> needs(X, squirrel)",
+          "z3_formula": "Implies(eats_X_rabbit, needs_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, Y) -> round(X)",
+          "z3_formula": "Implies(And(big_X, sees_X_Y), round_X)",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 194,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 58,
+      "excluded": 1,
+      "total_weight": 192,
+      "solve_time_ms": 1.4337226748466492
+    },
+    "timing": {
+      "trace_gen_s": 25.014,
+      "extraction_s": 44.199,
+      "dedup_s": 2.521,
+      "maxsat_s": 0.005,
+      "total_s": 71.739
+    }
+  }
+}

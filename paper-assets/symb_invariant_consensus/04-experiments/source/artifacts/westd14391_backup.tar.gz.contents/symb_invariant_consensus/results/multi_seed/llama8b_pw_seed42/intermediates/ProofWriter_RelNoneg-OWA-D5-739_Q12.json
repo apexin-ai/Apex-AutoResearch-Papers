@@ -1,0 +1,1316 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-739_Q12",
+    "problem": "The bald eagle eats the dog. The bald eagle sees the dog. The dog is cold. The dog likes the squirrel. The dog sees the rabbit. The rabbit eats the dog. The rabbit eats the squirrel. The rabbit likes the dog. The rabbit sees the squirrel. The squirrel likes the bald eagle. If someone is cold and they like the bald eagle then they eat the rabbit. If someone likes the dog and they see the squirrel then the dog likes the bald eagle. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. If someone likes the rabbit then they are young. If someone likes the dog and the dog likes the squirrel then they like the bald eagle. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. If someone sees the bald eagle then the bald eagle is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle does not eat the rabbit.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Dog, True) ::: The bald eagle eats the dog.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nCold(Dog, True) ::: The dog is cold.\nLikes(Dog, Squirrel, True) ::: The dog likes the squirrel.\nSees(Dog, Rabbit, True) ::: The dog sees the rabbit.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nEats(Rabbit, Squirrel, True) ::: The rabbit eats the squirrel.\nLikes(Rabbit, Dog, True) ::: The rabbit likes the dog.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nLikes(Squirrel, BaldEagle, True) ::: The squirrel likes the bald eagle.\n\nRules:\nCold($x, True) && Likes($x, BaldEagle, True) >>> Eats($x, Rabbit, True) ::: If someone is cold and they like the bald eagle then they eat the rabbit.\nLikes($x, Dog, True) && Sees($x, Squirrel, True) >>> Likes(Dog, BaldEagle, True) ::: If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\nSees(BaldEagle, Dog, True) && Cold(BaldEagle, True) >>> Likes(BaldEagle, Dog, True) ::: If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\nLikes($x, Rabbit, True) >>> Young($x, True) ::: If someone likes the rabbit then they are young.\nLikes($x, Dog, True) && Likes(Dog, Squirrel, True) >>> Likes($x, BaldEagle, True) ::: If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\nRed(BaldEagle, True) && Likes(BaldEagle, Squirrel, True) >>> Eats(Squirrel, Rabbit, True) ::: If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\nLikes(Dog, BaldEagle, True) && Sees(BaldEagle, Dog, True) >>> Cold(BaldEagle, True) ::: If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\nSees($x, BaldEagle, True) >>> Young(BaldEagle, True) ::: If someone sees the bald eagle then the bald eagle is young.\n\nQuery:\nEats(BaldEagle, Rabbit, False) ::: The bald eagle does not eat the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 75.5,
+      "Unknown": 177.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and apply the rules to deduce the relationship between the bald eagle and the rabbit.\n\n1. The bald eagle sees the dog.\n   Rule: If someone sees the bald eagle then the bald eagle is young.\n   Therefore, the bald eagle is young.\n\n2. The rabbit eats the squirrel.\n   Rule: If someone likes the rabbit then they are young.\n   Since the rabbit is young, the squirrel is also young (as the squirrel likes the bald eagle).\n\n3. The dog likes the squirrel.\n   Rule: If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n   Therefore, the bald eagle likes the squirrel.\n\n4. The squirrel likes the bald eagle.\n   Rule: If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n   Since the bald eagle is not mentioned to be red, this rule is not applicable.\n\n5. The dog sees the rabbit.\n   Rule: If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n   However, the statement does not mention that the dog likes the bald eagle. Therefore, this rule is not applicable.\n\n6. The rabbit eats the dog.\n   Rule: If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n   Since the bald eagle is young (from rule 1), this rule is not applicable.\n\n7. The rabbit likes the dog.\n   Rule: If someone likes the rabbit then they are young.\n   Since the rabbit is young, the dog is also young (as the dog likes the squirrel).\n\n8. The dog is cold.\n   Rule: If someone is cold and they like the bald eagle then they eat the rabbit.\n   However, the statement does not mention that the dog likes the bald eagle. Therefore, this rule is not applicable.\n\n9. The bald eagle sees the dog.\n   Rule: If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n   However, the statement does not mention that the bald eagle is red. Therefore, this rule is not applicable.\n\n10. The bald eagle likes the squirrel.\n    Rule: If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n    However, the statement does not mention that the dog likes the bald eagle. Therefore, this rule is not applicable.\n\n11. The squirrel likes the bald eagle.\n    Rule: If the squirrel eats the rabbit then the rabbit is young.\n    Therefore, the rabbit is young.\n\n12. The rabbit eats the squirrel.\n    Rule: If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n    However, the statement does not mention that the bald eagle is red. Therefore, this rule is not applicable.\n\n13. The dog likes the squirrel.\n    Rule: If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n    However, the statement does not mention that the bald eagle is cold. Therefore, this rule is not applicable.\n\nFrom the analysis, we know:\n- The bald eagle is young.\n- The rabbit is young.\n- The squirrel is young.\n- The dog is young.\n\nHowever, there is no direct rule that states the bald eagle does not eat the rabbit. We only know that the rabbit eats the squirrel and the dog, but there is no information about the relationship between the bald eagle and the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to find the relationships between the bald eagle, the rabbit, and the other animals. We will use the given conditions to determine the outcome.\n\nGiven conditions:\n\n1. The bald eagle eats the dog.\n2. The bald eagle sees the dog.\n3. The dog is cold.\n4. The dog likes the squirrel.\n5. The dog sees the rabbit.\n6. The rabbit eats the dog.\n7. The rabbit eats the squirrel.\n8. The rabbit likes the dog.\n9. The rabbit sees the squirrel.\n10. The squirrel likes the bald eagle.\n11. If someone is cold and they like the bald eagle then they eat the rabbit.\n12. If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n13. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n14. If someone likes the rabbit then they are young.\n15. If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n16. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n17. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n18. If someone sees the bald eagle then the bald eagle is young.\n\nNow, let's analyze the relationships:\n\nFrom condition 1, we know the bald eagle eats the dog.\n\nFrom condition 6, we know the rabbit eats the dog.\n\nThis means that the rabbit eats the dog and the bald eagle eats the dog.\n\nFrom condition 8, we know the rabbit likes the dog.\n\nFrom condition 14, we know if someone likes the rabbit then they are young.\n\nThis means the rabbit is young.\n\nFrom condition 10, we know the squirrel likes the bald eagle.\n\nFrom condition 4, we know the dog likes the squirrel.\n\nFrom condition 15, we know if someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n\nThis means the dog likes the bald eagle.\n\nFrom condition 17, we know if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n\nThis condition is not directly applicable here, as we do not have any information about the bald eagle seeing the dog. However, we do know the dog is cold from condition 3.\n\nFrom condition 2, we know the bald eagle sees the dog.\n\nFrom condition 3, we know the dog is cold.\n\nFrom condition 13, we know if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n\nThis condition is applicable, and it means the bald eagle likes the dog.\n\nNow, let's analyze the statement: \"The bald eagle does not eat the rabbit.\"\n\nFrom condition 6, we know the rabbit eats the dog.\n\nFrom condition 1, we know the bald eagle eats the dog.\n\nHowever, we do not have any information that directly states the bald eagle eats the rabbit. \n\nBut, we can infer that the statement \"The bald eagle does not eat the rabbit\" might be true because none of the given conditions state that the bald eagle eats the rabbit. However, we also cannot be certain about this because none of the conditions state that the bald eagle does not eat the rabbit either.\n\nTherefore, the statement \"The bald eagle does not eat the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications. We will use a process of elimination to narrow down the possibilities.\n\nFrom the given statements, we know the following:\n\n1. The bald eagle sees the dog.\n2. The dog is cold.\n3. The dog likes the squirrel.\n4. The dog sees the rabbit.\n5. The rabbit eats the dog.\n6. The rabbit eats the squirrel.\n7. The rabbit likes the dog.\n8. The rabbit sees the squirrel.\n9. The squirrel likes the bald eagle.\n\nNow, let's analyze the given conditions:\n\n1. If someone is cold and they like the bald eagle then they eat the rabbit.\n   - We don't know if the dog is cold, but we do know the dog likes the bald eagle. However, we cannot determine if the dog eats the rabbit.\n\n2. If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n   - We know the dog sees the rabbit and the rabbit sees the squirrel. This implies the dog sees the squirrel indirectly. Since the dog likes the squirrel, we can conclude that the dog likes the bald eagle.\n\n3. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n   - We know the bald eagle sees the dog, but we don't know if the bald eagle is cold.\n\n4. If someone likes the rabbit then they are young.\n   - We know the rabbit likes the dog, so the dog is young.\n\n5. If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n   - We know the dog likes the squirrel, and since the dog likes the bald eagle, we can conclude that this condition is met.\n\n6. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n   - We don't know if the bald eagle is red, so we cannot determine if the squirrel eats the rabbit.\n\n7. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n   - We know the dog likes the bald eagle, and since the bald eagle sees the dog, we can conclude that the bald eagle is cold.\n\n8. If someone sees the bald eagle then the bald eagle is young.\n   - We know the dog sees the bald eagle, so the bald eagle is young.\n\nNow, let's analyze the given statement:\n\n\"The bald eagle does not eat the rabbit.\"\n\nWe can derive the following information from the statements:\n\n- The rabbit eats the dog (statement 5).\n- The rabbit eats the squirrel (statement 6).\n- The dog is young (statement 4).\n\nHowever, there is no direct information about the bald eagle eating the rabbit. We can analyze the implications of the statements:\n\n- If the squirrel eats the rabbit, then the bald eagle would have to eat the squirrel, as the squirrel likes the bald eagle. However, we don't know if the squirrel eats the rabbit.\n- We know the bald eagle sees the dog and the bald eagle is cold (statement 7). This implies that the bald eagle likes the dog. Since the rabbit eats the dog, the bald eagle would like the rabbit. As the rabbit eats the squirrel, the bald eagle would like the squirrel.\n\nHowever, we cannot conclude that the bald eagle eats the rabbit directly from the given statements. We can only determine that the bald eagle likes the squirrel and the squirrel eats the rabbit.\n\nSince we cannot determine if the bald eagle eats the rabbit from the given statements, the statement \"The bald eagle does not eat the rabbit\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bald eagle sees the dog.\n   We don't have enough information to determine the relationship between the bald eagle and the rabbit yet.\n\n2. The dog is cold.\n   We don't have enough information to determine the relationship between the dog and the bald eagle yet.\n\n3. The dog likes the squirrel.\n   We don't have enough information to determine the relationship between the dog and the bald eagle yet.\n\n4. The dog sees the rabbit.\n   We don't have enough information to determine the relationship between the dog and the bald eagle yet.\n\n5. The rabbit eats the dog.\n   We don't have enough information to determine the relationship between the rabbit and the bald eagle yet.\n\n6. The rabbit eats the squirrel.\n   We don't have enough information to determine the relationship between the rabbit and the bald eagle yet.\n\n7. The rabbit likes the dog.\n   We don't have enough information to determine the relationship between the rabbit and the bald eagle yet.\n\n8. The rabbit sees the squirrel.\n   We don't have enough information to determine the relationship between the rabbit and the bald eagle yet.\n\n9. The squirrel likes the bald eagle.\n   We don't have enough information to determine the relationship between the squirrel and the rabbit yet.\n\n10. If someone is cold and they like the bald eagle then they eat the rabbit.\n    We can't apply this rule to any of the given statements yet.\n\n11. If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n    The dog likes the squirrel, but we don't know if the dog sees the squirrel or not.\n\n12. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n    The bald eagle sees the dog, but we don't know if the bald eagle is cold or not.\n\n13. If someone likes the rabbit then they are young.\n    The rabbit eats the squirrel, but we don't know if the rabbit is young or not.\n\n14. If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n    The dog likes the squirrel, but we don't know if someone likes the dog or not.\n\n15. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n    We can't determine if the bald eagle is red or not.\n\n16. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n    The dog likes the bald eagle, but we don't know if the bald eagle sees the dog or not.\n\n17. If someone sees the bald eagle then the bald eagle is young.\n    The bald eagle sees the dog, but we don't know if the dog sees the bald eagle or not.\n\nLet's analyze the statement \"The bald eagle does not eat the rabbit.\"\n\nFrom the given statements, we know that:\n- The rabbit eats the dog (statement 5)\n- The rabbit eats the squirrel (statement 6)\n- The squirrel likes the bald eagle (statement 9)\n\nWe also know that:\n- If someone likes the rabbit then they are young (statement 13)\n- The rabbit eats the squirrel (statement 6)\n- The squirrel likes the bald eagle (statement 9)\n\nHowever, we can't directly determine the relationship between the bald eagle and the rabbit.\n\nLet's look at the rules:\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit (statement 15)\n  This rule can be applied if we know that the bald eagle is red and likes the squirrel. However, we can't determine if the bald eagle is red or not.\n\n- The bald eagle sees the dog (statement 1)\n- The dog is cold (statement 2)\n- The dog likes the squirrel (statement 3)\n- The dog sees the rabbit (statement 4)\n\nWe can't directly apply any of the given rules to determine the relationship between the bald eagle and the rabbit.\n\nHowever, if we assume that the bald eagle sees the squirrel (which we can't determine), then we can apply the rule:\n- If someone sees the bald eagle then the bald eagle is young (statement 17)\n  But this rule can only be applied if someone sees the bald eagle.\n\nLet's analyze the statement \"The bald eagle does not eat the rabbit.\"\n\nFrom the given statements, we know that:\n- The rabbit eats the dog (statement 5)\n- The rabbit eats the squirrel (statement 6)\n- The squirrel likes the bald eagle (statement 9)\n\nWe also know that:\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit (statement 15)\n  This rule can be applied if we know that the bald eagle is red and likes the squirrel. However, we can't determine if the bald eagle is red or not.\n\nHowever, if we assume that the squirrel eats the rabbit, then we can apply the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can't directly determine if the squirrel eats the rabbit or not.\n\nBut we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit (statement 15)\n\nHowever, we can't determine if the bald eagle is red or not.\n\nHowever, if we assume that the bald eagle sees the squirrel (which we can't determine), then we can apply the rule:\n- If someone sees the bald eagle then the bald eagle is young (statement 17)\n\nHowever, if we assume that the squirrel sees the bald eagle (which we can't determine), then we can apply the rule:\n- If the squirrel sees the bald eagle then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit (statement 15)\n\nHowever, we can't determine if the bald eagle is red or not.\n\nHowever, if we assume that the squirrel eats the rabbit (which we can't determine), then we can apply the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit (statement 15)\n\nHowever, we can't determine if the bald eagle is red or not.\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and the rabbit using the rule:\n- If the squirrel eats the rabbit then the squirrel likes the bald eagle (we can't determine this relationship directly, but it is given in the statement 9)\n\nHowever, we can determine the relationship between the bald eagle and",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement that the rabbit eats the squirrel is given. \n2. It is given that the squirrel likes the bald eagle.\n3. From the information given, we know that if the squirrel likes the bald eagle and the squirrel is red, the squirrel eats the rabbit. However, it is not specified that the squirrel is red, so this statement does not give us any information about whether the squirrel eats the rabbit.\n4. However, we do know that the bald eagle sees the squirrel.\n5. From the information given, we know that if someone sees the bald eagle, the bald eagle is young. \n6. It is given that the rabbit eats the squirrel and the rabbit likes the dog. \n7. From the information given, we know that if someone likes the rabbit then they are young. \n8. We are given that the bald eagle likes the squirrel. \n9. From the information given, we know that if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. We can't be certain the dog likes the bald eagle based on this information alone, so we need to find more information. We are given that the dog likes the squirrel, but we do not know if the bald eagle sees the dog. However, we are given that the rabbit eats the dog. \n10. From the information given, we know that if someone is cold and they like the bald eagle then they eat the rabbit. We are given that the rabbit eats the dog and the dog is cold. We can't be certain the dog likes the bald eagle based on this information alone. \n11. However, we are given that the rabbit sees the squirrel. \n12. From the information given, we know that if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. We are given that the bald eagle sees the dog, but we do not know if the bald eagle is cold. We are given that the dog likes the squirrel, but we do not know if the squirrel is red. However, we are given that the squirrel likes the bald eagle.\n13. Since the squirrel likes the bald eagle, it is given that the squirrel eats the rabbit. \n14. Therefore, the rabbit eats the squirrel, and the squirrel eats the rabbit. This means that the statement that the squirrel eats the rabbit is true.\n\nHowever, we are trying to determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown. We do not know if the bald eagle eats the rabbit or not, but we do know that the squirrel eats the rabbit. We also know that the rabbit eats the squirrel, but we do not know if the bald eagle eats the rabbit or not.\n\nHowever, we can look at the information given, if the dog likes the bald eagle and the bald eagle sees the dog, then the bald eagle is cold. We are given that the dog sees the rabbit, but we do not know if the dog likes the bald eagle. However, we are given that the rabbit eats the dog. If the dog likes the squirrel, then the dog likes the bald eagle. However, we are given that the bald eagle sees the squirrel, but we do not know if the dog likes the bald eagle. However, we do know that the squirrel likes the bald eagle. Since the squirrel eats the rabbit, and the rabbit eats the squirrel, then the statement that the squirrel eats the rabbit is true. This means that the statement that the bald eagle eats the squirrel is false.\n\nHowever, we are given that the bald eagle sees the dog, and the dog is cold. If the bald eagle is cold, then the bald eagle likes the dog. However, we are given that the dog sees the rabbit, but we do not know if the bald eagle likes the dog. However, we are given that the rabbit eats the dog. If the bald eagle sees the dog, then the bald eagle is cold. However, we do not know if the bald eagle likes the dog. \n\nHowever, we are given that the bald eagle sees the squirrel, and the squirrel likes the bald eagle. However, we are given that the squirrel eats the rabbit. If the squirrel eats the rabbit, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we are given that the rabbit eats the squirrel. Since the squirrel eats the rabbit, and the rabbit eats the squirrel, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we are given that the rabbit eats the squirrel. We also know that the squirrel likes the bald eagle. If the squirrel likes the bald eagle, then the squirrel eats the rabbit. \n\nHowever, we can look at the information given, if the bald eagle is red, and the bald eagle likes the squirrel, then the squirrel eats the rabbit. However, it is not specified that the bald eagle is red, so this statement does not give us any information about whether the squirrel eats the rabbit.\n\nHowever, we are given that the bald eagle sees the squirrel, and the squirrel likes the bald eagle. We are also given that the squirrel eats the rabbit. However, we do not know if the bald eagle eats the rabbit.\n\nHowever, we can look at the information given, if the dog likes the bald eagle, and the bald eagle sees the dog, then the bald eagle is cold. We are given that the dog sees the rabbit, but we do not know if the dog likes the bald eagle. However, we are given that the rabbit eats the dog. If the dog likes the squirrel, then the dog likes the bald eagle. However, we are given that the bald eagle sees the squirrel, but we do not know if the dog likes the bald eagle. However, we do know that the squirrel likes the bald eagle. Since the squirrel eats the rabbit, and the rabbit eats the squirrel, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we are given that the squirrel eats the rabbit. Since the rabbit eats the squirrel, and the squirrel eats the rabbit, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we can look at the information given, if someone is cold and they like the bald eagle then they eat the rabbit. We are given that the rabbit eats the dog, and the dog is cold. We are also given that the dog likes the squirrel. However, we do not know if the dog likes the bald eagle.\n\nHowever, we are given that the dog sees the rabbit, but we do not know if the dog likes the bald eagle. However, we are given that the rabbit eats the dog. If the dog likes the squirrel, then the dog likes the bald eagle. However, we are given that the bald eagle sees the squirrel, but we do not know if the dog likes the bald eagle.\n\nHowever, we are given that the rabbit eats the squirrel. We also know that the squirrel likes the bald eagle. If the squirrel likes the bald eagle, then the squirrel eats the rabbit.\n\nHowever, we can look at the information given, if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. We are given that the dog sees the rabbit, but we do not know if the dog likes the bald eagle. However, we are given that the rabbit eats the dog. If the dog likes the squirrel, then the dog likes the bald eagle. However, we are given that the bald eagle sees the squirrel, but we do not know if the dog likes the bald eagle. However, we do know that the squirrel likes the bald eagle. Since the squirrel eats the rabbit, and the rabbit eats the squirrel, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we are given that the squirrel eats the rabbit. Since the rabbit eats the squirrel, and the squirrel eats the rabbit, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we can look at the information given, if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. However, it is not specified that the bald eagle is red, so this statement does not give us any information about whether the squirrel eats the rabbit.\n\nHowever, we are given that the bald eagle sees the squirrel, and the squirrel likes the bald eagle. We are also given that the squirrel eats the rabbit. However, we do not know if the bald eagle eats the rabbit.\n\nHowever, we can look at the information given, if someone sees the bald eagle then the bald eagle is young. We are given that the rabbit sees the squirrel, but we do not know if the rabbit sees the bald eagle.\n\nHowever, we can look at the information given, if someone likes the dog and they see the squirrel then the dog likes the bald eagle. We are given that the dog sees the rabbit, but we do not know if the dog likes the bald eagle. However, we are given that the rabbit eats the dog. If the dog likes the squirrel, then the dog likes the bald eagle. However, we are given that the bald eagle sees the squirrel, but we do not know if the dog likes the bald eagle. However, we do know that the squirrel likes the bald eagle. Since the squirrel eats the rabbit, and the rabbit eats the squirrel, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we are given that the squirrel eats the rabbit. Since the rabbit eats the squirrel, and the squirrel eats the rabbit, then the statement that the squirrel eats the rabbit is true.\n\nHowever, we can look at the information given, if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. We are given that the dog sees the rabbit, but we do not know if the bald eagle is cold. However, we are given that the dog likes the squirrel, but",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bald eagle sees the dog.\n2. The dog is cold.\n3. The dog likes the squirrel.\n4. The dog sees the rabbit.\n5. The rabbit eats the dog.\n6. The rabbit eats the squirrel.\n7. The rabbit likes the dog.\n8. The rabbit sees the squirrel.\n9. The squirrel likes the bald eagle.\n\nFrom the given rules, we have the following conclusions:\n\n1. If someone is cold and they like the bald eagle then they eat the rabbit. (Rule 1)\n   - Since the dog is cold, it doesn't directly relate to the dog liking the bald eagle. So, we cannot conclude anything from this rule.\n\n2. If someone likes the dog and they see the squirrel then the dog likes the bald eagle. (Rule 2)\n   - The dog likes the squirrel, so the dog must like the bald eagle, as per this rule. (This is not directly related to the statement, but we'll keep it in mind for further analysis.)\n\n3. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. (Rule 3)\n   - The bald eagle sees the dog, but there's no information about the bald eagle being cold. So, we cannot conclude anything from this rule.\n\n4. If someone likes the rabbit then they are young. (Rule 4)\n   - The rabbit likes the dog, so the dog is young. (This is not directly related to the statement, but we'll keep it in mind for further analysis.)\n\n5. If someone likes the dog and the dog likes the squirrel then they like the bald eagle. (Rule 5)\n   - The dog likes the squirrel, and as per Rule 2, the dog likes the bald eagle. (This is not directly related to the statement, but we'll keep it in mind for further analysis.)\n\n6. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. (Rule 6)\n   - The bald eagle is not mentioned to be red. So, we cannot conclude anything from this rule.\n\n7. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. (Rule 7)\n   - As per Rule 2, the dog likes the bald eagle. However, there's no information about the bald eagle seeing the dog. So, we cannot conclude anything from this rule.\n\n8. If someone sees the bald eagle then the bald eagle is young. (Rule 8)\n   - The squirrel likes the bald eagle, which implies the squirrel sees the bald eagle. As per Rule 4, if someone likes the rabbit, they are young. However, the squirrel does not like the rabbit; instead, the rabbit eats the squirrel. So, this rule does not provide any information about the bald eagle's age.\n\nNow, let's analyze the statement \"The bald eagle does not eat the rabbit.\"\n\n- From Rule 1, if someone is cold and they like the bald eagle then they eat the rabbit. However, the dog is cold, but there's no information about the dog liking the bald eagle. So, this rule does not provide any conclusion.\n\n- From Rule 6, if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. However, the bald eagle is not mentioned to be red. So, this rule does not provide any conclusion.\n\n- From Rule 4, if someone likes the rabbit then they are young. However, we cannot directly conclude that the bald eagle likes the rabbit.\n\n- From Rule 5, if someone likes the dog and the dog likes the squirrel then they like the bald eagle. As per Rule 2, the dog likes the bald eagle. However, we cannot conclude anything about the bald eagle eating the rabbit from this rule.\n\n- From Rule 1, we can see that the bald eagle sees the dog, but we cannot conclude that the bald eagle eats the rabbit from this rule.\n\nHowever, we know that the rabbit eats the squirrel. Since the squirrel likes the bald eagle, it implies that the squirrel sees the bald eagle. As per Rule 8, if someone sees the bald eagle, then the bald eagle is young. But, as per Rule 4, if someone likes the rabbit, then they are young. Since the squirrel likes the rabbit (because the rabbit eats the squirrel), the squirrel is young.\n\nNow, let's look at the statements we have: \n- The squirrel is young.\n- If someone is young, they like the rabbit. \n- The rabbit likes the dog.\n- The dog likes the squirrel.\n\nSince the squirrel likes the bald eagle and the squirrel is young, the squirrel must like the rabbit (as per Rule 4). However, we cannot conclude that the bald eagle eats the rabbit from the given rules.\n\nTherefore, the statement \"The bald eagle does not eat the rabbit\" is unknown, as we cannot conclude that the bald eagle eats the rabbit or does not eat the rabbit from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit eats the dog. (Premise)\n2. The rabbit eats the squirrel. (Premise)\n3. The rabbit likes the dog. (Premise)\n4. If someone likes the rabbit then they are young. (Premise)\n   - Since the rabbit likes the dog, the dog is young.\n5. The dog likes the squirrel. (Premise)\n6. If someone likes the dog and the dog likes the squirrel then they like the bald eagle. (Premise)\n   - Since the dog likes the squirrel, the dog likes the bald eagle.\n7. The dog sees the rabbit. (Premise)\n8. If someone likes the dog and they see the squirrel then the dog likes the bald eagle. (Premise)\n   - This premise is already satisfied in step 6, so we don't need to use it again.\n9. The squirrel likes the bald eagle. (Premise)\n10. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. (Premise)\n    - We don't have information about the bald eagle's temperature, so this premise is not directly relevant.\n11. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. (Premise)\n    - We don't have information about the bald eagle seeing the dog, so this premise is not directly relevant.\n12. If someone is cold and they like the bald eagle then they eat the rabbit. (Premise)\n    - This premise is not directly relevant to our problem.\n\nNow, we need to consider the conditions under which the bald eagle eats the rabbit. \n\n- If the bald eagle is red and the bald eagle likes the squirrel, then the squirrel eats the rabbit. (Premise)\n  - However, we don't have information about the bald eagle's color.\n- If the rabbit is young, then the rabbit eats the squirrel. (From step 4)\n  - However, we don't have information about the rabbit's age.\n- If the bald eagle sees the rabbit, then the bald eagle is young. (Premise)\n  - However, we don't have information about the bald eagle seeing the rabbit.\n\nHowever, we have one more condition to consider:\n\n- The bald eagle sees the dog. (Premise)\n- If the dog likes the bald eagle and the bald eagle sees the dog, then the bald eagle is cold. (Premise)\n  - Since the dog likes the bald eagle (from step 6), and the bald eagle sees the dog (from step 7), we can conclude that the bald eagle is cold (from step 11).\n- If someone is cold and they like the bald eagle, then they eat the rabbit. (Premise)\n  - Since the bald eagle is cold (from step 11), and the bald eagle likes itself, then the bald eagle eats the rabbit.\n\nBased on this analysis, we can conclude that the statement \"The bald eagle does not eat the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given information and the conditions that lead to the conclusion.\n\nFrom the given statements:\n\n1. The bald eagle eats the dog.\n2. The rabbit eats the dog.\n3. The rabbit eats the squirrel.\n4. If someone is cold and they like the bald eagle then they eat the rabbit.\n5. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n6. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n7. If someone sees the bald eagle then the bald eagle is young.\n\nWe need to check the conditions that could lead to the bald eagle eating the rabbit.\n\nCondition 4 states that if someone is cold and they like the bald eagle, then they eat the rabbit. However, we don't have any information that the bald eagle is cold or likes the bald eagle (itself).\n\nCondition 5 states that if the bald eagle is red and likes the squirrel, then the squirrel eats the rabbit. However, the statement does not mention the color of the bald eagle, so we cannot determine whether the bald eagle is red or not.\n\nCondition 6 states that if the dog likes the bald eagle and the bald eagle sees the dog, then the bald eagle is cold. However, we don't have any information that the dog likes the bald eagle.\n\nThe only condition that could potentially lead to the conclusion is condition 7, which states that if someone sees the bald eagle, then the bald eagle is young. However, this condition does not relate to the bald eagle eating the rabbit.\n\nGiven the information provided, we cannot determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, because we don't have enough information to conclude whether the conditions leading to the bald eagle eating the rabbit are met.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown.\n\n1. The bald eagle sees the dog.\n2. The dog is cold.\n3. The dog likes the squirrel.\n4. The dog sees the rabbit.\n5. The rabbit eats the dog.\n6. The rabbit eats the squirrel.\n7. The rabbit likes the dog.\n8. The rabbit sees the squirrel.\n9. The squirrel likes the bald eagle.\n10. If someone is cold and they like the bald eagle then they eat the rabbit. \n11. If someone likes the dog and they see the squirrel then the dog likes the bald eagle. \n12. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n13. If someone likes the rabbit then they are young.\n14. If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n15. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n16. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n17. If someone sees the bald eagle then the bald eagle is young.\n\nLet's start with the given statement: \"The bald eagle does not eat the rabbit.\"\n\nWe need to analyze the given statements to determine whether this statement is true, false, or unknown.\n\nFrom statement 9, we know that the squirrel likes the bald eagle.\n\nFrom statement 10, if someone is cold and they like the bald eagle then they eat the rabbit.\n\nHowever, we do not know whether the squirrel is cold or not. If the squirrel is cold, then from statement 10, the squirrel would eat the rabbit, which is the opposite of the given statement.\n\nOn the other hand, if the squirrel is not cold, then we do not know whether the squirrel eats the rabbit or not.\n\nTherefore, based on the given statements, we cannot determine whether the statement \"The bald eagle does not eat the rabbit\" is true or false. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The bald eagle sees the dog. \n2. The dog is cold.\n3. The dog likes the squirrel.\n4. The dog sees the rabbit.\n5. The rabbit eats the dog.\n6. The rabbit eats the squirrel.\n7. The rabbit likes the dog.\n8. The rabbit sees the squirrel.\n9. The squirrel likes the bald eagle.\n\nGiven statements:\n- If someone is cold and they like the bald eagle then they eat the rabbit. (Statement 10)\n- If someone likes the dog and they see the squirrel then the dog likes the bald eagle. (Statement 11)\n- If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. (Statement 12)\n- If someone likes the rabbit then they are young. (Statement 13)\n- If someone likes the dog and the dog likes the squirrel then they like the bald eagle. (Statement 14)\n- If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. (Statement 15)\n- If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. (Statement 16)\n- If someone sees the bald eagle then the bald eagle is young. (Statement 17)\n\nNow, let's analyze the implications of the given statements:\n\nFrom statement 17, if someone sees the bald eagle, then the bald eagle is young. However, the color of the bald eagle is not explicitly mentioned as red. Hence, we cannot conclude whether the squirrel eats the rabbit or not from statement 15.\n\nLet's analyze the implication of statement 16: If the dog likes the bald eagle and the bald eagle sees the dog, then the bald eagle is cold. However, there is no information about whether the dog likes the bald eagle or not. Hence, we cannot conclude whether the bald eagle is cold or not.\n\nNow, let's analyze the implication of statement 12: If the bald eagle sees the dog and the bald eagle is cold, then the bald eagle likes the dog. However, there is no information about whether the bald eagle is cold or not.\n\nNow, let's analyze the implication of statement 11: If someone likes the dog and they see the squirrel, then the dog likes the bald eagle. However, there is no information about whether the dog likes the bald eagle or not.\n\nNow, let's analyze the implication of statement 13: If someone likes the rabbit, then they are young. However, there is no information about whether the bald eagle likes the rabbit or not.\n\nNow, let's analyze the implication of statement 10: If someone is cold and they like the bald eagle, then they eat the rabbit. However, there is no information about whether the bald eagle is cold or not.\n\nFrom statement 9, the squirrel likes the bald eagle. Hence, we can conclude that the squirrel sees the bald eagle.\n\nFrom statement 4, the dog sees the rabbit. Hence, we can conclude that the dog likes the bald eagle from statement 11.\n\nFrom statement 9 and statement 11, we can conclude that the bald eagle likes the squirrel.\n\nHowever, there is no information about whether the bald eagle eats the rabbit or not.\n\nSince we have no information about the bald eagle eating the rabbit, we cannot conclude whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle sees the dog. \n2. The dog is cold. \n3. The dog likes the squirrel. \n4. The dog sees the rabbit. \n5. The rabbit eats the dog. \n6. The rabbit eats the squirrel. \n7. The rabbit likes the dog. \n8. The rabbit sees the squirrel. \n9. The squirrel likes the bald eagle. \n\nFrom rule 5, we know the rabbit eats the dog.\n\nNow, let's analyze the other rules:\n- Rule 6 states the rabbit eats the squirrel.\n- Rule 8 states the rabbit sees the squirrel, but we don't know if the rabbit eats the squirrel based on seeing it.\n\nHowever, rule 6 directly states the rabbit eats the squirrel, so we can conclude that the rabbit eats the squirrel.\n\nNow, let's consider the statement \"The bald eagle does not eat the rabbit.\" \n\nThere are two rules related to the bald eagle eating the rabbit:\n- Rule 1 states the bald eagle eats the dog.\n- There is no direct rule stating the bald eagle eats the rabbit, but there are conditions that could lead to this conclusion.\n\nNow, let's consider rule 1 in more detail.\n- Rule 4 states the dog sees the rabbit.\n- Rule 5 states the rabbit eats the dog.\n- Rule 6 states the rabbit eats the squirrel.\n- Rule 9 states the squirrel likes the bald eagle.\n- Rule 10 states if someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n\nFrom rule 10, we can conclude that the dog likes the bald eagle because the dog sees the squirrel. \n\nNow, let's consider rule 11.\n- Rule 11 states if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n- Rule 1 states the bald eagle sees the dog.\n- We already concluded that the dog likes the bald eagle.\n- Therefore, we can conclude that the bald eagle is cold.\n\nNow, let's consider rule 12.\n- Rule 12 states if someone is cold and they like the bald eagle then they eat the rabbit.\n- We know the bald eagle is cold.\n- The bald eagle likes the squirrel (rule 9).\n- Therefore, we can conclude that the squirrel eats the rabbit.\n\nHowever, we already know from rule 6 that the rabbit eats the squirrel. Therefore, we cannot conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 13.\n- Rule 13 states if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n- The bald eagle is not red; it is a bald eagle.\n- Therefore, we cannot use this rule to conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 14.\n- Rule 14 states if someone sees the bald eagle then the bald eagle is young.\n- We don't know if anyone sees the bald eagle.\n- Therefore, we cannot conclude that the bald eagle is young.\n\nNow, let's consider rule 15.\n- Rule 15 states if someone likes the rabbit then they are young.\n- The squirrel likes the bald eagle (rule 9).\n- We don't know if the squirrel likes the rabbit.\n- However, we can conclude that the rabbit likes the dog (rule 7).\n- Therefore, the rabbit is young (rule 15).\n- The rabbit sees the squirrel (rule 8).\n- The rabbit eats the squirrel (rule 6).\n- However, this does not tell us if the squirrel eats the rabbit.\n\nNow, let's consider rule 16.\n- Rule 16 states if someone likes the dog and the dog likes the squirrel then they like the bald eagle.\n- The rabbit likes the dog (rule 7).\n- The dog likes the squirrel (rule 3).\n- Therefore, the rabbit likes the bald eagle.\n\nHowever, we already concluded that the rabbit is young.\n\nNow, let's consider rule 17.\n- Rule 17 states if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n- We know the bald eagle sees the dog (rule 1).\n- We know the bald eagle is cold (rule 11).\n- Therefore, we can conclude that the bald eagle likes the dog.\n\nHowever, we already know that the squirrel likes the bald eagle (rule 9), and the rabbit is young and likes the dog (rule 16), but the rabbit eats the dog (rule 5). \n\nNow, let's consider rule 18.\n- Rule 18 states if someone sees the bald eagle then the bald eagle is young.\n- We don't know if anyone sees the bald eagle.\n- Therefore, we cannot conclude that the bald eagle is young.\n\nNow, let's consider rule 19.\n- Rule 19 states if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n- We already concluded that the dog likes the bald eagle.\n- We know the bald eagle sees the dog (rule 1).\n- Therefore, we can conclude that the bald eagle is cold.\n\nHowever, we already concluded this.\n\nNow, let's consider rule 20.\n- Rule 20 states if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n- The bald eagle is not red; it is a bald eagle.\n- Therefore, we cannot use this rule to conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 21.\n- Rule 21 states if someone is cold and they like the bald eagle then they eat the rabbit.\n- We know the bald eagle is cold (rule 19).\n- The bald eagle likes the squirrel (rule 9).\n- Therefore, we can conclude that the squirrel eats the rabbit.\n\nHowever, we already know from rule 6 that the rabbit eats the squirrel. Therefore, we cannot conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 22.\n- Rule 22 states if the rabbit sees the squirrel and the rabbit likes the squirrel then the rabbit eats the squirrel.\n- We know the rabbit sees the squirrel (rule 8).\n- We know the rabbit likes the squirrel (rule 16).\n- However, we already know from rule 6 that the rabbit eats the squirrel.\n\nNow, let's consider rule 23.\n- Rule 23 states if someone likes the dog and they see the squirrel then the dog likes the bald eagle.\n- The rabbit likes the dog (rule 7).\n- The rabbit sees the squirrel (rule 8).\n- Therefore, we can conclude that the dog likes the bald eagle.\n\nHowever, we already concluded that the dog likes the bald eagle.\n\nNow, let's consider rule 24.\n- Rule 24 states if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n- We know the bald eagle sees the dog (rule 1).\n- We know the bald eagle is cold (rule 19).\n- Therefore, we can conclude that the bald eagle likes the dog.\n\nHowever, we already know that the squirrel likes the bald eagle (rule 9), and the rabbit is young and likes the dog (rule 16), but the rabbit eats the dog (rule 5).\n\nNow, let's consider rule 25.\n- Rule 25 states if someone sees the bald eagle then the bald eagle is young.\n- We don't know if anyone sees the bald eagle.\n- Therefore, we cannot conclude that the bald eagle is young.\n\nNow, let's consider rule 26.\n- Rule 26 states if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n- The bald eagle is not red; it is a bald eagle.\n- Therefore, we cannot use this rule to conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 27.\n- Rule 27 states if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\n- We already concluded that the dog likes the bald eagle.\n- We know the bald eagle sees the dog (rule 1).\n- Therefore, we can conclude that the bald eagle is cold.\n\nHowever, we already concluded this.\n\nNow, let's consider rule 28.\n- Rule 28 states if someone likes the rabbit then they are young.\n- The squirrel likes the bald eagle (rule 9).\n- We don't know if the squirrel likes the rabbit.\n- However, we can conclude that the rabbit likes the dog (rule 7).\n- Therefore, the rabbit is young (rule 28).\n- The rabbit sees the squirrel (rule 8).\n- The rabbit eats the squirrel (rule 6).\n- However, this does not tell us if the squirrel eats the rabbit.\n\nNow, let's consider rule 29.\n- Rule 29 states if the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\n- We know the bald eagle sees the dog (rule 1).\n- We know the bald eagle is cold (rule 27).\n- Therefore, we can conclude that the bald eagle likes the dog.\n\nHowever, we already know that the squirrel likes the bald eagle (rule 9), and the rabbit is young and likes the dog (rule 16), but the rabbit eats the dog (rule 5).\n\nNow, let's consider rule 30.\n- Rule 30 states if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\n- The bald eagle is not red; it is a bald eagle.\n- Therefore, we cannot use this rule to conclude that the squirrel eats the rabbit.\n\nNow, let's consider rule 31.\n- Rule 31 states if someone sees the bald eagle then the bald eagle",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements.\n\n1. The bald eagle sees the dog. \n2. The dog is cold. \n3. The dog likes the squirrel. \n4. The dog sees the rabbit. \n5. The rabbit eats the dog. \n6. The rabbit eats the squirrel. \n7. The rabbit likes the dog. \n8. The rabbit sees the squirrel. \n9. The squirrel likes the bald eagle. \n\nWe are asked to determine whether the statement \"The bald eagle does not eat the rabbit\" is true, false, or unknown.\n\nFrom statement 5, we know the rabbit eats the dog. \n\nFrom statement 6, we know the rabbit eats the squirrel.\n\nFrom statement 8, we know the rabbit sees the squirrel.\n\nHowever, there is no direct statement that links the bald eagle and the rabbit in terms of eating. We can only make a few deductions based on the given information.\n\nFrom statement 10, we know if someone is cold and they like the bald eagle then they eat the rabbit. However, we don't have any information that directly links the bald eagle's temperature with eating the rabbit. \n\nFrom statement 1, we know the bald eagle sees the dog. We also know from statement 2 that the dog is cold. From statement 11, if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. This means that the dog and the bald eagle can be cold simultaneously.\n\nFrom statement 12, if someone likes the rabbit then they are young. \n\nFrom statement 7, we know the rabbit likes the dog. From statement 13, if someone likes the dog and the dog likes the squirrel then they like the bald eagle. This implies that the dog likes the squirrel, which is true from statement 3. However, this doesn't provide any direct information about the bald eagle eating the rabbit.\n\nFrom statement 14, if the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. However, we don't have any information that directly states the bald eagle is red. \n\nFrom statement 15, if the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. This is true from statement 1.\n\nFrom statement 16, if someone sees the bald eagle then the bald eagle is young. \n\nThere is no direct information that states the bald eagle eats the rabbit. However, we can deduce that the rabbit eats the squirrel and the dog, but we don't have any information that directly states the bald eagle eats the rabbit. Since we don't have enough information to conclude that the bald eagle eats the rabbit, we can only say that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, young_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_bald_eagle, young_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), likes_dog_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(eats_rabbit_squirrel, young_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == False",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_bald_eagle_rabbit)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == False",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == False",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), likes_dog_bald_eagle)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == False",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(young_bald_eagle, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == False",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(eats_squirrel_rabbit, young_squirrel)",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_bald_eagle_rabbit)",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == False",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 37
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == False",
+          "source_step": 39
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, dog)",
+          "z3_formula": "eats_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, likes_X_bald_eagle), eats_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, sees_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, dog) & cold(bald_eagle) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_X_rabbit, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, likes_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, bald_eagle) & sees(bald_eagle, dog) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(bald_eagle, rabbit))",
+          "z3_formula": "Not(eats_bald_eagle_rabbit)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, sees_rabbit_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_squirrel, likes_dog_bald_eagle), likes_dog_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, young_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == Unknown",
+          "source_step": 24
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & red(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(likes_squirrel_bald_eagle, red_squirrel), eats_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, young_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel) & likes(rabbit, dog)",
+          "z3_formula": "And(eats_rabbit_squirrel, likes_rabbit_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_dog_rabbit, young_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_dog_bald_eagle), cold_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, sees_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, X) & cold(bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(And(sees_bald_eagle_X, cold_bald_eagle), likes_bald_eagle_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_X_rabbit, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, likes_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(bald_eagle, X) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, sees_bald_eagle_X), cold_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(Y)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(likes_dog_squirrel, likes_squirrel_bald_eagle), likes_dog_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & sees(X, Z) -> likes(Y, bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_squirrel, sees_squirrel_bald_eagle), likes_squirrel_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & cold(X) -> likes(X, Y)",
+          "z3_formula": "Implies(And(sees_dog_bald_eagle, cold_bald_eagle), likes_dog_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> cold(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, cold_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, Y) -> eats(X, Z)",
+          "z3_formula": "Implies(And(cold_bald_eagle, likes_bald_eagle_bald_eagle), eats_bald_eagle_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, dog)",
+          "z3_formula": "eats_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, likes_X_bald_eagle), eats_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, bald_eagle) & sees(bald_eagle, dog) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_squirrel, likes_squirrel_bald_eagle), eats_squirrel_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, sees_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, dog) & cold(bald_eagle) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(dog, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, likes_dog_squirrel), likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, bald_eagle) & sees(bald_eagle, dog) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(bald_eagle, rabbit))",
+          "z3_formula": "Not(eats_bald_eagle_rabbit)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, likes_X_bald_eagle), eats_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, sees_X_squirrel), likes_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, X) & cold(bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(And(sees_bald_eagle_X, cold_bald_eagle), likes_bald_eagle_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_X_rabbit, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(dog, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_X_dog, likes_dog_squirrel), likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, bald_eagle) & sees(bald_eagle, dog) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_bald_eagle, young_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(dog, Y) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_dog_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_dog_dog), cold_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, young_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(bald_eagle, rabbit))",
+          "z3_formula": "Not(eats_bald_eagle_rabbit)",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 198,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 66
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 4,
+      "total_weight": 192,
+      "solve_time_ms": 2.297172322869301
+    },
+    "timing": {
+      "trace_gen_s": 25.113,
+      "extraction_s": 57.725,
+      "dedup_s": 2.655,
+      "maxsat_s": 0.006,
+      "total_s": 85.498
+    }
+  }
+}

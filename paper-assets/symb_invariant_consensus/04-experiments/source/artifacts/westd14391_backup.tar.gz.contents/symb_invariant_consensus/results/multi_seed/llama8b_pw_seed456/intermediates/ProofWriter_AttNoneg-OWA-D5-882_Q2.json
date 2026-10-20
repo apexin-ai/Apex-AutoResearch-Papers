@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-882_Q2",
+    "problem": "Bob is nice. Dave is big. Erin is furry. Erin is nice. Erin is rough. Harry is cold. Harry is white. All rough people are furry. If someone is rough and cold then they are white. If someone is nice then they are big. Furry, nice people are big. All big people are red. All nice, big people are rough. All furry, big people are cold. All cold, white people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not white.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nBig(Dave, True) ::: Dave is big.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nCold(Harry, True) ::: Harry is cold.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nRough($x, True) >>> Furry($x, True) ::: All rough people are furry.\nRough($x, True) && Cold($x, True) >>> White($x, True) ::: If someone is rough and cold then they are white.\nNice($x, True) >>> Big($x, True) ::: If someone is nice then they are big.\nFurry($x, True) && Nice($x, True) >>> Big($x, True) ::: Furry, nice people are big.\nBig($x, True) >>> Red($x, True) ::: All big people are red.\nNice($x, True) && Big($x, True) >>> Rough($x, True) ::: All nice, big people are rough.\nFurry($x, True) && Big($x, True) >>> Cold($x, True) ::: All furry, big people are cold.\nCold($x, True) && White($x, True) >>> Rough($x, True) ::: All cold, white people are rough.\n\nQuery:\nWhite(Harry, False) ::: Harry is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

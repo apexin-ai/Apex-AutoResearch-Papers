@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b2c64de92174187368a",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper figure fig2 regime scatter",
+  "task_key": "worker_paper_figure_fig2_regime_scatter_20260519T031001",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig2_regime_scatter_20260519T031001_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "e0da228dfd0187a0ced0cf05aa8d20792193167722166860f1567b6b7df9da1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist verification:\n\n- [x] All 17 data points plotted (1 Type C + 5 Goldilocks + 9 Type A + 2 Degenerate)\n- [x] Green shaded band for Goldilocks zone (50-55% SC)\n- [x] Red shaded band for Type A (SC ≥ 60%)\n- [x] Key annotations readable: \"Mistral FOLIO +4.90 pp**\" and \"Mistral PW −2.83 pp**\"\n- [x] Legend in upper right, no data overlap\n- [x] Font ≥ 7pt everywhere (smallest: seed labels and \"degen.\" at 7pt)\n- [x] Horizontal Δ=0 dashed line visible\n- [x] Solid markers for n≥100, hollow for n<100\n- [x] Stars for p<0.05, circles for n.s.\n- [x] Okabe-Ito colorblind-safe palette\n- [x] Three FOLIO seeds labeled (s42, s123, s456) and visually grouped by shared color\n- [x] 5.5\" × 4.125\" (4:3 aspect), 300 DPI\n\nOutput saved to:\n- PDF: `artifacts/figures/paper/f2_regime_scatter.pdf` (41 KB)\n- PNG: `artifacts/figures/paper/f2_regime_scatter.png` (168 KB)\n- Script: `artifacts/figures/paper/gen_f2_regime_scatter.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-regime-scatter.md"
+}

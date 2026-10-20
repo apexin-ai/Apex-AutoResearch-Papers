@@ -1,0 +1,3658 @@
+# fix unified id fix patch — Part 2 of 2
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+[← Part 1](part-001.md) · [Transcript overview](../fix-unified-id-fix-patch.md) · [Structured JSON](../../../sessions/0d/0d26520db7e0c056c8a1.json)
+
+## Before a recorded user message
+
+### Tool result
+
+_source line 104 · 2026-05-22T22:34:26.181Z_
+
+<details><summary>↩ Tool result · `toolu_01F1G71zpkb3fAPL2dixqjnS`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "6224fc56-0b98-48b2-b72d-543a3da0978f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+    "oldString": "& 5 & 87.00 & $+$1.17 & .2100 & .630 &",
+    "newString": "& 5 & 87.00 & $+$1.17 & .2100 & .720 &",
+    "originalFile": "\\section{Regime Scatter Plot}\n\\label{app:regime-scatter}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{f2_regime_scatter}\n\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\n\\label{fig:regime-scatter}\n\\end{figure}\n\n\\section{Prompt Templates}\n\\label{app:prompts}\n\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n\n\\paragraph{System Prompt.}\n\n\\begin{lstlisting}\nYou are a constraint extraction tool. Output ONLY\nvalid JSON. Do NOT solve problems, reason about\ncorrectness, or think step-by-step. Extract\nconstraints from the given trace exactly as stated.\n\\end{lstlisting}\n\n\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n\nUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n\n\\begin{lstlisting}\nExtract mathematical constraints from this reasoning\ntrace as a JSON object.\n\nRules:\n- type: \"equation\", \"inequality\", or \"predicate\"\n- expression: human-readable, e.g. \"x + y == 14\"\n- z3_formula: a single comparison expression in\n  Python Z3 syntax\n- source_step: step number where the constraint\n  appears\n- Use variable names from the trace\n\nz3_formula MUST follow these rules:\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\n  /, **, %\n- Use individual named variables: a1, a2, a3...\n  NOT arrays a[1] or sets A\n- Expand all sums explicitly:\n  \"a1 + a2 + a3 == 55\" NOT \"sum([a1,a2,a3])\"\n- NO Python builtins: sum(), len(), max(), min(),\n  list(), set(), range(), int()\n- Each z3_formula must be exactly ONE comparison\n  (==, !=, <, >, <=, >=)\n- For multiple values, write separate constraints\n  for each\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"equation\",\n  \"expression\": \"x + y == 14\",\n  \"z3_formula\": \"x + y == 14\",\n  \"source_step\": 1}],\n \"answer\": \"final_answer\",\n \"variables\": [\"x\", \"y\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Logical Constraint Extraction (LOGIC\\_EXTRACTION\\_PROMPT).}\n\nUsed for ProofWriter and FOLIO datasets.\n\n\\begin{lstlisting}\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\nsolver.\n- Do NOT re-solve or re-reason about the problem.\n- Do NOT verify whether the trace's reasoning is\n  correct.\n- ONLY extract the logical constraints that are\n  explicitly stated or used in the trace below.\n- Output ONLY the JSON object, nothing else.\n\nExtract logical constraints from this reasoning trace\nabout a logic problem.\n\nThe problem has facts (base assertions), rules\n(grounded implications), and derived conclusions.\nConvert each into a Z3 boolean formula.\n\nVariable naming:\n- Unary property: property_entity\n  (e.g., kind_anne, red_charlie, round_fiona)\n- Binary relation: relation_subject_object\n  (e.g., eats_bear_squirrel, likes_lion_cat)\n- Use lowercase with underscores only\n\nConstraint types:\n- \"fact\": a given assertion,\n  e.g., kind_anne == True\n- \"rule\": a grounded implication over specific\n  entities, e.g., Implies(kind_anne, nice_anne)\n- \"derived\": an inferred conclusion from facts +\n  rules, e.g., nice_anne == True\n\nZ3 operators:\n- Implies(a, b) for if-then rules\n- And(a, b, ...) for conjunctive conditions\n- Or(a, b, ...) for disjunctive conditions\n- Not(a) for negation\n- == True / == False for boolean assertions\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"fact\",\n  \"expression\": \"kind(anne)\",\n  \"z3_formula\": \"kind_anne == True\",\n  \"source_step\": 1}],\n \"answer\": \"True or False or Unknown\",\n \"variables\": [\"kind_anne\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Output Schema.}\n\nBoth prompts produce a JSON object with the following structure:\n\n\\begin{lstlisting}\n{\n  \"constraints\": [\n    {\n      \"type\": \"&lt;equation|inequality|predicate>\n               or &lt;fact|rule|derived>\",\n      \"expression\": \"&lt;human-readable description>\",\n      \"z3_formula\": \"&lt;Z3-compatible expression>\",\n      \"source_step\": &lt;integer>\n    }\n  ],\n  \"answer\": \"&lt;final answer string>\",\n  \"variables\": [\"&lt;var1>\", \"&lt;var2>\", \"...\"]\n}\n\\end{lstlisting}\n\nThe pipeline additionally injects an \\texttt{answer\\_assertion} constraint per trace (not produced by the LLM):\n\n\\begin{lstlisting}\n{\"type\": \"answer_assertion\",\n \"expression\": \"answer is &lt;ans>\",\n \"z3_formula\": \"__sica_answer_&lt;ans> == True\",\n \"source_step\": -1}\n\\end{lstlisting}\n\n\\paragraph{Prompt Selection Logic.}\n\nDomain assignment is determined by dataset: FOLIO and ProofWriter use \\textsc{Logic\\_Extraction\\_Prompt}; GSM8K, AIME, StrategyQA, and ARC-Challenge use \\textsc{Extraction\\_Prompt}. StrategyQA and ARC-Challenge are assigned to the mathematical prompt because their reasoning structure does not involve formal logic predicates or implications, despite StrategyQA producing boolean answers.\n\n\n\\section{Z3 MaxSAT Evaluation Pseudocode}\n\\label{app:z3-pseudocode}\n\nAlgorithm~\\ref{alg:maxsat} describes the Z3 MaxSAT solving procedure. Algorithm~\\ref{alg:scorer} describes the source-trace attribution scoring.\n\nDomain constraint variables (e.g., \\texttt{x + y == 14}) and answer assertion variables (e.g., \\texttt{\\_\\_sica\\_answer\\_42 == True}) are logically independent in the Z3 formulation. Discriminative signal arises solely from conflicts among domain constraints: when traces supporting different answers produce mutually contradictory constraints, the solver excludes the lower-weight subset, and the scorer penalizes the corresponding answers.\n\n\\begin{algorithm}[h]\n\\caption{Z3 Weighted Partial MAX-SAT}\n\\label{alg:maxsat}\n\\begin{algorithmic}[1]\n\\Require Deduplicated constraint set $\\mathcal{C} = \\{(c_m, w_m, S_m)\\}_{m=1}^M$ where $c_m$ is a Z3 formula, $w_m$ is weight, $S_m$ is the set of source trace indices\n\\Ensure Partition $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$ where $\\mathcal{C}^*$ is the max-weight satisfiable subset\n\\State $\\textit{opt} \\gets \\textsc{Z3.Optimize()}$\n\\For{$m = 1, \\ldots, M$}\n    \\State $b_m \\gets$ fresh Boolean indicator\n    \\State $\\textit{opt}.\\textsc{Add}(b_m \\Rightarrow c_m)$ \\Comment{soft clause guarded by indicator}\n    \\State $\\textit{opt}.\\textsc{AddSoft}(b_m,\\; \\text{weight}=w_m)$\n\\EndFor\n\\State $\\textit{result} \\gets \\textit{opt}.\\textsc{Check}()$\n\\State $\\textit{model} \\gets \\textit{opt}.\\textsc{Model}()$\n\\State $\\mathcal{C}^* \\gets \\{(c_m, w_m, S_m) : \\textit{model}(b_m) = \\top\\}$\n\\State $\\mathcal{C}^{\\setminus} \\gets \\mathcal{C} \\setminus \\mathcal{C}^*$\n\\State \\Return $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\begin{algorithm}[h]\n\\caption{Source-Trace Attribution Scoring}\n\\label{alg:scorer}\n\\begin{algorithmic}[1]\n\\Require Satisfied set $\\mathcal{C}^*$, excluded set $\\mathcal{C}^{\\setminus}$, candidate answers $\\mathcal{A}$, trace-answer mapping $\\tau: \\text{trace\\_idx} \\to a$, penalty weight $\\alpha$\n\\Ensure Score $s(a)$ for each $a \\in \\mathcal{A}$\n\\For{each $a \\in \\mathcal{A}$}\n    \\State $T_a \\gets \\{i : \\tau(i) = a\\}$ \\Comment{trace indices producing answer $a$}\n    \\State $\\textit{pos}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^*} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $\\textit{neg}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^{\\setminus}} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $s(a) \\gets \\textit{pos}(a) - \\alpha \\cdot \\textit{neg}(a)$\n\\EndFor\n\\State \\Return $a^* = \\arg\\max_{a \\in \\mathcal{A}} s(a)$\n\\end{algorithmic}\n\\end{algorithm}\n\n\n\\section{Capability-Accuracy Constraint Diagnostics}\n\\label{app:diagnostics}\n\\label{app:cil}\n\n\\paragraph{Conditional Correction Ratio.}\nWe define the \\textit{Conditional Correction Ratio} (CCR) to summarize verifier--generator complementarity:\n\\begin{equation}\n\\label{eq:cil}\n\\text{CCR}(V, G) = \\log \\frac{P(V \\text{ correct} \\mid G \\text{ wrong})}{P(V \\text{ correct} \\mid G \\text{ correct})}.\n\\end{equation}\n$\\text{CCR} > 0$ means $V$ preferentially corrects $G$'s errors; $\\text{CCR} < 0$ indicates shared bias. CCR links our findings: (1)~SCB corresponds to $\\text{CCR}(\\text{self}, G) \\approx 0$; (2)~Finding~2 predicts $\\text{CCR}(V, G) > 0$ when $V$ is independent and capable.\n\n\\paragraph{Empirical CCR across verifier--generator pairs.}\nTable~\\ref{tab:cil_empirical} reports CCR for eight verifier--generator--dataset conditions, sorted by CCR descending. All three cross-architecture NLI pairs on ProofWriter yield $\\text{CCR} > 0$ (verifier preferentially corrects generator errors), while all three same-model SICA conditions yield $\\text{CCR} < 0$ (shared bias). CCR correlates with combo gain: Spearman $\\rho = 0.839$, 95\\% bootstrap CI $[0.338, 0.990]$; LOO-robust (min $p = 0.014$). Four of eight conditions share the DeBERTa verifier, yielding effective $n < 10$; results should be interpreted as a consistent pattern rather than a precise effect size.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\n\\label{tab:cil_empirical}\n\\begin{tabular}{@{}lllrr@{}}\n\\toprule\nGenerator & Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & BART-MNLI & PW-600 & $+$1.86 & $+$5.17 \\\\\nMistral-7B & DeBERTa-MNLI & PW-600 & $+$1.67 & $+$6.67 \\\\\nMistral-7B & RoBERTa-MNLI & PW-600 & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen2.5-14B & DeBERTa-MNLI & PW-600 & $-$0.21 & $+$0.33 \\\\\nMistral-7B & DeBERTa-MNLI & FOLIO-204 & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral-7B & SICA & FOLIO-204 & $-$2.93 & $+$3.43 \\\\\nQwen2.5-14B & SICA & PW-600 & $-$4.21 & $-$2.50 \\\\\nMistral-7B & SICA & PW-600 & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-condition diagnostics.}\nTable~\\ref{tab:capability_trap} reports per-condition diagnostic metrics referenced in \\S\\ref{sec:entropy}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Domain & $C_0$ (\\%) & Extr.\\ Rate & Contr.\\ Rate & $\\Delta$ (pp) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 35.3 & 0.89 & 0.022 & 0.00 \\\\\nQwen2.5-14B & ProofWriter & 39.2 & 0.89 & 0.022 & $+$0.33 \\\\\nQwen2.5-14B & StrategyQA$^\\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\\\\nQwen2.5-14B & ARC-Chall.$^\\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\\\\nQwen2.5-7B & FOLIO+PW$^\\dagger$ & 42.1 & 0.94 & 0.027 & 0.00 \\\\\nMistral-7B & FOLIO+PW$^\\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\\\\nLLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\\\\nLLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$4.41 \\\\\nDeepSeek-R1-7B & FOLIO+PW$^\\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\\\\nQwQ-32B & Combined$^\\dagger$ & 2.6 & --- & --- & 0.00 \\\\\nQwen2.5-14B & GSM8K$^\\dagger$ & 13.3 & 0.15 & --- & 0.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capability-accuracy constraint diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable logical constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\\Delta$: SICA$-$SC gap (pp). $\\dagger$: $n \\leq 60$. Dashes indicate conditions where extraction diagnostics were not computed (StrategyQA uses boolean answers without symbolic extraction; QwQ-32B Combined had near-zero $C_0$, making extraction analysis uninformative). This table includes additional exploratory conditions not reported in Table~\\ref{tab:main_results}.}\n\\label{tab:capability_trap}\n\\end{table}\n\n\n\\section{Statistical Power Analysis}\n\\label{app:power}\n\nWe compute the minimum detectable effect (MDE) for each condition at $\\alpha = 0.05$ and 80\\% power using exact binomial power calculations over McNemar discordant pairs. Table~\\ref{tab:power} reports three grouped conditions with $n \\geq 200$ (Qwen2.5-14B FOLIO and ProofWriter are pooled into a single $n{=}804$ analysis, corresponding to four Table~\\ref{tab:main_results} rows), which constitute our confirmatory analyses. The remaining seven conditions ($n \\leq 60$) yield infinite MDE due to insufficient discordant pairs and serve only as regime characterization.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrrrr}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{MDE} & \\textbf{Obs.\\ $\\Delta$} & \\textbf{Obs.\\ Pow.} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & 1.86pp & $+$0.25pp & 5.7\\%  \\\\\nLLaMA-8B StrategyQA  & 200 & 4.64pp & $+$2.00pp & 20.6\\% \\\\\nLLaMA-8B FOLIO       & 204 & 4.84pp & $-$4.41pp & 18.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Power analysis for confirmatory conditions ($n \\geq 200$). MDE = minimum detectable effect at 80\\% power. All observed effects fall below their respective MDEs, and observed power remains below 21\\% in every case.}\n\\label{tab:power}\n\\end{table}\n\nThe largest study (Qwen-14B, $n{=}804$, 30 discordant pairs) can detect effects as small as 1.86pp, yet the observed $\\Delta$ of $+$0.25pp is an order of magnitude smaller. The two LLaMA-8B conditions require effects of 4.64pp and 4.84pp to reach significance; neither observed $\\Delta$ approaches these thresholds. All three conditions are consistent with the null hypothesis that SICA provides no accuracy gain over self-consistency.\n\n\n\\section{Bootstrap Confidence Intervals}\n\\label{app:bootstrap}\n\nWe compute 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ via 10{,}000 bootstrap resamples (percentile method, seed 42). Table~\\ref{tab:bootstrap} reports the results for the three confirmatory conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrl}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{Obs.\\ $\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & $+$0.25pp & [$-$1.12, $+$1.62] \\\\\nLLaMA-8B StrategyQA  & 200 & $+$2.00pp & [$-$1.50, $+$5.50] \\\\\nLLaMA-8B FOLIO       & 204 & $-$4.41pp & [$-$5.88, $+$0.98] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Bootstrap 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference.}\n\\label{tab:bootstrap}\n\\end{table}\n\nAll three intervals contain zero. The narrowest interval (Qwen-14B, [$-$1.12, $+$1.62]) rules out practically meaningful gains ($>$2pp) even in the most favorable case. The widest interval (LLaMA-8B FOLIO, [$-$5.88, $+$0.98]) skews negative, indicating that SICA may slightly hurt accuracy in this condition. These results corroborate the McNemar tests and power analysis: no condition provides evidence that logical constraint aggregation improves over majority voting.\n\n\n\\section{Case Studies: Discordant Predictions}\n\\label{app:case-studies}\n\nAmong 804 problems, SICA and SC agree on 773 (96.1\\%). The 31 discordant cases comprise 16 SICA wins (SICA correct, SC wrong), 14 SC wins (SC correct, SICA wrong), and 1 where both select different wrong answers. All 31 occur at exact ties (entropy${=}1.0$, 6:6 vote split) or near-ties (entropy${\\geq}0.9183$, 8:4 at most), since SICA can differ from SC only when constraint weights shift the majority away from SC's tiebreak choice. We present three representative cases that illustrate the mechanism behind capability-accuracy constraint failures.\n\n\\paragraph{Case 1: SICA Wins (folio\\_134, FOLIO).}\n\n\\emph{Premises}: Some mammals have teeth. Platypus have no teeth. Platypus are mammals. Humans have teeth. \\emph{Conclusion}: Humans are mammals. \\emph{Gold}: Unknown.\n\nThe premises state that \\emph{some} mammals have teeth and that humans have teeth, but ``having teeth'' is not sufficient for ``being a mammal'' under open-world semantics. SC produces a 6:6 split (Unknown:6, True:6) and tiebreaks alphabetically to True (wrong). SICA extracts 7 constraints; MaxSAT excludes 1 constraint inconsistent with the rest, reducing the weighted score for True-voting traces and tipping the aggregation to Unknown (correct). The excluded constraint likely captured an incorrect inference step (e.g., affirming the consequent) present only in True-voting traces. While SICA succeeds here, the success is coincidental: the excluded constraint happens to anti-correlate with the correct answer.\n\n\\paragraph{Case 2: SC Wins (ProofWriter-1066\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: White(Bob)$\\to$Round(Bob) [white things are round] $\\to$ Young(Bob) [all round things are young]. \\emph{Conclusion}: ``Bob is not young.'' \\emph{Gold}: False (Bob IS young).\n\nSC produces a 6:6 split (False:6, True:6) and tiebreaks to False (correct). SICA extracts 17 constraints; MaxSAT excludes 2 that appear preferentially in False-voting traces. These excluded constraints likely captured correct intermediate derivations (e.g., \\texttt{young\\_bob == True}) that appeared only in traces completing the full deduction chain. By excluding them, MaxSAT removes evidence supporting the correct answer. SICA selects True (wrong). This case illustrates how self-extracted constraints can systematically mislead: correct reasoning steps become discriminative signals that the solver mistakenly penalizes.\n\n\\paragraph{Case 3: Non-discriminative Constraints (ProofWriter-903\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: Nice(Mouse)$\\to$Cold(Mouse) [all nice people are cold] $\\to$ Chases(Mouse,Mouse) [nice and cold $\\to$ chase mouse]. \\emph{Conclusion}: ``The mouse does not chase the mouse.'' \\emph{Gold}: False.\n\nSC produces a 6:6 split (False:6, Unknown:6) and tiebreaks to False (correct). SICA extracts 44 constraints but excludes only 1 (2.3\\%). The remaining 43 are domain facts and grounded rules (\\texttt{nice\\_mouse == True}, \\texttt{Implies(nice\\_mouse, cold\\_mouse)}, etc.) that Z3 satisfies identically regardless of the final answer. Both False-voting and Unknown-voting traces share the same premises and grounded rules; they differ only in whether the trace completed the full derivation chain. The single excluded constraint carries negligible weight against 43 shared constraints, so SICA collapses to SC.\n\n\\paragraph{Pattern.}\n\nThese cases exemplify the general pattern across the 773 agreeing problems: the vast majority of extracted constraints encode shared domain structure rather than answer-specific reasoning, and MaxSAT aggregation degenerates to majority vote. Table~\\ref{tab:case_summary} summarizes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Summary of three representative discordant cases. All occur at exact 6:6 vote ties. Constraint exclusion can break ties in either direction (Cases 1--2) or have no effect (Case 3).}\n\\label{tab:case_summary}\n\\begin{tabular}{@{}lllcccc@{}}\n\\toprule\nCase & ID & Gold & SC & SICA & \\#Constr. & Excl.\\ (\\%) \\\\\n\\midrule\n1 (SICA win) & folio\\_134 & Unknown & True $\\times$ & Unknown $\\checkmark$ & 7 & 1 (14.3\\%) \\\\\n2 (SC win) & PW-1066\\_Q6 & False & False $\\checkmark$ & True $\\times$ & 17 & 2 (11.8\\%) \\\\\n3 (Non-disc.) & PW-903\\_Q6 & False & False $\\checkmark$ & False $\\checkmark$ & 44 & 1 (2.3\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Oracle Control}\n\\label{app:oracle}\n\\label{sec:oracle}\n\\label{app:pw-oracle-subtype}\n\nReplacing self-extracted constraints with gold annotations (FOLIO logical formulae, ProofWriter DSL), Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+13.73$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+17.17$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter). The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted $\\Delta$ ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling. For Qwen2.5-14B on ProofWriter, the gap is wider still: self-extraction degrades accuracy ($-2.50$\\,pp) against an oracle ceiling of $+17.17$\\,pp, indicating that stronger models do not self-extract more effectively.\n\n\\paragraph{ProofWriter per-subtype analysis.} ProofWriter problems encode deductive rules as Domain-Specific Language (DSL) logic programs. Each problem uses one of four predicate subtypes: attribute predicates with or without negation (AttNeg, AttNoneg), and relation predicates with or without negation (RelNeg, RelNoneg). Relation predicates involve binary relations between entities (e.g., \\texttt{eats(bear, squirrel)}), while attribute predicates assign unary properties (e.g., \\texttt{kind(anne)}).\n\nThe oracle pipeline parses these DSL annotations deterministically into Z3 formulas without any LLM involvement. Of the 600 ProofWriter problems, 594 (99.0\\%) produce valid Z3 parses; the remaining 6 fail due to unsupported DSL constructs. Across all 7{,}128 trace-problem pairs submitted to Z3, the solver returns a result in every case (0\\% solver errors). Z3 evaluations agree with ground-truth labels on 577 of 594 parseable problems (97.14\\%), confirming that the deterministic DSL-to-Z3 translation faithfully preserves problem semantics.\n\nTable~\\ref{tab:pw_oracle_subtype} reports the per-subtype breakdown. Relation-predicate subtypes show substantially larger gains than attribute-predicate subtypes: RelNeg improves by $+17.86$~pp and RelNoneg by $+13.01$~pp, compared to $+9.09$~pp for AttNoneg and $+6.87$~pp for AttNeg. Relation predicates involve longer reasoning chains with more intermediate entities, producing greater answer diversity across traces ($C_0$) and more opportunities for oracle constraints to correct errors.\n\n\\begin{table}[h]\n\\centering\n\\caption{ProofWriter oracle experiment per-subtype breakdown. Oracle-SICA uses gold DSL annotations parsed deterministically to Z3 for consistency checking. Relation-predicate subtypes (RelNeg, RelNoneg) show larger gains than attribute-predicate subtypes; relation subtypes involve longer reasoning chains and benefit more from oracle constraints. Bold indicates best accuracy per row.}\n\\label{tab:pw_oracle_subtype}\n\\begin{tabular}{lcccc}\n\\toprule\nSubtype & $n$ & SC Acc (\\%) & Oracle Acc (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nAttNoneg & 154 & 87.01 & \\textbf{98.70} & +11.69 \\\\\nAttNeg & 160 & 85.00 & \\textbf{91.90} & +6.90 \\\\\nRelNoneg & 146 & 66.44 & \\textbf{84.20} & +17.76 \\\\\nRelNeg & 140 & 60.00 & \\textbf{89.30} & +29.30 \\\\\n\\midrule\nOverall & 600 & 74.00 & \\textbf{91.17} & +17.17 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Constraint Ablation Details}\n\\label{app:ablation}\n\\label{sec:ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts.}\n\\label{tab:ablation}\n\\begin{tabular}{@{}lrc@{}}\n\\toprule\nAggregation & Acc.\\ (\\%) & Agreement w/ SC \\\\\n\\midrule\nSC (majority vote) & 76.24 & --- \\\\\nSICA (MAX-SAT) & 76.49 & 773\\,/\\,804 \\\\\nCount-only & 76.62 & 774\\,/\\,804 \\\\\nRandom-weight & 75.87 & 764\\,/\\,804 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MAX-SAT vs.\\ count-only agreement across constraint weight $\\alpha$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\\times$, seed 42); Qwen2.5-14B (BR $= 3.85\\times$, seed 123). Agreement $\\geq 99\\%$ at all $\\alpha$, confirming vacuity is weight-insensitive.}\n\\label{tab:alpha-ablation}\n\\begin{tabular}{@{}crr@{}}\n\\toprule\n$\\alpha$ & Mistral Agr.\\ (\\%) & Qwen2.5 Agr.\\ (\\%) \\\\\n\\midrule\n0.1 & 100 & 100 \\\\\n0.3 & 100 & 100 \\\\\n0.5 & 100 & 100 \\\\\n0.7 & 99 & 100 \\\\\n0.9 & 99 & 100 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Remediation Strategy Details}\n\\label{app:remediation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.98\\%$, $\\Delta = -0.49$\\,pp. None reaches significance. Three method-level strategies are reported in Table~\\ref{tab:method_interventions}.}\n\\label{tab:remediation}\n\\begin{tabular}{@{}llrl@{}}\n\\toprule\nStrategy & Target & $\\Delta$ (pp) & Key finding \\\\\n\\midrule\nContrastive$^a$ & Prompt & $-$1.10 & non-disc.\\ 6.0\\% ($\\downarrow$ from 8.2\\%) \\\\\nCross-model$^b$ & Architecture & 0.00 & disc.\\ 0\\% (weak$\\to$strong); $\\pm$1\\,pp (strong$\\to$weak) \\\\\nQwen3-14B$^c$ & Capability & $-$0.49 & $p = 0.655$ \\\\\nZ3 feedback & Solver & --- & 0.9\\% UNSAT trigger \\\\\nCons.\\ filtering & Noise & 0.00 & $T{\\geq}4 \\to$ SC \\\\\nCross-trace UNSAT & Independence & --- & 56.4\\% $\\emptyset$ vars \\\\\n$T{=}1.0$$^d$ & Diversity & 0.00 & isolated peak at $T{=}0.7$ only \\\\\nMulti-temp$^e$ & Diversity & 0.00 & $b{=}5$, $c{=}5$ (balanced) \\\\\nDisc.\\ filtering$^f$ & Filtering & 0.00 & 803/804 agree w/ SICA \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize $^a$\\,$n{=}182$ (extraction failures excluded). $^b$\\,Weak$\\to$strong: Mistral-7B extracts from Qwen2.5-14B traces. Strong$\\to$weak: Qwen3-14B (60.29\\%) and Qwen2.5-14B (58.33\\%) extract from Mistral-7B FOLIO traces ($n{=}204$); self-extraction baseline 59.31\\%. $^c$\\,$n{=}204$, SC $= 83.33\\%$. $^d$\\,Mistral-7B FOLIO, $n{=}204$. $^e$\\,Mistral-7B FOLIO, $T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each, $n{=}204$. $^f$\\,Qwen2.5-14B, $n{=}804$; removing non-discriminative constraints.}\n\\end{table}\n\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Method-level interventions on Mistral-7B with McNemar's paired test. All produce neutral-to-catastrophic results. ICG shows two FOLIO seeds; $p$ for the first. {*}{*}{*}\\,$p < 0.001$; {*}{*}\\,$p < 0.01$.}\n\\label{tab:method_interventions}\n\\begin{tabular}{@{}ll rc rc@{}}\n\\toprule\n& & \\multicolumn{2}{c}{FOLIO ($n = 204$)} & \\multicolumn{2}{c}{LogiQA ($n = 200$)} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\nMethod & Target & $\\Delta$ (pp) & $p$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nSC baseline & --- & 0.00 & --- & 0.00 & --- \\\\\nICG & Trace coupling & $-$1.96\\,/\\,$+$1.47 & .206 & $-$0.50 & .706 \\\\\nContrastive & Scoring bias & $\\mathbf{-9.31}$ & .007 & $-$4.50 & .160 \\\\\nDebate & Role diversity & $\\mathbf{-18.63}$ & ${<}.001$ & $\\mathbf{-23.00}$ & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Additional Intervention Results}\n\\label{app:additional-interventions}\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Additional intervention results beyond the nine prompt-level and three method-level strategies reported in the main text. All produce neutral-to-negative results, completing the exhaustive remediation analysis across 27 distinct approaches.}\n\\label{tab:additional_interventions}\n\\begin{tabular}{@{}llllrl@{}}\n\\toprule\n\\# & Method & Type & Target & $\\Delta$ (pp) & Key Finding \\\\\n\\midrule\n13 & PROVE (code verif.) & Paradigm & Formal proof & $-$1.9 & 15.2\\% compilable; conclusive acc.\\ = 50\\% \\\\\n14 & CEGIS (iterative) & Multi-round & Consistency & 0.0$^\\dagger$ & R1 $+$3.43\\,pp then oscillates \\\\\n15 & DeepConf (logprob) & Filtering & Confidence & 0.0 & $\\Delta_{\\text{logprob}} = 0.006$ (no separation) \\\\\n16 & Cross-model SICA & Cross-model & Independence & $-$0.49 & $\\kappa_{\\text{cross}}{=}0.42$ vs $\\kappa_{\\text{within}}{=}0.53$ \\\\\n17 & Problem perturbation & Input diversity & Trace diversity & $<$0 & $\\kappa$ \\emph{increased} to 0.70 (anti-effect) \\\\\n18 & MIN-UNSAT & Solver objective & Constraint sel.\\ & $-$6.5 & Mean excluded constraints $= 1.3$ \\\\\n19 & $\\kappa$-aware SC & Voting rule & Weighted voting & 0.0 & 11/11 conditions $\\Delta = 0$ \\\\\n20 & Z3 trace filter & Trace filtering & Quality & $-$0.49 & Precision 49.1\\%, 7 questions affected \\\\\n21 & Bootstrapped gold & Iterative & Self-improvement & 0.0$^\\dagger$ & R1 $+$2.45\\,pp then oscillates \\\\\n22 & Selective abstention & Diagnostic & Confidence & $+$4.4$^*$ & AUROC $= 0.673$, at 80\\% coverage \\\\\n23 & ASCII perturbation & Input diversity & Format diversity & 0.0 & $\\kappa$: $0.39 \\to 0.36$ (negligible) \\\\\n\\addlinespace\n24 & Atom pipeline & Paradigm & Decomposition & $-$10.0 & Atomic extraction degrades \\\\\n25 & Premise-only filter & Constraint sel.\\ & Bias isolation & $+$2.45 & $p = 0.359$; halves conclusion-bias \\\\\n26 & DPP trace selection & Trace diversity & Determinantal & $+$1.47 & $p = 0.629$; $K_{\\text{sel}}{=}8$ \\\\\n27 & Z3 strict-mode & Solver config & UNSAT filtering & 0.0 & McNemar $b{=}1, c{=}1$; 63\\% UNSAT \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All experiments on Mistral-7B FOLIO ($n{=}204$) unless noted. $^\\dagger$\\,Oscillates without convergence; net effect $\\approx 0$. $^*$\\,Accuracy gain only at reduced coverage (diagnostic value, not a general improvement). Methods 1--12 are reported in Table~\\ref{tab:remediation} and Table~\\ref{tab:method_interventions}.}\n\\end{table*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig3_process_kappa_scatter.pdf}\n\\caption{Answer agreement vs.\\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$); stronger models show significant positive correlation ($r = +0.24$, Qwen-14B; Table~\\ref{tab:cross-model-process}).}\n\\label{fig:process-kappa}\n\\end{figure}\n\n\n\\section{Extraction Error Taxonomy}\n\\label{app:extraction}\n\\label{sec:extraction-taxonomy}\n\nConstraints must discriminate between candidate answers for MAX-SAT to produce a ranking different from majority vote. We measure discriminative power at two levels on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). At the source-trace level, 39.2\\% of total constraint weight originates from traces whose answer differs from the plurality, but only 12.1\\% of individual constraints fall into this minority category. At the Z3 semantic level, 91.8\\% of constraints [95\\% CI: 91.2, 92.4] are technically discriminative, producing different satisfiability outcomes when evaluated against different candidate answers. Only 8.2\\% are non-discriminative.\n\nThe high discriminative rate does not translate into accuracy gains because discrimination mirrors the model's own answer distribution. Each trace produces constraints with its own variable names, so Z3 treats identically-intended propositions as unrelated symbols; among cross-answer constraint pairs, 56.4\\% share zero Z3 variables. This variable isolation means constraints from different traces are trivially jointly satisfiable, and MAX-SAT retains nearly all of them regardless of source answer. Removing the 8.2\\% non-discriminative constraints yields zero accuracy improvement. The discriminative majority does not provide independent signal; it reinforces the majority answer that SC would already select. This confirmation bias, not a lack of discrimination, explains why SICA degenerates to majority voting (Appendix~\\ref{app:ablation}).\n\n\n\\section{Hyperparameter Sensitivity}\n\\label{app:sensitivity}\n\\label{sec:k-sensitivity}\n\\label{sec:t-sensitivity}\n\n\\subsection{K Sensitivity}\n\nFigure~\\ref{fig:k-sensitivity} shows SICA $\\Delta$ as a function of the number of sampled traces $K$ for Mistral-7B on FOLIO ($n = 204$, no fixed seed). The relationship is non-monotonic: $K = 4$ yields $\\Delta = -1.47$\\,pp, $K = 8$ yields $\\Delta = -1.96$\\,pp, $K = 12$ reaches $\\Delta = +3.43$\\,pp, $K = 16$ drops to $\\Delta = +1.47$\\,pp, and $K = 20$ partially recovers to $\\Delta = +1.96$\\,pp. The recovery at $K = 20$ rules out a simple peaked pattern, but $K = 12$ remains the only setting with $\\Delta > 2$\\,pp ($p = 0.092$, marginal).\n\nThe apparent $\\Delta$ peak at $K = 12$ is confounded with SC baseline. SICA absolute accuracy plateaus at 59.31\\% (121/204) for $K \\geq 12$: identical at $K = 12$ and $K = 20$. The $\\Delta$ variation across these settings is driven primarily by SC fluctuations rather than by SICA improvement. $K = 12$ produces a relatively low SC (55.88\\%), placing it in the intermediate-SC region; $K = 8$ (SC $= 58.33\\%$) and $K = 20$ (SC $= 57.35\\%$) have higher baselines, compressing $\\Delta$ even though SICA accuracy does not change for $K \\geq 12$. Additional traces beyond $K = 12$ provide no benefit to SICA absolute performance, consistent with the constraint quality bottleneck. The $K = 12$ $\\Delta$ captures only 25.0\\% of the oracle ceiling ($+13.73$\\,pp).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{f3_k_sensitivity}\n\\caption{SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\\% for $K \\geq 12$; the apparent $\\Delta$ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\\%) at that point. Error bars: 95\\% bootstrap CI.}\n\\label{fig:k-sensitivity}\n\\end{figure}\n\n\\subsection{Temperature Sensitivity}\n\nTemperature sensitivity on Mistral-7B FOLIO ($n = 204$, default seed) reveals a sharp isolated peak rather than a smooth trend. Across four temperature settings, only $T = 0.7$ produces a positive effect: $T = 0.3$ yields $\\Delta = -1.47$\\,pp (SC $= 58.33\\%$), $T = 0.5$ yields $\\Delta = -0.98$\\,pp (SC $= 58.33\\%$), $T = 0.7$ yields $\\Delta = +3.43$\\,pp (SC $= 55.88\\%$), and $T = 1.0$ yields $\\Delta = 0.00$\\,pp (SC $= 55.39\\%$). All other temperatures yield negative or null effects, and the single positive result at $T = 0.7$ is confounded with SC baseline. Combined with the seed sensitivity (0 of 4 seeds reaching $p < 0.05$ at $T = 0.7$), the positive trend depends on a specific combination of temperature, seed, and baseline accuracy that same-model sampling rarely achieves.\n\nThe parallel between $K$ and $T$ sensitivity points to a common underlying variable. In both sweeps, the setting that produces the largest SICA gain also produces a relatively low SC baseline (55.88\\%), which places it in the intermediate-SC region. The hyperparameters themselves ($K$, $T$) are not the causal driver; they modulate SC level, and it is the SC level that determines whether SICA has operating room.\n\n\n\\section{Entropy Decomposition}\n\\label{app:entropy}\n\\label{sec:entropy}\n\nWe partition problems by trace agreement: high-entropy (majority count $\\leq 8$ out of $K = 12$) and low-entropy (majority count $\\geq 9$). Table~\\ref{tab:entropy} reports SICA $\\Delta$ within each partition across eight model-dataset conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entropy decomposition of SICA $\\Delta$ (pp). High-entropy: majority count $\\leq 8$; low-entropy: majority count $\\geq 9$. $^\\dagger$Partial data (180/600). Pre-tiebreaking SC values; pattern robust to D064 correction.}\n\\label{tab:entropy}\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Dataset & \\multicolumn{2}{c}{High-entropy} & \\multicolumn{2}{c}{Low-entropy} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n & & $n$ & $\\Delta$ & $n$ & $\\Delta$ \\\\\n\\midrule\nMistral-7B & FOLIO & 78 & $\\mathbf{+12.8}$ & 126 & 0.0 \\\\\nMistral-7B (s123) & FOLIO & 77 & $\\mathbf{+9.1}$ & 127 & 0.0 \\\\\nMistral-7B (s456) & FOLIO & 75 & $-$1.3 & 129 & 0.0 \\\\\nMistral-7B & PW-D5 & 267 & $-$4.9 & 333 & $-$1.2 \\\\\nQwen2.5-14B & FOLIO & 37 & $-$8.2 & 167 & $-$0.6 \\\\\nQwen2.5-14B & LogiQA & 23 & $-$4.3 & 177 & 0.0 \\\\\nQwen2.5-7B & FOLIO & 47 & $-$2.1 & 157 & 0.0 \\\\\nLLaMA-3.1-8B$^\\dagger$ & PW-D5 & 76 & $-$3.9 & 104 & $-$1.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTwo patterns emerge. First, low-entropy problems produce $\\Delta \\approx 0$\\,pp across all eight conditions: when traces agree, constraints carry no information beyond the majority vote.\n\nSecond, the direction of SICA's effect on high-entropy problems depends on the accuracy regime, not on entropy alone. In the intermediate-SC region (Mistral-7B on FOLIO, default-seed and seed-123 runs), high-entropy $\\Delta$ reaches $+12.8$ and $+9.1$\\,pp: traces genuinely disagree, and constraints from correct-answer traces provide discriminative signal that resolves the disagreement. In Type~A conditions (Qwen2.5-14B on FOLIO, $\\Delta = -8.2$\\,pp), high-entropy problems represent rare deviations from a strong model's consensus; constraints inherit the model's confirmation bias. In Type~C (Mistral-7B on ProofWriter, $\\Delta = -4.9$\\,pp), high-entropy problems reflect systematic errors. The mechanism is not entropy per se but the interaction of entropy with model capability.\n\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\\label{sec:failure-modes}\n\nThe regime-dependent pattern in Table~\\ref{tab:main_results} reflects three distinct failure modes of self-extracted logical constraints.\n\n\\paragraph{Type A: confirmation bias (SC $\\geq$ $\\sim$60\\%).} Strong models produce consistent reasoning traces, and constraints extracted from those traces mirror the answer distribution. When most constraints support the same candidate, MAX-SAT excludes few clauses ($|\\mathcal{C}^{\\setminus}| \\approx 0$), the penalty term in Eq.~\\ref{eq:score} vanishes, and the scoring function degenerates to weighted vote counting (Eq.~\\ref{eq:degenerate}). SICA and SC then produce identical predictions. The ablation in Appendix~\\ref{app:ablation} confirms this empirically: on Qwen2.5-14B (FOLIO + ProofWriter, $n = 804$), MAX-SAT and count-only baselines agree on 803 of 804 predictions.\n\n\\paragraph{Type B: non-formalizable domains.} LogiQA problems require pragmatic and contextual reasoning that resists clean logical formalization. Qwen2.5-14B on LogiQA achieves an extraction rate of 86.4\\%, but the resulting constraints have a contradiction rate of only 0.8\\%: extracted formulas rarely conflict across traces, leaving MAX-SAT with no logical tension to exploit. Mistral-7B on LogiQA sits in the same SC range (50.00\\%) yet produces $\\Delta = +1.50$\\,pp ($p = 0.581$); Qwen2.5-14B on the same domain yields $\\Delta = -1.00$\\,pp ($p = 0.625$). Neither model benefits, confirming that the right accuracy regime is necessary but not sufficient when the domain resists formalization.\n\n\\paragraph{Type C: error amplification (SC $\\leq$ $\\sim$40\\%).} When model accuracy is low, the majority of traces reach incorrect answers. Constraints extracted from wrong traces encode incorrect reasoning as formal rules. Z3 treats these rules as soft clauses with weight proportional to their frequency, so the solver preferentially satisfies the wrong constraints and penalizes traces that happen to reach the correct answer. Mistral-7B on ProofWriter ($\\Delta = -2.83$\\,pp, raw $p = 0.014$; BH adj.\\ $p = 0.112$) demonstrates this effect: SICA converts a weak positive signal in trace diversity into a net negative by formalizing the errors.\n\n\n\\section{Cross-Model Confirmation Bias}\n\\label{app:cross-model-bias}\n\nTable~\\ref{tab:cross-model-bias} reports MaxSAT-weighted confirmation bias metrics across three model families on FOLIO ($n = 204$). Weighted bias ratio and wrong-supporting constraint percentage both decrease with model capability, while SICA's accuracy effect shifts from positive (Mistral, intermediate-SC regime) to negative (LLaMA, high-SC regime). Raw bias ratios ($4.97\\times$, $3.85\\times$, $2.88\\times$) are reported in \\S\\ref{sec:confirmation-bias}. LLaMA weighted BR CI: [2.19, 3.28].\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\\ correct problems. Wrong \\%: weighted fraction of constraints supporting the incorrect majority on error problems. $\\Delta$: SICA $-$ SC (pp).}\n\\label{tab:cross-model-bias}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & BR (wtd.) & Wrong (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $4.24\\times$ & 80.9 & $+$4.90 \\\\\nQwen2.5-14B & $3.69\\times$ & 78.7 & $-$0.98 \\\\\nLLaMA-3.1-8B & $2.66\\times$ & 72.7 & $-$4.41 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Frontier model universality.}\n\\label{app:frontier-scb}\nTable~\\ref{tab:frontier-scb} (main text, \\S\\ref{sec:confirmation-bias}) extends confirmation bias analysis to nine models spanning 7B open-source to frontier closed-source. All models exhibit $\\text{BR} > 1$ (range: $1.66$--$4.97\\times$). Extraction context varies: open-source models use self-extraction (the model extracts constraints from its own traces); frontier models use cross-model extraction (Mistral-7B extracts FOL from the target model's traces), as closed-source APIs do not expose internal representations suitable for direct symbolic extraction.\n\n\\paragraph{ProcessSim definition.}\n\\label{app:process-sim}\nProcess similarity is the mean pairwise cosine similarity of TF-IDF trace representations:\n\\begin{equation}\n\\label{eq:process-sim}\n\\text{ProcessSim}(q) = \\frac{2}{K(K{-}1)} \\sum_{i < j} \\cos(\\mathbf{v}_i^q, \\mathbf{v}_j^q),\n\\end{equation}\nwhere $\\mathbf{v}_i^q$ is the TF-IDF vector of trace $t_i$ for question $q$.\n\n\\paragraph{Process-$\\kappa$ gradient.}\n\\label{app:process-gradient}\nUnder cross-model extraction (Mistral-7B extracts FOL from other models' traces), SICA gain decreases monotonically with process-level cosine similarity (Table~\\ref{tab:process-gradient}; Spearman $\\rho = -1.0$, $n = 5$, one-tailed $p = 0.0083$). Gain requires two conditions: diverse traces (low $\\kappa_{\\text{proc}}$) \\emph{and} substantial self-bias (high BR). R1-Distill-8B satisfies both ($\\kappa_{\\text{proc}} = 0.248$, $\\text{BR} = 2.92$) and gains $+2.45$\\,pp; o3 has moderate trace diversity ($\\kappa_{\\text{proc}} = 0.596$) but near-minimal bias ($\\text{BR} = 1.66$, exhibiting a bimodal error pattern: 82\\% of error problems have $\\text{BR} = \\infty$ but low finite-BR), yielding $\\Delta = 0$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Process-$\\kappa$ gradient under cross-model extraction (Mistral-7B $\\rightarrow$ target model traces, FOLIO). $\\kappa_{\\text{proc}}$: process-level cosine similarity. $\\Delta$: SICA $-$ SC (pp). Spearman $\\rho(\\kappa_{\\text{proc}} \\rightarrow \\Delta) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}\n\\label{tab:process-gradient}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & $\\kappa_{\\text{proc}}$ & $\\Delta$ (pp) & BR \\\\\n\\midrule\nR1-Distill-8B & 0.248 & $+$2.45 & 2.92 \\\\\ngpt-5.5 & 0.563 & $+$0.49 & 3.48 \\\\\no3 & 0.596 & 0.00 & 1.66 \\\\\nGemini-2.5-Pro$^*$ & 0.790 & $-$1.05 & 2.79 \\\\\ngpt-4.1 & 0.792 & $-$1.47 & 2.70 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Independence-Accuracy Scatter Plot}\n\\label{app:kappa-scatter}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/f6_kappa_accuracy_scatter}\n\\caption{Independence-accuracy trade-off across aggregation methods (Mistral-7B, filled markers) and model families (LLaMA-3.1-8B, Qwen2.5-7B, Qwen2.5-14B; open markers) on FOLIO ($n = 204$). Same-model methods cluster at $\\kappa \\approx 0.40$--$0.47$ (gray band), while cross-model SC shows stronger correlations ($\\kappa = 0.41$--$0.74$) at higher accuracy. Debate breaks correlation ($\\kappa = 0.15$) at catastrophic accuracy cost. Dashed line: Mistral-7B SC baseline.}\n\\label{fig:kappa-accuracy}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\n\\label{tab:kappa_generalization}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Aggregation & $\\kappa$ & Eff-$K$ & $K$ & Acc.\\ (\\%) \\\\\n\\midrule\nMistral-7B & Debate & 0.15 & 4.44 & 12 & 38.24 \\\\\n& Diverse-Prompt & 0.40 & 2.21 & 12 & 54.41 \\\\\n& Self-Consistency & 0.44 & 2.02 & 10 & 56.86 \\\\\n& ICG & 0.47 & 1.93 & 10 & 51.96 \\\\\n\\addlinespace\nLLaMA-3.1-8B & Self-Consistency & 0.41 & 2.17 & 12 & 66.18 \\\\\nQwen2.5-7B & Self-Consistency & 0.66 & 1.46 & 12 & 75.98 \\\\\nQwen2.5-14B & Self-Consistency & 0.74 & 1.32 & 12 & 75.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Trace independence metrics.}\n\\label{app:trace-independence}\n\nTable~\\ref{tab:independence} reports the full 15-condition breakdown of Fleiss' $\\kappa$ and Effective-K at $K = 12$, referenced in \\S\\ref{sec:effective-k}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$ (uncorrected; BH adj.\\ $p = 0.112$, $m{=}16$); positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\n\\label{tab:independence}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nQwen3 (think) & FOLIO & 0.91 & 1.09 & 86.27 & $+$0.49 \\\\\nQwen2.5-14B & LogiQA & 0.82 & 1.20 & 79.00 & $-$1.00 \\\\\nQwen3 & FOLIO & 0.77 & 1.26 & 83.33 & $+$1.47 \\\\\nQwen2.5-14B & FOLIO & 0.74 & 1.30 & 75.98 & $-$0.49 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 & $+$0.49 \\\\\n\\addlinespace\nMistral-7B ($T{=}0.3$) & FOLIO & 0.53 & 1.77 & 58.33 & $-$1.47 \\\\\nMistral-7B & LogiQA & 0.51 & 1.81 & 50.00 & $+$1.50 \\\\\nMistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\\\\nMistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\\\\nMistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\\\\nMistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\\nMistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\\\\nMistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\\\\nMistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Cross-Model Kappa Analysis}\n\\label{app:cross-model-kappa}\n\nTable~\\ref{tab:cross_model_kappa} compares trace independence across three model families on the same benchmarks. On FOLIO ($n = 204$), all four models produce $\\kappa \\geq 0.41$: LLaMA-3.1-8B ($\\kappa = 0.41$), Mistral-7B ($\\kappa = 0.44$), Qwen2.5-7B ($\\kappa = 0.66$), and Qwen2.5-14B ($\\kappa = 0.74$). The bottleneck is architecture-independent---no family escapes the correlation floor. Within the Qwen family, $\\kappa$ increases from 0.66 (7B) to 0.74 (14B), but Mistral-7B (7B) and LLaMA-3.1-8B (8B) differ by $\\Delta\\kappa = 0.03$ despite belonging to different families, suggesting that cross-family variation ($\\Delta\\kappa$ up to 0.22 at similar scale) exceeds within-family scale effects ($\\Delta\\kappa = 0.08$). Disentangling scale from architecture requires controlled same-family experiments across $\\geq$3 scales.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\\kappa$ indicates stronger correlation and lower effective sample size.}\n\\label{tab:cross_model_kappa}\n\\begin{tabular}{@{}llccr@{}}\n\\toprule\nModel & Dataset & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 0.74 & 1.32 & 75.98 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 \\\\\nMistral-7B & FOLIO & 0.44 & 2.02 & 56.86 \\\\\nLLaMA-3.1-8B & FOLIO & 0.41 & 2.17 & 66.18 \\\\\n\\addlinespace\nQwen2.5-14B & PW-D5 & 0.62 & 1.54 & --- \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Cross-Model Process-Level Independence}\n\\label{app:cross-model-process}\n\nTable~\\ref{tab:cross-model-process} extends the process-level independence analysis (\\S\\ref{sec:process-kappa}) to four model families on FOLIO ($n = 204$). Mean pairwise cosine similarity of TF-IDF trace representations exceeds answer-level $\\kappa$ in every family, but the gap is model-strength dependent: it narrows from $0.31$ (LLaMA) and $0.23$ (Mistral) to $0.02$ (Qwen-14B). For weaker models ($r \\approx 0$), answer diversity does not reflect reasoning diversity---process-convergent but answer-divergent trace pairs constitute 9.5\\% of all pairs on Mistral-7B versus 2.5--3.2\\% on other families. For stronger models ($r \\approx 0.23$, $p \\leq 0.001$), process and answer agreement align, and answer-level $\\kappa$ already captures the bottleneck. Process-$\\kappa$ thus provides a crucial additional diagnostic specifically for weaker models, where answer-level metrics underestimate reasoning homogeneity.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model process-level independence on FOLIO ($n = 204$, $K = 12$). Mean Cosine: mean pairwise TF-IDF cosine similarity of reasoning traces (Eq.~\\ref{eq:process-sim}). Answer $\\kappa$: per-question answer agreement. Gap: Cosine $-$ $\\kappa$. $r$: Pearson correlation between ProcessSim and answer agreement. Conv.: fraction of process-convergent but answer-divergent trace pairs. {*}{*}\\,$p < 0.01$; {*}{*}{*}\\,$p < 0.001$.}\n\\label{tab:cross-model-process}\n\\begin{tabular}{@{}lcccrlr@{}}\n\\toprule\nModel & Mean Cos. & Ans.\\ $\\kappa$ & Gap & $r$ & $p$ & Conv.\\ (\\%) \\\\\n\\midrule\nMistral-7B & 0.690 & 0.460 & 0.230 & $-$0.064 & 0.362 & 9.5 \\\\\nLLaMA-3.1-8B & 0.759 & 0.447 & 0.312 & $-$0.001 & 0.985 & 3.2 \\\\\nQwen2.5-7B & 0.790 & 0.658 & 0.132 & $+$0.226 & 0.001{*}{*} & 2.8 \\\\\nQwen2.5-14B & 0.766 & 0.744 & 0.022 & $+$0.244 & ${<}$0.001{*}{*}{*} & 2.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Representation robustness.} Replacing TF-IDF with SBERT embeddings (all-MiniLM-L6-v2) yields ProcessSim $= 0.91$ (vs.\\ TF-IDF $0.74$), widening the gap over answer-level $\\kappa = 0.55$. The process homogeneity finding is robust to representation choice.\n\n\\section{Constraint Quality Across Methods}\n\\label{app:constraint-quality}\n\nTable~\\ref{tab:constraint_quality} compares constraint quality metrics across the three method-level interventions on Mistral-7B FOLIO ($n = 204$). Standard SICA extracts from reasoning traces and achieves the highest parse rate (97.1\\%) but also the highest redundancy (42.9\\%): nearly half of all constraints are syntactic duplicates across the 12 traces, quantifying the co-sourcing effect of same-model generation. ICG generates constraints directly from the problem statement without trace conditioning. Its lower parse rate (74.6\\%) reflects the difficulty of standalone formalization at the 7B scale, though successfully parsed constraints compile at a higher rate (99.4\\% vs.\\ 96.5\\%). ICG produces fewer unique constraints per question (24.9 vs.\\ 39.3) with lower redundancy (32.3\\%), consistent with the absence of trace-level repetition. Contrastive scoring generates pro and con constraint sets for each candidate answer. The format yields far fewer unique constraints per question (9.2) with zero redundancy (each pro/con pair is structurally distinct), but 62.7\\% of constraints are trivially satisfied by Z3---they impose no logical tension and cannot discriminate between candidates. Only 51.0\\% of Contrastive constraints are discriminative, compared to 81.4\\% for standard SICA and 77.0\\% for ICG.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint quality metrics across method-level interventions (Mistral-7B, FOLIO, $n = 204$). Parse: fraction of extraction attempts yielding valid JSON. Z3 Compile: fraction compiling to Z3 formulas. Unique/q: mean unique constraints per question. Redundancy: fraction of constraints duplicated across traces. Disc.: fraction discriminative (different Z3 outcome per candidate). Triv.\\ Sat.: fraction trivially satisfied (no logical tension).}\n\\label{tab:constraint_quality}\n\\begin{tabular}{@{}l rrrrrr@{}}\n\\toprule\nMethod & Parse & Z3 & Uniq/q & Redund. & Disc. & Triv.\\ Sat. \\\\\n\\midrule\nStandard SICA & 97.1\\% & 96.5\\% & 39.3 & 42.9\\% & 81.4\\% & --- \\\\\nICG & 74.6\\% & 99.4\\% & 24.9 & 32.3\\% & 77.0\\% & --- \\\\\nContrastive & 74.0\\% & 94.4\\% & 9.2 & 0.0\\% & 51.0\\% & 62.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Error Categorization of Method-Level Interventions}\n\\label{app:error-categorization}\n\nWe categorize discordant predictions (where the method and SC disagree) for Debate and Contrastive on FOLIO ($n = 204$) to understand why these interventions degrade accuracy.\n\n\\paragraph{Debate discordant analysis.} Debate produces 60 correct$\\to$wrong flips and 22 wrong$\\to$correct flips on FOLIO. Answer-type breakdown reveals that False-labeled questions are most vulnerable: 82.8\\% of False questions that SC answers correctly are flipped by Debate, compared to 63.9\\% for True and 25.5\\% for Unknown. Counterintuitively, failures concentrate not where debate breaks down but where it succeeds most thoroughly: discordant questions average 2.93 effective debate rounds (proposer-critic exchanges producing substantive updates) versus 2.52 for concordant ones. More extensive same-model debate produces more confident but incorrect constraints, consistent with the independence limitation---the critic draws on the same model distribution as the proposer, reinforcing shared biases rather than correcting them.\n\n\\paragraph{Contrastive discordant analysis.} Contrastive produces 34 discordant questions on FOLIO. All 34 produced non-degenerate scores (both pro and con constraint sets non-empty), compared to 20.1\\% degenerate scores in the full sample. This indicates that scoring failures on discordant questions stem from systematic pro-bias rather than missing constraints. Among discordant questions, 97.1\\% contain negation words in the problem statement versus 76.5\\% in the full sample, suggesting that negation-bearing problems are particularly susceptible to pro-constraint imbalance. The average pro/con score ratio is 1.0 for discordant questions versus 0.68 for the full sample: the method generates balanced-looking scores that mask directional errors.\n\n\\paragraph{Cross-method overlap.} Of the 79 unique questions on which either method disagrees with SC, only 15 overlap between Debate and Contrastive (Jaccard index $= 0.19$). All 15 shared discordant questions contain negation words. The low overlap confirms that the two methods attack different vulnerability types---Debate through extended same-model argumentation that amplifies confident errors, Contrastive through pro-bias in constraint generation---while sharing a common root cause in correlated same-model voting: both methods rely on the same model's output distribution and cannot introduce genuinely independent signal.\n\n\n\\section{TOST Equivalence Tests}\n\\label{app:tost}\n\nWe apply two one-sided tests (TOST) \\citep{lakens2017equivalence} with equivalence margin $\\pm 2$\\,pp to all 16 non-degenerate SICA--SC comparisons, classifying each condition as \\emph{equivalent} (TOST significant), \\emph{genuinely different} (McNemar $p < 0.05$ and TOST not significant), or \\emph{underpowered} (neither test significant). Four conditions are equivalent, confirming that SICA and SC produce statistically indistinguishable accuracy. Two conditions show genuine differences, both negative: Mistral-7B ProofWriter ($-2.83$\\,pp, $p = 0.014$) and Qwen2.5-14B ProofWriter ($-2.50$\\,pp, $p = 0.011$). The remaining ten conditions are underpowered, reflecting the limited statistical power at $n{=}200$--$204$ for detecting $|\\Delta| \\leq 2$\\,pp effects.\n\n\\paragraph{Margin sensitivity.} Table~\\ref{tab:tost-sensitivity} shows that the classification is robust across margins: regardless of the chosen margin, no condition shows a significant positive SICA effect.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{TOST classification sensitivity across equivalence margins (16 non-degenerate conditions).}\n\\label{tab:tost-sensitivity}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nMargin & Equivalent & Different & Underpowered \\\\\n\\midrule\n$\\pm 1$\\,pp & 0 & 2 & 14 \\\\\n$\\pm 2$\\,pp & 4 & 2 & 10 \\\\\n$\\pm 3$\\,pp & 10 & 0 & 6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Relative-margin TOST.}\n\\label{app:relative_tost}\nThe absolute $\\pm 2$\\,pp margin is more stringent at high baselines ($\\pm 2.4\\%$ relative at SC $= 85\\%$) than low ones ($\\pm 5.1\\%$ at SC $= 39\\%$). A relative $\\pm 5\\%$ of SC margin addresses this asymmetry: 8 conditions are equivalent, 2 genuinely different (both negative), and 6 underpowered. The additional four equivalent conditions are all high-SC ($\\geq 75\\%$), where the wider relative band captures practical indistinguishability. No condition shows a significant positive effect under either margin.\n\n\\paragraph{Conditional Correction Ratio data.}\n\\label{app:cil-data}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\n\\label{tab:cil_main}\n\\begin{tabular}{@{}llrr@{}}\n\\toprule\nGenerator--Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral $\\times$ BART-NLI & PW & $+$1.86 & $+$5.17 \\\\\nMistral $\\times$ DeBERTa-NLI & PW & $+$1.67 & $+$6.67 \\\\\nMistral $\\times$ RoBERTa-NLI & PW & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen-14B $\\times$ DeBERTa-NLI & PW & $-$0.21 & $+$0.33 \\\\\nMistral $\\times$ DeBERTa-NLI & FOLIO & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral $\\times$ SICA & FOLIO & $-$2.93 & $+$3.43 \\\\\nQwen-14B $\\times$ SICA & PW & $-$4.21 & $-$2.50 \\\\\nMistral $\\times$ SICA & PW & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Disagreement-Routed Cascade details.}\n\\label{app:drc}\nDRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\\tau{=}0.7$ recovers 83--90\\% of full-combo gain at 35--39\\% NLI cost across both datasets.}\n\\label{tab:drc}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Method & Acc.\\ & NLI Calls & Cost & Recovery \\\\\n\\midrule\n\\multirow{3}{*}{PW-D5} & SC only & 39.33\\% & 0/600 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{45.33\\%} & \\textbf{233/600} & \\textbf{38.8\\%} & \\textbf{90.0\\%} \\\\\n& Full combo & 46.00\\% & 600/600 & 100\\% & 100\\% \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO} & SC only & 55.88\\% & 0/204 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{58.33\\%} & \\textbf{71/204} & \\textbf{34.8\\%} & \\textbf{83.3\\%} \\\\\n& Full combo & 58.82\\% & 204/204 & 100\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Multi-Verifier NLI Results}\n\\label{app:multi-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\n\\label{tab:multi-nli}\n\\begin{tabular}{@{}llrrl@{}}\n\\toprule\nVerifier & Standalone & $w$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nDeBERTa-MNLI & 55.00\\% & 1 & $+$0.83 & n.s. \\\\\n & & 3 & $+$6.67 & ${<}0.001${***} \\\\\n & & 5 & $+$11.00 & ${<}0.001${***} \\\\\n\\addlinespace\nRoBERTa-MNLI & 37.67\\% & 1 & $-$0.17 & n.s. \\\\\n & & 3 & $+$4.17 & 0.003{**} \\\\\n & & 5 & $+$4.33 & 0.037{*} \\\\\n\\addlinespace\nBART-MNLI & 46.17\\% & 1 & 0.00 & n.s. \\\\\n & & 3 & $+$5.17 & ${<}0.001${***} \\\\\n & & 5 & $+$6.33 & 0.003{**} \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All verifiers fine-tuned on MultiNLI. Unknown recall ${<}3.5\\%$ across all verifiers.}\n\\end{table}\n\n\\paragraph{Three-verifier BH correction.}\n\\label{app:3verifier-bh}\nTable~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BH correction across 3 verifiers $\\times$ 5 weights on Mistral-7B ProofWriter ($n{=}600$, $m{=}15$). \\checkmark: $p_{\\text{BH}} < 0.05$.}\n\\label{tab:3verifier-bh}\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nVerifier & $w{=}1$ & $w{=}2$ & $w{=}3$ & $w{=}4$ & $w{=}5$ \\\\\n\\midrule\nDeBERTa-MNLI & & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\nRoBERTa-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\nBART-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize 10/15 significant at $\\alpha{=}0.05$ after BH correction. All $w{=}1$ conditions and RoBERTa $w{=}2$ are non-significant.}\n\\end{table}\n\n\\section{Capability Gap Data Points}\n\\label{app:capability-gap}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.78\\columnwidth]{figures/capability_gap_scatter}\n\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur only for generators below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (99.67\\% standalone, Table~\\ref{tab:finetuned-nli}).}\n\\label{fig:capability-gap}\n\\end{figure}\n\nTable~\\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\\% standalone, combo $+5.17$\\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\\% standalone, combo $+4.17$\\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \\geq 3$.\n\nAcross all six ProofWriter verifier-generator pairs at $w{=}3$ (three verifiers $\\times$ Mistral-7B plus three negative-gap generators $\\times$ DeBERTa), combo gain decreases monotonically with the capability gap (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n = 6$; however, four of six conditions share the DeBERTa verifier, which may reduce effective degrees of freedom---see Limitations; Figure~\\ref{fig:capability-gap}). Significant gains are observed only for Mistral-7B (SC 39.33\\%, below the verifier); all generators with SC $\\geq 72\\%$ show no significant improvement. After BH correction ($m{=}12$), two of twelve conditions survive: Mistral-7B $w{=}3$ (adj.\\ $p = 6.78 \\times 10^{-5}$) and $w{=}5$ (adj.\\ $p = 7.42 \\times 10^{-6}$).\n\n\\paragraph{Robustness check.} Including all nine conditions (three verifiers $\\times$ three weight levels on Mistral-7B) yields Spearman $\\rho = 0.836$ (exact permutation $p = 0.007$, $n = 9$), confirming that the monotonic trend is robust to the choice of weight parameter.\n\n\\paragraph{Full NLI combo with BH correction.}\n\\label{app:nli-combo-full}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Full cross-generator NLI combo results on ProofWriter depth-5 ($n{=}600$) with Benjamini--Hochberg correction ($m{=}12$, $\\alpha{=}0.05$). All conditions use DeBERTa-large-mnli verifier (55.00\\% standalone). Two of twelve conditions survive correction (Mistral-7B $w{=}3$ and $w{=}5$). {***}\\,$p_{\\text{BH}} < 0.001$.}\n\\label{tab:nli-combo-full}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{raw}}$ & $p_{\\text{BH}}$ & \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%, gap\\,$+$15.67}}}\n  & 1 & 40.17 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 46.00 & $+$6.67 & $1.13{\\times}10^{-5}$ & $6.78{\\times}10^{-5}$ & {***} \\\\\n  & 5 & 50.33 & $+$11.00 & $6.18{\\times}10^{-7}$ & $7.42{\\times}10^{-6}$ & {***} \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%, gap\\,$-$17.50}}}\n  & 1 & 73.33 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 73.33 & $+$0.83 & .665 & .887 & \\\\\n  & 5 & 72.00 & $-$0.50 & .871 & 1.0 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen2.5-14B\\\\{\\scriptsize SC\\,74.00\\%, gap\\,$-$19.00}}}\n  & 1 & 74.17 & $+$0.17 & 1.000 & 1.0 & \\\\\n  & 3 & 74.67 & $+$0.67 & .503 & .755 & \\\\\n  & 5 & 75.17 & $+$1.17 & .360 & .720 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize SC\\,85.83\\%, gap\\,$-$30.83}}}\n  & 1 & 86.00 & $+$0.17 & 1.0 & 1.0 & \\\\\n  & 3 & 86.33 & $+$0.50 & .4531 & .755 & \\\\\n  & 5 & 87.00 & $+$1.17 & .2100 & .630 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect.}\n\\label{tab:finetuned-nli}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}lrrrrc@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.17\\%}}}\n  & 1 & 42.33 & $+$3.17 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$13.00 & \\\\\n  & 5 & 65.50 & $+$26.33 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%}}}\n  & 1 & 76.00 & $+$3.50 & \\multirow{3}{*}{164:1} \\\\\n  & 3 & 84.17 & $+$11.67 & \\\\\n  & 5 & 91.67 & $+$19.17 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}\n\\label{app:2x2}\n\nTable~\\ref{tab:2x2-folio} reports the full $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\sim}25$\\,pp vs.\\ column difference ${\\sim}3$\\,pp), contrasting with ProofWriter where the extractor dominates ($\\Delta$ range ${\\pm}40$--$50$\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\Delta = +2.94$\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\Delta = +2.94$\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\n\\label{tab:2x2-folio}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\n\\midrule\n\\multirow{2}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize $\\kappa{=}0.46$}}}\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\n\\addlinespace\n\\multirow{2}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize $\\kappa{=}0.79$}}}\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Single-Trace and Aggregation Statistics}\n\\label{app:single-trace}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Single-trace accuracy (mean $\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\ref{tab:main_results}).}\n\\label{tab:single-trace-stats}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nModel & Single (\\%) & Std & SC@12 (\\%) & Gain (pp) \\\\\n\\midrule\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize Inter-trace standard deviation shrinks $2.8\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\S\\ref{sec:cross-arch}).}\n\\end{table}\n\n\\paragraph{Extraction temperature sensitivity.}\n\\label{app:text-sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Effect of extraction temperature $T_{\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\dagger$\\,Uses a different trace set (SC $= 54.41\\%$); all other conditions share the same traces (SC $= 55.88\\%$).}\n\\label{tab:text-sensitivity}\n\\begin{tabular}{@{}cccr@{}}\n\\toprule\n$T_{\\text{ext}}$ & SICA (\\%) & $\\Delta$ vs.\\ SC (pp) & Avg.\\ \\#Constr. \\\\\n\\midrule\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\n$0.3^\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nControlling for the trace set (excluding $T_{\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\Delta \\leq +1.47$\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\n\n\\paragraph{Multi-seed replication.}\n\\label{app:multi-seed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\pm$ SD computed across seeds. Mistral-7B shows directionally unstable $\\Delta$ ($+0.16 \\pm 2.70$\\,pp); all Qwen2.5-14B seeds show $\\Delta \\leq 0$.}\n\\label{tab:multi-seed}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nSeed & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Mistral-7B $\\times$ FOLIO ($n{=}204$)\\textsuperscript{a}}} \\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\n\\midrule\nMean $\\pm$ SD & 56.53 $\\pm$ 2.51 & 56.70 $\\pm$ 0.75 & $+$0.16 $\\pm$ 2.70 \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Qwen2.5-14B $\\times$ FOLIO ($n{=}204$)}} \\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\n\\midrule\nMean $\\pm$ SD & 75.01 $\\pm$ 1.67 & 73.78 $\\pm$ 1.30 & $-$1.24 $\\pm$ 0.86 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\n\\end{table}\n\n\\subsection{Sub-population Analysis}\n\\label{app:subpopulation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\Delta$\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\n\\label{tab:subpop-answer-type}\n\\begin{tabular}{ll rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Label} & $n$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{4}{*}{FOLIO-204}\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\n & False   &  63 & 42.9 & 42.9 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\n & \\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\n\\midrule\n\\multirow{4}{*}{PW-600}\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\n & Unknown & 200 & 90.0 & 89.0 & $-$1.0 & .774 \\\\\n & \\textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\\rlap{*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}\n\\label{tab:subpop-constraint}\n\\begin{tabular}{ll rr rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Tertile} & $n$ & $\\bar{c}$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO-204}\n & Low \\scriptsize{[0--32]}   &  74 & 21.7 & 62.2 & 63.5 & $+$1.4 & 1.0\\hphantom{00} \\\\\n & Mid \\scriptsize{[33--47]}  &  64 & 39.7 & 50.0 & 59.4 & $+$9.4 & .031\\rlap{*} \\\\\n & High \\scriptsize{[48--83]} &  66 & 58.7 & 54.5 & 54.5 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n\\midrule\n\\multirow{3}{*}{PW-600}\n & Low \\scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\\\\n & Mid \\scriptsize{[40--52]}  & 196 & 45.8 & 40.8 & 37.2 & $-$3.6 & .143 \\\\\n & High \\scriptsize{[53--99]} & 192 & 63.7 & 32.8 & 32.3 & $-$0.5 & 1.0\\hphantom{00} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn FOLIO-204 with the corrected SC baseline (alphabetical tiebreaking), SICA improves over SC by $+$3.4\\,pp overall (55.9\\% $\\to$ 59.3\\%), though the aggregate McNemar test is marginally non-significant ($p{=}.092$).\nThe gain concentrates in the mid-constraint tertile ($+$9.4\\,pp, $p{=}.031$), where sufficient symbolic evidence exists for MaxSAT to meaningfully re-rank answers; in the low- and high-constraint groups the methods perform comparably.\nOn ProofWriter-600, SICA shows a small uniform degradation consistent with the main results, attenuating in the high-constraint tertile ($\\Delta{=}{-}0.5$\\,pp, $p{=}1.0$).\nWe note that with six subgroup tests, one significant result at $\\alpha{=}0.05$ is expected by chance; the mid-constraint finding should be interpreted as exploratory.\n\n\\paragraph{Individual intervention significance.}\n\\label{app:intervention-individual}\nOf the 27 training-free remediation strategies (Figure~\\ref{fig:interventions-summary}), the two largest positive effects are Cross-model Qwen3$\\to$Mistral ($+0.98$\\,pp) and Generational ($+0.49$\\,pp); neither approaches statistical significance ($p > 0.5$ for both). The largest negative effects are LLM-Debate ($-18.6$\\,pp, $p < 0.001$) and Contrastive Scoring ($-9.3$\\,pp, $p < 0.001$). After BH correction across all 27 comparisons, only these two negative results remain significant. No strategy produces a significant positive effect under any correction procedure.\n\n\\section{Extended Discussion and Limitations}\n\\label{app:extended-discussion}\n\\label{app:limitations-extended}\n\n\\paragraph{SCB versus CoT unfaithfulness.}\nSCB is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}. CoT unfaithfulness concerns whether stated reasoning reflects actual computation; SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution. Even if traces were perfectly faithful, self-extraction would still inherit the distributional bias---the constraint $P(\\text{answer\\_A})$ reflects vote share, not logical validity. The shuffle control (\\S\\ref{sec:confirmation-bias}) confirms this: randomizing constraint--answer associations preserves BR, showing the bias is in the trace-count distribution, not in extraction-specific errors. However, if traces are unfaithful, the mirage may be worse than our measurements suggest, because constraints would reflect not the model's reasoning but its post-hoc rationalization.\n\n\\paragraph{Implications for neuro-symbolic practitioners.}\nOur results do not imply that neuro-symbolic methods are inherently flawed---they imply that \\emph{self-extracted} constraints cannot provide independent verification. The key distinction is \\emph{when} formalization occurs relative to answer generation. Specification-generation approaches (e.g., SatLM \\citep{ye2024satlm}, Logic-LM \\citep{pan2023logiclm}) formalize the problem \\emph{before} generating candidate answers, avoiding the extraction bottleneck; SatLM's success confirms that the formal verification mechanism is sound when constraints are independently derived. Trace-extraction (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting the distributional prior that generates SCB. When post-hoc verification is unavoidable, practitioners should employ external verifiers from a different architecture family (\\S\\ref{sec:cross-arch}) and use the diagnostic framework in \\S\\ref{sec:discussion} to assess feasibility before deployment. The SCB diagnostic toolkit (below) provides detailed computation methods and threshold recommendations.\n\n\\paragraph{Test-time scaling implications.}\nVote diversity decreases with model capability: $K_\\text{eff}$ drops from 3.62 (Mistral-7B on ProofWriter) to 1.09 (Qwen3-14B thinking mode). This creates a fundamental tension for o1/R1-style scaling \\citep{guo2025deepseekr1}: longer reasoning chains produce more coherent but less diverse traces, reducing the marginal value of additional samples. Our Process-$\\kappa$ analysis (\\S\\ref{sec:process-kappa}) reveals that this homogenization operates at the reasoning-process level, not just answer level---traces that disagree on final answers still share 69\\% of their reasoning structure. Cross-architecture ensembles offer a path forward, but the capability-gap condition (\\S\\ref{sec:cross-arch}) implies that the verifier must be genuinely complementary, not just different.\n\n\\paragraph{SCB diagnostic toolkit.}\n\\label{app:diagnostic-toolkit}\nWe recommend four zero-cost diagnostics, computable from sampled traces alone, to predict whether symbolic self-verification will help or hurt before deployment.\n\\emph{Bias Ratio} (BR; \\S\\ref{sec:confirmation-bias}): for each problem, compute the fraction of constraints supporting the majority answer, divided by majority vote share. $\\text{BR} > 1$ indicates constraints are biased toward the majority; $\\text{BR} \\gg 2$ (as in all nine models tested; Table~\\ref{tab:frontier-scb}) signals that extraction amplifies rather than checks the model's prior. Report as mean $\\pm$ bootstrap 95\\% CI.\n\\emph{Effective-K} ($K_\\text{eff}$; Eq.~\\ref{eq:effk}): compute Fleiss' $\\kappa$ across $K$ traces, then $K_\\text{eff} = 1 + (K-1)(1-\\kappa)$. Threshold: $K_\\text{eff} \\leq 1.3$ never improves in our experiments---aggregation collapses to majority voting. $K_\\text{eff} > 1.8$ is a necessary (not sufficient) condition for gain.\n\\emph{Degenerate Consensus} ($C_0$; \\S\\ref{sec:condorcet}): the fraction of problems where all $K$ traces agree. $C_0 > 95\\%$ renders aggregation moot; $C_0 < 5\\%$ means the model is maximally uncertain and constraints tend to amplify noise.\n\\emph{ProcessSim} (Eq.~\\ref{eq:process-sim}): mean pairwise cosine similarity of TF-IDF trace vectors. $\\text{ProcessSim} > 0.6$ indicates homogeneous reasoning; combined with $\\text{BR} > 2$, this predicts SCB will dominate.\nA practitioner should compute all four on a held-out sample ($n \\geq 50$). If $K_\\text{eff} \\leq 1.3$ or $C_0 > 95\\%$ or ($\\text{BR} > 2$ and $\\text{ProcessSim} > 0.6$), symbolic self-verification is unlikely to help.\n\n\\paragraph{Future directions: trained extractors and beyond.}\n\\label{app:future-directions}\nOur oracle controls reveal that perfect extraction would yield $+29.90$\\,pp over SC on Mistral-7B FOLIO---self-extraction captures only ${\\sim}12\\%$ of this ceiling. This gap motivates several future directions.\n\\emph{Trained constraint extractors}: fine-tuning a small model (e.g., encoder-only) on human-annotated FOL from logic benchmarks could produce genuinely discriminative constraints that break the distributional prior. The key design constraint is structural independence---the extractor should not share training data or architecture with the generator, mirroring the cross-architecture NLI escape (\\S\\ref{sec:cross-arch}).\n\\emph{Multi-model ensembles}: rather than single cross-architecture pairs, combining $M$ structurally independent verifiers could further reduce correlated errors. The capability-gap condition (\\S\\ref{sec:cross-arch}) predicts that each verifier must exceed the generator on the target task to contribute positively; empirical verification across heterogeneous verifier pools is needed.\n\\emph{External knowledge grounding}: connecting to knowledge bases (Wikidata, domain ontologies) could inject verification signal absent from any model's parameters. This avoids SCB entirely by grounding constraints in external facts rather than self-generated traces.\n\\emph{SCB-aware aggregation}: current MAX-SAT aggregation treats all constraints equally. Weighting constraints by estimated independence (e.g., inverse ProcessSim with other traces' constraints) or by discriminative power (e.g., cross-validation on held-out traces) could partially mitigate SCB without requiring external verifiers.\n\n\\paragraph{SCB as an evaluation framework.}\n\\label{app:scb-evaluation}\nThe SCB metrics---BR, $K_\\text{eff}$, ProcessSim, and CCR---can serve as a general evaluation framework for self-improvement methods beyond SICA. Any method that extracts structured representations from a model's own outputs (self-verification \\citep{huang2024selfcorrect}, self-refinement \\citep{madaan2023selfrefine}, chain-of-verification \\citep{dhuliawala2023chainofverification}, self-consistency \\citep{wang2023sc}) faces the distributional prior that generates SCB. We propose that future work on self-improvement methods report: (1)~BR on error cases (does the method's verification signal correlate with the model's majority answer, or does it provide independent information?); (2)~$K_\\text{eff}$ or an analogous diversity metric (does the method generate genuinely diverse candidates, or does it amplify a single mode?); (3)~CCR (does the method preferentially correct errors, or does it preferentially confirm them?). A method with $\\text{BR} < 1$, high $K_\\text{eff}$, and $\\text{CCR} > 0$ demonstrates genuine self-improvement; $\\text{BR} > 1$ with $\\text{CCR} < 0$ indicates that the method suffers from SCB regardless of aggregate accuracy gains, which may reflect favorable base rates rather than corrective signal.\n\n\\paragraph{Extended limitations.}\n\nBeyond the limitations discussed in the main text, several additional constraints bound our conclusions. Seven of our eleven model-domain conditions have $n \\leq 60$, providing insufficient statistical power for confirmatory claims; power analysis shows that the minimum detectable effect exceeds 5\\,pp for these conditions (Table~\\ref{tab:power}), so they serve as regime characterization rather than definitive tests. Our extraction prompts use a single zero-shot template per domain; alternative prompting strategies (few-shot exemplars, chain-of-thought extraction, or iterative refinement) might yield higher-quality constraints, though the oracle gap suggests the bottleneck is structural rather than prompt-specific. The constraint quality analysis (91.8\\% discriminative rate, 39.2\\% source-trace minority weight) covers Qwen2.5-14B on FOLIO + ProofWriter ($N = 804$); other model-domain combinations may exhibit different characteristics. Constraint extraction uses $T_{\\text{ext}} = 0.3$ while trace sampling uses $T = 0.7$; alternative extraction temperatures might yield different results. Although we prompt for first-order logic formalizations, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers ($\\forall$/$\\exists$); whether models capable of genuine quantified reasoning would yield higher discriminative rates is untested. Deduplication uses syntactic equivalence (global average dedup ratio: 46.0\\%), so semantically equivalent constraints with different surface forms receive separate weights; Z3-based semantic deduplication removes an additional ${\\sim}$10\\% of constraints and yields a small but significant improvement over no deduplication ($p = 0.013$), suggesting room for better dedup strategies. The GSM8K pilot ($n = 30$) illustrates the constraint-absent regime and should not be interpreted as confirmatory evidence.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 980,
+        "oldLines": 7,
+        "newStart": 980,
+        "newLines": 7,
+        "lines": [
+          " \\multirow{3}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize SC\\,85.83\\%, gap\\,$-$30.83}}}",
+          "   & 1 & 86.00 & $+$0.17 & 1.0 & 1.0 & \\\\",
+          "   & 3 & 86.33 & $+$0.50 & .4531 & .755 & \\\\",
+          "-  & 5 & 87.00 & $+$1.17 & .2100 & .630 & \\\\",
+          "+  & 5 & 87.00 & $+$1.17 & .2100 & .720 & \\\\",
+          " \\bottomrule",
+          " \\end{tabular}",
+          " \\end{table}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Aeg13ErtHjzJ2DSC1LhQLc`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+  "old_string": "{\\scriptsize SC\\,39.17\\%}}}\n  & 1 & 42.33 & $+$3.17 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$13.00 & \\\\\n  & 5 & 65.50 & $+$26.33 & \\\\",
+  "new_string": "{\\scriptsize SC\\,39.33\\%}}}\n  & 1 & 42.33 & $+$3.00 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$12.83 & \\\\\n  & 5 & 65.50 & $+$26.17 & \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "4862061c-bdc8-4f24-ad17-870208b2a3a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AHnodiqQaSHqx9dW1GL2F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2081,
+      "cache_read_input_tokens": 85361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2081
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 106 · 2026-05-22T22:34:29.463Z_
+
+<details><summary>↩ Tool result · `toolu_01Aeg13ErtHjzJ2DSC1LhQLc`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "1e87c6ad-3338-42d9-806f-5f4ed5310cc8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+    "oldString": "{\\scriptsize SC\\,39.17\\%}}}\n  & 1 & 42.33 & $+$3.17 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$13.00 & \\\\\n  & 5 & 65.50 & $+$26.33 & \\\\",
+    "newString": "{\\scriptsize SC\\,39.33\\%}}}\n  & 1 & 42.33 & $+$3.00 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$12.83 & \\\\\n  & 5 & 65.50 & $+$26.17 & \\\\",
+    "originalFile": "\\section{Regime Scatter Plot}\n\\label{app:regime-scatter}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{f2_regime_scatter}\n\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\n\\label{fig:regime-scatter}\n\\end{figure}\n\n\\section{Prompt Templates}\n\\label{app:prompts}\n\nSICA uses domain-specific prompt templates for constraint extraction: one for mathematical reasoning (GSM8K, AIME) and one for logical reasoning (ProofWriter, FOLIO). Both share the same system prompt. The LLM is called with temperature $T{=}0.3$, max tokens $1024$, and structured JSON output mode. Up to 6 traces are processed in parallel via thread pooling, with 2 retries on failure (exponential backoff, base 0.5s).\n\n\\paragraph{System Prompt.}\n\n\\begin{lstlisting}\nYou are a constraint extraction tool. Output ONLY\nvalid JSON. Do NOT solve problems, reason about\ncorrectness, or think step-by-step. Extract\nconstraints from the given trace exactly as stated.\n\\end{lstlisting}\n\n\\paragraph{Mathematical Constraint Extraction (EXTRACTION\\_PROMPT).}\n\nUsed for GSM8K and AIME datasets. The placeholder \\texttt{\\{trace\\}} is replaced with the reasoning trace at runtime.\n\n\\begin{lstlisting}\nExtract mathematical constraints from this reasoning\ntrace as a JSON object.\n\nRules:\n- type: \"equation\", \"inequality\", or \"predicate\"\n- expression: human-readable, e.g. \"x + y == 14\"\n- z3_formula: a single comparison expression in\n  Python Z3 syntax\n- source_step: step number where the constraint\n  appears\n- Use variable names from the trace\n\nz3_formula MUST follow these rules:\n- Allowed operators: ==, !=, <, >, <=, >=, +, -, *,\n  /, **, %\n- Use individual named variables: a1, a2, a3...\n  NOT arrays a[1] or sets A\n- Expand all sums explicitly:\n  \"a1 + a2 + a3 == 55\" NOT \"sum([a1,a2,a3])\"\n- NO Python builtins: sum(), len(), max(), min(),\n  list(), set(), range(), int()\n- Each z3_formula must be exactly ONE comparison\n  (==, !=, <, >, <=, >=)\n- For multiple values, write separate constraints\n  for each\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"equation\",\n  \"expression\": \"x + y == 14\",\n  \"z3_formula\": \"x + y == 14\",\n  \"source_step\": 1}],\n \"answer\": \"final_answer\",\n \"variables\": [\"x\", \"y\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Logical Constraint Extraction (LOGIC\\_EXTRACTION\\_PROMPT).}\n\nUsed for ProofWriter and FOLIO datasets.\n\n\\begin{lstlisting}\nIMPORTANT: You are an EXTRACTION tool, NOT a problem\nsolver.\n- Do NOT re-solve or re-reason about the problem.\n- Do NOT verify whether the trace's reasoning is\n  correct.\n- ONLY extract the logical constraints that are\n  explicitly stated or used in the trace below.\n- Output ONLY the JSON object, nothing else.\n\nExtract logical constraints from this reasoning trace\nabout a logic problem.\n\nThe problem has facts (base assertions), rules\n(grounded implications), and derived conclusions.\nConvert each into a Z3 boolean formula.\n\nVariable naming:\n- Unary property: property_entity\n  (e.g., kind_anne, red_charlie, round_fiona)\n- Binary relation: relation_subject_object\n  (e.g., eats_bear_squirrel, likes_lion_cat)\n- Use lowercase with underscores only\n\nConstraint types:\n- \"fact\": a given assertion,\n  e.g., kind_anne == True\n- \"rule\": a grounded implication over specific\n  entities, e.g., Implies(kind_anne, nice_anne)\n- \"derived\": an inferred conclusion from facts +\n  rules, e.g., nice_anne == True\n\nZ3 operators:\n- Implies(a, b) for if-then rules\n- And(a, b, ...) for conjunctive conditions\n- Or(a, b, ...) for disjunctive conditions\n- Not(a) for negation\n- == True / == False for boolean assertions\n\nOutput ONLY the JSON below, nothing else:\n{\"constraints\": [{\"type\": \"fact\",\n  \"expression\": \"kind(anne)\",\n  \"z3_formula\": \"kind_anne == True\",\n  \"source_step\": 1}],\n \"answer\": \"True or False or Unknown\",\n \"variables\": [\"kind_anne\"]}\n\nTrace:\n{trace}\n\\end{lstlisting}\n\n\\paragraph{Output Schema.}\n\nBoth prompts produce a JSON object with the following structure:\n\n\\begin{lstlisting}\n{\n  \"constraints\": [\n    {\n      \"type\": \"&lt;equation|inequality|predicate>\n               or &lt;fact|rule|derived>\",\n      \"expression\": \"&lt;human-readable description>\",\n      \"z3_formula\": \"&lt;Z3-compatible expression>\",\n      \"source_step\": &lt;integer>\n    }\n  ],\n  \"answer\": \"&lt;final answer string>\",\n  \"variables\": [\"&lt;var1>\", \"&lt;var2>\", \"...\"]\n}\n\\end{lstlisting}\n\nThe pipeline additionally injects an \\texttt{answer\\_assertion} constraint per trace (not produced by the LLM):\n\n\\begin{lstlisting}\n{\"type\": \"answer_assertion\",\n \"expression\": \"answer is &lt;ans>\",\n \"z3_formula\": \"__sica_answer_&lt;ans> == True\",\n \"source_step\": -1}\n\\end{lstlisting}\n\n\\paragraph{Prompt Selection Logic.}\n\nDomain assignment is determined by dataset: FOLIO and ProofWriter use \\textsc{Logic\\_Extraction\\_Prompt}; GSM8K, AIME, StrategyQA, and ARC-Challenge use \\textsc{Extraction\\_Prompt}. StrategyQA and ARC-Challenge are assigned to the mathematical prompt because their reasoning structure does not involve formal logic predicates or implications, despite StrategyQA producing boolean answers.\n\n\n\\section{Z3 MaxSAT Evaluation Pseudocode}\n\\label{app:z3-pseudocode}\n\nAlgorithm~\\ref{alg:maxsat} describes the Z3 MaxSAT solving procedure. Algorithm~\\ref{alg:scorer} describes the source-trace attribution scoring.\n\nDomain constraint variables (e.g., \\texttt{x + y == 14}) and answer assertion variables (e.g., \\texttt{\\_\\_sica\\_answer\\_42 == True}) are logically independent in the Z3 formulation. Discriminative signal arises solely from conflicts among domain constraints: when traces supporting different answers produce mutually contradictory constraints, the solver excludes the lower-weight subset, and the scorer penalizes the corresponding answers.\n\n\\begin{algorithm}[h]\n\\caption{Z3 Weighted Partial MAX-SAT}\n\\label{alg:maxsat}\n\\begin{algorithmic}[1]\n\\Require Deduplicated constraint set $\\mathcal{C} = \\{(c_m, w_m, S_m)\\}_{m=1}^M$ where $c_m$ is a Z3 formula, $w_m$ is weight, $S_m$ is the set of source trace indices\n\\Ensure Partition $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$ where $\\mathcal{C}^*$ is the max-weight satisfiable subset\n\\State $\\textit{opt} \\gets \\textsc{Z3.Optimize()}$\n\\For{$m = 1, \\ldots, M$}\n    \\State $b_m \\gets$ fresh Boolean indicator\n    \\State $\\textit{opt}.\\textsc{Add}(b_m \\Rightarrow c_m)$ \\Comment{soft clause guarded by indicator}\n    \\State $\\textit{opt}.\\textsc{AddSoft}(b_m,\\; \\text{weight}=w_m)$\n\\EndFor\n\\State $\\textit{result} \\gets \\textit{opt}.\\textsc{Check}()$\n\\State $\\textit{model} \\gets \\textit{opt}.\\textsc{Model}()$\n\\State $\\mathcal{C}^* \\gets \\{(c_m, w_m, S_m) : \\textit{model}(b_m) = \\top\\}$\n\\State $\\mathcal{C}^{\\setminus} \\gets \\mathcal{C} \\setminus \\mathcal{C}^*$\n\\State \\Return $(\\mathcal{C}^*, \\mathcal{C}^{\\setminus})$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\begin{algorithm}[h]\n\\caption{Source-Trace Attribution Scoring}\n\\label{alg:scorer}\n\\begin{algorithmic}[1]\n\\Require Satisfied set $\\mathcal{C}^*$, excluded set $\\mathcal{C}^{\\setminus}$, candidate answers $\\mathcal{A}$, trace-answer mapping $\\tau: \\text{trace\\_idx} \\to a$, penalty weight $\\alpha$\n\\Ensure Score $s(a)$ for each $a \\in \\mathcal{A}$\n\\For{each $a \\in \\mathcal{A}$}\n    \\State $T_a \\gets \\{i : \\tau(i) = a\\}$ \\Comment{trace indices producing answer $a$}\n    \\State $\\textit{pos}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^*} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $\\textit{neg}(a) \\gets \\sum_{(c,w,S) \\in \\mathcal{C}^{\\setminus}} w \\cdot \\mathbf{1}[S \\cap T_a \\neq \\emptyset]$\n    \\State $s(a) \\gets \\textit{pos}(a) - \\alpha \\cdot \\textit{neg}(a)$\n\\EndFor\n\\State \\Return $a^* = \\arg\\max_{a \\in \\mathcal{A}} s(a)$\n\\end{algorithmic}\n\\end{algorithm}\n\n\n\\section{Capability-Accuracy Constraint Diagnostics}\n\\label{app:diagnostics}\n\\label{app:cil}\n\n\\paragraph{Conditional Correction Ratio.}\nWe define the \\textit{Conditional Correction Ratio} (CCR) to summarize verifier--generator complementarity:\n\\begin{equation}\n\\label{eq:cil}\n\\text{CCR}(V, G) = \\log \\frac{P(V \\text{ correct} \\mid G \\text{ wrong})}{P(V \\text{ correct} \\mid G \\text{ correct})}.\n\\end{equation}\n$\\text{CCR} > 0$ means $V$ preferentially corrects $G$'s errors; $\\text{CCR} < 0$ indicates shared bias. CCR links our findings: (1)~SCB corresponds to $\\text{CCR}(\\text{self}, G) \\approx 0$; (2)~Finding~2 predicts $\\text{CCR}(V, G) > 0$ when $V$ is independent and capable.\n\n\\paragraph{Empirical CCR across verifier--generator pairs.}\nTable~\\ref{tab:cil_empirical} reports CCR for eight verifier--generator--dataset conditions, sorted by CCR descending. All three cross-architecture NLI pairs on ProofWriter yield $\\text{CCR} > 0$ (verifier preferentially corrects generator errors), while all three same-model SICA conditions yield $\\text{CCR} < 0$ (shared bias). CCR correlates with combo gain: Spearman $\\rho = 0.839$, 95\\% bootstrap CI $[0.338, 0.990]$; LOO-robust (min $p = 0.014$). Four of eight conditions share the DeBERTa verifier, yielding effective $n < 10$; results should be interpreted as a consistent pattern rather than a precise effect size.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\n\\label{tab:cil_empirical}\n\\begin{tabular}{@{}lllrr@{}}\n\\toprule\nGenerator & Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & BART-MNLI & PW-600 & $+$1.86 & $+$5.17 \\\\\nMistral-7B & DeBERTa-MNLI & PW-600 & $+$1.67 & $+$6.67 \\\\\nMistral-7B & RoBERTa-MNLI & PW-600 & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen2.5-14B & DeBERTa-MNLI & PW-600 & $-$0.21 & $+$0.33 \\\\\nMistral-7B & DeBERTa-MNLI & FOLIO-204 & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral-7B & SICA & FOLIO-204 & $-$2.93 & $+$3.43 \\\\\nQwen2.5-14B & SICA & PW-600 & $-$4.21 & $-$2.50 \\\\\nMistral-7B & SICA & PW-600 & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-condition diagnostics.}\nTable~\\ref{tab:capability_trap} reports per-condition diagnostic metrics referenced in \\S\\ref{sec:entropy}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Domain & $C_0$ (\\%) & Extr.\\ Rate & Contr.\\ Rate & $\\Delta$ (pp) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 35.3 & 0.89 & 0.022 & 0.00 \\\\\nQwen2.5-14B & ProofWriter & 39.2 & 0.89 & 0.022 & $+$0.33 \\\\\nQwen2.5-14B & StrategyQA$^\\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\\\\nQwen2.5-14B & ARC-Chall.$^\\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\\\\nQwen2.5-7B & FOLIO+PW$^\\dagger$ & 42.1 & 0.94 & 0.027 & 0.00 \\\\\nMistral-7B & FOLIO+PW$^\\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\\\\nLLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\\\\nLLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$4.41 \\\\\nDeepSeek-R1-7B & FOLIO+PW$^\\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\\\\nQwQ-32B & Combined$^\\dagger$ & 2.6 & --- & --- & 0.00 \\\\\nQwen2.5-14B & GSM8K$^\\dagger$ & 13.3 & 0.15 & --- & 0.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capability-accuracy constraint diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable logical constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\\Delta$: SICA$-$SC gap (pp). $\\dagger$: $n \\leq 60$. Dashes indicate conditions where extraction diagnostics were not computed (StrategyQA uses boolean answers without symbolic extraction; QwQ-32B Combined had near-zero $C_0$, making extraction analysis uninformative). This table includes additional exploratory conditions not reported in Table~\\ref{tab:main_results}.}\n\\label{tab:capability_trap}\n\\end{table}\n\n\n\\section{Statistical Power Analysis}\n\\label{app:power}\n\nWe compute the minimum detectable effect (MDE) for each condition at $\\alpha = 0.05$ and 80\\% power using exact binomial power calculations over McNemar discordant pairs. Table~\\ref{tab:power} reports three grouped conditions with $n \\geq 200$ (Qwen2.5-14B FOLIO and ProofWriter are pooled into a single $n{=}804$ analysis, corresponding to four Table~\\ref{tab:main_results} rows), which constitute our confirmatory analyses. The remaining seven conditions ($n \\leq 60$) yield infinite MDE due to insufficient discordant pairs and serve only as regime characterization.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrrrr}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{MDE} & \\textbf{Obs.\\ $\\Delta$} & \\textbf{Obs.\\ Pow.} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & 1.86pp & $+$0.25pp & 5.7\\%  \\\\\nLLaMA-8B StrategyQA  & 200 & 4.64pp & $+$2.00pp & 20.6\\% \\\\\nLLaMA-8B FOLIO       & 204 & 4.84pp & $-$4.41pp & 18.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Power analysis for confirmatory conditions ($n \\geq 200$). MDE = minimum detectable effect at 80\\% power. All observed effects fall below their respective MDEs, and observed power remains below 21\\% in every case.}\n\\label{tab:power}\n\\end{table}\n\nThe largest study (Qwen-14B, $n{=}804$, 30 discordant pairs) can detect effects as small as 1.86pp, yet the observed $\\Delta$ of $+$0.25pp is an order of magnitude smaller. The two LLaMA-8B conditions require effects of 4.64pp and 4.84pp to reach significance; neither observed $\\Delta$ approaches these thresholds. All three conditions are consistent with the null hypothesis that SICA provides no accuracy gain over self-consistency.\n\n\n\\section{Bootstrap Confidence Intervals}\n\\label{app:bootstrap}\n\nWe compute 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ via 10{,}000 bootstrap resamples (percentile method, seed 42). Table~\\ref{tab:bootstrap} reports the results for the three confirmatory conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lrrl}\n\\toprule\n\\textbf{Condition} & $n$ & \\textbf{Obs.\\ $\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nQwen-14B FOLIO+PW   & 804 & $+$0.25pp & [$-$1.12, $+$1.62] \\\\\nLLaMA-8B StrategyQA  & 200 & $+$2.00pp & [$-$1.50, $+$5.50] \\\\\nLLaMA-8B FOLIO       & 204 & $-$4.41pp & [$-$5.88, $+$0.98] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Bootstrap 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference.}\n\\label{tab:bootstrap}\n\\end{table}\n\nAll three intervals contain zero. The narrowest interval (Qwen-14B, [$-$1.12, $+$1.62]) rules out practically meaningful gains ($>$2pp) even in the most favorable case. The widest interval (LLaMA-8B FOLIO, [$-$5.88, $+$0.98]) skews negative, indicating that SICA may slightly hurt accuracy in this condition. These results corroborate the McNemar tests and power analysis: no condition provides evidence that logical constraint aggregation improves over majority voting.\n\n\n\\section{Case Studies: Discordant Predictions}\n\\label{app:case-studies}\n\nAmong 804 problems, SICA and SC agree on 773 (96.1\\%). The 31 discordant cases comprise 16 SICA wins (SICA correct, SC wrong), 14 SC wins (SC correct, SICA wrong), and 1 where both select different wrong answers. All 31 occur at exact ties (entropy${=}1.0$, 6:6 vote split) or near-ties (entropy${\\geq}0.9183$, 8:4 at most), since SICA can differ from SC only when constraint weights shift the majority away from SC's tiebreak choice. We present three representative cases that illustrate the mechanism behind capability-accuracy constraint failures.\n\n\\paragraph{Case 1: SICA Wins (folio\\_134, FOLIO).}\n\n\\emph{Premises}: Some mammals have teeth. Platypus have no teeth. Platypus are mammals. Humans have teeth. \\emph{Conclusion}: Humans are mammals. \\emph{Gold}: Unknown.\n\nThe premises state that \\emph{some} mammals have teeth and that humans have teeth, but ``having teeth'' is not sufficient for ``being a mammal'' under open-world semantics. SC produces a 6:6 split (Unknown:6, True:6) and tiebreaks alphabetically to True (wrong). SICA extracts 7 constraints; MaxSAT excludes 1 constraint inconsistent with the rest, reducing the weighted score for True-voting traces and tipping the aggregation to Unknown (correct). The excluded constraint likely captured an incorrect inference step (e.g., affirming the consequent) present only in True-voting traces. While SICA succeeds here, the success is coincidental: the excluded constraint happens to anti-correlate with the correct answer.\n\n\\paragraph{Case 2: SC Wins (ProofWriter-1066\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: White(Bob)$\\to$Round(Bob) [white things are round] $\\to$ Young(Bob) [all round things are young]. \\emph{Conclusion}: ``Bob is not young.'' \\emph{Gold}: False (Bob IS young).\n\nSC produces a 6:6 split (False:6, True:6) and tiebreaks to False (correct). SICA extracts 17 constraints; MaxSAT excludes 2 that appear preferentially in False-voting traces. These excluded constraints likely captured correct intermediate derivations (e.g., \\texttt{young\\_bob == True}) that appeared only in traces completing the full deduction chain. By excluding them, MaxSAT removes evidence supporting the correct answer. SICA selects True (wrong). This case illustrates how self-extracted constraints can systematically mislead: correct reasoning steps become discriminative signals that the solver mistakenly penalizes.\n\n\\paragraph{Case 3: Non-discriminative Constraints (ProofWriter-903\\_Q6, ProofWriter).}\n\n\\emph{Key chain}: Nice(Mouse)$\\to$Cold(Mouse) [all nice people are cold] $\\to$ Chases(Mouse,Mouse) [nice and cold $\\to$ chase mouse]. \\emph{Conclusion}: ``The mouse does not chase the mouse.'' \\emph{Gold}: False.\n\nSC produces a 6:6 split (False:6, Unknown:6) and tiebreaks to False (correct). SICA extracts 44 constraints but excludes only 1 (2.3\\%). The remaining 43 are domain facts and grounded rules (\\texttt{nice\\_mouse == True}, \\texttt{Implies(nice\\_mouse, cold\\_mouse)}, etc.) that Z3 satisfies identically regardless of the final answer. Both False-voting and Unknown-voting traces share the same premises and grounded rules; they differ only in whether the trace completed the full derivation chain. The single excluded constraint carries negligible weight against 43 shared constraints, so SICA collapses to SC.\n\n\\paragraph{Pattern.}\n\nThese cases exemplify the general pattern across the 773 agreeing problems: the vast majority of extracted constraints encode shared domain structure rather than answer-specific reasoning, and MaxSAT aggregation degenerates to majority vote. Table~\\ref{tab:case_summary} summarizes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Summary of three representative discordant cases. All occur at exact 6:6 vote ties. Constraint exclusion can break ties in either direction (Cases 1--2) or have no effect (Case 3).}\n\\label{tab:case_summary}\n\\begin{tabular}{@{}lllcccc@{}}\n\\toprule\nCase & ID & Gold & SC & SICA & \\#Constr. & Excl.\\ (\\%) \\\\\n\\midrule\n1 (SICA win) & folio\\_134 & Unknown & True $\\times$ & Unknown $\\checkmark$ & 7 & 1 (14.3\\%) \\\\\n2 (SC win) & PW-1066\\_Q6 & False & False $\\checkmark$ & True $\\times$ & 17 & 2 (11.8\\%) \\\\\n3 (Non-disc.) & PW-903\\_Q6 & False & False $\\checkmark$ & False $\\checkmark$ & 44 & 1 (2.3\\%) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Oracle Control}\n\\label{app:oracle}\n\\label{sec:oracle}\n\\label{app:pw-oracle-subtype}\n\nReplacing self-extracted constraints with gold annotations (FOLIO logical formulae, ProofWriter DSL), Oracle-SICA yields $+29.90$\\,pp on Mistral-7B FOLIO ($p < 10^{-13}$), $+13.73$\\,pp on Qwen2.5-14B FOLIO ($p = 2.0 \\times 10^{-7}$), and $+17.17$\\,pp on ProofWriter ($p < 10^{-14}$). Z3 agrees with gold labels on 95.1\\% (FOLIO) and 97.1\\% (ProofWriter). The MAX-SAT mechanism is sound; Mistral-7B's best self-extracted $\\Delta$ ($+3.43$\\,pp) captures only 11.5\\% of its oracle ceiling. For Qwen2.5-14B on ProofWriter, the gap is wider still: self-extraction degrades accuracy ($-2.50$\\,pp) against an oracle ceiling of $+17.17$\\,pp, indicating that stronger models do not self-extract more effectively.\n\n\\paragraph{ProofWriter per-subtype analysis.} ProofWriter problems encode deductive rules as Domain-Specific Language (DSL) logic programs. Each problem uses one of four predicate subtypes: attribute predicates with or without negation (AttNeg, AttNoneg), and relation predicates with or without negation (RelNeg, RelNoneg). Relation predicates involve binary relations between entities (e.g., \\texttt{eats(bear, squirrel)}), while attribute predicates assign unary properties (e.g., \\texttt{kind(anne)}).\n\nThe oracle pipeline parses these DSL annotations deterministically into Z3 formulas without any LLM involvement. Of the 600 ProofWriter problems, 594 (99.0\\%) produce valid Z3 parses; the remaining 6 fail due to unsupported DSL constructs. Across all 7{,}128 trace-problem pairs submitted to Z3, the solver returns a result in every case (0\\% solver errors). Z3 evaluations agree with ground-truth labels on 577 of 594 parseable problems (97.14\\%), confirming that the deterministic DSL-to-Z3 translation faithfully preserves problem semantics.\n\nTable~\\ref{tab:pw_oracle_subtype} reports the per-subtype breakdown. Relation-predicate subtypes show substantially larger gains than attribute-predicate subtypes: RelNeg improves by $+17.86$~pp and RelNoneg by $+13.01$~pp, compared to $+9.09$~pp for AttNoneg and $+6.87$~pp for AttNeg. Relation predicates involve longer reasoning chains with more intermediate entities, producing greater answer diversity across traces ($C_0$) and more opportunities for oracle constraints to correct errors.\n\n\\begin{table}[h]\n\\centering\n\\caption{ProofWriter oracle experiment per-subtype breakdown. Oracle-SICA uses gold DSL annotations parsed deterministically to Z3 for consistency checking. Relation-predicate subtypes (RelNeg, RelNoneg) show larger gains than attribute-predicate subtypes; relation subtypes involve longer reasoning chains and benefit more from oracle constraints. Bold indicates best accuracy per row.}\n\\label{tab:pw_oracle_subtype}\n\\begin{tabular}{lcccc}\n\\toprule\nSubtype & $n$ & SC Acc (\\%) & Oracle Acc (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nAttNoneg & 154 & 87.01 & \\textbf{98.70} & +11.69 \\\\\nAttNeg & 160 & 85.00 & \\textbf{91.90} & +6.90 \\\\\nRelNoneg & 146 & 66.44 & \\textbf{84.20} & +17.76 \\\\\nRelNeg & 140 & 60.00 & \\textbf{89.30} & +29.30 \\\\\n\\midrule\nOverall & 600 & 74.00 & \\textbf{91.17} & +17.17 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Constraint Ablation Details}\n\\label{app:ablation}\n\\label{sec:ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts.}\n\\label{tab:ablation}\n\\begin{tabular}{@{}lrc@{}}\n\\toprule\nAggregation & Acc.\\ (\\%) & Agreement w/ SC \\\\\n\\midrule\nSC (majority vote) & 76.24 & --- \\\\\nSICA (MAX-SAT) & 76.49 & 773\\,/\\,804 \\\\\nCount-only & 76.62 & 774\\,/\\,804 \\\\\nRandom-weight & 75.87 & 764\\,/\\,804 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MAX-SAT vs.\\ count-only agreement across constraint weight $\\alpha$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\\times$, seed 42); Qwen2.5-14B (BR $= 3.85\\times$, seed 123). Agreement $\\geq 99\\%$ at all $\\alpha$, confirming vacuity is weight-insensitive.}\n\\label{tab:alpha-ablation}\n\\begin{tabular}{@{}crr@{}}\n\\toprule\n$\\alpha$ & Mistral Agr.\\ (\\%) & Qwen2.5 Agr.\\ (\\%) \\\\\n\\midrule\n0.1 & 100 & 100 \\\\\n0.3 & 100 & 100 \\\\\n0.5 & 100 & 100 \\\\\n0.7 & 99 & 100 \\\\\n0.9 & 99 & 100 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Remediation Strategy Details}\n\\label{app:remediation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.98\\%$, $\\Delta = -0.49$\\,pp. None reaches significance. Three method-level strategies are reported in Table~\\ref{tab:method_interventions}.}\n\\label{tab:remediation}\n\\begin{tabular}{@{}llrl@{}}\n\\toprule\nStrategy & Target & $\\Delta$ (pp) & Key finding \\\\\n\\midrule\nContrastive$^a$ & Prompt & $-$1.10 & non-disc.\\ 6.0\\% ($\\downarrow$ from 8.2\\%) \\\\\nCross-model$^b$ & Architecture & 0.00 & disc.\\ 0\\% (weak$\\to$strong); $\\pm$1\\,pp (strong$\\to$weak) \\\\\nQwen3-14B$^c$ & Capability & $-$0.49 & $p = 0.655$ \\\\\nZ3 feedback & Solver & --- & 0.9\\% UNSAT trigger \\\\\nCons.\\ filtering & Noise & 0.00 & $T{\\geq}4 \\to$ SC \\\\\nCross-trace UNSAT & Independence & --- & 56.4\\% $\\emptyset$ vars \\\\\n$T{=}1.0$$^d$ & Diversity & 0.00 & isolated peak at $T{=}0.7$ only \\\\\nMulti-temp$^e$ & Diversity & 0.00 & $b{=}5$, $c{=}5$ (balanced) \\\\\nDisc.\\ filtering$^f$ & Filtering & 0.00 & 803/804 agree w/ SICA \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize $^a$\\,$n{=}182$ (extraction failures excluded). $^b$\\,Weak$\\to$strong: Mistral-7B extracts from Qwen2.5-14B traces. Strong$\\to$weak: Qwen3-14B (60.29\\%) and Qwen2.5-14B (58.33\\%) extract from Mistral-7B FOLIO traces ($n{=}204$); self-extraction baseline 59.31\\%. $^c$\\,$n{=}204$, SC $= 83.33\\%$. $^d$\\,Mistral-7B FOLIO, $n{=}204$. $^e$\\,Mistral-7B FOLIO, $T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each, $n{=}204$. $^f$\\,Qwen2.5-14B, $n{=}804$; removing non-discriminative constraints.}\n\\end{table}\n\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Method-level interventions on Mistral-7B with McNemar's paired test. All produce neutral-to-catastrophic results. ICG shows two FOLIO seeds; $p$ for the first. {*}{*}{*}\\,$p < 0.001$; {*}{*}\\,$p < 0.01$.}\n\\label{tab:method_interventions}\n\\begin{tabular}{@{}ll rc rc@{}}\n\\toprule\n& & \\multicolumn{2}{c}{FOLIO ($n = 204$)} & \\multicolumn{2}{c}{LogiQA ($n = 200$)} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\nMethod & Target & $\\Delta$ (pp) & $p$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nSC baseline & --- & 0.00 & --- & 0.00 & --- \\\\\nICG & Trace coupling & $-$1.96\\,/\\,$+$1.47 & .206 & $-$0.50 & .706 \\\\\nContrastive & Scoring bias & $\\mathbf{-9.31}$ & .007 & $-$4.50 & .160 \\\\\nDebate & Role diversity & $\\mathbf{-18.63}$ & ${<}.001$ & $\\mathbf{-23.00}$ & ${<}.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Additional Intervention Results}\n\\label{app:additional-interventions}\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Additional intervention results beyond the nine prompt-level and three method-level strategies reported in the main text. All produce neutral-to-negative results, completing the exhaustive remediation analysis across 27 distinct approaches.}\n\\label{tab:additional_interventions}\n\\begin{tabular}{@{}llllrl@{}}\n\\toprule\n\\# & Method & Type & Target & $\\Delta$ (pp) & Key Finding \\\\\n\\midrule\n13 & PROVE (code verif.) & Paradigm & Formal proof & $-$1.9 & 15.2\\% compilable; conclusive acc.\\ = 50\\% \\\\\n14 & CEGIS (iterative) & Multi-round & Consistency & 0.0$^\\dagger$ & R1 $+$3.43\\,pp then oscillates \\\\\n15 & DeepConf (logprob) & Filtering & Confidence & 0.0 & $\\Delta_{\\text{logprob}} = 0.006$ (no separation) \\\\\n16 & Cross-model SICA & Cross-model & Independence & $-$0.49 & $\\kappa_{\\text{cross}}{=}0.42$ vs $\\kappa_{\\text{within}}{=}0.53$ \\\\\n17 & Problem perturbation & Input diversity & Trace diversity & $<$0 & $\\kappa$ \\emph{increased} to 0.70 (anti-effect) \\\\\n18 & MIN-UNSAT & Solver objective & Constraint sel.\\ & $-$6.5 & Mean excluded constraints $= 1.3$ \\\\\n19 & $\\kappa$-aware SC & Voting rule & Weighted voting & 0.0 & 11/11 conditions $\\Delta = 0$ \\\\\n20 & Z3 trace filter & Trace filtering & Quality & $-$0.49 & Precision 49.1\\%, 7 questions affected \\\\\n21 & Bootstrapped gold & Iterative & Self-improvement & 0.0$^\\dagger$ & R1 $+$2.45\\,pp then oscillates \\\\\n22 & Selective abstention & Diagnostic & Confidence & $+$4.4$^*$ & AUROC $= 0.673$, at 80\\% coverage \\\\\n23 & ASCII perturbation & Input diversity & Format diversity & 0.0 & $\\kappa$: $0.39 \\to 0.36$ (negligible) \\\\\n\\addlinespace\n24 & Atom pipeline & Paradigm & Decomposition & $-$10.0 & Atomic extraction degrades \\\\\n25 & Premise-only filter & Constraint sel.\\ & Bias isolation & $+$2.45 & $p = 0.359$; halves conclusion-bias \\\\\n26 & DPP trace selection & Trace diversity & Determinantal & $+$1.47 & $p = 0.629$; $K_{\\text{sel}}{=}8$ \\\\\n27 & Z3 strict-mode & Solver config & UNSAT filtering & 0.0 & McNemar $b{=}1, c{=}1$; 63\\% UNSAT \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All experiments on Mistral-7B FOLIO ($n{=}204$) unless noted. $^\\dagger$\\,Oscillates without convergence; net effect $\\approx 0$. $^*$\\,Accuracy gain only at reduced coverage (diagnostic value, not a general improvement). Methods 1--12 are reported in Table~\\ref{tab:remediation} and Table~\\ref{tab:method_interventions}.}\n\\end{table*}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig3_process_kappa_scatter.pdf}\n\\caption{Answer agreement vs.\\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$); stronger models show significant positive correlation ($r = +0.24$, Qwen-14B; Table~\\ref{tab:cross-model-process}).}\n\\label{fig:process-kappa}\n\\end{figure}\n\n\n\\section{Extraction Error Taxonomy}\n\\label{app:extraction}\n\\label{sec:extraction-taxonomy}\n\nConstraints must discriminate between candidate answers for MAX-SAT to produce a ranking different from majority vote. We measure discriminative power at two levels on Qwen2.5-14B across FOLIO and ProofWriter ($n = 804$). At the source-trace level, 39.2\\% of total constraint weight originates from traces whose answer differs from the plurality, but only 12.1\\% of individual constraints fall into this minority category. At the Z3 semantic level, 91.8\\% of constraints [95\\% CI: 91.2, 92.4] are technically discriminative, producing different satisfiability outcomes when evaluated against different candidate answers. Only 8.2\\% are non-discriminative.\n\nThe high discriminative rate does not translate into accuracy gains because discrimination mirrors the model's own answer distribution. Each trace produces constraints with its own variable names, so Z3 treats identically-intended propositions as unrelated symbols; among cross-answer constraint pairs, 56.4\\% share zero Z3 variables. This variable isolation means constraints from different traces are trivially jointly satisfiable, and MAX-SAT retains nearly all of them regardless of source answer. Removing the 8.2\\% non-discriminative constraints yields zero accuracy improvement. The discriminative majority does not provide independent signal; it reinforces the majority answer that SC would already select. This confirmation bias, not a lack of discrimination, explains why SICA degenerates to majority voting (Appendix~\\ref{app:ablation}).\n\n\n\\section{Hyperparameter Sensitivity}\n\\label{app:sensitivity}\n\\label{sec:k-sensitivity}\n\\label{sec:t-sensitivity}\n\n\\subsection{K Sensitivity}\n\nFigure~\\ref{fig:k-sensitivity} shows SICA $\\Delta$ as a function of the number of sampled traces $K$ for Mistral-7B on FOLIO ($n = 204$, no fixed seed). The relationship is non-monotonic: $K = 4$ yields $\\Delta = -1.47$\\,pp, $K = 8$ yields $\\Delta = -1.96$\\,pp, $K = 12$ reaches $\\Delta = +3.43$\\,pp, $K = 16$ drops to $\\Delta = +1.47$\\,pp, and $K = 20$ partially recovers to $\\Delta = +1.96$\\,pp. The recovery at $K = 20$ rules out a simple peaked pattern, but $K = 12$ remains the only setting with $\\Delta > 2$\\,pp ($p = 0.092$, marginal).\n\nThe apparent $\\Delta$ peak at $K = 12$ is confounded with SC baseline. SICA absolute accuracy plateaus at 59.31\\% (121/204) for $K \\geq 12$: identical at $K = 12$ and $K = 20$. The $\\Delta$ variation across these settings is driven primarily by SC fluctuations rather than by SICA improvement. $K = 12$ produces a relatively low SC (55.88\\%), placing it in the intermediate-SC region; $K = 8$ (SC $= 58.33\\%$) and $K = 20$ (SC $= 57.35\\%$) have higher baselines, compressing $\\Delta$ even though SICA accuracy does not change for $K \\geq 12$. Additional traces beyond $K = 12$ provide no benefit to SICA absolute performance, consistent with the constraint quality bottleneck. The $K = 12$ $\\Delta$ captures only 25.0\\% of the oracle ceiling ($+13.73$\\,pp).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{f3_k_sensitivity}\n\\caption{SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\\% for $K \\geq 12$; the apparent $\\Delta$ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\\%) at that point. Error bars: 95\\% bootstrap CI.}\n\\label{fig:k-sensitivity}\n\\end{figure}\n\n\\subsection{Temperature Sensitivity}\n\nTemperature sensitivity on Mistral-7B FOLIO ($n = 204$, default seed) reveals a sharp isolated peak rather than a smooth trend. Across four temperature settings, only $T = 0.7$ produces a positive effect: $T = 0.3$ yields $\\Delta = -1.47$\\,pp (SC $= 58.33\\%$), $T = 0.5$ yields $\\Delta = -0.98$\\,pp (SC $= 58.33\\%$), $T = 0.7$ yields $\\Delta = +3.43$\\,pp (SC $= 55.88\\%$), and $T = 1.0$ yields $\\Delta = 0.00$\\,pp (SC $= 55.39\\%$). All other temperatures yield negative or null effects, and the single positive result at $T = 0.7$ is confounded with SC baseline. Combined with the seed sensitivity (0 of 4 seeds reaching $p < 0.05$ at $T = 0.7$), the positive trend depends on a specific combination of temperature, seed, and baseline accuracy that same-model sampling rarely achieves.\n\nThe parallel between $K$ and $T$ sensitivity points to a common underlying variable. In both sweeps, the setting that produces the largest SICA gain also produces a relatively low SC baseline (55.88\\%), which places it in the intermediate-SC region. The hyperparameters themselves ($K$, $T$) are not the causal driver; they modulate SC level, and it is the SC level that determines whether SICA has operating room.\n\n\n\\section{Entropy Decomposition}\n\\label{app:entropy}\n\\label{sec:entropy}\n\nWe partition problems by trace agreement: high-entropy (majority count $\\leq 8$ out of $K = 12$) and low-entropy (majority count $\\geq 9$). Table~\\ref{tab:entropy} reports SICA $\\Delta$ within each partition across eight model-dataset conditions.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Entropy decomposition of SICA $\\Delta$ (pp). High-entropy: majority count $\\leq 8$; low-entropy: majority count $\\geq 9$. $^\\dagger$Partial data (180/600). Pre-tiebreaking SC values; pattern robust to D064 correction.}\n\\label{tab:entropy}\n\\begin{tabular}{@{}llrrrr@{}}\n\\toprule\nModel & Dataset & \\multicolumn{2}{c}{High-entropy} & \\multicolumn{2}{c}{Low-entropy} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6}\n & & $n$ & $\\Delta$ & $n$ & $\\Delta$ \\\\\n\\midrule\nMistral-7B & FOLIO & 78 & $\\mathbf{+12.8}$ & 126 & 0.0 \\\\\nMistral-7B (s123) & FOLIO & 77 & $\\mathbf{+9.1}$ & 127 & 0.0 \\\\\nMistral-7B (s456) & FOLIO & 75 & $-$1.3 & 129 & 0.0 \\\\\nMistral-7B & PW-D5 & 267 & $-$4.9 & 333 & $-$1.2 \\\\\nQwen2.5-14B & FOLIO & 37 & $-$8.2 & 167 & $-$0.6 \\\\\nQwen2.5-14B & LogiQA & 23 & $-$4.3 & 177 & 0.0 \\\\\nQwen2.5-7B & FOLIO & 47 & $-$2.1 & 157 & 0.0 \\\\\nLLaMA-3.1-8B$^\\dagger$ & PW-D5 & 76 & $-$3.9 & 104 & $-$1.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTwo patterns emerge. First, low-entropy problems produce $\\Delta \\approx 0$\\,pp across all eight conditions: when traces agree, constraints carry no information beyond the majority vote.\n\nSecond, the direction of SICA's effect on high-entropy problems depends on the accuracy regime, not on entropy alone. In the intermediate-SC region (Mistral-7B on FOLIO, default-seed and seed-123 runs), high-entropy $\\Delta$ reaches $+12.8$ and $+9.1$\\,pp: traces genuinely disagree, and constraints from correct-answer traces provide discriminative signal that resolves the disagreement. In Type~A conditions (Qwen2.5-14B on FOLIO, $\\Delta = -8.2$\\,pp), high-entropy problems represent rare deviations from a strong model's consensus; constraints inherit the model's confirmation bias. In Type~C (Mistral-7B on ProofWriter, $\\Delta = -4.9$\\,pp), high-entropy problems reflect systematic errors. The mechanism is not entropy per se but the interaction of entropy with model capability.\n\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\\label{sec:failure-modes}\n\nThe regime-dependent pattern in Table~\\ref{tab:main_results} reflects three distinct failure modes of self-extracted logical constraints.\n\n\\paragraph{Type A: confirmation bias (SC $\\geq$ $\\sim$60\\%).} Strong models produce consistent reasoning traces, and constraints extracted from those traces mirror the answer distribution. When most constraints support the same candidate, MAX-SAT excludes few clauses ($|\\mathcal{C}^{\\setminus}| \\approx 0$), the penalty term in Eq.~\\ref{eq:score} vanishes, and the scoring function degenerates to weighted vote counting (Eq.~\\ref{eq:degenerate}). SICA and SC then produce identical predictions. The ablation in Appendix~\\ref{app:ablation} confirms this empirically: on Qwen2.5-14B (FOLIO + ProofWriter, $n = 804$), MAX-SAT and count-only baselines agree on 803 of 804 predictions.\n\n\\paragraph{Type B: non-formalizable domains.} LogiQA problems require pragmatic and contextual reasoning that resists clean logical formalization. Qwen2.5-14B on LogiQA achieves an extraction rate of 86.4\\%, but the resulting constraints have a contradiction rate of only 0.8\\%: extracted formulas rarely conflict across traces, leaving MAX-SAT with no logical tension to exploit. Mistral-7B on LogiQA sits in the same SC range (50.00\\%) yet produces $\\Delta = +1.50$\\,pp ($p = 0.581$); Qwen2.5-14B on the same domain yields $\\Delta = -1.00$\\,pp ($p = 0.625$). Neither model benefits, confirming that the right accuracy regime is necessary but not sufficient when the domain resists formalization.\n\n\\paragraph{Type C: error amplification (SC $\\leq$ $\\sim$40\\%).} When model accuracy is low, the majority of traces reach incorrect answers. Constraints extracted from wrong traces encode incorrect reasoning as formal rules. Z3 treats these rules as soft clauses with weight proportional to their frequency, so the solver preferentially satisfies the wrong constraints and penalizes traces that happen to reach the correct answer. Mistral-7B on ProofWriter ($\\Delta = -2.83$\\,pp, raw $p = 0.014$; BH adj.\\ $p = 0.112$) demonstrates this effect: SICA converts a weak positive signal in trace diversity into a net negative by formalizing the errors.\n\n\n\\section{Cross-Model Confirmation Bias}\n\\label{app:cross-model-bias}\n\nTable~\\ref{tab:cross-model-bias} reports MaxSAT-weighted confirmation bias metrics across three model families on FOLIO ($n = 204$). Weighted bias ratio and wrong-supporting constraint percentage both decrease with model capability, while SICA's accuracy effect shifts from positive (Mistral, intermediate-SC regime) to negative (LLaMA, high-SC regime). Raw bias ratios ($4.97\\times$, $3.85\\times$, $2.88\\times$) are reported in \\S\\ref{sec:confirmation-bias}. LLaMA weighted BR CI: [2.19, 3.28].\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\\ correct problems. Wrong \\%: weighted fraction of constraints supporting the incorrect majority on error problems. $\\Delta$: SICA $-$ SC (pp).}\n\\label{tab:cross-model-bias}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & BR (wtd.) & Wrong (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $4.24\\times$ & 80.9 & $+$4.90 \\\\\nQwen2.5-14B & $3.69\\times$ & 78.7 & $-$0.98 \\\\\nLLaMA-3.1-8B & $2.66\\times$ & 72.7 & $-$4.41 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Frontier model universality.}\n\\label{app:frontier-scb}\nTable~\\ref{tab:frontier-scb} (main text, \\S\\ref{sec:confirmation-bias}) extends confirmation bias analysis to nine models spanning 7B open-source to frontier closed-source. All models exhibit $\\text{BR} > 1$ (range: $1.66$--$4.97\\times$). Extraction context varies: open-source models use self-extraction (the model extracts constraints from its own traces); frontier models use cross-model extraction (Mistral-7B extracts FOL from the target model's traces), as closed-source APIs do not expose internal representations suitable for direct symbolic extraction.\n\n\\paragraph{ProcessSim definition.}\n\\label{app:process-sim}\nProcess similarity is the mean pairwise cosine similarity of TF-IDF trace representations:\n\\begin{equation}\n\\label{eq:process-sim}\n\\text{ProcessSim}(q) = \\frac{2}{K(K{-}1)} \\sum_{i < j} \\cos(\\mathbf{v}_i^q, \\mathbf{v}_j^q),\n\\end{equation}\nwhere $\\mathbf{v}_i^q$ is the TF-IDF vector of trace $t_i$ for question $q$.\n\n\\paragraph{Process-$\\kappa$ gradient.}\n\\label{app:process-gradient}\nUnder cross-model extraction (Mistral-7B extracts FOL from other models' traces), SICA gain decreases monotonically with process-level cosine similarity (Table~\\ref{tab:process-gradient}; Spearman $\\rho = -1.0$, $n = 5$, one-tailed $p = 0.0083$). Gain requires two conditions: diverse traces (low $\\kappa_{\\text{proc}}$) \\emph{and} substantial self-bias (high BR). R1-Distill-8B satisfies both ($\\kappa_{\\text{proc}} = 0.248$, $\\text{BR} = 2.92$) and gains $+2.45$\\,pp; o3 has moderate trace diversity ($\\kappa_{\\text{proc}} = 0.596$) but near-minimal bias ($\\text{BR} = 1.66$, exhibiting a bimodal error pattern: 82\\% of error problems have $\\text{BR} = \\infty$ but low finite-BR), yielding $\\Delta = 0$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Process-$\\kappa$ gradient under cross-model extraction (Mistral-7B $\\rightarrow$ target model traces, FOLIO). $\\kappa_{\\text{proc}}$: process-level cosine similarity. $\\Delta$: SICA $-$ SC (pp). Spearman $\\rho(\\kappa_{\\text{proc}} \\rightarrow \\Delta) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}\n\\label{tab:process-gradient}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nModel & $\\kappa_{\\text{proc}}$ & $\\Delta$ (pp) & BR \\\\\n\\midrule\nR1-Distill-8B & 0.248 & $+$2.45 & 2.92 \\\\\ngpt-5.5 & 0.563 & $+$0.49 & 3.48 \\\\\no3 & 0.596 & 0.00 & 1.66 \\\\\nGemini-2.5-Pro$^*$ & 0.790 & $-$1.05 & 2.79 \\\\\ngpt-4.1 & 0.792 & $-$1.47 & 2.70 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Independence-Accuracy Scatter Plot}\n\\label{app:kappa-scatter}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/f6_kappa_accuracy_scatter}\n\\caption{Independence-accuracy trade-off across aggregation methods (Mistral-7B, filled markers) and model families (LLaMA-3.1-8B, Qwen2.5-7B, Qwen2.5-14B; open markers) on FOLIO ($n = 204$). Same-model methods cluster at $\\kappa \\approx 0.40$--$0.47$ (gray band), while cross-model SC shows stronger correlations ($\\kappa = 0.41$--$0.74$) at higher accuracy. Debate breaks correlation ($\\kappa = 0.15$) at catastrophic accuracy cost. Dashed line: Mistral-7B SC baseline.}\n\\label{fig:kappa-accuracy}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\n\\label{tab:kappa_generalization}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Aggregation & $\\kappa$ & Eff-$K$ & $K$ & Acc.\\ (\\%) \\\\\n\\midrule\nMistral-7B & Debate & 0.15 & 4.44 & 12 & 38.24 \\\\\n& Diverse-Prompt & 0.40 & 2.21 & 12 & 54.41 \\\\\n& Self-Consistency & 0.44 & 2.02 & 10 & 56.86 \\\\\n& ICG & 0.47 & 1.93 & 10 & 51.96 \\\\\n\\addlinespace\nLLaMA-3.1-8B & Self-Consistency & 0.41 & 2.17 & 12 & 66.18 \\\\\nQwen2.5-7B & Self-Consistency & 0.66 & 1.46 & 12 & 75.98 \\\\\nQwen2.5-14B & Self-Consistency & 0.74 & 1.32 & 12 & 75.98 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Trace independence metrics.}\n\\label{app:trace-independence}\n\nTable~\\ref{tab:independence} reports the full 15-condition breakdown of Fleiss' $\\kappa$ and Effective-K at $K = 12$, referenced in \\S\\ref{sec:effective-k}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$ (uncorrected; BH adj.\\ $p = 0.112$, $m{=}16$); positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\n\\label{tab:independence}\n\\begin{tabular}{@{}llccrr@{}}\n\\toprule\nModel & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nQwen3 (think) & FOLIO & 0.91 & 1.09 & 86.27 & $+$0.49 \\\\\nQwen2.5-14B & LogiQA & 0.82 & 1.20 & 79.00 & $-$1.00 \\\\\nQwen3 & FOLIO & 0.77 & 1.26 & 83.33 & $+$1.47 \\\\\nQwen2.5-14B & FOLIO & 0.74 & 1.30 & 75.98 & $-$0.49 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 & $+$0.49 \\\\\n\\addlinespace\nMistral-7B ($T{=}0.3$) & FOLIO & 0.53 & 1.77 & 58.33 & $-$1.47 \\\\\nMistral-7B & LogiQA & 0.51 & 1.81 & 50.00 & $+$1.50 \\\\\nMistral-7B (s456) & FOLIO & 0.51 & 1.82 & 55.88 & 0.00 \\\\\nMistral-7B & FOLIO & 0.50 & 1.84 & 55.88 & $+$3.43 \\\\\nMistral-7B (s123) & FOLIO & 0.49 & 1.88 & 54.41 & $+$2.94 \\\\\nMistral-7B (s789) & FOLIO & 0.41 & 2.17 & 54.41 & $-$0.49 \\\\\nMistral-7B ($T{=}0.5$) & FOLIO & 0.52 & 1.80 & 58.33 & $-$0.98 \\\\\nMistral-7B (multi-T) & FOLIO & 0.48 & 1.91 & 57.84 & 0.00 \\\\\nMistral-7B ($T{=}1.0$) & FOLIO & 0.48 & 1.91 & 55.39 & 0.00 \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Cross-Model Kappa Analysis}\n\\label{app:cross-model-kappa}\n\nTable~\\ref{tab:cross_model_kappa} compares trace independence across three model families on the same benchmarks. On FOLIO ($n = 204$), all four models produce $\\kappa \\geq 0.41$: LLaMA-3.1-8B ($\\kappa = 0.41$), Mistral-7B ($\\kappa = 0.44$), Qwen2.5-7B ($\\kappa = 0.66$), and Qwen2.5-14B ($\\kappa = 0.74$). The bottleneck is architecture-independent---no family escapes the correlation floor. Within the Qwen family, $\\kappa$ increases from 0.66 (7B) to 0.74 (14B), but Mistral-7B (7B) and LLaMA-3.1-8B (8B) differ by $\\Delta\\kappa = 0.03$ despite belonging to different families, suggesting that cross-family variation ($\\Delta\\kappa$ up to 0.22 at similar scale) exceeds within-family scale effects ($\\Delta\\kappa = 0.08$). Disentangling scale from architecture requires controlled same-family experiments across $\\geq$3 scales.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\\kappa$ indicates stronger correlation and lower effective sample size.}\n\\label{tab:cross_model_kappa}\n\\begin{tabular}{@{}llccr@{}}\n\\toprule\nModel & Dataset & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) \\\\\n\\midrule\nQwen2.5-14B & FOLIO & 0.74 & 1.32 & 75.98 \\\\\nQwen2.5-7B & FOLIO & 0.66 & 1.46 & 75.98 \\\\\nMistral-7B & FOLIO & 0.44 & 2.02 & 56.86 \\\\\nLLaMA-3.1-8B & FOLIO & 0.41 & 2.17 & 66.18 \\\\\n\\addlinespace\nQwen2.5-14B & PW-D5 & 0.62 & 1.54 & --- \\\\\nMistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Cross-Model Process-Level Independence}\n\\label{app:cross-model-process}\n\nTable~\\ref{tab:cross-model-process} extends the process-level independence analysis (\\S\\ref{sec:process-kappa}) to four model families on FOLIO ($n = 204$). Mean pairwise cosine similarity of TF-IDF trace representations exceeds answer-level $\\kappa$ in every family, but the gap is model-strength dependent: it narrows from $0.31$ (LLaMA) and $0.23$ (Mistral) to $0.02$ (Qwen-14B). For weaker models ($r \\approx 0$), answer diversity does not reflect reasoning diversity---process-convergent but answer-divergent trace pairs constitute 9.5\\% of all pairs on Mistral-7B versus 2.5--3.2\\% on other families. For stronger models ($r \\approx 0.23$, $p \\leq 0.001$), process and answer agreement align, and answer-level $\\kappa$ already captures the bottleneck. Process-$\\kappa$ thus provides a crucial additional diagnostic specifically for weaker models, where answer-level metrics underestimate reasoning homogeneity.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model process-level independence on FOLIO ($n = 204$, $K = 12$). Mean Cosine: mean pairwise TF-IDF cosine similarity of reasoning traces (Eq.~\\ref{eq:process-sim}). Answer $\\kappa$: per-question answer agreement. Gap: Cosine $-$ $\\kappa$. $r$: Pearson correlation between ProcessSim and answer agreement. Conv.: fraction of process-convergent but answer-divergent trace pairs. {*}{*}\\,$p < 0.01$; {*}{*}{*}\\,$p < 0.001$.}\n\\label{tab:cross-model-process}\n\\begin{tabular}{@{}lcccrlr@{}}\n\\toprule\nModel & Mean Cos. & Ans.\\ $\\kappa$ & Gap & $r$ & $p$ & Conv.\\ (\\%) \\\\\n\\midrule\nMistral-7B & 0.690 & 0.460 & 0.230 & $-$0.064 & 0.362 & 9.5 \\\\\nLLaMA-3.1-8B & 0.759 & 0.447 & 0.312 & $-$0.001 & 0.985 & 3.2 \\\\\nQwen2.5-7B & 0.790 & 0.658 & 0.132 & $+$0.226 & 0.001{*}{*} & 2.8 \\\\\nQwen2.5-14B & 0.766 & 0.744 & 0.022 & $+$0.244 & ${<}$0.001{*}{*}{*} & 2.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Representation robustness.} Replacing TF-IDF with SBERT embeddings (all-MiniLM-L6-v2) yields ProcessSim $= 0.91$ (vs.\\ TF-IDF $0.74$), widening the gap over answer-level $\\kappa = 0.55$. The process homogeneity finding is robust to representation choice.\n\n\\section{Constraint Quality Across Methods}\n\\label{app:constraint-quality}\n\nTable~\\ref{tab:constraint_quality} compares constraint quality metrics across the three method-level interventions on Mistral-7B FOLIO ($n = 204$). Standard SICA extracts from reasoning traces and achieves the highest parse rate (97.1\\%) but also the highest redundancy (42.9\\%): nearly half of all constraints are syntactic duplicates across the 12 traces, quantifying the co-sourcing effect of same-model generation. ICG generates constraints directly from the problem statement without trace conditioning. Its lower parse rate (74.6\\%) reflects the difficulty of standalone formalization at the 7B scale, though successfully parsed constraints compile at a higher rate (99.4\\% vs.\\ 96.5\\%). ICG produces fewer unique constraints per question (24.9 vs.\\ 39.3) with lower redundancy (32.3\\%), consistent with the absence of trace-level repetition. Contrastive scoring generates pro and con constraint sets for each candidate answer. The format yields far fewer unique constraints per question (9.2) with zero redundancy (each pro/con pair is structurally distinct), but 62.7\\% of constraints are trivially satisfied by Z3---they impose no logical tension and cannot discriminate between candidates. Only 51.0\\% of Contrastive constraints are discriminative, compared to 81.4\\% for standard SICA and 77.0\\% for ICG.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Constraint quality metrics across method-level interventions (Mistral-7B, FOLIO, $n = 204$). Parse: fraction of extraction attempts yielding valid JSON. Z3 Compile: fraction compiling to Z3 formulas. Unique/q: mean unique constraints per question. Redundancy: fraction of constraints duplicated across traces. Disc.: fraction discriminative (different Z3 outcome per candidate). Triv.\\ Sat.: fraction trivially satisfied (no logical tension).}\n\\label{tab:constraint_quality}\n\\begin{tabular}{@{}l rrrrrr@{}}\n\\toprule\nMethod & Parse & Z3 & Uniq/q & Redund. & Disc. & Triv.\\ Sat. \\\\\n\\midrule\nStandard SICA & 97.1\\% & 96.5\\% & 39.3 & 42.9\\% & 81.4\\% & --- \\\\\nICG & 74.6\\% & 99.4\\% & 24.9 & 32.3\\% & 77.0\\% & --- \\\\\nContrastive & 74.0\\% & 94.4\\% & 9.2 & 0.0\\% & 51.0\\% & 62.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Error Categorization of Method-Level Interventions}\n\\label{app:error-categorization}\n\nWe categorize discordant predictions (where the method and SC disagree) for Debate and Contrastive on FOLIO ($n = 204$) to understand why these interventions degrade accuracy.\n\n\\paragraph{Debate discordant analysis.} Debate produces 60 correct$\\to$wrong flips and 22 wrong$\\to$correct flips on FOLIO. Answer-type breakdown reveals that False-labeled questions are most vulnerable: 82.8\\% of False questions that SC answers correctly are flipped by Debate, compared to 63.9\\% for True and 25.5\\% for Unknown. Counterintuitively, failures concentrate not where debate breaks down but where it succeeds most thoroughly: discordant questions average 2.93 effective debate rounds (proposer-critic exchanges producing substantive updates) versus 2.52 for concordant ones. More extensive same-model debate produces more confident but incorrect constraints, consistent with the independence limitation---the critic draws on the same model distribution as the proposer, reinforcing shared biases rather than correcting them.\n\n\\paragraph{Contrastive discordant analysis.} Contrastive produces 34 discordant questions on FOLIO. All 34 produced non-degenerate scores (both pro and con constraint sets non-empty), compared to 20.1\\% degenerate scores in the full sample. This indicates that scoring failures on discordant questions stem from systematic pro-bias rather than missing constraints. Among discordant questions, 97.1\\% contain negation words in the problem statement versus 76.5\\% in the full sample, suggesting that negation-bearing problems are particularly susceptible to pro-constraint imbalance. The average pro/con score ratio is 1.0 for discordant questions versus 0.68 for the full sample: the method generates balanced-looking scores that mask directional errors.\n\n\\paragraph{Cross-method overlap.} Of the 79 unique questions on which either method disagrees with SC, only 15 overlap between Debate and Contrastive (Jaccard index $= 0.19$). All 15 shared discordant questions contain negation words. The low overlap confirms that the two methods attack different vulnerability types---Debate through extended same-model argumentation that amplifies confident errors, Contrastive through pro-bias in constraint generation---while sharing a common root cause in correlated same-model voting: both methods rely on the same model's output distribution and cannot introduce genuinely independent signal.\n\n\n\\section{TOST Equivalence Tests}\n\\label{app:tost}\n\nWe apply two one-sided tests (TOST) \\citep{lakens2017equivalence} with equivalence margin $\\pm 2$\\,pp to all 16 non-degenerate SICA--SC comparisons, classifying each condition as \\emph{equivalent} (TOST significant), \\emph{genuinely different} (McNemar $p < 0.05$ and TOST not significant), or \\emph{underpowered} (neither test significant). Four conditions are equivalent, confirming that SICA and SC produce statistically indistinguishable accuracy. Two conditions show genuine differences, both negative: Mistral-7B ProofWriter ($-2.83$\\,pp, $p = 0.014$) and Qwen2.5-14B ProofWriter ($-2.50$\\,pp, $p = 0.011$). The remaining ten conditions are underpowered, reflecting the limited statistical power at $n{=}200$--$204$ for detecting $|\\Delta| \\leq 2$\\,pp effects.\n\n\\paragraph{Margin sensitivity.} Table~\\ref{tab:tost-sensitivity} shows that the classification is robust across margins: regardless of the chosen margin, no condition shows a significant positive SICA effect.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{TOST classification sensitivity across equivalence margins (16 non-degenerate conditions).}\n\\label{tab:tost-sensitivity}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nMargin & Equivalent & Different & Underpowered \\\\\n\\midrule\n$\\pm 1$\\,pp & 0 & 2 & 14 \\\\\n$\\pm 2$\\,pp & 4 & 2 & 10 \\\\\n$\\pm 3$\\,pp & 10 & 0 & 6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Relative-margin TOST.}\n\\label{app:relative_tost}\nThe absolute $\\pm 2$\\,pp margin is more stringent at high baselines ($\\pm 2.4\\%$ relative at SC $= 85\\%$) than low ones ($\\pm 5.1\\%$ at SC $= 39\\%$). A relative $\\pm 5\\%$ of SC margin addresses this asymmetry: 8 conditions are equivalent, 2 genuinely different (both negative), and 6 underpowered. The additional four equivalent conditions are all high-SC ($\\geq 75\\%$), where the wider relative band captures practical indistinguishability. No condition shows a significant positive effect under either margin.\n\n\\paragraph{Conditional Correction Ratio data.}\n\\label{app:cil-data}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\n\\label{tab:cil_main}\n\\begin{tabular}{@{}llrr@{}}\n\\toprule\nGenerator--Verifier & Dataset & CCR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral $\\times$ BART-NLI & PW & $+$1.86 & $+$5.17 \\\\\nMistral $\\times$ DeBERTa-NLI & PW & $+$1.67 & $+$6.67 \\\\\nMistral $\\times$ RoBERTa-NLI & PW & $+$1.42 & $+$4.17 \\\\\n\\addlinespace\nQwen-14B $\\times$ DeBERTa-NLI & PW & $-$0.21 & $+$0.33 \\\\\nMistral $\\times$ DeBERTa-NLI & FOLIO & $-$0.47 & $+$2.94 \\\\\n\\addlinespace\nMistral $\\times$ SICA & FOLIO & $-$2.93 & $+$3.43 \\\\\nQwen-14B $\\times$ SICA & PW & $-$4.21 & $-$2.50 \\\\\nMistral $\\times$ SICA & PW & $-$4.61 & $-$2.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Disagreement-Routed Cascade details.}\n\\label{app:drc}\nDRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\\tau{=}0.7$ recovers 83--90\\% of full-combo gain at 35--39\\% NLI cost across both datasets.}\n\\label{tab:drc}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nDataset & Method & Acc.\\ & NLI Calls & Cost & Recovery \\\\\n\\midrule\n\\multirow{3}{*}{PW-D5} & SC only & 39.33\\% & 0/600 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{45.33\\%} & \\textbf{233/600} & \\textbf{38.8\\%} & \\textbf{90.0\\%} \\\\\n& Full combo & 46.00\\% & 600/600 & 100\\% & 100\\% \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO} & SC only & 55.88\\% & 0/204 & 0\\% & --- \\\\\n& \\textbf{DRC $\\tau{=}0.7$} & \\textbf{58.33\\%} & \\textbf{71/204} & \\textbf{34.8\\%} & \\textbf{83.3\\%} \\\\\n& Full combo & 58.82\\% & 204/204 & 100\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Multi-Verifier NLI Results}\n\\label{app:multi-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\n\\label{tab:multi-nli}\n\\begin{tabular}{@{}llrrl@{}}\n\\toprule\nVerifier & Standalone & $w$ & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\nDeBERTa-MNLI & 55.00\\% & 1 & $+$0.83 & n.s. \\\\\n & & 3 & $+$6.67 & ${<}0.001${***} \\\\\n & & 5 & $+$11.00 & ${<}0.001${***} \\\\\n\\addlinespace\nRoBERTa-MNLI & 37.67\\% & 1 & $-$0.17 & n.s. \\\\\n & & 3 & $+$4.17 & 0.003{**} \\\\\n & & 5 & $+$4.33 & 0.037{*} \\\\\n\\addlinespace\nBART-MNLI & 46.17\\% & 1 & 0.00 & n.s. \\\\\n & & 3 & $+$5.17 & ${<}0.001${***} \\\\\n & & 5 & $+$6.33 & 0.003{**} \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize All verifiers fine-tuned on MultiNLI. Unknown recall ${<}3.5\\%$ across all verifiers.}\n\\end{table}\n\n\\paragraph{Three-verifier BH correction.}\n\\label{app:3verifier-bh}\nTable~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BH correction across 3 verifiers $\\times$ 5 weights on Mistral-7B ProofWriter ($n{=}600$, $m{=}15$). \\checkmark: $p_{\\text{BH}} < 0.05$.}\n\\label{tab:3verifier-bh}\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nVerifier & $w{=}1$ & $w{=}2$ & $w{=}3$ & $w{=}4$ & $w{=}5$ \\\\\n\\midrule\nDeBERTa-MNLI & & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\nRoBERTa-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\nBART-MNLI & & & \\checkmark & \\checkmark & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize 10/15 significant at $\\alpha{=}0.05$ after BH correction. All $w{=}1$ conditions and RoBERTa $w{=}2$ are non-significant.}\n\\end{table}\n\n\\section{Capability Gap Data Points}\n\\label{app:capability-gap}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.78\\columnwidth]{figures/capability_gap_scatter}\n\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur only for generators below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (99.67\\% standalone, Table~\\ref{tab:finetuned-nli}).}\n\\label{fig:capability-gap}\n\\end{figure}\n\nTable~\\ref{tab:cross_generator_nli} reports the controlled cross-generator comparison with DeBERTa-large-mnli on ProofWriter ($n{=}600$). We extend this analysis by pairing Mistral-7B with two additional NLI architectures: BART-large-mnli (46.17\\% standalone, combo $+5.17$\\,pp, $p = 0.0002$) and RoBERTa-large-mnli (37.67\\% standalone, combo $+4.17$\\,pp, $p = 0.003$). All three NLI architectures produce significant gains on Mistral-7B at $w \\geq 3$.\n\nAcross all six ProofWriter verifier-generator pairs at $w{=}3$ (three verifiers $\\times$ Mistral-7B plus three negative-gap generators $\\times$ DeBERTa), combo gain decreases monotonically with the capability gap (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n = 6$; however, four of six conditions share the DeBERTa verifier, which may reduce effective degrees of freedom---see Limitations; Figure~\\ref{fig:capability-gap}). Significant gains are observed only for Mistral-7B (SC 39.33\\%, below the verifier); all generators with SC $\\geq 72\\%$ show no significant improvement. After BH correction ($m{=}12$), two of twelve conditions survive: Mistral-7B $w{=}3$ (adj.\\ $p = 6.78 \\times 10^{-5}$) and $w{=}5$ (adj.\\ $p = 7.42 \\times 10^{-6}$).\n\n\\paragraph{Robustness check.} Including all nine conditions (three verifiers $\\times$ three weight levels on Mistral-7B) yields Spearman $\\rho = 0.836$ (exact permutation $p = 0.007$, $n = 9$), confirming that the monotonic trend is robust to the choice of weight parameter.\n\n\\paragraph{Full NLI combo with BH correction.}\n\\label{app:nli-combo-full}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Full cross-generator NLI combo results on ProofWriter depth-5 ($n{=}600$) with Benjamini--Hochberg correction ($m{=}12$, $\\alpha{=}0.05$). All conditions use DeBERTa-large-mnli verifier (55.00\\% standalone). Two of twelve conditions survive correction (Mistral-7B $w{=}3$ and $w{=}5$). {***}\\,$p_{\\text{BH}} < 0.001$.}\n\\label{tab:nli-combo-full}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & $p_{\\text{raw}}$ & $p_{\\text{BH}}$ & \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%, gap\\,$+$15.67}}}\n  & 1 & 40.17 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 46.00 & $+$6.67 & $1.13{\\times}10^{-5}$ & $6.78{\\times}10^{-5}$ & {***} \\\\\n  & 5 & 50.33 & $+$11.00 & $6.18{\\times}10^{-7}$ & $7.42{\\times}10^{-6}$ & {***} \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%, gap\\,$-$17.50}}}\n  & 1 & 73.33 & $+$0.83 & .359 & .720 & \\\\\n  & 3 & 73.33 & $+$0.83 & .665 & .887 & \\\\\n  & 5 & 72.00 & $-$0.50 & .871 & 1.0 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen2.5-14B\\\\{\\scriptsize SC\\,74.00\\%, gap\\,$-$19.00}}}\n  & 1 & 74.17 & $+$0.17 & 1.000 & 1.0 & \\\\\n  & 3 & 74.67 & $+$0.67 & .503 & .755 & \\\\\n  & 5 & 75.17 & $+$1.17 & .360 & .720 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize SC\\,85.83\\%, gap\\,$-$30.83}}}\n  & 1 & 86.00 & $+$0.17 & 1.0 & 1.0 & \\\\\n  & 3 & 86.33 & $+$0.50 & .4531 & .755 & \\\\\n  & 5 & 87.00 & $+$1.17 & .2100 & .720 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect.}\n\\label{tab:finetuned-nli}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}lrrrrc@{}}\n\\toprule\nGenerator & $w$ & Combo (\\%) & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.17\\%}}}\n  & 1 & 42.33 & $+$3.17 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & 52.17 & $+$13.00 & \\\\\n  & 5 & 65.50 & $+$26.33 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%}}}\n  & 1 & 76.00 & $+$3.50 & \\multirow{3}{*}{164:1} \\\\\n  & 3 & 84.17 & $+$11.67 & \\\\\n  & 5 & 91.67 & $+$19.17 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}\n\\label{app:2x2}\n\nTable~\\ref{tab:2x2-folio} reports the full $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\sim}25$\\,pp vs.\\ column difference ${\\sim}3$\\,pp), contrasting with ProofWriter where the extractor dominates ($\\Delta$ range ${\\pm}40$--$50$\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\Delta = +2.94$\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\Delta = +2.94$\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\n\\label{tab:2x2-folio}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\n\\midrule\n\\multirow{2}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize $\\kappa{=}0.46$}}}\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\n\\addlinespace\n\\multirow{2}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize $\\kappa{=}0.79$}}}\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Single-Trace and Aggregation Statistics}\n\\label{app:single-trace}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Single-trace accuracy (mean $\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\ref{tab:main_results}).}\n\\label{tab:single-trace-stats}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nModel & Single (\\%) & Std & SC@12 (\\%) & Gain (pp) \\\\\n\\midrule\nMistral-7B & 46.41 & 2.80 & 55.88 & $+$9.47 \\\\\nQwen3-14B & 79.37 & 1.98 & 84.80 & $+$5.43 \\\\\nQwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\footnotesize Inter-trace standard deviation shrinks $2.8\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\S\\ref{sec:cross-arch}).}\n\\end{table}\n\n\\paragraph{Extraction temperature sensitivity.}\n\\label{app:text-sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Effect of extraction temperature $T_{\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\dagger$\\,Uses a different trace set (SC $= 54.41\\%$); all other conditions share the same traces (SC $= 55.88\\%$).}\n\\label{tab:text-sensitivity}\n\\begin{tabular}{@{}cccr@{}}\n\\toprule\n$T_{\\text{ext}}$ & SICA (\\%) & $\\Delta$ vs.\\ SC (pp) & Avg.\\ \\#Constr. \\\\\n\\midrule\n0.1 & 57.35 & $+$1.47 & 69.3 \\\\\n$0.3^\\dagger$ & 59.31 & $+$3.43 & 68.8 \\\\\n0.5 & 56.37 & $+$0.49 & 68.2 \\\\\n0.7 & 53.43 & $-$2.45 & 67.3 \\\\\n1.0 & 55.39 & $-$0.49 & 65.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nControlling for the trace set (excluding $T_{\\text{ext}} = 0.3$, which uses a different seed), all conditions yield $\\Delta \\leq +1.47$\\,pp (n.s.), indicating that extraction temperature has no significant effect on SICA accuracy. This supports the structural nature of symbolic confirmation bias: the bottleneck is what gets extracted, not the temperature at which extraction occurs.\n\n\\paragraph{Multi-seed replication.}\n\\label{app:multi-seed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Multi-seed replication results. Each row is an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mean $\\pm$ SD computed across seeds. Mistral-7B shows directionally unstable $\\Delta$ ($+0.16 \\pm 2.70$\\,pp); all Qwen2.5-14B seeds show $\\Delta \\leq 0$.}\n\\label{tab:multi-seed}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nSeed & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Mistral-7B $\\times$ FOLIO ($n{=}204$)\\textsuperscript{a}}} \\\\\n123 & 54.41 & 57.35 & $+$2.94 \\\\\n456 & 55.88 & 55.88 & 0.00 \\\\\n789 & 59.31 & 56.86 & $-$2.45 \\\\\n\\midrule\nMean $\\pm$ SD & 56.53 $\\pm$ 2.51 & 56.70 $\\pm$ 0.75 & $+$0.16 $\\pm$ 2.70 \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Qwen2.5-14B $\\times$ FOLIO ($n{=}204$)}} \\\\\n42 & 77.50 & 75.49 & $-$2.01 \\\\\n123 & 74.51 & 73.04 & $-$1.47 \\\\\n456 & 74.02 & 74.02 & 0.00 \\\\\n789 & 74.02 & 72.55 & $-$1.47 \\\\\n\\midrule\nMean $\\pm$ SD & 75.01 $\\pm$ 1.67 & 73.78 $\\pm$ 1.30 & $-$1.24 $\\pm$ 0.86 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{a}Original baseline (exp033) used no fixed seed and is excluded from seed statistics.}\n\\end{table}\n\n\\subsection{Sub-population Analysis}\n\\label{app:subpopulation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\Delta$\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\n\\label{tab:subpop-answer-type}\n\\begin{tabular}{ll rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Label} & $n$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{4}{*}{FOLIO-204}\n & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\\\\n & False   &  63 & 42.9 & 42.9 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\\\\n & \\textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\\\\n\\midrule\n\\multirow{4}{*}{PW-600}\n & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\\\\n & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\\\\n & Unknown & 200 & 90.0 & 89.0 & $-$1.0 & .774 \\\\\n & \\textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\\rlap{*} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}\n\\label{tab:subpop-constraint}\n\\begin{tabular}{ll rr rrr rr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Tertile} & $n$ & $\\bar{c}$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\n\\midrule\n\\multirow{3}{*}{FOLIO-204}\n & Low \\scriptsize{[0--32]}   &  74 & 21.7 & 62.2 & 63.5 & $+$1.4 & 1.0\\hphantom{00} \\\\\n & Mid \\scriptsize{[33--47]}  &  64 & 39.7 & 50.0 & 59.4 & $+$9.4 & .031\\rlap{*} \\\\\n & High \\scriptsize{[48--83]} &  66 & 58.7 & 54.5 & 54.5 & $\\pm$0.0 & 1.0\\hphantom{00} \\\\\n\\midrule\n\\multirow{3}{*}{PW-600}\n & Low \\scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\\\\n & Mid \\scriptsize{[40--52]}  & 196 & 45.8 & 40.8 & 37.2 & $-$3.6 & .143 \\\\\n & High \\scriptsize{[53--99]} & 192 & 63.7 & 32.8 & 32.3 & $-$0.5 & 1.0\\hphantom{00} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn FOLIO-204 with the corrected SC baseline (alphabetical tiebreaking), SICA improves over SC by $+$3.4\\,pp overall (55.9\\% $\\to$ 59.3\\%), though the aggregate McNemar test is marginally non-significant ($p{=}.092$).\nThe gain concentrates in the mid-constraint tertile ($+$9.4\\,pp, $p{=}.031$), where sufficient symbolic evidence exists for MaxSAT to meaningfully re-rank answers; in the low- and high-constraint groups the methods perform comparably.\nOn ProofWriter-600, SICA shows a small uniform degradation consistent with the main results, attenuating in the high-constraint tertile ($\\Delta{=}{-}0.5$\\,pp, $p{=}1.0$).\nWe note that with six subgroup tests, one significant result at $\\alpha{=}0.05$ is expected by chance; the mid-constraint finding should be interpreted as exploratory.\n\n\\paragraph{Individual intervention significance.}\n\\label{app:intervention-individual}\nOf the 27 training-free remediation strategies (Figure~\\ref{fig:interventions-summary}), the two largest positive effects are Cross-model Qwen3$\\to$Mistral ($+0.98$\\,pp) and Generational ($+0.49$\\,pp); neither approaches statistical significance ($p > 0.5$ for both). The largest negative effects are LLM-Debate ($-18.6$\\,pp, $p < 0.001$) and Contrastive Scoring ($-9.3$\\,pp, $p < 0.001$). After BH correction across all 27 comparisons, only these two negative results remain significant. No strategy produces a significant positive effect under any correction procedure.\n\n\\section{Extended Discussion and Limitations}\n\\label{app:extended-discussion}\n\\label{app:limitations-extended}\n\n\\paragraph{SCB versus CoT unfaithfulness.}\nSCB is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}. CoT unfaithfulness concerns whether stated reasoning reflects actual computation; SCB concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution. Even if traces were perfectly faithful, self-extraction would still inherit the distributional bias---the constraint $P(\\text{answer\\_A})$ reflects vote share, not logical validity. The shuffle control (\\S\\ref{sec:confirmation-bias}) confirms this: randomizing constraint--answer associations preserves BR, showing the bias is in the trace-count distribution, not in extraction-specific errors. However, if traces are unfaithful, the mirage may be worse than our measurements suggest, because constraints would reflect not the model's reasoning but its post-hoc rationalization.\n\n\\paragraph{Implications for neuro-symbolic practitioners.}\nOur results do not imply that neuro-symbolic methods are inherently flawed---they imply that \\emph{self-extracted} constraints cannot provide independent verification. The key distinction is \\emph{when} formalization occurs relative to answer generation. Specification-generation approaches (e.g., SatLM \\citep{ye2024satlm}, Logic-LM \\citep{pan2023logiclm}) formalize the problem \\emph{before} generating candidate answers, avoiding the extraction bottleneck; SatLM's success confirms that the formal verification mechanism is sound when constraints are independently derived. Trace-extraction (this work) operates post-hoc on reasoning traces that already contain candidates, inheriting the distributional prior that generates SCB. When post-hoc verification is unavoidable, practitioners should employ external verifiers from a different architecture family (\\S\\ref{sec:cross-arch}) and use the diagnostic framework in \\S\\ref{sec:discussion} to assess feasibility before deployment. The SCB diagnostic toolkit (below) provides detailed computation methods and threshold recommendations.\n\n\\paragraph{Test-time scaling implications.}\nVote diversity decreases with model capability: $K_\\text{eff}$ drops from 3.62 (Mistral-7B on ProofWriter) to 1.09 (Qwen3-14B thinking mode). This creates a fundamental tension for o1/R1-style scaling \\citep{guo2025deepseekr1}: longer reasoning chains produce more coherent but less diverse traces, reducing the marginal value of additional samples. Our Process-$\\kappa$ analysis (\\S\\ref{sec:process-kappa}) reveals that this homogenization operates at the reasoning-process level, not just answer level---traces that disagree on final answers still share 69\\% of their reasoning structure. Cross-architecture ensembles offer a path forward, but the capability-gap condition (\\S\\ref{sec:cross-arch}) implies that the verifier must be genuinely complementary, not just different.\n\n\\paragraph{SCB diagnostic toolkit.}\n\\label{app:diagnostic-toolkit}\nWe recommend four zero-cost diagnostics, computable from sampled traces alone, to predict whether symbolic self-verification will help or hurt before deployment.\n\\emph{Bias Ratio} (BR; \\S\\ref{sec:confirmation-bias}): for each problem, compute the fraction of constraints supporting the majority answer, divided by majority vote share. $\\text{BR} > 1$ indicates constraints are biased toward the majority; $\\text{BR} \\gg 2$ (as in all nine models tested; Table~\\ref{tab:frontier-scb}) signals that extraction amplifies rather than checks the model's prior. Report as mean $\\pm$ bootstrap 95\\% CI.\n\\emph{Effective-K} ($K_\\text{eff}$; Eq.~\\ref{eq:effk}): compute Fleiss' $\\kappa$ across $K$ traces, then $K_\\text{eff} = 1 + (K-1)(1-\\kappa)$. Threshold: $K_\\text{eff} \\leq 1.3$ never improves in our experiments---aggregation collapses to majority voting. $K_\\text{eff} > 1.8$ is a necessary (not sufficient) condition for gain.\n\\emph{Degenerate Consensus} ($C_0$; \\S\\ref{sec:condorcet}): the fraction of problems where all $K$ traces agree. $C_0 > 95\\%$ renders aggregation moot; $C_0 < 5\\%$ means the model is maximally uncertain and constraints tend to amplify noise.\n\\emph{ProcessSim} (Eq.~\\ref{eq:process-sim}): mean pairwise cosine similarity of TF-IDF trace vectors. $\\text{ProcessSim} > 0.6$ indicates homogeneous reasoning; combined with $\\text{BR} > 2$, this predicts SCB will dominate.\nA practitioner should compute all four on a held-out sample ($n \\geq 50$). If $K_\\text{eff} \\leq 1.3$ or $C_0 > 95\\%$ or ($\\text{BR} > 2$ and $\\text{ProcessSim} > 0.6$), symbolic self-verification is unlikely to help.\n\n\\paragraph{Future directions: trained extractors and beyond.}\n\\label{app:future-directions}\nOur oracle controls reveal that perfect extraction would yield $+29.90$\\,pp over SC on Mistral-7B FOLIO---self-extraction captures only ${\\sim}12\\%$ of this ceiling. This gap motivates several future directions.\n\\emph{Trained constraint extractors}: fine-tuning a small model (e.g., encoder-only) on human-annotated FOL from logic benchmarks could produce genuinely discriminative constraints that break the distributional prior. The key design constraint is structural independence---the extractor should not share training data or architecture with the generator, mirroring the cross-architecture NLI escape (\\S\\ref{sec:cross-arch}).\n\\emph{Multi-model ensembles}: rather than single cross-architecture pairs, combining $M$ structurally independent verifiers could further reduce correlated errors. The capability-gap condition (\\S\\ref{sec:cross-arch}) predicts that each verifier must exceed the generator on the target task to contribute positively; empirical verification across heterogeneous verifier pools is needed.\n\\emph{External knowledge grounding}: connecting to knowledge bases (Wikidata, domain ontologies) could inject verification signal absent from any model's parameters. This avoids SCB entirely by grounding constraints in external facts rather than self-generated traces.\n\\emph{SCB-aware aggregation}: current MAX-SAT aggregation treats all constraints equally. Weighting constraints by estimated independence (e.g., inverse ProcessSim with other traces' constraints) or by discriminative power (e.g., cross-validation on held-out traces) could partially mitigate SCB without requiring external verifiers.\n\n\\paragraph{SCB as an evaluation framework.}\n\\label{app:scb-evaluation}\nThe SCB metrics---BR, $K_\\text{eff}$, ProcessSim, and CCR---can serve as a general evaluation framework for self-improvement methods beyond SICA. Any method that extracts structured representations from a model's own outputs (self-verification \\citep{huang2024selfcorrect}, self-refinement \\citep{madaan2023selfrefine}, chain-of-verification \\citep{dhuliawala2023chainofverification}, self-consistency \\citep{wang2023sc}) faces the distributional prior that generates SCB. We propose that future work on self-improvement methods report: (1)~BR on error cases (does the method's verification signal correlate with the model's majority answer, or does it provide independent information?); (2)~$K_\\text{eff}$ or an analogous diversity metric (does the method generate genuinely diverse candidates, or does it amplify a single mode?); (3)~CCR (does the method preferentially correct errors, or does it preferentially confirm them?). A method with $\\text{BR} < 1$, high $K_\\text{eff}$, and $\\text{CCR} > 0$ demonstrates genuine self-improvement; $\\text{BR} > 1$ with $\\text{CCR} < 0$ indicates that the method suffers from SCB regardless of aggregate accuracy gains, which may reflect favorable base rates rather than corrective signal.\n\n\\paragraph{Extended limitations.}\n\nBeyond the limitations discussed in the main text, several additional constraints bound our conclusions. Seven of our eleven model-domain conditions have $n \\leq 60$, providing insufficient statistical power for confirmatory claims; power analysis shows that the minimum detectable effect exceeds 5\\,pp for these conditions (Table~\\ref{tab:power}), so they serve as regime characterization rather than definitive tests. Our extraction prompts use a single zero-shot template per domain; alternative prompting strategies (few-shot exemplars, chain-of-thought extraction, or iterative refinement) might yield higher-quality constraints, though the oracle gap suggests the bottleneck is structural rather than prompt-specific. The constraint quality analysis (91.8\\% discriminative rate, 39.2\\% source-trace minority weight) covers Qwen2.5-14B on FOLIO + ProofWriter ($N = 804$); other model-domain combinations may exhibit different characteristics. Constraint extraction uses $T_{\\text{ext}} = 0.3$ while trace sampling uses $T = 0.7$; alternative extraction temperatures might yield different results. Although we prompt for first-order logic formalizations, 99.0\\% of extracted constraints are propositional at the Z3 level, with only 1.0\\% using true quantifiers ($\\forall$/$\\exists$); whether models capable of genuine quantified reasoning would yield higher discriminative rates is untested. Deduplication uses syntactic equivalence (global average dedup ratio: 46.0\\%), so semantically equivalent constraints with different surface forms receive separate weights; Z3-based semantic deduplication removes an additional ${\\sim}$10\\% of constraints and yields a small but significant improvement over no deduplication ($p = 0.013$), suggesting room for better dedup strategies. The GSM8K pilot ($n = 30$) illustrates the constraint-absent regime and should not be interpreted as confirmatory evidence.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 998,
+        "oldLines": 10,
+        "newStart": 998,
+        "newLines": 10,
+        "lines": [
+          " \\toprule",
+          " Generator & $w$ & Combo (\\%) & $\\Delta$ (pp) & Compl.\\ ratio \\\\",
+          " \\midrule",
+          "-\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.17\\%}}}",
+          "-  & 1 & 42.33 & $+$3.17 & \\multirow{3}{*}{365:2} \\\\",
+          "-  & 3 & 52.17 & $+$13.00 & \\\\",
+          "-  & 5 & 65.50 & $+$26.33 & \\\\",
+          "+\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%}}}",
+          "+  & 1 & 42.33 & $+$3.00 & \\multirow{3}{*}{365:2} \\\\",
+          "+  & 3 & 52.17 & $+$12.83 & \\\\",
+          "+  & 5 & 65.50 & $+$26.17 & \\\\",
+          " \\addlinespace",
+          " \\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,72.50\\%}}}",
+          "   & 1 & 76.00 & $+$3.50 & \\multirow{3}{*}{164:1} \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 107_
+
+Appendix done. Now editing solutions.tex, abstract.tex, introduction.tex, and the local scatter plot.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "39bc4fef-1d47-48cb-8d32-4555ed5e82a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Mmge9YMwKjG4JkJT31eiKR`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "55.00\\% on ProofWriter (above SC's 39.17\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+7.00$\\,pp, $p < 0.001$)",
+  "new_string": "55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "edfba464-3486-4450-aa08-bd1f4bf5cb39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 109 · 2026-05-22T22:34:37.193Z_
+
+<details><summary>↩ Tool result · `toolu_01Mmge9YMwKjG4JkJT31eiKR`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "7d5f9b0a-8d93-4af7-b944-e379f2add316",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "oldString": "55.00\\% on ProofWriter (above SC's 39.17\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+7.00$\\,pp, $p < 0.001$)",
+    "newString": "55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$)",
+    "originalFile": "\\section{Cross-Architecture Proof-of-Concept}\n\\label{sec:solutions}\n\\label{sec:cross-arch}\n\n\\paragraph{Method.}\n\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n\n\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.17\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+7.00$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).\n\n\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. Only Mistral-7B (SC below the verifier) shows a significant gain.}\n\\label{tab:cross_generator_nli}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n\\midrule\nMistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\\nLLaMA-3.1-8B & LLaMA & 72.50\\% & $-$17.50 & $+$0.83\\,pp & 0.665 \\\\\nQwen2.5-14B & Qwen & 74.00\\% & $-$19.00 & $+$0.67\\,pp & 0.503 \\\\\nQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier.}\n\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 6,
+        "oldLines": 7,
+        "newStart": 6,
+        "newLines": 7,
+        "lines": [
+          " \\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).",
+          " ",
+          " \\paragraph{Main result.}",
+          "-\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.17\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+7.00$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).",
+          "+\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).",
+          " ",
+          " \\paragraph{Capability gap hypothesis.}",
+          " \\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HdEjc1kbNZ8owkZXwKXcbH`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$)",
+  "new_string": "only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "a82fac27-b4d6-4889-998c-99cc31060951",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 111 · 2026-05-22T22:34:39.102Z_
+
+<details><summary>↩ Tool result · `toolu_01HdEjc1kbNZ8owkZXwKXcbH`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "40eb6c1d-ff63-48e5-948c-b825445d2e6d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "oldString": "only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$)",
+    "newString": "only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$)",
+    "originalFile": "\\section{Cross-Architecture Proof-of-Concept}\n\\label{sec:solutions}\n\\label{sec:cross-arch}\n\n\\paragraph{Method.}\n\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n\n\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).\n\n\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. Only Mistral-7B (SC below the verifier) shows a significant gain.}\n\\label{tab:cross_generator_nli}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n\\midrule\nMistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\\nLLaMA-3.1-8B & LLaMA & 72.50\\% & $-$17.50 & $+$0.83\\,pp & 0.665 \\\\\nQwen2.5-14B & Qwen & 74.00\\% & $-$19.00 & $+$0.67\\,pp & 0.503 \\\\\nQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier.}\n\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " \\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).",
+          " ",
+          " \\paragraph{Capability gap hypothesis.}",
+          "-\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly ($+7.00$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).",
+          "+\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).",
+          " ",
+          " \\begin{table}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01URTXz85KYiFEePt785g1ER`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "Mistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\",
+  "new_string": "Mistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "0e74ee35-e21b-4124-b004-73f4f23d4fcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 113 · 2026-05-22T22:34:41.508Z_
+
+<details><summary>↩ Tool result · `toolu_01URTXz85KYiFEePt785g1ER`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "8c3ce24b-c307-42cf-ba6f-07b271ee81ae",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "oldString": "Mistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\",
+    "newString": "Mistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\",
+    "originalFile": "\\section{Cross-Architecture Proof-of-Concept}\n\\label{sec:solutions}\n\\label{sec:cross-arch}\n\n\\paragraph{Method.}\n\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n\n\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).\n\n\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. Only Mistral-7B (SC below the verifier) shows a significant gain.}\n\\label{tab:cross_generator_nli}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n\\midrule\nMistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\\nLLaMA-3.1-8B & LLaMA & 72.50\\% & $-$17.50 & $+$0.83\\,pp & 0.665 \\\\\nQwen2.5-14B & Qwen & 74.00\\% & $-$19.00 & $+$0.67\\,pp & 0.503 \\\\\nQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier.}\n\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 20,
+        "oldLines": 7,
+        "newStart": 20,
+        "newLines": 7,
+        "lines": [
+          " \\toprule",
+          " Generator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\",
+          " \\midrule",
+          "-Mistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001 \\\\",
+          "+Mistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\",
+          " LLaMA-3.1-8B & LLaMA & 72.50\\% & $-$17.50 & $+$0.83\\,pp & 0.665 \\\\",
+          " Qwen2.5-14B & Qwen & 74.00\\% & $-$19.00 & $+$0.67\\,pp & 0.503 \\\\",
+          " Qwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014UFDhWuMSj9QkwLaE3C3nx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+  "old_string": "combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$)",
+  "new_string": "combo gains reach $+$12.83\\,pp (Mistral-7B, $w{=}3$)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "cde9fb7f-77e7-43f9-8d10-307992c171f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 115 · 2026-05-22T22:34:42.872Z_
+
+<details><summary>↩ Tool result · `toolu_014UFDhWuMSj9QkwLaE3C3nx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "7c84be8d-2ef7-493c-babf-96f7d4dea61a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+    "oldString": "combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$)",
+    "newString": "combo gains reach $+$12.83\\,pp (Mistral-7B, $w{=}3$)",
+    "originalFile": "\\section{Cross-Architecture Proof-of-Concept}\n\\label{sec:solutions}\n\\label{sec:cross-arch}\n\n\\paragraph{Method.}\n\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n\n\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ yields a significant gain only for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); all generators with SC $\\geq 72\\%$ show no significant improvement ($\\Delta \\leq +0.83$\\,pp, $p > 0.4$). Same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), two conditions remain significant (Appendix~\\ref{app:capability-gap}).\n\n\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 47-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): only Mistral-7B (SC 39.33\\%, below the verifier) gains significantly ($+6.67$\\,pp, $p < 0.001$); all three generators above the verifier (SC $\\geq 72\\%$) show no significant improvement ($\\Delta \\leq +0.83$\\,pp). Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. Only Mistral-7B (SC below the verifier) shows a significant gain.}\n\\label{tab:cross_generator_nli}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n\\midrule\nMistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\\nLLaMA-3.1-8B & LLaMA & 72.50\\% & $-$17.50 & $+$0.83\\,pp & 0.665 \\\\\nQwen2.5-14B & Qwen & 74.00\\% & $-$19.00 & $+$0.67\\,pp & 0.503 \\\\\nQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier.}\n\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 29,
+        "oldLines": 4,
+        "newStart": 29,
+        "newLines": 4,
+        "lines": [
+          " \\end{table}",
+          " ",
+          " \\paragraph{Domain-adapted verifier.}",
+          "-\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$13.00\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc}).",
+          "+\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach $+$12.83\\,pp (Mistral-7B, $w{=}3$) and $+$11.67\\,pp (LLaMA-8B)---a $14\\times$ amplification over LLaMA's zero-shot result ($+0.83 \\to +11.67$\\,pp)---with near-total error complementarity ($365{:}2$ and $164{:}1$; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade recovers 90\\% of full-combo gain at 35\\% NLI cost (Appendix~\\ref{app:drc})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01DVLd9bF6BRvKFEEHvBLGbD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+  "old_string": "($+7.00$\\,pp zero-shot on the weakest generator, $p < 0.001$",
+  "new_string": "($+6.67$\\,pp zero-shot on the weakest generator, $p < 0.001$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "27934d91-0938-426d-b4fe-d4e99890d26f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 117 · 2026-05-22T22:34:44.811Z_
+
+<details><summary>↩ Tool result · `toolu_01DVLd9bF6BRvKFEEHvBLGbD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "ef964fc4-f80f-4e44-9177-31425f3d07ec",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+    "oldString": "($+7.00$\\,pp zero-shot on the weakest generator, $p < 0.001$",
+    "newString": "($+6.67$\\,pp zero-shot on the weakest generator, $p < 0.001$",
+    "originalFile": "Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.\nWe investigate whether symbolic constraint extraction can break this plateau through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT.\nAcross six open-source LLMs (7B--32B) on three logical reasoning domains with over 3,000 condition-evaluations (${\\sim}$1,250 unique instances), we find no evidence of improvement (aggregate sign test: 8+/7$-$, $p = 1.00$; none of sixteen non-degenerate conditions shows a significant positive effect after FDR control), with equivalence established in four conditions, significant degradation in two, and ten remaining underpowered for effects below ${\\sim}$2 percentage points.\nWe trace the failure to \\emph{symbolic confirmation bias} (SCB): on incorrect problems, 83.3\\% of self-extracted constraints support the wrong majority answer (bias ratios ranging from $1.66\\times$ to $4.97\\times$), but a shuffle control shows this bias is structural---it reflects trace-count distributions rather than extraction-specific error ($\\text{BR}_\\text{obs} \\approx \\text{BR}_\\text{null}$, $p > 0.7$). MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems, confirming that the formal verification layer adds no information beyond majority voting despite 99\\% of constraints passing Z3 validation.\nCross-model extraction confirms SCB universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$), though frontier models use cross-model rather than self-extraction.\nTwenty-seven training-free remediation strategies spanning fifteen families all fail, confirming a persistent independence-accuracy trade-off.\nOracle controls confirm the aggregation mechanism is sound ($+29.90$\\,pp, $+13.73$\\,pp FOLIO, $+17.17$\\,pp ProofWriter; $p < 0.001$); same-model self-extraction captures only ${\\sim}$12\\% of this ceiling.\nCross-architecture NLI verification escapes the bottleneck ($+7.00$\\,pp zero-shot on the weakest generator, $p < 0.001$; $+$13--26\\,pp with domain adaptation extending to generators with SC up to 72\\%), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).\nThree zero-cost diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly classify all 60 tested conditions, giving practitioners an a priori prediction of whether symbolic aggregation will help.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 5,
+        "oldLines": 5,
+        "newStart": 5,
+        "newLines": 5,
+        "lines": [
+          " Cross-model extraction confirms SCB universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$), though frontier models use cross-model rather than self-extraction.",
+          " Twenty-seven training-free remediation strategies spanning fifteen families all fail, confirming a persistent independence-accuracy trade-off.",
+          " Oracle controls confirm the aggregation mechanism is sound ($+29.90$\\,pp, $+13.73$\\,pp FOLIO, $+17.17$\\,pp ProofWriter; $p < 0.001$); same-model self-extraction captures only ${\\sim}$12\\% of this ceiling.",
+          "-Cross-architecture NLI verification escapes the bottleneck ($+7.00$\\,pp zero-shot on the weakest generator, $p < 0.001$; $+$13--26\\,pp with domain adaptation extending to generators with SC up to 72\\%), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).",
+          "+Cross-architecture NLI verification escapes the bottleneck ($+6.67$\\,pp zero-shot on the weakest generator, $p < 0.001$; $+$13--26\\,pp with domain adaptation extending to generators with SC up to 72\\%), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).",
+          " Three zero-cost diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly classify all 60 tested conditions, giving practitioners an a priori prediction of whether symbolic aggregation will help."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01ATM8jGP1u59cwc7ePaiQeW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+  "old_string": "zero-shot DeBERTa NLI yields $+7.00$\\,pp on Mistral-7B ProofWriter",
+  "new_string": "zero-shot DeBERTa NLI yields $+6.67$\\,pp on Mistral-7B ProofWriter"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "911a1cd0-7e1e-41da-8c23-c4e23e56566a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 119 · 2026-05-22T22:34:46.248Z_
+
+<details><summary>↩ Tool result · `toolu_01ATM8jGP1u59cwc7ePaiQeW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "f4fba17f-4907-4d34-9ec4-f2b51352f1e7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex",
+    "oldString": "zero-shot DeBERTa NLI yields $+7.00$\\,pp on Mistral-7B ProofWriter",
+    "newString": "zero-shot DeBERTa NLI yields $+6.67$\\,pp on Mistral-7B ProofWriter",
+    "originalFile": "\\section{Introduction}\\label{sec:introduction}\n\nTest-time computation scaling through multiple reasoning samples has emerged as a practical alternative to scaling model parameters \\citep{snell2025scaling, guo2025deepseekr1}.\nThe dominant aggregation strategy, Self-Consistency (SC) \\citep{wang2023sc}, samples $K$ chain-of-thought traces and selects the majority answer.\nSC is simple, model-agnostic, and effective---but it is hitting a ceiling.\n\\citet{loo2025reevaluating} demonstrate that gains from increasing $K$ plateau and even decline for strong models.\nThe gap between SC's theoretical promise (independent correct voters converge to truth) and its practical behavior (saturating gains) points to a structural mismatch: same-model traces carry correlated errors, and majority voting has no mechanism to correct shared bias.\n\nConfidence-weighted \\citep{taubenfeld2025cisc} and universal \\citep{chen2024usc} extensions alleviate this, but the core limitation persists.\nRecent neuro-symbolic methods \\citep{pan2023logiclm, olausson2023linc, xu2026dylos, li2025aristotle, wang2025fover, luo2025logicagent} report gains on logical reasoning but introduce components beyond the reasoning model.\nA simpler question precedes these: can the \\emph{same} model extract useful formal constraints from its own traces---a zero-cost upgrade requiring no additional model or data?\nNo prior work has systematically evaluated this.\n\nWe ground our analysis in the Condorcet Jury Theorem (CJT) \\citep{condorcet1785}: if $K$ independent voters each answer correctly with probability $p > 0.5$, the majority converges to truth \\citep{austensmith1996}.\nWhen independence fails \\citep{ladha1992correlated}, additional samples carry diminishing information.\nMeasuring inter-trace agreement with Fleiss' $\\kappa$ \\citep{fleiss1971kappa}, we find $\\kappa = 0.21$--$0.82$ across instruction-tuned conditions, yielding $K_{\\text{eff}}$ as an ordinal diagnostic of vote diversity ($K_{\\text{eff}} \\approx 1.2$--$3.6$ for nominal $K = 12$; \\S\\ref{sec:condorcet}).\nChain-of-thought cosine similarity ($0.69$) far exceeds answer-level $\\kappa$ ($0.46$), revealing that traces share reasoning processes even when they diverge on final answers (\\S\\ref{sec:process-kappa}).\nWhen the same model extracts logical constraints from these correlated traces, the constraints exhibit \\emph{symbolic confirmation bias} (SCB): on problems where the model errs, 83.3\\% of self-extracted constraints support the wrong majority answer (bias ratios $1.66$--$4.97\\times$ across nine models), and 94\\% of errors overlap with SC (\\S\\ref{sec:confirmation-bias}).\nA shuffle control shows this bias is structural: it reflects the trace-count distribution rather than extraction-specific error.\nSelf-extraction cannot supply the independent signal that CJT requires.\n\nWe study this through Symbolic Invariant Consensus Aggregation (SICA), which extracts logical constraints from reasoning traces and selects answers via weighted partial MAX-SAT (\\S\\ref{sec:pipeline}; Figure~\\ref{fig:pipeline}).\nAcross six open-source models (7B--32B), three domains (FOLIO \\citep{han2022folio}, ProofWriter \\citep{tafjord2021proofwriter}, LogiQA \\citep{liu2020logiqa}), and over 3,000 condition-evaluations with four-seed replication, twenty-seven training-free remediation strategies spanning fifteen families all produce neutral or negative results (Table~\\ref{tab:main_results}).\nPrior work shows LLMs struggle with natural-language self-correction \\citep{huang2024selfcorrect} and that LLM-generated logical formulas can be unreliable \\citep{stechly2025selfverification}. Our formal channel is provably sound---the failure is precisely localizable to the extraction step. The assumption that formalizing reasoning provides \\emph{independent} verification evidence fails not because Z3 is unreliable (99\\% of constraints are syntactically valid), but because extraction inherits the model's biases: MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems, rendering the formal layer vacuous.\n\nOracle controls confirm the mechanism is sound ($+29.90$\\,pp Mistral-7B, $+13.73$\\,pp Qwen-14B on FOLIO, $p < 0.001$; Appendix~\\ref{app:oracle}), yet self-extraction captures only ${\\sim}$12\\% of this ceiling.\nThe central finding is a persistent independence-accuracy trade-off \\citep{krogh1994neural}: Debate reduces $\\kappa$ to 0.15 but collapses accuracy ($-18.6$\\,pp); other methods cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling across three families (\\S\\ref{sec:remediation}).\nA cross-architecture proof-of-concept escapes the bottleneck: zero-shot DeBERTa NLI yields $+7.00$\\,pp on Mistral-7B ProofWriter ($p < 0.001$) but no significant gain for stronger generators; domain-adapted NLI amplifies gains to $+$13--26\\,pp ($p < 0.0001$), extending to generators with SC up to 72\\% (\\S\\ref{sec:cross-arch}).\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item \\textbf{Quantifying symbolic confirmation bias in formal self-verification.} While the general difficulty of LLM self-correction is known \\citep{huang2024selfcorrect}, we provide the first quantitative characterization of symbolic confirmation bias in formal self-verification, demonstrating that provably sound verification machinery becomes informationally vacuous under self-extraction: 83.3\\% of self-extracted constraints support the wrong answer (BR $1.66$--$4.97\\times$ across nine models), yet 99\\% pass Z3 validation. A shuffle control and MAX-SAT ablation show this bias is structural---the formal layer adds no information beyond majority voting. Twenty-seven training-free strategies fail to break it; cross-model extraction confirms universality across nine models from 7B to frontier (\\S\\ref{sec:confirmation-bias}).\n\n\\item \\textbf{General diagnostic framework for trace-aggregation methods.} Three diagnostics ($K_\\text{eff}$, BR, $C_0$) correctly predict success or failure across all 60 tested conditions spanning self-extraction, training-free remediation, cross-architecture verification, and oracle controls. Decision boundaries---$C_0 < 5\\%$ (degenerate), $K_\\text{eff} \\leq 1.3$ (diversity-limited), $\\text{BR} > 2\\times$ (bias-dominated), $\\kappa_\\text{same} \\geq 0.40$ (same-model ceiling)---provide zero-cost prediction of symbolic aggregation viability. The framework extends to any method extracting structured representations from LLM traces (\\S\\ref{sec:remediation}, \\S\\ref{sec:cross-arch}).\n\n\\item \\textbf{Process-level independence analysis.} CoT cosine similarity ($0.69$--$0.79$) exceeds answer-level $\\kappa$ ($0.45$--$0.74$) across four models from three families; under cross-model extraction on frontier models, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; \\S\\ref{sec:process-kappa}).\n\\end{enumerate}\n\n\\begin{figure}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{\\begin{tikzpicture}[\n    node distance=0.3cm and 0.1cm,\n    box/.style={draw, rounded corners=2pt, minimum height=0.55cm,\n                text width=1.2cm, align=center, font=\\scriptsize},\n    arr/.style={-{Stealth[length=4pt]}, thick},\n    darr/.style={-{Stealth[length=4pt]}, thick, densely dashed},\n    lbl/.style={font=\\scriptsize, text=gray!70!black},\n    ibottle/.style={draw=red!70!black, densely dashed, rounded corners=3pt,\n                    inner sep=3pt},\n]\n\\node[box] (q) {Question $q$};\n\\node[box, right=of q] (sample) {Sample $K$\\\\traces};\n\\node[box, right=of sample] (extract) {Extract logical\\\\constraints};\n\\node[box, right=of extract] (dedup) {Dedup.\\ +\\\\weight};\n\\node[box, right=of dedup] (maxsat) {MAX-SAT\\\\(Z3)};\n\n\\node[box, below=0.7cm of maxsat, fill=gray!12] (ans) {Answer $a^*$};\n\\node[box, below=0.7cm of sample, fill=gray!12] (sc) {Majority\\\\vote};\n\n\\draw[arr] (q) -- (sample);\n\\draw[arr] (sample) -- (extract);\n\\draw[arr] (extract) -- (dedup);\n\\draw[arr] (dedup) -- (maxsat);\n\\draw[arr] (maxsat) -- (ans);\n\\draw[arr] (sample) -- node[lbl, right, yshift=0pt] {SC} (sc);\n\n\\node[lbl, above=0.01cm of maxsat] {SICA};\n\n\\node[ibottle, fit=(sample)(extract), label={[font=\\scriptsize\\itshape, text=red!70!black]above:Independence Bottleneck}] {};\n\n\\draw[darr, gray!60] ([xshift=-0.1cm]dedup.south) -- ++(0,-0.35) node[lbl, below, yshift=-0.05cm] {oracle: gold FOL};\n\\end{tikzpicture}}\n\\caption{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}\n\\label{fig:pipeline}\n\\end{figure}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 25,
+        "oldLines": 7,
+        "newStart": 25,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Oracle controls confirm the mechanism is sound ($+29.90$\\,pp Mistral-7B, $+13.73$\\,pp Qwen-14B on FOLIO, $p < 0.001$; Appendix~\\ref{app:oracle}), yet self-extraction captures only ${\\sim}$12\\% of this ceiling.",
+          " The central finding is a persistent independence-accuracy trade-off \\citep{krogh1994neural}: Debate reduces $\\kappa$ to 0.15 but collapses accuracy ($-18.6$\\,pp); other methods cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling across three families (\\S\\ref{sec:remediation}).",
+          "-A cross-architecture proof-of-concept escapes the bottleneck: zero-shot DeBERTa NLI yields $+7.00$\\,pp on Mistral-7B ProofWriter ($p < 0.001$) but no significant gain for stronger generators; domain-adapted NLI amplifies gains to $+$13--26\\,pp ($p < 0.0001$), extending to generators with SC up to 72\\% (\\S\\ref{sec:cross-arch}).",
+          "+A cross-architecture proof-of-concept escapes the bottleneck: zero-shot DeBERTa NLI yields $+6.67$\\,pp on Mistral-7B ProofWriter ($p < 0.001$) but no significant gain for stronger generators; domain-adapted NLI amplifies gains to $+$13--26\\,pp ($p < 0.0001$), extending to generators with SC up to 72\\% (\\S\\ref{sec:cross-arch}).",
+          " ",
+          " Our contributions are:",
+          " \\begin{enumerate}[nosep,leftmargin=*]"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BUk6fnHqGCE13nQQPYCwZ3`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+  "old_string": "    (15.83,  7.00, 'Mistral-7B\\n(ProofWriter)'),",
+  "new_string": "    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "f4621270-0708-48d2-ab2c-cb78968184b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 121 · 2026-05-22T22:34:48.578Z_
+
+<details><summary>↩ Tool result · `toolu_01BUk6fnHqGCE13nQQPYCwZ3`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "29e71fe3-0880-429a-a04b-1f1ebf890238",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+    "oldString": "    (15.83,  7.00, 'Mistral-7B\\n(ProofWriter)'),",
+    "newString": "    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),",
+    "originalFile": "\"\"\"Generate capability gap scatter plot for §6.\n\nDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts)\n+ fine-tuned DeBERTa (2 pts). All gains at w=3.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import spearmanr, linregress\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n})\n\n# Primary: DeBERTa-MNLI across model x dataset at w=3\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n    (-33.82, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n    (15.83,  7.00, 'Mistral-7B\\n(ProofWriter)'),\n]\n\n# LLaMA point (different model family, separate marker)\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n\n# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\nmulti_nli = [\n    (-1.50, 4.17, 'RoBERTa'),   # 37.67 - 39.17\n    (7.00,  5.17, 'BART'),       # 46.17 - 39.17\n]\n\n# Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3\nfinetuned_pts = [\n    (27.17, 11.67, 'LLaMA-8B'),    # 99.67 - 72.50\n    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17\n]\n\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\n\n# DeBERTa-only (excl. LLaMA) stats\nrho_excl, p_excl = spearmanr(dx, dy)\nprint(f\"DeBERTa-only (excl LLaMA) Spearman rho={rho_excl:.3f} (n={len(dx)}, p={p_excl:.4f})\")\n\n# All DeBERTa-verifier points (incl. LLaMA)\ndx_all = np.append(dx, llama_pt[0])\ndy_all = np.append(dy, llama_pt[1])\nrho, p_rho = spearmanr(dx_all, dy_all)\nprint(f\"DeBERTa-all (incl LLaMA) Spearman rho={rho:.3f} (n={len(dx_all)}, p={p_rho:.4f})\")\nslope, intercept, r_value, p_lin, _ = linregress(dx_all, dy_all)\nprint(f\"DeBERTa-all linear: R²={r_value**2:.3f}, p={p_lin:.4f}\")\n\n# Sigmoid with Director's parameters as guide\ndef sigmoid(x, L, k, x0, b):\n    return L / (1 + np.exp(-k * (x - x0))) + b\n\n# Use all points for visual fit (DeBERTa + LLaMA + multi-NLI)\nall_pts = deberta_pts + [llama_pt] + multi_nli\nax_all = np.array([p[0] for p in all_pts])\nay_all = np.array([p[1] for p in all_pts])\n\ntry:\n    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n                        p0=[3.5, 0.3, 1.0, 0.2],\n                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n                        maxfev=50000)\n    x_fit = np.linspace(-42, 68, 500)\n    y_sig = sigmoid(x_fit, *popt)\n    ss_res = np.sum((ay_all - sigmoid(ax_all, *popt))**2)\n    ss_tot = np.sum((ay_all - np.mean(ay_all))**2)\n    r2_sig = 1 - ss_res / ss_tot\n    inflection = popt[2]\n    print(f\"Sigmoid ({len(ax_all)}pt): R²={r2_sig:.3f}, inflection={inflection:.1f}pp, L={popt[0]:.2f}, k={popt[1]:.3f}\")\n    has_sigmoid = True\nexcept Exception as e:\n    print(f\"Sigmoid fit failed: {e}\")\n    has_sigmoid = False\n    x_fit = np.linspace(-42, 68, 500)\n\n# Plot\nfig, ax = plt.subplots(figsize=(3.8, 2.8))\nfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.94)\n\n# DeBERTa primary points (Mistral/Qwen generators)\nax.scatter(dx, dy, marker='o', c='#2166ac', s=50, zorder=5,\n           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.5)\n\n# LLaMA generator (different model family)\nax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c='#e66101', s=50, zorder=5,\n           label='DeBERTa-MNLI (LLaMA)', edgecolors='white', linewidths=0.5)\n\n# Multi-NLI secondary points\nmx = [p[0] for p in multi_nli]\nmy = [p[1] for p in multi_nli]\nml = [p[2] for p in multi_nli]\nax.scatter([mx[0]], [my[0]], marker='s', c='#b2182b', s=40, zorder=5,\n           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.5)\nax.scatter([mx[1]], [my[1]], marker='^', c='#4dac26', s=40, zorder=5,\n           label='BART-MNLI', edgecolors='white', linewidths=0.5)\n\n# Fine-tuned DeBERTa points\nfx = [p[0] for p in finetuned_pts]\nfy = [p[1] for p in finetuned_pts]\nax.scatter(fx, fy, marker='*', c='#7b3294', s=100, zorder=6,\n           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.5)\n\n# Sigmoid curve\nif has_sigmoid:\n    ax.plot(x_fit, y_sig, '-', color='#555555', linewidth=1.0, alpha=0.6,\n            label=f'Sigmoid fit')\n\n# Annotations for DeBERTa points\nannot_config = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO', (6, -3), 'left'),\n    (-35.29, 0.49, 'Qwen3-14B\\nFOLIO', (6, -15), 'left'),\n    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5', (6, 3), 'left'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5', (6, -8), 'left'),\n    (-6.37,  2.94, 'Mistral-7B\\nFOLIO', (6, -8), 'left'),\n    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),\n]\nfor x, y, lbl, offset, ha in annot_config:\n    ax.annotate(lbl, (x, y), textcoords='offset points',\n                xytext=offset, fontsize=5.5, ha=ha, color='#444444',\n                linespacing=0.9)\n\n# LLaMA annotation (distinct color)\nax.annotate('LLaMA-8B\\nPW-D5', (llama_pt[0], llama_pt[1]),\n            textcoords='offset points', xytext=(6, -10), fontsize=5.5,\n            ha='left', color='#e66101', linespacing=0.9)\n\n# Annotations for multi-NLI\nax.annotate('RoBERTa', (mx[0], my[0]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#b2182b')\nax.annotate('BART', (mx[1], my[1]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#4dac26')\n\n# Annotations for fine-tuned\nax.annotate('LLaMA-8B\\n(fine-tuned)', (fx[0], fy[0]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\nax.annotate('Mistral-7B\\n(fine-tuned)', (fx[1], fy[1]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\n\n# Reference lines\nax.axhline(0, color='black', linewidth=0.3, alpha=0.2)\nax.axvline(0, color='black', linewidth=0.5, alpha=0.25, linestyle=':')\n\n# Region labels\nax.text(-21, 14.0, 'verifier $<$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\nax.text(40, 14.0, 'verifier $>$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\n\nax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\nax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\nax.set_xlim(-42, 68)\nax.set_ylim(-0.3, 15.0)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handletextpad=0.4, bbox_to_anchor=(1.0, 0.0))\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# no tight_layout — manual subplots_adjust above\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\nfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\nfig.savefig(f'{outdir}/capability_gap_scatter.png')\nprint(\"Saved to\", outdir)\n",
+    "structuredPatch": [
+      {
+        "oldStart": 32,
+        "oldLines": 7,
+        "newStart": 32,
+        "newLines": 7,
+        "lines": [
+          "     (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),",
+          "     (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),",
+          "     (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),",
+          "-    (15.83,  7.00, 'Mistral-7B\\n(ProofWriter)'),",
+          "+    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),",
+          " ]",
+          " ",
+          " # LLaMA point (different model family, separate marker)"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01628w23c3ap5cQCzNG3Bien`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+  "old_string": "    (-1.50, 4.17, 'RoBERTa'),   # 37.67 - 39.17\n    (7.00,  5.17, 'BART'),       # 46.17 - 39.17",
+  "new_string": "    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n    (6.84,  5.17, 'BART'),       # 46.17 - 39.33"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "094dddaa-707c-4979-9142-28d7575125c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 123 · 2026-05-22T22:34:51.871Z_
+
+<details><summary>↩ Tool result · `toolu_01628w23c3ap5cQCzNG3Bien`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "1d77f14f-a5d9-4404-aca6-9bf7b5ba69bf",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+    "oldString": "    (-1.50, 4.17, 'RoBERTa'),   # 37.67 - 39.17\n    (7.00,  5.17, 'BART'),       # 46.17 - 39.17",
+    "newString": "    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n    (6.84,  5.17, 'BART'),       # 46.17 - 39.33",
+    "originalFile": "\"\"\"Generate capability gap scatter plot for §6.\n\nDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts)\n+ fine-tuned DeBERTa (2 pts). All gains at w=3.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import spearmanr, linregress\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n})\n\n# Primary: DeBERTa-MNLI across model x dataset at w=3\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n    (-33.82, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),\n]\n\n# LLaMA point (different model family, separate marker)\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n\n# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\nmulti_nli = [\n    (-1.50, 4.17, 'RoBERTa'),   # 37.67 - 39.17\n    (7.00,  5.17, 'BART'),       # 46.17 - 39.17\n]\n\n# Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3\nfinetuned_pts = [\n    (27.17, 11.67, 'LLaMA-8B'),    # 99.67 - 72.50\n    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17\n]\n\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\n\n# DeBERTa-only (excl. LLaMA) stats\nrho_excl, p_excl = spearmanr(dx, dy)\nprint(f\"DeBERTa-only (excl LLaMA) Spearman rho={rho_excl:.3f} (n={len(dx)}, p={p_excl:.4f})\")\n\n# All DeBERTa-verifier points (incl. LLaMA)\ndx_all = np.append(dx, llama_pt[0])\ndy_all = np.append(dy, llama_pt[1])\nrho, p_rho = spearmanr(dx_all, dy_all)\nprint(f\"DeBERTa-all (incl LLaMA) Spearman rho={rho:.3f} (n={len(dx_all)}, p={p_rho:.4f})\")\nslope, intercept, r_value, p_lin, _ = linregress(dx_all, dy_all)\nprint(f\"DeBERTa-all linear: R²={r_value**2:.3f}, p={p_lin:.4f}\")\n\n# Sigmoid with Director's parameters as guide\ndef sigmoid(x, L, k, x0, b):\n    return L / (1 + np.exp(-k * (x - x0))) + b\n\n# Use all points for visual fit (DeBERTa + LLaMA + multi-NLI)\nall_pts = deberta_pts + [llama_pt] + multi_nli\nax_all = np.array([p[0] for p in all_pts])\nay_all = np.array([p[1] for p in all_pts])\n\ntry:\n    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n                        p0=[3.5, 0.3, 1.0, 0.2],\n                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n                        maxfev=50000)\n    x_fit = np.linspace(-42, 68, 500)\n    y_sig = sigmoid(x_fit, *popt)\n    ss_res = np.sum((ay_all - sigmoid(ax_all, *popt))**2)\n    ss_tot = np.sum((ay_all - np.mean(ay_all))**2)\n    r2_sig = 1 - ss_res / ss_tot\n    inflection = popt[2]\n    print(f\"Sigmoid ({len(ax_all)}pt): R²={r2_sig:.3f}, inflection={inflection:.1f}pp, L={popt[0]:.2f}, k={popt[1]:.3f}\")\n    has_sigmoid = True\nexcept Exception as e:\n    print(f\"Sigmoid fit failed: {e}\")\n    has_sigmoid = False\n    x_fit = np.linspace(-42, 68, 500)\n\n# Plot\nfig, ax = plt.subplots(figsize=(3.8, 2.8))\nfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.94)\n\n# DeBERTa primary points (Mistral/Qwen generators)\nax.scatter(dx, dy, marker='o', c='#2166ac', s=50, zorder=5,\n           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.5)\n\n# LLaMA generator (different model family)\nax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c='#e66101', s=50, zorder=5,\n           label='DeBERTa-MNLI (LLaMA)', edgecolors='white', linewidths=0.5)\n\n# Multi-NLI secondary points\nmx = [p[0] for p in multi_nli]\nmy = [p[1] for p in multi_nli]\nml = [p[2] for p in multi_nli]\nax.scatter([mx[0]], [my[0]], marker='s', c='#b2182b', s=40, zorder=5,\n           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.5)\nax.scatter([mx[1]], [my[1]], marker='^', c='#4dac26', s=40, zorder=5,\n           label='BART-MNLI', edgecolors='white', linewidths=0.5)\n\n# Fine-tuned DeBERTa points\nfx = [p[0] for p in finetuned_pts]\nfy = [p[1] for p in finetuned_pts]\nax.scatter(fx, fy, marker='*', c='#7b3294', s=100, zorder=6,\n           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.5)\n\n# Sigmoid curve\nif has_sigmoid:\n    ax.plot(x_fit, y_sig, '-', color='#555555', linewidth=1.0, alpha=0.6,\n            label=f'Sigmoid fit')\n\n# Annotations for DeBERTa points\nannot_config = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO', (6, -3), 'left'),\n    (-35.29, 0.49, 'Qwen3-14B\\nFOLIO', (6, -15), 'left'),\n    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5', (6, 3), 'left'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5', (6, -8), 'left'),\n    (-6.37,  2.94, 'Mistral-7B\\nFOLIO', (6, -8), 'left'),\n    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),\n]\nfor x, y, lbl, offset, ha in annot_config:\n    ax.annotate(lbl, (x, y), textcoords='offset points',\n                xytext=offset, fontsize=5.5, ha=ha, color='#444444',\n                linespacing=0.9)\n\n# LLaMA annotation (distinct color)\nax.annotate('LLaMA-8B\\nPW-D5', (llama_pt[0], llama_pt[1]),\n            textcoords='offset points', xytext=(6, -10), fontsize=5.5,\n            ha='left', color='#e66101', linespacing=0.9)\n\n# Annotations for multi-NLI\nax.annotate('RoBERTa', (mx[0], my[0]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#b2182b')\nax.annotate('BART', (mx[1], my[1]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#4dac26')\n\n# Annotations for fine-tuned\nax.annotate('LLaMA-8B\\n(fine-tuned)', (fx[0], fy[0]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\nax.annotate('Mistral-7B\\n(fine-tuned)', (fx[1], fy[1]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\n\n# Reference lines\nax.axhline(0, color='black', linewidth=0.3, alpha=0.2)\nax.axvline(0, color='black', linewidth=0.5, alpha=0.25, linestyle=':')\n\n# Region labels\nax.text(-21, 14.0, 'verifier $<$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\nax.text(40, 14.0, 'verifier $>$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\n\nax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\nax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\nax.set_xlim(-42, 68)\nax.set_ylim(-0.3, 15.0)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handletextpad=0.4, bbox_to_anchor=(1.0, 0.0))\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# no tight_layout — manual subplots_adjust above\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\nfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\nfig.savefig(f'{outdir}/capability_gap_scatter.png')\nprint(\"Saved to\", outdir)\n",
+    "structuredPatch": [
+      {
+        "oldStart": 40,
+        "oldLines": 8,
+        "newStart": 40,
+        "newLines": 8,
+        "lines": [
+          " ",
+          " # Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3",
+          " multi_nli = [",
+          "-    (-1.50, 4.17, 'RoBERTa'),   # 37.67 - 39.17",
+          "-    (7.00,  5.17, 'BART'),       # 46.17 - 39.17",
+          "+    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33",
+          "+    (6.84,  5.17, 'BART'),       # 46.17 - 39.33",
+          " ]",
+          " ",
+          " # Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NR7oD9RVwvApfA1akYQ5fR`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+  "old_string": "    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17",
+  "new_string": "    (60.34, 12.83, 'Mistral-7B'),   # 99.67 - 39.33"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "d94a2356-504d-4eaa-8c70-17ebb21e4be6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 125 · 2026-05-22T22:34:53.276Z_
+
+<details><summary>↩ Tool result · `toolu_01NR7oD9RVwvApfA1akYQ5fR`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "a4990c55-d6f6-46aa-8034-8c9ffe566704",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+    "oldString": "    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17",
+    "newString": "    (60.34, 12.83, 'Mistral-7B'),   # 99.67 - 39.33",
+    "originalFile": "\"\"\"Generate capability gap scatter plot for §6.\n\nDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts)\n+ fine-tuned DeBERTa (2 pts). All gains at w=3.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import spearmanr, linregress\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n})\n\n# Primary: DeBERTa-MNLI across model x dataset at w=3\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n    (-33.82, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),\n]\n\n# LLaMA point (different model family, separate marker)\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n\n# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\nmulti_nli = [\n    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n    (6.84,  5.17, 'BART'),       # 46.17 - 39.33\n]\n\n# Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3\nfinetuned_pts = [\n    (27.17, 11.67, 'LLaMA-8B'),    # 99.67 - 72.50\n    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17\n]\n\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\n\n# DeBERTa-only (excl. LLaMA) stats\nrho_excl, p_excl = spearmanr(dx, dy)\nprint(f\"DeBERTa-only (excl LLaMA) Spearman rho={rho_excl:.3f} (n={len(dx)}, p={p_excl:.4f})\")\n\n# All DeBERTa-verifier points (incl. LLaMA)\ndx_all = np.append(dx, llama_pt[0])\ndy_all = np.append(dy, llama_pt[1])\nrho, p_rho = spearmanr(dx_all, dy_all)\nprint(f\"DeBERTa-all (incl LLaMA) Spearman rho={rho:.3f} (n={len(dx_all)}, p={p_rho:.4f})\")\nslope, intercept, r_value, p_lin, _ = linregress(dx_all, dy_all)\nprint(f\"DeBERTa-all linear: R²={r_value**2:.3f}, p={p_lin:.4f}\")\n\n# Sigmoid with Director's parameters as guide\ndef sigmoid(x, L, k, x0, b):\n    return L / (1 + np.exp(-k * (x - x0))) + b\n\n# Use all points for visual fit (DeBERTa + LLaMA + multi-NLI)\nall_pts = deberta_pts + [llama_pt] + multi_nli\nax_all = np.array([p[0] for p in all_pts])\nay_all = np.array([p[1] for p in all_pts])\n\ntry:\n    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n                        p0=[3.5, 0.3, 1.0, 0.2],\n                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n                        maxfev=50000)\n    x_fit = np.linspace(-42, 68, 500)\n    y_sig = sigmoid(x_fit, *popt)\n    ss_res = np.sum((ay_all - sigmoid(ax_all, *popt))**2)\n    ss_tot = np.sum((ay_all - np.mean(ay_all))**2)\n    r2_sig = 1 - ss_res / ss_tot\n    inflection = popt[2]\n    print(f\"Sigmoid ({len(ax_all)}pt): R²={r2_sig:.3f}, inflection={inflection:.1f}pp, L={popt[0]:.2f}, k={popt[1]:.3f}\")\n    has_sigmoid = True\nexcept Exception as e:\n    print(f\"Sigmoid fit failed: {e}\")\n    has_sigmoid = False\n    x_fit = np.linspace(-42, 68, 500)\n\n# Plot\nfig, ax = plt.subplots(figsize=(3.8, 2.8))\nfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.94)\n\n# DeBERTa primary points (Mistral/Qwen generators)\nax.scatter(dx, dy, marker='o', c='#2166ac', s=50, zorder=5,\n           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.5)\n\n# LLaMA generator (different model family)\nax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c='#e66101', s=50, zorder=5,\n           label='DeBERTa-MNLI (LLaMA)', edgecolors='white', linewidths=0.5)\n\n# Multi-NLI secondary points\nmx = [p[0] for p in multi_nli]\nmy = [p[1] for p in multi_nli]\nml = [p[2] for p in multi_nli]\nax.scatter([mx[0]], [my[0]], marker='s', c='#b2182b', s=40, zorder=5,\n           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.5)\nax.scatter([mx[1]], [my[1]], marker='^', c='#4dac26', s=40, zorder=5,\n           label='BART-MNLI', edgecolors='white', linewidths=0.5)\n\n# Fine-tuned DeBERTa points\nfx = [p[0] for p in finetuned_pts]\nfy = [p[1] for p in finetuned_pts]\nax.scatter(fx, fy, marker='*', c='#7b3294', s=100, zorder=6,\n           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.5)\n\n# Sigmoid curve\nif has_sigmoid:\n    ax.plot(x_fit, y_sig, '-', color='#555555', linewidth=1.0, alpha=0.6,\n            label=f'Sigmoid fit')\n\n# Annotations for DeBERTa points\nannot_config = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO', (6, -3), 'left'),\n    (-35.29, 0.49, 'Qwen3-14B\\nFOLIO', (6, -15), 'left'),\n    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5', (6, 3), 'left'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5', (6, -8), 'left'),\n    (-6.37,  2.94, 'Mistral-7B\\nFOLIO', (6, -8), 'left'),\n    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),\n]\nfor x, y, lbl, offset, ha in annot_config:\n    ax.annotate(lbl, (x, y), textcoords='offset points',\n                xytext=offset, fontsize=5.5, ha=ha, color='#444444',\n                linespacing=0.9)\n\n# LLaMA annotation (distinct color)\nax.annotate('LLaMA-8B\\nPW-D5', (llama_pt[0], llama_pt[1]),\n            textcoords='offset points', xytext=(6, -10), fontsize=5.5,\n            ha='left', color='#e66101', linespacing=0.9)\n\n# Annotations for multi-NLI\nax.annotate('RoBERTa', (mx[0], my[0]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#b2182b')\nax.annotate('BART', (mx[1], my[1]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#4dac26')\n\n# Annotations for fine-tuned\nax.annotate('LLaMA-8B\\n(fine-tuned)', (fx[0], fy[0]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\nax.annotate('Mistral-7B\\n(fine-tuned)', (fx[1], fy[1]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\n\n# Reference lines\nax.axhline(0, color='black', linewidth=0.3, alpha=0.2)\nax.axvline(0, color='black', linewidth=0.5, alpha=0.25, linestyle=':')\n\n# Region labels\nax.text(-21, 14.0, 'verifier $<$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\nax.text(40, 14.0, 'verifier $>$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\n\nax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\nax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\nax.set_xlim(-42, 68)\nax.set_ylim(-0.3, 15.0)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handletextpad=0.4, bbox_to_anchor=(1.0, 0.0))\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# no tight_layout — manual subplots_adjust above\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\nfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\nfig.savefig(f'{outdir}/capability_gap_scatter.png')\nprint(\"Saved to\", outdir)\n",
+    "structuredPatch": [
+      {
+        "oldStart": 47,
+        "oldLines": 7,
+        "newStart": 47,
+        "newLines": 7,
+        "lines": [
+          " # Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3",
+          " finetuned_pts = [",
+          "     (27.17, 11.67, 'LLaMA-8B'),    # 99.67 - 72.50",
+          "-    (60.50, 13.00, 'Mistral-7B'),   # 99.67 - 39.17",
+          "+    (60.34, 12.83, 'Mistral-7B'),   # 99.67 - 39.33",
+          " ]",
+          " ",
+          " dx = np.array([p[0] for p in deberta_pts])"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014bdgREFegdxoZbsrZJos5y`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+  "old_string": "    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),",
+  "new_string": "    (15.67,  6.67, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "81897119-0dbc-40c8-8e9f-846d9b1b60c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYRkLs234sAjbS6BPJbxPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2961,
+      "cache_read_input_tokens": 87442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2961
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 127 · 2026-05-22T22:34:55.498Z_
+
+<details><summary>↩ Tool result · `toolu_014bdgREFegdxoZbsrZJos5y`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "8046fbe1-9552-4294-87ef-a99f84761928",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py",
+    "oldString": "    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),",
+    "newString": "    (15.67,  6.67, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),",
+    "originalFile": "\"\"\"Generate capability gap scatter plot for §6.\n\nDeBERTa-MNLI primary (6 pts) + LLaMA-8B (1 pt, distinct marker) + multi-verifier (2 pts)\n+ fine-tuned DeBERTa (2 pts). All gains at w=3.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom scipy.optimize import curve_fit\nfrom scipy.stats import spearmanr, linregress\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 9,\n    'axes.labelsize': 10,\n    'axes.titlesize': 10,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n})\n\n# Primary: DeBERTa-MNLI across model x dataset at w=3\ndeberta_pts = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\n(FOLIO)'),\n    (-33.82, 0.49, 'Qwen3-14B\\n(FOLIO)'),\n    (-30.83, 0.50, 'Qwen3-14B\\n(PW-D5)'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\n(PW-D5)'),\n    (-6.37,  2.94, 'Mistral-7B\\n(FOLIO)'),\n    (15.67,  6.67, 'Mistral-7B\\n(ProofWriter)'),\n]\n\n# LLaMA point (different model family, separate marker)\nllama_pt = (-17.50, 0.83, 'LLaMA-8B\\n(PW-D5)')\n\n# Secondary: other NLI verifiers on Mistral-7B ProofWriter at w=3\nmulti_nli = [\n    (-1.66, 4.17, 'RoBERTa'),   # 37.67 - 39.33\n    (6.84,  5.17, 'BART'),       # 46.17 - 39.33\n]\n\n# Fine-tuned DeBERTa on ProofWriter OWA (99.67% standalone), w=3\nfinetuned_pts = [\n    (27.17, 11.67, 'LLaMA-8B'),    # 99.67 - 72.50\n    (60.34, 12.83, 'Mistral-7B'),   # 99.67 - 39.33\n]\n\ndx = np.array([p[0] for p in deberta_pts])\ndy = np.array([p[1] for p in deberta_pts])\n\n# DeBERTa-only (excl. LLaMA) stats\nrho_excl, p_excl = spearmanr(dx, dy)\nprint(f\"DeBERTa-only (excl LLaMA) Spearman rho={rho_excl:.3f} (n={len(dx)}, p={p_excl:.4f})\")\n\n# All DeBERTa-verifier points (incl. LLaMA)\ndx_all = np.append(dx, llama_pt[0])\ndy_all = np.append(dy, llama_pt[1])\nrho, p_rho = spearmanr(dx_all, dy_all)\nprint(f\"DeBERTa-all (incl LLaMA) Spearman rho={rho:.3f} (n={len(dx_all)}, p={p_rho:.4f})\")\nslope, intercept, r_value, p_lin, _ = linregress(dx_all, dy_all)\nprint(f\"DeBERTa-all linear: R²={r_value**2:.3f}, p={p_lin:.4f}\")\n\n# Sigmoid with Director's parameters as guide\ndef sigmoid(x, L, k, x0, b):\n    return L / (1 + np.exp(-k * (x - x0))) + b\n\n# Use all points for visual fit (DeBERTa + LLaMA + multi-NLI)\nall_pts = deberta_pts + [llama_pt] + multi_nli\nax_all = np.array([p[0] for p in all_pts])\nay_all = np.array([p[1] for p in all_pts])\n\ntry:\n    popt, _ = curve_fit(sigmoid, ax_all, ay_all,\n                        p0=[3.5, 0.3, 1.0, 0.2],\n                        bounds=([0.5, 0.01, -10, -1], [5.0, 2.0, 15, 2.0]),\n                        maxfev=50000)\n    x_fit = np.linspace(-42, 68, 500)\n    y_sig = sigmoid(x_fit, *popt)\n    ss_res = np.sum((ay_all - sigmoid(ax_all, *popt))**2)\n    ss_tot = np.sum((ay_all - np.mean(ay_all))**2)\n    r2_sig = 1 - ss_res / ss_tot\n    inflection = popt[2]\n    print(f\"Sigmoid ({len(ax_all)}pt): R²={r2_sig:.3f}, inflection={inflection:.1f}pp, L={popt[0]:.2f}, k={popt[1]:.3f}\")\n    has_sigmoid = True\nexcept Exception as e:\n    print(f\"Sigmoid fit failed: {e}\")\n    has_sigmoid = False\n    x_fit = np.linspace(-42, 68, 500)\n\n# Plot\nfig, ax = plt.subplots(figsize=(3.8, 2.8))\nfig.subplots_adjust(left=0.16, bottom=0.20, right=0.96, top=0.94)\n\n# DeBERTa primary points (Mistral/Qwen generators)\nax.scatter(dx, dy, marker='o', c='#2166ac', s=50, zorder=5,\n           label='DeBERTa-MNLI', edgecolors='white', linewidths=0.5)\n\n# LLaMA generator (different model family)\nax.scatter([llama_pt[0]], [llama_pt[1]], marker='D', c='#e66101', s=50, zorder=5,\n           label='DeBERTa-MNLI (LLaMA)', edgecolors='white', linewidths=0.5)\n\n# Multi-NLI secondary points\nmx = [p[0] for p in multi_nli]\nmy = [p[1] for p in multi_nli]\nml = [p[2] for p in multi_nli]\nax.scatter([mx[0]], [my[0]], marker='s', c='#b2182b', s=40, zorder=5,\n           label='RoBERTa-MNLI', edgecolors='white', linewidths=0.5)\nax.scatter([mx[1]], [my[1]], marker='^', c='#4dac26', s=40, zorder=5,\n           label='BART-MNLI', edgecolors='white', linewidths=0.5)\n\n# Fine-tuned DeBERTa points\nfx = [p[0] for p in finetuned_pts]\nfy = [p[1] for p in finetuned_pts]\nax.scatter(fx, fy, marker='*', c='#7b3294', s=100, zorder=6,\n           label='Fine-tuned DeBERTa', edgecolors='white', linewidths=0.5)\n\n# Sigmoid curve\nif has_sigmoid:\n    ax.plot(x_fit, y_sig, '-', color='#555555', linewidth=1.0, alpha=0.6,\n            label=f'Sigmoid fit')\n\n# Annotations for DeBERTa points\nannot_config = [\n    (-36.76, 0.49, 'Qwen3-14B$_{\\\\mathrm{think}}$\\nFOLIO', (6, -3), 'left'),\n    (-35.29, 0.49, 'Qwen3-14B\\nFOLIO', (6, -15), 'left'),\n    (-30.83, 0.50, 'Qwen3-14B\\nPW-D5', (6, 3), 'left'),\n    (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5', (6, -8), 'left'),\n    (-6.37,  2.94, 'Mistral-7B\\nFOLIO', (6, -8), 'left'),\n    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),\n]\nfor x, y, lbl, offset, ha in annot_config:\n    ax.annotate(lbl, (x, y), textcoords='offset points',\n                xytext=offset, fontsize=5.5, ha=ha, color='#444444',\n                linespacing=0.9)\n\n# LLaMA annotation (distinct color)\nax.annotate('LLaMA-8B\\nPW-D5', (llama_pt[0], llama_pt[1]),\n            textcoords='offset points', xytext=(6, -10), fontsize=5.5,\n            ha='left', color='#e66101', linespacing=0.9)\n\n# Annotations for multi-NLI\nax.annotate('RoBERTa', (mx[0], my[0]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#b2182b')\nax.annotate('BART', (mx[1], my[1]), textcoords='offset points',\n            xytext=(5, 5), fontsize=5.5, ha='left', color='#4dac26')\n\n# Annotations for fine-tuned\nax.annotate('LLaMA-8B\\n(fine-tuned)', (fx[0], fy[0]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\nax.annotate('Mistral-7B\\n(fine-tuned)', (fx[1], fy[1]), textcoords='offset points',\n            xytext=(-6, 5), fontsize=5.5, ha='right', color='#7b3294', linespacing=0.9)\n\n# Reference lines\nax.axhline(0, color='black', linewidth=0.3, alpha=0.2)\nax.axvline(0, color='black', linewidth=0.5, alpha=0.25, linestyle=':')\n\n# Region labels\nax.text(-21, 14.0, 'verifier $<$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\nax.text(40, 14.0, 'verifier $>$ generator', fontsize=6.5, color='#aaaaaa',\n        ha='center', style='italic')\n\nax.set_xlabel('Capability gap (verifier $-$ generator SC, pp)')\nax.set_ylabel('Combo gain over SC (pp, $w{=}3$)')\nax.set_xlim(-42, 68)\nax.set_ylim(-0.3, 15.0)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handletextpad=0.4, bbox_to_anchor=(1.0, 0.0))\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# no tight_layout — manual subplots_adjust above\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures'\nfig.savefig(f'{outdir}/capability_gap_scatter.pdf')\nfig.savefig(f'{outdir}/capability_gap_scatter.png')\nprint(\"Saved to\", outdir)\n",
+    "structuredPatch": [
+      {
+        "oldStart": 131,
+        "oldLines": 7,
+        "newStart": 131,
+        "newLines": 7,
+        "lines": [
+          "     (-30.83, 0.50, 'Qwen3-14B\\nPW-D5', (6, 3), 'left'),",
+          "     (-19.00, 0.67, 'Qwen2.5-14B\\nPW-D5', (6, -8), 'left'),",
+          "     (-6.37,  2.94, 'Mistral-7B\\nFOLIO', (6, -8), 'left'),",
+          "-    (15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),",
+          "+    (15.67,  6.67, 'Mistral-7B\\nPW-D5', (-6, 5), 'right'),",
+          " ]",
+          " for x, y, lbl, offset, ha in annot_config:",
+          "     ax.annotate(lbl, (x, y), textcoords='offset points',"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 128_
+
+All edits applied. Now verifying no residual old values remain.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "859722b1-408e-4507-9b8a-9acac65df15c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XGun4y1tPKq2wFmdy3LuBf`</summary>
+
+```json
+{
+  "pattern": "39\\.17",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "1557b9aa-866f-4940-b304-dffffedc9f82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 130 · 2026-05-22T22:35:07.551Z_
+
+<details><summary>↩ Tool result · `toolu_01XGun4y1tPKq2wFmdy3LuBf`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "98bba9a7-940b-4405-9ded-3da8c1275849",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GEs1gtkhsWGTKCJgi3taQD`</summary>
+
+```json
+{
+  "pattern": "\\+7\\.00",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "db3847db-ca7f-478b-8f15-1f438ee70115",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 132 · 2026-05-22T22:35:08.482Z_
+
+<details><summary>↩ Tool result · `toolu_01GEs1gtkhsWGTKCJgi3taQD`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "5a8b9395-53be-4938-bc30-ed5e384a4702",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01181ZmdVJhXwiEKoypPiUBd`</summary>
+
+```json
+{
+  "pattern": "15\\.83",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "ed877349-b8c9-4713-bfe0-e75b9a1b78ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 134 · 2026-05-22T22:35:09.915Z_
+
+<details><summary>↩ Tool result · `toolu_01181ZmdVJhXwiEKoypPiUBd`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "23bfa09a-3765-497c-b04a-cf8988decf7c",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XT53xM5ahXqdxUy1HcwZGx`</summary>
+
+```json
+{
+  "pattern": "7\\.00",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "8648b296-aaa6-4f3e-b253-2aab73774414",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 136 · 2026-05-22T22:35:10.856Z_
+
+<details><summary>↩ Tool result · `toolu_01XT53xM5ahXqdxUy1HcwZGx`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "33b9544a-4176-416a-a5d0-2f3ec253fce2",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01P8Vqw7no5j3jW2msg4aeg1`</summary>
+
+```json
+{
+  "pattern": "39\\.17",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "0012337e-00fa-4c2d-8fc3-ca1d9c9bd0a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Naq4TCXAqTgRB4eZCub5xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3010,
+      "cache_read_input_tokens": 90403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3010
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 138 · 2026-05-22T22:35:11.965Z_
+
+<details><summary>↩ Tool result · `toolu_01P8Vqw7no5j3jW2msg4aeg1`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "98ff2618-e35f-4dd9-b48f-f85510705e9e",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 139_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All residual values are gone. Now I need to:
+1. Sync the code to the server (push or scp)
+2. Regenerate the scatter plot on the server
+3. Compile the paper on the server
+4. Verify
+
+Wait - the paper files are LOCAL only. The scatter plot on the server already has updated values. But the local scatter plot needs to be run to generate new figures for the local paper compilation.
+
+Actually, let me check - does the paper compile locally or on the server? The tex files exist locally, so the paper likely compiles locally. The scatter plot script in the local `docs/paper/figures/` would generate figures locally.
+
+
+The scatter plot script outputs to the local figures directory, while the server version outputs to a different artifacts path. So I have two options: either run the local scatter plot to regenerate the figure and compile the paper locally, or copy the tex files to the server and compile there. Let me check what compilation tools are available.
+
+Actually, looking at the Phase 4-5 instructions, those scatter plot scripts should run on the server in the paper directory, but that directory doesn't exist there—and the server version of the script already has updated values anyway. So my workflow should be: run the local scatter plot script to generate the figures in the local docs/paper/figures directory, then compile the paper locally if pdflatex is available, otherwise I'll need to sync and compile on the server.
+
+Let me start by running the local scatter plot script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "e51538f9-f5ff-4aaa-8f64-47d75cfd944d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8ToD4LVrzdaLDJjhjKEDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 93413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 140_
+
+All residual values cleared. Now regenerating the scatter plot and compiling the paper. Let me first check if the needed tools are available locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "83012c50-e7e3-46fb-9f63-161a19cb960a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8ToD4LVrzdaLDJjhjKEDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 93413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 141_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MzvZXZa2dxmgCU9yf71Xcg`</summary>
+
+```json
+{
+  "command": "which pdflatex 2>/dev/null; which python3 2>/dev/null; python3 -c \"import matplotlib; print('matplotlib OK')\" 2>/dev/null; python3 -c \"from scipy.optimize import curve_fit; print('scipy OK')\" 2>/dev/null",
+  "description": "Check local tool availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "3efaaea6-4596-4a48-848b-d73497763717",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R8ToD4LVrzdaLDJjhjKEDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 93413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 142 · 2026-05-22T22:35:29.919Z_
+
+<details><summary>↩ Tool result · `toolu_01MzvZXZa2dxmgCU9yf71Xcg`</summary>
+
+```text
+/usr/bin/pdflatex
+/usr/bin/python3
+matplotlib OK
+scipy OK
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "a7524caa-3776-4115-a92b-1daac4bfba76",
+  "tool_use_result": {
+    "stdout": "/usr/bin/pdflatex\n/usr/bin/python3\nmatplotlib OK\nscipy OK",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 143_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can run the scatter plot locally and compile the paper locally. Let me do that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "7f092583-2497-4d5b-aa5e-cd5ffd3b7c8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eux6N8Y1xGAjVp9UZPAVMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 94305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 144_
+
+Local tools available. Running the scatter plot and checking for existing figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "8716c4f5-5ca8-4591-8e8f-3a7559f78987",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eux6N8Y1xGAjVp9UZPAVMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 94305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 145_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Qoi5ceAscS5mz1ERN8t3RE`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures && python3 gen_capability_gap_scatter.py 2>&1",
+  "description": "Regenerate capability gap scatter plot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "4a6aa41c-8033-4a76-ae24-738a13e95ef0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eux6N8Y1xGAjVp9UZPAVMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 94305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 146_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_019htn8soisFwB8BK9XR24ez`</summary>
+
+```json
+{
+  "pattern": "docs/paper/figures/gen_f6_kappa_accuracy_scatter.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "469291d9-26ce-4171-adea-51af3e4cb6c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eux6N8Y1xGAjVp9UZPAVMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 94305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 737
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 147 · 2026-05-22T22:35:35.969Z_
+
+<details><summary>↩ Tool result · `toolu_01Qoi5ceAscS5mz1ERN8t3RE`</summary>
+
+```text
+DeBERTa-only (excl LLaMA) Spearman rho=0.986 (n=6, p=0.0003)
+DeBERTa-all (incl LLaMA) Spearman rho=0.991 (n=7, p=0.0000)
+DeBERTa-all linear: R²=0.873, p=0.0020
+Sigmoid (9pt): R²=0.972, inflection=-5.2pp, L=5.00, k=0.251
+Saved to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "1e8af357-855c-40b3-9f25-9404ec18fbf8",
+  "tool_use_result": {
+    "stdout": "DeBERTa-only (excl LLaMA) Spearman rho=0.986 (n=6, p=0.0003)\nDeBERTa-all (incl LLaMA) Spearman rho=0.991 (n=7, p=0.0000)\nDeBERTa-all linear: R²=0.873, p=0.0020\nSigmoid (9pt): R²=0.972, inflection=-5.2pp, L=5.00, k=0.251\nSaved to /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 148 · 2026-05-22T22:35:35.984Z_
+
+<details><summary>↩ Tool result · `toolu_019htn8soisFwB8BK9XR24ez`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "6854a931-d1ba-4467-acdd-2bd894afe3c8",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 12,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 149_
+
+Scatter plot regenerated successfully. No local kappa scatter plot script found. Now compiling the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "e3959e6a-2544-444f-9f15-fe4719f90aa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fU8Qjj5QcRdKfrzZYXiVg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 95042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RE9c4qjNPYBhevPom7ezRi`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -25",
+  "description": "First pdflatex pass"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "3aaf55a9-26ad-456b-b285-8c9554e8cab1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fU8Qjj5QcRdKfrzZYXiVg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 95042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 151 · 2026-05-22T22:35:42.196Z_
+
+<details><summary>↩ Tool result · `toolu_01RE9c4qjNPYBhevPom7ezRi`</summary>
+
+```text
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/u
+sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
+1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+r8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (27 pages, 652500 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "41ecbfff-1460-490e-9602-65147d8d29e9",
+  "tool_use_result": {
+    "stdout": "ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmbx9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi\n8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>&lt;/u\nsr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dis\nt/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type\n1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\nr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 652500 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 152_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016TS24B8eqZm4WxsBrRXWx2`</summary>
+
+```json
+{
+  "command": "bibtex main 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "description": "BibTeX + two more pdflatex passes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "a8dde0ab-1612-4452-9801-0c4b1671451b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011J37TrG6XNhneq9qfBJpy2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 95654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 153_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "br9ahtldg",
+  "tool_use_id": "toolu_016TS24B8eqZm4WxsBrRXWx2",
+  "description": "BibTeX + two more pdflatex passes",
+  "task_type": "local_bash",
+  "uuid": "aec62e66-462f-4086-8322-71c47565d5d1",
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88"
+}
+```
+
+---
+
+
+### System
+
+_source line 154_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "br9ahtldg",
+  "tool_use_id": "toolu_016TS24B8eqZm4WxsBrRXWx2",
+  "status": "completed",
+  "output_file": "",
+  "summary": "BibTeX + two more pdflatex passes",
+  "uuid": "3762bc93-9a97-4129-9e5d-e52834b3ff44",
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 155 · 2026-05-22T22:35:51.738Z_
+
+<details><summary>↩ Tool result · `toolu_016TS24B8eqZm4WxsBrRXWx2`</summary>
+
+```text
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+r8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (27 pages, 652500 bytes).
+Transcript written on main.log.
+r8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (27 pages, 652500 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "2e53244b-3cbc-4746-86e4-51e7889500f2",
+  "tool_use_result": {
+    "stdout": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\nr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 652500 bytes).\nTranscript written on main.log.\nr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (27 pages, 652500 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 156_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VfkiE5UKLSTMjcGaFpsRaa`</summary>
+
+```json
+{
+  "command": "grep -c \"Undefined\\|Missing \\$\\|Error\" main.log 2>/dev/null; grep \"^!\" main.log 2>/dev/null | head -5",
+  "description": "Check for LaTeX errors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "33d5686e-1505-4db6-a43d-24d038aabcd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULFzdSKHuXCjYyspAyH5x6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 96772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 346
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 157 · 2026-05-22T22:35:59.718Z_
+
+<details><summary>↩ Tool result · `toolu_01VfkiE5UKLSTMjcGaFpsRaa`</summary>
+
+```text
+0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "d55dd148-4218-4c3b-9917-fe63b740f003",
+  "tool_use_result": {
+    "stdout": "0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 158_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Paper compiled successfully with 0 errors. Now let me do the final verification - grep for any remaining old values in the compiled paper.
+
+Let me also double-check the Qwen3-14B row in the annot_config in the scatter plot. Looking at the local file, L31 has `(-33.82, 0.49, 'Qwen3-14B\n(FOLIO)')` but the server version has `(-35.29, 0.49, 'Qwen3-14B\nFOLIO')`. These are different values - the local and server versions have diverged for other reasons (not related to the ID fix). I shouldn't touch those.
+
+
+Running final checks...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "e56e4849-00c7-40e6-9256-da4d5d9b0d04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186anZfhezN8KsR9tSxVZWK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 127,
+      "cache_read_input_tokens": 97118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 159_
+
+Paper compiled successfully (27 pages, 0 errors). Final verification pass.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "1404161f-9758-4035-9c97-39d4737c884d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186anZfhezN8KsR9tSxVZWK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 127,
+      "cache_read_input_tokens": 97118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 160_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01M4k9gdejaJRzLvziBpiV7w`</summary>
+
+```json
+{
+  "pattern": "39\\.17",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.{tex,py}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "e097e35c-d666-432b-85cf-f746e721101d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186anZfhezN8KsR9tSxVZWK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 127,
+      "cache_read_input_tokens": 97118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 161 · 2026-05-22T22:36:09.816Z_
+
+<details><summary>↩ Tool result · `toolu_01M4k9gdejaJRzLvziBpiV7w`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "a07693e7-a784-43a6-93ba-72f7e4059325",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 162_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015SeytbbXtcc9cJjhJzBsrU`</summary>
+
+```json
+{
+  "pattern": "\\+7\\.00|7\\.00.*pp",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.{tex,py}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "d188718e-4274-483b-81ff-5b1a230e5e3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186anZfhezN8KsR9tSxVZWK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 127,
+      "cache_read_input_tokens": 97118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 163 · 2026-05-22T22:36:11.259Z_
+
+<details><summary>↩ Tool result · `toolu_015SeytbbXtcc9cJjhJzBsrU`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "be6f369b-108e-49ee-bc0a-fa7343de2d24",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 164_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Cu7p77kqaB1io1nZqjSLSL`</summary>
+
+```json
+{
+  "pattern": "11\\.17|1\\.17",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "ed5c806b-c430-45ae-b9e5-f9f58c8c3c41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186anZfhezN8KsR9tSxVZWK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 127,
+      "cache_read_input_tokens": 97118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 165 · 2026-05-22T22:36:12.440Z_
+
+<details><summary>↩ Tool result · `toolu_01Cu7p77kqaB1io1nZqjSLSL`</summary>
+
+```text
+diagnosis.tex:42:Qwen2.5-14B & ProofWriter & 600 & 74.00 & \textbf{91.17} & $\mathbf{+17.17}$ & $9.21{\times}10^{-15}${***} \\
+appendix.tex:385:Overall & 600 & 74.00 & \textbf{91.17} & +17.17 \\
+appendix.tex:978:  & 5 & 75.17 & $+$1.17 & .360 & .720 & \\
+appendix.tex:983:  & 5 & 87.00 & $+$1.17 & .2100 & .720 & \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "e29f837e-9131-488d-9827-d4f4adf030ed",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "diagnosis.tex:42:Qwen2.5-14B & ProofWriter & 600 & 74.00 & \\textbf{91.17} & $\\mathbf{+17.17}$ & $9.21{\\times}10^{-15}${***} \\\\\nappendix.tex:385:Overall & 600 & 74.00 & \\textbf{91.17} & +17.17 \\\\\nappendix.tex:978:  & 5 & 75.17 & $+$1.17 & .360 & .720 & \\\\\nappendix.tex:983:  & 5 & 87.00 & $+$1.17 & .2100 & .720 & \\\\",
+    "numLines": 4
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 166_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The remaining `1.17` occurrences are:
+1. `diagnosis.tex:42` - 91.17, +17.17 — this is for Qwen2.5-14B oracle, NOT related to our ID fix (oracle result for a different generator)
+2. `appendix.tex:385` - same oracle result 91.17, +17.17 — unrelated
+3. `appendix.tex:978` - Qwen2.5-14B w=5, combo=75.17, Δ=+1.17 — this is for a different generator, NOT affected by Mistral ID fix
+
+
+4. `appendix.tex:983` - Qwen3-14B w=5, combo=87.00, Δ=+1.17 — also a different generator, unchanged
+
+All these remaining `1.17` values are for non-Mistral generators and are correct. Now I need to check for the old DeBERTa values: 40.33 (w1 combo), 46.17 (w3 combo), 13.00 (FT delta), 3.17 (FT w1 delta), and 26.33 (FT w5 delta).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "d7dfa9a3-e6c5-49e2-ad02-66cffabab4e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1oDNyWSpM91JvXd6Y3RBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 97245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 167_
+
+Remaining `1.17` values are all from non-Mistral generators (Qwen2.5, Qwen3, oracle) — correct, no change needed. Let me check for a few more old values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "531f2cf4-c653-4923-8fd1-e2c009e92381",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1oDNyWSpM91JvXd6Y3RBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 97245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 168_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015QartVbYjgtGs3QnF9WWqB`</summary>
+
+```json
+{
+  "pattern": "40\\.33",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "89ec0586-0164-45ce-83e7-c08b635df7ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1oDNyWSpM91JvXd6Y3RBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 97245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 169 · 2026-05-22T22:36:23.092Z_
+
+<details><summary>↩ Tool result · `toolu_015QartVbYjgtGs3QnF9WWqB`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "7bc41b5d-769b-44c6-9c02-670f1a22e1c0",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 170_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01KZWQK6c69wjqPfNGydt8EX`</summary>
+
+```json
+{
+  "pattern": "26\\.33|3\\.17",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "b73a57a8-ba22-427c-87c1-5d71c8e40f1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1oDNyWSpM91JvXd6Y3RBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 97245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 171 · 2026-05-22T22:36:24.113Z_
+
+<details><summary>↩ Tool result · `toolu_01KZWQK6c69wjqPfNGydt8EX`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "99eeb29f-0954-465d-b708-0a56a8c01386",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 172_
+
+All clear. No residual old values remain. Here's the complete report:
+
+## 修改汇总
+
+| # | 文件:行 | 旧值 | 新值 | 类别 |
+|---|---------|------|------|------|
+| 1 | appendix.tex:875 | SC only & 39.17% | SC only & 39.33% | D |
+| 2 | appendix.tex:892 | SC $= 39.17\%$ | SC $= 39.33\%$ | D |
+| 3 | appendix.tex:898 | $+$1.17 | $+$0.83 | E |
+| 4 | appendix.tex:899 | $+$7.00 | $+$6.67 | E |
+| 5 | appendix.tex:900 | $+$11.17 | $+$11.00 | E |
+| 6 | appendix.tex:948 | SC 39.17% | SC 39.33% | D |
+| 7 | appendix.tex:948 | adj. p = 3.00×10⁻⁵ | adj. p = 6.78×10⁻⁵ | BH |
+| 8 | appendix.tex:948 | adj. p = 7.44×10⁻⁶ | adj. p = 7.42×10⁻⁶ | BH |
+| 9 | appendix.tex:965 | SC 39.17%, gap +15.83 | SC 39.33%, gap +15.67 | D/E |
+| 10 | appendix.tex:966 | 40.33 & +1.17 & .189 & .630 | 40.17 & +0.83 & .359 & .720 | E/BH |
+| 11 | appendix.tex:967 | 46.17 & +7.00 & 5.0×10⁻⁶ & 3.00×10⁻⁵ | 46.00 & +6.67 & 1.13×10⁻⁵ & 6.78×10⁻⁵ | E/BH |
+| 12 | appendix.tex:968 | +11.17 & 6.2×10⁻⁷ & 7.44×10⁻⁶ | +11.00 & 6.18×10⁻⁷ & 7.42×10⁻⁶ | E/BH |
+| 13 | appendix.tex:983 | .630 (Qwen3 w5 p_BH) | .720 | BH cascade |
+| 14 | appendix.tex:1001 | SC 39.17% | SC 39.33% | D |
+| 15 | appendix.tex:1002 | +3.17 | +3.00 | FT |
+| 16 | appendix.tex:1003 | +13.00 | +12.83 | FT |
+| 17 | appendix.tex:1004 | +26.33 | +26.17 | FT |
+| 18 | solutions.tex:9 | SC's 39.17%, +7.00 pp | SC's 39.33%, +6.67 pp | D/E-narr |
+| 19 | solutions.tex:12 | SC 39.17%, +7.00 pp | SC 39.33%, +6.67 pp | D/E-narr |
+| 20 | solutions.tex:23 | 39.17% & +15.83 & +7.00 pp | 39.33% & +15.67 & +6.67 pp | D/E |
+| 21 | solutions.tex:32 | +13.00 pp | +12.83 pp | FT |
+| 22 | abstract.tex:8 | +7.00 pp | +6.67 pp | E-narr |
+| 23 | introduction.tex:28 | +7.00 pp | +6.67 pp | E-narr |
+| 24 | scatter.py:35 | (15.83, 7.00) | (15.67, 6.67) | G |
+| 25 | scatter.py:43 | (-1.50, 4.17) | (-1.66, 4.17) | G |
+| 26 | scatter.py:44 | (7.00, 5.17) | (6.84, 5.17) | G |
+| 27 | scatter.py:50 | (60.50, 13.00) | (60.34, 12.83) | G |
+| 28 | scatter.py:134 | (15.83, 7.00) | (15.67, 6.67) | G |
+
+### Canonical 数据读取结果
+
+| Verifier | w | Combo % | Δ (pp) | p_raw | p_BH (m=12) |
+|----------|---|---------|--------|-------|-------------|
+| **SC baseline** | — | **39.33** (236/600) | — | — | — |
+| DeBERTa w1 | 1 | 40.17 | +0.83 | 0.359 | .720 |
+| DeBERTa w3 | 3 | 46.00 | +6.67 | 1.13×10⁻⁵ | 6.78×10⁻⁵*** |
+| DeBERTa w5 | 5 | 50.33 | +11.00 | 6.18×10⁻⁷ | 7.42×10⁻⁶*** |
+| RoBERTa w1 | 1 | 39.17 | −0.17 | 1.0 | 1.0 |
+| RoBERTa w3 | 3 | 43.50 | +4.17 | 0.00263 | .755 |
+| RoBERTa w5 | 5 | 43.67 | +4.33 | 0.0369 | .720 |
+| BART w1 | 1 | 39.33 | 0.00 | 1.0 | 1.0 |
+| BART w3 | 3 | 44.50 | +5.17 | 0.000244 | .755 |
+| BART w5 | 5 | 45.67 | +6.33 | 0.00275 | .720 |
+
+FT DeBERTa (Mistral-7B): w1=42.33 (Δ+3.00), w3=52.17 (Δ+12.83), w5=65.50 (Δ+26.17)
+
+### BH 重算过程 (m=12 cross-generator)
+
+12 条件排序后 step-up + step-down monotonicity 修正。Mistral w1 从 rank 3→4 (raw .189→.359)，导致 Qwen3 w5 BH 也从 .630→.720（rank cascade）。两个显著条件不变（Mistral w3/w5, p_BH < 0.001）。
+
+### 编译状态
+**成功**，27 页，652,500 bytes，0 errors。
+
+### 残留检查
+- `39.17` in *.tex: **0 matches**
+- `+7.00` in *.tex: **0 matches**
+- `15.83` in *.tex: **0 matches**
+- `39.17` in *.py: **0 matches**
+- `7.00` in scatter plot: **0 matches**
+
+### 未修改项（确认不需要变化）
+- RoBERTa/BART Δ 在 multi-NLI 表 (L902-908): canonical 值与当前显示值一致
+- `$+$13--26\,pp` (abstract/intro): 12.83→13, 26.17→26 四舍五入后范围不变
+- `$14\times$ amplification` (solutions L32): LLaMA 的 $+0.83→+11.67$，不受影响
+- DRC τ=0.7 accuracy (L876): 无更新后的 Mistral-7B/PW-D5 DRC 数据，45.33% 保留
+- DRC full combo (L877): 46.00% 与 canonical DeBERTa w3 一致
+- 3-verifier BH 表 (L928-933): 只显示 checkmarks，显著性结论不变
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "uuid": "4e398ead-ef18-4e7f-9f48-cc58b0dff5e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALk5F24SrDZR4jCiYGtnMN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 834,
+      "cache_read_input_tokens": 98175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 834
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 173_
+
+All clear. No residual old values remain. Here's the complete report:
+
+## 修改汇总
+
+| # | 文件:行 | 旧值 | 新值 | 类别 |
+|---|---------|------|------|------|
+| 1 | appendix.tex:875 | SC only & 39.17% | SC only & 39.33% | D |
+| 2 | appendix.tex:892 | SC $= 39.17\%$ | SC $= 39.33\%$ | D |
+| 3 | appendix.tex:898 | $+$1.17 | $+$0.83 | E |
+| 4 | appendix.tex:899 | $+$7.00 | $+$6.67 | E |
+| 5 | appendix.tex:900 | $+$11.17 | $+$11.00 | E |
+| 6 | appendix.tex:948 | SC 39.17% | SC 39.33% | D |
+| 7 | appendix.tex:948 | adj. p = 3.00×10⁻⁵ | adj. p = 6.78×10⁻⁵ | BH |
+| 8 | appendix.tex:948 | adj. p = 7.44×10⁻⁶ | adj. p = 7.42×10⁻⁶ | BH |
+| 9 | appendix.tex:965 | SC 39.17%, gap +15.83 | SC 39.33%, gap +15.67 | D/E |
+| 10 | appendix.tex:966 | 40.33 & +1.17 & .189 & .630 | 40.17 & +0.83 & .359 & .720 | E/BH |
+| 11 | appendix.tex:967 | 46.17 & +7.00 & 5.0×10⁻⁶ & 3.00×10⁻⁵ | 46.00 & +6.67 & 1.13×10⁻⁵ & 6.78×10⁻⁵ | E/BH |
+| 12 | appendix.tex:968 | +11.17 & 6.2×10⁻⁷ & 7.44×10⁻⁶ | +11.00 & 6.18×10⁻⁷ & 7.42×10⁻⁶ | E/BH |
+| 13 | appendix.tex:983 | .630 (Qwen3 w5 p_BH) | .720 | BH cascade |
+| 14 | appendix.tex:1001 | SC 39.17% | SC 39.33% | D |
+| 15 | appendix.tex:1002 | +3.17 | +3.00 | FT |
+| 16 | appendix.tex:1003 | +13.00 | +12.83 | FT |
+| 17 | appendix.tex:1004 | +26.33 | +26.17 | FT |
+| 18 | solutions.tex:9 | SC's 39.17%, +7.00 pp | SC's 39.33%, +6.67 pp | D/E-narr |
+| 19 | solutions.tex:12 | SC 39.17%, +7.00 pp | SC 39.33%, +6.67 pp | D/E-narr |
+| 20 | solutions.tex:23 | 39.17% & +15.83 & +7.00 pp | 39.33% & +15.67 & +6.67 pp | D/E |
+| 21 | solutions.tex:32 | +13.00 pp | +12.83 pp | FT |
+| 22 | abstract.tex:8 | +7.00 pp | +6.67 pp | E-narr |
+| 23 | introduction.tex:28 | +7.00 pp | +6.67 pp | E-narr |
+| 24 | scatter.py:35 | (15.83, 7.00) | (15.67, 6.67) | G |
+| 25 | scatter.py:43 | (-1.50, 4.17) | (-1.66, 4.17) | G |
+| 26 | scatter.py:44 | (7.00, 5.17) | (6.84, 5.17) | G |
+| 27 | scatter.py:50 | (60.50, 13.00) | (60.34, 12.83) | G |
+| 28 | scatter.py:134 | (15.83, 7.00) | (15.67, 6.67) | G |
+
+### Canonical 数据读取结果
+
+| Verifier | w | Combo % | Δ (pp) | p_raw | p_BH (m=12) |
+|----------|---|---------|--------|-------|-------------|
+| **SC baseline** | — | **39.33** (236/600) | — | — | — |
+| DeBERTa w1 | 1 | 40.17 | +0.83 | 0.359 | .720 |
+| DeBERTa w3 | 3 | 46.00 | +6.67 | 1.13×10⁻⁵ | 6.78×10⁻⁵*** |
+| DeBERTa w5 | 5 | 50.33 | +11.00 | 6.18×10⁻⁷ | 7.42×10⁻⁶*** |
+| RoBERTa w1 | 1 | 39.17 | −0.17 | 1.0 | 1.0 |
+| RoBERTa w3 | 3 | 43.50 | +4.17 | 0.00263 | .755 |
+| RoBERTa w5 | 5 | 43.67 | +4.33 | 0.0369 | .720 |
+| BART w1 | 1 | 39.33 | 0.00 | 1.0 | 1.0 |
+| BART w3 | 3 | 44.50 | +5.17 | 0.000244 | .755 |
+| BART w5 | 5 | 45.67 | +6.33 | 0.00275 | .720 |
+
+FT DeBERTa (Mistral-7B): w1=42.33 (Δ+3.00), w3=52.17 (Δ+12.83), w5=65.50 (Δ+26.17)
+
+### BH 重算过程 (m=12 cross-generator)
+
+12 条件排序后 step-up + step-down monotonicity 修正。Mistral w1 从 rank 3→4 (raw .189→.359)，导致 Qwen3 w5 BH 也从 .630→.720（rank cascade）。两个显著条件不变（Mistral w3/w5, p_BH < 0.001）。
+
+### 编译状态
+**成功**，27 页，652,500 bytes，0 errors。
+
+### 残留检查
+- `39.17` in *.tex: **0 matches**
+- `+7.00` in *.tex: **0 matches**
+- `15.83` in *.tex: **0 matches**
+- `39.17` in *.py: **0 matches**
+- `7.00` in scatter plot: **0 matches**
+
+### 未修改项（确认不需要变化）
+- RoBERTa/BART Δ 在 multi-NLI 表 (L902-908): canonical 值与当前显示值一致
+- `$+$13--26\,pp` (abstract/intro): 12.83→13, 26.17→26 四舍五入后范围不变
+- `$14\times$ amplification` (solutions L32): LLaMA 的 $+0.83→+11.67$，不受影响
+- DRC τ=0.7 accuracy (L876): 无更新后的 Mistral-7B/PW-D5 DRC 数据，45.33% 保留
+- DRC full combo (L877): 46.00% 与 canonical DeBERTa w3 一致
+- 3-verifier BH 表 (L928-933): 只显示 checkmarks，显著性结论不变
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 718704,
+  "duration_api_ms": 708684,
+  "num_turns": 67,
+  "stop_reason": "end_turn",
+  "session_id": "bd343ffd-036e-400a-9fd3-1e5ff543fc88",
+  "total_cost_usd": 2.2737195000000003,
+  "usage": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 87168,
+    "cache_read_input_tokens": 1520157,
+    "output_tokens": 38579,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 87168,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2251,
+        "cache_read_input_tokens": 98175,
+        "cache_creation_input_tokens": 834,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 834
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4131,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004236,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 26,
+      "outputTokens": 38579,
+      "cacheReadInputTokens": 1520157,
+      "cacheCreationInputTokens": 87168,
+      "webSearchRequests": 0,
+      "costUSD": 2.2694835,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "239b56b2-fc02-48e0-acff-b805ddc5983b"
+}
+```
+
+</details>
+
+---

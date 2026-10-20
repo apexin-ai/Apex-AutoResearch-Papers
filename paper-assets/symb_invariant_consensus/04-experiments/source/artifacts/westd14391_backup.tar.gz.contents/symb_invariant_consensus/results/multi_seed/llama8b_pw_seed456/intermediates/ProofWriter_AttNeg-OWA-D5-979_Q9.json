@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-979_Q9",
+    "problem": "Charlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRed(Charlie, True) ::: Charlie is red.\nRed(Dave, True) ::: Dave is red.\nRough(Dave, True) ::: Dave is rough.\nRound(Dave, True) ::: Dave is round.\nYoung(Dave, True) ::: Dave is young.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nFurry(Harry, True) ::: Harry is furry.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRough($x, True) >>> Round($x, True) ::: All rough things are round.\nRound($x, True) && Rough($x, True) >>> Young($x, True) ::: All round, rough things are young.\nRed($x, True) >>> Young($x, True) ::: All red things are young.\nYoung(Fiona, True) && Furry(Fiona, False) >>> Kind(Fiona, True) ::: If Fiona is young and Fiona is not furry then Fiona is kind.\nFurry($x, True) >>> Rough($x, True) ::: If something is furry then it is rough.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: Quiet, kind things are rough.\nQuiet($x, True) && Young($x, True) >>> Kind($x, True) ::: All quiet, young things are kind.\nYoung($x, True) >>> Quiet($x, True) ::: Young things are quiet.\n\nQuery:\nRound(Fiona, True) ::: Fiona is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,1115 @@
+# analysis exp011 statistical verification
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 22
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_analysis_exp011-statistical-verification_20260517T080055.log`
+- **Structured JSON:** [`73bf46a787db3cfd5943.json`](../../sessions/73/73bf46a787db3cfd5943.json)
+
+## Before a recorded user message
+
+22 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1744179b-7a38-4250-8220-d3cdfe3158f3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779022800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a7a4dd71-9304-40f9-8699-f20f4265a55f",
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the experiment results from the server, then perform the statistical analyses requested.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "3e052532-c5eb-4be3-8d9b-64bb651385a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J7tfT1mFA6NkdVViRVv4Kc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12898,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12898
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XWNnBQdT4crhMgvCrY7pqo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "9912a16a-df4d-451a-a498-bd50494952e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J7tfT1mFA6NkdVViRVv4Kc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12898,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12898
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T08:01:09.351Z_
+
+<details><summary>↩ Tool result · `toolu_01XWNnBQdT4crhMgvCrY7pqo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "a4501030-9875-440a-878c-22ed977fc3c6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the experiment results file from the server, then write and execute a Python script to perform all the statistical analyses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "519e478d-992c-49c2-a762-f7059ecc6703",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xEh9YCMsNUNJF3HJaopKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 24739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019kr5bh8LXaZRqRAW9P7kk8`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat /root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "65fa4f1d-5acd-4d48-96d7-63e7a1c1e265",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xEh9YCMsNUNJF3HJaopKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 24739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 380
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T08:01:14.907Z_
+
+<details><summary>↩ Tool result · `toolu_019kr5bh8LXaZRqRAW9P7kk8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.6666666666666666,\\n    \\\"sc_accuracy\\\": 0.6,\\n    \\\"sica_correct\\\": 40,\\n    \\\"sc_correct\\\": 36,\\n    \\\"extraction_rate\\\": 0.8555555555555555,\\n    \\\"answer_extraction_rate\\\": 0.8958333333333334,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 621,\\n      \\\"fallback\\\": 24,\\n      \\\"none\\\": 75\\n    },\\n    \\\"truncated_traces\\\": 44,\\n    \\\"total_constraints_extracted\\\": 6059,\\n    \\\"total_unique_constraints\\\": 1804,\\n    \\\"contradiction_rate\\\": 0.05266075388026607,\\n    \\\"problems_with_contradictions\\\": 43,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.6333333333333333,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.6333333333333333,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 3983.3\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nFiona is round.\\\",\\n      \\\"dataset\\\": \\\"proofwriter\\\",\\n      \\\"level\\\": \\\"D5\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 142.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 9,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"True\\\": 9\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 143,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 36\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 36,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 143,\\n        \\\"solve_time_ms\\\": 1.3871039263904095\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 61.329,\\n        \\\"extraction_s\\\": 27.546,\\n        \\\"dedup_s\\\": 1.745,\\n        \\\"maxsat_s\\\": 0.004,\\n        \\\"total_s\\\": 90.626\\n      },\\n      \\\"wall_time_s\\\": 90.63,\\n      \\\"trace_extraction_stats\\\": {\\n        \\\"boxed\\\": 9,\\n        \\\"fallback\\\": 0,\\n        \\\"none\\\": 3\\n      },\\n      \\\"truncated_traces\\\": 1,\\n      \\\"raw_constraints\\\": [\\n        {\\n          \\\"expression\\\": \\\"red(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"red_fiona == True\\\",\\n          \\\"weight\\\": 9,\\n          \\\"source_traces\\\": [\\n            1,\\n            2,\\n            4,\\n            5,\\n            6,\\n            8,\\n            9,\\n            10,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"quiet(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"quiet_fiona == True\\\",\\n          \\\"weight\\\": 13,\\n          \\\"source_traces\\\": [\\n            1,\\n            2,\\n            4,\\n            5,\\n            6,\\n            8,\\n            9,\\n            10,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"red(X) -> young(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(red_fiona, young_fiona)\\\",\\n          \\\"weight\\\": 6,\\n          \\\"source_traces\\\": [\\n            1,\\n            4,\\n            5,\\n            8,\\n            9,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"quiet(X) & young(X) -> kind(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(And(quiet_fiona, young_fiona), kind_fiona)\\\",\\n          \\\"weight\\\": 6,\\n          \\\"source_traces\\\": [\\n            1,\\n            4,\\n            5,\\n            8,\\n            9,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"young(X) -> not \\n\\n... [截断: 输出过长，省略 707317 字符] ...\\n\\n      1,\\n            5,\\n            9\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"answer is False\\\",\\n          \\\"z3_formula_str\\\": \\\"__sica_answer_false == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            1,\\n            5,\\n            9\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"all_cows_are_bovines\\\",\\n          \\\"z3_formula_str\\\": \\\"all_cows_are_bovines == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"some_pets_are_cows\\\",\\n          \\\"z3_formula_str\\\": \\\"some_pets_are_cows == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"bovine(X) -> domesticated(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(bovine_X, domesticated_X)\\\",\\n          \\\"weight\\\": 4,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            7,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"no_domesticated_animals_are_alligators\\\",\\n          \\\"z3_formula_str\\\": \\\"no_domesticated_animals_are_alligators == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"ted_is_an_alligator\\\",\\n          \\\"z3_formula_str\\\": \\\"ted_is_an_alligator == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"not domesticated(X) | not alligator(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Not(And(Not(alligator_Ted), Not(domesticated_Ted)))\\\",\\n          \\\"weight\\\": 1,\\n          \\\"source_traces\\\": [\\n            7\\n          ]\\n        }\\n      ],\\n      \\\"per_trace\\\": [\\n        {\\n          \\\"trace_idx\\\": 0,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1448\\n        },\\n        {\\n          \\\"trace_idx\\\": 1,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 2,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 3,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 2357\\n        },\\n        {\\n          \\\"trace_idx\\\": 4,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1514\\n        },\\n        {\\n          \\\"trace_idx\\\": 5,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 6,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 7,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1760\\n        },\\n        {\\n          \\\"trace_idx\\\": 8,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1514\\n        },\\n        {\\n          \\\"trace_idx\\\": 9,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 10,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 11,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1760\\n        }\\n      ]\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "05bcbecd-5346-43da-9dd7-57f32f579bde",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 60,\\\\n    \\\\\\\"sica_accuracy\\\\\\\": 0.6666666666666666,\\\\n    \\\\\\\"sc_accuracy\\\\\\\": 0.6,\\\\n    \\\\\\\"sica_correct\\\\\\\": 40,\\\\n    \\\\\\\"sc_correct\\\\\\\": 36,\\\\n    \\\\\\\"extraction_rate\\\\\\\": 0.8555555555555555,\\\\n    \\\\\\\"answer_extraction_rate\\\\\\\": 0.8958333333333334,\\\\n    \\\\\\\"answer_extraction_counts\\\\\\\": {\\\\n      \\\\\\\"boxed\\\\\\\": 621,\\\\n      \\\\\\\"fallback\\\\\\\": 24,\\\\n      \\\\\\\"none\\\\\\\": 75\\\\n    },\\\\n    \\\\\\\"truncated_traces\\\\\\\": 44,\\\\n    \\\\\\\"total_constraints_extracted\\\\\\\": 6059,\\\\n    \\\\\\\"total_unique_constraints\\\\\\\": 1804,\\\\n    \\\\\\\"contradiction_rate\\\\\\\": 0.05266075388026607,\\\\n    \\\\\\\"problems_with_contradictions\\\\\\\": 43,\\\\n    \\\\\\\"per_level_accuracy\\\\\\\": {\\\\n      \\\\\\\"D5\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6333333333333333,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.7,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"per_dataset_accuracy\\\\\\\": {\\\\n      \\\\\\\"proofwriter\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.6333333333333333,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"folio\\\\\\\": {\\\\n        \\\\\\\"sica\\\\\\\": 0.7,\\\\n        \\\\\\\"sc\\\\\\\": 0.6,\\\\n        \\\\\\\"n\\\\\\\": 30\\\\n      }\\\\n    },\\\\n    \\\\\\\"k\\\\\\\": 12,\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"vllm\\\\\\\",\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 3983.3\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following facts and rules:\\\\\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\\\\\n\\\\\\\\nDetermine whether the following statement is true, false, or unknown:\\\\\\\\nFiona is round.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"proofwriter\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"D5\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_scores\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 142.0\\\\n      },\\\\n      \\\\\\\"sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sc_vote_count\\\\\\\": 9,\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"True\\\\\\\": 9\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 143,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 11,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 36\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 36,\\\\n        \\\\\\\"excluded\\\\\\\": 0,\\\\n        \\\\\\\"total_weight\\\\\\\": 143,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.3871039263904095\\\\n      },\\\\n      \\\\\\\"timing\\\\\\\": {\\\\n        \\\\\\\"trace_gen_s\\\\\\\": 61.329,\\\\n        \\\\\\\"extraction_s\\\\\\\": 27.546,\\\\n        \\\\\\\"dedup_s\\\\\\\": 1.745,\\\\n        \\\\\\\"maxsat_s\\\\\\\": 0.004,\\\\n        \\\\\\\"total_s\\\\\\\": 90.626\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 90.63,\\\\n      \\\\\\\"trace_extraction_stats\\\\\\\": {\\\\n        \\\\\\\"boxed\\\\\\\": 9,\\\\n        \\\\\\\"fallback\\\\\\\": 0,\\\\n        \\\\\\\"none\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"truncated_traces\\\\\\\": 1,\\\\n      \\\\\\\"raw_constraints\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"red(fiona)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"red_fiona == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 9,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            1,\\\\n            2,\\\\n            4,\\\\n            5,\\\\n            6,\\\\n            8,\\\\n            9,\\\\n            10,\\\\n            11\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"quiet(fiona)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"quiet_fiona == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 13,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            1,\\\\n            2,\\\\n            4,\\\\n            5,\\\\n            6,\\\\n            8,\\\\n            9,\\\\n            10,\\\\n            11\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"red(X) -> young(X)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"Implies(red_fiona, young_fiona)\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 6,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            1,\\\\n            4,\\\\n            5,\\\\n            8,\\\\n            9,\\\\n            11\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"quiet(X) & young(X) -> kind(X)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"Implies(And(quiet_fiona, young_fiona), kind_fiona)\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 6,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            1,\\\\n            4,\\\\n            5,\\\\n            8,\\\\n            9,\\\\n            11\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"young(X) -> not \\\\n\\\\n... [截断: 输出过长，省略 707317 字符] ...\\\\n\\\\n      1,\\\\n            5,\\\\n            9\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"answer is False\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"__sica_answer_false == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 3,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            1,\\\\n            5,\\\\n            9\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"all_cows_are_bovines\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"all_cows_are_bovines == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 3,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            2,\\\\n            6,\\\\n            10\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"some_pets_are_cows\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"some_pets_are_cows == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 3,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            2,\\\\n            6,\\\\n            10\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"bovine(X) -> domesticated(X)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"Implies(bovine_X, domesticated_X)\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 4,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            2,\\\\n            6,\\\\n            7,\\\\n            10\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"no_domesticated_animals_are_alligators\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"no_domesticated_animals_are_alligators == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 3,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            2,\\\\n            6,\\\\n            10\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"ted_is_an_alligator\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"ted_is_an_alligator == True\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 3,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            2,\\\\n            6,\\\\n            10\\\\n          ]\\\\n        },\\\\n        {\\\\n          \\\\\\\"expression\\\\\\\": \\\\\\\"not domesticated(X) | not alligator(X)\\\\\\\",\\\\n          \\\\\\\"z3_formula_str\\\\\\\": \\\\\\\"Not(And(Not(alligator_Ted), Not(domesticated_Ted)))\\\\\\\",\\\\n          \\\\\\\"weight\\\\\\\": 1,\\\\n          \\\\\\\"source_traces\\\\\\\": [\\\\n            7\\\\n          ]\\\\n        }\\\\n      ],\\\\n      \\\\\\\"per_trace\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 0,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1448\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 1,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 852\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 2,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1543\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 3,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 2357\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 4,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1514\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 5,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 852\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 6,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1543\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 7,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1760\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 8,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1514\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 9,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 852\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 10,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1543\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace_idx\\\\\\\": 11,\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"finish_reason\\\\\\\": \\\\\\\"stop\\\\\\\",\\\\n          \\\\\\\"extraction_method\\\\\\\": \\\\\\\"boxed\\\\\\\",\\\\n          \\\\\\\"trace_len\\\\\\\": 1760\\\\n        }\\\\n      ]\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 60,\\n    \\\"sica_accuracy\\\": 0.6666666666666666,\\n    \\\"sc_accuracy\\\": 0.6,\\n    \\\"sica_correct\\\": 40,\\n    \\\"sc_correct\\\": 36,\\n    \\\"extraction_rate\\\": 0.8555555555555555,\\n    \\\"answer_extraction_rate\\\": 0.8958333333333334,\\n    \\\"answer_extraction_counts\\\": {\\n      \\\"boxed\\\": 621,\\n      \\\"fallback\\\": 24,\\n      \\\"none\\\": 75\\n    },\\n    \\\"truncated_traces\\\": 44,\\n    \\\"total_constraints_extracted\\\": 6059,\\n    \\\"total_unique_constraints\\\": 1804,\\n    \\\"contradiction_rate\\\": 0.05266075388026607,\\n    \\\"problems_with_contradictions\\\": 43,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"D5\\\": {\\n        \\\"sica\\\": 0.6333333333333333,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"proofwriter\\\": {\\n        \\\"sica\\\": 0.6333333333333333,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      },\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7,\\n        \\\"sc\\\": 0.6,\\n        \\\"n\\\": 30\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 3983.3\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-979_Q9\\\",\\n      \\\"problem\\\": \\\"Given the following facts and rules:\\\\nCharlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\\\\n\\\\nDetermine whether the following statement is true, false, or unknown:\\\\nFiona is round.\\\",\\n      \\\"dataset\\\": \\\"proofwriter\\\",\\n      \\\"level\\\": \\\"D5\\\",\\n      \\\"ground_truth\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"True\\\": 142.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_vote_count\\\": 9,\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"True\\\": 9\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 143,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 36\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 36,\\n        \\\"excluded\\\": 0,\\n        \\\"total_weight\\\": 143,\\n        \\\"solve_time_ms\\\": 1.3871039263904095\\n      },\\n      \\\"timing\\\": {\\n        \\\"trace_gen_s\\\": 61.329,\\n        \\\"extraction_s\\\": 27.546,\\n        \\\"dedup_s\\\": 1.745,\\n        \\\"maxsat_s\\\": 0.004,\\n        \\\"total_s\\\": 90.626\\n      },\\n      \\\"wall_time_s\\\": 90.63,\\n      \\\"trace_extraction_stats\\\": {\\n        \\\"boxed\\\": 9,\\n        \\\"fallback\\\": 0,\\n        \\\"none\\\": 3\\n      },\\n      \\\"truncated_traces\\\": 1,\\n      \\\"raw_constraints\\\": [\\n        {\\n          \\\"expression\\\": \\\"red(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"red_fiona == True\\\",\\n          \\\"weight\\\": 9,\\n          \\\"source_traces\\\": [\\n            1,\\n            2,\\n            4,\\n            5,\\n            6,\\n            8,\\n            9,\\n            10,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"quiet(fiona)\\\",\\n          \\\"z3_formula_str\\\": \\\"quiet_fiona == True\\\",\\n          \\\"weight\\\": 13,\\n          \\\"source_traces\\\": [\\n            1,\\n            2,\\n            4,\\n            5,\\n            6,\\n            8,\\n            9,\\n            10,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"red(X) -> young(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(red_fiona, young_fiona)\\\",\\n          \\\"weight\\\": 6,\\n          \\\"source_traces\\\": [\\n            1,\\n            4,\\n            5,\\n            8,\\n            9,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"quiet(X) & young(X) -> kind(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(And(quiet_fiona, young_fiona), kind_fiona)\\\",\\n          \\\"weight\\\": 6,\\n          \\\"source_traces\\\": [\\n            1,\\n            4,\\n            5,\\n            8,\\n            9,\\n            11\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"young(X) -> not \\n\\n... [截断: 输出过长，省略 707317 字符] ...\\n\\n      1,\\n            5,\\n            9\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"answer is False\\\",\\n          \\\"z3_formula_str\\\": \\\"__sica_answer_false == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            1,\\n            5,\\n            9\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"all_cows_are_bovines\\\",\\n          \\\"z3_formula_str\\\": \\\"all_cows_are_bovines == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"some_pets_are_cows\\\",\\n          \\\"z3_formula_str\\\": \\\"some_pets_are_cows == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"bovine(X) -> domesticated(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Implies(bovine_X, domesticated_X)\\\",\\n          \\\"weight\\\": 4,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            7,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"no_domesticated_animals_are_alligators\\\",\\n          \\\"z3_formula_str\\\": \\\"no_domesticated_animals_are_alligators == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"ted_is_an_alligator\\\",\\n          \\\"z3_formula_str\\\": \\\"ted_is_an_alligator == True\\\",\\n          \\\"weight\\\": 3,\\n          \\\"source_traces\\\": [\\n            2,\\n            6,\\n            10\\n          ]\\n        },\\n        {\\n          \\\"expression\\\": \\\"not domesticated(X) | not alligator(X)\\\",\\n          \\\"z3_formula_str\\\": \\\"Not(And(Not(alligator_Ted), Not(domesticated_Ted)))\\\",\\n          \\\"weight\\\": 1,\\n          \\\"source_traces\\\": [\\n            7\\n          ]\\n        }\\n      ],\\n      \\\"per_trace\\\": [\\n        {\\n          \\\"trace_idx\\\": 0,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1448\\n        },\\n        {\\n          \\\"trace_idx\\\": 1,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 2,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 3,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 2357\\n        },\\n        {\\n          \\\"trace_idx\\\": 4,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1514\\n        },\\n        {\\n          \\\"trace_idx\\\": 5,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 6,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 7,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1760\\n        },\\n        {\\n          \\\"trace_idx\\\": 8,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1514\\n        },\\n        {\\n          \\\"trace_idx\\\": 9,\\n          \\\"answer\\\": \\\"False\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 852\\n        },\\n        {\\n          \\\"trace_idx\\\": 10,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1543\\n        },\\n        {\\n          \\\"trace_idx\\\": 11,\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"finish_reason\\\": \\\"stop\\\",\\n          \\\"extraction_method\\\": \\\"boxed\\\",\\n          \\\"trace_len\\\": 1760\\n        }\\n      ]\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Now I'll write and execute the full statistical analysis script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "f628752a-16ab-4c0c-bce5-5f93d774e82d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016rLqieJ41zVJ1Rzc96tsBr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4200,
+      "cache_read_input_tokens": 25119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4200
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HzHCYvpmBQgr3STtxEW3wo`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'EOF'\nimport json\nimport numpy as np\nfrom scipy import stats\n\nwith open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nn = len(results)\n\n# Extract per-problem data\nsica_correct = np.array([int(r['sica_correct']) for r in results])\nsc_correct = np.array([int(r['sc_correct']) for r in results])\ntruncated = np.array([r['truncated_traces'] for r in results])\ndatasets = [r['dataset'] for r in results]\n\nprint(f\"Total problems: {n}\")\nprint(f\"SICA correct: {sica_correct.sum()}, SC correct: {sc_correct.sum()}\")\nprint(f\"SICA acc: {sica_correct.mean():.4f}, SC acc: {sc_correct.mean():.4f}\")\nprint(f\"Gap: +{(sica_correct.mean() - sc_correct.mean())*100:.2f} pp\")\nprint()\n\n# === 1. McNemar Test (exact) ===\nprint(\"=\" * 50)\nprint(\"1. McNEMAR TEST (EXACT BINOMIAL)\")\nprint(\"=\" * 50)\n\n# Discordant pairs\nsica_wins = np.sum((sica_correct == 1) & (sc_correct == 0))\nsc_wins = np.sum((sica_correct == 0) & (sc_correct == 1))\nboth_correct = np.sum((sica_correct == 1) & (sc_correct == 1))\nboth_wrong = np.sum((sica_correct == 0) & (sc_correct == 0))\n\nprint(f\"Contingency table:\")\nprint(f\"  Both correct: {both_correct}\")\nprint(f\"  Both wrong: {both_wrong}\")\nprint(f\"  SICA wins (sica=1, sc=0): {sica_wins}\")\nprint(f\"  SC wins (sica=0, sc=1): {sc_wins}\")\nprint(f\"  Total discordant: {sica_wins + sc_wins}\")\n\n# Exact binomial test: under H0, P(SICA win) = 0.5 among discordant pairs\nn_discordant = sica_wins + sc_wins\n# Two-sided p-value: P(X >= 5) + P(X <= 1) where X ~ Binomial(6, 0.5)\np_exact = stats.binom_test(sica_wins, n_discordant, 0.5)  # two-sided\n# One-sided: P(X >= 5) under H0\np_one_sided = 1 - stats.binom.cdf(sica_wins - 1, n_discordant, 0.5)\n\n# Odds ratio and CI\n# OR = sica_wins / sc_wins\nif sc_wins > 0:\n    odds_ratio = sica_wins / sc_wins\nelse:\n    odds_ratio = float('inf')\n\n# 95% CI for odds ratio using exact method (Baptista-Pike or Clopper-Pearson on proportion)\n# For proportion p = sica_wins / n_discordant, CI then transform to OR = p/(1-p)\nalpha = 0.05\nci_low_p, ci_high_p = stats.binom.ppf(alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant, \\\n                       stats.binom.ppf(1-alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant\n\n# Better: Clopper-Pearson exact CI for proportion\nfrom statsmodels.stats.proportion import proportion_confint\nci_low_p, ci_high_p = proportion_confint(sica_wins, n_discordant, alpha=0.05, method='beta')\n# Transform to OR: OR = p/(1-p)\nor_low = ci_low_p / (1 - ci_low_p) if ci_low_p < 1 else float('inf')\nor_high = ci_high_p / (1 - ci_high_p) if ci_high_p < 1 else float('inf')\n\nprint(f\"\\nExact binomial test (two-sided): p = {p_exact:.4f}\")\nprint(f\"One-sided p (SICA > SC): p = {p_one_sided:.4f}\")\nprint(f\"Odds ratio: {odds_ratio:.2f}\")\nprint(f\"95% CI for OR: [{or_low:.3f}, {or_high:.3f}]\")\nprint()\n\n# === 2. Bootstrap 95% CI for Gap ===\nprint(\"=\" * 50)\nprint(\"2. BOOTSTRAP 95% CI FOR GAP\")\nprint(\"=\" * 50)\n\nnp.random.seed(42)\nn_boot = 10000\nboot_gaps = np.zeros(n_boot)\n\nfor i in range(n_boot):\n    idx = np.random.choice(n, size=n, replace=True)\n    boot_sica = sica_correct[idx]\n    boot_sc = sc_correct[idx]\n    boot_gaps[i] = boot_sica.mean() - boot_sc.mean()\n\npoint_estimate = (sica_correct.mean() - sc_correct.mean()) * 100\nci_low = np.percentile(boot_gaps, 2.5) * 100\nci_high = np.percentile(boot_gaps, 97.5) * 100\np_gap_leq_0 = np.mean(boot_gaps <= 0)\n\nprint(f\"Point estimate: +{point_estimate:.2f} pp\")\nprint(f\"95% CI (percentile): [{ci_low:.2f}, {ci_high:.2f}] pp\")\nprint(f\"P(gap <= 0): {p_gap_leq_0:.4f}\")\nprint()\n\n# === 3. Truncation Analysis ===\nprint(\"=\" * 50)\nprint(\"3. TRUNCATION ANALYSIS\")\nprint(\"=\" * 50)\n\nhas_truncated = truncated > 0\nn_problems_truncated = has_truncated.sum()\nprint(f\"Problems with truncated traces: {n_problems_truncated}/60\")\nprint(f\"Total truncated traces: {truncated.sum()}\")\nprint(f\"Distribution of truncated traces per problem:\")\nfor t_count in sorted(set(truncated)):\n    if t_count > 0:\n        print(f\"  {t_count} truncated: {np.sum(truncated == t_count)} problems\")\n\n# Group A: problems with truncated traces\n# Group B: problems without truncated traces\nmask_A = has_truncated\nmask_B = ~has_truncated\n\ngap_A = (sica_correct[mask_A].mean() - sc_correct[mask_A].mean()) * 100\ngap_B = (sica_correct[mask_B].mean() - sc_correct[mask_B].mean()) * 100\n\nprint(f\"\\nGroup A (with truncation): {mask_A.sum()} problems\")\nprint(f\"  SICA acc: {sica_correct[mask_A].mean():.4f}, SC acc: {sc_correct[mask_A].mean():.4f}\")\nprint(f\"  Gap: {gap_A:+.2f} pp\")\n\nprint(f\"\\nGroup B (no truncation): {mask_B.sum()} problems\")\nprint(f\"  SICA acc: {sica_correct[mask_B].mean():.4f}, SC acc: {sc_correct[mask_B].mean():.4f}\")\nprint(f\"  Gap: {gap_B:+.2f} pp\")\n\n# Check discordant pairs and truncation\nprint(f\"\\nDiscordant pairs analysis:\")\nfor i in range(n):\n    if sica_correct[i] == 1 and sc_correct[i] == 0:\n        print(f\"  SICA-win: problem {i} ({results[i]['problem_id']}), truncated_traces={truncated[i]}\")\n    elif sica_correct[i] == 0 and sc_correct[i] == 1:\n        print(f\"  SC-win: problem {i} ({results[i]['problem_id']}), truncated_traces={truncated[i]}\")\n\nsica_win_indices = [i for i in range(n) if sica_correct[i] == 1 and sc_correct[i] == 0]\nsica_wins_truncated = sum(1 for i in sica_win_indices if truncated[i] > 0)\nprint(f\"\\nSICA-win discordant pairs with truncation: {sica_wins_truncated}/{len(sica_win_indices)}\")\n\n# === 4. Per-Domain Breakdown ===\nprint()\nprint(\"=\" * 50)\nprint(\"4. PER-DOMAIN BREAKDOWN\")\nprint(\"=\" * 50)\n\nfor domain in ['proofwriter', 'folio']:\n    mask = np.array([d == domain for d in datasets])\n    s = sica_correct[mask]\n    c = sc_correct[mask]\n    n_d = mask.sum()\n    \n    gap_d = (s.mean() - c.mean()) * 100\n    \n    # McNemar exact\n    sw = np.sum((s == 1) & (c == 0))\n    cw = np.sum((s == 0) & (c == 1))\n    nd = sw + cw\n    if nd > 0:\n        p_mcnemar = stats.binom_test(sw, nd, 0.5)\n    else:\n        p_mcnemar = 1.0\n    \n    # Bootstrap CI\n    boot_d = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.choice(n_d, size=n_d, replace=True)\n        boot_d[i] = s[idx].mean() - c[idx].mean()\n    ci_l = np.percentile(boot_d, 2.5) * 100\n    ci_h = np.percentile(boot_d, 97.5) * 100\n    p_d = np.mean(boot_d <= 0)\n    \n    print(f\"\\n{domain.upper()} ({n_d} problems):\")\n    print(f\"  SICA acc: {s.mean():.4f}, SC acc: {c.mean():.4f}\")\n    print(f\"  Gap: {gap_d:+.2f} pp\")\n    print(f\"  Discordant: SICA-wins={sw}, SC-wins={cw}\")\n    print(f\"  McNemar exact p (two-sided): {p_mcnemar:.4f}\")\n    print(f\"  Bootstrap 95% CI: [{ci_l:.2f}, {ci_h:.2f}] pp\")\n    print(f\"  Bootstrap P(gap<=0): {p_d:.4f}\")\n\n# === FINAL SUMMARY ===\nprint()\nprint()\nprint(\"=\" * 60)\nprint(\"STATISTICAL VERIFICATION SUMMARY\")\nprint(\"=\" * 60)\nprint(f\"McNemar exact p-value (two-sided): {p_exact:.4f}\")\nprint(f\"McNemar exact p-value (one-sided): {p_one_sided:.4f}\")\nprint(f\"Bootstrap gap: +{point_estimate:.2f} pp [{ci_low:.2f}, {ci_high:.2f}]\")\nprint(f\"Bootstrap p(gap<=0): {p_gap_leq_0:.4f}\")\nprint()\nprint(\"TRUNCATION ANALYSIS:\")\nprint(f\"  Problems with truncated traces: {n_problems_truncated}/60\")\nprint(f\"  Gap (truncated group): {gap_A:+.2f} pp\")\nprint(f\"  Gap (clean group): {gap_B:+.2f} pp\")\nprint(f\"  Discordant SICA-wins in truncated: {sica_wins_truncated}/5\")\nprint()\nprint(\"PER-DOMAIN:\")\nfor domain in ['proofwriter', 'folio']:\n    mask = np.array([d == domain for d in datasets])\n    s = sica_correct[mask]\n    c = sc_correct[mask]\n    gap_d = (s.mean() - c.mean()) * 100\n    sw = np.sum((s == 1) & (c == 0))\n    cw = np.sum((s == 0) & (c == 1))\n    nd = sw + cw\n    p_m = stats.binom_test(sw, nd, 0.5) if nd > 0 else 1.0\n    boot_d = np.zeros(n_boot)\n    n_d = mask.sum()\n    for i in range(n_boot):\n        idx = np.random.choice(n_d, size=n_d, replace=True)\n        boot_d[i] = s[idx].mean() - c[idx].mean()\n    ci_l = np.percentile(boot_d, 2.5) * 100\n    ci_h = np.percentile(boot_d, 97.5) * 100\n    print(f\"  {domain.upper()}: {gap_d:+.2f}pp, McNemar p={p_m:.4f}, Bootstrap CI=[{ci_l:.2f}, {ci_h:.2f}]\")\n\nprint()\n# Verdict\nif p_exact < 0.05 and ci_low > 0:\n    verdict = \"SIGNIFICANT\"\nelif gap_A > gap_B * 2 and sica_wins_truncated >= 4:\n    verdict = \"ARTIFACT (driven by truncation)\"\nelif p_exact >= 0.10:\n    verdict = \"NOT SIGNIFICANT\"\nelse:\n    verdict = \"NOT SIGNIFICANT (underpowered, suggestive trend)\"\n\nprint(f\"VERDICT: {verdict}\")\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "0b11ea90-26bc-44ac-b46b-3da25a54db27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016rLqieJ41zVJ1Rzc96tsBr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4200,
+      "cache_read_input_tokens": 25119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4200
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T08:02:06.358Z_
+
+<details><summary>↩ Tool result · `toolu_01HzHCYvpmBQgr3STtxEW3wo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'EOF\\\\'\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\') as f:\\\\n    data = json.load(f)\\\\n\\\\nresults = data[\\\\'results\\\\']\\\\nn = len(results)\\\\n\\\\n# Extract per-problem data\\\\nsica_correct = np.array([int(r[\\\\'sica_correct\\\\']) for r in results])\\\\nsc_correct = np.array([int(r[\\\\'sc_correct\\\\']) for r in results])\\\\ntruncated = np.array([r[\\\\'truncated_traces\\\\'] for r in results])\\\\ndatasets = [r[\\\\'dataset\\\\'] for r in results]\\\\n\\\\nprint(f\\\"Total problems: {n}\\\")\\\\nprint(f\\\"SICA correct: {sica_correct.sum()}, SC correct: {sc_correct.sum()}\\\")\\\\nprint(f\\\"SICA acc: {sica_correct.mean():.4f}, SC acc: {sc_correct.mean():.4f}\\\")\\\\nprint(f\\\"Gap: +{(sica_correct.mean() - sc_correct.mean())*100:.2f} pp\\\")\\\\nprint()\\\\n\\\\n# === 1. McNemar Test (exact) ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"1. McNEMAR TEST (EXACT BINOMIAL)\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\n# Discordant pairs\\\\nsica_wins = np.sum((sica_correct == 1) & (sc_correct == 0))\\\\nsc_wins = np.sum((sica_correct == 0) & (sc_correct == 1))\\\\nboth_correct = np.sum((sica_correct == 1) & (sc_correct == 1))\\\\nboth_wrong = np.sum((sica_correct == 0) & (sc_correct == 0))\\\\n\\\\nprint(f\\\"Contingency table:\\\")\\\\nprint(f\\\"  Both correct: {both_correct}\\\")\\\\nprint(f\\\"  Both wrong: {both_wrong}\\\")\\\\nprint(f\\\"  SICA wins (sica=1, sc=0): {sica_wins}\\\")\\\\nprint(f\\\"  SC wins (sica=0, sc=1): {sc_wins}\\\")\\\\nprint(f\\\"  Total discordant: {sica_wins + sc_wins}\\\")\\\\n\\\\n# Exact binomial test: under H0, P(SICA win) = 0.5 among discordant pairs\\\\nn_discordant = sica_wins + sc_wins\\\\n# Two-sided p-value: P(X >= 5) + P(X <= 1) where X ~ Binomial(6, 0.5)\\\\np_exact = stats.binom_test(sica_wins, n_discordant, 0.5)  # two-sided\\\\n# One-sided: P(X >= 5) under H0\\\\np_one_sided = 1 - stats.binom.cdf(sica_wins - 1, n_discordant, 0.5)\\\\n\\\\n# Odds ratio and CI\\\\n# OR = sica_wins / sc_wins\\\\nif sc_wins > 0:\\\\n    odds_ratio = sica_wins / sc_wins\\\\nelse:\\\\n    odds_ratio = float(\\\\'inf\\\\')\\\\n\\\\n# 95% CI for odds ratio using exact method (Baptista-Pike or Clopper-Pearson on proportion)\\\\n# For proportion p = sica_wins / n_discordant, CI then transform to OR = p/(1-p)\\\\nalpha = 0.05\\\\nci_low_p, ci_high_p = stats.binom.ppf(alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant, \\\\\\\\\\\\n                       stats.binom.ppf(1-alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant\\\\n\\\\n# Better: Clopper-Pearson exact CI for proportion\\\\nfrom statsmodels.stats.proportion import proportion_confint\\\\nci_low_p, ci_high_p = proportion_confint(sica_wins, n_discordant, alpha=0.05, method=\\\\'beta\\\\')\\\\n# Transform to OR: OR = p/(1-p)\\\\nor_low = ci_low_p / (1 - ci_low_p) if ci_low_p < 1 else float(\\\\'inf\\\\')\\\\nor_high = ci_high_p / (1 - ci_high_p) if ci_high_p < 1 else float(\\\\'inf\\\\')\\\\n\\\\nprint(f\\\"\\\\\\\\nExact binomial test (two-sided): p = {p_exact:.4f}\\\")\\\\nprint(f\\\"One-sided p (SICA > SC): p = {p_one_sided:.4f}\\\")\\\\nprint(f\\\"Odds ratio: {odds_ratio:.2f}\\\")\\\\nprint(f\\\"95% CI for OR: [{or_low:.3f}, {or_high:.3f}]\\\")\\\\nprint()\\\\n\\\\n# === 2. Bootstrap 95% CI for Gap ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"2. BOOTSTRAP 95% CI FOR GAP\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nnp.random.seed(42)\\\\nn_boot = 10000\\\\nboot_gaps = np.zeros(n_boot)\\\\n\\\\nfor i in range(n_boot):\\\\n    idx = np.random.choice(n, size=n, replace=True)\\\\n    boot_sica = sica_correct[idx]\\\\n    boot_sc = sc_correct[idx]\\\\n    boot_gaps[i] = boot_sica.mean() - boot_sc.mean()\\\\n\\\\npoint_estimate = (sica_correct.mean() - sc_correct.mean()) * 100\\\\nci_low = np.percentile(boot_gaps, 2.5) * 100\\\\nci_high = np.percentile(boot_gaps, 97.5) * 100\\\\np_gap_leq_0 = np.mean(boot_gaps <= 0)\\\\n\\\\nprint(f\\\"Point estimate: +{point_estimate:.2f} pp\\\")\\\\nprint(f\\\"95% CI (percentile): [{ci_low:.2f}, {ci_high:.2f}] pp\\\")\\\\nprint(f\\\"P(gap <= 0): {p_gap_leq_0:.4f}\\\")\\\\nprint()\\\\n\\\\n# === 3. Truncation Analysis ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"3. TRUNCATION ANALYSIS\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nhas_truncated = truncated > 0\\\\nn_problems_truncated = has_truncated.sum()\\\\nprint(f\\\"Problems with truncated traces: {n_problems_truncated}/60\\\")\\\\nprint(f\\\"Total truncated traces: {truncated.sum()}\\\")\\\\nprint(f\\\"Distribution of truncated traces per problem:\\\")\\\\nfor t_count in sorted(set(truncated)):\\\\n    if t_count > 0:\\\\n        print(f\\\"  {t_count} truncated: {np.sum(truncated == t_count)} problems\\\")\\\\n\\\\n# Group A: problems with truncated traces\\\\n# Group B: problems without truncated traces\\\\nmask_A = has_truncated\\\\nmask_B = ~has_truncated\\\\n\\\\ngap_A = (sica_correct[mask_A].mean() - sc_correct[mask_A].mean()) * 100\\\\ngap_B = (sica_correct[mask_B].mean() - sc_correct[mask_B].mean()) * 100\\\\n\\\\nprint(f\\\"\\\\\\\\nGroup A (with truncation): {mask_A.sum()} problems\\\")\\\\nprint(f\\\"  SICA acc: {sica_correct[mask_A].mean():.4f}, SC acc: {sc_correct[mask_A].mean():.4f}\\\")\\\\nprint(f\\\"  Gap: {gap_A:+.2f} pp\\\")\\\\n\\\\nprint(f\\\"\\\\\\\\nGroup B (no truncation): {mask_B.sum()} problems\\\")\\\\nprint(f\\\"  SICA acc: {sica_correct[mask_B].mean():.4f}, SC acc: {sc_correct[mask_B].mean():.4f}\\\")\\\\nprint(f\\\"  Gap: {gap_B:+.2f} pp\\\")\\\\n\\\\n# Check discordant pairs and truncation\\\\nprint(f\\\"\\\\\\\\nDiscordant pairs analysis:\\\")\\\\nfor i in range(n):\\\\n    if sica_correct[i] == 1 and sc_correct[i] == 0:\\\\n        print(f\\\"  SICA-win: problem {i} ({results[i][\\\\'problem_id\\\\']}), truncated_traces={truncated[i]}\\\")\\\\n    elif sica_correct[i] == 0 and sc_correct[i] == 1:\\\\n        print(f\\\"  SC-win: problem {i} ({results[i][\\\\'problem_id\\\\']}), truncated_traces={truncated[i]}\\\")\\\\n\\\\nsica_win_indices = [i for i in range(n) if sica_correct[i] == 1 and sc_correct[i] == 0]\\\\nsica_wins_truncated = sum(1 for i in sica_win_indices if truncated[i] > 0)\\\\nprint(f\\\"\\\\\\\\nSICA-win discordant pairs with truncation: {sica_wins_truncated}/{len(sica_win_indices)}\\\")\\\\n\\\\n# === 4. Per-Domain Breakdown ===\\\\nprint()\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"4. PER-DOMAIN BREAKDOWN\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nfor domain in [\\\\'proofwriter\\\\', \\\\'folio\\\\']:\\\\n    mask = np.array([d == domain for d in datasets])\\\\n    s = sica_correct[mask]\\\\n    c = sc_correct[mask]\\\\n    n_d = mask.sum()\\\\n    \\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\n    \\\\n    # McNemar exact\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\n    nd = sw + cw\\\\n    if nd > 0:\\\\n        p_mcnemar = stats.binom_test(sw, nd, 0.5)\\\\n    else:\\\\n        p_mcnemar = 1.0\\\\n    \\\\n    # Bootstrap CI\\\\n    boot_d = np.zeros(n_boot)\\\\n    for i in range(n_boot):\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\n    p_d = np.mean(boot_d <= 0)\\\\n    \\\\n    print(f\\\"\\\\\\\\n{domain.upper()} ({n_d} problems):\\\")\\\\n    print(f\\\"  SICA acc: {s.mean():.4f}, SC acc: {c.mean():.4f}\\\")\\\\n    print(f\\\"  Gap: {gap_d:+.2f} pp\\\")\\\\n    print(f\\\"  Discordant: SICA-wins={sw}, SC-wins={cw}\\\")\\\\n    print(f\\\"  McNemar exact p (two-sided): {p_mcnemar:.4f}\\\")\\\\n    print(f\\\"  Bootstrap 95% CI: [{ci_l:.2f}, {ci_h:.2f}] pp\\\")\\\\n    print(f\\\"  Bootstrap P(gap<=0): {p_d:.4f}\\\")\\\\n\\\\n# === FINAL SUMMARY ===\\\\nprint()\\\\nprint()\\\\nprint(\\\"=\\\" * 60)\\\\nprint(\\\"STATISTICAL VERIFICATION SUMMARY\\\")\\\\nprint(\\\"=\\\" * 60)\\\\nprint(f\\\"McNemar exact p-value (two-sided): {p_exact:.4f}\\\")\\\\nprint(f\\\"McNemar exact p-value (one-sided): {p_one_sided:.4f}\\\")\\\\nprint(f\\\"Bootstrap gap: +{point_estimate:.2f} pp [{ci_low:.2f}, {ci_high:.2f}]\\\")\\\\nprint(f\\\"Bootstrap p(gap<=0): {p_gap_leq_0:.4f}\\\")\\\\nprint()\\\\nprint(\\\"TRUNCATION ANALYSIS:\\\")\\\\nprint(f\\\"  Problems with truncated traces: {n_problems_truncated}/60\\\")\\\\nprint(f\\\"  Gap (truncated group): {gap_A:+.2f} pp\\\")\\\\nprint(f\\\"  Gap (clean group): {gap_B:+.2f} pp\\\")\\\\nprint(f\\\"  Discordant SICA-wins in truncated: {sica_wins_truncated}/5\\\")\\\\nprint()\\\\nprint(\\\"PER-DOMAIN:\\\")\\\\nfor domain in [\\\\'proofwriter\\\\', \\\\'folio\\\\']:\\\\n    mask = np.array([d == domain for d in datasets])\\\\n    s = sica_correct[mask]\\\\n    c = sc_correct[mask]\\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\n    nd = sw + cw\\\\n    p_m = stats.binom_test(sw, nd, 0.5) if nd > 0 else 1.0\\\\n    boot_d = np.zeros(n_boot)\\\\n    n_d = mask.sum()\\\\n    for i in range(n_boot):\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\n    print(f\\\"  {domain.upper()}: {gap_d:+.2f}pp, McNemar p={p_m:.4f}, Bootstrap CI=[{ci_l:.2f}, {ci_h:.2f}]\\\")\\\\n\\\\nprint()\\\\n# Verdict\\\\nif p_exact < 0.05 and ci_low > 0:\\\\n    verdict = \\\"SIGNIFICANT\\\"\\\\nelif gap_A > gap_B * 2 and sica_wins_truncated >= 4:\\\\n    verdict = \\\"ARTIFACT (driven by truncation)\\\"\\\\nelif p_exact >= 0.10:\\\\n    verdict = \\\"NOT SIGNIFICANT\\\"\\\\nelse:\\\\n    verdict = \\\"NOT SIGNIFICANT (underpowered, suggestive trend)\\\"\\\\n\\\\nprint(f\\\"VERDICT: {verdict}\\\")\\\\nEOF'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n==================================================\\n1. McNEMAR TEST (EXACT BINOMIAL)\\n==================================================\\nContingency table:\\n  Both correct: 35\\n  Both wrong: 19\\n  SICA wins (sica=1, sc=0): 5\\n  SC wins (sica=0, sc=1): 1\\n  Total discordant: 6\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;stdin>\\\", line 44, in &lt;module>\\nAttributeError: module 'scipy.stats' has no attribute 'binom_test'. Did you mean: 'binomtest'?\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "bab7f82f-6b8c-4c18-90fb-c87b8ab3f99c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\\\\\'EOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\\\\\') as f:\\\\\\\\n    data = json.load(f)\\\\\\\\n\\\\\\\\nresults = data[\\\\\\\\'results\\\\\\\\']\\\\\\\\nn = len(results)\\\\\\\\n\\\\\\\\n# Extract per-problem data\\\\\\\\nsica_correct = np.array([int(r[\\\\\\\\'sica_correct\\\\\\\\']) for r in results])\\\\\\\\nsc_correct = np.array([int(r[\\\\\\\\'sc_correct\\\\\\\\']) for r in results])\\\\\\\\ntruncated = np.array([r[\\\\\\\\'truncated_traces\\\\\\\\'] for r in results])\\\\\\\\ndatasets = [r[\\\\\\\\'dataset\\\\\\\\'] for r in results]\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"Total problems: {n}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"SICA correct: {sica_correct.sum()}, SC correct: {sc_correct.sum()}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"SICA acc: {sica_correct.mean():.4f}, SC acc: {sc_correct.mean():.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Gap: +{(sica_correct.mean() - sc_correct.mean())*100:.2f} pp\\\\\\\")\\\\\\\\nprint()\\\\\\\\n\\\\\\\\n# === 1. McNemar Test (exact) ===\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\nprint(\\\\\\\"1. McNEMAR TEST (EXACT BINOMIAL)\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\n\\\\\\\\n# Discordant pairs\\\\\\\\nsica_wins = np.sum((sica_correct == 1) & (sc_correct == 0))\\\\\\\\nsc_wins = np.sum((sica_correct == 0) & (sc_correct == 1))\\\\\\\\nboth_correct = np.sum((sica_correct == 1) & (sc_correct == 1))\\\\\\\\nboth_wrong = np.sum((sica_correct == 0) & (sc_correct == 0))\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"Contingency table:\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Both correct: {both_correct}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Both wrong: {both_wrong}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  SICA wins (sica=1, sc=0): {sica_wins}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  SC wins (sica=0, sc=1): {sc_wins}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Total discordant: {sica_wins + sc_wins}\\\\\\\")\\\\\\\\n\\\\\\\\n# Exact binomial test: under H0, P(SICA win) = 0.5 among discordant pairs\\\\\\\\nn_discordant = sica_wins + sc_wins\\\\\\\\n# Two-sided p-value: P(X >= 5) + P(X <= 1) where X ~ Binomial(6, 0.5)\\\\\\\\np_exact = stats.binom_test(sica_wins, n_discordant, 0.5)  # two-sided\\\\\\\\n# One-sided: P(X >= 5) under H0\\\\\\\\np_one_sided = 1 - stats.binom.cdf(sica_wins - 1, n_discordant, 0.5)\\\\\\\\n\\\\\\\\n# Odds ratio and CI\\\\\\\\n# OR = sica_wins / sc_wins\\\\\\\\nif sc_wins > 0:\\\\\\\\n    odds_ratio = sica_wins / sc_wins\\\\\\\\nelse:\\\\\\\\n    odds_ratio = float(\\\\\\\\'inf\\\\\\\\')\\\\\\\\n\\\\\\\\n# 95% CI for odds ratio using exact method (Baptista-Pike or Clopper-Pearson on proportion)\\\\\\\\n# For proportion p = sica_wins / n_discordant, CI then transform to OR = p/(1-p)\\\\\\\\nalpha = 0.05\\\\\\\\nci_low_p, ci_high_p = stats.binom.ppf(alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant, \\\\\\\\\\\\\\\\\\\\\\\\n                       stats.binom.ppf(1-alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant\\\\\\\\n\\\\\\\\n# Better: Clopper-Pearson exact CI for proportion\\\\\\\\nfrom statsmodels.stats.proportion import proportion_confint\\\\\\\\nci_low_p, ci_high_p = proportion_confint(sica_wins, n_discordant, alpha=0.05, method=\\\\\\\\'beta\\\\\\\\')\\\\\\\\n# Transform to OR: OR = p/(1-p)\\\\\\\\nor_low = ci_low_p / (1 - ci_low_p) if ci_low_p < 1 else float(\\\\\\\\'inf\\\\\\\\')\\\\\\\\nor_high = ci_high_p / (1 - ci_high_p) if ci_high_p < 1 else float(\\\\\\\\'inf\\\\\\\\')\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nExact binomial test (two-sided): p = {p_exact:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"One-sided p (SICA > SC): p = {p_one_sided:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Odds ratio: {odds_ratio:.2f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"95% CI for OR: [{or_low:.3f}, {or_high:.3f}]\\\\\\\")\\\\\\\\nprint()\\\\\\\\n\\\\\\\\n# === 2. Bootstrap 95% CI for Gap ===\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\nprint(\\\\\\\"2. BOOTSTRAP 95% CI FOR GAP\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\n\\\\\\\\nnp.random.seed(42)\\\\\\\\nn_boot = 10000\\\\\\\\nboot_gaps = np.zeros(n_boot)\\\\\\\\n\\\\\\\\nfor i in range(n_boot):\\\\\\\\n    idx = np.random.choice(n, size=n, replace=True)\\\\\\\\n    boot_sica = sica_correct[idx]\\\\\\\\n    boot_sc = sc_correct[idx]\\\\\\\\n    boot_gaps[i] = boot_sica.mean() - boot_sc.mean()\\\\\\\\n\\\\\\\\npoint_estimate = (sica_correct.mean() - sc_correct.mean()) * 100\\\\\\\\nci_low = np.percentile(boot_gaps, 2.5) * 100\\\\\\\\nci_high = np.percentile(boot_gaps, 97.5) * 100\\\\\\\\np_gap_leq_0 = np.mean(boot_gaps <= 0)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"Point estimate: +{point_estimate:.2f} pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"95% CI (percentile): [{ci_low:.2f}, {ci_high:.2f}] pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"P(gap <= 0): {p_gap_leq_0:.4f}\\\\\\\")\\\\\\\\nprint()\\\\\\\\n\\\\\\\\n# === 3. Truncation Analysis ===\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\nprint(\\\\\\\"3. TRUNCATION ANALYSIS\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\n\\\\\\\\nhas_truncated = truncated > 0\\\\\\\\nn_problems_truncated = has_truncated.sum()\\\\\\\\nprint(f\\\\\\\"Problems with truncated traces: {n_problems_truncated}/60\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Total truncated traces: {truncated.sum()}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Distribution of truncated traces per problem:\\\\\\\")\\\\\\\\nfor t_count in sorted(set(truncated)):\\\\\\\\n    if t_count > 0:\\\\\\\\n        print(f\\\\\\\"  {t_count} truncated: {np.sum(truncated == t_count)} problems\\\\\\\")\\\\\\\\n\\\\\\\\n# Group A: problems with truncated traces\\\\\\\\n# Group B: problems without truncated traces\\\\\\\\nmask_A = has_truncated\\\\\\\\nmask_B = ~has_truncated\\\\\\\\n\\\\\\\\ngap_A = (sica_correct[mask_A].mean() - sc_correct[mask_A].mean()) * 100\\\\\\\\ngap_B = (sica_correct[mask_B].mean() - sc_correct[mask_B].mean()) * 100\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nGroup A (with truncation): {mask_A.sum()} problems\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  SICA acc: {sica_correct[mask_A].mean():.4f}, SC acc: {sc_correct[mask_A].mean():.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gap: {gap_A:+.2f} pp\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nGroup B (no truncation): {mask_B.sum()} problems\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  SICA acc: {sica_correct[mask_B].mean():.4f}, SC acc: {sc_correct[mask_B].mean():.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gap: {gap_B:+.2f} pp\\\\\\\")\\\\\\\\n\\\\\\\\n# Check discordant pairs and truncation\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nDiscordant pairs analysis:\\\\\\\")\\\\\\\\nfor i in range(n):\\\\\\\\n    if sica_correct[i] == 1 and sc_correct[i] == 0:\\\\\\\\n        print(f\\\\\\\"  SICA-win: problem {i} ({results[i][\\\\\\\\'problem_id\\\\\\\\']}), truncated_traces={truncated[i]}\\\\\\\")\\\\\\\\n    elif sica_correct[i] == 0 and sc_correct[i] == 1:\\\\\\\\n        print(f\\\\\\\"  SC-win: problem {i} ({results[i][\\\\\\\\'problem_id\\\\\\\\']}), truncated_traces={truncated[i]}\\\\\\\")\\\\\\\\n\\\\\\\\nsica_win_indices = [i for i in range(n) if sica_correct[i] == 1 and sc_correct[i] == 0]\\\\\\\\nsica_wins_truncated = sum(1 for i in sica_win_indices if truncated[i] > 0)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSICA-win discordant pairs with truncation: {sica_wins_truncated}/{len(sica_win_indices)}\\\\\\\")\\\\\\\\n\\\\\\\\n# === 4. Per-Domain Breakdown ===\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\nprint(\\\\\\\"4. PER-DOMAIN BREAKDOWN\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 50)\\\\\\\\n\\\\\\\\nfor domain in [\\\\\\\\'proofwriter\\\\\\\\', \\\\\\\\'folio\\\\\\\\']:\\\\\\\\n    mask = np.array([d == domain for d in datasets])\\\\\\\\n    s = sica_correct[mask]\\\\\\\\n    c = sc_correct[mask]\\\\\\\\n    n_d = mask.sum()\\\\\\\\n    \\\\\\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\\\\\n    \\\\\\\\n    # McNemar exact\\\\\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\\\\\n    nd = sw + cw\\\\\\\\n    if nd > 0:\\\\\\\\n        p_mcnemar = stats.binom_test(sw, nd, 0.5)\\\\\\\\n    else:\\\\\\\\n        p_mcnemar = 1.0\\\\\\\\n    \\\\\\\\n    # Bootstrap CI\\\\\\\\n    boot_d = np.zeros(n_boot)\\\\\\\\n    for i in range(n_boot):\\\\\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\\\\\n    p_d = np.mean(boot_d <= 0)\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"\\\\\\\\\\\\\\\\n{domain.upper()} ({n_d} problems):\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  SICA acc: {s.mean():.4f}, SC acc: {c.mean():.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Gap: {gap_d:+.2f} pp\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Discordant: SICA-wins={sw}, SC-wins={cw}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  McNemar exact p (two-sided): {p_mcnemar:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Bootstrap 95% CI: [{ci_l:.2f}, {ci_h:.2f}] pp\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Bootstrap P(gap<=0): {p_d:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# === FINAL SUMMARY ===\\\\\\\\nprint()\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(\\\\\\\"STATISTICAL VERIFICATION SUMMARY\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(f\\\\\\\"McNemar exact p-value (two-sided): {p_exact:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"McNemar exact p-value (one-sided): {p_one_sided:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Bootstrap gap: +{point_estimate:.2f} pp [{ci_low:.2f}, {ci_high:.2f}]\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Bootstrap p(gap<=0): {p_gap_leq_0:.4f}\\\\\\\")\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\"TRUNCATION ANALYSIS:\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Problems with truncated traces: {n_problems_truncated}/60\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gap (truncated group): {gap_A:+.2f} pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gap (clean group): {gap_B:+.2f} pp\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Discordant SICA-wins in truncated: {sica_wins_truncated}/5\\\\\\\")\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\"PER-DOMAIN:\\\\\\\")\\\\\\\\nfor domain in [\\\\\\\\'proofwriter\\\\\\\\', \\\\\\\\'folio\\\\\\\\']:\\\\\\\\n    mask = np.array([d == domain for d in datasets])\\\\\\\\n    s = sica_correct[mask]\\\\\\\\n    c = sc_correct[mask]\\\\\\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\\\\\n    nd = sw + cw\\\\\\\\n    p_m = stats.binom_test(sw, nd, 0.5) if nd > 0 else 1.0\\\\\\\\n    boot_d = np.zeros(n_boot)\\\\\\\\n    n_d = mask.sum()\\\\\\\\n    for i in range(n_boot):\\\\\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\\\\\n    print(f\\\\\\\"  {domain.upper()}: {gap_d:+.2f}pp, McNemar p={p_m:.4f}, Bootstrap CI=[{ci_l:.2f}, {ci_h:.2f}]\\\\\\\")\\\\\\\\n\\\\\\\\nprint()\\\\\\\\n# Verdict\\\\\\\\nif p_exact < 0.05 and ci_low > 0:\\\\\\\\n    verdict = \\\\\\\"SIGNIFICANT\\\\\\\"\\\\\\\\nelif gap_A > gap_B * 2 and sica_wins_truncated >= 4:\\\\\\\\n    verdict = \\\\\\\"ARTIFACT (driven by truncation)\\\\\\\"\\\\\\\\nelif p_exact >= 0.10:\\\\\\\\n    verdict = \\\\\\\"NOT SIGNIFICANT\\\\\\\"\\\\\\\\nelse:\\\\\\\\n    verdict = \\\\\\\"NOT SIGNIFICANT (underpowered, suggestive trend)\\\\\\\"\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"VERDICT: {verdict}\\\\\\\")\\\\\\\\nEOF'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n==================================================\\\\n1. McNEMAR TEST (EXACT BINOMIAL)\\\\n==================================================\\\\nContingency table:\\\\n  Both correct: 35\\\\n  Both wrong: 19\\\\n  SICA wins (sica=1, sc=0): 5\\\\n  SC wins (sica=0, sc=1): 1\\\\n  Total discordant: 6\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;stdin>\\\\\\\", line 44, in &lt;module>\\\\nAttributeError: module 'scipy.stats' has no attribute 'binom_test'. Did you mean: 'binomtest'?\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'EOF\\\\'\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\\\\') as f:\\\\n    data = json.load(f)\\\\n\\\\nresults = data[\\\\'results\\\\']\\\\nn = len(results)\\\\n\\\\n# Extract per-problem data\\\\nsica_correct = np.array([int(r[\\\\'sica_correct\\\\']) for r in results])\\\\nsc_correct = np.array([int(r[\\\\'sc_correct\\\\']) for r in results])\\\\ntruncated = np.array([r[\\\\'truncated_traces\\\\'] for r in results])\\\\ndatasets = [r[\\\\'dataset\\\\'] for r in results]\\\\n\\\\nprint(f\\\"Total problems: {n}\\\")\\\\nprint(f\\\"SICA correct: {sica_correct.sum()}, SC correct: {sc_correct.sum()}\\\")\\\\nprint(f\\\"SICA acc: {sica_correct.mean():.4f}, SC acc: {sc_correct.mean():.4f}\\\")\\\\nprint(f\\\"Gap: +{(sica_correct.mean() - sc_correct.mean())*100:.2f} pp\\\")\\\\nprint()\\\\n\\\\n# === 1. McNemar Test (exact) ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"1. McNEMAR TEST (EXACT BINOMIAL)\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\n# Discordant pairs\\\\nsica_wins = np.sum((sica_correct == 1) & (sc_correct == 0))\\\\nsc_wins = np.sum((sica_correct == 0) & (sc_correct == 1))\\\\nboth_correct = np.sum((sica_correct == 1) & (sc_correct == 1))\\\\nboth_wrong = np.sum((sica_correct == 0) & (sc_correct == 0))\\\\n\\\\nprint(f\\\"Contingency table:\\\")\\\\nprint(f\\\"  Both correct: {both_correct}\\\")\\\\nprint(f\\\"  Both wrong: {both_wrong}\\\")\\\\nprint(f\\\"  SICA wins (sica=1, sc=0): {sica_wins}\\\")\\\\nprint(f\\\"  SC wins (sica=0, sc=1): {sc_wins}\\\")\\\\nprint(f\\\"  Total discordant: {sica_wins + sc_wins}\\\")\\\\n\\\\n# Exact binomial test: under H0, P(SICA win) = 0.5 among discordant pairs\\\\nn_discordant = sica_wins + sc_wins\\\\n# Two-sided p-value: P(X >= 5) + P(X <= 1) where X ~ Binomial(6, 0.5)\\\\np_exact = stats.binom_test(sica_wins, n_discordant, 0.5)  # two-sided\\\\n# One-sided: P(X >= 5) under H0\\\\np_one_sided = 1 - stats.binom.cdf(sica_wins - 1, n_discordant, 0.5)\\\\n\\\\n# Odds ratio and CI\\\\n# OR = sica_wins / sc_wins\\\\nif sc_wins > 0:\\\\n    odds_ratio = sica_wins / sc_wins\\\\nelse:\\\\n    odds_ratio = float(\\\\'inf\\\\')\\\\n\\\\n# 95% CI for odds ratio using exact method (Baptista-Pike or Clopper-Pearson on proportion)\\\\n# For proportion p = sica_wins / n_discordant, CI then transform to OR = p/(1-p)\\\\nalpha = 0.05\\\\nci_low_p, ci_high_p = stats.binom.ppf(alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant, \\\\\\\\\\\\n                       stats.binom.ppf(1-alpha/2, n_discordant, sica_wins/n_discordant) / n_discordant\\\\n\\\\n# Better: Clopper-Pearson exact CI for proportion\\\\nfrom statsmodels.stats.proportion import proportion_confint\\\\nci_low_p, ci_high_p = proportion_confint(sica_wins, n_discordant, alpha=0.05, method=\\\\'beta\\\\')\\\\n# Transform to OR: OR = p/(1-p)\\\\nor_low = ci_low_p / (1 - ci_low_p) if ci_low_p < 1 else float(\\\\'inf\\\\')\\\\nor_high = ci_high_p / (1 - ci_high_p) if ci_high_p < 1 else float(\\\\'inf\\\\')\\\\n\\\\nprint(f\\\"\\\\\\\\nExact binomial test (two-sided): p = {p_exact:.4f}\\\")\\\\nprint(f\\\"One-sided p (SICA > SC): p = {p_one_sided:.4f}\\\")\\\\nprint(f\\\"Odds ratio: {odds_ratio:.2f}\\\")\\\\nprint(f\\\"95% CI for OR: [{or_low:.3f}, {or_high:.3f}]\\\")\\\\nprint()\\\\n\\\\n# === 2. Bootstrap 95% CI for Gap ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"2. BOOTSTRAP 95% CI FOR GAP\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nnp.random.seed(42)\\\\nn_boot = 10000\\\\nboot_gaps = np.zeros(n_boot)\\\\n\\\\nfor i in range(n_boot):\\\\n    idx = np.random.choice(n, size=n, replace=True)\\\\n    boot_sica = sica_correct[idx]\\\\n    boot_sc = sc_correct[idx]\\\\n    boot_gaps[i] = boot_sica.mean() - boot_sc.mean()\\\\n\\\\npoint_estimate = (sica_correct.mean() - sc_correct.mean()) * 100\\\\nci_low = np.percentile(boot_gaps, 2.5) * 100\\\\nci_high = np.percentile(boot_gaps, 97.5) * 100\\\\np_gap_leq_0 = np.mean(boot_gaps <= 0)\\\\n\\\\nprint(f\\\"Point estimate: +{point_estimate:.2f} pp\\\")\\\\nprint(f\\\"95% CI (percentile): [{ci_low:.2f}, {ci_high:.2f}] pp\\\")\\\\nprint(f\\\"P(gap <= 0): {p_gap_leq_0:.4f}\\\")\\\\nprint()\\\\n\\\\n# === 3. Truncation Analysis ===\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"3. TRUNCATION ANALYSIS\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nhas_truncated = truncated > 0\\\\nn_problems_truncated = has_truncated.sum()\\\\nprint(f\\\"Problems with truncated traces: {n_problems_truncated}/60\\\")\\\\nprint(f\\\"Total truncated traces: {truncated.sum()}\\\")\\\\nprint(f\\\"Distribution of truncated traces per problem:\\\")\\\\nfor t_count in sorted(set(truncated)):\\\\n    if t_count > 0:\\\\n        print(f\\\"  {t_count} truncated: {np.sum(truncated == t_count)} problems\\\")\\\\n\\\\n# Group A: problems with truncated traces\\\\n# Group B: problems without truncated traces\\\\nmask_A = has_truncated\\\\nmask_B = ~has_truncated\\\\n\\\\ngap_A = (sica_correct[mask_A].mean() - sc_correct[mask_A].mean()) * 100\\\\ngap_B = (sica_correct[mask_B].mean() - sc_correct[mask_B].mean()) * 100\\\\n\\\\nprint(f\\\"\\\\\\\\nGroup A (with truncation): {mask_A.sum()} problems\\\")\\\\nprint(f\\\"  SICA acc: {sica_correct[mask_A].mean():.4f}, SC acc: {sc_correct[mask_A].mean():.4f}\\\")\\\\nprint(f\\\"  Gap: {gap_A:+.2f} pp\\\")\\\\n\\\\nprint(f\\\"\\\\\\\\nGroup B (no truncation): {mask_B.sum()} problems\\\")\\\\nprint(f\\\"  SICA acc: {sica_correct[mask_B].mean():.4f}, SC acc: {sc_correct[mask_B].mean():.4f}\\\")\\\\nprint(f\\\"  Gap: {gap_B:+.2f} pp\\\")\\\\n\\\\n# Check discordant pairs and truncation\\\\nprint(f\\\"\\\\\\\\nDiscordant pairs analysis:\\\")\\\\nfor i in range(n):\\\\n    if sica_correct[i] == 1 and sc_correct[i] == 0:\\\\n        print(f\\\"  SICA-win: problem {i} ({results[i][\\\\'problem_id\\\\']}), truncated_traces={truncated[i]}\\\")\\\\n    elif sica_correct[i] == 0 and sc_correct[i] == 1:\\\\n        print(f\\\"  SC-win: problem {i} ({results[i][\\\\'problem_id\\\\']}), truncated_traces={truncated[i]}\\\")\\\\n\\\\nsica_win_indices = [i for i in range(n) if sica_correct[i] == 1 and sc_correct[i] == 0]\\\\nsica_wins_truncated = sum(1 for i in sica_win_indices if truncated[i] > 0)\\\\nprint(f\\\"\\\\\\\\nSICA-win discordant pairs with truncation: {sica_wins_truncated}/{len(sica_win_indices)}\\\")\\\\n\\\\n# === 4. Per-Domain Breakdown ===\\\\nprint()\\\\nprint(\\\"=\\\" * 50)\\\\nprint(\\\"4. PER-DOMAIN BREAKDOWN\\\")\\\\nprint(\\\"=\\\" * 50)\\\\n\\\\nfor domain in [\\\\'proofwriter\\\\', \\\\'folio\\\\']:\\\\n    mask = np.array([d == domain for d in datasets])\\\\n    s = sica_correct[mask]\\\\n    c = sc_correct[mask]\\\\n    n_d = mask.sum()\\\\n    \\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\n    \\\\n    # McNemar exact\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\n    nd = sw + cw\\\\n    if nd > 0:\\\\n        p_mcnemar = stats.binom_test(sw, nd, 0.5)\\\\n    else:\\\\n        p_mcnemar = 1.0\\\\n    \\\\n    # Bootstrap CI\\\\n    boot_d = np.zeros(n_boot)\\\\n    for i in range(n_boot):\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\n    p_d = np.mean(boot_d <= 0)\\\\n    \\\\n    print(f\\\"\\\\\\\\n{domain.upper()} ({n_d} problems):\\\")\\\\n    print(f\\\"  SICA acc: {s.mean():.4f}, SC acc: {c.mean():.4f}\\\")\\\\n    print(f\\\"  Gap: {gap_d:+.2f} pp\\\")\\\\n    print(f\\\"  Discordant: SICA-wins={sw}, SC-wins={cw}\\\")\\\\n    print(f\\\"  McNemar exact p (two-sided): {p_mcnemar:.4f}\\\")\\\\n    print(f\\\"  Bootstrap 95% CI: [{ci_l:.2f}, {ci_h:.2f}] pp\\\")\\\\n    print(f\\\"  Bootstrap P(gap<=0): {p_d:.4f}\\\")\\\\n\\\\n# === FINAL SUMMARY ===\\\\nprint()\\\\nprint()\\\\nprint(\\\"=\\\" * 60)\\\\nprint(\\\"STATISTICAL VERIFICATION SUMMARY\\\")\\\\nprint(\\\"=\\\" * 60)\\\\nprint(f\\\"McNemar exact p-value (two-sided): {p_exact:.4f}\\\")\\\\nprint(f\\\"McNemar exact p-value (one-sided): {p_one_sided:.4f}\\\")\\\\nprint(f\\\"Bootstrap gap: +{point_estimate:.2f} pp [{ci_low:.2f}, {ci_high:.2f}]\\\")\\\\nprint(f\\\"Bootstrap p(gap<=0): {p_gap_leq_0:.4f}\\\")\\\\nprint()\\\\nprint(\\\"TRUNCATION ANALYSIS:\\\")\\\\nprint(f\\\"  Problems with truncated traces: {n_problems_truncated}/60\\\")\\\\nprint(f\\\"  Gap (truncated group): {gap_A:+.2f} pp\\\")\\\\nprint(f\\\"  Gap (clean group): {gap_B:+.2f} pp\\\")\\\\nprint(f\\\"  Discordant SICA-wins in truncated: {sica_wins_truncated}/5\\\")\\\\nprint()\\\\nprint(\\\"PER-DOMAIN:\\\")\\\\nfor domain in [\\\\'proofwriter\\\\', \\\\'folio\\\\']:\\\\n    mask = np.array([d == domain for d in datasets])\\\\n    s = sica_correct[mask]\\\\n    c = sc_correct[mask]\\\\n    gap_d = (s.mean() - c.mean()) * 100\\\\n    sw = np.sum((s == 1) & (c == 0))\\\\n    cw = np.sum((s == 0) & (c == 1))\\\\n    nd = sw + cw\\\\n    p_m = stats.binom_test(sw, nd, 0.5) if nd > 0 else 1.0\\\\n    boot_d = np.zeros(n_boot)\\\\n    n_d = mask.sum()\\\\n    for i in range(n_boot):\\\\n        idx = np.random.choice(n_d, size=n_d, replace=True)\\\\n        boot_d[i] = s[idx].mean() - c[idx].mean()\\\\n    ci_l = np.percentile(boot_d, 2.5) * 100\\\\n    ci_h = np.percentile(boot_d, 97.5) * 100\\\\n    print(f\\\"  {domain.upper()}: {gap_d:+.2f}pp, McNemar p={p_m:.4f}, Bootstrap CI=[{ci_l:.2f}, {ci_h:.2f}]\\\")\\\\n\\\\nprint()\\\\n# Verdict\\\\nif p_exact < 0.05 and ci_low > 0:\\\\n    verdict = \\\"SIGNIFICANT\\\"\\\\nelif gap_A > gap_B * 2 and sica_wins_truncated >= 4:\\\\n    verdict = \\\"ARTIFACT (driven by truncation)\\\"\\\\nelif p_exact >= 0.10:\\\\n    verdict = \\\"NOT SIGNIFICANT\\\"\\\\nelse:\\\\n    verdict = \\\"NOT SIGNIFICANT (underpowered, suggestive trend)\\\"\\\\n\\\\nprint(f\\\"VERDICT: {verdict}\\\")\\\\nEOF'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n==================================================\\n1. McNEMAR TEST (EXACT BINOMIAL)\\n==================================================\\nContingency table:\\n  Both correct: 35\\n  Both wrong: 19\\n  SICA wins (sica=1, sc=0): 5\\n  SC wins (sica=0, sc=1): 1\\n  Total discordant: 6\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;stdin>\\\", line 44, in &lt;module>\\nAttributeError: module 'scipy.stats' has no attribute 'binom_test'. Did you mean: 'binomtest'?\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The error is that `binom_test` has been renamed to `binomtest` in newer scipy versions. Let me fix the script and re-run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "48d83ad3-e20e-4325-a877-7ad47d05b5fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KP5NWpmHTMdeeABTXm5CD9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Need to use `binomtest` instead of deprecated `binom_test`. Let me fix and re-run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "45b2e03b-b82f-4d80-a616-8ed9ee7e8108",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KP5NWpmHTMdeeABTXm5CD9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018uJVCEG5FpHkEPqDTKz9nx`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/stat_analysis.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "b0cc3c39-fae8-4e00-90f5-da6359f761f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KP5NWpmHTMdeeABTXm5CD9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T08:02:13.665Z_
+
+<details><summary>↩ Tool result · `toolu_018uJVCEG5FpHkEPqDTKz9nx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"python3: can't open file '/tmp/stat_analysis.py': [Errno 2] No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "cc9c7ff9-745b-4792-a3dd-1b5c363d4e43",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"python3: can't open file '/tmp/stat_analysis.py': [Errno 2] No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"python3: can't open file '/tmp/stat_analysis.py': [Errno 2] No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014xZVjzRj9DCsqwpbyyBesA`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "cat > /tmp/stat_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\n\nwith open('/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nn = len(results)\n\nsica_correct = np.array([int(r['sica_correct']) for r in results])\nsc_correct = np.array([int(r['sc_correct']) for r in results])\ntruncated = np.array([r['truncated_traces'] for r in results])\ndatasets = [r['dataset'] for r in results]\n\nprint(f\"Total problems: {n}\")\nprint(f\"SICA correct: {sica_correct.sum()}, SC correct: {sc_correct.sum()}\")\nprint(f\"SICA acc: {sica_correct.mean():.4f}, SC acc: {sc_correct.mean():.4f}\")\nprint(f\"Gap: +{(sica_correct.mean() - sc_correct.mean())*100:.2f} pp\")\nprint()\n\n# === 1. McNemar Test (exact) ===\nprint(\"=\" * 50)\nprint(\"1. McNEMAR TEST (EXACT BINOMIAL)\")\nprint(\"=\" * 50)\n\nsica_wins = int(np.sum((sica_correct == 1) & (sc_correct == 0)))\nsc_wins = int(np.sum((sica_correct == 0) & (sc_correct == 1)))\nboth_correct = int(np.sum((sica_correct == 1) & (sc_correct == 1)))\nboth_wrong = int(np.sum((sica_correct == 0) & (sc_correct == 0)))\n\nprint(f\"Contingency table:\")\nprint(f\"  Both correct: {both_correct}\")\nprint(f\"  Both wrong: {both_wrong}\")\nprint(f\"  SICA wins (sica=1, sc=0): {sica_wins}\")\nprint(f\"  SC wins (sica=0, sc=1): {sc_wins}\")\nprint(f\"  Total discordant: {sica_wins + sc_wins}\")\n\nn_discordant = sica_wins + sc_wins\n\n# Exact binomial test (two-sided)\nresult_bt = stats.binomtest(sica_wins, n_discordant, 0.5, alternative='two-sided')\np_exact = result_bt.pvalue\n\n# One-sided\nresult_one = stats.binomtest(sica_wins, n_discordant, 0.5, alternative='greater')\np_one_sided = result_one.pvalue\n\n# Odds ratio and CI via Clopper-Pearson\nodds_ratio = sica_wins / sc_wins if sc_wins > 0 else float('inf')\n\n# Clopper-Pearson CI for proportion p = sica_wins/n_discordant\nalpha = 0.05\nci_low_p = stats.beta.ppf(alpha/2, sica_wins, n_discordant - sica_wins + 1)\nci_high_p = stats.beta.ppf(1 - alpha/2, sica_wins + 1, n_discordant - sica_wins)\nor_low = ci_low_p / (1 - ci_low_p)\nor_high = ci_high_p / (1 - ci_high_p)\n\nprint(f\"\\nExact binomial test (two-sided): p = {p_exact:.4f}\")\nprint(f\"One-sided p (SICA > SC): p = {p_one_sided:.4f}\")\nprint(f\"Odds ratio: {odds_ratio:.2f}\")\nprint(f\"95% CI for OR: [{or_low:.3f}, {or_high:.3f}]\")\nprint()\n\n# === 2. Bootstrap 95% CI for Gap ===\nprint(\"=\" * 50)\nprint(\"2. BOOTSTRAP 95% CI FOR GAP\")\nprint(\"=\" * 50)\n\nnp.random.seed(42)\nn_boot = 10000\nboot_gaps = np.zeros(n_boot)\n\nfor i in range(n_boot):\n    idx = np.random.choice(n, size=n, replace=True)\n    boot_gaps[i] = sica_correct[idx].mean() - sc_correct[idx].mean()\n\npoint_estimate = (sica_correct.mean() - sc_correct.mean()) * 100\nci_low_boot = np.percentile(boot_gaps, 2.5) * 100\nci_high_boot = np.percentile(boot_gaps, 97.5) * 100\np_gap_leq_0 = np.mean(boot_gaps <= 0)\n\nprint(f\"Point estimate: +{point_estimate:.2f} pp\")\nprint(f\"95% CI (percentile): [{ci_low_boot:.2f}, {ci_high_boot:.2f}] pp\")\nprint(f\"P(gap <= 0): {p_gap_leq_0:.4f}\")\nprint()\n\n# === 3. Truncation Analysis ===\nprint(\"=\" * 50)\nprint(\"3. TRUNCATION ANALYSIS\")\nprint(\"=\" * 50)\n\nhas_truncated = truncated > 0\nn_problems_truncated = int(has_truncated.sum())\nprint(f\"Problems with truncated traces: {n_problems_truncated}/60\")\nprint(f\"Total truncated traces: {int(truncated.sum())}\")\nprint(f\"Distribution of truncated traces per problem:\")\nfor t_count in sorted(set(truncated)):\n    if t_count > 0:\n        print(f\"  {t_count} truncated: {int(np.sum(truncated == t_count))} problems\")\n\nmask_A = has_truncated\nmask_B = ~has_truncated\n\ngap_A = (sica_correct[mask_A].mean() - sc_correct[mask_A].mean()) * 100\ngap_B = (sica_correct[mask_B].mean() - sc_correct[mask_B].mean()) * 100 if mask_B.sum() > 0 else 0\n\nprint(f\"\\nGroup A (with truncation): {int(mask_A.sum())} problems\")\nprint(f\"  SICA acc: {sica_correct[mask_A].mean():.4f}, SC acc: {sc_correct[mask_A].mean():.4f}\")\nprint(f\"  Gap: {gap_A:+.2f} pp\")\n\nprint(f\"\\nGroup B (no truncation): {int(mask_B.sum())} problems\")\nif mask_B.sum() > 0:\n    print(f\"  SICA acc: {sica_correct[mask_B].mean():.4f}, SC acc: {sc_correct[mask_B].mean():.4f}\")\n    print(f\"  Gap: {gap_B:+.2f} pp\")\nelse:\n    print(\"  (no problems without truncation)\")\n\nprint(f\"\\nDiscordant pairs analysis:\")\nsica_win_indices = []\nfor i in range(n):\n    if sica_correct[i] == 1 and sc_correct[i] == 0:\n        print(f\"  SICA-win: problem {i} ({results[i]['problem_id']}), truncated={truncated[i]}\")\n        sica_win_indices.append(i)\n    elif sica_correct[i] == 0 and sc_correct[i] == 1:\n        print(f\"  SC-win:   problem {i} ({results[i]['problem_id']}), truncated={truncated[i]}\")\n\nsica_wins_truncated = sum(1 for i in sica_win_indices if truncated[i] > 0)\nprint(f\"\\nSICA-win discordant pairs with truncation: {sica_wins_truncated}/{len(sica_win_indices)}\")\n\n# === 4. Per-Domain Breakdown ===\nprint()\nprint(\"=\" * 50)\nprint(\"4. PER-DOMAIN BREAKDOWN\")\nprint(\"=\" * 50)\n\ndomain_results = {}\nfor domain in ['proofwriter', 'folio']:\n    mask = np.array([d == domain for d in datasets])\n    s = sica_correct[mask]\n    c = sc_correct[mask]\n    n_d = int(mask.sum())\n    \n    gap_d = (s.mean() - c.mean()) * 100\n    \n    sw = int(np.sum((s == 1) & (c == 0)))\n    cw = int(np.sum((s == 0) & (c == 1)))\n    nd = sw + cw\n    if nd > 0:\n        p_mcnemar = stats.binomtest(sw, nd, 0.5, alternative='two-sided').pvalue\n    else:\n        p_mcnemar = 1.0\n    \n    boot_d = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.choice(n_d, size=n_d, replace=True)\n        boot_d[i] = s[idx].mean() - c[idx].mean()\n    ci_l = np.percentile(boot_d, 2.5) * 100\n    ci_h = np.percentile(boot_d, 97.5) * 100\n    p_d = np.mean(boot_d <= 0)\n    \n    domain_results[domain] = (gap_d, p_mcnemar, ci_l, ci_h, sw, cw, s.mean(), c.mean(), p_d)\n    \n    print(f\"\\n{domain.upper()} ({n_d} problems):\")\n    print(f\"  SICA acc: {s.mean():.4f}, SC acc: {c.mean():.4f}\")\n    print(f\"  Gap: {gap_d:+.2f} pp\")\n    print(f\"  Discordant: SICA-wins={sw}, SC-wins={cw}\")\n    print(f\"  McNemar exact p (two-sided): {p_mcnemar:.4f}\")\n    print(f\"  Bootstrap 95% CI: [{ci_l:.2f}, {ci_h:.2f}] pp\")\n    print(f\"  Bootstrap P(gap<=0): {p_d:.4f}\")\n\n# === FINAL SUMMARY ===\nprint(\"\\n\")\nprint(\"=\" * 60)\nprint(\"STATISTICAL VERIFICATION SUMMARY\")\nprint(\"=\" * 60)\nprint(f\"McNemar exact p-value (two-sided): {p_exact:.4f}\")\nprint(f\"McNemar exact p-value (one-sided): {p_one_sided:.4f}\")\nprint(f\"Bootstrap gap: +{point_estimate:.2f} pp [{ci_low_boot:.2f}, {ci_high_boot:.2f}]\")\nprint(f\"Bootstrap p(gap<=0): {p_gap_leq_0:.4f}\")\nprint()\nprint(\"TRUNCATION ANALYSIS:\")\nprint(f\"  Problems with truncated traces: {n_problems_truncated}/60\")\nprint(f\"  Gap (truncated group): {gap_A:+.2f} pp\")\nprint(f\"  Gap (clean group): {gap_B:+.2f} pp\")\nprint(f\"  Discordant SICA-wins in truncated: {sica_wins_truncated}/5\")\nprint()\nprint(\"PER-DOMAIN:\")\nfor domain in ['proofwriter', 'folio']:\n    g, pm, cl, ch, sw, cw, sa, ca, pd = domain_results[domain]\n    print(f\"  {domain.upper()}: {g:+.2f}pp, McNemar p={pm:.4f}, Bootstrap CI=[{cl:.2f}, {ch:.2f}]\")\n\nprint()\n# Verdict logic\nif p_exact < 0.05 and ci_low_boot > 0:\n    verdict = \"SIGNIFICANT\"\nelif sica_wins_truncated >= 4 and gap_B <= 0:\n    verdict = \"ARTIFACT (driven by truncation)\"\nelif p_exact >= 0.10 and ci_low_boot < 0:\n    verdict = \"NOT SIGNIFICANT\"\nelse:\n    verdict = \"NOT SIGNIFICANT (underpowered, suggestive trend)\"\n\nprint(f\"VERDICT: {verdict}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "3d615fe5-b054-46c0-aebc-ae2b3cffb06b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KP5NWpmHTMdeeABTXm5CD9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8251,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8251
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T08:02:43.526Z_
+
+<details><summary>↩ Tool result · `toolu_014xZVjzRj9DCsqwpbyyBesA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "d5931b77-da91-4472-82c4-4850be43a075",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012Kh3Jr9oCriaeHCyoTTEA7`</summary>
+
+```json
+{
+  "server": "westd-32608",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/stat_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "304b79a1-91c0-4af9-8c7a-a2952ab0dc59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aoe2bmxLUi3CnUf5K3Kcka",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 37570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T08:02:48.885Z_
+
+<details><summary>↩ Tool result · `toolu_012Kh3Jr9oCriaeHCyoTTEA7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total problems: 60\\nSICA correct: 40, SC correct: 36\\nSICA acc: 0.6667, SC acc: 0.6000\\nGap: +6.67 pp\\n\\n==================================================\\n1. McNEMAR TEST (EXACT BINOMIAL)\\n==================================================\\nContingency table:\\n  Both correct: 35\\n  Both wrong: 19\\n  SICA wins (sica=1, sc=0): 5\\n  SC wins (sica=0, sc=1): 1\\n  Total discordant: 6\\n\\nExact binomial test (two-sided): p = 0.2188\\nOne-sided p (SICA > SC): p = 0.1094\\nOdds ratio: 5.00\\n95% CI for OR: [0.559, 236.488]\\n\\n==================================================\\n2. BOOTSTRAP 95% CI FOR GAP\\n==================================================\\nPoint estimate: +6.67 pp\\n95% CI (percentile): [0.00, 15.00] pp\\nP(gap <= 0): 0.0607\\n\\n==================================================\\n3. TRUNCATION ANALYSIS\\n==================================================\\nProblems with truncated traces: 16/60\\nTotal truncated traces: 44\\nDistribution of truncated traces per problem:\\n  1 truncated: 3 problems\\n  2 truncated: 4 problems\\n  3 truncated: 6 problems\\n  4 truncated: 2 problems\\n  7 truncated: 1 problems\\n\\nGroup A (with truncation): 16 problems\\n  SICA acc: 0.6875, SC acc: 0.6250\\n  Gap: +6.25 pp\\n\\nGroup B (no truncation): 44 problems\\n  SICA acc: 0.6591, SC acc: 0.5909\\n  Gap: +6.82 pp\\n\\nDiscordant pairs analysis:\\n  SICA-win: problem 1 (ProofWriter_RelNoneg-OWA-D5-1036_Q11), truncated=0\\n  SC-win:   problem 19 (ProofWriter_RelNoneg-OWA-D5-709_Q12), truncated=0\\n  SICA-win: problem 24 (ProofWriter_RelNeg-OWA-D5-856_Q19), truncated=3\\n  SICA-win: problem 32 (folio_002), truncated=0\\n  SICA-win: problem 44 (folio_014), truncated=0\\n  SICA-win: problem 57 (folio_027), truncated=0\\n\\nSICA-win discordant pairs with truncation: 1/5\\n\\n==================================================\\n4. PER-DOMAIN BREAKDOWN\\n==================================================\\n\\nPROOFWRITER (30 problems):\\n  SICA acc: 0.6333, SC acc: 0.6000\\n  Gap: +3.33 pp\\n  Discordant: SICA-wins=2, SC-wins=1\\n  McNemar exact p (two-sided): 1.0000\\n  Bootstrap 95% CI: [-6.67, 13.33] pp\\n  Bootstrap P(gap<=0): 0.3869\\n\\nFOLIO (30 problems):\\n  SICA acc: 0.7000, SC acc: 0.6000\\n  Gap: +10.00 pp\\n  Discordant: SICA-wins=3, SC-wins=0\\n  McNemar exact p (two-sided): 0.2500\\n  Bootstrap 95% CI: [0.00, 23.33] pp\\n  Bootstrap P(gap<=0): 0.0412\\n\\n\\n============================================================\\nSTATISTICAL VERIFICATION SUMMARY\\n============================================================\\nMcNemar exact p-value (two-sided): 0.2188\\nMcNemar exact p-value (one-sided): 0.1094\\nBootstrap gap: +6.67 pp [0.00, 15.00]\\nBootstrap p(gap<=0): 0.0607\\n\\nTRUNCATION ANALYSIS:\\n  Problems with truncated traces: 16/60\\n  Gap (truncated group): +6.25 pp\\n  Gap (clean group): +6.82 pp\\n  Discordant SICA-wins in truncated: 1/5\\n\\nPER-DOMAIN:\\n  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]\\n  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]\\n\\nVERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "9b965e1d-53f5-486e-9cf5-3beb4c74a209",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total problems: 60\\\\nSICA correct: 40, SC correct: 36\\\\nSICA acc: 0.6667, SC acc: 0.6000\\\\nGap: +6.67 pp\\\\n\\\\n==================================================\\\\n1. McNEMAR TEST (EXACT BINOMIAL)\\\\n==================================================\\\\nContingency table:\\\\n  Both correct: 35\\\\n  Both wrong: 19\\\\n  SICA wins (sica=1, sc=0): 5\\\\n  SC wins (sica=0, sc=1): 1\\\\n  Total discordant: 6\\\\n\\\\nExact binomial test (two-sided): p = 0.2188\\\\nOne-sided p (SICA > SC): p = 0.1094\\\\nOdds ratio: 5.00\\\\n95% CI for OR: [0.559, 236.488]\\\\n\\\\n==================================================\\\\n2. BOOTSTRAP 95% CI FOR GAP\\\\n==================================================\\\\nPoint estimate: +6.67 pp\\\\n95% CI (percentile): [0.00, 15.00] pp\\\\nP(gap <= 0): 0.0607\\\\n\\\\n==================================================\\\\n3. TRUNCATION ANALYSIS\\\\n==================================================\\\\nProblems with truncated traces: 16/60\\\\nTotal truncated traces: 44\\\\nDistribution of truncated traces per problem:\\\\n  1 truncated: 3 problems\\\\n  2 truncated: 4 problems\\\\n  3 truncated: 6 problems\\\\n  4 truncated: 2 problems\\\\n  7 truncated: 1 problems\\\\n\\\\nGroup A (with truncation): 16 problems\\\\n  SICA acc: 0.6875, SC acc: 0.6250\\\\n  Gap: +6.25 pp\\\\n\\\\nGroup B (no truncation): 44 problems\\\\n  SICA acc: 0.6591, SC acc: 0.5909\\\\n  Gap: +6.82 pp\\\\n\\\\nDiscordant pairs analysis:\\\\n  SICA-win: problem 1 (ProofWriter_RelNoneg-OWA-D5-1036_Q11), truncated=0\\\\n  SC-win:   problem 19 (ProofWriter_RelNoneg-OWA-D5-709_Q12), truncated=0\\\\n  SICA-win: problem 24 (ProofWriter_RelNeg-OWA-D5-856_Q19), truncated=3\\\\n  SICA-win: problem 32 (folio_002), truncated=0\\\\n  SICA-win: problem 44 (folio_014), truncated=0\\\\n  SICA-win: problem 57 (folio_027), truncated=0\\\\n\\\\nSICA-win discordant pairs with truncation: 1/5\\\\n\\\\n==================================================\\\\n4. PER-DOMAIN BREAKDOWN\\\\n==================================================\\\\n\\\\nPROOFWRITER (30 problems):\\\\n  SICA acc: 0.6333, SC acc: 0.6000\\\\n  Gap: +3.33 pp\\\\n  Discordant: SICA-wins=2, SC-wins=1\\\\n  McNemar exact p (two-sided): 1.0000\\\\n  Bootstrap 95% CI: [-6.67, 13.33] pp\\\\n  Bootstrap P(gap<=0): 0.3869\\\\n\\\\nFOLIO (30 problems):\\\\n  SICA acc: 0.7000, SC acc: 0.6000\\\\n  Gap: +10.00 pp\\\\n  Discordant: SICA-wins=3, SC-wins=0\\\\n  McNemar exact p (two-sided): 0.2500\\\\n  Bootstrap 95% CI: [0.00, 23.33] pp\\\\n  Bootstrap P(gap<=0): 0.0412\\\\n\\\\n\\\\n============================================================\\\\nSTATISTICAL VERIFICATION SUMMARY\\\\n============================================================\\\\nMcNemar exact p-value (two-sided): 0.2188\\\\nMcNemar exact p-value (one-sided): 0.1094\\\\nBootstrap gap: +6.67 pp [0.00, 15.00]\\\\nBootstrap p(gap<=0): 0.0607\\\\n\\\\nTRUNCATION ANALYSIS:\\\\n  Problems with truncated traces: 16/60\\\\n  Gap (truncated group): +6.25 pp\\\\n  Gap (clean group): +6.82 pp\\\\n  Discordant SICA-wins in truncated: 1/5\\\\n\\\\nPER-DOMAIN:\\\\n  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]\\\\n  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]\\\\n\\\\nVERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total problems: 60\\nSICA correct: 40, SC correct: 36\\nSICA acc: 0.6667, SC acc: 0.6000\\nGap: +6.67 pp\\n\\n==================================================\\n1. McNEMAR TEST (EXACT BINOMIAL)\\n==================================================\\nContingency table:\\n  Both correct: 35\\n  Both wrong: 19\\n  SICA wins (sica=1, sc=0): 5\\n  SC wins (sica=0, sc=1): 1\\n  Total discordant: 6\\n\\nExact binomial test (two-sided): p = 0.2188\\nOne-sided p (SICA > SC): p = 0.1094\\nOdds ratio: 5.00\\n95% CI for OR: [0.559, 236.488]\\n\\n==================================================\\n2. BOOTSTRAP 95% CI FOR GAP\\n==================================================\\nPoint estimate: +6.67 pp\\n95% CI (percentile): [0.00, 15.00] pp\\nP(gap <= 0): 0.0607\\n\\n==================================================\\n3. TRUNCATION ANALYSIS\\n==================================================\\nProblems with truncated traces: 16/60\\nTotal truncated traces: 44\\nDistribution of truncated traces per problem:\\n  1 truncated: 3 problems\\n  2 truncated: 4 problems\\n  3 truncated: 6 problems\\n  4 truncated: 2 problems\\n  7 truncated: 1 problems\\n\\nGroup A (with truncation): 16 problems\\n  SICA acc: 0.6875, SC acc: 0.6250\\n  Gap: +6.25 pp\\n\\nGroup B (no truncation): 44 problems\\n  SICA acc: 0.6591, SC acc: 0.5909\\n  Gap: +6.82 pp\\n\\nDiscordant pairs analysis:\\n  SICA-win: problem 1 (ProofWriter_RelNoneg-OWA-D5-1036_Q11), truncated=0\\n  SC-win:   problem 19 (ProofWriter_RelNoneg-OWA-D5-709_Q12), truncated=0\\n  SICA-win: problem 24 (ProofWriter_RelNeg-OWA-D5-856_Q19), truncated=3\\n  SICA-win: problem 32 (folio_002), truncated=0\\n  SICA-win: problem 44 (folio_014), truncated=0\\n  SICA-win: problem 57 (folio_027), truncated=0\\n\\nSICA-win discordant pairs with truncation: 1/5\\n\\n==================================================\\n4. PER-DOMAIN BREAKDOWN\\n==================================================\\n\\nPROOFWRITER (30 problems):\\n  SICA acc: 0.6333, SC acc: 0.6000\\n  Gap: +3.33 pp\\n  Discordant: SICA-wins=2, SC-wins=1\\n  McNemar exact p (two-sided): 1.0000\\n  Bootstrap 95% CI: [-6.67, 13.33] pp\\n  Bootstrap P(gap<=0): 0.3869\\n\\nFOLIO (30 problems):\\n  SICA acc: 0.7000, SC acc: 0.6000\\n  Gap: +10.00 pp\\n  Discordant: SICA-wins=3, SC-wins=0\\n  McNemar exact p (two-sided): 0.2500\\n  Bootstrap 95% CI: [0.00, 23.33] pp\\n  Bootstrap P(gap<=0): 0.0412\\n\\n\\n============================================================\\nSTATISTICAL VERIFICATION SUMMARY\\n============================================================\\nMcNemar exact p-value (two-sided): 0.2188\\nMcNemar exact p-value (one-sided): 0.1094\\nBootstrap gap: +6.67 pp [0.00, 15.00]\\nBootstrap p(gap<=0): 0.0607\\n\\nTRUNCATION ANALYSIS:\\n  Problems with truncated traces: 16/60\\n  Gap (truncated group): +6.25 pp\\n  Gap (clean group): +6.82 pp\\n  Discordant SICA-wins in truncated: 1/5\\n\\nPER-DOMAIN:\\n  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]\\n  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]\\n\\nVERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+```
+STATISTICAL VERIFICATION SUMMARY
+============================================================
+McNemar exact p-value (two-sided): 0.2188
+McNemar exact p-value (one-sided): 0.1094
+Bootstrap gap: +6.67 pp [0.00, 15.00]
+Bootstrap p(gap≤0): 0.0607
+
+TRUNCATION ANALYSIS:
+  Problems with truncated traces: 16/60
+  Gap (truncated group): +6.25 pp
+  Gap (clean group): +6.82 pp
+  Discordant SICA-wins in truncated: 1/5
+
+PER-DOMAIN:
+  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]
+  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]
+
+VERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)
+```
+
+关键发现：
+
+1. **McNemar p=0.2188**：6 个 discordant pairs（5:1）不足以达到显著性。精确二项检验在 n=6 时 power 极低，即使真实 OR=5.0，95% CI 跨越 1（[0.56, 236.5]），无法排除随机波动。
+
+2. **Bootstrap CI 下界恰好触及 0**：[0.00, 15.00]，p(gap≤0)=6.07%。处于 marginal 区间，不满足 p<0.05。
+
+3. **截断不是 artifact 来源**：这是最重要的好消息。截断组 gap（+6.25pp）与干净组 gap（+6.82pp）几乎一致，5 个 SICA-win discordant pairs 中只有 1 个含截断 traces。+6.67pp 的增益在两组中均匀分布，不是截断造成的伪效应。
+
+4. **域差异**：FOLIO 贡献了大部分增益（+10.00pp, bootstrap p=0.04），ProofWriter 增益弱（+3.33pp, p=1.0）。
+
+**结论**：+6.67pp 是真实方向性效应（非 truncation artifact），但 n=60 样本量不足以达到统计显著。需要扩大到约 200+ 题才可能在 McNemar test 中达到 p<0.05。FOLIO 子集单独看接近显著。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "uuid": "25487a40-560c-446f-9efd-b52522dfb5fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKMAX3QRScRpr4KyUfcZ7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1463,
+      "cache_read_input_tokens": 41223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1463
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 22_
+
+```
+STATISTICAL VERIFICATION SUMMARY
+============================================================
+McNemar exact p-value (two-sided): 0.2188
+McNemar exact p-value (one-sided): 0.1094
+Bootstrap gap: +6.67 pp [0.00, 15.00]
+Bootstrap p(gap≤0): 0.0607
+
+TRUNCATION ANALYSIS:
+  Problems with truncated traces: 16/60
+  Gap (truncated group): +6.25 pp
+  Gap (clean group): +6.82 pp
+  Discordant SICA-wins in truncated: 1/5
+
+PER-DOMAIN:
+  PROOFWRITER: +3.33pp, McNemar p=1.0000, Bootstrap CI=[-6.67, 13.33]
+  FOLIO: +10.00pp, McNemar p=0.2500, Bootstrap CI=[0.00, 23.33]
+
+VERDICT: NOT SIGNIFICANT (underpowered, suggestive trend)
+```
+
+关键发现：
+
+1. **McNemar p=0.2188**：6 个 discordant pairs（5:1）不足以达到显著性。精确二项检验在 n=6 时 power 极低，即使真实 OR=5.0，95% CI 跨越 1（[0.56, 236.5]），无法排除随机波动。
+
+2. **Bootstrap CI 下界恰好触及 0**：[0.00, 15.00]，p(gap≤0)=6.07%。处于 marginal 区间，不满足 p<0.05。
+
+3. **截断不是 artifact 来源**：这是最重要的好消息。截断组 gap（+6.25pp）与干净组 gap（+6.82pp）几乎一致，5 个 SICA-win discordant pairs 中只有 1 个含截断 traces。+6.67pp 的增益在两组中均匀分布，不是截断造成的伪效应。
+
+4. **域差异**：FOLIO 贡献了大部分增益（+10.00pp, bootstrap p=0.04），ProofWriter 增益弱（+3.33pp, p=1.0）。
+
+**结论**：+6.67pp 是真实方向性效应（非 truncation artifact），但 n=60 样本量不足以达到统计显著。需要扩大到约 200+ 题才可能在 McNemar test 中达到 p<0.05。FOLIO 子集单独看接近显著。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 119357,
+  "duration_api_ms": 116435,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "4c079a50-35f0-4268-ab0a-eefd5a1478bc",
+  "total_cost_usd": 0.48348175000000004,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 30845,
+    "cache_read_input_tokens": 169811,
+    "output_tokens": 8166,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30845,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 674,
+        "cache_read_input_tokens": 41223,
+        "cache_creation_input_tokens": 1463,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1463
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1490,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001595,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 8166,
+      "cacheReadInputTokens": 169811,
+      "cacheCreationInputTokens": 30845,
+      "webSearchRequests": 0,
+      "costUSD": 0.48188675000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c260b537-5633-4ffc-937d-5d359b39dabd"
+}
+```
+
+</details>
+
+---

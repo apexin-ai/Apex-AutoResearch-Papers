@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-078-debate-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:51:21.070Z",
+    "updated_at": "2026-05-19T22:29:09.471Z",
+    "hypothesis": "Debate-augmented extraction with MAX-SAT consensus (SICA) transfers cross-dataset from FOLIO (3-class) to LogiQA (4-choice multichoice), maintaining accuracy gains over self-consistency baseline on 200 LogiQA problems with Mistral-7B.",
+    "parent": "exp-076-debate-mistral-folio",
+    "spec": {
+      "command": "python -u run_debate.py --mode vllm --dataset logiqa --k 12 --n-debates 4 --temperature 0.7 --seed 42 --api-base http://localhost:8013/v1 --model auto --data data/logiqa_200.json --output results/exp078_debate_mistral_logiqa200/results.json --save-intermediates",
+      "server": "westd-16639",
+      "gpu": "cuda:3",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "pid": 194538,
+      "log_path": "/tmp/exp078_debate_logiqa.log",
+      "checkpoint_path": "results/exp078_debate_mistral_logiqa200/results.json",
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (inference-only, no fine-tuning)",
+      "eval_data": "logiqa_200.json (200 problems, 4-choice multichoice)",
+      "vllm_port": 8013,
+      "tmux_session": "vllm_logiqa"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.5,
+      "debate_accuracy": 0.27,
+      "delta": -0.23,
+      "n_samples": 200,
+      "wall_time_min": 211.5,
+      "fallbacks": 16
+    },
+    "completed_at": "2026-05-19T22:29:09.471Z"
+  },
+  "timestamp": "2026-05-19T22:29:09.682366+00:00",
+  "trigger": "update_registry"
+}

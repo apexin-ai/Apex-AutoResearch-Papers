@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-427_Q14",
+    "problem": "The bald eagle eats the tiger. The bald eagle is red. The bald eagle likes the rabbit. The bear eats the bald eagle. The bear is rough. The rabbit eats the tiger. The tiger eats the bald eagle. The tiger eats the rabbit. The tiger is kind. The tiger likes the bear. If someone is cold then they see the rabbit. If someone sees the tiger and the tiger is kind then they see the bald eagle. If the rabbit is red and the rabbit is rough then the rabbit likes the bear. If someone sees the rabbit then the rabbit eats the bald eagle. If someone eats the bald eagle then they are cold. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle sees the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nEats(BaldEagle, Tiger, True) ::: The bald eagle eats the tiger.\nRed(BaldEagle, True) ::: The bald eagle is red.\nLikes(BaldEagle, Rabbit, True) ::: The bald eagle likes the rabbit.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nRough(Bear, True) ::: The bear is rough.\nEats(Rabbit, Tiger, True) ::: The rabbit eats the tiger.\nEats(Tiger, BaldEagle, True) ::: The tiger eats the bald eagle.\nEats(Tiger, Rabbit, True) ::: The tiger eats the rabbit.\nKind(Tiger, True) ::: The tiger is kind.\nLikes(Tiger, Bear, True) ::: The tiger likes the bear.\n\nRules:\nCold($x, True) >>> Sees($x, Rabbit, True) ::: If someone is cold then they see the rabbit.\nSees($x, Tiger, True) && Kind(Tiger, True) >>> Sees($x, BaldEagle, True) ::: If someone sees the tiger and the tiger is kind then they see the bald eagle.\nRed(Rabbit, True) && Rough(Rabbit, True) >>> Likes(Rabbit, Bear, True) ::: If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\nSees($x, Rabbit, True) >>> Eats(Rabbit, BaldEagle, True) ::: If someone sees the rabbit then the rabbit eats the bald eagle.\nEats($x, BaldEagle, True) >>> Cold($x, True) ::: If someone eats the bald eagle then they are cold.\nSees($x, BaldEagle, True) && Eats($x, Bear, True) >>> Likes($x, BaldEagle, True) ::: If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nQuery:\nSees(BaldEagle, BaldEagle, True) ::: The bald eagle sees the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp-wave3-dir-r-combo-extended",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:52:56.684Z",
+    "updated_at": "2026-05-20T11:53:26.968Z",
+    "hypothesis": "R combo 策略扩展：测试 NLI 作为不同权重投票（w=1/3/5）、intersection+fallback、cascade（按 NLI confidence 分流）、weighted averaging 等策略。寻找 NLI+SICA/SC 最优融合方式。",
+    "spec": {
+      "command": "python direction_rg_combo.py",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "deberta-large-mnli + Mistral-7B SC traces + SICA",
+      "seed": 42,
+      "checkpoint_path": "/root/symb_invariant_consensus/results/direction_rg_combo/results.json",
+      "log_path": "/root/symb_invariant_consensus/results/direction_rg_combo/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "sc_accuracy": 0.5441,
+      "sica_accuracy": 0.5931,
+      "nli_standalone": 0.4951,
+      "best_combo": "nli_sc_vote_w5",
+      "best_combo_acc": 0.6029,
+      "best_delta_sc_pp": 5.88,
+      "best_delta_sica_pp": 0.98,
+      "nli_sc_vote_w3": 0.5882,
+      "intersection_sica_fallback": 0.5931,
+      "intersection_sc_fallback": 0.5735,
+      "oracle_upper_bound": 0.7549,
+      "sica_nli_agreement": 0.475,
+      "agreement_accuracy": 0.701,
+      "n": 204
+    },
+    "completed_at": "2026-05-20T11:53:26.969Z"
+  },
+  "timestamp": "2026-05-20T11:53:27.255371+00:00",
+  "trigger": "update_registry"
+}

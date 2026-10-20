@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0826c4fd83c8506b5ee9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra multiseed full status check",
+  "task_key": "worker_infra_multiseed-full-status-check_20260522T090537",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_multiseed-full-status-check_20260522T090537_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "9237bfb25074f5782cb94faac56b9d07c434590f421a7b7c1f19fa984824f7d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 型号 | Util | 显存 |\n|-----|------|------|------|\n| 0 | RTX PRO 6000 Blackwell | 97% | 90159/97887 MiB |\n| 1 | RTX PRO 6000 Blackwell | 97% | 90161/97887 MiB |\n| 2 | RTX PRO 6000 Blackwell | 0% | 90213/97887 MiB |\n| 3 | RTX PRO 6000 Blackwell | 0% | 90197/97887 MiB |\n\nGPU 2/3 模型已加载（90GB）但瞬时采样 0% util，日志显示 Mistral 仍在活跃推理。\n\n## Guard Script\n- Guard PID 555317: **运行中**，监视 seed789 intermediates，当前 48/204\n- PID 510872 (cuda:1 master): **仍存活**，guard 尚未触发 kill\n\n## Qwen2.5 × FOLIO (cuda:1)\n\n| seed | 进度 | SC | SICA | Δ | 状态 |\n|------|------|----|------|---|------|\n| 123 | 204/204 | 74.51% | 73.04% | -1.47pp | ✅ |\n| 456 | 204/204 | 74.02% | 74.02% | +0.00pp | ✅ |\n| 789 | 48/204 | — | — | — | ⏳ ~24% |\n\n## Mistral × PW (cuda:2)\n\n| seed | 进度 | SC | SICA | Δ | 状态 |\n|------|------|----|------|---|------|\n| 42 | 600/600 | 40.00% | 36.67% | -3.33pp | ✅ |\n| 123 | 78/600 | 43.59%* | 47.44%* | +3.85pp* | ⏳ ~13% |\n| 456 | — | — | — | — | 未开始 |\n| 789 | — | — | — | — | 未开始 |\n\n## Qwen2.5 × PW (cuda:0)\n\n| seed | 进度 | SC | SICA | Δ | 状态 |\n|------|------|----|------|---|------|\n| 123 | 80/600 | 76.25%* | 75.00%* | -1.25pp* | ⏳ ~13% |\n| 456 | — | — | — | — | 未开始 |\n| 789 | — | — | — | — | 未开始 |\n\n*\\* 标记为部分结果，非最终值*\n\n所有运行中实验日志截至 17:07 CST 均有活跃推理请求，进程正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-multiseed-full-status-check.md"
+}

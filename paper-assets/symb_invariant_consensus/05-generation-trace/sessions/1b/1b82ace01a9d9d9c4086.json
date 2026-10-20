@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b82ace01a9d9d9c4086",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_3_1778906513.md",
+  "task_key": "loop_3_1778906513",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_3_1778906513.md",
+    "occurrence": 1,
+    "bytes": 4008,
+    "sha256": "593a36510da3dd9ea5352b959feea21dbda81be7c457c40199b9917107821459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-16T03:57:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:0**（gpu_ids=[0]），不要用其他 GPU\n- 服务器 **westd-32608**，账号 **root**\n- vLLM max_tokens **≤ max_model_len - prompt_tokens**：QwQ-32B max_model_len=16384 时 max_tokens=16384 导致全部 400 错误（proofwriter30 v1 事故）。当前安全值 12288\n- **FOLIO-30 全量已被 Director 暂停**，不要启动 sica_folio30 实验\n- L3+L1 修复已 commit（`97aeaa5`），后续实验必须基于此版本代码，不要回退\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-32608, 工作目录 `/root/symb_invariant_consensus/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **QwQ-32B 模型路径**: `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`\n- **数据**: `data/folio_subset.json`(30题), `data/proofwriter_subset.json`(30题), `data/aime2024_subset.json`(30题)\n- **活跃进程**: Worker `code:d016_model_pivot` 正在执行模型切换序列（等5题完成 → kill QwQ-32B → 部署 Qwen2.5-14B-Instruct → C0预检 + smoke test）。5题验证 PID 166677 应即将完成或已完成\n- **Git**: `/root/symb_invariant_consensus/` 已 init，最新 commit `97aeaa5` (L3+L1 fix)\n- **Cron**: reconcile 显示无活跃 cron（proofwriter30_v2 已 killed）\n\n### 3. 📊 当前状态\n**刚做完**:\n- sica_proofwriter30_v2 killed（16/30，Director 指令，D012 四项全 FAIL）\n- MaxSAT 根因诊断完成：求解器无 bug，问题是约束编码不含答案断言 + 提取失败 54.4%\n- L3+L1 修复完成并验证（4/5 done，V1-V3 三项全 PASS：excluded>0 ✓，提取率 100% ✓，多候选题选择合理 ✓）\n- FOLIO C0 预检：0/10=0% 多候选率，QwQ-32B 跨域自一致确认\n\n**正在做**:\n- Worker `code:d016_model_pivot` 执行中：D016 模型 pivot 全流程\n- 第 5 题验证（31_Q12）应即将完成\n\n**Registry 状态**:\n- sica_folio30: QUEUED（暂停，不启动）\n- sica_proofwriter30_v2: DONE/killed\n- sica_proofwriter30: DONE/failed\n- sica_aime30_v3: DONE/killed\n- 其余全 DONE\n\n### 4. 📋 待办\n- **Worker `code:d016_model_pivot` 回调 →** 读取结果：(1) 第5题验证数据补全 V1-V3 报告 (2) Qwen2.5-14B C0 多候选率 + SC accuracy (3) smoke test pipeline 状态。汇报 Director\n- **C0 ≥ 20% 且 SC ≥ 70% →** 等 Director 指令跑完整 D012 评估（ProofWriter-30 + FOLIO-30 with Qwen2.5-14B）\n- **C0 ≥ 20% 但 SC < 70% →** 汇报 Director，建议切 Qwen2.5-72B-Instruct AWQ 4-bit（~40GB VRAM，98GB GPU 可装）\n- **C0 < 20% →** 汇报 Director，SICA D012 MVP 在 instruction-following 模型上也 FAIL，需要 Framing pivot\n- **D016 全部完成后 →** 整理完整 MVP 判定报告：D012 C0-C3 四项逐项评分，合并 QwQ-32B + Qwen2.5-14B 全部数据\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D011: QwQ-32B 数学域 SICA≡SC（0% 多候选）→ 转逻辑域\n- D012: 逻辑域 ProofWriter 18.8% 多候选但 MaxSAT excluded=0 → 根因诊断 → L3+L1 修复\n- L3+L1 修复验证 PASS（算法本身可工作），但 C0 全域 3.6% → 模型级瓶颈\n- D016: pivot 到 Qwen2.5-14B-Instruct（非 reasoning model），验证 SICA 在高 trace 分歧下是否有效\n- **这是 MVP 的最后关键实验**：如果 14B 模型 C0 PASS + SICA>SC，证明算法有效但需要搭配合适模型；如果 C0 仍 FAIL，SICA 方法论本身可能有根本问题\n\n**易错点**:\n- 不要混淆\"算法有效性\"和\"模型适配性\"——L3+L1 修复后算法在多候选场景下工作正常，问题是 QwQ-32B 不产生多候选\n- Qwen2.5-14B 的 vLLM max_model_len 应设 8192（Director 指令），不要照搬 QwQ-32B 的 16384\n- 14B 模型推理速度快很多，预检应 30min 内完成，不要按 QwQ-32B 的时间估算\n- FOLIO-30 全量被 Director 暂停，即使 14B C0 看起来好也不要自作主张启动，等 Director 指令\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778906513.md"
+}

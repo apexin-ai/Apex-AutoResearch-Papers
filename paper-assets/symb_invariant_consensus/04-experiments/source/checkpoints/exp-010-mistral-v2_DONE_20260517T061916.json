@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp-010-mistral-v2",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:26:42.201Z",
+    "updated_at": "2026-05-17T06:19:16.615Z",
+    "hypothesis": "Cross-family validation: Mistral-7B-Instruct-v0.3 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 跨模型家族泛化（v2: 修复 max-model-len=8192 防 400 循环）",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T05:51:38.846Z",
+      "command": "pkill -f \"vllm.entrypoints\" 2>/dev/null; sleep 3; cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T05:51:53.254Z",
+      "training_hours": 0.0
+    },
+    "spec": {
+      "command": "pkill -f \"vllm.entrypoints\" 2>/dev/null; sleep 3; cd /root/symb_invariant_consensus && bash scripts/run_exp010_mistral.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/symb_invariant_consensus/exp-010-mistral-v2.log",
+      "submitted_at": "2026-05-17T05:51:40.607Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 13.6,
+      "gpu_hours": 0.0
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/symb_invariant_consensus/exp-010-mistral-v2.log",
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T05:51:54.213Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T05:51:55.875957+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T06:19:16.690546+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-491_Q15",
+    "problem": "The bear chases the lion. The bear is not young. The dog chases the bear. The dog chases the lion. The dog chases the squirrel. The dog sees the lion. The dog visits the squirrel. The lion does not chase the bear. The lion does not chase the squirrel. The lion is not red. The squirrel chases the bear. The squirrel chases the dog. The squirrel is green. The squirrel is round. The squirrel is young. The squirrel sees the dog. If something visits the bear then it sees the bear. If something sees the bear then the bear sees the dog. If something visits the dog and the dog is young then the dog sees the bear. If something is green then it sees the dog. If something sees the dog then it visits the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not visit the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(Bear, Lion, True) ::: The bear chases the lion.\nYoung(Bear, False) ::: The bear is not young.\nChases(Dog, Bear, True) ::: The dog chases the bear.\nChases(Dog, Lion, True) ::: The dog chases the lion.\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nVisits(Dog, Squirrel, True) ::: The dog visits the squirrel.\nChases(Lion, Bear, False) ::: The lion does not chase the bear.\nChases(Lion, Squirrel, False) ::: The lion does not chase the squirrel.\nRed(Lion, False) ::: The lion is not red.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nGreen(Squirrel, True) ::: The squirrel is green.\nRound(Squirrel, True) ::: The squirrel is round.\nYoung(Squirrel, True) ::: The squirrel is young.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\n\nRules:\nVisits($x, Bear, True) >>> Sees($x, Bear, True) ::: If something visits the bear then it sees the bear.\nSees($x, Bear, True) >>> Sees(Bear, Dog, True) ::: If something sees the bear then the bear sees the dog.\nVisits($x, Dog, True) && Young(Dog, True) >>> Sees(Dog, Bear, True) ::: If something visits the dog and the dog is young then the dog sees the bear.\nGreen($x, True) >>> Sees($x, Dog, True) ::: If something is green then it sees the dog.\nSees($x, Dog, True) >>> Visits($x, Bear, True) ::: If something sees the dog then it visits the bear.\n\nQuery:\nVisits(Lion, Bear, False) ::: The lion does not visit the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_math50_t07",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:16:29.416Z",
+    "updated_at": "2026-05-15T12:21:37.283Z",
+    "spec": {
+      "command": "nohup python3 run_full_mvp.py --mode vllm --k 12 --output results/mvp_math50_t07.json > /tmp/mvp_math50.log 2>&1 &",
+      "server": "westd-32608",
+      "data_path": "/root/symb_invariant_consensus/data/math500_subset.json",
+      "data_count": 50,
+      "model_name": "QwQ-32B",
+      "seed": 42,
+      "method": "SICA",
+      "checkpoint_path": "results/mvp_math50_t07.json",
+      "log_path": "/tmp/mvp_math50.log",
+      "temperature": 0.7,
+      "k": 12
+    },
+    "hypothesis": "SICA MVP: 50题MATH-500上跨路径MAX-SAT约束共识能否检测矛盾并超越SC@K=12",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T12:21:37.283Z"
+  },
+  "timestamp": "2026-05-15T12:21:37.294781+00:00",
+  "trigger": "update_registry"
+}

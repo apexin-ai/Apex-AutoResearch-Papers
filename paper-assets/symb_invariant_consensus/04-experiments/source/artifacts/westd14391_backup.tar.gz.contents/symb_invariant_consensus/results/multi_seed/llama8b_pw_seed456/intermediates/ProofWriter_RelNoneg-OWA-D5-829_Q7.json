@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-829_Q7",
+    "problem": "The cow eats the lion. The cow eats the mouse. The cow is green. The cow visits the lion. The cow visits the mouse. The lion eats the cow. The lion eats the rabbit. The lion is big. The lion is green. The lion is round. The mouse eats the lion. The mouse is big. The mouse visits the cow. The rabbit is round. The rabbit needs the cow. The rabbit visits the lion. If someone eats the lion and the lion is green then they are blue. If someone visits the cow and they eat the rabbit then the rabbit is cold. If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow. If someone visits the cow and they are big then the cow visits the mouse. If someone is green and they need the rabbit then they eat the rabbit. If someone is blue then they eat the rabbit. All cold people are blue. If someone visits the cow then the cow is green. If someone eats the lion then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(Cow, Lion, True) ::: The cow eats the lion.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nGreen(Cow, True) ::: The cow is green.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nVisits(Cow, Mouse, True) ::: The cow visits the mouse.\nEats(Lion, Cow, True) ::: The lion eats the cow.\nEats(Lion, Rabbit, True) ::: The lion eats the rabbit.\nBig(Lion, True) ::: The lion is big.\nGreen(Lion, True) ::: The lion is green.\nRound(Lion, True) ::: The lion is round.\nEats(Mouse, Lion, True) ::: The mouse eats the lion.\nBig(Mouse, True) ::: The mouse is big.\nVisits(Mouse, Cow, True) ::: The mouse visits the cow.\nRound(Rabbit, True) ::: The rabbit is round.\nNeeds(Rabbit, Cow, True) ::: The rabbit needs the cow.\nVisits(Rabbit, Lion, True) ::: The rabbit visits the lion.\n\nRules:\nEats($x, Lion, True) && Green(Lion, True) >>> Blue($x, True) ::: If someone eats the lion and the lion is green then they are blue.\nVisits($x, Cow, True) && Eats($x, Rabbit, True) >>> Cold(Rabbit, True) ::: If someone visits the cow and they eat the rabbit then the rabbit is cold.\nNeeds($x, Mouse, True) && Needs(Mouse, Rabbit, True) >>> Needs(Mouse, Cow, True) ::: If someone needs the mouse and the mouse needs the rabbit then the mouse needs the cow.\nVisits($x, Cow, True) && Big($x, True) >>> Visits(Cow, Mouse, True) ::: If someone visits the cow and they are big then the cow visits the mouse.\nGreen($x, True) && Needs($x, Rabbit, True) >>> Eats($x, Rabbit, True) ::: If someone is green and they need the rabbit then they eat the rabbit.\nBlue($x, True) >>> Eats($x, Rabbit, True) ::: If someone is blue then they eat the rabbit.\nCold($x, True) >>> Blue($x, True) ::: All cold people are blue.\nVisits($x, Cow, True) >>> Green(Cow, True) ::: If someone visits the cow then the cow is green.\nEats($x, Lion, True) >>> Cold($x, True) ::: If someone eats the lion then they are cold.\n\nQuery:\nCold(Rabbit, True) ::: The rabbit is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

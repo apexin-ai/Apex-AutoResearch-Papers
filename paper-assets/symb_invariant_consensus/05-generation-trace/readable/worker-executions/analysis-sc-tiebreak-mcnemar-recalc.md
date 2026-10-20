@@ -1,0 +1,4649 @@
+# analysis sc tiebreak mcnemar recalc
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 96
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/workers/worker_analysis_sc-tiebreak-mcnemar-recalc_20260520T141440.log`
+- **Structured JSON:** [`3eadefe3c5202f650f16.json`](../../sessions/3e/3eadefe3c5202f650f16.json)
+
+## Before a recorded user message
+
+96 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "668e32a3-18d9-4fc4-b2fd-25268e991136",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779298800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "dfdfca20-0480-4855-83b6-7c5ee1cc9cc8",
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to:
+1. Recompute SC (self-consistency) with alphabetical tiebreaking
+2. Find R combo predictions
+3. Recompute McNemar tests between new SC and R combo
+4. Check other seeds' SC values
+
+Let me start by SSHing to the server to explore the data and run the computations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d2059d29-7724-445f-a588-fc5a5aa14586",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018L6qFiUWj2V57V9pKqCPW2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行。先探测服务器上的文件结构和数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "37e307ce-89c1-4c94-bc5e-85c1418be8b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018L6qFiUWj2V57V9pKqCPW2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012s2sQtzrJGc82UsDBvjN2u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "054fe93d-03f9-49a4-9dcc-9bb815e79fab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018L6qFiUWj2V57V9pKqCPW2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 24910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T14:14:56.514Z_
+
+<details><summary>↩ Tool result · `toolu_012s2sQtzrJGc82UsDBvjN2u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "57e0605e-5a4e-4b3d-8788-26eedc133fea",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CacEEzo24YWiQiQP9XAMpV`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "7a788230-6a74-468b-8c15-cfe1d3f74348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VADaSdZWRFCXB9nDbAit5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 24910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TMx3hPdtn2XeoraYRs3baR`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 2 -name \"*.json\" -path \"*exp033*\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "b0b44a85-77cc-4f66-925a-2088e8583cc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VADaSdZWRFCXB9nDbAit5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 24910,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T14:15:00.961Z_
+
+<details><summary>↩ Tool result · `toolu_01CacEEzo24YWiQiQP9XAMpV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation.json\\ncase_study_constraints.json\\ncase_study_normalized.json\\ncondorcet_independence_analysis.json\\nconfirmation_bias\\ncross_model_experiment\\ncross_model_kappa\\ncross_model_mistral_folio\\ndirection_a_prove\\ndirection_b_deepconf\\ndirection_e_abstention\\ndirection_f_blind_fol\\ndirection_g_decoupling\\ndirection_g_dryrun.log\\ndirection_g_vllm.log\\ndirection_i_z3_filter\\ndirection_r_deberta\\ndirection_r_nli_large\\ndirection_r_nli_pw600\\ndirection_r_nli_small\\ndirection_rg_combo\\ndisc_filter_full.log\\ndisc_filter_test.log\\ndiscriminative_filter_exp033.json\\ndiscriminative_filter_exp033_test.json\\ndiscriminative_filter_exp044b.json\\ndiscriminative_filter_exp046.json\\ndiscriminative_filter_exp054.json\\nexp-007-qwen72b-awq\\nexp-029-contrastive-folio204\\nexp004_qwen7b_rerun\\nexp013_constraint_ablation\\nexp027_qwen3_14b_nonthinking\\nexp028_qwen3_14b_thinking\\nexp028b_discordant_tracking.json\\nexp028b_qwen3_thinking_folio204\\nexp033_mistral_7b_folio204\\nexp033_per_problem_analysis.json\\nexp033_per_problem_analysis_v2.json\\nexp034_llama31_8b_folio204\\nexp034_qwen25_14b_proofwriter\\nexp035_qwen25_7b_folio204\\nexp036_z3_feedback\\nexp036b_cross_trace_unsat.json\\nexp044b_icl_oracle_qwen14b\\nexp045b_backward_qwen14b\\nexp046_mistral_7b_pw600\\nexp047_qwen3_thinking_folio204\\nexp051_mistral_k_sensitivity\\nexp054_mistral_folio204_t10\\nexp057_mistral_folio204_t03\\nexp058_mistral_folio204_t05\\nexp059_cross_qwen3_extractor\\nexp05_backward_verification\\nexp060_cross_qwen25_14b_extractor\\nexp061_qwen25_7b_folio204\\nexp062_gemma27b_folio204\\nexp065_qwen7b_pw600\\nexp066_qwen14b_folio_seed123\\nexp066_vllm.log\\nexp067_mistral_folio_seed789\\nexp069_mistral_logiqa200\\nexp070_qwen7b_logiqa200\\nexp071_qwen7b_logiqa200_seed123\\nexp073_qwen7b_logiqa200_seed456\\nexp073b_qwen7b_logiqa200_seed456\\nexp074_icg_dryrun\\nexp074_icg_mistral_folio\\nexp074_icg_v2_dryrun\\nexp074c_icg_mistral_folio_seed123\\nexp074d_icg_mistral_folio_seed456\\nexp075b_contrastive_mistral_folio\\nexp076_debate_dryrun\\nexp076_debate_mistral_folio\\nexp080_contrastive_mistral_logiqa200\\nexp083_icg_mistral_logiqa_seed123\\nexp084_debate_mistral_logiqa_seed123\\nexp085_contrastive_mistral_logiqa_seed123\\nexp4_consistency_filtering\\nextraction_error_taxonomy.json\\nfleiss_kappa_exp033.json\\nfleiss_kappa_unified.json\\nfleiss_kappa_unified_25068.json\\nfolio_204_14b\\nicg_kappa_corrected.json\\nicl_oracle_folio\\nk_sensitivity_diversity_analysis.json\\nk_sensitivity_summary.json\\nkappa_icg_contrastive.json\\nmcnemar_recomputed_25068.json\\noracle_folio_regen\\nprocess_kappa_diagnostic\\nprocess_kappa_summary.json\\nsc_tiebreak_revalidation_25068.json\\nwild1_max_unsat\\nwild3_perturbation\\nwild4_process_kappa\\nwild6_kappa_aware_sc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "ddb567bb-23b3-4d20-a89b-1c65e5d2c5a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adaptive_sica_validation.json\\\\ncase_study_constraints.json\\\\ncase_study_normalized.json\\\\ncondorcet_independence_analysis.json\\\\nconfirmation_bias\\\\ncross_model_experiment\\\\ncross_model_kappa\\\\ncross_model_mistral_folio\\\\ndirection_a_prove\\\\ndirection_b_deepconf\\\\ndirection_e_abstention\\\\ndirection_f_blind_fol\\\\ndirection_g_decoupling\\\\ndirection_g_dryrun.log\\\\ndirection_g_vllm.log\\\\ndirection_i_z3_filter\\\\ndirection_r_deberta\\\\ndirection_r_nli_large\\\\ndirection_r_nli_pw600\\\\ndirection_r_nli_small\\\\ndirection_rg_combo\\\\ndisc_filter_full.log\\\\ndisc_filter_test.log\\\\ndiscriminative_filter_exp033.json\\\\ndiscriminative_filter_exp033_test.json\\\\ndiscriminative_filter_exp044b.json\\\\ndiscriminative_filter_exp046.json\\\\ndiscriminative_filter_exp054.json\\\\nexp-007-qwen72b-awq\\\\nexp-029-contrastive-folio204\\\\nexp004_qwen7b_rerun\\\\nexp013_constraint_ablation\\\\nexp027_qwen3_14b_nonthinking\\\\nexp028_qwen3_14b_thinking\\\\nexp028b_discordant_tracking.json\\\\nexp028b_qwen3_thinking_folio204\\\\nexp033_mistral_7b_folio204\\\\nexp033_per_problem_analysis.json\\\\nexp033_per_problem_analysis_v2.json\\\\nexp034_llama31_8b_folio204\\\\nexp034_qwen25_14b_proofwriter\\\\nexp035_qwen25_7b_folio204\\\\nexp036_z3_feedback\\\\nexp036b_cross_trace_unsat.json\\\\nexp044b_icl_oracle_qwen14b\\\\nexp045b_backward_qwen14b\\\\nexp046_mistral_7b_pw600\\\\nexp047_qwen3_thinking_folio204\\\\nexp051_mistral_k_sensitivity\\\\nexp054_mistral_folio204_t10\\\\nexp057_mistral_folio204_t03\\\\nexp058_mistral_folio204_t05\\\\nexp059_cross_qwen3_extractor\\\\nexp05_backward_verification\\\\nexp060_cross_qwen25_14b_extractor\\\\nexp061_qwen25_7b_folio204\\\\nexp062_gemma27b_folio204\\\\nexp065_qwen7b_pw600\\\\nexp066_qwen14b_folio_seed123\\\\nexp066_vllm.log\\\\nexp067_mistral_folio_seed789\\\\nexp069_mistral_logiqa200\\\\nexp070_qwen7b_logiqa200\\\\nexp071_qwen7b_logiqa200_seed123\\\\nexp073_qwen7b_logiqa200_seed456\\\\nexp073b_qwen7b_logiqa200_seed456\\\\nexp074_icg_dryrun\\\\nexp074_icg_mistral_folio\\\\nexp074_icg_v2_dryrun\\\\nexp074c_icg_mistral_folio_seed123\\\\nexp074d_icg_mistral_folio_seed456\\\\nexp075b_contrastive_mistral_folio\\\\nexp076_debate_dryrun\\\\nexp076_debate_mistral_folio\\\\nexp080_contrastive_mistral_logiqa200\\\\nexp083_icg_mistral_logiqa_seed123\\\\nexp084_debate_mistral_logiqa_seed123\\\\nexp085_contrastive_mistral_logiqa_seed123\\\\nexp4_consistency_filtering\\\\nextraction_error_taxonomy.json\\\\nfleiss_kappa_exp033.json\\\\nfleiss_kappa_unified.json\\\\nfleiss_kappa_unified_25068.json\\\\nfolio_204_14b\\\\nicg_kappa_corrected.json\\\\nicl_oracle_folio\\\\nk_sensitivity_diversity_analysis.json\\\\nk_sensitivity_summary.json\\\\nkappa_icg_contrastive.json\\\\nmcnemar_recomputed_25068.json\\\\noracle_folio_regen\\\\nprocess_kappa_diagnostic\\\\nprocess_kappa_summary.json\\\\nsc_tiebreak_revalidation_25068.json\\\\nwild1_max_unsat\\\\nwild3_perturbation\\\\nwild4_process_kappa\\\\nwild6_kappa_aware_sc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation.json\\ncase_study_constraints.json\\ncase_study_normalized.json\\ncondorcet_independence_analysis.json\\nconfirmation_bias\\ncross_model_experiment\\ncross_model_kappa\\ncross_model_mistral_folio\\ndirection_a_prove\\ndirection_b_deepconf\\ndirection_e_abstention\\ndirection_f_blind_fol\\ndirection_g_decoupling\\ndirection_g_dryrun.log\\ndirection_g_vllm.log\\ndirection_i_z3_filter\\ndirection_r_deberta\\ndirection_r_nli_large\\ndirection_r_nli_pw600\\ndirection_r_nli_small\\ndirection_rg_combo\\ndisc_filter_full.log\\ndisc_filter_test.log\\ndiscriminative_filter_exp033.json\\ndiscriminative_filter_exp033_test.json\\ndiscriminative_filter_exp044b.json\\ndiscriminative_filter_exp046.json\\ndiscriminative_filter_exp054.json\\nexp-007-qwen72b-awq\\nexp-029-contrastive-folio204\\nexp004_qwen7b_rerun\\nexp013_constraint_ablation\\nexp027_qwen3_14b_nonthinking\\nexp028_qwen3_14b_thinking\\nexp028b_discordant_tracking.json\\nexp028b_qwen3_thinking_folio204\\nexp033_mistral_7b_folio204\\nexp033_per_problem_analysis.json\\nexp033_per_problem_analysis_v2.json\\nexp034_llama31_8b_folio204\\nexp034_qwen25_14b_proofwriter\\nexp035_qwen25_7b_folio204\\nexp036_z3_feedback\\nexp036b_cross_trace_unsat.json\\nexp044b_icl_oracle_qwen14b\\nexp045b_backward_qwen14b\\nexp046_mistral_7b_pw600\\nexp047_qwen3_thinking_folio204\\nexp051_mistral_k_sensitivity\\nexp054_mistral_folio204_t10\\nexp057_mistral_folio204_t03\\nexp058_mistral_folio204_t05\\nexp059_cross_qwen3_extractor\\nexp05_backward_verification\\nexp060_cross_qwen25_14b_extractor\\nexp061_qwen25_7b_folio204\\nexp062_gemma27b_folio204\\nexp065_qwen7b_pw600\\nexp066_qwen14b_folio_seed123\\nexp066_vllm.log\\nexp067_mistral_folio_seed789\\nexp069_mistral_logiqa200\\nexp070_qwen7b_logiqa200\\nexp071_qwen7b_logiqa200_seed123\\nexp073_qwen7b_logiqa200_seed456\\nexp073b_qwen7b_logiqa200_seed456\\nexp074_icg_dryrun\\nexp074_icg_mistral_folio\\nexp074_icg_v2_dryrun\\nexp074c_icg_mistral_folio_seed123\\nexp074d_icg_mistral_folio_seed456\\nexp075b_contrastive_mistral_folio\\nexp076_debate_dryrun\\nexp076_debate_mistral_folio\\nexp080_contrastive_mistral_logiqa200\\nexp083_icg_mistral_logiqa_seed123\\nexp084_debate_mistral_logiqa_seed123\\nexp085_contrastive_mistral_logiqa_seed123\\nexp4_consistency_filtering\\nextraction_error_taxonomy.json\\nfleiss_kappa_exp033.json\\nfleiss_kappa_unified.json\\nfleiss_kappa_unified_25068.json\\nfolio_204_14b\\nicg_kappa_corrected.json\\nicl_oracle_folio\\nk_sensitivity_diversity_analysis.json\\nk_sensitivity_summary.json\\nkappa_icg_contrastive.json\\nmcnemar_recomputed_25068.json\\noracle_folio_regen\\nprocess_kappa_diagnostic\\nprocess_kappa_summary.json\\nsc_tiebreak_revalidation_25068.json\\nwild1_max_unsat\\nwild3_perturbation\\nwild4_process_kappa\\nwild6_kappa_aware_sc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T14:15:00.981Z_
+
+<details><summary>↩ Tool result · `toolu_01TMx3hPdtn2XeoraYRs3baR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "0bdee9c1-2f44-457e-aad2-9035ea490483",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KdZ2WXdnm8Hd5CCh17SzKG`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "16ce9e69-b36d-4908-8ca5-847560c747f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYRJ9Whj3nTLP9QxqNAzRU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1613,
+      "cache_read_input_tokens": 25898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1613
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T14:15:05.067Z_
+
+<details><summary>↩ Tool result · `toolu_01KdZ2WXdnm8Hd5CCh17SzKG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "f9420987-762f-4931-8851-b345ca80d02e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"constraint_cache\\\\nexp033.log\\\\nexp033_results.json\\\\nintermediates\\\\nsc_answer_matrix.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XGZpJc4t1xqE61MhkKXef9`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_deberta/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "cd265d80-49a0-46f9-a5d4-04e8e308f37f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYRJ9Whj3nTLP9QxqNAzRU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1613,
+      "cache_read_input_tokens": 25898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1613
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T14:15:05.998Z_
+
+<details><summary>↩ Tool result · `toolu_01XGZpJc4t1xqE61MhkKXef9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "591b6b7b-3792-434e-87f0-0c4c07be6c74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JYV4GGN3U33MNVQC7dCAqP`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_rg_combo/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "8a720202-17ca-4602-be30-ffa84d0c1290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYRJ9Whj3nTLP9QxqNAzRU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1613,
+      "cache_read_input_tokens": 25898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1613
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T14:15:06.535Z_
+
+<details><summary>↩ Tool result · `toolu_01JYV4GGN3U33MNVQC7dCAqP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"per_question_best.json\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "73b8a666-524f-49b3-bf41-6c03a938223e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"per_question_best.json\\\\nresults.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"per_question_best.json\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BpfnaUVU868m4Pm3Jj7Ns9`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_large/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "38853e3c-87f5-4d46-b366-1e75845ddfd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYRJ9Whj3nTLP9QxqNAzRU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1613,
+      "cache_read_input_tokens": 25898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1613
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T14:15:07.145Z_
+
+<details><summary>↩ Tool result · `toolu_01BpfnaUVU868m4Pm3Jj7Ns9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "a7456a20-1b9d-4a88-ae5e-eaa994d75bca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019MrQn1QadjFF1KbxJ4PjNJ`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_rg_combo/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "430e3c80-8297-4dc8-9122-9c88800cb9d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Dw6ibmng1cMf9WGSVMvp2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 27511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T14:15:10.220Z_
+
+<details><summary>↩ Tool result · `toolu_019MrQn1QadjFF1KbxJ4PjNJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": {\\n      \\\"accuracy\\\": 0.5441,\\n      \\\"correct\\\": 111\\n    },\\n    \\\"sica\\\": {\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121\\n    },\\n    \\\"nli_standalone\\\": {\\n      \\\"accuracy\\\": 0.4951,\\n      \\\"correct\\\": 101\\n    }\\n  },\\n  \\\"n_problems\\\": 204,\\n  \\\"best_strategy\\\": \\\"nli_sc_vote_w5\\\",\\n  \\\"best_accuracy\\\": 0.6029,\\n  \\\"strategies\\\": {\\n    \\\"intersection_sc_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SC fallback\\\",\\n      \\\"accuracy\\\": 0.5735,\\n      \\\"correct\\\": 117,\\n      \\\"delta_vs_sc\\\": 0.0294,\\n      \\\"delta_vs_sica\\\": -0.0196,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 4.1667,\\n        \\\"p_value\\\": 0.041227,\\n        \\\"b\\\": 6,\\n        \\\"c\\\": 0\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 1.125,\\n        \\\"p_value\\\": 0.288844,\\n        \\\"b\\\": 2,\\n        \\\"c\\\": 6\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 47,\\n          \\\"accuracy\\\": 0.6812\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.5972\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 27,\\n          \\\"accuracy\\\": 0.4286\\n        }\\n      },\\n      \\\"agree_count\\\": 97,\\n      \\\"agree_pct\\\": 47.5\\n    },\\n    \\\"intersection_sica_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SICA fallback\\\",\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121,\\n      \\\"delta_vs_sc\\\": 0.049,\\n      \\\"delta_vs_sica\\\": 0.0,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 5.7857,\\n        \\\"p_value\\\": 0.016157,\\n        \\\"b\\\": 12,\\n        \\\"c\\\": 2\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 49,\\n          \\\"accuracy\\\": 0.7101\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 45,\\n          \\\"accuracy\\\": 0.625\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 27,\\n          \\\"accuracy\\\": 0.4286\\n        }\\n      }\\n    },\\n    \\\"cascade_nli_t60\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.6 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5049,\\n      \\\"correct\\\": 103,\\n      \\\"delta_vs_sc\\\": -0.0392,\\n      \\\"delta_vs_sica\\\": -0.0882,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.6806,\\n        \\\"p_value\\\": 0.409395,\\n        \\\"b\\\": 32,\\n        \\\"c\\\": 40\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 4.1286,\\n        \\\"p_value\\\": 0.042165,\\n        \\\"b\\\": 26,\\n        \\\"c\\\": 44\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 18,\\n          \\\"accuracy\\\": 0.2609\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.5833\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6825\\n        }\\n      },\\n      \\\"nli_used\\\": 168,\\n      \\\"nli_used_pct\\\": 82.4\\n    },\\n    \\\"cascade_nli_t70\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.7 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5245,\\n      \\\"correct\\\": 107,\\n      \\\"delta_vs_sc\\\": -0.0196,\\n      \\\"delta_vs_sica\\\": -0.0686,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.1324,\\n        \\\"p_value\\\": 0.716005,\\n        \\\"b\\\": 32,\\n        \\\"c\\\": 36\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 2.6406,\\n        \\\"p_value\\\": 0.104163,\\n        \\\"b\\\": 25,\\n        \\\"c\\\": 39\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 22,\\n          \\\"accuracy\\\": 0.3188\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.5833\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6825\\n        }\\n      },\\n      \\\"nli_used\\\": 153,\\n      \\\"nli_used_pct\\\": 75.0\\n    },\\n    \\\"cascade_nli_t80\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.8 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5245,\\n      \\\"correct\\\": 107,\\n      \\\"delta_vs_sc\\\": -0.0196,\\n      \\\"delta_vs_sica\\\": -0.0686,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.15,\\n        \\\"p_value\\\": 0.698535,\\n        \\\"b\\\": 28,\\n        \\\"\\n\\n... [截断: 输出过长，省略 6869 字符] ...\\n\\n {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 45,\\n          \\\"accuracy\\\": 0.625\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 29,\\n          \\\"accuracy\\\": 0.4603\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w10\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 10\\\",\\n      \\\"accuracy\\\": 0.5686,\\n      \\\"correct\\\": 116,\\n      \\\"delta_vs_sc\\\": 0.0245,\\n      \\\"delta_vs_sica\\\": -0.0245,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.6957,\\n        \\\"p_value\\\": 0.404248,\\n        \\\"b\\\": 14,\\n        \\\"c\\\": 9\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 1.2308,\\n        \\\"p_value\\\": 0.267257,\\n        \\\"b\\\": 4,\\n        \\\"c\\\": 9\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6232\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.5972\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 30,\\n          \\\"accuracy\\\": 0.4762\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w20\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 20\\\",\\n      \\\"accuracy\\\": 0.5784,\\n      \\\"correct\\\": 118,\\n      \\\"delta_vs_sc\\\": 0.0343,\\n      \\\"delta_vs_sica\\\": -0.0147,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 1.44,\\n        \\\"p_value\\\": 0.230139,\\n        \\\"b\\\": 16,\\n        \\\"c\\\": 9\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.1739,\\n        \\\"p_value\\\": 0.676657,\\n        \\\"b\\\": 10,\\n        \\\"c\\\": 13\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 41,\\n          \\\"accuracy\\\": 0.5942\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 44,\\n          \\\"accuracy\\\": 0.6111\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 33,\\n          \\\"accuracy\\\": 0.5238\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w50\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 50\\\",\\n      \\\"accuracy\\\": 0.5833,\\n      \\\"correct\\\": 119,\\n      \\\"delta_vs_sc\\\": 0.0392,\\n      \\\"delta_vs_sica\\\": -0.0098,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 1.1136,\\n        \\\"p_value\\\": 0.291293,\\n        \\\"b\\\": 26,\\n        \\\"c\\\": 18\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.0217,\\n        \\\"p_value\\\": 0.882783,\\n        \\\"b\\\": 22,\\n        \\\"c\\\": 24\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 37,\\n          \\\"accuracy\\\": 0.5362\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 40,\\n          \\\"accuracy\\\": 0.5556\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.6667\\n        }\\n      }\\n    },\\n    \\\"oracle\\\": {\\n      \\\"description\\\": \\\"Perfect arbitrator between SICA and NLI (upper bound)\\\",\\n      \\\"accuracy\\\": 0.7549,\\n      \\\"correct\\\": 154,\\n      \\\"delta_vs_sc\\\": 0.2108,\\n      \\\"delta_vs_sica\\\": 0.1618,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 39.2,\\n        \\\"p_value\\\": 0.0,\\n        \\\"b\\\": 44,\\n        \\\"c\\\": 1\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 31.0303,\\n        \\\"p_value\\\": 0.0,\\n        \\\"b\\\": 33,\\n        \\\"c\\\": 0\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 50,\\n          \\\"accuracy\\\": 0.7246\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 56,\\n          \\\"accuracy\\\": 0.7778\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 48,\\n          \\\"accuracy\\\": 0.7619\\n        }\\n      }\\n    }\\n  },\\n  \\\"agreement_analysis\\\": {\\n    \\\"agree\\\": 97,\\n    \\\"agree_pct\\\": 47.5,\\n    \\\"agree_accuracy\\\": 0.701,\\n    \\\"disagree\\\": 107,\\n    \\\"disagree_sica_correct\\\": 53,\\n    \\\"disagree_nli_correct\\\": 33,\\n    \\\"disagree_both_wrong\\\": 21\\n  },\\n  \\\"confidence_analysis\\\": {\\n    \\\"nli_high_conf_ge80\\\": {\\n      \\\"count\\\": 126,\\n      \\\"correct\\\": 71,\\n      \\\"accuracy\\\": 0.5635\\n    },\\n    \\\"nli_low_conf_lt80\\\": {\\n      \\\"count\\\": 78,\\n      \\\"correct\\\": 30,\\n      \\\"accuracy\\\": 0.3846\\n    }\\n  },\\n  \\\"note\\\": \\\"Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. When full G results are available, re-run with --g-results flag.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d4e5c5fa-a1c4-4f3d-8eb0-bcb968368a27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"sc\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5441,\\\\n      \\\\\\\"correct\\\\\\\": 111\\\\n    },\\\\n    \\\\\\\"sica\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5931,\\\\n      \\\\\\\"correct\\\\\\\": 121\\\\n    },\\\\n    \\\\\\\"nli_standalone\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.4951,\\\\n      \\\\\\\"correct\\\\\\\": 101\\\\n    }\\\\n  },\\\\n  \\\\\\\"n_problems\\\\\\\": 204,\\\\n  \\\\\\\"best_strategy\\\\\\\": \\\\\\\"nli_sc_vote_w5\\\\\\\",\\\\n  \\\\\\\"best_accuracy\\\\\\\": 0.6029,\\\\n  \\\\\\\"strategies\\\\\\\": {\\\\n    \\\\\\\"intersection_sc_fallback\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"SICA and NLI agree -> use, disagree -> SC fallback\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5735,\\\\n      \\\\\\\"correct\\\\\\\": 117,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.0294,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0196,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 4.1667,\\\\n        \\\\\\\"p_value\\\\\\\": 0.041227,\\\\n        \\\\\\\"b\\\\\\\": 6,\\\\n        \\\\\\\"c\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 1.125,\\\\n        \\\\\\\"p_value\\\\\\\": 0.288844,\\\\n        \\\\\\\"b\\\\\\\": 2,\\\\n        \\\\\\\"c\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 47,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6812\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 43,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5972\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 27,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4286\\\\n        }\\\\n      },\\\\n      \\\\\\\"agree_count\\\\\\\": 97,\\\\n      \\\\\\\"agree_pct\\\\\\\": 47.5\\\\n    },\\\\n    \\\\\\\"intersection_sica_fallback\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"SICA and NLI agree -> use, disagree -> SICA fallback\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5931,\\\\n      \\\\\\\"correct\\\\\\\": 121,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.049,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": 0.0,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 5.7857,\\\\n        \\\\\\\"p_value\\\\\\\": 0.016157,\\\\n        \\\\\\\"b\\\\\\\": 12,\\\\n        \\\\\\\"c\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 49,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.7101\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 45,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.625\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 27,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4286\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"cascade_nli_t60\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"NLI conf>=0.6 -> use NLI, else -> SICA\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5049,\\\\n      \\\\\\\"correct\\\\\\\": 103,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": -0.0392,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0882,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.6806,\\\\n        \\\\\\\"p_value\\\\\\\": 0.409395,\\\\n        \\\\\\\"b\\\\\\\": 32,\\\\n        \\\\\\\"c\\\\\\\": 40\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 4.1286,\\\\n        \\\\\\\"p_value\\\\\\\": 0.042165,\\\\n        \\\\\\\"b\\\\\\\": 26,\\\\n        \\\\\\\"c\\\\\\\": 44\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 18,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.2609\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 42,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5833\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 43,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6825\\\\n        }\\\\n      },\\\\n      \\\\\\\"nli_used\\\\\\\": 168,\\\\n      \\\\\\\"nli_used_pct\\\\\\\": 82.4\\\\n    },\\\\n    \\\\\\\"cascade_nli_t70\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"NLI conf>=0.7 -> use NLI, else -> SICA\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5245,\\\\n      \\\\\\\"correct\\\\\\\": 107,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": -0.0196,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0686,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.1324,\\\\n        \\\\\\\"p_value\\\\\\\": 0.716005,\\\\n        \\\\\\\"b\\\\\\\": 32,\\\\n        \\\\\\\"c\\\\\\\": 36\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 2.6406,\\\\n        \\\\\\\"p_value\\\\\\\": 0.104163,\\\\n        \\\\\\\"b\\\\\\\": 25,\\\\n        \\\\\\\"c\\\\\\\": 39\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 22,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.3188\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 42,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5833\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 43,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6825\\\\n        }\\\\n      },\\\\n      \\\\\\\"nli_used\\\\\\\": 153,\\\\n      \\\\\\\"nli_used_pct\\\\\\\": 75.0\\\\n    },\\\\n    \\\\\\\"cascade_nli_t80\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"NLI conf>=0.8 -> use NLI, else -> SICA\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5245,\\\\n      \\\\\\\"correct\\\\\\\": 107,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": -0.0196,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0686,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.15,\\\\n        \\\\\\\"p_value\\\\\\\": 0.698535,\\\\n        \\\\\\\"b\\\\\\\": 28,\\\\n        \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 6869 字符] ...\\\\n\\\\n {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 45,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.625\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 29,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4603\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"sica_nli_weighted_w10\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"SICA MAX-SAT scores + NLI probs x 10\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5686,\\\\n      \\\\\\\"correct\\\\\\\": 116,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.0245,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0245,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.6957,\\\\n        \\\\\\\"p_value\\\\\\\": 0.404248,\\\\n        \\\\\\\"b\\\\\\\": 14,\\\\n        \\\\\\\"c\\\\\\\": 9\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 1.2308,\\\\n        \\\\\\\"p_value\\\\\\\": 0.267257,\\\\n        \\\\\\\"b\\\\\\\": 4,\\\\n        \\\\\\\"c\\\\\\\": 9\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 43,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6232\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 43,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5972\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 30,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4762\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"sica_nli_weighted_w20\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"SICA MAX-SAT scores + NLI probs x 20\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5784,\\\\n      \\\\\\\"correct\\\\\\\": 118,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.0343,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0147,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 1.44,\\\\n        \\\\\\\"p_value\\\\\\\": 0.230139,\\\\n        \\\\\\\"b\\\\\\\": 16,\\\\n        \\\\\\\"c\\\\\\\": 9\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.1739,\\\\n        \\\\\\\"p_value\\\\\\\": 0.676657,\\\\n        \\\\\\\"b\\\\\\\": 10,\\\\n        \\\\\\\"c\\\\\\\": 13\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 41,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5942\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 44,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6111\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 33,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5238\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"sica_nli_weighted_w50\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"SICA MAX-SAT scores + NLI probs x 50\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5833,\\\\n      \\\\\\\"correct\\\\\\\": 119,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.0392,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": -0.0098,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 1.1136,\\\\n        \\\\\\\"p_value\\\\\\\": 0.291293,\\\\n        \\\\\\\"b\\\\\\\": 26,\\\\n        \\\\\\\"c\\\\\\\": 18\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 0.0217,\\\\n        \\\\\\\"p_value\\\\\\\": 0.882783,\\\\n        \\\\\\\"b\\\\\\\": 22,\\\\n        \\\\\\\"c\\\\\\\": 24\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 37,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5362\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 40,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.5556\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 42,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.6667\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"oracle\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"Perfect arbitrator between SICA and NLI (upper bound)\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7549,\\\\n      \\\\\\\"correct\\\\\\\": 154,\\\\n      \\\\\\\"delta_vs_sc\\\\\\\": 0.2108,\\\\n      \\\\\\\"delta_vs_sica\\\\\\\": 0.1618,\\\\n      \\\\\\\"mcnemar_vs_sc\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 39.2,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"b\\\\\\\": 44,\\\\n        \\\\\\\"c\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"mcnemar_vs_sica\\\\\\\": {\\\\n        \\\\\\\"chi2\\\\\\\": 31.0303,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"b\\\\\\\": 33,\\\\n        \\\\\\\"c\\\\\\\": 0\\\\n      },\\\\n      \\\\\\\"per_class\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 69,\\\\n          \\\\\\\"correct\\\\\\\": 50,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.7246\\\\n        },\\\\n        \\\\\\\"True\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 72,\\\\n          \\\\\\\"correct\\\\\\\": 56,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.7778\\\\n        },\\\\n        \\\\\\\"False\\\\\\\": {\\\\n          \\\\\\\"total\\\\\\\": 63,\\\\n          \\\\\\\"correct\\\\\\\": 48,\\\\n          \\\\\\\"accuracy\\\\\\\": 0.7619\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"agreement_analysis\\\\\\\": {\\\\n    \\\\\\\"agree\\\\\\\": 97,\\\\n    \\\\\\\"agree_pct\\\\\\\": 47.5,\\\\n    \\\\\\\"agree_accuracy\\\\\\\": 0.701,\\\\n    \\\\\\\"disagree\\\\\\\": 107,\\\\n    \\\\\\\"disagree_sica_correct\\\\\\\": 53,\\\\n    \\\\\\\"disagree_nli_correct\\\\\\\": 33,\\\\n    \\\\\\\"disagree_both_wrong\\\\\\\": 21\\\\n  },\\\\n  \\\\\\\"confidence_analysis\\\\\\\": {\\\\n    \\\\\\\"nli_high_conf_ge80\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 126,\\\\n      \\\\\\\"correct\\\\\\\": 71,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5635\\\\n    },\\\\n    \\\\\\\"nli_low_conf_lt80\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 78,\\\\n      \\\\\\\"correct\\\\\\\": 30,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3846\\\\n    }\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. When full G results are available, re-run with --g-results flag.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": {\\n      \\\"accuracy\\\": 0.5441,\\n      \\\"correct\\\": 111\\n    },\\n    \\\"sica\\\": {\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121\\n    },\\n    \\\"nli_standalone\\\": {\\n      \\\"accuracy\\\": 0.4951,\\n      \\\"correct\\\": 101\\n    }\\n  },\\n  \\\"n_problems\\\": 204,\\n  \\\"best_strategy\\\": \\\"nli_sc_vote_w5\\\",\\n  \\\"best_accuracy\\\": 0.6029,\\n  \\\"strategies\\\": {\\n    \\\"intersection_sc_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SC fallback\\\",\\n      \\\"accuracy\\\": 0.5735,\\n      \\\"correct\\\": 117,\\n      \\\"delta_vs_sc\\\": 0.0294,\\n      \\\"delta_vs_sica\\\": -0.0196,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 4.1667,\\n        \\\"p_value\\\": 0.041227,\\n        \\\"b\\\": 6,\\n        \\\"c\\\": 0\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 1.125,\\n        \\\"p_value\\\": 0.288844,\\n        \\\"b\\\": 2,\\n        \\\"c\\\": 6\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 47,\\n          \\\"accuracy\\\": 0.6812\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.5972\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 27,\\n          \\\"accuracy\\\": 0.4286\\n        }\\n      },\\n      \\\"agree_count\\\": 97,\\n      \\\"agree_pct\\\": 47.5\\n    },\\n    \\\"intersection_sica_fallback\\\": {\\n      \\\"description\\\": \\\"SICA and NLI agree -> use, disagree -> SICA fallback\\\",\\n      \\\"accuracy\\\": 0.5931,\\n      \\\"correct\\\": 121,\\n      \\\"delta_vs_sc\\\": 0.049,\\n      \\\"delta_vs_sica\\\": 0.0,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 5.7857,\\n        \\\"p_value\\\": 0.016157,\\n        \\\"b\\\": 12,\\n        \\\"c\\\": 2\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 49,\\n          \\\"accuracy\\\": 0.7101\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 45,\\n          \\\"accuracy\\\": 0.625\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 27,\\n          \\\"accuracy\\\": 0.4286\\n        }\\n      }\\n    },\\n    \\\"cascade_nli_t60\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.6 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5049,\\n      \\\"correct\\\": 103,\\n      \\\"delta_vs_sc\\\": -0.0392,\\n      \\\"delta_vs_sica\\\": -0.0882,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.6806,\\n        \\\"p_value\\\": 0.409395,\\n        \\\"b\\\": 32,\\n        \\\"c\\\": 40\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 4.1286,\\n        \\\"p_value\\\": 0.042165,\\n        \\\"b\\\": 26,\\n        \\\"c\\\": 44\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 18,\\n          \\\"accuracy\\\": 0.2609\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.5833\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6825\\n        }\\n      },\\n      \\\"nli_used\\\": 168,\\n      \\\"nli_used_pct\\\": 82.4\\n    },\\n    \\\"cascade_nli_t70\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.7 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5245,\\n      \\\"correct\\\": 107,\\n      \\\"delta_vs_sc\\\": -0.0196,\\n      \\\"delta_vs_sica\\\": -0.0686,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.1324,\\n        \\\"p_value\\\": 0.716005,\\n        \\\"b\\\": 32,\\n        \\\"c\\\": 36\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 2.6406,\\n        \\\"p_value\\\": 0.104163,\\n        \\\"b\\\": 25,\\n        \\\"c\\\": 39\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 22,\\n          \\\"accuracy\\\": 0.3188\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.5833\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6825\\n        }\\n      },\\n      \\\"nli_used\\\": 153,\\n      \\\"nli_used_pct\\\": 75.0\\n    },\\n    \\\"cascade_nli_t80\\\": {\\n      \\\"description\\\": \\\"NLI conf>=0.8 -> use NLI, else -> SICA\\\",\\n      \\\"accuracy\\\": 0.5245,\\n      \\\"correct\\\": 107,\\n      \\\"delta_vs_sc\\\": -0.0196,\\n      \\\"delta_vs_sica\\\": -0.0686,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.15,\\n        \\\"p_value\\\": 0.698535,\\n        \\\"b\\\": 28,\\n        \\\"\\n\\n... [截断: 输出过长，省略 6869 字符] ...\\n\\n {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 45,\\n          \\\"accuracy\\\": 0.625\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 29,\\n          \\\"accuracy\\\": 0.4603\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w10\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 10\\\",\\n      \\\"accuracy\\\": 0.5686,\\n      \\\"correct\\\": 116,\\n      \\\"delta_vs_sc\\\": 0.0245,\\n      \\\"delta_vs_sica\\\": -0.0245,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 0.6957,\\n        \\\"p_value\\\": 0.404248,\\n        \\\"b\\\": 14,\\n        \\\"c\\\": 9\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 1.2308,\\n        \\\"p_value\\\": 0.267257,\\n        \\\"b\\\": 4,\\n        \\\"c\\\": 9\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.6232\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 43,\\n          \\\"accuracy\\\": 0.5972\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 30,\\n          \\\"accuracy\\\": 0.4762\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w20\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 20\\\",\\n      \\\"accuracy\\\": 0.5784,\\n      \\\"correct\\\": 118,\\n      \\\"delta_vs_sc\\\": 0.0343,\\n      \\\"delta_vs_sica\\\": -0.0147,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 1.44,\\n        \\\"p_value\\\": 0.230139,\\n        \\\"b\\\": 16,\\n        \\\"c\\\": 9\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.1739,\\n        \\\"p_value\\\": 0.676657,\\n        \\\"b\\\": 10,\\n        \\\"c\\\": 13\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 41,\\n          \\\"accuracy\\\": 0.5942\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 44,\\n          \\\"accuracy\\\": 0.6111\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 33,\\n          \\\"accuracy\\\": 0.5238\\n        }\\n      }\\n    },\\n    \\\"sica_nli_weighted_w50\\\": {\\n      \\\"description\\\": \\\"SICA MAX-SAT scores + NLI probs x 50\\\",\\n      \\\"accuracy\\\": 0.5833,\\n      \\\"correct\\\": 119,\\n      \\\"delta_vs_sc\\\": 0.0392,\\n      \\\"delta_vs_sica\\\": -0.0098,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 1.1136,\\n        \\\"p_value\\\": 0.291293,\\n        \\\"b\\\": 26,\\n        \\\"c\\\": 18\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 0.0217,\\n        \\\"p_value\\\": 0.882783,\\n        \\\"b\\\": 22,\\n        \\\"c\\\": 24\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 37,\\n          \\\"accuracy\\\": 0.5362\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 40,\\n          \\\"accuracy\\\": 0.5556\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 42,\\n          \\\"accuracy\\\": 0.6667\\n        }\\n      }\\n    },\\n    \\\"oracle\\\": {\\n      \\\"description\\\": \\\"Perfect arbitrator between SICA and NLI (upper bound)\\\",\\n      \\\"accuracy\\\": 0.7549,\\n      \\\"correct\\\": 154,\\n      \\\"delta_vs_sc\\\": 0.2108,\\n      \\\"delta_vs_sica\\\": 0.1618,\\n      \\\"mcnemar_vs_sc\\\": {\\n        \\\"chi2\\\": 39.2,\\n        \\\"p_value\\\": 0.0,\\n        \\\"b\\\": 44,\\n        \\\"c\\\": 1\\n      },\\n      \\\"mcnemar_vs_sica\\\": {\\n        \\\"chi2\\\": 31.0303,\\n        \\\"p_value\\\": 0.0,\\n        \\\"b\\\": 33,\\n        \\\"c\\\": 0\\n      },\\n      \\\"per_class\\\": {\\n        \\\"Unknown\\\": {\\n          \\\"total\\\": 69,\\n          \\\"correct\\\": 50,\\n          \\\"accuracy\\\": 0.7246\\n        },\\n        \\\"True\\\": {\\n          \\\"total\\\": 72,\\n          \\\"correct\\\": 56,\\n          \\\"accuracy\\\": 0.7778\\n        },\\n        \\\"False\\\": {\\n          \\\"total\\\": 63,\\n          \\\"correct\\\": 48,\\n          \\\"accuracy\\\": 0.7619\\n        }\\n      }\\n    }\\n  },\\n  \\\"agreement_analysis\\\": {\\n    \\\"agree\\\": 97,\\n    \\\"agree_pct\\\": 47.5,\\n    \\\"agree_accuracy\\\": 0.701,\\n    \\\"disagree\\\": 107,\\n    \\\"disagree_sica_correct\\\": 53,\\n    \\\"disagree_nli_correct\\\": 33,\\n    \\\"disagree_both_wrong\\\": 21\\n  },\\n  \\\"confidence_analysis\\\": {\\n    \\\"nli_high_conf_ge80\\\": {\\n      \\\"count\\\": 126,\\n      \\\"correct\\\": 71,\\n      \\\"accuracy\\\": 0.5635\\n    },\\n    \\\"nli_low_conf_lt80\\\": {\\n      \\\"count\\\": 78,\\n      \\\"correct\\\": 30,\\n      \\\"accuracy\\\": 0.3846\\n    }\\n  },\\n  \\\"note\\\": \\\"Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. When full G results are available, re-run with --g-results flag.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019cB7U2t1FhqWy15WpqW1uB`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_rg_combo/per_question_best.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "0f45d444-3e3e-46f6-b99d-e98dc5accf61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Dw6ibmng1cMf9WGSVMvp2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 27511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MrLhYhbakg1VyzqDcbkTjz`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "e59dcb95-ccbe-4aa8-8a6f-5db536023073",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Dw6ibmng1cMf9WGSVMvp2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 27511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 831
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T14:15:11.113Z_
+
+<details><summary>↩ Tool result · `toolu_019cB7U2t1FhqWy15WpqW1uB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_6\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_7\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_8\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_9\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_11\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_12\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_13\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": t\\n\\n... [截断: 输出过长，省略 53289 字符] ...\\n\\nlse,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_191\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_192\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_193\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_194\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_195\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_196\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_197\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_198\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_199\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_200\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_201\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_202\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_203\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "8fde081f-37fe-40f1-890f-766f48362da9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"folio_0\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_1\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_2\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_3\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_4\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_5\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_6\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_7\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_8\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_9\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_10\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_11\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_12\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_13\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": t\\\\n\\\\n... [截断: 输出过长，省略 53289 字符] ...\\\\n\\\\nlse,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_191\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_192\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_193\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_194\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_195\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_196\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_197\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_198\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"folio_199\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_200\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_201\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": true,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_202\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": true,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": true,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_203\\\\\\\": {\\\\n    \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    \\\\\\\"combo_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"combo_correct\\\\\\\": false,\\\\n    \\\\\\\"combo_source\\\\\\\": \\\\\\\"weighted_vote\\\\\\\",\\\\n    \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sica_correct\\\\\\\": false,\\\\n    \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"deberta_correct\\\\\\\": false,\\\\n    \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n    \\\\\\\"sc_correct\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_6\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_7\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_8\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_9\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_11\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_12\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_13\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": t\\n\\n... [截断: 输出过长，省略 53289 字符] ...\\n\\nlse,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_191\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_192\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_193\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_194\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_195\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_196\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"Unknown\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_197\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_198\\\": {\\n    \\\"gold\\\": \\\"True\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": false\\n  },\\n  \\\"folio_199\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_200\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_201\\\": {\\n    \\\"gold\\\": \\\"False\\\",\\n    \\\"combo_answer\\\": \\\"False\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"False\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": true,\\n    \\\"sc_answer\\\": \\\"False\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_202\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"Unknown\\\",\\n    \\\"combo_correct\\\": true,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"deberta_pred\\\": \\\"False\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"Unknown\\\",\\n    \\\"sc_correct\\\": true\\n  },\\n  \\\"folio_203\\\": {\\n    \\\"gold\\\": \\\"Unknown\\\",\\n    \\\"combo_answer\\\": \\\"True\\\",\\n    \\\"combo_correct\\\": false,\\n    \\\"combo_source\\\": \\\"weighted_vote\\\",\\n    \\\"sica_answer\\\": \\\"True\\\",\\n    \\\"sica_correct\\\": false,\\n    \\\"deberta_pred\\\": \\\"True\\\",\\n    \\\"deberta_correct\\\": false,\\n    \\\"sc_answer\\\": \\\"True\\\",\\n    \\\"sc_correct\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T14:15:11.675Z_
+
+<details><summary>↩ Tool result · `toolu_01MrLhYhbakg1VyzqDcbkTjz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_r1_deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.4951,\\n    \\\"correct\\\": 101,\\n    \\\"total\\\": 204,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 72,\\n        \\\"correct\\\": 43,\\n        \\\"accuracy\\\": 0.5972,\\n        \\\"precision\\\": 0.5181,\\n        \\\"recall\\\": 0.5972,\\n        \\\"f1\\\": 0.5548\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 63,\\n        \\\"correct\\\": 45,\\n        \\\"accuracy\\\": 0.7143,\\n        \\\"precision\\\": 0.4545,\\n        \\\"recall\\\": 0.7143,\\n        \\\"f1\\\": 0.5556\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"n\\\": 69,\\n        \\\"correct\\\": 13,\\n        \\\"accuracy\\\": 0.1884,\\n        \\\"precision\\\": 0.5909,\\n        \\\"recall\\\": 0.1884,\\n        \\\"f1\\\": 0.2857\\n      }\\n    },\\n    \\\"gt_distribution\\\": {\\n      \\\"Unknown\\\": 69,\\n      \\\"True\\\": 72,\\n      \\\"False\\\": 63\\n    },\\n    \\\"pred_distribution\\\": {\\n      \\\"True\\\": 83,\\n      \\\"False\\\": 99,\\n      \\\"Unknown\\\": 22\\n    },\\n    \\\"inference_time_s\\\": 42.1,\\n    \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\"\\n  },\\n  \\\"exp_r2_verifier\\\": {\\n    \\\"agreement_rate\\\": 0.451,\\n    \\\"agree_count\\\": 92,\\n    \\\"disagree_count\\\": 112,\\n    \\\"agree_accuracy\\\": 0.6848,\\n    \\\"disagree_breakdown\\\": {\\n      \\\"deberta_correct_sc_wrong\\\": 38,\\n      \\\"sc_correct_deberta_wrong\\\": 48,\\n      \\\"both_wrong\\\": 26\\n    },\\n    \\\"strategies\\\": {\\n      \\\"abstain\\\": {\\n        \\\"coverage\\\": 0.451,\\n        \\\"accuracy\\\": 0.6848\\n      },\\n      \\\"deberta_override\\\": {\\n        \\\"accuracy\\\": 0.4951\\n      },\\n      \\\"sc_baseline\\\": {\\n        \\\"accuracy\\\": 0.5441\\n      }\\n    },\\n    \\\"deberta_corrects_sc\\\": [\\n      \\\"folio_2\\\",\\n      \\\"folio_5\\\",\\n      \\\"folio_6\\\",\\n      \\\"folio_10\\\",\\n      \\\"folio_14\\\",\\n      \\\"folio_19\\\",\\n      \\\"folio_21\\\",\\n      \\\"folio_24\\\",\\n      \\\"folio_40\\\",\\n      \\\"folio_42\\\",\\n      \\\"folio_44\\\",\\n      \\\"folio_47\\\",\\n      \\\"folio_70\\\",\\n      \\\"folio_77\\\",\\n      \\\"folio_79\\\",\\n      \\\"folio_83\\\",\\n      \\\"folio_85\\\",\\n      \\\"folio_97\\\",\\n      \\\"folio_100\\\",\\n      \\\"folio_101\\\",\\n      \\\"folio_106\\\",\\n      \\\"folio_107\\\",\\n      \\\"folio_123\\\",\\n      \\\"folio_128\\\",\\n      \\\"folio_141\\\",\\n      \\\"folio_144\\\",\\n      \\\"folio_149\\\",\\n      \\\"folio_150\\\",\\n      \\\"folio_157\\\",\\n      \\\"folio_163\\\",\\n      \\\"folio_172\\\",\\n      \\\"folio_181\\\",\\n      \\\"folio_183\\\",\\n      \\\"folio_186\\\",\\n      \\\"folio_189\\\",\\n      \\\"folio_192\\\",\\n      \\\"folio_194\\\",\\n      \\\"folio_197\\\"\\n    ],\\n    \\\"sc_corrects_deberta\\\": [\\n      \\\"folio_0\\\",\\n      \\\"folio_1\\\",\\n      \\\"folio_4\\\",\\n      \\\"folio_7\\\",\\n      \\\"folio_9\\\",\\n      \\\"folio_11\\\",\\n      \\\"folio_16\\\",\\n      \\\"folio_30\\\",\\n      \\\"folio_34\\\",\\n      \\\"folio_39\\\",\\n      \\\"folio_43\\\",\\n      \\\"folio_45\\\",\\n      \\\"folio_51\\\",\\n      \\\"folio_53\\\",\\n      \\\"folio_59\\\",\\n      \\\"folio_65\\\",\\n      \\\"folio_75\\\",\\n      \\\"folio_76\\\",\\n      \\\"folio_80\\\",\\n      \\\"folio_82\\\",\\n      \\\"folio_89\\\",\\n      \\\"folio_96\\\",\\n      \\\"folio_99\\\",\\n      \\\"folio_102\\\",\\n      \\\"folio_108\\\",\\n      \\\"folio_111\\\",\\n      \\\"folio_117\\\",\\n      \\\"folio_122\\\",\\n      \\\"folio_129\\\",\\n      \\\"folio_130\\\",\\n      \\\"folio_131\\\",\\n      \\\"folio_133\\\",\\n      \\\"folio_136\\\",\\n      \\\"folio_137\\\",\\n      \\\"folio_140\\\",\\n      \\\"folio_145\\\",\\n      \\\"folio_152\\\",\\n      \\\"folio_153\\\",\\n      \\\"folio_158\\\",\\n      \\\"folio_159\\\",\\n      \\\"folio_164\\\",\\n      \\\"folio_170\\\",\\n      \\\"folio_173\\\",\\n      \\\"folio_176\\\",\\n      \\\"folio_182\\\",\\n      \\\"folio_187\\\",\\n      \\\"folio_195\\\",\\n      \\\"folio_202\\\"\\n    ]\\n  },\\n  \\\"exp_r3_combo\\\": {\\n    \\\"deberta_weight_1\\\": {\\n      \\\"accuracy\\\": 0.5784,\\n      \\\"correct\\\": 118\\n    },\\n    \\\"deberta_weight_3\\\": {\\n      \\\"accuracy\\\": 0.5882,\\n      \\\"correct\\\": 120\\n    },\\n    \\\"sc_baseline\\\": 0.5441,\\n    \\\"sica_baseline\\\": 0.5931\\n  },\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": 0.5441,\\n    \\\"sica\\\": 0.5931\\n  },\\n  \\\"per_question\\\": {\\n    \\\"folio_0\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0432,\\n        \\\"Unknown\\\": 0.0778,\\n        \\\"True\\\": 0.879\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_1\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.8451,\\n        \\\"Unknown\\\": 0.0273,\\n        \\\"True\\\": 0.1277\\n      },\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n   \\n\\n... [截断: 输出过长，省略 63341 字符] ...\\n\\n{\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.518,\\n        \\\"Unknown\\\": 0.2378,\\n        \\\"True\\\": 0.2442\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_193\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9965,\\n        \\\"Unknown\\\": 0.0025,\\n        \\\"True\\\": 0.001\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_194\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9978,\\n        \\\"Unknown\\\": 0.001,\\n        \\\"True\\\": 0.0012\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_195\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0935,\\n        \\\"Unknown\\\": 0.069,\\n        \\\"True\\\": 0.8374\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_196\\\": {\\n      \\\"deberta_pred\\\": \\\"Unknown\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.416,\\n        \\\"Unknown\\\": 0.4923,\\n        \\\"True\\\": 0.0916\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_197\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.4125,\\n        \\\"Unknown\\\": 0.3246,\\n        \\\"True\\\": 0.2629\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_198\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.6461,\\n        \\\"Unknown\\\": 0.2142,\\n        \\\"True\\\": 0.1397\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_199\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9989,\\n        \\\"Unknown\\\": 0.001,\\n        \\\"True\\\": 0.0002\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_200\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9991,\\n        \\\"Unknown\\\": 0.0006,\\n        \\\"True\\\": 0.0003\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_201\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9995,\\n        \\\"Unknown\\\": 0.0003,\\n        \\\"True\\\": 0.0002\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_202\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9146,\\n        \\\"Unknown\\\": 0.0173,\\n        \\\"True\\\": 0.0681\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_203\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0187,\\n        \\\"Unknown\\\": 0.0131,\\n        \\\"True\\\": 0.9682\\n      },\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "27f0cda2-5f7a-4ba6-9220-eca1eb933297",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_r1_deberta_standalone\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.4951,\\\\n    \\\\\\\"correct\\\\\\\": 101,\\\\n    \\\\\\\"total\\\\\\\": 204,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"True\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 72,\\\\n        \\\\\\\"correct\\\\\\\": 43,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5972,\\\\n        \\\\\\\"precision\\\\\\\": 0.5181,\\\\n        \\\\\\\"recall\\\\\\\": 0.5972,\\\\n        \\\\\\\"f1\\\\\\\": 0.5548\\\\n      },\\\\n      \\\\\\\"False\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 63,\\\\n        \\\\\\\"correct\\\\\\\": 45,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.7143,\\\\n        \\\\\\\"precision\\\\\\\": 0.4545,\\\\n        \\\\\\\"recall\\\\\\\": 0.7143,\\\\n        \\\\\\\"f1\\\\\\\": 0.5556\\\\n      },\\\\n      \\\\\\\"Unknown\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 69,\\\\n        \\\\\\\"correct\\\\\\\": 13,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.1884,\\\\n        \\\\\\\"precision\\\\\\\": 0.5909,\\\\n        \\\\\\\"recall\\\\\\\": 0.1884,\\\\n        \\\\\\\"f1\\\\\\\": 0.2857\\\\n      }\\\\n    },\\\\n    \\\\\\\"gt_distribution\\\\\\\": {\\\\n      \\\\\\\"Unknown\\\\\\\": 69,\\\\n      \\\\\\\"True\\\\\\\": 72,\\\\n      \\\\\\\"False\\\\\\\": 63\\\\n    },\\\\n    \\\\\\\"pred_distribution\\\\\\\": {\\\\n      \\\\\\\"True\\\\\\\": 83,\\\\n      \\\\\\\"False\\\\\\\": 99,\\\\n      \\\\\\\"Unknown\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"inference_time_s\\\\\\\": 42.1,\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/models/deberta-large-mnli\\\\\\\"\\\\n  },\\\\n  \\\\\\\"exp_r2_verifier\\\\\\\": {\\\\n    \\\\\\\"agreement_rate\\\\\\\": 0.451,\\\\n    \\\\\\\"agree_count\\\\\\\": 92,\\\\n    \\\\\\\"disagree_count\\\\\\\": 112,\\\\n    \\\\\\\"agree_accuracy\\\\\\\": 0.6848,\\\\n    \\\\\\\"disagree_breakdown\\\\\\\": {\\\\n      \\\\\\\"deberta_correct_sc_wrong\\\\\\\": 38,\\\\n      \\\\\\\"sc_correct_deberta_wrong\\\\\\\": 48,\\\\n      \\\\\\\"both_wrong\\\\\\\": 26\\\\n    },\\\\n    \\\\\\\"strategies\\\\\\\": {\\\\n      \\\\\\\"abstain\\\\\\\": {\\\\n        \\\\\\\"coverage\\\\\\\": 0.451,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6848\\\\n      },\\\\n      \\\\\\\"deberta_override\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.4951\\\\n      },\\\\n      \\\\\\\"sc_baseline\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5441\\\\n      }\\\\n    },\\\\n    \\\\\\\"deberta_corrects_sc\\\\\\\": [\\\\n      \\\\\\\"folio_2\\\\\\\",\\\\n      \\\\\\\"folio_5\\\\\\\",\\\\n      \\\\\\\"folio_6\\\\\\\",\\\\n      \\\\\\\"folio_10\\\\\\\",\\\\n      \\\\\\\"folio_14\\\\\\\",\\\\n      \\\\\\\"folio_19\\\\\\\",\\\\n      \\\\\\\"folio_21\\\\\\\",\\\\n      \\\\\\\"folio_24\\\\\\\",\\\\n      \\\\\\\"folio_40\\\\\\\",\\\\n      \\\\\\\"folio_42\\\\\\\",\\\\n      \\\\\\\"folio_44\\\\\\\",\\\\n      \\\\\\\"folio_47\\\\\\\",\\\\n      \\\\\\\"folio_70\\\\\\\",\\\\n      \\\\\\\"folio_77\\\\\\\",\\\\n      \\\\\\\"folio_79\\\\\\\",\\\\n      \\\\\\\"folio_83\\\\\\\",\\\\n      \\\\\\\"folio_85\\\\\\\",\\\\n      \\\\\\\"folio_97\\\\\\\",\\\\n      \\\\\\\"folio_100\\\\\\\",\\\\n      \\\\\\\"folio_101\\\\\\\",\\\\n      \\\\\\\"folio_106\\\\\\\",\\\\n      \\\\\\\"folio_107\\\\\\\",\\\\n      \\\\\\\"folio_123\\\\\\\",\\\\n      \\\\\\\"folio_128\\\\\\\",\\\\n      \\\\\\\"folio_141\\\\\\\",\\\\n      \\\\\\\"folio_144\\\\\\\",\\\\n      \\\\\\\"folio_149\\\\\\\",\\\\n      \\\\\\\"folio_150\\\\\\\",\\\\n      \\\\\\\"folio_157\\\\\\\",\\\\n      \\\\\\\"folio_163\\\\\\\",\\\\n      \\\\\\\"folio_172\\\\\\\",\\\\n      \\\\\\\"folio_181\\\\\\\",\\\\n      \\\\\\\"folio_183\\\\\\\",\\\\n      \\\\\\\"folio_186\\\\\\\",\\\\n      \\\\\\\"folio_189\\\\\\\",\\\\n      \\\\\\\"folio_192\\\\\\\",\\\\n      \\\\\\\"folio_194\\\\\\\",\\\\n      \\\\\\\"folio_197\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"sc_corrects_deberta\\\\\\\": [\\\\n      \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"folio_1\\\\\\\",\\\\n      \\\\\\\"folio_4\\\\\\\",\\\\n      \\\\\\\"folio_7\\\\\\\",\\\\n      \\\\\\\"folio_9\\\\\\\",\\\\n      \\\\\\\"folio_11\\\\\\\",\\\\n      \\\\\\\"folio_16\\\\\\\",\\\\n      \\\\\\\"folio_30\\\\\\\",\\\\n      \\\\\\\"folio_34\\\\\\\",\\\\n      \\\\\\\"folio_39\\\\\\\",\\\\n      \\\\\\\"folio_43\\\\\\\",\\\\n      \\\\\\\"folio_45\\\\\\\",\\\\n      \\\\\\\"folio_51\\\\\\\",\\\\n      \\\\\\\"folio_53\\\\\\\",\\\\n      \\\\\\\"folio_59\\\\\\\",\\\\n      \\\\\\\"folio_65\\\\\\\",\\\\n      \\\\\\\"folio_75\\\\\\\",\\\\n      \\\\\\\"folio_76\\\\\\\",\\\\n      \\\\\\\"folio_80\\\\\\\",\\\\n      \\\\\\\"folio_82\\\\\\\",\\\\n      \\\\\\\"folio_89\\\\\\\",\\\\n      \\\\\\\"folio_96\\\\\\\",\\\\n      \\\\\\\"folio_99\\\\\\\",\\\\n      \\\\\\\"folio_102\\\\\\\",\\\\n      \\\\\\\"folio_108\\\\\\\",\\\\n      \\\\\\\"folio_111\\\\\\\",\\\\n      \\\\\\\"folio_117\\\\\\\",\\\\n      \\\\\\\"folio_122\\\\\\\",\\\\n      \\\\\\\"folio_129\\\\\\\",\\\\n      \\\\\\\"folio_130\\\\\\\",\\\\n      \\\\\\\"folio_131\\\\\\\",\\\\n      \\\\\\\"folio_133\\\\\\\",\\\\n      \\\\\\\"folio_136\\\\\\\",\\\\n      \\\\\\\"folio_137\\\\\\\",\\\\n      \\\\\\\"folio_140\\\\\\\",\\\\n      \\\\\\\"folio_145\\\\\\\",\\\\n      \\\\\\\"folio_152\\\\\\\",\\\\n      \\\\\\\"folio_153\\\\\\\",\\\\n      \\\\\\\"folio_158\\\\\\\",\\\\n      \\\\\\\"folio_159\\\\\\\",\\\\n      \\\\\\\"folio_164\\\\\\\",\\\\n      \\\\\\\"folio_170\\\\\\\",\\\\n      \\\\\\\"folio_173\\\\\\\",\\\\n      \\\\\\\"folio_176\\\\\\\",\\\\n      \\\\\\\"folio_182\\\\\\\",\\\\n      \\\\\\\"folio_187\\\\\\\",\\\\n      \\\\\\\"folio_195\\\\\\\",\\\\n      \\\\\\\"folio_202\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"exp_r3_combo\\\\\\\": {\\\\n    \\\\\\\"deberta_weight_1\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5784,\\\\n      \\\\\\\"correct\\\\\\\": 118\\\\n    },\\\\n    \\\\\\\"deberta_weight_3\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5882,\\\\n      \\\\\\\"correct\\\\\\\": 120\\\\n    },\\\\n    \\\\\\\"sc_baseline\\\\\\\": 0.5441,\\\\n    \\\\\\\"sica_baseline\\\\\\\": 0.5931\\\\n  },\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"sc\\\\\\\": 0.5441,\\\\n    \\\\\\\"sica\\\\\\\": 0.5931\\\\n  },\\\\n  \\\\\\\"per_question\\\\\\\": {\\\\n    \\\\\\\"folio_0\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.0432,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0778,\\\\n        \\\\\\\"True\\\\\\\": 0.879\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_1\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.8451,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0273,\\\\n        \\\\\\\"True\\\\\\\": 0.1277\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 63341 字符] ...\\\\n\\\\n{\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.518,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.2378,\\\\n        \\\\\\\"True\\\\\\\": 0.2442\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_correct\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"folio_193\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9965,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0025,\\\\n        \\\\\\\"True\\\\\\\": 0.001\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_194\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9978,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.001,\\\\n        \\\\\\\"True\\\\\\\": 0.0012\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_correct\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"folio_195\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.0935,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.069,\\\\n        \\\\\\\"True\\\\\\\": 0.8374\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_196\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.416,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.4923,\\\\n        \\\\\\\"True\\\\\\\": 0.0916\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_197\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.4125,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.3246,\\\\n        \\\\\\\"True\\\\\\\": 0.2629\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_correct\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"folio_198\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.6461,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.2142,\\\\n        \\\\\\\"True\\\\\\\": 0.1397\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_correct\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"folio_199\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9989,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.001,\\\\n        \\\\\\\"True\\\\\\\": 0.0002\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_200\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9991,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0006,\\\\n        \\\\\\\"True\\\\\\\": 0.0003\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_201\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9995,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0003,\\\\n        \\\\\\\"True\\\\\\\": 0.0002\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_202\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.9146,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0173,\\\\n        \\\\\\\"True\\\\\\\": 0.0681\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"sica_correct\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"folio_203\\\\\\\": {\\\\n      \\\\\\\"deberta_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"deberta_probs\\\\\\\": {\\\\n        \\\\\\\"False\\\\\\\": 0.0187,\\\\n        \\\\\\\"Unknown\\\\\\\": 0.0131,\\\\n        \\\\\\\"True\\\\\\\": 0.9682\\\\n      },\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"sica_answer\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"deberta_correct\\\\\\\": false,\\\\n      \\\\\\\"sc_correct\\\\\\\": false,\\\\n      \\\\\\\"sica_correct\\\\\\\": false\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_r1_deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.4951,\\n    \\\"correct\\\": 101,\\n    \\\"total\\\": 204,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 72,\\n        \\\"correct\\\": 43,\\n        \\\"accuracy\\\": 0.5972,\\n        \\\"precision\\\": 0.5181,\\n        \\\"recall\\\": 0.5972,\\n        \\\"f1\\\": 0.5548\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 63,\\n        \\\"correct\\\": 45,\\n        \\\"accuracy\\\": 0.7143,\\n        \\\"precision\\\": 0.4545,\\n        \\\"recall\\\": 0.7143,\\n        \\\"f1\\\": 0.5556\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"n\\\": 69,\\n        \\\"correct\\\": 13,\\n        \\\"accuracy\\\": 0.1884,\\n        \\\"precision\\\": 0.5909,\\n        \\\"recall\\\": 0.1884,\\n        \\\"f1\\\": 0.2857\\n      }\\n    },\\n    \\\"gt_distribution\\\": {\\n      \\\"Unknown\\\": 69,\\n      \\\"True\\\": 72,\\n      \\\"False\\\": 63\\n    },\\n    \\\"pred_distribution\\\": {\\n      \\\"True\\\": 83,\\n      \\\"False\\\": 99,\\n      \\\"Unknown\\\": 22\\n    },\\n    \\\"inference_time_s\\\": 42.1,\\n    \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\"\\n  },\\n  \\\"exp_r2_verifier\\\": {\\n    \\\"agreement_rate\\\": 0.451,\\n    \\\"agree_count\\\": 92,\\n    \\\"disagree_count\\\": 112,\\n    \\\"agree_accuracy\\\": 0.6848,\\n    \\\"disagree_breakdown\\\": {\\n      \\\"deberta_correct_sc_wrong\\\": 38,\\n      \\\"sc_correct_deberta_wrong\\\": 48,\\n      \\\"both_wrong\\\": 26\\n    },\\n    \\\"strategies\\\": {\\n      \\\"abstain\\\": {\\n        \\\"coverage\\\": 0.451,\\n        \\\"accuracy\\\": 0.6848\\n      },\\n      \\\"deberta_override\\\": {\\n        \\\"accuracy\\\": 0.4951\\n      },\\n      \\\"sc_baseline\\\": {\\n        \\\"accuracy\\\": 0.5441\\n      }\\n    },\\n    \\\"deberta_corrects_sc\\\": [\\n      \\\"folio_2\\\",\\n      \\\"folio_5\\\",\\n      \\\"folio_6\\\",\\n      \\\"folio_10\\\",\\n      \\\"folio_14\\\",\\n      \\\"folio_19\\\",\\n      \\\"folio_21\\\",\\n      \\\"folio_24\\\",\\n      \\\"folio_40\\\",\\n      \\\"folio_42\\\",\\n      \\\"folio_44\\\",\\n      \\\"folio_47\\\",\\n      \\\"folio_70\\\",\\n      \\\"folio_77\\\",\\n      \\\"folio_79\\\",\\n      \\\"folio_83\\\",\\n      \\\"folio_85\\\",\\n      \\\"folio_97\\\",\\n      \\\"folio_100\\\",\\n      \\\"folio_101\\\",\\n      \\\"folio_106\\\",\\n      \\\"folio_107\\\",\\n      \\\"folio_123\\\",\\n      \\\"folio_128\\\",\\n      \\\"folio_141\\\",\\n      \\\"folio_144\\\",\\n      \\\"folio_149\\\",\\n      \\\"folio_150\\\",\\n      \\\"folio_157\\\",\\n      \\\"folio_163\\\",\\n      \\\"folio_172\\\",\\n      \\\"folio_181\\\",\\n      \\\"folio_183\\\",\\n      \\\"folio_186\\\",\\n      \\\"folio_189\\\",\\n      \\\"folio_192\\\",\\n      \\\"folio_194\\\",\\n      \\\"folio_197\\\"\\n    ],\\n    \\\"sc_corrects_deberta\\\": [\\n      \\\"folio_0\\\",\\n      \\\"folio_1\\\",\\n      \\\"folio_4\\\",\\n      \\\"folio_7\\\",\\n      \\\"folio_9\\\",\\n      \\\"folio_11\\\",\\n      \\\"folio_16\\\",\\n      \\\"folio_30\\\",\\n      \\\"folio_34\\\",\\n      \\\"folio_39\\\",\\n      \\\"folio_43\\\",\\n      \\\"folio_45\\\",\\n      \\\"folio_51\\\",\\n      \\\"folio_53\\\",\\n      \\\"folio_59\\\",\\n      \\\"folio_65\\\",\\n      \\\"folio_75\\\",\\n      \\\"folio_76\\\",\\n      \\\"folio_80\\\",\\n      \\\"folio_82\\\",\\n      \\\"folio_89\\\",\\n      \\\"folio_96\\\",\\n      \\\"folio_99\\\",\\n      \\\"folio_102\\\",\\n      \\\"folio_108\\\",\\n      \\\"folio_111\\\",\\n      \\\"folio_117\\\",\\n      \\\"folio_122\\\",\\n      \\\"folio_129\\\",\\n      \\\"folio_130\\\",\\n      \\\"folio_131\\\",\\n      \\\"folio_133\\\",\\n      \\\"folio_136\\\",\\n      \\\"folio_137\\\",\\n      \\\"folio_140\\\",\\n      \\\"folio_145\\\",\\n      \\\"folio_152\\\",\\n      \\\"folio_153\\\",\\n      \\\"folio_158\\\",\\n      \\\"folio_159\\\",\\n      \\\"folio_164\\\",\\n      \\\"folio_170\\\",\\n      \\\"folio_173\\\",\\n      \\\"folio_176\\\",\\n      \\\"folio_182\\\",\\n      \\\"folio_187\\\",\\n      \\\"folio_195\\\",\\n      \\\"folio_202\\\"\\n    ]\\n  },\\n  \\\"exp_r3_combo\\\": {\\n    \\\"deberta_weight_1\\\": {\\n      \\\"accuracy\\\": 0.5784,\\n      \\\"correct\\\": 118\\n    },\\n    \\\"deberta_weight_3\\\": {\\n      \\\"accuracy\\\": 0.5882,\\n      \\\"correct\\\": 120\\n    },\\n    \\\"sc_baseline\\\": 0.5441,\\n    \\\"sica_baseline\\\": 0.5931\\n  },\\n  \\\"baselines\\\": {\\n    \\\"sc\\\": 0.5441,\\n    \\\"sica\\\": 0.5931\\n  },\\n  \\\"per_question\\\": {\\n    \\\"folio_0\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0432,\\n        \\\"Unknown\\\": 0.0778,\\n        \\\"True\\\": 0.879\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_1\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.8451,\\n        \\\"Unknown\\\": 0.0273,\\n        \\\"True\\\": 0.1277\\n      },\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n   \\n\\n... [截断: 输出过长，省略 63341 字符] ...\\n\\n{\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.518,\\n        \\\"Unknown\\\": 0.2378,\\n        \\\"True\\\": 0.2442\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_193\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9965,\\n        \\\"Unknown\\\": 0.0025,\\n        \\\"True\\\": 0.001\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_194\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9978,\\n        \\\"Unknown\\\": 0.001,\\n        \\\"True\\\": 0.0012\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_195\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0935,\\n        \\\"Unknown\\\": 0.069,\\n        \\\"True\\\": 0.8374\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_196\\\": {\\n      \\\"deberta_pred\\\": \\\"Unknown\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.416,\\n        \\\"Unknown\\\": 0.4923,\\n        \\\"True\\\": 0.0916\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_197\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.4125,\\n        \\\"Unknown\\\": 0.3246,\\n        \\\"True\\\": 0.2629\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_198\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.6461,\\n        \\\"Unknown\\\": 0.2142,\\n        \\\"True\\\": 0.1397\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"True\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    },\\n    \\\"folio_199\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9989,\\n        \\\"Unknown\\\": 0.001,\\n        \\\"True\\\": 0.0002\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_200\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9991,\\n        \\\"Unknown\\\": 0.0006,\\n        \\\"True\\\": 0.0003\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_201\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9995,\\n        \\\"Unknown\\\": 0.0003,\\n        \\\"True\\\": 0.0002\\n      },\\n      \\\"sc_answer\\\": \\\"False\\\",\\n      \\\"sica_answer\\\": \\\"False\\\",\\n      \\\"gold\\\": \\\"False\\\",\\n      \\\"deberta_correct\\\": true,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_202\\\": {\\n      \\\"deberta_pred\\\": \\\"False\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.9146,\\n        \\\"Unknown\\\": 0.0173,\\n        \\\"True\\\": 0.0681\\n      },\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_correct\\\": true\\n    },\\n    \\\"folio_203\\\": {\\n      \\\"deberta_pred\\\": \\\"True\\\",\\n      \\\"deberta_probs\\\": {\\n        \\\"False\\\": 0.0187,\\n        \\\"Unknown\\\": 0.0131,\\n        \\\"True\\\": 0.9682\\n      },\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sica_answer\\\": \\\"True\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"deberta_correct\\\": false,\\n      \\\"sc_correct\\\": false,\\n      \\\"sica_correct\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the data I need. Let me analyze what I've found:
+
+1. **R combo results** (`direction_rg_combo/results.json`): The baselines show `sc: 0.5441` (111/204) - this is the OLD dict-insertion-order tiebreaking.
+
+2. **R combo per-question results** (`direction_rg_combo/per_question_best.json`): Has `sc_answer` and `sc_correct` per question - but these are based on OLD SC.
+
+
+3. **R NLI large results** (`direction_r_nli_large/results.json`): Contains per-question metrics including `sc_answer`, `deberta_pred`, and `deberta_probs`, though the `sc_answer` values still reflect the old tiebreaking approach.
+
+I need to recompute SC with alphabetical tiebreaking from the exp033 traces, then use the R combo per-question data to identify which combo strategy was applied and extract the per-question combo answers, finally recomputing McNemar between the new SC and R combo results. Looking more closely at the R combo data, I can see `per_question_best.json` includes both `combo_answer` and `combo_correct` fields.
+
+The `direction_rg_combo` weighted vote combo shows specific performance metrics for different weight configurations, but I'm having trouble locating the actual per-question combo answers for the w=1 and w=3 variants in the results files. I need to trace through the combo source information to figure out which weight was used and where those per-question answers are stored. =1: 118 correct (57.84%)
+- w=3: 120 correct (58.82%)
+
+So the combo adds DeBERTa's prediction as weighted votes to the SC votes. The challenge is that I need to understand whether the combo uses just the final SC answer or the raw vote counts, since changing the tiebreaking rule could affect both the SC answer and potentially the combo calculation. Let me think through this: if the combo operates on the vote distribution itself rather than just the final answer, then recomputing with alphabetical tiebreaking would change the intermediate votes, which would cascade into different combo results. I should check whether the per-question data contains the raw vote counts or just the final answers to understand what I'm actually working with.
+
+The user's expectation that "R combo accuracy should not change" suggests the combo uses a different mechanism than SC's tiebreaking—maybe it directly combines DeBERTa probabilities with SC votes in a way that's independent of how SC resolves ties. So my approach should be: recompute SC with alphabetical tiebreaking to get the new answers, keep the combo results as-is since they shouldn't be affected, then run McNemar tests comparing the new SC against each combo variant. I need to find or recompute the per-question combo answers for w=1 and w=3, which requires the SC vote counts per answer rather than just the final SC answer. Let me check if the vote matrix data contains what I need to reconstruct these scores.
+
+The combo mechanism adds DeBERTa's prediction as extra votes to the raw SC vote counts, then picks the answer with the most votes. Since the raw vote counts don't change with tiebreaking, the combo answers should remain consistent. I'll write a script that pulls the SC vote counts from the experiment traces and DeBERTa predictions to reconstruct the combo answers in one go.
+
+Before I do that, let me check if sc_answer_matrix.json already contains the vote counts, and also look for seed-related experiment directories to understand the setup better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "4a962068-e7ff-40d9-8e67-c5d373d6a53b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+现在我有了关键数据。`direction_r_nli_large/results.json` 里的 `per_question` 数据有 `sc_answer`（旧 tiebreaking）和 `deberta_probs`。combo w=1 和 w=3 需要 SC 原始投票计数 + DeBERTa 预测。我需要检查 exp033 traces 和 seed 相关目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "46d936c3-2816-4a8c-8bc6-e9e4102f6e5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PiMWEyn5Qw5R6sCdoi4WgT`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "9c1fd18d-3197-47d4-bb39-d6ff9d6ba4b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014sdwXEGydNZebpf7SkjT1z`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "3eabd1e7-dc60-487c-8c23-93e5b59eb12c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T14:16:00.830Z_
+
+<details><summary>↩ Tool result · `toolu_01PiMWEyn5Qw5R6sCdoi4WgT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_6\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Uncertain (given the information provided)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_7\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_8\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_9\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\",\\n      \\\"Tom is an Ocellated wild turkey.\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_11\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Joey is an Ocellated wild turkey (if Joey is a wild turkey)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_12\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_13\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_14\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Uncertain (but likely false)\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_trut\\n\\n... [截断: 输出过长，省略 48384 字符] ...\\n\\n  ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_189\\\": {\\n    \\\"answers\\\": [\\n      \\\"partially true\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_190\\\": {\\n    \\\"answers\\\": [\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Yuri is an American basketball player\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_191\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"The conclusion is true.\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_192\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_193\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_194\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_195\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_196\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"KiKi is terricolous.\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_197\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_198\\\": {\\n    \\\"answers\\\": [\\n      \\\"\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"KiKi neither barks nor is a dog (true)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_199\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_200\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_201\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_202\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_203\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d78d9187-018a-47bb-b200-e80018f5ad23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"folio_0\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_1\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_2\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_3\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_4\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_5\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_6\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Uncertain (given the information provided)\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_7\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_8\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_9\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Tom is an Ocellated wild turkey.\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_10\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_11\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Joey is an Ocellated wild turkey (if Joey is a wild turkey)\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_12\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_13\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_14\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Uncertain (but likely false)\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_trut\\\\n\\\\n... [截断: 输出过长，省略 48384 字符] ...\\\\n\\\\n  ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_189\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"partially true\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_190\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Yuri is an American basketball player\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_191\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"The conclusion is true.\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_192\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_193\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_194\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_195\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_196\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"KiKi is terricolous.\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_197\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_198\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"KiKi neither barks nor is a dog (true)\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"True\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_199\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_200\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_201\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\",\\\\n      \\\\\\\"False\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_202\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"Unknown\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  },\\\\n  \\\\\\\"folio_203\\\\\\\": {\\\\n    \\\\\\\"answers\\\\\\\": [\\\\n      \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"True\\\\\\\",\\\\n      \\\\\\\"\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_5\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_6\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Uncertain (given the information provided)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_7\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_8\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_9\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\",\\n      \\\"Tom is an Ocellated wild turkey.\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_11\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Joey is an Ocellated wild turkey (if Joey is a wild turkey)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_12\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_13\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_14\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Uncertain (but likely false)\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_trut\\n\\n... [截断: 输出过长，省略 48384 字符] ...\\n\\n  ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_189\\\": {\\n    \\\"answers\\\": [\\n      \\\"partially true\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_190\\\": {\\n    \\\"answers\\\": [\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Yuri is an American basketball player\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_191\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"The conclusion is true.\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_192\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_193\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_194\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_195\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_196\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"KiKi is terricolous.\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_197\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_198\\\": {\\n    \\\"answers\\\": [\\n      \\\"\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"KiKi neither barks nor is a dog (true)\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_199\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_200\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_201\\\": {\\n    \\\"answers\\\": [\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"False\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_202\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_203\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T14:16:01.374Z_
+
+<details><summary>↩ Tool result · `toolu_014sdwXEGydNZebpf7SkjT1z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_201.json\\nfolio_202.json\\nfolio_203.json\\nfolio_21.json\\nfolio_22.json\\nfolio_23.json\\nfolio_24.json\\nfolio_25.json\\nfolio_26.json\\nfolio_27.json\\nfolio_28.json\\nfolio_29.json\\nfolio_3.json\\nfolio_30.json\\nfolio_31.json\\nfolio_32.json\\nfolio_33.json\\nfolio_34.json\\nfolio_35.json\\nfolio_36.json\\nfolio_37.json\\nfolio_38.json\\nfolio_39.json\\nfolio_4.json\\nfolio_40.json\\nfolio_41.json\\nfolio_42.json\\nfolio_43.json\\nfolio_44.json\\nfolio_45.json\\nfolio_46.json\\nfolio_47.json\\nfolio_48.json\\nfolio_49.json\\nfolio_5.json\\nfolio_50.json\\nfolio_51.json\\nfolio_52.json\\nfolio_53.json\\nfolio_54.json\\nfolio_55.json\\nfolio_56.json\\nfolio_57.json\\nfolio_58.json\\nfolio_59.json\\nfolio_6.json\\nfolio_60.json\\nfolio_61.json\\nfolio_62.json\\nfolio_63.json\\nfolio_64.json\\nfolio_65.json\\nfolio_66.json\\nfolio_67.json\\nfolio_68.json\\nfolio_69.json\\nfolio_7.json\\nfolio_70.json\\nfolio_71.json\\nfolio_72.json\\nfolio_73.json\\nfolio_74.json\\nfolio_75.json\\nfolio_76.json\\nfolio_77.json\\nfolio_78.json\\nfolio_79.json\\nfolio_8.json\\nfolio_80.json\\nfolio_81.json\\nfolio_82.json\\nfolio_83.json\\nfolio_84.json\\nfolio_85.json\\nfolio_86.json\\nfolio_87.json\\nfolio_88.json\\nfolio_89.json\\nfolio_9.json\\nfolio_90.json\\nfolio_91.json\\nfolio_92.json\\nfolio_93.json\\nfolio_94.json\\nfolio_95.json\\nfolio_96.json\\nfolio_97.json\\nfolio_98.json\\nfolio_99.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "6e3b1ea1-de4a-466d-a1ce-48ab8e791f00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"folio_0.json\\\\nfolio_1.json\\\\nfolio_10.json\\\\nfolio_100.json\\\\nfolio_101.json\\\\nfolio_102.json\\\\nfolio_103.json\\\\nfolio_104.json\\\\nfolio_105.json\\\\nfolio_106.json\\\\nfolio_107.json\\\\nfolio_108.json\\\\nfolio_109.json\\\\nfolio_11.json\\\\nfolio_110.json\\\\nfolio_111.json\\\\nfolio_112.json\\\\nfolio_113.json\\\\nfolio_114.json\\\\nfolio_115.json\\\\nfolio_116.json\\\\nfolio_117.json\\\\nfolio_118.json\\\\nfolio_119.json\\\\nfolio_12.json\\\\nfolio_120.json\\\\nfolio_121.json\\\\nfolio_122.json\\\\nfolio_123.json\\\\nfolio_124.json\\\\nfolio_125.json\\\\nfolio_126.json\\\\nfolio_127.json\\\\nfolio_128.json\\\\nfolio_129.json\\\\nfolio_13.json\\\\nfolio_130.json\\\\nfolio_131.json\\\\nfolio_132.json\\\\nfolio_133.json\\\\nfolio_134.json\\\\nfolio_135.json\\\\nfolio_136.json\\\\nfolio_137.json\\\\nfolio_138.json\\\\nfolio_139.json\\\\nfolio_14.json\\\\nfolio_140.json\\\\nfolio_141.json\\\\nfolio_142.json\\\\nfolio_143.json\\\\nfolio_144.json\\\\nfolio_145.json\\\\nfolio_146.json\\\\nfolio_147.json\\\\nfolio_148.json\\\\nfolio_149.json\\\\nfolio_15.json\\\\nfolio_150.json\\\\nfolio_151.json\\\\nfolio_152.json\\\\nfolio_153.json\\\\nfolio_154.json\\\\nfolio_155.json\\\\nfolio_156.json\\\\nfolio_157.json\\\\nfolio_158.json\\\\nfolio_159.json\\\\nfolio_16.json\\\\nfolio_160.json\\\\nfolio_161.json\\\\nfolio_162.json\\\\nfolio_163.json\\\\nfolio_164.json\\\\nfolio_165.json\\\\nfolio_166.json\\\\nfolio_167.json\\\\nfolio_168.json\\\\nfolio_169.json\\\\nfolio_17.json\\\\nfolio_170.json\\\\nfolio_171.json\\\\nfolio_172.json\\\\nfolio_173.json\\\\nfolio_174.json\\\\nfolio_175.json\\\\nfolio_176.json\\\\nfolio_177.json\\\\nfolio_178.json\\\\nfolio_179.json\\\\nfolio_18.json\\\\nfolio_180.json\\\\nfolio_181.json\\\\nfolio_182.json\\\\nfolio_183.json\\\\nfolio_184.json\\\\nfolio_185.json\\\\nfolio_186.json\\\\nfolio_187.json\\\\nfolio_188.json\\\\nfolio_189.json\\\\nfolio_19.json\\\\nfolio_190.json\\\\nfolio_191.json\\\\nfolio_192.json\\\\nfolio_193.json\\\\nfolio_194.json\\\\nfolio_195.json\\\\nfolio_196.json\\\\nfolio_197.json\\\\nfolio_198.json\\\\nfolio_199.json\\\\nfolio_2.json\\\\nfolio_20.json\\\\nfolio_200.json\\\\nfolio_201.json\\\\nfolio_202.json\\\\nfolio_203.json\\\\nfolio_21.json\\\\nfolio_22.json\\\\nfolio_23.json\\\\nfolio_24.json\\\\nfolio_25.json\\\\nfolio_26.json\\\\nfolio_27.json\\\\nfolio_28.json\\\\nfolio_29.json\\\\nfolio_3.json\\\\nfolio_30.json\\\\nfolio_31.json\\\\nfolio_32.json\\\\nfolio_33.json\\\\nfolio_34.json\\\\nfolio_35.json\\\\nfolio_36.json\\\\nfolio_37.json\\\\nfolio_38.json\\\\nfolio_39.json\\\\nfolio_4.json\\\\nfolio_40.json\\\\nfolio_41.json\\\\nfolio_42.json\\\\nfolio_43.json\\\\nfolio_44.json\\\\nfolio_45.json\\\\nfolio_46.json\\\\nfolio_47.json\\\\nfolio_48.json\\\\nfolio_49.json\\\\nfolio_5.json\\\\nfolio_50.json\\\\nfolio_51.json\\\\nfolio_52.json\\\\nfolio_53.json\\\\nfolio_54.json\\\\nfolio_55.json\\\\nfolio_56.json\\\\nfolio_57.json\\\\nfolio_58.json\\\\nfolio_59.json\\\\nfolio_6.json\\\\nfolio_60.json\\\\nfolio_61.json\\\\nfolio_62.json\\\\nfolio_63.json\\\\nfolio_64.json\\\\nfolio_65.json\\\\nfolio_66.json\\\\nfolio_67.json\\\\nfolio_68.json\\\\nfolio_69.json\\\\nfolio_7.json\\\\nfolio_70.json\\\\nfolio_71.json\\\\nfolio_72.json\\\\nfolio_73.json\\\\nfolio_74.json\\\\nfolio_75.json\\\\nfolio_76.json\\\\nfolio_77.json\\\\nfolio_78.json\\\\nfolio_79.json\\\\nfolio_8.json\\\\nfolio_80.json\\\\nfolio_81.json\\\\nfolio_82.json\\\\nfolio_83.json\\\\nfolio_84.json\\\\nfolio_85.json\\\\nfolio_86.json\\\\nfolio_87.json\\\\nfolio_88.json\\\\nfolio_89.json\\\\nfolio_9.json\\\\nfolio_90.json\\\\nfolio_91.json\\\\nfolio_92.json\\\\nfolio_93.json\\\\nfolio_94.json\\\\nfolio_95.json\\\\nfolio_96.json\\\\nfolio_97.json\\\\nfolio_98.json\\\\nfolio_99.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_201.json\\nfolio_202.json\\nfolio_203.json\\nfolio_21.json\\nfolio_22.json\\nfolio_23.json\\nfolio_24.json\\nfolio_25.json\\nfolio_26.json\\nfolio_27.json\\nfolio_28.json\\nfolio_29.json\\nfolio_3.json\\nfolio_30.json\\nfolio_31.json\\nfolio_32.json\\nfolio_33.json\\nfolio_34.json\\nfolio_35.json\\nfolio_36.json\\nfolio_37.json\\nfolio_38.json\\nfolio_39.json\\nfolio_4.json\\nfolio_40.json\\nfolio_41.json\\nfolio_42.json\\nfolio_43.json\\nfolio_44.json\\nfolio_45.json\\nfolio_46.json\\nfolio_47.json\\nfolio_48.json\\nfolio_49.json\\nfolio_5.json\\nfolio_50.json\\nfolio_51.json\\nfolio_52.json\\nfolio_53.json\\nfolio_54.json\\nfolio_55.json\\nfolio_56.json\\nfolio_57.json\\nfolio_58.json\\nfolio_59.json\\nfolio_6.json\\nfolio_60.json\\nfolio_61.json\\nfolio_62.json\\nfolio_63.json\\nfolio_64.json\\nfolio_65.json\\nfolio_66.json\\nfolio_67.json\\nfolio_68.json\\nfolio_69.json\\nfolio_7.json\\nfolio_70.json\\nfolio_71.json\\nfolio_72.json\\nfolio_73.json\\nfolio_74.json\\nfolio_75.json\\nfolio_76.json\\nfolio_77.json\\nfolio_78.json\\nfolio_79.json\\nfolio_8.json\\nfolio_80.json\\nfolio_81.json\\nfolio_82.json\\nfolio_83.json\\nfolio_84.json\\nfolio_85.json\\nfolio_86.json\\nfolio_87.json\\nfolio_88.json\\nfolio_89.json\\nfolio_9.json\\nfolio_90.json\\nfolio_91.json\\nfolio_92.json\\nfolio_93.json\\nfolio_94.json\\nfolio_95.json\\nfolio_96.json\\nfolio_97.json\\nfolio_98.json\\nfolio_99.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015BmbYXxXZXaUCras1w7bkr`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 1 -type d -name \"*seed*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "89b419bc-4489-402e-bd90-89aec29ac030",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ksij1NXuBX7ikJqx75H984`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -maxdepth 1 -type d -name \"*s123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "32a23f62-62ba-4e1f-a141-cb1f3773637b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016GEhSB1JDNi2FfaSugquVQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15626,
+      "cache_read_input_tokens": 28342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T14:16:02.637Z_
+
+<details><summary>↩ Tool result · `toolu_015BmbYXxXZXaUCras1w7bkr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "7755b2c2-52c5-4590-b77c-3c61a1ab3fed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp066_qwen14b_folio_seed123\\n/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456\\n/root/symb_invariant_consensus/results/exp074c_icg_mistral_folio_seed123\\n/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T14:16:03.168Z_
+
+<details><summary>↩ Tool result · `toolu_01Ksij1NXuBX7ikJqx75H984`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "bf865ad3-55d3-4e96-b19e-cfa711b196e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the `sc_answer_matrix.json` which contains per-question raw vote arrays. This is exactly what I need. Now I can:
+
+1. Use `sc_answer_matrix.json` to compute SC with alphabetical tiebreaking
+2. Use `direction_r_nli_large/results.json` per-question data to get DeBERTa predictions
+3. Compute combo w=1 and w=3 per-question answers (using SC vote counts + DeBERTa as extra votes)
+4. Compute McNemar
+
+For seeds:
+- exp033 = default seed (Mistral FOLIO)
+
+
+- exp067 = seed789 (Mistral FOLIO)
+
+I need to verify which experiments in Table 1 correspond to Mistral FOLIO, since the seed results show different accuracy levels and some might be from different models. Let me check the directory structure to identify the Mistral-specific seed experiments.
+
+Actually, I should just write a comprehensive script that pulls everything I need from the sc_answer_matrix.json file. I can compute the SC scores with alphabetical tiebreaking, load the DeBERTa NLI predictions per question, then calculate the combined scores at different weights and run McNemar's test to compare the new SC approach against the weighted combinations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "073c136c-1c08-43c8-bbe7-026d9ae75bbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWzmWSXY448QDYA1YULiWp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9820,
+      "cache_read_input_tokens": 43968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+有了 `sc_answer_matrix.json`（原始投票数组）和 `direction_r_nli_large/results.json`（per-question DeBERTa 数据），可以一次性完成全部计算。写综合脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "32b99d54-1449-46a9-b526-0962015fea32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWzmWSXY448QDYA1YULiWp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9820,
+      "cache_read_input_tokens": 43968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AFptyCKSEMzCVghPDZyWRo`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'PYEOF' > /tmp/sc_tiebreak_mcnemar.py\nimport json\nfrom collections import Counter\nfrom math import factorial\n\ndef exact_mcnemar_p(b, c):\n    \"\"\"Two-sided exact McNemar test (binomial).\"\"\"\n    n = b + c\n    if n == 0:\n        return 1.0\n    k = min(b, c)\n    # P(X <= k) under Binom(n, 0.5), two-sided\n    p = 0.0\n    for i in range(k + 1):\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\n    return min(2 * p, 1.0)\n\nnorm_map = {\"true\": \"True\", \"false\": \"False\", \"unknown\": \"Unknown\", \"uncertain\": \"Unknown\"}\n\ndef normalize(a):\n    a = a.strip().lower()\n    return norm_map.get(a, \"\")\n\n# Load sc_answer_matrix\nwith open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json') as f:\n    sc_matrix = json.load(f)\n\n# Load R NLI per-question data\nwith open('/root/symb_invariant_consensus/results/direction_r_nli_large/results.json') as f:\n    r_data = json.load(f)\nr_pq = r_data['per_question']\n\n# Step 1: Compute SC with dict-order and alphabetical tiebreaking\nresults = []\nfor i in range(204):\n    key = f'folio_{i}'\n    entry = sc_matrix[key]\n    raw_answers = entry['answers']\n    gold = entry['ground_truth']\n    \n    # Normalize\n    clean = []\n    for a in raw_answers:\n        n = normalize(a)\n        if n:\n            clean.append(n)\n    \n    counter = Counter(clean)\n    max_count = max(counter.values()) if counter else 0\n    candidates = [k for k, v in counter.items() if v == max_count]\n    \n    # Dict-order: first inserted (Python 3.7+ dict order = insertion order of Counter)\n    sc_dict = candidates[0] if candidates else ''\n    \n    # Alphabetical order\n    sc_alpha = sorted(candidates)[0] if candidates else ''\n    \n    is_tie = len(candidates) > 1\n    \n    # R NLI data\n    r_entry = r_pq.get(key, {})\n    deberta_pred = r_entry.get('deberta_pred', '')\n    \n    # Combo w=1: SC vote counts + 1 extra vote for DeBERTa pred\n    combo_counts_w1 = dict(counter)\n    combo_counts_w1[deberta_pred] = combo_counts_w1.get(deberta_pred, 0) + 1\n    max_w1 = max(combo_counts_w1.values())\n    cands_w1 = sorted([k for k, v in combo_counts_w1.items() if v == max_w1])\n    combo_w1 = cands_w1[0]\n    \n    # Combo w=3: SC vote counts + 3 extra votes for DeBERTa pred\n    combo_counts_w3 = dict(counter)\n    combo_counts_w3[deberta_pred] = combo_counts_w3.get(deberta_pred, 0) + 3\n    max_w3 = max(combo_counts_w3.values())\n    cands_w3 = sorted([k for k, v in combo_counts_w3.items() if v == max_w3])\n    combo_w3 = cands_w3[0]\n    \n    results.append({\n        'id': i,\n        'gold': gold,\n        'sc_dict': sc_dict,\n        'sc_alpha': sc_alpha,\n        'is_tie': is_tie,\n        'vote_counts': dict(counter),\n        'deberta_pred': deberta_pred,\n        'combo_w1': combo_w1,\n        'combo_w3': combo_w3,\n        'sc_dict_correct': sc_dict == gold,\n        'sc_alpha_correct': sc_alpha == gold,\n        'combo_w1_correct': combo_w1 == gold,\n        'combo_w3_correct': combo_w3 == gold,\n    })\n\n# Summary\nsc_dict_acc = sum(1 for r in results if r['sc_dict_correct'])\nsc_alpha_acc = sum(1 for r in results if r['sc_alpha_correct'])\ncombo_w1_acc = sum(1 for r in results if r['combo_w1_correct'])\ncombo_w3_acc = sum(1 for r in results if r['combo_w3_correct'])\n\nprint(\"=\" * 60)\nprint(\"SC Tiebreaking Comparison\")\nprint(\"=\" * 60)\nprint(f\"SC (dict-order):      {sc_dict_acc}/204 = {sc_dict_acc/204*100:.2f}%\")\nprint(f\"SC (alphabetical):    {sc_alpha_acc}/204 = {sc_alpha_acc/204*100:.2f}%\")\nprint(f\"Combo w=1:            {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\")\nprint(f\"Combo w=3:            {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\")\n\n# Questions where SC answer changed\nchanged = [r for r in results if r['sc_dict'] != r['sc_alpha']]\nprint(f\"\\n--- Tie questions where SC answer changed ({len(changed)}) ---\")\nfor r in changed:\n    print(f\"  folio_{r['id']}: gold={r['gold']}, dict={r['sc_dict']}, alpha={r['sc_alpha']}, \"\n          f\"votes={r['vote_counts']}, dict_correct={r['sc_dict_correct']}, alpha_correct={r['sc_alpha_correct']}\")\n\n# All tie questions\nties = [r for r in results if r['is_tie']]\nprint(f\"\\n--- All tie questions ({len(ties)}) ---\")\nfor r in ties:\n    print(f\"  folio_{r['id']}: gold={r['gold']}, dict={r['sc_dict']}, alpha={r['sc_alpha']}, \"\n          f\"votes={r['vote_counts']}\")\n\n# McNemar: old SC vs combo w=1\nprint(\"\\n\" + \"=\" * 60)\nprint(\"McNemar: OLD SC (dict) vs Combo w=1\")\nb_old_w1 = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w1_correct'])\nc_old_w1 = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w1_correct'])\np_old_w1 = exact_mcnemar_p(b_old_w1, c_old_w1)\nprint(f\"  b (SC correct, combo wrong) = {b_old_w1}\")\nprint(f\"  c (SC wrong, combo correct) = {c_old_w1}\")\nprint(f\"  p-value (exact) = {p_old_w1:.6f}\")\n\n# McNemar: NEW SC (alpha) vs combo w=1\nprint(\"\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\")\nb_new_w1 = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w1_correct'])\nc_new_w1 = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w1_correct'])\np_new_w1 = exact_mcnemar_p(b_new_w1, c_new_w1)\nprint(f\"  b (SC correct, combo wrong) = {b_new_w1}\")\nprint(f\"  c (SC wrong, combo correct) = {c_new_w1}\")\nprint(f\"  p-value (exact) = {p_new_w1:.6f}\")\n\n# McNemar: old SC vs combo w=3\nprint(\"\\nMcNemar: OLD SC (dict) vs Combo w=3\")\nb_old_w3 = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w3_correct'])\nc_old_w3 = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w3_correct'])\np_old_w3 = exact_mcnemar_p(b_old_w3, c_old_w3)\nprint(f\"  b (SC correct, combo wrong) = {b_old_w3}\")\nprint(f\"  c (SC wrong, combo correct) = {c_old_w3}\")\nprint(f\"  p-value (exact) = {p_old_w3:.6f}\")\n\n# McNemar: NEW SC (alpha) vs combo w=3\nprint(\"\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\")\nb_new_w3 = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w3_correct'])\nc_new_w3 = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w3_correct'])\np_new_w3 = exact_mcnemar_p(b_new_w3, c_new_w3)\nprint(f\"  b (SC correct, combo wrong) = {b_new_w3}\")\nprint(f\"  c (SC wrong, combo correct) = {c_new_w3}\")\nprint(f\"  p-value (exact) = {p_new_w3:.6f}\")\n\n# Verify combo w=1 and w=3 match original report\nprint(\"\\n\" + \"=\" * 60)\nprint(\"Verification vs original R combo report\")\nprint(f\"  Original combo w=1: {r_data['exp_r3_combo']['deberta_weight_1']['correct']}/204 = {r_data['exp_r3_combo']['deberta_weight_1']['accuracy']*100:.2f}%\")\nprint(f\"  Recomputed combo w=1: {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\")\nprint(f\"  Original combo w=3: {r_data['exp_r3_combo']['deberta_weight_3']['correct']}/204 = {r_data['exp_r3_combo']['deberta_weight_3']['accuracy']*100:.2f}%\")\nprint(f\"  Recomputed combo w=3: {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\")\n\n# Save full results\noutput = {\n    'sc_dict': {'correct': sc_dict_acc, 'accuracy': sc_dict_acc/204},\n    'sc_alpha': {'correct': sc_alpha_acc, 'accuracy': sc_alpha_acc/204},\n    'combo_w1': {'correct': combo_w1_acc, 'accuracy': combo_w1_acc/204},\n    'combo_w3': {'correct': combo_w3_acc, 'accuracy': combo_w3_acc/204},\n    'mcnemar_old_sc_vs_w1': {'b': b_old_w1, 'c': c_old_w1, 'p': p_old_w1},\n    'mcnemar_new_sc_vs_w1': {'b': b_new_w1, 'c': c_new_w1, 'p': p_new_w1},\n    'mcnemar_old_sc_vs_w3': {'b': b_old_w3, 'c': c_old_w3, 'p': p_old_w3},\n    'mcnemar_new_sc_vs_w3': {'b': b_new_w3, 'c': c_new_w3, 'p': p_new_w3},\n    'changed_questions': [{'id': r['id'], 'gold': r['gold'], 'sc_dict': r['sc_dict'], 'sc_alpha': r['sc_alpha'], 'votes': r['vote_counts']} for r in changed],\n    'per_question': results,\n}\nwith open('/tmp/sc_tiebreak_mcnemar_results.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nFull results saved to /tmp/sc_tiebreak_mcnemar_results.json\")\nPYEOF\ncd /root/symb_invariant_consensus && python3 /tmp/sc_tiebreak_mcnemar.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "936119a1-0f82-4d3f-8230-4bb84b9ff26c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWzmWSXY448QDYA1YULiWp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9820,
+      "cache_read_input_tokens": 43968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9820
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T14:16:58.688Z_
+
+<details><summary>↩ Tool result · `toolu_01AFptyCKSEMzCVghPDZyWRo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /tmp/sc_tiebreak_mcnemar.py\\\\nimport json\\\\nfrom collections import Counter\\\\nfrom math import factorial\\\\n\\\\ndef exact_mcnemar_p(b, c):\\\\n    \\\"\\\"\\\"Two-sided exact McNemar test (binomial).\\\"\\\"\\\"\\\\n    n = b + c\\\\n    if n == 0:\\\\n        return 1.0\\\\n    k = min(b, c)\\\\n    # P(X <= k) under Binom(n, 0.5), two-sided\\\\n    p = 0.0\\\\n    for i in range(k + 1):\\\\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\\\\n    return min(2 * p, 1.0)\\\\n\\\\nnorm_map = {\\\"true\\\": \\\"True\\\", \\\"false\\\": \\\"False\\\", \\\"unknown\\\": \\\"Unknown\\\", \\\"uncertain\\\": \\\"Unknown\\\"}\\\\n\\\\ndef normalize(a):\\\\n    a = a.strip().lower()\\\\n    return norm_map.get(a, \\\"\\\")\\\\n\\\\n# Load sc_answer_matrix\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\') as f:\\\\n    sc_matrix = json.load(f)\\\\n\\\\n# Load R NLI per-question data\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/direction_r_nli_large/results.json\\\\') as f:\\\\n    r_data = json.load(f)\\\\nr_pq = r_data[\\\\'per_question\\\\']\\\\n\\\\n# Step 1: Compute SC with dict-order and alphabetical tiebreaking\\\\nresults = []\\\\nfor i in range(204):\\\\n    key = f\\\\'folio_{i}\\\\'\\\\n    entry = sc_matrix[key]\\\\n    raw_answers = entry[\\\\'answers\\\\']\\\\n    gold = entry[\\\\'ground_truth\\\\']\\\\n    \\\\n    # Normalize\\\\n    clean = []\\\\n    for a in raw_answers:\\\\n        n = normalize(a)\\\\n        if n:\\\\n            clean.append(n)\\\\n    \\\\n    counter = Counter(clean)\\\\n    max_count = max(counter.values()) if counter else 0\\\\n    candidates = [k for k, v in counter.items() if v == max_count]\\\\n    \\\\n    # Dict-order: first inserted (Python 3.7+ dict order = insertion order of Counter)\\\\n    sc_dict = candidates[0] if candidates else \\\\'\\\\'\\\\n    \\\\n    # Alphabetical order\\\\n    sc_alpha = sorted(candidates)[0] if candidates else \\\\'\\\\'\\\\n    \\\\n    is_tie = len(candidates) > 1\\\\n    \\\\n    # R NLI data\\\\n    r_entry = r_pq.get(key, {})\\\\n    deberta_pred = r_entry.get(\\\\'deberta_pred\\\\', \\\\'\\\\')\\\\n    \\\\n    # Combo w=1: SC vote counts + 1 extra vote for DeBERTa pred\\\\n    combo_counts_w1 = dict(counter)\\\\n    combo_counts_w1[deberta_pred] = combo_counts_w1.get(deberta_pred, 0) + 1\\\\n    max_w1 = max(combo_counts_w1.values())\\\\n    cands_w1 = sorted([k for k, v in combo_counts_w1.items() if v == max_w1])\\\\n    combo_w1 = cands_w1[0]\\\\n    \\\\n    # Combo w=3: SC vote counts + 3 extra votes for DeBERTa pred\\\\n    combo_counts_w3 = dict(counter)\\\\n    combo_counts_w3[deberta_pred] = combo_counts_w3.get(deberta_pred, 0) + 3\\\\n    max_w3 = max(combo_counts_w3.values())\\\\n    cands_w3 = sorted([k for k, v in combo_counts_w3.items() if v == max_w3])\\\\n    combo_w3 = cands_w3[0]\\\\n    \\\\n    results.append({\\\\n        \\\\'id\\\\': i,\\\\n        \\\\'gold\\\\': gold,\\\\n        \\\\'sc_dict\\\\': sc_dict,\\\\n        \\\\'sc_alpha\\\\': sc_alpha,\\\\n        \\\\'is_tie\\\\': is_tie,\\\\n        \\\\'vote_counts\\\\': dict(counter),\\\\n        \\\\'deberta_pred\\\\': deberta_pred,\\\\n        \\\\'combo_w1\\\\': combo_w1,\\\\n        \\\\'combo_w3\\\\': combo_w3,\\\\n        \\\\'sc_dict_correct\\\\': sc_dict == gold,\\\\n        \\\\'sc_alpha_correct\\\\': sc_alpha == gold,\\\\n        \\\\'combo_w1_correct\\\\': combo_w1 == gold,\\\\n        \\\\'combo_w3_correct\\\\': combo_w3 == gold,\\\\n    })\\\\n\\\\n# Summary\\\\nsc_dict_acc = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'])\\\\nsc_alpha_acc = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'])\\\\ncombo_w1_acc = sum(1 for r in results if r[\\\\'combo_w1_correct\\\\'])\\\\ncombo_w3_acc = sum(1 for r in results if r[\\\\'combo_w3_correct\\\\'])\\\\n\\\\nprint(\\\"=\\\" * 60)\\\\nprint(\\\"SC Tiebreaking Comparison\\\")\\\\nprint(\\\"=\\\" * 60)\\\\nprint(f\\\"SC (dict-order):      {sc_dict_acc}/204 = {sc_dict_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"SC (alphabetical):    {sc_alpha_acc}/204 = {sc_alpha_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"Combo w=1:            {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"Combo w=3:            {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\")\\\\n\\\\n# Questions where SC answer changed\\\\nchanged = [r for r in results if r[\\\\'sc_dict\\\\'] != r[\\\\'sc_alpha\\\\']]\\\\nprint(f\\\"\\\\\\\\n--- Tie questions where SC answer changed ({len(changed)}) ---\\\")\\\\nfor r in changed:\\\\n    print(f\\\"  folio_{r[\\\\'id\\\\']}: gold={r[\\\\'gold\\\\']}, dict={r[\\\\'sc_dict\\\\']}, alpha={r[\\\\'sc_alpha\\\\']}, \\\"\\\\n          f\\\"votes={r[\\\\'vote_counts\\\\']}, dict_correct={r[\\\\'sc_dict_correct\\\\']}, alpha_correct={r[\\\\'sc_alpha_correct\\\\']}\\\")\\\\n\\\\n# All tie questions\\\\nties = [r for r in results if r[\\\\'is_tie\\\\']]\\\\nprint(f\\\"\\\\\\\\n--- All tie questions ({len(ties)}) ---\\\")\\\\nfor r in ties:\\\\n    print(f\\\"  folio_{r[\\\\'id\\\\']}: gold={r[\\\\'gold\\\\']}, dict={r[\\\\'sc_dict\\\\']}, alpha={r[\\\\'sc_alpha\\\\']}, \\\"\\\\n          f\\\"votes={r[\\\\'vote_counts\\\\']}\\\")\\\\n\\\\n# McNemar: old SC vs combo w=1\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\" * 60)\\\\nprint(\\\"McNemar: OLD SC (dict) vs Combo w=1\\\")\\\\nb_old_w1 = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'] and not r[\\\\'combo_w1_correct\\\\'])\\\\nc_old_w1 = sum(1 for r in results if not r[\\\\'sc_dict_correct\\\\'] and r[\\\\'combo_w1_correct\\\\'])\\\\np_old_w1 = exact_mcnemar_p(b_old_w1, c_old_w1)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_old_w1}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_old_w1}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_old_w1:.6f}\\\")\\\\n\\\\n# McNemar: NEW SC (alpha) vs combo w=1\\\\nprint(\\\"\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\\")\\\\nb_new_w1 = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'] and not r[\\\\'combo_w1_correct\\\\'])\\\\nc_new_w1 = sum(1 for r in results if not r[\\\\'sc_alpha_correct\\\\'] and r[\\\\'combo_w1_correct\\\\'])\\\\np_new_w1 = exact_mcnemar_p(b_new_w1, c_new_w1)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_new_w1}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_new_w1}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_new_w1:.6f}\\\")\\\\n\\\\n# McNemar: old SC vs combo w=3\\\\nprint(\\\"\\\\\\\\nMcNemar: OLD SC (dict) vs Combo w=3\\\")\\\\nb_old_w3 = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'] and not r[\\\\'combo_w3_correct\\\\'])\\\\nc_old_w3 = sum(1 for r in results if not r[\\\\'sc_dict_correct\\\\'] and r[\\\\'combo_w3_correct\\\\'])\\\\np_old_w3 = exact_mcnemar_p(b_old_w3, c_old_w3)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_old_w3}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_old_w3}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_old_w3:.6f}\\\")\\\\n\\\\n# McNemar: NEW SC (alpha) vs combo w=3\\\\nprint(\\\"\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\\")\\\\nb_new_w3 = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'] and not r[\\\\'combo_w3_correct\\\\'])\\\\nc_new_w3 = sum(1 for r in results if not r[\\\\'sc_alpha_correct\\\\'] and r[\\\\'combo_w3_correct\\\\'])\\\\np_new_w3 = exact_mcnemar_p(b_new_w3, c_new_w3)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_new_w3}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_new_w3}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_new_w3:.6f}\\\")\\\\n\\\\n# Verify combo w=1 and w=3 match original report\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\" * 60)\\\\nprint(\\\"Verification vs original R combo report\\\")\\\\nprint(f\\\"  Original combo w=1: {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_1\\\\'][\\\\'correct\\\\']}/204 = {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_1\\\\'][\\\\'accuracy\\\\']*100:.2f}%\\\")\\\\nprint(f\\\"  Recomputed combo w=1: {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"  Original combo w=3: {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_3\\\\'][\\\\'correct\\\\']}/204 = {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_3\\\\'][\\\\'accuracy\\\\']*100:.2f}%\\\")\\\\nprint(f\\\"  Recomputed combo w=3: {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\")\\\\n\\\\n# Save full results\\\\noutput = {\\\\n    \\\\'sc_dict\\\\': {\\\\'correct\\\\': sc_dict_acc, \\\\'accuracy\\\\': sc_dict_acc/204},\\\\n    \\\\'sc_alpha\\\\': {\\\\'correct\\\\': sc_alpha_acc, \\\\'accuracy\\\\': sc_alpha_acc/204},\\\\n    \\\\'combo_w1\\\\': {\\\\'correct\\\\': combo_w1_acc, \\\\'accuracy\\\\': combo_w1_acc/204},\\\\n    \\\\'combo_w3\\\\': {\\\\'correct\\\\': combo_w3_acc, \\\\'accuracy\\\\': combo_w3_acc/204},\\\\n    \\\\'mcnemar_old_sc_vs_w1\\\\': {\\\\'b\\\\': b_old_w1, \\\\'c\\\\': c_old_w1, \\\\'p\\\\': p_old_w1},\\\\n    \\\\'mcnemar_new_sc_vs_w1\\\\': {\\\\'b\\\\': b_new_w1, \\\\'c\\\\': c_new_w1, \\\\'p\\\\': p_new_w1},\\\\n    \\\\'mcnemar_old_sc_vs_w3\\\\': {\\\\'b\\\\': b_old_w3, \\\\'c\\\\': c_old_w3, \\\\'p\\\\': p_old_w3},\\\\n    \\\\'mcnemar_new_sc_vs_w3\\\\': {\\\\'b\\\\': b_new_w3, \\\\'c\\\\': c_new_w3, \\\\'p\\\\': p_new_w3},\\\\n    \\\\'changed_questions\\\\': [{\\\\'id\\\\': r[\\\\'id\\\\'], \\\\'gold\\\\': r[\\\\'gold\\\\'], \\\\'sc_dict\\\\': r[\\\\'sc_dict\\\\'], \\\\'sc_alpha\\\\': r[\\\\'sc_alpha\\\\'], \\\\'votes\\\\': r[\\\\'vote_counts\\\\']} for r in changed],\\\\n    \\\\'per_question\\\\': results,\\\\n}\\\\nwith open(\\\\'/tmp/sc_tiebreak_mcnemar_results.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\"\\\\\\\\nFull results saved to /tmp/sc_tiebreak_mcnemar_results.json\\\")\\\\nPYEOF\\\\ncd /root/symb_invariant_consensus && python3 /tmp/sc_tiebreak_mcnemar.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 184: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "1dd977a2-d4bd-45e4-b39b-6d3deb939308",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat << \\\\\\\\'PYEOF\\\\\\\\' > /tmp/sc_tiebreak_mcnemar.py\\\\\\\\nimport json\\\\\\\\nfrom collections import Counter\\\\\\\\nfrom math import factorial\\\\\\\\n\\\\\\\\ndef exact_mcnemar_p(b, c):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Two-sided exact McNemar test (binomial).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    n = b + c\\\\\\\\n    if n == 0:\\\\\\\\n        return 1.0\\\\\\\\n    k = min(b, c)\\\\\\\\n    # P(X <= k) under Binom(n, 0.5), two-sided\\\\\\\\n    p = 0.0\\\\\\\\n    for i in range(k + 1):\\\\\\\\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\\\\\\\\n    return min(2 * p, 1.0)\\\\\\\\n\\\\\\\\nnorm_map = {\\\\\\\"true\\\\\\\": \\\\\\\"True\\\\\\\", \\\\\\\"false\\\\\\\": \\\\\\\"False\\\\\\\", \\\\\\\"unknown\\\\\\\": \\\\\\\"Unknown\\\\\\\", \\\\\\\"uncertain\\\\\\\": \\\\\\\"Unknown\\\\\\\"}\\\\\\\\n\\\\\\\\ndef normalize(a):\\\\\\\\n    a = a.strip().lower()\\\\\\\\n    return norm_map.get(a, \\\\\\\"\\\\\\\")\\\\\\\\n\\\\\\\\n# Load sc_answer_matrix\\\\\\\\nwith open(\\\\\\\\'/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\\\\\') as f:\\\\\\\\n    sc_matrix = json.load(f)\\\\\\\\n\\\\\\\\n# Load R NLI per-question data\\\\\\\\nwith open(\\\\\\\\'/root/symb_invariant_consensus/results/direction_r_nli_large/results.json\\\\\\\\') as f:\\\\\\\\n    r_data = json.load(f)\\\\\\\\nr_pq = r_data[\\\\\\\\'per_question\\\\\\\\']\\\\\\\\n\\\\\\\\n# Step 1: Compute SC with dict-order and alphabetical tiebreaking\\\\\\\\nresults = []\\\\\\\\nfor i in range(204):\\\\\\\\n    key = f\\\\\\\\'folio_{i}\\\\\\\\'\\\\\\\\n    entry = sc_matrix[key]\\\\\\\\n    raw_answers = entry[\\\\\\\\'answers\\\\\\\\']\\\\\\\\n    gold = entry[\\\\\\\\'ground_truth\\\\\\\\']\\\\\\\\n    \\\\\\\\n    # Normalize\\\\\\\\n    clean = []\\\\\\\\n    for a in raw_answers:\\\\\\\\n        n = normalize(a)\\\\\\\\n        if n:\\\\\\\\n            clean.append(n)\\\\\\\\n    \\\\\\\\n    counter = Counter(clean)\\\\\\\\n    max_count = max(counter.values()) if counter else 0\\\\\\\\n    candidates = [k for k, v in counter.items() if v == max_count]\\\\\\\\n    \\\\\\\\n    # Dict-order: first inserted (Python 3.7+ dict order = insertion order of Counter)\\\\\\\\n    sc_dict = candidates[0] if candidates else \\\\\\\\'\\\\\\\\'\\\\\\\\n    \\\\\\\\n    # Alphabetical order\\\\\\\\n    sc_alpha = sorted(candidates)[0] if candidates else \\\\\\\\'\\\\\\\\'\\\\\\\\n    \\\\\\\\n    is_tie = len(candidates) > 1\\\\\\\\n    \\\\\\\\n    # R NLI data\\\\\\\\n    r_entry = r_pq.get(key, {})\\\\\\\\n    deberta_pred = r_entry.get(\\\\\\\\'deberta_pred\\\\\\\\', \\\\\\\\'\\\\\\\\')\\\\\\\\n    \\\\\\\\n    # Combo w=1: SC vote counts + 1 extra vote for DeBERTa pred\\\\\\\\n    combo_counts_w1 = dict(counter)\\\\\\\\n    combo_counts_w1[deberta_pred] = combo_counts_w1.get(deberta_pred, 0) + 1\\\\\\\\n    max_w1 = max(combo_counts_w1.values())\\\\\\\\n    cands_w1 = sorted([k for k, v in combo_counts_w1.items() if v == max_w1])\\\\\\\\n    combo_w1 = cands_w1[0]\\\\\\\\n    \\\\\\\\n    # Combo w=3: SC vote counts + 3 extra votes for DeBERTa pred\\\\\\\\n    combo_counts_w3 = dict(counter)\\\\\\\\n    combo_counts_w3[deberta_pred] = combo_counts_w3.get(deberta_pred, 0) + 3\\\\\\\\n    max_w3 = max(combo_counts_w3.values())\\\\\\\\n    cands_w3 = sorted([k for k, v in combo_counts_w3.items() if v == max_w3])\\\\\\\\n    combo_w3 = cands_w3[0]\\\\\\\\n    \\\\\\\\n    results.append({\\\\\\\\n        \\\\\\\\'id\\\\\\\\': i,\\\\\\\\n        \\\\\\\\'gold\\\\\\\\': gold,\\\\\\\\n        \\\\\\\\'sc_dict\\\\\\\\': sc_dict,\\\\\\\\n        \\\\\\\\'sc_alpha\\\\\\\\': sc_alpha,\\\\\\\\n        \\\\\\\\'is_tie\\\\\\\\': is_tie,\\\\\\\\n        \\\\\\\\'vote_counts\\\\\\\\': dict(counter),\\\\\\\\n        \\\\\\\\'deberta_pred\\\\\\\\': deberta_pred,\\\\\\\\n        \\\\\\\\'combo_w1\\\\\\\\': combo_w1,\\\\\\\\n        \\\\\\\\'combo_w3\\\\\\\\': combo_w3,\\\\\\\\n        \\\\\\\\'sc_dict_correct\\\\\\\\': sc_dict == gold,\\\\\\\\n        \\\\\\\\'sc_alpha_correct\\\\\\\\': sc_alpha == gold,\\\\\\\\n        \\\\\\\\'combo_w1_correct\\\\\\\\': combo_w1 == gold,\\\\\\\\n        \\\\\\\\'combo_w3_correct\\\\\\\\': combo_w3 == gold,\\\\\\\\n    })\\\\\\\\n\\\\\\\\n# Summary\\\\\\\\nsc_dict_acc = sum(1 for r in results if r[\\\\\\\\'sc_dict_correct\\\\\\\\'])\\\\\\\\nsc_alpha_acc = sum(1 for r in results if r[\\\\\\\\'sc_alpha_correct\\\\\\\\'])\\\\\\\\ncombo_w1_acc = sum(1 for r in results if r[\\\\\\\\'combo_w1_correct\\\\\\\\'])\\\\\\\\ncombo_w3_acc = sum(1 for r in results if r[\\\\\\\\'combo_w3_correct\\\\\\\\'])\\\\\\\\n\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(\\\\\\\"SC Tiebreaking Comparison\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(f\\\\\\\"SC (dict-order):      {sc_dict_acc}/204 = {sc_dict_acc/204*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"SC (alphabetical):    {sc_alpha_acc}/204 = {sc_alpha_acc/204*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Combo w=1:            {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Combo w=3:            {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\\\\\")\\\\\\\\n\\\\\\\\n# Questions where SC answer changed\\\\\\\\nchanged = [r for r in results if r[\\\\\\\\'sc_dict\\\\\\\\'] != r[\\\\\\\\'sc_alpha\\\\\\\\']]\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- Tie questions where SC answer changed ({len(changed)}) ---\\\\\\\")\\\\\\\\nfor r in changed:\\\\\\\\n    print(f\\\\\\\"  folio_{r[\\\\\\\\'id\\\\\\\\']}: gold={r[\\\\\\\\'gold\\\\\\\\']}, dict={r[\\\\\\\\'sc_dict\\\\\\\\']}, alpha={r[\\\\\\\\'sc_alpha\\\\\\\\']}, \\\\\\\"\\\\\\\\n          f\\\\\\\"votes={r[\\\\\\\\'vote_counts\\\\\\\\']}, dict_correct={r[\\\\\\\\'sc_dict_correct\\\\\\\\']}, alpha_correct={r[\\\\\\\\'sc_alpha_correct\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\n# All tie questions\\\\\\\\nties = [r for r in results if r[\\\\\\\\'is_tie\\\\\\\\']]\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- All tie questions ({len(ties)}) ---\\\\\\\")\\\\\\\\nfor r in ties:\\\\\\\\n    print(f\\\\\\\"  folio_{r[\\\\\\\\'id\\\\\\\\']}: gold={r[\\\\\\\\'gold\\\\\\\\']}, dict={r[\\\\\\\\'sc_dict\\\\\\\\']}, alpha={r[\\\\\\\\'sc_alpha\\\\\\\\']}, \\\\\\\"\\\\\\\\n          f\\\\\\\"votes={r[\\\\\\\\'vote_counts\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\n# McNemar: old SC vs combo w=1\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(\\\\\\\"McNemar: OLD SC (dict) vs Combo w=1\\\\\\\")\\\\\\\\nb_old_w1 = sum(1 for r in results if r[\\\\\\\\'sc_dict_correct\\\\\\\\'] and not r[\\\\\\\\'combo_w1_correct\\\\\\\\'])\\\\\\\\nc_old_w1 = sum(1 for r in results if not r[\\\\\\\\'sc_dict_correct\\\\\\\\'] and r[\\\\\\\\'combo_w1_correct\\\\\\\\'])\\\\\\\\np_old_w1 = exact_mcnemar_p(b_old_w1, c_old_w1)\\\\\\\\nprint(f\\\\\\\"  b (SC correct, combo wrong) = {b_old_w1}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  c (SC wrong, combo correct) = {c_old_w1}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  p-value (exact) = {p_old_w1:.6f}\\\\\\\")\\\\\\\\n\\\\\\\\n# McNemar: NEW SC (alpha) vs combo w=1\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\\\\\\")\\\\\\\\nb_new_w1 = sum(1 for r in results if r[\\\\\\\\'sc_alpha_correct\\\\\\\\'] and not r[\\\\\\\\'combo_w1_correct\\\\\\\\'])\\\\\\\\nc_new_w1 = sum(1 for r in results if not r[\\\\\\\\'sc_alpha_correct\\\\\\\\'] and r[\\\\\\\\'combo_w1_correct\\\\\\\\'])\\\\\\\\np_new_w1 = exact_mcnemar_p(b_new_w1, c_new_w1)\\\\\\\\nprint(f\\\\\\\"  b (SC correct, combo wrong) = {b_new_w1}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  c (SC wrong, combo correct) = {c_new_w1}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  p-value (exact) = {p_new_w1:.6f}\\\\\\\")\\\\\\\\n\\\\\\\\n# McNemar: old SC vs combo w=3\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nMcNemar: OLD SC (dict) vs Combo w=3\\\\\\\")\\\\\\\\nb_old_w3 = sum(1 for r in results if r[\\\\\\\\'sc_dict_correct\\\\\\\\'] and not r[\\\\\\\\'combo_w3_correct\\\\\\\\'])\\\\\\\\nc_old_w3 = sum(1 for r in results if not r[\\\\\\\\'sc_dict_correct\\\\\\\\'] and r[\\\\\\\\'combo_w3_correct\\\\\\\\'])\\\\\\\\np_old_w3 = exact_mcnemar_p(b_old_w3, c_old_w3)\\\\\\\\nprint(f\\\\\\\"  b (SC correct, combo wrong) = {b_old_w3}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  c (SC wrong, combo correct) = {c_old_w3}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  p-value (exact) = {p_old_w3:.6f}\\\\\\\")\\\\\\\\n\\\\\\\\n# McNemar: NEW SC (alpha) vs combo w=3\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\\\\\\")\\\\\\\\nb_new_w3 = sum(1 for r in results if r[\\\\\\\\'sc_alpha_correct\\\\\\\\'] and not r[\\\\\\\\'combo_w3_correct\\\\\\\\'])\\\\\\\\nc_new_w3 = sum(1 for r in results if not r[\\\\\\\\'sc_alpha_correct\\\\\\\\'] and r[\\\\\\\\'combo_w3_correct\\\\\\\\'])\\\\\\\\np_new_w3 = exact_mcnemar_p(b_new_w3, c_new_w3)\\\\\\\\nprint(f\\\\\\\"  b (SC correct, combo wrong) = {b_new_w3}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  c (SC wrong, combo correct) = {c_new_w3}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  p-value (exact) = {p_new_w3:.6f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Verify combo w=1 and w=3 match original report\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\\\\\nprint(\\\\\\\"Verification vs original R combo report\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Original combo w=1: {r_data[\\\\\\\\'exp_r3_combo\\\\\\\\'][\\\\\\\\'deberta_weight_1\\\\\\\\'][\\\\\\\\'correct\\\\\\\\']}/204 = {r_data[\\\\\\\\'exp_r3_combo\\\\\\\\'][\\\\\\\\'deberta_weight_1\\\\\\\\'][\\\\\\\\'accuracy\\\\\\\\']*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Recomputed combo w=1: {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Original combo w=3: {r_data[\\\\\\\\'exp_r3_combo\\\\\\\\'][\\\\\\\\'deberta_weight_3\\\\\\\\'][\\\\\\\\'correct\\\\\\\\']}/204 = {r_data[\\\\\\\\'exp_r3_combo\\\\\\\\'][\\\\\\\\'deberta_weight_3\\\\\\\\'][\\\\\\\\'accuracy\\\\\\\\']*100:.2f}%\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Recomputed combo w=3: {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\\\\\")\\\\\\\\n\\\\\\\\n# Save full results\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\\'sc_dict\\\\\\\\': {\\\\\\\\'correct\\\\\\\\': sc_dict_acc, \\\\\\\\'accuracy\\\\\\\\': sc_dict_acc/204},\\\\\\\\n    \\\\\\\\'sc_alpha\\\\\\\\': {\\\\\\\\'correct\\\\\\\\': sc_alpha_acc, \\\\\\\\'accuracy\\\\\\\\': sc_alpha_acc/204},\\\\\\\\n    \\\\\\\\'combo_w1\\\\\\\\': {\\\\\\\\'correct\\\\\\\\': combo_w1_acc, \\\\\\\\'accuracy\\\\\\\\': combo_w1_acc/204},\\\\\\\\n    \\\\\\\\'combo_w3\\\\\\\\': {\\\\\\\\'correct\\\\\\\\': combo_w3_acc, \\\\\\\\'accuracy\\\\\\\\': combo_w3_acc/204},\\\\\\\\n    \\\\\\\\'mcnemar_old_sc_vs_w1\\\\\\\\': {\\\\\\\\'b\\\\\\\\': b_old_w1, \\\\\\\\'c\\\\\\\\': c_old_w1, \\\\\\\\'p\\\\\\\\': p_old_w1},\\\\\\\\n    \\\\\\\\'mcnemar_new_sc_vs_w1\\\\\\\\': {\\\\\\\\'b\\\\\\\\': b_new_w1, \\\\\\\\'c\\\\\\\\': c_new_w1, \\\\\\\\'p\\\\\\\\': p_new_w1},\\\\\\\\n    \\\\\\\\'mcnemar_old_sc_vs_w3\\\\\\\\': {\\\\\\\\'b\\\\\\\\': b_old_w3, \\\\\\\\'c\\\\\\\\': c_old_w3, \\\\\\\\'p\\\\\\\\': p_old_w3},\\\\\\\\n    \\\\\\\\'mcnemar_new_sc_vs_w3\\\\\\\\': {\\\\\\\\'b\\\\\\\\': b_new_w3, \\\\\\\\'c\\\\\\\\': c_new_w3, \\\\\\\\'p\\\\\\\\': p_new_w3},\\\\\\\\n    \\\\\\\\'changed_questions\\\\\\\\': [{\\\\\\\\'id\\\\\\\\': r[\\\\\\\\'id\\\\\\\\'], \\\\\\\\'gold\\\\\\\\': r[\\\\\\\\'gold\\\\\\\\'], \\\\\\\\'sc_dict\\\\\\\\': r[\\\\\\\\'sc_dict\\\\\\\\'], \\\\\\\\'sc_alpha\\\\\\\\': r[\\\\\\\\'sc_alpha\\\\\\\\'], \\\\\\\\'votes\\\\\\\\': r[\\\\\\\\'vote_counts\\\\\\\\']} for r in changed],\\\\\\\\n    \\\\\\\\'per_question\\\\\\\\': results,\\\\\\\\n}\\\\\\\\nwith open(\\\\\\\\'/tmp/sc_tiebreak_mcnemar_results.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nFull results saved to /tmp/sc_tiebreak_mcnemar_results.json\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\ncd /root/symb_invariant_consensus && python3 /tmp/sc_tiebreak_mcnemar.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 184: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /tmp/sc_tiebreak_mcnemar.py\\\\nimport json\\\\nfrom collections import Counter\\\\nfrom math import factorial\\\\n\\\\ndef exact_mcnemar_p(b, c):\\\\n    \\\"\\\"\\\"Two-sided exact McNemar test (binomial).\\\"\\\"\\\"\\\\n    n = b + c\\\\n    if n == 0:\\\\n        return 1.0\\\\n    k = min(b, c)\\\\n    # P(X <= k) under Binom(n, 0.5), two-sided\\\\n    p = 0.0\\\\n    for i in range(k + 1):\\\\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\\\\n    return min(2 * p, 1.0)\\\\n\\\\nnorm_map = {\\\"true\\\": \\\"True\\\", \\\"false\\\": \\\"False\\\", \\\"unknown\\\": \\\"Unknown\\\", \\\"uncertain\\\": \\\"Unknown\\\"}\\\\n\\\\ndef normalize(a):\\\\n    a = a.strip().lower()\\\\n    return norm_map.get(a, \\\"\\\")\\\\n\\\\n# Load sc_answer_matrix\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\') as f:\\\\n    sc_matrix = json.load(f)\\\\n\\\\n# Load R NLI per-question data\\\\nwith open(\\\\'/root/symb_invariant_consensus/results/direction_r_nli_large/results.json\\\\') as f:\\\\n    r_data = json.load(f)\\\\nr_pq = r_data[\\\\'per_question\\\\']\\\\n\\\\n# Step 1: Compute SC with dict-order and alphabetical tiebreaking\\\\nresults = []\\\\nfor i in range(204):\\\\n    key = f\\\\'folio_{i}\\\\'\\\\n    entry = sc_matrix[key]\\\\n    raw_answers = entry[\\\\'answers\\\\']\\\\n    gold = entry[\\\\'ground_truth\\\\']\\\\n    \\\\n    # Normalize\\\\n    clean = []\\\\n    for a in raw_answers:\\\\n        n = normalize(a)\\\\n        if n:\\\\n            clean.append(n)\\\\n    \\\\n    counter = Counter(clean)\\\\n    max_count = max(counter.values()) if counter else 0\\\\n    candidates = [k for k, v in counter.items() if v == max_count]\\\\n    \\\\n    # Dict-order: first inserted (Python 3.7+ dict order = insertion order of Counter)\\\\n    sc_dict = candidates[0] if candidates else \\\\'\\\\'\\\\n    \\\\n    # Alphabetical order\\\\n    sc_alpha = sorted(candidates)[0] if candidates else \\\\'\\\\'\\\\n    \\\\n    is_tie = len(candidates) > 1\\\\n    \\\\n    # R NLI data\\\\n    r_entry = r_pq.get(key, {})\\\\n    deberta_pred = r_entry.get(\\\\'deberta_pred\\\\', \\\\'\\\\')\\\\n    \\\\n    # Combo w=1: SC vote counts + 1 extra vote for DeBERTa pred\\\\n    combo_counts_w1 = dict(counter)\\\\n    combo_counts_w1[deberta_pred] = combo_counts_w1.get(deberta_pred, 0) + 1\\\\n    max_w1 = max(combo_counts_w1.values())\\\\n    cands_w1 = sorted([k for k, v in combo_counts_w1.items() if v == max_w1])\\\\n    combo_w1 = cands_w1[0]\\\\n    \\\\n    # Combo w=3: SC vote counts + 3 extra votes for DeBERTa pred\\\\n    combo_counts_w3 = dict(counter)\\\\n    combo_counts_w3[deberta_pred] = combo_counts_w3.get(deberta_pred, 0) + 3\\\\n    max_w3 = max(combo_counts_w3.values())\\\\n    cands_w3 = sorted([k for k, v in combo_counts_w3.items() if v == max_w3])\\\\n    combo_w3 = cands_w3[0]\\\\n    \\\\n    results.append({\\\\n        \\\\'id\\\\': i,\\\\n        \\\\'gold\\\\': gold,\\\\n        \\\\'sc_dict\\\\': sc_dict,\\\\n        \\\\'sc_alpha\\\\': sc_alpha,\\\\n        \\\\'is_tie\\\\': is_tie,\\\\n        \\\\'vote_counts\\\\': dict(counter),\\\\n        \\\\'deberta_pred\\\\': deberta_pred,\\\\n        \\\\'combo_w1\\\\': combo_w1,\\\\n        \\\\'combo_w3\\\\': combo_w3,\\\\n        \\\\'sc_dict_correct\\\\': sc_dict == gold,\\\\n        \\\\'sc_alpha_correct\\\\': sc_alpha == gold,\\\\n        \\\\'combo_w1_correct\\\\': combo_w1 == gold,\\\\n        \\\\'combo_w3_correct\\\\': combo_w3 == gold,\\\\n    })\\\\n\\\\n# Summary\\\\nsc_dict_acc = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'])\\\\nsc_alpha_acc = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'])\\\\ncombo_w1_acc = sum(1 for r in results if r[\\\\'combo_w1_correct\\\\'])\\\\ncombo_w3_acc = sum(1 for r in results if r[\\\\'combo_w3_correct\\\\'])\\\\n\\\\nprint(\\\"=\\\" * 60)\\\\nprint(\\\"SC Tiebreaking Comparison\\\")\\\\nprint(\\\"=\\\" * 60)\\\\nprint(f\\\"SC (dict-order):      {sc_dict_acc}/204 = {sc_dict_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"SC (alphabetical):    {sc_alpha_acc}/204 = {sc_alpha_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"Combo w=1:            {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"Combo w=3:            {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\")\\\\n\\\\n# Questions where SC answer changed\\\\nchanged = [r for r in results if r[\\\\'sc_dict\\\\'] != r[\\\\'sc_alpha\\\\']]\\\\nprint(f\\\"\\\\\\\\n--- Tie questions where SC answer changed ({len(changed)}) ---\\\")\\\\nfor r in changed:\\\\n    print(f\\\"  folio_{r[\\\\'id\\\\']}: gold={r[\\\\'gold\\\\']}, dict={r[\\\\'sc_dict\\\\']}, alpha={r[\\\\'sc_alpha\\\\']}, \\\"\\\\n          f\\\"votes={r[\\\\'vote_counts\\\\']}, dict_correct={r[\\\\'sc_dict_correct\\\\']}, alpha_correct={r[\\\\'sc_alpha_correct\\\\']}\\\")\\\\n\\\\n# All tie questions\\\\nties = [r for r in results if r[\\\\'is_tie\\\\']]\\\\nprint(f\\\"\\\\\\\\n--- All tie questions ({len(ties)}) ---\\\")\\\\nfor r in ties:\\\\n    print(f\\\"  folio_{r[\\\\'id\\\\']}: gold={r[\\\\'gold\\\\']}, dict={r[\\\\'sc_dict\\\\']}, alpha={r[\\\\'sc_alpha\\\\']}, \\\"\\\\n          f\\\"votes={r[\\\\'vote_counts\\\\']}\\\")\\\\n\\\\n# McNemar: old SC vs combo w=1\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\" * 60)\\\\nprint(\\\"McNemar: OLD SC (dict) vs Combo w=1\\\")\\\\nb_old_w1 = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'] and not r[\\\\'combo_w1_correct\\\\'])\\\\nc_old_w1 = sum(1 for r in results if not r[\\\\'sc_dict_correct\\\\'] and r[\\\\'combo_w1_correct\\\\'])\\\\np_old_w1 = exact_mcnemar_p(b_old_w1, c_old_w1)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_old_w1}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_old_w1}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_old_w1:.6f}\\\")\\\\n\\\\n# McNemar: NEW SC (alpha) vs combo w=1\\\\nprint(\\\"\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\\")\\\\nb_new_w1 = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'] and not r[\\\\'combo_w1_correct\\\\'])\\\\nc_new_w1 = sum(1 for r in results if not r[\\\\'sc_alpha_correct\\\\'] and r[\\\\'combo_w1_correct\\\\'])\\\\np_new_w1 = exact_mcnemar_p(b_new_w1, c_new_w1)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_new_w1}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_new_w1}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_new_w1:.6f}\\\")\\\\n\\\\n# McNemar: old SC vs combo w=3\\\\nprint(\\\"\\\\\\\\nMcNemar: OLD SC (dict) vs Combo w=3\\\")\\\\nb_old_w3 = sum(1 for r in results if r[\\\\'sc_dict_correct\\\\'] and not r[\\\\'combo_w3_correct\\\\'])\\\\nc_old_w3 = sum(1 for r in results if not r[\\\\'sc_dict_correct\\\\'] and r[\\\\'combo_w3_correct\\\\'])\\\\np_old_w3 = exact_mcnemar_p(b_old_w3, c_old_w3)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_old_w3}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_old_w3}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_old_w3:.6f}\\\")\\\\n\\\\n# McNemar: NEW SC (alpha) vs combo w=3\\\\nprint(\\\"\\\\\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\\")\\\\nb_new_w3 = sum(1 for r in results if r[\\\\'sc_alpha_correct\\\\'] and not r[\\\\'combo_w3_correct\\\\'])\\\\nc_new_w3 = sum(1 for r in results if not r[\\\\'sc_alpha_correct\\\\'] and r[\\\\'combo_w3_correct\\\\'])\\\\np_new_w3 = exact_mcnemar_p(b_new_w3, c_new_w3)\\\\nprint(f\\\"  b (SC correct, combo wrong) = {b_new_w3}\\\")\\\\nprint(f\\\"  c (SC wrong, combo correct) = {c_new_w3}\\\")\\\\nprint(f\\\"  p-value (exact) = {p_new_w3:.6f}\\\")\\\\n\\\\n# Verify combo w=1 and w=3 match original report\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\" * 60)\\\\nprint(\\\"Verification vs original R combo report\\\")\\\\nprint(f\\\"  Original combo w=1: {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_1\\\\'][\\\\'correct\\\\']}/204 = {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_1\\\\'][\\\\'accuracy\\\\']*100:.2f}%\\\")\\\\nprint(f\\\"  Recomputed combo w=1: {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\\\")\\\\nprint(f\\\"  Original combo w=3: {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_3\\\\'][\\\\'correct\\\\']}/204 = {r_data[\\\\'exp_r3_combo\\\\'][\\\\'deberta_weight_3\\\\'][\\\\'accuracy\\\\']*100:.2f}%\\\")\\\\nprint(f\\\"  Recomputed combo w=3: {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\\\")\\\\n\\\\n# Save full results\\\\noutput = {\\\\n    \\\\'sc_dict\\\\': {\\\\'correct\\\\': sc_dict_acc, \\\\'accuracy\\\\': sc_dict_acc/204},\\\\n    \\\\'sc_alpha\\\\': {\\\\'correct\\\\': sc_alpha_acc, \\\\'accuracy\\\\': sc_alpha_acc/204},\\\\n    \\\\'combo_w1\\\\': {\\\\'correct\\\\': combo_w1_acc, \\\\'accuracy\\\\': combo_w1_acc/204},\\\\n    \\\\'combo_w3\\\\': {\\\\'correct\\\\': combo_w3_acc, \\\\'accuracy\\\\': combo_w3_acc/204},\\\\n    \\\\'mcnemar_old_sc_vs_w1\\\\': {\\\\'b\\\\': b_old_w1, \\\\'c\\\\': c_old_w1, \\\\'p\\\\': p_old_w1},\\\\n    \\\\'mcnemar_new_sc_vs_w1\\\\': {\\\\'b\\\\': b_new_w1, \\\\'c\\\\': c_new_w1, \\\\'p\\\\': p_new_w1},\\\\n    \\\\'mcnemar_old_sc_vs_w3\\\\': {\\\\'b\\\\': b_old_w3, \\\\'c\\\\': c_old_w3, \\\\'p\\\\': p_old_w3},\\\\n    \\\\'mcnemar_new_sc_vs_w3\\\\': {\\\\'b\\\\': b_new_w3, \\\\'c\\\\': c_new_w3, \\\\'p\\\\': p_new_w3},\\\\n    \\\\'changed_questions\\\\': [{\\\\'id\\\\': r[\\\\'id\\\\'], \\\\'gold\\\\': r[\\\\'gold\\\\'], \\\\'sc_dict\\\\': r[\\\\'sc_dict\\\\'], \\\\'sc_alpha\\\\': r[\\\\'sc_alpha\\\\'], \\\\'votes\\\\': r[\\\\'vote_counts\\\\']} for r in changed],\\\\n    \\\\'per_question\\\\': results,\\\\n}\\\\nwith open(\\\\'/tmp/sc_tiebreak_mcnemar_results.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\"\\\\\\\\nFull results saved to /tmp/sc_tiebreak_mcnemar_results.json\\\")\\\\nPYEOF\\\\ncd /root/symb_invariant_consensus && python3 /tmp/sc_tiebreak_mcnemar.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 184: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 not found. Let me check the environment - this might be a conda environment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "0a5a554c-47c3-4abb-b867-5db2aafc2953",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrkEpJAiZDs9GFfxcsrFAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8414,
+      "cache_read_input_tokens": 53788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+需要检测 Python 环境。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "e54c2796-9eb4-4ef7-a0e5-169543bc4c6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrkEpJAiZDs9GFfxcsrFAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8414,
+      "cache_read_input_tokens": 53788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XFixR96cc5BNEjGkeR97Ft`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "360c1b3a-9b8f-4b77-b5a0-2cb9750cb8cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrkEpJAiZDs9GFfxcsrFAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8414,
+      "cache_read_input_tokens": 53788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_01XXBbpdaQd1UWKFzomu4FmS`</summary>
+
+```json
+{
+  "server": "westd-25068"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "c26f0bbf-7088-4e9b-a3e4-63684226a03d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrkEpJAiZDs9GFfxcsrFAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8414,
+      "cache_read_input_tokens": 53788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T14:17:04.853Z_
+
+<details><summary>↩ Tool result · `toolu_01XFixR96cc5BNEjGkeR97Ft`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "20f80eb9-75cc-4ca7-9e80-76dfcec40cf0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T14:17:05.391Z_
+
+<details><summary>↩ Tool result · `toolu_01XXBbpdaQd1UWKFzomu4FmS`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "7bfe225c-6b12-446b-9a32-93188f3801b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014qovtNtwRgNhfkz3fooeCi`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat << 'PYEOF' > /tmp/sc_tiebreak_mcnemar.py\nimport json\nfrom collections import Counter\nfrom math import factorial\n\ndef exact_mcnemar_p(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    k = min(b, c)\n    p = 0.0\n    for i in range(k + 1):\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\n    return min(2 * p, 1.0)\n\nnorm_map = {\"true\": \"True\", \"false\": \"False\", \"unknown\": \"Unknown\", \"uncertain\": \"Unknown\"}\n\ndef normalize(a):\n    a = a.strip().lower()\n    return norm_map.get(a, \"\")\n\nwith open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json') as f:\n    sc_matrix = json.load(f)\n\nwith open('/root/symb_invariant_consensus/results/direction_r_nli_large/results.json') as f:\n    r_data = json.load(f)\nr_pq = r_data['per_question']\n\nresults = []\nfor i in range(204):\n    key = f'folio_{i}'\n    entry = sc_matrix[key]\n    raw_answers = entry['answers']\n    gold = entry['ground_truth']\n    \n    clean = []\n    for a in raw_answers:\n        n = normalize(a)\n        if n:\n            clean.append(n)\n    \n    counter = Counter(clean)\n    max_count = max(counter.values()) if counter else 0\n    candidates = [k for k, v in counter.items() if v == max_count]\n    \n    sc_dict = candidates[0] if candidates else ''\n    sc_alpha = sorted(candidates)[0] if candidates else ''\n    is_tie = len(candidates) > 1\n    \n    r_entry = r_pq.get(key, {})\n    deberta_pred = r_entry.get('deberta_pred', '')\n    \n    combo_counts_w1 = dict(counter)\n    combo_counts_w1[deberta_pred] = combo_counts_w1.get(deberta_pred, 0) + 1\n    max_w1 = max(combo_counts_w1.values())\n    cands_w1 = sorted([k for k, v in combo_counts_w1.items() if v == max_w1])\n    combo_w1 = cands_w1[0]\n    \n    combo_counts_w3 = dict(counter)\n    combo_counts_w3[deberta_pred] = combo_counts_w3.get(deberta_pred, 0) + 3\n    max_w3 = max(combo_counts_w3.values())\n    cands_w3 = sorted([k for k, v in combo_counts_w3.items() if v == max_w3])\n    combo_w3 = cands_w3[0]\n    \n    results.append({\n        'id': i, 'gold': gold,\n        'sc_dict': sc_dict, 'sc_alpha': sc_alpha, 'is_tie': is_tie,\n        'vote_counts': dict(counter), 'deberta_pred': deberta_pred,\n        'combo_w1': combo_w1, 'combo_w3': combo_w3,\n        'sc_dict_correct': sc_dict == gold,\n        'sc_alpha_correct': sc_alpha == gold,\n        'combo_w1_correct': combo_w1 == gold,\n        'combo_w3_correct': combo_w3 == gold,\n    })\n\nsc_dict_acc = sum(1 for r in results if r['sc_dict_correct'])\nsc_alpha_acc = sum(1 for r in results if r['sc_alpha_correct'])\ncombo_w1_acc = sum(1 for r in results if r['combo_w1_correct'])\ncombo_w3_acc = sum(1 for r in results if r['combo_w3_correct'])\n\nprint(\"=\" * 60)\nprint(\"SC Tiebreaking Comparison\")\nprint(\"=\" * 60)\nprint(f\"SC (dict-order):      {sc_dict_acc}/204 = {sc_dict_acc/204*100:.2f}%\")\nprint(f\"SC (alphabetical):    {sc_alpha_acc}/204 = {sc_alpha_acc/204*100:.2f}%\")\nprint(f\"Combo w=1:            {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\")\nprint(f\"Combo w=3:            {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\")\n\nchanged = [r for r in results if r['sc_dict'] != r['sc_alpha']]\nprint(f\"\\n--- Tie questions where SC answer changed ({len(changed)}) ---\")\nfor r in changed:\n    print(f\"  folio_{r['id']}: gold={r['gold']}, dict={r['sc_dict']}, alpha={r['sc_alpha']}, votes={r['vote_counts']}, dict_ok={r['sc_dict_correct']}, alpha_ok={r['sc_alpha_correct']}\")\n\nties = [r for r in results if r['is_tie']]\nprint(f\"\\n--- All tie questions ({len(ties)}) ---\")\nfor r in ties:\n    print(f\"  folio_{r['id']}: gold={r['gold']}, dict={r['sc_dict']}, alpha={r['sc_alpha']}, votes={r['vote_counts']}\")\n\nprint(\"\\n\" + \"=\" * 60)\nprint(\"McNemar: OLD SC (dict) vs Combo w=1\")\nb_old_w1 = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w1_correct'])\nc_old_w1 = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w1_correct'])\np_old_w1 = exact_mcnemar_p(b_old_w1, c_old_w1)\nprint(f\"  b={b_old_w1}, c={c_old_w1}, p={p_old_w1:.6f}\")\n\nprint(\"\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\")\nb_new_w1 = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w1_correct'])\nc_new_w1 = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w1_correct'])\np_new_w1 = exact_mcnemar_p(b_new_w1, c_new_w1)\nprint(f\"  b={b_new_w1}, c={c_new_w1}, p={p_new_w1:.6f}\")\n\nprint(\"\\nMcNemar: OLD SC (dict) vs Combo w=3\")\nb_old_w3 = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w3_correct'])\nc_old_w3 = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w3_correct'])\np_old_w3 = exact_mcnemar_p(b_old_w3, c_old_w3)\nprint(f\"  b={b_old_w3}, c={c_old_w3}, p={p_old_w3:.6f}\")\n\nprint(\"\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\")\nb_new_w3 = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w3_correct'])\nc_new_w3 = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w3_correct'])\np_new_w3 = exact_mcnemar_p(b_new_w3, c_new_w3)\nprint(f\"  b={b_new_w3}, c={c_new_w3}, p={p_new_w3:.6f}\")\n\nprint(\"\\n\" + \"=\" * 60)\nprint(\"Verification vs original R combo report\")\nprint(f\"  Original w=1: {r_data['exp_r3_combo']['deberta_weight_1']['correct']}/204 = {r_data['exp_r3_combo']['deberta_weight_1']['accuracy']*100:.2f}%\")\nprint(f\"  Recomputed w=1: {combo_w1_acc}/204 = {combo_w1_acc/204*100:.2f}%\")\nprint(f\"  Original w=3: {r_data['exp_r3_combo']['deberta_weight_3']['correct']}/204 = {r_data['exp_r3_combo']['deberta_weight_3']['accuracy']*100:.2f}%\")\nprint(f\"  Recomputed w=3: {combo_w3_acc}/204 = {combo_w3_acc/204*100:.2f}%\")\n\noutput = {\n    'sc_dict': {'correct': sc_dict_acc, 'accuracy': round(sc_dict_acc/204, 4)},\n    'sc_alpha': {'correct': sc_alpha_acc, 'accuracy': round(sc_alpha_acc/204, 4)},\n    'combo_w1': {'correct': combo_w1_acc, 'accuracy': round(combo_w1_acc/204, 4)},\n    'combo_w3': {'correct': combo_w3_acc, 'accuracy': round(combo_w3_acc/204, 4)},\n    'mcnemar_old_sc_vs_w1': {'b': b_old_w1, 'c': c_old_w1, 'p': round(p_old_w1, 6)},\n    'mcnemar_new_sc_vs_w1': {'b': b_new_w1, 'c': c_new_w1, 'p': round(p_new_w1, 6)},\n    'mcnemar_old_sc_vs_w3': {'b': b_old_w3, 'c': c_old_w3, 'p': round(p_old_w3, 6)},\n    'mcnemar_new_sc_vs_w3': {'b': b_new_w3, 'c': c_new_w3, 'p': round(p_new_w3, 6)},\n    'changed_questions': [{'id': r['id'], 'gold': r['gold'], 'sc_dict': r['sc_dict'], 'sc_alpha': r['sc_alpha'], 'votes': r['vote_counts']} for r in changed],\n}\nwith open('/tmp/sc_tiebreak_mcnemar_results.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to /tmp/sc_tiebreak_mcnemar_results.json\")\nPYEOF\npython3 /tmp/sc_tiebreak_mcnemar.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "5e3489c1-19a9-4990-a1c1-961404ce97b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176UdsDfmbiiRLVyRCUQSTU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 510,
+      "cache_read_input_tokens": 62202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 510
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T14:17:41.899Z_
+
+<details><summary>↩ Tool result · `toolu_014qovtNtwRgNhfkz3fooeCi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nSC Tiebreaking Comparison\\n============================================================\\nSC (dict-order):      111/204 = 54.41%\\nSC (alphabetical):    114/204 = 55.88%\\nCombo w=1:            115/204 = 56.37%\\nCombo w=3:            120/204 = 58.82%\\n\\n--- Tie questions where SC answer changed (7) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=False, alpha_ok=True\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}, dict_ok=True, alpha_ok=False\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=True, alpha_ok=False\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}, dict_ok=False, alpha_ok=True\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n\\n--- All tie questions (15) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\n  folio_72: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_81: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'True': 1, 'Unknown': 4}\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_84: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'Unknown': 4}\\n  folio_88: gold=True, dict=True, alpha=True, votes={'True': 5, 'Unknown': 5}\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\n  folio_113: gold=Unknown, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_139: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_144: gold=Unknown, dict=True, alpha=True, votes={'True': 4, 'Unknown': 4}\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_165: gold=False, dict=False, alpha=False, votes={'False': 6, 'Unknown': 6}\\n\\n============================================================\\nMcNemar: OLD SC (dict) vs Combo w=1\\n  b=5, c=9, p=0.423950\\n\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\n  b=3, c=4, p=1.000000\\n\\nMcNemar: OLD SC (dict) vs Combo w=3\\n  b=7, c=16, p=0.093140\\n\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\n  b=5, c=11, p=0.210114\\n\\n============================================================\\nVerification vs original R combo report\\n  Original w=1: 118/204 = 57.84%\\n  Recomputed w=1: 115/204 = 56.37%\\n  Original w=3: 120/204 = 58.82%\\n  Recomputed w=3: 120/204 = 58.82%\\n\\nSaved to /tmp/sc_tiebreak_mcnemar_results.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "0f21a3d2-68b2-43be-a96c-9d6333ff37b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nSC Tiebreaking Comparison\\\\n============================================================\\\\nSC (dict-order):      111/204 = 54.41%\\\\nSC (alphabetical):    114/204 = 55.88%\\\\nCombo w=1:            115/204 = 56.37%\\\\nCombo w=3:            120/204 = 58.82%\\\\n\\\\n--- Tie questions where SC answer changed (7) ---\\\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=False, alpha_ok=True\\\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}, dict_ok=True, alpha_ok=False\\\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=True, alpha_ok=False\\\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}, dict_ok=False, alpha_ok=True\\\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\\\n\\\\n--- All tie questions (15) ---\\\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\\\n  folio_72: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\\\n  folio_81: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'True': 1, 'Unknown': 4}\\\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n  folio_84: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'Unknown': 4}\\\\n  folio_88: gold=True, dict=True, alpha=True, votes={'True': 5, 'Unknown': 5}\\\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\\\n  folio_113: gold=Unknown, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\\\n  folio_139: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\\\n  folio_144: gold=Unknown, dict=True, alpha=True, votes={'True': 4, 'Unknown': 4}\\\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n  folio_165: gold=False, dict=False, alpha=False, votes={'False': 6, 'Unknown': 6}\\\\n\\\\n============================================================\\\\nMcNemar: OLD SC (dict) vs Combo w=1\\\\n  b=5, c=9, p=0.423950\\\\n\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\\\n  b=3, c=4, p=1.000000\\\\n\\\\nMcNemar: OLD SC (dict) vs Combo w=3\\\\n  b=7, c=16, p=0.093140\\\\n\\\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\\\n  b=5, c=11, p=0.210114\\\\n\\\\n============================================================\\\\nVerification vs original R combo report\\\\n  Original w=1: 118/204 = 57.84%\\\\n  Recomputed w=1: 115/204 = 56.37%\\\\n  Original w=3: 120/204 = 58.82%\\\\n  Recomputed w=3: 120/204 = 58.82%\\\\n\\\\nSaved to /tmp/sc_tiebreak_mcnemar_results.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nSC Tiebreaking Comparison\\n============================================================\\nSC (dict-order):      111/204 = 54.41%\\nSC (alphabetical):    114/204 = 55.88%\\nCombo w=1:            115/204 = 56.37%\\nCombo w=3:            120/204 = 58.82%\\n\\n--- Tie questions where SC answer changed (7) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=False, alpha_ok=True\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}, dict_ok=True, alpha_ok=False\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}, dict_ok=True, alpha_ok=False\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}, dict_ok=False, alpha_ok=True\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}, dict_ok=False, alpha_ok=True\\n\\n--- All tie questions (15) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\n  folio_72: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_81: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'True': 1, 'Unknown': 4}\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_84: gold=Unknown, dict=False, alpha=False, votes={'False': 4, 'Unknown': 4}\\n  folio_88: gold=True, dict=True, alpha=True, votes={'True': 5, 'Unknown': 5}\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\n  folio_113: gold=Unknown, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_139: gold=False, dict=False, alpha=False, votes={'False': 5, 'Unknown': 5}\\n  folio_144: gold=Unknown, dict=True, alpha=True, votes={'True': 4, 'Unknown': 4}\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_165: gold=False, dict=False, alpha=False, votes={'False': 6, 'Unknown': 6}\\n\\n============================================================\\nMcNemar: OLD SC (dict) vs Combo w=1\\n  b=5, c=9, p=0.423950\\n\\nMcNemar: NEW SC (alphabetical) vs Combo w=1\\n  b=3, c=4, p=1.000000\\n\\nMcNemar: OLD SC (dict) vs Combo w=3\\n  b=7, c=16, p=0.093140\\n\\nMcNemar: NEW SC (alphabetical) vs Combo w=3\\n  b=5, c=11, p=0.210114\\n\\n============================================================\\nVerification vs original R combo report\\n  Original w=1: 118/204 = 57.84%\\n  Recomputed w=1: 115/204 = 56.37%\\n  Original w=3: 120/204 = 58.82%\\n  Recomputed w=3: 120/204 = 58.82%\\n\\nSaved to /tmp/sc_tiebreak_mcnemar_results.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! The recomputed combo w=1 is 115/204 (56.37%) vs original 118/204 (57.84%). They don't match! This is because the original combo calculation used SICA scores (not just SC votes) or a different combination mechanism. The combo w=3 matches though: 120/204.
+
+Wait, the original combo was computed using `direction_r_nli_large/results.json` which has the SC votes from the raw traces. Let me re-examine how the combo was computed originally.
+
+Looking back at the original results:
+- `exp_r3_combo.deberta_weight_1`: 118 correct (57.84%)
+
+
+- `exp_r3_combo.deberta_weight_3`: 120 correct (58.82%)
+
+My recomputation uses the sc_answer_matrix.json raw answers + DeBERTa predictions, but the original might have used different normalization or a different combination formula. The sc_answer_matrix.json has raw answers like empty strings, "Unknown", "True", "False", etc., and my normalization maps "uncertain" → "Unknown" and skips non-matching entries, but the original code might have handled this differently. Let me trace back through the original code to see what it actually did with the SC votes.
+
+Looking at the original data, `direction_r_nli_large` has per-question `sc_answer`, `sica_answer`, and `deberta_pred`, and the combo was computed using the SC vote distribution alongside the DeBERTa prediction. The sc_answer_matrix.json might not match the exact SC vote distribution from the original R combo computation, especially if the original used different normalization from the intermediate traces. The fact that w=1 shows a mismatch but w=3 doesn't is telling—with higher DeBERTa weight, normalization differences matter less since DeBERTa's votes dominate anyway.
+
+I think the original combo computation might have handled tiebreaking differently than my alphabetical approach, or possibly used SICA traces instead of raw SC answers. But actually, for what the user needs, I should just use the original combo's per-question correct/wrong values directly from `direction_r_nli_large/results.json` rather than trying to recompute the combo myself. The issue is that file doesn't directly provide those values in the format I need.
+
+Let me check `direction_rg_combo/per_question_best.json` - it has combo answers and correctness, but I'm not sure which weight those correspond to. Looking at the results, `direction_rg_combo` appears to be a different combination altogether (SICA + NLI) rather than the SC vote + DeBERTa combo from `direction_r_nli_large`, so these aren't the same thing.
+
+The real problem is that I need the per-question w=1 and w=3 results from the original R computation to run McNemar, but they're only stored in aggregate. My recomputation of w=1 gives 115 instead of 118, which suggests the original code either used different normalization, different vote sources, or a different formula entirely. I should check whether the original R code pulled SC votes from a different source than what I'm using now. Looking at the original per-question data, I don't have the combo w=1 and w=3 answers stored, so I need to either trust my recomputation or find another way to get the original values. Let me try to reconstruct them from the available data. Looking at the result structure, I can see the combo results with different DeBERTa weights, and I'm noticing the baselines show SICA performing better than SC. The combo might be combining SICA scores with DeBERTa rather than using SC votes, or it could be using a weighted voting approach where DeBERTa probabilities are added to vote counts. I should check the `direction_rg_combo` strategies to understand how the voting combinations are actually constructed. 0.5686 (116 correct). But the R combo has w=1 at 118 correct. These are different!
+
+So `direction_r_nli_large` and `direction_rg_combo` are different experiments with different combination methods. The `direction_rg_combo` also includes `nli_sc_vote_w1` at 116 correct, while `direction_r_nli_large` has `deberta_weight_1` at 118 correct.
+
+The difference could be:
+- `nli_sc_vote_w1` in RG: adds DeBERTa's prediction label as 1 vote to SC counts
+- `deberta_weight_1` in R: adds DeBERTa's probability distribution (weighted by 1) to SC counts
+
+If the R combo uses probability distribution rather than hard prediction, my recomputation is wrong because I'm only adding 1 hard vote. I should try the probability-weighted approach instead, where each answer class gets a score combining the SC vote count with DeBERTa's probability for that class multiplied by the weight.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "8e38b991-d074-4c6c-a920-1a50c282232f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn462N2c4hSFQfX2FvgeWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 62712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4315
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+combo w=1 重算值 (115) 与原始值 (118) 不匹配，可能原始 combo 用的是 DeBERTa 概率分布而非 hard vote。重新用概率加权方式计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "200591c4-f82c-40fc-9fa6-f77f05dfd491",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn462N2c4hSFQfX2FvgeWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 62712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4315
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NUuuH1izUYmRLCqiHdfFHH`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\nfrom math import factorial\n\ndef exact_mcnemar_p(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    k = min(b, c)\n    p = 0.0\n    for i in range(k + 1):\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\n    return min(2 * p, 1.0)\n\nnorm_map = {\"true\": \"True\", \"false\": \"False\", \"unknown\": \"Unknown\", \"uncertain\": \"Unknown\"}\ndef normalize(a):\n    a = a.strip().lower()\n    return norm_map.get(a, \"\")\n\nwith open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json') as f:\n    sc_matrix = json.load(f)\n\nwith open('/root/symb_invariant_consensus/results/direction_r_nli_large/results.json') as f:\n    r_data = json.load(f)\nr_pq = r_data['per_question']\n\nresults = []\nfor i in range(204):\n    key = f'folio_{i}'\n    entry = sc_matrix[key]\n    raw_answers = entry['answers']\n    gold = entry['ground_truth']\n    \n    clean = []\n    for a in raw_answers:\n        n = normalize(a)\n        if n:\n            clean.append(n)\n    \n    counter = Counter(clean)\n    max_count = max(counter.values()) if counter else 0\n    candidates = [k for k, v in counter.items() if v == max_count]\n    \n    sc_dict = candidates[0] if candidates else ''\n    sc_alpha = sorted(candidates)[0] if candidates else ''\n    is_tie = len(candidates) > 1\n    \n    r_entry = r_pq.get(key, {})\n    deberta_pred = r_entry.get('deberta_pred', '')\n    deberta_probs = r_entry.get('deberta_probs', {})\n    \n    # Method A: hard vote (my previous approach)\n    combo_hard_w1 = dict(counter)\n    combo_hard_w1[deberta_pred] = combo_hard_w1.get(deberta_pred, 0) + 1\n    max_hw1 = max(combo_hard_w1.values())\n    cands_hw1 = sorted([k for k, v in combo_hard_w1.items() if v == max_hw1])\n    hard_w1 = cands_hw1[0]\n    \n    # Method B: probability-weighted (DeBERTa probs * w added to SC counts)\n    scores_w1 = {}\n    for label in ['True', 'False', 'Unknown']:\n        scores_w1[label] = counter.get(label, 0) + deberta_probs.get(label, 0) * 1\n    max_sw1 = max(scores_w1.values())\n    cands_sw1 = sorted([k for k, v in scores_w1.items() if abs(v - max_sw1) < 1e-9])\n    prob_w1 = cands_sw1[0]\n    \n    scores_w3 = {}\n    for label in ['True', 'False', 'Unknown']:\n        scores_w3[label] = counter.get(label, 0) + deberta_probs.get(label, 0) * 3\n    max_sw3 = max(scores_w3.values())\n    cands_sw3 = sorted([k for k, v in scores_w3.items() if abs(v - max_sw3) < 1e-9])\n    prob_w3 = cands_sw3[0]\n    \n    # Method C: hard vote w=3\n    combo_hard_w3 = dict(counter)\n    combo_hard_w3[deberta_pred] = combo_hard_w3.get(deberta_pred, 0) + 3\n    max_hw3 = max(combo_hard_w3.values())\n    cands_hw3 = sorted([k for k, v in combo_hard_w3.items() if v == max_hw3])\n    hard_w3 = cands_hw3[0]\n    \n    results.append({\n        'id': i, 'gold': gold,\n        'sc_dict': sc_dict, 'sc_alpha': sc_alpha, 'is_tie': is_tie,\n        'vote_counts': dict(counter),\n        'hard_w1': hard_w1, 'prob_w1': prob_w1,\n        'hard_w3': hard_w3, 'prob_w3': prob_w3,\n        'sc_dict_correct': sc_dict == gold,\n        'sc_alpha_correct': sc_alpha == gold,\n        'hard_w1_correct': hard_w1 == gold,\n        'prob_w1_correct': prob_w1 == gold,\n        'hard_w3_correct': hard_w3 == gold,\n        'prob_w3_correct': prob_w3 == gold,\n    })\n\nprint(\"Combo accuracy comparison:\")\nprint(f\"  Hard vote w=1: {sum(1 for r in results if r['hard_w1_correct'])}/204\")\nprint(f\"  Prob-weighted w=1: {sum(1 for r in results if r['prob_w1_correct'])}/204\")\nprint(f\"  Hard vote w=3: {sum(1 for r in results if r['hard_w3_correct'])}/204\")\nprint(f\"  Prob-weighted w=3: {sum(1 for r in results if r['prob_w3_correct'])}/204\")\nprint(f\"  Original w=1: {r_data['exp_r3_combo']['deberta_weight_1']['correct']}/204\")\nprint(f\"  Original w=3: {r_data['exp_r3_combo']['deberta_weight_3']['correct']}/204\")\n\n# Find discrepancies between prob_w1 and hard_w1\nprint(\"\\nDiscrepancies prob_w1 vs hard_w1:\")\nfor r in results:\n    if r['prob_w1'] != r['hard_w1']:\n        print(f\"  folio_{r['id']}: gold={r['gold']}, hard={r['hard_w1']}, prob={r['prob_w1']}, votes={r['vote_counts']}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "11c2101b-e878-48fd-a2ce-e1fcbdbe4242",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn462N2c4hSFQfX2FvgeWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4315,
+      "cache_read_input_tokens": 62712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4315
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T14:19:06.185Z_
+
+<details><summary>↩ Tool result · `toolu_01NUuuH1izUYmRLCqiHdfFHH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Combo accuracy comparison:\\n  Hard vote w=1: 115/204\\n  Prob-weighted w=1: 116/204\\n  Hard vote w=3: 120/204\\n  Prob-weighted w=3: 117/204\\n  Original w=1: 118/204\\n  Original w=3: 120/204\\n\\nDiscrepancies prob_w1 vs hard_w1:\\n  folio_10: gold=False, hard=False, prob=Unknown, votes={'False': 4, 'Unknown': 5}\\n  folio_18: gold=True, hard=False, prob=Unknown, votes={'Unknown': 5, 'False': 4}\\n  folio_99: gold=Unknown, hard=True, prob=Unknown, votes={'Unknown': 5, 'True': 5}\\n  folio_101: gold=False, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\n  folio_106: gold=True, hard=True, prob=Unknown, votes={'True': 4, 'Unknown': 5}\\n  folio_133: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_136: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_142: gold=True, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_159: gold=True, hard=False, prob=True, votes={'True': 4, 'False': 3, 'Unknown': 2}\\n  folio_171: gold=True, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "c4e169c4-3e13-4a41-b6a4-656ba02a4b03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Combo accuracy comparison:\\\\n  Hard vote w=1: 115/204\\\\n  Prob-weighted w=1: 116/204\\\\n  Hard vote w=3: 120/204\\\\n  Prob-weighted w=3: 117/204\\\\n  Original w=1: 118/204\\\\n  Original w=3: 120/204\\\\n\\\\nDiscrepancies prob_w1 vs hard_w1:\\\\n  folio_10: gold=False, hard=False, prob=Unknown, votes={'False': 4, 'Unknown': 5}\\\\n  folio_18: gold=True, hard=False, prob=Unknown, votes={'Unknown': 5, 'False': 4}\\\\n  folio_99: gold=Unknown, hard=True, prob=Unknown, votes={'Unknown': 5, 'True': 5}\\\\n  folio_101: gold=False, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\\\n  folio_106: gold=True, hard=True, prob=Unknown, votes={'True': 4, 'Unknown': 5}\\\\n  folio_133: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\\\n  folio_136: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\\\n  folio_142: gold=True, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\\\n  folio_159: gold=True, hard=False, prob=True, votes={'True': 4, 'False': 3, 'Unknown': 2}\\\\n  folio_171: gold=True, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Combo accuracy comparison:\\n  Hard vote w=1: 115/204\\n  Prob-weighted w=1: 116/204\\n  Hard vote w=3: 120/204\\n  Prob-weighted w=3: 117/204\\n  Original w=1: 118/204\\n  Original w=3: 120/204\\n\\nDiscrepancies prob_w1 vs hard_w1:\\n  folio_10: gold=False, hard=False, prob=Unknown, votes={'False': 4, 'Unknown': 5}\\n  folio_18: gold=True, hard=False, prob=Unknown, votes={'Unknown': 5, 'False': 4}\\n  folio_99: gold=Unknown, hard=True, prob=Unknown, votes={'Unknown': 5, 'True': 5}\\n  folio_101: gold=False, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\n  folio_106: gold=True, hard=True, prob=Unknown, votes={'True': 4, 'Unknown': 5}\\n  folio_133: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_136: gold=Unknown, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_142: gold=True, hard=False, prob=Unknown, votes={'Unknown': 6, 'False': 5}\\n  folio_159: gold=True, hard=False, prob=True, votes={'True': 4, 'False': 3, 'Unknown': 2}\\n  folio_171: gold=True, hard=False, prob=Unknown, votes={'Unknown': 4, 'False': 3}\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Neither hard vote nor prob-weighted matches the original. Hard vote w=1 gives 115, prob-weighted gives 116, original is 118. Hard vote w=3 matches (120), prob-weighted w=3 gives 117.
+
+The original combo likely used a different approach - maybe using SICA answers rather than SC votes. Let me check: the `direction_r_nli_large` has both `sc_answer` and `sica_answer` per question. The combo `deberta_weight_1` might be using SICA votes + DeBERTa.
+
+Wait, but it says `sc_baseline: 0.5441` and `sica_baseline: 0.5931`. 
+
+The combo names suggest DeBERTa probability is being weighted differently. I need to look at the actual experiment code to understand how these models are being combined.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "23fd94d7-f7b8-4f9a-befe-02bca7aca1d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018h5MqsJwNnBFoSLTMB7DGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4655,
+      "cache_read_input_tokens": 67027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4655
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+两种方法都不匹配原始值。需要看原始代码确认 combo 计算逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "84afbfdd-146c-4a24-9b6b-269ab59ebc34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018h5MqsJwNnBFoSLTMB7DGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4655,
+      "cache_read_input_tokens": 67027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4655
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PTYWFehsCPnY9bL7gSCf5U`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus -name \"direction_r*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "70e77cd8-22e2-4850-9e57-57bd1eb6cb60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018h5MqsJwNnBFoSLTMB7DGJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4655,
+      "cache_read_input_tokens": 67027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4655
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T14:19:16.838Z_
+
+<details><summary>↩ Tool result · `toolu_01PTYWFehsCPnY9bL7gSCf5U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/direction_r_deberta.py\\n/root/symb_invariant_consensus/direction_r_nli_verifier.py\\n/root/symb_invariant_consensus/direction_rg_combo.py\\n/root/symb_invariant_consensus/direction_r_deberta_proofwriter.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "b637feda-fec7-4414-a9d6-947ad45d146f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/direction_r_deberta.py\\\\n/root/symb_invariant_consensus/direction_r_nli_verifier.py\\\\n/root/symb_invariant_consensus/direction_rg_combo.py\\\\n/root/symb_invariant_consensus/direction_r_deberta_proofwriter.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/direction_r_deberta.py\\n/root/symb_invariant_consensus/direction_r_nli_verifier.py\\n/root/symb_invariant_consensus/direction_rg_combo.py\\n/root/symb_invariant_consensus/direction_r_deberta_proofwriter.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UAcqBJAVym7Q6CvdFokGzi`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"weight\" /root/symb_invariant_consensus/direction_r_nli_verifier.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "ab1bd4d6-b12f-444b-b0d8-6983e6edbf23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXEbMftw5mTXtk77ps5cYu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 542,
+      "cache_read_input_tokens": 71682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 542
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T14:19:20.411Z_
+
+<details><summary>↩ Tool result · `toolu_01UAcqBJAVym7Q6CvdFokGzi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "a0697e34-9bde-451f-9e30-c47c4b36f23f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XFWnXC3VR59mPdS9ob9TYY`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"combo\\|weight\\|deberta_weight\" /root/symb_invariant_consensus/direction_r_deberta.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "af7de537-501b-4890-9f92-3564a2307811",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvmBZpnqBqDQqjvozuQwre",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 190,
+      "cache_read_input_tokens": 72224,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 190
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T14:19:24.007Z_
+
+<details><summary>↩ Tool result · `toolu_01XFWnXC3VR59mPdS9ob9TYY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "27b1dab8-2d96-4a6d-b094-b78ec57886c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018udZhyAQP4QCC24BLCm982`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"weight\" /root/symb_invariant_consensus/direction_r_deberta.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "3fe4e1b7-c6cb-4cca-a98c-e81e54fbf4a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BrYybPkzzMGBpumt9MDYQV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 72414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 211
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-20T14:19:27.340Z_
+
+<details><summary>↩ Tool result · `toolu_018udZhyAQP4QCC24BLCm982`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"170:    for weight in [1, 3]:\\n182:                votes[dp] += weight\\n187:        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n188:        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n233:            f\\\"deberta_weight_{w}\\\": combo_results[w] for w in [1, 3]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "5a512c8c-341a-4190-916b-8016aa532873",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"170:    for weight in [1, 3]:\\\\n182:                votes[dp] += weight\\\\n187:        combo_results[weight] = {\\\\\\\"accuracy\\\\\\\": round(combo_acc, 4), \\\\\\\"correct\\\\\\\": combo_correct}\\\\n188:        print(f\\\\\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\\\\\")\\\\n233:            f\\\\\\\"deberta_weight_{w}\\\\\\\": combo_results[w] for w in [1, 3]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"170:    for weight in [1, 3]:\\n182:                votes[dp] += weight\\n187:        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n188:        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n233:            f\\\"deberta_weight_{w}\\\": combo_results[w] for w in [1, 3]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014YQmoxqEGtTKEZBPueZ3uq`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat -n /root/symb_invariant_consensus/direction_r_deberta.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "e2de0cc5-5541-4f12-b4dc-8679e08230a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WS61xsj788dNJb8hqUi8ff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T14:19:36.255Z_
+
+<details><summary>↩ Tool result · `toolu_014YQmoxqEGtTKEZBPueZ3uq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t#!/usr/bin/env python3\\n     2\\t\\\"\\\"\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\"\\\"\\\"\\n     3\\t\\n     4\\timport json\\n     5\\timport os\\n     6\\timport time\\n     7\\tfrom collections import Counter\\n     8\\tfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\n     9\\timport torch\\n    10\\t\\n    11\\tFOLIO_PATH = \\\"/root/symb_invariant_consensus/data/folio_full.json\\\"\\n    12\\tEXP033_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\"\\n    13\\tSC_MATRIX_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\"\\n    14\\tOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\"\\n    15\\tMODEL_NAME = \\\"/root/models/deberta-large-mnli\\\"\\n    16\\tCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    17\\t\\n    18\\t\\n    19\\tdef parse_problem(problem_text):\\n    20\\t    marker = \\\"Determine whether the following conclusion is true, false, or uncertain:\\\\n\\\"\\n    21\\t    if marker in problem_text:\\n    22\\t        parts = problem_text.split(marker, 1)\\n    23\\t        premises = parts[0].replace(\\\"Given the following premises:\\\\n\\\", \\\"\\\").strip()\\n    24\\t        conclusion = parts[1].strip()\\n    25\\t    else:\\n    26\\t        premises = problem_text\\n    27\\t        conclusion = \\\"\\\"\\n    28\\t    return premises, conclusion\\n    29\\t\\n    30\\t\\n    31\\tdef main():\\n    32\\t    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    33\\t\\n    34\\t    with open(FOLIO_PATH) as f:\\n    35\\t        folio = json.load(f)\\n    36\\t    with open(EXP033_PATH) as f:\\n    37\\t        exp033 = json.load(f)\\n    38\\t    with open(SC_MATRIX_PATH) as f:\\n    39\\t        sc_matrix = json.load(f)\\n    40\\t\\n    41\\t    exp033_by_id = {r[\\\"problem_id\\\"]: r for r in exp033[\\\"results\\\"]}\\n    42\\t    gt = {q[\\\"id\\\"]: q[\\\"answer\\\"] for q in folio}\\n    43\\t    total = len(gt)\\n    44\\t\\n    45\\t    # Load DeBERTa\\n    46\\t    print(f\\\"Loading {MODEL_NAME}...\\\")\\n    47\\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\n    48\\t    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\n    49\\t    model.eval()\\n    50\\t\\n    51\\t    id2label = model.config.id2label\\n    52\\t    print(f\\\"Label mapping: {id2label}\\\")\\n    53\\t    nli_to_folio = {}\\n    54\\t    for idx, label in id2label.items():\\n    55\\t        lu = label.upper()\\n    56\\t        if \\\"ENTAIL\\\" in lu:\\n    57\\t            nli_to_folio[idx] = \\\"True\\\"\\n    58\\t        elif \\\"CONTRA\\\" in lu:\\n    59\\t            nli_to_folio[idx] = \\\"False\\\"\\n    60\\t        else:\\n    61\\t            nli_to_folio[idx] = \\\"Unknown\\\"\\n    62\\t    print(f\\\"NLI->FOLIO: {nli_to_folio}\\\")\\n    63\\t\\n    64\\t    # === Exp-R1: DeBERTa standalone ===\\n    65\\t    print(\\\"\\\\n=== Exp-R1: DeBERTa standalone ===\\\")\\n    66\\t    deberta_preds = {}\\n    67\\t    deberta_probs = {}\\n    68\\t    t0 = time.time()\\n    69\\t\\n    70\\t    for i, q in enumerate(folio):\\n    71\\t        qid = q[\\\"id\\\"]\\n    72\\t        premises, conclusion = parse_problem(q[\\\"problem\\\"])\\n    73\\t        if not conclusion:\\n    74\\t            deberta_preds[qid] = \\\"Unknown\\\"\\n    75\\t            deberta_probs[qid] = {}\\n    76\\t            continue\\n    77\\t\\n    78\\t        inputs = tokenizer(premises, conclusion, return_tensors=\\\"pt\\\", truncation=True, max_length=512)\\n    79\\t        with torch.no_grad():\\n    80\\t            outputs = model(**inputs)\\n    81\\t\\n    82\\t        probs = torch.softmax(outputs.logits, dim=-1)[0]\\n    83\\t        pred_idx = probs.argmax().item()\\n    84\\t        pred_label = nli_to_folio[pred_idx]\\n    85\\t\\n    86\\t        deberta_preds[qid] = pred_label\\n    87\\t        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\n    88\\t\\n    89\\t        if (i + 1) % 50 == 0:\\n    90\\t            print(f\\\"  Processed {i+1}/{len(folio)}\\\")\\n    91\\t\\n    92\\t    elapsed = time.time() - t0\\n    93\\t    print(f\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\")\\n    94\\t\\n    95\\t    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\n    96\\t    deberta_acc = correct / total\\n    97\\t\\n    98\\t    per_class = {}\\n    99\\t    for cls in CLASSES:\\n   100\\t        tp = sum(1 f\\n\\n... [截断: 输出过长，省略 4193 字符] ...\\n\\n         combo_correct += 1\\n   186\\t        combo_acc = combo_correct / total\\n   187\\t        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n   188\\t        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n   189\\t\\n   190\\t    print(f\\\"  SC baseline: {sc_acc:.4f}\\\")\\n   191\\t    print(f\\\"  SICA baseline: {sica_acc:.4f}\\\")\\n   192\\t\\n   193\\t    # === Also: DeBERTa as verifier for SICA ===\\n   194\\t    print(\\\"\\\\n=== Bonus: DeBERTa vs SICA agreement ===\\\")\\n   195\\t    sica_agree = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid))\\n   196\\t    sica_disagree = total - sica_agree\\n   197\\t    sica_agree_correct = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid) == gt[qid])\\n   198\\t    sica_disagree_deberta = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and deberta_preds.get(qid) == gt[qid])\\n   199\\t    sica_disagree_sica = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and sica_answers.get(qid) == gt[qid])\\n   200\\t    print(f\\\"  DeBERTa-SICA agreement: {sica_agree/total:.4f} ({sica_agree}/{total})\\\")\\n   201\\t    print(f\\\"  Agree accuracy: {sica_agree_correct/sica_agree:.4f}\\\" if sica_agree > 0 else \\\"  N/A\\\")\\n   202\\t    print(f\\\"  Disagree: DeBERTa right={sica_disagree_deberta}, SICA right={sica_disagree_sica}\\\")\\n   203\\t\\n   204\\t    # Save\\n   205\\t    results = {\\n   206\\t        \\\"exp_r1_deberta_standalone\\\": {\\n   207\\t            \\\"accuracy\\\": round(deberta_acc, 4),\\n   208\\t            \\\"correct\\\": correct, \\\"total\\\": total,\\n   209\\t            \\\"per_class\\\": per_class,\\n   210\\t            \\\"gt_distribution\\\": gt_dist,\\n   211\\t            \\\"pred_distribution\\\": pred_dist,\\n   212\\t            \\\"inference_time_s\\\": round(elapsed, 1),\\n   213\\t            \\\"model\\\": MODEL_NAME\\n   214\\t        },\\n   215\\t        \\\"exp_r2_verifier\\\": {\\n   216\\t            \\\"agreement_rate\\\": round(agree_rate, 4),\\n   217\\t            \\\"agree_count\\\": agree, \\\"disagree_count\\\": disagree,\\n   218\\t            \\\"agree_accuracy\\\": round(abstain_acc, 4),\\n   219\\t            \\\"disagree_breakdown\\\": {\\n   220\\t                \\\"deberta_correct_sc_wrong\\\": disagree_deberta_correct,\\n   221\\t                \\\"sc_correct_deberta_wrong\\\": disagree_sc_correct,\\n   222\\t                \\\"both_wrong\\\": disagree_both_wrong\\n   223\\t            },\\n   224\\t            \\\"strategies\\\": {\\n   225\\t                \\\"abstain\\\": {\\\"coverage\\\": round(agree / total, 4), \\\"accuracy\\\": round(abstain_acc, 4)},\\n   226\\t                \\\"deberta_override\\\": {\\\"accuracy\\\": round(override_acc, 4)},\\n   227\\t                \\\"sc_baseline\\\": {\\\"accuracy\\\": round(sc_acc, 4)}\\n   228\\t            },\\n   229\\t            \\\"deberta_corrects_sc\\\": deberta_corrects_sc,\\n   230\\t            \\\"sc_corrects_deberta\\\": sc_corrects_deberta\\n   231\\t        },\\n   232\\t        \\\"exp_r3_combo\\\": {\\n   233\\t            f\\\"deberta_weight_{w}\\\": combo_results[w] for w in [1, 3]\\n   234\\t        },\\n   235\\t        \\\"baselines\\\": {\\\"sc\\\": round(sc_acc, 4), \\\"sica\\\": round(sica_acc, 4)},\\n   236\\t        \\\"per_question\\\": {\\n   237\\t            qid: {\\n   238\\t                \\\"deberta_pred\\\": deberta_preds[qid],\\n   239\\t                \\\"deberta_probs\\\": deberta_probs[qid],\\n   240\\t                \\\"sc_answer\\\": sc_answers.get(qid),\\n   241\\t                \\\"sica_answer\\\": sica_answers.get(qid),\\n   242\\t                \\\"gold\\\": gt[qid],\\n   243\\t                \\\"deberta_correct\\\": deberta_preds[qid] == gt[qid],\\n   244\\t                \\\"sc_correct\\\": sc_answers.get(qid) == gt[qid],\\n   245\\t                \\\"sica_correct\\\": sica_answers.get(qid) == gt[qid]\\n   246\\t            }\\n   247\\t            for qid in gt\\n   248\\t        }\\n   249\\t    }\\n   250\\t    results[\\\"exp_r3_combo\\\"][\\\"sc_baseline\\\"] = round(sc_acc, 4)\\n   251\\t    results[\\\"exp_r3_combo\\\"][\\\"sica_baseline\\\"] = round(sica_acc, 4)\\n   252\\t\\n   253\\t    out = os.path.join(OUTPUT_DIR, \\\"results.json\\\")\\n   254\\t    with open(out, \\\"w\\\") as f:\\n   255\\t        json.dump(results, f, indent=2)\\n   256\\t    print(f\\\"\\\\nSaved: {out}\\\")\\n   257\\t\\n   258\\t\\n   259\\tif __name__ == \\\"__main__\\\":\\n   260\\t    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "99b2fd1e-5559-4bef-9ddb-db48ccfe5b60",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t#!/usr/bin/env python3\\\\n     2\\\\t\\\\\\\"\\\\\\\"\\\\\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\\\\\"\\\\\\\"\\\\\\\"\\\\n     3\\\\t\\\\n     4\\\\timport json\\\\n     5\\\\timport os\\\\n     6\\\\timport time\\\\n     7\\\\tfrom collections import Counter\\\\n     8\\\\tfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\n     9\\\\timport torch\\\\n    10\\\\t\\\\n    11\\\\tFOLIO_PATH = \\\\\\\"/root/symb_invariant_consensus/data/folio_full.json\\\\\\\"\\\\n    12\\\\tEXP033_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\\\\\"\\\\n    13\\\\tSC_MATRIX_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\\\\"\\\\n    14\\\\tOUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\\\\\"\\\\n    15\\\\tMODEL_NAME = \\\\\\\"/root/models/deberta-large-mnli\\\\\\\"\\\\n    16\\\\tCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\n    17\\\\t\\\\n    18\\\\t\\\\n    19\\\\tdef parse_problem(problem_text):\\\\n    20\\\\t    marker = \\\\\\\"Determine whether the following conclusion is true, false, or uncertain:\\\\\\\\n\\\\\\\"\\\\n    21\\\\t    if marker in problem_text:\\\\n    22\\\\t        parts = problem_text.split(marker, 1)\\\\n    23\\\\t        premises = parts[0].replace(\\\\\\\"Given the following premises:\\\\\\\\n\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n    24\\\\t        conclusion = parts[1].strip()\\\\n    25\\\\t    else:\\\\n    26\\\\t        premises = problem_text\\\\n    27\\\\t        conclusion = \\\\\\\"\\\\\\\"\\\\n    28\\\\t    return premises, conclusion\\\\n    29\\\\t\\\\n    30\\\\t\\\\n    31\\\\tdef main():\\\\n    32\\\\t    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n    33\\\\t\\\\n    34\\\\t    with open(FOLIO_PATH) as f:\\\\n    35\\\\t        folio = json.load(f)\\\\n    36\\\\t    with open(EXP033_PATH) as f:\\\\n    37\\\\t        exp033 = json.load(f)\\\\n    38\\\\t    with open(SC_MATRIX_PATH) as f:\\\\n    39\\\\t        sc_matrix = json.load(f)\\\\n    40\\\\t\\\\n    41\\\\t    exp033_by_id = {r[\\\\\\\"problem_id\\\\\\\"]: r for r in exp033[\\\\\\\"results\\\\\\\"]}\\\\n    42\\\\t    gt = {q[\\\\\\\"id\\\\\\\"]: q[\\\\\\\"answer\\\\\\\"] for q in folio}\\\\n    43\\\\t    total = len(gt)\\\\n    44\\\\t\\\\n    45\\\\t    # Load DeBERTa\\\\n    46\\\\t    print(f\\\\\\\"Loading {MODEL_NAME}...\\\\\\\")\\\\n    47\\\\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\\\n    48\\\\t    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\\\n    49\\\\t    model.eval()\\\\n    50\\\\t\\\\n    51\\\\t    id2label = model.config.id2label\\\\n    52\\\\t    print(f\\\\\\\"Label mapping: {id2label}\\\\\\\")\\\\n    53\\\\t    nli_to_folio = {}\\\\n    54\\\\t    for idx, label in id2label.items():\\\\n    55\\\\t        lu = label.upper()\\\\n    56\\\\t        if \\\\\\\"ENTAIL\\\\\\\" in lu:\\\\n    57\\\\t            nli_to_folio[idx] = \\\\\\\"True\\\\\\\"\\\\n    58\\\\t        elif \\\\\\\"CONTRA\\\\\\\" in lu:\\\\n    59\\\\t            nli_to_folio[idx] = \\\\\\\"False\\\\\\\"\\\\n    60\\\\t        else:\\\\n    61\\\\t            nli_to_folio[idx] = \\\\\\\"Unknown\\\\\\\"\\\\n    62\\\\t    print(f\\\\\\\"NLI->FOLIO: {nli_to_folio}\\\\\\\")\\\\n    63\\\\t\\\\n    64\\\\t    # === Exp-R1: DeBERTa standalone ===\\\\n    65\\\\t    print(\\\\\\\"\\\\\\\\n=== Exp-R1: DeBERTa standalone ===\\\\\\\")\\\\n    66\\\\t    deberta_preds = {}\\\\n    67\\\\t    deberta_probs = {}\\\\n    68\\\\t    t0 = time.time()\\\\n    69\\\\t\\\\n    70\\\\t    for i, q in enumerate(folio):\\\\n    71\\\\t        qid = q[\\\\\\\"id\\\\\\\"]\\\\n    72\\\\t        premises, conclusion = parse_problem(q[\\\\\\\"problem\\\\\\\"])\\\\n    73\\\\t        if not conclusion:\\\\n    74\\\\t            deberta_preds[qid] = \\\\\\\"Unknown\\\\\\\"\\\\n    75\\\\t            deberta_probs[qid] = {}\\\\n    76\\\\t            continue\\\\n    77\\\\t\\\\n    78\\\\t        inputs = tokenizer(premises, conclusion, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512)\\\\n    79\\\\t        with torch.no_grad():\\\\n    80\\\\t            outputs = model(**inputs)\\\\n    81\\\\t\\\\n    82\\\\t        probs = torch.softmax(outputs.logits, dim=-1)[0]\\\\n    83\\\\t        pred_idx = probs.argmax().item()\\\\n    84\\\\t        pred_label = nli_to_folio[pred_idx]\\\\n    85\\\\t\\\\n    86\\\\t        deberta_preds[qid] = pred_label\\\\n    87\\\\t        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\\\n    88\\\\t\\\\n    89\\\\t        if (i + 1) % 50 == 0:\\\\n    90\\\\t            print(f\\\\\\\"  Processed {i+1}/{len(folio)}\\\\\\\")\\\\n    91\\\\t\\\\n    92\\\\t    elapsed = time.time() - t0\\\\n    93\\\\t    print(f\\\\\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\\\\\")\\\\n    94\\\\t\\\\n    95\\\\t    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\\\n    96\\\\t    deberta_acc = correct / total\\\\n    97\\\\t\\\\n    98\\\\t    per_class = {}\\\\n    99\\\\t    for cls in CLASSES:\\\\n   100\\\\t        tp = sum(1 f\\\\n\\\\n... [截断: 输出过长，省略 4193 字符] ...\\\\n\\\\n         combo_correct += 1\\\\n   186\\\\t        combo_acc = combo_correct / total\\\\n   187\\\\t        combo_results[weight] = {\\\\\\\"accuracy\\\\\\\": round(combo_acc, 4), \\\\\\\"correct\\\\\\\": combo_correct}\\\\n   188\\\\t        print(f\\\\\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\\\\\")\\\\n   189\\\\t\\\\n   190\\\\t    print(f\\\\\\\"  SC baseline: {sc_acc:.4f}\\\\\\\")\\\\n   191\\\\t    print(f\\\\\\\"  SICA baseline: {sica_acc:.4f}\\\\\\\")\\\\n   192\\\\t\\\\n   193\\\\t    # === Also: DeBERTa as verifier for SICA ===\\\\n   194\\\\t    print(\\\\\\\"\\\\\\\\n=== Bonus: DeBERTa vs SICA agreement ===\\\\\\\")\\\\n   195\\\\t    sica_agree = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid))\\\\n   196\\\\t    sica_disagree = total - sica_agree\\\\n   197\\\\t    sica_agree_correct = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid) == gt[qid])\\\\n   198\\\\t    sica_disagree_deberta = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and deberta_preds.get(qid) == gt[qid])\\\\n   199\\\\t    sica_disagree_sica = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and sica_answers.get(qid) == gt[qid])\\\\n   200\\\\t    print(f\\\\\\\"  DeBERTa-SICA agreement: {sica_agree/total:.4f} ({sica_agree}/{total})\\\\\\\")\\\\n   201\\\\t    print(f\\\\\\\"  Agree accuracy: {sica_agree_correct/sica_agree:.4f}\\\\\\\" if sica_agree > 0 else \\\\\\\"  N/A\\\\\\\")\\\\n   202\\\\t    print(f\\\\\\\"  Disagree: DeBERTa right={sica_disagree_deberta}, SICA right={sica_disagree_sica}\\\\\\\")\\\\n   203\\\\t\\\\n   204\\\\t    # Save\\\\n   205\\\\t    results = {\\\\n   206\\\\t        \\\\\\\"exp_r1_deberta_standalone\\\\\\\": {\\\\n   207\\\\t            \\\\\\\"accuracy\\\\\\\": round(deberta_acc, 4),\\\\n   208\\\\t            \\\\\\\"correct\\\\\\\": correct, \\\\\\\"total\\\\\\\": total,\\\\n   209\\\\t            \\\\\\\"per_class\\\\\\\": per_class,\\\\n   210\\\\t            \\\\\\\"gt_distribution\\\\\\\": gt_dist,\\\\n   211\\\\t            \\\\\\\"pred_distribution\\\\\\\": pred_dist,\\\\n   212\\\\t            \\\\\\\"inference_time_s\\\\\\\": round(elapsed, 1),\\\\n   213\\\\t            \\\\\\\"model\\\\\\\": MODEL_NAME\\\\n   214\\\\t        },\\\\n   215\\\\t        \\\\\\\"exp_r2_verifier\\\\\\\": {\\\\n   216\\\\t            \\\\\\\"agreement_rate\\\\\\\": round(agree_rate, 4),\\\\n   217\\\\t            \\\\\\\"agree_count\\\\\\\": agree, \\\\\\\"disagree_count\\\\\\\": disagree,\\\\n   218\\\\t            \\\\\\\"agree_accuracy\\\\\\\": round(abstain_acc, 4),\\\\n   219\\\\t            \\\\\\\"disagree_breakdown\\\\\\\": {\\\\n   220\\\\t                \\\\\\\"deberta_correct_sc_wrong\\\\\\\": disagree_deberta_correct,\\\\n   221\\\\t                \\\\\\\"sc_correct_deberta_wrong\\\\\\\": disagree_sc_correct,\\\\n   222\\\\t                \\\\\\\"both_wrong\\\\\\\": disagree_both_wrong\\\\n   223\\\\t            },\\\\n   224\\\\t            \\\\\\\"strategies\\\\\\\": {\\\\n   225\\\\t                \\\\\\\"abstain\\\\\\\": {\\\\\\\"coverage\\\\\\\": round(agree / total, 4), \\\\\\\"accuracy\\\\\\\": round(abstain_acc, 4)},\\\\n   226\\\\t                \\\\\\\"deberta_override\\\\\\\": {\\\\\\\"accuracy\\\\\\\": round(override_acc, 4)},\\\\n   227\\\\t                \\\\\\\"sc_baseline\\\\\\\": {\\\\\\\"accuracy\\\\\\\": round(sc_acc, 4)}\\\\n   228\\\\t            },\\\\n   229\\\\t            \\\\\\\"deberta_corrects_sc\\\\\\\": deberta_corrects_sc,\\\\n   230\\\\t            \\\\\\\"sc_corrects_deberta\\\\\\\": sc_corrects_deberta\\\\n   231\\\\t        },\\\\n   232\\\\t        \\\\\\\"exp_r3_combo\\\\\\\": {\\\\n   233\\\\t            f\\\\\\\"deberta_weight_{w}\\\\\\\": combo_results[w] for w in [1, 3]\\\\n   234\\\\t        },\\\\n   235\\\\t        \\\\\\\"baselines\\\\\\\": {\\\\\\\"sc\\\\\\\": round(sc_acc, 4), \\\\\\\"sica\\\\\\\": round(sica_acc, 4)},\\\\n   236\\\\t        \\\\\\\"per_question\\\\\\\": {\\\\n   237\\\\t            qid: {\\\\n   238\\\\t                \\\\\\\"deberta_pred\\\\\\\": deberta_preds[qid],\\\\n   239\\\\t                \\\\\\\"deberta_probs\\\\\\\": deberta_probs[qid],\\\\n   240\\\\t                \\\\\\\"sc_answer\\\\\\\": sc_answers.get(qid),\\\\n   241\\\\t                \\\\\\\"sica_answer\\\\\\\": sica_answers.get(qid),\\\\n   242\\\\t                \\\\\\\"gold\\\\\\\": gt[qid],\\\\n   243\\\\t                \\\\\\\"deberta_correct\\\\\\\": deberta_preds[qid] == gt[qid],\\\\n   244\\\\t                \\\\\\\"sc_correct\\\\\\\": sc_answers.get(qid) == gt[qid],\\\\n   245\\\\t                \\\\\\\"sica_correct\\\\\\\": sica_answers.get(qid) == gt[qid]\\\\n   246\\\\t            }\\\\n   247\\\\t            for qid in gt\\\\n   248\\\\t        }\\\\n   249\\\\t    }\\\\n   250\\\\t    results[\\\\\\\"exp_r3_combo\\\\\\\"][\\\\\\\"sc_baseline\\\\\\\"] = round(sc_acc, 4)\\\\n   251\\\\t    results[\\\\\\\"exp_r3_combo\\\\\\\"][\\\\\\\"sica_baseline\\\\\\\"] = round(sica_acc, 4)\\\\n   252\\\\t\\\\n   253\\\\t    out = os.path.join(OUTPUT_DIR, \\\\\\\"results.json\\\\\\\")\\\\n   254\\\\t    with open(out, \\\\\\\"w\\\\\\\") as f:\\\\n   255\\\\t        json.dump(results, f, indent=2)\\\\n   256\\\\t    print(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n   257\\\\t\\\\n   258\\\\t\\\\n   259\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   260\\\\t    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t#!/usr/bin/env python3\\n     2\\t\\\"\\\"\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\"\\\"\\\"\\n     3\\t\\n     4\\timport json\\n     5\\timport os\\n     6\\timport time\\n     7\\tfrom collections import Counter\\n     8\\tfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\n     9\\timport torch\\n    10\\t\\n    11\\tFOLIO_PATH = \\\"/root/symb_invariant_consensus/data/folio_full.json\\\"\\n    12\\tEXP033_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\"\\n    13\\tSC_MATRIX_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\"\\n    14\\tOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\"\\n    15\\tMODEL_NAME = \\\"/root/models/deberta-large-mnli\\\"\\n    16\\tCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    17\\t\\n    18\\t\\n    19\\tdef parse_problem(problem_text):\\n    20\\t    marker = \\\"Determine whether the following conclusion is true, false, or uncertain:\\\\n\\\"\\n    21\\t    if marker in problem_text:\\n    22\\t        parts = problem_text.split(marker, 1)\\n    23\\t        premises = parts[0].replace(\\\"Given the following premises:\\\\n\\\", \\\"\\\").strip()\\n    24\\t        conclusion = parts[1].strip()\\n    25\\t    else:\\n    26\\t        premises = problem_text\\n    27\\t        conclusion = \\\"\\\"\\n    28\\t    return premises, conclusion\\n    29\\t\\n    30\\t\\n    31\\tdef main():\\n    32\\t    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    33\\t\\n    34\\t    with open(FOLIO_PATH) as f:\\n    35\\t        folio = json.load(f)\\n    36\\t    with open(EXP033_PATH) as f:\\n    37\\t        exp033 = json.load(f)\\n    38\\t    with open(SC_MATRIX_PATH) as f:\\n    39\\t        sc_matrix = json.load(f)\\n    40\\t\\n    41\\t    exp033_by_id = {r[\\\"problem_id\\\"]: r for r in exp033[\\\"results\\\"]}\\n    42\\t    gt = {q[\\\"id\\\"]: q[\\\"answer\\\"] for q in folio}\\n    43\\t    total = len(gt)\\n    44\\t\\n    45\\t    # Load DeBERTa\\n    46\\t    print(f\\\"Loading {MODEL_NAME}...\\\")\\n    47\\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\n    48\\t    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\n    49\\t    model.eval()\\n    50\\t\\n    51\\t    id2label = model.config.id2label\\n    52\\t    print(f\\\"Label mapping: {id2label}\\\")\\n    53\\t    nli_to_folio = {}\\n    54\\t    for idx, label in id2label.items():\\n    55\\t        lu = label.upper()\\n    56\\t        if \\\"ENTAIL\\\" in lu:\\n    57\\t            nli_to_folio[idx] = \\\"True\\\"\\n    58\\t        elif \\\"CONTRA\\\" in lu:\\n    59\\t            nli_to_folio[idx] = \\\"False\\\"\\n    60\\t        else:\\n    61\\t            nli_to_folio[idx] = \\\"Unknown\\\"\\n    62\\t    print(f\\\"NLI->FOLIO: {nli_to_folio}\\\")\\n    63\\t\\n    64\\t    # === Exp-R1: DeBERTa standalone ===\\n    65\\t    print(\\\"\\\\n=== Exp-R1: DeBERTa standalone ===\\\")\\n    66\\t    deberta_preds = {}\\n    67\\t    deberta_probs = {}\\n    68\\t    t0 = time.time()\\n    69\\t\\n    70\\t    for i, q in enumerate(folio):\\n    71\\t        qid = q[\\\"id\\\"]\\n    72\\t        premises, conclusion = parse_problem(q[\\\"problem\\\"])\\n    73\\t        if not conclusion:\\n    74\\t            deberta_preds[qid] = \\\"Unknown\\\"\\n    75\\t            deberta_probs[qid] = {}\\n    76\\t            continue\\n    77\\t\\n    78\\t        inputs = tokenizer(premises, conclusion, return_tensors=\\\"pt\\\", truncation=True, max_length=512)\\n    79\\t        with torch.no_grad():\\n    80\\t            outputs = model(**inputs)\\n    81\\t\\n    82\\t        probs = torch.softmax(outputs.logits, dim=-1)[0]\\n    83\\t        pred_idx = probs.argmax().item()\\n    84\\t        pred_label = nli_to_folio[pred_idx]\\n    85\\t\\n    86\\t        deberta_preds[qid] = pred_label\\n    87\\t        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\n    88\\t\\n    89\\t        if (i + 1) % 50 == 0:\\n    90\\t            print(f\\\"  Processed {i+1}/{len(folio)}\\\")\\n    91\\t\\n    92\\t    elapsed = time.time() - t0\\n    93\\t    print(f\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\")\\n    94\\t\\n    95\\t    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\n    96\\t    deberta_acc = correct / total\\n    97\\t\\n    98\\t    per_class = {}\\n    99\\t    for cls in CLASSES:\\n   100\\t        tp = sum(1 f\\n\\n... [截断: 输出过长，省略 4193 字符] ...\\n\\n         combo_correct += 1\\n   186\\t        combo_acc = combo_correct / total\\n   187\\t        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n   188\\t        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n   189\\t\\n   190\\t    print(f\\\"  SC baseline: {sc_acc:.4f}\\\")\\n   191\\t    print(f\\\"  SICA baseline: {sica_acc:.4f}\\\")\\n   192\\t\\n   193\\t    # === Also: DeBERTa as verifier for SICA ===\\n   194\\t    print(\\\"\\\\n=== Bonus: DeBERTa vs SICA agreement ===\\\")\\n   195\\t    sica_agree = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid))\\n   196\\t    sica_disagree = total - sica_agree\\n   197\\t    sica_agree_correct = sum(1 for qid in gt if deberta_preds.get(qid) == sica_answers.get(qid) == gt[qid])\\n   198\\t    sica_disagree_deberta = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and deberta_preds.get(qid) == gt[qid])\\n   199\\t    sica_disagree_sica = sum(1 for qid in gt if deberta_preds.get(qid) != sica_answers.get(qid) and sica_answers.get(qid) == gt[qid])\\n   200\\t    print(f\\\"  DeBERTa-SICA agreement: {sica_agree/total:.4f} ({sica_agree}/{total})\\\")\\n   201\\t    print(f\\\"  Agree accuracy: {sica_agree_correct/sica_agree:.4f}\\\" if sica_agree > 0 else \\\"  N/A\\\")\\n   202\\t    print(f\\\"  Disagree: DeBERTa right={sica_disagree_deberta}, SICA right={sica_disagree_sica}\\\")\\n   203\\t\\n   204\\t    # Save\\n   205\\t    results = {\\n   206\\t        \\\"exp_r1_deberta_standalone\\\": {\\n   207\\t            \\\"accuracy\\\": round(deberta_acc, 4),\\n   208\\t            \\\"correct\\\": correct, \\\"total\\\": total,\\n   209\\t            \\\"per_class\\\": per_class,\\n   210\\t            \\\"gt_distribution\\\": gt_dist,\\n   211\\t            \\\"pred_distribution\\\": pred_dist,\\n   212\\t            \\\"inference_time_s\\\": round(elapsed, 1),\\n   213\\t            \\\"model\\\": MODEL_NAME\\n   214\\t        },\\n   215\\t        \\\"exp_r2_verifier\\\": {\\n   216\\t            \\\"agreement_rate\\\": round(agree_rate, 4),\\n   217\\t            \\\"agree_count\\\": agree, \\\"disagree_count\\\": disagree,\\n   218\\t            \\\"agree_accuracy\\\": round(abstain_acc, 4),\\n   219\\t            \\\"disagree_breakdown\\\": {\\n   220\\t                \\\"deberta_correct_sc_wrong\\\": disagree_deberta_correct,\\n   221\\t                \\\"sc_correct_deberta_wrong\\\": disagree_sc_correct,\\n   222\\t                \\\"both_wrong\\\": disagree_both_wrong\\n   223\\t            },\\n   224\\t            \\\"strategies\\\": {\\n   225\\t                \\\"abstain\\\": {\\\"coverage\\\": round(agree / total, 4), \\\"accuracy\\\": round(abstain_acc, 4)},\\n   226\\t                \\\"deberta_override\\\": {\\\"accuracy\\\": round(override_acc, 4)},\\n   227\\t                \\\"sc_baseline\\\": {\\\"accuracy\\\": round(sc_acc, 4)}\\n   228\\t            },\\n   229\\t            \\\"deberta_corrects_sc\\\": deberta_corrects_sc,\\n   230\\t            \\\"sc_corrects_deberta\\\": sc_corrects_deberta\\n   231\\t        },\\n   232\\t        \\\"exp_r3_combo\\\": {\\n   233\\t            f\\\"deberta_weight_{w}\\\": combo_results[w] for w in [1, 3]\\n   234\\t        },\\n   235\\t        \\\"baselines\\\": {\\\"sc\\\": round(sc_acc, 4), \\\"sica\\\": round(sica_acc, 4)},\\n   236\\t        \\\"per_question\\\": {\\n   237\\t            qid: {\\n   238\\t                \\\"deberta_pred\\\": deberta_preds[qid],\\n   239\\t                \\\"deberta_probs\\\": deberta_probs[qid],\\n   240\\t                \\\"sc_answer\\\": sc_answers.get(qid),\\n   241\\t                \\\"sica_answer\\\": sica_answers.get(qid),\\n   242\\t                \\\"gold\\\": gt[qid],\\n   243\\t                \\\"deberta_correct\\\": deberta_preds[qid] == gt[qid],\\n   244\\t                \\\"sc_correct\\\": sc_answers.get(qid) == gt[qid],\\n   245\\t                \\\"sica_correct\\\": sica_answers.get(qid) == gt[qid]\\n   246\\t            }\\n   247\\t            for qid in gt\\n   248\\t        }\\n   249\\t    }\\n   250\\t    results[\\\"exp_r3_combo\\\"][\\\"sc_baseline\\\"] = round(sc_acc, 4)\\n   251\\t    results[\\\"exp_r3_combo\\\"][\\\"sica_baseline\\\"] = round(sica_acc, 4)\\n   252\\t\\n   253\\t    out = os.path.join(OUTPUT_DIR, \\\"results.json\\\")\\n   254\\t    with open(out, \\\"w\\\") as f:\\n   255\\t        json.dump(results, f, indent=2)\\n   256\\t    print(f\\\"\\\\nSaved: {out}\\\")\\n   257\\t\\n   258\\t\\n   259\\tif __name__ == \\\"__main__\\\":\\n   260\\t    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the combo section more carefully. The output was truncated. Let me read lines 160-190 which contain the combo logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "405aa173-e69b-48e7-946a-d3b9035b02ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01653poFpt9JB26WX6FYie2Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3850,
+      "cache_read_input_tokens": 72937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EXrNNQNBbdXLPV1pr4N4aE`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -190 /root/symb_invariant_consensus/direction_r_deberta.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "5cdac778-ce58-4bee-9420-7eff35e00992",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01653poFpt9JB26WX6FYie2Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3850,
+      "cache_read_input_tokens": 72937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T14:19:41.761Z_
+
+<details><summary>↩ Tool result · `toolu_01EXrNNQNBbdXLPV1pr4N4aE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport time\\nfrom collections import Counter\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\nimport torch\\n\\nFOLIO_PATH = \\\"/root/symb_invariant_consensus/data/folio_full.json\\\"\\nEXP033_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\"\\nSC_MATRIX_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\"\\nMODEL_NAME = \\\"/root/models/deberta-large-mnli\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n\\n\\ndef parse_problem(problem_text):\\n    marker = \\\"Determine whether the following conclusion is true, false, or uncertain:\\\\n\\\"\\n    if marker in problem_text:\\n        parts = problem_text.split(marker, 1)\\n        premises = parts[0].replace(\\\"Given the following premises:\\\\n\\\", \\\"\\\").strip()\\n        conclusion = parts[1].strip()\\n    else:\\n        premises = problem_text\\n        conclusion = \\\"\\\"\\n    return premises, conclusion\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(FOLIO_PATH) as f:\\n        folio = json.load(f)\\n    with open(EXP033_PATH) as f:\\n        exp033 = json.load(f)\\n    with open(SC_MATRIX_PATH) as f:\\n        sc_matrix = json.load(f)\\n\\n    exp033_by_id = {r[\\\"problem_id\\\"]: r for r in exp033[\\\"results\\\"]}\\n    gt = {q[\\\"id\\\"]: q[\\\"answer\\\"] for q in folio}\\n    total = len(gt)\\n\\n    # Load DeBERTa\\n    print(f\\\"Loading {MODEL_NAME}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\n    model.eval()\\n\\n    id2label = model.config.id2label\\n    print(f\\\"Label mapping: {id2label}\\\")\\n    nli_to_folio = {}\\n    for idx, label in id2label.items():\\n        lu = label.upper()\\n        if \\\"ENTAIL\\\" in lu:\\n            nli_to_folio[idx] = \\\"True\\\"\\n        elif \\\"CONTRA\\\" in lu:\\n            nli_to_folio[idx] = \\\"False\\\"\\n        else:\\n            nli_to_folio[idx] = \\\"Unknown\\\"\\n    print(f\\\"NLI->FOLIO: {nli_to_folio}\\\")\\n\\n    # === Exp-R1: DeBERTa standalone ===\\n    print(\\\"\\\\n=== Exp-R1: DeBERTa standalone ===\\\")\\n    deberta_preds = {}\\n    deberta_probs = {}\\n    t0 = time.time()\\n\\n    for i, q in enumerate(folio):\\n        qid = q[\\\"id\\\"]\\n        premises, conclusion = parse_problem(q[\\\"problem\\\"])\\n        if not conclusion:\\n            deberta_preds[qid] = \\\"Unknown\\\"\\n            deberta_probs[qid] = {}\\n            continue\\n\\n        inputs = tokenizer(premises, conclusion, return_tensors=\\\"pt\\\", truncation=True, max_length=512)\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n\\n        probs = torch.softmax(outputs.logits, dim=-1)[0]\\n        pred_idx = probs.argmax().item()\\n        pred_label = nli_to_folio[pred_idx]\\n\\n        deberta_preds[qid] = pred_label\\n        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\n\\n        if (i + 1) % 50 == 0:\\n            print(f\\\"  Processed {i+1}/{len(folio)}\\\")\\n\\n    elapsed = time.time() - t0\\n    print(f\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\")\\n\\n    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\n    deberta_acc = correct / total\\n\\n    per_class = {}\\n    for cls in CLASSES:\\n        tp = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) == cls)\\n        fp = sum(1 for qid in gt if gt[qid] != cls and deberta_preds.get(qid) == cls)\\n        fn = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) != cls)\\n        p = tp / (tp + fp) if (tp + fp) > 0 else 0\\n        r = tp / (tp + fn) if (tp + fn) > 0 else 0\\n        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0\\n        n_cls = sum(1 for qid in gt if gt[qid] == cls)\\n        per_class[cls] = {\\n            \\\"n\\\": n_cls, \\\"correct\\\": tp,\\n            \\\"accuracy\\\": round(tp / n_cls, 4) if n_cls > 0 else 0,\\n            \\\"precision\\\": round(p, 4), \\\"recall\\\": round(r, 4), \\\"f1\\\": round(f1, 4)\\n        }\\n\\n    pred_dist = dict(Counter(deberta_preds.values()))\\n    gt_dist = dict(Counter(gt.values()))\\n\\n    print(f\\\"\\\\n  DeBERTa accuracy: {deberta_acc:.4f} ({correct}/{total})\\\")\\n    print(f\\\"  GT dist: {gt_dist}\\\")\\n    print(f\\\"  Pred dist: {pred_dist}\\\")\\n    for cls in CLASSES:\\n        pc = per_class[cls]\\n        print(f\\\"  {cls}: acc={pc['accuracy']:.4f} P={pc['precision']:.4f} R={pc['recall']:.4f} F1={pc['f1']:.4f} (n={pc['n']})\\\")\\n\\n    # === Exp-R2: DeBERTa as verifier for SC ===\\n    print(\\\"\\\\n=== Exp-R2: DeBERTa as verifier for SC ===\\\")\\n    sc_answers = {r[\\\"problem_id\\\"]: r[\\\"sc_answer\\\"] for r in exp033[\\\"results\\\"]}\\n    sica_answers = {r[\\\"problem_id\\\"]: r[\\\"sica_answer\\\"] for r in exp033[\\\"results\\\"]}\\n\\n    agree = disagree = agree_correct = 0\\n    disagree_deberta_correct = disagree_sc_correct = disagree_both_wrong = 0\\n    deberta_corrects_sc = []\\n    sc_corrects_deberta = []\\n\\n    for qid in gt:\\n        dp = deberta_preds.get(qid)\\n        sp = sc_answers.get(qid)\\n        gold = gt[qid]\\n        if dp == sp:\\n            agree += 1\\n            if dp == gold:\\n                agree_correct += 1\\n        else:\\n            disagree += 1\\n            if dp == gold:\\n                disagree_deberta_correct += 1\\n                deberta_corrects_sc.append(qid)\\n            elif sp == gold:\\n                disagree_sc_correct += 1\\n                sc_corrects_deberta.append(qid)\\n            else:\\n                disagree_both_wrong += 1\\n\\n    agree_rate = agree / total\\n    abstain_acc = agree_correct / agree if agree > 0 else 0\\n    override_correct = agree_correct + disagree_deberta_correct\\n    override_acc = override_correct / total\\n    sc_acc = exp033[\\\"summary\\\"][\\\"sc_accuracy\\\"]\\n    sica_acc = exp033[\\\"summary\\\"][\\\"sica_accuracy\\\"]\\n\\n    print(f\\\"  Agreement: {agree_rate:.4f} ({agree}/{total})\\\")\\n    print(f\\\"  Agree accuracy: {abstain_acc:.4f} ({agree_correct}/{agree})\\\")\\n    print(f\\\"  Disagree ({disagree}): DeBERTa right={disagree_deberta_correct}, SC right={disagree_sc_correct}, both wrong={disagree_both_wrong}\\\")\\n    print(f\\\"  (a) Abstain: coverage={agree/total:.4f}, acc={abstain_acc:.4f}\\\")\\n    print(f\\\"  (b) DeBERTa override: acc={override_acc:.4f}\\\")\\n    print(f\\\"  (c) SC baseline: acc={sc_acc:.4f}\\\")\\n    print(f\\\"  SICA baseline: {sica_acc:.4f}\\\")\\n\\n    # === Exp-R3: DeBERTa + SC combo ===\\n    print(\\\"\\\\n=== Exp-R3: DeBERTa + SC combo ===\\\")\\n    combo_results = {}\\n    for weight in [1, 3]:\\n        combo_correct = 0\\n        for qid in gt:\\n            gold = gt[qid]\\n            matrix = sc_matrix.get(qid, {})\\n            trace_answers = matrix.get(\\\"answers\\\", [])\\n            votes = Counter()\\n            for ans in trace_answers:\\n                if ans in CLASSES:\\n                    votes[ans] += 1\\n            dp = deberta_preds.get(qid)\\n            if dp in CLASSES:\\n                votes[dp] += weight\\n            combo_answer = votes.most_common(1)[0][0] if votes else \\\"Unknown\\\"\\n            if combo_answer == gold:\\n                combo_correct += 1\\n        combo_acc = combo_correct / total\\n        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n\\n    print(f\\\"  SC baseline: {sc_acc:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "cd866470-fe1a-45b8-9995-6b220ee43bcf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\nimport torch\\\\n\\\\nFOLIO_PATH = \\\\\\\"/root/symb_invariant_consensus/data/folio_full.json\\\\\\\"\\\\nEXP033_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\\\\\"\\\\nSC_MATRIX_PATH = \\\\\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\\\\\"\\\\nMODEL_NAME = \\\\\\\"/root/models/deberta-large-mnli\\\\\\\"\\\\nCLASSES = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\n\\\\n\\\\ndef parse_problem(problem_text):\\\\n    marker = \\\\\\\"Determine whether the following conclusion is true, false, or uncertain:\\\\\\\\n\\\\\\\"\\\\n    if marker in problem_text:\\\\n        parts = problem_text.split(marker, 1)\\\\n        premises = parts[0].replace(\\\\\\\"Given the following premises:\\\\\\\\n\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n        conclusion = parts[1].strip()\\\\n    else:\\\\n        premises = problem_text\\\\n        conclusion = \\\\\\\"\\\\\\\"\\\\n    return premises, conclusion\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\n    with open(FOLIO_PATH) as f:\\\\n        folio = json.load(f)\\\\n    with open(EXP033_PATH) as f:\\\\n        exp033 = json.load(f)\\\\n    with open(SC_MATRIX_PATH) as f:\\\\n        sc_matrix = json.load(f)\\\\n\\\\n    exp033_by_id = {r[\\\\\\\"problem_id\\\\\\\"]: r for r in exp033[\\\\\\\"results\\\\\\\"]}\\\\n    gt = {q[\\\\\\\"id\\\\\\\"]: q[\\\\\\\"answer\\\\\\\"] for q in folio}\\\\n    total = len(gt)\\\\n\\\\n    # Load DeBERTa\\\\n    print(f\\\\\\\"Loading {MODEL_NAME}...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\\\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\\\n    model.eval()\\\\n\\\\n    id2label = model.config.id2label\\\\n    print(f\\\\\\\"Label mapping: {id2label}\\\\\\\")\\\\n    nli_to_folio = {}\\\\n    for idx, label in id2label.items():\\\\n        lu = label.upper()\\\\n        if \\\\\\\"ENTAIL\\\\\\\" in lu:\\\\n            nli_to_folio[idx] = \\\\\\\"True\\\\\\\"\\\\n        elif \\\\\\\"CONTRA\\\\\\\" in lu:\\\\n            nli_to_folio[idx] = \\\\\\\"False\\\\\\\"\\\\n        else:\\\\n            nli_to_folio[idx] = \\\\\\\"Unknown\\\\\\\"\\\\n    print(f\\\\\\\"NLI->FOLIO: {nli_to_folio}\\\\\\\")\\\\n\\\\n    # === Exp-R1: DeBERTa standalone ===\\\\n    print(\\\\\\\"\\\\\\\\n=== Exp-R1: DeBERTa standalone ===\\\\\\\")\\\\n    deberta_preds = {}\\\\n    deberta_probs = {}\\\\n    t0 = time.time()\\\\n\\\\n    for i, q in enumerate(folio):\\\\n        qid = q[\\\\\\\"id\\\\\\\"]\\\\n        premises, conclusion = parse_problem(q[\\\\\\\"problem\\\\\\\"])\\\\n        if not conclusion:\\\\n            deberta_preds[qid] = \\\\\\\"Unknown\\\\\\\"\\\\n            deberta_probs[qid] = {}\\\\n            continue\\\\n\\\\n        inputs = tokenizer(premises, conclusion, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=512)\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n\\\\n        probs = torch.softmax(outputs.logits, dim=-1)[0]\\\\n        pred_idx = probs.argmax().item()\\\\n        pred_label = nli_to_folio[pred_idx]\\\\n\\\\n        deberta_preds[qid] = pred_label\\\\n        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\\\n\\\\n        if (i + 1) % 50 == 0:\\\\n            print(f\\\\\\\"  Processed {i+1}/{len(folio)}\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t0\\\\n    print(f\\\\\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\\\\\")\\\\n\\\\n    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\\\n    deberta_acc = correct / total\\\\n\\\\n    per_class = {}\\\\n    for cls in CLASSES:\\\\n        tp = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) == cls)\\\\n        fp = sum(1 for qid in gt if gt[qid] != cls and deberta_preds.get(qid) == cls)\\\\n        fn = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) != cls)\\\\n        p = tp / (tp + fp) if (tp + fp) > 0 else 0\\\\n        r = tp / (tp + fn) if (tp + fn) > 0 else 0\\\\n        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0\\\\n        n_cls = sum(1 for qid in gt if gt[qid] == cls)\\\\n        per_class[cls] = {\\\\n            \\\\\\\"n\\\\\\\": n_cls, \\\\\\\"correct\\\\\\\": tp,\\\\n            \\\\\\\"accuracy\\\\\\\": round(tp / n_cls, 4) if n_cls > 0 else 0,\\\\n            \\\\\\\"precision\\\\\\\": round(p, 4), \\\\\\\"recall\\\\\\\": round(r, 4), \\\\\\\"f1\\\\\\\": round(f1, 4)\\\\n        }\\\\n\\\\n    pred_dist = dict(Counter(deberta_preds.values()))\\\\n    gt_dist = dict(Counter(gt.values()))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  DeBERTa accuracy: {deberta_acc:.4f} ({correct}/{total})\\\\\\\")\\\\n    print(f\\\\\\\"  GT dist: {gt_dist}\\\\\\\")\\\\n    print(f\\\\\\\"  Pred dist: {pred_dist}\\\\\\\")\\\\n    for cls in CLASSES:\\\\n        pc = per_class[cls]\\\\n        print(f\\\\\\\"  {cls}: acc={pc['accuracy']:.4f} P={pc['precision']:.4f} R={pc['recall']:.4f} F1={pc['f1']:.4f} (n={pc['n']})\\\\\\\")\\\\n\\\\n    # === Exp-R2: DeBERTa as verifier for SC ===\\\\n    print(\\\\\\\"\\\\\\\\n=== Exp-R2: DeBERTa as verifier for SC ===\\\\\\\")\\\\n    sc_answers = {r[\\\\\\\"problem_id\\\\\\\"]: r[\\\\\\\"sc_answer\\\\\\\"] for r in exp033[\\\\\\\"results\\\\\\\"]}\\\\n    sica_answers = {r[\\\\\\\"problem_id\\\\\\\"]: r[\\\\\\\"sica_answer\\\\\\\"] for r in exp033[\\\\\\\"results\\\\\\\"]}\\\\n\\\\n    agree = disagree = agree_correct = 0\\\\n    disagree_deberta_correct = disagree_sc_correct = disagree_both_wrong = 0\\\\n    deberta_corrects_sc = []\\\\n    sc_corrects_deberta = []\\\\n\\\\n    for qid in gt:\\\\n        dp = deberta_preds.get(qid)\\\\n        sp = sc_answers.get(qid)\\\\n        gold = gt[qid]\\\\n        if dp == sp:\\\\n            agree += 1\\\\n            if dp == gold:\\\\n                agree_correct += 1\\\\n        else:\\\\n            disagree += 1\\\\n            if dp == gold:\\\\n                disagree_deberta_correct += 1\\\\n                deberta_corrects_sc.append(qid)\\\\n            elif sp == gold:\\\\n                disagree_sc_correct += 1\\\\n                sc_corrects_deberta.append(qid)\\\\n            else:\\\\n                disagree_both_wrong += 1\\\\n\\\\n    agree_rate = agree / total\\\\n    abstain_acc = agree_correct / agree if agree > 0 else 0\\\\n    override_correct = agree_correct + disagree_deberta_correct\\\\n    override_acc = override_correct / total\\\\n    sc_acc = exp033[\\\\\\\"summary\\\\\\\"][\\\\\\\"sc_accuracy\\\\\\\"]\\\\n    sica_acc = exp033[\\\\\\\"summary\\\\\\\"][\\\\\\\"sica_accuracy\\\\\\\"]\\\\n\\\\n    print(f\\\\\\\"  Agreement: {agree_rate:.4f} ({agree}/{total})\\\\\\\")\\\\n    print(f\\\\\\\"  Agree accuracy: {abstain_acc:.4f} ({agree_correct}/{agree})\\\\\\\")\\\\n    print(f\\\\\\\"  Disagree ({disagree}): DeBERTa right={disagree_deberta_correct}, SC right={disagree_sc_correct}, both wrong={disagree_both_wrong}\\\\\\\")\\\\n    print(f\\\\\\\"  (a) Abstain: coverage={agree/total:.4f}, acc={abstain_acc:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  (b) DeBERTa override: acc={override_acc:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  (c) SC baseline: acc={sc_acc:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  SICA baseline: {sica_acc:.4f}\\\\\\\")\\\\n\\\\n    # === Exp-R3: DeBERTa + SC combo ===\\\\n    print(\\\\\\\"\\\\\\\\n=== Exp-R3: DeBERTa + SC combo ===\\\\\\\")\\\\n    combo_results = {}\\\\n    for weight in [1, 3]:\\\\n        combo_correct = 0\\\\n        for qid in gt:\\\\n            gold = gt[qid]\\\\n            matrix = sc_matrix.get(qid, {})\\\\n            trace_answers = matrix.get(\\\\\\\"answers\\\\\\\", [])\\\\n            votes = Counter()\\\\n            for ans in trace_answers:\\\\n                if ans in CLASSES:\\\\n                    votes[ans] += 1\\\\n            dp = deberta_preds.get(qid)\\\\n            if dp in CLASSES:\\\\n                votes[dp] += weight\\\\n            combo_answer = votes.most_common(1)[0][0] if votes else \\\\\\\"Unknown\\\\\\\"\\\\n            if combo_answer == gold:\\\\n                combo_correct += 1\\\\n        combo_acc = combo_correct / total\\\\n        combo_results[weight] = {\\\\\\\"accuracy\\\\\\\": round(combo_acc, 4), \\\\\\\"correct\\\\\\\": combo_correct}\\\\n        print(f\\\\\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"  SC baseline: {sc_acc:.4f}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Direction R: DeBERTa External Verifier for FOLIO-204\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport time\\nfrom collections import Counter\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\nimport torch\\n\\nFOLIO_PATH = \\\"/root/symb_invariant_consensus/data/folio_full.json\\\"\\nEXP033_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\"\\nSC_MATRIX_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/direction_r_nli_large\\\"\\nMODEL_NAME = \\\"/root/models/deberta-large-mnli\\\"\\nCLASSES = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n\\n\\ndef parse_problem(problem_text):\\n    marker = \\\"Determine whether the following conclusion is true, false, or uncertain:\\\\n\\\"\\n    if marker in problem_text:\\n        parts = problem_text.split(marker, 1)\\n        premises = parts[0].replace(\\\"Given the following premises:\\\\n\\\", \\\"\\\").strip()\\n        conclusion = parts[1].strip()\\n    else:\\n        premises = problem_text\\n        conclusion = \\\"\\\"\\n    return premises, conclusion\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\n    with open(FOLIO_PATH) as f:\\n        folio = json.load(f)\\n    with open(EXP033_PATH) as f:\\n        exp033 = json.load(f)\\n    with open(SC_MATRIX_PATH) as f:\\n        sc_matrix = json.load(f)\\n\\n    exp033_by_id = {r[\\\"problem_id\\\"]: r for r in exp033[\\\"results\\\"]}\\n    gt = {q[\\\"id\\\"]: q[\\\"answer\\\"] for q in folio}\\n    total = len(gt)\\n\\n    # Load DeBERTa\\n    print(f\\\"Loading {MODEL_NAME}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)\\n    model.eval()\\n\\n    id2label = model.config.id2label\\n    print(f\\\"Label mapping: {id2label}\\\")\\n    nli_to_folio = {}\\n    for idx, label in id2label.items():\\n        lu = label.upper()\\n        if \\\"ENTAIL\\\" in lu:\\n            nli_to_folio[idx] = \\\"True\\\"\\n        elif \\\"CONTRA\\\" in lu:\\n            nli_to_folio[idx] = \\\"False\\\"\\n        else:\\n            nli_to_folio[idx] = \\\"Unknown\\\"\\n    print(f\\\"NLI->FOLIO: {nli_to_folio}\\\")\\n\\n    # === Exp-R1: DeBERTa standalone ===\\n    print(\\\"\\\\n=== Exp-R1: DeBERTa standalone ===\\\")\\n    deberta_preds = {}\\n    deberta_probs = {}\\n    t0 = time.time()\\n\\n    for i, q in enumerate(folio):\\n        qid = q[\\\"id\\\"]\\n        premises, conclusion = parse_problem(q[\\\"problem\\\"])\\n        if not conclusion:\\n            deberta_preds[qid] = \\\"Unknown\\\"\\n            deberta_probs[qid] = {}\\n            continue\\n\\n        inputs = tokenizer(premises, conclusion, return_tensors=\\\"pt\\\", truncation=True, max_length=512)\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n\\n        probs = torch.softmax(outputs.logits, dim=-1)[0]\\n        pred_idx = probs.argmax().item()\\n        pred_label = nli_to_folio[pred_idx]\\n\\n        deberta_preds[qid] = pred_label\\n        deberta_probs[qid] = {nli_to_folio[k]: round(probs[k].item(), 4) for k in nli_to_folio}\\n\\n        if (i + 1) % 50 == 0:\\n            print(f\\\"  Processed {i+1}/{len(folio)}\\\")\\n\\n    elapsed = time.time() - t0\\n    print(f\\\"  Inference: {elapsed:.1f}s for {len(folio)} questions\\\")\\n\\n    correct = sum(1 for qid in gt if deberta_preds.get(qid) == gt[qid])\\n    deberta_acc = correct / total\\n\\n    per_class = {}\\n    for cls in CLASSES:\\n        tp = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) == cls)\\n        fp = sum(1 for qid in gt if gt[qid] != cls and deberta_preds.get(qid) == cls)\\n        fn = sum(1 for qid in gt if gt[qid] == cls and deberta_preds.get(qid) != cls)\\n        p = tp / (tp + fp) if (tp + fp) > 0 else 0\\n        r = tp / (tp + fn) if (tp + fn) > 0 else 0\\n        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0\\n        n_cls = sum(1 for qid in gt if gt[qid] == cls)\\n        per_class[cls] = {\\n            \\\"n\\\": n_cls, \\\"correct\\\": tp,\\n            \\\"accuracy\\\": round(tp / n_cls, 4) if n_cls > 0 else 0,\\n            \\\"precision\\\": round(p, 4), \\\"recall\\\": round(r, 4), \\\"f1\\\": round(f1, 4)\\n        }\\n\\n    pred_dist = dict(Counter(deberta_preds.values()))\\n    gt_dist = dict(Counter(gt.values()))\\n\\n    print(f\\\"\\\\n  DeBERTa accuracy: {deberta_acc:.4f} ({correct}/{total})\\\")\\n    print(f\\\"  GT dist: {gt_dist}\\\")\\n    print(f\\\"  Pred dist: {pred_dist}\\\")\\n    for cls in CLASSES:\\n        pc = per_class[cls]\\n        print(f\\\"  {cls}: acc={pc['accuracy']:.4f} P={pc['precision']:.4f} R={pc['recall']:.4f} F1={pc['f1']:.4f} (n={pc['n']})\\\")\\n\\n    # === Exp-R2: DeBERTa as verifier for SC ===\\n    print(\\\"\\\\n=== Exp-R2: DeBERTa as verifier for SC ===\\\")\\n    sc_answers = {r[\\\"problem_id\\\"]: r[\\\"sc_answer\\\"] for r in exp033[\\\"results\\\"]}\\n    sica_answers = {r[\\\"problem_id\\\"]: r[\\\"sica_answer\\\"] for r in exp033[\\\"results\\\"]}\\n\\n    agree = disagree = agree_correct = 0\\n    disagree_deberta_correct = disagree_sc_correct = disagree_both_wrong = 0\\n    deberta_corrects_sc = []\\n    sc_corrects_deberta = []\\n\\n    for qid in gt:\\n        dp = deberta_preds.get(qid)\\n        sp = sc_answers.get(qid)\\n        gold = gt[qid]\\n        if dp == sp:\\n            agree += 1\\n            if dp == gold:\\n                agree_correct += 1\\n        else:\\n            disagree += 1\\n            if dp == gold:\\n                disagree_deberta_correct += 1\\n                deberta_corrects_sc.append(qid)\\n            elif sp == gold:\\n                disagree_sc_correct += 1\\n                sc_corrects_deberta.append(qid)\\n            else:\\n                disagree_both_wrong += 1\\n\\n    agree_rate = agree / total\\n    abstain_acc = agree_correct / agree if agree > 0 else 0\\n    override_correct = agree_correct + disagree_deberta_correct\\n    override_acc = override_correct / total\\n    sc_acc = exp033[\\\"summary\\\"][\\\"sc_accuracy\\\"]\\n    sica_acc = exp033[\\\"summary\\\"][\\\"sica_accuracy\\\"]\\n\\n    print(f\\\"  Agreement: {agree_rate:.4f} ({agree}/{total})\\\")\\n    print(f\\\"  Agree accuracy: {abstain_acc:.4f} ({agree_correct}/{agree})\\\")\\n    print(f\\\"  Disagree ({disagree}): DeBERTa right={disagree_deberta_correct}, SC right={disagree_sc_correct}, both wrong={disagree_both_wrong}\\\")\\n    print(f\\\"  (a) Abstain: coverage={agree/total:.4f}, acc={abstain_acc:.4f}\\\")\\n    print(f\\\"  (b) DeBERTa override: acc={override_acc:.4f}\\\")\\n    print(f\\\"  (c) SC baseline: acc={sc_acc:.4f}\\\")\\n    print(f\\\"  SICA baseline: {sica_acc:.4f}\\\")\\n\\n    # === Exp-R3: DeBERTa + SC combo ===\\n    print(\\\"\\\\n=== Exp-R3: DeBERTa + SC combo ===\\\")\\n    combo_results = {}\\n    for weight in [1, 3]:\\n        combo_correct = 0\\n        for qid in gt:\\n            gold = gt[qid]\\n            matrix = sc_matrix.get(qid, {})\\n            trace_answers = matrix.get(\\\"answers\\\", [])\\n            votes = Counter()\\n            for ans in trace_answers:\\n                if ans in CLASSES:\\n                    votes[ans] += 1\\n            dp = deberta_preds.get(qid)\\n            if dp in CLASSES:\\n                votes[dp] += weight\\n            combo_answer = votes.most_common(1)[0][0] if votes else \\\"Unknown\\\"\\n            if combo_answer == gold:\\n                combo_correct += 1\\n        combo_acc = combo_correct / total\\n        combo_results[weight] = {\\\"accuracy\\\": round(combo_acc, 4), \\\"correct\\\": combo_correct}\\n        print(f\\\"  weight={weight}: acc={combo_acc:.4f} ({combo_correct}/{total})\\\")\\n\\n    print(f\\\"  SC baseline: {sc_acc:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see the original combo logic (lines 170-188):
+
+```python
+for weight in [1, 3]:
+    combo_correct = 0
+    for qid in gt:
+        gold = gt[qid]
+        matrix = sc_matrix.get(qid, {})
+        trace_answers = matrix.get("answers", [])
+        votes = Counter()
+        for ans in trace_answers:
+            if ans in CLASSES:  # Only count "True", "False", "Unknown" exactly
+                votes[ans] += 1
+        dp = deberta_preds.get(qid)
+        if dp in CLASSES:
+            votes[dp] += weight
+        combo_answer = votes.most_common(1)[0][0] if votes else "Unknown"
+        if combo_answer == gold:
+            combo_correct += 1
+```
+
+The key insight is that the original strictly filters for exact class matches—it skips any answer that isn't precisely "True", "False", or "Unknown", so answers like "uncertain" get discarded entirely rather than normalized. The DeBERTa prediction gets weighted and added to the vote counter, then the most common answer wins, defaulting to "Unknown" if there are no votes.
+
+For tiebreaking, `Counter.most_common()` preserves insertion order from the trace_answers list, so whichever class appeared first in that sequence wins the tie. My normalization was too aggressive—mapping lowercase variants and "uncertain" to "Unknown"—when the original code simply ignores anything outside the exact three classes. Let me check what the raw answers actually look like in the data to understand the distribution better. Tracing through my normalize function with actual examples, I see that "Uncertain (given the information provided)" gets stripped and lowercased but doesn't match the key "uncertain" in my mapping due to the extra text, so it returns empty and gets skipped just like the original. The valid answers "True", "False", and "Unknown" all normalize correctly through the mapping, while empty strings and unrecognized answers are filtered out the same way.
+
+The real difference between my approach and the original is in how ties are broken—the original uses Counter.most_common() which preserves insertion order for equal vote counts, while I'm applying alphabetical sorting. This means if there's a tie in the combo votes, my alphabetical tiebreaking could produce a different answer than the original's insertion-order approach, even though both methods normalize the same valid answers.
+
+Since the user expects the combo answers to remain unchanged (as indicated by "R combo w=1: accuracy (应不变)"), I should keep the original combo computation intact and only modify the SC tiebreaking to alphabetical. This means I need to replicate the original combo logic exactly—reading from the raw sc_answer_matrix.json, counting only strict matches to the three valid answers, adding the DeBERTa prediction with its weight, and using Counter.most_common() to preserve the original tiebreaking behavior.
+
+I realize I have access to the per-question DeBERTa predictions from the saved results file, so I can reconstruct the original combo answers without needing the full deberta_preds array. Let me implement this by iterating through each question, collecting the trace answers, incorporating the DeBERTa prediction with its weight, and extracting the most common answer.
+
+Implementing the voting logic...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "bee91a89-0679-4ac3-8ab5-082b12a23ae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFmenyCMyBtabQMx3pmnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3335,
+      "cache_read_input_tokens": 76787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+找到原始 combo 逻辑。关键差异在于原始代码用 `Counter.most_common(1)` (dict 插入序 tiebreaking) 和严格的 `ans in CLASSES` 匹配。重新精确复现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "e56a61d6-5048-4b0d-8ed1-dd8f001718dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFmenyCMyBtabQMx3pmnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3335,
+      "cache_read_input_tokens": 76787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018F3KqQii9zQNvmjGsRSPHb`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\nfrom math import factorial\n\ndef exact_mcnemar_p(b, c):\n    n = b + c\n    if n == 0:\n        return 1.0\n    k = min(b, c)\n    p = 0.0\n    for i in range(k + 1):\n        p += factorial(n) / (factorial(i) * factorial(n - i)) * (0.5 ** n)\n    return min(2 * p, 1.0)\n\nCLASSES = [\"True\", \"False\", \"Unknown\"]\n\nwith open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json') as f:\n    sc_matrix = json.load(f)\n\nwith open('/root/symb_invariant_consensus/results/direction_r_nli_large/results.json') as f:\n    r_data = json.load(f)\nr_pq = r_data['per_question']\n\n# Replicate original SC (dict-insertion via Counter.most_common)\n# AND compute new SC (alphabetical)\n# AND replicate original combo (dict-insertion via Counter.most_common)\nresults = []\nfor i in range(204):\n    key = f'folio_{i}'\n    entry = sc_matrix[key]\n    raw_answers = entry['answers']\n    gold = entry['ground_truth']\n    \n    # Original logic: only exact matches to CLASSES\n    sc_votes = Counter()\n    for ans in raw_answers:\n        if ans in CLASSES:\n            sc_votes[ans] += 1\n    \n    # SC dict-order (Counter.most_common)\n    sc_dict = sc_votes.most_common(1)[0][0] if sc_votes else 'Unknown'\n    \n    # SC alphabetical\n    if sc_votes:\n        max_count = max(sc_votes.values())\n        candidates = sorted([k for k, v in sc_votes.items() if v == max_count])\n        sc_alpha = candidates[0]\n    else:\n        sc_alpha = 'Unknown'\n    \n    # DeBERTa pred from saved results\n    r_entry = r_pq.get(key, {})\n    deberta_pred = r_entry.get('deberta_pred', '')\n    \n    # Combo w=1 (original logic: Counter.most_common)\n    combo_votes_w1 = Counter(sc_votes)\n    if deberta_pred in CLASSES:\n        combo_votes_w1[deberta_pred] += 1\n    combo_w1 = combo_votes_w1.most_common(1)[0][0] if combo_votes_w1 else 'Unknown'\n    \n    # Combo w=3 (original logic)\n    combo_votes_w3 = Counter(sc_votes)\n    if deberta_pred in CLASSES:\n        combo_votes_w3[deberta_pred] += 3\n    combo_w3 = combo_votes_w3.most_common(1)[0][0] if combo_votes_w3 else 'Unknown'\n    \n    results.append({\n        'id': i, 'gold': gold, 'key': key,\n        'sc_votes': dict(sc_votes),\n        'sc_dict': sc_dict, 'sc_alpha': sc_alpha,\n        'deberta_pred': deberta_pred,\n        'combo_w1': combo_w1, 'combo_w3': combo_w3,\n        'sc_dict_correct': sc_dict == gold,\n        'sc_alpha_correct': sc_alpha == gold,\n        'combo_w1_correct': combo_w1 == gold,\n        'combo_w3_correct': combo_w3 == gold,\n    })\n\nsc_dict_n = sum(1 for r in results if r['sc_dict_correct'])\nsc_alpha_n = sum(1 for r in results if r['sc_alpha_correct'])\ncombo_w1_n = sum(1 for r in results if r['combo_w1_correct'])\ncombo_w3_n = sum(1 for r in results if r['combo_w3_correct'])\n\nprint(\"=\" * 60)\nprint(\"Accuracy Summary\")\nprint(\"=\" * 60)\nprint(f\"SC (dict-order):      {sc_dict_n}/204 = {sc_dict_n/204*100:.2f}%\")\nprint(f\"SC (alphabetical):    {sc_alpha_n}/204 = {sc_alpha_n/204*100:.2f}%\")\nprint(f\"Combo w=1 (original): {combo_w1_n}/204 = {combo_w1_n/204*100:.2f}%\")\nprint(f\"Combo w=3 (original): {combo_w3_n}/204 = {combo_w3_n/204*100:.2f}%\")\nprint(f\"Original report w=1:  {r_data['exp_r3_combo']['deberta_weight_1']['correct']}/204\")\nprint(f\"Original report w=3:  {r_data['exp_r3_combo']['deberta_weight_3']['correct']}/204\")\n\n# Show changed SC questions\nchanged = [r for r in results if r['sc_dict'] != r['sc_alpha']]\nprint(f\"\\n--- SC changed ({len(changed)} questions) ---\")\nfor r in changed:\n    print(f\"  {r['key']}: gold={r['gold']}, dict={r['sc_dict']}, alpha={r['sc_alpha']}, votes={r['sc_votes']}\")\n\n# McNemar tests\nprint(\"\\n\" + \"=\" * 60)\n\n# OLD SC vs combo w=1\nb = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w1_correct'])\nc = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w1_correct'])\nprint(f\"OLD SC vs Combo w=1: b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\n# NEW SC vs combo w=1\nb = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w1_correct'])\nc = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w1_correct'])\nprint(f\"NEW SC vs Combo w=1: b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\n# OLD SC vs combo w=3\nb = sum(1 for r in results if r['sc_dict_correct'] and not r['combo_w3_correct'])\nc = sum(1 for r in results if not r['sc_dict_correct'] and r['combo_w3_correct'])\nprint(f\"OLD SC vs Combo w=3: b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\n# NEW SC vs combo w=3\nb = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w3_correct'])\nc = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w3_correct'])\nprint(f\"NEW SC vs Combo w=3: b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\n# Also show combo w1/w3 with alphabetical tiebreaking (for completeness)\nprint(\"\\n--- If combo also uses alphabetical tiebreaking ---\")\nfor i, r in enumerate(results):\n    sc_votes = Counter()\n    for ans in sc_matrix[r['key']]['answers']:\n        if ans in CLASSES:\n            sc_votes[ans] += 1\n    \n    dp = r['deberta_pred']\n    for w_label, w in [('w1', 1), ('w3', 3)]:\n        cv = Counter(sc_votes)\n        if dp in CLASSES:\n            cv[dp] += w\n        if cv:\n            mx = max(cv.values())\n            cands = sorted([k for k, v in cv.items() if v == mx])\n            results[i][f'combo_{w_label}_alpha'] = cands[0]\n        else:\n            results[i][f'combo_{w_label}_alpha'] = 'Unknown'\n        results[i][f'combo_{w_label}_alpha_correct'] = results[i][f'combo_{w_label}_alpha'] == r['gold']\n\ncombo_w1_alpha_n = sum(1 for r in results if r['combo_w1_alpha_correct'])\ncombo_w3_alpha_n = sum(1 for r in results if r['combo_w3_alpha_correct'])\nprint(f\"Combo w=1 (alpha tiebreak): {combo_w1_alpha_n}/204 = {combo_w1_alpha_n/204*100:.2f}%\")\nprint(f\"Combo w=3 (alpha tiebreak): {combo_w3_alpha_n}/204 = {combo_w3_alpha_n/204*100:.2f}%\")\n\n# NEW SC vs combo w1/w3 alpha\nb = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w1_alpha_correct'])\nc = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w1_alpha_correct'])\nprint(f\"NEW SC vs Combo w=1 (alpha): b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\nb = sum(1 for r in results if r['sc_alpha_correct'] and not r['combo_w3_alpha_correct'])\nc = sum(1 for r in results if not r['sc_alpha_correct'] and r['combo_w3_alpha_correct'])\nprint(f\"NEW SC vs Combo w=3 (alpha): b={b}, c={c}, p={exact_mcnemar_p(b,c):.6f}\")\n\n# Save\noutput = {\n    'sc_dict': {'correct': sc_dict_n, 'accuracy': round(sc_dict_n/204, 4)},\n    'sc_alpha': {'correct': sc_alpha_n, 'accuracy': round(sc_alpha_n/204, 4)},\n    'combo_w1_orig': {'correct': combo_w1_n, 'accuracy': round(combo_w1_n/204, 4)},\n    'combo_w3_orig': {'correct': combo_w3_n, 'accuracy': round(combo_w3_n/204, 4)},\n    'combo_w1_alpha': {'correct': combo_w1_alpha_n, 'accuracy': round(combo_w1_alpha_n/204, 4)},\n    'combo_w3_alpha': {'correct': combo_w3_alpha_n, 'accuracy': round(combo_w3_alpha_n/204, 4)},\n}\njson.dump(output, open('/tmp/sc_tiebreak_final.json', 'w'), indent=2)\nprint(\"\\nSaved to /tmp/sc_tiebreak_final.json\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "2dba3446-b9a9-4e95-8ae7-39952ae17b84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFmenyCMyBtabQMx3pmnW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3335,
+      "cache_read_input_tokens": 76787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T14:20:55.464Z_
+
+<details><summary>↩ Tool result · `toolu_018F3KqQii9zQNvmjGsRSPHb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nAccuracy Summary\\n============================================================\\nSC (dict-order):      111/204 = 54.41%\\nSC (alphabetical):    114/204 = 55.88%\\nCombo w=1 (original): 118/204 = 57.84%\\nCombo w=3 (original): 120/204 = 58.82%\\nOriginal report w=1:  118/204\\nOriginal report w=3:  120/204\\n\\n--- SC changed (7 questions) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n\\n============================================================\\nOLD SC vs Combo w=1: b=1, c=8, p=0.039062\\nNEW SC vs Combo w=1: b=0, c=4, p=0.125000\\nOLD SC vs Combo w=3: b=6, c=15, p=0.078354\\nNEW SC vs Combo w=3: b=5, c=11, p=0.210114\\n\\n--- If combo also uses alphabetical tiebreaking ---\\nCombo w=1 (alpha tiebreak): 115/204 = 56.37%\\nCombo w=3 (alpha tiebreak): 120/204 = 58.82%\\nNEW SC vs Combo w=1 (alpha): b=3, c=4, p=1.000000\\nNEW SC vs Combo w=3 (alpha): b=5, c=11, p=0.210114\\n\\nSaved to /tmp/sc_tiebreak_final.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "47d215cd-f94f-4454-9e53-b947e5a56729",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nAccuracy Summary\\\\n============================================================\\\\nSC (dict-order):      111/204 = 54.41%\\\\nSC (alphabetical):    114/204 = 55.88%\\\\nCombo w=1 (original): 118/204 = 57.84%\\\\nCombo w=3 (original): 120/204 = 58.82%\\\\nOriginal report w=1:  118/204\\\\nOriginal report w=3:  120/204\\\\n\\\\n--- SC changed (7 questions) ---\\\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\\\n\\\\n============================================================\\\\nOLD SC vs Combo w=1: b=1, c=8, p=0.039062\\\\nNEW SC vs Combo w=1: b=0, c=4, p=0.125000\\\\nOLD SC vs Combo w=3: b=6, c=15, p=0.078354\\\\nNEW SC vs Combo w=3: b=5, c=11, p=0.210114\\\\n\\\\n--- If combo also uses alphabetical tiebreaking ---\\\\nCombo w=1 (alpha tiebreak): 115/204 = 56.37%\\\\nCombo w=3 (alpha tiebreak): 120/204 = 58.82%\\\\nNEW SC vs Combo w=1 (alpha): b=3, c=4, p=1.000000\\\\nNEW SC vs Combo w=3 (alpha): b=5, c=11, p=0.210114\\\\n\\\\nSaved to /tmp/sc_tiebreak_final.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nAccuracy Summary\\n============================================================\\nSC (dict-order):      111/204 = 54.41%\\nSC (alphabetical):    114/204 = 55.88%\\nCombo w=1 (original): 118/204 = 57.84%\\nCombo w=3 (original): 120/204 = 58.82%\\nOriginal report w=1:  118/204\\nOriginal report w=3:  120/204\\n\\n--- SC changed (7 questions) ---\\n  folio_42: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_65: gold=True, dict=True, alpha=False, votes={'True': 5, 'False': 5, 'Unknown': 2}\\n  folio_83: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_99: gold=Unknown, dict=Unknown, alpha=True, votes={'Unknown': 5, 'True': 5}\\n  folio_100: gold=True, dict=Unknown, alpha=True, votes={'Unknown': 4, 'True': 4}\\n  folio_157: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n  folio_163: gold=False, dict=Unknown, alpha=False, votes={'Unknown': 5, 'False': 5}\\n\\n============================================================\\nOLD SC vs Combo w=1: b=1, c=8, p=0.039062\\nNEW SC vs Combo w=1: b=0, c=4, p=0.125000\\nOLD SC vs Combo w=3: b=6, c=15, p=0.078354\\nNEW SC vs Combo w=3: b=5, c=11, p=0.210114\\n\\n--- If combo also uses alphabetical tiebreaking ---\\nCombo w=1 (alpha tiebreak): 115/204 = 56.37%\\nCombo w=3 (alpha tiebreak): 120/204 = 58.82%\\nNEW SC vs Combo w=1 (alpha): b=3, c=4, p=1.000000\\nNEW SC vs Combo w=3 (alpha): b=5, c=11, p=0.210114\\n\\nSaved to /tmp/sc_tiebreak_final.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now the combo replication matches exactly (118 and 120). 
+
+Now let me check the seed experiments. Let me look at exp066 (seed123 but qwen14b) and exp067 (seed789 mistral). The user mentioned Table 1 has multiple seeds for SC:
+- default: 54.41% → should change to 55.88%
+- s123: 54.41%
+- s456: 55.88%
+- s789: 54.41%
+
+
+I'm noticing a mismatch though—the seed experiments I found show exp066 uses Qwen14b with seed123, not Mistral, and exp067 is Mistral with seed789. Table 1 seems to have Mistral results across different seeds, but I don't see explicit Mistral experiments for seed123 or seed456. Let me look through the directory again to see if exp033 was run with multiple seeds or if there are other experiments I'm missing.
+
+Actually, looking more carefully at the directory listing, I see exp074 has variants with different seeds—exp074c with seed123 and exp074d with seed456—but those are ICG experiments, not the base SICA. The base Mistral FOLIO experiment (exp033) only has the default seed.
+
+The user's actual question is about checking which tiebreaking method was used for those SC values—whether they used dict insertion order or alphabetical order. I need to check the sc_answer_matrix.json files in the seed experiments to see how the tiebreaking was computed.
+
+Let me look at exp067 with seed789 to see what SC data is available there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d9e50433-71bd-42c5-97a8-5e5d2ec2262c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012tJN45vTuwAoeKgqjqQDFu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5295,
+      "cache_read_input_tokens": 80122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Combo 复现成功匹配原始值。现在检查 seed 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "01b04c80-c299-4275-97d3-42bf10772b30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012tJN45vTuwAoeKgqjqQDFu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5295,
+      "cache_read_input_tokens": 80122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XW7G2qM72mrCvj5WaBq75N`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "6460ed0b-3d91-4619-bfe7-1f792ece015c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012tJN45vTuwAoeKgqjqQDFu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5295,
+      "cache_read_input_tokens": 80122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HYiPzpJFMTetzXWn6dLgcG`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results -name \"sc_answer_matrix*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "07131ac2-e598-4b67-802d-fb360c19b4ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012tJN45vTuwAoeKgqjqQDFu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5295,
+      "cache_read_input_tokens": 80122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5295
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T14:21:15.392Z_
+
+<details><summary>↩ Tool result · `toolu_01XW7G2qM72mrCvj5WaBq75N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dryrun.json\\nexp067_results.json\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "73cb9f38-cb54-4455-b977-d8af4c42d114",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dryrun.json\\\\nexp067_results.json\\\\nintermediates\\\\nper_trace_constraints\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dryrun.json\\nexp067_results.json\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T14:21:15.926Z_
+
+<details><summary>↩ Tool result · `toolu_01HYiPzpJFMTetzXWn6dLgcG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "858586d3-5163-47b5-90f3-52550754353c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\\n/root/symb_invariant_consensus/results/exp061_qwen25_7b_folio204/sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No sc_answer_matrix.json for the seed experiments. Let me check exp067 results for SC accuracy, and look at how SC was computed for seeds. Maybe from the exp067_results.json.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "f9aa8545-7299-4048-afba-e7109d2e204b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkFssWMM9Nuzy5nWQQaaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 85417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Skhhapum7sygxZFUg7Cr3b`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\nprint('Keys:', list(d.keys()))\ns = d.get('summary', {})\nprint('SC acc:', s.get('sc_accuracy'))\nprint('SICA acc:', s.get('sica_accuracy'))\nprint('Total:', s.get('total_problems'))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "4e7e076a-71c9-4e58-b366-07d4552d4228",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JkFssWMM9Nuzy5nWQQaaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 85417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T14:21:41.981Z_
+
+<details><summary>↩ Tool result · `toolu_01Skhhapum7sygxZFUg7Cr3b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['summary', 'results']\\nSC acc: 0.5441176470588235\\nSICA acc: 0.5392156862745098\\nTotal: None\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "a3d9ae0c-a7b1-4d08-92ef-25a2d405af5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['summary', 'results']\\\\nSC acc: 0.5441176470588235\\\\nSICA acc: 0.5392156862745098\\\\nTotal: None\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['summary', 'results']\\nSC acc: 0.5441176470588235\\nSICA acc: 0.5392156862745098\\nTotal: None\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YDpz37kT8HgDSYNb9FTeb4`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json, os\nfrom collections import Counter\n\nCLASSES = [\"True\", \"False\", \"Unknown\"]\n\n# Check seed experiments for SC tiebreaking\nseed_dirs = {\n    'exp067_seed789': '/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/',\n}\n\n# Also check if there are mistral seed123/456 exps\nfor name in ['exp074c_icg_mistral_folio_seed123', 'exp074d_icg_mistral_folio_seed456']:\n    path = f'/root/symb_invariant_consensus/results/{name}/'\n    if os.path.exists(path):\n        seed_dirs[name] = path\n\n# Check exp067 - it has intermediates, build sc_answer_matrix from traces\nexp067_dir = '/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/intermediates/'\nif os.path.exists(exp067_dir):\n    files = sorted(os.listdir(exp067_dir))\n    print(f\"exp067 intermediates: {len(files)} files\")\n    print(f\"First 5: {files[:5]}\")\n    \n    # Load exp067 results to get sc_answer per question\n    exp067 = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\n    \n    # Check how SC was computed - look at results\n    r0 = exp067['results'][0]\n    print(f\"\\nFirst result keys: {list(r0.keys())}\")\n    print(f\"First result: id={r0.get('problem_id')}, sc={r0.get('sc_answer')}, sica={r0.get('sica_answer')}\")\n    \n    # Build SC from traces\n    sc_dict_correct = 0\n    sc_alpha_correct = 0\n    ties = []\n    \n    for i in range(204):\n        fpath = os.path.join(exp067_dir, f'folio_{i}.json')\n        if not os.path.exists(fpath):\n            continue\n        \n        d = json.load(open(fpath))\n        gold = d.get('problem', {}).get('answer', '').strip()\n        traces = d.get('sica_result', {}).get('traces', [])\n        answers = [t.get('answer', '') for t in traces]\n        \n        sc_votes = Counter()\n        for ans in answers:\n            if ans in CLASSES:\n                sc_votes[ans] += 1\n        \n        sc_dict = sc_votes.most_common(1)[0][0] if sc_votes else 'Unknown'\n        \n        if sc_votes:\n            max_count = max(sc_votes.values())\n            candidates = sorted([k for k, v in sc_votes.items() if v == max_count])\n            sc_alpha = candidates[0]\n            if len(candidates) > 1:\n                ties.append({'id': i, 'gold': gold, 'dict': sc_dict, 'alpha': sc_alpha, 'votes': dict(sc_votes)})\n        else:\n            sc_alpha = 'Unknown'\n        \n        if sc_dict == gold:\n            sc_dict_correct += 1\n        if sc_alpha == gold:\n            sc_alpha_correct += 1\n    \n    print(f\"\\nexp067 (Mistral seed789):\")\n    print(f\"  SC dict-order:   {sc_dict_correct}/204 = {sc_dict_correct/204*100:.2f}%\")\n    print(f\"  SC alphabetical: {sc_alpha_correct}/204 = {sc_alpha_correct/204*100:.2f}%\")\n    print(f\"  Reported SC:     {exp067['summary']['sc_accuracy']*100:.2f}%\")\n    print(f\"  Ties: {len(ties)}\")\n    for t in ties:\n        print(f\"    folio_{t['id']}: gold={t['gold']}, dict={t['dict']}, alpha={t['alpha']}, votes={t['votes']}\")\n\n# Check ICG experiments for seed data  \nfor name, path in seed_dirs.items():\n    if 'icg' in name:\n        rfile = os.path.join(path, os.listdir(path)[0] if os.listdir(path) else '')\n        results_files = [f for f in os.listdir(path) if f.endswith('.json')]\n        print(f\"\\n{name}: files = {results_files}\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "e684c8d5-2563-465b-aa6b-9907ac6178b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WttXfYE2KKDNyoCKsiwcLm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 435,
+      "cache_read_input_tokens": 86463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 435
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-20T14:22:08.593Z_
+
+<details><summary>↩ Tool result · `toolu_01YDpz37kT8HgDSYNb9FTeb4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp067 intermediates: 3 files\\nFirst 5: ['folio_0.json', 'folio_1.json', 'folio_2.json']\\n\\nFirst result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s']\\nFirst result: id=folio_0, sc=Unknown, sica=Unknown\\n\\nexp067 (Mistral seed789):\\n  SC dict-order:   3/204 = 1.47%\\n  SC alphabetical: 3/204 = 1.47%\\n  Reported SC:     54.41%\\n  Ties: 0\\n\\nexp074c_icg_mistral_folio_seed123: files = ['results.json']\\n\\nexp074d_icg_mistral_folio_seed456: files = ['results.json']\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "780b89fa-8045-4a6e-b919-a04fe52c7e12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp067 intermediates: 3 files\\\\nFirst 5: ['folio_0.json', 'folio_1.json', 'folio_2.json']\\\\n\\\\nFirst result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s']\\\\nFirst result: id=folio_0, sc=Unknown, sica=Unknown\\\\n\\\\nexp067 (Mistral seed789):\\\\n  SC dict-order:   3/204 = 1.47%\\\\n  SC alphabetical: 3/204 = 1.47%\\\\n  Reported SC:     54.41%\\\\n  Ties: 0\\\\n\\\\nexp074c_icg_mistral_folio_seed123: files = ['results.json']\\\\n\\\\nexp074d_icg_mistral_folio_seed456: files = ['results.json']\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp067 intermediates: 3 files\\nFirst 5: ['folio_0.json', 'folio_1.json', 'folio_2.json']\\n\\nFirst result keys: ['problem_idx', 'problem_id', 'problem', 'dataset', 'level', 'ground_truth', 'sica_answer', 'sica_scores', 'sica_correct', 'sc_answer', 'sc_vote_count', 'sc_vote_distribution', 'sc_correct', 'constraints_stats', 'maxsat_stats', 'timing', 'wall_time_s']\\nFirst result: id=folio_0, sc=Unknown, sica=Unknown\\n\\nexp067 (Mistral seed789):\\n  SC dict-order:   3/204 = 1.47%\\n  SC alphabetical: 3/204 = 1.47%\\n  Reported SC:     54.41%\\n  Ties: 0\\n\\nexp074c_icg_mistral_folio_seed123: files = ['results.json']\\n\\nexp074d_icg_mistral_folio_seed456: files = ['results.json']\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp067 intermediates only has 3 files, not 204. The SC was computed from exp067_results.json directly, which has `sc_answer` and `sc_vote_distribution` per question in the results.
+
+Let me use the `results` array from exp067_results.json, which already has `sc_answer`, `sc_vote_distribution`, and `sc_correct` per question.
+
+Let me check the vote distribution to see if tiebreaking matters for exp067.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d4341c4d-c2d1-464e-8197-f471d4a4c26f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qBeAGe4S8TsnCR7KwPu7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1663,
+      "cache_read_input_tokens": 86898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1663
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012mKeaHC3W9CFvGTQu47Biy`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nCLASSES = [\"True\", \"False\", \"Unknown\"]\n\n# exp067 - use results array which has sc_vote_distribution\nexp067 = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\n\nsc_dict_correct = 0\nsc_alpha_correct = 0\nties = []\n\nfor r in exp067['results']:\n    gold = r['ground_truth']\n    dist = r.get('sc_vote_distribution', {})\n    \n    # dict-order\n    if dist:\n        max_count = max(dist.values())\n        candidates_dict = [k for k, v in dist.items() if v == max_count]\n        sc_dict = candidates_dict[0]\n        candidates_alpha = sorted(candidates_dict)\n        sc_alpha = candidates_alpha[0]\n        if len(candidates_dict) > 1:\n            ties.append({'id': r['problem_id'], 'gold': gold, 'dict': sc_dict, 'alpha': sc_alpha, 'dist': dist, 'reported': r['sc_answer']})\n    else:\n        sc_dict = 'Unknown'\n        sc_alpha = 'Unknown'\n    \n    if sc_dict == gold:\n        sc_dict_correct += 1\n    if sc_alpha == gold:\n        sc_alpha_correct += 1\n\nn = len(exp067['results'])\nprint(f\"exp067 (Mistral seed789, n={n}):\")\nprint(f\"  SC dict-order:   {sc_dict_correct}/{n} = {sc_dict_correct/n*100:.2f}%\")\nprint(f\"  SC alphabetical: {sc_alpha_correct}/{n} = {sc_alpha_correct/n*100:.2f}%\")\nprint(f\"  Reported SC:     {exp067['summary']['sc_accuracy']*100:.2f}%\")\nprint(f\"  Ties: {len(ties)}\")\nfor t in ties:\n    print(f\"    {t['id']}: gold={t['gold']}, dict={t['dict']}, alpha={t['alpha']}, reported={t['reported']}, dist={t['dist']}\")\n    # Check if reported matches dict or alpha\n    if t['reported'] == t['dict'] and t['reported'] != t['alpha']:\n        print(f\"      -> reported matches dict-order\")\n    elif t['reported'] == t['alpha'] and t['reported'] != t['dict']:\n        print(f\"      -> reported matches alphabetical\")\n    elif t['reported'] == t['dict'] == t['alpha']:\n        print(f\"      -> no difference (same answer)\")\n    else:\n        print(f\"      -> matches neither!?\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "99e415fe-ebd0-4203-8d35-599a74edf4a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qBeAGe4S8TsnCR7KwPu7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1663,
+      "cache_read_input_tokens": 86898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1663
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T14:22:39.003Z_
+
+<details><summary>↩ Tool result · `toolu_012mKeaHC3W9CFvGTQu47Biy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp067 (Mistral seed789, n=204):\\n  SC dict-order:   114/204 = 55.88%\\n  SC alphabetical: 111/204 = 54.41%\\n  Reported SC:     54.41%\\n  Ties: 10\\n    folio_1: gold=True, dict=True, alpha=True, reported=True, dist={'False': 1, 'True': 5, 'The conclusion is true.': 1, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_49: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 5, 'False': 5}\\n      -> reported matches alphabetical\\n    folio_65: gold=True, dict=True, alpha=False, reported=False, dist={'True': 5, 'False': 5}\\n      -> reported matches alphabetical\\n    folio_72: gold=False, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_80: gold=True, dict=True, alpha=True, reported=True, dist={'True': 5, 'Unknown': 5, 'Uncertain (if only considering given premises) or True (with the additional hidden assumption)': 1}\\n      -> no difference (same answer)\\n    folio_93: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 3, 'Unknown': 3}\\n      -> no difference (same answer)\\n    folio_118: gold=Unknown, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_136: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 4, 'False': 4}\\n      -> reported matches alphabetical\\n    folio_144: gold=Unknown, dict=True, alpha=True, reported=True, dist={'True': 4, 'Unknown': 4}\\n      -> no difference (same answer)\\n    folio_154: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 4, 'Unknown': 4}\\n      -> no difference (same answer)\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "a2d7407b-0ee5-4f83-b57f-9484c61e7ab5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp067 (Mistral seed789, n=204):\\\\n  SC dict-order:   114/204 = 55.88%\\\\n  SC alphabetical: 111/204 = 54.41%\\\\n  Reported SC:     54.41%\\\\n  Ties: 10\\\\n    folio_1: gold=True, dict=True, alpha=True, reported=True, dist={'False': 1, 'True': 5, 'The conclusion is true.': 1, 'Unknown': 5}\\\\n      -> no difference (same answer)\\\\n    folio_49: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 5, 'False': 5}\\\\n      -> reported matches alphabetical\\\\n    folio_65: gold=True, dict=True, alpha=False, reported=False, dist={'True': 5, 'False': 5}\\\\n      -> reported matches alphabetical\\\\n    folio_72: gold=False, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\\\n      -> no difference (same answer)\\\\n    folio_80: gold=True, dict=True, alpha=True, reported=True, dist={'True': 5, 'Unknown': 5, 'Uncertain (if only considering given premises) or True (with the additional hidden assumption)': 1}\\\\n      -> no difference (same answer)\\\\n    folio_93: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 3, 'Unknown': 3}\\\\n      -> no difference (same answer)\\\\n    folio_118: gold=Unknown, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\\\n      -> no difference (same answer)\\\\n    folio_136: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 4, 'False': 4}\\\\n      -> reported matches alphabetical\\\\n    folio_144: gold=Unknown, dict=True, alpha=True, reported=True, dist={'True': 4, 'Unknown': 4}\\\\n      -> no difference (same answer)\\\\n    folio_154: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 4, 'Unknown': 4}\\\\n      -> no difference (same answer)\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp067 (Mistral seed789, n=204):\\n  SC dict-order:   114/204 = 55.88%\\n  SC alphabetical: 111/204 = 54.41%\\n  Reported SC:     54.41%\\n  Ties: 10\\n    folio_1: gold=True, dict=True, alpha=True, reported=True, dist={'False': 1, 'True': 5, 'The conclusion is true.': 1, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_49: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 5, 'False': 5}\\n      -> reported matches alphabetical\\n    folio_65: gold=True, dict=True, alpha=False, reported=False, dist={'True': 5, 'False': 5}\\n      -> reported matches alphabetical\\n    folio_72: gold=False, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_80: gold=True, dict=True, alpha=True, reported=True, dist={'True': 5, 'Unknown': 5, 'Uncertain (if only considering given premises) or True (with the additional hidden assumption)': 1}\\n      -> no difference (same answer)\\n    folio_93: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 3, 'Unknown': 3}\\n      -> no difference (same answer)\\n    folio_118: gold=Unknown, dict=False, alpha=False, reported=False, dist={'False': 5, 'Unknown': 5}\\n      -> no difference (same answer)\\n    folio_136: gold=Unknown, dict=Unknown, alpha=False, reported=False, dist={'Unknown': 4, 'False': 4}\\n      -> reported matches alphabetical\\n    folio_144: gold=Unknown, dict=True, alpha=True, reported=True, dist={'True': 4, 'Unknown': 4}\\n      -> no difference (same answer)\\n    folio_154: gold=False, dict=True, alpha=True, reported=True, dist={'False': 2, 'True': 4, 'Unknown': 4}\\n      -> no difference (same answer)\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! For exp067 (seed789):
+- SC dict-order: 114/204 = 55.88%
+- SC alphabetical: 111/204 = 54.41%
+- Reported SC: 54.41%
+
+The reported value matches ALPHABETICAL, not dict-order! This is the opposite of exp033 (default seed) where reported matched dict-order.
+
+Looking at the tie questions:
+- folio_49: reported=False matches alphabetical (False < Unknown)
+
+
+- folio_65: reported=False matches alphabetical (False < True)
+- folio_136: reported=False matches alphabetical (False < Unknown)
+
+So exp067 was already computed with alphabetical tiebreaking. The reported 54.41% is already correct.
+
+But here's the key insight: with different seeds, the traces end up in different orders, so dict-insertion-order tiebreaking produces different results depending on the seed. Alphabetical tiebreaking, on the other hand, stays consistent regardless of seed. In exp033, dict-order gave 54.41% while alphabetical gave 55.88%, but exp067 flips this—dict-order gives 55.88% while alphabetical gives 54.41%. This variation is purely due to how the different seeds shuffle the trace order.
+
+Looking at the specific tie cases in exp067, the `sc_vote_distribution` dict has a particular key ordering that determines which value gets picked first when there's a tie, but the reported results match the alphabetical tiebreaker instead. I'm realizing the tiebreaking method differs between experiments—exp033 used dict-order tiebreaking while exp067 used alphabetical, which explains why they report different scores for the same seed. The key issue is that exp033 needs its SC updated from 54.41% to 55.88% to match alphabetical tiebreaking, while exp067 is already correct at 54.41%.
+
+Now I'm searching the results directory for plain Mistral FOLIO experiments with seed123 and seed456 to match the entries in Table 1, but I'm only finding Qwen14b or ICG method variants, not the baseline SICA approach I'm looking for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "755f8584-be4a-4158-90f0-7f359971f2ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvEJCngUcFeKizsziSKuL6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 88561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1636
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+exp067 (seed789) 的 SC 报告值 54.41% 已经匹配字母序。需要确认其他 seed 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "f9454588-bcd2-4bf1-8bda-dc52424af4d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvEJCngUcFeKizsziSKuL6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 88561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1636
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bu5QyNF832Go5UxyoZUfoB`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/sc_tiebreak_revalidation_25068.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d71dcd99-6d2c-4315-8a88-82b87da23ae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvEJCngUcFeKizsziSKuL6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 88561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1636
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T14:23:11.431Z_
+
+<details><summary>↩ Tool result · `toolu_01Bu5QyNF832Go5UxyoZUfoB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp-033\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 seed=42 T=0.7 K=12\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 54.41,\\n      \\\"old_sc_pct\\\": 54.41,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"change\\\": 1.47,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"old_delta_pp\\\": 4.9,\\n      \\\"new_delta_pp\\\": 3.43,\\n      \\\"n_affected\\\": 7\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-057\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.3\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 56.86,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -1.47,\\n      \\\"n_affected\\\": 6\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-058\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.5\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.84,\\n      \\\"old_sc_pct\\\": 57.84,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -0.98,\\n      \\\"n_affected\\\": 3\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-054\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=1.0\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 55.39,\\n      \\\"old_sc_pct\\\": 54.9,\\n      \\\"new_sc_pct\\\": 55.39,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 55.39,\\n      \\\"old_delta_pp\\\": 0.49,\\n      \\\"new_delta_pp\\\": 0.0,\\n      \\\"n_affected\\\": 6\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k4\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=4\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 54.41,\\n      \\\"old_sc_pct\\\": 54.41,\\n      \\\"new_sc_pct\\\": 54.41,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 52.94,\\n      \\\"old_delta_pp\\\": -1.47,\\n      \\\"new_delta_pp\\\": -1.47,\\n      \\\"n_affected\\\": 18\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k8\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=8\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 56.37,\\n      \\\"old_delta_pp\\\": -0.98,\\n      \\\"new_delta_pp\\\": -1.96,\\n      \\\"n_affected\\\": 5\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k16\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=16\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 55.88,\\n      \\\"old_sc_pct\\\": 55.88,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"old_delta_pp\\\": 1.47,\\n      \\\"new_delta_pp\\\": 1.47,\\n      \\\"n_affected\\\": 5\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k20\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=20\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 57.35,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"old_delta_pp\\\": 1.96,\\n      \\\"new_delta_pp\\\": 1.96,\\n      \\\"n_affected\\\": 2\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-026\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B FOLIO-204\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 75.0,\\n      \\\"old_sc_pct\\\": 75.0,\\n      \\\"new_sc_pct\\\": 75.49,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 74.51,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -0.98,\\n      \\\"n_affected\\\": 4\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-027\\\",\\n      \\\"label\\\": \\\"Qwen3-14B FOLIO-204\\\",\\n      \\\"model\\\": \\\"Qwen3-14B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 80.39,\\n      \\\"old_sc_pct\\\": 83.82,\\n      \\\"new_sc_pct\\\": 84.8,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 84.31,\\n      \\\"old_delta_pp\\\": 0.49,\\n      \\\"new_delta_pp\\\": -0.49,\\n      \\\"n_affected\\\": 2\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-046\\\",\\n      \\\"label\\\": \\\"Mistral-7B PW-600\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"registry_sc\\\": 39.33,\\n      \\\"old_sc_pct\\\": 39.33,\\n      \\\"new_sc_pct\\\": 39.33,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 36.5,\\n      \\\"old_delta_pp\\\": -2.83,\\n    \\n\\n... [截断: 输出过长，省略 21093 字符] ...\\n\\n_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"False\\\": 1,\\n          \\\"Charlie is smart, but we don't know if he is quiet.\\\": 1,\\n          \\\"Unknown\\\": 3,\\n          \\\"True\\\": 3,\\n          \\\"Charlie is smart.\\\": 1\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 3,\\n          \\\"Harry is not white.\\\": 1,\\n          \\\"False\\\": 3,\\n          \\\"True\\\": 2,\\n          \\\"Harry is not white (W').\\\": 1\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 4\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      }\\n    ],\\n    \\\"exp-034\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-949_Q8\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5,\\n          \\\"True\\\": 2\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-173_Q11\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNeg-OWA-D5-345_Q13\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"Unknown\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 6\\n        },\\n        \\\"old_correct\\\": true,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-336_Q8\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-616_Q7\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-649_Q1\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-532_Q7\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5,\\n          \\\"False\\\": 2\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\",\\n        \\\"old_sc\\\": \\\"True\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"True\\\": 4,\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 4\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "832a9bf4-753d-48fc-8250-56e79c94856a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-033\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 seed=42 T=0.7 K=12\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 54.41,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 54.41,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 55.88,\\\\n      \\\\\\\"change\\\\\\\": 1.47,\\\\n      \\\\\\\"sica_pct\\\\\\\": 59.31,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": 4.9,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": 3.43,\\\\n      \\\\\\\"n_affected\\\\\\\": 7\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-057\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=0.3\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 57.35,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"change\\\\\\\": 0.98,\\\\n      \\\\\\\"sica_pct\\\\\\\": 56.86,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -1.47,\\\\n      \\\\\\\"n_affected\\\\\\\": 6\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-058\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=0.5\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 57.84,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 57.84,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"change\\\\\\\": 0.49,\\\\n      \\\\\\\"sica_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"n_affected\\\\\\\": 3\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-054\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=1.0\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 55.39,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 54.9,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 55.39,\\\\n      \\\\\\\"change\\\\\\\": 0.49,\\\\n      \\\\\\\"sica_pct\\\\\\\": 55.39,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"n_affected\\\\\\\": 6\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-051-k4\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 K=4\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 54.41,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 54.41,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 54.41,\\\\n      \\\\\\\"change\\\\\\\": 0.0,\\\\n      \\\\\\\"sica_pct\\\\\\\": 52.94,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -1.47,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -1.47,\\\\n      \\\\\\\"n_affected\\\\\\\": 18\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-051-k8\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 K=8\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 57.35,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"change\\\\\\\": 0.98,\\\\n      \\\\\\\"sica_pct\\\\\\\": 56.37,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -1.96,\\\\n      \\\\\\\"n_affected\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-051-k16\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 K=16\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 55.88,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 55.88,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 55.88,\\\\n      \\\\\\\"change\\\\\\\": 0.0,\\\\n      \\\\\\\"sica_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": 1.47,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": 1.47,\\\\n      \\\\\\\"n_affected\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-051-k20\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 K=20\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 57.35,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"change\\\\\\\": 0.0,\\\\n      \\\\\\\"sica_pct\\\\\\\": 59.31,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": 1.96,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": 1.96,\\\\n      \\\\\\\"n_affected\\\\\\\": 2\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-026\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Qwen2.5-14B FOLIO-204\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-14B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 75.0,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 75.0,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 75.49,\\\\n      \\\\\\\"change\\\\\\\": 0.49,\\\\n      \\\\\\\"sica_pct\\\\\\\": 74.51,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"n_affected\\\\\\\": 4\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-027\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-14B FOLIO-204\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-14B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"registry_sc\\\\\\\": 80.39,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 83.82,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 84.8,\\\\n      \\\\\\\"change\\\\\\\": 0.98,\\\\n      \\\\\\\"sica_pct\\\\\\\": 84.31,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": 0.49,\\\\n      \\\\\\\"new_delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"n_affected\\\\\\\": 2\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-046\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B PW-600\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"PW-600\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"registry_sc\\\\\\\": 39.33,\\\\n      \\\\\\\"old_sc_pct\\\\\\\": 39.33,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 39.33,\\\\n      \\\\\\\"change\\\\\\\": 0.0,\\\\n      \\\\\\\"sica_pct\\\\\\\": 36.5,\\\\n      \\\\\\\"old_delta_pp\\\\\\\": -2.83,\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 21093 字符] ...\\\\n\\\\n_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"False\\\\\\\": 1,\\\\n          \\\\\\\"Charlie is smart, but we don't know if he is quiet.\\\\\\\": 1,\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 3,\\\\n          \\\\\\\"Charlie is smart.\\\\\\\": 1\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"Harry is not white.\\\\\\\": 1,\\\\n          \\\\\\\"False\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 2,\\\\n          \\\\\\\"Harry is not white (W').\\\\\\\": 1\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": false\\\\n      }\\\\n    ],\\\\n    \\\\\\\"exp-034\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-949_Q8\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-173_Q11\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"True\\\\\\\": 6\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNeg-OWA-D5-345_Q13\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 6\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": true,\\\\n        \\\\\\\"new_correct\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-336_Q8\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 6\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-616_Q7\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"True\\\\\\\": 6\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-649_Q1\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"True\\\\\\\": 6\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-532_Q7\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\\\\\",\\\\n        \\\\\\\"old_sc\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"new_sc\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"gt\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"vote_dist\\\\\\\": {\\\\n          \\\\\\\"True\\\\\\\": 4,\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"old_correct\\\\\\\": false,\\\\n        \\\\\\\"new_correct\\\\\\\": true\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp-033\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 seed=42 T=0.7 K=12\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 54.41,\\n      \\\"old_sc_pct\\\": 54.41,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"change\\\": 1.47,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"old_delta_pp\\\": 4.9,\\n      \\\"new_delta_pp\\\": 3.43,\\n      \\\"n_affected\\\": 7\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-057\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.3\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 56.86,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -1.47,\\n      \\\"n_affected\\\": 6\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-058\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.5\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.84,\\n      \\\"old_sc_pct\\\": 57.84,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -0.98,\\n      \\\"n_affected\\\": 3\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-054\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=1.0\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 55.39,\\n      \\\"old_sc_pct\\\": 54.9,\\n      \\\"new_sc_pct\\\": 55.39,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 55.39,\\n      \\\"old_delta_pp\\\": 0.49,\\n      \\\"new_delta_pp\\\": 0.0,\\n      \\\"n_affected\\\": 6\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k4\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=4\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 54.41,\\n      \\\"old_sc_pct\\\": 54.41,\\n      \\\"new_sc_pct\\\": 54.41,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 52.94,\\n      \\\"old_delta_pp\\\": -1.47,\\n      \\\"new_delta_pp\\\": -1.47,\\n      \\\"n_affected\\\": 18\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k8\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=8\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 56.37,\\n      \\\"old_delta_pp\\\": -0.98,\\n      \\\"new_delta_pp\\\": -1.96,\\n      \\\"n_affected\\\": 5\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k16\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=16\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 55.88,\\n      \\\"old_sc_pct\\\": 55.88,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"old_delta_pp\\\": 1.47,\\n      \\\"new_delta_pp\\\": 1.47,\\n      \\\"n_affected\\\": 5\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k20\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=20\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 57.35,\\n      \\\"old_sc_pct\\\": 57.35,\\n      \\\"new_sc_pct\\\": 57.35,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"old_delta_pp\\\": 1.96,\\n      \\\"new_delta_pp\\\": 1.96,\\n      \\\"n_affected\\\": 2\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-026\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B FOLIO-204\\\",\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 75.0,\\n      \\\"old_sc_pct\\\": 75.0,\\n      \\\"new_sc_pct\\\": 75.49,\\n      \\\"change\\\": 0.49,\\n      \\\"sica_pct\\\": 74.51,\\n      \\\"old_delta_pp\\\": -0.49,\\n      \\\"new_delta_pp\\\": -0.98,\\n      \\\"n_affected\\\": 4\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-027\\\",\\n      \\\"label\\\": \\\"Qwen3-14B FOLIO-204\\\",\\n      \\\"model\\\": \\\"Qwen3-14B\\\",\\n      \\\"dataset\\\": \\\"FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"registry_sc\\\": 80.39,\\n      \\\"old_sc_pct\\\": 83.82,\\n      \\\"new_sc_pct\\\": 84.8,\\n      \\\"change\\\": 0.98,\\n      \\\"sica_pct\\\": 84.31,\\n      \\\"old_delta_pp\\\": 0.49,\\n      \\\"new_delta_pp\\\": -0.49,\\n      \\\"n_affected\\\": 2\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-046\\\",\\n      \\\"label\\\": \\\"Mistral-7B PW-600\\\",\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"dataset\\\": \\\"PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"registry_sc\\\": 39.33,\\n      \\\"old_sc_pct\\\": 39.33,\\n      \\\"new_sc_pct\\\": 39.33,\\n      \\\"change\\\": 0.0,\\n      \\\"sica_pct\\\": 36.5,\\n      \\\"old_delta_pp\\\": -2.83,\\n    \\n\\n... [截断: 输出过长，省略 21093 字符] ...\\n\\n_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"False\\\": 1,\\n          \\\"Charlie is smart, but we don't know if he is quiet.\\\": 1,\\n          \\\"Unknown\\\": 3,\\n          \\\"True\\\": 3,\\n          \\\"Charlie is smart.\\\": 1\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 3,\\n          \\\"Harry is not white.\\\": 1,\\n          \\\"False\\\": 3,\\n          \\\"True\\\": 2,\\n          \\\"Harry is not white (W').\\\": 1\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNeg-OWA-D5-437_Q1\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 4\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": false\\n      }\\n    ],\\n    \\\"exp-034\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-949_Q8\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5,\\n          \\\"True\\\": 2\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-173_Q11\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNeg-OWA-D5-345_Q13\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"Unknown\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 6\\n        },\\n        \\\"old_correct\\\": true,\\n        \\\"new_correct\\\": false\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-336_Q8\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-616_Q7\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-649_Q1\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"True\\\": 6\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_AttNeg-OWA-D5-532_Q7\\\",\\n        \\\"old_sc\\\": \\\"Unknown\\\",\\n        \\\"new_sc\\\": \\\"True\\\",\\n        \\\"gt\\\": \\\"True\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5,\\n          \\\"False\\\": 2\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      },\\n      {\\n        \\\"problem_id\\\": \\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\",\\n        \\\"old_sc\\\": \\\"True\\\",\\n        \\\"new_sc\\\": \\\"False\\\",\\n        \\\"gt\\\": \\\"False\\\",\\n        \\\"vote_dist\\\": {\\n          \\\"True\\\": 4,\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 4\\n        },\\n        \\\"old_correct\\\": false,\\n        \\\"new_correct\\\": true\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VuamnArPthQESn9VZ3f6nb`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/mcnemar_recomputed_25068.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "84710705-ec39-4578-ae9a-773093b9a629",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvEJCngUcFeKizsziSKuL6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 88561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1636
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T14:23:12.045Z_
+
+<details><summary>↩ Tool result · `toolu_01VuamnArPthQESn9VZ3f6nb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"server\\\": \\\"westd-25068\\\",\\n  \\\"results\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp-033\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 seed=42\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"delta_pp\\\": 3.43,\\n      \\\"a_both_correct\\\": 111,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 10,\\n      \\\"d_both_wrong\\\": 80,\\n      \\\"p_value\\\": 0.09228515625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-057\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.3\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 56.86,\\n      \\\"delta_pp\\\": -1.47,\\n      \\\"a_both_correct\\\": 112,\\n      \\\"b_sc_correct_sica_wrong\\\": 7,\\n      \\\"c_sc_wrong_sica_correct\\\": 4,\\n      \\\"d_both_wrong\\\": 81,\\n      \\\"p_value\\\": 0.548828125,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-058\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.5\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"a_both_correct\\\": 116,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 1,\\n      \\\"d_both_wrong\\\": 84,\\n      \\\"p_value\\\": 0.625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-054\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=1.0\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 55.39,\\n      \\\"sica_pct\\\": 55.39,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"a_both_correct\\\": 108,\\n      \\\"b_sc_correct_sica_wrong\\\": 5,\\n      \\\"c_sc_wrong_sica_correct\\\": 5,\\n      \\\"d_both_wrong\\\": 86,\\n      \\\"p_value\\\": 1.0,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k8\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=8\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 56.37,\\n      \\\"delta_pp\\\": -1.96,\\n      \\\"a_both_correct\\\": 112,\\n      \\\"b_sc_correct_sica_wrong\\\": 7,\\n      \\\"c_sc_wrong_sica_correct\\\": 3,\\n      \\\"d_both_wrong\\\": 82,\\n      \\\"p_value\\\": 0.34375,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-026\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 75.49,\\n      \\\"sica_pct\\\": 74.51,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"a_both_correct\\\": 151,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 1,\\n      \\\"d_both_wrong\\\": 49,\\n      \\\"p_value\\\": 0.625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-027\\\",\\n      \\\"label\\\": \\\"Qwen3-14B FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 84.8,\\n      \\\"sica_pct\\\": 84.31,\\n      \\\"delta_pp\\\": -0.49,\\n      \\\"a_both_correct\\\": 169,\\n      \\\"b_sc_correct_sica_wrong\\\": 4,\\n      \\\"c_sc_wrong_sica_correct\\\": 3,\\n      \\\"d_both_wrong\\\": 28,\\n      \\\"p_value\\\": 1.0,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-046\\\",\\n      \\\"label\\\": \\\"Mistral-7B PW-600 (sanity)\\\",\\n      \\\"n\\\": 600,\\n      \\\"new_sc_pct\\\": 39.33,\\n      \\\"sica_pct\\\": 36.5,\\n      \\\"delta_pp\\\": -2.83,\\n      \\\"a_both_correct\\\": 206,\\n      \\\"b_sc_correct_sica_wrong\\\": 30,\\n      \\\"c_sc_wrong_sica_correct\\\": 13,\\n      \\\"d_both_wrong\\\": 351,\\n      \\\"p_value\\\": 0.0137181850586785,\\n      \\\"sig\\\": \\\"**\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-034\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"new_sc_pct\\\": 71.33,\\n      \\\"sica_pct\\\": 70.83,\\n      \\\"delta_pp\\\": -0.5,\\n      \\\"a_both_correct\\\": 414,\\n      \\\"b_sc_correct_sica_wrong\\\": 14,\\n      \\\"c_sc_wrong_sica_correct\\\": 11,\\n      \\\"d_both_wrong\\\": 161,\\n      \\\"p_value\\\": 0.6900379657745361,\\n      \\\"sig\\\": \\\"ns\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "9038aa33-562d-4879-8f89-206eb774d4bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"server\\\\\\\": \\\\\\\"westd-25068\\\\\\\",\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-033\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 seed=42\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 55.88,\\\\n      \\\\\\\"sica_pct\\\\\\\": 59.31,\\\\n      \\\\\\\"delta_pp\\\\\\\": 3.43,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 111,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 3,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 10,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 80,\\\\n      \\\\\\\"p_value\\\\\\\": 0.09228515625,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-057\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=0.3\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"sica_pct\\\\\\\": 56.86,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.47,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 112,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 7,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 4,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 81,\\\\n      \\\\\\\"p_value\\\\\\\": 0.548828125,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-058\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=0.5\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"sica_pct\\\\\\\": 57.35,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 116,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 3,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 1,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 84,\\\\n      \\\\\\\"p_value\\\\\\\": 0.625,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-054\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 T=1.0\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 55.39,\\\\n      \\\\\\\"sica_pct\\\\\\\": 55.39,\\\\n      \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 108,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 5,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 5,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 86,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-051-k8\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B FOLIO-204 K=8\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 58.33,\\\\n      \\\\\\\"sica_pct\\\\\\\": 56.37,\\\\n      \\\\\\\"delta_pp\\\\\\\": -1.96,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 112,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 7,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 3,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 82,\\\\n      \\\\\\\"p_value\\\\\\\": 0.34375,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-026\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Qwen2.5-14B FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 75.49,\\\\n      \\\\\\\"sica_pct\\\\\\\": 74.51,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.98,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 151,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 3,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 1,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 49,\\\\n      \\\\\\\"p_value\\\\\\\": 0.625,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-027\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Qwen3-14B FOLIO-204\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 204,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 84.8,\\\\n      \\\\\\\"sica_pct\\\\\\\": 84.31,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.49,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 169,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 4,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 3,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 28,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-046\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Mistral-7B PW-600 (sanity)\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 39.33,\\\\n      \\\\\\\"sica_pct\\\\\\\": 36.5,\\\\n      \\\\\\\"delta_pp\\\\\\\": -2.83,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 206,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 30,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 13,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 351,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0137181850586785,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"**\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp-034\\\\\\\",\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Qwen2.5-14B PW-600\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 600,\\\\n      \\\\\\\"new_sc_pct\\\\\\\": 71.33,\\\\n      \\\\\\\"sica_pct\\\\\\\": 70.83,\\\\n      \\\\\\\"delta_pp\\\\\\\": -0.5,\\\\n      \\\\\\\"a_both_correct\\\\\\\": 414,\\\\n      \\\\\\\"b_sc_correct_sica_wrong\\\\\\\": 14,\\\\n      \\\\\\\"c_sc_wrong_sica_correct\\\\\\\": 11,\\\\n      \\\\\\\"d_both_wrong\\\\\\\": 161,\\\\n      \\\\\\\"p_value\\\\\\\": 0.6900379657745361,\\\\n      \\\\\\\"sig\\\\\\\": \\\\\\\"ns\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"server\\\": \\\"westd-25068\\\",\\n  \\\"results\\\": [\\n    {\\n      \\\"exp_id\\\": \\\"exp-033\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 seed=42\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 55.88,\\n      \\\"sica_pct\\\": 59.31,\\n      \\\"delta_pp\\\": 3.43,\\n      \\\"a_both_correct\\\": 111,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 10,\\n      \\\"d_both_wrong\\\": 80,\\n      \\\"p_value\\\": 0.09228515625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-057\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.3\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 56.86,\\n      \\\"delta_pp\\\": -1.47,\\n      \\\"a_both_correct\\\": 112,\\n      \\\"b_sc_correct_sica_wrong\\\": 7,\\n      \\\"c_sc_wrong_sica_correct\\\": 4,\\n      \\\"d_both_wrong\\\": 81,\\n      \\\"p_value\\\": 0.548828125,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-058\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=0.5\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 57.35,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"a_both_correct\\\": 116,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 1,\\n      \\\"d_both_wrong\\\": 84,\\n      \\\"p_value\\\": 0.625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-054\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 T=1.0\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 55.39,\\n      \\\"sica_pct\\\": 55.39,\\n      \\\"delta_pp\\\": 0.0,\\n      \\\"a_both_correct\\\": 108,\\n      \\\"b_sc_correct_sica_wrong\\\": 5,\\n      \\\"c_sc_wrong_sica_correct\\\": 5,\\n      \\\"d_both_wrong\\\": 86,\\n      \\\"p_value\\\": 1.0,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-051-k8\\\",\\n      \\\"label\\\": \\\"Mistral-7B FOLIO-204 K=8\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 58.33,\\n      \\\"sica_pct\\\": 56.37,\\n      \\\"delta_pp\\\": -1.96,\\n      \\\"a_both_correct\\\": 112,\\n      \\\"b_sc_correct_sica_wrong\\\": 7,\\n      \\\"c_sc_wrong_sica_correct\\\": 3,\\n      \\\"d_both_wrong\\\": 82,\\n      \\\"p_value\\\": 0.34375,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-026\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 75.49,\\n      \\\"sica_pct\\\": 74.51,\\n      \\\"delta_pp\\\": -0.98,\\n      \\\"a_both_correct\\\": 151,\\n      \\\"b_sc_correct_sica_wrong\\\": 3,\\n      \\\"c_sc_wrong_sica_correct\\\": 1,\\n      \\\"d_both_wrong\\\": 49,\\n      \\\"p_value\\\": 0.625,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-027\\\",\\n      \\\"label\\\": \\\"Qwen3-14B FOLIO-204\\\",\\n      \\\"n\\\": 204,\\n      \\\"new_sc_pct\\\": 84.8,\\n      \\\"sica_pct\\\": 84.31,\\n      \\\"delta_pp\\\": -0.49,\\n      \\\"a_both_correct\\\": 169,\\n      \\\"b_sc_correct_sica_wrong\\\": 4,\\n      \\\"c_sc_wrong_sica_correct\\\": 3,\\n      \\\"d_both_wrong\\\": 28,\\n      \\\"p_value\\\": 1.0,\\n      \\\"sig\\\": \\\"ns\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-046\\\",\\n      \\\"label\\\": \\\"Mistral-7B PW-600 (sanity)\\\",\\n      \\\"n\\\": 600,\\n      \\\"new_sc_pct\\\": 39.33,\\n      \\\"sica_pct\\\": 36.5,\\n      \\\"delta_pp\\\": -2.83,\\n      \\\"a_both_correct\\\": 206,\\n      \\\"b_sc_correct_sica_wrong\\\": 30,\\n      \\\"c_sc_wrong_sica_correct\\\": 13,\\n      \\\"d_both_wrong\\\": 351,\\n      \\\"p_value\\\": 0.0137181850586785,\\n      \\\"sig\\\": \\\"**\\\"\\n    },\\n    {\\n      \\\"exp_id\\\": \\\"exp-034\\\",\\n      \\\"label\\\": \\\"Qwen2.5-14B PW-600\\\",\\n      \\\"n\\\": 600,\\n      \\\"new_sc_pct\\\": 71.33,\\n      \\\"sica_pct\\\": 70.83,\\n      \\\"delta_pp\\\": -0.5,\\n      \\\"a_both_correct\\\": 414,\\n      \\\"b_sc_correct_sica_wrong\\\": 14,\\n      \\\"c_sc_wrong_sica_correct\\\": 11,\\n      \\\"d_both_wrong\\\": 161,\\n      \\\"p_value\\\": 0.6900379657745361,\\n      \\\"sig\\\": \\\"ns\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check exp067 (seed789) and the seed123/456 experiments. The user mentioned Table 1 has:
+- default seed: 54.41% → now 55.88%
+- s123: 54.41%
+- s456: 55.88%
+- s789: 54.41%
+
+From exp067 (seed789): reported SC = 54.41%, and my analysis shows alpha=54.41% (matches). So no change needed for seed789.
+
+But I need to find where seed123 and seed456 Mistral FOLIO SC values come from. 
+
+I should look at the ICG experiments (exp074, exp074c, exp074d) since they might contain the seed variations for Mistral FOLIO and report SC as a baseline metric alongside their main results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "d5020408-670f-4a36-9749-993c78b2e66a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLySaYTg4t3UcDHUvvmzP2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9272,
+      "cache_read_input_tokens": 90197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9272
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JCkM1syoJW8gMf4pTMgx6d`</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\n# Check ICG experiments for SC baseline\nfor exp_name in ['exp074_icg_mistral_folio', 'exp074c_icg_mistral_folio_seed123', 'exp074d_icg_mistral_folio_seed456']:\n    path = f'/root/symb_invariant_consensus/results/{exp_name}/results.json'\n    try:\n        d = json.load(open(path))\n        # Look for SC baseline\n        sc_keys = [k for k in d.keys() if 'sc' in k.lower() or 'baseline' in k.lower() or 'summary' in k.lower()]\n        if 'baselines' in d:\n            print(f\"{exp_name}: baselines = {d['baselines']}\")\n        elif 'summary' in d:\n            s = d['summary']\n            print(f\"{exp_name}: sc_accuracy = {s.get('sc_accuracy')}, sica_accuracy = {s.get('sica_accuracy')}\")\n        else:\n            # Check top-level\n            for k in d:\n                if isinstance(d[k], dict) and 'accuracy' in str(d[k]):\n                    print(f\"{exp_name}.{k} = {d[k]}\")\n                    break\n            else:\n                print(f\"{exp_name}: keys = {list(d.keys())[:10]}\")\n    except Exception as e:\n        print(f\"{exp_name}: {e}\")\n\n# Also check exp067 seed789\nd = json.load(open('/root/symb_invariant_consensus/results/exp067_mistral_folio_seed789/exp067_results.json'))\ns = d['summary']\nprint(f\"\\nexp067_seed789: sc_accuracy = {s.get('sc_accuracy')}, sica_accuracy = {s.get('sica_accuracy')}\")\n\n# Check exp075b contrastive for seeds\nfor exp_name in ['exp075b_contrastive_mistral_folio']:\n    path = f'/root/symb_invariant_consensus/results/{exp_name}/results.json'\n    try:\n        d = json.load(open(path))\n        if 'baselines' in d:\n            print(f\"\\n{exp_name}: baselines = {d['baselines']}\")\n    except:\n        pass\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "ab1c7b51-7db1-4c25-aebb-aa91609bc5e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DLySaYTg4t3UcDHUvvmzP2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9272,
+      "cache_read_input_tokens": 90197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9272
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-20T14:23:36.444Z_
+
+<details><summary>↩ Tool result · `toolu_01JCkM1syoJW8gMf4pTMgx6d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp074_icg_mistral_folio: sc_accuracy = 0.5392, sica_accuracy = None\\nexp074c_icg_mistral_folio_seed123: sc_accuracy = 0.5735, sica_accuracy = None\\nexp074d_icg_mistral_folio_seed456: sc_accuracy = 0.5588, sica_accuracy = None\\n\\nexp067_seed789: sc_accuracy = 0.5441176470588235, sica_accuracy = 0.5392156862745098\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "1ed09bf4-c05b-490f-a4e9-441d49680ca8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp074_icg_mistral_folio: sc_accuracy = 0.5392, sica_accuracy = None\\\\nexp074c_icg_mistral_folio_seed123: sc_accuracy = 0.5735, sica_accuracy = None\\\\nexp074d_icg_mistral_folio_seed456: sc_accuracy = 0.5588, sica_accuracy = None\\\\n\\\\nexp067_seed789: sc_accuracy = 0.5441176470588235, sica_accuracy = 0.5392156862745098\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp074_icg_mistral_folio: sc_accuracy = 0.5392, sica_accuracy = None\\nexp074c_icg_mistral_folio_seed123: sc_accuracy = 0.5735, sica_accuracy = None\\nexp074d_icg_mistral_folio_seed456: sc_accuracy = 0.5588, sica_accuracy = None\\n\\nexp067_seed789: sc_accuracy = 0.5441176470588235, sica_accuracy = 0.5392156862745098\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting. The ICG experiments show different SC values:
+- exp074 (default seed): SC = 53.92% (NOT 54.41%)
+- exp074c (seed123): SC = 57.35% (NOT 54.41%)
+- exp074d (seed456): SC = 55.88%
+- exp067 (seed789): SC = 54.41%
+
+These don't match what the user said for Table 1:
+- default: 54.41%
+
+
+- s123: 54.41%
+- s456: 55.88%
+- s789: 54.41%
+
+So the ICG experiments are giving different SC values than what's in Table 1. The discrepancy might be because ICG uses a different SC computation method, possibly with different k values or normalization. Looking at the plain SICA experiments, exp033 (default) and exp067 (seed789) both report 54.41%, which matches the user's table for those seeds. This suggests the user's Table 1 might be pulling from a different experiment set altogether.
+
+I'm not entirely sure where the user's Table 1 data originates, so the most useful thing is to report what I've actually found and let them map it to their table. The main takeaway is that exp033 with the default seed shows 54.41% under dict-order tiebreaking but jumps to 55.88% with alphabetical tiebreaking—that's the one needing an update. Meanwhile exp067 with seed789 already sits at 54.41% using alphabetical tiebreaking, so it's fine as is. For seed123 and seed456, I don't have corresponding plain Mistral FOLIO experiments to compare, only the ICG variants which show different SC values entirely. Generating results table...
+
+The higher baseline for SC (55.88%) weakens the combo's statistical advantage—the w=1 comparison drops from significant (p=0.039) to marginal (p=0.125), and w=3 was never significant anyway. Looking at the other seed experiments, exp067 already uses alphabetical tiebreaking so no changes needed there, while exp074c and exp074d are different experiment types. Now I'm considering what happens if I apply alphabetical tiebreaking to the combo as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "c3db9b09-4792-45e8-aaf9-1a74f40f1e4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdQcLtHUjUGDrZ7SMybRf8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1224,
+      "cache_read_input_tokens": 99469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1224
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+数据收集完成。以下是完整结果。
+
+---
+
+## 结果
+
+### 1. SC Tiebreaking 对比 (exp033 default seed)
+
+| 方法 | 正确数 | 准确率 |
+|------|--------|--------|
+| SC (dict-order, 旧) | 111/204 | 54.41% |
+| SC (alphabetical, 新) | 114/204 | **55.88%** |
+
+7 道 tie 题发生变化：
+
+| 问题 | Gold | Dict→Alpha | 投票分布 | 结果 |
+|------|------|------------|----------|------|
+| folio_42 | True | Unknown→**True** | Unknown:5, True:5 | 错→对 |
+| folio_65 | True | True→**False** | True:5, False:5, Unknown:2 | 对→错 |
+| folio_83 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+| folio_99 | Unknown | Unknown→**True** | Unknown:5, True:5 | 对→错 |
+| folio_100 | True | Unknown→**True** | Unknown:4, True:4 | 错→对 |
+| folio_157 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+| folio_163 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+
+净变化: +5 correct, -2 correct → **+3 net**
+
+### 2. R Combo 准确率（不变）
+
+| 策略 | 正确数 | 准确率 |
+|------|--------|--------|
+| Combo w=1 | 118/204 | 57.84% |
+| Combo w=3 | 120/204 | 58.82% |
+
+### 3. McNemar 重算
+
+| 对比 | b (SC对,combo错) | c (SC错,combo对) | p-value |
+|------|---|---|---|
+| **旧** SC vs w=1 | 1 | 8 | **0.0391*** |
+| **新** SC vs w=1 | 0 | 4 | 0.1250 |
+| **旧** SC vs w=3 | 6 | 15 | 0.0784 |
+| **新** SC vs w=3 | 5 | 11 | 0.2101 |
+
+**关键变化**: SC 从 54.41%→55.88% 后，combo 相对 SC 的改进变小，w=1 的 McNemar 从显著 (p=0.039) 变为不显著 (p=0.125)。w=3 本来就不显著，p 值进一步增大。
+
+### 4. 其他 seed SC 值
+
+| 实验 | 报告 SC | Dict-order | Alphabetical | Tiebreaking 类型 | 需要更新？ |
+|------|---------|------------|--------------|-----------------|-----------|
+| exp033 default | 54.41% | 54.41% | 55.88% | dict-order | **是 → 55.88%** |
+| exp067 seed789 | 54.41% | 55.88% | 54.41% | alphabetical | 否 |
+
+**exp074c (seed123, ICG)** SC=57.35%, **exp074d (seed456, ICG)** SC=55.88% — 这些是 ICG 实验，SC baseline 数值与用户提到的 Table 1 (s123=54.41%, s456=55.88%) 不一致。没有找到独立的 Mistral FOLIO seed123/seed456 普通 SICA 实验目录。需要确认 Table 1 中 s123 和 s456 的 SC 值来源。
+
+### 5. 补充：如果 combo tiebreaking 也统一为字母序
+
+| 策略 | 原始 (dict tiebreak) | 字母序 tiebreak |
+|------|---------------------|----------------|
+| Combo w=1 | 118/204 (57.84%) | 115/204 (56.37%) |
+| Combo w=3 | 120/204 (58.82%) | 120/204 (58.82%) |
+
+w=1 会降 3 个点，因为 combo 投票中也有 tie 情况。这是一个需要决定的点：是否 combo 也用字母序 tiebreaking。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "uuid": "fb14e233-5933-4bd5-9774-bc3dad31d288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdQcLtHUjUGDrZ7SMybRf8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1224,
+      "cache_read_input_tokens": 99469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1224
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 96_
+
+数据收集完成。以下是完整结果。
+
+---
+
+## 结果
+
+### 1. SC Tiebreaking 对比 (exp033 default seed)
+
+| 方法 | 正确数 | 准确率 |
+|------|--------|--------|
+| SC (dict-order, 旧) | 111/204 | 54.41% |
+| SC (alphabetical, 新) | 114/204 | **55.88%** |
+
+7 道 tie 题发生变化：
+
+| 问题 | Gold | Dict→Alpha | 投票分布 | 结果 |
+|------|------|------------|----------|------|
+| folio_42 | True | Unknown→**True** | Unknown:5, True:5 | 错→对 |
+| folio_65 | True | True→**False** | True:5, False:5, Unknown:2 | 对→错 |
+| folio_83 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+| folio_99 | Unknown | Unknown→**True** | Unknown:5, True:5 | 对→错 |
+| folio_100 | True | Unknown→**True** | Unknown:4, True:4 | 错→对 |
+| folio_157 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+| folio_163 | False | Unknown→**False** | Unknown:5, False:5 | 错→对 |
+
+净变化: +5 correct, -2 correct → **+3 net**
+
+### 2. R Combo 准确率（不变）
+
+| 策略 | 正确数 | 准确率 |
+|------|--------|--------|
+| Combo w=1 | 118/204 | 57.84% |
+| Combo w=3 | 120/204 | 58.82% |
+
+### 3. McNemar 重算
+
+| 对比 | b (SC对,combo错) | c (SC错,combo对) | p-value |
+|------|---|---|---|
+| **旧** SC vs w=1 | 1 | 8 | **0.0391*** |
+| **新** SC vs w=1 | 0 | 4 | 0.1250 |
+| **旧** SC vs w=3 | 6 | 15 | 0.0784 |
+| **新** SC vs w=3 | 5 | 11 | 0.2101 |
+
+**关键变化**: SC 从 54.41%→55.88% 后，combo 相对 SC 的改进变小，w=1 的 McNemar 从显著 (p=0.039) 变为不显著 (p=0.125)。w=3 本来就不显著，p 值进一步增大。
+
+### 4. 其他 seed SC 值
+
+| 实验 | 报告 SC | Dict-order | Alphabetical | Tiebreaking 类型 | 需要更新？ |
+|------|---------|------------|--------------|-----------------|-----------|
+| exp033 default | 54.41% | 54.41% | 55.88% | dict-order | **是 → 55.88%** |
+| exp067 seed789 | 54.41% | 55.88% | 54.41% | alphabetical | 否 |
+
+**exp074c (seed123, ICG)** SC=57.35%, **exp074d (seed456, ICG)** SC=55.88% — 这些是 ICG 实验，SC baseline 数值与用户提到的 Table 1 (s123=54.41%, s456=55.88%) 不一致。没有找到独立的 Mistral FOLIO seed123/seed456 普通 SICA 实验目录。需要确认 Table 1 中 s123 和 s456 的 SC 值来源。
+
+### 5. 补充：如果 combo tiebreaking 也统一为字母序
+
+| 策略 | 原始 (dict tiebreak) | 字母序 tiebreak |
+|------|---------------------|----------------|
+| Combo w=1 | 118/204 (57.84%) | 115/204 (56.37%) |
+| Combo w=3 | 120/204 (58.82%) | 120/204 (58.82%) |
+
+w=1 会降 3 个点，因为 combo 投票中也有 tie 情况。这是一个需要决定的点：是否 combo 也用字母序 tiebreaking。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 574406,
+  "duration_api_ms": 563318,
+  "num_turns": 35,
+  "stop_reason": "end_turn",
+  "session_id": "fa702074-5692-44b2-9266-89f2226e44e8",
+  "total_cost_usd": 1.92569475,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 75783,
+    "cache_read_input_tokens": 1477064,
+    "output_tokens": 28440,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 75783,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2451,
+        "cache_read_input_tokens": 99469,
+        "cache_creation_input_tokens": 1224,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1224
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2249,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0023840000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 28440,
+      "cacheReadInputTokens": 1477064,
+      "cacheCreationInputTokens": 75783,
+      "webSearchRequests": 0,
+      "costUSD": 1.9233107499999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8d9ed235-329c-4281-b01f-a5ef8de9d43d"
+}
+```
+
+</details>
+
+---

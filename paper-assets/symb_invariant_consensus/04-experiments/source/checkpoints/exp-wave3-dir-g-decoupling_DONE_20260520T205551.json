@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp-wave3-dir-g-decoupling",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:20:09.909Z",
+    "updated_at": "2026-05-20T20:55:51.195Z",
+    "hypothesis": "Decoupling: 将 FOL 约束提取与答案生成解耦——先生成答案 trace，再独立提取 FOL 约束（不暴露答案给约束提取 prompt），可以打破 confirmation bias 因果链。Conservative 策略：截断 trace 中答案相关内容后再提取约束。",
+    "spec": {
+      "command": "python -u direction_g_decoupling.py --data data/folio_full.json --traces-dir results/exp033_mistral_folio204/ --output results/direction_g_decoupling/results.json",
+      "server": "westd-16639",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n": 204,
+      "sc_baseline": 0.5441,
+      "sc_correct": 111,
+      "sica_original": 0.5931,
+      "sica_correct": 121,
+      "conservative_accuracy": 0.5392,
+      "conservative_correct": 110,
+      "conservative_avg_trunc_pct": 4.3,
+      "conservative_match_pct": 98.4,
+      "standard_accuracy": 0.5441,
+      "standard_correct": 111,
+      "standard_avg_trunc_pct": 18.9,
+      "standard_match_pct": 98.4,
+      "aggressive_accuracy": 0.5392,
+      "aggressive_correct": 110,
+      "aggressive_avg_trunc_pct": 35.3,
+      "aggressive_match_pct": 100,
+      "best_strategy": "standard",
+      "best_delta_vs_sc_pp": 0,
+      "best_delta_vs_sica_pp": -4.9
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/direction_g_decoupling/",
+    "log_path": "/tmp/direction_g_full.log",
+    "completed_at": "2026-05-20T20:55:51.195Z"
+  },
+  "timestamp": "2026-05-20T20:55:51.664014+00:00",
+  "trigger": "update_registry"
+}

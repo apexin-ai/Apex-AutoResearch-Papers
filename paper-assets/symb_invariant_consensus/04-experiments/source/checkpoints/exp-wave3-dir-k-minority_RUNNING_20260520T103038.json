@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-wave3-dir-k-minority",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:30:03.741Z",
+    "updated_at": "2026-05-20T10:30:37.916Z",
+    "hypothesis": "Minority Report: 当 SICA 错误时，少数派 traces 可能更 consistent（Z3 约束内部自洽性更高）。如果少数派 consistency > 多数派，用 consistency-weighted voting 替代 majority vote 可以纠正部分错误。测试 strict/moderate/combined 三种策略。",
+    "spec": {
+      "command": "python direction_k_minority_report.py --data data/folio_full.json --traces-dir results/exp033_mistral_folio204/ --output results/direction_k_minority_report/results.json",
+      "server": "westd-16639",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "metrics": {
+      "sc_accuracy": 0.5441,
+      "strict_accuracy": 0.5441,
+      "strict_delta_pp": 0,
+      "moderate_accuracy": 0.4951,
+      "moderate_delta_pp": -4.9,
+      "combined_accuracy": 0.5441,
+      "combined_delta_pp": 0,
+      "minority_consistency_precision": 0.3553,
+      "minority_gt_rate": 0.3373,
+      "majority_gt_rate": 0.488,
+      "moderate_flips": 76,
+      "moderate_correct_flips": 27,
+      "moderate_wrong_flips": 49,
+      "n": 204
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T10:30:38.202009+00:00",
+  "trigger": "update_registry"
+}

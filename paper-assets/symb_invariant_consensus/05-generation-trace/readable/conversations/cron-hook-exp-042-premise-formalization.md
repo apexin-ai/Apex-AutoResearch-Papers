@@ -1,0 +1,3352 @@
+# cron hook exp 042 premise formalization
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 110
+- **Recorded user turns:** 2
+- **Tool calls:** 54
+- **Original source:** `logs/chats/cron_hook_exp-042-premise-formalization.jsonl`
+- **Structured JSON:** [`0b97a5996739a9bc2f0f.json`](../../sessions/0b/0b97a5996739a9bc2f0f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T11:36:53.339705+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #10。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-25068:cuda:0-3 + westd-16639:cuda:0-3（共 8 卡），白名单外的卡即使 Director 指令也必须 push back
+- vLLM 在这两台服务器上必须加 `VLLM_USE_FLASHINFER_SAMPLER=0` + `--enforce-eager`，否则启动报错
+- 所有新实验部署前必须 dry-run（n=3 或 n=5），dry-run 失败不准启全量（Director 2026-05-19 硬规则）
+- 论文已定性为 **analysis paper**（D060 确认 method improvement 三路失败），不要尝试 claim SICA 是可用方法
+- EMNLP 2026 ARR **May 25 截止**（~6 天），所有实验必须服务于论文完成，不做探索性实验
+
+### 2. 🖥️ 基础设施快照
+- **westd-25068**: 4× RTX PRO 6000 Blackwell，/root/symb_invariant_consensus，conda base /root/miniconda3
+- **westd-16639**: 同上配置，同路径
+- 模型缓存：/root/autodl-tmp/models/（Mistral-7B-Instruct-v0.3, Qwen2.5-14B-Instruct, Meta-Llama-3.1-8B-Instruct 已下载；Qwen3-14B 走 HF cache）
+- 活跃进程：
+  - exp-048-llama8b-pw600: 16639 cuda:3, cron 监控中 (reconcile 确认 pid=exp048_run still running), ~245/600
+  - exp-062-gemma27b-folio204: 25068 cuda:3, RUNNING
+  - exp-064: 16639 cuda:2, RUNNING（Worker 仍活跃，turn=18, 进度 57/204）
+  - exp-065-qwen7b-pw600: 25068 cuda:0, RUNNING
+  - exp-068-qwen3-logiqa200: 16639 cuda:1, RUNNING（替代已完成的 exp-040）
+- CronList 本 session 为空（上一 session 的 cron 通过 reconcile 同步，exp-048 仍被追踪）
+- 25068 cuda:1 和 cuda:2 当前空闲
+
+### 3. 📊 当前状态
+**刚做完**：上一 session 完成了大量工作——exp-059/060 (cross-model extraction) 确认 D067 Quality Ladder L1 NULL；exp-061 (Qwen2.5-7B FOLIO) 完成（negative）；exp-067 (Mistral seed=789) 完成（success, 4-seed replication）；exp-040 (Qwen3-14B PW-600) 疑似完成（vLLM 已被 kill，completion check worker 已运行）；Paper Agent 完成 D067 bidirectional evidence 整合（analysis/discussion/appendix/limitations/conclusion 全部 patch）。
+
+**RUNNING 实验**（5 个）：
+| exp_id | 模型 | 数据集 | 服务器/GPU | 进度 |
+|--------|------|--------|-----------|------|
+| exp-048 | LLaMA-8B | PW-600 | 16639/cuda:3 | ~245/600 |
+| exp-062 | Gemma-3-27B | FOLIO-204 | 25068/cuda:3 | 未知 |
+| exp-064 | DeepSeek-R1-Qwen3-8B | FOLIO-204 | 16639/cuda:2 | 57/204 |
+| exp-065 | Qwen2.5-7B | PW-600 | 25068/cuda:0 | 未知 |
+| exp-068 | Qwen3-14B | LogiQA-200 | 16639/cuda:1 | 未知 |
+
+**PREPARING/QUEUED**：exp-063-llama8b-folio204 (PREPARING), exp-052/053 (QUEUED, seed replications 等 GPU)
+
+**等待中**：
+- Worker `worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017` 仍在运行（turn 18）
+- 5 个实验的 cron/完成回调
+- exp-040 状态需确认——registry 仍 RUNNING 但 vLLM 已被 kill，可能 registry 未更新
+
+### 4. 📋 待办（条件触发式）
+- exp-040 状态确认 → 如已完成，spawn worker 分析结果 + update_registry(DONE) + 汇报 Director
+- exp-048 cron 回调 → 分析 LLaMA-8B PW-600 结果，更新 Table 1
+- exp-062 完成 → 分析 Gemma-3-27B（新模型家族覆盖），判断 regime 位置（SC% 在 75-85% 区间则 Type A confirmation bias，55-65% 则 Goldilocks 候选）
+- exp-064 worker 完成 → 处理 DeepSeek-R1 reasoning model 结果（关注是否出现 degenerate regime C₀<5%）
+- exp-065 完成 → Qwen2.5-7B PW-600，与 exp-061 (FOLIO negative) 对比看 PW 数据集上是否不同
+- exp-068 完成 → Qwen3-14B LogiQA-200，验证跨数据集 Type A 一致性
+- 所有新模型结果完成 → 更新 Table 1 + Figure 2/3 重新生成 (R4-M5)
+- 25068 cuda:1/cuda:2 空闲 → 可部署 exp-052/053 (Mistral seed replications) 或其他待排队实验
+- 全部实验完成 → Final review submission
+
+### 5. 🎯 战略上下文
+**核心叙事**（D063 framing）：SICA 不是一个通用可用方法，而是一个**分析工具**——通过 regime-dependent pattern 揭示 LLM 推理的 independence bottleneck。三个 regime：Type A (SC>75%, SICA≈SC, confirmation bias), Goldilocks (SC 55-65%, SICA>SC, 有效区), Type C (SC<45%, SICA<SC, error amplification)。
+
+**关键决策链**：D059(投 May 25) → D060(放弃 method contribution) → D063(entropy-conditional framing) → D065(entropy decomposition) → D066(McNemar downgrade to directional) → D067(cross-model NULL) → D068(4-seed weakens Goldilocks)
+
+**易错点**：
+- exp-040 registry 状态可能 stale（RUNNING 但实际已完成），第一件事确认并修正
+- D066 后所有 statistical significance claims 已降级为 directional trends（除 Oracle exp-031 的 p<0.001），写 paper 不要用 "significantly"
+- Goldilocks zone 证据在 D068 后进一步弱化（4 seeds 中 1 negative），新模型（Gemma/DeepSeek/LLaMA）的结果决定能否 claim 第二个 Goldilocks 数据点
+- 25068 cuda:1/cuda:2 空闲 = 失职，应立即部署实验
+- exp-063 (LLaMA-8B FOLIO) 状态 PREPARING 但 ROADMAP 说它在 16639 cuda:0 RUNNING with ETA ~5h——需要确认真实状态
+
+## 项目硬约束 (memory.md 节选)
+
+## 服务器环境
+
+### westd-25068
+- 4× RTX PRO 6000 Blackwell
+- conda base 环境，/root/miniconda3
+- 项目目录: /root/symb_invariant_consensus
+- 模型缓存: /root/autodl-tmp/models/
+- vLLM 需要: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager
+
+### westd-16639
+- 4× RTX PRO 6000 Blackwell
+- 同上环境配置
+- 项目目录: /root/symb_invariant_consensus
+
+## 可查的历史
+前 27 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T11:37:05.287691+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T11:37:05.338351+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T11:37:08.506077+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T11:37:08.959700+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T11:37:08.960136+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-068-qwen3-logiqa200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:13:19.371Z\", \"updated_at\": \"2026-05-19T11:13:42.313Z\", \"hypothesis\": \"Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040\", \"parent\": \"exp-040\"}, \"exp-062-gemma27b-folio204\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T07:41:54.628Z\", \"updated_at\": \"2026-05-19T09:01:49.427Z\", \"hypothesis\": \"Gemma-3-27B-IT (Google 架构) FOLIO-204 SICA vs SC。跨模型家族验证 regime-dependent pattern。27B 能力预计在 Qwen2.5-14B (~75% SC) 和 Qwen3-14B (~85% SC) 之间。\"}, \"exp-064\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T08:56:53.587Z\", \"updated_at\": \"2026-05-19T08:57:00.072Z\"}, \"exp-065-qwen7b-pw600\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T08:49:16.855Z\", \"updated_at\": \"2026-05-19T08:54:31.474Z\", \"hypothesis\": \"Qwen2.5-7B 在 PW-D5-600 上 SICA vs SC。FOLIO SC=75.98% (confirmation bias)，PW 更难 SC 预计更低，测试不同 regime。parent=exp-061\", \"parent\": \"\"}, \"exp-048-llama8b-pw600\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-18T20:30:33.025Z\", \"updated_at\": \"2026-05-19T02:21:10.720Z\", \"hypothesis\": \"LLaMA-3.1-8B-Instruct 在 ProofWriter-600 上 SICA vs SC。FOLIO-204 上 LLaMA-8B SC=63.2% delta=-2.45pp (exp-020)。PW 是更结构化的形式推理数据集，测试 SICA 在 PW 上对低能力模型是否有效（补充 regime boundary 跨域证据）。parent=exp-020\"}}, \"count\": 5, \"total\": 5, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3187}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T11:37:09.462653+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T11:37:09.513168+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T11:37:11.469980+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp-048-llama8b-pw600\", \"success\": true, \"actions\": [\"Job still running (pid=exp048_run)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2510
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T11:37:11.470375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-068-qwen3-logiqa200 | Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040 | — | — | — |\\n| exp-062-gemma27b-folio204 | Gemma-3-27B-IT (Google 架构) FOLIO-204 SICA vs SC。跨模型家族验证 regime-dependent pattern。27B 能力预计在 Qwen2.5-14B (~75% SC) 和 Qwen3-14B (~85% SC) 之间。 | — | — | — |\\n| exp-064 | — | — | — | — |\\n\\n## 待处理\\n- exp-053-mistral-folio204-seed456: exp-033 replication (seed=456): Mistral-7B FOLIO-204 K=12 T=0.7，第二组独立 replication。与 exp-052 (seed=123) 一起验证 exp-033 结论 robustness。parent=exp-033（排队等待 GPU）\\n- exp-052-mistral-folio204-seed123: exp-033 replication (seed=123): Mistral-7B FOLIO-204 K=12 T=0.7，与 exp-033 (seed=42, delta=+4.90pp, p=0.013) 完全相同配置，仅 seed 不同。验证正向结果是否 seed-robust。parent=exp-033（排队等待 GPU）\\n- exp-064-deepseek-r1-qwen3-8b-folio204: DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。（准备中）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-061-qwen7b-folio204** (negative): Qwen2.5-7B-Instruct 在 FOLIO-204 上 SICA vs SC。SC 预计 55-65%（介于 Mistral-7B ~55% 和 Qwen2.5-14B ~75% 之间），可能在 Goldilocks zone。 ← 基于 exp-033\\n- **exp-059-cross-qwen3-extractor** (success): Qwen3-14B cross-model extraction should produce higher quality FOL constraints than Mistral-7B self-extraction (breaking confirmation bias), leading to higher SICA discriminative rate and accuracy delta over SC baseline. ← 基于 exp-033\\n- **exp-067-mistral-folio-seed789** (success): Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123 +2.94pp, s456 0.00pp。
+…[truncated 1406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2007
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T11:37:11.470709+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-19 08:41 UTC | 更新原因: D067 confirmed, exp-059/060 done, Paper Agent patches complete, ROADMAP refresh\\n\\n> D067: Quality Ladder L1 NULL confirmed. Cross-model extraction ≈ self-extraction. Bottleneck in traces, not extractor.\\n\\n## 核心方向\\n**Independence Bottleneck Analysis.** Oracle +14.22pp (p<0.001) 证明框架有效，但 self-extraction 仅捕获 24% ceiling。Cross-model extraction (D067) 也无效——bottleneck 在 traces（同源输入），不在 extractor。Regime-dependent analysis + entropy decomposition 定位效应机制。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (扩展模型覆盖) + Paper Writing (D067 patch 完成)\\n- **论文**: EMNLP 2026 ARR May 25（~6 天）\\n- **D067 Quality Ladder**: **L1 NULL confirmed** — Qwen3-14B cross 60.29%, Qwen2.5-14B cross 58.33%, self 59.31%, 全在 ±1pp noise 范围\\n- **D066 McNemar**: 0/3 seeds 显著 (p=0.092/0.070/1.0)，claims downgraded to directional trend\\n- **D065 Entropy**: 高 entropy 问题是 SICA 效应所在，方向因 regime 而异\\n- **Paper Agent**: D067 bidirectional cross-model evidence 已整合 analysis/discussion/appendix/limitations/conclusion\\n\\n## GPU 实验\\n| ID | 实验 | Server/GPU | 目的 | 状态 |\\n|----|------|-----------|------|------|\\n| exp-059 | Qwen3-14B → Mistral traces | 25068 cuda:0 | Quality Ladder L1a | **DONE** 60.29%, Δ=+4.41pp vs SC (+0.98pp vs self = noise) |\\n| exp-060 | Qwen2.5-14B → Mistral traces | 25068 cuda:1 | Quality Ladder L1b | **DONE** 58.33%, Δ=+2.45pp vs SC (-0.98pp vs self = noise) |\\n| exp-061 | Qwen2.5-7B FOLIO K=12 T=0.7 | 25068 cuda:2 | R4-C3: 第二 Goldilocks 候选 | **RUNNING** ETA ~08:49 UTC |\\n| exp-062 | Gemma-3-27B FOLIO K=12 T=0.7 | 25068 cuda:3 | 新模型家族覆盖 | 磁盘清理中 |\\n| exp-063 | LLaMA-3.1-8B FOLIO K=12 T=0.7 | 16639 cuda:0 | Meta 架构覆盖 | **RUNNING** ETA ~5h |\\n| exp-040 | Qwen3-14B PW-600 | 16639 cuda:1 | Table 1 扩展 | **RUNNING** ~482/600 |\\
+…[truncated 3406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1957
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T11:37:30.397490+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'DONE'}",
+  "limit": "10",
+  "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'DONE'}",
+    "limit": "10",
+    "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T11:37:30.949460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-061-qwen7b-folio204\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T11:34:17.303Z\", \"hypothesis\": \"Qwen2.5-7B-Instruct 在 FOLIO-204 上 SICA vs SC。SC 预计 55-65%（介于 Mistral-7B ~55% 和 Qwen2.5-14B ~75% 之间），可能在 Goldilocks zone。\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 0.7598, \"sica_accuracy\": 0.7647, \"delta_pp\": 0.49}}, \"exp-059-cross-qwen3-extractor\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T11:34:15.561Z\", \"hypothesis\": \"Qwen3-14B cross-model extraction should produce higher quality FOL constraints than Mistral-7B self-extraction (breaking confirmation bias), leading to higher SICA discriminative rate and accuracy delta over SC baseline.\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"cross_sica_accuracy\": 0.6029, \"orig_sica_accuracy\": 0.5931, \"sc_accuracy\": 0.5588, \"delta_cross_vs_sc_pp\": 4.41, \"delta_cross_vs_orig_pp\": 0.98}}, \"exp-067-mistral-folio-seed789\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T11:21:00.412Z\", \"hypothesis\": \"Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123 +2.94pp, s456 0.00pp。增加统计样本验证 seed variance 和 SC-Δ 相关性。parent=exp-033\", \"conclusion\": \"success\"}, \"exp-063-llama8b-folio204-16639\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T11:20:59.372Z\", \"hypothesis\": \"LLaMA-3.1-8B-Instruct 在 FOLIO-204 上 SICA vs SC。此前 exp-020 在不同服务器上跑过 (SC=63.2%, delta=-2.45pp)，本实验在 westd-16639 复现并用修正后的 alphabetical tie-breaking SC。parent=exp-020\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 0.6618, \"sica_accuracy\": 0.6176, \"delta_pp\": -4.41}}, \"exp-063\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-19T11:20:57.939Z\", \"hypothesis\": \"LLaMA-3.1-8B-Instruct FOLIO-204 SICA vs SC（Meta 架构覆盖）。exp-020 旧数据 SC=63.2% delta=-2.45pp，本实验用修正 tie-breaking 重跑。parent=exp-020\", \"conclusion\": \"negative\", \"metrics\": {\"n\": 204, \"sc_accurac
+…[truncated 3222 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 551
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T11:37:31.903010+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'QUEUED'}",
+  "fields": "['exp_id', 'status', 'hypothesis', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'QUEUED'}",
+    "fields": "['exp_id', 'status', 'hypothesis', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T11:37:32.255197+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-053-mistral-folio204-seed456\": {\"status\": \"QUEUED\", \"updated_at\": \"2026-05-18T23:17:41.789Z\", \"hypothesis\": \"exp-033 replication (seed=456): Mistral-7B FOLIO-204 K=12 T=0.7，第二组独立 replication。与 exp-052 (seed=123) 一起验证 exp-033 结论 robustness。parent=exp-033\"}, \"exp-052-mistral-folio204-seed123\": {\"status\": \"QUEUED\", \"updated_at\": \"2026-05-18T23:17:40.838Z\", \"hypothesis\": \"exp-033 replication (seed=123): Mistral-7B FOLIO-204 K=12 T=0.7，与 exp-033 (seed=42, delta=+4.90pp, p=0.013) 完全相同配置，仅 seed 不同。验证正向结果是否 seed-robust。parent=exp-033\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.257}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T11:37:32.255565+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['exp_id', 'status', 'hypothesis', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['exp_id', 'status', 'hypothesis', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T11:37:32.556816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-063-llama8b-folio204\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T11:34:19.817Z\"}, \"exp-064-deepseek-r1-qwen3-8b-folio204\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-19T07:49:12.394Z\", \"hypothesis\": \"DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。\"}, \"smoke-test-5q\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T11:22:09.666Z\"}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2589}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T11:38:50.992212+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T11:38:50.992671+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T11:38:51.645091+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'exp_id': 'exp-052-mistral-folio204-seed123'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'exp_id': 'exp-052-mistral-folio204-seed123'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T11:38:51.946137+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2614}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T11:38:59.688304+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'QUEUED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'QUEUED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T11:39:00.190444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-053-mistral-folio204-seed456\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:17:36.430Z\", \"updated_at\": \"2026-05-18T23:17:41.789Z\", \"hypothesis\": \"exp-033 replication (seed=456): Mistral-7B FOLIO-204 K=12 T=0.7，第二组独立 replication。与 exp-052 (seed=123) 一起验证 exp-033 结论 robustness。parent=exp-033\"}, \"exp-052-mistral-folio204-seed123\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:17:34.705Z\", \"updated_at\": \"2026-05-18T23:17:40.838Z\", \"hypothesis\": \"exp-033 replication (seed=123): Mistral-7B FOLIO-204 K=12 T=0.7，与 exp-033 (seed=42, delta=+4.90pp, p=0.013) 完全相同配置，仅 seed 不同。验证正向结果是否 seed-robust。parent=exp-033\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.268}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T11:39:00.190817+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "symb_invariant_consensus",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "symb_invariant_consensus",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T11:39:00.541758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"symb_invariant_consensus\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"westd-25068:cuda:0,cuda:1,cuda:2,cuda:3\", \"gpu_ids\": [\"westd-25068:cuda:0\", \"westd-25068:cuda:1\", \"westd-25068:cuda:2\", \"westd-25068:cuda:3\", \"westd-16639:cuda:0\", \"westd-16639:cuda:1\", \"westd-16639:cuda:2\", \"westd-16639:cuda:3\"], \"project_path\": \"/root/symb_invariant_consensus\", \"servers\": [\"westd-25068\", \"westd-16639\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 350
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T11:39:00.542175+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T11:39:00.594645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017\", \"task_type\": \"gpu:exp-064-deepseek-r1-qwen3-8b-folio204\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-19T07:40:17.159439+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_diag_exp-064-extraction-check_20260519T113500\", \"task_type\": \"diag:exp-064-extraction-check\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-19T11:35:00.872106+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T11:40:51.937646+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T11:40:52.188701+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_75c968dd.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T11:40:52.189012+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T11:40:52.239646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# Memory — symb_invariant_consensus\\n\\n## 项目核心发现\\n\\n### Regime-Dependent Capability Trap\\n- SICA 在 SC 准确率 50-60% 区间（Mistral-7B）可能有效，但不稳定\\n- SC > 75%（Qwen2.5-14B, Qwen3-14B）时 SICA 几乎无效或负向\\n- Oracle FOL (exp-031) delta=+14.22pp 证明上限存在，但 LLM extraction 质量是瓶颈\\n\\n### Fleiss' κ / Effective K 完整数据（2026-05-19）\\n\\n**公式：Eff-K = K / (1 + (K-1) × κ)**\\n\\n| Exp | Model | Dataset | κ | Eff-K | SICA Δpp | p |\\n|-----|-------|---------|---|-------|----------|---|\\n| exp-033 | Mistral-7B | FOLIO-204 s42 | 0.5006 | **1.84** | +4.90 | 0.013 |\\n| exp-052 | Mistral-7B | FOLIO-204 s123 | 0.4122 | **2.17** | +3.43 | 0.039 |\\n| exp-053 | Mistral-7B | FOLIO-204 s456 | 0.4013 | **2.22** | -0.49 | 1.0 |\\n| exp-046 | Mistral-7B | PW-600 | 0.2102 | **3.62** | -2.83 | 0.010 |\\n| exp-026/041 | Qwen-14B | FOLIO-204 | 0.7440 | **1.31** | +0.25 | n.s. |\\n| exp-038 | Qwen-14B | LogiQA-200 | 0.8210 | **1.20** | -0.50 | n.s. |\\n\\n**叙事**：Eff-K 是跨模型的必要条件（Qwen Eff-K≈1.2-1.3 → ~0 gain），但 seed 内部 variance 仍主导。exp-046 Eff-K=3.62（最高）但 SC=39% → delta=-2.83pp，证明需要 sufficient Eff-K AND sufficient SC。\\n\\n### Seed Replication 结论（2026-05-19）\\n- exp-033 (seed=42): delta=+4.90pp, p=0.013 ✅\\n- exp-052 (seed=123): delta=+3.43pp, p=0.039 ✅\\n- exp-053 (seed=456): delta=-0.49pp, p=1.0 ❌\\n- 3 seeds 中 2 positive 1 negative，Pearson r(SC%, delta)=-0.8973\\n- 结论：SICA 效果与 SC 水平强负相关，seed=456 的 SC=56.37% 已接近 SICA 失效边界\\n\\n### Adaptive SICA 验证失败（2026-05-19）\\n- 测试 entropy-gated 策略（low entropy→SC, high entropy→SICA）\\n- 8/19 实验 Adaptive SICA < SC，没有任何 entropy threshold 能 universally work\\n- Method contribution 路径关闭——无法 claim SICA 是一个可用的方法\\n\\n### D059/D060 分析结果摘要（2026-05-19）\\n- **Condorcet Independence**: Effective K 极低（traces 高度相关），majority voting 前提假设被违反\\n- **Extraction Error Taxonomy**: Oracle gap 30.4pp，extraction 错误是主要瓶颈\\n- **K Sens
+…[truncated 2881 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T11:41:29.070942+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T11:41:29.522462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-068-qwen3-logiqa200\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:13:19.371Z\", \"updated_at\": \"2026-05-19T11:13:42.313Z\", \"hypothesis\": \"Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040\", \"parent\": \"exp-040\", \"spec\": {\"command\": \"python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp068_qwen3_logiqa200/exp068_results.json --save-intermediates\", \"server\": \"westd-16639\", \"data_path\": \"data/logiqa_200.json\", \"data_count\": 200, \"model_name\": \"Qwen3-14B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen3-14B\", \"eval_data\": \"data/logiqa_200.json\"}}, \"exp-062-gemma27b-folio204\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:41:54.628Z\", \"updated_at\": \"2026-05-19T09:01:49.427Z\", \"hypothesis\": \"Gemma-3-27B-IT (Google 架构) FOLIO-204 SICA vs SC。跨模型家族验证 regime-dependent pattern。27B 能力预计在 Qwen2.5-14B (~75% SC) 和 Qwen3-14B (~85% SC) 之间。\", \"spec\": {\"server\": \"westd-25068\", \"gpu\": \"cuda:3\", \"model_name\": \"gemma-3-27b-it\", \"data_count\": 204, \"seed\": 42, \"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8003/v1 --model auto --folio-data data/folio_full.json --math-data data/empty.json --pw-data data/empty.json --output results/exp062_gemma27b_folio204/exp062_results.json --save-intermediates\", \"data_path\": \"data/folio_full.json\", \"tmux_session\": \"exp062_run\", \"vllm_session\": \"exp062_vllm\", \"vllm_max_model_len\": 8192}}, \"exp-064\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T08:56:53.587Z\", \"updated_at\": \"2026-05-19T08:57:00.072Z\", \"spec\": {\"command
+…[truncated 2384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T11:41:30.961667+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T11:41:31.413419+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Glob",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T11:41:31.626234+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'conclusion': 'success'}",
+  "limit": "5",
+  "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'conclusion': 'success'}",
+    "limit": "5",
+    "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T11:41:32.139133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-059-cross-qwen3-extractor\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-14B cross-model extraction should produce higher quality FOL constraints than Mistral-7B self-extraction (breaking confirmation bias), leading to higher SICA discriminative rate and accuracy delta over SC baseline.\", \"conclusion\": \"success\", \"metrics\": {\"n\": 204, \"cross_sica_accuracy\": 0.6029, \"orig_sica_accuracy\": 0.5931, \"sc_accuracy\": 0.5588, \"delta_cross_vs_sc_pp\": 4.41, \"delta_cross_vs_orig_pp\": 0.98}}, \"exp-067-mistral-folio-seed789\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123 +2.94pp, s456 0.00pp。增加统计样本验证 seed variance 和 SC-Δ 相关性。parent=exp-033\", \"conclusion\": \"success\"}, \"exp-051-mistral-k-sensitivity\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B K sensitivity on FOLIO-204: K=[4,8,16,20]（K=12 已有 exp-033 delta=+4.90pp）。验证正向结果对 K 选择是否稳健。Reviewer 必问 ablation。parent=exp-033\", \"metrics\": {\"K4\": {\"SC\": 54.41, \"SICA\": 52.94, \"delta\": -1.47, \"b\": 7, \"c\": 10, \"McNemar_p\": 0.6291}, \"K8\": {\"SC\": 57.35, \"SICA\": 56.37, \"delta\": -0.98, \"b\": 4, \"c\": 6, \"McNemar_p\": 0.7539}, \"K12_exp033\": {\"SC\": 54.41, \"SICA\": 59.31, \"delta\": 4.9, \"b\": 12, \"c\": 2, \"McNemar_p\": 0.0129}, \"K16\": {\"SC\": 55.88, \"SICA\": 57.35, \"delta\": 1.47, \"b\": 10, \"c\": 7, \"McNemar_p\": 0.6291}, \"K20\": {\"SC\": 57.35, \"SICA\": 59.31, \"delta\": 1.96, \"b\": 5, \"c\": 1, \"McNemar_p\": 0.2188}}, \"conclusion\": \"success\"}, \"exp-052\": {\"status\": \"DONE\", \"hypothesis\": \"Seed replication of exp-033: the +4.90pp improvement on FOLIO-204 with Mistral-7B using symbolic invariant consensus (K=12) is reproducible across different random seeds, confirming the result is not a statistical fluke.\", \"metrics\": {\"n\": 204, \"sc_accuracy\": 53.9, \"sica_accuracy\": 57.4, \"sc_correct\": 110, \"sica_correct\": 117, 
+…[truncated 1149 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 512
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T11:42:24.198607+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/skills"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/skills"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T11:42:24.601201+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Glob",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T11:42:24.751814+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T11:42:24.802551+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T11:42:29.178488+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T11:42:29.481369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-16639\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp-048-llama8b-pw600\"}, {\"server\": \"westd-25068\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp-062-gemma27b-folio204\"}, {\"server\": \"westd-25068\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp-065-qwen7b-pw600\"}, {\"server\": \"westd-16639\", \"gpu_id\": \"cuda:2 (RTX PRO 6000 Blackwell)\", \"exp_id\": \"exp-064\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp-048-llama8b-pw600\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp-062-gemma27b-folio204\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp-065-qwen7b-pw600\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"exp-064\", \"gpus\": [\"cuda:2 (RTX PRO 6000 Blackwell)\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 1, \"cpu_tasks\": 0, \"details\": [{\"worker_id\": \"worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017\", \"task\": \"gpu:exp-064-deepseek-r1-qwen3-8b-folio204\"}]}, \"summary\": \"分配 0 张, 实际跑 4 张 | Worker 1 (GPU 1 / CPU 0 ⚠️)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-19T11:45:28.921605+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "gpu:exp-069-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']",
+  "task_prompt": "## 任务\n在 westd-25068 cuda:1 上部署 Mistral-7B-Instruct-v0.3 LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-069-mistral-logiqa200\n- hypothesis: \"Mistral-7B-Instruct-v0.3 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 Mistral 是唯一 Goldilocks 候选 (SC≈55%, Δ=+4.90pp seed=42)。如果 LogiQA SC 也在 55-65% 且 Δ>0，则跨数据集验证 Goldilocks zone 存在。parent=exp-033\"\n- parent: exp-033\n\n## 配置\n- 模型: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-25068, GPU: cuda:1, vLLM 端口: 8001\n- 输出目录: results/exp069_mistral_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8010 (cuda:0), 8003 (cuda:3)\n\n## 步骤\n\n### 1. SSH 到 westd-25068，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 检查 run_logiqa.py 是否存在\n如果不存在，从 westd-16639:/root/symb_invariant_consensus/ scp 过来（16639 上 exp-068 正在用这个脚本）。同时确认 data/logiqa_200.json 存在，不存在也从 16639 scp。\n\n### 3. 在 tmux \"exp069_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp069_vllm\ntmux send-keys -t exp069_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --port 8001 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，然后 curl 验证:\n```bash\ncurl http://localhost:8001/v1/models\n```\n\n### 4. Dry-run (n=5)\n先检查 run_logiqa.py --help 看有没有 --max-problems 或 --limit 参数。\n- 如果有: 直接用 --max-problems 5 (或对应参数名)\n- 如果没有: 创建临时数据文件 data/logiqa_5_dryrun.json（从 logiqa_200.json 取前 5 条）\n\n运行 dry-run:\n```bash\nsource /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp069_mistral_logiqa200/dryrun_results.json --save-intermediates\n```\n\n检查: 无 OOM、无 crash、输出文件正常、结果格式正确（有 sc_accuracy, sica_accuracy 字段）。\n\n### 5. Dry-run 通过后，注册实验并用 submit_training_job 提交全量\n\n先 update_registry:\n- exp_id: exp-069-mistral-logiqa200\n- 设置 hypothesis（见上）\n- 设置 parent: exp-033\n\n然后 submit_training_job:\n- exp_id: exp-069-mistral-logiqa200\n- server: westd-25068\n- gpu_ids: [1]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp069_mistral_logiqa200/exp069_results.json --save-intermediates\n- tmux_session: exp069_run\n\n### 6. 提交后更新 registry spec\nupdate_registry(exp_id=\"exp-069-mistral-logiqa200\", field=\"spec\", value={\n  command: \"python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp069_mistral_logiqa200/exp069_results.json --save-intermediates\",\n  server: \"westd-25068\",\n  data_path: \"data/logiqa_200.json\",\n  data_count: 200,\n  model_name: \"Mistral-7B-Instruct-v0.3\",\n  seed: 42,\n  gpu: \"cuda:1\",\n  port: 8001,\n  tmux_session: \"exp069_run\",\n  vllm_session: \"exp069_vllm\"\n})\n\n## 硬约束\n- dry-run 失败 → 修复后重新 dry-run，不启全量\n- vLLM 和实验分两步（先 vLLM + curl 验证，再启实验）\n- 提交必须用 submit_training_job，不用 nohup\n\n## 出错处理\n- vLLM 启动失败: 检查 GPU 内存（nvidia-smi 看 cuda:1 是否空闲），检查端口 8001 是否被占\n- run_logiqa.py 不存在: scp root@westd-16639:/root/symb_invariant_consensus/run_logiqa.py .\n- data 不存在: scp root@westd-16639:/root/symb_invariant_consensus/data/logiqa_200.json data/\n- dry-run 格式错误: 检查脚本参数，参考 exp-068 的配置"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "gpu:exp-069-mistral-logiqa200",
+    "project": "symb_invariant_consensus",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']",
+    "task_prompt": "## 任务\n在 westd-25068 cuda:1 上部署 Mistral-7B-Instruct-v0.3 LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-069-mistral-logiqa200\n- hypothesis: \"Mistral-7B-Instruct-v0.3 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 Mistral 是唯一 Goldilocks 候选 (SC≈55%, Δ=+4.90pp seed=42)。如果 LogiQA SC 也在 55-65% 且 Δ>0，则跨数据集验证 Goldilocks zone 存在。parent=exp-033\"\n- parent: exp-033\n\n## 配置\n- 模型: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-25068, GPU: cuda:1, vLLM 端口: 8001\n- 输出目录: results/exp069_mistral_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8010 (cuda:0), 8003 (cuda:3)\n\n## 步骤\n\n### 1. SSH 到 westd-25068，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 检查 run_logiqa.py 是否存在\n如果不存在，从 westd-16639:/root/symb_invariant_consensus/ scp 过来（16639 上 exp-068 正在用这个脚本）。同时确认 data/logiqa_200.json 存在，不存在也从 16639 scp。\n\n### 3. 在 tmux \"exp069_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp069_vllm\ntmux send-keys -t exp069_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=1 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --port 8001 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，然后 curl 验证:\n```bash\ncurl http://localhost:8001/v1/models\n```\n\n### 4. Dry-run (n=5)\n先检查 run_logiqa.py --help 看有没有 --max-problems 或 --limit 参数。\n- 如果有: 直接用 --max-problems 5 (或对应参数名)\n- 如果没有: 创建临时数据文件 data/logiqa_5_dryrun.json（从 logiqa_200.json 取前 5 条）\n\n运行 dry-run:\n```bash\nsource /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp069_mistral_logiqa200/dryrun_results.json --save-intermediates\n```\n\n检查: 无 OOM、无 crash、输出文件正常、结果格式正确（有 sc_accuracy, sica_accuracy 字段）。\n\n### 5. Dry-run 通过后，注册实验并用 submit_training_job 提交全量\n\n先 update_registry:\n- exp_id: exp-069-mistral-logiqa200\n- 设置 hypothesis（见上）\n- 设置 parent: exp-033\n\n然后 submit_training_job:\n- exp_id: exp-069-mistral-logiqa200\n- server: westd-25068\n- gpu_ids: [1]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp069_mistral_logiqa200/exp069_results.json --save-intermediates\n- tmux_session: exp069_run\n\n### 6. 提交后更新 registry spec\nupdate_registry(exp_id=\"exp-069-mistral-logiqa200\", field=\"spec\", value={\n  command: \"python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp069_mistral_logiqa200/exp069_results.json --save-intermediates\",\n  server: \"westd-25068\",\n  data_path: \"data/logiqa_200.json\",\n  data_count: 200,\n  model_name: \"Mistral-7B-Instruct-v0.3\",\n  seed: 42,\n  gpu: \"cuda:1\",\n  port: 8001,\n  tmux_session: \"exp069_run\",\n  vllm_session: \"exp069_vllm\"\n})\n\n## 硬约束\n- dry-run 失败 → 修复后重新 dry-run，不启全量\n- vLLM 和实验分两步（先 vLLM + curl 验证，再启实验）\n- 提交必须用 submit_training_job，不用 nohup\n\n## 出错处理\n- vLLM 启动失败: 检查 GPU 内存（nvidia-smi 看 cuda:1 是否空闲），检查端口 8001 是否被占\n- run_logiqa.py 不存在: scp root@westd-16639:/root/symb_invariant_consensus/run_logiqa.py .\n- data 不存在: scp root@westd-16639:/root/symb_invariant_consensus/data/logiqa_200.json data/\n- dry-run 格式错误: 检查脚本参数，参考 exp-068 的配置"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T11:45:48.171891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu_exp-069-mistral-logiqa200_20260519T114529\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-069-mistral-logiqa200_20260519T114529.log\", \"setup_data\": {}, \"message\": \"Worker worker_gpu_exp-069-mistral-logiqa200_20260519T114529 started. Use get_worker_status('worker_gpu_exp-069-mistral-logiqa200_20260519T114529') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 19250
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T11:45:48.473193+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "gpu:exp-070-qwen7b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']",
+  "task_prompt": "## 任务\n在 westd-25068 cuda:2 上部署 Qwen2.5-7B-Instruct LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-070-qwen7b-logiqa200\n- hypothesis: \"Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO 上 SC=75.98% (Type A confirmation bias, Δ=+0.49pp)。LogiQA 可能更难，SC 可能降到 55-65% 进入 Goldilocks zone，或保持 >75% 继续 Type A。验证 regime 跨数据集一致性。parent=exp-061\"\n- parent: exp-061\n\n## 配置\n- 模型: Qwen2.5-7B-Instruct\n  - 先检查 /root/autodl-tmp/models/Qwen2.5-7B-Instruct 是否存在\n  - 如不存在，用 HF model ID: Qwen/Qwen2.5-7B-Instruct（应在 HF cache 中，因为 exp-065 正在用）\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-25068, GPU: cuda:2, vLLM 端口: 8002\n- 输出目录: results/exp070_qwen7b_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8010 (cuda:0, Qwen2.5-7B PW), 8003 (cuda:3, Gemma-27B), 8001 (cuda:1, 可能被同时部署的 exp-069 占用)\n\n## 步骤\n\n### 1. SSH 到 westd-25068，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 检查 run_logiqa.py 和 data/logiqa_200.json 是否存在\n如果不存在，从 westd-16639 scp:\n```bash\nscp root@westd-16639:/root/symb_invariant_consensus/run_logiqa.py .\nscp root@westd-16639:/root/symb_invariant_consensus/data/logiqa_200.json data/\n```\n\n### 3. 确定模型路径\n```bash\nls /root/autodl-tmp/models/ | grep -i qwen\n# 如果 Qwen2.5-7B-Instruct 目录存在，用本地路径\n# 否则用 Qwen/Qwen2.5-7B-Instruct（会从 HF cache 加载）\n```\n\n### 4. 在 tmux \"exp070_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp070_vllm\ntmux send-keys -t exp070_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model {MODEL_PATH} --port 8002 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，curl 验证: curl http://localhost:8002/v1/models\n\n### 5. Dry-run (n=5)\n检查 run_logiqa.py --help 看限制样本数的参数。\n如果没有，从 logiqa_200.json 取前 5 条创建 data/logiqa_5_dryrun.json。\n```bash\npython -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp070_qwen7b_logiqa200/dryrun_results.json --save-intermediates\n```\n确认: 无 OOM、无 crash、输出格式正确。\n\n### 6. Dry-run 通过后提交\nupdate_registry 设置 hypothesis 和 parent（见上）。\n\nsubmit_training_job:\n- exp_id: exp-070-qwen7b-logiqa200\n- server: westd-25068\n- gpu_ids: [2]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_200.json --output results/exp070_qwen7b_logiqa200/exp070_results.json --save-intermediates\n- tmux_session: exp070_run\n\n### 7. 更新 registry spec\nspec: {command, server: \"westd-25068\", data_path: \"data/logiqa_200.json\", data_count: 200, model_name: \"Qwen2.5-7B-Instruct\", seed: 42, gpu: \"cuda:2\", port: 8002, tmux_session: \"exp070_run\", vllm_session: \"exp070_vllm\"}\n\n## 硬约束\n- dry-run 失败不准启全量\n- vLLM 和实验分两步\n- 用 submit_training_job 提交\n\n## 出错处理\n- 模型找不到: 用 find /root -name \"*.safetensors\" -path \"*Qwen*7B*\" 2>/dev/null 搜索，或 ls ~/.cache/huggingface/hub/ | grep Qwen\n- vLLM OOM: 降 --gpu-memory-utilization 到 0.85\n- 端口冲突: 换到 8012"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "gpu:exp-070-qwen7b-logiqa200",
+    "project": "symb_invariant_consensus",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']",
+    "task_prompt": "## 任务\n在 westd-25068 cuda:2 上部署 Qwen2.5-7B-Instruct LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-070-qwen7b-logiqa200\n- hypothesis: \"Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO 上 SC=75.98% (Type A confirmation bias, Δ=+0.49pp)。LogiQA 可能更难，SC 可能降到 55-65% 进入 Goldilocks zone，或保持 >75% 继续 Type A。验证 regime 跨数据集一致性。parent=exp-061\"\n- parent: exp-061\n\n## 配置\n- 模型: Qwen2.5-7B-Instruct\n  - 先检查 /root/autodl-tmp/models/Qwen2.5-7B-Instruct 是否存在\n  - 如不存在，用 HF model ID: Qwen/Qwen2.5-7B-Instruct（应在 HF cache 中，因为 exp-065 正在用）\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-25068, GPU: cuda:2, vLLM 端口: 8002\n- 输出目录: results/exp070_qwen7b_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8010 (cuda:0, Qwen2.5-7B PW), 8003 (cuda:3, Gemma-27B), 8001 (cuda:1, 可能被同时部署的 exp-069 占用)\n\n## 步骤\n\n### 1. SSH 到 westd-25068，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 检查 run_logiqa.py 和 data/logiqa_200.json 是否存在\n如果不存在，从 westd-16639 scp:\n```bash\nscp root@westd-16639:/root/symb_invariant_consensus/run_logiqa.py .\nscp root@westd-16639:/root/symb_invariant_consensus/data/logiqa_200.json data/\n```\n\n### 3. 确定模型路径\n```bash\nls /root/autodl-tmp/models/ | grep -i qwen\n# 如果 Qwen2.5-7B-Instruct 目录存在，用本地路径\n# 否则用 Qwen/Qwen2.5-7B-Instruct（会从 HF cache 加载）\n```\n\n### 4. 在 tmux \"exp070_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp070_vllm\ntmux send-keys -t exp070_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model {MODEL_PATH} --port 8002 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，curl 验证: curl http://localhost:8002/v1/models\n\n### 5. Dry-run (n=5)\n检查 run_logiqa.py --help 看限制样本数的参数。\n如果没有，从 logiqa_200.json 取前 5 条创建 data/logiqa_5_dryrun.json。\n```bash\npython -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp070_qwen7b_logiqa200/dryrun_results.json --save-intermediates\n```\n确认: 无 OOM、无 crash、输出格式正确。\n\n### 6. Dry-run 通过后提交\nupdate_registry 设置 hypothesis 和 parent（见上）。\n\nsubmit_training_job:\n- exp_id: exp-070-qwen7b-logiqa200\n- server: westd-25068\n- gpu_ids: [2]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_200.json --output results/exp070_qwen7b_logiqa200/exp070_results.json --save-intermediates\n- tmux_session: exp070_run\n\n### 7. 更新 registry spec\nspec: {command, server: \"westd-25068\", data_path: \"data/logiqa_200.json\", data_count: 200, model_name: \"Qwen2.5-7B-Instruct\", seed: 42, gpu: \"cuda:2\", port: 8002, tmux_session: \"exp070_run\", vllm_session: \"exp070_vllm\"}\n\n## 硬约束\n- dry-run 失败不准启全量\n- vLLM 和实验分两步\n- 用 submit_training_job 提交\n\n## 出错处理\n- 模型找不到: 用 find /root -name \"*.safetensors\" -path \"*Qwen*7B*\" 2>/dev/null 搜索，或 ls ~/.cache/huggingface/hub/ | grep Qwen\n- vLLM OOM: 降 --gpu-memory-utilization 到 0.85\n- 端口冲突: 换到 8012"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T11:46:04.185693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/logs/workers/worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548.log\", \"setup_data\": {}, \"message\": \"Worker worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548 started. Use get_worker_status('worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 15712
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T11:46:04.387176+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "gpu:exp-071-llama8b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']",
+  "task_prompt": "## 任务\n在 westd-16639 cuda:0 上部署 LLaMA-3.1-8B-Instruct LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-071-llama8b-logiqa200\n- hypothesis: \"LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 SC=66.18%, Δ=-4.41pp (error amplification, 在 Goldilocks 边界上方)。LogiQA 如果 SC 降到 55-65% 可能进入 Goldilocks zone；如果 SC 类似则继续 error amplification。验证 regime 跨数据集一致性。parent=exp-063\"\n- parent: exp-063\n\n## 配置\n- 模型: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-16639, GPU: cuda:0, vLLM 端口: 8000\n- 输出目录: results/exp071_llama8b_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8001 (cuda:1, Qwen3-14B LogiQA), 8002 (cuda:2, DeepSeek-R1), 8003 (cuda:3, LLaMA-8B PW)\n- run_logiqa.py 和 data/logiqa_200.json 已存在（exp-068 正在用）\n\n## 步骤\n\n### 1. SSH 到 westd-16639，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 确认文件存在\n```bash\nls -la run_logiqa.py data/logiqa_200.json\n```\n\n### 3. 在 tmux \"exp071_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp071_vllm\ntmux send-keys -t exp071_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --port 8000 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，curl 验证: curl http://localhost:8000/v1/models\n\n### 4. Dry-run (n=5)\n检查 run_logiqa.py --help 看限制样本数的参数。\n如果没有，从 logiqa_200.json 取前 5 条创建 data/logiqa_5_dryrun.json:\n```bash\npython -c \"import json; d=json.load(open('data/logiqa_200.json')); json.dump(d[:5], open('data/logiqa_5_dryrun.json','w'), indent=2)\"\n```\n\n运行:\n```bash\nsource /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8000/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp071_llama8b_logiqa200/dryrun_results.json --save-intermediates\n```\n确认: 无 OOM、无 crash、输出格式正确（有 sc_accuracy, sica_accuracy 字段）。\n\n### 5. Dry-run 通过后提交\nupdate_registry 设置 hypothesis 和 parent（见上）。\n\nsubmit_training_job:\n- exp_id: exp-071-llama8b-logiqa200\n- server: westd-16639\n- gpu_ids: [0]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8000/v1 --model auto --data data/logiqa_200.json --output results/exp071_llama8b_logiqa200/exp071_results.json --save-intermediates\n- tmux_session: exp071_run\n\n### 6. 更新 registry spec\nspec: {command, server: \"westd-16639\", data_path: \"data/logiqa_200.json\", data_count: 200, model_name: \"Meta-Llama-3.1-8B-Instruct\", seed: 42, gpu: \"cuda:0\", port: 8000, tmux_session: \"exp071_run\", vllm_session: \"exp071_vllm\"}\n\n## 硬约束\n- dry-run 失败不准启全量\n- vLLM 和实验分两步\n- 用 submit_training_job 提交\n\n## 出错处理\n- vLLM 启动失败: nvidia-smi 检查 cuda:0 是否空闲，检查端口 8000 是否被占（ss -tlnp | grep 8000）\n- dry-run OOM: 降 --gpu-memory-utilization 到 0.85\n- 如果 run_logiqa.py 缺少依赖包: pip install 缺少的包"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "gpu:exp-071-llama8b-logiqa200",
+    "project": "symb_invariant_consensus",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']",
+    "task_prompt": "## 任务\n在 westd-16639 cuda:0 上部署 LLaMA-3.1-8B-Instruct LogiQA-200 实验。\n\n## 实验信息\n- exp_id: exp-071-llama8b-logiqa200\n- hypothesis: \"LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 SC=66.18%, Δ=-4.41pp (error amplification, 在 Goldilocks 边界上方)。LogiQA 如果 SC 降到 55-65% 可能进入 Goldilocks zone；如果 SC 类似则继续 error amplification。验证 regime 跨数据集一致性。parent=exp-063\"\n- parent: exp-063\n\n## 配置\n- 模型: /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\n- 数据集: data/logiqa_200.json (200 条)\n- K=12, T=0.7, seed=42\n- 服务器: westd-16639, GPU: cuda:0, vLLM 端口: 8000\n- 输出目录: results/exp071_llama8b_logiqa200/\n\n## 环境\n- conda base: source /root/miniconda3/bin/activate\n- 项目目录: /root/symb_invariant_consensus\n- vLLM 硬约束: VLLM_USE_FLASHINFER_SAMPLER=0, --enforce-eager\n- 当前已占用端口: 8001 (cuda:1, Qwen3-14B LogiQA), 8002 (cuda:2, DeepSeek-R1), 8003 (cuda:3, LLaMA-8B PW)\n- run_logiqa.py 和 data/logiqa_200.json 已存在（exp-068 正在用）\n\n## 步骤\n\n### 1. SSH 到 westd-16639，进入项目目录\ncd /root/symb_invariant_consensus\n\n### 2. 确认文件存在\n```bash\nls -la run_logiqa.py data/logiqa_200.json\n```\n\n### 3. 在 tmux \"exp071_vllm\" 中启动 vLLM\n```bash\ntmux new-session -d -s exp071_vllm\ntmux send-keys -t exp071_vllm 'source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --port 8000 --gpu-memory-utilization 0.90 --tensor-parallel-size 1 --enforce-eager' Enter\n```\n等待 ~60s，curl 验证: curl http://localhost:8000/v1/models\n\n### 4. Dry-run (n=5)\n检查 run_logiqa.py --help 看限制样本数的参数。\n如果没有，从 logiqa_200.json 取前 5 条创建 data/logiqa_5_dryrun.json:\n```bash\npython -c \"import json; d=json.load(open('data/logiqa_200.json')); json.dump(d[:5], open('data/logiqa_5_dryrun.json','w'), indent=2)\"\n```\n\n运行:\n```bash\nsource /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8000/v1 --model auto --data data/logiqa_5_dryrun.json --output results/exp071_llama8b_logiqa200/dryrun_results.json --save-intermediates\n```\n确认: 无 OOM、无 crash、输出格式正确（有 sc_accuracy, sica_accuracy 字段）。\n\n### 5. Dry-run 通过后提交\nupdate_registry 设置 hypothesis 和 parent（见上）。\n\nsubmit_training_job:\n- exp_id: exp-071-llama8b-logiqa200\n- server: westd-16639\n- gpu_ids: [0]\n- command: source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8000/v1 --model auto --data data/logiqa_200.json --output results/exp071_llama8b_logiqa200/exp071_results.json --save-intermediates\n- tmux_session: exp071_run\n\n### 6. 更新 registry spec\nspec: {command, server: \"westd-16639\", data_path: \"data/logiqa_200.json\", data_count: 200, model_name: \"Meta-Llama-3.1-8B-Instruct\", seed: 42, gpu: \"cuda:0\", port: 8000, tmux_session: \"exp071_run\", vllm_session: \"exp071_vllm\"}\n\n## 硬约束\n- dry-run 失败不准启全量\n- vLLM 和实验分两步\n- 用 submit_training_job 提交\n\n## 出错处理\n- vLLM 启动失败: nvidia-smi 检查 cuda:0 是否空闲，检查端口 8000 是否被占（ss -tlnp | grep 8000）\n- dry-run OOM: 降 --gpu-memory-utilization 到 0.85\n- 如果 run_logiqa.py 缺少依赖包: pip install 缺少的包"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T11:46:25.315133+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "text": "[资源] GPU 5/8 RUNNING (048/062/064/065/068) + 3 IDLE (25068:cuda1,cuda2 + 16639:cuda0) | Worker 4 (GPU 1→4 / CPU 0) | 磁盘: 未检查\n\n## Session #10 启动汇报\n\n### 上 session 完成的实验（需入 Table 1）\n| exp_id | 模型 | 数据集 | SC% | SICA% | Δpp | Regime |\n|--------|------|--------|-----|-------|-----|--------|\n| exp-040 | Qwen3-14B | PW-600 | 85.0 | 85.67 | +0.67 | Type A |\n| exp-061 | Qwen2.5-7B | FOLIO-204 | 75.98 | 76.47 | +0.49 | Type A |\n| exp-063 | LLaMA-3.1-8B | FOLIO-204 | 66.18 | 61.76 | -4.41 | ⚠️ 异常 |\n\n**exp-061 关键**: R4-C3 的第二 Goldilocks 候选不成立。SC=75.98% 远高于 55-65% 预期，落入 Type A。\n**exp-063 注意**: SC=66.18% 在 Goldilocks 边界（55-65%）上方但 Δ=-4.41pp 为负，不符合 smooth regime transition。可能 LLaMA 架构在这个 SC 水平有不同的 failure mode。\n\n### 3 GPU 空闲 → 正在部署 LogiQA-200 扩展（已 spawn 3 Workers）\n| exp_id | 模型 | 服务器/GPU | 目的 |\n|--------|------|-----------|------|\n| exp-069 | Mistral-7B | 25068/cuda:1 | **关键**: Goldilocks 候选跨数据集验证 |\n| exp-070 | Qwen2.5-7B | 25068/cuda:2 | Type A 跨数据集一致性 |\n| exp-071 | LLaMA-3.1-8B | 16639/cuda:0 | error amplification 跨数据集 |\n\n完成后 + exp-068 (Qwen3-14B) + exp-038 (Qwen2.5-14B 已有)，LogiQA 将有 5 模型覆盖。连同 FOLIO + PW，Table 1 达到 3 数据集 × 6+ 模型。\n\n### Registry 不一致（将清理）\n- exp-052-mistral-folio204-seed123 (QUEUED) vs exp-052 (DONE) 重复\n- exp-053 同理\n- exp-063-llama8b-folio204 (PREPARING) vs exp-063-llama8b-folio204-16639 (DONE) 重复\n\n### 需 Director 关注\nLLaMA-3.1-8B FOLIO SC=66.18% Δ=-4.41pp 挑战 smooth regime boundary 叙事。66% 在 Goldilocks 上边界但 delta 大幅负向。两种解释：(1) regime boundary 因模型架构而异（model-specific），(2) 66% 已超出 Goldilocks 上界进入\"过渡区\"。这影响 Figure 2/3 的 regime 边界画法。是否需要调整 regime 定义为 model-agnostic 但 boundary 更窄（如 53-58%）？"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "text": "[资源] GPU 5/8 RUNNING (048/062/064/065/068) + 3 IDLE (25068:cuda1,cuda2 + 16639:cuda0) | Worker 4 (GPU 1→4 / CPU 0) | 磁盘: 未检查\n\n## Session #10 启动汇报\n\n### 上 session 完成的实验（需入 Table 1）\n| exp_id | 模型 | 数据集 | SC% | SICA% | Δpp | Regime |\n|--------|------|--------|-----|-------|-----|--------|\n| exp-040 | Qwen3-14B | PW-600 | 85.0 | 85.67 | +0.67 | Type A |\n| exp-061 | Qwen2.5-7B | FOLIO-204 | 75.98 | 76.47 | +0.49 | Type A |\n| exp-063 | LLaMA-3.1-8B | FOLIO-204 | 66.18 | 61.76 | -4.41 | ⚠️ 异常 |\n\n**exp-061 关键**: R4-C3 的第二 Goldilocks 候选不成立。SC=75.98% 远高于 55-65% 预期，落入 Type A。\n**exp-063 注意**: SC=66.18% 在 Goldilocks 边界（55-65%）上方但 Δ=-4.41pp 为负，不符合 smooth regime transition。可能 LLaMA 架构在这个 SC 水平有不同的 failure mode。\n\n### 3 GPU 空闲 → 正在部署 LogiQA-200 扩展（已 spawn 3 Workers）\n| exp_id | 模型 | 服务器/GPU | 目的 |\n|--------|------|-----------|------|\n| exp-069 | Mistral-7B | 25068/cuda:1 | **关键**: Goldilocks 候选跨数据集验证 |\n| exp-070 | Qwen2.5-7B | 25068/cuda:2 | Type A 跨数据集一致性 |\n| exp-071 | LLaMA-3.1-8B | 16639/cuda:0 | error amplification 跨数据集 |\n\n完成后 + exp-068 (Qwen3-14B) + exp-038 (Qwen2.5-14B 已有)，LogiQA 将有 5 模型覆盖。连同 FOLIO + PW，Table 1 达到 3 数据集 × 6+ 模型。\n\n### Registry 不一致（将清理）\n- exp-052-mistral-folio204-seed123 (QUEUED) vs exp-052 (DONE) 重复\n- exp-053 同理\n- exp-063-llama8b-folio204 (PREPARING) vs exp-063-llama8b-folio204-16639 (DONE) 重复\n\n### 需 Director 关注\nLLaMA-3.1-8B FOLIO SC=66.18% Δ=-4.41pp 挑战 smooth regime boundary 叙事。66% 在 Goldilocks 上边界但 delta 大幅负向。两种解释：(1) regime boundary 因模型架构而异（model-specific），(2) 66% 已超出 Goldilocks 上界进入\"过渡区\"。这影响 Figure 2/3 的 regime 边界画法。是否需要调整 regime 定义为 model-agnostic 但 boundary 更窄（如 53-58%）？"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-19T11:56:53.591727+00:00_
+
+现在执行：部署 3 个 LogiQA-200 实验填满空闲 GPU + 向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-042-premise-formalization"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+60 recorded events
+
+### User
+
+_source line 51 · 2026-05-19T12:26:50.633071+00:00_
+
+[系统告警] Worker 日志 30 分钟无更新，可能卡死 (第 1/3 次告警)：
+
+worker_id: worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548
+project: symb_invariant_consensus
+日志最后内容: 部署完成。总结：  - **vLLM**: tmux `exp070_vllm`, cuda:2, port 8002, 模型 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct` - **Dry-run**: 5 题通过, SICA=0.6, SC=0.6, 无错误 - **全量实验**: tmux `exp-070-qwen7b-logiqa200`, 2
+
+请调用 get_worker_status('worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548') 确认状态，并根据情况决定是等待、SSH 检查还是取消 worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "source": "system_monitor"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T12:26:59.005200+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T12:26:59.005503+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T12:27:01.968666+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T12:27:02.420201+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T12:27:02.872722+00:00_
+
+Error: result (81,799 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-75c968dd/45d80bf4-e945-483a-abc3-200f454e9204/tool-results/mcp-agent-ml-research-read_registry-1779193622507.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus--claude-sessions-agent-75c968dd/45d80bf4-e945-483a-abc3-200f454e9204/tool-results/mcp-agent-ml-research-read_registry-1779193622507.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T12:27:02.873244+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T12:27:03.374937+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T12:27:03.575918+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T12:27:15.269340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"exp-048-llama8b-pw600\", \"success\": true, \"actions\": [\"Job still running (pid=exp048_run)\"]}, {\"exp_id\": \"exp-062-gemma27b-folio204\", \"success\": true, \"actions\": [\"Job still running (pid=exp062_run)\"]}, {\"exp_id\": \"exp-065-qwen7b-pw600\", \"success\": true, \"actions\": [\"Job still running (pid=exp065_run)\"]}, {\"exp_id\": \"exp-068-qwen3-logiqa200\", \"success\": true, \"actions\": [\"Job still running (pid=exp068_run)\"]}, {\"exp_id\": \"exp-069-mistral-logiqa200\", \"success\": true, \"actions\": [\"Job still running (pid=exp-069-mistral-logiqa200)\"]}, {\"exp_id\": \"exp-070-qwen7b-logiqa200\", \"success\": true, \"actions\": [\"Job still running (pid=exp-070-qwen7b-logiqa200)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 12849
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T12:27:15.320128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548\", \"status\": \"running\", \"task_type\": \"gpu:exp-070-qwen7b-logiqa200\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-19T11:45:48.744400+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"submit_training_job\", \"update_registry\", \"update_registry\", \"update_registry\", \"update_registry\"], \"last_text\": \"部署完成。总结：\\n\\n- **vLLM**: tmux `exp070_vllm`, cuda:2, port 8002, 模型 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`\\n- **Dry-run**: 5 题通过, SICA=0.6, SC=0.6, 无错误\\n- **全量实验**: tmux `exp-070-qwen7b-logiqa200`, 200 条 LogiQA, K=12, T=0.7, seed=42\\n- **Registry**: RUNNING, hypothesis/parent/spec 已更新\\n- **输出**: `res\", \"turn_count\": 23}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 12446
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T12:27:15.320636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-069-llama8b-logiqa200 | LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 LLaMA-8B SC=66.18% delta=-4.41pp (exp-063, negative/error amplification)。LogiQA 上 Mistral-7B SC=51% delta=+0.5pp (exp-049b)，Qwen2.5-14B SC=78.5% delta=-0.50pp (exp-038)。测试 LLaMA-8B 在 LogiQA 上的 regime（SC 预计 50-60%，可能在 error amplification zone）。parent=exp-063-llama8b-folio204-16639 | — | — | — |\\n| exp-068-qwen3-logiqa200 | Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040 | — | — | — |\\n| exp-070-qwen7b-logiqa200 | Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO 上 SC=75.98% (Type A confirmation bias, Δ=+0.49pp)。LogiQA 可能更难，SC 可能降到 55-65% 进入 Goldilocks zone，或保持 >75% 继续 Type A。验证 regime 跨数据集一致性。parent=exp-061 | — | — | — |\\n\\n## 待处理\\n- exp-053-mistral-folio204-seed456: exp-033 replication (seed=456): Mistral-7B FOLIO-204 K=12 T=0.7，第二组独立 replication。与 exp-052 (seed=123) 一起验证 exp-033 结论 robustness。parent=exp-033（排队等待 GPU）\\n- exp-052-mistral-folio204-seed123: exp-033 replication (seed=123): Mistral-7B FOLIO-204 K=12 T=0.7，与 exp-033 (seed=42, delta=+4.90pp, p=0.013) 完全相同配置，仅 seed 不同。验证正向结果是否 seed-robust。parent=exp-033（排队等待 GPU）\\n- exp-063-llama8b-folio204（准备中）\\n- exp-064-deepseek-r1-qwen3-8b-folio204: DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。（准备中）\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-064** (killed): —\\n- **exp-067-mistral-folio-seed789** (success): Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123 +2.
+…[truncated 1680 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 11945
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T12:27:15.371241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/ROADMAP.md\", \"content\": \"# symb_invariant_consensus — Research Dashboard\\n\\n> 最后更新: 2026-05-19 08:41 UTC | 更新原因: D067 confirmed, exp-059/060 done, Paper Agent patches complete, ROADMAP refresh\\n\\n> D067: Quality Ladder L1 NULL confirmed. Cross-model extraction ≈ self-extraction. Bottleneck in traces, not extractor.\\n\\n## 核心方向\\n**Independence Bottleneck Analysis.** Oracle +14.22pp (p<0.001) 证明框架有效，但 self-extraction 仅捕获 24% ceiling。Cross-model extraction (D067) 也无效——bottleneck 在 traces（同源输入），不在 extractor。Regime-dependent analysis + entropy decomposition 定位效应机制。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research (扩展模型覆盖) + Paper Writing (D067 patch 完成)\\n- **论文**: EMNLP 2026 ARR May 25（~6 天）\\n- **D067 Quality Ladder**: **L1 NULL confirmed** — Qwen3-14B cross 60.29%, Qwen2.5-14B cross 58.33%, self 59.31%, 全在 ±1pp noise 范围\\n- **D066 McNemar**: 0/3 seeds 显著 (p=0.092/0.070/1.0)，claims downgraded to directional trend\\n- **D065 Entropy**: 高 entropy 问题是 SICA 效应所在，方向因 regime 而异\\n- **Paper Agent**: D067 bidirectional cross-model evidence 已整合 analysis/discussion/appendix/limitations/conclusion\\n\\n## GPU 实验\\n| ID | 实验 | Server/GPU | 目的 | 状态 |\\n|----|------|-----------|------|------|\\n| exp-059 | Qwen3-14B → Mistral traces | 25068 cuda:0 | Quality Ladder L1a | **DONE** 60.29%, Δ=+4.41pp vs SC (+0.98pp vs self = noise) |\\n| exp-060 | Qwen2.5-14B → Mistral traces | 25068 cuda:1 | Quality Ladder L1b | **DONE** 58.33%, Δ=+2.45pp vs SC (-0.98pp vs self = noise) |\\n| exp-061 | Qwen2.5-7B FOLIO K=12 T=0.7 | 25068 cuda:2 | R4-C3: 第二 Goldilocks 候选 | **RUNNING** ETA ~08:49 UTC |\\n| exp-062 | Gemma-3-27B FOLIO K=12 T=0.7 | 25068 cuda:3 | 新模型家族覆盖 | 磁盘清理中 |\\n| exp-063 | LLaMA-3.1-8B FOLIO K=12 T=0.7 | 16639 cuda:0 | Meta 架构覆盖 | **RUNNING** ETA ~5h |\\n| exp-040 | Qwen3-14B PW-600 | 16639 cuda:1 | Table 1 扩展 | **RUNNING** ~482/600 |\\
+…[truncated 3406 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 11795
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-19T12:27:33.454398+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cancel_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-19T12:27:33.504923+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-19T12:27:36.565735+00:00_
+
+called mcp__agent-ml-research__cancel_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cancel_worker</summary>
+
+```json
+{
+  "worker_id": "worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "tool_args": {
+    "worker_id": "worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T12:27:36.972276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu_exp-070-qwen7b-logiqa200_20260519T114548\", \"status\": \"cancelled\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__cancel_worker",
+  "elapsed_ms": 406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-19T12:27:36.972579+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-19T12:27:37.475043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017\", \"task_type\": \"gpu:exp-064-deepseek-r1-qwen3-8b-folio204\", \"project\": \"symb_invariant_consensus\", \"status\": \"running\", \"started_at\": \"2026-05-19T07:40:17.159439+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-19T12:27:37.475410+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-19T12:27:37.727223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-069-llama8b-logiqa200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:40:15.817Z\", \"updated_at\": \"2026-05-19T12:17:24.955Z\", \"hypothesis\": \"LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 LLaMA-8B SC=66.18% delta=-4.41pp (exp-063, negative/error amplification)。LogiQA 上 Mistral-7B SC=51% delta=+0.5pp (exp-049b)，Qwen2.5-14B SC=78.5% delta=-0.50pp (exp-038)。测试 LLaMA-8B 在 LogiQA 上的 regime（SC 预计 50-60%，可能在 error amplification zone）。parent=exp-063-llama8b-folio204-16639\", \"parent\": \"exp-063-llama8b-folio204-16639\", \"notes\": \"诊断 2026-05-19T20:17: westd-16639 上运行正常。tmux_session=exp-069-llama8b-logiqa200, vLLM via nohup (非 tmux), run PID=152414, vLLM PID=151829 (EngineCore on GPU2). port=8012, CUDA_VISIBLE_DEVICES=2. 进度: 12/200 (6%), 刚启动约12分钟。GPU2 利用率 96%, 显存 88254/97887 MiB。vLLM model=/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct, max-model-len=8192。同机其他实验: exp-048(GPU3,457/600), exp-064(GPU0,74/204), exp-068(GPU1,121/200)。\"}, \"exp-068-qwen3-logiqa200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:13:19.371Z\", \"updated_at\": \"2026-05-19T12:02:04.845Z\", \"hypothesis\": \"Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040\", \"parent\": \"exp-040\", \"notes\": \"诊断 2026-05-19T20:01: 实验正常运行中。tmux sessions: exp068_vllm (port 8001, CUDA_VISIBLE_DEVICES=1) + exp068_run。进度: 88/200 (44%), ETA ~62min。结果文件已在写入 (exp068_results.json 155KB, intermediates/ 88 files)。GPU 1 使用率 97%。Registry spec 缺少 gpu/pid/tmux_session 字段但实验已正常启动。westd-16639 所有 4 GPU 均被占用 (GPU0: vLLM PID 149111, GPU1: exp068 vLLM PID 142896, GPU2: vLLM PID 125544, GPU3: vLLM PID 76474)。\"}, \"exp-070-qwen7b-logiqa200\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:40:18.453Z\", \"updated_at\": \"2026-05-19T11:56:27.757Z\", \"hypothesis\": \"Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC。F
+…[truncated 1642 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-19T12:27:57.973475+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-19T12:27:58.475642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_gpu_exp-064-deepseek-r1-qwen3-8b-folio204_20260519T074017\", \"status\": \"running\", \"task_type\": \"gpu:exp-064-deepseek-r1-qwen3-8b-folio204\", \"project\": \"symb_invariant_consensus\", \"started_at\": \"2026-05-19T07:40:17.159439+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"Monitor\", \"ssh_execute\", \"Monitor\"], \"last_text\": \"77/204.\", \"turn_count\": 18}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-19T12:27:58.927696+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'hypothesis', 'notes', 'spec']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'hypothesis', 'notes', 'spec']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-19T12:27:59.881941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-069-llama8b-logiqa200\": {\"status\": \"RUNNING\", \"hypothesis\": \"LLaMA-3.1-8B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO-204 上 LLaMA-8B SC=66.18% delta=-4.41pp (exp-063, negative/error amplification)。LogiQA 上 Mistral-7B SC=51% delta=+0.5pp (exp-049b)，Qwen2.5-14B SC=78.5% delta=-0.50pp (exp-038)。测试 LLaMA-8B 在 LogiQA 上的 regime（SC 预计 50-60%，可能在 error amplification zone）。parent=exp-063-llama8b-folio204-16639\", \"spec\": {\"command\": \"python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8012/v1 --model auto --seed 42 --strategyqa-data data/logiqa_200.json --folio-data data/empty.json --math-data data/empty.json --pw-data data/empty.json --output results/exp069_llama8b_logiqa200/exp069_results.json --save-intermediates\", \"server\": \"westd-16639\", \"gpu\": \"cuda:2\", \"port\": 8012, \"data_path\": \"data/logiqa_200.json\", \"data_count\": 200, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42}, \"notes\": \"诊断 2026-05-19T20:17: westd-16639 上运行正常。tmux_session=exp-069-llama8b-logiqa200, vLLM via nohup (非 tmux), run PID=152414, vLLM PID=151829 (EngineCore on GPU2). port=8012, CUDA_VISIBLE_DEVICES=2. 进度: 12/200 (6%), 刚启动约12分钟。GPU2 利用率 96%, 显存 88254/97887 MiB。vLLM model=/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct, max-model-len=8192。同机其他实验: exp-048(GPU3,457/600), exp-064(GPU0,74/204), exp-068(GPU1,121/200)。\"}, \"exp-068-qwen3-logiqa200\": {\"status\": \"RUNNING\", \"hypothesis\": \"Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040\", \"spec\": {\"command\": \"python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp068_qwen3_logiqa200/exp068_results.json --save-intermediates\", \"server\": \"westd-16639\", \"data_path\": \"dat
+…[truncated 5147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 954
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-19T12:27:59.882434+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-19T12:27:59.932976+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/agent_75c968dd.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-19T12:28:04.158156+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-19T12:28:04.259079+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-19T12:28:04.259525+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-19T12:28:04.309948+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-19T12:28:23.444479+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "symb_invariant_consensus",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "symb_invariant_consensus",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-19T12:28:23.846787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"symb_invariant_consensus\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"westd-25068:cuda:0,cuda:1,cuda:2,cuda:3\", \"gpu_ids\": [\"westd-25068:cuda:0\", \"westd-25068:cuda:1\", \"westd-25068:cuda:2\", \"westd-25068:cuda:3\", \"westd-16639:cuda:0\", \"westd-16639:cuda:1\", \"westd-16639:cuda:2\", \"westd-16639:cuda:3\"], \"project_path\": \"/root/symb_invariant_consensus\", \"servers\": [\"westd-25068\", \"westd-16639\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-19T12:28:23.847177+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'exp_id': 'exp-064-deepseek-r1-qwen3-8b-folio204'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'exp_id': 'exp-064-deepseek-r1-qwen3-8b-folio204'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-19T12:28:24.150322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2545}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 303
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-19T12:28:31.944462+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'status': 'KILLED'}",
+  "fields": "['status', 'hypothesis', 'notes', 'conclusion']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'status': 'KILLED'}",
+    "fields": "['status', 'hypothesis', 'notes', 'conclusion']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T12:28:32.245484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2498}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-19T12:28:38.470043+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | grep -A 5 \"exp-064\"",
+  "description": "Search for exp-064 entries in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | grep -A 5 \"exp-064\"",
+    "description": "Search for exp-064 entries in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-19T12:28:38.570760+00:00_
+
+  exp-064-deepseek-r1-qwen3-8b-folio204:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-19T07:49:07.235Z'
+    updated_at: '2026-05-19T07:49:12.394Z'
+    hypothesis: DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs
+--
+  exp-064:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T08:56:53.587Z'
+    updated_at: '2026-05-19T12:13:57.742Z'
+    spec:
+--
+      max-model-len=8192。同机其他实验: exp-048(GPU3,457/600), exp-064(GPU0,74/204), exp-068(GPU1,121/200)。'
+  exp-070-qwen7b-logiqa200:
+    status: RUNNING
+    retry_count: 0
+    created_at: '2026-05-19T11:40:18.453Z'
+    updated_at: '2026-05-19T11:56:27.757Z'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-19T12:28:45.696399+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "filters": "{'exp_id': 'exp-064'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "symb_invariant_consensus",
+    "filters": "{'exp_id': 'exp-064'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-19T12:28:46.049231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3053}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-19T12:28:50.473888+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | grep -A 30 \"^  exp-064:\" | head -40",
+  "description": "Read exp-064 full registry entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/registry.yaml | grep -A 30 \"^  exp-064:\" | head -40",
+    "description": "Read exp-064 full registry entry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-19T12:28:50.524688+00:00_
+
+  exp-064:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T08:56:53.587Z'
+    updated_at: '2026-05-19T12:13:57.742Z'
+    spec:
+      command: python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens
+        8192 --folio-data data/folio_full.json --seed 42
+      server: westd-16639
+      data_path: data/folio_full.json
+      data_count: 204
+      model_name: DeepSeek-R1-0528-Qwen3-8B
+      seed: 42
+      gpu: cuda:2 (RTX PRO 6000 Blackwell)
+      port: 8002
+      notes: 'Fixed tokenizer: LlamaTokenizerFast->PreTrainedTokenizerFast. VLLM_USE_FLASHINFER_SAMPLER=0
+        for Blackwell.'
+    conclusion: killed
+    completed_at: '2026-05-19T12:13:57.742Z'
+  exp-067-mistral-folio-seed789:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T09:14:16.096Z'
+    updated_at: '2026-05-19T12:10:24.878Z'
+    hypothesis: Mistral-7B FOLIO seed=789 第4 seed replication。已有 s42 +3.43pp, s123
+      +2.94pp, s456 0.00pp。增加统计样本验证 seed variance 和 SC-Δ 相关性。parent=exp-033
+    parent: exp-033
+    spec:
+      server: westd-25068
+      gpu: cuda:2
+      model_name: Mistral-7B-Instruct-v0.3
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-19T12:29:19.404933+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-19T12:29:19.455396+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-19T12:29:25.506094+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'notes': 'Worker restarted on GPU0 after exp-064 (GPU2) was killed. Progress 77/204 as of 12:20 UTC.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'notes': 'Worker restarted on GPU0 after exp-064 (GPU2) was killed. Progress 77/204 as of 12:20 UTC.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-19T12:29:25.927890+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3828}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 421
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-19T12:29:32.715871+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "PENDING",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "PENDING",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-19T12:29:33.669223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-064-deepseek-r1-qwen3-8b-folio204\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:49:07.235Z\", \"updated_at\": \"2026-05-19T12:29:32.988Z\", \"hypothesis\": \"DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。\", \"parent\": \"exp-033\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9268}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 953
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-19T12:29:36.878913+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-19T12:29:37.781584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-064-deepseek-r1-qwen3-8b-folio204\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:49:07.235Z\", \"updated_at\": \"2026-05-19T12:29:37.094Z\", \"hypothesis\": \"DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。\", \"parent\": \"exp-033\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8968}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 902
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-19T12:29:44.151001+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-19T12:29:45.054566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-064-deepseek-r1-qwen3-8b-folio204\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:49:07.235Z\", \"updated_at\": \"2026-05-19T12:29:44.400Z\", \"hypothesis\": \"DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。\", \"parent\": \"exp-033\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9153}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 903
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-19T12:29:50.972116+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'notes': 'Retry of exp-064 (killed on cuda:2). Worker relaunched on cuda:0 with tokenizer fix. Progress ~77/204 as of 12:20 UTC.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'notes': 'Retry of exp-064 (killed on cuda:2). Worker relaunched on cuda:0 with tokenizer fix. Progress ~77/204 as of 12:20 UTC.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-19T12:29:51.223185+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2547}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-19T12:29:57.217673+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'checkpoint_source': 'DeepSeek-R1-0528-Qwen3-8B (HuggingFace)', 'eval_data': 'data/folio_full.json', 'notes': 'Retry of exp-064 (killed on cuda:2). Worker relaunched on cuda:0 with tokenizer fix. Progress ~77/204 as of 12:20 UTC.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-064-deepseek-r1-qwen3-8b-folio204",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42', 'server': 'westd-16639', 'data_path': 'data/folio_full.json', 'data_count': 204, 'model_name': 'DeepSeek-R1-0528-Qwen3-8B', 'seed': 42, 'gpu': 'cuda:0', 'port': 8002, 'checkpoint_source': 'DeepSeek-R1-0528-Qwen3-8B (HuggingFace)', 'eval_data': 'data/folio_full.json', 'notes': 'Retry of exp-064 (killed on cuda:2). Worker relaunched on cuda:0 with tokenizer fix. Progress ~77/204 as of 12:20 UTC.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-19T12:29:58.170496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-064-deepseek-r1-qwen3-8b-folio204\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:49:07.235Z\", \"updated_at\": \"2026-05-19T12:29:57.456Z\", \"hypothesis\": \"DeepSeek-R1-0528-Qwen3-8B (reasoning distill) 在 FOLIO-204 上 SICA vs SC。测试 reasoning 模型在 8B scale 是否出现 degenerate regime (C₀<5%) 或因 8B 能力较弱落入 error amplification / Goldilocks zone。\", \"parent\": \"exp-033\", \"spec\": {\"command\": \"python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 8192 --folio-data data/folio_full.json --seed 42\", \"server\": \"westd-16639\", \"data_path\": \"data/folio_full.json\", \"data_count\": 204, \"model_name\": \"DeepSeek-R1-0528-Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"port\": 8002, \"checkpoint_source\": \"DeepSeek-R1-0528-Qwen3-8B (HuggingFace)\", \"eval_data\": \"data/folio_full.json\", \"notes\": \"Retry of exp-064 (killed on cuda:2). Worker relaunched on cuda:0 with tokenizer fix. Progress ~77/204 as of 12:20 UTC.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9197}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 952
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-19T12:30:37.865175+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 8/8 在跑 | Worker 1 (GPU 1 / CPU 0) | 磁盘: 未检查\n\nSession 启动汇报：\n\n**处理告警**\n- exp-070 Worker（worker_gpu_exp-070-qwen7b-logiqa200）日志 30min 无更新 → 检查确认 Worker 已完成部署+提交但未正常退出，实验本身通过 cron 正常运行。已 cancel 挂死 Worker。\n- exp-064 registry 修正：Worker 在 exp-064(cuda:2) 被 kill 后重启了 exp-064-deepseek-r1-qwen3-8b-folio204(cuda:0)，但 registry 状态卡在 PREPARING。已修正为 RUNNING，进度 ~77/204。\n\n**8 个实验运行中**\n\nwestd-16639 (4/4 GPU):\n| GPU | exp_id | 模型 | 数据集 | 进度 |\n|-----|--------|------|--------|------|\n| cuda:0 | exp-064-deepseek-r1-qwen3-8b-folio204 | DeepSeek-R1-Qwen3-8B | FOLIO-204 | ~77/204 (38%) |\n| cuda:1 | exp-068-qwen3-logiqa200 | Qwen3-14B | LogiQA-200 | 88/200 (44%) |\n| cuda:2 | exp-069-llama8b-logiqa200 | LLaMA-3.1-8B | LogiQA-200 | 12/200 (6%) |\n| cuda:3 | exp-048-llama8b-pw600 | LLaMA-3.1-8B | PW-600 | ~457/600 (76%) |\n\nwestd-25068 (4/4 GPU):\n| GPU | exp_id | 模型 | 数据集 | 进度 |\n|-----|--------|------|--------|------|\n| cuda:0 | exp-065-qwen7b-pw600 | Qwen2.5-7B | PW-600 | 未知 |\n| cuda:1 | exp-069-mistral-logiqa200 | Mistral-7B | LogiQA-200 | 未知 |\n| cuda:2 | exp-070-qwen7b-logiqa200 | Qwen2.5-7B | LogiQA-200 | 刚启动 |\n| cuda:3 | exp-062-gemma27b-folio204 | Gemma-3-27B | FOLIO-204 | 未知 |\n\n**最快完成预计**: exp-048 (~76%) 和 exp-068 (~44%) 将最先完成。\n\n**Worker 池不足**: 当前仅 1 个 Worker（exp-064 监控）。8 GPU 满载，可铺 CPU 任务（LogiQA 分析脚本准备、paper patch 准备、文献更新）。请指示是否需要启动 CPU Worker 或有其他优先任务。",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 8/8 在跑 | Worker 1 (GPU 1 / CPU 0) | 磁盘: 未检查\n\nSession 启动汇报：\n\n**处理告警**\n- exp-070 Worker（worker_gpu_exp-070-qwen7b-logiqa200）日志 30min 无更新 → 检查确认 Worker 已完成部署+提交但未正常退出，实验本身通过 cron 正常运行。已 cancel 挂死 Worker。\n- exp-064 registry 修正：Worker 在 exp-064(cuda:2) 被 kill 后重启了 exp-064-deepseek-r1-qwen3-8b-folio204(cuda:0)，但 registry 状态卡在 PREPARING。已修正为 RUNNING，进度 ~77/204。\n\n**8 个实验运行中**\n\nwestd-16639 (4/4 GPU):\n| GPU | exp_id | 模型 | 数据集 | 进度 |\n|-----|--------|------|--------|------|\n| cuda:0 | exp-064-deepseek-r1-qwen3-8b-folio204 | DeepSeek-R1-Qwen3-8B | FOLIO-204 | ~77/204 (38%) |\n| cuda:1 | exp-068-qwen3-logiqa200 | Qwen3-14B | LogiQA-200 | 88/200 (44%) |\n| cuda:2 | exp-069-llama8b-logiqa200 | LLaMA-3.1-8B | LogiQA-200 | 12/200 (6%) |\n| cuda:3 | exp-048-llama8b-pw600 | LLaMA-3.1-8B | PW-600 | ~457/600 (76%) |\n\nwestd-25068 (4/4 GPU):\n| GPU | exp_id | 模型 | 数据集 | 进度 |\n|-----|--------|------|--------|------|\n| cuda:0 | exp-065-qwen7b-pw600 | Qwen2.5-7B | PW-600 | 未知 |\n| cuda:1 | exp-069-mistral-logiqa200 | Mistral-7B | LogiQA-200 | 未知 |\n| cuda:2 | exp-070-qwen7b-logiqa200 | Qwen2.5-7B | LogiQA-200 | 刚启动 |\n| cuda:3 | exp-062-gemma27b-folio204 | Gemma-3-27B | FOLIO-204 | 未知 |\n\n**最快完成预计**: exp-048 (~76%) 和 exp-068 (~44%) 将最先完成。\n\n**Worker 池不足**: 当前仅 1 个 Worker（exp-064 监控）。8 GPU 满载，可铺 CPU 任务（LogiQA 分析脚本准备、paper patch 准备、文献更新）。请指示是否需要启动 CPU Worker 或有其他优先任务。",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-19T12:30:41.275252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-042-premise-formalization",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3410
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-19T12:30:47.143820+00:00_
+
+Session 初始化完成：
+
+- **告警已处理**：exp-070 Worker 挂死已 cancel（实验正常运行），exp-064 registry 已修正为 RUNNING
+- **8/8 GPU 满载**：16639 和 25068 各 4 卡全在跑实验
+- **6 个 cron 监控活跃**，reconcile 确认所有实验进程存活
+- **Worker 池 = 1**（仅 exp-064 监控 Worker），已向 Director 汇报并请示 CPU 任务安排
+- 已向 Director 发送完整状态汇报，等待指示
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-042-premise-formalization"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-317_Q13",
+    "problem": "The cow chases the squirrel. The cow is young. The cow sees the squirrel. The dog is round. The dog likes the rabbit. The dog likes the squirrel. The dog sees the rabbit. The rabbit chases the cow. The rabbit does not chase the dog. The squirrel chases the rabbit. The squirrel is young. The squirrel likes the cow. If someone chases the cow then the cow is big. If someone likes the rabbit and they do not see the squirrel then they are big. If someone is big then they like the rabbit. If someone is young then they do not see the dog. If someone is blue then they chase the cow. If someone likes the rabbit then they like the cow. If someone likes the cow then they see the cow. If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not see the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(cow, squirrel, True) ::: The cow chases the squirrel.\nYoung(cow, True) ::: The cow is young.\nSees(cow, squirrel, True) ::: The cow sees the squirrel.\nRound(dog, True) ::: The dog is round.\nLikes(dog, rabbit, True) ::: The dog likes the rabbit.\nLikes(dog, squirrel, True) ::: The dog likes the squirrel.\nSees(dog, rabbit, True) ::: The dog sees the rabbit.\nChases(rabbit, cow, True) ::: The rabbit chases the cow.\nChases(rabbit, dog, False) ::: The rabbit does not chase the dog.\nChases(squirrel, rabbit, True) ::: The squirrel chases the rabbit.\nYoung(squirrel, True) ::: The squirrel is young.\nLikes(squirrel, cow, True) ::: The squirrel likes the cow.\n\nRules:\nChases($x, cow, True) >>> Big($x, True) ::: If someone chases the cow then the cow is big.\nLikes($x, rabbit, True) && Sees($x, squirrel, False) >>> Big($x, True) ::: If someone likes the rabbit and they do not see the squirrel then they are big.\nBig($x, True) >>> Likes($x, rabbit, True) ::: If someone is big then they like the rabbit.\nYoung($x, True) >>> Sees($x, dog, False) ::: If someone is young then they do not see the dog.\nBlue($x, True) >>> Chases($x, cow, True) ::: If someone is blue then they chase the cow.\nLikes($x, rabbit, True) >>> Likes($x, cow, True) ::: If someone likes the rabbit then they like the cow.\nLikes($x, cow, True) >>> Sees($x, cow, True) ::: If someone likes the cow then they see the cow.\nSees($x, cow, True) && Chases($x, squirrel, True) >>> Sees($x, rabbit, True) ::: If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nQuery:\nSees(squirrel, rabbit, False) ::: The squirrel does not see the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

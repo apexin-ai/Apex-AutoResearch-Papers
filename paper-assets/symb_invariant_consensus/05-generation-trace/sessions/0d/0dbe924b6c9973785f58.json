@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dbe924b6c9973785f58",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis check exp019 status",
+  "task_key": "worker_analysis_check-exp019-status_20260517T083138",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-exp019-status_20260517T083138_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "f6df6299129c73dc4e0acca6c7cef3111a0c8800fed7f648bcc2e304c0874a43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在来估算速度。实验从 16:18:23 开始，当前已完成约 64 题（16:32 左右），大约 14 分钟完成 64 题。\n\n```\nSTATUS: RUNNING\nPROGRESS: 64/200 (已完成结果写入 64 条，当前正在处理第 65 题)\nGPU_UTIL: 100%\nGPU_MEM: 88309/97887 MiB (90.2%)\n\nTIMING:\n- 开始时间: 16:18:23\n- 当前时间: ~16:32:43\n- 已用时间: ~14.3 min (64 题)\n- 平均每题: ~13.4 sec\n- 预估剩余: ~30 min (136 题 × 13.4s)\n- 预估完成: ~17:03 CST\n\n中间统计 (基于日志，64 题已完成):\n- SICA 正确: 48/64 (75.0%)\n- SC 正确: 47/64 (73.4%)\n- SICA 领先: +1.6pp (暂时)\n```\n\n实验运行正常，GPU 满载。按当前速度约 30 分钟后完成全部 200 题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-exp019-status.md"
+}

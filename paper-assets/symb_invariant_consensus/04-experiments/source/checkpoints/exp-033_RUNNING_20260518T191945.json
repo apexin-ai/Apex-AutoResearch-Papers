@@ -1,0 +1,69 @@
+{
+  "exp_id": "exp-033",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:42:09.819Z",
+    "updated_at": "2026-05-18T19:19:45.260Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp033.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp033_mistral_7b_folio204/exp033_results.json --save-intermediates 2>&1 | tee results/exp033_mistral_7b_folio204/exp033.log\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "65773",
+      "log_path": "~/runs/symb_invariant_consensus/exp-033.log",
+      "submitted_at": "2026-05-18T17:42:09.638Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "hypothesis": "Cross-family validation: Mistral-7B-Instruct-v0.3 在 FOLIO-204 全量上 SICA vs SC。验证 capability trap 跨模型家族在 full dataset 上是否持续（D012 pilot exp-010 已确认 delta=0, n=60）。",
+    "reproduce": {
+      "finished_at": "2026-05-18T19:02:16.294Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:02:18.863472+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json",
+    "log_path": "~/runs/symb_invariant_consensus/exp-033.log",
+    "metrics": {
+      "n_problems": 204,
+      "sica_accuracy": 59.31,
+      "sc_accuracy": 54.41,
+      "delta_pp": 4.9,
+      "sica_correct": 121,
+      "sc_correct": 111,
+      "mcnemar_discordant_b": 2,
+      "mcnemar_discordant_c": 12,
+      "mcnemar_p_value": 0.0129,
+      "c0_non_unanimous_rate": 0.8137,
+      "avg_majority_frac": 0.7515,
+      "extraction_rate": 97.14,
+      "contradiction_rate": 3.5,
+      "problems_with_contradictions": 128,
+      "avg_unique_constraints": 39.3,
+      "maxsat_mean_sat_ratio": 0.9609,
+      "total_constraints": 14042,
+      "unique_constraints": 8021,
+      "wall_time_min": 81.4,
+      "k": 12
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T19:19:45.505761+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "temperature-ablation-t05",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:45:59.468Z",
+    "updated_at": "2026-05-17T16:47:09.843Z",
+    "hypothesis": "Temperature ablation T=0.5: 中温下 Qwen2.5-14B trace diversity 中等（C0 预期 30-45%），SICA-SC gap 预期≈0——验证即使 diversity 适中，constraint quality 仍为瓶颈",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash scripts/run_temperature_ablation.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/proofwriter_30.json + data/folio_30.json",
+      "data_count": 60,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-14B-Instruct",
+      "eval_data": "D012 (30 ProofWriter + 30 FOLIO)",
+      "checkpoint_path": "/root/symb_invariant_consensus/results/temperature_ablation/temperature_ablation_T0.5_results.json",
+      "log_path": "/tmp/temperature_ablation.log"
+    },
+    "notes": "T=0.5 中温：C0=38.3%，SICA=SC=76.67%，delta=0，discordant=0。中等 diversity 下 SICA 仍完全等于 SC。",
+    "metrics": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.7667,
+      "sc_accuracy": 0.7667,
+      "delta_pp": 0,
+      "multi_candidate_rate": 0.383,
+      "discordant_total": 0,
+      "model": "Qwen2.5-14B-Instruct",
+      "dataset": "D012",
+      "temperature": 0.5
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T16:47:09.843Z"
+  },
+  "timestamp": "2026-05-17T16:47:09.930298+00:00",
+  "trigger": "update_registry"
+}

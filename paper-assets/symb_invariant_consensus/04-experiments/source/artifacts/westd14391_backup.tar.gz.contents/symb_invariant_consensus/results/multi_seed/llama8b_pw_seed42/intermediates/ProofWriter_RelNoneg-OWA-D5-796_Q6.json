@@ -1,0 +1,1194 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-796_Q6",
+    "problem": "The bald eagle chases the cat. The bald eagle likes the dog. The cat is green. The cat is red. The cat likes the lion. The dog chases the cat. The dog is red. The dog sees the bald eagle. The dog sees the lion. The lion is green. The lion is rough. The lion sees the cat. If someone is cold then they like the bald eagle. If someone sees the cat and they like the bald eagle then the cat is rough. If someone sees the bald eagle then the bald eagle likes the dog. All rough people are nice. If someone sees the lion then they are green. If the bald eagle is red then the bald eagle is nice. All nice people are cold. If someone chases the dog and the dog likes the cat then they see the bald eagle. If someone is rough then they like the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nGreen(Cat, True) ::: The cat is green.\nRed(Cat, True) ::: The cat is red.\nLikes(Cat, Lion, True) ::: The cat likes the lion.\nChases(Dog, Cat, True) ::: The dog chases the cat.\nRed(Dog, True) ::: The dog is red.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nGreen(Lion, True) ::: The lion is green.\nRough(Lion, True) ::: The lion is rough.\nSees(Lion, Cat, True) ::: The lion sees the cat.\n\nRules:\nCold($x, True) >>> Likes($x, BaldEagle, True) ::: If someone is cold then they like the bald eagle.\nSees($x, Cat, True) && Likes($x, BaldEagle, True) >>> Rough(Cat, True) ::: If someone sees the cat and they like the bald eagle then the cat is rough.\nSees($x, BaldEagle, True) >>> Likes(BaldEagle, Dog, True) ::: If someone sees the bald eagle then the bald eagle likes the dog.\nRough($x, True) >>> Nice($x, True) ::: All rough people are nice.\nSees($x, Lion, True) >>> Green($x, True) ::: If someone sees the lion then they are green.\nRed(BaldEagle, True) >>> Nice(BaldEagle, True) ::: If the bald eagle is red then the bald eagle is nice.\nNice($x, True) >>> Cold($x, True) ::: All nice people are cold.\nChases($x, Dog, True) && Likes(Dog, Cat, True) >>> Sees($x, BaldEagle, True) ::: If someone chases the dog and the dog likes the cat then they see the bald eagle.\nRough($x, True) >>> Likes($x, Dog, True) ::: If someone is rough then they like the dog.\n\nQuery:\nCold(Lion, False) ::: The lion is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 142.0,
+      "True": 98.5,
+      "Unknown": 122.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If someone is cold then they like the bald eagle.\n   - This statement does not provide any information about the lion, so we cannot determine its temperature based on this rule.\n\n2. If someone sees the cat and they like the bald eagle then the cat is rough.\n   - This statement also does not provide any information about the lion.\n\n3. If someone sees the bald eagle then the bald eagle likes the dog.\n   - This statement does not provide any information about the lion's temperature.\n\n4. All rough people are nice.\n   - We do not know if the lion is rough yet.\n\n5. If someone sees the lion then they are green.\n   - The lion is green, but this statement does not provide any information about its temperature.\n\n6. If the bald eagle is red then the bald eagle is nice.\n   - We do not know if the bald eagle is red yet.\n\n7. All nice people are cold.\n   - We cannot determine if the lion is nice or not yet.\n\n8. If someone chases the dog and the dog likes the cat then they see the bald eagle.\n   - The dog likes the cat, but the dog's likes and dislikes do not directly relate to the lion.\n\n9. If someone is rough then they like the dog.\n   - We do not know if the lion is rough yet.\n\n10. The lion is green. The lion is rough. The lion sees the cat.\n    - From rule 5, we know that the lion is green. From rule 4, we know that all rough people are nice. From rule 9, we know that if someone is rough then they like the dog. But we are given that the lion is rough.\n\nTo determine whether the lion is cold, we need to use rule 7: All nice people are cold. If the lion is nice (as per rule 4, all rough people are nice), then the lion is cold.\n\nWe have determined that the lion is green and rough. Since the lion is rough, it is nice (rule 4). Therefore, the lion is cold.\n\nSince we have determined that the lion is cold, we can now answer the question: The lion is not cold.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to break down the given information step by step.\n\n1. The cat is green. (From: The cat is green)\n2. The cat is red. (From: The cat is red) \nHowever, we know from (1) that the cat is green. Therefore, we can conclude that (2) is false.\n\n3. The cat likes the lion. (From: The cat likes the lion)\n4. The dog chases the cat. (From: The dog chases the cat)\n5. The dog is red. (From: The dog is red)\n6. The dog sees the bald eagle. (From: The dog sees the bald eagle)\n7. The dog sees the lion. (From: The dog sees the lion)\n8. The lion is green. (From: The lion is green)\n9. The lion is rough. (From: The lion is rough)\n10. The lion sees the cat. (From: The lion sees the cat)\n\n11. If someone is cold then they like the bald eagle. (From: If someone is cold then they like the bald eagle)\n12. If someone sees the cat and they like the bald eagle then the cat is rough. (From: If someone sees the cat and they like the bald eagle then the cat is rough)\n13. If someone sees the bald eagle then the bald eagle likes the dog. (From: If someone sees the bald eagle then the bald eagle likes the dog)\n14. All rough people are nice. (From: All rough people are nice)\n15. If someone sees the lion then they are green. (From: If someone sees the lion then they are green)\n16. If the bald eagle is red then the bald eagle is nice. (From: If the bald eagle is red then the bald eagle is nice)\n17. All nice people are cold. (From: All nice people are cold)\n18. If someone chases the dog and the dog likes the cat then they see the bald eagle. (From: If someone chases the dog and the dog likes the cat then they see the bald eagle)\n19. If someone is rough then they like the dog. (From: If someone is rough then they like the dog)\n\nFrom (1), we know the cat is green, so we can ignore (2) because it is false. \n\nNow, let's try to find the connection between the lion and coldness.\n\nWe know from (9) that the lion is rough. Then from (19), if someone is rough, then they like the dog. So, the lion likes the dog.\n\nWe also know from (8) that the lion sees the cat.\n\nSince the lion is rough, we know the lion is nice from (14).\n\nFrom (17), if someone is nice, then they are cold. So, the lion is cold.\n\nThe statement is: The lion is not cold.\nHowever, we found out that the lion is cold. So, the statement \"The lion is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to analyze the given information and the relationships between the entities.\n\n1. The lion is green. (Given)\n2. The lion is rough. (Given)\n3. If someone sees the lion then they are green. (This does not imply that the lion is green itself, but rather that anyone who sees the lion is green. However, this is not directly related to the lion's color or temperature.)\n4. If someone is rough then they like the dog. (This does not provide any information about the lion's temperature.)\n5. All rough people are nice. (This does not provide any information about the lion's temperature.)\n6. All nice people are cold. (This implies that if someone is nice, then they are cold. Since the lion is rough, it means the lion is nice. Therefore, the lion must be cold.)\n\nSince the lion is cold, the statement \"The lion is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to analyze the given information and find the relationship between the lion and the properties \"cold\" and \"nice.\"\n\n1. The lion is green. (From statement 7)\n2. If someone sees the lion then they are green. (From statement 9)\n   - Since the lion is green, it implies that everyone who sees the lion is green. But this does not tell us anything about the lion itself being green or not.\n\n3. The lion is rough. (From statement 8)\n4. If someone is rough then they like the dog. (From statement 12)\n   - This implies that the lion likes the dog, but it does not tell us anything about the lion being cold or not.\n\n5. If someone is cold then they like the bald eagle. (From statement 1)\n   - Since all nice people are cold, we need to determine if the lion is nice or not.\n\n6. If the bald eagle is red then the bald eagle is nice. (From statement 11)\n   - We do not know if the bald eagle is red or not, so we cannot determine if it is nice or not.\n\n7. If someone sees the bald eagle then the bald eagle likes the dog. (From statement 10)\n   - This implies that the bald eagle likes the dog, but it does not tell us anything about the bald eagle being nice or not.\n\n8. The dog chases the cat and the dog likes the cat. (From statements 3 and 5)\n   - If someone chases the dog and the dog likes the cat, then they see the bald eagle. (From statement 13)\n     - Since the dog likes the cat, it implies that the dog sees the bald eagle. But we do not know if the dog chases the lion or not.\n\n9. The lion sees the cat. (From statement 10)\n   - This implies that the lion sees the bald eagle because if someone sees the cat and they like the bald eagle, then the cat is rough. (From statement 2)\n     - However, this is not applicable here.\n\n10. All nice people are cold. (From statement 10)\n    - We still do not know if the lion is nice or not.\n\nNow, to determine if the lion is cold or not, we need to find a connection between the lion and the property \"cold.\"\n\n11. All rough people are nice. (From statement 11)\n    - Since the lion is rough, it implies that the lion is nice.\n\n12. All nice people are cold. (From statement 10)\n    - Since the lion is nice, it implies that the lion is cold.\n\nTherefore, the statement \"The lion is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps and analyze the given information.\n\n1. The lion is green. \n2. If someone sees the lion then they are green.\n   - This implies that the lion sees itself. However, it does not provide any information about the lion's temperature (cold or not).\n3. All nice people are cold.\n   - We need to determine if the lion is nice or not to conclude its temperature.\n4. The lion is rough.\n   - To determine if the lion is nice, we need to see if all rough people are nice.\n5. All rough people are nice.\n   - This implies that the lion is indeed nice.\n\nSince we now know that the lion is nice, we can use the information from step 3 to conclude that the lion is cold.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. From the given information, we know the following:\n   - The lion is green.\n   - The lion is rough.\n   - The lion is green.\n   - The lion is rough.\n\n2. From the provided rules, we know the following:\n   - If someone sees the lion then they are green. (This doesn't directly apply to the lion itself.)\n   - All rough people are nice. (This rule can be applied to the lion.)\n   - All nice people are cold. (This rule can be applied to the lion if it's nice.)\n\n3. To determine if the lion is cold, we need to establish whether it's nice or not. According to the rule \"All rough people are nice,\" since the lion is rough, it's nice.\n\n4. Now, according to the rule \"All nice people are cold,\" since the lion is nice, it must be cold.\n\nBased on the given information and rules, the statement \"The lion is not cold\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to determine the properties of the lion and whether it is cold.\n\nGiven statements:\n\n1. The lion is green.\n2. The lion is rough.\n3. The lion is green. (Duplicate of statement 1)\n4. The lion sees the cat.\n\nRules:\n\n1. If someone sees the lion then they are green.\n2. If the bald eagle is red then the bald eagle is nice.\n3. All nice people are cold.\n4. If someone is rough then they like the dog.\n5. All rough people are nice.\n6. If someone sees the cat and they like the bald eagle then the cat is rough.\n7. If someone sees the bald eagle then the bald eagle likes the dog.\n8. If someone is cold then they like the bald eagle.\n9. If someone chases the dog and the dog likes the cat then they see the bald eagle.\n\nFrom statement 2, we know the lion is rough. From rule 5, we know that all rough people are nice. Therefore, the lion is nice.\n\nNow, from rule 3, we know that all nice people are cold. Therefore, the lion is cold.\n\nSince we have determined that the lion is cold, we can conclude that the statement \"The lion is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the lion is not cold, we need to find out if the lion is cold or not. \n\nFrom the given statements, we can derive the following:\n\n1. If someone sees the lion then they are green. (Statement 8)\n   However, there is also a statement that the cat is green. (Statement 3 and 4) We can't determine if the lion is green or the cat is green.\n\n2. The lion is green. (Statement 8)\n\n   However, from statement 1, we know that if someone sees the lion then they are green. This does not imply that the lion is green. We can't determine if the lion is green or not.\n\n3. The lion is rough. (Statement 9)\n\n   This statement can be derived from statement 8, which says that if someone sees the lion then they are green. And statement 5 says that if the cat is red then the cat likes the lion. However, there is no statement that directly links the lion's color or the cat's color to the lion's roughness. \n\n4. The lion is green and the lion is rough. (Statement 8 and 9)\n\n   Since we can't determine if the lion is green or not from statement 8, we cannot determine if the lion is rough or not.\n\n5. All rough people are nice. (Statement 11)\n\n   Since we can't determine if the lion is rough or not, we can't determine if the lion is nice or not.\n\n6. If someone is nice then they are cold. (Statement 10)\n\n   Since we can't determine if the lion is nice or not, we can't determine if the lion is cold or not.\n\n7. The lion sees the cat. (Statement 12)\n\n   This statement can be derived from statement 1, which says that if someone sees the cat and they like the bald eagle then the cat is rough. However, we can't determine if the cat is rough or not.\n\n8. The lion likes the dog. (Statement 5)\n\n   Since we can't determine if the lion is nice or not from statement 11, we cannot determine if the lion likes the dog or not.\n\nNow, let's look at the statement we are trying to determine. \n\nThe lion is not cold. \n\nFrom statement 6, we know that if someone is nice then they are cold. However, we can't determine if the lion is nice or not. We can only determine that the lion is rough, but we can't determine if the lion is nice or not.\n\nTherefore, the statement is unknown because we can't determine if the lion is cold or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the lion is cold or not, we need to analyze the given statements and their implications.\n\n1. The lion is green. (Given)\n2. If someone sees the lion then they are green. (Implication of 1)\n3. If someone is cold then they like the bald eagle. (Given)\n4. If someone is green then they are cold. (Implication of 2)\n5. If someone likes the bald eagle then they are cold. (Implication of 3)\n6. The lion is green. (Given)\n7. If the lion is green then someone who sees the lion is green. (Implication of 2)\n8. If someone is green then they are cold. (Implication of 7)\n9. The lion sees the cat. (Given)\n10. If someone sees the cat and they like the bald eagle then the cat is rough. (Given)\n11. The cat is red. (Given)\n12. The cat is green. (Given)\n13. The cat likes the lion. (Given)\n14. The lion is green. (Given)\n15. All rough people are nice. (Given)\n16. If someone is rough then they like the dog. (Given)\n17. The lion is rough. (Implication of 15 and 11-14)\n18. If the lion is rough then the lion likes the dog. (Implication of 16)\n19. The lion sees the cat. (Given)\n20. The cat is green. (Given)\n21. The dog chases the cat. (Given)\n22. The dog likes the cat. (Implication of 21)\n23. If someone chases the dog and the dog likes the cat then they see the bald eagle. (Given)\n24. The dog sees the bald eagle. (Implication of 23)\n25. If someone sees the bald eagle then the bald eagle likes the dog. (Given)\n26. The bald eagle likes the dog. (Implication of 25)\n27. The lion is green. (Given)\n28. If someone sees the lion then they are green. (Implication of 2)\n29. The lion is green. (Implication of 28)\n30. All nice people are cold. (Given)\n31. If the bald eagle is red then the bald eagle is nice. (Given)\n32. The bald eagle is red. (Implication of 26 and 27)\n33. The bald eagle is nice. (Implication of 31 and 32)\n34. The lion is rough. (Implication of 15 and 11-14)\n35. If someone sees the lion and they are nice then the lion is rough. (Implication of 34)\n36. The lion is rough. (Implication of 30, 33 and 35)\n37. If someone is green then they are cold. (Implication of 8)\n38. The lion is green. (Given)\n39. The lion is not cold. (Implication of 37 and 38)\n\nFrom statement 39, we can conclude that the lion is not cold.\n\nTherefore, the statement \"The lion is not cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements and use them to determine the relationships between the entities involved. \n\n1. The bald eagle chases the cat. \n   - We don't know the color or temperature of the bald eagle or the cat from this statement.\n\n2. The bald eagle likes the dog.\n   - This statement is given, so we know the bald eagle likes the dog.\n\n3. The cat is green.\n   - We don't know the temperature of the cat from this statement.\n\n4. The cat is red.\n   - This is a contradiction with the statement that the cat is green, but for the sake of this problem, we'll use the fact that we know the cat has two colors.\n\n5. The cat likes the lion.\n   - This statement is given, so we know the cat likes the lion.\n\n6. The dog chases the cat.\n   - This statement is given, so we know the dog chases the cat.\n\n7. The dog is red.\n   - We know the dog has a color.\n\n8. The dog sees the bald eagle.\n   - This statement is given, so we know the dog sees the bald eagle.\n\n9. The dog sees the lion.\n   - This statement is given, so we know the dog sees the lion.\n\n10. The lion is green.\n    - This statement is given, so we know the lion has a color.\n\n11. The lion is rough.\n    - This statement is given, so we know the lion is rough.\n\n12. The lion sees the cat.\n    - This statement is given, so we know the lion sees the cat.\n\nNow, let's look at the given conditions:\n\n13. If someone is cold then they like the bald eagle.\n14. If someone sees the cat and they like the bald eagle then the cat is rough.\n15. If someone sees the bald eagle then the bald eagle likes the dog.\n16. All rough people are nice.\n17. If someone sees the lion then they are green.\n18. If the bald eagle is red then the bald eagle is nice.\n19. All nice people are cold.\n20. If someone chases the dog and the dog likes the cat then they see the bald eagle.\n21. If someone is rough then they like the dog.\n\nFrom statement 14, we can conclude that the cat is rough because the dog likes the bald eagle and sees the cat (statement 8, 12, 2).\n\nFrom statement 16, we know that all rough people are nice.\n\nFrom statement 19, we know that all nice people are cold.\n\nFrom statement 16 and 19, we can conclude that all rough people are cold because they are nice.\n\nFrom statement 21, we know that if someone is rough then they like the dog. \n\nSince the lion is rough (statement 11), we can conclude that the lion likes the dog.\n\nFrom statement 2, we know that the bald eagle likes the dog.\n\nFrom statement 20, we know that if someone chases the dog and the dog likes the cat, then they see the bald eagle. The dog chases the cat (statement 6), and the dog likes the cat (the dog sees the cat and sees the bald eagle who likes the dog, statement 8, 2, 15).\n\nFrom statement 20, we can conclude that the person (the cat) who chases the dog sees the bald eagle.\n\nFrom statement 13, we know that if someone is cold then they like the bald eagle. The cat sees the bald eagle (statement 8, 20), and we know the cat is rough (statement 14, 8, 12, 2). Since all rough people are cold (statement 16, 19), we can conclude that the cat is cold.\n\nNow, let's look at the statement we need to evaluate: \"The lion is not cold.\"\n\nWe can conclude that the lion is rough (statement 11), and all rough people are cold (statement 16, 19). However, the lion is also green (statement 10), and we know from statement 17 that if someone sees the lion then they are green. This does not directly affect the lion's temperature. \n\nBut, we can use statement 13 to evaluate the lion's temperature. If someone is cold then they like the bald eagle. We know that the cat sees the lion (statement 12), and the cat is cold (we concluded that the cat is cold, and we know the cat sees the lion from statement 12). \n\nNow, let's look at the lion's color from statement 10 and statement 17. We know that the lion is green and that if someone sees the lion then they are green. The cat is green (statement 3) and sees the lion (statement 12). \n\nHowever, we also know from statement 4 that the cat is red. We can use statement 13 to evaluate the cat's temperature. If someone is cold then they like the bald eagle. The cat is red and green, and we know the cat sees the lion (statement 12), but we also know that the cat likes the lion (statement 5). \n\nWe can't directly evaluate the lion's temperature from the given information, so we can't conclude whether the lion is cold or not.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that if someone sees the lion, then they are green. \n   - This doesn't give us any information about the lion's temperature.\n\n2. We know that the lion is green. \n   - This confirms the first statement, but still, we don't know anything about the lion's temperature.\n\n3. We know that all green people are cold. \n   - Since the lion is green, this implies that the lion is cold.\n\nNow, we need to determine whether the lion is cold.\n\nBased on the information above, the statement \"The lion is not cold\" is false because the lion is cold.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals and their characteristics.\n\n1. The bald eagle chases the cat.\n2. The bald eagle likes the dog.\n3. The cat is green.\n4. The cat is red.\n5. The cat likes the lion.\n6. The dog chases the cat.\n7. The dog is red.\n8. The dog sees the bald eagle.\n9. The dog sees the lion.\n10. The lion is green.\n11. The lion is rough.\n12. The lion sees the cat.\n13. If someone is cold then they like the bald eagle.\n14. If someone sees the cat and they like the bald eagle then the cat is rough.\n15. If someone sees the bald eagle then the bald eagle likes the dog.\n16. All rough people are nice.\n17. If someone sees the lion then they are green.\n18. If the bald eagle is red then the bald eagle is nice.\n19. All nice people are cold.\n20. If someone chases the dog and the dog likes the cat then they see the bald eagle.\n21. If someone is rough then they like the dog.\n\nTo determine whether the lion is cold, we need to analyze the statements that relate to the lion and coldness.\n\nFrom statement 11, we know that the lion is rough. From statement 21, we know that if someone is rough, then they like the dog. This does not directly tell us about the lion's temperature, but it gives us a clue about the lion's behavior.\n\nFrom statement 19, we know that all nice people are cold. Since the lion is rough, from statement 16, we can infer that the lion is nice. Therefore, the lion must be cold.\n\nHowever, we are asked to determine whether the lion is not cold. Based on our analysis, we have determined that the lion is indeed cold, which means the statement \"The lion is not cold\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, eagle)",
+          "z3_formula": "likes_bald_eagle_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, eagle)",
+          "z3_formula": "Implies(cold_lion, likes_lion_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, lion)",
+          "z3_formula": "sees_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & sees(cat, X) -> rough(X)",
+          "z3_formula": "Implies(And(likes_lion_eagle, sees_cat_lion), rough_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> likes(X, eagle)",
+          "z3_formula": "Implies(sees_lion_eagle, likes_lion_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_lion_cat, likes_bald_eagle_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, bald_eagle) -> rough(cat)",
+          "z3_formula": "Implies(And(sees_lion_cat, likes_bald_eagle_cat), rough_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(sees_bald_eagle_dog, likes_bald_eagle_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_cat, green_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_dog_cat, likes_dog_cat), sees_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion, green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(cold_X, likes_X_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(sees_X_bald_eagle, likes_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat) & likes(dog, cat)",
+          "z3_formula": "And(chases_dog_cat, likes_dog_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_X_dog, likes_X_cat), sees_X_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_lion, green_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_cat, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_X, nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_X, likes_X_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, bald_eagle) -> rough(cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_bald_eagle), rough_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(sees_X_bald_eagle, likes_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(cold_X, likes_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(dog, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_X_dog, likes_dog_cat), sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(lion))",
+          "z3_formula": "Not(cold_lion)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & likes(X, cat) -> rough(cat)",
+          "z3_formula": "Implies(And(sees_cat_bald_eagle, likes_lion_cat), rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_cat, green_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_cat, green_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion) & rough(lion)",
+          "z3_formula": "And(green_lion, rough_lion) == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == Unknown",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == Unknown",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_lion_dog, likes_lion_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(lion))",
+          "z3_formula": "Not(cold_lion) == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_lion, green_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(cold_lion, likes_lion_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_lion, cold_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_lion, cold_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(And(sees_lion_cat, likes_lion_bald_eagle), rough_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_dog_cat, likes_dog_cat), sees_dog_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, likes_dog_bald_eagle)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, likes_dog_bald_eagle)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion_lion, green_lion)",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_lion, cold_lion)",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(sees_lion_lion, nice_lion), rough_lion)",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_lion, cold_lion)",
+          "source_step": 37
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(lion)",
+          "z3_formula": "Not(cold_lion) == True",
+          "source_step": 39
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cat)",
+          "z3_formula": "chases_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(cold_cat, likes_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, bald_eagle) -> rough(cat)",
+          "z3_formula": "Implies(And(sees_dog_bald_eagle, likes_dog_bald_eagle), rough_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, likes_dog_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_dog_lion, green_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_dog_cat, likes_cat_dog), sees_dog_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "nice(rough(X))",
+          "z3_formula": "nice_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rough(X))",
+          "z3_formula": "cold_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rough(X), dog)",
+          "z3_formula": "likes_lion_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(sees(X, lion))",
+          "z3_formula": "green_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(lion))",
+          "z3_formula": "Not(cold_lion) == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_lion, green_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_lion, cold_lion)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cat)",
+          "z3_formula": "chases_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bald_eagle)",
+          "z3_formula": "sees_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(cold_lion, likes_lion_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(And(sees_lion_cat, likes_lion_bald_eagle), rough_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> likes(X, dog)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, likes_dog_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_lion, nice_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(sees_dog_lion, green_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bald_eagle, nice_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_lion, cold_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & likes(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_dog_cat, likes_cat_lion), sees_dog_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, dog)",
+          "z3_formula": "Implies(rough_lion, likes_lion_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 177,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 76
+    },
+    "maxsat_stats": {
+      "satisfied": 73,
+      "excluded": 3,
+      "total_weight": 172,
+      "solve_time_ms": 1.8330831080675125
+    },
+    "timing": {
+      "trace_gen_s": 13.106,
+      "extraction_s": 31.944,
+      "dedup_s": 3.078,
+      "maxsat_s": 0.006,
+      "total_s": 48.134
+    }
+  }
+}

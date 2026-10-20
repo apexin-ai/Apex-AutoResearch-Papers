@@ -1,0 +1,866 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-427_Q11",
+    "problem": "The bald eagle eats the tiger. The bald eagle is red. The bald eagle likes the rabbit. The bear eats the bald eagle. The bear is rough. The rabbit eats the tiger. The tiger eats the bald eagle. The tiger eats the rabbit. The tiger is kind. The tiger likes the bear. If someone is cold then they see the rabbit. If someone sees the tiger and the tiger is kind then they see the bald eagle. If the rabbit is red and the rabbit is rough then the rabbit likes the bear. If someone sees the rabbit then the rabbit eats the bald eagle. If someone eats the bald eagle then they are cold. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit sees the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nEats(BaldEagle, Tiger, True) ::: The bald eagle eats the tiger.\nRed(BaldEagle, True) ::: The bald eagle is red.\nLikes(BaldEagle, Rabbit, True) ::: The bald eagle likes the rabbit.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nRough(Bear, True) ::: The bear is rough.\nEats(Rabbit, Tiger, True) ::: The rabbit eats the tiger.\nEats(Tiger, BaldEagle, True) ::: The tiger eats the bald eagle.\nEats(Tiger, Rabbit, True) ::: The tiger eats the rabbit.\nKind(Tiger, True) ::: The tiger is kind.\nLikes(Tiger, Bear, True) ::: The tiger likes the bear.\n\nRules:\nCold($x, True) >>> Sees($x, Rabbit, True) ::: If someone is cold then they see the rabbit.\nSees($x, Tiger, True) && Kind(Tiger, True) >>> Sees($x, BaldEagle, True) ::: If someone sees the tiger and the tiger is kind then they see the bald eagle.\nRed(Rabbit, True) && Rough(Rabbit, True) >>> Likes(Rabbit, Bear, True) ::: If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\nSees($x, Rabbit, True) >>> Eats(Rabbit, BaldEagle, True) ::: If someone sees the rabbit then the rabbit eats the bald eagle.\nEats($x, BaldEagle, True) >>> Cold($x, True) ::: If someone eats the bald eagle then they are cold.\nSees($x, BaldEagle, True) && Eats($x, Bear, True) >>> Likes($x, BaldEagle, True) ::: If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nQuery:\nSees(Rabbit, Rabbit, True) ::: The rabbit sees the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 119.5
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply logical reasoning.\n\n1. The bald eagle eats the tiger. (This statement is irrelevant to the problem, so we'll ignore it.)\n2. The bald eagle is red. (This statement is irrelevant to the problem, so we'll ignore it.)\n3. The bald eagle likes the rabbit. (This statement is irrelevant to the problem, so we'll ignore it.)\n4. The bear eats the bald eagle. (This statement is irrelevant to the problem, so we'll ignore it.)\n5. The bear is rough. (This statement is irrelevant to the problem, so we'll ignore it.)\n6. The rabbit eats the tiger. (This statement is irrelevant to the problem, so we'll ignore it.)\n7. The tiger eats the bald eagle. (This statement is irrelevant to the problem, so we'll ignore it.)\n8. The tiger eats the rabbit. (This statement is irrelevant to the problem, so we'll ignore it.)\n9. The tiger is kind. (This statement is irrelevant to the problem, so we'll ignore it.)\n10. The tiger likes the bear. (This statement is irrelevant to the problem, so we'll ignore it.)\n\nNow we'll consider the relevant statements:\n\n11. If someone is cold then they see the rabbit.\n12. If someone sees the tiger and the tiger is kind then they see the bald eagle.\n13. If the rabbit is red and the rabbit is rough then the rabbit likes the bear. \n14. If someone sees the rabbit then the rabbit eats the bald eagle.\n15. If someone eats the bald eagle then they are cold.\n16. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nFrom statement 14, we know that if someone sees the rabbit, then the rabbit eats the bald eagle. However, there's no information that directly relates to the rabbit seeing itself. \n\nHowever, we can derive that the rabbit sees the rabbit in the following scenario: If the rabbit sees the rabbit, then the rabbit eats the bald eagle (from statement 14). If the rabbit eats the bald eagle, then the rabbit is cold (from statement 15). Since there's no information about the rabbit being cold due to other reasons, we can't determine if the rabbit sees itself or not. \n\nSo, we can't conclude if the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are evaluating is \"The rabbit sees the rabbit.\"\n2. From the given information, we have the following relevant statements:\n   - If someone is cold then they see the rabbit.\n   - If someone sees the rabbit, then the rabbit eats the bald eagle.\n3. We need to find a connection between the rabbit seeing the rabbit and the conditions given.\n\nNow, let's try to find a chain of implications that could lead to the statement \"The rabbit sees the rabbit.\"\n\nHowever, we can immediately see that there is no direct implication that allows us to conclude that the rabbit sees the rabbit.\n\nFrom the given conditions, we can see that:\n\n- If the rabbit sees the rabbit, then the rabbit eats the bald eagle (but this is not the case because the statement we are evaluating is \"The rabbit sees the rabbit.\")\n- If someone is cold, then they see the rabbit (but this does not imply that the rabbit sees the rabbit.)\n\nWe cannot find any information that would lead to the conclusion that the rabbit sees the rabbit.\n\nTherefore, the statement \"The rabbit sees the rabbit\" is unknown because we do not have enough information to determine whether it is true or false.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be determined is \"The rabbit sees the rabbit.\" \n2. We know from the given information that \"If someone sees the rabbit then the rabbit eats the bald eagle.\" However, this does not directly relate to the rabbit seeing itself. It means if someone sees the rabbit, then the rabbit eats the bald eagle. But this information does not provide any relation to the rabbit seeing itself.\n\n3. However, we have another rule: \"If someone is cold then they see the rabbit.\" This statement is irrelevant to our problem. \n\n4. Another statement is: \"If someone sees the tiger and the tiger is kind then they see the bald eagle.\" This statement is also irrelevant to our problem.\n\n5. Another statement is: \"If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\" This statement is irrelevant to our problem.\n\n6. However, we have another rule: \"If someone sees the rabbit then the rabbit eats the bald eagle.\" This information is still irrelevant to our problem.\n\n7. We have another rule: \"If someone eats the bald eagle then they are cold.\" This information is also irrelevant to our problem.\n\n8. Another rule is: \"If someone sees the bald eagle and they eat the bear then they like the bald eagle.\" This statement is irrelevant to our problem.\n\n9. Now, let's check the information relevant to the rabbit seeing itself. We have \"The bear eats the bald eagle. The bear is rough. The rabbit eats the tiger. The tiger eats the bald eagle. The tiger eats the rabbit. The tiger is kind. The tiger likes the bear. The bald eagle is red. The bald eagle likes the rabbit.\" \n\nNone of the above information provides a rule that directly relates to the rabbit seeing itself.\n\nHowever, since none of the rules provide information that can confirm or deny the statement \"The rabbit sees the rabbit,\" we can only conclude that the truth of this statement is \"unknown\" based on the given information.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information and the conditions that lead to the rabbit seeing something.\n\n1. There is no direct statement that says the rabbit sees the rabbit. So, initially, we can't conclude anything.\n\n2. If someone is cold then they see the rabbit. However, this doesn't directly relate to the rabbit seeing the rabbit.\n\n3. If someone sees the tiger and the tiger is kind then they see the bald eagle. This condition doesn't help us determine if the rabbit sees the rabbit.\n\n4. If the rabbit is red and the rabbit is rough then the rabbit likes the bear. However, this doesn't provide any information about the rabbit seeing the rabbit.\n\n5. If someone sees the rabbit then the rabbit eats the bald eagle. This condition might seem helpful, but it's a one-way implication. The fact that the rabbit eats the bald eagle doesn't necessarily mean the rabbit saw it.\n\n6. The condition \"If someone eats the bald eagle then they are cold\" is irrelevant to the rabbit seeing the rabbit.\n\n7. If someone sees the bald eagle and they eat the bear then they like the bald eagle. This condition also doesn't help us determine if the rabbit sees the rabbit.\n\nFrom the given information, we can't directly conclude that the rabbit sees the rabbit. However, we can use the information in step 5 to create a logical loop: \n\n- If someone sees the rabbit then the rabbit eats the bald eagle.\n- The rabbit eats the bald eagle.\n- Therefore, someone sees the rabbit.\n\nBut this doesn't necessarily mean the rabbit sees itself, as the conditions are related to someone else seeing the rabbit. However, it's still unclear if the rabbit could see itself under the given conditions.\n\nSince we can't make a direct conclusion using the given information, we can say that the truth of \"The rabbit sees the rabbit\" is unknown based on the provided conditions.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find the connection between them to determine if the statement \"The rabbit sees the rabbit\" is true, false, or unknown.\n\n1. The bald eagle eats the tiger. \n2. The bald eagle is red. \n3. The bald eagle likes the rabbit. \n4. The bear eats the bald eagle. \n5. The bear is rough. \n6. The rabbit eats the tiger. \n7. The tiger eats the bald eagle. \n8. The tiger eats the rabbit. \n9. The tiger is kind. \n10. The tiger likes the bear. \n11. If someone is cold then they see the rabbit. \n12. If someone sees the tiger and the tiger is kind then they see the bald eagle. \n13. If the rabbit is red and the rabbit is rough then the rabbit likes the bear. \n14. If someone sees the rabbit then the rabbit eats the bald eagle. \n15. If someone eats the bald eagle then they are cold. \n16. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nNow, let's analyze the statement \"The rabbit sees the rabbit\".\n\nWe can rewrite this statement as \"Someone sees the rabbit.\"\n\nFrom the given statements, we can see that statement 11 says \"If someone is cold then they see the rabbit.\" However, this statement does not directly connect to the statement \"The rabbit sees the rabbit.\" \n\nBut, from statement 14, \"If someone sees the rabbit then the rabbit eats the bald eagle.\" This statement implies that someone sees the rabbit, but it does not directly imply that the rabbit sees itself.\n\nHowever, statement 14 also does not imply that the rabbit eats the bald eagle because it is the one that is being seen. \n\nThe statement \"If someone sees the rabbit then the rabbit eats the bald eagle\" does not directly imply that the rabbit sees itself.\n\nHowever, from statement 11, we have \"If someone is cold then they see the rabbit.\" And from statement 15, we have \"If someone eats the bald eagle then they are cold.\" And from statement 14, we have \"If someone sees the rabbit then the rabbit eats the bald eagle.\" \n\nTherefore, \"If someone eats the bald eagle then they are cold\" and \"If someone sees the rabbit then the rabbit eats the bald eagle\" can be combined to say that \"If the rabbit eats the bald eagle then the rabbit is cold.\" And from the previous statements, we can say that \"If the rabbit is cold then they see the rabbit.\" And since \"The rabbit eats the bald eagle\" is a possibility, it is possible that \"The rabbit is cold.\" \n\nTherefore, it is possible that \"The rabbit sees the rabbit.\"\n\nHowever, there is not enough information to prove that \"The rabbit sees the rabbit\" is true. There is no direct statement that says \"The rabbit sees the rabbit.\" However, it is possible.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement is about the rabbit seeing the rabbit. However, there is no direct information about the rabbit seeing itself.\n\n2. We know that if someone sees the rabbit, then the rabbit eats the bald eagle (rule 6). But this does not directly relate to the rabbit seeing the rabbit.\n\n3. We also know that if someone sees the rabbit and the rabbit is red, and the rabbit is rough, then the rabbit likes the bear (rule 5). But this also does not directly relate to the rabbit seeing the rabbit.\n\n4. The only relevant information is that if someone is cold, then they see the rabbit (rule 1). But there is no information that directly links the rabbit seeing the rabbit to the rabbit being cold.\n\n5. Another relevant information is that if someone sees the tiger and the tiger is kind, then they see the bald eagle (rule 3). However, this rule does not relate to the rabbit seeing the rabbit.\n\n6. We also know that the tiger eats the rabbit (rule 6). But this does not provide any information about the rabbit seeing the rabbit.\n\n7. We also know that the rabbit eats the tiger (rule 2). But this also does not provide any information about the rabbit seeing the rabbit.\n\n8. We also know that the tiger eats the bald eagle (rule 4). But this also does not provide any information about the rabbit seeing the rabbit.\n\n9. We also know that the bear eats the bald eagle (rule 1). But this also does not provide any information about the rabbit seeing the rabbit.\n\n10. We also know that the bald eagle eats the tiger (rule 1). But this also does not provide any information about the rabbit seeing the rabbit.\n\nSince there is no direct or indirect information provided that links the rabbit seeing the rabbit, we cannot determine whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If someone is cold then they see the rabbit\" does not give us any information about the rabbit seeing the rabbit. It only tells us that when someone is cold, they see the rabbit.\n\n2. The statement \"If someone sees the rabbit then the rabbit eats the bald eagle\" does not directly relate to the statement \"The rabbit sees the rabbit.\" However, it tells us that if someone sees the rabbit, then the rabbit eats the bald eagle. But this does not tell us whether the rabbit sees itself or not.\n\n3. The statement \"If the rabbit is red and the rabbit is rough then the rabbit likes the bear\" does not give us any information about the rabbit seeing the rabbit. It only tells us a condition under which the rabbit likes the bear.\n\n4. We do not have any information that directly states or implies that the rabbit sees itself.\n\nBased on the given information, we cannot determine whether the rabbit sees itself or not. Therefore, the statement \"The rabbit sees the rabbit\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are evaluating is: \"The rabbit sees the rabbit.\"\n2. The only direct information related to this statement is: \"If someone sees the rabbit then the rabbit eats the bald eagle.\" However, this does not directly imply that the rabbit sees itself.\n3. There is another rule that might be related: \"If someone sees the rabbit then the rabbit eats the bald eagle.\" This suggests a causal relationship, but we need to see if it can be applied to the statement in question.\n4. To apply the rule in step 3, we need to find out if there is any scenario where someone sees the rabbit. There is one statement that might be relevant: \"If someone is cold then they see the rabbit.\" However, this does not directly imply that the rabbit sees itself.\n5. We also need to look for any other statements that might be related to the statement in question. \"If someone sees the rabbit and the tiger is kind then they see the bald eagle.\" This statement does not provide any information about the rabbit seeing itself.\n6. The other statements do not provide any information about the rabbit seeing itself, so we cannot conclude whether the statement is true or false.\n\nBased on the given information and analysis, the statement \"The rabbit sees the rabbit\" cannot be determined as true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to break down the information given and apply logical reasoning.\n\n1. The bald eagle eats the tiger. The bald eagle is red. The bald eagle likes the rabbit. \n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n2. The bear eats the bald eagle. The bear is rough. \n   - This information also doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n3. The rabbit eats the tiger. The tiger eats the bald eagle. The tiger eats the rabbit. The tiger is kind. The tiger likes the bear.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n4. If someone is cold then they see the rabbit.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n5. If someone sees the tiger and the tiger is kind then they see the bald eagle.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n6. If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n7. If someone sees the rabbit then the rabbit eats the bald eagle.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n8. If someone eats the bald eagle then they are cold.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\n9. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n   - This information doesn't provide any direct relationship to the statement \"The rabbit sees the rabbit.\"\n\nHowever, we can analyze the following statements to infer information about \"The rabbit sees the rabbit\":\n\n- If the rabbit is red and the rabbit is rough then the rabbit likes the bear. \n  This implies that the rabbit has a relationship with the bear, but we cannot infer any direct relationship between the rabbit and seeing itself.\n\n- If someone sees the rabbit then the rabbit eats the bald eagle.\n  This implies that seeing the rabbit results in the rabbit eating the bald eagle, but this doesn't provide any information about whether the rabbit can see itself.\n\n- If someone is cold then they see the rabbit.\n  This implies that seeing the rabbit is related to being cold, but we cannot infer any direct relationship between the rabbit and seeing itself.\n\nBased on the given statements, there is no information that directly states the rabbit can see itself. However, we can analyze the given statements and conclude that the statement \"The rabbit sees the rabbit\" is unknown because there is no explicit information that directly confirms or denies this statement.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit sees the rabbit' is true, false, or unknown, we need to analyze the given information step by step:\n\n1. If someone is cold then they see the rabbit. \n   - This statement alone doesn't provide any information about the rabbit seeing itself.\n\n2. If someone sees the rabbit then the rabbit eats the bald eagle.\n   - This statement also doesn't provide any direct information about the rabbit seeing itself.\n\n3. If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\n   - This statement is also irrelevant to the rabbit seeing itself.\n\n4. If someone sees the tiger and the tiger is kind then they see the bald eagle.\n   - This statement is also irrelevant to the rabbit seeing itself.\n\n5. If someone eats the bald eagle then they are cold.\n   - This statement is also irrelevant to the rabbit seeing itself.\n\n6. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n   - This statement is also irrelevant to the rabbit seeing itself.\n\nHowever, we need to carefully examine the following statements for any relevant information:\n\n- The bald eagle is red. \n- The bald eagle likes the rabbit. \n- The bear eats the bald eagle. \n- The bear is rough. \n- The rabbit eats the tiger. \n- The tiger eats the bald eagle. \n- The tiger eats the rabbit. \n- The tiger is kind. \n- The tiger likes the bear.\n\nThese statements don't provide any direct information about the rabbit seeing itself. However, the statement that stands out as potentially relevant is 'If someone sees the rabbit then the rabbit eats the bald eagle.' This statement implies that seeing the rabbit can trigger an action where the rabbit eats the bald eagle.\n\nUnfortunately, we can't directly conclude whether the rabbit sees itself from the given information. The statement 'The rabbit sees the rabbit' is unknown because there's no information provided that directly addresses this specific scenario.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use a process of deduction. We will analyze the given statements and apply them to the statement in question.\n\nGiven statements:\n\n1. The bald eagle eats the tiger.\n2. The bald eagle is red.\n3. The bald eagle likes the rabbit.\n4. The bear eats the bald eagle.\n5. The bear is rough.\n6. The rabbit eats the tiger.\n7. The tiger eats the bald eagle.\n8. The tiger eats the rabbit.\n9. The tiger is kind.\n10. The tiger likes the bear.\n11. If someone is cold then they see the rabbit.\n12. If someone sees the tiger and the tiger is kind then they see the bald eagle.\n13. If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\n14. If someone sees the rabbit then the rabbit eats the bald eagle.\n15. If someone eats the bald eagle then they are cold.\n16. If someone sees the bald eagle and they eat the bear then they like the bald eagle.\n\nStatement in question: The rabbit sees the rabbit.\n\nLet's analyze this statement using the given information:\n\n1. There is no direct statement that says the rabbit sees the rabbit. However, we can try to deduce it from other statements.\n\nFrom statement 14, we know that if someone sees the rabbit, then the rabbit eats the bald eagle. But this does not necessarily mean that the rabbit sees itself.\n\nLet's try to find a connection between the rabbit and itself using other statements.\n\nFrom statement 3, we know that the bald eagle likes the rabbit. However, there is no information that links the bald eagle to the rabbit in a way that would make the rabbit see itself.\n\nFrom statement 6, we know that the rabbit eats the tiger. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 8, we know that the tiger eats the rabbit. However, this also does not provide any information about the rabbit seeing itself.\n\nFrom statement 9, we know that the tiger is kind. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 10, we know that the tiger likes the bear. However, this also does not provide any information about the rabbit seeing itself.\n\nFrom statement 11, we know that if someone is cold then they see the rabbit. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 12, we know that if someone sees the tiger and the tiger is kind then they see the bald eagle. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 13, we know that if the rabbit is red and the rabbit is rough then the rabbit likes the bear. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 15, we know that if someone eats the bald eagle then they are cold. However, this does not provide any information about the rabbit seeing itself.\n\nFrom statement 16, we know that if someone sees the bald eagle and they eat the bear then they like the bald eagle. However, this does not provide any information about the rabbit seeing itself.\n\nSince we cannot deduce that the rabbit sees the rabbit from the given statements, we can conclude that the statement is unknown.\n\nHowever, we can make a conclusion using the statement 3 that \"The bald eagle likes the rabbit\" implies that the bald eagle has some knowledge about the rabbit.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit sees the rabbit\" is true, false, or unknown, we need to analyze the given information and break it down into smaller parts.\n\n1. The statement to check: \"The rabbit sees the rabbit.\"\n2. Given information:\n   - If someone is cold then they see the rabbit.\n   - If someone sees the rabbit then the rabbit eats the bald eagle.\n   - If the rabbit is red and the rabbit is rough then the rabbit likes the bear.\n   - The bald eagle is red.\n   - The bear is rough.\n   - The rabbit eats the tiger.\n   - The tiger eats the bald eagle.\n   - The tiger eats the rabbit.\n   - The tiger is kind.\n   - The tiger likes the bear.\n3. To check the statement, we need to see if there's any condition that leads to \"The rabbit sees the rabbit.\" Let's analyze the conditions:\n   - The first condition, \"If someone is cold then they see the rabbit,\" does not apply here because we don't have any information that the rabbit is cold.\n   - The second condition, \"If someone sees the rabbit then the rabbit eats the bald eagle,\" does not apply because it's the opposite of what we want to check.\n   - The third condition, \"If the rabbit is red and the rabbit is rough then the rabbit likes the bear,\" does not apply because we don't have any information that the rabbit is both red and rough (The bald eagle is red, and the bear is rough, but we don't have any information that combines these two).\n4. Now let's analyze the conditions that are related to the rabbit seeing something:\n   - There is no direct condition that states \"The rabbit sees the rabbit\" or any condition that implies it.\n\nBased on the given information, we cannot conclude whether the statement \"The rabbit sees the rabbit\" is true or false. The information given does not provide a clear path to conclude this statement.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_tiger, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit) & rough(rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(X, rabbit) -> eats(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_bald_eagle, eats_X_bear), likes_X_bald_eagle)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_rabbit, sees_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, eagle)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, eats_rabbit_eagle)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_rabbit, sees_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_rabbit_tiger, kind_tiger), sees_rabbit_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, eats_rabbit_bear), likes_rabbit_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(sees(rabbit, rabbit))",
+          "z3_formula": "Not(Or(And(Not(eats_rabbit_bald_eagle), Not(cold_rabbit)), And(And(sees_rabbit_tiger, kind_tiger), Not(sees_rabbit_bald_eagle)), And(And(red_rabbit, rough_rabbit), Not(likes_rabbit_bear)), And(eats_rabbit_bald_eagle, Not(cold_rabbit)), And(And(sees_rabbit_bald_eagle, eats_rabbit_bear), Not(likes_rabbit_bald_eagle)))))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_rabbit, sees_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_rabbit_tiger, kind_tiger), sees_rabbit_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, eats_rabbit_bear), likes_rabbit_bald_eagle)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_tiger, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_X, rough_X), likes_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_bald_eagle, eats_X_bear), likes_X_bald_eagle)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_tiger, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(rabbit, tiger) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(eats_rabbit_tiger, sees_rabbit_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(tiger, bald_eagle) -> sees(tiger, bald_eagle)",
+          "z3_formula": "Implies(eats_tiger_bald_eagle, sees_tiger_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bear, bald_eagle) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(eats_bear_bald_eagle, sees_bear_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bald_eagle, tiger) -> sees(bald_eagle, tiger)",
+          "z3_formula": "Implies(eats_bald_eagle_tiger, sees_bald_eagle_tiger)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_rabbit, sees_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_rabbit, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_tiger, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_X, rough_X), likes_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_bald_eagle, eats_X_bear), likes_X_bald_eagle)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit) & rough(rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, eagle) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_tiger_eagle, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(X, eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_X_eagle, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(X, eagle) & eats(X, bear) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(sees_X_eagle, eats_X_bear), likes_X_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_X, sees_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & kind(tiger) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_tiger, kind_tiger), sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(red_X, rough_X), likes_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & eats(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_bald_eagle, eats_X_bear), likes_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, rabbit)",
+          "z3_formula": "sees_rabbit_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(cold_rabbit, sees_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats_rabbit_bald_eagle",
+          "z3_formula": "Implies(sees_rabbit_rabbit, eats_rabbit_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> likes_rabbit_bear",
+          "z3_formula": "Implies(And(red_rabbit, rough_rabbit), likes_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, tiger)",
+          "z3_formula": "eats_rabbit_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 123,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 1,
+      "total_weight": 121,
+      "solve_time_ms": 1.361190341413021
+    },
+    "timing": {
+      "trace_gen_s": 8.446,
+      "extraction_s": 24.124,
+      "dedup_s": 1.105,
+      "maxsat_s": 0.004,
+      "total_s": 33.679
+    }
+  }
+}

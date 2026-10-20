@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1054_Q3",
+    "problem": "Anne is round. Bob is big. Bob is nice. Bob is round. Dave is big. Dave is blue. Dave is furry. Dave is smart. Harry is smart. Harry is white. All blue, round people are smart. All nice, round people are furry. Smart, blue people are nice. If Anne is furry and Anne is round then Anne is big. All blue, smart people are white. Nice people are furry. All furry, big people are blue. If someone is round then they are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nBig(Dave, True) ::: Dave is big.\nBlue(Dave, True) ::: Dave is blue.\nFurry(Dave, True) ::: Dave is furry.\nSmart(Dave, True) ::: Dave is smart.\nSmart(Harry, True) ::: Harry is smart.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) && Round($x, True) >>> Smart($x, True) ::: All blue, round people are smart.\nNice($x, True) && Round($x, True) >>> Furry($x, True) ::: All nice, round people are furry.\nSmart($x, True) && Blue($x, True) >>> Nice($x, True) ::: Smart, blue people are nice.\nFurry(Anne, True) && Round(Anne, True) >>> Big(Anne, True) ::: If Anne is furry and Anne is round then Anne is big.\nBlue($x, True) && Smart($x, True) >>> White($x, True) ::: All blue, smart people are white.\nNice($x, True) >>> Furry($x, True) ::: Nice people are furry.\nFurry($x, True) && Big($x, True) >>> Blue($x, True) ::: All furry, big people are blue.\nRound($x, True) >>> Blue($x, True) ::: If someone is round then they are blue.\n\nQuery:\nBlue(Bob, True) ::: Bob is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

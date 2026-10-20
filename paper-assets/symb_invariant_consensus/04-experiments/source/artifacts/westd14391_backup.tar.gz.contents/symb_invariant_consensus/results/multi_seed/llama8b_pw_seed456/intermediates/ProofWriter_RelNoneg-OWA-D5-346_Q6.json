@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-346_Q6",
+    "problem": "The bald eagle is nice. The bald eagle needs the cow. The bald eagle needs the squirrel. The cow is blue. The cow likes the bald eagle. The cow sees the squirrel. The lion is kind. The lion is nice. The lion likes the bald eagle. The lion needs the squirrel. The lion sees the squirrel. The squirrel likes the lion. If something sees the lion then the lion likes the squirrel. If something is kind and it sees the bald eagle then it needs the cow. If something sees the squirrel and it sees the bald eagle then the bald eagle likes the cow. If something sees the lion and the lion likes the squirrel then the lion needs the squirrel. If something likes the squirrel and it needs the squirrel then the squirrel sees the cow. If something sees the cow then it sees the lion. If something needs the cow and it needs the squirrel then it likes the squirrel. If something sees the lion then the lion sees the bald eagle. If something sees the cow and it likes the cow then the cow sees the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not see the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nNice(BaldEagle, True) ::: The bald eagle is nice.\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nNeeds(BaldEagle, Squirrel, True) ::: The bald eagle needs the squirrel.\nBlue(Cow, True) ::: The cow is blue.\nLikes(Cow, BaldEagle, True) ::: The cow likes the bald eagle.\nSees(Cow, Squirrel, True) ::: The cow sees the squirrel.\nKind(Lion, True) ::: The lion is kind.\nNice(Lion, True) ::: The lion is nice.\nLikes(Lion, BaldEagle, True) ::: The lion likes the bald eagle.\nNeeds(Lion, Squirrel, True) ::: The lion needs the squirrel.\nSees(Lion, Squirrel, True) ::: The lion sees the squirrel.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\n\nRules:\nSees($x, Lion, True) >>> Likes(Lion, Squirrel, True) ::: If something sees the lion then the lion likes the squirrel.\nKind($x, True) && Sees($x, BaldEagle, True) >>> Needs($x, Cow, True) ::: If something is kind and it sees the bald eagle then it needs the cow.\nSees($x, Squirrel, True) && Sees($x, BaldEagle, True) >>> Likes(BaldEagle, Cow, True) ::: If something sees the squirrel and it sees the bald eagle then the bald eagle likes the cow.\nSees($x, Lion, True) && Likes(Lion, Squirrel, True) >>> Needs(Lion, Squirrel, True) ::: If something sees the lion and the lion likes the squirrel then the lion needs the squirrel.\nLikes($x, Squirrel, True) && Needs($x, Squirrel, True) >>> Sees(Squirrel, Cow, True) ::: If something likes the squirrel and it needs the squirrel then the squirrel sees the cow.\nSees($x, Cow, True) >>> Sees($x, Lion, True) ::: If something sees the cow then it sees the lion.\nNeeds($x, Cow, True) && Needs($x, Squirrel, True) >>> Likes($x, Squirrel, True) ::: If something needs the cow and it needs the squirrel then it likes the squirrel.\nSees($x, Lion, True) >>> Sees(Lion, BaldEagle, True) ::: If something sees the lion then the lion sees the bald eagle.\nSees($x, Cow, True) && Likes($x, Cow, True) >>> Sees(Cow, BaldEagle, True) ::: If something sees the cow and it likes the cow then the cow sees the bald eagle.\n\nQuery:\nSees(Squirrel, Cow, False) ::: The squirrel does not see the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

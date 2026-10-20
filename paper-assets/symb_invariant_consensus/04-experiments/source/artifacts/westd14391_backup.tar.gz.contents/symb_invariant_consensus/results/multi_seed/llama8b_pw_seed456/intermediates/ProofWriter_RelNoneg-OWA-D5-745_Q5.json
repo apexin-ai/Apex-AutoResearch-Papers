@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-745_Q5",
+    "problem": "The bear is round. The bear likes the cow. The bear visits the lion. The cow is big. The cow is rough. The lion needs the bear. The mouse likes the lion. If someone visits the lion then they are round. If someone needs the bear then they need the lion. If someone needs the lion then they visit the lion. If someone visits the lion and the lion is round then they like the lion. If someone is rough then they need the lion. If someone likes the lion and they need the lion then the lion visits the mouse. If someone is rough then they visit the lion. If someone likes the lion and the lion is big then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion visits the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRound(Bear, True) ::: The bear is round.\nLikes(Bear, Cow, True) ::: The bear likes the cow.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nBig(Cow, True) ::: The cow is big.\nRough(Cow, True) ::: The cow is rough.\nNeeds(Lion, Bear, True) ::: The lion needs the bear.\nLikes(Mouse, Lion, True) ::: The mouse likes the lion.\n\nRules:\nVisits($x, Lion, True) >>> Round($x, True) ::: If someone visits the lion then they are round.\nNeeds($x, Bear, True) >>> Needs($x, Lion, True) ::: If someone needs the bear then they need the lion.\nNeeds($x, Lion, True) >>> Visits($x, Lion, True) ::: If someone needs the lion then they visit the lion.\nVisits($x, Lion, True) && Round(Lion, True) >>> Likes($x, Lion, True) ::: If someone visits the lion and the lion is round then they like the lion.\nRough($x, True) >>> Needs($x, Lion, True) ::: If someone is rough then they need the lion.\nLikes($x, Lion, True) && Needs($x, Lion, True) >>> Visits(Lion, Mouse, True) ::: If someone likes the lion and they need the lion then the lion visits the mouse.\nRough($x, True) >>> Visits($x, Lion, True) ::: If someone is rough then they visit the lion.\nLikes($x, Lion, True) && Big(Lion, True) >>> Kind($x, True) ::: If someone likes the lion and the lion is big then they are kind.\n\nQuery:\nVisits(Lion, Lion, True) ::: The lion visits the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

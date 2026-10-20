@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0",
+  "id": "01335f0357f578e643da",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper writing step7 related v4",
+  "task_key": "worker_paper_writing_step7_related_v4_20260523T041124",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_step7_related_v4_20260523T041124.jsonl",
+    "occurrence": 1,
+    "bytes": 22670,
+    "sha256": "70ef5590322ec7e53455cd80080986e31b948c84cac7935a5fd9fe6bb5498d5b"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T04:14:12.332094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T04:14:12.332748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T04:14:12.333021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T04:14:12.333209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\looseness=-1\n5\t\\paragraph{Self-Consistency and extensions.}\n6\tSC selects the most frequent answer across chain-of-thought traces \\citep{wang2023sc}. Extensions include universal SC for free-form generation \\citep{chen2024usc}, confidence weighting \\citep{taubenfeld2025cisc}, diverse prompting with step-aware verification \\citep{li2023diverse}, program-based vote filtering \\citep{toh2024notallvotes}, and reasoning-aware filtering \\citep{wan2024rasc, kim2026reasc}. \\citet{loo2025reevaluating} show that SC gains plateau early; \\citet{byerly2026selfconsistency} further analyze SC's limitations in mathematical reasoning. The Condorcet Jury Theorem \\citep{condorcet1785} guarantees convergence under independent voting; \\citet{ladha1992correlated} show correlated voters reduce effective ensemble size. Our $K_\\text{eff}$ adapts Fleiss' $\\kappa$ from ensemble diversity theory \\citep{kuncheva2003measures, brown2005diversity}, explaining the plateau: $\\kappa = 0.21$--$0.82$ compresses $K_{\\text{eff}}$ to 1.20--3.62 for $K = 12$ (\\S\\ref{sec:results}). \\citet{kim2025correlated} demonstrate correlated errors in LLM outputs; \\citet{kuai2026independent} propose BEI and CIG for cross-model independence auditing, complementary to our within-model process-$\\kappa$. Symbolic confirmation bias is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}: the latter concern whether reasoning reflects actual computation, while symbolic confirmation bias concerns whether \\emph{self-extracted formal constraints} mirror the model's answer distribution.\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Neuro-symbolic reasoning and test-time verification.}\n10\tWe distinguish three paradigms: \\emph{specification-generation} \\citep{pan2023logiclm, olausson2023linc, ye2024satlm} translates problems into formal specifications before answering (LINC documents ${\\sim}$40\\% translation\n…[truncated 2613 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T04:14:12.333388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "sec:pipeline|d-separation|causal-dag|C \\\\perp|information bottleneck",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+              "output_mode": "content",
+              "-C": "2"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T04:14:12.333541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-91-  {$C \\!\\perp\\! Y \\mid A$};\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-92-\\end{tikzpicture}\ndocs/paper/analysis.tex:93:\\caption{Causal DAG of the self-extraction pipeline. All information about ground truth $Y$ reaching constraints $C$ is mediated by answer $A$ ($C \\perp Y \\mid A$; Proposition~1, Part~\\textit{ii}), making self-verification inherently answer-biased.}\ndocs/paper/analysis.tex:94:\\label{fig:causal-dag}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-95-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex-96-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex-4-\\subsection{SICA Pipeline}\ndocs/paper/method.tex:5:\\label{sec:pipeline}\ndocs/paper/method.tex-6-\\label{sec:condorcet}\ndocs/paper/method.tex-7-\\label{sec:effective-k}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex-6-\\looseness=-1\ndocs/paper/introduction.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex-9-\\looseness=-1\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux-267-\\@LN{193}{2}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.aux-268-\\@writefile{toc}{\\contentsl\n…[truncated 1739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T04:14:12.333715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "sec:confirmation-bias|Proposition.?1",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T04:14:12.333846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:\\label{sec:confirmation-bias}\n11:\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\n93:\\caption{Causal DAG of the self-extraction pipeline. All information about ground truth $Y$ reaching constraints $C$ is mediated by answer $A$ ($C \\perp Y \\mid A$; Proposition~1, Part~\\textit{ii}), making self-verification inherently answer-biased.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T04:14:12.334006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex | sort",
+              "description": "Extract all citation keys from related_work.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T04:14:12.334137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\citep{chen2024usc}\n\\citep{chen2025sets}\n\\citep{cobbe2021gsm8k, lightman2024prm, wang2024mathshepherd}\n\\citep{condorcet1785}\n\\citep{dhuliawala2023chainofverification}\n\\citep{gao2023pal, chen2023program, lyu2023faithful}\n\\citep{gou2024critic}\n\\citep{guo2025deepseekr1, qwen2024qwq}\n\\citep{kuncheva2003measures, brown2005diversity}\n\\citep{li2023diverse}\n\\citep{liang2023encouraging, du2023improving}\n\\citep{lifshitz2025mav}\n\\citep{madaan2023selfrefine}\n\\citep{olausson2023linc, amonkar2025realitycheck}\n\\citep{pan2023logiclm, olausson2023linc, ye2024satlm}\n\\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent, miya2025eidoku}\n\\citep{snell2025scaling}\n\\citep{taubenfeld2025cisc}\n\\citep{toh2024notallvotes}\n\\citep{turpin2024language}\n\\citep{wan2024rasc, kim2026reasc}\n\\citep{wan2025unveiling, jhaveri2026failing}\n\\citep{wang2023sc}\n\\citep{weng2023selfverification}\n\\citep{yao2023tree}\n\\citep{zhu2025vericot}\n\\citet{amonkar2025realitycheck}\n\\citet{byerly2026selfconsistency}\n\\citet{chan2026position}\n\\citet{huang2024selfcorrect}\n\\citet{kim2025correlated}\n\\citet{kuai2026independent}\n\\citet{ladha1992correlated}\n\\citet{loo2025reevaluating}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T04:14:12.334378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related-work}\n\n\\looseness=-1\n\\paragraph{Self-consistency and ensemble theory.}\nSelf-consistency (SC) selects the most frequent answer across chain-of-thought traces \\citep{wang2023sc}. Extensions address free-form generation \\citep{chen2024usc}, confidence weighting \\citep{taubenfeld2025cisc}, diverse prompting with step-aware verification \\citep{li2023diverse}, program-based vote filtering \\citep{toh2024notallvotes}, and reasoning-aware filtering \\citep{wan2024rasc, kim2026reasc}. SC gains plateau early \\citep{loo2025reevaluating}, particularly in mathematical reasoning \\citep{byerly2026selfconsistency}. The Condorcet Jury Theorem \\citep{condorcet1785} guarantees majority-vote convergence under independent voting; \\citet{ladha1992correlated} show correlated voters reduce effective ensemble size. Our $K_\\text{eff}$ adapts Fleiss' $\\kappa$ from ensemble diversity theory \\citep{kuncheva2003measures, brown2005diversity} to quantify this compression (\\S\\ref{sec:pipeline}). \\citet{kim2025correlated} demonstrate correlated errors in LLM outputs; \\citet{kuai2026independent} propose cross-model independence auditing, complementary to our within-model process-$\\kappa$. Symbolic confirmation bias is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}: the latter concern whether reasoning reflects actual computation, while symbolic confirmation bias concerns whether self-extracted formal constraints mirror the model's answer distribution.\n\n\\looseness=-1\n\\paragraph{Neuro-symbolic reasoning.}\nWe distinguish three paradigms: \\emph{specification-generation} \\citep{pan2023logiclm, olausson2023linc, ye2024satlm} translates problems into formal specifications before answering; \\emph{program-generation} \\citep{gao2023pal, chen2023program, lyu2023faithful} produces executable code; both formalize \\emph{before} answer generation. \\emph{Trace-extraction} (this work) operates post-hoc, inheriting confirmation bias (\\S\\ref{sec:confirmation-bias}). Recent extensions expand these paradigms with symbolic planning, logic agents, and verified reasoning \\citep{ryu2025clover, xu2026dylos, li2025aristotle, wang2025fover, singh2026verge, luo2025logicagent, miya2025eidoku}; \\citet{amonkar2025realitycheck} show formalization quality degrades with problem complexity; \\citet{chan2026position} argue logical soundness alone is unreliable for neurosymbolic verification. Prior studies \\citep{olausson2023linc, amonkar2025realitycheck} note high formalization error rates but treat them as quality problems; we show the errors are \\emph{systematically biased} toward the model's answer. Proposition~1 establishes that self-extracted constraints are d-separated from ground truth given the answer ($C \\perp Y \\mid A$; Figure~\\ref{fig:causal-dag}), making self-verification an information bottleneck. \\citet{huang2024selfcorrect} prove LLMs cannot self-correct in natural language without external feedback; we extend this to formal verification, showing that provably sound solvers add no information beyond majority voting when constraints are self-extracted.\n\n\\looseness=-1\n\\paragraph{Test-time compute and self-verification.}\nScaling test-time compute via additional traces \\citep{snell2025scaling}, structured search \\citep{yao2023tree}, or extended reasoning \\citep{guo2025deepseekr1, qwen2024qwq} faces the same correlation challenge when traces share a single model's biases. Trained verifiers \\citep{cobbe2021gsm8k, lightman2024prm, wang2024mathshepherd} sidestep this with external reward signals. Multi-agent debate \\citep{liang2023encouraging, du2023improving}, self-verification \\citep{weng2023selfverification}, chain-of-verification \\citep{dhuliawala2023chainofverification}, self-refinement \\citep{madaan2023selfrefine}, tool-augmented critique \\citep{gou2024critic}, formal CoT verification \\citep{zhu2025vericot}, trained verification signals \\citep{chen2025sets}, and multi-agent verification \\citep{lifshitz2025mav} report gains, but none tests self-extracted constraints under formal solvers. We find the bottleneck lies in constraint extraction, not verification: self-extracted constraints inherit the model's bias regardless of solver soundness (\\S\\ref{sec:confirmation-bias}). Oracle controls confirm the verification mechanism itself is sound (Appendix~\\ref{app:oracle}).\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T04:14:12.334613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T04:14:12.334762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T04:14:12.334931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\looseness=-1\n5\t\\paragraph{Self-consistency and ensemble theory.}\n6\tSelf-consistency (SC) selects the most frequent answer across chain-of-thought traces \\citep{wang2023sc}. Extensions address free-form generation \\citep{chen2024usc}, confidence weighting \\citep{taubenfeld2025cisc}, diverse prompting with step-aware verification \\citep{li2023diverse}, program-based vote filtering \\citep{toh2024notallvotes}, and reasoning-aware filtering \\citep{wan2024rasc, kim2026reasc}. SC gains plateau early \\citep{loo2025reevaluating}, particularly in mathematical reasoning \\citep{byerly2026selfconsistency}. The Condorcet Jury Theorem \\citep{condorcet1785} guarantees majority-vote convergence under independent voting; \\citet{ladha1992correlated} show correlated voters reduce effective ensemble size. Our $K_\\text{eff}$ adapts Fleiss' $\\kappa$ from ensemble diversity theory \\citep{kuncheva2003measures, brown2005diversity} to quantify this compression (\\S\\ref{sec:pipeline}). \\citet{kim2025correlated} demonstrate correlated errors in LLM outputs; \\citet{kuai2026independent} propose cross-model independence auditing, complementary to our within-model process-$\\kappa$. Symbolic confirmation bias is distinct from CoT unfaithfulness \\citep{turpin2024language} and CoT-level confirmation bias \\citep{wan2025unveiling, jhaveri2026failing}: the latter concern whether reasoning reflects actual computation, while symbolic confirmation bias concerns whether self-extracted formal constraints mirror the model's answer distribution.\n7\t\n8\t\\looseness=-1\n9\t\\paragraph{Neuro-symbolic reasoning.}\n10\tWe distinguish three paradigms: \\emph{specification-generation} \\citep{pan2023logiclm, olausson2023linc, ye2024satlm} translates problems into formal specifications before answering; \\emph{program-generation} \\citep{gao2023pal, chen2023program, lyu2023faithful} produces executable code; both formalize \\emph{before} answer generation. \\emph{Trace-extract\n…[truncated 2452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T04:14:12.335094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper && echo \"=== Paragraph count ===\" && grep -c '\\\\paragraph' related_work.tex && echo \"=== SCB check ===\" && grep -n 'SCB' related_work.tex || echo \"No SCB found\" && echo \"=== Em-dash check ===\" && grep -n '—' related_work.tex || echo \"No em-dash found\" && echo \"=== En-dash check (non-range) ===\" && grep -n ' – ' related_work.tex || echo \"No en-dash found\" && echo \"=== Word count (approximate) ===\" && cat related_work.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//g' | wc -w && echo \"=== Citation keys in new file ===\" && grep -oP '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//; s/}//; s/ //g' | sort -u",
+              "description": "Verify paragraph count, no SCB, no em-dash, word count, and citation keys"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T04:14:12.335247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Paragraph count ===\n3\n=== SCB check ===\nNo SCB found\n=== Em-dash check ===\nNo em-dash found\n=== En-dash check (non-range) ===\nNo en-dash found\n=== Word count (approximate) ===\n354\n=== Citation keys in new file ===\namonkar2025realitycheck\nbrown2005diversity\nbyerly2026selfconsistency\nchan2026position\nchen2023program\nchen2024usc\nchen2025sets\ncobbe2021gsm8k\ncondorcet1785\ndhuliawala2023chainofverification\ndu2023improving\ngao2023pal\ngou2024critic\nguo2025deepseekr1\nhuang2024selfcorrect\njhaveri2026failing\nkim2025correlated\nkim2026reasc\nkuai2026independent\nkuncheva2003measures\nladha1992correlated\nli2023diverse\nli2025aristotle\nliang2023encouraging\nlifshitz2025mav\nlightman2024prm\nloo2025reevaluating\nluo2025logicagent\nlyu2023faithful\nmadaan2023selfrefine\nmiya2025eidoku\nolausson2023linc\npan2023logiclm\nqwen2024qwq\nryu2025clover\nsingh2026verge\nsnell2025scaling\ntaubenfeld2025cisc\ntoh2024notallvotes\nturpin2024language\nwan2024rasc\nwan2025unveiling\nwang2023sc\nwang2024mathshepherd\nwang2025fover\nweng2023selfverification\nxu2026dylos\nyao2023tree\nye2024satlm\nzhu2025vericot"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T04:14:12.335445+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n1. **3 \\paragraph segments** — confirmed\n2. **No \"SCB\"** — confirmed\n3. **All 50 citation keys preserved** — confirmed (matched against original)\n4. **Positioning merged into paragraph 2 end** — Proposition 1 d-separation argument + huang2024selfcorrect distinction included; BR/p-value numbers removed\n5. **Word count ~494 rendered** (354 text-only + ~140 from rendered citations) — within ≤550 budget\n6. **No em-dash** — confirmed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_step7_related_v4_20260523T041124"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-step7-related-v4.md"
+}

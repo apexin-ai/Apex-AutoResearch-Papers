@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-836_Q16",
+    "problem": "Anne is young. Bob is red. Bob is rough. Erin is green. Erin is kind. Gary is kind. Gary is round. If Anne is red and Anne is young then Anne is quiet. Round things are kind. If something is green and red then it is rough. If something is round then it is quiet. If something is young then it is round. Kind, red things are young. All red, round things are young. If something is round and quiet then it is green. All red, rough things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nYoung(Anne, True) ::: Anne is young.\nRed(Bob, True) ::: Bob is red.\nRough(Bob, True) ::: Bob is rough.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nKind(Gary, True) ::: Gary is kind.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nRed(Anne, True) && Young(Anne, True) >>> Quiet(Anne, True) ::: If Anne is red and Anne is young then Anne is quiet.\nRound($x, True) >>> Kind($x, True) ::: Round things are kind.\nGreen($x, True) && Red($x, True) >>> Rough($x, True) ::: If something is green and red then it is rough.\nRound($x, True) >>> Quiet($x, True) ::: If something is round then it is quiet.\nYoung($x, True) >>> Round($x, True) ::: If something is young then it is round.\nKind($x, True) && Red($x, True) >>> Young($x, True) ::: Kind, red things are young.\nRed($x, True) && Round($x, True) >>> Young($x, True) ::: All red, round things are young.\nRound($x, True) && Quiet($x, True) >>> Green($x, True) ::: If something is round and quiet then it is green.\nRed($x, True) && Rough($x, True) >>> Kind($x, True) ::: All red, rough things are kind.\n\nQuery:\nYoung(Gary, True) ::: Gary is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

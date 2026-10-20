@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1186afd405d3bf11dd00",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp019 final stats",
+  "task_key": "worker_analysis_exp019-final-stats_20260517T091335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp019-final-stats_20260517T091335_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "6a01b3594dd992cea3562fffbae00bc69a0dedce5386d5438f83b717dcd241e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-019 完整统计结果\n\n### 核心指标\n\n| 指标 | 值 |\n|---|---|\n| n | 200 |\n| SICA accuracy | **74.00%** (148/200) |\n| SC accuracy | 72.00% (144/200) |\n| Delta | **+2.00pp** |\n\n### 统计显著性\n\n| 检验 | 结果 |\n|---|---|\n| McNemar p-value | **0.4240** (不显著) |\n| Discordant pairs | 14 total: 9 SICA-wins, 5 SC-wins |\n| Bootstrap 95% CI | **[-1.50, +5.50]** (包含 0) |\n| Bootstrap P(delta≤0) | 0.1724 |\n\n### Pipeline 统计\n\n| 指标 | 值 |\n|---|---|\n| Multi-candidate rate | 7.0% (14/200) |\n| Constraints extracted (mean) | 19.9, unique after dedup: 6.2 |\n| Traces with constraints | 9.6/12 |\n| MaxSAT satisfied (mean) | 5.4, excluded: 0.9 |\n| MaxSAT solve time | mean 1.58ms, max 37.50ms |\n| Wall time | 50.4 min total, 15.1s/problem |\n\n### Flip 分析\n\n| 类别 | 数量 |\n|---|---|\n| Both correct | 139 |\n| Both wrong | 47 |\n| SICA only correct | 9 |\n| SC only correct | 5 |\n| Net flip | +4 |\n\n### 低置信度子集（SICA 优势集中区域）\n\n| SC margin | n | SICA | SC | Delta |\n|---|---|---|---|---|\n| ≤ 0.20 | 33 | 45.5% | 33.3% | **+12.1pp** |\n| ≤ 0.34 | 51 | 43.1% | 35.3% | **+7.8pp** |\n| ≤ 0.50 | 78 | 56.4% | 51.3% | **+5.1pp** |\n| Unanimous (=1.0) | 109 | 86.2% | 86.2% | 0.0pp |\n| Non-unanimous (<1) | 91 | 59.3% | 54.9% | **+4.4pp** |\n\n### 结论\n\n**结果未达统计显著**。McNemar p=0.424 远高于 0.05，Bootstrap CI [-1.50, +5.50] 包含 0。核心原因：discordant pairs 仅 14 对（7%），统计功效不足。\n\n但子集分析显示 SICA 的优势集中在 SC 低置信度区域：当 SC vote margin ≤ 0.20 时，SICA 领先 +12.1pp (33 题)。Unanimous 子集上两者完全一致（86.2%），说明 SICA 只在 SC 不确定时介入并改善结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp019-final-stats.md"
+}

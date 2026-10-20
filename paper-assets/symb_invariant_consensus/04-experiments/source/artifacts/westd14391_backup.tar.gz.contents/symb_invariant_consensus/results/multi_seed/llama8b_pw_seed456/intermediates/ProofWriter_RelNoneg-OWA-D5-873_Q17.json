@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-873_Q17",
+    "problem": "The bald eagle is green. The bald eagle likes the squirrel. The bald eagle likes the tiger. The bear is nice. The bear is round. The bear likes the bald eagle. The bear likes the tiger. The squirrel is young. The squirrel likes the bear. The squirrel needs the bald eagle. The squirrel sees the tiger. The tiger is cold. The tiger likes the bear. The tiger likes the squirrel. The tiger needs the bear. The tiger sees the bear. If something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger. If something needs the squirrel then it needs the tiger. If something is green then it needs the squirrel. If something needs the bear and it needs the bald eagle then the bear likes the bald eagle. If something likes the bald eagle then it is young. If something likes the bear and it sees the bald eagle then it needs the bear. Round things are green. If something sees the squirrel and the squirrel likes the bear then it is cold. If something needs the bear and the bear is green then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nLikes(BaldEagle, Tiger, True) ::: The bald eagle likes the tiger.\nNice(Bear, True) ::: The bear is nice.\nRound(Bear, True) ::: The bear is round.\nLikes(Bear, BaldEagle, True) ::: The bear likes the bald eagle.\nLikes(Bear, Tiger, True) ::: The bear likes the tiger.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nNeeds(Squirrel, BaldEagle, True) ::: The squirrel needs the bald eagle.\nSees(Squirrel, Tiger, True) ::: The squirrel sees the tiger.\nCold(Tiger, True) ::: The tiger is cold.\nLikes(Tiger, Bear, True) ::: The tiger likes the bear.\nLikes(Tiger, Squirrel, True) ::: The tiger likes the squirrel.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nSees(Tiger, Bear, True) ::: The tiger sees the bear.\n\nRules:\nNeeds($x, BaldEagle, True) && Likes(BaldEagle, Bear, True) >>> Needs(BaldEagle, Tiger, True) ::: If something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger.\nNeeds($x, Squirrel, True) >>> Needs($x, Tiger, True) ::: If something needs the squirrel then it needs the tiger.\nGreen($x, True) >>> Needs($x, Squirrel, True) ::: If something is green then it needs the squirrel.\nNeeds($x, Bear, True) && Needs($x, BaldEagle, True) >>> Likes(Bear, BaldEagle, True) ::: If something needs the bear and it needs the bald eagle then the bear likes the bald eagle.\nLikes($x, BaldEagle, True) >>> Young($x, True) ::: If something likes the bald eagle then it is young.\nLikes($x, Bear, True) && Sees($x, BaldEagle, True) >>> Needs($x, Bear, True) ::: If something likes the bear and it sees the bald eagle then it needs the bear.\nRound($x, True) >>> Green($x, True) ::: Round things are green.\nSees($x, Squirrel, True) && Likes(Squirrel, Bear, True) >>> Cold($x, True) ::: If something sees the squirrel and the squirrel likes the bear then it is cold.\nNeeds($x, Bear, True) && Green(Bear, True) >>> Round($x, True) ::: If something needs the bear and the bear is green then it is round.\n\nQuery:\nYoung(Tiger, False) ::: The tiger is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

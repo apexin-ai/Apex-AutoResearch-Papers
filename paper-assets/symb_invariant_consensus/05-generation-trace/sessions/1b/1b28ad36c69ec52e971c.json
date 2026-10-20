@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1b28ad36c69ec52e971c",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "eval oracle folio regen",
+  "task_key": "worker_eval_oracle-folio-regen_20260518T153028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_oracle-folio-regen_20260518T153028.log",
+    "occurrence": 1,
+    "bytes": 789948,
+    "sha256": "f23b8bff75cafa4ffeb55863bc5b24a80a719eb793af295d282417114bf4904f"
+  },
+  "statistics": {
+    "messages": 185,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 70,
+      "tool_result": 70,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "1b28ad36c69ec52e971c-part-0001.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "1b28ad36c69ec52e971c-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "1b28ad36c69ec52e971c-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-oracle-folio-regen.md"
+}

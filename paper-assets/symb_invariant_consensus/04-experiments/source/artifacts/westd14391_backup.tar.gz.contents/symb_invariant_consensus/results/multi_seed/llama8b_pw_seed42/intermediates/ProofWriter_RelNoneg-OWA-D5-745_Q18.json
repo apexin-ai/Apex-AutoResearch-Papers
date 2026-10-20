@@ -1,0 +1,991 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-745_Q18",
+    "problem": "The bear is round. The bear likes the cow. The bear visits the lion. The cow is big. The cow is rough. The lion needs the bear. The mouse likes the lion. If someone visits the lion then they are round. If someone needs the bear then they need the lion. If someone needs the lion then they visit the lion. If someone visits the lion and the lion is round then they like the lion. If someone is rough then they need the lion. If someone likes the lion and they need the lion then the lion visits the mouse. If someone is rough then they visit the lion. If someone likes the lion and the lion is big then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse needs the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRound(Bear, True) ::: The bear is round.\nLikes(Bear, Cow, True) ::: The bear likes the cow.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nBig(Cow, True) ::: The cow is big.\nRough(Cow, True) ::: The cow is rough.\nNeeds(Lion, Bear, True) ::: The lion needs the bear.\nLikes(Mouse, Lion, True) ::: The mouse likes the lion.\n\nRules:\nVisits($x, Lion, True) >>> Round($x, True) ::: If someone visits the lion then they are round.\nNeeds($x, Bear, True) >>> Needs($x, Lion, True) ::: If someone needs the bear then they need the lion.\nNeeds($x, Lion, True) >>> Visits($x, Lion, True) ::: If someone needs the lion then they visit the lion.\nVisits($x, Lion, True) && Round(Lion, True) >>> Likes($x, Lion, True) ::: If someone visits the lion and the lion is round then they like the lion.\nRough($x, True) >>> Needs($x, Lion, True) ::: If someone is rough then they need the lion.\nLikes($x, Lion, True) && Needs($x, Lion, True) >>> Visits(Lion, Mouse, True) ::: If someone likes the lion and they need the lion then the lion visits the mouse.\nRough($x, True) >>> Visits($x, Lion, True) ::: If someone is rough then they visit the lion.\nLikes($x, Lion, True) && Big(Lion, True) >>> Kind($x, True) ::: If someone likes the lion and the lion is big then they are kind.\n\nQuery:\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 138.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse needs the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. We know that \"The lion needs the bear.\"\n2. We also know that \"If someone needs the bear then they need the lion.\" This means that the bear needs the lion because the lion needs the bear.\n\nNow, let's try to apply this information to the mouse.\n\n3. We don't have any information directly stating that the mouse needs the bear or the lion. However, we do know that \"The mouse likes the lion.\" \n4. We also know that \"If someone likes the lion and they need the lion then the lion visits the mouse.\" This information does not directly tell us whether the mouse needs the lion.\n\nHowever, we can analyze another rule: \"If someone is rough then they need the lion.\" We also know that \"The cow is rough\" and \"The cow is big.\" \n5. We don't know whether the mouse is rough or not. However, we do know that \"If someone likes the lion and the lion is big then they are kind.\" This information does not directly tell us whether the mouse needs the lion.\n\n6. We also know that \"If someone visits the lion then they are round.\" We don't know whether the mouse visits the lion or not.\n\nConsidering the information provided and the rules, we don't have enough information to determine whether the statement \"The mouse needs the lion\" is true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse needs the lion\" is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\n1. The given information:\n   - The bear is round.\n   - The bear likes the cow.\n   - The bear visits the lion.\n   - The cow is big.\n   - The cow is rough.\n   - The lion needs the bear.\n   - The mouse likes the lion.\n\n2. The logical rules:\n   - If someone visits the lion then they are round.\n   - If someone needs the bear then they need the lion.\n   - If someone needs the lion then they visit the lion.\n   - If someone visits the lion and the lion is round then they like the lion.\n   - If someone is rough then they need the lion.\n   - If someone likes the lion and they need the lion then the lion visits the mouse.\n   - If someone is rough then they visit the lion.\n   - If someone likes the lion and the lion is big then they are kind.\n\nNow, let's analyze the statement \"The mouse needs the lion\" using the given information and logical rules.\n\nFrom the given information, we know that the mouse likes the lion.\n\nHowever, the logical rules do not provide any direct information about the mouse needing the lion.\n\nBut, from rule 2, we know that if someone needs the bear, then they need the lion. However, this rule does not directly apply to the mouse.\n\nFrom rule 5, we know that if someone is rough, then they need the lion. But, the mouse is not described as being rough.\n\nFrom rule 6, we know that if someone likes the lion and they need the lion, then the lion visits the mouse. However, this rule is about the lion's action, not about the mouse needing the lion.\n\nTherefore, based on the given information and logical rules, we cannot determine whether the mouse needs the lion. It is an unknown statement.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the mouse needs the lion, we need to analyze the given statements and their implications.\n\n1. If someone needs the bear then they need the lion. (This implies that needing the bear is a condition for needing the lion.)\n2. The lion needs the bear. (This means that the bear's need is a condition for the lion's need.)\n\nFrom the above two statements, we can infer that the lion needs the bear. However, this does not directly imply that the mouse needs the lion.\n\nWe have to consider another statement to connect the mouse to the lion's need:\n4. The mouse likes the lion. (This statement alone does not imply a need, but it's a starting point.)\n\nWe need to find a connection between the mouse liking the lion and the lion's need. One possible connection comes from the following statements:\n5. If someone likes the lion and the lion is round then they like the lion. (This is irrelevant to the problem.)\n6. If someone is rough then they need the lion. (This statement alone does not apply to the mouse.)\n7. If someone is rough then they visit the lion. (This statement alone does not apply to the mouse.)\n\nHowever, we can use the following statements to connect the mouse to the lion's need:\n8. If someone is rough then they need the lion. (This is still not applicable to the mouse, but we can use the fact that the cow is rough to connect it to the lion's need.)\n\nWe know that the cow is rough and big, and it likes the lion. This implies that the lion is big (from the fact that the lion is big, the mouse is kind).\n9. The cow is rough. (This is used to connect the cow to the lion's need.)\n\nSince the cow is rough, we can apply statement 8:\n8. If someone is rough then they need the lion. (Applying this statement to the cow, we can infer that the cow needs the lion.)\n\nHowever, the cow needs the lion because the lion is big, which is not directly related to the mouse.\n10. The lion is big. (This is a consequence of the cow liking the lion and the cow being big.)\n\nWe can use another statement to connect the mouse to the lion's need:\n11. The mouse likes the lion. (This is the only statement that directly connects the mouse to the lion.)\n\nHowever, we still need to find a connection between the mouse liking the lion and the lion's need.\nWe can use the fact that the bear visits the lion and the bear needs the lion (from statement 2) to connect the mouse to the lion's need.\n\nHowever, we don't have any information about the bear visiting the mouse or the lion visiting the mouse. \n12. If someone likes the lion and they need the lion then the lion visits the mouse. (This statement implies that the lion visits the mouse if the mouse likes the lion and needs the lion.)\n\nSince we don't know if the mouse needs the lion, we cannot apply this statement.\n\nHowever, we can use the following statement to connect the mouse to the lion's need:\n13. If someone needs the bear then they need the lion. (This implies that needing the bear is a condition for needing the lion.)\n\nWe can use the fact that the bear visits the lion and the bear needs the lion to connect the mouse to the lion's need.\n\nWe know that the mouse likes the lion, but we don't have any information about the mouse needing the lion.\nHowever, we can use the fact that the lion needs the bear to connect the mouse to the lion's need.\n\nWe can use the following statement to connect the mouse to the lion's need:\n14. The bear visits the lion. (This implies that the bear needs the lion.)\n\nSince the lion needs the bear, we can infer that someone who visits the lion needs the lion.\n\nHowever, we don't have any information about the mouse visiting the lion. \nWe can use the following statement to connect the mouse to the lion's need:\n15. If someone visits the lion then they are round. (This is irrelevant to the problem.)\n\nHowever, we can use the following statement to connect the mouse to the lion's need:\n16. If someone needs the lion then they visit the lion. (This statement implies that needing the lion is a condition for visiting the lion.)\n\nHowever, this statement does not apply to the mouse.\n\nHowever, we can use the fact that the bear visits the lion and the bear needs the lion to connect the mouse to the lion's need.\n\nSince we don't have any information about the mouse visiting the lion or the mouse needing the lion, we cannot determine whether the mouse needs the lion.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will start by breaking down the given statements into rules and then use these rules to determine if the statement \"The mouse needs the lion\" is true, false, or unknown.\n\n1. If someone visits the lion then they are round.\n2. If someone needs the bear then they need the lion.\n3. If someone needs the lion then they visit the lion.\n4. If someone visits the lion and the lion is round then they like the lion.\n5. If someone is rough then they need the lion.\n6. If someone likes the lion and they need the lion then the lion visits the mouse.\n7. If someone is rough then they visit the lion.\n8. If someone likes the lion and the lion is big then they are kind.\n\nNow, let's analyze the given statements:\n- The bear is round.\n- The bear likes the cow.\n- The bear visits the lion.\n- The cow is big.\n- The cow is rough.\n- The lion needs the bear.\n- The mouse likes the lion.\n\nFrom the rules and the given statements, we can infer the following:\n- The lion is round because the bear visits the lion (Rule 1).\n- The lion is big because the cow is big (no direct relation, but we know the lion needs the bear, and the cow is big).\n- The cow is rough (given).\n- The mouse likes the lion (given).\n- The lion needs the bear (given).\n- The lion is big (from the given statement that the cow is big and rule 8).\n\nNow, let's examine the rules related to the mouse:\n- Rule 1 does not directly apply to the mouse.\n- Rule 2 implies that if the mouse needs the bear, it needs the lion. However, we do not have enough information to determine this.\n- Rule 3 implies that if the mouse needs the lion, it visits the lion. However, we do not have enough information to determine this.\n- Rule 5 implies that if the mouse is rough, it needs the lion. However, we do not have enough information to determine if the mouse is rough.\n\nFrom the given statements, we do not have any direct information about the mouse's characteristics (round, rough, big, kind, etc.) or its behavior (visiting or needing the lion). Therefore, based on the given statements and rules, we cannot determine if the statement \"The mouse needs the lion\" is true or false. The answer is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse needs the lion\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. The bear is round.\n2. The bear likes the cow.\n3. The bear visits the lion.\n4. The cow is big.\n5. The cow is rough.\n6. The lion needs the bear.\n7. The mouse likes the lion.\n8. If someone visits the lion then they are round.\n9. If someone needs the bear then they need the lion.\n10. If someone needs the lion then they visit the lion.\n11. If someone visits the lion and the lion is round then they like the lion.\n12. If someone is rough then they need the lion.\n13. If someone likes the lion and they need the lion then the lion visits the mouse.\n14. If someone is rough then they visit the lion.\n15. If someone likes the lion and the lion is big then they are kind.\n\nWe need to find the implication of the statement \"The mouse needs the lion.\"\n\nFrom statement 7: The mouse likes the lion.\n\nFrom statement 12: If someone is rough then they need the lion. (This statement does not directly apply to the mouse, as it does not mention the mouse being rough.)\n\nFrom statement 9: If someone needs the bear then they need the lion. (We cannot directly apply this statement to the mouse, as it does not mention the mouse needing the bear.)\n\nFrom statement 10: If someone needs the lion then they visit the lion. (This statement does not directly apply to the mouse, as it does not mention the mouse needing the lion.)\n\nFrom statement 12: If someone is rough then they need the lion. (The mouse is not mentioned as being rough, so this statement does not directly apply to the mouse.)\n\nFrom statement 13: If someone likes the lion and they need the lion then the lion visits the mouse. (We know that the mouse likes the lion, but we cannot determine if the mouse needs the lion.)\n\nFrom the information given, we cannot directly conclude that the mouse needs the lion. However, we can analyze the situation based on the given statements.\n\nStatement 10 implies that someone who needs the lion visits the lion. We do not know if the mouse needs the lion, but we do know that the lion needs the bear (statement 6).\n\nStatement 6: The lion needs the bear.\n\nStatement 9: If someone needs the bear then they need the lion. (This implies that the bear needs the lion.)\n\nStatement 10: If someone needs the lion then they visit the lion. (This implies that the lion visits the lion.)\n\nHowever, there is no information about the mouse needing the bear, which is necessary to conclude that the mouse needs the lion.\n\nTherefore, the statement \"The mouse needs the lion\" is unknown based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the mouse needs the lion, we need to analyze the given statements and their logical implications.\n\n1. The bear is round.\n2. The bear likes the cow.\n3. The bear visits the lion.\n4. The cow is big.\n5. The cow is rough.\n6. The lion needs the bear.\n7. The mouse likes the lion.\n\nFrom the statements, we can derive the following logical implications:\n\n- Statement 1: The bear is round.\n- Statement 3: The bear visits the lion.\n- Statement 6: The lion needs the bear.\n\nStatement 8: If someone visits the lion then they are round. (We can apply this to the bear, but we cannot apply this to the mouse as the statement does not directly mention the mouse.)\n\nStatement 9: If someone needs the bear then they need the lion. (We can apply this to the mouse, but we need to determine if the mouse needs the bear first.)\n\nStatement 10: If someone needs the lion then they visit the lion. (We can apply this to the mouse if the mouse needs the lion.)\n\nStatement 11: If someone visits the lion and the lion is round then they like the lion. (We cannot apply this to the mouse as the statement does not directly mention the mouse.)\n\nStatement 12: If someone is rough then they need the lion. (We can apply this to the cow, but we cannot apply this to the mouse.)\n\nStatement 13: If someone likes the lion and they need the lion then the lion visits the mouse. (We cannot apply this to the mouse as the statement does not directly mention the mouse.)\n\nStatement 14: If someone is rough then they visit the lion. (We can apply this to the cow, but we cannot apply this to the mouse.)\n\nStatement 15: If someone likes the lion and the lion is big then they are kind. (We cannot apply this to the mouse as the statement does not directly mention the mouse.)\n\nNow, let's analyze the mouse's situation:\n\n- Statement 7: The mouse likes the lion.\n- Statement 12: If someone is rough then they need the lion. (This is not applicable to the mouse as the mouse is not rough.)\n- Statement 10: If someone needs the lion then they visit the lion. (We cannot determine if the mouse needs the lion or not, so we cannot conclude that the mouse visits the lion.)\n- Statement 9: If someone needs the bear then they need the lion. (We cannot determine if the mouse needs the bear or not, so we cannot conclude that the mouse needs the lion.)\n\nFrom the given statements, we cannot conclude that the mouse needs the lion. We do not have enough information to make a definitive conclusion.\n\nTherefore, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the mouse needs the lion, we need to analyze the given statements and the conditions provided.\n\n1. The given statements:\n   - The bear is round.\n   - The bear likes the cow.\n   - The bear visits the lion.\n   - The cow is big.\n   - The cow is rough.\n   - The lion needs the bear.\n   - The mouse likes the lion.\n   - If someone visits the lion then they are round.\n   - If someone needs the bear then they need the lion.\n   - If someone needs the lion then they visit the lion.\n   - If someone visits the lion and the lion is round then they like the lion.\n   - If someone is rough then they need the lion.\n   - If someone likes the lion and they need the lion then the lion visits the mouse.\n   - If someone is rough then they visit the lion.\n   - If someone likes the lion and the lion is big then they are kind.\n\n2. Analyzing the conditions:\n   - From the given statements, we know that the lion needs the bear.\n   - We can use this information to determine if the mouse needs the lion, as the condition states: If someone needs the bear then they need the lion.\n\n3. Applying the conditions:\n   - Since the lion needs the bear, the bear needs the lion is unknown.\n   - However, we can determine if the mouse needs the lion by analyzing the statement 'The mouse likes the lion.' There is no direct relationship between the mouse liking the lion and the mouse needing the lion.\n\n4. Based on the given conditions, there is no information that directly states if the mouse needs the lion or not. We can only conclude that the bear needs the lion, but we cannot make a conclusion about the mouse.\n\n5. Therefore, the statement \"The mouse needs the lion\" is unknown based on the provided information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse needs the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If someone needs the bear then they need the lion\" can be written as:\n   P(B) \u2192 P(L), where P(B) is \"the person needs the bear\" and P(L) is \"the person needs the lion\".\n\n2. The statement \"The lion needs the bear\" is given. \n   This implies that P(L) \u2192 P(B), which is the converse of the statement in step 1.\n\n3. Combining the statements in step 1 and step 2, we get P(B) \u2192 P(L) and P(L) \u2192 P(B). This means that P(B) and P(L) are equivalent.\n\n4. We need to find the relationship between the mouse and the lion, i.e., whether the mouse needs the lion.\n\nFrom the given information, we know that \"If someone is rough then they need the lion.\" \nThe statement \"The cow is big\" and \"The cow is rough\" is given, but we do not have any information about the mouse being rough.\n\nHowever, we do know that \"The mouse likes the lion\" is given. Now we need to see if we can find any relationship between the mouse being rough or liking the lion and needing the lion.\n\nSince we don't have any direct information about the mouse being rough or needing the lion, we need to look for any indirect information that can help us determine the relationship.\n\nFrom the given information, we know that \"If someone likes the lion and they need the lion then the lion visits the mouse.\" However, we do not have any information that the mouse needs the lion, which means we cannot conclude that the lion visits the mouse.\n\nFrom the given information, we know that \"If someone is rough then they visit the lion.\" Again, we do not have any information that the mouse is rough or needs the lion, which means we cannot conclude that the mouse visits the lion.\n\nHowever, we do know that \"If someone visits the lion and the lion is round then they like the lion.\" The lion is not round, but the bear is round. Since we do not have any information that the bear visits the lion and the lion is round, we cannot conclude that the bear likes the lion.\n\nHowever, we do know that \"If someone is rough then they need the lion.\" Since the cow is rough, it needs the lion. The statement \"If someone needs the lion then they need the bear\" is given. This implies that the cow needs the bear.\n\nSince the bear is round, it likes the cow. The statement \"If someone visits the lion then they are round\" is given. However, we do not have any information that the cow visits the lion. \n\nHowever, we do know that \"The cow is big.\" Since the cow is big and it needs the lion, we need to see if we can find any information that the lion is big or if the lion being big has any effect on the statement \"The mouse needs the lion.\"\n\nWe do know that \"If someone likes the lion and the lion is big then they are kind.\" Since the lion is not big, this statement does not provide any information about the mouse needing the lion.\n\nHowever, we do know that \"If someone likes the lion and they need the lion then the lion visits the mouse.\" Since the mouse likes the lion, we need to see if we can find any information that the mouse needs the lion.\n\nSince we do not have any direct information that the mouse needs the lion, we need to look for any indirect information that can help us determine the relationship.\n\nThe statement \"The mouse likes the lion\" is given. We also know that \"If someone is rough then they need the lion.\" However, we do not have any information that the mouse is rough.\n\nHowever, we do know that \"The cow is rough\" and \"The cow needs the lion.\" We also know that \"If someone needs the bear then they need the lion.\" Since the cow needs the bear, it needs the lion.\n\nSince the bear is round, it likes the cow. However, we do not have any information that the mouse is round or likes the lion.\n\nWe do know that \"If someone visits the lion and the lion is round then they like the lion.\" The lion is not round, but the bear is round. However, we do not have any information that the bear visits the lion.\n\nHowever, we do know that \"If someone is rough then they need the lion.\" Since the cow is rough, it needs the lion. We also know that \"If someone needs the lion then they need the bear.\" Since the cow needs the lion, it needs the bear.\n\nSince the bear is round, it likes the cow. However, we do not have any information that the mouse is rough or needs the lion.\n\nWe do know that \"The mouse likes the lion.\" We also know that \"If someone likes the lion and they need the lion then the lion visits the mouse.\" Since the mouse likes the lion, we need to see if we can find any information that the mouse needs the lion.\n\nHowever, we do not have any direct information that the mouse needs the lion. We do not have any information that the mouse is rough or likes the lion in a way that would imply that the mouse needs the lion.\n\nTherefore, we cannot conclude that the mouse needs the lion. \n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse needs the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following rules:\n   - If someone visits the lion then they are round.\n   - If someone needs the bear then they need the lion.\n   - If someone needs the lion then they visit the lion.\n   - If someone visits the lion and the lion is round then they like the lion.\n   - If someone is rough then they need the lion.\n   - If someone likes the lion and they need the lion then the lion visits the mouse.\n   - If someone is rough then they visit the lion.\n   - If someone likes the lion and the lion is big then they are kind.\n\n2. Now, we need to determine whether the mouse needs the lion. To do this, we can apply the rules one by one:\n   - The statement \"The mouse needs the lion\" can be rewritten as \"The mouse is rough\" (from rule 5).\n   - However, we don't have any information that directly states \"The mouse is rough.\" Therefore, we need to check if there's any other rule that can help us determine whether the mouse needs the lion.\n\n3. From rule 1, we know that if someone visits the lion then they are round. However, this doesn't tell us anything about the mouse needing the lion.\n   - From rule 2, we know that if someone needs the bear then they need the lion. But we don't have any information that directly states \"The mouse needs the bear.\"\n\n4. From rule 3, we know that if someone needs the lion then they visit the lion. This is a possibility, but it doesn't tell us whether the mouse needs the lion or not.\n   - From rule 4, we know that if someone visits the lion and the lion is round then they like the lion. Again, this doesn't tell us anything about the mouse needing the lion.\n\n5. From rule 6, we know that if someone likes the lion and they need the lion then the lion visits the mouse. However, this doesn't tell us whether the mouse needs the lion or not.\n   - From rule 7, we know that if someone is rough then they visit the lion. However, this doesn't tell us anything about the mouse needing the lion.\n\n6. From rule 8, we know that if someone likes the lion and the lion is big then they are kind. However, this doesn't tell us anything about the mouse needing the lion.\n\n7. After analyzing all the given rules, we can conclude that we don't have enough information to determine whether the mouse needs the lion or not. Therefore, the statement \"The mouse needs the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the mouse needs the lion, we need to analyze the given statements and their implications.\n\n1. The mouse likes the lion.\n2. If someone likes the lion and they need the lion then the lion visits the mouse.\nFrom the first statement, we can infer that the mouse likes the lion. However, we cannot directly determine if the mouse needs the lion.\n\nNow, let's analyze the second statement: \"If someone likes the lion and they need the lion then the lion visits the mouse.\" We can infer that the mouse needs the lion if the lion visits the mouse. But we cannot conclude this directly because we don't know if the lion visits the mouse.\n\nHowever, we can use another statement to infer the relationship between the mouse and the lion. \n\n3. If someone is rough then they need the lion.\n4. If someone needs the lion then they visit the lion.\n5. If someone visits the lion and the lion is round then they like the lion.\n6. If someone likes the lion and they need the lion then the lion visits the mouse.\nFrom the first statement, we know that the mouse likes the lion. However, we don't know if the mouse is rough or not.\n\nLet's analyze the statement \"If someone is rough then they need the lion\" and \"If someone needs the lion then they visit the lion\". We can infer that if the mouse is rough, then the mouse needs the lion. But we still don't know if the mouse is rough.\n\nHowever, there is another statement that can help us: \"If someone likes the lion and the lion is big then they are kind.\" \n\nSince we don't know if the mouse is big or not, and we don't know if the lion is big or not, we cannot determine if the mouse is kind or not.\n\nNow, let's analyze the statements again and see if we can find any connection between the mouse and the lion. \n\nWe already know that the mouse likes the lion. We also know that if someone needs the lion then they visit the lion. But we don't know if the mouse needs the lion.\n\nHowever, we can use another statement: \"If someone visits the lion then they are round.\" \n\nWe don't know if the mouse is round or not. But we do know that if the mouse is round, then the mouse likes the lion. And if the mouse likes the lion and the mouse needs the lion, then the lion visits the mouse.\n\nBut we still can't determine if the mouse needs the lion or not.\n\nNow, let's look at the last statement: \"The cow is big. The cow is rough.\" \n\nFrom the first statement, we can infer that the cow is big. From the second statement, we can infer that the cow is rough. But we can't determine if the mouse is big or rough.\n\nHowever, we can use another statement: \"If someone is rough then they need the lion.\" \n\nFrom the second statement, we know that the cow is rough. Therefore, we can infer that the cow needs the lion.\n\nNow, let's analyze the statement: \"If someone needs the bear then they need the lion.\" \n\nWe know that the bear likes the cow, and the cow needs the lion. Therefore, we can infer that the bear needs the lion.\n\nNow, let's analyze the statement: \"If someone needs the lion then they visit the lion.\" \n\nWe know that the bear needs the lion. Therefore, we can infer that the bear visits the lion.\n\nNow, let's analyze the statement: \"If someone visits the lion and the lion is round then they like the lion.\" \n\nWe know that the bear visits the lion. But we don't know if the lion is round or not.\n\nHowever, we can use another statement: \"The bear is round.\" \n\nFrom the statement, we can infer that the bear is round. But we still can't determine if the lion is round or not.\n\nHowever, we can use another statement: \"If someone visits the lion then they are round.\" \n\nFrom the statement, we can infer that the bear is round. But we still can't determine if the lion is round or not.\n\nHowever, we can use another statement: \"If someone needs the lion then they visit the lion.\" \n\nWe know that the bear needs the lion. Therefore, we can infer that the bear visits the lion.\n\nNow, let's analyze the statement: \"If someone visits the lion and the lion is round then they like the lion.\" \n\nWe know that the bear visits the lion. But we don't know if the lion is round or not.\n\nHowever, we can use another statement: \"If someone is rough then they need the lion.\" \n\nWe know that the cow is rough. Therefore, we can infer that the cow needs the lion.\n\nNow, let's analyze the statement: \"If someone needs the bear then they need the lion.\" \n\nWe know that the cow needs the lion. Therefore, we can infer that the cow needs the bear.\n\nNow, let's analyze the statement: \"If someone needs the bear then they visit the bear.\" \n\nWe don't know if the mouse needs the bear or not.\n\nHowever, we can use another statement: \"If someone needs the bear then they need the lion.\" \n\nWe know that the mouse likes the lion. But we still can't determine if the mouse needs the bear.\n\nNow, let's look at the statement: \"The mouse likes the lion.\" \n\nWe already know this.\n\nNow, let's look at the statement: \"The mouse is round.\" \n\nWe don't know if the mouse is round or not.\n\nHowever, we can use another statement: \"If someone visits the lion then they are round.\" \n\nWe don't know if the mouse visits the lion or not.\n\nNow, let's look at the statement: \"If someone likes the lion and the lion is round then they like the lion.\" \n\nWe already know that the mouse likes the lion. But we still can't determine if the mouse needs the lion.\n\nNow, let's look at the statement: \"If someone is rough then they need the lion.\" \n\nWe don't know if the mouse is rough or not.\n\nHowever, we can use another statement: \"If someone needs the lion then they visit the lion.\" \n\nWe still can't determine if the mouse needs the lion or not.\n\nNow, let's look at the statement: \"If someone needs the lion then they need the bear.\" \n\nWe know that the cow needs the bear. Therefore, we can infer that the cow needs the lion.\n\nNow, let's look at the statement: \"If someone needs the bear then they need the lion.\" \n\nWe know that the cow needs the lion. Therefore, we can infer that the cow needs the bear.\n\nNow, let's look at the statement: \"If someone needs the lion then they visit the lion.\" \n\nWe know that the bear needs the lion. Therefore, we can infer that the bear visits the lion.\n\nNow, let's look at the statement: \"If someone visits the lion then they are round.\" \n\nWe know that the bear visits the lion. Therefore, we can infer that the bear is round.\n\nHowever, we can use another statement: \"If someone likes the lion and they need the lion then the lion visits the mouse.\" \n\nWe know that the mouse likes the lion. But we still can't determine if the mouse needs the lion.\n\nHowever, we can use another statement: \"If someone is rough then they need the lion.\" \n\nWe don't know if the mouse is rough or not.\n\nHowever, we can use another statement: \"If someone needs the lion then they visit the lion.\" \n\nWe still can't determine if the mouse needs the lion or not.\n\nHowever, we can use another statement: \"If someone is rough then they visit the lion.\" \n\nWe don't know if the mouse is rough or not.\n\nNow, let's look at the statement: \"If someone likes the lion and the lion is big then they are kind.\" \n\nWe don't know if the mouse likes the lion or if the lion is big.\n\nHowever, we can use another statement: \"The bear is round. The bear likes the cow. The bear visits the lion. The cow is big. The cow is rough. The lion needs the bear. The mouse likes the lion.\" \n\nWe already know this.\n\nNow, let's look at the statement: \"The mouse needs the lion.\" \n\nWe still can't determine if the mouse needs the lion or not.\n\nSince we can't determine if the mouse needs the lion or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse needs the lion' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse likes the lion. \n   Given information: The mouse likes the lion.\n\n2. If someone likes the lion and they need the lion then the lion visits the mouse. \n   We don't have any information about the lion visiting the mouse. However, this rule doesn't tell us anything about the mouse needing the lion.\n\n3. If someone needs the bear then they need the lion. \n   We have no information about the mouse needing the bear.\n\n4. The bear visits the lion. \n   This information doesn't tell us anything about the mouse needing the lion.\n\n5. If someone visits the lion then they are round. \n   This information doesn't tell us anything about the mouse needing the lion.\n\n6. If someone needs the lion then they visit the lion. \n   This information doesn't tell us anything about the mouse needing the lion.\n\n7. If someone is rough then they need the lion. \n   The problem doesn't mention the mouse being rough.\n\n8. If someone is rough then they visit the lion. \n   The problem doesn't mention the mouse being rough.\n\n9. If someone likes the lion and the lion is big then they are kind.\n   This information doesn't tell us anything about the mouse needing the lion.\n\n10. The cow is big. \n    This information doesn't tell us anything about the mouse needing the lion.\n\n11. The cow is rough. \n    This information doesn't tell us anything about the mouse needing the lion.\n\n12. The lion needs the bear. \n    This information doesn't tell us anything about the mouse needing the lion.\n\n13. The bear likes the cow. \n    This information doesn't tell us anything about the mouse needing the lion.\n\nFrom the given information, we have no direct or indirect evidence that the mouse needs the lion. Therefore, the statement 'The mouse needs the lion' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the mouse needs the lion, we need to analyze the given statements and their implications.\n\n1. If someone needs the bear then they need the lion. (Statement 7)\n2. If someone needs the lion then they visit the lion. (Statement 8)\n\nWe are looking for a connection between the mouse and the lion. Since there is no direct statement about the mouse needing the bear, we'll look for an indirect connection.\n\nGiven statement 7, if the mouse needs the bear, then it implies the mouse needs the lion.\n\nHowever, to confirm if the mouse needs the lion, we should find out if the mouse visits the lion or not. \n\nWe know that the mouse likes the lion. (Statement 10)\n\nFrom statement 5, If someone visits the lion then they are round. But it doesn't tell us if the mouse visits the lion. \n\nHowever, we can see from the statements that there is no direct statement that tells us the mouse needs the lion. But there is also no statement that contradicts the possibility of the mouse needing the lion. The key statement here is the one that says \"If someone is rough then they need the lion.\" (Statement 12)\n\nThe statement about the mouse is that it likes the lion, which doesn't directly tell us if the mouse is rough or not. However, we do know that the cow is rough and likes the lion. (Statement 4 and Statement 1)\n\nSince the cow is rough, we can deduce from statement 12 that the cow needs the lion.\n\nBut from statement 7, we can deduce that the cow needs the bear.\n\nThen from statement 3, we can deduce that the bear visits the lion.\n\nNow we know that the bear visits the lion.\n\nGiven statement 1, the bear likes the cow.\n\nNow we need to see if the bear is rough. We know the bear is round. (Statement 1)\n\nThere is no statement that says the bear is rough or not, but we do know that the cow is rough. \n\nSince the bear likes the cow, we can't conclude that the bear is rough.\n\nHowever, we do know that if someone likes the lion and they need the lion then the lion visits the mouse. (Statement 11)\n\nGiven statement 10, we know that the mouse likes the lion.\n\nBut the statement 11 only tells us that if the mouse likes the lion then the lion visits the mouse, it doesn't tell us if the mouse needs the lion.\n\nGiven the above statements and their implications, we can't conclude whether the mouse needs the lion or not.\n\nTherefore, the statement \"The mouse needs the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_lion_bear, needs_mouse_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_mouse_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_cow_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_mouse_lion, round_mouse)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_bear_lion, round_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_lion_bear, needs_lion_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_mouse, visits_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_bear_lion, round_lion), likes_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_cow_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_lion_mouse), visits_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_cow, visits_cow_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_lion_mouse == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_bear, needs_X_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_lion, visits_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == Unknown",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(lion)",
+          "z3_formula": "Implies(visits_bear_lion, round_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_bear, needs_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_lion, visits_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_X_lion, round_lion), likes_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_X, needs_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, mouse)",
+          "z3_formula": "Implies(And(likes_X_lion, needs_X_lion), visits_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_X, visits_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_X_lion, big_lion), kind_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_bear_lion, round_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_bear_lion, needs_lion_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_bear, visits_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_cow_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_lion_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_cow, visits_cow_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_lion_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, lion) -> kind(X)",
+          "z3_formula": "Implies(And(big_cow, likes_cow_lion), kind_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_bear_lion, round_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_bear_lion, needs_lion_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_bear, visits_bear_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_bear_lion, round_lion), likes_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_cow_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_cow, visits_cow_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_bear_lion, round_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_lion_bear, needs_lion_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_mouse, visits_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_bear_lion, round_lion), likes_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_cow_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_lion_mouse), visits_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_cow, visits_cow_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_lion, round_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_mouse_bear, needs_mouse_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_mouse_lion, visits_mouse_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, round_lion), likes_mouse_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_mouse, needs_mouse_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_lion_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_mouse, visits_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> lion_visits(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), lion_visits_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_mouse, needs_mouse_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_visits(X)",
+          "z3_formula": "Implies(needs_mouse_lion, lion_visits_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_mouse_lion, round_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & round(lion) -> likes(X, lion)",
+          "z3_formula": "Implies(And(likes_mouse_lion, round_lion), likes_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bear)",
+          "z3_formula": "needs_cow_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, lion)",
+          "z3_formula": "needs_cow_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, needs_mouse_lion), visits_lion_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_mouse_bear, needs_mouse_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_lion_mouse, round_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_mouse_lion, visits_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_mouse, needs_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, lion)",
+          "z3_formula": "Implies(rough_mouse, visits_mouse_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & big(lion) -> kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_lion, big_lion), kind_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion, visits_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, lion)",
+          "z3_formula": "Implies(needs_lion, likes_mouse_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, lion)",
+          "z3_formula": "Implies(needs_lion, likes_lion_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_bear, needs_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion, visits_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & needs(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_mouse, needs_lion), visits_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, lion)",
+          "z3_formula": "Implies(rough_cow, needs_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_lion == Unknown",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 144,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 0,
+      "total_weight": 144,
+      "solve_time_ms": 1.2480206787586212
+    },
+    "timing": {
+      "trace_gen_s": 21.155,
+      "extraction_s": 29.962,
+      "dedup_s": 1.72,
+      "maxsat_s": 0.004,
+      "total_s": 52.842
+    }
+  }
+}

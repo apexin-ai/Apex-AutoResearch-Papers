@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-073b-qwen7b-logiqa200-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:28.317Z",
+    "updated_at": "2026-05-19T19:42:57.308Z",
+    "hypothesis": "Qwen2.5-7B LogiQA seed=456 第三组 seed replication（重跑）。exp-073 因 session crash 失败。exp-070 (seed=42) SC=68.5% Δ=+2.5pp, exp-071 (seed=123) SC=69% Δ=-0.5pp。seed=456 是 Goldilocks tie-breaker。",
+    "parent": "exp-070-qwen7b-logiqa200",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 456 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp073b_qwen7b_logiqa200_seed456/exp073b_results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 456,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct",
+      "eval_data": "logiqa_200.json"
+    },
+    "checkpoint_path": "results/exp073b_qwen7b_logiqa200_seed456/exp073b_results.json",
+    "log_path": "results/exp073b_qwen7b_logiqa200_seed456/",
+    "metrics": {
+      "sc_accuracy": 0.695,
+      "sica_accuracy": 0.715,
+      "delta": 0.02,
+      "n_samples": 200,
+      "k": 12,
+      "wall_time_s": 3517.3
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T19:42:57.308Z"
+  },
+  "timestamp": "2026-05-19T19:42:57.506010+00:00",
+  "trigger": "update_registry"
+}

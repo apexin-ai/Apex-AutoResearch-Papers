@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1169_Q1",
+    "problem": "Anne is green. Anne is rough. Anne is young. Dave is cold. Dave is nice. Dave is rough. Fiona is kind. Harry is green. Harry is kind. Harry is quiet. Harry is young. Kind, quiet things are green. If Dave is kind then Dave is quiet. All kind things are young. All rough, kind things are quiet. If Anne is cold and Anne is kind then Anne is green. If something is young then it is rough. If something is green and quiet then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nNice(Dave, True) ::: Dave is nice.\nRough(Dave, True) ::: Dave is rough.\nKind(Fiona, True) ::: Fiona is kind.\nGreen(Harry, True) ::: Harry is green.\nKind(Harry, True) ::: Harry is kind.\nQuiet(Harry, True) ::: Harry is quiet.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nKind($x, True) && Quiet($x, True) >>> Green($x, True) ::: Kind, quiet things are green.\nKind(Dave, True) >>> Quiet(Dave, True) ::: If Dave is kind then Dave is quiet.\nKind($x, True) >>> Young($x, True) ::: All kind things are young.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: All rough, kind things are quiet.\nCold(Anne, True) && Kind(Anne, True) >>> Green(Anne, True) ::: If Anne is cold and Anne is kind then Anne is green.\nYoung($x, True) >>> Rough($x, True) ::: If something is young then it is rough.\nGreen($x, True) && Quiet($x, True) >>> Cold($x, True) ::: If something is green and quiet then it is cold.\n\nQuery:\nRough(Dave, True) ::: Dave is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

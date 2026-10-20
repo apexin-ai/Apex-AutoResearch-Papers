@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-358_Q5",
+    "problem": "The bear eats the cow. The cat eats the bear. The cat eats the cow. The cat is kind. The cat sees the cow. The cat visits the mouse. The cow eats the bear. The cow is big. The cow sees the cat. The cow visits the mouse. The mouse eats the bear. The mouse eats the cat. The mouse is kind. The mouse sees the cat. The mouse visits the cat. The mouse visits the cow. If someone is cold then they visit the bear. If someone visits the cat and the cat eats the mouse then they eat the cow. If someone visits the mouse then the mouse sees the cow. If the cow eats the cat then the cat is big. If someone visits the bear then the bear visits the mouse. If someone sees the cow then they eat the mouse. If someone visits the mouse then they are cold. If someone eats the cat and they are cold then the cat visits the bear. If someone sees the bear and they are rough then they see the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse eats the cow.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nEats(Bear, Cow, True) ::: The bear eats the cow.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nEats(Cat, Cow, True) ::: The cat eats the cow.\nKind(Cat, True) ::: The cat is kind.\nSees(Cat, Cow, True) ::: The cat sees the cow.\nVisits(Cat, Mouse, True) ::: The cat visits the mouse.\nEats(Cow, Bear, True) ::: The cow eats the bear.\nBig(Cow, True) ::: The cow is big.\nSees(Cow, Cat, True) ::: The cow sees the cat.\nVisits(Cow, Mouse, True) ::: The cow visits the mouse.\nEats(Mouse, Bear, True) ::: The mouse eats the bear.\nEats(Mouse, Cat, True) ::: The mouse eats the cat.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, Cat, True) ::: The mouse sees the cat.\nVisits(Mouse, Cat, True) ::: The mouse visits the cat.\nVisits(Mouse, Cow, True) ::: The mouse visits the cow.\n\nRules:\nCold($x, True) >>> Visits($x, Bear, True) ::: If someone is cold then they visit the bear.\nVisits($x, Cat, True) && Eats(Cat, Mouse, True) >>> Eats($x, Cow, True) ::: If someone visits the cat and the cat eats the mouse then they eat the cow.\nVisits($x, Mouse, True) >>> Sees(Mouse, Cow, True) ::: If someone visits the mouse then the mouse sees the cow.\nEats(Cow, Cat, True) >>> Big(Cat, True) ::: If the cow eats the cat then the cat is big.\nVisits($x, Bear, True) >>> Visits(Bear, Mouse, True) ::: If someone visits the bear then the bear visits the mouse.\nSees($x, Cow, True) >>> Eats($x, Mouse, True) ::: If someone sees the cow then they eat the mouse.\nVisits($x, Mouse, True) >>> Cold($x, True) ::: If someone visits the mouse then they are cold.\nEats($x, Cat, True) && Cold($x, True) >>> Visits(Cat, Bear, True) ::: If someone eats the cat and they are cold then the cat visits the bear.\nSees($x, Bear, True) && Rough($x, True) >>> Sees($x, Cow, True) ::: If someone sees the bear and they are rough then they see the cow.\n\nQuery:\nEats(Mouse, Cow, True) ::: The mouse eats the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

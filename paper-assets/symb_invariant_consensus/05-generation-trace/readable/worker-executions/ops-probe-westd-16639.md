@@ -1,0 +1,2450 @@
+# ops probe westd 16639
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_ops_probe-westd-16639_20260525T204035.log`
+- **Structured JSON:** [`3a632c6e4b1f063779c2.json`](../../sessions/3a/3a632c6e4b1f063779c2.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2f736ca4-245b-4a41-83cf-82fbb529c650",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779759000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0d4d5cbc-35da-4dc1-9393-0f4abae453db",
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to connect to the westd-16639 server using ssh_read_only and run a series of commands to collect information about the project data. Let me load the ssh_read_only tool schema first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "1644a47b-998d-4a0e-9947-a8813bff0600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2KsD5sKukWue5qz8RP35W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12416,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12416
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016CXYrkprB3RWBMG8c2RZoE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "f9850d65-29d4-49b1-ac86-2b4e25a98fb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2KsD5sKukWue5qz8RP35W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12416,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12416
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T20:40:49.719Z_
+
+<details><summary>↩ Tool result · `toolu_016CXYrkprB3RWBMG8c2RZoE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "e1dfccd7-1845-4588-be93-54088d351a39",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only tool blocks shell metacharacters like ;, &&, |, >, $(). So I can't run all commands in one shot. I need to run them separately. Let me break them into individual commands.
+
+Actually, let me re-read: "Shell metacharacters (;, &&, |, >, $(...)) are blocked." So I can't use pipes or chaining. I'll need to run each command individually.
+
+Let me run them in parallel where possible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "420cb40a-aeff-4f91-b55d-39872b5eba18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+逐条执行探测命令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "e995fe3d-b86f-4d50-aafa-c939ec8b2e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PRqKdvpBZo32uEjedhYTqi`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "df -h / /root/autodl-tmp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "2ea2d07b-3828-42c3-9c19-37399a2a5003",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CyzVAh9aXBX5GQCd2WCsFz`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "0bb7877c-16ec-4429-bdb4-fc4521e1160e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T20:41:04.713Z_
+
+<details><summary>↩ Tool result · `toolu_01PRqKdvpBZo32uEjedhYTqi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   12G   19G  40% /\\n/dev/md0        350G  230G  121G  66% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "a0b702d8-410d-47f3-97f0-db30018fcff9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G   12G   19G  40% /\\\\n/dev/md0        350G  230G  121G  66% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   12G   19G  40% /\\n/dev/md0        350G  230G  121G  66% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NYdhouUPbrYWRkQwYqMbWS`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/autodl-tmp/.hf_cache"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "1c126730-3830-4ed8-be52-0a1056e04189",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BiMpsRhhjAbPg5XFwURk26`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "7d54181a-3da3-4346-9643-131386b95aff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgxZ7kC44idVAME7UAFFei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T20:41:05.298Z_
+
+<details><summary>↩ Tool result · `toolu_01CyzVAh9aXBX5GQCd2WCsFz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.1G\\t/root/symb_invariant_consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "3e2dd0f2-5b5d-40ff-9844-4a32b9b89759",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.1G\\\\t/root/symb_invariant_consensus\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.1G\\t/root/symb_invariant_consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T20:41:05.840Z_
+
+<details><summary>↩ Tool result · `toolu_01NYdhouUPbrYWRkQwYqMbWS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3G\\t/root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "bee74be1-57b3-41ad-b9f4-d656ad3cd150",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3G\\\\t/root/autodl-tmp/.hf_cache\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3G\\t/root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T20:41:06.367Z_
+
+<details><summary>↩ Tool result · `toolu_01BiMpsRhhjAbPg5XFwURk26`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1092\\ndrwxr-xr-x 18 root root  4096 May 24 19:27 .\\ndrwx------  1 root root  4096 May 20 19:12 ..\\ndrwxr-xr-x  2 root root  4096 May 22 11:28 __pycache__\\n-rw-r--r--  1 root root  1559 May 21 13:31 _fix_tiebreaking.py\\n-rw-r--r--  1 root root  1400 May 20 16:34 aggregate_cegis.py\\n-rw-r--r--  1 root root  7924 May 22 16:14 alpha_ablation_analysis.py\\ndrwxr-xr-x  2 root root    10 May 18 15:16 analysis\\n-rw-r--r--  1 root root  9885 May 20 15:46 analysis_ascii_perturbation.py\\n-rw-r--r--  1 root root 14920 May 20 16:03 analysis_cegis_sica.py\\n-rw-r--r--  1 root root 16855 May 19 00:10 analysis_constraint_ablation_folio204.py\\n-rw-r--r--  1 root root 18512 May 19 03:52 analysis_constraint_precision.py\\n-rw-r--r--  1 root root  6864 May 19 00:08 analysis_k_ablation_folio204.py\\n-rw-r--r--  1 root root  8190 May 19 09:08 analyze_seeds.py\\ndrwxr-xr-x  2 root root  4096 May 23 03:24 artifacts\\n-rw-r--r--  1 root root  7022 May 24 02:45 audit_tiebreaking_multiseed.py\\n-rwxr-xr-x  1 root root   368 May 19 00:55 auto_run_analysis.sh\\ndrwxr-xr-x  2 root root   143 May 19 22:24 backup_legacy_20260519\\n-rw-r--r--  1 root root 21860 May 19 02:23 backward_verification.py\\ndrwxr-xr-x  3 root root    87 May 19 12:38 baselines\\ndrwxr-xr-x  2 root root    48 May 23 01:03 checkpoints\\n-rw-r--r--  1 root root  4759 May 22 09:32 cil_bootstrap_loo.py\\n-rw-r--r--  1 root root 19069 May 23 09:09 compute_cil_q5_q6.py\\n-rw-r--r--  1 root root 12545 May 23 09:12 compute_cil_v2.py\\n-rw-r--r--  1 root root  3756 May 19 11:58 compute_fleiss_kappa.py\\n-rw-r--r--  1 root root  7660 May 21 22:35 compute_gpt4o_br_kappa.py\\n-rw-r--r--  1 root root  6460 May 20 19:55 compute_process_kappa_multi.py\\n-rw-r--r--  1 root root  8565 May 21 23:03 compute_r1_distill_br_kappa.py\\n-rw-r--r--  1 root root 13532 May 19 03:02 cross_trace_unsat.py\\n-rw-r--r--  1 root root  7311 May 22 23:14 d061_recompute_exp091_092.py\\ndrwxr-xr-x  2 root root  4096 May 23 01:31 data\\n-rw-r--r--  1 root root  5618 May 19 02:34 diff_scorers.py\\n-rw-r--r--  1 root root 13263 May 21 13:31 dir_k_nli_qwen3_pw600.py\\n-rw-r--r--  1 root root  8323 May 20 23:32 direction_b_weighted_maxsat.py\\n-rw-r--r--  1 root root  8324 May 20 23:34 direction_b_weighted_maxsat_full.py\\n-rw-r--r--  1 root root 11400 May 20 18:09 direction_g_decoupling.py\\n-rw-r--r--  1 root root 15344 May 20 17:12 direction_h_adversarial.py\\n-rw-r--r--  1 root root 25144 May 20 17:11 direction_j_bootstrap.py\\n-rw-r--r--  1 root root 16122 May 20 18:16 direction_k_minority_report.py\\n-rw-r--r--  1 root root 24106 May 20 19:00 direction_q_premise_mutation.py\\ndrwxr-xr-x  3 root root    27 May 23 07:17 docs\\n-rw-r--r--  1 root root 25326 May 22 02:13 exp_d126_crossmodel_sica.py\\n-rw-r--r--  1 root root 25342 May 22 02:13 exp_d126_crossmodel_sica.py.bak\\n-rw-r--r--  1 root root 14370 May 21 16:46 exp_d134_baf_decoupled.py\\ndrwxr-xr-x  4 root root    82 May 19 15:41 experiments\\n-rw-r--r--  1 root root  3663 May 19 00:13 extract_constraints.py\\n-rw-r--r--  1 root root  5033 May 19 00:17 extract_constraints_parallel.py\\n-rw-r--r--  1 root root  5606 May 19 00:19 extract_fast.py\\n-rw-r--r--  1 root root  4805 May 20 14:38 extract_llama_constraints.py\\ndrwxr-xr-x  2 root root  4096 May 19 13:54 figures\\n-rw-r--r--  1 root root  4377 May 24 19:27 fix_qwen3_tiebreaking.py\\n-rwxr-xr-x  1 root root  1338 May 19 05:14 launch_exp050.sh\\ndrwxr-xr-x  2 root root  4096 May 22 03:53 logs\\n-rw-r--r--  1 root root  5572 May 19 14:26 mcnemar_recompute.py\\ndrwxr-xr-x  2 root root    10 May 23 01:22 models\\n-rw-r--r--  1 root root 15634 May 19 02:14 premise_formalization.py\\n-rw-r--r--  1 root root  4216 May 18 15:55 prepare_data.py\\n-rw-r--r--  1 root root  1382 May 20 18:37 prepare_logiqa_30.py\\n-rw-r--r--  1 root root  2120 May 18 15:23 prepare_proofwriter.py\\n-rw-r--r--  1 root root  1142 May 20 18:37 prepare_proofwriter_30.py\\n-rw-r--r--  1 root root  4658 May 21 19:51 r11_sbert_analysis.py\\n-rw-r--r--  1 root root  5290 May 21 19:51 r11_sbert_process_kappa.json\\n-rw-r--r--  1 root root  5394 May 21 13:24 recompute_alpha_16639.py\\n-rw-r--r--  1 root root  4777 May 24 02:04 recompute_alphabetical.py\\n-rw-r--r--  1 root root  3749 May 22 20:57 reeval_d064_seeds.py\\n-rw-r--r--  1 root root  9583 May 21 23:58 reextract_bpe_fix.py\\n-rw-r--r--  1 root root  9248 May 21 23:58 reextract_bpe_fix.py.bak\\n-rw-r--r--  1 root root  4705 May 19 00:37 reextract_failed.py\\n-rw-r--r--  1 root root  7339 May 22 02:15 reextract_qwen3_fixed.py\\n-rw-r--r--  1 root root  5133 May 19 00:39 reextract_v2.py\\n-rw-r--r--  1 root root  5951 May 19 00:44 reextract_v3.py\\ndrwxr-xr-x 74 root root  8192 May 24 19:27 results\\n-rw-r--r--  1 root root  9449 May 19 00:22 run_ablation_analysis.py\\n-rwxr-xr-x  1 root root   673 May 19 00:22 run_after_extraction.sh\\n-rw-r--r--  1 root root  7031 May 24 03:52 run_alpha_endpoint_ablation.py\\n-rw-r--r--  1 root root  6452 May 18 19:36 run_case_study.py\\n-rw-r--r--  1 root root  7225 May 19 03:02 run_consistency_filtering.py\\n-rw-r--r--  1 root root 25044 May 20 05:19 run_contrastive.py\\n-rw-r--r--  1 root root  9071 May 18 22:13 run_contrastive_folio.py\\n-rw-r--r--  1 root root 12436 May 20 18:38 run_cross_dataset_replication.py\\n-rw-r--r--  1 root root 23374 May 20 02:23 run_debate.py\\n-rwxr-xr-x  1 root root  1299 May 19 04:34 run_exp028b.sh\\n-rwxr-xr-x  1 root root  1815 May 19 05:54 run_exp049b.sh\\n-rwxr-xr-x  1 root root  1456 May 19 05:38 run_exp050b.sh\\n-rwxr-xr-x  1 root root   814 May 19 05:40 run_exp050b_exponly.sh\\n-rw-r--r--  1 root root 16307 May 19 16:49 run_full_mvp.py\\n-rw-r--r--  1 root root 12866 May 18 16:08 run_full_mvp.py.bak\\n-rw-r--r--  1 root root 16231 May 19 16:49 run_full_mvp.py.bak2\\n-rw-r--r--  1 root root 22959 May 20 03:02 run_icg.py\\n-rw-r--r--  1 root root 17686 May 19 02:14 run_icl_oracle.py\\n-rw-r--r--  1 root root 21525 May 20 02:17 run_kappa_generalization.py\\n-rw-r--r--  1 root root  9903 May 19 01:24 run_logiqa.py\\n-rw-r--r--  1 root root 17776 May 19 09:51 run_multi_temp.py\\n-rwxr-xr-x  1 root root   643 May 23 04:05 run_multiseed_llama_pw.sh\\n-rwxr-xr-x  1 root root   639 May 22 11:31 run_multiseed_mistral_pw.sh\\n-rw-r--r--  1 root root  6864 May 18 15:32 run_mvp.py\\n-rwxr-xr-x  1 root root   390 May 20 15:47 run_wild2_ascii.sh\\n-rw-r--r--  1 root root 10509 May 19 03:02 run_z3_feedback_folio.py\\n-rw-r--r--  1 root root  8763 May 19 13:58 sc_tiebreak_revalidation.py\\n-rw-r--r--  1 root root 10283 May 21 23:27 score_r1_distill_crossmodel.py\\ndrwxr-xr-x  3 root root  8192 May 25 08:08 scripts\\n-rw-r--r--  1 root root  8971 May 24 05:39 sf7_constraint_yield_cv.py\\ndrwxr-xr-x  3 root root  4096 May 19 14:40 sica\\ndrwxr-xr-x  3 root root    81 May 18 20:10 utils\\n-rw-r--r--  1 root root  4964 May 24 02:45 verify_multiseed_tiebreaking.py\\n-rw-r--r--  1 root root  3827 May 24 02:46 verify_sica_tiebreaking.py\\n-rw-r--r--  1 root root 26441 May 23 18:34 verify_tables.py\\n-rw-r--r--  1 root root 10065 May 20 15:35 wild6_combined.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "ad39d666-bb46-49f3-bc19-6ccd7feb4d83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1092\\\\ndrwxr-xr-x 18 root root  4096 May 24 19:27 .\\\\ndrwx------  1 root root  4096 May 20 19:12 ..\\\\ndrwxr-xr-x  2 root root  4096 May 22 11:28 __pycache__\\\\n-rw-r--r--  1 root root  1559 May 21 13:31 _fix_tiebreaking.py\\\\n-rw-r--r--  1 root root  1400 May 20 16:34 aggregate_cegis.py\\\\n-rw-r--r--  1 root root  7924 May 22 16:14 alpha_ablation_analysis.py\\\\ndrwxr-xr-x  2 root root    10 May 18 15:16 analysis\\\\n-rw-r--r--  1 root root  9885 May 20 15:46 analysis_ascii_perturbation.py\\\\n-rw-r--r--  1 root root 14920 May 20 16:03 analysis_cegis_sica.py\\\\n-rw-r--r--  1 root root 16855 May 19 00:10 analysis_constraint_ablation_folio204.py\\\\n-rw-r--r--  1 root root 18512 May 19 03:52 analysis_constraint_precision.py\\\\n-rw-r--r--  1 root root  6864 May 19 00:08 analysis_k_ablation_folio204.py\\\\n-rw-r--r--  1 root root  8190 May 19 09:08 analyze_seeds.py\\\\ndrwxr-xr-x  2 root root  4096 May 23 03:24 artifacts\\\\n-rw-r--r--  1 root root  7022 May 24 02:45 audit_tiebreaking_multiseed.py\\\\n-rwxr-xr-x  1 root root   368 May 19 00:55 auto_run_analysis.sh\\\\ndrwxr-xr-x  2 root root   143 May 19 22:24 backup_legacy_20260519\\\\n-rw-r--r--  1 root root 21860 May 19 02:23 backward_verification.py\\\\ndrwxr-xr-x  3 root root    87 May 19 12:38 baselines\\\\ndrwxr-xr-x  2 root root    48 May 23 01:03 checkpoints\\\\n-rw-r--r--  1 root root  4759 May 22 09:32 cil_bootstrap_loo.py\\\\n-rw-r--r--  1 root root 19069 May 23 09:09 compute_cil_q5_q6.py\\\\n-rw-r--r--  1 root root 12545 May 23 09:12 compute_cil_v2.py\\\\n-rw-r--r--  1 root root  3756 May 19 11:58 compute_fleiss_kappa.py\\\\n-rw-r--r--  1 root root  7660 May 21 22:35 compute_gpt4o_br_kappa.py\\\\n-rw-r--r--  1 root root  6460 May 20 19:55 compute_process_kappa_multi.py\\\\n-rw-r--r--  1 root root  8565 May 21 23:03 compute_r1_distill_br_kappa.py\\\\n-rw-r--r--  1 root root 13532 May 19 03:02 cross_trace_unsat.py\\\\n-rw-r--r--  1 root root  7311 May 22 23:14 d061_recompute_exp091_092.py\\\\ndrwxr-xr-x  2 root root  4096 May 23 01:31 data\\\\n-rw-r--r--  1 root root  5618 May 19 02:34 diff_scorers.py\\\\n-rw-r--r--  1 root root 13263 May 21 13:31 dir_k_nli_qwen3_pw600.py\\\\n-rw-r--r--  1 root root  8323 May 20 23:32 direction_b_weighted_maxsat.py\\\\n-rw-r--r--  1 root root  8324 May 20 23:34 direction_b_weighted_maxsat_full.py\\\\n-rw-r--r--  1 root root 11400 May 20 18:09 direction_g_decoupling.py\\\\n-rw-r--r--  1 root root 15344 May 20 17:12 direction_h_adversarial.py\\\\n-rw-r--r--  1 root root 25144 May 20 17:11 direction_j_bootstrap.py\\\\n-rw-r--r--  1 root root 16122 May 20 18:16 direction_k_minority_report.py\\\\n-rw-r--r--  1 root root 24106 May 20 19:00 direction_q_premise_mutation.py\\\\ndrwxr-xr-x  3 root root    27 May 23 07:17 docs\\\\n-rw-r--r--  1 root root 25326 May 22 02:13 exp_d126_crossmodel_sica.py\\\\n-rw-r--r--  1 root root 25342 May 22 02:13 exp_d126_crossmodel_sica.py.bak\\\\n-rw-r--r--  1 root root 14370 May 21 16:46 exp_d134_baf_decoupled.py\\\\ndrwxr-xr-x  4 root root    82 May 19 15:41 experiments\\\\n-rw-r--r--  1 root root  3663 May 19 00:13 extract_constraints.py\\\\n-rw-r--r--  1 root root  5033 May 19 00:17 extract_constraints_parallel.py\\\\n-rw-r--r--  1 root root  5606 May 19 00:19 extract_fast.py\\\\n-rw-r--r--  1 root root  4805 May 20 14:38 extract_llama_constraints.py\\\\ndrwxr-xr-x  2 root root  4096 May 19 13:54 figures\\\\n-rw-r--r--  1 root root  4377 May 24 19:27 fix_qwen3_tiebreaking.py\\\\n-rwxr-xr-x  1 root root  1338 May 19 05:14 launch_exp050.sh\\\\ndrwxr-xr-x  2 root root  4096 May 22 03:53 logs\\\\n-rw-r--r--  1 root root  5572 May 19 14:26 mcnemar_recompute.py\\\\ndrwxr-xr-x  2 root root    10 May 23 01:22 models\\\\n-rw-r--r--  1 root root 15634 May 19 02:14 premise_formalization.py\\\\n-rw-r--r--  1 root root  4216 May 18 15:55 prepare_data.py\\\\n-rw-r--r--  1 root root  1382 May 20 18:37 prepare_logiqa_30.py\\\\n-rw-r--r--  1 root root  2120 May 18 15:23 prepare_proofwriter.py\\\\n-rw-r--r--  1 root root  1142 May 20 18:37 prepare_proofwriter_30.py\\\\n-rw-r--r--  1 root root  4658 May 21 19:51 r11_sbert_analysis.py\\\\n-rw-r--r--  1 root root  5290 May 21 19:51 r11_sbert_process_kappa.json\\\\n-rw-r--r--  1 root root  5394 May 21 13:24 recompute_alpha_16639.py\\\\n-rw-r--r--  1 root root  4777 May 24 02:04 recompute_alphabetical.py\\\\n-rw-r--r--  1 root root  3749 May 22 20:57 reeval_d064_seeds.py\\\\n-rw-r--r--  1 root root  9583 May 21 23:58 reextract_bpe_fix.py\\\\n-rw-r--r--  1 root root  9248 May 21 23:58 reextract_bpe_fix.py.bak\\\\n-rw-r--r--  1 root root  4705 May 19 00:37 reextract_failed.py\\\\n-rw-r--r--  1 root root  7339 May 22 02:15 reextract_qwen3_fixed.py\\\\n-rw-r--r--  1 root root  5133 May 19 00:39 reextract_v2.py\\\\n-rw-r--r--  1 root root  5951 May 19 00:44 reextract_v3.py\\\\ndrwxr-xr-x 74 root root  8192 May 24 19:27 results\\\\n-rw-r--r--  1 root root  9449 May 19 00:22 run_ablation_analysis.py\\\\n-rwxr-xr-x  1 root root   673 May 19 00:22 run_after_extraction.sh\\\\n-rw-r--r--  1 root root  7031 May 24 03:52 run_alpha_endpoint_ablation.py\\\\n-rw-r--r--  1 root root  6452 May 18 19:36 run_case_study.py\\\\n-rw-r--r--  1 root root  7225 May 19 03:02 run_consistency_filtering.py\\\\n-rw-r--r--  1 root root 25044 May 20 05:19 run_contrastive.py\\\\n-rw-r--r--  1 root root  9071 May 18 22:13 run_contrastive_folio.py\\\\n-rw-r--r--  1 root root 12436 May 20 18:38 run_cross_dataset_replication.py\\\\n-rw-r--r--  1 root root 23374 May 20 02:23 run_debate.py\\\\n-rwxr-xr-x  1 root root  1299 May 19 04:34 run_exp028b.sh\\\\n-rwxr-xr-x  1 root root  1815 May 19 05:54 run_exp049b.sh\\\\n-rwxr-xr-x  1 root root  1456 May 19 05:38 run_exp050b.sh\\\\n-rwxr-xr-x  1 root root   814 May 19 05:40 run_exp050b_exponly.sh\\\\n-rw-r--r--  1 root root 16307 May 19 16:49 run_full_mvp.py\\\\n-rw-r--r--  1 root root 12866 May 18 16:08 run_full_mvp.py.bak\\\\n-rw-r--r--  1 root root 16231 May 19 16:49 run_full_mvp.py.bak2\\\\n-rw-r--r--  1 root root 22959 May 20 03:02 run_icg.py\\\\n-rw-r--r--  1 root root 17686 May 19 02:14 run_icl_oracle.py\\\\n-rw-r--r--  1 root root 21525 May 20 02:17 run_kappa_generalization.py\\\\n-rw-r--r--  1 root root  9903 May 19 01:24 run_logiqa.py\\\\n-rw-r--r--  1 root root 17776 May 19 09:51 run_multi_temp.py\\\\n-rwxr-xr-x  1 root root   643 May 23 04:05 run_multiseed_llama_pw.sh\\\\n-rwxr-xr-x  1 root root   639 May 22 11:31 run_multiseed_mistral_pw.sh\\\\n-rw-r--r--  1 root root  6864 May 18 15:32 run_mvp.py\\\\n-rwxr-xr-x  1 root root   390 May 20 15:47 run_wild2_ascii.sh\\\\n-rw-r--r--  1 root root 10509 May 19 03:02 run_z3_feedback_folio.py\\\\n-rw-r--r--  1 root root  8763 May 19 13:58 sc_tiebreak_revalidation.py\\\\n-rw-r--r--  1 root root 10283 May 21 23:27 score_r1_distill_crossmodel.py\\\\ndrwxr-xr-x  3 root root  8192 May 25 08:08 scripts\\\\n-rw-r--r--  1 root root  8971 May 24 05:39 sf7_constraint_yield_cv.py\\\\ndrwxr-xr-x  3 root root  4096 May 19 14:40 sica\\\\ndrwxr-xr-x  3 root root    81 May 18 20:10 utils\\\\n-rw-r--r--  1 root root  4964 May 24 02:45 verify_multiseed_tiebreaking.py\\\\n-rw-r--r--  1 root root  3827 May 24 02:46 verify_sica_tiebreaking.py\\\\n-rw-r--r--  1 root root 26441 May 23 18:34 verify_tables.py\\\\n-rw-r--r--  1 root root 10065 May 20 15:35 wild6_combined.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1092\\ndrwxr-xr-x 18 root root  4096 May 24 19:27 .\\ndrwx------  1 root root  4096 May 20 19:12 ..\\ndrwxr-xr-x  2 root root  4096 May 22 11:28 __pycache__\\n-rw-r--r--  1 root root  1559 May 21 13:31 _fix_tiebreaking.py\\n-rw-r--r--  1 root root  1400 May 20 16:34 aggregate_cegis.py\\n-rw-r--r--  1 root root  7924 May 22 16:14 alpha_ablation_analysis.py\\ndrwxr-xr-x  2 root root    10 May 18 15:16 analysis\\n-rw-r--r--  1 root root  9885 May 20 15:46 analysis_ascii_perturbation.py\\n-rw-r--r--  1 root root 14920 May 20 16:03 analysis_cegis_sica.py\\n-rw-r--r--  1 root root 16855 May 19 00:10 analysis_constraint_ablation_folio204.py\\n-rw-r--r--  1 root root 18512 May 19 03:52 analysis_constraint_precision.py\\n-rw-r--r--  1 root root  6864 May 19 00:08 analysis_k_ablation_folio204.py\\n-rw-r--r--  1 root root  8190 May 19 09:08 analyze_seeds.py\\ndrwxr-xr-x  2 root root  4096 May 23 03:24 artifacts\\n-rw-r--r--  1 root root  7022 May 24 02:45 audit_tiebreaking_multiseed.py\\n-rwxr-xr-x  1 root root   368 May 19 00:55 auto_run_analysis.sh\\ndrwxr-xr-x  2 root root   143 May 19 22:24 backup_legacy_20260519\\n-rw-r--r--  1 root root 21860 May 19 02:23 backward_verification.py\\ndrwxr-xr-x  3 root root    87 May 19 12:38 baselines\\ndrwxr-xr-x  2 root root    48 May 23 01:03 checkpoints\\n-rw-r--r--  1 root root  4759 May 22 09:32 cil_bootstrap_loo.py\\n-rw-r--r--  1 root root 19069 May 23 09:09 compute_cil_q5_q6.py\\n-rw-r--r--  1 root root 12545 May 23 09:12 compute_cil_v2.py\\n-rw-r--r--  1 root root  3756 May 19 11:58 compute_fleiss_kappa.py\\n-rw-r--r--  1 root root  7660 May 21 22:35 compute_gpt4o_br_kappa.py\\n-rw-r--r--  1 root root  6460 May 20 19:55 compute_process_kappa_multi.py\\n-rw-r--r--  1 root root  8565 May 21 23:03 compute_r1_distill_br_kappa.py\\n-rw-r--r--  1 root root 13532 May 19 03:02 cross_trace_unsat.py\\n-rw-r--r--  1 root root  7311 May 22 23:14 d061_recompute_exp091_092.py\\ndrwxr-xr-x  2 root root  4096 May 23 01:31 data\\n-rw-r--r--  1 root root  5618 May 19 02:34 diff_scorers.py\\n-rw-r--r--  1 root root 13263 May 21 13:31 dir_k_nli_qwen3_pw600.py\\n-rw-r--r--  1 root root  8323 May 20 23:32 direction_b_weighted_maxsat.py\\n-rw-r--r--  1 root root  8324 May 20 23:34 direction_b_weighted_maxsat_full.py\\n-rw-r--r--  1 root root 11400 May 20 18:09 direction_g_decoupling.py\\n-rw-r--r--  1 root root 15344 May 20 17:12 direction_h_adversarial.py\\n-rw-r--r--  1 root root 25144 May 20 17:11 direction_j_bootstrap.py\\n-rw-r--r--  1 root root 16122 May 20 18:16 direction_k_minority_report.py\\n-rw-r--r--  1 root root 24106 May 20 19:00 direction_q_premise_mutation.py\\ndrwxr-xr-x  3 root root    27 May 23 07:17 docs\\n-rw-r--r--  1 root root 25326 May 22 02:13 exp_d126_crossmodel_sica.py\\n-rw-r--r--  1 root root 25342 May 22 02:13 exp_d126_crossmodel_sica.py.bak\\n-rw-r--r--  1 root root 14370 May 21 16:46 exp_d134_baf_decoupled.py\\ndrwxr-xr-x  4 root root    82 May 19 15:41 experiments\\n-rw-r--r--  1 root root  3663 May 19 00:13 extract_constraints.py\\n-rw-r--r--  1 root root  5033 May 19 00:17 extract_constraints_parallel.py\\n-rw-r--r--  1 root root  5606 May 19 00:19 extract_fast.py\\n-rw-r--r--  1 root root  4805 May 20 14:38 extract_llama_constraints.py\\ndrwxr-xr-x  2 root root  4096 May 19 13:54 figures\\n-rw-r--r--  1 root root  4377 May 24 19:27 fix_qwen3_tiebreaking.py\\n-rwxr-xr-x  1 root root  1338 May 19 05:14 launch_exp050.sh\\ndrwxr-xr-x  2 root root  4096 May 22 03:53 logs\\n-rw-r--r--  1 root root  5572 May 19 14:26 mcnemar_recompute.py\\ndrwxr-xr-x  2 root root    10 May 23 01:22 models\\n-rw-r--r--  1 root root 15634 May 19 02:14 premise_formalization.py\\n-rw-r--r--  1 root root  4216 May 18 15:55 prepare_data.py\\n-rw-r--r--  1 root root  1382 May 20 18:37 prepare_logiqa_30.py\\n-rw-r--r--  1 root root  2120 May 18 15:23 prepare_proofwriter.py\\n-rw-r--r--  1 root root  1142 May 20 18:37 prepare_proofwriter_30.py\\n-rw-r--r--  1 root root  4658 May 21 19:51 r11_sbert_analysis.py\\n-rw-r--r--  1 root root  5290 May 21 19:51 r11_sbert_process_kappa.json\\n-rw-r--r--  1 root root  5394 May 21 13:24 recompute_alpha_16639.py\\n-rw-r--r--  1 root root  4777 May 24 02:04 recompute_alphabetical.py\\n-rw-r--r--  1 root root  3749 May 22 20:57 reeval_d064_seeds.py\\n-rw-r--r--  1 root root  9583 May 21 23:58 reextract_bpe_fix.py\\n-rw-r--r--  1 root root  9248 May 21 23:58 reextract_bpe_fix.py.bak\\n-rw-r--r--  1 root root  4705 May 19 00:37 reextract_failed.py\\n-rw-r--r--  1 root root  7339 May 22 02:15 reextract_qwen3_fixed.py\\n-rw-r--r--  1 root root  5133 May 19 00:39 reextract_v2.py\\n-rw-r--r--  1 root root  5951 May 19 00:44 reextract_v3.py\\ndrwxr-xr-x 74 root root  8192 May 24 19:27 results\\n-rw-r--r--  1 root root  9449 May 19 00:22 run_ablation_analysis.py\\n-rwxr-xr-x  1 root root   673 May 19 00:22 run_after_extraction.sh\\n-rw-r--r--  1 root root  7031 May 24 03:52 run_alpha_endpoint_ablation.py\\n-rw-r--r--  1 root root  6452 May 18 19:36 run_case_study.py\\n-rw-r--r--  1 root root  7225 May 19 03:02 run_consistency_filtering.py\\n-rw-r--r--  1 root root 25044 May 20 05:19 run_contrastive.py\\n-rw-r--r--  1 root root  9071 May 18 22:13 run_contrastive_folio.py\\n-rw-r--r--  1 root root 12436 May 20 18:38 run_cross_dataset_replication.py\\n-rw-r--r--  1 root root 23374 May 20 02:23 run_debate.py\\n-rwxr-xr-x  1 root root  1299 May 19 04:34 run_exp028b.sh\\n-rwxr-xr-x  1 root root  1815 May 19 05:54 run_exp049b.sh\\n-rwxr-xr-x  1 root root  1456 May 19 05:38 run_exp050b.sh\\n-rwxr-xr-x  1 root root   814 May 19 05:40 run_exp050b_exponly.sh\\n-rw-r--r--  1 root root 16307 May 19 16:49 run_full_mvp.py\\n-rw-r--r--  1 root root 12866 May 18 16:08 run_full_mvp.py.bak\\n-rw-r--r--  1 root root 16231 May 19 16:49 run_full_mvp.py.bak2\\n-rw-r--r--  1 root root 22959 May 20 03:02 run_icg.py\\n-rw-r--r--  1 root root 17686 May 19 02:14 run_icl_oracle.py\\n-rw-r--r--  1 root root 21525 May 20 02:17 run_kappa_generalization.py\\n-rw-r--r--  1 root root  9903 May 19 01:24 run_logiqa.py\\n-rw-r--r--  1 root root 17776 May 19 09:51 run_multi_temp.py\\n-rwxr-xr-x  1 root root   643 May 23 04:05 run_multiseed_llama_pw.sh\\n-rwxr-xr-x  1 root root   639 May 22 11:31 run_multiseed_mistral_pw.sh\\n-rw-r--r--  1 root root  6864 May 18 15:32 run_mvp.py\\n-rwxr-xr-x  1 root root   390 May 20 15:47 run_wild2_ascii.sh\\n-rw-r--r--  1 root root 10509 May 19 03:02 run_z3_feedback_folio.py\\n-rw-r--r--  1 root root  8763 May 19 13:58 sc_tiebreak_revalidation.py\\n-rw-r--r--  1 root root 10283 May 21 23:27 score_r1_distill_crossmodel.py\\ndrwxr-xr-x  3 root root  8192 May 25 08:08 scripts\\n-rw-r--r--  1 root root  8971 May 24 05:39 sf7_constraint_yield_cv.py\\ndrwxr-xr-x  3 root root  4096 May 19 14:40 sica\\ndrwxr-xr-x  3 root root    81 May 18 20:10 utils\\n-rw-r--r--  1 root root  4964 May 24 02:45 verify_multiseed_tiebreaking.py\\n-rw-r--r--  1 root root  3827 May 24 02:46 verify_sica_tiebreaking.py\\n-rw-r--r--  1 root root 26441 May 23 18:34 verify_tables.py\\n-rw-r--r--  1 root root 10065 May 20 15:35 wild6_combined.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DNXqNqqRM26BQTW61AGmaL`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/symb_invariant_consensus/wandb"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "b7cd12ea-5641-4dd2-b1f0-d022c081bb1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T20:41:10.999Z_
+
+<details><summary>↩ Tool result · `toolu_01DNXqNqqRM26BQTW61AGmaL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"du: cannot access '/root/symb_invariant_consensus/wandb': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "eaef1013-7126-47fa-bde9-dc1bd044a0a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"du: cannot access '/root/symb_invariant_consensus/wandb': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"du: cannot access '/root/symb_invariant_consensus/wandb': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011YyNgaSBdxdUt4MMqxuyke`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"*.pt\" -o -name \"*.pth\" -o -name \"*.bin\" -o -name \"*.safetensors\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "f0898590-d65e-4b87-9be7-149b777e9c76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T20:41:11.992Z_
+
+<details><summary>↩ Tool result · `toolu_011YyNgaSBdxdUt4MMqxuyke`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "eaff7c38-1aa9-435d-b919-14b6743db17b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NL8DWGjZNRerkUudJApbGg`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"*.npy\" -o -name \"*.csv\" -o -name \"gen_*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "6dace907-c1aa-4115-9b19-b64e906ea589",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T20:41:12.937Z_
+
+<details><summary>↩ Tool result · `toolu_01NL8DWGjZNRerkUudJApbGg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/gen_capability_gap_scatter.py\\n/root/symb_invariant_consensus/figures/gen_f2.py\\n/root/symb_invariant_consensus/figures/gen_f3.py\\n/root/symb_invariant_consensus/docs/paper/figures/gen_f6_kappa_accuracy_scatter.py\\n/root/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "52ef2267-8db6-4359-9f31-a5131bad9103",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/gen_capability_gap_scatter.py\\\\n/root/symb_invariant_consensus/figures/gen_f2.py\\\\n/root/symb_invariant_consensus/figures/gen_f3.py\\\\n/root/symb_invariant_consensus/docs/paper/figures/gen_f6_kappa_accuracy_scatter.py\\\\n/root/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/gen_capability_gap_scatter.py\\n/root/symb_invariant_consensus/figures/gen_f2.py\\n/root/symb_invariant_consensus/figures/gen_f3.py\\n/root/symb_invariant_consensus/docs/paper/figures/gen_f6_kappa_accuracy_scatter.py\\n/root/symb_invariant_consensus/docs/paper/figures/gen_capability_gap_scatter.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GVib47uEy1mThPwmhLjmwo`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/artifacts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "e1d1b107-feca-45de-b23b-b7c81f760258",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T20:41:13.844Z_
+
+<details><summary>↩ Tool result · `toolu_01GVib47uEy1mThPwmhLjmwo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"capability_gap_scatter.pdf\\ncapability_gap_scatter.png\\ndeberta_ft_combo_all.json\\nnli_recompute_exp091_exp092.json\\nnondeterminism_root_cause.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "fd6a360d-f2b0-493f-a0dd-b03e78e2282c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"capability_gap_scatter.pdf\\\\ncapability_gap_scatter.png\\\\ndeberta_ft_combo_all.json\\\\nnli_recompute_exp091_exp092.json\\\\nnondeterminism_root_cause.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"capability_gap_scatter.pdf\\ncapability_gap_scatter.png\\ndeberta_ft_combo_all.json\\nnli_recompute_exp091_exp092.json\\nnondeterminism_root_cause.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DdLVJ1p93bWzoFBM7oH4hz`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "6a7e3789-003e-48dc-81e6-de5950a47ad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T20:41:14.405Z_
+
+<details><summary>↩ Tool result · `toolu_01DdLVJ1p93bWzoFBM7oH4hz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"834M\\t/root/symb_invariant_consensus/results/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "aadb3b01-80b9-4a04-8ea8-6da630b1ba42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"834M\\\\t/root/symb_invariant_consensus/results/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"834M\\t/root/symb_invariant_consensus/results/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017PU9Zepy6y9MZpoe3oKEA5`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/symb_invariant_consensus/artifacts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "b95e68c3-029d-46cb-9771-9e94c4da8f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171s3MEmVH3nkbBtEJmA3xv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4711,
+      "cache_read_input_tokens": 24746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4711
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T20:41:14.945Z_
+
+<details><summary>↩ Tool result · `toolu_017PU9Zepy6y9MZpoe3oKEA5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"176K\\t/root/symb_invariant_consensus/artifacts/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "fa4c7c1b-2e19-4539-ad9e-94b10197627e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"176K\\\\t/root/symb_invariant_consensus/artifacts/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"176K\\t/root/symb_invariant_consensus/artifacts/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qu7oPPYYpa2XSQfJaNi46M`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -lhS /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "fb9ca08b-ed40-45e2-a88a-ee4da99c0a87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVGY4jsaNKFE7ChMHAgBHi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 29457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1514
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T20:41:19.875Z_
+
+<details><summary>↩ Tool result · `toolu_01Qu7oPPYYpa2XSQfJaNi46M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 372K\\n-rw-r--r--  1 root root 126K May 21 20:25 r11_3verifier_canonical.json\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_roberta.json\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_bart.json\\n-rw-r--r--  1 root root 9.7K May 19 12:13 fleiss_kappa_unified_16639.json\\ndrwxr-xr-x  2 root root 8.0K May 20 16:55 direction_d_cegis\\n-rw-r--r--  1 root root 7.3K May 23 22:42 cross_model_sc_ablation.json\\n-rw-r--r--  1 root root 6.9K May 19 09:09 seed_replication_analysis.json\\n-rw-r--r--  1 root root 6.3K May 21 19:44 r11_3verifier_combo.json\\n-rw-r--r--  1 root root 5.6K May 19 13:59 sc_tiebreak_revalidation_16639.json\\n-rw-r--r--  1 root root 5.4K May 24 01:03 logiqa_nli_combo_roberta.json\\n-rw-r--r--  1 root root 5.4K May 24 01:02 logiqa_nli_combo_deberta.json\\n-rw-r--r--  1 root root 5.3K May 24 01:02 logiqa_nli_combo_bart.json\\n-rw-r--r--  1 root root 4.1K May 22 09:31 drc_tau_sensitivity.json\\ndrwxr-xr-x  2 root root 4.0K May 24 03:53 alpha_ablation\\ndrwxr-xr-x  3 root root 4.0K May 20 14:43 exp-063-llama8b-folio204-16639\\ndrwxr-xr-x  4 root root 4.0K May 25 08:08 exp033_mistral_7b_folio204\\ndrwxr-xr-x  9 root root 4.0K May 22 05:42 exp_d126_crossmodel_sica\\ndrwxr-xr-x  2 root root 4.0K May 22 13:27 exp_folio_2x2\\ndrwxr-xr-x  5 root root 4.0K May 21 23:28 exp_r1_distill_8b_sica\\ndrwxr-xr-x 27 root root 4.0K May 24 05:49 multi_seed\\n-rw-r--r--  1 root root 4.0K May 24 19:27 fix_qwen3_tiebreaking_output.json\\n-rw-r--r--  1 root root 3.3K May 23 04:23 folio_zeroshot_nli_combo_d061.json\\n-rw-r--r--  1 root root 2.7K May 23 22:59 cross_model_sc_mistral_voter.json\\n-rw-r--r--  1 root root 2.4K May 22 09:32 cil_bootstrap_loo.json\\n-rw-r--r--  1 root root 2.3K May 23 17:52 r17_argmax_br_metrics.json\\n-rw-r--r--  1 root root 2.2K May 19 09:19 adaptive_sica_validation_16639.json\\n-rw-r--r--  1 root root 1.9K May 19 09:09 seed_replication_summary.json\\n-rw-r--r--  1 root root 1.8K May 24 03:57 alpha_endpoint_ablation.json\\n-rw-r--r--  1 root root 1.6K May 19 12:02 fleiss_kappa_batch2.json\\n-rw-r--r--  1 root root 1.6K May 22 09:35 br_shuffle_control_results.json\\n-rw-r--r--  1 root root 1.6K May 21 13:25 alpha_recompute_16639.json\\n-rw-r--r--  1 root root 1.2K May 24 03:58 alpha_endpoint_pw_mixing.json\\n-rw-r--r--  1 root root 1.1K May 19 14:27 mcnemar_recomputed_16639.json\\n-rw-r--r--  1 root root  863 May 20 19:56 process_kappa_summary_16639.json\\ndrwxr-xr-x  3 root root  153 May 19 19:14 exp068_qwen3_logiqa200\\ndrwxr-xr-x  2 root root  151 May 21 04:52 direction_g_decoupling\\ndrwxr-xr-x  2 root root  127 May 24 01:35 folio_nli_combo_all\\ndrwxr-xr-x  6 root root  122 May 22 03:35 exp_d135_frontier_scb\\ndrwxr-xr-x  4 root root  121 May 19 10:26 exp055_multitemp_mistral_folio\\ndrwxr-xr-x  4 root root  116 May 21 20:59 exp_d126_70b_sica\\ndrwxr-xr-x  3 root root  112 May 19 23:28 exp072_llama8b_logiqa200\\ndrwxr-xr-x  3 root root  109 May 19 12:14 exp028b_qwen3_thinking_folio204\\ndrwxr-xr-x  3 root root  104 May 20 05:29 exp081_debate_mistral_folio_seed123\\ndrwxr-xr-x  3 root root  104 May 20 05:27 exp082_contrastive_mistral_folio_seed123\\ndrwxr-xr-x  3 root root   95 May 20 17:16 direction_j_bootstrap\\ndrwxr-xr-x  3 root root   95 May 20 17:12 direction_j_dryrun\\ndrwxr-xr-x  3 root root   95 May 20 17:07 direction_j_dryrun20\\ndrwxr-xr-x  3 root root   94 May 20 01:48 exp072b_llama8b_logiqa200\\ndrwxr-xr-x  2 root root   92 May 20 23:56 dir_g_hard_negative_analysis\\ndrwxr-xr-x  4 root root   92 May 21 17:38 e6_gpt4o_folio204\\ndrwxr-xr-x  4 root root   92 May 21 17:31 e6_gpt4o_folio204_dryrun\\ndrwxr-xr-x  4 root root   92 May 22 07:10 exp_folio_2x2_qwen3\\ndrwxr-xr-x  3 root root   90 May 19 05:55 exp049b_mistral_logiqa200\\ndrwxr-xr-x  3 root root   90 May 19 05:40 exp050b_mistral_icl_oracle\\ndrwxr-xr-x  3 root root   88 May 19 10:22 exp048_llama8b_pw600\\ndrwxr-xr-x  3 root root   88 May 19 05:17 exp050_FAILED_overflow\\ndrwxr-xr-x  3 root root   88 May 19 07:41 exp052_mistral_folio204_seed123\\ndrwxr-xr-x  3 root root   88 May 19 07:42 exp053_mistral_folio204_seed456\\ndrwxr-xr-x  3 root root   88 May 19 20:07 exp069_llama8b_logiqa200\\ndrwxr-xr-x  3 root root   85 May 20 03:06 exp079_icg_mistral_logiqa200\\ndrwxr-xr-x  2 root root   82 May 20 16:04 wild2_ascii_perturbation\\ndrwxr-xr-x  3 root root   81 May 19 01:46 exp032_qwen25_14b_pw600\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp033_qwen3_14b_pw600_nonthinking\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp036_qwen25_14b_folio204\\ndrwxr-xr-x  3 root root   81 May 19 01:51 exp038_qwen25_14b_logiqa200\\ndrwxr-xr-x  3 root root   81 May 19 17:00 exp064_deepseek_r1_qwen3_8b_folio204\\ndrwxr-xr-x  3 root root   81 May 19 16:48 exp064_dryrun\\ndrwxr-xr-x  3 root root   81 May 20 05:35 exp077_kappa_generalization\\ndrwxr-xr-x  2 root root   72 May 20 21:33 oracle_folio_mistral7b\\ndrwxr-xr-x  2 root root   70 May 21 16:45 exp_d134_baf_decoupled\\ndrwxr-xr-x  2 root root   66 May 21 00:21 dir_h_provenance_analysis\\ndrwxr-xr-x  3 root root   66 May 19 12:07 exp028b_dryrun\\ndrwxr-xr-x  2 root root   65 May 20 19:02 direction_h_adversarial\\ndrwxr-xr-x  2 root root   59 May 20 19:17 direction_q_premise_mutation\\ndrwxr-xr-x  3 root root   59 May 20 02:51 exp078_debate_mistral_logiqa200\\ndrwxr-xr-x  2 root root   58 May 21 18:43 exp032_qwen14b_pw_oracle\\ndrwxr-xr-x  2 root root   44 May 22 09:33 aggregate_sign_test\\ndrwxr-xr-x  2 root root   40 May 21 04:19 r8_w3_dedup_statistics\\ndrwxr-xr-x  2 root root   34 May 21 04:52 d116_qwen3_pw_deberta_large\\ndrwxr-xr-x  2 root root   34 May 23 03:19 deberta_ft_combo_all_fixed\\ndrwxr-xr-x  2 root root   34 May 21 00:06 dir_c_premise_only_204\\ndrwxr-xr-x  2 root root   34 May 20 23:57 dir_d_dpp_trace_selection\\ndrwxr-xr-x  2 root root   34 May 21 00:18 dir_e_strict_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:19 dir_f2_cross_model_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:26 dir_f2_self_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:07 dir_f_prm_verifier_pilot\\ndrwxr-xr-x  2 root root   34 May 21 01:44 dir_j1_nli_logiqa\\ndrwxr-xr-x  2 root root   34 May 21 02:19 dir_k_nli_qwen3_proofwriter\\ndrwxr-xr-x  2 root root   34 May 20 18:17 direction_k_minority_report\\ndrwxr-xr-x  2 root root   34 May 23 02:53 eval_finetuned_deberta-large-pw-owa\\ndrwxr-xr-x  2 root root   34 May 23 02:59 eval_finetuned_qwen_combo\\ndrwxr-xr-x  2 root root   34 May 21 06:37 exp092_llama8b_pw_nli_combo\\ndrwxr-xr-x  2 root root   34 May 22 22:01 nli_standalone_cpu_test\\ndrwxr-xr-x  2 root root   34 May 21 03:57 push_b_stronger_nli_verifier\\ndrwxr-xr-x  2 root root   34 May 21 05:40 qwen14b_pw_nli_combo\\ndrwxr-xr-x  2 root root   34 May 20 15:35 wild6_kappa_aware_sc\\ndrwxr-xr-x  3 root root   33 May 20 18:38 cross_dataset\\ndrwxr-xr-x  2 root root   10 May 19 01:43 exp037_mistral7b_folio204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "df578197-ef2f-40c4-9273-0158b56505fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 372K\\\\n-rw-r--r--  1 root root 126K May 21 20:25 r11_3verifier_canonical.json\\\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_roberta.json\\\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_bart.json\\\\n-rw-r--r--  1 root root 9.7K May 19 12:13 fleiss_kappa_unified_16639.json\\\\ndrwxr-xr-x  2 root root 8.0K May 20 16:55 direction_d_cegis\\\\n-rw-r--r--  1 root root 7.3K May 23 22:42 cross_model_sc_ablation.json\\\\n-rw-r--r--  1 root root 6.9K May 19 09:09 seed_replication_analysis.json\\\\n-rw-r--r--  1 root root 6.3K May 21 19:44 r11_3verifier_combo.json\\\\n-rw-r--r--  1 root root 5.6K May 19 13:59 sc_tiebreak_revalidation_16639.json\\\\n-rw-r--r--  1 root root 5.4K May 24 01:03 logiqa_nli_combo_roberta.json\\\\n-rw-r--r--  1 root root 5.4K May 24 01:02 logiqa_nli_combo_deberta.json\\\\n-rw-r--r--  1 root root 5.3K May 24 01:02 logiqa_nli_combo_bart.json\\\\n-rw-r--r--  1 root root 4.1K May 22 09:31 drc_tau_sensitivity.json\\\\ndrwxr-xr-x  2 root root 4.0K May 24 03:53 alpha_ablation\\\\ndrwxr-xr-x  3 root root 4.0K May 20 14:43 exp-063-llama8b-folio204-16639\\\\ndrwxr-xr-x  4 root root 4.0K May 25 08:08 exp033_mistral_7b_folio204\\\\ndrwxr-xr-x  9 root root 4.0K May 22 05:42 exp_d126_crossmodel_sica\\\\ndrwxr-xr-x  2 root root 4.0K May 22 13:27 exp_folio_2x2\\\\ndrwxr-xr-x  5 root root 4.0K May 21 23:28 exp_r1_distill_8b_sica\\\\ndrwxr-xr-x 27 root root 4.0K May 24 05:49 multi_seed\\\\n-rw-r--r--  1 root root 4.0K May 24 19:27 fix_qwen3_tiebreaking_output.json\\\\n-rw-r--r--  1 root root 3.3K May 23 04:23 folio_zeroshot_nli_combo_d061.json\\\\n-rw-r--r--  1 root root 2.7K May 23 22:59 cross_model_sc_mistral_voter.json\\\\n-rw-r--r--  1 root root 2.4K May 22 09:32 cil_bootstrap_loo.json\\\\n-rw-r--r--  1 root root 2.3K May 23 17:52 r17_argmax_br_metrics.json\\\\n-rw-r--r--  1 root root 2.2K May 19 09:19 adaptive_sica_validation_16639.json\\\\n-rw-r--r--  1 root root 1.9K May 19 09:09 seed_replication_summary.json\\\\n-rw-r--r--  1 root root 1.8K May 24 03:57 alpha_endpoint_ablation.json\\\\n-rw-r--r--  1 root root 1.6K May 19 12:02 fleiss_kappa_batch2.json\\\\n-rw-r--r--  1 root root 1.6K May 22 09:35 br_shuffle_control_results.json\\\\n-rw-r--r--  1 root root 1.6K May 21 13:25 alpha_recompute_16639.json\\\\n-rw-r--r--  1 root root 1.2K May 24 03:58 alpha_endpoint_pw_mixing.json\\\\n-rw-r--r--  1 root root 1.1K May 19 14:27 mcnemar_recomputed_16639.json\\\\n-rw-r--r--  1 root root  863 May 20 19:56 process_kappa_summary_16639.json\\\\ndrwxr-xr-x  3 root root  153 May 19 19:14 exp068_qwen3_logiqa200\\\\ndrwxr-xr-x  2 root root  151 May 21 04:52 direction_g_decoupling\\\\ndrwxr-xr-x  2 root root  127 May 24 01:35 folio_nli_combo_all\\\\ndrwxr-xr-x  6 root root  122 May 22 03:35 exp_d135_frontier_scb\\\\ndrwxr-xr-x  4 root root  121 May 19 10:26 exp055_multitemp_mistral_folio\\\\ndrwxr-xr-x  4 root root  116 May 21 20:59 exp_d126_70b_sica\\\\ndrwxr-xr-x  3 root root  112 May 19 23:28 exp072_llama8b_logiqa200\\\\ndrwxr-xr-x  3 root root  109 May 19 12:14 exp028b_qwen3_thinking_folio204\\\\ndrwxr-xr-x  3 root root  104 May 20 05:29 exp081_debate_mistral_folio_seed123\\\\ndrwxr-xr-x  3 root root  104 May 20 05:27 exp082_contrastive_mistral_folio_seed123\\\\ndrwxr-xr-x  3 root root   95 May 20 17:16 direction_j_bootstrap\\\\ndrwxr-xr-x  3 root root   95 May 20 17:12 direction_j_dryrun\\\\ndrwxr-xr-x  3 root root   95 May 20 17:07 direction_j_dryrun20\\\\ndrwxr-xr-x  3 root root   94 May 20 01:48 exp072b_llama8b_logiqa200\\\\ndrwxr-xr-x  2 root root   92 May 20 23:56 dir_g_hard_negative_analysis\\\\ndrwxr-xr-x  4 root root   92 May 21 17:38 e6_gpt4o_folio204\\\\ndrwxr-xr-x  4 root root   92 May 21 17:31 e6_gpt4o_folio204_dryrun\\\\ndrwxr-xr-x  4 root root   92 May 22 07:10 exp_folio_2x2_qwen3\\\\ndrwxr-xr-x  3 root root   90 May 19 05:55 exp049b_mistral_logiqa200\\\\ndrwxr-xr-x  3 root root   90 May 19 05:40 exp050b_mistral_icl_oracle\\\\ndrwxr-xr-x  3 root root   88 May 19 10:22 exp048_llama8b_pw600\\\\ndrwxr-xr-x  3 root root   88 May 19 05:17 exp050_FAILED_overflow\\\\ndrwxr-xr-x  3 root root   88 May 19 07:41 exp052_mistral_folio204_seed123\\\\ndrwxr-xr-x  3 root root   88 May 19 07:42 exp053_mistral_folio204_seed456\\\\ndrwxr-xr-x  3 root root   88 May 19 20:07 exp069_llama8b_logiqa200\\\\ndrwxr-xr-x  3 root root   85 May 20 03:06 exp079_icg_mistral_logiqa200\\\\ndrwxr-xr-x  2 root root   82 May 20 16:04 wild2_ascii_perturbation\\\\ndrwxr-xr-x  3 root root   81 May 19 01:46 exp032_qwen25_14b_pw600\\\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp033_qwen3_14b_pw600_nonthinking\\\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp036_qwen25_14b_folio204\\\\ndrwxr-xr-x  3 root root   81 May 19 01:51 exp038_qwen25_14b_logiqa200\\\\ndrwxr-xr-x  3 root root   81 May 19 17:00 exp064_deepseek_r1_qwen3_8b_folio204\\\\ndrwxr-xr-x  3 root root   81 May 19 16:48 exp064_dryrun\\\\ndrwxr-xr-x  3 root root   81 May 20 05:35 exp077_kappa_generalization\\\\ndrwxr-xr-x  2 root root   72 May 20 21:33 oracle_folio_mistral7b\\\\ndrwxr-xr-x  2 root root   70 May 21 16:45 exp_d134_baf_decoupled\\\\ndrwxr-xr-x  2 root root   66 May 21 00:21 dir_h_provenance_analysis\\\\ndrwxr-xr-x  3 root root   66 May 19 12:07 exp028b_dryrun\\\\ndrwxr-xr-x  2 root root   65 May 20 19:02 direction_h_adversarial\\\\ndrwxr-xr-x  2 root root   59 May 20 19:17 direction_q_premise_mutation\\\\ndrwxr-xr-x  3 root root   59 May 20 02:51 exp078_debate_mistral_logiqa200\\\\ndrwxr-xr-x  2 root root   58 May 21 18:43 exp032_qwen14b_pw_oracle\\\\ndrwxr-xr-x  2 root root   44 May 22 09:33 aggregate_sign_test\\\\ndrwxr-xr-x  2 root root   40 May 21 04:19 r8_w3_dedup_statistics\\\\ndrwxr-xr-x  2 root root   34 May 21 04:52 d116_qwen3_pw_deberta_large\\\\ndrwxr-xr-x  2 root root   34 May 23 03:19 deberta_ft_combo_all_fixed\\\\ndrwxr-xr-x  2 root root   34 May 21 00:06 dir_c_premise_only_204\\\\ndrwxr-xr-x  2 root root   34 May 20 23:57 dir_d_dpp_trace_selection\\\\ndrwxr-xr-x  2 root root   34 May 21 00:18 dir_e_strict_verification\\\\ndrwxr-xr-x  2 root root   34 May 21 00:19 dir_f2_cross_model_verification\\\\ndrwxr-xr-x  2 root root   34 May 21 00:26 dir_f2_self_verification\\\\ndrwxr-xr-x  2 root root   34 May 21 00:07 dir_f_prm_verifier_pilot\\\\ndrwxr-xr-x  2 root root   34 May 21 01:44 dir_j1_nli_logiqa\\\\ndrwxr-xr-x  2 root root   34 May 21 02:19 dir_k_nli_qwen3_proofwriter\\\\ndrwxr-xr-x  2 root root   34 May 20 18:17 direction_k_minority_report\\\\ndrwxr-xr-x  2 root root   34 May 23 02:53 eval_finetuned_deberta-large-pw-owa\\\\ndrwxr-xr-x  2 root root   34 May 23 02:59 eval_finetuned_qwen_combo\\\\ndrwxr-xr-x  2 root root   34 May 21 06:37 exp092_llama8b_pw_nli_combo\\\\ndrwxr-xr-x  2 root root   34 May 22 22:01 nli_standalone_cpu_test\\\\ndrwxr-xr-x  2 root root   34 May 21 03:57 push_b_stronger_nli_verifier\\\\ndrwxr-xr-x  2 root root   34 May 21 05:40 qwen14b_pw_nli_combo\\\\ndrwxr-xr-x  2 root root   34 May 20 15:35 wild6_kappa_aware_sc\\\\ndrwxr-xr-x  3 root root   33 May 20 18:38 cross_dataset\\\\ndrwxr-xr-x  2 root root   10 May 19 01:43 exp037_mistral7b_folio204\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 372K\\n-rw-r--r--  1 root root 126K May 21 20:25 r11_3verifier_canonical.json\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_roberta.json\\n-rw-r--r--  1 root root  35K May 24 00:18 pw_nli_combo_bart.json\\n-rw-r--r--  1 root root 9.7K May 19 12:13 fleiss_kappa_unified_16639.json\\ndrwxr-xr-x  2 root root 8.0K May 20 16:55 direction_d_cegis\\n-rw-r--r--  1 root root 7.3K May 23 22:42 cross_model_sc_ablation.json\\n-rw-r--r--  1 root root 6.9K May 19 09:09 seed_replication_analysis.json\\n-rw-r--r--  1 root root 6.3K May 21 19:44 r11_3verifier_combo.json\\n-rw-r--r--  1 root root 5.6K May 19 13:59 sc_tiebreak_revalidation_16639.json\\n-rw-r--r--  1 root root 5.4K May 24 01:03 logiqa_nli_combo_roberta.json\\n-rw-r--r--  1 root root 5.4K May 24 01:02 logiqa_nli_combo_deberta.json\\n-rw-r--r--  1 root root 5.3K May 24 01:02 logiqa_nli_combo_bart.json\\n-rw-r--r--  1 root root 4.1K May 22 09:31 drc_tau_sensitivity.json\\ndrwxr-xr-x  2 root root 4.0K May 24 03:53 alpha_ablation\\ndrwxr-xr-x  3 root root 4.0K May 20 14:43 exp-063-llama8b-folio204-16639\\ndrwxr-xr-x  4 root root 4.0K May 25 08:08 exp033_mistral_7b_folio204\\ndrwxr-xr-x  9 root root 4.0K May 22 05:42 exp_d126_crossmodel_sica\\ndrwxr-xr-x  2 root root 4.0K May 22 13:27 exp_folio_2x2\\ndrwxr-xr-x  5 root root 4.0K May 21 23:28 exp_r1_distill_8b_sica\\ndrwxr-xr-x 27 root root 4.0K May 24 05:49 multi_seed\\n-rw-r--r--  1 root root 4.0K May 24 19:27 fix_qwen3_tiebreaking_output.json\\n-rw-r--r--  1 root root 3.3K May 23 04:23 folio_zeroshot_nli_combo_d061.json\\n-rw-r--r--  1 root root 2.7K May 23 22:59 cross_model_sc_mistral_voter.json\\n-rw-r--r--  1 root root 2.4K May 22 09:32 cil_bootstrap_loo.json\\n-rw-r--r--  1 root root 2.3K May 23 17:52 r17_argmax_br_metrics.json\\n-rw-r--r--  1 root root 2.2K May 19 09:19 adaptive_sica_validation_16639.json\\n-rw-r--r--  1 root root 1.9K May 19 09:09 seed_replication_summary.json\\n-rw-r--r--  1 root root 1.8K May 24 03:57 alpha_endpoint_ablation.json\\n-rw-r--r--  1 root root 1.6K May 19 12:02 fleiss_kappa_batch2.json\\n-rw-r--r--  1 root root 1.6K May 22 09:35 br_shuffle_control_results.json\\n-rw-r--r--  1 root root 1.6K May 21 13:25 alpha_recompute_16639.json\\n-rw-r--r--  1 root root 1.2K May 24 03:58 alpha_endpoint_pw_mixing.json\\n-rw-r--r--  1 root root 1.1K May 19 14:27 mcnemar_recomputed_16639.json\\n-rw-r--r--  1 root root  863 May 20 19:56 process_kappa_summary_16639.json\\ndrwxr-xr-x  3 root root  153 May 19 19:14 exp068_qwen3_logiqa200\\ndrwxr-xr-x  2 root root  151 May 21 04:52 direction_g_decoupling\\ndrwxr-xr-x  2 root root  127 May 24 01:35 folio_nli_combo_all\\ndrwxr-xr-x  6 root root  122 May 22 03:35 exp_d135_frontier_scb\\ndrwxr-xr-x  4 root root  121 May 19 10:26 exp055_multitemp_mistral_folio\\ndrwxr-xr-x  4 root root  116 May 21 20:59 exp_d126_70b_sica\\ndrwxr-xr-x  3 root root  112 May 19 23:28 exp072_llama8b_logiqa200\\ndrwxr-xr-x  3 root root  109 May 19 12:14 exp028b_qwen3_thinking_folio204\\ndrwxr-xr-x  3 root root  104 May 20 05:29 exp081_debate_mistral_folio_seed123\\ndrwxr-xr-x  3 root root  104 May 20 05:27 exp082_contrastive_mistral_folio_seed123\\ndrwxr-xr-x  3 root root   95 May 20 17:16 direction_j_bootstrap\\ndrwxr-xr-x  3 root root   95 May 20 17:12 direction_j_dryrun\\ndrwxr-xr-x  3 root root   95 May 20 17:07 direction_j_dryrun20\\ndrwxr-xr-x  3 root root   94 May 20 01:48 exp072b_llama8b_logiqa200\\ndrwxr-xr-x  2 root root   92 May 20 23:56 dir_g_hard_negative_analysis\\ndrwxr-xr-x  4 root root   92 May 21 17:38 e6_gpt4o_folio204\\ndrwxr-xr-x  4 root root   92 May 21 17:31 e6_gpt4o_folio204_dryrun\\ndrwxr-xr-x  4 root root   92 May 22 07:10 exp_folio_2x2_qwen3\\ndrwxr-xr-x  3 root root   90 May 19 05:55 exp049b_mistral_logiqa200\\ndrwxr-xr-x  3 root root   90 May 19 05:40 exp050b_mistral_icl_oracle\\ndrwxr-xr-x  3 root root   88 May 19 10:22 exp048_llama8b_pw600\\ndrwxr-xr-x  3 root root   88 May 19 05:17 exp050_FAILED_overflow\\ndrwxr-xr-x  3 root root   88 May 19 07:41 exp052_mistral_folio204_seed123\\ndrwxr-xr-x  3 root root   88 May 19 07:42 exp053_mistral_folio204_seed456\\ndrwxr-xr-x  3 root root   88 May 19 20:07 exp069_llama8b_logiqa200\\ndrwxr-xr-x  3 root root   85 May 20 03:06 exp079_icg_mistral_logiqa200\\ndrwxr-xr-x  2 root root   82 May 20 16:04 wild2_ascii_perturbation\\ndrwxr-xr-x  3 root root   81 May 19 01:46 exp032_qwen25_14b_pw600\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp033_qwen3_14b_pw600_nonthinking\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp036_qwen25_14b_folio204\\ndrwxr-xr-x  3 root root   81 May 19 01:51 exp038_qwen25_14b_logiqa200\\ndrwxr-xr-x  3 root root   81 May 19 17:00 exp064_deepseek_r1_qwen3_8b_folio204\\ndrwxr-xr-x  3 root root   81 May 19 16:48 exp064_dryrun\\ndrwxr-xr-x  3 root root   81 May 20 05:35 exp077_kappa_generalization\\ndrwxr-xr-x  2 root root   72 May 20 21:33 oracle_folio_mistral7b\\ndrwxr-xr-x  2 root root   70 May 21 16:45 exp_d134_baf_decoupled\\ndrwxr-xr-x  2 root root   66 May 21 00:21 dir_h_provenance_analysis\\ndrwxr-xr-x  3 root root   66 May 19 12:07 exp028b_dryrun\\ndrwxr-xr-x  2 root root   65 May 20 19:02 direction_h_adversarial\\ndrwxr-xr-x  2 root root   59 May 20 19:17 direction_q_premise_mutation\\ndrwxr-xr-x  3 root root   59 May 20 02:51 exp078_debate_mistral_logiqa200\\ndrwxr-xr-x  2 root root   58 May 21 18:43 exp032_qwen14b_pw_oracle\\ndrwxr-xr-x  2 root root   44 May 22 09:33 aggregate_sign_test\\ndrwxr-xr-x  2 root root   40 May 21 04:19 r8_w3_dedup_statistics\\ndrwxr-xr-x  2 root root   34 May 21 04:52 d116_qwen3_pw_deberta_large\\ndrwxr-xr-x  2 root root   34 May 23 03:19 deberta_ft_combo_all_fixed\\ndrwxr-xr-x  2 root root   34 May 21 00:06 dir_c_premise_only_204\\ndrwxr-xr-x  2 root root   34 May 20 23:57 dir_d_dpp_trace_selection\\ndrwxr-xr-x  2 root root   34 May 21 00:18 dir_e_strict_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:19 dir_f2_cross_model_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:26 dir_f2_self_verification\\ndrwxr-xr-x  2 root root   34 May 21 00:07 dir_f_prm_verifier_pilot\\ndrwxr-xr-x  2 root root   34 May 21 01:44 dir_j1_nli_logiqa\\ndrwxr-xr-x  2 root root   34 May 21 02:19 dir_k_nli_qwen3_proofwriter\\ndrwxr-xr-x  2 root root   34 May 20 18:17 direction_k_minority_report\\ndrwxr-xr-x  2 root root   34 May 23 02:53 eval_finetuned_deberta-large-pw-owa\\ndrwxr-xr-x  2 root root   34 May 23 02:59 eval_finetuned_qwen_combo\\ndrwxr-xr-x  2 root root   34 May 21 06:37 exp092_llama8b_pw_nli_combo\\ndrwxr-xr-x  2 root root   34 May 22 22:01 nli_standalone_cpu_test\\ndrwxr-xr-x  2 root root   34 May 21 03:57 push_b_stronger_nli_verifier\\ndrwxr-xr-x  2 root root   34 May 21 05:40 qwen14b_pw_nli_combo\\ndrwxr-xr-x  2 root root   34 May 20 15:35 wild6_kappa_aware_sc\\ndrwxr-xr-x  3 root root   33 May 20 18:38 cross_dataset\\ndrwxr-xr-x  2 root root   10 May 19 01:43 exp037_mistral7b_folio204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RyDrqHt36kCiR4orgbwDoN`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "a4897f54-a824-45ce-a1e7-3874bbbc924f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVGY4jsaNKFE7ChMHAgBHi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 29457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1514
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HUys6T5JrhHZwYkQJggtuN`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/autodl-tmp/symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "0aab5965-fa13-442b-9fb8-c7c8969b22ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVGY4jsaNKFE7ChMHAgBHi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 29457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1514
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T20:41:20.542Z_
+
+<details><summary>↩ Tool result · `toolu_01RyDrqHt36kCiR4orgbwDoN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation_16639.json\\naggregate_sign_test\\nalpha_ablation\\nalpha_endpoint_ablation.json\\nalpha_endpoint_pw_mixing.json\\nalpha_recompute_16639.json\\nbr_shuffle_control_results.json\\ncil_bootstrap_loo.json\\ncross_dataset\\ncross_model_sc_ablation.json\\ncross_model_sc_mistral_voter.json\\nd116_qwen3_pw_deberta_large\\ndeberta_ft_combo_all_fixed\\ndir_c_premise_only_204\\ndir_d_dpp_trace_selection\\ndir_e_strict_verification\\ndir_f2_cross_model_verification\\ndir_f2_self_verification\\ndir_f_prm_verifier_pilot\\ndir_g_hard_negative_analysis\\ndir_h_provenance_analysis\\ndir_j1_nli_logiqa\\ndir_k_nli_qwen3_proofwriter\\ndirection_d_cegis\\ndirection_g_decoupling\\ndirection_h_adversarial\\ndirection_j_bootstrap\\ndirection_j_dryrun\\ndirection_j_dryrun20\\ndirection_k_minority_report\\ndirection_q_premise_mutation\\ndrc_tau_sensitivity.json\\ne6_gpt4o_folio204\\ne6_gpt4o_folio204_dryrun\\neval_finetuned_deberta-large-pw-owa\\neval_finetuned_qwen_combo\\nexp-063-llama8b-folio204-16639\\nexp028b_dryrun\\nexp028b_qwen3_thinking_folio204\\nexp032_qwen14b_pw_oracle\\nexp032_qwen25_14b_pw600\\nexp033_mistral_7b_folio204\\nexp033_qwen3_14b_pw600_nonthinking\\nexp036_qwen25_14b_folio204\\nexp037_mistral7b_folio204\\nexp038_qwen25_14b_logiqa200\\nexp048_llama8b_pw600\\nexp049b_mistral_logiqa200\\nexp050_FAILED_overflow\\nexp050b_mistral_icl_oracle\\nexp052_mistral_folio204_seed123\\nexp053_mistral_folio204_seed456\\nexp055_multitemp_mistral_folio\\nexp064_deepseek_r1_qwen3_8b_folio204\\nexp064_dryrun\\nexp068_qwen3_logiqa200\\nexp069_llama8b_logiqa200\\nexp072_llama8b_logiqa200\\nexp072b_llama8b_logiqa200\\nexp077_kappa_generalization\\nexp078_debate_mistral_logiqa200\\nexp079_icg_mistral_logiqa200\\nexp081_debate_mistral_folio_seed123\\nexp082_contrastive_mistral_folio_seed123\\nexp092_llama8b_pw_nli_combo\\nexp_d126_70b_sica\\nexp_d126_crossmodel_sica\\nexp_d134_baf_decoupled\\nexp_d135_frontier_scb\\nexp_folio_2x2\\nexp_folio_2x2_qwen3\\nexp_r1_distill_8b_sica\\nfix_qwen3_tiebreaking_output.json\\nfleiss_kappa_batch2.json\\nfleiss_kappa_unified_16639.json\\nfolio_nli_combo_all\\nfolio_zeroshot_nli_combo_d061.json\\nlogiqa_nli_combo_bart.json\\nlogiqa_nli_combo_deberta.json\\nlogiqa_nli_combo_roberta.json\\nmcnemar_recomputed_16639.json\\nmulti_seed\\nnli_standalone_cpu_test\\noracle_folio_mistral7b\\nprocess_kappa_summary_16639.json\\npush_b_stronger_nli_verifier\\npw_nli_combo_bart.json\\npw_nli_combo_roberta.json\\nqwen14b_pw_nli_combo\\nr11_3verifier_canonical.json\\nr11_3verifier_combo.json\\nr17_argmax_br_metrics.json\\nr8_w3_dedup_statistics\\nsc_tiebreak_revalidation_16639.json\\nseed_replication_analysis.json\\nseed_replication_summary.json\\nwild2_ascii_perturbation\\nwild6_kappa_aware_sc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "97007e0c-6557-446d-a0b1-9bd30d58e93c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adaptive_sica_validation_16639.json\\\\naggregate_sign_test\\\\nalpha_ablation\\\\nalpha_endpoint_ablation.json\\\\nalpha_endpoint_pw_mixing.json\\\\nalpha_recompute_16639.json\\\\nbr_shuffle_control_results.json\\\\ncil_bootstrap_loo.json\\\\ncross_dataset\\\\ncross_model_sc_ablation.json\\\\ncross_model_sc_mistral_voter.json\\\\nd116_qwen3_pw_deberta_large\\\\ndeberta_ft_combo_all_fixed\\\\ndir_c_premise_only_204\\\\ndir_d_dpp_trace_selection\\\\ndir_e_strict_verification\\\\ndir_f2_cross_model_verification\\\\ndir_f2_self_verification\\\\ndir_f_prm_verifier_pilot\\\\ndir_g_hard_negative_analysis\\\\ndir_h_provenance_analysis\\\\ndir_j1_nli_logiqa\\\\ndir_k_nli_qwen3_proofwriter\\\\ndirection_d_cegis\\\\ndirection_g_decoupling\\\\ndirection_h_adversarial\\\\ndirection_j_bootstrap\\\\ndirection_j_dryrun\\\\ndirection_j_dryrun20\\\\ndirection_k_minority_report\\\\ndirection_q_premise_mutation\\\\ndrc_tau_sensitivity.json\\\\ne6_gpt4o_folio204\\\\ne6_gpt4o_folio204_dryrun\\\\neval_finetuned_deberta-large-pw-owa\\\\neval_finetuned_qwen_combo\\\\nexp-063-llama8b-folio204-16639\\\\nexp028b_dryrun\\\\nexp028b_qwen3_thinking_folio204\\\\nexp032_qwen14b_pw_oracle\\\\nexp032_qwen25_14b_pw600\\\\nexp033_mistral_7b_folio204\\\\nexp033_qwen3_14b_pw600_nonthinking\\\\nexp036_qwen25_14b_folio204\\\\nexp037_mistral7b_folio204\\\\nexp038_qwen25_14b_logiqa200\\\\nexp048_llama8b_pw600\\\\nexp049b_mistral_logiqa200\\\\nexp050_FAILED_overflow\\\\nexp050b_mistral_icl_oracle\\\\nexp052_mistral_folio204_seed123\\\\nexp053_mistral_folio204_seed456\\\\nexp055_multitemp_mistral_folio\\\\nexp064_deepseek_r1_qwen3_8b_folio204\\\\nexp064_dryrun\\\\nexp068_qwen3_logiqa200\\\\nexp069_llama8b_logiqa200\\\\nexp072_llama8b_logiqa200\\\\nexp072b_llama8b_logiqa200\\\\nexp077_kappa_generalization\\\\nexp078_debate_mistral_logiqa200\\\\nexp079_icg_mistral_logiqa200\\\\nexp081_debate_mistral_folio_seed123\\\\nexp082_contrastive_mistral_folio_seed123\\\\nexp092_llama8b_pw_nli_combo\\\\nexp_d126_70b_sica\\\\nexp_d126_crossmodel_sica\\\\nexp_d134_baf_decoupled\\\\nexp_d135_frontier_scb\\\\nexp_folio_2x2\\\\nexp_folio_2x2_qwen3\\\\nexp_r1_distill_8b_sica\\\\nfix_qwen3_tiebreaking_output.json\\\\nfleiss_kappa_batch2.json\\\\nfleiss_kappa_unified_16639.json\\\\nfolio_nli_combo_all\\\\nfolio_zeroshot_nli_combo_d061.json\\\\nlogiqa_nli_combo_bart.json\\\\nlogiqa_nli_combo_deberta.json\\\\nlogiqa_nli_combo_roberta.json\\\\nmcnemar_recomputed_16639.json\\\\nmulti_seed\\\\nnli_standalone_cpu_test\\\\noracle_folio_mistral7b\\\\nprocess_kappa_summary_16639.json\\\\npush_b_stronger_nli_verifier\\\\npw_nli_combo_bart.json\\\\npw_nli_combo_roberta.json\\\\nqwen14b_pw_nli_combo\\\\nr11_3verifier_canonical.json\\\\nr11_3verifier_combo.json\\\\nr17_argmax_br_metrics.json\\\\nr8_w3_dedup_statistics\\\\nsc_tiebreak_revalidation_16639.json\\\\nseed_replication_analysis.json\\\\nseed_replication_summary.json\\\\nwild2_ascii_perturbation\\\\nwild6_kappa_aware_sc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation_16639.json\\naggregate_sign_test\\nalpha_ablation\\nalpha_endpoint_ablation.json\\nalpha_endpoint_pw_mixing.json\\nalpha_recompute_16639.json\\nbr_shuffle_control_results.json\\ncil_bootstrap_loo.json\\ncross_dataset\\ncross_model_sc_ablation.json\\ncross_model_sc_mistral_voter.json\\nd116_qwen3_pw_deberta_large\\ndeberta_ft_combo_all_fixed\\ndir_c_premise_only_204\\ndir_d_dpp_trace_selection\\ndir_e_strict_verification\\ndir_f2_cross_model_verification\\ndir_f2_self_verification\\ndir_f_prm_verifier_pilot\\ndir_g_hard_negative_analysis\\ndir_h_provenance_analysis\\ndir_j1_nli_logiqa\\ndir_k_nli_qwen3_proofwriter\\ndirection_d_cegis\\ndirection_g_decoupling\\ndirection_h_adversarial\\ndirection_j_bootstrap\\ndirection_j_dryrun\\ndirection_j_dryrun20\\ndirection_k_minority_report\\ndirection_q_premise_mutation\\ndrc_tau_sensitivity.json\\ne6_gpt4o_folio204\\ne6_gpt4o_folio204_dryrun\\neval_finetuned_deberta-large-pw-owa\\neval_finetuned_qwen_combo\\nexp-063-llama8b-folio204-16639\\nexp028b_dryrun\\nexp028b_qwen3_thinking_folio204\\nexp032_qwen14b_pw_oracle\\nexp032_qwen25_14b_pw600\\nexp033_mistral_7b_folio204\\nexp033_qwen3_14b_pw600_nonthinking\\nexp036_qwen25_14b_folio204\\nexp037_mistral7b_folio204\\nexp038_qwen25_14b_logiqa200\\nexp048_llama8b_pw600\\nexp049b_mistral_logiqa200\\nexp050_FAILED_overflow\\nexp050b_mistral_icl_oracle\\nexp052_mistral_folio204_seed123\\nexp053_mistral_folio204_seed456\\nexp055_multitemp_mistral_folio\\nexp064_deepseek_r1_qwen3_8b_folio204\\nexp064_dryrun\\nexp068_qwen3_logiqa200\\nexp069_llama8b_logiqa200\\nexp072_llama8b_logiqa200\\nexp072b_llama8b_logiqa200\\nexp077_kappa_generalization\\nexp078_debate_mistral_logiqa200\\nexp079_icg_mistral_logiqa200\\nexp081_debate_mistral_folio_seed123\\nexp082_contrastive_mistral_folio_seed123\\nexp092_llama8b_pw_nli_combo\\nexp_d126_70b_sica\\nexp_d126_crossmodel_sica\\nexp_d134_baf_decoupled\\nexp_d135_frontier_scb\\nexp_folio_2x2\\nexp_folio_2x2_qwen3\\nexp_r1_distill_8b_sica\\nfix_qwen3_tiebreaking_output.json\\nfleiss_kappa_batch2.json\\nfleiss_kappa_unified_16639.json\\nfolio_nli_combo_all\\nfolio_zeroshot_nli_combo_d061.json\\nlogiqa_nli_combo_bart.json\\nlogiqa_nli_combo_deberta.json\\nlogiqa_nli_combo_roberta.json\\nmcnemar_recomputed_16639.json\\nmulti_seed\\nnli_standalone_cpu_test\\noracle_folio_mistral7b\\nprocess_kappa_summary_16639.json\\npush_b_stronger_nli_verifier\\npw_nli_combo_bart.json\\npw_nli_combo_roberta.json\\nqwen14b_pw_nli_combo\\nr11_3verifier_canonical.json\\nr11_3verifier_combo.json\\nr17_argmax_br_metrics.json\\nr8_w3_dedup_statistics\\nsc_tiebreak_revalidation_16639.json\\nseed_replication_analysis.json\\nseed_replication_summary.json\\nwild2_ascii_perturbation\\nwild6_kappa_aware_sc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T20:41:21.075Z_
+
+<details><summary>↩ Tool result · `toolu_01HUys6T5JrhHZwYkQJggtuN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"17G\\t/root/autodl-tmp/symb_invariant_consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "e441cb40-e5bc-44e3-88b7-8025a337f464",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/symb_invariant_consensus\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"17G\\t/root/autodl-tmp/symb_invariant_consensus\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EzKn6jtP3Ek759WZPER2VK`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -maxdepth 1 -name \".git\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "5f764d31-45fd-4298-8735-39928254a98f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ptaacKM2U5o7ops8oxaLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5512,
+      "cache_read_input_tokens": 30971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5512
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T20:41:25.058Z_
+
+<details><summary>↩ Tool result · `toolu_01EzKn6jtP3Ek759WZPER2VK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "321a599c-286b-4a69-98b6-1a3d04359913",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P37bZYKXqCMStehVomkgi5`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -20 /root/symb_invariant_consensus/.git/logs/HEAD"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "fafd99fa-5b63-4566-a243-91f482ae978f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ptaacKM2U5o7ops8oxaLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5512,
+      "cache_read_input_tokens": 30971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5512
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T20:41:26.062Z_
+
+<details><summary>↩ Tool result · `toolu_01P37bZYKXqCMStehVomkgi5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/symb_invariant_consensus/.git/logs/HEAD' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "3332bf76-f1b0-4240-9412-3e0b2d3fdb36",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/symb_invariant_consensus/.git/logs/HEAD' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/symb_invariant_consensus/.git/logs/HEAD' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ENApBb9k3cbKuAsUXj3aEC`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/autodl-tmp/symb_invariant_consensus/models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "c6c5623e-b653-4526-9f14-7cf8fdcefc90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ptaacKM2U5o7ops8oxaLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5512,
+      "cache_read_input_tokens": 30971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5512
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T20:41:26.594Z_
+
+<details><summary>↩ Tool result · `toolu_01ENApBb9k3cbKuAsUXj3aEC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"17G\\t/root/autodl-tmp/symb_invariant_consensus/models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "aaa569a3-8eb7-479e-9e68-22a97d379239",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17G\\\\t/root/autodl-tmp/symb_invariant_consensus/models\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"17G\\t/root/autodl-tmp/symb_invariant_consensus/models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J6B1aW2bS4dyEwWKVw1ZQy`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/symb_invariant_consensus/models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "4c794327-c72c-4fb5-a49c-2de4a0655c4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqCEUF5SSJduxqPoFQrToj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 36483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 648
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T20:41:30.126Z_
+
+<details><summary>↩ Tool result · `toolu_01J6B1aW2bS4dyEwWKVw1ZQy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"deberta-large-pw-owa\\ndeberta-large-pw-owa-dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "34b17018-aabc-4d0f-b343-0447e64a0d87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"deberta-large-pw-owa\\\\ndeberta-large-pw-owa-dryrun\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"deberta-large-pw-owa\\ndeberta-large-pw-owa-dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MhG8W4rWxs7ncoxjPyqW9b`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/checkpoints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "b9738809-1359-472c-827a-ac4adb84fa1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqCEUF5SSJduxqPoFQrToj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 36483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 648
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U5VwXC9hSPyzfNHHWAucCm`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "d754f29a-78be-4950-ae21-d8b5d1cb853a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqCEUF5SSJduxqPoFQrToj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 36483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 648
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-25T20:41:33.615Z_
+
+<details><summary>↩ Tool result · `toolu_01MhG8W4rWxs7ncoxjPyqW9b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"deberta-large-pw-finetuned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "f501870d-25bf-42ef-9aac-0bf8c248cde6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"deberta-large-pw-finetuned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"deberta-large-pw-finetuned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T20:41:34.150Z_
+
+<details><summary>↩ Tool result · `toolu_01U5VwXC9hSPyzfNHHWAucCm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpha_endpoint_ablation.py\\nanalyze_adaptive_sica.py\\nanalyze_condorcet_independence.py\\nanalyze_extraction_errors.py\\nanalyze_k_diversity.py\\nanalyze_seed_replication.py\\nbr_shuffle_control.py\\ncompute_fleiss_kappa.py\\ncompute_fleiss_kappa_unified.py\\ncompute_fleiss_kappa_unified.py.part1\\ncompute_folio_2x2_metrics.py\\ncompute_gemini_metrics.py\\ncompute_gpt41_metrics.py\\ncompute_gpt55_metrics.py\\ncompute_o3_metrics.py\\ncompute_r17_metrics.py\\nconstraint_ablation.py\\nconvert_frontier_to_intermediates.py\\ncross_model_extract.py\\ncross_model_sc_ablation.py\\ncross_model_sc_mistral_voter.py\\nd116_qwen3_pw_deberta_large.py\\ndir_c_premise_only.py\\ndir_d_dpp_trace_selection.py\\ndir_e_strict_verification.py\\ndir_f2_cross_model_verify.py\\ndir_f2_self_verify.py\\ndir_f_prm_verifier_pilot.py\\ndir_h_provenance_analysis.py\\ndir_j1_nli_logiqa.py\\ndiscriminative_filter.py\\ndrc_tau_sensitivity.py\\nentropy_breakdown.py\\neval_finetuned_nli.py\\nexp060_dryrun.py\\nexp092_llama8b_pw_nli_combo.py\\nexp_d126_70b_sica.py\\nextract_exp033_per_problem.py\\nfinetune_deberta_pw.py\\nfolio_2x2_master.sh\\nfolio_nli_combo_bart_roberta.py\\nfolio_zeroshot_combo_d061.py\\ngen_capability_gap_scatter.py\\nkill_cuda1_after_folio.sh\\nlogiqa_nli_combo.py\\nminority_constraint_direction.py\\nminority_constraint_direction.py.bak\\nmistral_folio_seed789_only.sh\\nmulti_seed_qwen25.sh\\nmultiseed_llama8b_pw_cuda3.sh\\nmultiseed_llama_folio_cuda1.sh\\nmultiseed_mistral_folio_cuda3.sh\\nmultiseed_qwen25_14b_folio_cuda2.sh\\nmultiseed_qwen25_7b_folio_cuda3.sh\\nmultiseed_qwen25_pw_cuda0.sh\\nmultiseed_qwen3_pw.sh\\npostprocess_case_study.py\\npush_b_stronger_nli.py\\npw_nli_combo_bart_roberta.py\\nqwen14b_pw_nli_combo.py\\nr11_3verifier_canonical.py\\nr11_3verifier_final.py\\nr11_3verifier_final_v2.py\\nr21_mf2_scb_analysis.py\\nr8_w3_dedup_stats_16639.py\\nrecalc_canonical.py\\nrun_backward_verification.sh\\nrun_case_study_extract.sh\\nrun_contrastive_folio.sh\\nrun_cross_model_mistral.sh\\nrun_exp004_7b_rerun.sh\\nrun_exp007_72b_awq.sh\\nrun_exp024_llama70b.sh\\nrun_exp025_qwen72b.sh\\nrun_exp029_contrastive.sh\\nrun_exp030_crossmodel_mistral.sh\\nrun_exp031_oracle_folio_regen.py\\nrun_exp032.sh\\nrun_exp032_oracle_pw.py\\nrun_exp033.sh\\nrun_exp036.sh\\nrun_exp037.sh\\nrun_exp038.sh\\nrun_exp047_qwen3_thinking_folio204.sh\\nrun_exp051_k_sensitivity.sh\\nrun_exp060_dryrun.sh\\nrun_exp062_gemma27b_folio204.sh\\nrun_exp064.sh\\nrun_exp089_oracle_folio_mistral7b.py\\nrun_exp_d126_70b_sica.sh\\nrun_exp_r1_distill_8b_sica.sh\\nrun_folio_trace_regen.sh\\nrun_frontier_scb.py\\nrun_icl_oracle.sh\\nrun_logiqa200.sh\\nrun_premise_formalization.sh\\nrun_qwen25_pw_seed789_cuda2.sh\\nrun_qwen3_14b_nonthinking.sh\\nrun_qwen3_14b_thinking.sh\\nrun_z3_feedback_folio.sh\\nsummarize_k_sensitivity.py\\ntest_nli_standalone_cpu.py\\ntrace_gen_only.py\\ntrack_discordant_pairs.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "3f27b4d6-1ea2-4aa2-a864-95363628ed61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nalpha_endpoint_ablation.py\\\\nanalyze_adaptive_sica.py\\\\nanalyze_condorcet_independence.py\\\\nanalyze_extraction_errors.py\\\\nanalyze_k_diversity.py\\\\nanalyze_seed_replication.py\\\\nbr_shuffle_control.py\\\\ncompute_fleiss_kappa.py\\\\ncompute_fleiss_kappa_unified.py\\\\ncompute_fleiss_kappa_unified.py.part1\\\\ncompute_folio_2x2_metrics.py\\\\ncompute_gemini_metrics.py\\\\ncompute_gpt41_metrics.py\\\\ncompute_gpt55_metrics.py\\\\ncompute_o3_metrics.py\\\\ncompute_r17_metrics.py\\\\nconstraint_ablation.py\\\\nconvert_frontier_to_intermediates.py\\\\ncross_model_extract.py\\\\ncross_model_sc_ablation.py\\\\ncross_model_sc_mistral_voter.py\\\\nd116_qwen3_pw_deberta_large.py\\\\ndir_c_premise_only.py\\\\ndir_d_dpp_trace_selection.py\\\\ndir_e_strict_verification.py\\\\ndir_f2_cross_model_verify.py\\\\ndir_f2_self_verify.py\\\\ndir_f_prm_verifier_pilot.py\\\\ndir_h_provenance_analysis.py\\\\ndir_j1_nli_logiqa.py\\\\ndiscriminative_filter.py\\\\ndrc_tau_sensitivity.py\\\\nentropy_breakdown.py\\\\neval_finetuned_nli.py\\\\nexp060_dryrun.py\\\\nexp092_llama8b_pw_nli_combo.py\\\\nexp_d126_70b_sica.py\\\\nextract_exp033_per_problem.py\\\\nfinetune_deberta_pw.py\\\\nfolio_2x2_master.sh\\\\nfolio_nli_combo_bart_roberta.py\\\\nfolio_zeroshot_combo_d061.py\\\\ngen_capability_gap_scatter.py\\\\nkill_cuda1_after_folio.sh\\\\nlogiqa_nli_combo.py\\\\nminority_constraint_direction.py\\\\nminority_constraint_direction.py.bak\\\\nmistral_folio_seed789_only.sh\\\\nmulti_seed_qwen25.sh\\\\nmultiseed_llama8b_pw_cuda3.sh\\\\nmultiseed_llama_folio_cuda1.sh\\\\nmultiseed_mistral_folio_cuda3.sh\\\\nmultiseed_qwen25_14b_folio_cuda2.sh\\\\nmultiseed_qwen25_7b_folio_cuda3.sh\\\\nmultiseed_qwen25_pw_cuda0.sh\\\\nmultiseed_qwen3_pw.sh\\\\npostprocess_case_study.py\\\\npush_b_stronger_nli.py\\\\npw_nli_combo_bart_roberta.py\\\\nqwen14b_pw_nli_combo.py\\\\nr11_3verifier_canonical.py\\\\nr11_3verifier_final.py\\\\nr11_3verifier_final_v2.py\\\\nr21_mf2_scb_analysis.py\\\\nr8_w3_dedup_stats_16639.py\\\\nrecalc_canonical.py\\\\nrun_backward_verification.sh\\\\nrun_case_study_extract.sh\\\\nrun_contrastive_folio.sh\\\\nrun_cross_model_mistral.sh\\\\nrun_exp004_7b_rerun.sh\\\\nrun_exp007_72b_awq.sh\\\\nrun_exp024_llama70b.sh\\\\nrun_exp025_qwen72b.sh\\\\nrun_exp029_contrastive.sh\\\\nrun_exp030_crossmodel_mistral.sh\\\\nrun_exp031_oracle_folio_regen.py\\\\nrun_exp032.sh\\\\nrun_exp032_oracle_pw.py\\\\nrun_exp033.sh\\\\nrun_exp036.sh\\\\nrun_exp037.sh\\\\nrun_exp038.sh\\\\nrun_exp047_qwen3_thinking_folio204.sh\\\\nrun_exp051_k_sensitivity.sh\\\\nrun_exp060_dryrun.sh\\\\nrun_exp062_gemma27b_folio204.sh\\\\nrun_exp064.sh\\\\nrun_exp089_oracle_folio_mistral7b.py\\\\nrun_exp_d126_70b_sica.sh\\\\nrun_exp_r1_distill_8b_sica.sh\\\\nrun_folio_trace_regen.sh\\\\nrun_frontier_scb.py\\\\nrun_icl_oracle.sh\\\\nrun_logiqa200.sh\\\\nrun_premise_formalization.sh\\\\nrun_qwen25_pw_seed789_cuda2.sh\\\\nrun_qwen3_14b_nonthinking.sh\\\\nrun_qwen3_14b_thinking.sh\\\\nrun_z3_feedback_folio.sh\\\\nsummarize_k_sensitivity.py\\\\ntest_nli_standalone_cpu.py\\\\ntrace_gen_only.py\\\\ntrack_discordant_pairs.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpha_endpoint_ablation.py\\nanalyze_adaptive_sica.py\\nanalyze_condorcet_independence.py\\nanalyze_extraction_errors.py\\nanalyze_k_diversity.py\\nanalyze_seed_replication.py\\nbr_shuffle_control.py\\ncompute_fleiss_kappa.py\\ncompute_fleiss_kappa_unified.py\\ncompute_fleiss_kappa_unified.py.part1\\ncompute_folio_2x2_metrics.py\\ncompute_gemini_metrics.py\\ncompute_gpt41_metrics.py\\ncompute_gpt55_metrics.py\\ncompute_o3_metrics.py\\ncompute_r17_metrics.py\\nconstraint_ablation.py\\nconvert_frontier_to_intermediates.py\\ncross_model_extract.py\\ncross_model_sc_ablation.py\\ncross_model_sc_mistral_voter.py\\nd116_qwen3_pw_deberta_large.py\\ndir_c_premise_only.py\\ndir_d_dpp_trace_selection.py\\ndir_e_strict_verification.py\\ndir_f2_cross_model_verify.py\\ndir_f2_self_verify.py\\ndir_f_prm_verifier_pilot.py\\ndir_h_provenance_analysis.py\\ndir_j1_nli_logiqa.py\\ndiscriminative_filter.py\\ndrc_tau_sensitivity.py\\nentropy_breakdown.py\\neval_finetuned_nli.py\\nexp060_dryrun.py\\nexp092_llama8b_pw_nli_combo.py\\nexp_d126_70b_sica.py\\nextract_exp033_per_problem.py\\nfinetune_deberta_pw.py\\nfolio_2x2_master.sh\\nfolio_nli_combo_bart_roberta.py\\nfolio_zeroshot_combo_d061.py\\ngen_capability_gap_scatter.py\\nkill_cuda1_after_folio.sh\\nlogiqa_nli_combo.py\\nminority_constraint_direction.py\\nminority_constraint_direction.py.bak\\nmistral_folio_seed789_only.sh\\nmulti_seed_qwen25.sh\\nmultiseed_llama8b_pw_cuda3.sh\\nmultiseed_llama_folio_cuda1.sh\\nmultiseed_mistral_folio_cuda3.sh\\nmultiseed_qwen25_14b_folio_cuda2.sh\\nmultiseed_qwen25_7b_folio_cuda3.sh\\nmultiseed_qwen25_pw_cuda0.sh\\nmultiseed_qwen3_pw.sh\\npostprocess_case_study.py\\npush_b_stronger_nli.py\\npw_nli_combo_bart_roberta.py\\nqwen14b_pw_nli_combo.py\\nr11_3verifier_canonical.py\\nr11_3verifier_final.py\\nr11_3verifier_final_v2.py\\nr21_mf2_scb_analysis.py\\nr8_w3_dedup_stats_16639.py\\nrecalc_canonical.py\\nrun_backward_verification.sh\\nrun_case_study_extract.sh\\nrun_contrastive_folio.sh\\nrun_cross_model_mistral.sh\\nrun_exp004_7b_rerun.sh\\nrun_exp007_72b_awq.sh\\nrun_exp024_llama70b.sh\\nrun_exp025_qwen72b.sh\\nrun_exp029_contrastive.sh\\nrun_exp030_crossmodel_mistral.sh\\nrun_exp031_oracle_folio_regen.py\\nrun_exp032.sh\\nrun_exp032_oracle_pw.py\\nrun_exp033.sh\\nrun_exp036.sh\\nrun_exp037.sh\\nrun_exp038.sh\\nrun_exp047_qwen3_thinking_folio204.sh\\nrun_exp051_k_sensitivity.sh\\nrun_exp060_dryrun.sh\\nrun_exp062_gemma27b_folio204.sh\\nrun_exp064.sh\\nrun_exp089_oracle_folio_mistral7b.py\\nrun_exp_d126_70b_sica.sh\\nrun_exp_r1_distill_8b_sica.sh\\nrun_folio_trace_regen.sh\\nrun_frontier_scb.py\\nrun_icl_oracle.sh\\nrun_logiqa200.sh\\nrun_premise_formalization.sh\\nrun_qwen25_pw_seed789_cuda2.sh\\nrun_qwen3_14b_nonthinking.sh\\nrun_qwen3_14b_thinking.sh\\nrun_z3_feedback_folio.sh\\nsummarize_k_sensitivity.py\\ntest_nli_standalone_cpu.py\\ntrace_gen_only.py\\ntrack_discordant_pairs.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H3tGHcgNhUTcq5JT5bdnXw`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "du -sh /root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "f96e9700-1295-4f2c-afcf-82d7d17ddacb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uqh41HajhETDPZFdhSDcLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1934,
+      "cache_read_input_tokens": 37131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1934
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ASCTbFdBc2t4K4DvymKdfF`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/figures/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "d8dd3a10-46e2-412a-a85b-e89757705e12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uqh41HajhETDPZFdhSDcLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1934,
+      "cache_read_input_tokens": 37131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1934
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-25T20:41:41.394Z_
+
+<details><summary>↩ Tool result · `toolu_01H3tGHcgNhUTcq5JT5bdnXw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\t/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "c2b8dd4b-520c-49ad-a0e0-20246218575a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\t/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0\\t/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T20:41:41.931Z_
+
+<details><summary>↩ Tool result · `toolu_01ASCTbFdBc2t4K4DvymKdfF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"f2_sc_vs_delta.pdf\\nf2_sc_vs_delta.png\\nf2_sc_vs_delta.py\\nf2_sc_vs_delta_preview.png\\nf3_kt_sensitivity.pdf\\nf3_kt_sensitivity.png\\nf3_kt_sensitivity.py\\nf3_kt_sensitivity_preview.png\\ngen_f2.py\\ngen_f3.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "b45a19fe-e350-4943-989c-5ae2eb6d38ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"f2_sc_vs_delta.pdf\\\\nf2_sc_vs_delta.png\\\\nf2_sc_vs_delta.py\\\\nf2_sc_vs_delta_preview.png\\\\nf3_kt_sensitivity.pdf\\\\nf3_kt_sensitivity.png\\\\nf3_kt_sensitivity.py\\\\nf3_kt_sensitivity_preview.png\\\\ngen_f2.py\\\\ngen_f3.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"f2_sc_vs_delta.pdf\\nf2_sc_vs_delta.png\\nf2_sc_vs_delta.py\\nf2_sc_vs_delta_preview.png\\nf3_kt_sensitivity.pdf\\nf3_kt_sensitivity.png\\nf3_kt_sensitivity.py\\nf3_kt_sensitivity_preview.png\\ngen_f2.py\\ngen_f3.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+探测完成。以下是完整摘要：
+
+---
+
+## westd-16639 服务器项目数据摘要
+
+### 磁盘空间
+
+| 分区 | 容量 | 已用 | 可用 | 使用率 |
+|------|------|------|------|--------|
+| 根分区 `/` | 30G | 12G | **19G** | 40% |
+| 数据盘 `/root/autodl-tmp` | 350G | 230G | **121G** | 66% |
+
+### 项目大小
+
+| 路径 | 大小 |
+|------|------|
+| `/root/symb_invariant_consensus` | **1.1G** |
+| `/root/autodl-tmp/symb_invariant_consensus` | **17G**（其中 models/ 占 17G） |
+| `/root/autodl-tmp/.hf_cache` | **1.3G** |
+
+### results 目录
+- **大小**: 834M
+- **文件/目录数**: 97 条（含 ~25 个 JSON 文件 + ~72 个实验子目录）
+- 最大文件: `r11_3verifier_canonical.json` (126K)
+- 典型实验目录: `multi_seed/`, `exp_d126_crossmodel_sica/`, `exp_d135_frontier_scb/` 等
+
+### artifacts 目录
+- **大小**: 176K
+- **文件数**: 5 个（capability_gap_scatter.pdf/png, deberta_ft_combo_all.json, nli_recompute.json, nondeterminism_root_cause.md）
+
+### HF Cache
+- **大小**: 1.3G（位于 `/root/autodl-tmp/.hf_cache`）
+
+### Checkpoint 文件
+- **无** `.pt/.pth/.bin/.safetensors` 文件在项目根目录
+- `/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned/` 存在但**为空** (0 bytes)
+- `/root/autodl-tmp/symb_invariant_consensus/models/` 包含：`deberta-large-pw-owa` 和 `deberta-large-pw-owa-dryrun`（共 17G）
+
+### Git 状态
+- **项目无 `.git` 目录** — 非 git 仓库
+
+### Figures
+- `figures/`: f2_sc_vs_delta (pdf/png), f3_kt_sensitivity (pdf/png), 及生成脚本 gen_f2.py, gen_f3.py
+- `docs/paper/figures/`: gen_f6_kappa_accuracy_scatter.py, gen_capability_gap_scatter.py
+
+### 特殊发现
+1. **项目不是 git 仓库**（无 .git 目录）
+2. **wandb 目录不存在**（实验可能用的远端 wandb 或未启用）
+3. **checkpoints 目录为空**，实际模型权重在数据盘 `/root/autodl-tmp/symb_invariant_consensus/models/`（17G）
+4. 数据盘已用 66%，仍有 121G 可用空间充裕
+5. `scripts/` 目录非常活跃（100+ 文件），包含大量实验运行/分析脚本，最近更新到 May 25
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "uuid": "0b53df1b-48be-429e-b663-f9ca07a2ca35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyHFkfwttWf1f3k9LCLvFV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 641,
+      "cache_read_input_tokens": 39065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 641
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+探测完成。以下是完整摘要：
+
+---
+
+## westd-16639 服务器项目数据摘要
+
+### 磁盘空间
+
+| 分区 | 容量 | 已用 | 可用 | 使用率 |
+|------|------|------|------|--------|
+| 根分区 `/` | 30G | 12G | **19G** | 40% |
+| 数据盘 `/root/autodl-tmp` | 350G | 230G | **121G** | 66% |
+
+### 项目大小
+
+| 路径 | 大小 |
+|------|------|
+| `/root/symb_invariant_consensus` | **1.1G** |
+| `/root/autodl-tmp/symb_invariant_consensus` | **17G**（其中 models/ 占 17G） |
+| `/root/autodl-tmp/.hf_cache` | **1.3G** |
+
+### results 目录
+- **大小**: 834M
+- **文件/目录数**: 97 条（含 ~25 个 JSON 文件 + ~72 个实验子目录）
+- 最大文件: `r11_3verifier_canonical.json` (126K)
+- 典型实验目录: `multi_seed/`, `exp_d126_crossmodel_sica/`, `exp_d135_frontier_scb/` 等
+
+### artifacts 目录
+- **大小**: 176K
+- **文件数**: 5 个（capability_gap_scatter.pdf/png, deberta_ft_combo_all.json, nli_recompute.json, nondeterminism_root_cause.md）
+
+### HF Cache
+- **大小**: 1.3G（位于 `/root/autodl-tmp/.hf_cache`）
+
+### Checkpoint 文件
+- **无** `.pt/.pth/.bin/.safetensors` 文件在项目根目录
+- `/root/symb_invariant_consensus/checkpoints/deberta-large-pw-finetuned/` 存在但**为空** (0 bytes)
+- `/root/autodl-tmp/symb_invariant_consensus/models/` 包含：`deberta-large-pw-owa` 和 `deberta-large-pw-owa-dryrun`（共 17G）
+
+### Git 状态
+- **项目无 `.git` 目录** — 非 git 仓库
+
+### Figures
+- `figures/`: f2_sc_vs_delta (pdf/png), f3_kt_sensitivity (pdf/png), 及生成脚本 gen_f2.py, gen_f3.py
+- `docs/paper/figures/`: gen_f6_kappa_accuracy_scatter.py, gen_capability_gap_scatter.py
+
+### 特殊发现
+1. **项目不是 git 仓库**（无 .git 目录）
+2. **wandb 目录不存在**（实验可能用的远端 wandb 或未启用）
+3. **checkpoints 目录为空**，实际模型权重在数据盘 `/root/autodl-tmp/symb_invariant_consensus/models/`（17G）
+4. 数据盘已用 66%，仍有 121G 可用空间充裕
+5. `scripts/` 目录非常活跃（100+ 文件），包含大量实验运行/分析脚本，最近更新到 May 25
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 77137,
+  "duration_api_ms": 74119,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "365ce854-c1d3-449a-8cf4-14bd9f789884",
+  "total_cost_usd": 0.37045575000000003,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 27865,
+    "cache_read_input_tokens": 233951,
+    "output_tokens": 3109,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27865,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 913,
+        "cache_read_input_tokens": 39065,
+        "cache_creation_input_tokens": 641,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 641
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1439,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001539,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 3109,
+      "cacheReadInputTokens": 233951,
+      "cacheCreationInputTokens": 27865,
+      "webSearchRequests": 0,
+      "costUSD": 0.36891675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "464c6f1b-53ae-487e-8139-cf2483a03cd9"
+}
+```
+
+</details>
+
+---

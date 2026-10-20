@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-818_Q1",
+    "problem": "Charlie is young. Erin is blue. Erin is not kind. Fiona is blue. Fiona is white. Gary is blue. Gary is kind. Furry, nice things are white. If something is young and blue then it is smart. All blue, smart things are furry. All smart, white things are furry. Young things are nice. If Fiona is smart and Fiona is young then Fiona is not furry. If Erin is kind then Erin is furry. If Gary is smart and Gary is white then Gary is not kind. If something is nice then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, False) ::: Erin is not kind.\nBlue(Fiona, True) ::: Fiona is blue.\nWhite(Fiona, True) ::: Fiona is white.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> White($x, True) ::: Furry, nice things are white.\nYoung($x, True) && Blue($x, True) >>> Smart($x, True) ::: If something is young and blue then it is smart.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: All blue, smart things are furry.\nSmart($x, True) && White($x, True) >>> Furry($x, True) ::: All smart, white things are furry.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nSmart(Fiona, True) && Young(Fiona, True) >>> Furry(Fiona, False) ::: If Fiona is smart and Fiona is young then Fiona is not furry.\nKind(Erin, True) >>> Furry(Erin, True) ::: If Erin is kind then Erin is furry.\nSmart(Gary, True) && White(Gary, True) >>> Kind(Gary, False) ::: If Gary is smart and Gary is white then Gary is not kind.\nNice($x, True) >>> Blue($x, True) ::: If something is nice then it is blue.\n\nQuery:\nYoung(Charlie, True) ::: Charlie is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

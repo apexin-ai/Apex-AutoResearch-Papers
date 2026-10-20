@@ -1,0 +1,443 @@
+{
+  "schema_version": "1.0",
+  "id": "013ccdc06bbfed9baa83",
+  "project": "symb_invariant_consensus",
+  "kind": "conversation",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260517T191146",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_paper_writing_abstract_20260517T191146.jsonl",
+    "occurrence": 1,
+    "bytes": 16820,
+    "sha256": "b9a3eb18a805efc218ddc85c68ee5867f428fc5cf6dca4c8a376c8d7f25de3de"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T19:13:54.659072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T19:13:54.659700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T19:13:54.659947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T19:13:54.660162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tNeuro-symbolic methods that augment large language model (LLM) reasoning with formal solvers have demonstrated clear gains on logical reasoning benchmarks. \\citet{pan2023logiclm} translate natural language premises into symbolic formulations and delegate solving to an external prover, an approach shown to correct errors in LLM chain-of-thought reasoning. LINC pairs language models with first-order logic provers in a modular architecture that separates natural language understanding from formal inference \\citep{olausson2023linc}. More recent systems push this integration further: \\citet{xu2026dylos} adaptively route problems to specialized solver paradigms based on problem structure, \\citet{li2025aristotle} apply logic-complete decomposition with structured search over proof trees, \\citet{wang2025fover} train a dedicated first-order logic (FOL) verifier on supervised annotations, and \\citet{luo2025logicagent} employ multi-perspective semiotic grounding to construct constraints from diverse viewpoints. These systems report positive results on overlapping formal reasoning benchmarks. A critical commonality unites them: each introduces capabilities beyond the reasoning model itself, whether trained verifiers, multi-paradigm solver selection, logic-complete decomposition modules, or external knowledge bases. The external machinery is effective, but it imposes practical costs in supervised training data for verifier construction, integration complexity for solver routing, and domain-specific engineering that limits portability across reasoning tasks.\n4\t\n5\tThese results raise a direct question: does the reasoning model itself possess sufficient capability to extract useful formal constraints from its own reasoning traces? If the same LLM that generates chain-of-thought reasoning can also formalize the logical structure embedded in those traces, the external components become unnecessary, and neuro-symbolic reasoning red\n…[truncated 7310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T19:13:54.660320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T19:13:54.660519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:exp-setup}\n6\t\n7\tWe evaluate SICA against Self-Consistency (SC) across five models and three reasoning domains, with two additional benchmarks as operating-regime probes.\n8\t\n9\t\\paragraph{Models.} We test Qwen2.5-14B-Instruct~\\cite{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\cite{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\cite{dubey2024llama3}, DeepSeek-R1-Distill-Qwen-7B~\\cite{guo2025deepseekr1}, and QwQ-32B~\\cite{qwen2024qwq}. This selection spans 7B to 32B parameters and includes one reasoning-specialized model (QwQ-32B) and one distilled reasoning model (DeepSeek-R1-Distill-Qwen-7B) that, as our results show, behaves as an instruction-scale model rather than a reasoning model.\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\cite{han2022folio} provides formal logic problems with gold first-order logic (FOL) annotations ($n=204$), which enable the oracle control experiment (\\S\\ref{sec:oracle}). ProofWriter~\\cite{tafjord2021proofwriter} tests multi-step deductive reasoning ($n=600$). StrategyQA~\\cite{geva2021strategyqa} evaluates commonsense reasoning ($n=200$ for LLaMA-3.1-8B; $n=60$ for other models). ARC-Challenge~\\cite{clark2018arc} covers science questions ($n=60$). We additionally include GSM8K~\\cite{cobbe2021gsm8k} ($n=30$) and AIME 2024 ($n=22$) as operating-regime probes: both exhibit near-ceiling SC accuracy or near-zero $C_0$, confirming that SICA degenerates to SC when answer diversity is absent.\n12\t\n13\t\\paragraph{Parameters.} Unless otherwise noted, we sample $K=12$ reasoning traces per question at temperature $T=0.7$. Z3~\\cite{demoura2008z3} solves each MAX-SAT instance with a 10-second timeout. Temperature ablation experiments vary $T \\in \\{0.3, 0.5, 0.7, 1.0\\}$.\n14\t\n15\t\\paragraph{Metrics.} We report accuracy (\\%), the multi-candidate rate $C_0$ (\\S\\ref{sec:c0}), and the accuracy gap $\\Delta = \\text{SICA} - \\text{SC}$ in percentage points (pp). Statistical significanc\n…[truncated 10049 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T19:13:54.660768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/abstract.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T19:13:54.660926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T19:13:54.661052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T19:13:54.661177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tSelf-Consistency (SC), majority voting over sampled chain-of-thought traces, is a simple and effective method for improving Large Language Model (LLM) reasoning. A natural extension is to extract formal constraints from these traces and aggregate them with a symbolic solver, potentially recovering signal that vote counting discards. We investigate this idea through Symbolic Invariant Consensus Aggregation (SICA), a pipeline that uses the same LLM to extract First-Order Logic (FOL) constraints from its own reasoning traces and combines them via weighted partial MAX-SAT optimization. Our evaluation spans five models (7B to 32B parameters), three reasoning domains, and over 1,300 instances. The result is negative: SICA yields no statistically significant improvement over SC in any condition, with accuracy gaps between $-3.3$ and $+3.3$ percentage points. We identify the cause as a \\emph{capability trap}: because the same model generates both answers and constraints, the extracted constraints are semantically coupled to their source answers, and MAX-SAT optimization degenerates to vote counting. MAX-SAT and a count-only baseline agree on 803 of 804 predictions. An oracle control that substitutes gold FOL annotations achieves $+8.82$ percentage points over SC ($p < 0.001$), confirming that the aggregation mechanism is effective when supplied with discriminative constraints. We further propose the multi-candidate rate $C_0$ as a zero-cost diagnostic: when $C_0$ falls below 5\\%, constraint-based methods cannot outperform majority voting regardless of constraint quality.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T19:13:54.661370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "content": "\\begin{abstract}\nNeuro-symbolic methods propose extracting first-order logic (FOL) constraints from Large Language Model (LLM) reasoning traces to improve answer aggregation beyond majority voting. Whether the reasoning model itself can produce useful constraints through self-extraction has not been systematically evaluated. If self-extraction works, it eliminates the need for trained verifiers, external provers, or domain-specific infrastructure. We evaluate Symbolic Invariant Consensus Aggregation (SICA), which formulates a weighted partial Maximum Satisfiability (MAX-SAT) problem over self-extracted FOL constraints, across five model families (7B to 32B parameters) and three reasoning domains with more than 1,300 total instances. We include an oracle control that replaces self-extraction with gold FOL annotations verified by Z3 to isolate extraction quality from aggregation effectiveness. Self-extracted SICA provides no statistically significant improvement over Self-Consistency (SC) in any tested condition. The oracle variant achieves $+8.82$ percentage points over SC ($p < 0.001$), which proves the aggregation mechanism is sound when supplied with high-quality constraints. We identify this failure as a \\emph{capability trap}: because the same model that produced potentially flawed reasoning also extracts the constraints, those constraints are semantically coupled to their source answers and carry no independent discriminative signal. Only 11.5\\% of self-extracted constraints evaluate differently across candidate answers. This result establishes that same-model constraint extraction cannot improve LLM answer aggregation without independent sources of formal knowledge.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T19:13:54.661533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T19:13:54.661674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—|–",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T19:13:54.662088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T19:13:54.662220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T19:13:54.662338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T19:13:54.662451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T19:13:54.662563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T19:13:54.662687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\w+ing[,.]' /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/abstract.tex",
+              "description": "Find -ing words followed by comma or period"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T19:13:54.662801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "voting."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T19:13:54.662961+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"voting.\" is part of \"majority voting.\" which is a noun phrase (the object of the preposition), not a participial phrase ending. No issues.\n\nAbstract written (~216 words). Key design choices:\n- Opens with the research question (can self-extraction work?) rather than leading with the negative result\n- Oracle-positive framing: proves aggregation is sound, localizes failure to extraction quality\n- Three key numbers only: +8.82pp, p<0.001, 11.5% discriminative rate\n- All abbreviations defined inline (FOL, LLM, SICA, MAX-SAT, SC)\n- No em-dashes, no -ing phrase endings, no blacklisted words"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260517T191146"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-abstract-copy-2.md"
+}

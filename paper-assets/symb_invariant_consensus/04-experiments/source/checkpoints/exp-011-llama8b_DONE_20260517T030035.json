@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp-011-llama8b",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T01:00:32.450Z",
+    "updated_at": "2026-05-17T03:00:35.641Z",
+    "hypothesis": "Cross-family validation: LLaMA-3.1-8B-Instruct 在 D012 数据集(30PW+30FOLIO)上是否复现 SICA≈SC pattern——验证 capability trap 非 Qwen-specific",
+    "parent": "sica_expanded_14b",
+    "notes": "Prep done by worker_prep_exp-011-llama8b_20260516T204635. Model: LLaMA-3.1-8B-Instruct (14GB, 4 shards). Script: /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh. Dataset: D012 (30 PW + 30 FOLIO = 60 题). 预估 ~25-30GB GPU, ~1-1.5h runtime. 等 sica_k_sensitivity_14b 完成后启动。",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T02:56:05.600Z",
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T02:58:40.441Z",
+      "training_hours": 0.04
+    },
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "266576",
+      "log_path": "~/runs/symb_invariant_consensus/exp-011-llama8b.log",
+      "submitted_at": "2026-05-17T02:56:07.282Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 154.1,
+      "gpu_hours": 0.04
+    },
+    "pid": "266576",
+    "log_path": "~/runs/symb_invariant_consensus/exp-011-llama8b.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T02:58:41.363Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T02:58:43.037174+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T03:00:35.683592+00:00",
+  "trigger": "update_registry"
+}

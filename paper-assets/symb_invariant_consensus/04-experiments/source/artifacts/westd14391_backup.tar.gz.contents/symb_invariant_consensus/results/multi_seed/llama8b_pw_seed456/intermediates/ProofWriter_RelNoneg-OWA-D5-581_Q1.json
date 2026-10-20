@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-581_Q1",
+    "problem": "The cat likes the rabbit. The cat likes the tiger. The mouse is blue. The mouse is nice. The mouse is round. The mouse visits the tiger. The rabbit likes the tiger. The rabbit visits the tiger. The tiger eats the mouse. The tiger eats the rabbit. The tiger visits the cat. If the mouse is big then the mouse visits the cat. If something visits the mouse then it visits the tiger. If something likes the tiger and the tiger eats the cat then the cat is red. If something visits the tiger then the tiger visits the mouse. If something is blue and it visits the cat then it likes the rabbit. If something is nice then it likes the cat. If something is blue then it likes the cat. If something is round then it is nice. If something visits the tiger then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat likes the tiger.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\n\nFacts:\nLikes(Cat, Rabbit, True) ::: The cat likes the rabbit.\nLikes(Cat, Tiger, True) ::: The cat likes the tiger.\nBlue(Mouse, True) ::: The mouse is blue.\nNice(Mouse, True) ::: The mouse is nice.\nRound(Mouse, True) ::: The mouse is round.\nVisits(Mouse, Tiger, True) ::: The mouse visits the tiger.\nLikes(Rabbit, Tiger, True) ::: The rabbit likes the tiger.\nVisits(Rabbit, Tiger, True) ::: The rabbit visits the tiger.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\nEats(Tiger, Rabbit, True) ::: The tiger eats the rabbit.\nVisits(Tiger, Cat, True) ::: The tiger visits the cat.\n\nRules:\nBig(Mouse, True) >>> Visits(Mouse, Cat, True) ::: If the mouse is big then the mouse visits the cat.\nVisits($x, Mouse, True) >>> Visits($x, Tiger, True) ::: If something visits the mouse then it visits the tiger.\nLikes($x, Tiger, True) && Eats(Tiger, Cat, True) >>> Red(Cat, True) ::: If something likes the tiger and the tiger eats the cat then the cat is red.\nVisits($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If something visits the tiger then the tiger visits the mouse.\nBlue($x, True) && Visits($x, Cat, True) >>> Likes($x, Rabbit, True) ::: If something is blue and it visits the cat then it likes the rabbit.\nNice($x, True) >>> Likes($x, Cat, True) ::: If something is nice then it likes the cat.\nBlue($x, True) >>> Likes($x, Cat, True) ::: If something is blue then it likes the cat.\nRound($x, True) >>> Nice($x, True) ::: If something is round then it is nice.\nVisits($x, Tiger, True) >>> Round($x, True) ::: If something visits the tiger then it is round.\n\nQuery:\nLikes(Cat, Tiger, True) ::: The cat likes the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01c960a9fbfbf345a16b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis multi seed llama table",
+  "task_key": "worker_analysis_multi-seed-llama-table_20260523T213746",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_multi-seed-llama-table_20260523T213746_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "45571efb6274e575be9b20d6cb6f7f5a8497bea1e8ad161c79d9989e79604e4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `results/multi_seed_llama_table.tex`。\n\n汇总：\n\n| Seed | SC (%) | SICA (%) | Δ (pp) | p-value | Sig |\n|------|--------|----------|--------|---------|-----|\n| 42 | 72.50 | 65.00 | −7.50 | <.001 | *** |\n| 123 | 71.33 | 64.17 | −7.17 | <.001 | *** |\n| 456 | 71.67 | 66.17 | −5.50 | <.001 | *** |\n| 789 | 71.17 | 66.50 | −4.67 | <.001 | *** |\n| **Mean±Std** | **71.67±0.59** | **65.46±1.07** | **−6.21±1.35** | | |\n\n**数据来源说明：**\n- seed456 完整数据(n=600)在 **westd-30973** 的 `llama8b_pw_seed456_v2/results.json`，westd-16639 上只有 184/600 的旧版本\n- seed789 SICA 从 66.17% 修正为 **66.50%**（2 个 tie 问题用 alphabetical tiebreaking 均修正为正确答案）\n- 4 个 seed 的 McNemar exact p-value 全部 < .001，均达到 *** 显著性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-seed-llama-table.md"
+}

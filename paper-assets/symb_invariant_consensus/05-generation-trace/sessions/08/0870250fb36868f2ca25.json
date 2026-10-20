@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0870250fb36868f2ca25",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper folio nli appendix",
+  "task_key": "worker_paper_folio-nli-appendix_20260523T172156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_folio-nli-appendix_20260523T172156_result.json",
+    "occurrence": 1,
+    "bytes": 281,
+    "sha256": "aaeee94a1fd4fab2226b545eef45cd72751b1068587b6b4617a2b55380ea1871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已插入 6 个表格（FOLIO 3 个 + LogiQA 3 个），位于 RoBERTa cross-generator 表格之后、Domain-adapted verifier 之前。每个表格包含 4 个 generator × 3 个 weight level，所有 p 值标注 n.s.，格式与已有 appendix 表格风格一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-folio-nli-appendix.md"
+}

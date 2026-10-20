@@ -1,0 +1,22 @@
+{
+  "exp_id": "sica_constraint_ablation_013",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:26:35.414Z",
+    "updated_at": "2026-05-16T20:26:42.427Z",
+    "spec": {
+      "command": "python scripts/extract_constraints_for_ablation.py",
+      "server": "westd-32608",
+      "data_path": "results/sica_expanded_14b/",
+      "data_count": 804,
+      "model_name": "N/A (CPU ablation on exp-001 outputs)",
+      "seed": "N/A"
+    }
+  },
+  "timestamp": "2026-05-16T20:26:42.463980+00:00",
+  "trigger": "update_registry"
+}

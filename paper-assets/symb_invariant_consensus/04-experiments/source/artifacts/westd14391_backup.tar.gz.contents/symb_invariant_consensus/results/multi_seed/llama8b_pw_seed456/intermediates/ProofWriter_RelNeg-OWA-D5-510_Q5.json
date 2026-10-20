@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-510_Q5",
+    "problem": "The bear is cold. The bear is not green. The bear is rough. The rabbit is cold. The squirrel is nice. The squirrel does not visit the rabbit. The squirrel visits the tiger. The tiger chases the bear. The tiger does not eat the rabbit. The tiger is cold. The tiger is nice. The tiger is not rough. The tiger visits the rabbit. The tiger visits the squirrel. If something is green and it visits the squirrel then the squirrel is green. If something chases the rabbit then it eats the bear. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. If something is cold then it chases the rabbit. If the rabbit chases the squirrel then the squirrel eats the bear. If something chases the bear and it visits the tiger then the tiger chases the squirrel. If something is cold and not nice then it eats the rabbit. If something eats the bear and the bear visits the squirrel then it eats the rabbit. If something eats the bear then it chases the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit eats the bear.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nCold(Bear, True) ::: The bear is cold.\nGreen(Bear, False) ::: The bear is not green.\nRough(Bear, True) ::: The bear is rough.\nCold(Rabbit, True) ::: The rabbit is cold.\nNice(Squirrel, True) ::: The squirrel is nice.\nVisits(Squirrel, Rabbit, False) ::: The squirrel does not visit the rabbit.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nEats(Tiger, Rabbit, False) ::: The tiger does not eat the rabbit.\nCold(Tiger, True) ::: The tiger is cold.\nNice(Tiger, True) ::: The tiger is nice.\nRough(Tiger, False) ::: The tiger is not rough.\nVisits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.\nVisits(Tiger, Squirrel, True) ::: The tiger visits the squirrel.\n\nRules:\nGreen($x, True) && Visits($x, Squirrel, True) >>> Green(Squirrel, True) ::: If something is green and it visits the squirrel then the squirrel is green.\nChases($x, Rabbit, True) >>> Eats($x, Bear, True) ::: If something chases the rabbit then it eats the bear.\nEats(Squirrel, Rabbit, True) && Visits(Rabbit, Bear, True) >>> Green(Bear, False) ::: If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red.\nCold($x, True) >>> Chases($x, Rabbit, True) ::: If something is cold then it chases the rabbit.\nChases(Rabbit, Squirrel, True) >>> Eats(Squirrel, Bear, True) ::: If the rabbit chases the squirrel then the squirrel eats the bear.\nChases($x, Bear, True) && Visits($x, Tiger, True) >>> Chases(Tiger, Squirrel, True) ::: If something chases the bear and it visits the tiger then the tiger chases the squirrel.\nCold($x, True) && Nice($x, False) >>> Eats($x, Rabbit, True) ::: If something is cold and not nice then it eats the rabbit.\nEats($x, Bear, True) && Visits(Bear, Squirrel, True) >>> Eats($x, Rabbit, True) ::: If something eats the bear and the bear visits the squirrel then it eats the rabbit.\nEats($x, Bear, True) >>> Chases($x, Squirrel, True) ::: If something eats the bear then it chases the squirrel.\n\nQuery:\nEats(Rabbit, Bear, True) ::: The rabbit eats the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-637_Q19",
+    "problem": "The bald eagle eats the bear. The bald eagle is nice. The bald eagle visits the mouse. The bear eats the tiger. The bear is kind. The bear visits the tiger. The mouse eats the bear. The mouse is green. The mouse is kind. The mouse sees the bald eagle. The mouse sees the bear. The mouse sees the tiger. The tiger eats the mouse. The tiger sees the bald eagle. The tiger sees the bear. The tiger visits the mouse. If something is kind then it visits the bald eagle. If something eats the bear then the bear sees the bald eagle. If the bald eagle is round then the bald eagle eats the bear. If something eats the bald eagle and it sees the bear then the bald eagle is kind. If something sees the bald eagle then the bald eagle visits the mouse. If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle. If something is blue and it eats the tiger then the tiger eats the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is not green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nNice(BaldEagle, True) ::: The bald eagle is nice.\nVisits(BaldEagle, Mouse, True) ::: The bald eagle visits the mouse.\nEats(Bear, Tiger, True) ::: The bear eats the tiger.\nKind(Bear, True) ::: The bear is kind.\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nEats(Mouse, Bear, True) ::: The mouse eats the bear.\nGreen(Mouse, True) ::: The mouse is green.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSees(Mouse, Bear, True) ::: The mouse sees the bear.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\nSees(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\nSees(Tiger, Bear, True) ::: The tiger sees the bear.\nVisits(Tiger, Mouse, True) ::: The tiger visits the mouse.\n\nRules:\nKind($x, True) >>> Visits($x, BaldEagle, True) ::: If something is kind then it visits the bald eagle.\nEats($x, Bear, True) >>> Sees(Bear, BaldEagle, True) ::: If something eats the bear then the bear sees the bald eagle.\nRound(BaldEagle, True) >>> Eats(BaldEagle, Bear, True) ::: If the bald eagle is round then the bald eagle eats the bear.\nEats($x, BaldEagle, True) && Sees($x, Bear, True) >>> Kind(BaldEagle, True) ::: If something eats the bald eagle and it sees the bear then the bald eagle is kind.\nSees($x, BaldEagle, True) >>> Visits(BaldEagle, Mouse, True) ::: If something sees the bald eagle then the bald eagle visits the mouse.\nVisits($x, BaldEagle, True) && Visits(BaldEagle, Mouse, True) >>> Eats($x, BaldEagle, True) ::: If something visits the bald eagle and the bald eagle visits the mouse then it eats the bald eagle.\nBlue($x, True) && Eats($x, Tiger, True) >>> Eats(Tiger, Mouse, True) ::: If something is blue and it eats the tiger then the tiger eats the mouse.\n\nQuery:\nGreen(BaldEagle, False) ::: The bald eagle is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

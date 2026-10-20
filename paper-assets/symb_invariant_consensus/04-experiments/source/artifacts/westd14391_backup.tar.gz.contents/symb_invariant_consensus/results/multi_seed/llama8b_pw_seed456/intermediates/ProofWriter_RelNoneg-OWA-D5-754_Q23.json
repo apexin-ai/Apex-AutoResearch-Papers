@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-754_Q23",
+    "problem": "The cat is big. The cat is nice. The cat sees the dog. The cat visits the dog. The dog is big. The dog is nice. The mouse is nice. The mouse is red. The tiger eats the cat. The tiger eats the dog. The tiger visits the mouse. If someone visits the tiger then the tiger sees the mouse. If the cat eats the dog and the cat sees the dog then the cat is big. If someone eats the dog then they visit the cat. If the tiger is young and the tiger is nice then the tiger eats the mouse. If someone sees the mouse and the mouse is red then the mouse visits the tiger. If someone visits the tiger then they visit the cat. If someone visits the cat and the cat visits the dog then the dog visits the tiger. If the cat sees the tiger then the cat eats the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not eat the mouse.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(cat, True) ::: The cat is big.\nNice(cat, True) ::: The cat is nice.\nSees(cat, dog, True) ::: The cat sees the dog.\nVisits(cat, dog, True) ::: The cat visits the dog.\nBig(dog, True) ::: The dog is big.\nNice(dog, True) ::: The dog is nice.\nNice(mouse, True) ::: The mouse is nice.\nRed(mouse, True) ::: The mouse is red.\nEats(tiger, cat, True) ::: The tiger eats the cat.\nEats(tiger, dog, True) ::: The tiger eats the dog.\nVisits(tiger, mouse, True) ::: The tiger visits the mouse.\n\nRules:\nVisits($x, tiger, True) >>> Sees(tiger, mouse, True) ::: If someone visits the tiger then the tiger sees the mouse.\nEats(cat, dog, True) && Sees(cat, dog, True) >>> Big(cat, True) ::: If the cat eats the dog and the cat sees the dog then the cat is big.\nEats($x, dog, True) >>> Visits($x, cat, True) ::: If someone eats the dog then they visit the cat.\nYoung(tiger, True) && Nice(tiger, True) >>> Eats(tiger, mouse, True) ::: If the tiger is young and the tiger is nice then the tiger eats the mouse.\nSees($x, mouse, True) && Red(mouse, True) >>> Visits($x, tiger, True) ::: If someone sees the mouse and the mouse is red then the mouse visits the tiger.\nVisits($x, tiger, True) >>> Visits($x, cat, True) ::: If someone visits the tiger then they visit the cat.\nVisits($x, cat, True) && Visits(cat, dog, True) >>> Visits(dog, tiger, True) ::: If someone visits the cat and the cat visits the dog then the dog visits the tiger.\nSees(cat, tiger, True) >>> Eats(cat, dog, True) ::: If the cat sees the tiger then the cat eats the dog.\n\nQuery:\nEats(mouse, mouse, False) ::: The mouse does not eat the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-116_Q12",
+    "problem": "The cow is young. The cow sees the lion. The dog likes the cow. The dog likes the rabbit. The dog sees the rabbit. The lion is young. The lion sees the cow. The lion sees the dog. The lion sees the rabbit. The rabbit is round. The rabbit likes the cow. If someone visits the rabbit then the rabbit likes the lion. If someone likes the rabbit and the rabbit is red then the rabbit is big. If someone likes the lion and they see the rabbit then the lion likes the rabbit. If someone is young then they like the rabbit. If someone is young then they see the lion. If the lion is big then the lion visits the dog. If the rabbit likes the lion then the rabbit is young. If someone is young and they like the rabbit then they visit the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\n\nFacts:\nYoung(cow, True) ::: The cow is young.\nSees(cow, lion, True) ::: The cow sees the lion.\nLikes(dog, cow, True) ::: The dog likes the cow.\nLikes(dog, rabbit, True) ::: The dog likes the rabbit.\nSees(dog, rabbit, True) ::: The dog sees the rabbit.\nYoung(lion, True) ::: The lion is young.\nSees(lion, cow, True) ::: The lion sees the cow.\nSees(lion, dog, True) ::: The lion sees the dog.\nSees(lion, rabbit, True) ::: The lion sees the rabbit.\nRound(rabbit, True) ::: The rabbit is round.\nLikes(rabbit, cow, True) ::: The rabbit likes the cow.\n\nRules:\nVisits($x, rabbit, True) >>> Likes(rabbit, lion, True) ::: If someone visits the rabbit then the rabbit likes the lion.\nLikes($x, rabbit, True) && Red(rabbit, True) >>> Big(rabbit, True) ::: If someone likes the rabbit and the rabbit is red then the rabbit is big.\nLikes($x, lion, True) && Sees($x, rabbit, True) >>> Likes(lion, rabbit, True) ::: If someone likes the lion and they see the rabbit then the lion likes the rabbit.\nYoung($x, True) >>> Likes($x, rabbit, True) ::: If someone is young then they like the rabbit.\nYoung($x, True) >>> Sees($x, lion, True) ::: If someone is young then they see the lion.\nBig(lion, True) >>> Visits(lion, dog, True) ::: If the lion is big then the lion visits the dog.\nLikes(rabbit, lion, True) >>> Young(rabbit, True) ::: If the rabbit likes the lion then the rabbit is young.\nYoung($x, True) && Likes($x, rabbit, True) >>> Visits($x, rabbit, True) ::: If someone is young and they like the rabbit then they visit the rabbit.\n\nQuery:\nSees(rabbit, lion, False) ::: The rabbit does not see the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

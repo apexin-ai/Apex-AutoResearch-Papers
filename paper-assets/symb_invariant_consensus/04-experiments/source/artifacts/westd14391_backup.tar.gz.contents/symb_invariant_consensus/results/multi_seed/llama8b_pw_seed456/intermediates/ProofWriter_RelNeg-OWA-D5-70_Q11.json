@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-70_Q11",
+    "problem": "The bald eagle chases the rabbit. The bald eagle chases the tiger. The lion needs the rabbit. The rabbit does not chase the lion. The rabbit needs the bald eagle. The rabbit needs the lion. The tiger visits the rabbit. If something chases the rabbit then it is big. If something needs the tiger then it is big. If something needs the lion and it visits the rabbit then it chases the lion. If something is big then it chases the lion. If something chases the tiger then the tiger needs the rabbit. If something visits the tiger then the tiger is not green. If something chases the lion then the lion chases the rabbit. If something chases the tiger then it visits the bald eagle. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion chases the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nChases(Rabbit, Lion, False) ::: The rabbit does not chase the lion.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\nVisits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.\n\nRules:\nChases($x, Rabbit, True) >>> Big($x, True) ::: If something chases the rabbit then it is big.\nNeeds($x, Tiger, True) >>> Big($x, True) ::: If something needs the tiger then it is big.\nNeeds($x, Lion, True) && Visits($x, Rabbit, True) >>> Chases($x, Lion, True) ::: If something needs the lion and it visits the rabbit then it chases the lion.\nBig($x, True) >>> Chases($x, Lion, True) ::: If something is big then it chases the lion.\nChases($x, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If something chases the tiger then the tiger needs the rabbit.\nVisits($x, Tiger, True) >>> Green(Tiger, False) ::: If something visits the tiger then the tiger is not green.\nChases($x, Lion, True) >>> Chases(Lion, Rabbit, True) ::: If something chases the lion then the lion chases the rabbit.\nChases($x, Tiger, True) >>> Visits($x, BaldEagle, True) ::: If something chases the tiger then it visits the bald eagle.\nChases($x, Rabbit, True) && Visits($x, Lion, False) >>> Needs(Lion, Rabbit, False) ::: If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nQuery:\nChases(Lion, Lion, True) ::: The lion chases the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

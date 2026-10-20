@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-454_Q13",
+    "problem": "Anne is green. Anne is nice. Anne is not rough. Anne is smart. Bob is green. Bob is nice. Fiona is white. Gary is rough. Gary is round. Gary is white. If something is nice then it is round. If something is white then it is round. If something is young and not nice then it is round. If Bob is round and Bob is green then Bob is rough. If something is young and green then it is smart. Smart things are white. If something is rough and not green then it is white. If something is rough then it is young. All rough things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, False) ::: Anne is not rough.\nSmart(Anne, True) ::: Anne is smart.\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, True) ::: Bob is nice.\nWhite(Fiona, True) ::: Fiona is white.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nNice($x, True) >>> Round($x, True) ::: If something is nice then it is round.\nWhite($x, True) >>> Round($x, True) ::: If something is white then it is round.\nYoung($x, True) && Nice($x, False) >>> Round($x, True) ::: If something is young and not nice then it is round.\nRound(Bob, True) && Green(Bob, True) >>> Rough(Bob, True) ::: If Bob is round and Bob is green then Bob is rough.\nYoung($x, True) && Green($x, True) >>> Smart($x, True) ::: If something is young and green then it is smart.\nSmart($x, True) >>> White($x, True) ::: Smart things are white.\nRough($x, True) && Green($x, False) >>> White($x, True) ::: If something is rough and not green then it is white.\nRough($x, True) >>> Young($x, True) ::: If something is rough then it is young.\nRough($x, True) >>> Young($x, True) ::: All rough things are young.\n\nQuery:\nSmart(Gary, False) ::: Gary is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

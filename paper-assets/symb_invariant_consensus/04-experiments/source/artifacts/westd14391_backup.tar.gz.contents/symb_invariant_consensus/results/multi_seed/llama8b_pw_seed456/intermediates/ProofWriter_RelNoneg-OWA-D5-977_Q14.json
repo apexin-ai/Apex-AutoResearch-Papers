@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-977_Q14",
+    "problem": "The cat is young. The cat visits the mouse. The cow is cold. The cow likes the lion. The lion is cold. The lion likes the cat. The lion needs the mouse. The lion visits the mouse. The mouse is cold. The mouse is red. The mouse is young. The mouse likes the cat. The mouse needs the cat. The mouse needs the cow. If something needs the cat and the cat is red then it is blue. Blue things are red. If something likes the mouse and the mouse likes the cat then the cat is blue. If something is cold and red then it likes the mouse. If something needs the cow and it is cold then it is young. If something is nice then it visits the lion. If something needs the lion then it likes the cat. If something visits the cat and it likes the lion then the cat is blue. If something is cold and blue then it needs the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse visits the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nYoung(cat, True) ::: The cat is young.\nVisits(cat, mouse, True) ::: The cat visits the mouse.\nCold(cow, True) ::: The cow is cold.\nLikes(cow, lion, True) ::: The cow likes the lion.\nCold(lion, True) ::: The lion is cold.\nLikes(lion, cat, True) ::: The lion likes the cat.\nNeeds(lion, mouse, True) ::: The lion needs the mouse.\nVisits(lion, mouse, True) ::: The lion visits the mouse.\nCold(mouse, True) ::: The mouse is cold.\nRed(mouse, True) ::: The mouse is red.\nYoung(mouse, True) ::: The mouse is young.\nLikes(mouse, cat, True) ::: The mouse likes the cat.\nNeeds(mouse, cat, True) ::: The mouse needs the cat.\nNeeds(mouse, cow, True) ::: The mouse needs the cow.\n\nRules:\nNeeds($x, cat, True) && Red(cat, True) >>> Blue($x, True) ::: If something needs the cat and the cat is red then it is blue.\nBlue($x, True) >>> Red($x, True) ::: Blue things are red.\nLikes($x, mouse, True) && Likes(mouse, cat, True) >>> Blue(cat, True) ::: If something likes the mouse and the mouse likes the cat then the cat is blue.\nCold($x, True) && Red($x, True) >>> Likes($x, mouse, True) ::: If something is cold and red then it likes the mouse.\nNeeds($x, cow, True) && Cold($x, True) >>> Young($x, True) ::: If something needs the cow and it is cold then it is young.\nNice($x, True) >>> Visits($x, lion, True) ::: If something is nice then it visits the lion.\nNeeds($x, lion, True) >>> Likes($x, cat, True) ::: If something needs the lion then it likes the cat.\nVisits($x, cat, True) && Likes($x, lion, True) >>> Blue(cat, True) ::: If something visits the cat and it likes the lion then the cat is blue.\nCold($x, True) && Blue($x, True) >>> Needs($x, lion, True) ::: If something is cold and blue then it needs the lion.\n\nQuery:\nVisits(mouse, lion, True) ::: The mouse visits the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

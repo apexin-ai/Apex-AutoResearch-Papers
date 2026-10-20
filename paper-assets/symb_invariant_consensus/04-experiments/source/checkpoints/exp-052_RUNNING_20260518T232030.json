@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp-052",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:20:17.415Z",
+    "updated_at": "2026-05-18T23:20:30.041Z",
+    "hypothesis": "Seed replication of exp-033: the +4.90pp improvement on FOLIO-204 with Mistral-7B using symbolic invariant consensus (K=12) is reproducible across different random seeds, confirming the result is not a statistical fluke.",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 123 --math-data data/empty.json --pw-data data/empty.json --strategyqa-data data/empty.json --folio-data data/folio_full.json --output results/exp052_mistral_folio204_seed123/exp052_results.json --save-intermediates",
+      "server": "westd-16639",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 123
+    }
+  },
+  "timestamp": "2026-05-18T23:20:30.223996+00:00",
+  "trigger": "update_registry"
+}

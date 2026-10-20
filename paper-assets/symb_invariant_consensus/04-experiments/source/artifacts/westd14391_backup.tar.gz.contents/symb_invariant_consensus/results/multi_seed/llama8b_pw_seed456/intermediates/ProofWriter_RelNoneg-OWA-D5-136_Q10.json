@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-136_Q10",
+    "problem": "The bald eagle is rough. The bear eats the dog. The bear is big. The bear needs the dog. The bear sees the cat. The bear sees the dog. The cat eats the dog. The dog is nice. The dog is rough. The dog needs the bear. The dog needs the cat. The dog sees the bald eagle. If something eats the bear then the bear eats the bald eagle. If something needs the cat then the cat eats the bald eagle. If something sees the cat and the cat is green then the cat eats the bear. If something eats the bear and it eats the dog then the bear is rough. If something eats the bald eagle then it is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear is not rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nRough(BaldEagle, True) ::: The bald eagle is rough.\nEats(Bear, Dog, True) ::: The bear eats the dog.\nBig(Bear, True) ::: The bear is big.\nNeeds(Bear, Dog, True) ::: The bear needs the dog.\nSees(Bear, Cat, True) ::: The bear sees the cat.\nSees(Bear, Dog, True) ::: The bear sees the dog.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nNice(Dog, True) ::: The dog is nice.\nRough(Dog, True) ::: The dog is rough.\nNeeds(Dog, Bear, True) ::: The dog needs the bear.\nNeeds(Dog, Cat, True) ::: The dog needs the cat.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\n\nRules:\nEats($x, Bear, True) >>> Eats(Bear, BaldEagle, True) ::: If something eats the bear then the bear eats the bald eagle.\nNeeds($x, Cat, True) >>> Eats(Cat, BaldEagle, True) ::: If something needs the cat then the cat eats the bald eagle.\nSees($x, Cat, True) && Green(Cat, True) >>> Eats(Cat, Bear, True) ::: If something sees the cat and the cat is green then the cat eats the bear.\nEats($x, Bear, True) && Eats($x, Dog, True) >>> Rough(Bear, True) ::: If something eats the bear and it eats the dog then the bear is rough.\nEats($x, BaldEagle, True) >>> Green($x, True) ::: If something eats the bald eagle then it is green.\n\nQuery:\nRough(Bear, False) ::: The bear is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

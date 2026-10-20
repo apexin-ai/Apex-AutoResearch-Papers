@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0457f7475a757bbe2505",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis check 25068 completions",
+  "task_key": "worker_analysis_check-25068-completions_20260519T194104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-25068-completions_20260519T194104_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "17f3e946514a4e424bb0068d493f5ad6660b56de94daebfb594c55bbc23369ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n| 实验 | 状态 | SC | Method | Δ | n |\n|------|------|-----|--------|------|-----|\n| exp-073b Qwen7B×LogiQA s456 | ✅ 完成 | 69.5% | SICA 71.5% | **+2.0pp** | 200 |\n| exp-074 ICG×FOLIO | ✅ 完成 | 53.9% | ICG 52.0% | **-2.0pp** | 204 |\n| exp-076 Debate×FOLIO | 🔄 运行中 | 59.6% | Debate 38.3% | -21.3pp | 141/204 (69%) |\n| exp-075b Contrastive×FOLIO | 🔄 运行中 | 62.8% | Contrastive 46.9% | -15.9pp | 113/204 (55%) |\n\n**GPU 空闲状态**：\n- cuda:0 (exp-074) — vllm 还在跑但实验已完成，可释放\n- cuda:1 (exp-073b) — 同上，可释放\n- cuda:2 (exp-075b) — 占用中\n- cuda:3 (exp-076) — 占用中\n\n**要点**：\n- exp-073b tie-breaker 结果：+2.0pp，与 exp-070 (+2.5pp) 方向一致，3 seeds 中 2/3 正向 → SICA 在 Qwen7B×LogiQA 上有微弱但一致的增益\n- exp-074 ICG 方法 negative：独立约束生成反而比 SC 低 2pp，确认 trace-independent 约束不优于 trace-sourced\n- exp-076 Debate 和 exp-075b Contrastive 中间结果都大幅 negative（-21pp、-16pp），预期最终也是 negative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-25068-completions.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "130b353441d69f23b5bb",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis prove cegis check and confirmation bias",
+  "task_key": "worker_analysis_prove-cegis-check-and-confirmation-bias_20260520T082713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_prove-cegis-check-and-confirmation-bias_20260520T082713_result.json",
+    "occurrence": 1,
+    "bytes": 2008,
+    "sha256": "4881a64d43a996d1c900098c30c2efe17af7b849e8f56738112981fbf12af7eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务完成，汇总如下：\n\n---\n\n## Part A: PROVE — 完成 (负面结果)\n\n| 指标 | 值 |\n|------|-----|\n| Code gen success rate | **15.2%** (31/204) |\n| Verification conclusive rate | **7.8%** (16/204) |\n| Accuracy (conclusive only) | **50.0%** (8/16) |\n| **PROVE + SC fallback** | **71.6%** |\n| SC baseline (本次) | 73.5% |\n| SICA baseline (exp035) | 76.5% |\n\n**结论：** PROVE 方向不可行。Qwen2.5-7B 几乎无法生成可执行的验证代码（85% 失败），即使执行成功的 16 个中也只有一半正确。PROVE+SC 回退反而比纯 SC 低 1.9pp。\n\n---\n\n## Part B: CEGIS — 仍在跑 (部分结果)\n\n| 指标 | 值 |\n|------|-----|\n| 已处理 | 125/~204 |\n| SC accuracy (子集) | 50.4% |\n| **R1 accuracy** | **52.8%** (+2.4pp) |\n| R2/R3 accuracy | 52.8% (= R1，无额外提升) |\n| Answer flips | 10 (6 correct, 3 incorrect, net +3) |\n\n**观察：** 精化在第 1 轮就饱和。+2.4pp 改善温和，与之前 80/204 部分数据 (+1.2pp) 趋势一致。进程在 westd-16639 上继续运行。\n\n---\n\n## Part C: Confirmation Bias — 完成 (强信号)\n\n| Category | N | Constr→Gold | Constr→Wrong | Bias Ratio |\n|----------|---|-------------|--------------|------------|\n| SICA correct | 121 | **78.1%** | 21.9% | 0.28 |\n| **SICA wrong** | **83** | **16.7%** | **83.3%** | **4.97** |\n| SC wrong, SICA correct | 12 | 43.0% | 57.0% | 1.32 |\n| SC correct, SICA wrong | 2 | 45.5% | 54.5% | 1.20 |\n\n**关键发现：**\n- **94%** 的 SICA 判错案例跟随 SC（78/83）— confirmation bias 成立\n- SICA 判错时，72.7% 的约束支持 SC（错误）答案，仅 16.4% 支持 gold\n- Bias ratio 4.97x：错误方向约束是正确方向的近 5 倍\n- SICA 几乎不伤害（仅 2 例 SC 对但 SICA 错）\n- SICA 有价值的 12 个 \"翻转\" 案例中，gold support 只有 43%，说明少数派 traces 的多样性是 SICA 纠错的来源\n\n所有结果已保存到本地 artifacts 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prove-cegis-check-and-confirmation-bias.md"
+}

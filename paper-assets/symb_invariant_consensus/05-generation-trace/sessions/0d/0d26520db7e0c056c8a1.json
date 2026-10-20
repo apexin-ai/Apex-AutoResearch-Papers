@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0d26520db7e0c056c8a1",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "fix unified id fix patch",
+  "task_key": "worker_fix_unified-id-fix-patch_20260522T222457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_unified-id-fix-patch_20260522T222457.log",
+    "occurrence": 1,
+    "bytes": 1037507,
+    "sha256": "b1d8286d76262632edd5070089edd6a7f955565ac1444c5e9212c249725298fa"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "0d26520db7e0c056c8a1-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "0d26520db7e0c056c8a1-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-unified-id-fix-patch.md"
+}

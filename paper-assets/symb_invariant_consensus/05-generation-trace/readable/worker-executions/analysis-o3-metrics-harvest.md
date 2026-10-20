@@ -1,0 +1,2673 @@
+# analysis o3 metrics harvest
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_o3-metrics-harvest_20260521T190655.log`
+- **Structured JSON:** [`a3bd67560598307cf9e1.json`](../../sessions/a3/a3bd67560598307cf9e1.json)
+
+## Before a recorded user message
+
+57 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8fba7ed0-0eae-416a-a18b-649960c47367",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779402600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "81f3560d-d04a-433a-803c-c373ba21d603",
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to compute full metrics for o3 cross-model extraction on server westd-16639. Let me start by exploring the server to find the evaluation scripts and understand the data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "7d4cb058-f5cb-4fd0-88f5-eafaf9707a3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019w8gWAyU99JgSZTRAGHKhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12630,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12630
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先连 westd-16639 探测评估脚本和数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "9b67a73f-243a-40c9-adb2-e7a112b5a939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019w8gWAyU99JgSZTRAGHKhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12630,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12630
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011bNjGZMkabcN6JUBJUU7eQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "71426a14-493b-4f02-a16b-63d50b03567e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019w8gWAyU99JgSZTRAGHKhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12630,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12630
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T19:07:08.614Z_
+
+<details><summary>↩ Tool result · `toolu_011bNjGZMkabcN6JUBJUU7eQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "4ae6366b-fb83-4c4a-b1f9-4be7bf5b154d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016WTzpH8sj8E5KkKzSswJwW`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"compute_*.py\" -o -name \"eval_*.py\" -o -name \"analyze_*.py\" -o -name \"metrics_*.py\" | grep -v __pycache__ | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "df1bdb70-474b-4b43-8b97-6061281f773c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJc5mqHDTD4sHS4m4mt2ME",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 506,
+      "cache_read_input_tokens": 24471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 506
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T19:07:12.380Z_
+
+<details><summary>↩ Tool result · `toolu_016WTzpH8sj8E5KkKzSswJwW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "bedb0826-939c-4d31-aac2-025ef837f9a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012T1hMmzsDhZZSbvgFV5bwP`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-5.5/cross_model/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "d3aa56b3-3aec-40a6-9d07-0b67c1734940",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJc5mqHDTD4sHS4m4mt2ME",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 506,
+      "cache_read_input_tokens": 24471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 506
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0189GCmTwBVCf3Qfpq45DEsA`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "7fc6f5e0-8e81-47e1-ab65-ec24d18e4b82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJc5mqHDTD4sHS4m4mt2ME",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 506,
+      "cache_read_input_tokens": 24471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 506
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T19:07:14.326Z_
+
+<details><summary>↩ Tool result · `toolu_012T1hMmzsDhZZSbvgFV5bwP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_mistral.json\\ngpt55_full_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "95b527e2-96f7-4038-a5f0-ff69fb61b88b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross_model_mistral.json\\\\ngpt55_full_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"cross_model_mistral.json\\ngpt55_full_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T19:07:14.859Z_
+
+<details><summary>↩ Tool result · `toolu_0189GCmTwBVCf3Qfpq45DEsA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 564\\ndrwxr-xr-x 2 root root     72 May 22 02:18 .\\ndrwxr-xr-x 4 root root    109 May 22 02:18 ..\\n-rw-r--r-- 1 root root 252115 May 22 03:04 cross_model_mistral.json\\n-rw-r--r-- 1 root root 319915 May 22 03:04 extraction.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "5c2d2ef5-2a4e-4a4a-aebd-3e1e7fc7ba66",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 564\\\\ndrwxr-xr-x 2 root root     72 May 22 02:18 .\\\\ndrwxr-xr-x 4 root root    109 May 22 02:18 ..\\\\n-rw-r--r-- 1 root root 252115 May 22 03:04 cross_model_mistral.json\\\\n-rw-r--r-- 1 root root 319915 May 22 03:04 extraction.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 564\\ndrwxr-xr-x 2 root root     72 May 22 02:18 .\\ndrwxr-xr-x 4 root root    109 May 22 02:18 ..\\n-rw-r--r-- 1 root root 252115 May 22 03:04 cross_model_mistral.json\\n-rw-r--r-- 1 root root 319915 May 22 03:04 extraction.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VkYD6HPoU8qDEu39FLttiJ`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"compute_*.py\" -o -name \"eval_*.py\" -o -name \"analyze_*.py\" -o -name \"metrics_*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "f49e9e65-7730-4cbd-8122-c54269ce31ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVNbiGXXGuvc66Q9owfUcs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T19:07:19.440Z_
+
+<details><summary>↩ Tool result · `toolu_01VkYD6HPoU8qDEu39FLttiJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/compute_gpt55_metrics.py\\n/root/symb_invariant_consensus/scripts/analyze_seed_replication.py\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/scripts/compute_gpt41_metrics.py\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\n/root/symb_invariant_consensus/analyze_seeds.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "62869a2f-5221-4c42-899f-62b41de29ec4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\\\n/root/symb_invariant_consensus/scripts/compute_gpt55_metrics.py\\\\n/root/symb_invariant_consensus/scripts/analyze_seed_replication.py\\\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\\\n/root/symb_invariant_consensus/scripts/compute_gpt41_metrics.py\\\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\\\n/root/symb_invariant_consensus/analyze_seeds.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/compute_gpt55_metrics.py\\n/root/symb_invariant_consensus/scripts/analyze_seed_replication.py\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/scripts/compute_gpt41_metrics.py\\n/root/symb_invariant_consensus/compute_process_kappa_multi.py\\n/root/symb_invariant_consensus/compute_gpt4o_br_kappa.py\\n/root/symb_invariant_consensus/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/compute_r1_distill_br_kappa.py\\n/root/symb_invariant_consensus/analyze_seeds.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QFjGdPzewM1uVxaSCZGfTF`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-5.5/cross_model/gpt55_full_metrics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "3e2313e8-a3d5-4f4c-91e0-8a7f3b73c328",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVNbiGXXGuvc66Q9owfUcs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CgXV8iLakdukRYxXZx2CBf`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -50 /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/cross_model_mistral.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "8885ee4e-f525-4c7d-856a-850bc7177fea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVNbiGXXGuvc66Q9owfUcs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 24977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T19:07:20.148Z_
+
+<details><summary>↩ Tool result · `toolu_01QFjGdPzewM1uVxaSCZGfTF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"gpt-5.5\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n  \\\"completed\\\": 204,\\n  \\\"sc_accuracy\\\": 0.8431,\\n  \\\"sica_accuracy\\\": 0.848,\\n  \\\"delta_pp\\\": 0.49,\\n  \\\"extraction_rate\\\": 1.0,\\n  \\\"mean_br\\\": 3.4806,\\n  \\\"median_br\\\": 3.4935,\\n  \\\"weighted_br\\\": 3.5735,\\n  \\\"n_br_finite\\\": 4,\\n  \\\"n_br_inf\\\": 27,\\n  \\\"process_kappa\\\": 0.5625,\\n  \\\"answer_fleiss_kappa\\\": 0.9581\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "66f8dbff-57f3-4fd6-b0b8-0065ca5c41ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n  \\\\\\\"extraction_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n  \\\\\\\"completed\\\\\\\": 204,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.8431,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.848,\\\\n  \\\\\\\"delta_pp\\\\\\\": 0.49,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"mean_br\\\\\\\": 3.4806,\\\\n  \\\\\\\"median_br\\\\\\\": 3.4935,\\\\n  \\\\\\\"weighted_br\\\\\\\": 3.5735,\\\\n  \\\\\\\"n_br_finite\\\\\\\": 4,\\\\n  \\\\\\\"n_br_inf\\\\\\\": 27,\\\\n  \\\\\\\"process_kappa\\\\\\\": 0.5625,\\\\n  \\\\\\\"answer_fleiss_kappa\\\\\\\": 0.9581\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"gpt-5.5\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n  \\\"completed\\\": 204,\\n  \\\"sc_accuracy\\\": 0.8431,\\n  \\\"sica_accuracy\\\": 0.848,\\n  \\\"delta_pp\\\": 0.49,\\n  \\\"extraction_rate\\\": 1.0,\\n  \\\"mean_br\\\": 3.4806,\\n  \\\"median_br\\\": 3.4935,\\n  \\\"weighted_br\\\": 3.5735,\\n  \\\"n_br_finite\\\": 4,\\n  \\\"n_br_inf\\\": 27,\\n  \\\"process_kappa\\\": 0.5625,\\n  \\\"answer_fleiss_kappa\\\": 0.9581\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T19:07:20.683Z_
+
+<details><summary>↩ Tool result · `toolu_01CgXV8iLakdukRYxXZx2CBf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n    \\\"extraction_temperature\\\": 0.3,\\n    \\\"total\\\": 196,\\n    \\\"cross_model_correct\\\": 162,\\n    \\\"cross_model_acc\\\": 0.8265,\\n    \\\"original_sica_correct\\\": 162,\\n    \\\"original_sica_acc\\\": 0.8265,\\n    \\\"sc_correct\\\": 162,\\n    \\\"sc_acc\\\": 0.8265,\\n    \\\"total_wall_time_s\\\": 2790.0\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"cross_model_answer\\\": \\\"Unknown\\\",\\n      \\\"cross_model_scores\\\": {\\n        \\\"Unknown\\\": 43.5\\n      },\\n      \\\"cross_model_correct\\\": true,\\n      \\\"original_sica_answer\\\": \\\"Unknown\\\",\\n      \\\"original_sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 8\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 77,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 64\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 57,\\n        \\\"excluded\\\": 7,\\n        \\\"total_weight\\\": 62,\\n        \\\"solve_time_ms\\\": 1.1773817241191864\\n      },\\n      \\\"wall_time_s\\\": 19.06\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"folio_10\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\\\\u2019s wild turkey, Merriam\\\\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nTom is an Eastern wild turkey.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "029365cb-259f-4ac0-b70e-53f7b9be0fad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"extraction_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n    \\\\\\\"extraction_temperature\\\\\\\": 0.3,\\\\n    \\\\\\\"total\\\\\\\": 196,\\\\n    \\\\\\\"cross_model_correct\\\\\\\": 162,\\\\n    \\\\\\\"cross_model_acc\\\\\\\": 0.8265,\\\\n    \\\\\\\"original_sica_correct\\\\\\\": 162,\\\\n    \\\\\\\"original_sica_acc\\\\\\\": 0.8265,\\\\n    \\\\\\\"sc_correct\\\\\\\": 162,\\\\n    \\\\\\\"sc_acc\\\\\\\": 0.8265,\\\\n    \\\\\\\"total_wall_time_s\\\\\\\": 2790.0\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nBonnie performs in school talent shows often.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"ground_truth\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"cross_model_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"cross_model_scores\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 43.5\\\\n      },\\\\n      \\\\\\\"cross_model_correct\\\\\\\": true,\\\\n      \\\\\\\"original_sica_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"original_sica_correct\\\\\\\": true,\\\\n      \\\\\\\"sc_answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"sc_vote_distribution\\\\\\\": {\\\\n        \\\\\\\"Unknown\\\\\\\": 8\\\\n      },\\\\n      \\\\\\\"sc_correct\\\\\\\": true,\\\\n      \\\\\\\"constraints_stats\\\\\\\": {\\\\n        \\\\\\\"total_extracted\\\\\\\": 77,\\\\n        \\\\\\\"traces_with_constraints\\\\\\\": 11,\\\\n        \\\\\\\"unique_after_dedup\\\\\\\": 64\\\\n      },\\\\n      \\\\\\\"maxsat_stats\\\\\\\": {\\\\n        \\\\\\\"satisfied\\\\\\\": 57,\\\\n        \\\\\\\"excluded\\\\\\\": 7,\\\\n        \\\\\\\"total_weight\\\\\\\": 62,\\\\n        \\\\\\\"solve_time_ms\\\\\\\": 1.1773817241191864\\\\n      },\\\\n      \\\\\\\"wall_time_s\\\\\\\": 19.06\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"folio_10\\\\\\\",\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Given the following premises:\\\\\\\\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\\\\\\\\u2019s wild turkey, Merriam\\\\\\\\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\\\\\\\\n\\\\\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\\\\\nTom is an Eastern wild turkey.\\\\\\\",\\\\n      \\\\\\\"dataset\\\\\\\": \\\\\\\"folio\\\\\\\",\\\\n      \\\\\\\"level\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n    \\\"extraction_temperature\\\": 0.3,\\n    \\\"total\\\": 196,\\n    \\\"cross_model_correct\\\": 162,\\n    \\\"cross_model_acc\\\": 0.8265,\\n    \\\"original_sica_correct\\\": 162,\\n    \\\"original_sica_acc\\\": 0.8265,\\n    \\\"sc_correct\\\": 162,\\n    \\\"sc_acc\\\": 0.8265,\\n    \\\"total_wall_time_s\\\": 2790.0\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"cross_model_answer\\\": \\\"Unknown\\\",\\n      \\\"cross_model_scores\\\": {\\n        \\\"Unknown\\\": 43.5\\n      },\\n      \\\"cross_model_correct\\\": true,\\n      \\\"original_sica_answer\\\": \\\"Unknown\\\",\\n      \\\"original_sica_correct\\\": true,\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_vote_distribution\\\": {\\n        \\\"Unknown\\\": 8\\n      },\\n      \\\"sc_correct\\\": true,\\n      \\\"constraints_stats\\\": {\\n        \\\"total_extracted\\\": 77,\\n        \\\"traces_with_constraints\\\": 11,\\n        \\\"unique_after_dedup\\\": 64\\n      },\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 57,\\n        \\\"excluded\\\": 7,\\n        \\\"total_weight\\\": 62,\\n        \\\"solve_time_ms\\\": 1.1773817241191864\\n      },\\n      \\\"wall_time_s\\\": 19.06\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"folio_10\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\\\\u2019s wild turkey, Merriam\\\\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nTom is an Eastern wild turkey.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the data structures. Let me look at the gpt-5.5 metrics computation script to understand the methodology, then adapt it for o3.
+
+Key observations:
+1. gpt-5.5 full metrics JSON has: model, dataset, extraction_model, completed, sc_accuracy, sica_accuracy, delta_pp, extraction_rate, mean_br, median_br, weighted_br, n_br_finite, n_br_inf, process_kappa, answer_fleiss_kappa
+
+
+2. o3 cross_model_mistral.json has per-problem results with cross_model_answer, cross_model_scores, sc_vote_distribution, constraints_stats, maxsat_stats, etc.
+
+I need to examine the gpt-5.5 metrics computation script to understand how these aggregated metrics are calculated from the raw data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "e6e958da-f727-4d40-b8a0-1d4c0ebfaca6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018K2wpCFpW6XitKMQzDeLkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 25798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2370
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到了 `scripts/compute_gpt55_metrics.py`。读取参考脚本和 gpt-4.1 的脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "b7d8af87-ac78-4179-9c0d-a7d072f12df7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018K2wpCFpW6XitKMQzDeLkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 25798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2370
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EpKFPh121ccPfJzmh2GeU9`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/compute_gpt55_metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "f7b45039-d49b-436a-986f-0898f643ffab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018K2wpCFpW6XitKMQzDeLkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 25798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2370
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T19:07:27.324Z_
+
+<details><summary>↩ Tool result · `toolu_01EpKFPh121ccPfJzmh2GeU9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute all metrics for gpt-5.5: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\"\\\"\\\"\\nimport json, os, sys, numpy as np\\nfrom collections import Counter\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.metrics.pairwise import cosine_similarity\\n\\nBASE = \\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-5.5\\\"\\nFRONTIER_RESULTS = os.path.join(BASE, \\\"results.json\\\")\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\"cross_model/cross_model_mistral.json\\\")\\n\\ndef load_frontier():\\n    with open(FRONTIER_RESULTS) as f:\\n        return json.load(f)\\n\\ndef load_cross_model():\\n    with open(CROSS_MODEL_RESULTS) as f:\\n        return json.load(f)\\n\\ndef compute_sc_accuracy(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    correct = sum(1 for q in pq if q[\\\"sc_correct\\\"])\\n    return correct, len(pq), correct / len(pq)\\n\\ndef compute_fleiss_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    categories = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\n    for qi, q in enumerate(pq):\\n        dist = q[\\\"answer_distribution\\\"]\\n        for ans, cnt in dist.items():\\n            ans_norm = ans.strip()\\n            if ans_norm in cat2idx:\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\n            else:\\n                ratings[qi, cat2idx[\\\"Unknown\\\"]] += cnt\\n    n_per_q = ratings.sum(axis=1)\\n    valid = n_per_q >= 2\\n    ratings = ratings[valid]\\n    n_per_q = n_per_q[valid]\\n    N = ratings.shape[0]\\n    if N == 0:\\n        return float('nan')\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\n    P_e = np.sum(p_j ** 2)\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\n    P_bar = np.mean(P_i)\\n    if P_e >= 1.0:\\n        return 1.0\\n    return float((P_bar - P_e) / (1 - P_e))\\n\\ndef mean_pairwise_cosine(texts):\\n    non_empty = [t for t in texts if t.strip()]\\n    if len(non_empty) < 2:\\n        return 0.0\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\"english\\\")\\n    try:\\n        tfidf = vectorizer.fit_transform(non_empty)\\n    except ValueError:\\n        return 0.0\\n    sim_matrix = cosine_similarity(tfidf)\\n    n = sim_matrix.shape[0]\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\n    return float(np.mean(upper_tri))\\n\\ndef compute_process_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    sims = []\\n    for q in pq:\\n        texts = [t[\\\"trace\\\"] for t in q[\\\"traces\\\"]]\\n        sim = mean_pairwise_cosine(texts)\\n        sims.append(sim)\\n    return float(np.mean(sims))\\n\\ndef compute_sica_metrics(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    n = len(results)\\n    sica_correct = sum(1 for r in results if r[\\\"cross_model_correct\\\"])\\n    has_constraints = sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] > 0)\\n    return {\\n        \\\"n\\\": n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sica_acc\\\": sica_correct / n if n else 0,\\n        \\\"extraction_rate\\\": has_constraints / n if n else 0,\\n    }\\n\\ndef compute_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    br_values = []\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        if weight_gold > 0:\\n            br_values.append(weight_wrong / weight_gold)\\n        else:\\n            br_values.append(float('inf'))\\n    n_finite = sum(1 for v in br_values if v != float('inf'))\\n    n_inf = sum(1 for v in br_values if v == float('inf'))\\n    finite_vals = [v for v in br_values if v != float('inf')]\\n    return {\\n        \\\"mean_br\\\": round(np.mean(finite_vals), 4) if finite_vals else None,\\n        \\\"median_br\\\": round(np.median(finite_vals), 4) if finite_vals else None,\\n        \\\"n_finite\\\": n_finite,\\n        \\\"n_inf\\\": n_inf,\\n        \\\"all_br\\\": br_values,\\n    }\\n\\ndef compute_weighted_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    numerator = 0.0\\n    denominator = 0.0\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        total_w = r.get(\\\"maxsat_stats\\\", {}).get(\\\"total_weight\\\", 0)\\n        if weight_gold > 0 and total_w > 0:\\n            br = weight_wrong / weight_gold\\n            numerator += br * total_w\\n            denominator += total_w\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\n\\ndef main():\\n    print(\\\"=== gpt-5.5 FOLIO-204 Full Metrics ===\\\\n\\\")\\n    frontier = load_frontier()\\n\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\n    print(f\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\")\\n\\n    fk = compute_fleiss_kappa(frontier)\\n    print(f\\\"Answer Fleiss' kappa: {fk:.4f}\\\")\\n\\n    pk = compute_process_kappa(frontier)\\n    print(f\\\"Process-kappa (TF-IDF): {pk:.4f}\\\")\\n\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\n        print(f\\\"\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\")\\n        return\\n\\n    cross = load_cross_model()\\n    sica = compute_sica_metrics(cross)\\n    print(f\\\"\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\")\\n    print(f\\\"Delta (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\")\\n    print(f\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\")\\n\\n    br = compute_br(cross)\\n    wbr = compute_weighted_br(cross)\\n    print(f\\\"\\\\nMean BR: {br['mean_br']}\\\")\\n    print(f\\\"Median BR: {br['median_br']}\\\")\\n    print(f\\\"Weighted BR: {wbr}\\\")\\n    print(f\\\"n_br_finite: {br['n_finite']}\\\")\\n    print(f\\\"BR=inf: {br['n_inf']}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"| Metric                  | gpt-5.5          | gpt-4.1 (ref)   |\\\")\\n    print(\\\"|\\\" + \\\"-\\\"*25 + \\\"|\\\" + \\\"-\\\"*18 + \\\"|\\\" + \\\"-\\\"*17 + \\\"|\\\")\\n    print(f\\\"| SC accuracy             | {sc_acc:.4f}           | 0.8284          |\\\")\\n    print(f\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           | 0.8137          |\\\")\\n    print(f\\\"| Delta (SICA-SC)         | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          | -1.47pp         |\\\")\\n    print(f\\\"| Mean BR                 | {br['mean_br']}           | 2.70            |\\\")\\n    print(f\\\"| Median BR               | {br['median_br']}           | 1.53            |\\\")\\n    print(f\\\"| Weighted BR             | {wbr}           | 3.21            |\\\")\\n    print(f\\\"| n_br_finite             | {br['n_finite']}                | 16              |\\\")\\n    print(f\\\"| BR=inf                  | {br['n_inf']}                | 22              |\\\")\\n    print(f\\\"| extraction_rate         | {sica['extraction_rate']:.4f}           | 1.0000          |\\\")\\n    print(f\\\"| Process-kappa           | {pk:.4f}           | 0.792           |\\\")\\n    print(f\\\"| Answer Fleiss' kappa    | {fk:.4f}           | 0.862           |\\\")\\n    print(\\\"=\\\"*50)\\n\\n    output = {\\n        \\\"model\\\": \\\"gpt-5.5\\\",\\n        \\\"dataset\\\": \\\"FOLIO-204\\\",\\n        \\\"extraction_model\\\": cross.get(\\\"summary\\\", {}).get(\\\"extraction_model\\\", \\\"Mistral-7B\\\"),\\n        \\\"completed\\\": sc_total,\\n        \\\"sc_accuracy\\\": round(sc_acc, 4),\\n        \\\"sica_accuracy\\\": round(sica[\\\"sica_acc\\\"], 4),\\n        \\\"delta_pp\\\": round((sica[\\\"sica_acc\\\"] - sc_acc) * 100, 2),\\n        \\\"extraction_rate\\\": round(sica[\\\"extraction_rate\\\"], 4),\\n        \\\"mean_br\\\": br[\\\"mean_br\\\"],\\n        \\\"median_br\\\": br[\\\"median_br\\\"],\\n        \\\"weighted_br\\\": wbr,\\n        \\\"n_br_finite\\\": br[\\\"n_finite\\\"],\\n        \\\"n_br_inf\\\": br[\\\"n_inf\\\"],\\n        \\\"process_kappa\\\": round(pk, 4),\\n        \\\"answer_fleiss_kappa\\\": round(fk, 4),\\n    }\\n    out_path = os.path.join(BASE, \\\"cross_model/gpt55_full_metrics.json\\\")\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "e02a0392-c9f6-4459-9f85-5a1288e065a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute all metrics for gpt-5.5: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys, numpy as np\\\\nfrom collections import Counter\\\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\\\nfrom sklearn.metrics.pairwise import cosine_similarity\\\\n\\\\nBASE = \\\\\\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-5.5\\\\\\\"\\\\nFRONTIER_RESULTS = os.path.join(BASE, \\\\\\\"results.json\\\\\\\")\\\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\\\\\"cross_model/cross_model_mistral.json\\\\\\\")\\\\n\\\\ndef load_frontier():\\\\n    with open(FRONTIER_RESULTS) as f:\\\\n        return json.load(f)\\\\n\\\\ndef load_cross_model():\\\\n    with open(CROSS_MODEL_RESULTS) as f:\\\\n        return json.load(f)\\\\n\\\\ndef compute_sc_accuracy(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    correct = sum(1 for q in pq if q[\\\\\\\"sc_correct\\\\\\\"])\\\\n    return correct, len(pq), correct / len(pq)\\\\n\\\\ndef compute_fleiss_kappa(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    categories = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\\\n    for qi, q in enumerate(pq):\\\\n        dist = q[\\\\\\\"answer_distribution\\\\\\\"]\\\\n        for ans, cnt in dist.items():\\\\n            ans_norm = ans.strip()\\\\n            if ans_norm in cat2idx:\\\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\\\n            else:\\\\n                ratings[qi, cat2idx[\\\\\\\"Unknown\\\\\\\"]] += cnt\\\\n    n_per_q = ratings.sum(axis=1)\\\\n    valid = n_per_q >= 2\\\\n    ratings = ratings[valid]\\\\n    n_per_q = n_per_q[valid]\\\\n    N = ratings.shape[0]\\\\n    if N == 0:\\\\n        return float('nan')\\\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\\\n    P_e = np.sum(p_j ** 2)\\\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\\\n    P_bar = np.mean(P_i)\\\\n    if P_e >= 1.0:\\\\n        return 1.0\\\\n    return float((P_bar - P_e) / (1 - P_e))\\\\n\\\\ndef mean_pairwise_cosine(texts):\\\\n    non_empty = [t for t in texts if t.strip()]\\\\n    if len(non_empty) < 2:\\\\n        return 0.0\\\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\\\\\"english\\\\\\\")\\\\n    try:\\\\n        tfidf = vectorizer.fit_transform(non_empty)\\\\n    except ValueError:\\\\n        return 0.0\\\\n    sim_matrix = cosine_similarity(tfidf)\\\\n    n = sim_matrix.shape[0]\\\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\\\n    return float(np.mean(upper_tri))\\\\n\\\\ndef compute_process_kappa(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    sims = []\\\\n    for q in pq:\\\\n        texts = [t[\\\\\\\"trace\\\\\\\"] for t in q[\\\\\\\"traces\\\\\\\"]]\\\\n        sim = mean_pairwise_cosine(texts)\\\\n        sims.append(sim)\\\\n    return float(np.mean(sims))\\\\n\\\\ndef compute_sica_metrics(cross_model):\\\\n    results = cross_model[\\\\\\\"results\\\\\\\"]\\\\n    n = len(results)\\\\n    sica_correct = sum(1 for r in results if r[\\\\\\\"cross_model_correct\\\\\\\"])\\\\n    has_constraints = sum(1 for r in results if r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"total_extracted\\\\\\\"] > 0)\\\\n    return {\\\\n        \\\\\\\"n\\\\\\\": n,\\\\n        \\\\\\\"sica_correct\\\\\\\": sica_correct,\\\\n        \\\\\\\"sica_acc\\\\\\\": sica_correct / n if n else 0,\\\\n        \\\\\\\"extraction_rate\\\\\\\": has_constraints / n if n else 0,\\\\n    }\\\\n\\\\ndef compute_br(cross_model):\\\\n    results = cross_model[\\\\\\\"results\\\\\\\"]\\\\n    br_values = []\\\\n    for r in results:\\\\n        if r[\\\\\\\"cross_model_correct\\\\\\\"]:\\\\n            continue\\\\n        gold = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sica_ans = r[\\\\\\\"cross_model_answer\\\\\\\"]\\\\n        scores = r[\\\\\\\"cross_model_scores\\\\\\\"]\\\\n        weight_wrong = scores.get(sica_ans, 0.0)\\\\n        weight_gold = scores.get(gold, 0.0)\\\\n        if weight_gold > 0:\\\\n            br_values.append(weight_wrong / weight_gold)\\\\n        else:\\\\n            br_values.append(float('inf'))\\\\n    n_finite = sum(1 for v in br_values if v != float('inf'))\\\\n    n_inf = sum(1 for v in br_values if v == float('inf'))\\\\n    finite_vals = [v for v in br_values if v != float('inf')]\\\\n    return {\\\\n        \\\\\\\"mean_br\\\\\\\": round(np.mean(finite_vals), 4) if finite_vals else None,\\\\n        \\\\\\\"median_br\\\\\\\": round(np.median(finite_vals), 4) if finite_vals else None,\\\\n        \\\\\\\"n_finite\\\\\\\": n_finite,\\\\n        \\\\\\\"n_inf\\\\\\\": n_inf,\\\\n        \\\\\\\"all_br\\\\\\\": br_values,\\\\n    }\\\\n\\\\ndef compute_weighted_br(cross_model):\\\\n    results = cross_model[\\\\\\\"results\\\\\\\"]\\\\n    numerator = 0.0\\\\n    denominator = 0.0\\\\n    for r in results:\\\\n        if r[\\\\\\\"cross_model_correct\\\\\\\"]:\\\\n            continue\\\\n        gold = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sica_ans = r[\\\\\\\"cross_model_answer\\\\\\\"]\\\\n        scores = r[\\\\\\\"cross_model_scores\\\\\\\"]\\\\n        weight_wrong = scores.get(sica_ans, 0.0)\\\\n        weight_gold = scores.get(gold, 0.0)\\\\n        total_w = r.get(\\\\\\\"maxsat_stats\\\\\\\", {}).get(\\\\\\\"total_weight\\\\\\\", 0)\\\\n        if weight_gold > 0 and total_w > 0:\\\\n            br = weight_wrong / weight_gold\\\\n            numerator += br * total_w\\\\n            denominator += total_w\\\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"=== gpt-5.5 FOLIO-204 Full Metrics ===\\\\\\\\n\\\\\\\")\\\\n    frontier = load_frontier()\\\\n\\\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\\\n    print(f\\\\\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\\\\\")\\\\n\\\\n    fk = compute_fleiss_kappa(frontier)\\\\n    print(f\\\\\\\"Answer Fleiss' kappa: {fk:.4f}\\\\\\\")\\\\n\\\\n    pk = compute_process_kappa(frontier)\\\\n    print(f\\\\\\\"Process-kappa (TF-IDF): {pk:.4f}\\\\\\\")\\\\n\\\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\\\n        print(f\\\\\\\"\\\\\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\\\\\")\\\\n        return\\\\n\\\\n    cross = load_cross_model()\\\\n    sica = compute_sica_metrics(cross)\\\\n    print(f\\\\\\\"\\\\\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\\\\\")\\\\n    print(f\\\\\\\"Delta (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\\\\\")\\\\n\\\\n    br = compute_br(cross)\\\\n    wbr = compute_weighted_br(cross)\\\\n    print(f\\\\\\\"\\\\\\\\nMean BR: {br['mean_br']}\\\\\\\")\\\\n    print(f\\\\\\\"Median BR: {br['median_br']}\\\\\\\")\\\\n    print(f\\\\\\\"Weighted BR: {wbr}\\\\\\\")\\\\n    print(f\\\\\\\"n_br_finite: {br['n_finite']}\\\\\\\")\\\\n    print(f\\\\\\\"BR=inf: {br['n_inf']}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*50)\\\\n    print(\\\\\\\"| Metric                  | gpt-5.5          | gpt-4.1 (ref)   |\\\\\\\")\\\\n    print(\\\\\\\"|\\\\\\\" + \\\\\\\"-\\\\\\\"*25 + \\\\\\\"|\\\\\\\" + \\\\\\\"-\\\\\\\"*18 + \\\\\\\"|\\\\\\\" + \\\\\\\"-\\\\\\\"*17 + \\\\\\\"|\\\\\\\")\\\\n    print(f\\\\\\\"| SC accuracy             | {sc_acc:.4f}           | 0.8284          |\\\\\\\")\\\\n    print(f\\\\\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           | 0.8137          |\\\\\\\")\\\\n    print(f\\\\\\\"| Delta (SICA-SC)         | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          | -1.47pp         |\\\\\\\")\\\\n    print(f\\\\\\\"| Mean BR                 | {br['mean_br']}           | 2.70            |\\\\\\\")\\\\n    print(f\\\\\\\"| Median BR               | {br['median_br']}           | 1.53            |\\\\\\\")\\\\n    print(f\\\\\\\"| Weighted BR             | {wbr}           | 3.21            |\\\\\\\")\\\\n    print(f\\\\\\\"| n_br_finite             | {br['n_finite']}                | 16              |\\\\\\\")\\\\n    print(f\\\\\\\"| BR=inf                  | {br['n_inf']}                | 22              |\\\\\\\")\\\\n    print(f\\\\\\\"| extraction_rate         | {sica['extraction_rate']:.4f}           | 1.0000          |\\\\\\\")\\\\n    print(f\\\\\\\"| Process-kappa           | {pk:.4f}           | 0.792           |\\\\\\\")\\\\n    print(f\\\\\\\"| Answer Fleiss' kappa    | {fk:.4f}           | 0.862           |\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*50)\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\",\\\\n        \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n        \\\\\\\"extraction_model\\\\\\\": cross.get(\\\\\\\"summary\\\\\\\", {}).get(\\\\\\\"extraction_model\\\\\\\", \\\\\\\"Mistral-7B\\\\\\\"),\\\\n        \\\\\\\"completed\\\\\\\": sc_total,\\\\n        \\\\\\\"sc_accuracy\\\\\\\": round(sc_acc, 4),\\\\n        \\\\\\\"sica_accuracy\\\\\\\": round(sica[\\\\\\\"sica_acc\\\\\\\"], 4),\\\\n        \\\\\\\"delta_pp\\\\\\\": round((sica[\\\\\\\"sica_acc\\\\\\\"] - sc_acc) * 100, 2),\\\\n        \\\\\\\"extraction_rate\\\\\\\": round(sica[\\\\\\\"extraction_rate\\\\\\\"], 4),\\\\n        \\\\\\\"mean_br\\\\\\\": br[\\\\\\\"mean_br\\\\\\\"],\\\\n        \\\\\\\"median_br\\\\\\\": br[\\\\\\\"median_br\\\\\\\"],\\\\n        \\\\\\\"weighted_br\\\\\\\": wbr,\\\\n        \\\\\\\"n_br_finite\\\\\\\": br[\\\\\\\"n_finite\\\\\\\"],\\\\n        \\\\\\\"n_br_inf\\\\\\\": br[\\\\\\\"n_inf\\\\\\\"],\\\\n        \\\\\\\"process_kappa\\\\\\\": round(pk, 4),\\\\n        \\\\\\\"answer_fleiss_kappa\\\\\\\": round(fk, 4),\\\\n    }\\\\n    out_path = os.path.join(BASE, \\\\\\\"cross_model/gpt55_full_metrics.json\\\\\\\")\\\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute all metrics for gpt-5.5: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\"\\\"\\\"\\nimport json, os, sys, numpy as np\\nfrom collections import Counter\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.metrics.pairwise import cosine_similarity\\n\\nBASE = \\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-5.5\\\"\\nFRONTIER_RESULTS = os.path.join(BASE, \\\"results.json\\\")\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\"cross_model/cross_model_mistral.json\\\")\\n\\ndef load_frontier():\\n    with open(FRONTIER_RESULTS) as f:\\n        return json.load(f)\\n\\ndef load_cross_model():\\n    with open(CROSS_MODEL_RESULTS) as f:\\n        return json.load(f)\\n\\ndef compute_sc_accuracy(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    correct = sum(1 for q in pq if q[\\\"sc_correct\\\"])\\n    return correct, len(pq), correct / len(pq)\\n\\ndef compute_fleiss_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    categories = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\n    for qi, q in enumerate(pq):\\n        dist = q[\\\"answer_distribution\\\"]\\n        for ans, cnt in dist.items():\\n            ans_norm = ans.strip()\\n            if ans_norm in cat2idx:\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\n            else:\\n                ratings[qi, cat2idx[\\\"Unknown\\\"]] += cnt\\n    n_per_q = ratings.sum(axis=1)\\n    valid = n_per_q >= 2\\n    ratings = ratings[valid]\\n    n_per_q = n_per_q[valid]\\n    N = ratings.shape[0]\\n    if N == 0:\\n        return float('nan')\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\n    P_e = np.sum(p_j ** 2)\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\n    P_bar = np.mean(P_i)\\n    if P_e >= 1.0:\\n        return 1.0\\n    return float((P_bar - P_e) / (1 - P_e))\\n\\ndef mean_pairwise_cosine(texts):\\n    non_empty = [t for t in texts if t.strip()]\\n    if len(non_empty) < 2:\\n        return 0.0\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\"english\\\")\\n    try:\\n        tfidf = vectorizer.fit_transform(non_empty)\\n    except ValueError:\\n        return 0.0\\n    sim_matrix = cosine_similarity(tfidf)\\n    n = sim_matrix.shape[0]\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\n    return float(np.mean(upper_tri))\\n\\ndef compute_process_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    sims = []\\n    for q in pq:\\n        texts = [t[\\\"trace\\\"] for t in q[\\\"traces\\\"]]\\n        sim = mean_pairwise_cosine(texts)\\n        sims.append(sim)\\n    return float(np.mean(sims))\\n\\ndef compute_sica_metrics(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    n = len(results)\\n    sica_correct = sum(1 for r in results if r[\\\"cross_model_correct\\\"])\\n    has_constraints = sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] > 0)\\n    return {\\n        \\\"n\\\": n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sica_acc\\\": sica_correct / n if n else 0,\\n        \\\"extraction_rate\\\": has_constraints / n if n else 0,\\n    }\\n\\ndef compute_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    br_values = []\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        if weight_gold > 0:\\n            br_values.append(weight_wrong / weight_gold)\\n        else:\\n            br_values.append(float('inf'))\\n    n_finite = sum(1 for v in br_values if v != float('inf'))\\n    n_inf = sum(1 for v in br_values if v == float('inf'))\\n    finite_vals = [v for v in br_values if v != float('inf')]\\n    return {\\n        \\\"mean_br\\\": round(np.mean(finite_vals), 4) if finite_vals else None,\\n        \\\"median_br\\\": round(np.median(finite_vals), 4) if finite_vals else None,\\n        \\\"n_finite\\\": n_finite,\\n        \\\"n_inf\\\": n_inf,\\n        \\\"all_br\\\": br_values,\\n    }\\n\\ndef compute_weighted_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    numerator = 0.0\\n    denominator = 0.0\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        total_w = r.get(\\\"maxsat_stats\\\", {}).get(\\\"total_weight\\\", 0)\\n        if weight_gold > 0 and total_w > 0:\\n            br = weight_wrong / weight_gold\\n            numerator += br * total_w\\n            denominator += total_w\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\n\\ndef main():\\n    print(\\\"=== gpt-5.5 FOLIO-204 Full Metrics ===\\\\n\\\")\\n    frontier = load_frontier()\\n\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\n    print(f\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\")\\n\\n    fk = compute_fleiss_kappa(frontier)\\n    print(f\\\"Answer Fleiss' kappa: {fk:.4f}\\\")\\n\\n    pk = compute_process_kappa(frontier)\\n    print(f\\\"Process-kappa (TF-IDF): {pk:.4f}\\\")\\n\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\n        print(f\\\"\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\")\\n        return\\n\\n    cross = load_cross_model()\\n    sica = compute_sica_metrics(cross)\\n    print(f\\\"\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\")\\n    print(f\\\"Delta (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\")\\n    print(f\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\")\\n\\n    br = compute_br(cross)\\n    wbr = compute_weighted_br(cross)\\n    print(f\\\"\\\\nMean BR: {br['mean_br']}\\\")\\n    print(f\\\"Median BR: {br['median_br']}\\\")\\n    print(f\\\"Weighted BR: {wbr}\\\")\\n    print(f\\\"n_br_finite: {br['n_finite']}\\\")\\n    print(f\\\"BR=inf: {br['n_inf']}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"| Metric                  | gpt-5.5          | gpt-4.1 (ref)   |\\\")\\n    print(\\\"|\\\" + \\\"-\\\"*25 + \\\"|\\\" + \\\"-\\\"*18 + \\\"|\\\" + \\\"-\\\"*17 + \\\"|\\\")\\n    print(f\\\"| SC accuracy             | {sc_acc:.4f}           | 0.8284          |\\\")\\n    print(f\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           | 0.8137          |\\\")\\n    print(f\\\"| Delta (SICA-SC)         | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          | -1.47pp         |\\\")\\n    print(f\\\"| Mean BR                 | {br['mean_br']}           | 2.70            |\\\")\\n    print(f\\\"| Median BR               | {br['median_br']}           | 1.53            |\\\")\\n    print(f\\\"| Weighted BR             | {wbr}           | 3.21            |\\\")\\n    print(f\\\"| n_br_finite             | {br['n_finite']}                | 16              |\\\")\\n    print(f\\\"| BR=inf                  | {br['n_inf']}                | 22              |\\\")\\n    print(f\\\"| extraction_rate         | {sica['extraction_rate']:.4f}           | 1.0000          |\\\")\\n    print(f\\\"| Process-kappa           | {pk:.4f}           | 0.792           |\\\")\\n    print(f\\\"| Answer Fleiss' kappa    | {fk:.4f}           | 0.862           |\\\")\\n    print(\\\"=\\\"*50)\\n\\n    output = {\\n        \\\"model\\\": \\\"gpt-5.5\\\",\\n        \\\"dataset\\\": \\\"FOLIO-204\\\",\\n        \\\"extraction_model\\\": cross.get(\\\"summary\\\", {}).get(\\\"extraction_model\\\", \\\"Mistral-7B\\\"),\\n        \\\"completed\\\": sc_total,\\n        \\\"sc_accuracy\\\": round(sc_acc, 4),\\n        \\\"sica_accuracy\\\": round(sica[\\\"sica_acc\\\"], 4),\\n        \\\"delta_pp\\\": round((sica[\\\"sica_acc\\\"] - sc_acc) * 100, 2),\\n        \\\"extraction_rate\\\": round(sica[\\\"extraction_rate\\\"], 4),\\n        \\\"mean_br\\\": br[\\\"mean_br\\\"],\\n        \\\"median_br\\\": br[\\\"median_br\\\"],\\n        \\\"weighted_br\\\": wbr,\\n        \\\"n_br_finite\\\": br[\\\"n_finite\\\"],\\n        \\\"n_br_inf\\\": br[\\\"n_inf\\\"],\\n        \\\"process_kappa\\\": round(pk, 4),\\n        \\\"answer_fleiss_kappa\\\": round(fk, 4),\\n    }\\n    out_path = os.path.join(BASE, \\\"cross_model/gpt55_full_metrics.json\\\")\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CFQKSNsFGC8j56mwU1KMSL`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/compute_gpt41_metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "388974ff-af17-43eb-96d8-36e38230eb4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018K2wpCFpW6XitKMQzDeLkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2370,
+      "cache_read_input_tokens": 25798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2370
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T19:07:27.936Z_
+
+<details><summary>↩ Tool result · `toolu_01CFQKSNsFGC8j56mwU1KMSL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute all metrics for gpt-4.1: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\"\\\"\\\"\\nimport json, os, sys, glob\\nimport numpy as np\\nfrom collections import Counter\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.metrics.pairwise import cosine_similarity\\n\\nBASE = \\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-4.1\\\"\\nFRONTIER_RESULTS = os.path.join(BASE, \\\"results.json\\\")\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\"cross_model/cross_model_mistral.json\\\")\\n\\ndef load_frontier():\\n    with open(FRONTIER_RESULTS) as f:\\n        return json.load(f)\\n\\ndef load_cross_model():\\n    with open(CROSS_MODEL_RESULTS) as f:\\n        return json.load(f)\\n\\ndef compute_sc_accuracy(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    correct = sum(1 for q in pq if q[\\\"sc_correct\\\"])\\n    return correct, len(pq), correct / len(pq)\\n\\ndef compute_fleiss_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    categories = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\n    for qi, q in enumerate(pq):\\n        dist = q[\\\"answer_distribution\\\"]\\n        for ans, cnt in dist.items():\\n            ans_norm = ans.strip()\\n            if ans_norm in cat2idx:\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\n            else:\\n                ratings[qi, cat2idx[\\\"Unknown\\\"]] += cnt\\n    n_per_q = ratings.sum(axis=1)\\n    valid = n_per_q >= 2\\n    ratings = ratings[valid]\\n    n_per_q = n_per_q[valid]\\n    N = ratings.shape[0]\\n    if N == 0:\\n        return float('nan')\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\n    P_e = np.sum(p_j ** 2)\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\n    P_bar = np.mean(P_i)\\n    if P_e >= 1.0:\\n        return 1.0\\n    return float((P_bar - P_e) / (1 - P_e))\\n\\ndef mean_pairwise_cosine(texts):\\n    non_empty = [t for t in texts if t.strip()]\\n    if len(non_empty) < 2:\\n        return 0.0\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\"english\\\")\\n    try:\\n        tfidf = vectorizer.fit_transform(non_empty)\\n    except ValueError:\\n        return 0.0\\n    sim_matrix = cosine_similarity(tfidf)\\n    n = sim_matrix.shape[0]\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\n    return float(np.mean(upper_tri))\\n\\ndef compute_process_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    sims = []\\n    for q in pq:\\n        texts = [t[\\\"trace\\\"] for t in q[\\\"traces\\\"]]\\n        sim = mean_pairwise_cosine(texts)\\n        sims.append(sim)\\n    return float(np.mean(sims))\\n\\ndef compute_sica_metrics(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    n = len(results)\\n    sica_correct = sum(1 for r in results if r[\\\"cross_model_correct\\\"])\\n    sc_correct = sum(1 for r in results if r[\\\"sc_correct\\\"])\\n    \\n    # Extraction rate: problems with at least 1 constraint\\n    has_constraints = sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] > 0)\\n    \\n    return {\\n        \\\"n\\\": n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sica_acc\\\": sica_correct / n if n else 0,\\n        \\\"sc_correct_crosscheck\\\": sc_correct,\\n        \\\"sc_acc_crosscheck\\\": sc_correct / n if n else 0,\\n        \\\"extraction_rate\\\": has_constraints / n if n else 0,\\n    }\\n\\ndef compute_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    br_values = []\\n    per_q = []\\n    \\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        \\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        \\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        \\n        if weight_gold > 0:\\n            br = weight_wrong / weight_gold\\n            br_values.append(br)\\n            per_q.append({\\\"pid\\\": r[\\\"problem_id\\\"], \\\"br\\\": round(br, 4), \\\"w_wrong\\\": weight_wrong, \\\"w_gold\\\": weight_gold})\\n        else:\\n            per_q.append({\\\"pid\\\": r[\\\"problem_id\\\"], \\\"br\\\": None, \\\"w_wrong\\\": weight_wrong, \\\"w_gold\\\": weight_gold})\\n\\n\\n... [截断: 输出过长，省略 471 字符] ...\\n\\n denominator = 0.0\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        total_w = r.get(\\\"maxsat_stats\\\", {}).get(\\\"total_weight\\\", 0)\\n        if weight_gold > 0 and total_w > 0:\\n            br = weight_wrong / weight_gold\\n            numerator += br * total_w\\n            denominator += total_w\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\n\\ndef main():\\n    print(\\\"=== gpt-4.1 FOLIO-204 Full Metrics ===\\\\n\\\")\\n    \\n    # Load frontier data (always available)\\n    frontier = load_frontier()\\n    \\n    # SC accuracy\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\n    print(f\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\")\\n    \\n    # Answer Fleiss' kappa\\n    fk = compute_fleiss_kappa(frontier)\\n    print(f\\\"Answer Fleiss' κ: {fk:.4f}\\\")\\n    \\n    # Process-kappa\\n    pk = compute_process_kappa(frontier)\\n    print(f\\\"Process-κ (TF-IDF): {pk:.4f}\\\")\\n    \\n    # SICA + BR (need cross-model results)\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\n        print(f\\\"\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\")\\n        print(\\\"Run cross_model_extract.py first.\\\")\\n        return\\n    \\n    cross = load_cross_model()\\n    sica = compute_sica_metrics(cross)\\n    print(f\\\"\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\")\\n    print(f\\\"Δ (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\")\\n    print(f\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\")\\n    \\n    n_sica_wrong = sica['n'] - sica['sica_correct']\\n    print(f\\\"SICA wrong: {n_sica_wrong}\\\")\\n    \\n    br = compute_br(cross)\\n    wbr = compute_weighted_br(cross)\\n    print(f\\\"\\\\nMean BR: {br['mean_br']}\\\")\\n    print(f\\\"Median BR: {br['median_br']}\\\")\\n    print(f\\\"Weighted BR: {wbr}\\\")\\n    print(f\\\"BR=∞ count: {br['n_inf']}\\\")\\n    \\n    # Summary table\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"| Metric                  | Value            |\\\")\\n    print(\\\"|\\\" + \\\"-\\\"*25 + \\\"|\\\" + \\\"-\\\"*18 + \\\"|\\\")\\n    print(f\\\"| Completed               | {sc_total}/204           |\\\")\\n    print(f\\\"| SC accuracy             | {sc_acc:.4f}           |\\\")\\n    print(f\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           |\\\")\\n    print(f\\\"| Δ (SICA-SC)             | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          |\\\")\\n    print(f\\\"| Extraction rate         | {sica['extraction_rate']:.4f}           |\\\")\\n    print(f\\\"| SICA wrong count        | {n_sica_wrong}                |\\\")\\n    print(f\\\"| Mean BR                 | {br['mean_br']}           |\\\")\\n    print(f\\\"| Median BR               | {br['median_br']}           |\\\")\\n    print(f\\\"| Weighted BR             | {wbr}           |\\\")\\n    print(f\\\"| BR=∞ count              | {br['n_inf']}                |\\\")\\n    print(f\\\"| Process-κ (TF-IDF)      | {pk:.4f}           |\\\")\\n    print(f\\\"| Answer Fleiss' κ        | {fk:.4f}           |\\\")\\n    print(\\\"=\\\"*50)\\n    \\n    # Save to file\\n    output = {\\n        \\\"model\\\": \\\"gpt-4.1\\\",\\n        \\\"dataset\\\": \\\"FOLIO-204\\\",\\n        \\\"extraction_model\\\": cross.get(\\\"summary\\\", {}).get(\\\"extraction_model\\\", \\\"Mistral-7B\\\"),\\n        \\\"completed\\\": sc_total,\\n        \\\"sc_accuracy\\\": round(sc_acc, 4),\\n        \\\"sica_accuracy\\\": round(sica[\\\"sica_acc\\\"], 4),\\n        \\\"delta_pp\\\": round((sica[\\\"sica_acc\\\"] - sc_acc) * 100, 2),\\n        \\\"extraction_rate\\\": round(sica[\\\"extraction_rate\\\"], 4),\\n        \\\"n_sica_wrong\\\": n_sica_wrong,\\n        \\\"mean_br\\\": br[\\\"mean_br\\\"],\\n        \\\"median_br\\\": br[\\\"median_br\\\"],\\n        \\\"weighted_br\\\": wbr,\\n        \\\"n_br_inf\\\": br[\\\"n_inf\\\"],\\n        \\\"process_kappa\\\": round(pk, 4),\\n        \\\"answer_fleiss_kappa\\\": round(fk, 4),\\n    }\\n    out_path = os.path.join(BASE, \\\"cross_model/gpt41_full_metrics.json\\\")\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "6824d707-27bf-4ce2-9694-5659c453fb8c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Compute all metrics for gpt-4.1: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys, glob\\\\nimport numpy as np\\\\nfrom collections import Counter\\\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\\\nfrom sklearn.metrics.pairwise import cosine_similarity\\\\n\\\\nBASE = \\\\\\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-4.1\\\\\\\"\\\\nFRONTIER_RESULTS = os.path.join(BASE, \\\\\\\"results.json\\\\\\\")\\\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\\\\\"cross_model/cross_model_mistral.json\\\\\\\")\\\\n\\\\ndef load_frontier():\\\\n    with open(FRONTIER_RESULTS) as f:\\\\n        return json.load(f)\\\\n\\\\ndef load_cross_model():\\\\n    with open(CROSS_MODEL_RESULTS) as f:\\\\n        return json.load(f)\\\\n\\\\ndef compute_sc_accuracy(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    correct = sum(1 for q in pq if q[\\\\\\\"sc_correct\\\\\\\"])\\\\n    return correct, len(pq), correct / len(pq)\\\\n\\\\ndef compute_fleiss_kappa(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    categories = [\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"]\\\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\\\n    for qi, q in enumerate(pq):\\\\n        dist = q[\\\\\\\"answer_distribution\\\\\\\"]\\\\n        for ans, cnt in dist.items():\\\\n            ans_norm = ans.strip()\\\\n            if ans_norm in cat2idx:\\\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\\\n            else:\\\\n                ratings[qi, cat2idx[\\\\\\\"Unknown\\\\\\\"]] += cnt\\\\n    n_per_q = ratings.sum(axis=1)\\\\n    valid = n_per_q >= 2\\\\n    ratings = ratings[valid]\\\\n    n_per_q = n_per_q[valid]\\\\n    N = ratings.shape[0]\\\\n    if N == 0:\\\\n        return float('nan')\\\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\\\n    P_e = np.sum(p_j ** 2)\\\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\\\n    P_bar = np.mean(P_i)\\\\n    if P_e >= 1.0:\\\\n        return 1.0\\\\n    return float((P_bar - P_e) / (1 - P_e))\\\\n\\\\ndef mean_pairwise_cosine(texts):\\\\n    non_empty = [t for t in texts if t.strip()]\\\\n    if len(non_empty) < 2:\\\\n        return 0.0\\\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\\\\\"english\\\\\\\")\\\\n    try:\\\\n        tfidf = vectorizer.fit_transform(non_empty)\\\\n    except ValueError:\\\\n        return 0.0\\\\n    sim_matrix = cosine_similarity(tfidf)\\\\n    n = sim_matrix.shape[0]\\\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\\\n    return float(np.mean(upper_tri))\\\\n\\\\ndef compute_process_kappa(frontier):\\\\n    pq = frontier[\\\\\\\"per_question\\\\\\\"]\\\\n    sims = []\\\\n    for q in pq:\\\\n        texts = [t[\\\\\\\"trace\\\\\\\"] for t in q[\\\\\\\"traces\\\\\\\"]]\\\\n        sim = mean_pairwise_cosine(texts)\\\\n        sims.append(sim)\\\\n    return float(np.mean(sims))\\\\n\\\\ndef compute_sica_metrics(cross_model):\\\\n    results = cross_model[\\\\\\\"results\\\\\\\"]\\\\n    n = len(results)\\\\n    sica_correct = sum(1 for r in results if r[\\\\\\\"cross_model_correct\\\\\\\"])\\\\n    sc_correct = sum(1 for r in results if r[\\\\\\\"sc_correct\\\\\\\"])\\\\n    \\\\n    # Extraction rate: problems with at least 1 constraint\\\\n    has_constraints = sum(1 for r in results if r[\\\\\\\"constraints_stats\\\\\\\"][\\\\\\\"total_extracted\\\\\\\"] > 0)\\\\n    \\\\n    return {\\\\n        \\\\\\\"n\\\\\\\": n,\\\\n        \\\\\\\"sica_correct\\\\\\\": sica_correct,\\\\n        \\\\\\\"sica_acc\\\\\\\": sica_correct / n if n else 0,\\\\n        \\\\\\\"sc_correct_crosscheck\\\\\\\": sc_correct,\\\\n        \\\\\\\"sc_acc_crosscheck\\\\\\\": sc_correct / n if n else 0,\\\\n        \\\\\\\"extraction_rate\\\\\\\": has_constraints / n if n else 0,\\\\n    }\\\\n\\\\ndef compute_br(cross_model):\\\\n    results = cross_model[\\\\\\\"results\\\\\\\"]\\\\n    br_values = []\\\\n    per_q = []\\\\n    \\\\n    for r in results:\\\\n        if r[\\\\\\\"cross_model_correct\\\\\\\"]:\\\\n            continue\\\\n        \\\\n        gold = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sica_ans = r[\\\\\\\"cross_model_answer\\\\\\\"]\\\\n        scores = r[\\\\\\\"cross_model_scores\\\\\\\"]\\\\n        \\\\n        weight_wrong = scores.get(sica_ans, 0.0)\\\\n        weight_gold = scores.get(gold, 0.0)\\\\n        \\\\n        if weight_gold > 0:\\\\n            br = weight_wrong / weight_gold\\\\n            br_values.append(br)\\\\n            per_q.append({\\\\\\\"pid\\\\\\\": r[\\\\\\\"problem_id\\\\\\\"], \\\\\\\"br\\\\\\\": round(br, 4), \\\\\\\"w_wrong\\\\\\\": weight_wrong, \\\\\\\"w_gold\\\\\\\": weight_gold})\\\\n        else:\\\\n            per_q.append({\\\\\\\"pid\\\\\\\": r[\\\\\\\"problem_id\\\\\\\"], \\\\\\\"br\\\\\\\": None, \\\\\\\"w_wrong\\\\\\\": weight_wrong, \\\\\\\"w_gold\\\\\\\": weight_gold})\\\\n\\\\n\\\\n... [截断: 输出过长，省略 471 字符] ...\\\\n\\\\n denominator = 0.0\\\\n    for r in results:\\\\n        if r[\\\\\\\"cross_model_correct\\\\\\\"]:\\\\n            continue\\\\n        gold = r[\\\\\\\"ground_truth\\\\\\\"]\\\\n        sica_ans = r[\\\\\\\"cross_model_answer\\\\\\\"]\\\\n        scores = r[\\\\\\\"cross_model_scores\\\\\\\"]\\\\n        weight_wrong = scores.get(sica_ans, 0.0)\\\\n        weight_gold = scores.get(gold, 0.0)\\\\n        total_w = r.get(\\\\\\\"maxsat_stats\\\\\\\", {}).get(\\\\\\\"total_weight\\\\\\\", 0)\\\\n        if weight_gold > 0 and total_w > 0:\\\\n            br = weight_wrong / weight_gold\\\\n            numerator += br * total_w\\\\n            denominator += total_w\\\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"=== gpt-4.1 FOLIO-204 Full Metrics ===\\\\\\\\n\\\\\\\")\\\\n    \\\\n    # Load frontier data (always available)\\\\n    frontier = load_frontier()\\\\n    \\\\n    # SC accuracy\\\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\\\n    print(f\\\\\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\\\\\")\\\\n    \\\\n    # Answer Fleiss' kappa\\\\n    fk = compute_fleiss_kappa(frontier)\\\\n    print(f\\\\\\\"Answer Fleiss' κ: {fk:.4f}\\\\\\\")\\\\n    \\\\n    # Process-kappa\\\\n    pk = compute_process_kappa(frontier)\\\\n    print(f\\\\\\\"Process-κ (TF-IDF): {pk:.4f}\\\\\\\")\\\\n    \\\\n    # SICA + BR (need cross-model results)\\\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\\\n        print(f\\\\\\\"\\\\\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\\\\\")\\\\n        print(\\\\\\\"Run cross_model_extract.py first.\\\\\\\")\\\\n        return\\\\n    \\\\n    cross = load_cross_model()\\\\n    sica = compute_sica_metrics(cross)\\\\n    print(f\\\\\\\"\\\\\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\\\\\")\\\\n    print(f\\\\\\\"Δ (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\\\\\")\\\\n    print(f\\\\\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\\\\\")\\\\n    \\\\n    n_sica_wrong = sica['n'] - sica['sica_correct']\\\\n    print(f\\\\\\\"SICA wrong: {n_sica_wrong}\\\\\\\")\\\\n    \\\\n    br = compute_br(cross)\\\\n    wbr = compute_weighted_br(cross)\\\\n    print(f\\\\\\\"\\\\\\\\nMean BR: {br['mean_br']}\\\\\\\")\\\\n    print(f\\\\\\\"Median BR: {br['median_br']}\\\\\\\")\\\\n    print(f\\\\\\\"Weighted BR: {wbr}\\\\\\\")\\\\n    print(f\\\\\\\"BR=∞ count: {br['n_inf']}\\\\\\\")\\\\n    \\\\n    # Summary table\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*50)\\\\n    print(\\\\\\\"| Metric                  | Value            |\\\\\\\")\\\\n    print(\\\\\\\"|\\\\\\\" + \\\\\\\"-\\\\\\\"*25 + \\\\\\\"|\\\\\\\" + \\\\\\\"-\\\\\\\"*18 + \\\\\\\"|\\\\\\\")\\\\n    print(f\\\\\\\"| Completed               | {sc_total}/204           |\\\\\\\")\\\\n    print(f\\\\\\\"| SC accuracy             | {sc_acc:.4f}           |\\\\\\\")\\\\n    print(f\\\\\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           |\\\\\\\")\\\\n    print(f\\\\\\\"| Δ (SICA-SC)             | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          |\\\\\\\")\\\\n    print(f\\\\\\\"| Extraction rate         | {sica['extraction_rate']:.4f}           |\\\\\\\")\\\\n    print(f\\\\\\\"| SICA wrong count        | {n_sica_wrong}                |\\\\\\\")\\\\n    print(f\\\\\\\"| Mean BR                 | {br['mean_br']}           |\\\\\\\")\\\\n    print(f\\\\\\\"| Median BR               | {br['median_br']}           |\\\\\\\")\\\\n    print(f\\\\\\\"| Weighted BR             | {wbr}           |\\\\\\\")\\\\n    print(f\\\\\\\"| BR=∞ count              | {br['n_inf']}                |\\\\\\\")\\\\n    print(f\\\\\\\"| Process-κ (TF-IDF)      | {pk:.4f}           |\\\\\\\")\\\\n    print(f\\\\\\\"| Answer Fleiss' κ        | {fk:.4f}           |\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*50)\\\\n    \\\\n    # Save to file\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"gpt-4.1\\\\\\\",\\\\n        \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n        \\\\\\\"extraction_model\\\\\\\": cross.get(\\\\\\\"summary\\\\\\\", {}).get(\\\\\\\"extraction_model\\\\\\\", \\\\\\\"Mistral-7B\\\\\\\"),\\\\n        \\\\\\\"completed\\\\\\\": sc_total,\\\\n        \\\\\\\"sc_accuracy\\\\\\\": round(sc_acc, 4),\\\\n        \\\\\\\"sica_accuracy\\\\\\\": round(sica[\\\\\\\"sica_acc\\\\\\\"], 4),\\\\n        \\\\\\\"delta_pp\\\\\\\": round((sica[\\\\\\\"sica_acc\\\\\\\"] - sc_acc) * 100, 2),\\\\n        \\\\\\\"extraction_rate\\\\\\\": round(sica[\\\\\\\"extraction_rate\\\\\\\"], 4),\\\\n        \\\\\\\"n_sica_wrong\\\\\\\": n_sica_wrong,\\\\n        \\\\\\\"mean_br\\\\\\\": br[\\\\\\\"mean_br\\\\\\\"],\\\\n        \\\\\\\"median_br\\\\\\\": br[\\\\\\\"median_br\\\\\\\"],\\\\n        \\\\\\\"weighted_br\\\\\\\": wbr,\\\\n        \\\\\\\"n_br_inf\\\\\\\": br[\\\\\\\"n_inf\\\\\\\"],\\\\n        \\\\\\\"process_kappa\\\\\\\": round(pk, 4),\\\\n        \\\\\\\"answer_fleiss_kappa\\\\\\\": round(fk, 4),\\\\n    }\\\\n    out_path = os.path.join(BASE, \\\\\\\"cross_model/gpt41_full_metrics.json\\\\\\\")\\\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute all metrics for gpt-4.1: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\\\"\\\"\\\"\\nimport json, os, sys, glob\\nimport numpy as np\\nfrom collections import Counter\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.metrics.pairwise import cosine_similarity\\n\\nBASE = \\\"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/gpt-4.1\\\"\\nFRONTIER_RESULTS = os.path.join(BASE, \\\"results.json\\\")\\nCROSS_MODEL_RESULTS = os.path.join(BASE, \\\"cross_model/cross_model_mistral.json\\\")\\n\\ndef load_frontier():\\n    with open(FRONTIER_RESULTS) as f:\\n        return json.load(f)\\n\\ndef load_cross_model():\\n    with open(CROSS_MODEL_RESULTS) as f:\\n        return json.load(f)\\n\\ndef compute_sc_accuracy(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    correct = sum(1 for q in pq if q[\\\"sc_correct\\\"])\\n    return correct, len(pq), correct / len(pq)\\n\\ndef compute_fleiss_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    categories = [\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"]\\n    cat2idx = {c: i for i, c in enumerate(categories)}\\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\\n    for qi, q in enumerate(pq):\\n        dist = q[\\\"answer_distribution\\\"]\\n        for ans, cnt in dist.items():\\n            ans_norm = ans.strip()\\n            if ans_norm in cat2idx:\\n                ratings[qi, cat2idx[ans_norm]] += cnt\\n            else:\\n                ratings[qi, cat2idx[\\\"Unknown\\\"]] += cnt\\n    n_per_q = ratings.sum(axis=1)\\n    valid = n_per_q >= 2\\n    ratings = ratings[valid]\\n    n_per_q = n_per_q[valid]\\n    N = ratings.shape[0]\\n    if N == 0:\\n        return float('nan')\\n    p_j = ratings.sum(axis=0) / ratings.sum()\\n    P_e = np.sum(p_j ** 2)\\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\\n    P_bar = np.mean(P_i)\\n    if P_e >= 1.0:\\n        return 1.0\\n    return float((P_bar - P_e) / (1 - P_e))\\n\\ndef mean_pairwise_cosine(texts):\\n    non_empty = [t for t in texts if t.strip()]\\n    if len(non_empty) < 2:\\n        return 0.0\\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\\\"english\\\")\\n    try:\\n        tfidf = vectorizer.fit_transform(non_empty)\\n    except ValueError:\\n        return 0.0\\n    sim_matrix = cosine_similarity(tfidf)\\n    n = sim_matrix.shape[0]\\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\\n    return float(np.mean(upper_tri))\\n\\ndef compute_process_kappa(frontier):\\n    pq = frontier[\\\"per_question\\\"]\\n    sims = []\\n    for q in pq:\\n        texts = [t[\\\"trace\\\"] for t in q[\\\"traces\\\"]]\\n        sim = mean_pairwise_cosine(texts)\\n        sims.append(sim)\\n    return float(np.mean(sims))\\n\\ndef compute_sica_metrics(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    n = len(results)\\n    sica_correct = sum(1 for r in results if r[\\\"cross_model_correct\\\"])\\n    sc_correct = sum(1 for r in results if r[\\\"sc_correct\\\"])\\n    \\n    # Extraction rate: problems with at least 1 constraint\\n    has_constraints = sum(1 for r in results if r[\\\"constraints_stats\\\"][\\\"total_extracted\\\"] > 0)\\n    \\n    return {\\n        \\\"n\\\": n,\\n        \\\"sica_correct\\\": sica_correct,\\n        \\\"sica_acc\\\": sica_correct / n if n else 0,\\n        \\\"sc_correct_crosscheck\\\": sc_correct,\\n        \\\"sc_acc_crosscheck\\\": sc_correct / n if n else 0,\\n        \\\"extraction_rate\\\": has_constraints / n if n else 0,\\n    }\\n\\ndef compute_br(cross_model):\\n    results = cross_model[\\\"results\\\"]\\n    br_values = []\\n    per_q = []\\n    \\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        \\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        \\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        \\n        if weight_gold > 0:\\n            br = weight_wrong / weight_gold\\n            br_values.append(br)\\n            per_q.append({\\\"pid\\\": r[\\\"problem_id\\\"], \\\"br\\\": round(br, 4), \\\"w_wrong\\\": weight_wrong, \\\"w_gold\\\": weight_gold})\\n        else:\\n            per_q.append({\\\"pid\\\": r[\\\"problem_id\\\"], \\\"br\\\": None, \\\"w_wrong\\\": weight_wrong, \\\"w_gold\\\": weight_gold})\\n\\n\\n... [截断: 输出过长，省略 471 字符] ...\\n\\n denominator = 0.0\\n    for r in results:\\n        if r[\\\"cross_model_correct\\\"]:\\n            continue\\n        gold = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"cross_model_answer\\\"]\\n        scores = r[\\\"cross_model_scores\\\"]\\n        weight_wrong = scores.get(sica_ans, 0.0)\\n        weight_gold = scores.get(gold, 0.0)\\n        total_w = r.get(\\\"maxsat_stats\\\", {}).get(\\\"total_weight\\\", 0)\\n        if weight_gold > 0 and total_w > 0:\\n            br = weight_wrong / weight_gold\\n            numerator += br * total_w\\n            denominator += total_w\\n    return round(numerator / denominator, 4) if denominator > 0 else None\\n\\ndef main():\\n    print(\\\"=== gpt-4.1 FOLIO-204 Full Metrics ===\\\\n\\\")\\n    \\n    # Load frontier data (always available)\\n    frontier = load_frontier()\\n    \\n    # SC accuracy\\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\\n    print(f\\\"SC@12 accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\\\")\\n    \\n    # Answer Fleiss' kappa\\n    fk = compute_fleiss_kappa(frontier)\\n    print(f\\\"Answer Fleiss' κ: {fk:.4f}\\\")\\n    \\n    # Process-kappa\\n    pk = compute_process_kappa(frontier)\\n    print(f\\\"Process-κ (TF-IDF): {pk:.4f}\\\")\\n    \\n    # SICA + BR (need cross-model results)\\n    if not os.path.exists(CROSS_MODEL_RESULTS):\\n        print(f\\\"\\\\nCross-model results not found: {CROSS_MODEL_RESULTS}\\\")\\n        print(\\\"Run cross_model_extract.py first.\\\")\\n        return\\n    \\n    cross = load_cross_model()\\n    sica = compute_sica_metrics(cross)\\n    print(f\\\"\\\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\\\")\\n    print(f\\\"Δ (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\\\")\\n    print(f\\\"Extraction rate: {sica['extraction_rate']:.4f}\\\")\\n    \\n    n_sica_wrong = sica['n'] - sica['sica_correct']\\n    print(f\\\"SICA wrong: {n_sica_wrong}\\\")\\n    \\n    br = compute_br(cross)\\n    wbr = compute_weighted_br(cross)\\n    print(f\\\"\\\\nMean BR: {br['mean_br']}\\\")\\n    print(f\\\"Median BR: {br['median_br']}\\\")\\n    print(f\\\"Weighted BR: {wbr}\\\")\\n    print(f\\\"BR=∞ count: {br['n_inf']}\\\")\\n    \\n    # Summary table\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"| Metric                  | Value            |\\\")\\n    print(\\\"|\\\" + \\\"-\\\"*25 + \\\"|\\\" + \\\"-\\\"*18 + \\\"|\\\")\\n    print(f\\\"| Completed               | {sc_total}/204           |\\\")\\n    print(f\\\"| SC accuracy             | {sc_acc:.4f}           |\\\")\\n    print(f\\\"| SICA accuracy           | {sica['sica_acc']:.4f}           |\\\")\\n    print(f\\\"| Δ (SICA-SC)             | {(sica['sica_acc']-sc_acc)*100:+.2f}pp          |\\\")\\n    print(f\\\"| Extraction rate         | {sica['extraction_rate']:.4f}           |\\\")\\n    print(f\\\"| SICA wrong count        | {n_sica_wrong}                |\\\")\\n    print(f\\\"| Mean BR                 | {br['mean_br']}           |\\\")\\n    print(f\\\"| Median BR               | {br['median_br']}           |\\\")\\n    print(f\\\"| Weighted BR             | {wbr}           |\\\")\\n    print(f\\\"| BR=∞ count              | {br['n_inf']}                |\\\")\\n    print(f\\\"| Process-κ (TF-IDF)      | {pk:.4f}           |\\\")\\n    print(f\\\"| Answer Fleiss' κ        | {fk:.4f}           |\\\")\\n    print(\\\"=\\\"*50)\\n    \\n    # Save to file\\n    output = {\\n        \\\"model\\\": \\\"gpt-4.1\\\",\\n        \\\"dataset\\\": \\\"FOLIO-204\\\",\\n        \\\"extraction_model\\\": cross.get(\\\"summary\\\", {}).get(\\\"extraction_model\\\", \\\"Mistral-7B\\\"),\\n        \\\"completed\\\": sc_total,\\n        \\\"sc_accuracy\\\": round(sc_acc, 4),\\n        \\\"sica_accuracy\\\": round(sica[\\\"sica_acc\\\"], 4),\\n        \\\"delta_pp\\\": round((sica[\\\"sica_acc\\\"] - sc_acc) * 100, 2),\\n        \\\"extraction_rate\\\": round(sica[\\\"extraction_rate\\\"], 4),\\n        \\\"n_sica_wrong\\\": n_sica_wrong,\\n        \\\"mean_br\\\": br[\\\"mean_br\\\"],\\n        \\\"median_br\\\": br[\\\"median_br\\\"],\\n        \\\"weighted_br\\\": wbr,\\n        \\\"n_br_inf\\\": br[\\\"n_inf\\\"],\\n        \\\"process_kappa\\\": round(pk, 4),\\n        \\\"answer_fleiss_kappa\\\": round(fk, 4),\\n    }\\n    out_path = os.path.join(BASE, \\\"cross_model/gpt41_full_metrics.json\\\")\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the structure. The gpt-5.5 and gpt-4.1 scripts both:
+1. Load `results.json` (frontier data) for SC accuracy, Fleiss' kappa, and Process-kappa
+2. Load `cross_model/cross_model_mistral.json` for SICA, BR metrics
+
+For o3, I need to check if there's a `results.json` in the o3 directory. The o3 cross_model results already contain `sc_vote_distribution` and `sc_correct` per problem, so SC accuracy can be derived from there. 
+
+For Process-kappa and Answer Fleiss' kappa though, I'll need the frontier results with raw traces and answer distributions, so let me see what's actually in the o3 directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "8ac41fcb-8a01-429a-9fc5-d272078b30cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFZg49hyLvqMcsoDTcrcdK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7890,
+      "cache_read_input_tokens": 28168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+需要检查 o3 目录下是否有 frontier `results.json`（Process-κ 和 Answer Fleiss' κ 依赖原始 traces）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "b73385ce-f021-4712-9232-b7600fc2340b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFZg49hyLvqMcsoDTcrcdK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7890,
+      "cache_read_input_tokens": 28168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FcCx9VtTitVmAt3uhGipE`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "f2d3f700-765a-4cc9-869d-2de63802e25d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFZg49hyLvqMcsoDTcrcdK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7890,
+      "cache_read_input_tokens": 28168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7890
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T19:07:36.363Z_
+
+<details><summary>↩ Tool result · `toolu_017FcCx9VtTitVmAt3uhGipE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4156\\ndrwxr-xr-x 4 root root     109 May 22 02:18 .\\ndrwxr-xr-x 5 root root      89 May 21 23:26 ..\\n-rw-r--r-- 1 root root 2091352 May 22 01:25 checkpoint.json\\ndrwxr-xr-x 2 root root      72 May 22 02:18 cross_model\\ndrwxr-xr-x 2 root root    8192 May 22 02:17 intermediates\\n-rw-r--r-- 1 root root 2146667 May 22 01:25 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "23e0c328-b1d5-44da-ad5b-631f60bd149e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4156\\\\ndrwxr-xr-x 4 root root     109 May 22 02:18 .\\\\ndrwxr-xr-x 5 root root      89 May 21 23:26 ..\\\\n-rw-r--r-- 1 root root 2091352 May 22 01:25 checkpoint.json\\\\ndrwxr-xr-x 2 root root      72 May 22 02:18 cross_model\\\\ndrwxr-xr-x 2 root root    8192 May 22 02:17 intermediates\\\\n-rw-r--r-- 1 root root 2146667 May 22 01:25 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4156\\ndrwxr-xr-x 4 root root     109 May 22 02:18 .\\ndrwxr-xr-x 5 root root      89 May 21 23:26 ..\\n-rw-r--r-- 1 root root 2091352 May 22 01:25 checkpoint.json\\ndrwxr-xr-x 2 root root      72 May 22 02:18 cross_model\\ndrwxr-xr-x 2 root root    8192 May 22 02:17 intermediates\\n-rw-r--r-- 1 root root 2146667 May 22 01:25 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+`results.json` 存在。查看其结构以确认与 gpt-5.5 一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "f7a006c9-ab6e-41f7-b7fd-962f8ab98a3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSgks8xgYzKG5Gs37UuTVr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 36058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WnH1gfXo9gYPXH2JkQ6TQH`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -60 /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "619851e8-1775-4c51-8a5c-08378bb7feb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSgks8xgYzKG5Gs37UuTVr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 36058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T19:07:40.776Z_
+
+<details><summary>↩ Tool result · `toolu_01WnH1gfXo9gYPXH2JkQ6TQH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"o3\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"n_questions\\\": 204,\\n  \\\"n_valid\\\": 196,\\n  \\\"k\\\": 12,\\n  \\\"temperature\\\": 0.7,\\n  \\\"concurrency\\\": 4,\\n  \\\"sc_accuracy\\\": 0.8265,\\n  \\\"sc_correct\\\": 162,\\n  \\\"per_label_accuracy\\\": {\\n    \\\"True\\\": {\\n      \\\"correct\\\": 52,\\n      \\\"total\\\": 72,\\n      \\\"accuracy\\\": 0.7222\\n    },\\n    \\\"False\\\": {\\n      \\\"correct\\\": 46,\\n      \\\"total\\\": 63,\\n      \\\"accuracy\\\": 0.7302\\n    },\\n    \\\"Unknown\\\": {\\n      \\\"correct\\\": 64,\\n      \\\"total\\\": 69,\\n      \\\"accuracy\\\": 0.9275\\n    }\\n  },\\n  \\\"label_distribution\\\": {\\n    \\\"Unknown\\\": 69,\\n    \\\"True\\\": 72,\\n    \\\"False\\\": 63\\n  },\\n  \\\"elapsed_seconds\\\": 11417.2,\\n  \\\"per_question\\\": [\\n    {\\n      \\\"question_id\\\": \\\"folio_0\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"n_traces\\\": 12,\\n      \\\"n_valid_answers\\\": 8,\\n      \\\"traces\\\": [\\n        {\\n          \\\"trace\\\": \\\"\\\",\\n          \\\"answer\\\": \\\"\\\",\\n          \\\"trace_idx\\\": 0\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-by-step reasoning\\\\n\\\\nDefinitions  \\\\nA: performs in school talent shows often  \\\\nB: attends and is very engaged with school events  \\\\nC: inactive and disinterested member of the community  \\\\nD: chaperones high school dances  \\\\nS: student who attends the school  \\\\n\\\\nPremises  \\\\n1. A → B  \\\\n2. A ∨ C  \\\\n3. D → ¬S  \\\\n4. C → D  \\\\n5. (irrelevant to Bonnie)  \\\\n6. For Bonnie: (B ∧ S) ∨ (¬B ∧ ¬S)\\\\n\\\\nAnalysis of Bonnie’s two allowed cases from premise 6  \\\\n\\\\nCase 1:  B and S are true.  \\\\n• From 6: B = true, S = true.  \\\\n• Premise 2 requires A ∨ C.  \\\\n    – If C were true, premise 4 would give D, and premise 3 would give ¬S, contradicting S = true.  \\\\n    – Therefore C is false and A must be true.  \\\\n• No premises are violated.  \\\\n⇒ In this case Bonnie performs in school talent shows (A = true).\\\\n\\\\nCase 2:  B and S are false.  \\\\n• From 6: B = false, S = false.  \\\\n• Premise 1 (A → B): if A were true, B would have to be true, contradiction. Hence A is false.  \\\\n• Premise 2 (A ∨ C): since A is false, C must be true.  \\\\n• C true → D true (premise 4) → ¬S (premise 3), consistent with S = false.  \\\\n⇒ In this case Bonnie does not perform in school talent shows (A = false).\\\\n\\\\nBoth cases satisfy all premises, yet give opposite truth-values for “Bonnie performs in school talent shows often.”  \\\\nTherefore the conclusion cannot be determined from the information given.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 1\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-1  Introduce predicates  \\\\nP(x): x performs in school talent shows often  \\\\nS(x): x attends and is very engaged with school events  \\\\nI(x): x is an inactive and disinterested community member  \\\\nC(x): x chaperones high-school dances  \\\\nT(x): x is a student who attends the school  \\\\n(All quantifiers are universal unless stated otherwise.)\\\\n\\\\nStep-2  Translate the premises  \\\\n1. P(x) → S(x)  \\\\n2. P(x) ∨ I(x)  \\\\n3. C(x) → ¬T(x)  \\\\n4. I(x) → C(x)  \\\\n5. (irrelevant to Bonnie’s status)  \\\\n6. For Bonnie (b): (S(b) ∧ T(b)) ∨ (¬S(b) ∧ ¬T(b))\\\\n\\\\nStep-3  Analyze the two alternatives supplied by premise 6\\\\n\\\\nAlternative A: S(b) ∧ T(b)  \\\\n• T(b) is true ⇒ by premise 2 we must have P(b) ∨ I(b).  \\\\n• I(b) cannot be true, because I(b) → C(b) → ¬T(b) would contradict T(b).  \\\\n• Therefore I(b) is false, so P(b) must be true.  \\\\n• Hence P(b) = true in Alternative A.\\\\n\\\\nAlternative B: ¬S(b) ∧ ¬T(b)  \\\\n• Suppose P(b) were true. Then P(b) → S(b), contradicting ¬S(b).  \\\\n• Hence P(b) is false.  \\\\n• From premise 2, P(b) ∨ I(b) and P(b) is false, so I(b) is true.  \\\\n• I(b) → C(b) and C(b) → ¬T(b) are consistent with ¬T(b).  \\\\n• Thus P(b) = false in Alternative B.\\\\n\\\\nStep-4  Check consistency  \\\\nBoth Alternative A (with P(b) true) and Alternative B (with P(b) false) satisfy every given premise, so nothing rules either alternative out.\\\\n\\\\nStep-5  Determine the conclusion  \\\\nBecause Bonnie could be in a scenario where she performs in talent shows often and also could be in a scenario where she does not, the premises do not settle the matter.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 2\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-by-step reasoning\\\\n\\\\n1. Symbols  \\\\n   P(x): performs in school talent shows often  \\\\n   E(x): attends and is very engaged with school events  \\\\n   I(x): inactive and disinterested member of the community  \\\\n   C(x): chaperones high-school dances  \\\\n   S(x): student who attends the school  \\\\n   (We omit other predicates that are irrelevant for Bonnie.)\\\\n\\\\n2. Formalised premises  \\\\n   (1)  P(x) → E(x)  \\\\n   (2)  P(x) ∨ I(x)  \\\\n   (3)  C(x) → ¬S(x)  \\\\n   (4)  I(x) → C(x)                 (so I(x) → ¬S(x))  \\\\n   (6)  For Bonnie, either  \\\\n        (a)  E(B) ∧ S(B)            or  \\\\n        (b)  ¬E(B) ∧ ¬S(B)\\\\n\\\\n3. Consequences of each branch in premise (6)\\\\n\\\\n   Branch (a):  E(B) ∧ S(B)\\\\n   • I(B) would imply ¬S(B) (from 4), contradicting S(B).  \\\\n     Therefore I(B) is false.  \\\\n   • From (2): P(B) ∨ I(B).  Since I(B) is false, P(B) must be true.  \\\\n\\\\n   Branch (b):  ¬E(B) ∧ ¬S(B)\\\\n   • If P(B) were true, (1) would give E(B), contradicting ¬E(B).  \\\\n     Hence P(B) is false.  \\\\n   • From (2): with ¬P(B), we must have I(B) true, which is consistent\\\\n     (it leads to ¬S(B) via 4, agreeing with ¬S(B)).\\\\n\\\\n4. Consistency\\\\n   Both branches (a) and (b) are internally consistent with all the\\\\n   premises.  The information given does not tell us which branch is\\\\n   the actual one, so P(B) could be true or false.\\\\n\\\\nConclusion  \\\\nThe truth value of “Bonnie performs in school talent shows often” cannot\\\\nbe determined from the premises.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 3\\n        },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "b6f8aa67-cd34-4f02-977b-692fe782c38d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"o3\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n  \\\\\\\"n_questions\\\\\\\": 204,\\\\n  \\\\\\\"n_valid\\\\\\\": 196,\\\\n  \\\\\\\"k\\\\\\\": 12,\\\\n  \\\\\\\"temperature\\\\\\\": 0.7,\\\\n  \\\\\\\"concurrency\\\\\\\": 4,\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.8265,\\\\n  \\\\\\\"sc_correct\\\\\\\": 162,\\\\n  \\\\\\\"per_label_accuracy\\\\\\\": {\\\\n    \\\\\\\"True\\\\\\\": {\\\\n      \\\\\\\"correct\\\\\\\": 52,\\\\n      \\\\\\\"total\\\\\\\": 72,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7222\\\\n    },\\\\n    \\\\\\\"False\\\\\\\": {\\\\n      \\\\\\\"correct\\\\\\\": 46,\\\\n      \\\\\\\"total\\\\\\\": 63,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7302\\\\n    },\\\\n    \\\\\\\"Unknown\\\\\\\": {\\\\n      \\\\\\\"correct\\\\\\\": 64,\\\\n      \\\\\\\"total\\\\\\\": 69,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9275\\\\n    }\\\\n  },\\\\n  \\\\\\\"label_distribution\\\\\\\": {\\\\n    \\\\\\\"Unknown\\\\\\\": 69,\\\\n    \\\\\\\"True\\\\\\\": 72,\\\\n    \\\\\\\"False\\\\\\\": 63\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 11417.2,\\\\n  \\\\\\\"per_question\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question_id\\\\\\\": \\\\\\\"folio_0\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n      \\\\\\\"n_traces\\\\\\\": 12,\\\\n      \\\\\\\"n_valid_answers\\\\\\\": 8,\\\\n      \\\\\\\"traces\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"trace\\\\\\\": \\\\\\\"\\\\\\\",\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"\\\\\\\",\\\\n          \\\\\\\"trace_idx\\\\\\\": 0\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace\\\\\\\": \\\\\\\"Step-by-step reasoning\\\\\\\\n\\\\\\\\nDefinitions  \\\\\\\\nA: performs in school talent shows often  \\\\\\\\nB: attends and is very engaged with school events  \\\\\\\\nC: inactive and disinterested member of the community  \\\\\\\\nD: chaperones high school dances  \\\\\\\\nS: student who attends the school  \\\\\\\\n\\\\\\\\nPremises  \\\\\\\\n1. A → B  \\\\\\\\n2. A ∨ C  \\\\\\\\n3. D → ¬S  \\\\\\\\n4. C → D  \\\\\\\\n5. (irrelevant to Bonnie)  \\\\\\\\n6. For Bonnie: (B ∧ S) ∨ (¬B ∧ ¬S)\\\\\\\\n\\\\\\\\nAnalysis of Bonnie’s two allowed cases from premise 6  \\\\\\\\n\\\\\\\\nCase 1:  B and S are true.  \\\\\\\\n• From 6: B = true, S = true.  \\\\\\\\n• Premise 2 requires A ∨ C.  \\\\\\\\n    – If C were true, premise 4 would give D, and premise 3 would give ¬S, contradicting S = true.  \\\\\\\\n    – Therefore C is false and A must be true.  \\\\\\\\n• No premises are violated.  \\\\\\\\n⇒ In this case Bonnie performs in school talent shows (A = true).\\\\\\\\n\\\\\\\\nCase 2:  B and S are false.  \\\\\\\\n• From 6: B = false, S = false.  \\\\\\\\n• Premise 1 (A → B): if A were true, B would have to be true, contradiction. Hence A is false.  \\\\\\\\n• Premise 2 (A ∨ C): since A is false, C must be true.  \\\\\\\\n• C true → D true (premise 4) → ¬S (premise 3), consistent with S = false.  \\\\\\\\n⇒ In this case Bonnie does not perform in school talent shows (A = false).\\\\\\\\n\\\\\\\\nBoth cases satisfy all premises, yet give opposite truth-values for “Bonnie performs in school talent shows often.”  \\\\\\\\nTherefore the conclusion cannot be determined from the information given.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Unknown}\\\\\\\",\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"trace_idx\\\\\\\": 1\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace\\\\\\\": \\\\\\\"Step-1  Introduce predicates  \\\\\\\\nP(x): x performs in school talent shows often  \\\\\\\\nS(x): x attends and is very engaged with school events  \\\\\\\\nI(x): x is an inactive and disinterested community member  \\\\\\\\nC(x): x chaperones high-school dances  \\\\\\\\nT(x): x is a student who attends the school  \\\\\\\\n(All quantifiers are universal unless stated otherwise.)\\\\\\\\n\\\\\\\\nStep-2  Translate the premises  \\\\\\\\n1. P(x) → S(x)  \\\\\\\\n2. P(x) ∨ I(x)  \\\\\\\\n3. C(x) → ¬T(x)  \\\\\\\\n4. I(x) → C(x)  \\\\\\\\n5. (irrelevant to Bonnie’s status)  \\\\\\\\n6. For Bonnie (b): (S(b) ∧ T(b)) ∨ (¬S(b) ∧ ¬T(b))\\\\\\\\n\\\\\\\\nStep-3  Analyze the two alternatives supplied by premise 6\\\\\\\\n\\\\\\\\nAlternative A: S(b) ∧ T(b)  \\\\\\\\n• T(b) is true ⇒ by premise 2 we must have P(b) ∨ I(b).  \\\\\\\\n• I(b) cannot be true, because I(b) → C(b) → ¬T(b) would contradict T(b).  \\\\\\\\n• Therefore I(b) is false, so P(b) must be true.  \\\\\\\\n• Hence P(b) = true in Alternative A.\\\\\\\\n\\\\\\\\nAlternative B: ¬S(b) ∧ ¬T(b)  \\\\\\\\n• Suppose P(b) were true. Then P(b) → S(b), contradicting ¬S(b).  \\\\\\\\n• Hence P(b) is false.  \\\\\\\\n• From premise 2, P(b) ∨ I(b) and P(b) is false, so I(b) is true.  \\\\\\\\n• I(b) → C(b) and C(b) → ¬T(b) are consistent with ¬T(b).  \\\\\\\\n• Thus P(b) = false in Alternative B.\\\\\\\\n\\\\\\\\nStep-4  Check consistency  \\\\\\\\nBoth Alternative A (with P(b) true) and Alternative B (with P(b) false) satisfy every given premise, so nothing rules either alternative out.\\\\\\\\n\\\\\\\\nStep-5  Determine the conclusion  \\\\\\\\nBecause Bonnie could be in a scenario where she performs in talent shows often and also could be in a scenario where she does not, the premises do not settle the matter.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Unknown}\\\\\\\",\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"trace_idx\\\\\\\": 2\\\\n        },\\\\n        {\\\\n          \\\\\\\"trace\\\\\\\": \\\\\\\"Step-by-step reasoning\\\\\\\\n\\\\\\\\n1. Symbols  \\\\\\\\n   P(x): performs in school talent shows often  \\\\\\\\n   E(x): attends and is very engaged with school events  \\\\\\\\n   I(x): inactive and disinterested member of the community  \\\\\\\\n   C(x): chaperones high-school dances  \\\\\\\\n   S(x): student who attends the school  \\\\\\\\n   (We omit other predicates that are irrelevant for Bonnie.)\\\\\\\\n\\\\\\\\n2. Formalised premises  \\\\\\\\n   (1)  P(x) → E(x)  \\\\\\\\n   (2)  P(x) ∨ I(x)  \\\\\\\\n   (3)  C(x) → ¬S(x)  \\\\\\\\n   (4)  I(x) → C(x)                 (so I(x) → ¬S(x))  \\\\\\\\n   (6)  For Bonnie, either  \\\\\\\\n        (a)  E(B) ∧ S(B)            or  \\\\\\\\n        (b)  ¬E(B) ∧ ¬S(B)\\\\\\\\n\\\\\\\\n3. Consequences of each branch in premise (6)\\\\\\\\n\\\\\\\\n   Branch (a):  E(B) ∧ S(B)\\\\\\\\n   • I(B) would imply ¬S(B) (from 4), contradicting S(B).  \\\\\\\\n     Therefore I(B) is false.  \\\\\\\\n   • From (2): P(B) ∨ I(B).  Since I(B) is false, P(B) must be true.  \\\\\\\\n\\\\\\\\n   Branch (b):  ¬E(B) ∧ ¬S(B)\\\\\\\\n   • If P(B) were true, (1) would give E(B), contradicting ¬E(B).  \\\\\\\\n     Hence P(B) is false.  \\\\\\\\n   • From (2): with ¬P(B), we must have I(B) true, which is consistent\\\\\\\\n     (it leads to ¬S(B) via 4, agreeing with ¬S(B)).\\\\\\\\n\\\\\\\\n4. Consistency\\\\\\\\n   Both branches (a) and (b) are internally consistent with all the\\\\\\\\n   premises.  The information given does not tell us which branch is\\\\\\\\n   the actual one, so P(B) could be true or false.\\\\\\\\n\\\\\\\\nConclusion  \\\\\\\\nThe truth value of “Bonnie performs in school talent shows often” cannot\\\\\\\\nbe determined from the premises.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\\boxed{Unknown}\\\\\\\",\\\\n          \\\\\\\"answer\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n          \\\\\\\"trace_idx\\\\\\\": 3\\\\n        },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"o3\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"n_questions\\\": 204,\\n  \\\"n_valid\\\": 196,\\n  \\\"k\\\": 12,\\n  \\\"temperature\\\": 0.7,\\n  \\\"concurrency\\\": 4,\\n  \\\"sc_accuracy\\\": 0.8265,\\n  \\\"sc_correct\\\": 162,\\n  \\\"per_label_accuracy\\\": {\\n    \\\"True\\\": {\\n      \\\"correct\\\": 52,\\n      \\\"total\\\": 72,\\n      \\\"accuracy\\\": 0.7222\\n    },\\n    \\\"False\\\": {\\n      \\\"correct\\\": 46,\\n      \\\"total\\\": 63,\\n      \\\"accuracy\\\": 0.7302\\n    },\\n    \\\"Unknown\\\": {\\n      \\\"correct\\\": 64,\\n      \\\"total\\\": 69,\\n      \\\"accuracy\\\": 0.9275\\n    }\\n  },\\n  \\\"label_distribution\\\": {\\n    \\\"Unknown\\\": 69,\\n    \\\"True\\\": 72,\\n    \\\"False\\\": 63\\n  },\\n  \\\"elapsed_seconds\\\": 11417.2,\\n  \\\"per_question\\\": [\\n    {\\n      \\\"question_id\\\": \\\"folio_0\\\",\\n      \\\"gold\\\": \\\"Unknown\\\",\\n      \\\"n_traces\\\": 12,\\n      \\\"n_valid_answers\\\": 8,\\n      \\\"traces\\\": [\\n        {\\n          \\\"trace\\\": \\\"\\\",\\n          \\\"answer\\\": \\\"\\\",\\n          \\\"trace_idx\\\": 0\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-by-step reasoning\\\\n\\\\nDefinitions  \\\\nA: performs in school talent shows often  \\\\nB: attends and is very engaged with school events  \\\\nC: inactive and disinterested member of the community  \\\\nD: chaperones high school dances  \\\\nS: student who attends the school  \\\\n\\\\nPremises  \\\\n1. A → B  \\\\n2. A ∨ C  \\\\n3. D → ¬S  \\\\n4. C → D  \\\\n5. (irrelevant to Bonnie)  \\\\n6. For Bonnie: (B ∧ S) ∨ (¬B ∧ ¬S)\\\\n\\\\nAnalysis of Bonnie’s two allowed cases from premise 6  \\\\n\\\\nCase 1:  B and S are true.  \\\\n• From 6: B = true, S = true.  \\\\n• Premise 2 requires A ∨ C.  \\\\n    – If C were true, premise 4 would give D, and premise 3 would give ¬S, contradicting S = true.  \\\\n    – Therefore C is false and A must be true.  \\\\n• No premises are violated.  \\\\n⇒ In this case Bonnie performs in school talent shows (A = true).\\\\n\\\\nCase 2:  B and S are false.  \\\\n• From 6: B = false, S = false.  \\\\n• Premise 1 (A → B): if A were true, B would have to be true, contradiction. Hence A is false.  \\\\n• Premise 2 (A ∨ C): since A is false, C must be true.  \\\\n• C true → D true (premise 4) → ¬S (premise 3), consistent with S = false.  \\\\n⇒ In this case Bonnie does not perform in school talent shows (A = false).\\\\n\\\\nBoth cases satisfy all premises, yet give opposite truth-values for “Bonnie performs in school talent shows often.”  \\\\nTherefore the conclusion cannot be determined from the information given.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 1\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-1  Introduce predicates  \\\\nP(x): x performs in school talent shows often  \\\\nS(x): x attends and is very engaged with school events  \\\\nI(x): x is an inactive and disinterested community member  \\\\nC(x): x chaperones high-school dances  \\\\nT(x): x is a student who attends the school  \\\\n(All quantifiers are universal unless stated otherwise.)\\\\n\\\\nStep-2  Translate the premises  \\\\n1. P(x) → S(x)  \\\\n2. P(x) ∨ I(x)  \\\\n3. C(x) → ¬T(x)  \\\\n4. I(x) → C(x)  \\\\n5. (irrelevant to Bonnie’s status)  \\\\n6. For Bonnie (b): (S(b) ∧ T(b)) ∨ (¬S(b) ∧ ¬T(b))\\\\n\\\\nStep-3  Analyze the two alternatives supplied by premise 6\\\\n\\\\nAlternative A: S(b) ∧ T(b)  \\\\n• T(b) is true ⇒ by premise 2 we must have P(b) ∨ I(b).  \\\\n• I(b) cannot be true, because I(b) → C(b) → ¬T(b) would contradict T(b).  \\\\n• Therefore I(b) is false, so P(b) must be true.  \\\\n• Hence P(b) = true in Alternative A.\\\\n\\\\nAlternative B: ¬S(b) ∧ ¬T(b)  \\\\n• Suppose P(b) were true. Then P(b) → S(b), contradicting ¬S(b).  \\\\n• Hence P(b) is false.  \\\\n• From premise 2, P(b) ∨ I(b) and P(b) is false, so I(b) is true.  \\\\n• I(b) → C(b) and C(b) → ¬T(b) are consistent with ¬T(b).  \\\\n• Thus P(b) = false in Alternative B.\\\\n\\\\nStep-4  Check consistency  \\\\nBoth Alternative A (with P(b) true) and Alternative B (with P(b) false) satisfy every given premise, so nothing rules either alternative out.\\\\n\\\\nStep-5  Determine the conclusion  \\\\nBecause Bonnie could be in a scenario where she performs in talent shows often and also could be in a scenario where she does not, the premises do not settle the matter.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 2\\n        },\\n        {\\n          \\\"trace\\\": \\\"Step-by-step reasoning\\\\n\\\\n1. Symbols  \\\\n   P(x): performs in school talent shows often  \\\\n   E(x): attends and is very engaged with school events  \\\\n   I(x): inactive and disinterested member of the community  \\\\n   C(x): chaperones high-school dances  \\\\n   S(x): student who attends the school  \\\\n   (We omit other predicates that are irrelevant for Bonnie.)\\\\n\\\\n2. Formalised premises  \\\\n   (1)  P(x) → E(x)  \\\\n   (2)  P(x) ∨ I(x)  \\\\n   (3)  C(x) → ¬S(x)  \\\\n   (4)  I(x) → C(x)                 (so I(x) → ¬S(x))  \\\\n   (6)  For Bonnie, either  \\\\n        (a)  E(B) ∧ S(B)            or  \\\\n        (b)  ¬E(B) ∧ ¬S(B)\\\\n\\\\n3. Consequences of each branch in premise (6)\\\\n\\\\n   Branch (a):  E(B) ∧ S(B)\\\\n   • I(B) would imply ¬S(B) (from 4), contradicting S(B).  \\\\n     Therefore I(B) is false.  \\\\n   • From (2): P(B) ∨ I(B).  Since I(B) is false, P(B) must be true.  \\\\n\\\\n   Branch (b):  ¬E(B) ∧ ¬S(B)\\\\n   • If P(B) were true, (1) would give E(B), contradicting ¬E(B).  \\\\n     Hence P(B) is false.  \\\\n   • From (2): with ¬P(B), we must have I(B) true, which is consistent\\\\n     (it leads to ¬S(B) via 4, agreeing with ¬S(B)).\\\\n\\\\n4. Consistency\\\\n   Both branches (a) and (b) are internally consistent with all the\\\\n   premises.  The information given does not tell us which branch is\\\\n   the actual one, so P(B) could be true or false.\\\\n\\\\nConclusion  \\\\nThe truth value of “Bonnie performs in school talent shows often” cannot\\\\nbe determined from the premises.\\\\n\\\\n\\\\\\\\boxed{Unknown}\\\",\\n          \\\"answer\\\": \\\"Unknown\\\",\\n          \\\"trace_idx\\\": 3\\n        },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The o3 results.json has the same structure as gpt-5.5:
+- `per_question` array with `sc_correct`, `answer_distribution`, `traces` (with `trace` and `answer` fields)
+
+But wait - I see the o3 results.json has `n_questions: 204` and `n_valid: 196`. The cross_model has 196 entries. The frontier results have 204 per_question entries but only 196 are "valid" (8 have all empty traces).
+
+I need to check the answer_distribution structure more. 
+
+Now I'm checking whether o3's per_question data already includes an `answer_distribution` field, and I'm starting to write a compute script for o3 that mirrors the gpt-5.5 approach. The main difference is that o3 has 204 questions total but only 196 valid ones, so I need to make sure the SC accuracy calculation uses the right count. Looking back at the gpt-5.5 script, I see that `compute_sc_accuracy` processes all per_question entries from frontier, while `compute_fleiss_kappa` also uses all entries but filters for cases with at least 2 traces per question.
+
+For o3, I need to be careful about the 8 excluded questions that have zero valid traces—I should handle those appropriately when computing these metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "354cd11b-afda-4fe7-9813-afe33910e476",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AuLydcKrDKtLmy14XukWzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2931,
+      "cache_read_input_tokens": 36670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JpUcC5icZhc2nJefYb3MUu`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/results.json')); q=d['per_question'][0]; print(list(q.keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "c4dd66be-40ed-459e-b8bd-e7b54b205a16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AuLydcKrDKtLmy14XukWzT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2931,
+      "cache_read_input_tokens": 36670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T19:07:55.046Z_
+
+<details><summary>↩ Tool result · `toolu_01JpUcC5icZhc2nJefYb3MUu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "debf56df-ccd6-4ecb-b9dc-40d77aacfcb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WfK4aUjiqdq6xTHRgCYNC8`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -m1 \"answer_distribution\" /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "347ca1ad-d015-4e99-b32a-33087d349de0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHFbc8872kUTbuTpRMddcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 39601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 610
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T19:07:59.112Z_
+
+<details><summary>↩ Tool result · `toolu_01WfK4aUjiqdq6xTHRgCYNC8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"answer_distribution\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "0c813903-fa8a-4c25-841a-7945b6bc314a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"answer_distribution\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"answer_distribution\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MCvuon92ntxeyVhy1jNZd9`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -m1 \"sc_correct\" /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "89bd903a-8664-411c-8627-c623789ef82c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHFbc8872kUTbuTpRMddcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 610,
+      "cache_read_input_tokens": 39601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 610
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T19:07:59.771Z_
+
+<details><summary>↩ Tool result · `toolu_01MCvuon92ntxeyVhy1jNZd9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"sc_correct\\\": 162,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "4e2a93f5-4399-4182-b898-d615f69bcbb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"sc_correct\\\\\\\": 162,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"sc_correct\\\": 162,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the o3 results.json has `answer_distribution` and `sc_correct` fields. The structure is the same as gpt-5.5. Now I need to check if there's also a per-question `sc_correct` field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "fde8989c-1d65-4654-9d57-fcd66422de94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdqfnF6T9ugS6HiTzqz7HB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 40211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+结构一致。现在写 o3 的计算脚本并部署执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "b8c509ba-d68d-4c18-8605-143f112b5afc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdqfnF6T9ugS6HiTzqz7HB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 40211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tbm2A3VbqGDeNLa7RnLGsK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "53788c4d-0be8-40a6-b4a2-d3662ea37d37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdqfnF6T9ugS6HiTzqz7HB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 40211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T19:08:04.402Z_
+
+<details><summary>↩ Tool result · `toolu_01Tbm2A3VbqGDeNLa7RnLGsK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "737b95ad-0f7e-4366-846b-94b707f393a4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to create and run the o3 metrics computation script. Let me adapt the gpt-5.5 script for o3. The key differences:
+
+1. o3 has 204 total questions but only 196 valid (8 have all empty traces)
+2. The cross_model results have 196 entries
+3. SC accuracy from the frontier results.json already says 0.8265 on 196 valid
+
+I need to handle the n_valid=196 case properly. Looking at the gpt-5.5 script, it computes SC on all per_question entries. 
+
+For o3, I should compute SC on only the 196 valid questions since some of the 204 have no valid answers. Let me check the gpt-5.5 frontier results to see how it handled this—it shows dataset=FOLIO-204 with completed=204, meaning gpt-5.5 had all 204 questions valid, whereas o3 only has 196 valid ones.
+
+To make a fair comparison, I'll compute SC on the 196 valid questions for o3 to match the cross_model denominator, apply Fleiss' kappa to questions with at least 2 raters, and process-kappa to questions with at least 2 non-empty traces. I'll adapt the gpt-5.5 script to handle o3's valid question filtering.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "57322274-a724-4eaf-8618-c0c6dba371d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PYEhSQQAGeJngCgeEeF5ZA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 40675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 440
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DQ1FfAE66FSdrMdWv2dUQU`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/compute_o3_metrics.py << 'PYEOF'\n\"\"\"Compute all metrics for o3: SC, SICA, BR, Process-kappa, Answer Fleiss' kappa.\"\"\"\nimport json, os, numpy as np\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nBASE = \"/root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3\"\nFRONTIER_RESULTS = os.path.join(BASE, \"results.json\")\nCROSS_MODEL_RESULTS = os.path.join(BASE, \"cross_model/cross_model_mistral.json\")\n\ndef load_frontier():\n    with open(FRONTIER_RESULTS) as f:\n        return json.load(f)\n\ndef load_cross_model():\n    with open(CROSS_MODEL_RESULTS) as f:\n        return json.load(f)\n\ndef compute_sc_accuracy(frontier):\n    pq = frontier[\"per_question\"]\n    # o3 has 204 questions but only 196 valid (8 have all-empty traces)\n    valid_pq = [q for q in pq if q[\"n_valid_answers\"] > 0]\n    correct = sum(1 for q in valid_pq if q[\"sc_correct\"])\n    return correct, len(valid_pq), correct / len(valid_pq)\n\ndef compute_fleiss_kappa(frontier):\n    pq = frontier[\"per_question\"]\n    categories = [\"True\", \"False\", \"Unknown\"]\n    cat2idx = {c: i for i, c in enumerate(categories)}\n    ratings = np.zeros((len(pq), len(categories)), dtype=int)\n    for qi, q in enumerate(pq):\n        dist = q[\"answer_distribution\"]\n        for ans, cnt in dist.items():\n            ans_norm = ans.strip()\n            if ans_norm in cat2idx:\n                ratings[qi, cat2idx[ans_norm]] += cnt\n            else:\n                ratings[qi, cat2idx[\"Unknown\"]] += cnt\n    n_per_q = ratings.sum(axis=1)\n    valid = n_per_q >= 2\n    ratings = ratings[valid]\n    n_per_q = n_per_q[valid]\n    N = ratings.shape[0]\n    if N == 0:\n        return float('nan')\n    p_j = ratings.sum(axis=0) / ratings.sum()\n    P_e = np.sum(p_j ** 2)\n    P_i = (np.sum(ratings ** 2, axis=1) - n_per_q) / (n_per_q * (n_per_q - 1))\n    P_bar = np.mean(P_i)\n    if P_e >= 1.0:\n        return 1.0\n    return float((P_bar - P_e) / (1 - P_e))\n\ndef mean_pairwise_cosine(texts):\n    non_empty = [t for t in texts if t.strip()]\n    if len(non_empty) < 2:\n        return 0.0\n    vectorizer = TfidfVectorizer(max_features=5000, stop_words=\"english\")\n    try:\n        tfidf = vectorizer.fit_transform(non_empty)\n    except ValueError:\n        return 0.0\n    sim_matrix = cosine_similarity(tfidf)\n    n = sim_matrix.shape[0]\n    upper_tri = sim_matrix[np.triu_indices(n, k=1)]\n    return float(np.mean(upper_tri))\n\ndef compute_process_kappa(frontier):\n    pq = frontier[\"per_question\"]\n    sims = []\n    for q in pq:\n        texts = [t[\"trace\"] for t in q[\"traces\"]]\n        sim = mean_pairwise_cosine(texts)\n        sims.append(sim)\n    return float(np.mean(sims))\n\ndef compute_sica_metrics(cross_model):\n    results = cross_model[\"results\"]\n    n = len(results)\n    sica_correct = sum(1 for r in results if r[\"cross_model_correct\"])\n    has_constraints = sum(1 for r in results if r[\"constraints_stats\"][\"total_extracted\"] > 0)\n    return {\n        \"n\": n,\n        \"sica_correct\": sica_correct,\n        \"sica_acc\": sica_correct / n if n else 0,\n        \"extraction_rate\": has_constraints / n if n else 0,\n    }\n\ndef compute_br(cross_model):\n    results = cross_model[\"results\"]\n    br_values = []\n    for r in results:\n        if r[\"cross_model_correct\"]:\n            continue\n        gold = r[\"ground_truth\"]\n        sica_ans = r[\"cross_model_answer\"]\n        scores = r[\"cross_model_scores\"]\n        weight_wrong = scores.get(sica_ans, 0.0)\n        weight_gold = scores.get(gold, 0.0)\n        if weight_gold > 0:\n            br_values.append(weight_wrong / weight_gold)\n        else:\n            br_values.append(float('inf'))\n    n_finite = sum(1 for v in br_values if v != float('inf'))\n    n_inf = sum(1 for v in br_values if v == float('inf'))\n    finite_vals = [v for v in br_values if v != float('inf')]\n    return {\n        \"mean_br\": round(np.mean(finite_vals), 4) if finite_vals else None,\n        \"median_br\": round(np.median(finite_vals), 4) if finite_vals else None,\n        \"n_finite\": n_finite,\n        \"n_inf\": n_inf,\n    }\n\ndef compute_weighted_br(cross_model):\n    results = cross_model[\"results\"]\n    numerator = 0.0\n    denominator = 0.0\n    for r in results:\n        if r[\"cross_model_correct\"]:\n            continue\n        gold = r[\"ground_truth\"]\n        sica_ans = r[\"cross_model_answer\"]\n        scores = r[\"cross_model_scores\"]\n        weight_wrong = scores.get(sica_ans, 0.0)\n        weight_gold = scores.get(gold, 0.0)\n        total_w = r.get(\"maxsat_stats\", {}).get(\"total_weight\", 0)\n        if weight_gold > 0 and total_w > 0:\n            br = weight_wrong / weight_gold\n            numerator += br * total_w\n            denominator += total_w\n    return round(numerator / denominator, 4) if denominator > 0 else None\n\ndef main():\n    print(\"=== o3 FOLIO Full Metrics ===\\n\")\n    frontier = load_frontier()\n\n    sc_n, sc_total, sc_acc = compute_sc_accuracy(frontier)\n    print(f\"SC accuracy: {sc_acc:.4f} ({sc_n}/{sc_total})\")\n\n    fk = compute_fleiss_kappa(frontier)\n    print(f\"Answer Fleiss' kappa: {fk:.4f}\")\n\n    pk = compute_process_kappa(frontier)\n    print(f\"Process-kappa (TF-IDF): {pk:.4f}\")\n\n    cross = load_cross_model()\n    sica = compute_sica_metrics(cross)\n    print(f\"\\nSICA accuracy: {sica['sica_acc']:.4f} ({sica['sica_correct']}/{sica['n']})\")\n    print(f\"Delta (SICA-SC): {(sica['sica_acc'] - sc_acc)*100:+.2f}pp\")\n    print(f\"Extraction rate: {sica['extraction_rate']:.4f}\")\n\n    br = compute_br(cross)\n    wbr = compute_weighted_br(cross)\n    print(f\"\\nMean BR: {br['mean_br']}\")\n    print(f\"Median BR: {br['median_br']}\")\n    print(f\"Weighted BR: {wbr}\")\n    print(f\"n_br_finite: {br['n_finite']}\")\n    print(f\"BR=inf: {br['n_inf']}\")\n\n    n_sica_wrong = sica['n'] - sica['sica_correct']\n\n    print(\"\\n\" + \"=\"*55)\n    print(f\"| {'Metric':<25} | {'o3':<12} | {'gpt-5.5 (ref)':<14} |\")\n    print(\"|\" + \"-\"*27 + \"|\" + \"-\"*14 + \"|\" + \"-\"*16 + \"|\")\n    print(f\"| {'SC accuracy':<25} | {sc_acc:.4f}       | 0.8431         |\")\n    print(f\"| {'SICA accuracy':<25} | {sica['sica_acc']:.4f}       | 0.8480         |\")\n    print(f\"| {'Delta (SICA-SC)':<25} | {(sica['sica_acc']-sc_acc)*100:+.2f}pp     | +0.49pp        |\")\n    print(f\"| {'Mean BR':<25} | {br['mean_br']}       | 3.4806         |\")\n    print(f\"| {'Median BR':<25} | {br['median_br']}       | 3.4935         |\")\n    print(f\"| {'Weighted BR':<25} | {wbr}       | 3.5735         |\")\n    print(f\"| {'n_br_finite':<25} | {br['n_finite']:<12} | 4              |\")\n    print(f\"| {'BR=inf':<25} | {br['n_inf']:<12} | 27             |\")\n    print(f\"| {'Extraction rate':<25} | {sica['extraction_rate']:.4f}       | 1.0000         |\")\n    print(f\"| {'Process-kappa':<25} | {pk:.4f}       | 0.5625         |\")\n    print(f\"| {'Answer Fleiss kappa':<25} | {fk:.4f}       | 0.9581         |\")\n    print(\"=\"*55)\n\n    output = {\n        \"model\": \"o3\",\n        \"dataset\": \"FOLIO-204\",\n        \"n_total\": 204,\n        \"n_valid\": sc_total,\n        \"extraction_model\": cross.get(\"summary\", {}).get(\"extraction_model\", \"Mistral-7B\"),\n        \"sc_accuracy\": round(sc_acc, 4),\n        \"sica_accuracy\": round(sica[\"sica_acc\"], 4),\n        \"delta_pp\": round((sica[\"sica_acc\"] - sc_acc) * 100, 2),\n        \"extraction_rate\": round(sica[\"extraction_rate\"], 4),\n        \"n_sica_wrong\": n_sica_wrong,\n        \"mean_br\": br[\"mean_br\"],\n        \"median_br\": br[\"median_br\"],\n        \"weighted_br\": wbr,\n        \"n_br_finite\": br[\"n_finite\"],\n        \"n_br_inf\": br[\"n_inf\"],\n        \"process_kappa\": round(pk, 4),\n        \"answer_fleiss_kappa\": round(fk, 4),\n    }\n    out_path = os.path.join(BASE, \"cross_model/o3_full_metrics.json\")\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "06f27731-ea72-4fd0-957e-a945ce67070c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PYEhSQQAGeJngCgeEeF5ZA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 40675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 440
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T19:09:00.833Z_
+
+<details><summary>↩ Tool result · `toolu_01DQ1FfAE66FSdrMdWv2dUQU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "2e4e3ebd-f026-42d2-af4f-8580c5139b25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+先 dry-run 验证路径和依赖。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "d141dd17-2eaf-4a21-9550-32d24c446d50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqbtChB1CgF8pkLVvzE1Mz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3679,
+      "cache_read_input_tokens": 41115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3679
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UkLAQZcDb8VnmuSnYcYR4j`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nf1 = 'results/exp_d135_frontier_scb/o3/results.json'\nf2 = 'results/exp_d135_frontier_scb/o3/cross_model/cross_model_mistral.json'\nprint('results.json exists:', os.path.exists(f1))\nprint('cross_model exists:', os.path.exists(f2))\nd = json.load(open(f1))\nprint('n_questions:', d['n_questions'], 'n_valid:', d['n_valid'])\nprint('per_question keys:', list(d['per_question'][0].keys()))\nc = json.load(open(f2))\nprint('cross_model n_results:', len(c['results']))\nimport sklearn; print('sklearn OK')\nimport numpy; print('numpy OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "ad40225d-bdac-4452-bc9c-c59739d296d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqbtChB1CgF8pkLVvzE1Mz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3679,
+      "cache_read_input_tokens": 41115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3679
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T19:09:08.482Z_
+
+<details><summary>↩ Tool result · `toolu_01UkLAQZcDb8VnmuSnYcYR4j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json exists: True\\ncross_model exists: True\\nn_questions: 204 n_valid: 196\\nper_question keys: ['question_id', 'gold', 'n_traces', 'n_valid_answers', 'traces', 'answers', 'sc_answer', 'sc_correct', 'answer_distribution']\\ncross_model n_results: 196\\nsklearn OK\\nnumpy OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "72291106-b285-4597-b31d-647a8d5880af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"results.json exists: True\\\\ncross_model exists: True\\\\nn_questions: 204 n_valid: 196\\\\nper_question keys: ['question_id', 'gold', 'n_traces', 'n_valid_answers', 'traces', 'answers', 'sc_answer', 'sc_correct', 'answer_distribution']\\\\ncross_model n_results: 196\\\\nsklearn OK\\\\nnumpy OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"results.json exists: True\\ncross_model exists: True\\nn_questions: 204 n_valid: 196\\nper_question keys: ['question_id', 'gold', 'n_traces', 'n_valid_answers', 'traces', 'answers', 'sc_answer', 'sc_correct', 'answer_distribution']\\ncross_model n_results: 196\\nsklearn OK\\nnumpy OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Dry-run 通过。执行脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "eff45d09-6124-4ce2-8565-eeae09adcf04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QASa5nqw2H2eq86PeVjd4w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 525,
+      "cache_read_input_tokens": 44794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 525
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013zUwyepGnUc3zPnq5E43PH`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/compute_o3_metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "399ada67-9fb4-4962-ac33-af002ffcaebe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QASa5nqw2H2eq86PeVjd4w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 525,
+      "cache_read_input_tokens": 44794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 525
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T19:09:13.259Z_
+
+<details><summary>↩ Tool result · `toolu_013zUwyepGnUc3zPnq5E43PH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== o3 FOLIO Full Metrics ===\\n\\nSC accuracy: 0.8265 (162/196)\\nAnswer Fleiss' kappa: 0.9221\\nProcess-kappa (TF-IDF): 0.5964\\n\\nSICA accuracy: 0.8265 (162/196)\\nDelta (SICA-SC): +0.00pp\\nExtraction rate: 1.0000\\n\\nMean BR: 1.6565\\nMedian BR: 1.2902\\nWeighted BR: 1.812\\nn_br_finite: 6\\nBR=inf: 28\\n\\n=======================================================\\n| Metric                    | o3           | gpt-5.5 (ref)  |\\n|---------------------------|--------------|----------------|\\n| SC accuracy               | 0.8265       | 0.8431         |\\n| SICA accuracy             | 0.8265       | 0.8480         |\\n| Delta (SICA-SC)           | +0.00pp     | +0.49pp        |\\n| Mean BR                   | 1.6565       | 3.4806         |\\n| Median BR                 | 1.2902       | 3.4935         |\\n| Weighted BR               | 1.812       | 3.5735         |\\n| n_br_finite               | 6            | 4              |\\n| BR=inf                    | 28           | 27             |\\n| Extraction rate           | 1.0000       | 1.0000         |\\n| Process-kappa             | 0.5964       | 0.5625         |\\n| Answer Fleiss kappa       | 0.9221       | 0.9581         |\\n=======================================================\\n\\nSaved to /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/o3_full_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "c6c91766-74fe-4bc7-b479-1376905770c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== o3 FOLIO Full Metrics ===\\\\n\\\\nSC accuracy: 0.8265 (162/196)\\\\nAnswer Fleiss' kappa: 0.9221\\\\nProcess-kappa (TF-IDF): 0.5964\\\\n\\\\nSICA accuracy: 0.8265 (162/196)\\\\nDelta (SICA-SC): +0.00pp\\\\nExtraction rate: 1.0000\\\\n\\\\nMean BR: 1.6565\\\\nMedian BR: 1.2902\\\\nWeighted BR: 1.812\\\\nn_br_finite: 6\\\\nBR=inf: 28\\\\n\\\\n=======================================================\\\\n| Metric                    | o3           | gpt-5.5 (ref)  |\\\\n|---------------------------|--------------|----------------|\\\\n| SC accuracy               | 0.8265       | 0.8431         |\\\\n| SICA accuracy             | 0.8265       | 0.8480         |\\\\n| Delta (SICA-SC)           | +0.00pp     | +0.49pp        |\\\\n| Mean BR                   | 1.6565       | 3.4806         |\\\\n| Median BR                 | 1.2902       | 3.4935         |\\\\n| Weighted BR               | 1.812       | 3.5735         |\\\\n| n_br_finite               | 6            | 4              |\\\\n| BR=inf                    | 28           | 27             |\\\\n| Extraction rate           | 1.0000       | 1.0000         |\\\\n| Process-kappa             | 0.5964       | 0.5625         |\\\\n| Answer Fleiss kappa       | 0.9221       | 0.9581         |\\\\n=======================================================\\\\n\\\\nSaved to /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/o3_full_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== o3 FOLIO Full Metrics ===\\n\\nSC accuracy: 0.8265 (162/196)\\nAnswer Fleiss' kappa: 0.9221\\nProcess-kappa (TF-IDF): 0.5964\\n\\nSICA accuracy: 0.8265 (162/196)\\nDelta (SICA-SC): +0.00pp\\nExtraction rate: 1.0000\\n\\nMean BR: 1.6565\\nMedian BR: 1.2902\\nWeighted BR: 1.812\\nn_br_finite: 6\\nBR=inf: 28\\n\\n=======================================================\\n| Metric                    | o3           | gpt-5.5 (ref)  |\\n|---------------------------|--------------|----------------|\\n| SC accuracy               | 0.8265       | 0.8431         |\\n| SICA accuracy             | 0.8265       | 0.8480         |\\n| Delta (SICA-SC)           | +0.00pp     | +0.49pp        |\\n| Mean BR                   | 1.6565       | 3.4806         |\\n| Median BR                 | 1.2902       | 3.4935         |\\n| Weighted BR               | 1.812       | 3.5735         |\\n| n_br_finite               | 6            | 4              |\\n| BR=inf                    | 28           | 27             |\\n| Extraction rate           | 1.0000       | 1.0000         |\\n| Process-kappa             | 0.5964       | 0.5625         |\\n| Answer Fleiss kappa       | 0.9221       | 0.9581         |\\n=======================================================\\n\\nSaved to /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/o3_full_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+验证保存的 JSON。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "54f2edfa-9ec3-4ec8-9d62-624a6408ce46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011irfjDaxiqcpBP871U12KJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 45319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 716
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TVUZ7QaSkCnPCFSYJsKTrz`</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp_d135_frontier_scb/o3/cross_model/o3_full_metrics.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "2448096e-2cfa-47b8-9319-8f0039a5d3f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011irfjDaxiqcpBP871U12KJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 45319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 716
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T19:09:16.876Z_
+
+<details><summary>↩ Tool result · `toolu_01TVUZ7QaSkCnPCFSYJsKTrz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"o3\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"n_total\\\": 204,\\n  \\\"n_valid\\\": 196,\\n  \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n  \\\"sc_accuracy\\\": 0.8265,\\n  \\\"sica_accuracy\\\": 0.8265,\\n  \\\"delta_pp\\\": 0.0,\\n  \\\"extraction_rate\\\": 1.0,\\n  \\\"n_sica_wrong\\\": 34,\\n  \\\"mean_br\\\": 1.6565,\\n  \\\"median_br\\\": 1.2902,\\n  \\\"weighted_br\\\": 1.812,\\n  \\\"n_br_finite\\\": 6,\\n  \\\"n_br_inf\\\": 28,\\n  \\\"process_kappa\\\": 0.5964,\\n  \\\"answer_fleiss_kappa\\\": 0.9221\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "1ede3539-c690-4f8e-afb7-c4ef712b2afc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"o3\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"FOLIO-204\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 204,\\\\n  \\\\\\\"n_valid\\\\\\\": 196,\\\\n  \\\\\\\"extraction_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\\\\\",\\\\n  \\\\\\\"sc_accuracy\\\\\\\": 0.8265,\\\\n  \\\\\\\"sica_accuracy\\\\\\\": 0.8265,\\\\n  \\\\\\\"delta_pp\\\\\\\": 0.0,\\\\n  \\\\\\\"extraction_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"n_sica_wrong\\\\\\\": 34,\\\\n  \\\\\\\"mean_br\\\\\\\": 1.6565,\\\\n  \\\\\\\"median_br\\\\\\\": 1.2902,\\\\n  \\\\\\\"weighted_br\\\\\\\": 1.812,\\\\n  \\\\\\\"n_br_finite\\\\\\\": 6,\\\\n  \\\\\\\"n_br_inf\\\\\\\": 28,\\\\n  \\\\\\\"process_kappa\\\\\\\": 0.5964,\\\\n  \\\\\\\"answer_fleiss_kappa\\\\\\\": 0.9221\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"o3\\\",\\n  \\\"dataset\\\": \\\"FOLIO-204\\\",\\n  \\\"n_total\\\": 204,\\n  \\\"n_valid\\\": 196,\\n  \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n  \\\"sc_accuracy\\\": 0.8265,\\n  \\\"sica_accuracy\\\": 0.8265,\\n  \\\"delta_pp\\\": 0.0,\\n  \\\"extraction_rate\\\": 1.0,\\n  \\\"n_sica_wrong\\\": 34,\\n  \\\"mean_br\\\": 1.6565,\\n  \\\"median_br\\\": 1.2902,\\n  \\\"weighted_br\\\": 1.812,\\n  \\\"n_br_finite\\\": 6,\\n  \\\"n_br_inf\\\": 28,\\n  \\\"process_kappa\\\": 0.5964,\\n  \\\"answer_fleiss_kappa\\\": 0.9221\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+o3 完整指标已计算并保存到 `o3_full_metrics.json`。
+
+### o3 完整指标（vs gpt-5.5 参考）
+
+| Metric | o3 | gpt-5.5 |
+|---|---|---|
+| SC accuracy | **0.8265** (162/196) | 0.8431 |
+| SICA accuracy | **0.8265** (162/196) | 0.8480 |
+| Δ(SICA-SC) | **+0.00pp** | +0.49pp |
+| Mean BR | **1.6565** | 3.4806 |
+| Median BR | **1.2902** | 3.4935 |
+| Weighted BR | **1.8120** | 3.5735 |
+| n_br_finite | **6** | 4 |
+| n_br_inf | **28** | 27 |
+| Extraction rate | **1.0000** | 1.0000 |
+| Process-κ | **0.5964** | 0.5625 |
+| Answer Fleiss' κ | **0.9221** | 0.9581 |
+
+关键发现：
+- **SICA = SC，Δ=0**：SICA 对 o3 无增益，cross-model extraction 没有纠正任何 SC 错误
+- **BR 远低于 gpt-5.5**（mean 1.66 vs 3.48）：o3 错的题上，SICA 给错误答案的权重相对较低——说明 o3 的错误模式更"确定"，constraint 提取无法翻盘
+- **28/34 错题 BR=∞**：绝大多数错题中 gold answer 在 MaxSAT 中权重为 0，constraint 完全无法覆盖正确推理路径
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "uuid": "2c71b5e8-dab0-4dbc-8664-ab0b6bceabf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ETbv1CmDz64hyWdH2qctqy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 46035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 535
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 57_
+
+o3 完整指标已计算并保存到 `o3_full_metrics.json`。
+
+### o3 完整指标（vs gpt-5.5 参考）
+
+| Metric | o3 | gpt-5.5 |
+|---|---|---|
+| SC accuracy | **0.8265** (162/196) | 0.8431 |
+| SICA accuracy | **0.8265** (162/196) | 0.8480 |
+| Δ(SICA-SC) | **+0.00pp** | +0.49pp |
+| Mean BR | **1.6565** | 3.4806 |
+| Median BR | **1.2902** | 3.4935 |
+| Weighted BR | **1.8120** | 3.5735 |
+| n_br_finite | **6** | 4 |
+| n_br_inf | **28** | 27 |
+| Extraction rate | **1.0000** | 1.0000 |
+| Process-κ | **0.5964** | 0.5625 |
+| Answer Fleiss' κ | **0.9221** | 0.9581 |
+
+关键发现：
+- **SICA = SC，Δ=0**：SICA 对 o3 无增益，cross-model extraction 没有纠正任何 SC 错误
+- **BR 远低于 gpt-5.5**（mean 1.66 vs 3.48）：o3 错的题上，SICA 给错误答案的权重相对较低——说明 o3 的错误模式更"确定"，constraint 提取无法翻盘
+- **28/34 错题 BR=∞**：绝大多数错题中 gold answer 在 MaxSAT 中权重为 0，constraint 完全无法覆盖正确推理路径
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 142189,
+  "duration_api_ms": 136409,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "ca6e09d4-b1d9-4c5c-a23f-d6706080d762",
+  "total_cost_usd": 0.6461967499999999,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 34729,
+    "cache_read_input_tokens": 485733,
+    "output_tokens": 7375,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34729,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 497,
+        "cache_read_input_tokens": 46035,
+        "cache_creation_input_tokens": 535,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 535
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1704,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001799,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 7375,
+      "cacheReadInputTokens": 485733,
+      "cacheCreationInputTokens": 34729,
+      "webSearchRequests": 0,
+      "costUSD": 0.64439775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "50bd3fc6-1f8f-46ba-9226-3d38044458e0"
+}
+```
+
+</details>
+
+---

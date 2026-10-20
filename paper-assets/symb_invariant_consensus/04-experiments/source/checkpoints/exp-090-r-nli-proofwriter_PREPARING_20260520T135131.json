@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-090-r-nli-proofwriter",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:51:31.310Z",
+    "updated_at": "2026-05-20T13:51:31.310Z"
+  },
+  "timestamp": "2026-05-20T13:51:31.576196+00:00",
+  "trigger": "update_registry"
+}

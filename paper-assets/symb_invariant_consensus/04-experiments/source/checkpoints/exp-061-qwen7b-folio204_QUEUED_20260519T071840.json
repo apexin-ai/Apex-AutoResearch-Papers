@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-061-qwen7b-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:18:30.356Z",
+    "updated_at": "2026-05-19T07:18:40.741Z",
+    "hypothesis": "Qwen2.5-7B-Instruct 在 FOLIO-204 上 SICA vs SC。SC 预计 55-65%（介于 Mistral-7B ~55% 和 Qwen2.5-14B ~75% 之间），可能在 Goldilocks zone。",
+    "parent": "exp-033"
+  },
+  "timestamp": "2026-05-19T07:18:40.929563+00:00",
+  "trigger": "update_registry"
+}

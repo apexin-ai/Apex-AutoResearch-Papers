@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "068d15337c73c2f38f05",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check qwen3 progress urgent",
+  "task_key": "worker_check_qwen3-progress-urgent_20260524T040641",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_qwen3-progress-urgent_20260524T040641_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "76365732628d559de2c0e595667f999aeb30f5e3c31555741b29d0af65f9b366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验**全部完成**，results.json 已写入。进程仍在运行可能是做收尾工作。\n\n```\nseed123: [完成] 344/344 | SC=84.30% | SICA=85.47% | Δ=+1.16 pp | 耗时 9h58m\nseed456: [完成] 345/345 | SC=83.48% | SICA=86.67% | Δ=+3.19 pp | 耗时 9h59m\nseed789: [完成] 347/347 | SC=85.30% | SICA=85.30% | Δ=+0.00 pp | 耗时 9h58m\n```\n\n**三种子汇总：**\n\n| 指标 | Mean | Std |\n|------|------|-----|\n| SC | 84.36% | ±0.91 |\n| SICA | 85.81% | ±0.74 |\n| **Δ (SICA−SC)** | **+1.45 pp** | — |\n\n注意事项：\n- n_problems 在种子间略有差异（344/345/347），可能是某些问题的 extraction 失败导致跳过（extraction_rate 约 99.6-99.9%）\n- seed789 的 SICA 和 SC 完全一致（85.30%），Δ=0；seed456 的 Δ 最大（+3.19 pp）\n- 矛盾率（contradiction_rate）稳定在 0.4-0.5%，约 40-43 个问题存在约束矛盾"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen3-progress-urgent.md"
+}

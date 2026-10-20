@@ -1,0 +1,2935 @@
+# analysis br bootstrap ci
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 0
+- **Tool calls:** 51
+- **Original source:** `logs/chats/worker_analysis_br-bootstrap-ci_20260521T070003.jsonl`
+- **Structured JSON:** [`c637586ac177111bd304.json`](../../sessions/c6/c637586ac177111bd304.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+103 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T07:10:18.951721+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T07:10:18.952275+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T07:10:18.952540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*bias*\" -o -name \"*confirmation*\" -o -name \"*cross_model*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*bias*\" -o -name \"*confirmation*\" -o -name \"*cross_model*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T07:10:18.952783+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T07:10:18.955191+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*bias*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*bias*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T07:10:18.955452+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*confirmation*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*confirmation*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T07:10:18.955662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*cross_model*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*cross_model*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T07:10:18.955896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/confirmation_bias\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T07:10:18.956120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/confirmation_bias\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T07:10:18.956340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/cross_model_mistral_folio\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral.log\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json\\n/root/symb_invariant_consensus/results/cross_model_kappa\\n/root/symb_invariant_consensus/results/cross_model_experiment\\n/root/symb_invariant_consensus/results/cross_model_experiment/cross_model_results.json\\n/root/symb_invariant_consensus/results/dir_f3_cross_model_verification\\n/root/symb_invariant_consensus/results/process_kappa_cross_model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T07:10:18.956565+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/confirmation_bias/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/confirmation_bias/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:10:18.956781+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 172\\ndrwxr-xr-x  2 root root     69 May 20 19:20 .\\ndrwxr-xr-x 93 root root   8192 May 21 14:38 ..\\n-rw-r--r--  1 root root    768 May 20 19:20 crossmodel_results.json\\n-rw-r--r--  1 root root 156080 May 20 16:33 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T07:10:18.958110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/cross_model_experiment/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/cross_model_experiment/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T07:10:18.958326+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/cross_model_mistral_folio/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/cross_model_mistral_folio/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T07:10:18.958542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 908\\ndrwxr-xr-x  2 root root    124 May 20 16:08 .\\ndrwxr-xr-x 93 root root   8192 May 21 14:38 ..\\n-rw-r--r--  1 root root 110099 May 20 16:08 cross_model_results.json\\n-rw-r--r--  1 root root 749656 May 20 16:04 llama_constraints_t0t3.json\\n-rw-r--r--  1 root root  52468 May 20 14:42 llama_sc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T07:10:18.958758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 596\\ndrwxr-xr-x  2 root root     89 May 18 22:51 .\\ndrwxr-xr-x 93 root root   8192 May 21 14:38 ..\\n-rw-r--r--  1 root root 326754 May 18 23:53 cross_model_mistral.log\\n-rw-r--r--  1 root root 268798 May 18 23:53 cross_model_mistral_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T07:10:18.958997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/confirmation_bias/crossmodel_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/confirmation_bias/crossmodel_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T07:10:18.959247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": [\\n    {\\n      \\\"model\\\": \\\"Mistral-7B\\\",\\n      \\\"n_total\\\": 204,\\n      \\\"n_wrong\\\": 83,\\n      \\\"sica_acc\\\": 0.5931,\\n      \\\"score_bias_ratio\\\": 4.24,\\n      \\\"score_error_pct\\\": 80.9,\\n      \\\"score_gold_frac_wrong\\\": 0.1909,\\n      \\\"score_gold_frac_correct\\\": 0.7184,\\n      \\\"follows_sc_rate\\\": 0.9398,\\n      \\\"raw_bias_ratio\\\": 4.97,\\n      \\\"raw_error_pct\\\": 83.3,\\n      \\\"raw_n_analyzed\\\": 83\\n    },\\n    {\\n      \\\"model\\\": \\\"Qwen2.5-14B\\\",\\n      \\\"n_total\\\": 204,\\n      \\\"n_wrong\\\": 52,\\n      \\\"sica_acc\\\": 0.7451,\\n      \\\"score_bias_ratio\\\": 3.69,\\n      \\\"score_error_pct\\\": 78.7,\\n      \\\"score_gold_frac_wrong\\\": 0.2133,\\n      \\\"score_gold_frac_correct\\\": 0.8872,\\n      \\\"follows_sc_rate\\\": 0.9038,\\n      \\\"raw_bias_ratio\\\": 3.93,\\n      \\\"raw_error_pct\\\": 79.7,\\n      \\\"raw_n_analyzed\\\": 52\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T07:10:18.959477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/confirmation_bias/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/confirmation_bias/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T07:10:18.959800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"total_problems\\\": 204,\\n    \\\"skipped_no_cache\\\": 0,\\n    \\\"sica_accuracy\\\": 0.5931,\\n    \\\"sc_accuracy\\\": 0.5441,\\n    \\\"sica_wrong_follows_sc_count\\\": 78,\\n    \\\"sica_wrong_diverges_sc_count\\\": 5,\\n    \\\"sica_wrong_follows_sc_rate\\\": 0.9398\\n  },\\n  \\\"category_stats\\\": [\\n    {\\n      \\\"category\\\": \\\"SICA correct\\\",\\n      \\\"n_problems\\\": 121,\\n      \\\"constraints_gold_frac\\\": 0.7808,\\n      \\\"constraints_wrong_frac\\\": 0.2192,\\n      \\\"weight_gold_frac\\\": 0.7184,\\n      \\\"bias_ratio\\\": 0.2808\\n    },\\n    {\\n      \\\"category\\\": \\\"SICA wrong\\\",\\n      \\\"n_problems\\\": 83,\\n      \\\"constraints_gold_frac\\\": 0.1674,\\n      \\\"constraints_wrong_frac\\\": 0.8326,\\n      \\\"weight_gold_frac\\\": 0.1909,\\n      \\\"bias_ratio\\\": 4.9746\\n    },\\n    {\\n      \\\"category\\\": \\\"SC wrong, SICA correct\\\",\\n      \\\"n_problems\\\": 12,\\n      \\\"constraints_gold_frac\\\": 0.4303,\\n      \\\"constraints_wrong_frac\\\": 0.5697,\\n      \\\"weight_gold_frac\\\": 0.4832,\\n      \\\"bias_ratio\\\": 1.324\\n    },\\n    {\\n      \\\"category\\\": \\\"SC correct, SICA wrong\\\",\\n      \\\"n_problems\\\": 2,\\n      \\\"constraints_gold_frac\\\": 0.4548,\\n      \\\"constraints_wrong_frac\\\": 0.5452,\\n      \\\"weight_gold_frac\\\": 0.3504,\\n      \\\"bias_ratio\\\": 1.1987\\n    },\\n    {\\n      \\\"category\\\": \\\"Both wrong\\\",\\n      \\\"n_problems\\\": 81,\\n      \\\"constraints_gold_frac\\\": 0.1603,\\n      \\\"constraints_wrong_frac\\\": 0.8397,\\n      \\\"weight_gold_frac\\\": 0.187,\\n      \\\"bias_ratio\\\": 5.2391\\n    },\\n    {\\n      \\\"category\\\": \\\"Both correct\\\",\\n      \\\"n_problems\\\": 109,\\n      \\\"constraints_gold_frac\\\": 0.8193,\\n      \\\"constraints_wrong_frac\\\": 0.1807,\\n      \\\"weight_gold_frac\\\": 0.7443,\\n      \\\"
+…[truncated 1528 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T07:10:18.962261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -200 /root/symb_invariant_consensus/results/cross_model_experiment/cross_model_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -200 /root/symb_invariant_consensus/results/cross_model_experiment/cross_model_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T07:10:18.962719+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"n_skipped_sica\\\": 0,\\n    \\\"cross_model_sc_accuracy\\\": 0.7450980392156863,\\n    \\\"cross_model_sc_correct\\\": 152,\\n    \\\"cross_model_sica_accuracy\\\": 0.7401960784313726,\\n    \\\"cross_model_sica_correct\\\": 151,\\n    \\\"delta_sica_minus_sc\\\": -0.004901960784313708,\\n    \\\"mcnemar_p\\\": 1.0,\\n    \\\"mcnemar_n01\\\": 7,\\n    \\\"mcnemar_n10\\\": 6,\\n    \\\"traces_per_model\\\": 4,\\n    \\\"total_k\\\": 12,\\n    \\\"models\\\": {\\n      \\\"mistral\\\": \\\"Mistral-7B\\\",\\n      \\\"llama\\\": \\\"LLaMA-3.1-8B\\\",\\n      \\\"qwen\\\": \\\"Qwen2.5-7B\\\"\\n    }\\n  },\\n  \\\"baselines\\\": {\\n    \\\"mistral\\\": {\\n      \\\"sc_accuracy\\\": 0.5441176470588235,\\n      \\\"sica_accuracy\\\": 0.5931372549019608,\\n      \\\"n\\\": 204\\n    },\\n    \\\"qwen\\\": {\\n      \\\"sc_accuracy\\\": 0.7598039215686274,\\n      \\\"sica_accuracy\\\": 0.7647058823529411,\\n      \\\"n\\\": 204\\n    }\\n  },\\n  \\\"per_problem\\\": {\\n    \\\"folio_0\\\": {\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_distribution\\\": {\\n        \\\"Unknown\\\": 8,\\n        \\\"True\\\": 3,\\n        \\\"False\\\": 1\\n      },\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"sica_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"False\\\": 7.0,\\n        \\\"True\\\": 18.5,\\n        \\\"Unknown\\\": 50.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\"maxsat_stats\\\": {\\n        \\\"satisfied\\\": 62,\\n        \\\"excluded\\\": 1,\\n        \\\"total_weight\\\": 70,\\n        \\\"solve_time_ms\\\": 1.308792270720005,\\n        \\\"unique_constraints\\\": 63\\n      },\\n      \\\"n_traces\\\": 12\\n    },\\n    \\\"folio_1\\\": {\\n      \\\"sc_answer\\\": \\\"True\\\",\\n      \\\"sc_distribution\\\": {\\n        \\\"Unknown\\\": 
+…[truncated 4368 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T07:10:18.963002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -200 /root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -200 /root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T07:10:18.963533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"extraction_model\\\": \\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\n    \\\"extraction_temperature\\\": 0.3,\\n    \\\"total\\\": 204,\\n    \\\"cross_model_correct\\\": 153,\\n    \\\"cross_model_acc\\\": 0.75,\\n    \\\"original_sica_correct\\\": 152,\\n    \\\"original_sica_acc\\\": 0.7451,\\n    \\\"sc_correct\\\": 153,\\n    \\\"sc_acc\\\": 0.75,\\n    \\\"total_wall_time_s\\\": 3723.2\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n      \\\"dataset\\\": \\\"folio\\\",\\n      \\\"level\\\": \\\"validation\\\",\\n      \\\"ground_truth\\\": \\\"Unknown\\\",\\n      \\\"cross_model_answer\\\": \\\"False\\\",\\n      \\\"cross_model_scores\\\": {\\n        \\\"True\\\": 27.0,\\n        \\\"False\\\": 35.0,\\n        \\\"Unknown\\\": 34.0\\n      },\\n      \\\"cross_model_correct\\\": false,\\n      \\\"original_sica_answer\\\": \\\"Unknown\\\",\\n      \\\"original_sica_correc
+…[truncated 7672 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T07:10:18.963788+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/confirmation_bias/results.json')); print(len(d.get('sica_wrong_details',[]))); print(list(d['sica_wrong_details'][0].keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/confirmation_bias/results.json')); print(len(d.get('sica_wrong_details',[]))); print(list(d['sica_wrong_details'][0].keys()))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T07:10:18.966153+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T07:10:18.966493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*.json\" -path \"*bias*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*.json\" -path \"*bias*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T07:10:18.966708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T07:10:18.966964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/confirmation_bias/results.json\\n/root/symb_invariant_consensus/results/confirmation_bias/crossmodel_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T07:10:18.967329+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/\\n/root/symb_invariant_consensus/results/folio_204_14b\\n/root/symb_invariant_consensus/results/folio_204_14b/intermediates\\n/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking\\n/root/symb_invariant_consensus/results/exp028_qwen3_14b_thinking/intermediates\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking\\n/root/symb_invariant_consensus/results/exp027_qwen3_14b_nonthinking/intermediates\\n/root/symb_invariant_consensus/results/exp-029-contrastive-folio204\\n/root/symb_invariant_consensus/results/exp-029-contrastive-folio204/intermediates\\n/root/symb_invariant_consensus/results/cross_model_mistral_folio\\n/root/symb_invariant_consensus/results/oracle_folio_regen\\n/root/symb_invariant_consensus/results/exp-007-qwen72b-awq\\n/root/symb_invariant_consensus/results/exp004_qwen7b_rerun\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\\n/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204\\n/root/symb_invariant_consensus/results/exp035_qwen25_7b_folio204\\n/root/symb_invariant_consensus/results/exp035_qwen25_7b_folio204/intermediates\\n/root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter\\n/root/symb_invariant_consensus/results/exp034_qwen25_14b_proofwriter/intermediates\\n/root/symb_invariant_consensus/results/exp036_z3_feedback\\n/root/symb_invariant_consensus/results/icl_oracle_folio\\n/root/symb_invariant_consensus/results/icl_oracle_folio/intermediates\\n/root/symb_invariant_consensus/results/exp4_consistency_filtering\\n/root/symb_invariant_consensus/results/exp05_backward_verification\\n/root/symb_invariant_consensus/results/exp05_backward_verifica
+…[truncated 6427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T07:10:18.967631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T07:10:18.967838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp034_llama31_8b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp034_llama31_8b_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T07:10:18.970188+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/folio_204_14b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/folio_204_14b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T07:10:18.970445+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T07:10:18.970656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp034.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T07:10:18.970860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_204_14b.log\\nfolio_204_results.json\\nintermediates\\nper_trace_constraints\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T07:10:18.971154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/ -name \"*.py\" -path \"*bias*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/ -name \"*.py\" -path \"*bias*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T07:10:18.971362+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/ -name \"*.py\" -path \"*confirm*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/ -name \"*.py\" -path \"*confirm*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T07:10:18.971579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/gen_bias_tables.py\\n/root/symb_invariant_consensus/scripts/gen_bias_tables_v2.py\\n/root/symb_invariant_consensus/analysis_confirmation_bias.py\\n/root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T07:10:18.971785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/analysis_confirmation_bias.py\\n/root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T07:10:18.974130+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T07:10:18.974466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5931372549019608,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 121,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9714052287581699,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 8021,\\n    \\\"contradiction_rate\\\": 0.03503303827452936,\\n    \\\"problems_with_contradictions\\\": 128,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4881.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion
+…[truncated 694 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T07:10:18.974769+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/analysis_confirmation_bias.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/analysis_confirmation_bias.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T07:10:18.975112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Confirmation Bias Analysis for SICA (exp-033, Mistral-7B, FOLIO-204).\\n\\nQuantifies whether SICA's FOL constraints systematically support the LLM's\\nmajority-vote answer (SC) rather than the gold answer, especially when SICA\\ngets the answer wrong.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nRESULTS_PATH = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\\\"\\nCACHE_DIR = \\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\\\"\\nOUTPUT_DIR = \\\"/root/symb_invariant_consensus/results/confirmation_bias\\\"\\n\\n\\ndef load_data():\\n    with open(RESULTS_PATH) as f:\\n        data = json.load(f)\\n    return data[\\\"results\\\"]\\n\\n\\ndef load_constraint_cache(pid):\\n    path = os.path.join(CACHE_DIR, f\\\"{pid}.json\\\")\\n    if not os.path.exists(path):\\n        return None\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef analyze_constraint_directions(cache_data):\\n    \\\"\\\"\\\"Count constraints per answer direction from per-trace data.\\\"\\\"\\\"\\n    answer_constraint_counts = defaultdict(int)\\n    answer_trace_counts = defaultdict(int)\\n    total_constraints = 0\\n\\n    for trace in cache_data.get(\\\"per_trace\\\", []):\\n        ans = trace.get(\\\"answer\\\", \\\"\\\").strip()\\n        if not ans:\\n            continue\\n        n_constraints = len(trace.get(\\\"constraints\\\", []))\\n        answer_constraint_counts[ans] += n_constraints\\n        answer_trace_counts[ans] += 1\\n        total_constraints += n_constraints\\n\\n    return dict(answer_constraint_counts), dict(answer_trace_counts), total_constraints\\n\\n\\ndef classify_problem(gt, sc, sica, sica_scores, constraint_counts, total_constraints):\\n    \\\"\\\"\\\"Classify constraint support for a single problem.\\\"\\\"\\\"\\n    result = {\\n   
+…[truncated 2289 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T07:10:18.975372+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*llama*\" -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*llama*\" -name \"*.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T07:10:18.975590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/cross_model_kappa/llama_answer_matrix.json\\n/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json\\n/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T07:10:18.975831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -150 /root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -150 /root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T07:10:18.978195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/ -la"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/ -la"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T07:10:18.978565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-model Confirmation Bias Analysis.\\n\\nMethod 1 (sica_scores): Uses MaxSAT-weighted scores from results.json.\\n  Available for all models.\\n\\nMethod 2 (raw_counts): Uses per-trace constraint counts from constraint_cache\\n  or per_trace_constraints directories. Only available where data exists.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\n\\ndef load_results(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    return data[\\\"results\\\"]\\n\\n\\ndef load_constraint_cache(cache_dir, pid):\\n    for ext in [f\\\"{pid}.json\\\"]:\\n        p = os.path.join(cache_dir, ext)\\n        if os.path.exists(p):\\n            with open(p) as f:\\n                return json.load(f)\\n    return None\\n\\n\\ndef analyze_raw_counts(cache_data):\\n    answer_counts = defaultdict(int)\\n    total = 0\\n    for trace in cache_data.get(\\\"per_trace\\\", []):\\n        ans = trace.get(\\\"answer\\\") or trace.get(\\\"extracted_answer\\\", \\\"\\\")\\n        ans = ans.strip() if ans else \\\"\\\"\\n        if not ans:\\n            continue\\n        n = len(trace.get(\\\"constraints\\\", []))\\n        answer_counts[ans] += n\\n        total += n\\n    return dict(answer_counts), total\\n\\n\\ndef analyze_model(results_path, model_name, cache_dir=None):\\n    results = load_results(results_path)\\n    n_total = len(results)\\n\\n    sica_wrong_scores = []\\n    sica_correct_scores = []\\n    sica_wrong_raw = []\\n    sica_correct_raw = []\\n    skipped_cache = 0\\n\\n    for r in results:\\n        gt = r[\\\"ground_truth\\\"]\\n        sica_ans = r[\\\"sica_answer\\\"]\\n        scores = r.get(\\\"sica_scores\\\", {})\\n        total_weight = sum(scores.values())\\n        gold_weight = scores.get(gt, 0)\\n\\n        info_s = {\\n            \\\"pid\\\": r[\\\"problem_id\\\"],\\n            \\\"gt\\\": gt,\
+…[truncated 3618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T07:10:18.978991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3584\\ndrwxr-xr-x 2 root root  8192 May 19 11:06 .\\ndrwxr-xr-x 4 root root   149 May 20 01:39 ..\\n-rw-r--r-- 1 root root 23596 May 19 09:59 folio_0.json\\n-rw-r--r-- 1 root root 25986 May 19 10:00 folio_1.json\\n-rw-r--r-- 1 root root 14776 May 19 10:00 folio_10.json\\n-rw-r--r-- 1 root root 20746 May 19 10:00 folio_100.json\\n-rw-r--r-- 1 root root 19512 May 19 10:01 folio_101.json\\n-rw-r--r-- 1 root root 18396 May 19 10:02 folio_102.json\\n-rw-r--r-- 1 root root 18189 May 19 10:02 folio_103.json\\n-rw-r--r-- 1 root root 21313 May 19 10:03 folio_104.json\\n-rw-r--r-- 1 root root 17102 May 19 10:03 folio_105.json\\n-rw-r--r-- 1 root root 13231 May 19 10:03 folio_106.json\\n-rw-r--r-- 1 root root 14223 May 19 10:04 folio_107.json\\n-rw-r--r-- 1 root root 19443 May 19 10:04 folio_108.json\\n-rw-r--r-- 1 root root 19544 May 19 10:04 folio_109.json\\n-rw-r--r-- 1 root root 15583 May 19 10:05 folio_11.json\\n-rw-r--r-- 1 root root 24869 May 19 10:05 folio_110.json\\n-rw-r--r-- 1 root root  7187 May 19 10:05 folio_111.json\\n-rw-r--r-- 1 root root 14943 May 19 10:06 folio_112.json\\n-rw-r--r-- 1 root root 17040 May 19 10:06 folio_113.json\\n-rw-r--r-- 1 root root 15200 May 19 10:06 folio_114.json\\n-rw-r--r-- 1 root root 14263 May 19 10:07 folio_115.json\\n-rw-r--r-- 1 root root 14949 May 19 10:07 folio_116.json\\n-rw-r--r-- 1 root root 16954 May 19 10:07 folio_117.json\\n-rw-r--r-- 1 root root 16253 May 19 10:08 folio_118.json\\n-rw-r--r-- 1 root root 16330 May 19 10:08 folio_119.json\\n-rw-r--r-- 1 root root 13833 May 19 10:08 folio_12.json\\n-rw-r--r-- 1 root root 15492 May 19 10:09 folio_120.json\\n-rw-r--r-- 1 root root  8755 May 19 10:09 folio_121.json\\n-rw-r--r-- 1 root root 16359 May 19 10:09 folio_122.json\\n-rw-r--r-- 1 root root 17924 May 19 10:10 folio_123.json\\n-rw-r--r-- 1 root root 17698 May 19 10:10 folio_124.json\\n-rw-r--r-- 1 root root 16529 May 19 10:10 folio_125.json\\n-rw-r--r-- 1 roo
+…[truncated 6486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T07:10:18.979309+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -80 /root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "tail -80 /root/symb_invariant_consensus/analysis_confirmation_bias_crossmodel.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T07:10:18.979621+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        avg_wrong_r = 1 - avg_gold_r\\n        bias_r = avg_wrong_r / avg_gold_r if avg_gold_r > 0 else float(\\\"inf\\\")\\n        result[\\\"raw_bias_ratio\\\"] = round(bias_r, 2)\\n        result[\\\"raw_error_pct\\\"] = round(avg_wrong_r * 100, 1)\\n        result[\\\"raw_n_analyzed\\\"] = n_wrong_r\\n    if skipped_cache:\\n        result[\\\"skipped_cache\\\"] = skipped_cache\\n\\n    return result\\n\\n\\ndef print_results(all_results):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 80)\\n    print(\\\"CROSS-MODEL CONFIRMATION BIAS ANALYSIS\\\")\\n    print(\\\"=\\\" * 80)\\n\\n    for r in all_results:\\n        print(f\\\"\\\\n--- {r['model']} ---\\\")\\n        print(f\\\"  Total problems: {r['n_total']}\\\")\\n        print(f\\\"  SICA accuracy: {r['sica_acc']:.1%}\\\")\\n        print(f\\\"  SICA errors: {r['n_wrong']}\\\")\\n        print(f\\\"  [Score-based] Bias ratio: {r['score_bias_ratio']:.2f}x | Error constraint: {r['score_error_pct']:.1f}%\\\")\\n        print(f\\\"  [Score-based] Gold frac (wrong): {r['score_gold_frac_wrong']:.4f} | Gold frac (correct): {r['score_gold_frac_correct']:.4f}\\\")\\n        print(f\\\"  SICA follows SC rate: {r['follows_sc_rate']:.1%}\\\")\\n        if \\\"raw_bias_ratio\\\" in r:\\n            print(f\\\"  [Raw counts] Bias ratio: {r['raw_bias_ratio']:.2f}x | Error constraint: {r['raw_error_pct']:.1f}% (n={r['raw_n_analyzed']})\\\")\\n\\n    # Summary table\\n    print(\\\"\\\\n\\\\n=== Summary Table (Score-based / MaxSAT weights) ===\\\")\\n    print(f\\\"{'Model':<20} {'N':>5} {'Errors':>7} {'Bias Ratio':>12} {'Error Constr%':>15} {'SICA Acc':>10}\\\")\\n    print(\\\"-\\\" * 75)\\n    for r in all_results:\\n        print(f\\\"{r['model']:<20} {r['n_total']:>5} {r['n_wrong']:>7} {r['score_bias_ratio']:>11.2f}x {r['score_error_pct']:>14.1f}% {r['sica_acc']:>9.1%}\\\")\\n\\n    has_raw = any(\\\"raw_bias_ratio\\\" in r for r in all_results)\\n    if has_raw:\\n     
+…[truncated 2359 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T07:10:18.981912+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T07:10:18.982314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T07:10:18.982597+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/exp034_llama31_8b_folio204/ -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/exp034_llama31_8b_folio204/ -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T07:10:18.982813+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204/exp034.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T07:10:18.983104+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp-063-llama8b-folio204-16639/ 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T07:10:18.983315+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T07:10:18.983527+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -path \"*llama*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -path \"*llama*\" -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T07:10:18.983739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp034_llama31_8b_folio204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-21T07:10:18.986031+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -path \"*063*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -path \"*063*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T07:10:18.986343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp070_qwen7b_logiqa200/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp070_qwen7b_logiqa200/per_trace_constraints/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp069_mistral_logiqa200/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp071_qwen7b_logiqa200_seed123/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp073_qwen7b_logiqa200_seed456/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp073b_qwen7b_logiqa200_seed456/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp080_contrastive_mistral_logiqa200/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp084_debate_mistral_logiqa_seed123/intermediates/logiqa_063.json\\n/root/symb_invariant_consensus/results/exp085_contrastive_mistral_logiqa_seed123/intermediates/logiqa_063.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T07:10:18.986646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-21T07:10:18.986868+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T07:10:18.987458+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"folio_0\\\": {\\\"gt\\\": \\\"Unknown\\\", \\\"per_trace\\\": [{\\\"trace_idx\\\": 0, \\\"answer\\\": \\\"True\\\", \\\"constraints\\\": [{\\\"z3_formula\\\": \\\"performs_bonnie == True\\\", \\\"expression\\\": \\\"performs_bonnie == True\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(performs_bonnie, And(attends_bonnie, engaged_bonnie))\\\", \\\"expression\\\": \\\"Implies(performs_bonnie, And(attends_bonnie, engaged_bonnie))\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(performs_bonnie, student_bonnie)\\\", \\\"expression\\\": \\\"Implies(performs_bonnie, student_bonnie)\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Or(performs_bonnie, inactive_bonnie)\\\", \\\"expression\\\": \\\"Or(performs_bonnie, inactive_bonnie)\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(inactive_bonnie, chaperone_bonnie)\\\", \\\"expression\\\": \\\"Implies(inactive_bonnie, chaperone_bonnie)\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(chaperone_bonnie, Not(student_bonnie))\\\", \\\"expression\\\": \\\"Implies(chaperone_bonnie, Not(student_bonnie))\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(student_bonnie, wishes_further_bonnie)\\\", \\\"expression\\\": \\\"Implies(student_bonnie, wishes_further_bonnie)\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(And(attends_bonnie, engaged_bonnie), Both(attends_bonnie, engaged_bonnie, student_bonnie))\\\", \\\"expression\\\": \\\"Implies(And(attends_bonnie, engaged_bonnie), Both(attends_bonnie, engaged_bonnie, student_bonnie))\\\", \\\"type\\\": \\\"invariant\\\"}, {\\\"z3_formula\\\": \\\"Implies(Not(Both(attends_bonnie, engaged_bonnie, student_bonnie)), Either(Not(attends_bonnie), Not(engaged_bonnie), Not(student_bonnie)))\\\", \\\"expression\\\": \\\"Implies(Not(Both(attends_bonnie, engaged_bonnie, student_bonnie))
+…[truncated 8255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T07:10:18.987791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_10\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Ocellated wild turkey\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\"\\n    ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T07:10:18.990235+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -60 /root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -60 /root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T07:10:18.990587+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.7450980392156863,\\n    \\\"sc_accuracy\\\": 0.75,\\n    \\\"sica_correct\\\": 152,\\n    \\\"sc_correct\\\": 153,\\n    \\\"extraction_rate\\\": 0.9852941176470589,\\n    \\\"total_constraints_extracted\\\": 13694,\\n    \\\"total_unique_constraints\\\": 6134,\\n    \\\"contradiction_rate\\\": 0.009129442451907402,\\n    \\\"problems_with_contradictions\\\": 36,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.7450980392156863,\\n        \\\"sc\\\": 0.75,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.7450980392156863,\\n        \\\"sc\\\": 0.75,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 8881.0\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie 
+…[truncated 982 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-21T07:10:18.990869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*results.json\" -path \"*llama*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*results.json\" -path \"*llama*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T07:10:18.991118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-21T07:10:18.991326+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -l \"LLaMA\" /root/symb_invariant_consensus/results/confirmation_bias/crossmodel_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -l \"LLaMA\" /root/symb_invariant_consensus/results/confirmation_bias/crossmodel_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T07:10:18.991536+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T07:10:18.991816+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json')); k=list(d.keys())[0]; print(k, len(d[k]['answers']), d[k]['ground_truth'])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json')); k=list(d.keys())[0]; print(k, len(d[k]['answers']), d[k]['ground_truth'])\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T07:10:18.994180+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T07:10:18.994426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json')); k=list(d.keys())[0]; print(k, len(d[k]['per_trace']))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json')); k=list(d.keys())[0]; print(k, len(d[k]['per_trace']))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T07:10:18.994655+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-21T07:10:18.995029+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat > /tmp/bootstrap_br.py << 'PYEOF'\nimport json\nimport os\nimport numpy as np\nfrom collections import defaultdict, Counter\n\ndef load_raw_counts_from_cache(cache_dir, pid):\n    path = os.path.join(cache_dir, f\"{pid}.json\")\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    answer_counts = defaultdict(int)\n    total = 0\n    for trace in data.get(\"per_trace\", []):\n        ans = trace.get(\"answer\") or trace.get(\"extracted_answer\", \"\")\n        ans = ans.strip() if ans else \"\"\n        if not ans:\n            continue\n        n = len(trace.get(\"constraints\", []))\n        answer_counts[ans] += n\n        total += n\n    return dict(answer_counts), total\n\ndef load_llama_constraints(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, pdata in data.items():\n        answer_counts = defaultdict(int)\n        total = 0\n        for trace in pdata.get(\"per_trace\", []):\n            ans = trace.get(\"answer\", \"\").strip()\n            if not ans:\n                continue\n            n = len(trace.get(\"constraints\", []))\n            answer_counts[ans] += n\n            total += n\n        result[pid] = (dict(answer_counts), total)\n    return result\n\ndef get_per_question_data(results_path, cache_dir, model_name, llama_constraints=None):\n    \"\"\"Extract per-question (gold_frac) for SICA-wrong questions.\"\"\"\n    with open(results_path) as f:\n        data = json.load(f)\n    \n    questions = []  # list of (gold_constraint_count, wrong_constraint_count) per SICA-wrong question\n    \n    for r in data[\"results\"]:\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        pid = r[\"problem_id\"]\n        \n        if sica_ans == gt:\n            continue  # only SICA-wrong questions\n        \n        # Get raw constraint counts\n        if cache_dir:\n            ans_counts, total_c = load_raw_counts_from_cache(cache_dir, pid)\n        elif llama_constraints and pid in llama_constraints:\n            ans_counts, total_c = llama_constraints[pid]\n        else:\n            # Fallback to sica_scores\n            scores = r.get(\"sica_scores\", {})\n            total_c = sum(scores.values())\n            ans_counts = scores\n        \n        if not ans_counts or total_c == 0:\n            continue\n        \n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        \n        questions.append((wrong_c, gold_c))\n    \n    return questions\n\ndef get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path):\n    \"\"\"For LLaMA: use raw constraint counts. Determine SICA answer from constraints.\"\"\"\n    llama_c = load_llama_constraints(llama_constraints_path)\n    \n    with open(llama_answer_matrix_path) as f:\n        answer_matrix = json.load(f)\n    \n    questions = []\n    n_sica_wrong = 0\n    n_total = 0\n    \n    for pid, pdata in answer_matrix.items():\n        gt = pdata[\"ground_truth\"]\n        answers = [a for a in pdata[\"answers\"] if a.strip() in (\"True\", \"False\", \"Unknown\")]\n        n_total += 1\n        \n        if pid not in llama_c:\n            continue\n        \n        ans_counts, total_c = llama_c[pid]\n        if total_c == 0:\n            continue\n        \n        # SICA answer = answer with highest constraint support\n        sica_answer = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        \n        if sica_answer == gt:\n            continue\n        \n        n_sica_wrong += 1\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    \n    print(f\"  LLaMA: {n_total} total problems, {n_sica_wrong} SICA-wrong, {len(questions)} with data\")\n    return questions\n\ndef bootstrap_br(questions, n_boot=10000, seed=42):\n    \"\"\"Bootstrap BR at question level using fraction-based method (matching original code).\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    \n    # Compute per-question gold_frac\n    gold_fracs = []\n    for wrong_c, gold_c in questions:\n        total = wrong_c + gold_c\n        if total > 0:\n            gold_fracs.append(gold_c / total)\n        else:\n            gold_fracs.append(0)\n    gold_fracs = np.array(gold_fracs)\n    \n    # Point estimate (matching original code: avg of per-question fracs)\n    avg_gold = np.mean(gold_fracs)\n    point_br = (1 - avg_gold) / avg_gold if avg_gold > 0 else float('inf')\n    \n    # Bootstrap\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gold = np.mean(gold_fracs[idx])\n        if boot_gold > 0:\n            br_samples.append((1 - boot_gold) / boot_gold)\n    \n    br_samples = np.array(br_samples)\n    ci_low = np.percentile(br_samples, 2.5)\n    ci_high = np.percentile(br_samples, 97.5)\n    \n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\n# Also compute count-based bootstrap (sum counts then ratio)\ndef bootstrap_br_count_based(questions, n_boot=10000, seed=42):\n    \"\"\"Bootstrap BR using count-based method: sum(wrong) / sum(gold) across resampled questions.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    questions_arr = np.array(questions)  # (n, 2): wrong_c, gold_c\n    \n    total_wrong = questions_arr[:, 0].sum()\n    total_gold = questions_arr[:, 1].sum()\n    point_br = total_wrong / total_gold if total_gold > 0 else float('inf')\n    \n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_wrong = questions_arr[idx, 0].sum()\n        boot_gold = questions_arr[idx, 1].sum()\n        if boot_gold > 0:\n            br_samples.append(boot_wrong / boot_gold)\n    \n    br_samples = np.array(br_samples)\n    ci_low = np.percentile(br_samples, 2.5)\n    ci_high = np.percentile(br_samples, 97.5)\n    \n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\n# ========== Main ==========\nresults = {}\n\n# --- Mistral-7B ---\nprint(\"=== Mistral-7B ===\")\nmistral_results = \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\"\nmistral_cache = \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\"\nmistral_qs = get_per_question_data(mistral_results, mistral_cache, \"Mistral-7B\")\nprint(f\"  {len(mistral_qs)} SICA-wrong questions with constraint data\")\nbr, ci_lo, ci_hi = bootstrap_br(mistral_qs)\nbr2, ci_lo2, ci_hi2 = bootstrap_br_count_based(mistral_qs)\nprint(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\nprint(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\nresults[\"Mistral-7B\"] = {\n    \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n    \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n    \"n_questions\": len(mistral_qs)\n}\n\n# --- Qwen2.5-14B ---\nprint(\"\\n=== Qwen2.5-14B ===\")\nqwen_results = \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\"\nqwen_cache = \"/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints\"\nqwen_qs = get_per_question_data(qwen_results, qwen_cache, \"Qwen2.5-14B\")\nprint(f\"  {len(qwen_qs)} SICA-wrong questions with constraint data\")\nbr, ci_lo, ci_hi = bootstrap_br(qwen_qs)\nbr2, ci_lo2, ci_hi2 = bootstrap_br_count_based(qwen_qs)\nprint(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\nprint(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\nresults[\"Qwen2.5-14B\"] = {\n    \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n    \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n    \"n_questions\": len(qwen_qs)\n}\n\n# --- LLaMA-3.1-8B ---\nprint(\"\\n=== LLaMA-3.1-8B ===\")\nllama_constraints_path = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json\"\nllama_answer_matrix_path = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json\"\nif os.path.exists(llama_constraints_path) and os.path.exists(llama_answer_matrix_path):\n    llama_qs = get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path)\n    if llama_qs:\n        br, ci_lo, ci_hi = bootstrap_br(llama_qs)\n        br2, ci_lo2, ci_hi2 = bootstrap_br_count_based(llama_qs)\n        print(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n        print(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\n        results[\"LLaMA-3.1-8B\"] = {\n            \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n            \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n            \"n_questions\": len(llama_qs),\n            \"note\": \"4 traces from cross-model experiment, SICA answer determined by raw constraint count majority\"\n        }\n    else:\n        print(\"  No SICA-wrong questions found for LLaMA\")\nelse:\n    print(\"  LLaMA constraint data not found\")\n\nprint(\"\\n=== Final Results ===\")\nprint(json.dumps(results, indent=2))\n\n# Save\nwith open(\"/tmp/br_bootstrap_ci.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nSaved to /tmp/br_bootstrap_ci.json\")\nPYEOF\npython3 /tmp/bootstrap_br.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat > /tmp/bootstrap_br.py << 'PYEOF'\nimport json\nimport os\nimport numpy as np\nfrom collections import defaultdict, Counter\n\ndef load_raw_counts_from_cache(cache_dir, pid):\n    path = os.path.join(cache_dir, f\"{pid}.json\")\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    answer_counts = defaultdict(int)\n    total = 0\n    for trace in data.get(\"per_trace\", []):\n        ans = trace.get(\"answer\") or trace.get(\"extracted_answer\", \"\")\n        ans = ans.strip() if ans else \"\"\n        if not ans:\n            continue\n        n = len(trace.get(\"constraints\", []))\n        answer_counts[ans] += n\n        total += n\n    return dict(answer_counts), total\n\ndef load_llama_constraints(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, pdata in data.items():\n        answer_counts = defaultdict(int)\n        total = 0\n        for trace in pdata.get(\"per_trace\", []):\n            ans = trace.get(\"answer\", \"\").strip()\n            if not ans:\n                continue\n            n = len(trace.get(\"constraints\", []))\n            answer_counts[ans] += n\n            total += n\n        result[pid] = (dict(answer_counts), total)\n    return result\n\ndef get_per_question_data(results_path, cache_dir, model_name, llama_constraints=None):\n    \"\"\"Extract per-question (gold_frac) for SICA-wrong questions.\"\"\"\n    with open(results_path) as f:\n        data = json.load(f)\n    \n    questions = []  # list of (gold_constraint_count, wrong_constraint_count) per SICA-wrong question\n    \n    for r in data[\"results\"]:\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        pid = r[\"problem_id\"]\n        \n        if sica_ans == gt:\n            continue  # only SICA-wrong questions\n        \n        # Get raw constraint counts\n        if cache_dir:\n            ans_counts, total_c = load_raw_counts_from_cache(cache_dir, pid)\n        elif llama_constraints and pid in llama_constraints:\n            ans_counts, total_c = llama_constraints[pid]\n        else:\n            # Fallback to sica_scores\n            scores = r.get(\"sica_scores\", {})\n            total_c = sum(scores.values())\n            ans_counts = scores\n        \n        if not ans_counts or total_c == 0:\n            continue\n        \n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        \n        questions.append((wrong_c, gold_c))\n    \n    return questions\n\ndef get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path):\n    \"\"\"For LLaMA: use raw constraint counts. Determine SICA answer from constraints.\"\"\"\n    llama_c = load_llama_constraints(llama_constraints_path)\n    \n    with open(llama_answer_matrix_path) as f:\n        answer_matrix = json.load(f)\n    \n    questions = []\n    n_sica_wrong = 0\n    n_total = 0\n    \n    for pid, pdata in answer_matrix.items():\n        gt = pdata[\"ground_truth\"]\n        answers = [a for a in pdata[\"answers\"] if a.strip() in (\"True\", \"False\", \"Unknown\")]\n        n_total += 1\n        \n        if pid not in llama_c:\n            continue\n        \n        ans_counts, total_c = llama_c[pid]\n        if total_c == 0:\n            continue\n        \n        # SICA answer = answer with highest constraint support\n        sica_answer = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        \n        if sica_answer == gt:\n            continue\n        \n        n_sica_wrong += 1\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    \n    print(f\"  LLaMA: {n_total} total problems, {n_sica_wrong} SICA-wrong, {len(questions)} with data\")\n    return questions\n\ndef bootstrap_br(questions, n_boot=10000, seed=42):\n    \"\"\"Bootstrap BR at question level using fraction-based method (matching original code).\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    \n    # Compute per-question gold_frac\n    gold_fracs = []\n    for wrong_c, gold_c in questions:\n        total = wrong_c + gold_c\n        if total > 0:\n            gold_fracs.append(gold_c / total)\n        else:\n            gold_fracs.append(0)\n    gold_fracs = np.array(gold_fracs)\n    \n    # Point estimate (matching original code: avg of per-question fracs)\n    avg_gold = np.mean(gold_fracs)\n    point_br = (1 - avg_gold) / avg_gold if avg_gold > 0 else float('inf')\n    \n    # Bootstrap\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gold = np.mean(gold_fracs[idx])\n        if boot_gold > 0:\n            br_samples.append((1 - boot_gold) / boot_gold)\n    \n    br_samples = np.array(br_samples)\n    ci_low = np.percentile(br_samples, 2.5)\n    ci_high = np.percentile(br_samples, 97.5)\n    \n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\n# Also compute count-based bootstrap (sum counts then ratio)\ndef bootstrap_br_count_based(questions, n_boot=10000, seed=42):\n    \"\"\"Bootstrap BR using count-based method: sum(wrong) / sum(gold) across resampled questions.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    questions_arr = np.array(questions)  # (n, 2): wrong_c, gold_c\n    \n    total_wrong = questions_arr[:, 0].sum()\n    total_gold = questions_arr[:, 1].sum()\n    point_br = total_wrong / total_gold if total_gold > 0 else float('inf')\n    \n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_wrong = questions_arr[idx, 0].sum()\n        boot_gold = questions_arr[idx, 1].sum()\n        if boot_gold > 0:\n            br_samples.append(boot_wrong / boot_gold)\n    \n    br_samples = np.array(br_samples)\n    ci_low = np.percentile(br_samples, 2.5)\n    ci_high = np.percentile(br_samples, 97.5)\n    \n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\n# ========== Main ==========\nresults = {}\n\n# --- Mistral-7B ---\nprint(\"=== Mistral-7B ===\")\nmistral_results = \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\"\nmistral_cache = \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\"\nmistral_qs = get_per_question_data(mistral_results, mistral_cache, \"Mistral-7B\")\nprint(f\"  {len(mistral_qs)} SICA-wrong questions with constraint data\")\nbr, ci_lo, ci_hi = bootstrap_br(mistral_qs)\nbr2, ci_lo2, ci_hi2 = bootstrap_br_count_based(mistral_qs)\nprint(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\nprint(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\nresults[\"Mistral-7B\"] = {\n    \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n    \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n    \"n_questions\": len(mistral_qs)\n}\n\n# --- Qwen2.5-14B ---\nprint(\"\\n=== Qwen2.5-14B ===\")\nqwen_results = \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\"\nqwen_cache = \"/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints\"\nqwen_qs = get_per_question_data(qwen_results, qwen_cache, \"Qwen2.5-14B\")\nprint(f\"  {len(qwen_qs)} SICA-wrong questions with constraint data\")\nbr, ci_lo, ci_hi = bootstrap_br(qwen_qs)\nbr2, ci_lo2, ci_hi2 = bootstrap_br_count_based(qwen_qs)\nprint(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\nprint(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\nresults[\"Qwen2.5-14B\"] = {\n    \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n    \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n    \"n_questions\": len(qwen_qs)\n}\n\n# --- LLaMA-3.1-8B ---\nprint(\"\\n=== LLaMA-3.1-8B ===\")\nllama_constraints_path = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json\"\nllama_answer_matrix_path = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json\"\nif os.path.exists(llama_constraints_path) and os.path.exists(llama_answer_matrix_path):\n    llama_qs = get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path)\n    if llama_qs:\n        br, ci_lo, ci_hi = bootstrap_br(llama_qs)\n        br2, ci_lo2, ci_hi2 = bootstrap_br_count_based(llama_qs)\n        print(f\"  Fraction-based: BR={br:.4f}, 95% CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n        print(f\"  Count-based:    BR={br2:.4f}, 95% CI=[{ci_lo2:.4f}, {ci_hi2:.4f}]\")\n        results[\"LLaMA-3.1-8B\"] = {\n            \"br\": br, \"ci_low\": ci_lo, \"ci_high\": ci_hi,\n            \"br_count\": br2, \"ci_low_count\": ci_lo2, \"ci_high_count\": ci_hi2,\n            \"n_questions\": len(llama_qs),\n            \"note\": \"4 traces from cross-model experiment, SICA answer determined by raw constraint count majority\"\n        }\n    else:\n        print(\"  No SICA-wrong questions found for LLaMA\")\nelse:\n    print(\"  LLaMA constraint data not found\")\n\nprint(\"\\n=== Final Results ===\")\nprint(json.dumps(results, indent=2))\n\n# Save\nwith open(\"/tmp/br_bootstrap_ci.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nSaved to /tmp/br_bootstrap_ci.json\")\nPYEOF\npython3 /tmp/bootstrap_br.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T07:10:18.995626+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/bootstrap_br.py << \\\\'PYEOF\\\\'\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nfrom collections import defaultdict, Counter\\\\n\\\\ndef load_raw_counts_from_cache(cache_dir, pid):\\\\n    path = os.path.join(cache_dir, f\\\"{pid}.json\\\")\\\\n    if not os.path.exists(path):\\\\n        return None, 0\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    answer_counts = defaultdict(int)\\\\n    total = 0\\\\n    for trace in data.get(\\\"per_trace\\\", []):\\\\n        ans = trace.get(\\\"answer\\\") or trace.get(\\\"extracted_answer\\\", \\\"\\\")\\\\n        ans = ans.strip() if ans else \\\"\\\"\\\\n        if not ans:\\\\n            continue\\\\n        n = len(trace.get(\\\"constraints\\\", []))\\\\n        answer_counts[ans] += n\\\\n        total += n\\\\n    return dict(answer_counts), total\\\\n\\\\ndef load_llama_constraints(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    result = {}\\\\n    for pid, pdata in data.items():\\\\n        answer_counts = defaultdict(int)\\\\n        total = 0\\\\n        for trace in pdata.get(\\\"per_trace\\\", []):\\\\n            ans = trace.get(\\\"answer\\\", \\\"\\\").strip()\\\\n            if not ans:\\\\n                continue\\\\n            n = len(trace.get(\\\"constraints\\\", []))\\\\n            answer_counts[ans] += n\\\\n            total += n\\\\n        result[pid] = (dict(answer_counts), total)\\\\n    return result\\\\n\\\\ndef get_per_question_data(results_path, cache_dir, model_name, llama_constraints=None):\\\\n    \\\"\\\"\\\"Extract per-question (gold_frac) for SICA-wrong questions.\\\"\\\"\\\"\\\\n    with open(results_path) as f:\\\\n        data = json.load(f)\\\\n    \\\\n    questions = []  # list of (gold_constraint_count, wrong_constraint_count) per SICA-wrong question\\\\n    \\\\n    for r in data[\\\"results\\
+…[truncated 8793 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-21T07:10:18.997992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "which python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-21T07:10:18.998279+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-21T07:10:18.998467+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/miniconda3/bin/python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T07:10:18.998646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-21T07:10:18.998934+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/bootstrap_br.py",
+  "content": "import json\nimport os\nimport numpy as np\nfrom collections import defaultdict\n\ndef load_raw_counts_from_cache(cache_dir, pid):\n    path = os.path.join(cache_dir, f\"{pid}.json\")\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    answer_counts = defaultdict(int)\n    total = 0\n    for trace in data.get(\"per_trace\", []):\n        ans = trace.get(\"answer\") or trace.get(\"extracted_answer\", \"\")\n        ans = ans.strip() if ans else \"\"\n        if not ans:\n            continue\n        n = len(trace.get(\"constraints\", []))\n        answer_counts[ans] += n\n        total += n\n    return dict(answer_counts), total\n\ndef load_llama_constraints(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, pdata in data.items():\n        answer_counts = defaultdict(int)\n        total = 0\n        for trace in pdata.get(\"per_trace\", []):\n            ans = trace.get(\"answer\", \"\").strip()\n            if not ans:\n                continue\n            n = len(trace.get(\"constraints\", []))\n            answer_counts[ans] += n\n            total += n\n        result[pid] = (dict(answer_counts), total)\n    return result\n\ndef get_per_question_data(results_path, cache_dir):\n    with open(results_path) as f:\n        data = json.load(f)\n    questions = []\n    for r in data[\"results\"]:\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        pid = r[\"problem_id\"]\n        if sica_ans == gt:\n            continue\n        if cache_dir:\n            ans_counts, total_c = load_raw_counts_from_cache(cache_dir, pid)\n        else:\n            scores = r.get(\"sica_scores\", {})\n            total_c = sum(scores.values())\n            ans_counts = scores\n        if not ans_counts or total_c == 0:\n            continue\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    return questions\n\ndef get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path):\n    llama_c = load_llama_constraints(llama_constraints_path)\n    with open(llama_answer_matrix_path) as f:\n        answer_matrix = json.load(f)\n    questions = []\n    n_sica_wrong = 0\n    n_total = 0\n    for pid, pdata in answer_matrix.items():\n        gt = pdata[\"ground_truth\"]\n        n_total += 1\n        if pid not in llama_c:\n            continue\n        ans_counts, total_c = llama_c[pid]\n        if total_c == 0:\n            continue\n        sica_answer = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        if sica_answer == gt:\n            continue\n        n_sica_wrong += 1\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    print(f\"  LLaMA: {n_total} total, {n_sica_wrong} SICA-wrong, {len(questions)} with data\")\n    return questions\n\ndef bootstrap_br(questions, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    gold_fracs = np.array([gold_c / (wrong_c + gold_c) if (wrong_c + gold_c) > 0 else 0\n                           for wrong_c, gold_c in questions])\n    avg_gold = np.mean(gold_fracs)\n    point_br = (1 - avg_gold) / avg_gold if avg_gold > 0 else float('inf')\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gold = np.mean(gold_fracs[idx])\n        if boot_gold > 0:\n            br_samples.append((1 - boot_gold) / boot_gold)\n    br_samples = np.array(br_samples)\n    ci_low = float(np.percentile(br_samples, 2.5))\n    ci_high = float(np.percentile(br_samples, 97.5))\n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\ndef bootstrap_br_count(questions, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    qa = np.array(questions)\n    total_wrong = qa[:, 0].sum()\n    total_gold = qa[:, 1].sum()\n    point_br = total_wrong / total_gold if total_gold > 0 else float('inf')\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        bw = qa[idx, 0].sum()\n        bg = qa[idx, 1].sum()\n        if bg > 0:\n            br_samples.append(bw / bg)\n    br_samples = np.array(br_samples)\n    ci_low = float(np.percentile(br_samples, 2.5))\n    ci_high = float(np.percentile(br_samples, 97.5))\n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\nresults = {}\n\n# Mistral-7B\nprint(\"=== Mistral-7B ===\")\nmqs = get_per_question_data(\n    \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\",\n    \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\")\nprint(f\"  {len(mqs)} SICA-wrong questions\")\nbr, lo, hi = bootstrap_br(mqs)\nbr2, lo2, hi2 = bootstrap_br_count(mqs)\nprint(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\nprint(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\nresults[\"Mistral-7B\"] = {\"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n                          \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n                          \"n_questions\": len(mqs)}\n\n# Qwen2.5-14B\nprint(\"\\n=== Qwen2.5-14B ===\")\nqqs = get_per_question_data(\n    \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\",\n    \"/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints\")\nprint(f\"  {len(qqs)} SICA-wrong questions\")\nbr, lo, hi = bootstrap_br(qqs)\nbr2, lo2, hi2 = bootstrap_br_count(qqs)\nprint(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\nprint(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\nresults[\"Qwen2.5-14B\"] = {\"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n                           \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n                           \"n_questions\": len(qqs)}\n\n# LLaMA-3.1-8B\nprint(\"\\n=== LLaMA-3.1-8B ===\")\nlc = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json\"\nla = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json\"\nif os.path.exists(lc) and os.path.exists(la):\n    lqs = get_llama_per_question_data(lc, la)\n    if lqs:\n        br, lo, hi = bootstrap_br(lqs)\n        br2, lo2, hi2 = bootstrap_br_count(lqs)\n        print(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\n        print(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\n        results[\"LLaMA-3.1-8B\"] = {\n            \"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n            \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n            \"n_questions\": len(lqs),\n            \"note\": \"4 traces from cross-model experiment\"\n        }\n\nprint(\"\\n\" + json.dumps(results, indent=2))\nwith open(\"/tmp/br_bootstrap_ci.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nSaved to /tmp/br_bootstrap_ci.json\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/bootstrap_br.py",
+    "content": "import json\nimport os\nimport numpy as np\nfrom collections import defaultdict\n\ndef load_raw_counts_from_cache(cache_dir, pid):\n    path = os.path.join(cache_dir, f\"{pid}.json\")\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    answer_counts = defaultdict(int)\n    total = 0\n    for trace in data.get(\"per_trace\", []):\n        ans = trace.get(\"answer\") or trace.get(\"extracted_answer\", \"\")\n        ans = ans.strip() if ans else \"\"\n        if not ans:\n            continue\n        n = len(trace.get(\"constraints\", []))\n        answer_counts[ans] += n\n        total += n\n    return dict(answer_counts), total\n\ndef load_llama_constraints(path):\n    with open(path) as f:\n        data = json.load(f)\n    result = {}\n    for pid, pdata in data.items():\n        answer_counts = defaultdict(int)\n        total = 0\n        for trace in pdata.get(\"per_trace\", []):\n            ans = trace.get(\"answer\", \"\").strip()\n            if not ans:\n                continue\n            n = len(trace.get(\"constraints\", []))\n            answer_counts[ans] += n\n            total += n\n        result[pid] = (dict(answer_counts), total)\n    return result\n\ndef get_per_question_data(results_path, cache_dir):\n    with open(results_path) as f:\n        data = json.load(f)\n    questions = []\n    for r in data[\"results\"]:\n        gt = r[\"ground_truth\"]\n        sica_ans = r[\"sica_answer\"]\n        pid = r[\"problem_id\"]\n        if sica_ans == gt:\n            continue\n        if cache_dir:\n            ans_counts, total_c = load_raw_counts_from_cache(cache_dir, pid)\n        else:\n            scores = r.get(\"sica_scores\", {})\n            total_c = sum(scores.values())\n            ans_counts = scores\n        if not ans_counts or total_c == 0:\n            continue\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    return questions\n\ndef get_llama_per_question_data(llama_constraints_path, llama_answer_matrix_path):\n    llama_c = load_llama_constraints(llama_constraints_path)\n    with open(llama_answer_matrix_path) as f:\n        answer_matrix = json.load(f)\n    questions = []\n    n_sica_wrong = 0\n    n_total = 0\n    for pid, pdata in answer_matrix.items():\n        gt = pdata[\"ground_truth\"]\n        n_total += 1\n        if pid not in llama_c:\n            continue\n        ans_counts, total_c = llama_c[pid]\n        if total_c == 0:\n            continue\n        sica_answer = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        if sica_answer == gt:\n            continue\n        n_sica_wrong += 1\n        gold_c = ans_counts.get(gt, 0)\n        wrong_c = total_c - gold_c\n        questions.append((wrong_c, gold_c))\n    print(f\"  LLaMA: {n_total} total, {n_sica_wrong} SICA-wrong, {len(questions)} with data\")\n    return questions\n\ndef bootstrap_br(questions, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    gold_fracs = np.array([gold_c / (wrong_c + gold_c) if (wrong_c + gold_c) > 0 else 0\n                           for wrong_c, gold_c in questions])\n    avg_gold = np.mean(gold_fracs)\n    point_br = (1 - avg_gold) / avg_gold if avg_gold > 0 else float('inf')\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gold = np.mean(gold_fracs[idx])\n        if boot_gold > 0:\n            br_samples.append((1 - boot_gold) / boot_gold)\n    br_samples = np.array(br_samples)\n    ci_low = float(np.percentile(br_samples, 2.5))\n    ci_high = float(np.percentile(br_samples, 97.5))\n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\ndef bootstrap_br_count(questions, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(questions)\n    qa = np.array(questions)\n    total_wrong = qa[:, 0].sum()\n    total_gold = qa[:, 1].sum()\n    point_br = total_wrong / total_gold if total_gold > 0 else float('inf')\n    br_samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        bw = qa[idx, 0].sum()\n        bg = qa[idx, 1].sum()\n        if bg > 0:\n            br_samples.append(bw / bg)\n    br_samples = np.array(br_samples)\n    ci_low = float(np.percentile(br_samples, 2.5))\n    ci_high = float(np.percentile(br_samples, 97.5))\n    return round(point_br, 4), round(ci_low, 4), round(ci_high, 4)\n\nresults = {}\n\n# Mistral-7B\nprint(\"=== Mistral-7B ===\")\nmqs = get_per_question_data(\n    \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json\",\n    \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\")\nprint(f\"  {len(mqs)} SICA-wrong questions\")\nbr, lo, hi = bootstrap_br(mqs)\nbr2, lo2, hi2 = bootstrap_br_count(mqs)\nprint(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\nprint(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\nresults[\"Mistral-7B\"] = {\"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n                          \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n                          \"n_questions\": len(mqs)}\n\n# Qwen2.5-14B\nprint(\"\\n=== Qwen2.5-14B ===\")\nqqs = get_per_question_data(\n    \"/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json\",\n    \"/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints\")\nprint(f\"  {len(qqs)} SICA-wrong questions\")\nbr, lo, hi = bootstrap_br(qqs)\nbr2, lo2, hi2 = bootstrap_br_count(qqs)\nprint(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\nprint(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\nresults[\"Qwen2.5-14B\"] = {\"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n                           \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n                           \"n_questions\": len(qqs)}\n\n# LLaMA-3.1-8B\nprint(\"\\n=== LLaMA-3.1-8B ===\")\nlc = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json\"\nla = \"/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json\"\nif os.path.exists(lc) and os.path.exists(la):\n    lqs = get_llama_per_question_data(lc, la)\n    if lqs:\n        br, lo, hi = bootstrap_br(lqs)\n        br2, lo2, hi2 = bootstrap_br_count(lqs)\n        print(f\"  Frac-based: BR={br}, CI=[{lo}, {hi}]\")\n        print(f\"  Count-based: BR={br2}, CI=[{lo2}, {hi2}]\")\n        results[\"LLaMA-3.1-8B\"] = {\n            \"br\": br, \"ci_low\": lo, \"ci_high\": hi,\n            \"br_count\": br2, \"ci_low_count\": lo2, \"ci_high_count\": hi2,\n            \"n_questions\": len(lqs),\n            \"note\": \"4 traces from cross-model experiment\"\n        }\n\nprint(\"\\n\" + json.dumps(results, indent=2))\nwith open(\"/tmp/br_bootstrap_ci.json\", \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(\"\\nSaved to /tmp/br_bootstrap_ci.json\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T07:10:18.999280+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/bootstrap_br.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-21T07:10:18.999458+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && scp -o StrictHostKeyChecking=no 2>/dev/null; echo \"checking scp\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && scp -o StrictHostKeyChecking=no 2>/dev/null; echo \"checking scp\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T07:10:19.002905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checking scp\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-21T07:10:19.003300+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/bootstrap_br.py | tr -d '\\n'",
+  "description": "Base64 encode the bootstrap script"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/bootstrap_br.py | tr -d '\\n'",
+    "description": "Base64 encode the bootstrap script"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T07:10:19.003606+00:00_
+
+aW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBudW1weSBhcyBucApmcm9tIGNvbGxlY3Rpb25zIGltcG9ydCBkZWZhdWx0ZGljdAoKZGVmIGxvYWRfcmF3X2NvdW50c19mcm9tX2NhY2hlKGNhY2hlX2RpciwgcGlkKToKICAgIHBhdGggPSBvcy5wYXRoLmpvaW4oY2FjaGVfZGlyLCBmIntwaWR9Lmpzb24iKQogICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKHBhdGgpOgogICAgICAgIHJldHVybiBOb25lLCAwCiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBkYXRhID0ganNvbi5sb2FkKGYpCiAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgdG90YWwgPSAwCiAgICBmb3IgdHJhY2UgaW4gZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICBhbnMgPSB0cmFjZS5nZXQoImFuc3dlciIpIG9yIHRyYWNlLmdldCgiZXh0cmFjdGVkX2Fuc3dlciIsICIiKQogICAgICAgIGFucyA9IGFucy5zdHJpcCgpIGlmIGFucyBlbHNlICIiCiAgICAgICAgaWYgbm90IGFuczoKICAgICAgICAgICAgY29udGludWUKICAgICAgICBuID0gbGVuKHRyYWNlLmdldCgiY29uc3RyYWludHMiLCBbXSkpCiAgICAgICAgYW5zd2VyX2NvdW50c1thbnNdICs9IG4KICAgICAgICB0b3RhbCArPSBuCiAgICByZXR1cm4gZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwKCmRlZiBsb2FkX2xsYW1hX2NvbnN0cmFpbnRzKHBhdGgpOgogICAgd2l0aCBvcGVuKHBhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcmVzdWx0ID0ge30KICAgIGZvciBwaWQsIHBkYXRhIGluIGRhdGEuaXRlbXMoKToKICAgICAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgICAgIHRvdGFsID0gMAogICAgICAgIGZvciB0cmFjZSBpbiBwZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICAgICAgYW5zID0gdHJhY2UuZ2V0KCJhbnN3ZXIiLCAiIikuc3RyaXAoKQogICAgICAgICAgICBpZiBub3QgYW5zOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgbiA9IGxlbih0cmFjZS5nZXQoImNvbnN0cmFpbnRzIiwgW10pKQogICAgICAgICAgICBhbnN3ZXJfY291bnRzW2Fuc10gKz0gbgogICAgICAgICAgICB0b3RhbCArPSBuCiAgICAgICAgcmVzdWx0W3BpZF0gPSAoZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwpCiAgICByZXR1cm4gcmVzdWx0CgpkZWYgZ2V0X3Blcl9xdWVzdGlvbl9kYXRhKHJlc3VsdHNfcGF0aCwgY2FjaGVfZGlyKToKICAgIHdpdGggb3BlbihyZXN1bHRzX3BhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcXVlc3Rpb25zID0gW10KICAgIGZvciByIGluIGRhdGFbInJlc3VsdHMiXToKICAgICAgICBndCA9IHJbImdyb3VuZF90cnV0aCJdCiAgICAgICAgc2ljYV9hbnMgPSByWyJzaWNhX2Fuc3dlciJdCiAgICAgICAgcGlkID0gclsicHJvYmxlbV9pZCJdCiAgICAgICAgaWYgc2ljYV9hbnMgPT0gZ3Q6CiAgICAgICAgICAgIGNvbnRp
+…[truncated 6968 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-21T07:10:19.003999+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "echo 'aW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBudW1weSBhcyBucApmcm9tIGNvbGxlY3Rpb25zIGltcG9ydCBkZWZhdWx0ZGljdAoKZGVmIGxvYWRfcmF3X2NvdW50c19mcm9tX2NhY2hlKGNhY2hlX2RpciwgcGlkKToKICAgIHBhdGggPSBvcy5wYXRoLmpvaW4oY2FjaGVfZGlyLCBmIntwaWR9Lmpzb24iKQogICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKHBhdGgpOgogICAgICAgIHJldHVybiBOb25lLCAwCiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBkYXRhID0ganNvbi5sb2FkKGYpCiAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgdG90YWwgPSAwCiAgICBmb3IgdHJhY2UgaW4gZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICBhbnMgPSB0cmFjZS5nZXQoImFuc3dlciIpIG9yIHRyYWNlLmdldCgiZXh0cmFjdGVkX2Fuc3dlciIsICIiKQogICAgICAgIGFucyA9IGFucy5zdHJpcCgpIGlmIGFucyBlbHNlICIiCiAgICAgICAgaWYgbm90IGFuczoKICAgICAgICAgICAgY29udGludWUKICAgICAgICBuID0gbGVuKHRyYWNlLmdldCgiY29uc3RyYWludHMiLCBbXSkpCiAgICAgICAgYW5zd2VyX2NvdW50c1thbnNdICs9IG4KICAgICAgICB0b3RhbCArPSBuCiAgICByZXR1cm4gZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwKCmRlZiBsb2FkX2xsYW1hX2NvbnN0cmFpbnRzKHBhdGgpOgogICAgd2l0aCBvcGVuKHBhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcmVzdWx0ID0ge30KICAgIGZvciBwaWQsIHBkYXRhIGluIGRhdGEuaXRlbXMoKToKICAgICAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgICAgIHRvdGFsID0gMAogICAgICAgIGZvciB0cmFjZSBpbiBwZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICAgICAgYW5zID0gdHJhY2UuZ2V0KCJhbnN3ZXIiLCAiIikuc3RyaXAoKQogICAgICAgICAgICBpZiBub3QgYW5zOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgbiA9IGxlbih0cmFjZS5nZXQoImNvbnN0cmFpbnRzIiwgW10pKQogICAgICAgICAgICBhbnN3ZXJfY291bnRzW2Fuc10gKz0gbgogICAgICAgICAgICB0b3RhbCArPSBuCiAgICAgICAgcmVzdWx0W3BpZF0gPSAoZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwpCiAgICByZXR1cm4gcmVzdWx0CgpkZWYgZ2V0X3Blcl9xdWVzdGlvbl9kYXRhKHJlc3VsdHNfcGF0aCwgY2FjaGVfZGlyKToKICAgIHdpdGggb3BlbihyZXN1bHRzX3BhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcXVlc3Rpb25zID0gW10KICAgIGZvciByIGluIGRhdGFbInJlc3VsdHMiXToKICAgICAgICBndCA9IHJbImdyb3VuZF90cnV0aCJdCiAgICAgICAgc2ljYV9hbnMgPSByWyJzaWNhX2Fuc3dlciJdCiAgICAgICAgcGlkID0gclsicHJvYmxlbV9pZCJdCiAgICAgICAgaWYgc2ljYV9hbnMgPT0gZ3Q6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgaWYgY2FjaGVfZGlyOgogICAgICAgICAgICBhbnNfY291bnRzLCB0b3RhbF9jID0gbG9hZF9yYXdfY291bnRzX2Zyb21fY2FjaGUoY2FjaGVfZGlyLCBwaWQpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgc2NvcmVzID0gci5nZXQoInNpY2Ffc2NvcmVzIiwge30pCiAgICAgICAgICAgIHRvdGFsX2MgPSBzdW0oc2NvcmVzLnZhbHVlcygpKQogICAgICAgICAgICBhbnNfY291bnRzID0gc2NvcmVzCiAgICAgICAgaWYgbm90IGFuc19jb3VudHMgb3IgdG90YWxfYyA9PSAwOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIGdvbGRfYyA9IGFuc19jb3VudHMuZ2V0KGd0LCAwKQogICAgICAgIHdyb25nX2MgPSB0b3RhbF9jIC0gZ29sZF9jCiAgICAgICAgcXVlc3Rpb25zLmFwcGVuZCgod3JvbmdfYywgZ29sZF9jKSkKICAgIHJldHVybiBxdWVzdGlvbnMKCmRlZiBnZXRfbGxhbWFfcGVyX3F1ZXN0aW9uX2RhdGEobGxhbWFfY29uc3RyYWludHNfcGF0aCwgbGxhbWFfYW5zd2VyX21hdHJpeF9wYXRoKToKICAgIGxsYW1hX2MgPSBsb2FkX2xsYW1hX2NvbnN0cmFpbnRzKGxsYW1hX2NvbnN0cmFpbnRzX3BhdGgpCiAgICB3aXRoIG9wZW4obGxhbWFfYW5zd2VyX21hdHJpeF9wYXRoKSBhcyBmOgogICAgICAgIGFuc3dlcl9tYXRyaXggPSBqc29uLmxvYWQoZikKICAgIHF1ZXN0aW9ucyA9IFtdCiAgICBuX3NpY2Ffd3JvbmcgPSAwCiAgICBuX3RvdGFsID0gMAogICAgZm9yIHBpZCwgcGRhdGEgaW4gYW5zd2VyX21hdHJpeC5pdGVtcygpOgogICAgICAgIGd0ID0gcGRhdGFbImdyb3VuZF90cnV0aCJdCiAgICAgICAgbl90b3RhbCArPSAxCiAgICAgICAgaWYgcGlkIG5vdCBpbiBsbGFtYV9jOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIGFuc19jb3VudHMsIHRvdGFsX2MgPSBsbGFtYV9jW3BpZF0KICAgICAgICBpZiB0b3RhbF9jID09IDA6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgc2ljYV9hbnN3ZXIgPSBtYXgoYW5zX2NvdW50cywga2V5PWFuc19jb3VudHMuZ2V0KSBpZiBhbnNfY291bnRzIGVsc2UgTm9uZQogICAgICAgIGlmIHNpY2FfYW5zd2VyID09IGd0OgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIG5fc2ljYV93cm9uZyArPSAxCiAgICAgICAgZ29sZF9jID0gYW5zX2NvdW50cy5nZXQoZ3QsIDApCiAgICAgICAgd3JvbmdfYyA9IHRvdGFsX2MgLSBnb2xkX2MKICAgICAgICBxdWVzdGlvbnMuYXBwZW5kKCh3cm9uZ19jLCBnb2xkX2MpKQogICAgcHJpbnQoZiIgIExMYU1BOiB7bl90b3RhbH0gdG90YWwsIHtuX3NpY2Ffd3Jvbmd9IFNJQ0Etd3JvbmcsIHtsZW4ocXVlc3Rpb25zKX0gd2l0aCBkYXRhIikKICAgIHJldHVybiBxdWVzdGlvbnMKCmRlZiBib290c3RyYXBfYnIocXVlc3Rpb25zLCBuX2Jvb3Q9MTAwMDAsIHNlZWQ9NDIpOgogICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKHNlZWQpCiAgICBuID0gbGVuKHF1ZXN0aW9ucykKICAgIGdvbGRfZnJhY3MgPSBucC5hcnJheShbZ29sZF9jIC8gKHdyb25nX2MgKyBnb2xkX2MpIGlmICh3cm9uZ19jICsgZ29sZF9jKSA+IDAgZWxzZSAwCiAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvciB3cm9uZ19jLCBnb2xkX2MgaW4gcXVlc3Rpb25zXSkKICAgIGF2Z19nb2xkID0gbnAubWVhbihnb2xkX2ZyYWNzKQogICAgcG9pbnRfYnIgPSAoMSAtIGF2Z19nb2xkKSAvIGF2Z19nb2xkIGlmIGF2Z19nb2xkID4gMCBlbHNlIGZsb2F0KCdpbmYnKQogICAgYnJfc2FtcGxlcyA9IFtdCiAgICBmb3IgXyBpbiByYW5nZShuX2Jvb3QpOgogICAgICAgIGlkeCA9IHJuZy5jaG9pY2Uobiwgc2l6ZT1uLCByZXBsYWNlPVRydWUpCiAgICAgICAgYm9vdF9nb2xkID0gbnAubWVhbihnb2xkX2ZyYWNzW2lkeF0pCiAgICAgICAgaWYgYm9vdF9nb2xkID4gMDoKICAgICAgICAgICAgYnJfc2FtcGxlcy5hcHBlbmQoKDEgLSBib290X2dvbGQpIC8gYm9vdF9nb2xkKQogICAgYnJfc2FtcGxlcyA9IG5wLmFycmF5KGJyX3NhbXBsZXMpCiAgICBjaV9sb3cgPSBmbG9hdChucC5wZXJjZW50aWxlKGJyX3NhbXBsZXMsIDIuNSkpCiAgICBjaV9oaWdoID0gZmxvYXQobnAucGVyY2VudGlsZShicl9zYW1wbGVzLCA5Ny41KSkKICAgIHJldHVybiByb3VuZChwb2ludF9iciwgNCksIHJvdW5kKGNpX2xvdywgNCksIHJvdW5kKGNpX2hpZ2gsIDQpCgpkZWYgYm9vdHN0cmFwX2JyX2NvdW50KHF1ZXN0aW9ucywgbl9ib290PTEwMDAwLCBzZWVkPTQyKToKICAgIHJuZyA9IG5wLnJhbmRvbS5SYW5kb21TdGF0ZShzZWVkKQogICAgbiA9IGxlbihxdWVzdGlvbnMpCiAgICBxYSA9IG5wLmFycmF5KHF1ZXN0aW9ucykKICAgIHRvdGFsX3dyb25nID0gcWFbOiwgMF0uc3VtKCkKICAgIHRvdGFsX2dvbGQgPSBxYVs6LCAxXS5zdW0oKQogICAgcG9pbnRfYnIgPSB0b3RhbF93cm9uZyAvIHRvdGFsX2dvbGQgaWYgdG90YWxfZ29sZCA+IDAgZWxzZSBmbG9hdCgnaW5mJykKICAgIGJyX3NhbXBsZXMgPSBbXQogICAgZm9yIF8gaW4gcmFuZ2Uobl9ib290KToKICAgICAgICBpZHggPSBybmcuY2hvaWNlKG4sIHNpemU9biwgcmVwbGFjZT1UcnVlKQogICAgICAgIGJ3ID0gcWFbaWR4LCAwXS5zdW0oKQogICAgICAgIGJnID0gcWFbaWR4LCAxXS5zdW0oKQogICAgICAgIGlmIGJnID4gMDoKICAgICAgICAgICAgYnJfc2FtcGxlcy5hcHBlbmQoYncgLyBiZykKICAgIGJyX3NhbXBsZXMgPSBucC5hcnJheShicl9zYW1wbGVzKQogICAgY2lfbG93ID0gZmxvYXQobnAucGVyY2VudGlsZShicl9zYW1wbGVzLCAyLjUpKQogICAgY2lfaGlnaCA9IGZsb2F0KG5wLnBlcmNlbnRpbGUoYnJfc2FtcGxlcywgOTcuNSkpCiAgICByZXR1cm4gcm91bmQocG9pbnRfYnIsIDQpLCByb3VuZChjaV9sb3csIDQpLCByb3VuZChjaV9oaWdoLCA0KQoKcmVzdWx0cyA9IHt9CgojIE1pc3RyYWwtN0IKcHJpbnQoIj09PSBNaXN0cmFsLTdCID09PSIpCm1xcyA9IGdldF9wZXJfcXVlc3Rpb25fZGF0YSgKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9leHAwMzNfbWlzdHJhbF83Yl9mb2xpbzIwNC9leHAwMzNfcmVzdWx0cy5qc29uIiwKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9leHAwMzNfbWlzdHJhbF83Yl9mb2xpbzIwNC9jb25zdHJhaW50X2NhY2hlIikKcHJpbnQoZiIgIHtsZW4obXFzKX0gU0lDQS13cm9uZyBxdWVzdGlvbnMiKQpiciwgbG8sIGhpID0gYm9vdHN0cmFwX2JyKG1xcykKYnIyLCBsbzIsIGhpMiA9IGJvb3RzdHJhcF9icl9jb3VudChtcXMpCnByaW50KGYiICBGcmFjLWJhc2VkOiBCUj17YnJ9LCBDST1be2xvfSwge2hpfV0iKQpwcmludChmIiAgQ291bnQtYmFzZWQ6IEJSPXticjJ9LCBDST1be2xvMn0sIHtoaTJ9XSIpCnJlc3VsdHNbIk1pc3RyYWwtN0IiXSA9IHsiYnIiOiBiciwgImNpX2xvdyI6IGxvLCAiY2lfaGlnaCI6IGhpLAogICAgICAgICAgICAgICAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIm5fcXVlc3Rpb25zIjogbGVuKG1xcyl9CgojIFF3ZW4yLjUtMTRCCnByaW50KCJcbj09PSBRd2VuMi41LTE0QiA9PT0iKQpxcXMgPSBnZXRfcGVyX3F1ZXN0aW9uX2RhdGEoCiAgICAiL3Jvb3Qvc3ltYl9pbnZhcmlhbnRfY29uc2Vuc3VzL3Jlc3VsdHMvZm9saW9fMjA0XzE0Yi9mb2xpb18yMDRfcmVzdWx0cy5qc29uIiwKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9mb2xpb18yMDRfMTRiL3Blcl90cmFjZV9jb25zdHJhaW50cyIpCnByaW50KGYiICB7bGVuKHFxcyl9IFNJQ0Etd3JvbmcgcXVlc3Rpb25zIikKYnIsIGxvLCBoaSA9IGJvb3RzdHJhcF9icihxcXMpCmJyMiwgbG8yLCBoaTIgPSBib290c3RyYXBfYnJfY291bnQocXFzKQpwcmludChmIiAgRnJhYy1iYXNlZDogQlI9e2JyfSwgQ0k9W3tsb30sIHtoaX1dIikKcHJpbnQoZiIgIENvdW50LWJhc2VkOiBCUj17YnIyfSwgQ0k9W3tsbzJ9LCB7aGkyfV0iKQpyZXN1bHRzWyJRd2VuMi41LTE0QiJdID0geyJiciI6IGJyLCAiY2lfbG93IjogbG8sICJjaV9oaWdoIjogaGksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJuX3F1ZXN0aW9ucyI6IGxlbihxcXMpfQoKIyBMTGFNQS0zLjEtOEIKcHJpbnQoIlxuPT09IExMYU1BLTMuMS04QiA9PT0iKQpsYyA9ICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9jcm9zc19tb2RlbF9leHBlcmltZW50L2xsYW1hX2NvbnN0cmFpbnRzX3QwdDMuanNvbiIKbGEgPSAiL3Jvb3Qvc3ltYl9pbnZhcmlhbnRfY29uc2Vuc3VzL3Jlc3VsdHMvY3Jvc3NfbW9kZWxfZXhwZXJpbWVudC9sbGFtYV9zY19hbnN3ZXJfbWF0cml4Lmpzb24iCmlmIG9zLnBhdGguZXhpc3RzKGxjKSBhbmQgb3MucGF0aC5leGlzdHMobGEpOgogICAgbHFzID0gZ2V0X2xsYW1hX3Blcl9xdWVzdGlvbl9kYXRhKGxjLCBsYSkKICAgIGlmIGxxczoKICAgICAgICBiciwgbG8sIGhpID0gYm9vdHN0cmFwX2JyKGxxcykKICAgICAgICBicjIsIGxvMiwgaGkyID0gYm9vdHN0cmFwX2JyX2NvdW50KGxxcykKICAgICAgICBwcmludChmIiAgRnJhYy1iYXNlZDogQlI9e2JyfSwgQ0k9W3tsb30sIHtoaX1dIikKICAgICAgICBwcmludChmIiAgQ291bnQtYmFzZWQ6IEJSPXticjJ9LCBDST1be2xvMn0sIHtoaTJ9XSIpCiAgICAgICAgcmVzdWx0c1siTExhTUEtMy4xLThCIl0gPSB7CiAgICAgICAgICAgICJiciI6IGJyLCAiY2lfbG93IjogbG8sICJjaV9oaWdoIjogaGksCiAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICJuX3F1ZXN0aW9ucyI6IGxlbihscXMpLAogICAgICAgICAgICAibm90ZSI6ICI0IHRyYWNlcyBmcm9tIGNyb3NzLW1vZGVsIGV4cGVyaW1lbnQiCiAgICAgICAgfQoKcHJpbnQoIlxuIiArIGpzb24uZHVtcHMocmVzdWx0cywgaW5kZW50PTIpKQp3aXRoIG9wZW4oIi90bXAvYnJfYm9vdHN0cmFwX2NpLmpzb24iLCAidyIpIGFzIGY6CiAgICBqc29uLmR1bXAocmVzdWx0cywgZiwgaW5kZW50PTIpCnByaW50KCJcblNhdmVkIHRvIC90bXAvYnJfYm9vdHN0cmFwX2NpLmpzb24iKQo=' | base64 -d > /tmp/bootstrap_br.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/bootstrap_br.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "echo 'aW1wb3J0IGpzb24KaW1wb3J0IG9zCmltcG9ydCBudW1weSBhcyBucApmcm9tIGNvbGxlY3Rpb25zIGltcG9ydCBkZWZhdWx0ZGljdAoKZGVmIGxvYWRfcmF3X2NvdW50c19mcm9tX2NhY2hlKGNhY2hlX2RpciwgcGlkKToKICAgIHBhdGggPSBvcy5wYXRoLmpvaW4oY2FjaGVfZGlyLCBmIntwaWR9Lmpzb24iKQogICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKHBhdGgpOgogICAgICAgIHJldHVybiBOb25lLCAwCiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBkYXRhID0ganNvbi5sb2FkKGYpCiAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgdG90YWwgPSAwCiAgICBmb3IgdHJhY2UgaW4gZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICBhbnMgPSB0cmFjZS5nZXQoImFuc3dlciIpIG9yIHRyYWNlLmdldCgiZXh0cmFjdGVkX2Fuc3dlciIsICIiKQogICAgICAgIGFucyA9IGFucy5zdHJpcCgpIGlmIGFucyBlbHNlICIiCiAgICAgICAgaWYgbm90IGFuczoKICAgICAgICAgICAgY29udGludWUKICAgICAgICBuID0gbGVuKHRyYWNlLmdldCgiY29uc3RyYWludHMiLCBbXSkpCiAgICAgICAgYW5zd2VyX2NvdW50c1thbnNdICs9IG4KICAgICAgICB0b3RhbCArPSBuCiAgICByZXR1cm4gZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwKCmRlZiBsb2FkX2xsYW1hX2NvbnN0cmFpbnRzKHBhdGgpOgogICAgd2l0aCBvcGVuKHBhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcmVzdWx0ID0ge30KICAgIGZvciBwaWQsIHBkYXRhIGluIGRhdGEuaXRlbXMoKToKICAgICAgICBhbnN3ZXJfY291bnRzID0gZGVmYXVsdGRpY3QoaW50KQogICAgICAgIHRvdGFsID0gMAogICAgICAgIGZvciB0cmFjZSBpbiBwZGF0YS5nZXQoInBlcl90cmFjZSIsIFtdKToKICAgICAgICAgICAgYW5zID0gdHJhY2UuZ2V0KCJhbnN3ZXIiLCAiIikuc3RyaXAoKQogICAgICAgICAgICBpZiBub3QgYW5zOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgbiA9IGxlbih0cmFjZS5nZXQoImNvbnN0cmFpbnRzIiwgW10pKQogICAgICAgICAgICBhbnN3ZXJfY291bnRzW2Fuc10gKz0gbgogICAgICAgICAgICB0b3RhbCArPSBuCiAgICAgICAgcmVzdWx0W3BpZF0gPSAoZGljdChhbnN3ZXJfY291bnRzKSwgdG90YWwpCiAgICByZXR1cm4gcmVzdWx0CgpkZWYgZ2V0X3Blcl9xdWVzdGlvbl9kYXRhKHJlc3VsdHNfcGF0aCwgY2FjaGVfZGlyKToKICAgIHdpdGggb3BlbihyZXN1bHRzX3BhdGgpIGFzIGY6CiAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgcXVlc3Rpb25zID0gW10KICAgIGZvciByIGluIGRhdGFbInJlc3VsdHMiXToKICAgICAgICBndCA9IHJbImdyb3VuZF90cnV0aCJdCiAgICAgICAgc2ljYV9hbnMgPSByWyJzaWNhX2Fuc3dlciJdCiAgICAgICAgcGlkID0gclsicHJvYmxlbV9pZCJdCiAgICAgICAgaWYgc2ljYV9hbnMgPT0gZ3Q6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgaWYgY2FjaGVfZGlyOgogICAgICAgICAgICBhbnNfY291bnRzLCB0b3RhbF9jID0gbG9hZF9yYXdfY291bnRzX2Zyb21fY2FjaGUoY2FjaGVfZGlyLCBwaWQpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgc2NvcmVzID0gci5nZXQoInNpY2Ffc2NvcmVzIiwge30pCiAgICAgICAgICAgIHRvdGFsX2MgPSBzdW0oc2NvcmVzLnZhbHVlcygpKQogICAgICAgICAgICBhbnNfY291bnRzID0gc2NvcmVzCiAgICAgICAgaWYgbm90IGFuc19jb3VudHMgb3IgdG90YWxfYyA9PSAwOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIGdvbGRfYyA9IGFuc19jb3VudHMuZ2V0KGd0LCAwKQogICAgICAgIHdyb25nX2MgPSB0b3RhbF9jIC0gZ29sZF9jCiAgICAgICAgcXVlc3Rpb25zLmFwcGVuZCgod3JvbmdfYywgZ29sZF9jKSkKICAgIHJldHVybiBxdWVzdGlvbnMKCmRlZiBnZXRfbGxhbWFfcGVyX3F1ZXN0aW9uX2RhdGEobGxhbWFfY29uc3RyYWludHNfcGF0aCwgbGxhbWFfYW5zd2VyX21hdHJpeF9wYXRoKToKICAgIGxsYW1hX2MgPSBsb2FkX2xsYW1hX2NvbnN0cmFpbnRzKGxsYW1hX2NvbnN0cmFpbnRzX3BhdGgpCiAgICB3aXRoIG9wZW4obGxhbWFfYW5zd2VyX21hdHJpeF9wYXRoKSBhcyBmOgogICAgICAgIGFuc3dlcl9tYXRyaXggPSBqc29uLmxvYWQoZikKICAgIHF1ZXN0aW9ucyA9IFtdCiAgICBuX3NpY2Ffd3JvbmcgPSAwCiAgICBuX3RvdGFsID0gMAogICAgZm9yIHBpZCwgcGRhdGEgaW4gYW5zd2VyX21hdHJpeC5pdGVtcygpOgogICAgICAgIGd0ID0gcGRhdGFbImdyb3VuZF90cnV0aCJdCiAgICAgICAgbl90b3RhbCArPSAxCiAgICAgICAgaWYgcGlkIG5vdCBpbiBsbGFtYV9jOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIGFuc19jb3VudHMsIHRvdGFsX2MgPSBsbGFtYV9jW3BpZF0KICAgICAgICBpZiB0b3RhbF9jID09IDA6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgc2ljYV9hbnN3ZXIgPSBtYXgoYW5zX2NvdW50cywga2V5PWFuc19jb3VudHMuZ2V0KSBpZiBhbnNfY291bnRzIGVsc2UgTm9uZQogICAgICAgIGlmIHNpY2FfYW5zd2VyID09IGd0OgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIG5fc2ljYV93cm9uZyArPSAxCiAgICAgICAgZ29sZF9jID0gYW5zX2NvdW50cy5nZXQoZ3QsIDApCiAgICAgICAgd3JvbmdfYyA9IHRvdGFsX2MgLSBnb2xkX2MKICAgICAgICBxdWVzdGlvbnMuYXBwZW5kKCh3cm9uZ19jLCBnb2xkX2MpKQogICAgcHJpbnQoZiIgIExMYU1BOiB7bl90b3RhbH0gdG90YWwsIHtuX3NpY2Ffd3Jvbmd9IFNJQ0Etd3JvbmcsIHtsZW4ocXVlc3Rpb25zKX0gd2l0aCBkYXRhIikKICAgIHJldHVybiBxdWVzdGlvbnMKCmRlZiBib290c3RyYXBfYnIocXVlc3Rpb25zLCBuX2Jvb3Q9MTAwMDAsIHNlZWQ9NDIpOgogICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKHNlZWQpCiAgICBuID0gbGVuKHF1ZXN0aW9ucykKICAgIGdvbGRfZnJhY3MgPSBucC5hcnJheShbZ29sZF9jIC8gKHdyb25nX2MgKyBnb2xkX2MpIGlmICh3cm9uZ19jICsgZ29sZF9jKSA+IDAgZWxzZSAwCiAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvciB3cm9uZ19jLCBnb2xkX2MgaW4gcXVlc3Rpb25zXSkKICAgIGF2Z19nb2xkID0gbnAubWVhbihnb2xkX2ZyYWNzKQogICAgcG9pbnRfYnIgPSAoMSAtIGF2Z19nb2xkKSAvIGF2Z19nb2xkIGlmIGF2Z19nb2xkID4gMCBlbHNlIGZsb2F0KCdpbmYnKQogICAgYnJfc2FtcGxlcyA9IFtdCiAgICBmb3IgXyBpbiByYW5nZShuX2Jvb3QpOgogICAgICAgIGlkeCA9IHJuZy5jaG9pY2Uobiwgc2l6ZT1uLCByZXBsYWNlPVRydWUpCiAgICAgICAgYm9vdF9nb2xkID0gbnAubWVhbihnb2xkX2ZyYWNzW2lkeF0pCiAgICAgICAgaWYgYm9vdF9nb2xkID4gMDoKICAgICAgICAgICAgYnJfc2FtcGxlcy5hcHBlbmQoKDEgLSBib290X2dvbGQpIC8gYm9vdF9nb2xkKQogICAgYnJfc2FtcGxlcyA9IG5wLmFycmF5KGJyX3NhbXBsZXMpCiAgICBjaV9sb3cgPSBmbG9hdChucC5wZXJjZW50aWxlKGJyX3NhbXBsZXMsIDIuNSkpCiAgICBjaV9oaWdoID0gZmxvYXQobnAucGVyY2VudGlsZShicl9zYW1wbGVzLCA5Ny41KSkKICAgIHJldHVybiByb3VuZChwb2ludF9iciwgNCksIHJvdW5kKGNpX2xvdywgNCksIHJvdW5kKGNpX2hpZ2gsIDQpCgpkZWYgYm9vdHN0cmFwX2JyX2NvdW50KHF1ZXN0aW9ucywgbl9ib290PTEwMDAwLCBzZWVkPTQyKToKICAgIHJuZyA9IG5wLnJhbmRvbS5SYW5kb21TdGF0ZShzZWVkKQogICAgbiA9IGxlbihxdWVzdGlvbnMpCiAgICBxYSA9IG5wLmFycmF5KHF1ZXN0aW9ucykKICAgIHRvdGFsX3dyb25nID0gcWFbOiwgMF0uc3VtKCkKICAgIHRvdGFsX2dvbGQgPSBxYVs6LCAxXS5zdW0oKQogICAgcG9pbnRfYnIgPSB0b3RhbF93cm9uZyAvIHRvdGFsX2dvbGQgaWYgdG90YWxfZ29sZCA+IDAgZWxzZSBmbG9hdCgnaW5mJykKICAgIGJyX3NhbXBsZXMgPSBbXQogICAgZm9yIF8gaW4gcmFuZ2Uobl9ib290KToKICAgICAgICBpZHggPSBybmcuY2hvaWNlKG4sIHNpemU9biwgcmVwbGFjZT1UcnVlKQogICAgICAgIGJ3ID0gcWFbaWR4LCAwXS5zdW0oKQogICAgICAgIGJnID0gcWFbaWR4LCAxXS5zdW0oKQogICAgICAgIGlmIGJnID4gMDoKICAgICAgICAgICAgYnJfc2FtcGxlcy5hcHBlbmQoYncgLyBiZykKICAgIGJyX3NhbXBsZXMgPSBucC5hcnJheShicl9zYW1wbGVzKQogICAgY2lfbG93ID0gZmxvYXQobnAucGVyY2VudGlsZShicl9zYW1wbGVzLCAyLjUpKQogICAgY2lfaGlnaCA9IGZsb2F0KG5wLnBlcmNlbnRpbGUoYnJfc2FtcGxlcywgOTcuNSkpCiAgICByZXR1cm4gcm91bmQocG9pbnRfYnIsIDQpLCByb3VuZChjaV9sb3csIDQpLCByb3VuZChjaV9oaWdoLCA0KQoKcmVzdWx0cyA9IHt9CgojIE1pc3RyYWwtN0IKcHJpbnQoIj09PSBNaXN0cmFsLTdCID09PSIpCm1xcyA9IGdldF9wZXJfcXVlc3Rpb25fZGF0YSgKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9leHAwMzNfbWlzdHJhbF83Yl9mb2xpbzIwNC9leHAwMzNfcmVzdWx0cy5qc29uIiwKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9leHAwMzNfbWlzdHJhbF83Yl9mb2xpbzIwNC9jb25zdHJhaW50X2NhY2hlIikKcHJpbnQoZiIgIHtsZW4obXFzKX0gU0lDQS13cm9uZyBxdWVzdGlvbnMiKQpiciwgbG8sIGhpID0gYm9vdHN0cmFwX2JyKG1xcykKYnIyLCBsbzIsIGhpMiA9IGJvb3RzdHJhcF9icl9jb3VudChtcXMpCnByaW50KGYiICBGcmFjLWJhc2VkOiBCUj17YnJ9LCBDST1be2xvfSwge2hpfV0iKQpwcmludChmIiAgQ291bnQtYmFzZWQ6IEJSPXticjJ9LCBDST1be2xvMn0sIHtoaTJ9XSIpCnJlc3VsdHNbIk1pc3RyYWwtN0IiXSA9IHsiYnIiOiBiciwgImNpX2xvdyI6IGxvLCAiY2lfaGlnaCI6IGhpLAogICAgICAgICAgICAgICAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgIm5fcXVlc3Rpb25zIjogbGVuKG1xcyl9CgojIFF3ZW4yLjUtMTRCCnByaW50KCJcbj09PSBRd2VuMi41LTE0QiA9PT0iKQpxcXMgPSBnZXRfcGVyX3F1ZXN0aW9uX2RhdGEoCiAgICAiL3Jvb3Qvc3ltYl9pbnZhcmlhbnRfY29uc2Vuc3VzL3Jlc3VsdHMvZm9saW9fMjA0XzE0Yi9mb2xpb18yMDRfcmVzdWx0cy5qc29uIiwKICAgICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9mb2xpb18yMDRfMTRiL3Blcl90cmFjZV9jb25zdHJhaW50cyIpCnByaW50KGYiICB7bGVuKHFxcyl9IFNJQ0Etd3JvbmcgcXVlc3Rpb25zIikKYnIsIGxvLCBoaSA9IGJvb3RzdHJhcF9icihxcXMpCmJyMiwgbG8yLCBoaTIgPSBib290c3RyYXBfYnJfY291bnQocXFzKQpwcmludChmIiAgRnJhYy1iYXNlZDogQlI9e2JyfSwgQ0k9W3tsb30sIHtoaX1dIikKcHJpbnQoZiIgIENvdW50LWJhc2VkOiBCUj17YnIyfSwgQ0k9W3tsbzJ9LCB7aGkyfV0iKQpyZXN1bHRzWyJRd2VuMi41LTE0QiJdID0geyJiciI6IGJyLCAiY2lfbG93IjogbG8sICJjaV9oaWdoIjogaGksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJuX3F1ZXN0aW9ucyI6IGxlbihxcXMpfQoKIyBMTGFNQS0zLjEtOEIKcHJpbnQoIlxuPT09IExMYU1BLTMuMS04QiA9PT0iKQpsYyA9ICIvcm9vdC9zeW1iX2ludmFyaWFudF9jb25zZW5zdXMvcmVzdWx0cy9jcm9zc19tb2RlbF9leHBlcmltZW50L2xsYW1hX2NvbnN0cmFpbnRzX3QwdDMuanNvbiIKbGEgPSAiL3Jvb3Qvc3ltYl9pbnZhcmlhbnRfY29uc2Vuc3VzL3Jlc3VsdHMvY3Jvc3NfbW9kZWxfZXhwZXJpbWVudC9sbGFtYV9zY19hbnN3ZXJfbWF0cml4Lmpzb24iCmlmIG9zLnBhdGguZXhpc3RzKGxjKSBhbmQgb3MucGF0aC5leGlzdHMobGEpOgogICAgbHFzID0gZ2V0X2xsYW1hX3Blcl9xdWVzdGlvbl9kYXRhKGxjLCBsYSkKICAgIGlmIGxxczoKICAgICAgICBiciwgbG8sIGhpID0gYm9vdHN0cmFwX2JyKGxxcykKICAgICAgICBicjIsIGxvMiwgaGkyID0gYm9vdHN0cmFwX2JyX2NvdW50KGxxcykKICAgICAgICBwcmludChmIiAgRnJhYy1iYXNlZDogQlI9e2JyfSwgQ0k9W3tsb30sIHtoaX1dIikKICAgICAgICBwcmludChmIiAgQ291bnQtYmFzZWQ6IEJSPXticjJ9LCBDST1be2xvMn0sIHtoaTJ9XSIpCiAgICAgICAgcmVzdWx0c1siTExhTUEtMy4xLThCIl0gPSB7CiAgICAgICAgICAgICJiciI6IGJyLCAiY2lfbG93IjogbG8sICJjaV9oaWdoIjogaGksCiAgICAgICAgICAgICJicl9jb3VudCI6IGJyMiwgImNpX2xvd19jb3VudCI6IGxvMiwgImNpX2hpZ2hfY291bnQiOiBoaTIsCiAgICAgICAgICAgICJuX3F1ZXN0aW9ucyI6IGxlbihscXMpLAogICAgICAgICAgICAibm90ZSI6ICI0IHRyYWNlcyBmcm9tIGNyb3NzLW1vZGVsIGV4cGVyaW1lbnQiCiAgICAgICAgfQoKcHJpbnQoIlxuIiArIGpzb24uZHVtcHMocmVzdWx0cywgaW5kZW50PTIpKQp3aXRoIG9wZW4oIi90bXAvYnJfYm9vdHN0cmFwX2NpLmpzb24iLCAidyIpIGFzIGY6CiAgICBqc29uLmR1bXAocmVzdWx0cywgZiwgaW5kZW50PTIpCnByaW50KCJcblNhdmVkIHRvIC90bXAvYnJfYm9vdHN0cmFwX2NpLmpzb24iKQo=' | base64 -d > /tmp/bootstrap_br.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/bootstrap_br.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T07:10:19.004415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Mistral-7B ===\\n  83 SICA-wrong questions\\n  Frac-based: BR=4.9746, CI=[3.9836, 6.3708]\\n  Count-based: BR=5.2431, CI=[4.1909, 6.7274]\\n\\n=== Qwen2.5-14B ===\\n  45 SICA-wrong questions\\n  Frac-based: BR=3.2623, CI=[1.9991, 5.8674]\\n  Count-based: BR=3.8682, CI=[2.3049, 6.7548]\\n\\n=== LLaMA-3.1-8B ===\\n  LLaMA: 204 total, 86 SICA-wrong, 86 with data\\n  Frac-based: BR=3.8655, CI=[3.1104, 4.9839]\\n  Count-based: BR=4.0782, CI=[3.2396, 5.3086]\\n\\n{\\n  \\\"Mistral-7B\\\": {\\n    \\\"br\\\": 4.9746,\\n    \\\"ci_low\\\": 3.9836,\\n    \\\"ci_high\\\": 6.3708,\\n    \\\"br_count\\\": 5.2431,\\n    \\\"ci_low_count\\\": 4.1909,\\n    \\\"ci_high_count\\\": 6.7274,\\n    \\\"n_questions\\\": 83\\n  },\\n  \\\"Qwen2.5-14B\\\": {\\n    \\\"br\\\": 3.2623,\\n    \\\"ci_low\\\": 1.9991,\\n    \\\"ci_high\\\": 5.8674,\\n    \\\"br_count\\\": 3.8682,\\n    \\\"ci_low_count\\\": 2.3049,\\n    \\\"ci_high_count\\\": 6.7548,\\n    \\\"n_questions\\\": 45\\n  },\\n  \\\"LLaMA-3.1-8B\\\": {\\n    \\\"br\\\": 3.8655,\\n    \\\"ci_low\\\": 3.1104,\\n    \\\"ci_high\\\": 4.9839,\\n    \\\"br_count\\\": 4.0782,\\n    \\\"ci_low_count\\\": 3.2396,\\n    \\\"ci_high_count\\\": 5.3086,\\n    \\\"n_questions\\\": 86,\\n    \\\"note\\\": \\\"4 traces from cross-model experiment\\\"\\n  }\\n}\\n\\nSaved to /tmp/br_bootstrap_ci.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-21T07:10:19.004742+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T07:10:19.007174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pid\\\": \\\"folio_0\\\",\\n  \\\"gt\\\": \\\"Unknown\\\",\\n  \\\"per_trace\\\": [\\n    {\\n      \\\"trace_idx\\\": 0,\\n      \\\"answer\\\": \\\"True\\\",\\n      \\\"constraints\\\": [\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"perform_often(X) -> attend_engaged(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(perform_often_bonnie, attend_engaged_bonnie)\\\",\\n          \\\"source_step\\\": 1\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"perform_often(X) | inactive_disinterested(X)\\\",\\n          \\\"z3_formula\\\": \\\"Or(perform_often_bonnie, inactive_disinterested_bonnie)\\\",\\n          \\\"source_step\\\": 2\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"chaperone_dances(X) -> not_student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(chaperone_dances_bonnie, Not(student_bonnie))\\\",\\n          \\\"source_step\\\": 3\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"inactive_disinterested(X) -> chaperone_dances(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(inactive_disinterested_bonnie, chaperone_dances_bonnie)\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-21T07:10:19.007465+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -30 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -30 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T07:10:19.007743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pid\\\": \\\"folio_0\\\",\\n  \\\"gt\\\": \\\"Unknown\\\",\\n  \\\"per_trace\\\": [\\n    {\\n      \\\"trace_idx\\\": 0,\\n      \\\"answer\\\": \\\"Unknown\\\",\\n      \\\"constraints\\\": [\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"performs_in_school_talent_shows_often(X) -> attends_and_engaged_with_school_events(X) & student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(performs_in_school_talent_shows_often_X, And(attends_and_engaged_with_school_events_X, student_X))\\\",\\n          \\\"source_step\\\": 1\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"performs_in_school_talent_shows_often(X) | inactive_and_disinterested_member(X)\\\",\\n          \\\"z3_formula\\\": \\\"Or(performs_in_school_talent_shows_often_X, inactive_and_disinterested_member_X)\\\",\\n          \\\"source_step\\\": 4\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"chaperones_high_school_dances(X) -> !student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(chaperones_high_school_dances_X, Not(student_X))\\\",\\n          \\\"source_step\\\": 2\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"inactive_and_disinterested_member(X) -> chaperones_high_school_dances(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(inactive_and_disinterested_member_X, chaperones_high_school_dances_X)\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-21T07:10:19.008062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, os\nfrom collections import defaultdict\n\nwith open('/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json') as f:\n    data = json.load(f)\n\ncache_dir = '/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints'\nmissing = []\nempty = []\nfor r in data['results']:\n    if r['sica_answer'] == r['ground_truth']:\n        continue\n    pid = r['problem_id']\n    path = os.path.join(cache_dir, pid + '.json')\n    if not os.path.exists(path):\n        missing.append(pid)\n        continue\n    with open(path) as f2:\n        cd = json.load(f2)\n    total = 0\n    for t in cd.get('per_trace', []):\n        ans = (t.get('answer') or t.get('extracted_answer', '')).strip()\n        if not ans:\n            continue\n        total += len(t.get('constraints', []))\n    if total == 0:\n        empty.append(pid)\n\nprint(f'Missing cache: {len(missing)}: {missing}')\nprint(f'Empty constraints: {len(empty)}: {empty}')\nprint(f'Total SICA-wrong: {sum(1 for r in data[\\\"results\\\"] if r[\\\"sica_answer\\\"] != r[\\\"ground_truth\\\"])}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, os\nfrom collections import defaultdict\n\nwith open('/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json') as f:\n    data = json.load(f)\n\ncache_dir = '/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints'\nmissing = []\nempty = []\nfor r in data['results']:\n    if r['sica_answer'] == r['ground_truth']:\n        continue\n    pid = r['problem_id']\n    path = os.path.join(cache_dir, pid + '.json')\n    if not os.path.exists(path):\n        missing.append(pid)\n        continue\n    with open(path) as f2:\n        cd = json.load(f2)\n    total = 0\n    for t in cd.get('per_trace', []):\n        ans = (t.get('answer') or t.get('extracted_answer', '')).strip()\n        if not ans:\n            continue\n        total += len(t.get('constraints', []))\n    if total == 0:\n        empty.append(pid)\n\nprint(f'Missing cache: {len(missing)}: {missing}')\nprint(f'Empty constraints: {len(empty)}: {empty}')\nprint(f'Total SICA-wrong: {sum(1 for r in data[\\\"results\\\"] if r[\\\"sica_answer\\\"] != r[\\\"ground_truth\\\"])}')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T07:10:19.008311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Missing cache: 0: []\\nEmpty constraints: 7: ['folio_41', 'folio_63', 'folio_71', 'folio_81', 'folio_94', 'folio_102', 'folio_160']\\nTotal SICA-wrong: 52\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-21T07:10:19.008650+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, os\nimport numpy as np\nfrom collections import defaultdict\n\ndef load_raw_counts(cache_dir, pid):\n    path = os.path.join(cache_dir, pid + '.json')\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    ans_counts = defaultdict(int)\n    total = 0\n    for trace in data.get('per_trace', []):\n        ans = (trace.get('answer') or trace.get('extracted_answer', '')).strip()\n        if not ans:\n            continue\n        n = len(trace.get('constraints', []))\n        ans_counts[ans] += n\n        total += n\n    return dict(ans_counts), total\n\ndef get_questions(results_path, cache_dir):\n    with open(results_path) as f:\n        data = json.load(f)\n    questions = []\n    for r in data['results']:\n        gt = r['ground_truth']\n        if r['sica_answer'] == gt:\n            continue\n        pid = r['problem_id']\n        ans_counts, total_c = load_raw_counts(cache_dir, pid)\n        if ans_counts is None:\n            continue\n        gold_c = ans_counts.get(gt, 0)\n        gold_frac = gold_c / total_c if total_c > 0 else 0.0\n        questions.append(gold_frac)\n    return questions\n\ndef get_llama_questions(constraints_path, answer_matrix_path):\n    with open(constraints_path) as f:\n        cdata = json.load(f)\n    with open(answer_matrix_path) as f:\n        amatrix = json.load(f)\n    questions = []\n    for pid, pdata in amatrix.items():\n        gt = pdata['ground_truth']\n        if pid not in cdata:\n            continue\n        ans_counts = defaultdict(int)\n        total = 0\n        for trace in cdata[pid].get('per_trace', []):\n            ans = trace.get('answer', '').strip()\n            if not ans:\n                continue\n            n = len(trace.get('constraints', []))\n            ans_counts[ans] += n\n            total += n\n        sica_ans = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        if sica_ans == gt:\n            continue\n        gold_frac = ans_counts.get(gt, 0) / total if total > 0 else 0.0\n        questions.append(gold_frac)\n    return questions\n\ndef bootstrap(gold_fracs, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    gf = np.array(gold_fracs)\n    n = len(gf)\n    avg = np.mean(gf)\n    point_br = (1 - avg) / avg if avg > 0 else float('inf')\n    samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        bg = np.mean(gf[idx])\n        if bg > 0:\n            samples.append((1 - bg) / bg)\n    samples = np.array(samples)\n    return round(point_br, 2), round(float(np.percentile(samples, 2.5)), 2), round(float(np.percentile(samples, 97.5)), 2)\n\nresults = {}\n\n# Mistral\nmq = get_questions(\n    '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json',\n    '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache')\nbr, lo, hi = bootstrap(mq)\nprint(f'Mistral-7B: n={len(mq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['Mistral-7B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(mq)}\n\n# Qwen\nqq = get_questions(\n    '/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json',\n    '/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints')\nbr, lo, hi = bootstrap(qq)\nprint(f'Qwen2.5-14B: n={len(qq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['Qwen2.5-14B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(qq)}\n\n# LLaMA\nlq = get_llama_questions(\n    '/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json',\n    '/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json')\nbr, lo, hi = bootstrap(lq)\nprint(f'LLaMA-3.1-8B: n={len(lq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['LLaMA-3.1-8B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(lq), 'note': '4 traces from cross-model experiment, SICA by constraint-count majority'}\n\nprint()\nprint(json.dumps(results, indent=2))\nwith open('/tmp/br_bootstrap_ci.json', 'w') as f:\n    json.dump(results, f, indent=2)\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, os\nimport numpy as np\nfrom collections import defaultdict\n\ndef load_raw_counts(cache_dir, pid):\n    path = os.path.join(cache_dir, pid + '.json')\n    if not os.path.exists(path):\n        return None, 0\n    with open(path) as f:\n        data = json.load(f)\n    ans_counts = defaultdict(int)\n    total = 0\n    for trace in data.get('per_trace', []):\n        ans = (trace.get('answer') or trace.get('extracted_answer', '')).strip()\n        if not ans:\n            continue\n        n = len(trace.get('constraints', []))\n        ans_counts[ans] += n\n        total += n\n    return dict(ans_counts), total\n\ndef get_questions(results_path, cache_dir):\n    with open(results_path) as f:\n        data = json.load(f)\n    questions = []\n    for r in data['results']:\n        gt = r['ground_truth']\n        if r['sica_answer'] == gt:\n            continue\n        pid = r['problem_id']\n        ans_counts, total_c = load_raw_counts(cache_dir, pid)\n        if ans_counts is None:\n            continue\n        gold_c = ans_counts.get(gt, 0)\n        gold_frac = gold_c / total_c if total_c > 0 else 0.0\n        questions.append(gold_frac)\n    return questions\n\ndef get_llama_questions(constraints_path, answer_matrix_path):\n    with open(constraints_path) as f:\n        cdata = json.load(f)\n    with open(answer_matrix_path) as f:\n        amatrix = json.load(f)\n    questions = []\n    for pid, pdata in amatrix.items():\n        gt = pdata['ground_truth']\n        if pid not in cdata:\n            continue\n        ans_counts = defaultdict(int)\n        total = 0\n        for trace in cdata[pid].get('per_trace', []):\n            ans = trace.get('answer', '').strip()\n            if not ans:\n                continue\n            n = len(trace.get('constraints', []))\n            ans_counts[ans] += n\n            total += n\n        sica_ans = max(ans_counts, key=ans_counts.get) if ans_counts else None\n        if sica_ans == gt:\n            continue\n        gold_frac = ans_counts.get(gt, 0) / total if total > 0 else 0.0\n        questions.append(gold_frac)\n    return questions\n\ndef bootstrap(gold_fracs, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    gf = np.array(gold_fracs)\n    n = len(gf)\n    avg = np.mean(gf)\n    point_br = (1 - avg) / avg if avg > 0 else float('inf')\n    samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        bg = np.mean(gf[idx])\n        if bg > 0:\n            samples.append((1 - bg) / bg)\n    samples = np.array(samples)\n    return round(point_br, 2), round(float(np.percentile(samples, 2.5)), 2), round(float(np.percentile(samples, 97.5)), 2)\n\nresults = {}\n\n# Mistral\nmq = get_questions(\n    '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json',\n    '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache')\nbr, lo, hi = bootstrap(mq)\nprint(f'Mistral-7B: n={len(mq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['Mistral-7B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(mq)}\n\n# Qwen\nqq = get_questions(\n    '/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json',\n    '/root/symb_invariant_consensus/results/folio_204_14b/per_trace_constraints')\nbr, lo, hi = bootstrap(qq)\nprint(f'Qwen2.5-14B: n={len(qq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['Qwen2.5-14B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(qq)}\n\n# LLaMA\nlq = get_llama_questions(\n    '/root/symb_invariant_consensus/results/cross_model_experiment/llama_constraints_t0t3.json',\n    '/root/symb_invariant_consensus/results/cross_model_experiment/llama_sc_answer_matrix.json')\nbr, lo, hi = bootstrap(lq)\nprint(f'LLaMA-3.1-8B: n={len(lq)}, BR={br}, CI=[{lo}, {hi}]')\nresults['LLaMA-3.1-8B'] = {'br': br, 'ci_low': lo, 'ci_high': hi, 'n_questions': len(lq), 'note': '4 traces from cross-model experiment, SICA by constraint-count majority'}\n\nprint()\nprint(json.dumps(results, indent=2))\nwith open('/tmp/br_bootstrap_ci.json', 'w') as f:\n    json.dump(results, f, indent=2)\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T07:10:19.010405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mistral-7B: n=83, BR=4.97, CI=[3.98, 6.37]\\nQwen2.5-14B: n=52, BR=3.93, CI=[2.44, 7.11]\\nLLaMA-3.1-8B: n=86, BR=3.87, CI=[3.11, 4.98]\\n\\n{\\n  \\\"Mistral-7B\\\": {\\n    \\\"br\\\": 4.97,\\n    \\\"ci_low\\\": 3.98,\\n    \\\"ci_high\\\": 6.37,\\n    \\\"n_questions\\\": 83\\n  },\\n  \\\"Qwen2.5-14B\\\": {\\n    \\\"br\\\": 3.93,\\n    \\\"ci_low\\\": 2.44,\\n    \\\"ci_high\\\": 7.11,\\n    \\\"n_questions\\\": 52\\n  },\\n  \\\"LLaMA-3.1-8B\\\": {\\n    \\\"br\\\": 3.87,\\n    \\\"ci_low\\\": 3.11,\\n    \\\"ci_high\\\": 4.98,\\n    \\\"n_questions\\\": 86,\\n    \\\"note\\\": \\\"4 traces from cross-model experiment, SICA by constraint-count majority\\\"\\n  }\\n}\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-21T07:10:19.010759+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/br_bootstrap_ci.json",
+  "content": "{\n  \"Mistral-7B\": {\n    \"br\": 4.97,\n    \"ci_low\": 3.98,\n    \"ci_high\": 6.37,\n    \"n_questions\": 83\n  },\n  \"Qwen2.5-14B\": {\n    \"br\": 3.93,\n    \"ci_low\": 2.44,\n    \"ci_high\": 7.11,\n    \"n_questions\": 52\n  },\n  \"LLaMA-3.1-8B\": {\n    \"br\": 3.87,\n    \"ci_low\": 3.11,\n    \"ci_high\": 4.98,\n    \"n_questions\": 86,\n    \"note\": \"4 traces from cross-model experiment, SICA by constraint-count majority\"\n  },\n  \"method\": {\n    \"bootstrap_resamples\": 10000,\n    \"seed\": 42,\n    \"level\": \"question-level\",\n    \"statistic\": \"mean of per-question gold_frac, then BR = (1 - mean) / mean\",\n    \"ci_type\": \"percentile 95%\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/br_bootstrap_ci.json",
+    "content": "{\n  \"Mistral-7B\": {\n    \"br\": 4.97,\n    \"ci_low\": 3.98,\n    \"ci_high\": 6.37,\n    \"n_questions\": 83\n  },\n  \"Qwen2.5-14B\": {\n    \"br\": 3.93,\n    \"ci_low\": 2.44,\n    \"ci_high\": 7.11,\n    \"n_questions\": 52\n  },\n  \"LLaMA-3.1-8B\": {\n    \"br\": 3.87,\n    \"ci_low\": 3.11,\n    \"ci_high\": 4.98,\n    \"n_questions\": 86,\n    \"note\": \"4 traces from cross-model experiment, SICA by constraint-count majority\"\n  },\n  \"method\": {\n    \"bootstrap_resamples\": 10000,\n    \"seed\": 42,\n    \"level\": \"question-level\",\n    \"statistic\": \"mean of per-question gold_frac, then BR = (1 - mean) / mean\",\n    \"ci_type\": \"percentile 95%\"\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-21T07:10:19.011038+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/br_bootstrap_ci.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-21T07:10:19.011255+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "BR Bootstrap CI",
+  "type": "data",
+  "description": "95% bootstrap confidence intervals for Symbolic Confirmation Bias Ratio across 3 generators (Mistral-7B, Qwen2.5-14B, LLaMA-3.1-8B). 10000 question-level resamples.",
+  "project": "symb_invariant_consensus",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/br_bootstrap_ci.json",
+  "tags": "['bias_ratio', 'bootstrap', 'confidence_interval', 'confirmation_bias']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "BR Bootstrap CI",
+    "type": "data",
+    "description": "95% bootstrap confidence intervals for Symbolic Confirmation Bias Ratio across 3 generators (Mistral-7B, Qwen2.5-14B, LLaMA-3.1-8B). 10000 question-level resamples.",
+    "project": "symb_invariant_consensus",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/br_bootstrap_ci.json",
+    "tags": "['bias_ratio', 'bootstrap', 'confidence_interval', 'confirmation_bias']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-21T07:10:19.011504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_8ce47f\", \"name\": \"BR Bootstrap CI\", \"type\": \"data\", \"description\": \"95% bootstrap confidence intervals for Symbolic Confirmation Bias Ratio across 3 generators (Mistral-7B, Qwen2.5-14B, LLaMA-3.1-8B). 10000 question-level resamples.\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/data/br_bootstrap_ci.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T07:09:56.778323+00:00\", \"tags\": [\"bias_ratio\", \"bootstrap\", \"confidence_interval\", \"confirmation_bias\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-21T07:10:19.011798+00:00_
+
+结果：
+
+| Model | BR | 95% CI | n_questions |
+|---|---|---|---|
+| Mistral-7B | 4.97× | [3.98, 6.37] | 83 |
+| Qwen2.5-14B | 3.93× | [2.44, 7.11] | 52 |
+| LLaMA-3.1-8B | 3.87× | [3.11, 4.98] | 86 |
+
+数据验证：
+- Mistral 和 Qwen 的 BR 点估计与 `crossmodel_results.json` 中的 `raw_bias_ratio` 完全吻合
+- 论文提到的 2.88 在数据中未找到。实际值：Mistral=4.97, Qwen=3.93, LLaMA=3.87
+- **所有 CI 下界 > 1**，说明三个 generator 的 confirmation bias 均显著
+- Qwen CI 最宽 [2.44, 7.11]，因为只有 52 个 SICA-wrong 问题（最强模型，错误最少）
+- LLaMA 数据来自 cross-model 实验的 4 条 traces，SICA answer 用约束数量多数决定（非 MaxSAT），86 个问题
+
+已保存到 `artifacts/br_bootstrap_ci.json` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_br-bootstrap-ci_20260521T070003"
+}
+```
+
+</details>
+
+---

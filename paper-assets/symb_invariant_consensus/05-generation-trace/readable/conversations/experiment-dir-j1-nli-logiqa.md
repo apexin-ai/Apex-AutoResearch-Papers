@@ -1,0 +1,4209 @@
+# experiment dir j1 nli logiqa
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 149
+- **Recorded user turns:** 0
+- **Tool calls:** 74
+- **Original source:** `logs/chats/worker_experiment_dir-j1-nli-logiqa_20260520T173020.jsonl`
+- **Structured JSON:** [`32c68f5f805bcf31c2ca.json`](../../sessions/32/32c68f5f805bcf31c2ca.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+149 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T17:44:28.526936+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T17:44:28.527278+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T17:44:28.527448+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-16639"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-16639"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T17:44:28.527588+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T17:44:28.527715+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "echo \"=== ENV ===\" && which python3 && python3 --version && echo \"=== CONDA ===\" && ls -d /root/miniconda3 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "echo \"=== ENV ===\" && which python3 && python3 --version && echo \"=== CONDA ===\" && ls -d /root/miniconda3 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T17:44:28.527839+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T17:44:28.528018+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T17:44:28.528174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation_16639.json\\ncross_dataset\\ndir_c_premise_only_204\\ndir_d_dpp_trace_selection\\ndir_e_strict_verification\\ndir_f2_cross_model_verification\\ndir_f2_self_verification\\ndir_f_prm_verifier_pilot\\ndir_g_hard_negative_analysis\\ndir_h_provenance_analysis\\ndirection_d_cegis\\ndirection_g_decoupling\\ndirection_h_adversarial\\ndirection_j_bootstrap\\ndirection_j_dryrun\\ndirection_j_dryrun20\\ndirection_k_minority_report\\ndirection_q_premise_mutation\\nexp-063-llama8b-folio204-16639\\nexp028b_dryrun\\nexp028b_qwen3_thinking_folio204\\nexp032_qwen25_14b_pw600\\nexp033_mistral_7b_folio204\\nexp033_qwen3_14b_pw600_nonthinking\\nexp036_qwen25_14b_folio204\\nexp037_mistral7b_folio204\\nexp038_qwen25_14b_logiqa200\\nexp048_llama8b_pw600\\nexp049b_mistral_logiqa200\\nexp050_FAILED_overflow\\nexp050b_mistral_icl_oracle\\nexp052_mistral_folio204_seed123\\nexp053_mistral_folio204_seed456\\nexp055_multitemp_mistral_folio\\nexp064_deepseek_r1_qwen3_8b_folio204\\nexp064_dryrun\\nexp068_qwen3_logiqa200\\nexp069_llama8b_logiqa200\\nexp072_llama8b_logiqa200\\nexp072b_llama8b_logiqa200\\nexp077_kappa_generalization\\nexp078_debate_mistral_logiqa200\\nexp079_icg_mistral_logiqa200\\nexp081_debate_mistral_folio_seed123\\nexp082_contrastive_mistral_folio_seed123\\nfleiss_kappa_batch2.json\\nfleiss_kappa_unified_16639.json\\nmcnemar_recomputed_16639.json\\noracle_folio_mistral7b\\nprocess_kappa_summary_16639.json\\nsc_tiebreak_revalidation_16639.json\\nseed_replication_analysis.json\\nseed_replication_summary.json\\nwild2_ascii_perturbation\\nwild6_kappa_aware_sc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T17:44:28.528315+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T17:44:28.528440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp049b.log\\nexp049b_results.json\\nintermediates\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T17:44:28.528558+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T17:44:28.528678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp038.log\\nintermediates\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T17:44:28.528794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp068_qwen3_logiqa200/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T17:44:28.528944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp072b_llama8b_logiqa200/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp072b_llama8b_logiqa200/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T17:44:28.529084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dryrun.json\\ndryrun.log\\nexp068.log\\nexp068_results.json\\nintermediates\\nvllm.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T17:44:28.529205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp072b_results.json\\nexp072b_run.log\\nintermediates\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T17:44:28.529319+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/scripts/ -name '*deberta*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/scripts/ -name '*deberta*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T17:44:28.529444+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/scripts/ -name '*nli*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/scripts/ -name '*nli*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T17:44:28.529564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T17:44:28.529679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T17:44:28.529821+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T17:44:28.530032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"logiqa_000.json\\nlogiqa_001.json\\nlogiqa_002.json\\nlogiqa_003.json\\nlogiqa_004.json\\nlogiqa_005.json\\nlogiqa_006.json\\nlogiqa_007.json\\nlogiqa_008.json\\nlogiqa_009.json\\nlogiqa_010.json\\nlogiqa_011.json\\nlogiqa_012.json\\nlogiqa_013.json\\nlogiqa_014.json\\nlogiqa_015.json\\nlogiqa_016.json\\nlogiqa_017.json\\nlogiqa_018.json\\nlogiqa_019.json\\nlogiqa_020.json\\nlogiqa_021.json\\nlogiqa_022.json\\nlogiqa_023.json\\nlogiqa_024.json\\nlogiqa_025.json\\nlogiqa_026.json\\nlogiqa_027.json\\nlogiqa_028.json\\nlogiqa_029.json\\nlogiqa_030.json\\nlogiqa_031.json\\nlogiqa_032.json\\nlogiqa_033.json\\nlogiqa_034.json\\nlogiqa_035.json\\nlogiqa_036.json\\nlogiqa_037.json\\nlogiqa_038.json\\nlogiqa_039.json\\nlogiqa_040.json\\nlogiqa_041.json\\nlogiqa_042.json\\nlogiqa_043.json\\nlogiqa_044.json\\nlogiqa_045.json\\nlogiqa_046.json\\nlogiqa_047.json\\nlogiqa_048.json\\nlogiqa_049.json\\nlogiqa_050.json\\nlogiqa_051.json\\nlogiqa_052.json\\nlogiqa_053.json\\nlogiqa_054.json\\nlogiqa_055.json\\nlogiqa_056.json\\nlogiqa_057.json\\nlogiqa_058.json\\nlogiqa_059.json\\nlogiqa_060.json\\nlogiqa_061.json\\nlogiqa_062.json\\nlogiqa_063.json\\nlogiqa_064.json\\nlogiqa_065.json\\nlogiqa_066.json\\nlogiqa_067.json\\nlogiqa_068.json\\nlogiqa_069.json\\nlogiqa_070.json\\nlogiqa_071.json\\nlogiqa_072.json\\nlogiqa_073.json\\nlogiqa_074.json\\nlogiqa_075.json\\nlogiqa_076.json\\nlogiqa_077.json\\nlogiqa_078.json\\nlogiqa_079.json\\nlogiqa_080.json\\nlogiqa_081.json\\nlogiqa_082.json\\nlogiqa_083.json\\nlogiqa_084.json\\nlogiqa_085.json\\nlogiqa_086.json\\nlogiqa_087.json\\nlogiqa_088.json\\nlogiqa_089.json\\nlogiqa_090.json\\nlogiqa_091.json\\nlogiqa_092.json\\nlogiqa_093.json\\nlogiqa_094.json\\nlogiqa_095.json\\nlogiqa_096.json\\nlogiqa_097.json\\nlogiqa_098.json\\nlogiqa_099.json\\nlogiqa_100.json\\nlogiqa_101.json\\nlogiqa_102.json\\nlogiqa_103.json\\nlogiqa_104.json\\nlogiqa_105.json\\nlogiqa_106.json\\nlogiqa_107.json\\n
+…[truncated 1760 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T17:44:28.530181+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/exp049b_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -100 /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/exp049b_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T17:44:28.530419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 200,\\n    \\\"sica_accuracy\\\": 0.515,\\n    \\\"sc_accuracy\\\": 0.51,\\n    \\\"sica_correct\\\": 103,\\n    \\\"sc_correct\\\": 102,\\n    \\\"extraction_rate\\\": 0.9725,\\n    \\\"total_constraints_extracted\\\": 10659,\\n    \\\"total_unique_constraints\\\": 8934,\\n    \\\"contradiction_rate\\\": 0.019588090441011865,\\n    \\\"problems_with_contradictions\\\": 86,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"unknown\\\": {\\n        \\\"sica\\\": 0.515,\\n        \\\"sc\\\": 0.51,\\n        \\\"n\\\": 200\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"logiqa\\\": {\\n        \\\"sica\\\": 0.515,\\n        \\\"sc\\\": 0.51,\\n        \\\"n\\\": 200\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4717.7\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"logiqa_000\\\",\\n      \\\"problem\\\": \\\"Context: One seminar had 18 participants. It is known that :(1) At least 5 young teachers are female; (2) At least 6 female teachers are over middle age; (3) At least seven young women are teachers;\\\\n\\\\nQuestion: According to the above information, which of the following can be concluded about the participants?\\\\n\\\\nA. Some young teachers are not women\\\\nB. Some young women are not teachers\\\\nC. There are at least 11 young teachers\\\\nD. There are at least 13 female teachers\\\",\\n      \\\"dataset\\\": \\\"logiqa\\\",\\n      \\\"level\\\": \\\"unknown\\\",\\n      \\\"ground_truth\\\": \\\"D\\\",\\n      \\\"sica_answer\\\": \\\"D\\\",\\n      \\\"sica_scores\\\": {\\n        \\\"B\\\": 9.0,\\n        \\\"None of the above\\\": 0.0,\\n        \\\"Inconclusive\\\": 2.0,\\n        \\\"D\\\": 9.0,\\n        \\\"B. Some young women are not teachers\\\": 3.0\\n      },\\n      \\\"sica_correct\\\": true,\\n      \\\
+…[truncated 2791 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T17:44:28.530584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/scripts/ -name '*direction_r*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/scripts/ -name '*direction_r*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T17:44:28.530712+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T17:44:28.530831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/scripts/ -name '*direction_j*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/scripts/ -name '*direction_j*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T17:44:28.530983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T17:44:28.531102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/ -name '*nli_verif*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/ -name '*nli_verif*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T17:44:28.531221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T17:44:28.531373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -120 /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates/logiqa_000.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -120 /root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates/logiqa_000.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T17:44:28.531616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"logiqa_000\\\",\\n    \\\"problem\\\": \\\"Context: One seminar had 18 participants. It is known that :(1) At least 5 young teachers are female; (2) At least 6 female teachers are over middle age; (3) At least seven young women are teachers;\\\\n\\\\nQuestion: According to the above information, which of the following can be concluded about the participants?\\\\n\\\\nA. Some young teachers are not women\\\\nB. Some young women are not teachers\\\\nC. There are at least 11 young teachers\\\\nD. There are at least 13 female teachers\\\",\\n    \\\"answer\\\": \\\"D\\\",\\n    \\\"dataset\\\": \\\"logiqa\\\",\\n    \\\"choices\\\": [\\n      \\\"A. Some young teachers are not women\\\",\\n      \\\"B. Some young women are not teachers\\\",\\n      \\\"C. There are at least 11 young teachers\\\",\\n      \\\"D. There are at least 13 female teachers\\\"\\n    ],\\n    \\\"context\\\": \\\"One seminar had 18 participants. It is known that :(1) At least 5 young teachers are female; (2) At least 6 female teachers are over middle age; (3) At least seven young women are teachers;\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"D\\\",\\n    \\\"scores\\\": {\\n      \\\"B\\\": 9.0,\\n      \\\"None of the above\\\": 0.0,\\n      \\\"Inconclusive\\\": 2.0,\\n      \\\"D\\\": 9.0,\\n      \\\"B. Some young women are not teachers\\\": 3.0\\n    },\\n    \\\"answer_counts\\\": {\\n      \\\"D\\\": 5,\\n      \\\"B\\\": 2,\\n      \\\"Inconclusive\\\": 1,\\n      \\\"None of the above\\\": 1,\\n      \\\"B. Some young women are not teachers\\\": 2\\n    },\\n    \\\"traces\\\": [\\n      {\\n        \\\"trace\\\": \\\" To answer this question, let's break down the given information and consider each option:\\\\n\\\\nA. Some young teachers are not women:\\\\n(1) We know that at least 5 young teachers are female. However, we don't have any information about the gende
+…[truncated 6927 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T17:44:28.531780+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/ -name '*direction_r*' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/ -name '*direction_r*' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T17:44:28.531926+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/scripts/ -type f -name '*.py'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/scripts/ -type f -name '*.py'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T17:44:28.532057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T17:44:28.532196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/extract_exp033_per_problem.py\\n/root/symb_invariant_consensus/scripts/track_discordant_pairs.py\\n/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/entropy_breakdown.py\\n/root/symb_invariant_consensus/scripts/dir_f_prm_verifier_pilot.py\\n/root/symb_invariant_consensus/scripts/dir_d_dpp_trace_selection.py\\n/root/symb_invariant_consensus/scripts/dir_f2_cross_model_verify.py\\n/root/symb_invariant_consensus/scripts/dir_h_provenance_analysis.py\\n/root/symb_invariant_consensus/scripts/dir_f2_self_verify.py\\n/root/symb_invariant_consensus/scripts/analyze_seed_replication.py\\n/root/symb_invariant_consensus/scripts/cross_model_extract.py\\n/root/symb_invariant_consensus/scripts/postprocess_case_study.py\\n/root/symb_invariant_consensus/scripts/run_exp031_oracle_folio_regen.py\\n/root/symb_invariant_consensus/scripts/summarize_k_sensitivity.py\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\n/root/symb_invariant_consensus/scripts/discriminative_filter.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/scripts/exp060_dryrun.py\\n/root/symb_invariant_consensus/scripts/run_exp089_oracle_folio_mistral7b.py\\n/root/symb_invariant_consensus/scripts/dir_c_premise_only.py\\n/root/symb_invariant_consensus/scripts/dir_e_strict_verification.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T17:44:28.532360+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -80 /root/symb_invariant_consensus/scripts/dir_e_strict_verification.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -80 /root/symb_invariant_consensus/scripts/dir_e_strict_verification.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T17:44:28.532526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Dir-E: Z3 Strict-Mode Verification — FOLIO 30-problem Pilot\\n\\nChecks constraint set consistency using z3.Solver.check() (strict mode)\\ninstead of MAX-SAT optimize(). Finds MUS for UNSAT sets, removes them,\\nand rescores.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport os\\nimport time\\nfrom collections import Counter\\nfrom math import comb\\nfrom pathlib import Path\\n\\nsys.path.insert(0, '/root/symb_invariant_consensus')\\nfrom sica.z3_maxsat import parse_z3_formula, ConstraintDeduplicator, UniqueConstraint\\n\\nimport z3\\n\\nz3.set_param('smt.random_seed', 42)\\nz3.set_param('sat.random_seed', 42)\\n\\nCONSTRAINT_CACHE_DIR = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache')\\nRESULTS_FILE = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json')\\nSC_MATRIX_FILE = Path('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json')\\nOUTPUT_DIR = Path('/root/symb_invariant_consensus/results/dir_e_strict_verification')\\nN_PROBLEMS = 30\\nCANDIDATES = ['True', 'False', 'Unknown']\\nALPHA = 0.5\\n\\n\\ndef iterative_mus_removal(unique_constraints, max_rounds=20):\\n    \\\"\\\"\\\"Iteratively find and remove unsat_core until remaining set is SAT.\\n\\n    Returns (filtered_constraints, all_removed, n_rounds).\\n    \\\"\\\"\\\"\\n    remaining = list(unique_constraints)\\n    all_removed = []\\n    rounds = 0\\n\\n    for _ in range(max_rounds):\\n        valid = [(i, uc) for i, uc in enumerate(remaining)\\n                 if uc.z3_formula is not None and z3.is_bool(uc.z3_formula)]\\n        if not valid:\\n            break\\n\\n        s = z3.Solver()\\n        s.set(\\\"timeout\\\", 5000)\\n        tracker_map = {}\\n        for i, uc in valid:\\n            t = z3.Bool(f'__trk_{i}_{rounds}')\\n            tracker_map[str(t)] = i\\n            s.assert_an
+…[truncated 939 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T17:44:28.532687+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/models/ -maxdepth 2 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/models/ -maxdepth 2 -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T17:44:28.532866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/\\n/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\n/root/autodl-tmp/models/Qwen2.5-14B-Instruct/._____temp\\n/root/autodl-tmp/models/Qwen3-14B\\n/root/autodl-tmp/models/Qwen3-14B/._____temp\\n/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\n/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/.cache\\n/root/autodl-tmp/models/test_hf_speed\\n/root/autodl-tmp/models/test_hf_speed/.cache\\n/root/autodl-tmp/models/gemma-3-27b-it\\n/root/autodl-tmp/models/gemma-3-27b-it/.cache\\n/root/autodl-tmp/models/deepseek-r1-0528-qwen3-8b\\n/root/autodl-tmp/models/deepseek-r1-0528-qwen3-8b/figures\\n/root/autodl-tmp/models/deepseek-r1-0528-qwen3-8b/._____temp\\n/root/autodl-tmp/models/phi-4-reasoning\\n/root/autodl-tmp/models/phi-4-reasoning/.cache\\n/root/autodl-tmp/models/llama-4-scout\\n/root/autodl-tmp/models/llama-4-scout/.cache\\n/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct\\n/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/.cache\\n/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/original\\n/root/autodl-tmp/models/deberta-base-mnli\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T17:44:28.533034+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/ -maxdepth 3 -type d -iname '*deberta*'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/ -maxdepth 3 -type d -iname '*deberta*'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T17:44:28.533169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/deberta-base-mnli\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T17:44:28.533291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T17:44:28.533411+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T17:44:28.533563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/models/deberta-base-mnli/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/models/deberta-base-mnli/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T17:44:28.533715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config.json\\nmerges.txt\\nmodel.safetensors\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T17:44:28.533869+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available()); from transformers import AutoTokenizer; print('transformers OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available()); from transformers import AutoTokenizer; print('transformers OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T17:44:28.534036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"torch 2.11.0+cu130 cuda True\\ntransformers OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T17:44:28.534157+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T17:44:28.534327+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n\\t\\\"num_labels\\\": 3,\\n\\t\\\"architectures\\\": [\\n    \\\"DebertaForSequenceClassification\\\"\\n  ],\\n \\t\\\"id2label\\\": {\\n    \\\"0\\\": \\\"CONTRADICTION\\\",\\n    \\\"1\\\": \\\"NEUTRAL\\\",\\n    \\\"2\\\": \\\"ENTAILMENT\\\"\\n  },\\n  \\\"label2id\\\": {\\n    \\\"CONTRADICTION\\\": 0,\\n    \\\"NEUTRAL\\\": 1,\\n    \\\"ENTAILMENT\\\": 2\\n  },\\n\\t\\\"model_type\\\": \\\"deberta\\\",\\n\\t\\\"attention_probs_dropout_prob\\\": 0.1,\\n\\t\\\"hidden_act\\\": \\\"gelu\\\",\\n\\t\\\"hidden_dropout_prob\\\": 0.1,\\n\\t\\\"hidden_size\\\": 768,\\n\\t\\\"initializer_range\\\": 0.02,\\n\\t\\\"intermediate_size\\\": 3072,\\n\\t\\\"max_position_embeddings\\\": 512,\\n\\t\\\"relative_attention\\\": true,\\n\\t\\\"pos_att_type\\\": \\\"c2p|p2c\\\",\\n\\t\\\"layer_norm_eps\\\": 1e-7,\\n\\t\\\"max_relative_positions\\\": -1,\\n\\t\\\"position_biased_input\\\": false,\\n\\t\\\"num_attention_heads\\\": 12,\\n\\t\\\"num_hidden_layers\\\": 12,\\n\\t\\\"type_vocab_size\\\": 0,\\n\\t\\\"vocab_size\\\": 50265\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T17:44:28.534557+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scipy.stats import binomtest; print('scipy OK')\" 2>&1 || python3 -c \"from scipy.stats import binom_test; print('scipy binom_test OK')\" 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scipy.stats import binomtest; print('scipy OK')\" 2>&1 || python3 -c \"from scipy.stats import binom_test; print('scipy binom_test OK')\" 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T17:44:28.534697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scipy OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T17:44:28.534850+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "mkdir -p /root/symb_invariant_consensus/scripts && cat > /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Dir-J1: DeBERTa-MNLI Verifier on LogiQA — Cross-dataset NLI escape test\n\nFor each LogiQA problem:\n  - NLI(premise=context, hypothesis=choice_text) for each of 4 choices\n  - Combined score = SC_votes[choice] + w * NLI_entailment_prob[choice]\n  - Test w=1, w=3, w=5\n\"\"\"\n\nimport json\nimport os\nimport time\nimport re\nimport numpy as np\nfrom pathlib import Path\nfrom collections import Counter\nfrom scipy.stats import binomtest\n\nimport torch\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = \"/root/autodl-tmp/models/deberta-base-mnli\"\nTRACE_DIR = Path(\"/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_j1_nli_logiqa\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nDEVICE = \"cpu\"\nWEIGHTS = [1, 3, 5]\nCANONICAL = [\"A\", \"B\", \"C\", \"D\"]\n\n\ndef normalize_answer(raw, choices):\n    if not raw:\n        return None\n    raw = raw.strip()\n    if raw in CANONICAL:\n        return raw\n    m = re.match(r'^([A-D])\\b', raw)\n    if m:\n        return m.group(1)\n    for i, ch in enumerate(choices):\n        ch_text = re.sub(r'^[A-D]\\.\\s*', '', ch).strip()\n        if raw.lower() == ch_text.lower() or raw.lower() == ch.lower():\n            return CANONICAL[i]\n    return None\n\n\ndef get_sc_votes(traces, choices):\n    votes = Counter()\n    for tr in traces:\n        ans = normalize_answer(tr[\"answer\"], choices)\n        if ans:\n            votes[ans] += 1\n    return votes\n\n\ndef sc_answer_from_votes(votes):\n    if not votes:\n        return None\n    return max(CANONICAL, key=lambda x: votes.get(x, 0))\n\n\ndef run_nli_batch(model, tokenizer, premise, hypotheses, device):\n    inputs = tokenizer(\n        [premise] * len(hypotheses), hypotheses,\n        return_tensors=\"pt\", truncation=True, max_length=512, padding=True\n    ).to(device)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    # label 2 = ENTAILMENT\n    return probs[:, 2].cpu().numpy().tolist()\n\n\ndef mcnemar(sc_correct, combo_correct):\n    b = sum(1 for s, c in zip(sc_correct, combo_correct) if not s and c)\n    c = sum(1 for s, c in zip(sc_correct, combo_correct) if s and not c)\n    n = b + c\n    if n == 0:\n        return 1.0, b, c\n    result = binomtest(min(b, c), n, 0.5)\n    return result.pvalue, b, c\n\n\ndef main():\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\n    model.eval()\n    model.to(DEVICE)\n    print(f\"Model on {DEVICE}\")\n\n    trace_files = sorted(TRACE_DIR.glob(\"logiqa_*.json\"))\n    print(f\"Found {len(trace_files)} trace files\")\n\n    per_problem = []\n    sc_answers_list = []\n    gt_list = []\n    nli_best_list = []\n\n    t0 = time.time()\n    for i, tf in enumerate(trace_files):\n        with open(tf) as f:\n            data = json.load(f)\n\n        ctx = data[\"problem\"][\"context\"]\n        choices = data[\"problem\"][\"choices\"]\n        gt = data[\"problem\"][\"answer\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n\n        sc_vote = get_sc_votes(traces, choices)\n        sc_ans = sc_answer_from_votes(sc_vote)\n\n        ent_probs = run_nli_batch(model, tokenizer, ctx, choice_texts, DEVICE)\n        nli_best = CANONICAL[int(np.argmax(ent_probs))]\n\n        rec = {\n            \"problem_id\": data[\"problem\"][\"id\"],\n            \"ground_truth\": gt,\n            \"sc_votes\": dict(sc_vote),\n            \"sc_answer\": sc_ans,\n            \"nli_entailment_probs\": {CANONICAL[j]: round(ent_probs[j], 6) for j in range(4)},\n            \"nli_best\": nli_best,\n        }\n        per_problem.append(rec)\n        sc_answers_list.append(sc_ans)\n        gt_list.append(gt)\n        nli_best_list.append(nli_best)\n\n        if (i + 1) % 50 == 0:\n            print(f\"  {i+1}/{len(trace_files)} ({time.time()-t0:.1f}s)\")\n\n    elapsed = time.time() - t0\n    print(f\"NLI done in {elapsed:.1f}s\")\n\n    sc_correct = [s == g for s, g in zip(sc_answers_list, gt_list)]\n    sc_acc = sum(sc_correct) / len(sc_correct)\n    nli_correct = [n == g for n, g in zip(nli_best_list, gt_list)]\n    nli_acc = sum(nli_correct) / len(nli_correct)\n\n    weight_results = {}\n    for w in WEIGHTS:\n        combo_answers = []\n        for idx, rec in enumerate(per_problem):\n            sv = rec[\"sc_votes\"]\n            np_ = rec[\"nli_entailment_probs\"]\n            combined = {ch: sv.get(ch, 0) + w * np_.get(ch, 0) for ch in CANONICAL}\n            best = max(CANONICAL, key=lambda x: combined[x])\n            combo_answers.append(best)\n            rec[f\"combo_w{w}\"] = best\n            rec[f\"combined_w{w}\"] = {k: round(v, 4) for k, v in combined.items()}\n\n        combo_correct = [ca == g for ca, g in zip(combo_answers, gt_list)]\n        combo_acc = sum(combo_correct) / len(combo_correct)\n        delta = combo_acc - sc_acc\n        p, b, c = mcnemar(sc_correct, combo_correct)\n\n        weight_results[f\"w={w}\"] = {\n            \"combo_accuracy\": round(combo_acc, 4),\n            \"sc_accuracy\": round(sc_acc, 4),\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_p\": round(p, 6),\n            \"discordant_b\": b,\n            \"discordant_c\": c,\n        }\n\n    output = {\n        \"experiment\": \"Dir-J1: DeBERTa-MNLI Verifier on LogiQA\",\n        \"model\": \"deberta-base-mnli\",\n        \"dataset\": \"LogiQA-200 (Mistral-7B traces, exp049b)\",\n        \"n_problems\": len(trace_files),\n        \"device\": DEVICE,\n        \"elapsed_s\": round(elapsed, 1),\n        \"sc_accuracy\": round(sc_acc, 4),\n        \"nli_only_accuracy\": round(nli_acc, 4),\n        \"weight_results\": weight_results,\n        \"per_problem\": per_problem,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults → {out_path}\")\n    print(f\"SC accuracy:       {sc_acc:.4f} ({sum(sc_correct)}/{len(sc_correct)})\")\n    print(f\"NLI-only accuracy: {nli_acc:.4f} ({sum(nli_correct)}/{len(nli_correct)})\")\n    for wk, wv in weight_results.items():\n        print(f\"  {wk}: combo={wv['combo_accuracy']:.4f}, Δ={wv['delta_pp']:+.2f}pp, p={wv['mcnemar_p']:.4f}, discordant=({wv['discordant_b']},{wv['discordant_c']})\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "mkdir -p /root/symb_invariant_consensus/scripts && cat > /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Dir-J1: DeBERTa-MNLI Verifier on LogiQA — Cross-dataset NLI escape test\n\nFor each LogiQA problem:\n  - NLI(premise=context, hypothesis=choice_text) for each of 4 choices\n  - Combined score = SC_votes[choice] + w * NLI_entailment_prob[choice]\n  - Test w=1, w=3, w=5\n\"\"\"\n\nimport json\nimport os\nimport time\nimport re\nimport numpy as np\nfrom pathlib import Path\nfrom collections import Counter\nfrom scipy.stats import binomtest\n\nimport torch\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = \"/root/autodl-tmp/models/deberta-base-mnli\"\nTRACE_DIR = Path(\"/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_j1_nli_logiqa\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nDEVICE = \"cpu\"\nWEIGHTS = [1, 3, 5]\nCANONICAL = [\"A\", \"B\", \"C\", \"D\"]\n\n\ndef normalize_answer(raw, choices):\n    if not raw:\n        return None\n    raw = raw.strip()\n    if raw in CANONICAL:\n        return raw\n    m = re.match(r'^([A-D])\\b', raw)\n    if m:\n        return m.group(1)\n    for i, ch in enumerate(choices):\n        ch_text = re.sub(r'^[A-D]\\.\\s*', '', ch).strip()\n        if raw.lower() == ch_text.lower() or raw.lower() == ch.lower():\n            return CANONICAL[i]\n    return None\n\n\ndef get_sc_votes(traces, choices):\n    votes = Counter()\n    for tr in traces:\n        ans = normalize_answer(tr[\"answer\"], choices)\n        if ans:\n            votes[ans] += 1\n    return votes\n\n\ndef sc_answer_from_votes(votes):\n    if not votes:\n        return None\n    return max(CANONICAL, key=lambda x: votes.get(x, 0))\n\n\ndef run_nli_batch(model, tokenizer, premise, hypotheses, device):\n    inputs = tokenizer(\n        [premise] * len(hypotheses), hypotheses,\n        return_tensors=\"pt\", truncation=True, max_length=512, padding=True\n    ).to(device)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    # label 2 = ENTAILMENT\n    return probs[:, 2].cpu().numpy().tolist()\n\n\ndef mcnemar(sc_correct, combo_correct):\n    b = sum(1 for s, c in zip(sc_correct, combo_correct) if not s and c)\n    c = sum(1 for s, c in zip(sc_correct, combo_correct) if s and not c)\n    n = b + c\n    if n == 0:\n        return 1.0, b, c\n    result = binomtest(min(b, c), n, 0.5)\n    return result.pvalue, b, c\n\n\ndef main():\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\n    model.eval()\n    model.to(DEVICE)\n    print(f\"Model on {DEVICE}\")\n\n    trace_files = sorted(TRACE_DIR.glob(\"logiqa_*.json\"))\n    print(f\"Found {len(trace_files)} trace files\")\n\n    per_problem = []\n    sc_answers_list = []\n    gt_list = []\n    nli_best_list = []\n\n    t0 = time.time()\n    for i, tf in enumerate(trace_files):\n        with open(tf) as f:\n            data = json.load(f)\n\n        ctx = data[\"problem\"][\"context\"]\n        choices = data[\"problem\"][\"choices\"]\n        gt = data[\"problem\"][\"answer\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n\n        sc_vote = get_sc_votes(traces, choices)\n        sc_ans = sc_answer_from_votes(sc_vote)\n\n        ent_probs = run_nli_batch(model, tokenizer, ctx, choice_texts, DEVICE)\n        nli_best = CANONICAL[int(np.argmax(ent_probs))]\n\n        rec = {\n            \"problem_id\": data[\"problem\"][\"id\"],\n            \"ground_truth\": gt,\n            \"sc_votes\": dict(sc_vote),\n            \"sc_answer\": sc_ans,\n            \"nli_entailment_probs\": {CANONICAL[j]: round(ent_probs[j], 6) for j in range(4)},\n            \"nli_best\": nli_best,\n        }\n        per_problem.append(rec)\n        sc_answers_list.append(sc_ans)\n        gt_list.append(gt)\n        nli_best_list.append(nli_best)\n\n        if (i + 1) % 50 == 0:\n            print(f\"  {i+1}/{len(trace_files)} ({time.time()-t0:.1f}s)\")\n\n    elapsed = time.time() - t0\n    print(f\"NLI done in {elapsed:.1f}s\")\n\n    sc_correct = [s == g for s, g in zip(sc_answers_list, gt_list)]\n    sc_acc = sum(sc_correct) / len(sc_correct)\n    nli_correct = [n == g for n, g in zip(nli_best_list, gt_list)]\n    nli_acc = sum(nli_correct) / len(nli_correct)\n\n    weight_results = {}\n    for w in WEIGHTS:\n        combo_answers = []\n        for idx, rec in enumerate(per_problem):\n            sv = rec[\"sc_votes\"]\n            np_ = rec[\"nli_entailment_probs\"]\n            combined = {ch: sv.get(ch, 0) + w * np_.get(ch, 0) for ch in CANONICAL}\n            best = max(CANONICAL, key=lambda x: combined[x])\n            combo_answers.append(best)\n            rec[f\"combo_w{w}\"] = best\n            rec[f\"combined_w{w}\"] = {k: round(v, 4) for k, v in combined.items()}\n\n        combo_correct = [ca == g for ca, g in zip(combo_answers, gt_list)]\n        combo_acc = sum(combo_correct) / len(combo_correct)\n        delta = combo_acc - sc_acc\n        p, b, c = mcnemar(sc_correct, combo_correct)\n\n        weight_results[f\"w={w}\"] = {\n            \"combo_accuracy\": round(combo_acc, 4),\n            \"sc_accuracy\": round(sc_acc, 4),\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_p\": round(p, 6),\n            \"discordant_b\": b,\n            \"discordant_c\": c,\n        }\n\n    output = {\n        \"experiment\": \"Dir-J1: DeBERTa-MNLI Verifier on LogiQA\",\n        \"model\": \"deberta-base-mnli\",\n        \"dataset\": \"LogiQA-200 (Mistral-7B traces, exp049b)\",\n        \"n_problems\": len(trace_files),\n        \"device\": DEVICE,\n        \"elapsed_s\": round(elapsed, 1),\n        \"sc_accuracy\": round(sc_acc, 4),\n        \"nli_only_accuracy\": round(nli_acc, 4),\n        \"weight_results\": weight_results,\n        \"per_problem\": per_problem,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults → {out_path}\")\n    print(f\"SC accuracy:       {sc_acc:.4f} ({sum(sc_correct)}/{len(sc_correct)})\")\n    print(f\"NLI-only accuracy: {nli_acc:.4f} ({sum(nli_correct)}/{len(nli_correct)})\")\n    for wk, wv in weight_results.items():\n        print(f\"  {wk}: combo={wv['combo_accuracy']:.4f}, Δ={wv['delta_pp']:+.2f}pp, p={wv['mcnemar_p']:.4f}, discordant=({wv['discordant_b']},{wv['discordant_c']})\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T17:44:28.535081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T17:44:28.535234+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom pathlib import Path\nimport json\n\n# Check paths\ntrace_dir = Path('/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates')\nmodel_path = Path('/root/autodl-tmp/models/deberta-base-mnli')\nscript = Path('/root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py')\n\nprint('trace_dir exists:', trace_dir.exists())\nprint('model_path exists:', model_path.exists())\nprint('script exists:', script.exists())\nprint('n traces:', len(list(trace_dir.glob('logiqa_*.json'))))\n\n# Check first trace loads OK\nwith open(trace_dir / 'logiqa_000.json') as f:\n    d = json.load(f)\nprint('keys:', list(d.keys()))\nprint('context len:', len(d['problem']['context']))\nprint('n_choices:', len(d['problem']['choices']))\nprint('n_traces:', len(d['sica_result']['traces']))\nprint('gt:', d['problem']['answer'])\n\n# Check model loads\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\ntok = AutoTokenizer.from_pretrained(str(model_path))\nmodel = AutoModelForSequenceClassification.from_pretrained(str(model_path))\nprint('model loaded, labels:', model.config.num_labels)\n\nimport torch\ninputs = tok('test premise', 'test hypothesis', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nprint('NLI probs:', [round(p.item(), 4) for p in probs])\nprint('DRY-RUN OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom pathlib import Path\nimport json\n\n# Check paths\ntrace_dir = Path('/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates')\nmodel_path = Path('/root/autodl-tmp/models/deberta-base-mnli')\nscript = Path('/root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py')\n\nprint('trace_dir exists:', trace_dir.exists())\nprint('model_path exists:', model_path.exists())\nprint('script exists:', script.exists())\nprint('n traces:', len(list(trace_dir.glob('logiqa_*.json'))))\n\n# Check first trace loads OK\nwith open(trace_dir / 'logiqa_000.json') as f:\n    d = json.load(f)\nprint('keys:', list(d.keys()))\nprint('context len:', len(d['problem']['context']))\nprint('n_choices:', len(d['problem']['choices']))\nprint('n_traces:', len(d['sica_result']['traces']))\nprint('gt:', d['problem']['answer'])\n\n# Check model loads\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\ntok = AutoTokenizer.from_pretrained(str(model_path))\nmodel = AutoModelForSequenceClassification.from_pretrained(str(model_path))\nprint('model loaded, labels:', model.config.num_labels)\n\nimport torch\ninputs = tok('test premise', 'test hypothesis', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nprint('NLI probs:', [round(p.item(), 4) for p in probs])\nprint('DRY-RUN OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T17:44:28.535412+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nfrom pathlib import Path\\\\nimport json\\\\n\\\\n# Check paths\\\\ntrace_dir = Path(\\\\'/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates\\\\')\\\\nmodel_path = Path(\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nscript = Path(\\\\'/root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py\\\\')\\\\n\\\\nprint(\\\\'trace_dir exists:\\\\', trace_dir.exists())\\\\nprint(\\\\'model_path exists:\\\\', model_path.exists())\\\\nprint(\\\\'script exists:\\\\', script.exists())\\\\nprint(\\\\'n traces:\\\\', len(list(trace_dir.glob(\\\\'logiqa_*.json\\\\'))))\\\\n\\\\n# Check first trace loads OK\\\\nwith open(trace_dir / \\\\'logiqa_000.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(\\\\'keys:\\\\', list(d.keys()))\\\\nprint(\\\\'context len:\\\\', len(d[\\\\'problem\\\\'][\\\\'context\\\\']))\\\\nprint(\\\\'n_choices:\\\\', len(d[\\\\'problem\\\\'][\\\\'choices\\\\']))\\\\nprint(\\\\'n_traces:\\\\', len(d[\\\\'sica_result\\\\'][\\\\'traces\\\\']))\\\\nprint(\\\\'gt:\\\\', d[\\\\'problem\\\\'][\\\\'answer\\\\'])\\\\n\\\\n# Check model loads\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\ntok = AutoTokenizer.from_pretrained(str(model_path))\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(str(model_path))\\\\nprint(\\\\'model loaded, labels:\\\\', model.config.num_labels)\\\\n\\\\nimport torch\\\\ninputs = tok(\\\\'test premise\\\\', \\\\'test hypothesis\\\\', return_tensors=\\\\'pt\\\\', truncation=True, max_length=512)\\\\nwith torch.no_grad():\\\\n    out = model(**inputs)\\\\nprobs = torch.softmax(out.logits, dim=-1)[0]\\\\nprint(\\\\'NLI probs:\\\\', [round(p.item(), 4) for p in probs])\\\\nprint(\\\\'DRY-RUN OK\\\\')\\\\n\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\ntrace_dir e
+…[truncated 872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T17:44:28.535592+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -5 /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -5 /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T17:44:28.535728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"do_lower_case\\\": false,\\n\\t\\\"vocab_type\\\": \\\"gpt2\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T17:44:28.535851+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T17:44:28.535999+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"52 /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T17:44:28.536117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-20T17:44:28.536239+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T17:44:28.536360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T17:44:28.536479+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"do_lower_case\\\": false,\\n\\t\\\"vocab_type\\\": \\\"gpt2\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T17:44:28.536630+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -30 /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -30 /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T17:44:28.536751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T17:44:28.536866+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T17:44:28.537007+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T17:44:28.537122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/vocab.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/vocab.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-20T17:44:28.537235+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/merges.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "wc -c /root/autodl-tmp/models/deberta-base-mnli/merges.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-20T17:44:28.537349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"898825 /root/autodl-tmp/models/deberta-base-mnli/vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T17:44:28.537468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"456318 /root/autodl-tmp/models/deberta-base-mnli/merges.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T17:44:28.537620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json << 'EOF'\n{\n  \"bos_token\": \"[CLS]\",\n  \"eos_token\": \"[SEP]\",\n  \"unk_token\": \"[UNK]\",\n  \"sep_token\": \"[SEP]\",\n  \"pad_token\": \"[PAD]\",\n  \"cls_token\": \"[CLS]\",\n  \"mask_token\": \"[MASK]\"\n}\nEOF\necho \"Fixed special_tokens_map.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json << 'EOF'\n{\n  \"bos_token\": \"[CLS]\",\n  \"eos_token\": \"[SEP]\",\n  \"unk_token\": \"[UNK]\",\n  \"sep_token\": \"[SEP]\",\n  \"pad_token\": \"[PAD]\",\n  \"cls_token\": \"[CLS]\",\n  \"mask_token\": \"[MASK]\"\n}\nEOF\necho \"Fixed special_tokens_map.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T17:44:28.537743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed special_tokens_map.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T17:44:28.537859+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T17:44:28.538029+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\nimport torch\\\\ntok = AutoTokenizer.from_pretrained(\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nmodel.eval()\\\\ninputs = tok(\\\\'The cat sat on the mat\\\\', \\\\'A feline was on a mat\\\\', return_tensors=\\\\'pt\\\\', truncation=True, max_length=512)\\\\nwith torch.no_grad():\\\\n    out = model(**inputs)\\\\nprobs = torch.softmax(out.logits, dim=-1)[0]\\\\nlabels = [\\\\'CONTRADICTION\\\\',\\\\'NEUTRAL\\\\',\\\\'ENTAILMENT\\\\']\\\\nfor l,p in zip(labels, probs):\\\\n    print(f\\\\'{l}: {p.item():.4f}\\\\')\\\\nprint(\\\\'OK\\\\')\\\\n\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\", line 346, in loads\\n    return _default_decoder.decode(s)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/decoder.py\\\", line 337, in decode\\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/decoder.py\\\", line 355, in raw_decode\\n    raise JSONDecodeError(\\\"Expecting value\\\", s, err.value) from None\\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 4.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T17:44:28.538196+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "rm /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json && echo \"removed empty tokenizer.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "rm /root/autodl-tmp/models/deberta-base-mnli/tokenizer.json && echo \"removed empty tokenizer.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T17:44:28.538336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"removed empty tokenizer.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T17:44:28.538456+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T17:44:28.538602+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\\\\nimport torch\\\\ntok = AutoTokenizer.from_pretrained(\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nmodel = AutoModelForSequenceClassification.from_pretrained(\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nmodel.eval()\\\\ninputs = tok(\\\\'The cat sat on the mat\\\\', \\\\'A feline was on a mat\\\\', return_tensors=\\\\'pt\\\\', truncation=True, max_length=512)\\\\nwith torch.no_grad():\\\\n    out = model(**inputs)\\\\nprobs = torch.softmax(out.logits, dim=-1)[0]\\\\nlabels = [\\\\'CONTRADICTION\\\\',\\\\'NEUTRAL\\\\',\\\\'ENTAILMENT\\\\']\\\\nfor l,p in zip(labels, probs):\\\\n    print(f\\\\'{l}: {p.item():.4f}\\\\')\\\\nprint(\\\\'OK\\\\')\\\\n\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 4168, in from_pretrained\\n    config, dtype = _get_dtype(\\n                    ^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 848, in _get_dtype\\n    state_dict = load_state_dict(\\n                 ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 357, in load_state_dict\\n    with safe_open(checkpoint_path, framework=\\\"pt\\\") as f:\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nsafetensors_rust.SafetensorError: Error while deserializing header: header too small\\n\\n\", \"metadata\": {\"elapsed_seconds\": 4.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T17:44:28.538765+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -lh /root/autodl-tmp/models/deberta-base-mnli/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -lh /root/autodl-tmp/models/deberta-base-mnli/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T17:44:28.538913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1.4M\\n-rw-r--r-- 1 root root  728 May 21 00:03 config.json\\n-rw-r--r-- 1 root root 446K May 21 00:03 merges.txt\\n-rw-r--r-- 1 root root    0 May 21 00:03 model.safetensors\\n-rw-r--r-- 1 root root  173 May 21 01:35 special_tokens_map.json\\n-rw-r--r-- 1 root root   52 May 21 00:03 tokenizer_config.json\\n-rw-r--r-- 1 root root 878K May 21 00:03 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T17:44:28.539077+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom huggingface_hub import snapshot_download\npath = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli')\nprint('Downloaded to:', path)\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom huggingface_hub import snapshot_download\npath = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli')\nprint('Downloaded to:', path)\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T17:44:28.539212+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nfrom huggingface_hub import snapshot_download\\\\npath = snapshot_download(\\\\'cross-encoder/nli-deberta-base\\\\', local_dir=\\\\'/root/autodl-tmp/models/deberta-base-mnli\\\\')\\\\nprint(\\\\'Downloaded to:\\\\', path)\\\\n\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T17:44:28.539361+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -c \"\nfrom huggingface_hub import snapshot_download\npath = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli')\nprint('Downloaded to:', path)\n\" > /tmp/download_deberta.log 2>&1 &\necho \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -c \"\nfrom huggingface_hub import snapshot_download\npath = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli')\nprint('Downloaded to:', path)\n\" > /tmp/download_deberta.log 2>&1 &\necho \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T17:44:28.539488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=347366\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T17:44:28.539611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/download_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/download_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T17:44:28.539732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T17:44:28.539845+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/download_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/download_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T17:44:28.539989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T17:44:28.540103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/models/deberta-base-mnli/ -name '*.safetensors' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/models/deberta-base-mnli/ -name '*.safetensors' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T17:44:28.540219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T17:44:28.540331+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T17:44:28.540452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\n  Size: 0         \\tBlocks: 0          IO Block: 4096   regular empty file\\nDevice: 900h/2304d\\tInode: 33295950577  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-21 01:35:43.506265803 +0800\\nModify: 2026-05-21 00:03:49.293217577 +0800\\nChange: 2026-05-21 00:03:49.293217577 +0800\\n Birth: 2026-05-21 00:03:49.293217577 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-20T17:44:28.540585+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps aux | grep python3 | grep -v grep | head -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps aux | grep python3 | grep -v grep | head -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T17:44:28.540712+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        927  0.1  0.0 28341192 12252 ?      Sl   May19   2:59 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_de0qwios/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_de0qwios/startup_error\\nroot     347333  0.2  0.0  52196 43896 ?        Ss   01:36   0:00 python3 -c  from huggingface_hub import snapshot_download path = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli') print('Downloaded to:', path) \\nroot     347366  0.0  0.0   4364  1988 ?        S    01:36   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 -c \\\" from huggingface_hub import snapshot_download path = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli') print('Downloaded to:', path) \\\" > /tmp/download_deberta.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     347371  0.3  0.0  52196 43808 ?        S    01:36   0:00 python3 -c  from huggingface_hub import snapshot_download path = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli') print('Downloaded to:', path) \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T17:44:28.540885+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sleep 30 && cat /tmp/download_deberta.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sleep 30 && cat /tmp/download_deberta.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T17:44:28.541019+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && cat /tmp/download_deberta.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-20T17:44:28.541134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/download_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/download_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T17:44:28.541249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-20T17:44:28.541361+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-20T17:44:28.541472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/.cache/huggingface/ -name '*.safetensors' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/.cache/huggingface/ -name '*.safetensors' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-20T17:44:28.541592+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 21 00:03 /root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-20T17:44:28.541708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-20T17:44:28.541831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 347333,347371 -o pid,stat,etime,cmd 2>/dev/null | head -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 347333,347371 -o pid,stat,etime,cmd 2>/dev/null | head -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-20T17:44:28.541970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n347371 S          01:49 python3 -c  from huggingface_hub import snapshot_download path = snapshot_download('cross-encoder/nli-deberta-base', local_dir='/root/autodl-tmp/models/deberta-base-mnli') print('Downloaded to:', path) \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-20T17:44:28.542085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/autodl-tmp/models/deberta-base-mnli/ -name '*.tmp' -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/autodl-tmp/models/deberta-base-mnli/ -name '*.tmp' -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-20T17:44:28.542198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-20T17:44:28.542354+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "kill 347333 347371 347366 2>/dev/null; echo \"killed\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "kill 347333 347371 347366 2>/dev/null; echo \"killed\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-20T17:44:28.542475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-20T17:44:28.542587+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "nohup wget -q \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" -O /root/autodl-tmp/models/deberta-base-mnli/model.safetensors > /tmp/wget_deberta.log 2>&1 &\necho \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "nohup wget -q \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" -O /root/autodl-tmp/models/deberta-base-mnli/model.safetensors > /tmp/wget_deberta.log 2>&1 &\necho \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-20T17:44:28.542704+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=347532\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-20T17:44:28.542821+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sleep 15 && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors && cat /tmp/wget_deberta.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sleep 15 && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors && cat /tmp/wget_deberta.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-20T17:44:28.542957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 21 01:38 /root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-20T17:44:28.543087+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "curl -L -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "curl -L -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" 2>&1 | tail -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-20T17:44:28.543207+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'curl -L -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \\\"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\\\" 2>&1 | tail -5'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-20T17:44:28.543335+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "nohup curl -L --connect-timeout 30 --max-time 600 -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" > /tmp/curl_deberta.log 2>&1 &\necho \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "nohup curl -L --connect-timeout 30 --max-time 600 -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://huggingface.co/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" > /tmp/curl_deberta.log 2>&1 &\necho \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-20T17:44:28.543454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=347631\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-20T17:44:28.543566+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sleep 20 && cat /tmp/curl_deberta.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sleep 20 && cat /tmp/curl_deberta.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-20T17:44:28.543697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\\n                                 Dload  Upload   Total   Spent    Left  Speed\\n\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0\\ncurl: (28) Failed to connect to huggingface.co port 443 after 15229 ms: Connection timed out\\n-rw-r--r-- 1 root root 0 May 21 01:38 /root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-20T17:44:28.543862+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "curl -L --connect-timeout 10 -o /dev/null \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/config.json\" 2>&1 | tail -3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "curl -L --connect-timeout 10 -o /dev/null \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/config.json\" 2>&1 | tail -3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-20T17:44:28.544016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                                 Dload  Upload   Total   Spent    Left  Speed\\n\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r100   264  100   264    0     0    552      0 --:--:-- --:--:-- --:--:--   553\\n\\r100   975    0   975    0     0   1206      0 --:--:-- --:--:-- --:--:--  1206\\r100   975    0   975    0     0   1206      0 --:--:-- --:--:-- --:--:--     0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-20T17:44:28.544154+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "nohup curl -L --connect-timeout 30 --max-time 600 -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" > /tmp/curl_deberta2.log 2>&1 &\necho \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "nohup curl -L --connect-timeout 30 --max-time 600 -o /root/autodl-tmp/models/deberta-base-mnli/model.safetensors \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/model.safetensors\" > /tmp/curl_deberta2.log 2>&1 &\necho \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-20T17:44:28.544277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=347673\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-20T17:44:28.544392+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sleep 25 && cat /tmp/curl_deberta2.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sleep 25 && cat /tmp/curl_deberta2.log && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-20T17:44:28.544540+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\\n                                 Dload  Upload   Total   Spent    Left  Speed\\n\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r100  1359    0  1359    0     0   2869      0 --:--:-- --:--:-- --:--:--  2873\\n\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r  0  531M    0  1428    0     0    879      0   7d 07h  0:00:01   7d 07h  1337\\r  0  531M    0  649k    0     0   246k      0  0:36:44  0:00:02  0:36:42  312k\\r  2  531M    2 12.2M    0     0  3526k      0  0:02:34  0:00:03  0:02:31 4178k\\r  5  531M    5 29.0M    0     0  6535k      0  0:01:23  0:00:04  0:01:19 7442k\\r  8  531M    8 45.7M    0     0  8434k      0  0:01:04  0:00:05  0:00:59 9369k\\r 11  531M   11 62.7M    0     0  9811k      0  0:00:55  0:00:06  0:00:49 12.7M\\r 14  531M   14 79.3M    0     0  10.5M      0  0:00:50  0:00:07  0:00:43 16.0M\\r 17  531M   17 91.9M    0     0  10.7M      0  0:00:49  0:00:08  0:00:41 15.9M\\r 20  531M   20  108M    0     0  11.3M      0  0:00:46  0:00:09  0:00:37 15.8M\\r 22  531M   22  119M    0     0  11.3M      0  0:00:46  0:00:10  0:00:36 14.8M\\r 25  531M   25  135M    0     0  11.5M      0  0:00:45  0:00:11  0:00:34 14.1M\\r 27  531M   27  148M    0     0  11.8M      0  0:00:44  0:00:12  0:00:32 13.8M\\r 29  531M   29  159M    0     0  11.7M      0  0:00:45  0:00:13  0:00:32 13.4M\\r 33  531M   33  175M    0     0  12.0M      0  0:00:43  0:00:14  0:00:29 13.4M\\r 36  531M   36  192M    0     0  12.3M      0  0:00:42  0:00:15  0:00:27 14.5M\\r 39  531M   39  209M    0     0  12.6M      0  0:00:41  0:00:16  0:00:25 15.2M\\r 42  531M   42  226M    0     0  12.8M      0  0:00:41  0:00:17  0:00:24 15.5M\\r 45  531M   45  241M    0     0  12.9M      0  0:00:41  0:00:18  0:00:23 16.1M\\r 47  531M   47  250M    0     0  12.8M      0  0:00:41  0:00:19  0:00:22 14
+…[truncated 940 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-20T17:44:28.544701+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "sleep 20 && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors && ps -p 347673 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "sleep 20 && ls -lh /root/autodl-tmp/models/deberta-base-mnli/model.safetensors && ps -p 347673 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-20T17:44:28.544826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 532M May 21 01:41 /root/autodl-tmp/models/deberta-base-mnli/model.safetensors\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-20T17:44:28.544980+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/special_tokens_map.json\" 2>&1 | tail -2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/special_tokens_map.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/special_tokens_map.json\" 2>&1 | tail -2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-20T17:44:28.545102+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/tokenizer_config.json\" 2>&1 | tail -2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/tokenizer_config.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/tokenizer_config.json\" 2>&1 | tail -2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-20T17:44:28.545233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r100   288  100   288    0     0    524      0 --:--:-- --:--:-- --:--:--   524\\r100   288  100   288    0     0    524      0 --:--:-- --:--:-- --:--:--   524\\n\\r100   778    0   778    0     0    924      0 --:--:-- --:--:-- --:--:--   924\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-20T17:44:28.545359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r100   284  100   284    0     0    486      0 --:--:-- --:--:-- --:--:--   486\\n\\r100  1135    0  1135    0     0   1271      0 --:--:-- --:--:-- --:--:--  1271\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-20T17:44:28.545496+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('MODEL OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\ninputs = tok('The cat sat on the mat', 'A feline was on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['CONTRADICTION','NEUTRAL','ENTAILMENT']\nfor l,p in zip(labels, probs):\n    print(f'{l}: {p.item():.4f}')\nprint('MODEL OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-20T17:44:28.545632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CONTRADICTION: 0.0004\\nNEUTRAL: 0.9759\\nENTAILMENT: 0.0237\\nMODEL OK\\n\", \"stderr\": \"\\rLoading weights:   0%|          | 0/200 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 200/200 [00:00<00:00, 11404.07it/s]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-20T17:44:28.545792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-20T17:44:28.545962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n\\t\\\"num_labels\\\": 3,\\n\\t\\\"architectures\\\": [\\n    \\\"DebertaForSequenceClassification\\\"\\n  ],\\n \\t\\\"id2label\\\": {\\n    \\\"0\\\": \\\"CONTRADICTION\\\",\\n    \\\"1\\\": \\\"NEUTRAL\\\",\\n    \\\"2\\\": \\\"ENTAILMENT\\\"\\n  },\\n  \\\"label2id\\\": {\\n    \\\"CONTRADICTION\\\": 0,\\n    \\\"NEUTRAL\\\": 1,\\n    \\\"ENTAILMENT\\\": 2\\n  },\\n\\t\\\"model_type\\\": \\\"deberta\\\",\\n\\t\\\"attention_probs_dropout_prob\\\": 0.1,\\n\\t\\\"hidden_act\\\": \\\"gelu\\\",\\n\\t\\\"hidden_dropout_prob\\\": 0.1,\\n\\t\\\"hidden_size\\\": 768,\\n\\t\\\"initializer_range\\\": 0.02,\\n\\t\\\"intermediate_size\\\": 3072,\\n\\t\\\"max_position_embeddings\\\": 512,\\n\\t\\\"relative_attention\\\": true,\\n\\t\\\"pos_att_type\\\": \\\"c2p|p2c\\\",\\n\\t\\\"layer_norm_eps\\\": 1e-7,\\n\\t\\\"max_relative_positions\\\": -1,\\n\\t\\\"position_biased_input\\\": false,\\n\\t\\\"num_attention_heads\\\": 12,\\n\\t\\\"num_hidden_layers\\\": 12,\\n\\t\\\"type_vocab_size\\\": 0,\\n\\t\\\"vocab_size\\\": 50265\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-20T17:44:28.546133+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/config.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/config.json\" 2>&1 | tail -2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "curl -L --connect-timeout 10 -o /root/autodl-tmp/models/deberta-base-mnli/config.json \"https://hf-mirror.com/cross-encoder/nli-deberta-base/resolve/main/config.json\" 2>&1 | tail -2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-20T17:44:28.546276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\\r100   264  100   264    0     0    460      0 --:--:-- --:--:-- --:--:--   461\\n\\r100   975    0   975    0     0   1396      0 --:--:-- --:--:-- --:--:--  1396\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-20T17:44:28.546402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/autodl-tmp/models/deberta-base-mnli/config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-20T17:44:28.546553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_name_or_path\\\": \\\"microsoft/deberta-base\\\",\\n  \\\"architectures\\\": [\\n    \\\"DebertaForSequenceClassification\\\"\\n  ],\\n  \\\"attention_probs_dropout_prob\\\": 0.1,\\n  \\\"hidden_act\\\": \\\"gelu\\\",\\n  \\\"hidden_dropout_prob\\\": 0.1,\\n  \\\"hidden_size\\\": 768,\\n  \\\"id2label\\\": {\\n    \\\"0\\\": \\\"contradiction\\\",\\n    \\\"1\\\": \\\"entailment\\\",\\n    \\\"2\\\": \\\"neutral\\\"\\n  },\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 3072,\\n  \\\"label2id\\\": {\\n    \\\"contradiction\\\": 0,\\n    \\\"entailment\\\": 1,\\n    \\\"neutral\\\": 2\\n  },\\n  \\\"layer_norm_eps\\\": 1e-07,\\n  \\\"max_position_embeddings\\\": 512,\\n  \\\"max_relative_positions\\\": -1,\\n  \\\"model_type\\\": \\\"deberta\\\",\\n  \\\"num_attention_heads\\\": 12,\\n  \\\"num_hidden_layers\\\": 12,\\n  \\\"pad_token_id\\\": 0,\\n  \\\"pooler_dropout\\\": 0,\\n  \\\"pooler_hidden_act\\\": \\\"gelu\\\",\\n  \\\"pooler_hidden_size\\\": 768,\\n  \\\"pos_att_type\\\": [\\n    \\\"c2p\\\",\\n    \\\"p2c\\\"\\n  ],\\n  \\\"position_biased_input\\\": false,\\n  \\\"relative_attention\\\": true,\\n  \\\"tokenizer_class\\\": \\\"DebertaTokenizerFast\\\",\\n  \\\"transformers_version\\\": \\\"4.7.0\\\",\\n  \\\"type_vocab_size\\\": 0,\\n  \\\"vocab_size\\\": 50265\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-20T17:44:28.546710+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\n\n# Test 1: obvious entailment\ninputs = tok('The cat sat on the mat', 'A feline was resting on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['contradiction','entailment','neutral']\nprint('Test 1 (entailment expected):')\nfor l,p in zip(labels, probs):\n    print(f'  {l}: {p.item():.4f}')\n\n# Test 2: contradiction\ninputs2 = tok('The sky is blue', 'The sky is green', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out2 = model(**inputs2)\nprobs2 = torch.softmax(out2.logits, dim=-1)[0]\nprint('Test 2 (contradiction expected):')\nfor l,p in zip(labels, probs2):\n    print(f'  {l}: {p.item():.4f}')\nprint('OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\nimport torch\ntok = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel = AutoModelForSequenceClassification.from_pretrained('/root/autodl-tmp/models/deberta-base-mnli')\nmodel.eval()\n\n# Test 1: obvious entailment\ninputs = tok('The cat sat on the mat', 'A feline was resting on a mat', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out = model(**inputs)\nprobs = torch.softmax(out.logits, dim=-1)[0]\nlabels = ['contradiction','entailment','neutral']\nprint('Test 1 (entailment expected):')\nfor l,p in zip(labels, probs):\n    print(f'  {l}: {p.item():.4f}')\n\n# Test 2: contradiction\ninputs2 = tok('The sky is blue', 'The sky is green', return_tensors='pt', truncation=True, max_length=512)\nwith torch.no_grad():\n    out2 = model(**inputs2)\nprobs2 = torch.softmax(out2.logits, dim=-1)[0]\nprint('Test 2 (contradiction expected):')\nfor l,p in zip(labels, probs2):\n    print(f'  {l}: {p.item():.4f}')\nprint('OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-20T17:44:28.546857+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Test 1 (entailment expected):\\n  contradiction: 0.0004\\n  entailment: 0.9214\\n  neutral: 0.0782\\nTest 2 (contradiction expected):\\n  contradiction: 0.9969\\n  entailment: 0.0005\\n  neutral: 0.0026\\nOK\\n\", \"stderr\": \"\\rLoading weights:   0%|          | 0/200 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 200/200 [00:00<00:00, 10524.31it/s]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-20T17:44:28.547054+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Dir-J1: DeBERTa-MNLI Verifier on LogiQA — Cross-dataset NLI escape test\n\nFor each LogiQA problem:\n  - NLI(premise=context, hypothesis=choice_text) for each of 4 choices\n  - Combined score = SC_votes[choice] + w * NLI_entailment_prob[choice]\n  - Test w=1, w=3, w=5\n\"\"\"\n\nimport json\nimport time\nimport re\nimport numpy as np\nfrom pathlib import Path\nfrom collections import Counter\nfrom scipy.stats import binomtest\n\nimport torch\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = \"/root/autodl-tmp/models/deberta-base-mnli\"\nTRACE_DIR = Path(\"/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_j1_nli_logiqa\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nDEVICE = \"cpu\"\nWEIGHTS = [1, 3, 5]\nCANONICAL = [\"A\", \"B\", \"C\", \"D\"]\n# label ordering: 0=contradiction, 1=entailment, 2=neutral\nENTAILMENT_IDX = 1\n\n\ndef normalize_answer(raw, choices):\n    if not raw:\n        return None\n    raw = raw.strip()\n    if raw in CANONICAL:\n        return raw\n    m = re.match(r'^([A-D])\\b', raw)\n    if m:\n        return m.group(1)\n    for i, ch in enumerate(choices):\n        ch_text = re.sub(r'^[A-D]\\.\\s*', '', ch).strip()\n        if raw.lower() == ch_text.lower() or raw.lower() == ch.lower():\n            return CANONICAL[i]\n    return None\n\n\ndef get_sc_votes(traces, choices):\n    votes = Counter()\n    for tr in traces:\n        ans = normalize_answer(tr[\"answer\"], choices)\n        if ans:\n            votes[ans] += 1\n    return votes\n\n\ndef sc_answer_from_votes(votes):\n    if not votes:\n        return None\n    return max(CANONICAL, key=lambda x: votes.get(x, 0))\n\n\ndef run_nli_batch(model, tokenizer, premise, hypotheses, device):\n    inputs = tokenizer(\n        [premise] * len(hypotheses), hypotheses,\n        return_tensors=\"pt\", truncation=True, max_length=512, padding=True\n    ).to(device)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    return probs[:, ENTAILMENT_IDX].cpu().numpy().tolist()\n\n\ndef mcnemar(sc_correct, combo_correct):\n    b = sum(1 for s, c in zip(sc_correct, combo_correct) if not s and c)\n    c = sum(1 for s, c in zip(sc_correct, combo_correct) if s and not c)\n    n = b + c\n    if n == 0:\n        return 1.0, b, c\n    result = binomtest(min(b, c), n, 0.5)\n    return result.pvalue, b, c\n\n\ndef main():\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\n    model.eval()\n    model.to(DEVICE)\n    print(f\"Model on {DEVICE}\")\n\n    trace_files = sorted(TRACE_DIR.glob(\"logiqa_*.json\"))\n    print(f\"Found {len(trace_files)} trace files\")\n\n    per_problem = []\n    sc_answers_list = []\n    gt_list = []\n    nli_best_list = []\n\n    t0 = time.time()\n    for i, tf in enumerate(trace_files):\n        with open(tf) as f:\n            data = json.load(f)\n\n        ctx = data[\"problem\"][\"context\"]\n        choices = data[\"problem\"][\"choices\"]\n        gt = data[\"problem\"][\"answer\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n\n        sc_vote = get_sc_votes(traces, choices)\n        sc_ans = sc_answer_from_votes(sc_vote)\n\n        ent_probs = run_nli_batch(model, tokenizer, ctx, choice_texts, DEVICE)\n        nli_best = CANONICAL[int(np.argmax(ent_probs))]\n\n        rec = {\n            \"problem_id\": data[\"problem\"][\"id\"],\n            \"ground_truth\": gt,\n            \"sc_votes\": dict(sc_vote),\n            \"sc_answer\": sc_ans,\n            \"nli_entailment_probs\": {CANONICAL[j]: round(ent_probs[j], 6) for j in range(4)},\n            \"nli_best\": nli_best,\n        }\n        per_problem.append(rec)\n        sc_answers_list.append(sc_ans)\n        gt_list.append(gt)\n        nli_best_list.append(nli_best)\n\n        if (i + 1) % 50 == 0:\n            print(f\"  {i+1}/{len(trace_files)} ({time.time()-t0:.1f}s)\")\n\n    elapsed = time.time() - t0\n    print(f\"NLI done in {elapsed:.1f}s\")\n\n    sc_correct = [s == g for s, g in zip(sc_answers_list, gt_list)]\n    sc_acc = sum(sc_correct) / len(sc_correct)\n    nli_correct = [n == g for n, g in zip(nli_best_list, gt_list)]\n    nli_acc = sum(nli_correct) / len(nli_correct)\n\n    weight_results = {}\n    for w in WEIGHTS:\n        combo_answers = []\n        for idx, rec in enumerate(per_problem):\n            sv = rec[\"sc_votes\"]\n            np_ = rec[\"nli_entailment_probs\"]\n            combined = {ch: sv.get(ch, 0) + w * np_.get(ch, 0) for ch in CANONICAL}\n            best = max(CANONICAL, key=lambda x: combined[x])\n            combo_answers.append(best)\n            rec[f\"combo_w{w}\"] = best\n            rec[f\"combined_w{w}\"] = {k: round(v, 4) for k, v in combined.items()}\n\n        combo_correct = [ca == g for ca, g in zip(combo_answers, gt_list)]\n        combo_acc = sum(combo_correct) / len(combo_correct)\n        delta = combo_acc - sc_acc\n        p, b, c = mcnemar(sc_correct, combo_correct)\n\n        weight_results[f\"w={w}\"] = {\n            \"combo_accuracy\": round(combo_acc, 4),\n            \"sc_accuracy\": round(sc_acc, 4),\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_p\": round(p, 6),\n            \"discordant_b\": b,\n            \"discordant_c\": c,\n        }\n\n    output = {\n        \"experiment\": \"Dir-J1: DeBERTa-MNLI Verifier on LogiQA\",\n        \"model\": \"cross-encoder/nli-deberta-base\",\n        \"dataset\": \"LogiQA-200 (Mistral-7B traces, exp049b)\",\n        \"n_problems\": len(trace_files),\n        \"device\": DEVICE,\n        \"elapsed_s\": round(elapsed, 1),\n        \"sc_accuracy\": round(sc_acc, 4),\n        \"nli_only_accuracy\": round(nli_acc, 4),\n        \"weight_results\": weight_results,\n        \"per_problem\": per_problem,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults -> {out_path}\")\n    print(f\"SC accuracy:       {sc_acc:.4f} ({sum(sc_correct)}/{len(sc_correct)})\")\n    print(f\"NLI-only accuracy: {nli_acc:.4f} ({sum(nli_correct)}/{len(nli_correct)})\")\n    for wk, wv in weight_results.items():\n        print(f\"  {wk}: combo={wv['combo_accuracy']:.4f}, d={wv['delta_pp']:+.2f}pp, p={wv['mcnemar_p']:.4f}, disc=({wv['discordant_b']},{wv['discordant_c']})\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Dir-J1: DeBERTa-MNLI Verifier on LogiQA — Cross-dataset NLI escape test\n\nFor each LogiQA problem:\n  - NLI(premise=context, hypothesis=choice_text) for each of 4 choices\n  - Combined score = SC_votes[choice] + w * NLI_entailment_prob[choice]\n  - Test w=1, w=3, w=5\n\"\"\"\n\nimport json\nimport time\nimport re\nimport numpy as np\nfrom pathlib import Path\nfrom collections import Counter\nfrom scipy.stats import binomtest\n\nimport torch\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = \"/root/autodl-tmp/models/deberta-base-mnli\"\nTRACE_DIR = Path(\"/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates\")\nOUTPUT_DIR = Path(\"/root/symb_invariant_consensus/results/dir_j1_nli_logiqa\")\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\nDEVICE = \"cpu\"\nWEIGHTS = [1, 3, 5]\nCANONICAL = [\"A\", \"B\", \"C\", \"D\"]\n# label ordering: 0=contradiction, 1=entailment, 2=neutral\nENTAILMENT_IDX = 1\n\n\ndef normalize_answer(raw, choices):\n    if not raw:\n        return None\n    raw = raw.strip()\n    if raw in CANONICAL:\n        return raw\n    m = re.match(r'^([A-D])\\b', raw)\n    if m:\n        return m.group(1)\n    for i, ch in enumerate(choices):\n        ch_text = re.sub(r'^[A-D]\\.\\s*', '', ch).strip()\n        if raw.lower() == ch_text.lower() or raw.lower() == ch.lower():\n            return CANONICAL[i]\n    return None\n\n\ndef get_sc_votes(traces, choices):\n    votes = Counter()\n    for tr in traces:\n        ans = normalize_answer(tr[\"answer\"], choices)\n        if ans:\n            votes[ans] += 1\n    return votes\n\n\ndef sc_answer_from_votes(votes):\n    if not votes:\n        return None\n    return max(CANONICAL, key=lambda x: votes.get(x, 0))\n\n\ndef run_nli_batch(model, tokenizer, premise, hypotheses, device):\n    inputs = tokenizer(\n        [premise] * len(hypotheses), hypotheses,\n        return_tensors=\"pt\", truncation=True, max_length=512, padding=True\n    ).to(device)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    return probs[:, ENTAILMENT_IDX].cpu().numpy().tolist()\n\n\ndef mcnemar(sc_correct, combo_correct):\n    b = sum(1 for s, c in zip(sc_correct, combo_correct) if not s and c)\n    c = sum(1 for s, c in zip(sc_correct, combo_correct) if s and not c)\n    n = b + c\n    if n == 0:\n        return 1.0, b, c\n    result = binomtest(min(b, c), n, 0.5)\n    return result.pvalue, b, c\n\n\ndef main():\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\n    model.eval()\n    model.to(DEVICE)\n    print(f\"Model on {DEVICE}\")\n\n    trace_files = sorted(TRACE_DIR.glob(\"logiqa_*.json\"))\n    print(f\"Found {len(trace_files)} trace files\")\n\n    per_problem = []\n    sc_answers_list = []\n    gt_list = []\n    nli_best_list = []\n\n    t0 = time.time()\n    for i, tf in enumerate(trace_files):\n        with open(tf) as f:\n            data = json.load(f)\n\n        ctx = data[\"problem\"][\"context\"]\n        choices = data[\"problem\"][\"choices\"]\n        gt = data[\"problem\"][\"answer\"]\n        traces = data[\"sica_result\"][\"traces\"]\n\n        choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n\n        sc_vote = get_sc_votes(traces, choices)\n        sc_ans = sc_answer_from_votes(sc_vote)\n\n        ent_probs = run_nli_batch(model, tokenizer, ctx, choice_texts, DEVICE)\n        nli_best = CANONICAL[int(np.argmax(ent_probs))]\n\n        rec = {\n            \"problem_id\": data[\"problem\"][\"id\"],\n            \"ground_truth\": gt,\n            \"sc_votes\": dict(sc_vote),\n            \"sc_answer\": sc_ans,\n            \"nli_entailment_probs\": {CANONICAL[j]: round(ent_probs[j], 6) for j in range(4)},\n            \"nli_best\": nli_best,\n        }\n        per_problem.append(rec)\n        sc_answers_list.append(sc_ans)\n        gt_list.append(gt)\n        nli_best_list.append(nli_best)\n\n        if (i + 1) % 50 == 0:\n            print(f\"  {i+1}/{len(trace_files)} ({time.time()-t0:.1f}s)\")\n\n    elapsed = time.time() - t0\n    print(f\"NLI done in {elapsed:.1f}s\")\n\n    sc_correct = [s == g for s, g in zip(sc_answers_list, gt_list)]\n    sc_acc = sum(sc_correct) / len(sc_correct)\n    nli_correct = [n == g for n, g in zip(nli_best_list, gt_list)]\n    nli_acc = sum(nli_correct) / len(nli_correct)\n\n    weight_results = {}\n    for w in WEIGHTS:\n        combo_answers = []\n        for idx, rec in enumerate(per_problem):\n            sv = rec[\"sc_votes\"]\n            np_ = rec[\"nli_entailment_probs\"]\n            combined = {ch: sv.get(ch, 0) + w * np_.get(ch, 0) for ch in CANONICAL}\n            best = max(CANONICAL, key=lambda x: combined[x])\n            combo_answers.append(best)\n            rec[f\"combo_w{w}\"] = best\n            rec[f\"combined_w{w}\"] = {k: round(v, 4) for k, v in combined.items()}\n\n        combo_correct = [ca == g for ca, g in zip(combo_answers, gt_list)]\n        combo_acc = sum(combo_correct) / len(combo_correct)\n        delta = combo_acc - sc_acc\n        p, b, c = mcnemar(sc_correct, combo_correct)\n\n        weight_results[f\"w={w}\"] = {\n            \"combo_accuracy\": round(combo_acc, 4),\n            \"sc_accuracy\": round(sc_acc, 4),\n            \"delta_pp\": round(delta * 100, 2),\n            \"mcnemar_p\": round(p, 6),\n            \"discordant_b\": b,\n            \"discordant_c\": c,\n        }\n\n    output = {\n        \"experiment\": \"Dir-J1: DeBERTa-MNLI Verifier on LogiQA\",\n        \"model\": \"cross-encoder/nli-deberta-base\",\n        \"dataset\": \"LogiQA-200 (Mistral-7B traces, exp049b)\",\n        \"n_problems\": len(trace_files),\n        \"device\": DEVICE,\n        \"elapsed_s\": round(elapsed, 1),\n        \"sc_accuracy\": round(sc_acc, 4),\n        \"nli_only_accuracy\": round(nli_acc, 4),\n        \"weight_results\": weight_results,\n        \"per_problem\": per_problem,\n    }\n\n    out_path = OUTPUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults -> {out_path}\")\n    print(f\"SC accuracy:       {sc_acc:.4f} ({sum(sc_correct)}/{len(sc_correct)})\")\n    print(f\"NLI-only accuracy: {nli_acc:.4f} ({sum(nli_correct)}/{len(nli_correct)})\")\n    for wk, wv in weight_results.items():\n        print(f\"  {wk}: combo={wv['combo_accuracy']:.4f}, d={wv['delta_pp']:+.2f}pp, p={wv['mcnemar_p']:.4f}, disc=({wv['discordant_b']},{wv['discordant_c']})\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-20T17:44:28.547263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-20T17:44:28.547414+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, re, time\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import Counter\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = '/root/autodl-tmp/models/deberta-base-mnli'\nTRACE_DIR = Path('/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates')\nCANONICAL = ['A','B','C','D']\nENTAILMENT_IDX = 1\n\ntok = AutoTokenizer.from_pretrained(MODEL_PATH)\nmodel = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\nmodel.eval()\n\nfor idx in [0, 1, 2]:\n    tf = TRACE_DIR / f'logiqa_{idx:03d}.json'\n    with open(tf) as f:\n        data = json.load(f)\n    ctx = data['problem']['context']\n    choices = data['problem']['choices']\n    gt = data['problem']['answer']\n    choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n    \n    inputs = tok([ctx]*4, choice_texts, return_tensors='pt', truncation=True, max_length=512, padding=True)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    ent_probs = probs[:, ENTAILMENT_IDX].numpy()\n    nli_best = CANONICAL[int(np.argmax(ent_probs))]\n    \n    print(f'Problem {idx}: gt={gt}, nli_best={nli_best}')\n    for j in range(4):\n        print(f'  {CANONICAL[j]}: ent={ent_probs[j]:.4f} | {choice_texts[j][:60]}')\n    print()\nprint('DRY-RUN OK')\n\" 2>&1 | grep -v 'Loading weights'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, re, time\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import Counter\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification\n\nMODEL_PATH = '/root/autodl-tmp/models/deberta-base-mnli'\nTRACE_DIR = Path('/root/symb_invariant_consensus/results/exp049b_mistral_logiqa200/intermediates')\nCANONICAL = ['A','B','C','D']\nENTAILMENT_IDX = 1\n\ntok = AutoTokenizer.from_pretrained(MODEL_PATH)\nmodel = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)\nmodel.eval()\n\nfor idx in [0, 1, 2]:\n    tf = TRACE_DIR / f'logiqa_{idx:03d}.json'\n    with open(tf) as f:\n        data = json.load(f)\n    ctx = data['problem']['context']\n    choices = data['problem']['choices']\n    gt = data['problem']['answer']\n    choice_texts = [re.sub(r'^[A-D]\\.\\s*', '', ch).strip() for ch in choices]\n    \n    inputs = tok([ctx]*4, choice_texts, return_tensors='pt', truncation=True, max_length=512, padding=True)\n    with torch.no_grad():\n        logits = model(**inputs).logits\n    probs = torch.softmax(logits, dim=-1)\n    ent_probs = probs[:, ENTAILMENT_IDX].numpy()\n    nli_best = CANONICAL[int(np.argmax(ent_probs))]\n    \n    print(f'Problem {idx}: gt={gt}, nli_best={nli_best}')\n    for j in range(4):\n        print(f'  {CANONICAL[j]}: ent={ent_probs[j]:.4f} | {choice_texts[j][:60]}')\n    print()\nprint('DRY-RUN OK')\n\" 2>&1 | grep -v 'Loading weights'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-20T17:44:28.547570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Problem 0: gt=D, nli_best=A\\n  A: ent=0.2947 | Some young teachers are not women\\n  B: ent=0.1828 | Some young women are not teachers\\n  C: ent=0.0277 | There are at least 11 young teachers\\n  D: ent=0.0628 | There are at least 13 female teachers\\n\\nProblem 1: gt=A, nli_best=B\\n  A: ent=0.0009 | Of the ten small companies, the three that had borrowed the \\n  B: ent=0.2680 | For some loans made by MetroBank, the monthly payment decrea\\n  C: ent=0.0135 | The number of small companies receiving new loans from Metro\\n  D: ent=0.0060 | Most banks offer a greater number of loans for under $100, 0\\n\\nProblem 2: gt=C, nli_best=A\\n  A: ent=0.0259 | In the past 10 years, the company's personal notebook sales \\n  B: ent=0.0069 | In the past 10 years, the company's total product sales grow\\n  C: ent=0.0008 | The proportion of personal notebook computer sales in the co\\n  D: ent=0.0077 | In the past 10 years, the company's personal notebook sales \\n\\nDRY-RUN OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-20T17:44:28.547794+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py 2>&1 | grep -v 'Loading weights'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/symb_invariant_consensus/scripts/dir_j1_nli_logiqa.py 2>&1 | grep -v 'Loading weights'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-20T17:44:28.548045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model...\\nModel on cpu\\nFound 200 trace files\\n  50/200 (5.3s)\\n  100/200 (10.8s)\\n  150/200 (15.8s)\\n  200/200 (21.2s)\\nNLI done in 21.2s\\n\\nResults -> /root/symb_invariant_consensus/results/dir_j1_nli_logiqa/results.json\\nSC accuracy:       0.5300 (106/200)\\nNLI-only accuracy: 0.2900 (58/200)\\n  w=1: combo=0.5400, d=+1.00pp, p=0.5000, disc=(2,0)\\n  w=3: combo=0.5300, d=+0.00pp, p=1.0000, disc=(3,3)\\n  w=5: combo=0.5350, d=+0.50pp, p=1.0000, disc=(5,4)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 26.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 149 · 2026-05-20T17:44:28.548240+00:00_
+
+实验完成。结果写入 `/root/symb_invariant_consensus/results/dir_j1_nli_logiqa/results.json`。
+
+**结果摘要：**
+
+| 指标 | 值 |
+|------|-----|
+| SC accuracy (baseline) | 0.5300 (106/200) |
+| NLI-only accuracy | 0.2900 (58/200) |
+| **w=1**: combo acc | 0.5400, Δ=+1.00pp, p=0.500, disc=(2,0) |
+| **w=3**: combo acc | 0.5300, Δ=+0.00pp, p=1.000, disc=(3,3) |
+| **w=5**: combo acc | 0.5350, Δ=+0.50pp, p=1.000, disc=(5,4) |
+
+**关键发现：**
+- NLI-only 准确率仅 29%（低于随机 25% 不多），DeBERTa-MNLI verifier 在 LogiQA 上几乎无用——因为 LogiQA 需要逻辑推理而非表面文本蕴含
+- SC+NLI 组合在所有权重下无统计显著提升（最高 Δ=+1pp, p=0.5）
+- NLI escape 现象**不跨数据集泛化**到 LogiQA：DeBERTa-MNLI 在 FOLIO/ProofWriter 上可能有效是因为那些任务的正确答案与前提有直接蕴含关系，而 LogiQA 多选题的正确答案需要多步推理推导，NLI 模型无法捕捉
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_dir-j1-nli-logiqa_20260520T173020"
+}
+```
+
+</details>
+
+---

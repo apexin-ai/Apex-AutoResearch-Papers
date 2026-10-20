@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1331_Q16",
+    "problem": "Bob is big. Dave is big. Dave is quiet. Dave is round. Fiona is round. Harry is kind. Harry is smart. Big people are kind. All kind, big people are round. If someone is smart then they are kind. If someone is green and smart then they are furry. If someone is quiet and furry then they are smart. Furry, big people are quiet. All smart, kind people are big. If someone is furry then they are big. Round people are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBig(Dave, True) ::: Dave is big.\nQuiet(Dave, True) ::: Dave is quiet.\nRound(Dave, True) ::: Dave is round.\nRound(Fiona, True) ::: Fiona is round.\nKind(Harry, True) ::: Harry is kind.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBig($x, True) >>> Kind($x, True) ::: Big people are kind.\nKind($x, True) && Big($x, True) >>> Round($x, True) ::: All kind, big people are round.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nGreen($x, True) && Smart($x, True) >>> Furry($x, True) ::: If someone is green and smart then they are furry.\nQuiet($x, True) && Furry($x, True) >>> Smart($x, True) ::: If someone is quiet and furry then they are smart.\nFurry($x, True) && Big($x, True) >>> Quiet($x, True) ::: Furry, big people are quiet.\nSmart($x, True) && Kind($x, True) >>> Big($x, True) ::: All smart, kind people are big.\nFurry($x, True) >>> Big($x, True) ::: If someone is furry then they are big.\nRound($x, True) >>> Furry($x, True) ::: Round people are furry.\n\nQuery:\nGreen(Harry, True) ::: Harry is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-026-folio204-trace-regen",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:41:13.054Z",
+    "updated_at": "2026-05-18T12:07:34.444Z",
+    "hypothesis": "FOLIO 204 全量 trace 重生成（Qwen2.5-14B, K=12, T=0.3）：在 westd-25068 上复现 exp-001 的 FOLIO traces，用于 cross-model extraction 和 case study 选取。归一化 bug 已修复，温度已统一为 T_ext=0.3。",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash scripts/run_folio_trace_regen.sh",
+      "server": "westd-25068",
+      "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 25172,
+      "log_path": "/root/symb_invariant_consensus/logs/folio_regen_20260518_193948.log",
+      "output_path": "/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json",
+      "temperature": 0.3,
+      "K": 12,
+      "checkpoint_source": "Qwen/Qwen2.5-14B-Instruct (HuggingFace)",
+      "eval_data": "FOLIO-204 validation set"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T12:07:33.628Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T12:07:34.444Z"
+  },
+  "timestamp": "2026-05-18T12:07:34.550006+00:00",
+  "trigger": "update_registry"
+}

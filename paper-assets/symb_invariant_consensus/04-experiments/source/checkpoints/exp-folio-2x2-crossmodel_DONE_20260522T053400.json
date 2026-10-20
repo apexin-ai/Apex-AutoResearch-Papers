@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp-folio-2x2-crossmodel",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:04:53.974Z",
+    "updated_at": "2026-05-22T05:34:00.507Z",
+    "hypothesis": "Cross-model extraction on FOLIO-204 replicates ProofWriter 2×2 finding: extractor capability dominates SICA accuracy regardless of generator, and BR>1 persists in all cells. If confirmed, this generalizes the SCB universality + extractor dominance finding across two distinct reasoning datasets.",
+    "parent": "exp-d126-crossmodel-sica",
+    "notes": "FOLIO 2×2 completed. All 4 cells 204 items. Sentinel found. BR>1 all cells (1.94-2.70). Qwen3 ext improves Mistral gen by +3.92pp but Mistral ext reduces Qwen3 gen by -1.47pp. McNemar p≈0 both directions. Results saved: folio_2x2_metrics.json. Log: master.log. Checkpoint: results/exp_folio_2x2/",
+    "conclusion": "success",
+    "metrics": {
+      "folio_2x2": {
+        "mistral_gen_mistral_ext": {
+          "SICA": 56.86,
+          "delta_pp": 0.98,
+          "BR_mean": 2.7
+        },
+        "mistral_gen_qwen3_ext": {
+          "SICA": 59.8,
+          "delta_pp": 3.92,
+          "BR_mean": 1.94
+        },
+        "qwen3_gen_mistral_ext": {
+          "SICA": 81.86,
+          "delta_pp": -1.47,
+          "BR_mean": 2.66
+        },
+        "qwen3_gen_qwen3_ext": {
+          "SICA": 84.8,
+          "delta_pp": 1.47,
+          "BR_mean": 2.35
+        }
+      },
+      "SC_mistral": 55.88,
+      "SC_qwen3": 83.33,
+      "kappa_mistral": 0.46,
+      "kappa_qwen3": 0.79,
+      "mcnemar_mistral_ext_p": 0,
+      "mcnemar_qwen3_ext_p": 0
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp_folio_2x2/folio_2x2_metrics.json",
+    "log_path": "/root/symb_invariant_consensus/results/exp_folio_2x2/master.log",
+    "completed_at": "2026-05-22T05:34:00.507Z"
+  },
+  "timestamp": "2026-05-22T05:34:00.839645+00:00",
+  "trigger": "update_registry"
+}

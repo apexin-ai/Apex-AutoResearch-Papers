@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15f9cc6950d2bb595ab4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis drc cascade pilot",
+  "task_key": "worker_analysis_drc-cascade-pilot_20260521T044810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_drc-cascade-pilot_20260521T044810_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "9d0bf43a755b05636e0ba2924e9376d2710f5910003fa230d1fd6955296eea70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DRC cascade pilot 完成。结果：\n\n| τ | Accuracy | NLI Invocation Rate | NLI Invoked |\n|---|----------|-------------------|-------------|\n| 0.3 | 39.33% | 0% | 0/600 |\n| 0.5 | 41.50% | 10.8% | 65/600 |\n| **0.7** | **45.33%** | **38.8%** | **233/600** |\n| 0.9 | 45.83% | 75.8% | 455/600 |\n\nBaselines: SC-only = 39.33%, Full combo w=3 = 46.0%\n\n关键发现：\n- τ=0.3 无效 — 所有题目 agreement > 0.333（12 traces 3 类的理论下限），NLI 从不触发\n- **τ=0.7 是甜蜜点**：仅调用 38.8% 的 NLI，就拿到了 45.33% accuracy（full combo 46% 的 ~93% 增益）\n- τ=0.9 增加到 75.8% NLI 调用，只多 0.5pp\n\n输出文件在 `/root/symb_invariant_consensus/results/drc_cascade_pilot/`：`results.json`、`pareto_front.pdf`、`agreement_distribution.png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-drc-cascade-pilot.md"
+}

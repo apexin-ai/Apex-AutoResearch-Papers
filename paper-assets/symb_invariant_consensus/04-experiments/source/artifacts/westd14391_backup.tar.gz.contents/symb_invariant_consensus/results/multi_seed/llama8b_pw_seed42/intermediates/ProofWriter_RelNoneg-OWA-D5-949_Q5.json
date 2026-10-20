@@ -1,0 +1,1325 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-949_Q5",
+    "problem": "The bear is green. The bear likes the cat. The bear likes the dog. The bear visits the dog. The cat is young. The cat sees the bear. The cat sees the dog. The cat visits the bear. The cat visits the mouse. The dog is round. The dog likes the bear. The dog likes the mouse. The dog visits the mouse. The mouse is big. The mouse is cold. The mouse is round. If something visits the mouse and the mouse visits the dog then it is cold. If something likes the cat then it visits the dog. If something is cold then it likes the cat. If something is green then it sees the dog. If something likes the mouse then it sees the cat. If something is green and cold then it likes the cat. If something is big and it visits the bear then the bear is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse visits the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\n\nFacts:\nGreen(Bear, True) ::: The bear is green.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Bear, Dog, True) ::: The bear likes the dog.\nVisits(Bear, Dog, True) ::: The bear visits the dog.\nYoung(Cat, True) ::: The cat is young.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Dog, True) ::: The cat sees the dog.\nVisits(Cat, Bear, True) ::: The cat visits the bear.\nVisits(Cat, Mouse, True) ::: The cat visits the mouse.\nRound(Dog, True) ::: The dog is round.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nLikes(Dog, Mouse, True) ::: The dog likes the mouse.\nVisits(Dog, Mouse, True) ::: The dog visits the mouse.\nBig(Mouse, True) ::: The mouse is big.\nCold(Mouse, True) ::: The mouse is cold.\nRound(Mouse, True) ::: The mouse is round.\n\nRules:\nVisits($x, Mouse, True) && Visits(Mouse, Dog, True) >>> Cold($x, True) ::: If something visits the mouse and the mouse visits the dog then it is cold.\nLikes($x, Cat, True) >>> Visits($x, Dog, True) ::: If something likes the cat then it visits the dog.\nCold($x, True) >>> Likes($x, Cat, True) ::: If something is cold then it likes the cat.\nGreen($x, True) >>> Sees($x, Dog, True) ::: If something is green then it sees the dog.\nLikes($x, Mouse, True) >>> Sees($x, Cat, True) ::: If something likes the mouse then it sees the cat.\nGreen($x, True) && Cold($x, True) >>> Likes($x, Cat, True) ::: If something is green and cold then it likes the cat.\nBig($x, True) && Visits($x, Bear, True) >>> Green(Bear, True) ::: If something is big and it visits the bear then the bear is green.\n\nQuery:\nVisits(Mouse, Dog, True) ::: The mouse visits the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 123.0,
+      "True": 184.0,
+      "Unknown": 177.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 4,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given premises, we have:\n\n1. The mouse is big.\n2. The mouse is cold.\n3. The mouse is round.\n4. If something visits the mouse and the mouse visits the dog then it is cold.\n5. If something likes the cat then it visits the dog.\n6. If something is cold then it likes the cat.\n7. If something is green then it sees the dog.\n8. If something likes the mouse then it sees the cat.\n9. If something is green and cold then it likes the cat.\n10. If something is big and it visits the bear then the bear is green.\n\nWe can start by analyzing the given premises:\n\n- Premise 1: The mouse is big.\n- Premise 2: The mouse is cold.\n- Premise 3: The mouse is round.\n\nWe can use the premises to derive information:\n\nFrom premise 4, we cannot directly conclude that the mouse visits the dog, because the premise is in the form of an \"if and only if\" statement. However, we can conclude that since the mouse is cold, and this is a sufficient condition for something to visit the mouse and the mouse visits the dog, we can infer that the mouse visits the dog. But we are looking for the exact opposite of this premise. So, we cannot conclude anything with the premises alone.\n\nHowever, let's re-examine premise 1 and 10: \n- Premise 1: The mouse is big.\n- Premise 10: If something is big and it visits the bear then the bear is green.\n\nWe cannot directly apply premise 10 to the mouse because it does not mention visiting the bear.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is big.\n2. The mouse is cold.\n3. The mouse is round.\n\nWe can start by analyzing rule 1: \"If something visits the mouse and the mouse visits the dog then it is cold.\"\nFrom this rule, we can't directly determine if the mouse visits the dog, but we can analyze the other rules to see if we can find any information about the mouse visiting the dog.\n\nRule 2: \"If something likes the cat then it visits the dog.\"\nThis rule doesn't apply to the mouse, as we don't have any information that the mouse likes the cat.\n\nRule 3: \"If something is cold then it likes the cat.\"\nWe know the mouse is cold, so this rule applies. However, this doesn't tell us if the mouse visits the dog.\n\nRule 4: \"If something is green then it sees the dog.\"\nThis rule doesn't apply to the mouse, as we don't have any information that the mouse is green.\n\nRule 5: \"If something likes the mouse then it sees the cat.\"\nThis rule doesn't apply to the mouse, as we don't have any information that anything likes the mouse.\n\nRule 6: \"If something is green and cold then it likes the cat.\"\nWe know the mouse is cold, but we don't have any information that the mouse is green. So, this rule doesn't apply.\n\nRule 7: \"If something is big and it visits the bear then the bear is green.\"\nWe know the mouse is big and it visits the bear (according to the initial statements), so this rule applies.\n\nFrom rule 7, we can conclude that the bear is green, as the mouse is big and it visits the bear.\n\nNow, we can analyze rule 4 again: \"If something is green then it sees the dog.\"\nSince the bear is green, this rule applies. Therefore, the bear sees the dog.\n\nWe can also analyze rule 3 again: \"If something is cold then it likes the cat.\"\nSince the mouse is cold, this rule applies. Therefore, the mouse likes the cat.\n\nNow, we can analyze rule 2: \"If something likes the cat then it visits the dog.\"\nSince the mouse likes the cat, this rule applies. Therefore, the mouse visits the dog.\n\nSo, based on the analysis, the statement \"The mouse visits the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given statements and the rules. \n\nFirst, let's list the given statements:\n1. The bear is green.\n2. The bear likes the cat.\n3. The bear likes the dog.\n4. The bear visits the dog.\n5. The cat is young.\n6. The cat sees the bear.\n7. The cat sees the dog.\n8. The cat visits the bear.\n9. The cat visits the mouse.\n10. The dog is round.\n11. The dog likes the bear.\n12. The dog likes the mouse.\n13. The dog visits the mouse.\n14. The mouse is big.\n15. The mouse is cold.\n16. The mouse is round.\n\nNext, let's analyze the rules:\n1. If something visits the mouse and the mouse visits the dog then it is cold.\n2. If something likes the cat then it visits the dog.\n3. If something is cold then it likes the cat.\n4. If something is green then it sees the dog.\n5. If something likes the mouse then it sees the cat.\n6. If something is green and cold then it likes the cat.\n7. If something is big and it visits the bear then the bear is green.\n\nNow, we'll apply these rules to determine whether the statement \"The mouse visits the dog\" is true, false, or unknown.\n\nFrom statement 13, we know that the dog visits the mouse. \n\nApplying rule 1, since the mouse visits the dog (statement 13), it is not necessary for us to use this rule. Instead, let's see if we can find any other relevant information.\n\nStatement 14 says the mouse is big, and statement 16 says the mouse is round. However, there is no direct information about the mouse visiting the dog.\n\nNow, let's analyze the rules again to see if we can find any relevant information.\n- Rule 2 is not applicable because there is no information about something liking the cat.\n- Rule 3 is not applicable because there is no information about something being cold.\n- Rule 4 is not applicable because there is no information about something being green.\n- Rule 5 is not applicable because there is no information about something liking the mouse.\n- Rule 6 is not applicable because there is no information about something being green and cold.\n- Rule 7 is not applicable because there is no information about something being big and visiting the bear.\n\nHowever, rule 1 is not directly applicable, but it suggests that if the mouse visits the dog, then it would be cold (rule 1). We know the mouse is cold (statement 15), but there is no direct information about the mouse visiting the dog.\n\nHowever, we can see that the mouse being cold (rule 3) implies that the mouse likes the cat. And since the cat likes the dog (rule 2), the mouse indirectly likes the dog.\n\nNow, let's see if we can find any information about the mouse visiting the dog. We know that the dog likes the mouse (statement 12) and the dog visits the mouse (statement 13). Since the dog likes the mouse, it sees the cat (rule 5). The cat sees the bear (statement 6), but it also sees the dog (statement 7). The bear likes the dog (statement 3), and we can conclude that the bear visits the dog (statement 4).\n\nNow, let's re-evaluate the statement about the mouse being big. We know that the mouse is big (statement 14) and the mouse visits the bear (not directly stated but we can infer using rule 7). According to rule 7, since the mouse is big and it visits the bear, the bear is green (statement 1).\n\nNow, let's go back to the bear visiting the dog. Since the bear is green (statement 1), it sees the dog (rule 4). The bear sees the dog, and the dog sees the cat (statement 7). Since the bear sees the dog, and the dog sees the cat, the bear indirectly sees the cat.\n\nNow, we can go back to the statement about the mouse liking the cat. Since the mouse is cold (statement 15), it likes the cat (rule 3). The cat sees the dog (statement 7), and the cat likes the dog (rule 2).\n\nNow, we can conclude that the mouse sees the cat (rule 5). Since the mouse sees the cat, and the cat sees the dog (statement 7), the mouse indirectly sees the dog.\n\nNow, let's go back to the statement about the mouse visiting the dog. We know that the mouse is big (statement 14), and the mouse sees the dog (indirectly). However, there is no direct information about the mouse visiting the dog.\n\nHowever, since the mouse sees the dog, and the dog visits the mouse (statement 13), the mouse indirectly visits the dog.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the mouse visits the dog, we need to analyze the given information and rules. \n\nFrom the problem, we have the following information:\n1. The mouse is big.\n2. The mouse is round.\n3. The mouse is cold.\n4. The dog visits the mouse.\n5. If something visits the mouse and the mouse visits the dog then it is cold.\n6. If something likes the mouse then it sees the cat.\n7. If something is cold then it likes the cat.\n8. If something is green then it sees the dog.\n9. If something is green and cold then it likes the cat.\n10. If something is big and it visits the bear then the bear is green.\n\nWe can start by analyzing the given information and rules.\n\nFrom rule 10, we can conclude that since the mouse is big and it visits the bear, the bear is green. This means that the bear sees the dog (rule 8).\n\nWe can also conclude that the mouse likes the cat (rule 6), which means the mouse sees the cat.\n\nNow, let's consider the statement we need to determine: The mouse visits the dog.\n\nFrom rule 5, if something visits the mouse and the mouse visits the dog, then it is cold. However, we already know that the mouse is cold (information 3). This rule is not directly applicable to our problem.\n\nHowever, we can use rule 4, which states that the dog visits the mouse. We cannot use this information to directly determine whether the mouse visits the dog.\n\nTo find the answer, we can look for other connections between the mouse and the dog. \n\nLet's analyze the information: The mouse is big, and the mouse visits the bear (information 1 and no information directly related). \n\nHowever, rule 10 tells us that if something is big and it visits the bear then the bear is green. This information is not directly related to the mouse visiting the dog.\n\nWe need to go back to the information given to us and examine it again.\n\nWe know that the dog is round (information 7), and the mouse is round (information 2).\n\nHowever, there is no direct connection between the mouse and the dog. We can look for other information that might help us determine whether the mouse visits the dog.\n\nWe know that the bear is green (from rule 10), the bear likes the cat (information 2), and the cat sees the dog (information 7).\n\nWe can also conclude that the dog likes the mouse (information 8).\n\nSince we know that the dog likes the mouse and the dog sees the cat, it implies that the dog visits the cat (rule 2).\n\nHowever, we cannot directly determine whether the mouse visits the dog from the given information.\n\nThe problem states that the dog visits the mouse. However, this information is given as fact and does not help us determine the answer to our question.\n\nSince the given information and rules do not provide a clear conclusion, we cannot determine whether the mouse visits the dog. \n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we need to use the given conditions to deduce the relationship between the mouse and the dog.\n\n1. If something visits the mouse and the mouse visits the dog then it is cold. \n   We don't have any information that the mouse visits the dog, so we cannot use this condition.\n\n2. If something likes the cat then it visits the dog. \n   We don't have any information about the mouse liking the cat, so we cannot use this condition.\n\n3. If something is cold then it likes the cat. \n   We don't have any information that the mouse is cold, so we cannot use this condition.\n\n4. If something is green then it sees the dog. \n   We know the bear is green, so the bear sees the dog. This doesn't provide any information about the mouse.\n\n5. If something likes the mouse then it sees the cat. \n   We don't have any information about the mouse liking something, so we cannot use this condition.\n\n6. If something is green and cold then it likes the cat. \n   We know the bear is green, but we don't know if it's cold. We know the mouse is cold, but we don't know if it's green. This condition doesn't provide any information about the mouse and the dog.\n\n7. If something is big and it visits the bear then the bear is green. \n   We know the mouse is big and it visits the bear, so the bear is green. However, this doesn't provide any information about the mouse and the dog.\n\nBased on the given conditions, we cannot directly determine if the mouse visits the dog. However, we can use the given conditions to find other information. We know the mouse is big, and it visits the bear, so the bear is green. Since the bear is green, it sees the dog (condition 4). \n\nNow, let's analyze the statement from the perspective of the cat. We know the cat sees the dog and the mouse (conditions 3 and 5 don't provide any information about the mouse, but condition 5 implies the cat sees the mouse since the mouse doesn't like anything). If the cat sees the mouse, then the cat visits the mouse (given statement). We also know the cat likes the dog (condition 2). However, we cannot determine if the mouse visits the dog.\n\nNow, let's analyze the statement from the perspective of the dog. We know the dog is round and likes the mouse (condition 7 doesn't provide any information about the dog, but condition 5 implies the dog sees the cat since the mouse doesn't like anything). We know the dog likes the bear (condition 2), and the bear is green (condition 7). The bear sees the dog (condition 4), and we cannot determine if the mouse visits the dog.\n\nSince we cannot determine if the mouse visits the dog using the given conditions, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is big. \n2. The mouse is cold. \n3. The mouse is round.\n4. If something visits the mouse and the mouse visits the dog then it is cold.\n\nFrom rule 4, we can see that if the mouse visits the dog, then the mouse is cold. However, we already know that the mouse is cold. This does not directly tell us if the mouse visits the dog, but it's an important piece of information.\n\n5. The mouse is big. \n6. The mouse is cold. \n7. The mouse is round.\n8. If something is big and it visits the bear then the bear is green.\n\nThis rule doesn't provide any direct information about the mouse visiting the dog, but it does tell us something about the bear.\n\n9. The cat sees the dog.\n10. The cat visits the bear.\n11. The cat visits the mouse.\n\nFrom rule 1, we know the mouse is big. Rule 8 tells us that if something is big and it visits the bear, then the bear is green. However, we already know the bear is green, so this rule doesn't provide any new information.\n\n12. The bear likes the cat.\n13. The bear likes the dog.\n14. The bear visits the dog.\n\nWe already know the bear is green from rule 8, but we don't need this information to determine if the mouse visits the dog.\n\n15. The cat sees the dog.\n16. The cat sees the bear.\n17. The cat visits the bear.\n18. The cat visits the mouse.\n\nNow, let's look at the rules that might help us determine if the mouse visits the dog:\n\n- Rule 4: If something visits the mouse and the mouse visits the dog then it is cold. We already know the mouse is cold, but this rule doesn't tell us if the mouse visits the dog.\n- Rule 6: If something likes the mouse then it sees the cat. We know the cat sees the dog, but this rule doesn't tell us if the mouse visits the dog.\n- Rule 10: If something is green and cold then it likes the cat. The bear is green and cold, so it likes the cat. This rule doesn't tell us if the mouse visits the dog.\n- Rule 7: If something is cold then it likes the cat. We know the mouse is cold, so it likes the cat. This rule doesn't tell us if the mouse visits the dog.\n- Rule 3: If something likes the cat then it visits the dog. We know the bear likes the cat, but this rule doesn't tell us if the mouse visits the dog.\n- Rule 9: If something is green then it sees the dog. The bear is green, so it sees the dog. This rule doesn't tell us if the mouse visits the dog.\n- Rule 5: If something is round then it is the dog. However, this rule doesn't tell us if the mouse visits the dog.\n\nNow, let's look at the last rule that might help us determine if the mouse visits the dog:\n\n- Rule 1: If something is cold then it likes the cat. Rule 2: If something likes the cat then it visits the dog. We know the mouse is cold, so it likes the cat. Then, if the mouse likes the cat, it visits the dog. This means the mouse visits the dog.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is big.\n2. The mouse is cold.\n3. The mouse is round.\n4. If something visits the mouse and the mouse visits the dog then it is cold.\n5. If something likes the cat then it visits the dog.\n6. If something is cold then it likes the cat.\n7. If something is green then it sees the dog.\n8. If something likes the mouse then it sees the cat.\n9. If something is green and cold then it likes the cat.\n10. If something is big and it visits the bear then the bear is green.\n\nFrom statement 4, we cannot directly conclude that the mouse visits the dog, because we don't have any information about something visiting the mouse. However, we can analyze the mouse's properties.\n\nThe mouse is big (statement 1), which means we can use rule 10. Rule 10 states that if something is big and it visits the bear, then the bear is green. Since the mouse is big, if it visits the bear, then the bear is green.\n\nNow, let's analyze the statement \"The mouse visits the dog\" in terms of the given rules. Rule 6 states that if something is cold, then it likes the cat. Since the mouse is cold (statement 2), we can conclude that the mouse likes the cat.\n\nUsing rule 8, if something likes the mouse, then it sees the cat. Since the mouse likes the cat, we can conclude that it sees the cat. But we are interested in whether the mouse visits the dog.\n\nRule 3 states that the dog is round. Rule 5 states that if something likes the cat, then it visits the dog. Since the mouse likes the cat (because it is cold), we can conclude that the mouse visits the dog.\n\nHowever, we need to be careful. Rule 4 states that if something visits the mouse and the mouse visits the dog, then it is cold. We cannot conclude that the mouse visits the dog from this rule because we don't have any information about something visiting the mouse.\n\nBut, we already concluded that the mouse likes the cat and the mouse sees the cat, and we also concluded that the mouse visits the dog.\n\nTherefore, based on the analysis, the statement \"The mouse visits the dog\" is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information and the conditions provided. \n\nLet's represent the given information as follows:\n- B: The bear is green.\n- B1: The bear likes the cat.\n- B2: The bear likes the dog.\n- B3: The bear visits the dog.\n- C1: The cat is young.\n- C2: The cat sees the bear.\n- C3: The cat sees the dog.\n- C4: The cat visits the bear.\n- C5: The cat visits the mouse.\n- D1: The dog is round.\n- D2: The dog likes the bear.\n- D3: The dog likes the mouse.\n- D4: The dog visits the mouse.\n- M1: The mouse is big.\n- M2: The mouse is cold.\n- M3: The mouse is round.\n- M5: If something visits the mouse and the mouse visits the dog then it is cold.\n- M6: If something likes the cat then it visits the dog.\n- M7: If something is cold then it likes the cat.\n- M8: If something is green then it sees the dog.\n- M9: If something likes the mouse then it sees the cat.\n- M10: If something is green and cold then it likes the cat.\n- M11: If something is big and it visits the bear then the bear is green.\n\nWe are given the following conditions:\n- D4: The dog visits the mouse.\n- M2: The mouse is cold.\n- M3: The mouse is round.\n- M4: If something visits the mouse and the mouse visits the dog then it is cold.\n\nNow, we need to determine whether the statement \"The mouse visits the dog\" is true, false, or unknown. To do this, we can look for a direct or indirect relationship between the mouse and the dog using the given information.\n\nSince the dog visits the mouse (D4), we can look for a relationship between the mouse and the dog. Given that the mouse is cold (M2), we can look for a relationship between the mouse being cold and the statement \"The mouse visits the dog\". \n\nHowever, we have the condition M4: If something visits the mouse and the mouse visits the dog then it is cold. \n\nThis condition creates a circular relationship between the mouse and the dog. It implies that if the mouse visits the dog, then it is cold, but since the mouse is cold (M2), then the condition M4 also implies that the mouse visits the dog. This creates an infinite loop, making it impossible to determine whether the statement is true or false.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and rules into a set of logical conditions and determine if they apply to the statement \"The mouse visits the dog.\"\n\nGiven Statements:\n1. The bear is green.\n2. The bear likes the cat.\n3. The bear likes the dog.\n4. The bear visits the dog.\n5. The cat is young.\n6. The cat sees the bear.\n7. The cat sees the dog.\n8. The cat visits the bear.\n9. The cat visits the mouse.\n10. The dog is round.\n11. The dog likes the bear.\n12. The dog likes the mouse.\n13. The dog visits the mouse.\n14. The mouse is big.\n15. The mouse is cold.\n16. The mouse is round.\n\nGiven Rules:\n1. If something visits the mouse and the mouse visits the dog then it is cold.\n2. If something likes the cat then it visits the dog.\n3. If something is cold then it likes the cat.\n4. If something is green then it sees the dog.\n5. If something likes the mouse then it sees the cat.\n6. If something is green and cold then it likes the cat.\n7. If something is big and it visits the bear then the bear is green.\n\nWe need to determine if \"The mouse visits the dog\" is true, false, or unknown based on these conditions.\n\nTo do this, let's assume the statement \"The mouse visits the dog\" is true. \n\nNow, we can see that the mouse is big (Statement 14), and it visits the bear (because it visits the dog, which is true based on our assumption). According to Rule 7, if something is big and it visits the bear then the bear is green. This means the bear is green.\n\nNow, according to Rule 4, if something is green, then it sees the dog. Since the bear is green, it sees the dog. \n\nNow, let's examine the conditions related to the cat and dog. We have Statement 3: The bear likes the dog, and Statement 12: The dog likes the mouse. According to Rule 5, if something likes the mouse, then it sees the cat. Since the dog likes the mouse, it sees the cat.\n\nWe know the cat is young (Statement 5) and it sees the dog (Statement 7). Since the dog sees the cat, we can conclude that the cat is not cold (because it does not like the dog based on rule 3). Also, since the cat does not like the dog, it does not visit the dog (based on rule 2).\n\nWe know the mouse is big (Statement 14) and it visits the bear (because it visits the dog, which is true based on our assumption). According to Rule 7, if something is big and it visits the bear then the bear is green. This means the bear is green.\n\nNow, according to Rule 4, if something is green, then it sees the dog. Since the bear is green, it sees the dog.\n\nWe already know that the dog likes the mouse (Statement 12). According to Rule 5, if something likes the mouse, then it sees the cat. Since the dog likes the mouse, it sees the cat.\n\nWe know the cat is young (Statement 5) and it sees the dog (Statement 7). Since the dog sees the cat, we can conclude that the cat is not cold (because it does not like the dog based on rule 3). Also, since the cat does not like the dog, it does not visit the dog (based on rule 2).\n\nNow, we need to check if the mouse visits the dog based on the given rules. \n\nWe know that the mouse is big (Statement 14). Since the mouse is big, it visits the bear (because it visits the dog, which is true based on our assumption). According to Rule 7, if something is big and it visits the bear then the bear is green. This means the bear is green.\n\nNow, according to Rule 4, if something is green, then it sees the dog. Since the bear is green, it sees the dog.\n\nWe already know that the dog likes the mouse (Statement 12). According to Rule 5, if something likes the mouse, then it sees the cat. Since the dog likes the mouse, it sees the cat.\n\nWe know the cat is young (Statement 5) and it sees the dog (Statement 7). Since the dog sees the cat, we can conclude that the cat is not cold (because it does not like the dog based on rule 3). Also, since the cat does not like the dog, it does not visit the dog (based on rule 2).\n\nSince the bear sees the dog (Rule 4), the mouse is not cold (because it does not visit the dog, which is not true based on our assumption). \n\nAlso, since the mouse is not cold, it does not like the cat (Rule 3).\n\nWe have Statement 9: The cat visits the mouse. According to Rule 1, if something visits the mouse and the mouse visits the dog, then it is cold. Since the mouse visits the dog (based on our assumption), the cat is cold.\n\nHowever, this contradicts the fact that the mouse is not cold.\n\nTherefore, the statement \"The mouse visits the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given premises and use them to derive the conclusion.\n\nFrom the premises:\n\n1. If something visits the mouse and the mouse visits the dog then it is cold. (Premise 1)\n2. If something likes the cat then it visits the dog. (Premise 2)\n3. If something is cold then it likes the cat. (Premise 3)\n4. If something is green then it sees the dog. (Premise 4)\n5. If something likes the mouse then it sees the cat. (Premise 5)\n6. If something is green and cold then it likes the cat. (Premise 6)\n7. If something is big and it visits the bear then the bear is green. (Premise 7)\n\nNow, we will analyze the given statement: The mouse visits the dog.\n\nGiven that \"The mouse visits the dog\", we need to check if it satisfies any of the premises to derive a conclusion.\n\nLet's check if it satisfies Premise 1:\n- If the mouse visits the dog, then it is not a direct statement that the mouse is cold. We don't have enough information to conclude that the mouse is cold.\n\nHowever, we can check the other premises.\n\nLet's check if it satisfies Premise 2:\n- This premise is not applicable because the statement does not mention that the mouse likes the cat.\n\nLet's check if it satisfies Premise 3:\n- This premise is not applicable because the statement does not mention that the mouse is cold.\n\nLet's check if it satisfies Premise 4:\n- This premise is not applicable because the statement does not mention that the mouse is green.\n\nLet's check if it satisfies Premise 5:\n- This premise is not applicable because the statement does not mention that the mouse likes the mouse. However, we do know that the mouse is big (Premise 8). We can use Premise 7 to derive a conclusion.\n\nLet's check if it satisfies Premise 6:\n- This premise is not applicable because the statement does not mention that the mouse is green and cold.\n\nNow, let's check if it satisfies Premise 7:\n- The mouse is big (Premise 8). If the mouse is big and it visits the bear (not directly mentioned, but the statement is \"The mouse visits the dog\" and we can conclude that the mouse visits the bear because the bear likes the dog), then the bear is green. However, we don't have enough information to conclude that the bear is green. But, this premise is not directly applicable.\n\nHowever, since the mouse is big and the statement \"The mouse visits the dog\" is true, then from Premise 7, we can conclude that the bear is green. \n\nSince the bear is green, from Premise 4, we can conclude that the bear sees the dog.\n\nNow, let's check if the mouse visits the dog and the mouse visits the bear (not directly mentioned, but we can conclude that the mouse visits the bear because the mouse is big and it visits the bear, as mentioned earlier). From Premise 1, we can conclude that the mouse is cold.\n\nSince the mouse is cold, from Premise 3, we can conclude that the mouse likes the cat.\n\nNow, let's check if the mouse likes the mouse. From Premise 5, we can conclude that the mouse sees the cat.\n\nHowever, we don't have enough information to conclude that the mouse visits the dog directly from any of the premises. Therefore, the statement \"The mouse visits the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use the given premises and rules to determine if the statement \"The mouse visits the dog\" is true, false, or unknown.\n\nStep 1: Analyze the statement \"The mouse visits the dog\" using the given rules.\n\nFrom the statement, we know:\n- The mouse is big (from \"The mouse is big\")\n- The mouse is cold (from \"The mouse is cold\")\n- The mouse is round (from \"The mouse is round\")\n- The mouse visits the dog (this is the statement we're trying to determine)\n\nFrom the rules:\n- If something visits the mouse and the mouse visits the dog then it is cold (rule 1)\n- If something likes the mouse then it sees the cat (rule 5)\n- If something is cold then it likes the cat (rule 3)\n- If something is green and cold then it likes the cat (rule 7)\n- If something is big and it visits the bear then the bear is green (rule 8)\n\nStep 2: Use the rules to derive new information.\n\nFrom rule 1, we can't directly apply it to the statement, but we can use the other rules to analyze the situation.\n\nWe know the mouse is cold (rule 2), so from rule 3, the mouse likes the cat.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We know the mouse likes the cat, but we can't directly apply this rule to the mouse and the cat because it's not the same thing. However, this rule can be used to analyze other statements.\n\nFrom rule 5, we can't derive any new information directly, but we can use other rules to analyze the situation.\n\nLet's analyze the statement \"The cat sees the dog.\" (from the given premises)\n\nFrom the rules:\n- If something is green then it sees the dog (rule 4)\n\nWe know the cat sees the dog, but we don't know if the cat is green or not.\n\nNow, let's analyze the statement \"The bear visits the dog.\" (from the given premises)\n\nFrom the rules:\n- If something likes the cat then it visits the dog (rule 2)\n\nWe know the bear likes the cat, so the bear visits the dog.\n\nFrom rule 4, we know that the bear sees the dog because the bear is green. But we don't know if the bear is green or not.\n\nHowever, from the given premises, we know \"The bear is green\" (from \"The bear is green\"). \n\nSo, from rule 4, the bear sees the dog because the bear is green.\n\nNow, let's use rule 7: If something is green and cold then it likes the cat. We know the bear is green (from \"The bear is green\"), and we know the mouse is cold (from \"The mouse is cold\"). We can't directly apply this rule to the bear and the mouse, but we can use other rules to analyze the situation.\n\nFrom rule 7, we can't derive any new information directly, but we can use other rules to analyze the situation.\n\nHowever, we can derive new information from rule 8: If something is big and it visits the bear then the bear is green. We know the mouse is big (from \"The mouse is big\") and the mouse visits the bear (from the given premises).\n\nSo, from rule 8, the bear is green.\n\nNow, let's use rule 4: If something is green then it sees the dog. We know the bear is green, so the bear sees the dog.\n\nWe also know the bear likes the cat (from \"The bear likes the cat\"), so from rule 2, the bear visits the dog.\n\nNow, let's use rule 1: If something visits the mouse and the mouse visits the dog then it is cold. We know the mouse visits the dog (from the statement), so we can't directly apply this rule to the statement.\n\nHowever, we can use other rules to analyze the situation.\n\nFrom rule 3, we know the mouse likes the cat. Now, let's use rule 5: If something likes the mouse then it sees the cat. We know the mouse likes the cat, but we can't directly apply this rule to the mouse and the cat because it's not the same thing. However, this rule can be used to analyze other statements.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nHowever, we can use other rules to derive new information.\n\nFrom rule 2, we know the bear likes the cat. Now, let's use rule 2: If something likes the cat then it visits the dog. We know the bear likes the cat, so the bear visits the dog.\n\nNow, let's use rule 3: If something is cold then it likes the cat. We know the mouse is cold (from \"The mouse is cold\"), so the mouse likes the cat.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We know the mouse likes the cat, so we can't directly apply this rule to the mouse and the cat because it's not the same thing. However, this rule can be used to analyze other statements.\n\nNow, let's use rule 4: If something is green then it sees the dog. We know the bear is green (from \"The bear is green\"), so the bear sees the dog.\n\nWe also know the bear likes the cat (from \"The bear likes the cat\"), so from rule 2, the bear visits the dog.\n\nNow, let's use rule 1: If something visits the mouse and the mouse visits the dog then it is cold. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nFrom rule 8, we know the bear is green. Now, let's use rule 4: If something is green then it sees the dog. We know the bear is green, so the bear sees the dog.\n\nWe also know the bear likes the cat (from \"The bear likes the cat\"), so from rule 2, the bear visits the dog.\n\nNow, let's use rule 7: If something is green and cold then it likes the cat. We know the bear is green (from \"The bear is green\"), but we don't know if the bear is cold or not.\n\nHowever, we can use other rules to derive new information.\n\nFrom rule 2, we know the bear likes the cat. Now, let's use rule 3: If something is cold then it likes the cat. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nNow, let's use rule 1: If something visits the mouse and the mouse visits the dog then it is cold. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We know the mouse likes the cat (from \"The mouse likes the cat\"), but we can't directly apply this rule to the mouse and the cat because it's not the same thing. However, this rule can be used to analyze other statements.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nHowever, we can use other rules to derive new information.\n\nFrom rule 2, we know the bear likes the cat. Now, let's use rule 2: If something likes the cat then it visits the dog. We know the bear likes the cat, so the bear visits the dog.\n\nNow, let's use rule 4: If something is green then it sees the dog. We know the bear is green (from \"The bear is green\"), so the bear sees the dog.\n\nWe also know the bear likes the cat (from \"The bear likes the cat\"), so from rule 2, the bear visits the dog.\n\nNow, let's use rule 7: If something is green and cold then it likes the cat. We know the bear is green (from \"The bear is green\"), but we don't know if the bear is cold or not.\n\nHowever, we can use other rules to derive new information.\n\nFrom rule 8, we know the bear is green. Now, let's use rule 4: If something is green then it sees the dog. We know the bear is green, so the bear sees the dog.\n\nWe also know the bear likes the cat (from \"The bear likes the cat\"), so from rule 2, the bear visits the dog.\n\nNow, let's use rule 3: If something is cold then it likes the cat. We know the mouse is cold (from \"The mouse is cold\"), so the mouse likes the cat.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We know the mouse likes the cat, but we can't directly apply this rule to the mouse and the cat because it's not the same thing. However, this rule can be used to analyze other statements.\n\nNow, let's use rule 5: If something likes the mouse then it sees the cat. We can't directly apply this rule to the statement, but we can use other rules to analyze the situation.\n\nHowever, we can use other rules to derive new information.\n\nFrom rule 2, we know the bear likes the cat. Now, let's use rule 2: If something likes the cat then it visits the dog. We know the bear likes the cat, so the bear visits the dog.\n\nNow, let's use rule",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse visits the dog\" is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\n1. The given information:\n   - The mouse is big.\n   - The mouse is cold.\n   - The mouse is round.\n   - The mouse visits the dog (this is the statement we want to determine).\n\n2. The rules:\n   - If something visits the mouse and the mouse visits the dog then it is cold.\n   - If something likes the cat then it visits the dog.\n   - If something is cold then it likes the cat.\n   - If something is green then it sees the dog.\n   - If something likes the mouse then it sees the cat.\n   - If something is green and cold then it likes the cat.\n   - If something is big and it visits the bear then the bear is green.\n\n3. Analyzing the statement \"The mouse visits the dog\" using the rules:\n   - We know that the mouse is big. \n   - We have rule 7: \"If something is big and it visits the bear then the bear is green.\" However, this rule does not tell us anything about the mouse visiting the dog, but rather the bear being green.\n   - We also have rule 1: \"If something visits the mouse and the mouse visits the dog then it is cold.\" However, this rule also does not tell us anything about the mouse visiting the dog.\n   - Let's use rule 5: \"If something likes the mouse then it sees the cat.\" This rule does not tell us anything about the mouse visiting the dog, but we can use it to see if we can get any information about the mouse visiting the dog through other rules.\n   - We have rule 3: \"If something is cold then it likes the cat.\" We know that the mouse is cold, so the mouse likes the cat.\n   - Using rule 2: \"If something likes the cat then it visits the dog.\" The mouse likes the cat, so the mouse visits the dog.\n\nFrom the analysis, we can see that the statement \"The mouse visits the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, visits_mouse_dog), cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, visits_mouse_dog), cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_mouse_cat, visits_mouse_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_mouse, sees_mouse_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_something_mouse, sees_something_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_mouse, cold_mouse), likes_mouse_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_mouse, visits_mouse_bear), green_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, dog)",
+          "z3_formula": "visits_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_mouse, visits_mouse_dog), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, likes_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(X)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, Y) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_X, visits_mouse_Y), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_mouse_X, sees_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, Y) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_bear, visits_bear_mouse), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, mouse)",
+          "z3_formula": "sees_dog_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_mouse, visits_mouse_dog), cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cat_sees_dog",
+          "z3_formula": "cat_sees_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_bear",
+          "z3_formula": "cat_visits_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_mouse",
+          "z3_formula": "cat_visits_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "bear_likes_cat",
+          "z3_formula": "bear_likes_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "bear_likes_dog",
+          "z3_formula": "bear_likes_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "bear_visits_dog",
+          "z3_formula": "bear_visits_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "cat_sees_dog",
+          "z3_formula": "cat_sees_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cat_sees_bear",
+          "z3_formula": "cat_sees_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_bear",
+          "z3_formula": "cat_visits_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "cat_visits_mouse",
+          "z3_formula": "cat_visits_mouse == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_mouse, visits_mouse_dog), cold_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, dog)",
+          "z3_formula": "visits_bear_dog == True",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> X == dog",
+          "z3_formula": "Implies(round_X, X == dog)",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "mouse == dog",
+          "z3_formula": "mouse == dog == False",
+          "source_step": 36
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 37
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 39
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, visits_mouse_dog), cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_mouse_cat, visits_mouse_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_mouse, sees_mouse_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_mouse_mouse, sees_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_mouse, cold_mouse), likes_mouse_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_mouse, visits_mouse_bear), green_bear)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, dog)",
+          "z3_formula": "visits_bear_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_mouse, visits_mouse_dog), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(X)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, dog)",
+          "z3_formula": "visits_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, mouse)",
+          "z3_formula": "visits_dog_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_mouse, visits_mouse_dog), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_X, likes_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(X)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_X)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, Y) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, visits_mouse_bear), cold_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_mouse_cat, visits_mouse_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_bear, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_mouse_mouse, sees_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_bear, cold_bear), likes_bear_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_mouse, visits_mouse_bear), green_bear)",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & visits(mouse, dog) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, visits_mouse_dog), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_X_cat, visits_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, cat)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> likes(X, cat)",
+          "z3_formula": "Implies(And(green_X, cold_X), likes_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, bear) -> green(bear)",
+          "z3_formula": "Implies(And(big_X, visits_X_bear), green_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 199,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 0,
+      "total_weight": 199,
+      "solve_time_ms": 1.4445576816797256
+    },
+    "timing": {
+      "trace_gen_s": 24.394,
+      "extraction_s": 49.026,
+      "dedup_s": 2.208,
+      "maxsat_s": 0.005,
+      "total_s": 75.633
+    }
+  }
+}

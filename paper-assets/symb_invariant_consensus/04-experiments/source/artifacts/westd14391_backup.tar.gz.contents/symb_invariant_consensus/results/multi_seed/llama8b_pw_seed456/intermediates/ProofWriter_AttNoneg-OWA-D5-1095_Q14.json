@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1095_Q14",
+    "problem": "Bob is blue. Bob is cold. Bob is green. Bob is nice. Bob is red. Bob is round. Bob is white. Charlie is cold. Charlie is green. Charlie is round. Gary is blue. Gary is cold. Gary is green. Gary is nice. Gary is red. Harry is round. If Harry is round then Harry is nice. If something is nice then it is green. All white, round things are red. White, red things are cold. All cold things are blue. All nice things are white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, True) ::: Bob is nice.\nRed(Bob, True) ::: Bob is red.\nRound(Bob, True) ::: Bob is round.\nWhite(Bob, True) ::: Bob is white.\nCold(Charlie, True) ::: Charlie is cold.\nGreen(Charlie, True) ::: Charlie is green.\nRound(Charlie, True) ::: Charlie is round.\nBlue(Gary, True) ::: Gary is blue.\nCold(Gary, True) ::: Gary is cold.\nGreen(Gary, True) ::: Gary is green.\nNice(Gary, True) ::: Gary is nice.\nRed(Gary, True) ::: Gary is red.\nRound(Harry, True) ::: Harry is round.\n\nRules:\nRound(Harry, True) >>> Nice(Harry, True) ::: If Harry is round then Harry is nice.\nNice($x, True) >>> Green($x, True) ::: If something is nice then it is green.\nWhite($x, True) && Round($x, True) >>> Red($x, True) ::: All white, round things are red.\nWhite($x, True) && Red($x, True) >>> Cold($x, True) ::: White, red things are cold.\nCold($x, True) >>> Blue($x, True) ::: All cold things are blue.\nNice($x, True) >>> White($x, True) ::: All nice things are white.\n\nQuery:\nRed(Charlie, True) ::: Charlie is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

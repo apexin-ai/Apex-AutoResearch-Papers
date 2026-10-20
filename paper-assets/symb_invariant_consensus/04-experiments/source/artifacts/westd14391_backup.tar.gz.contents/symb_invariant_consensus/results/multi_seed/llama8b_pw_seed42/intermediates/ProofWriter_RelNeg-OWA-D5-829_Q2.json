@@ -1,0 +1,658 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-829_Q2",
+    "problem": "The dog does not eat the rabbit. The mouse eats the tiger. The mouse is green. The rabbit does not chase the tiger. The rabbit eats the dog. The rabbit is young. The tiger is green. If something visits the mouse then the mouse is big. If something eats the tiger then the tiger visits the mouse. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. If something is green and it chases the rabbit then the rabbit does not eat the mouse. If something is green then it visits the dog. If something visits the rabbit and the rabbit is young then it is round. If something is round and it visits the dog then it chases the tiger. If something is big then it visits the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nChases($x, $y, bool) ::: Does x chase y?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nEats(Dog, Rabbit, False) ::: The dog does not eat the rabbit.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nGreen(Mouse, True) ::: The mouse is green.\nChases(Rabbit, Tiger, False) ::: The rabbit does not chase the tiger.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nYoung(Rabbit, True) ::: The rabbit is young.\nGreen(Tiger, True) ::: The tiger is green.\n\nRules:\nVisits($x, Mouse, True) >>> Big(Mouse, True) ::: If something visits the mouse then the mouse is big.\nEats($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If something eats the tiger then the tiger visits the mouse.\nYoung(Dog, True) && Visits(Dog, Mouse, False) >>> Visits(Mouse, Rabbit, False) ::: If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit.\nGreen($x, True) && Chases($x, Rabbit, True) >>> Eats(Rabbit, Mouse, False) ::: If something is green and it chases the rabbit then the rabbit does not eat the mouse.\nGreen($x, True) >>> Visits($x, Dog, True) ::: If something is green then it visits the dog.\nVisits($x, Rabbit, True) && Young(Rabbit, True) >>> Round($x, True) ::: If something visits the rabbit and the rabbit is young then it is round.\nRound($x, True) && Visits($x, Dog, True) >>> Chases($x, Tiger, True) ::: If something is round and it visits the dog then it chases the tiger.\nBig($x, True) >>> Visits($x, Rabbit, True) ::: If something is big then it visits the rabbit.\n\nQuery:\nGreen(Tiger, False) ::: The tiger is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 82.5,
+      "True": 23.5
+    },
+    "answer_counts": {
+      "False": 11,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger is green. (Given)\n\nFrom this, we can directly conclude that the statement \"The tiger is not green\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the problem statement:\n\n1. The tiger is green. (direct statement)\n\nThis statement directly contradicts the statement we're trying to determine, which is \"The tiger is not green.\"\n\nHowever, we also need to check if there are any rules that could potentially affect the color of the tiger:\n\n2. If something is green and it chases the rabbit then the rabbit does not eat the mouse. (This statement doesn't affect the color of the tiger.)\n\n3. If something is green then it visits the dog. (This statement doesn't affect the color of the tiger.)\n\n4. The mouse is green. (This statement doesn't affect the color of the tiger.)\n\n5. The tiger is green. (This statement directly contradicts the statement we're trying to determine.)\n\nFrom the problem statement:\n\n1. The mouse eats the tiger. (This statement implies that the tiger is eaten by the mouse, but it doesn't change the fact that the tiger is green.)\n\n2. The mouse is green. (This statement doesn't affect the color of the tiger.)\n\n3. The tiger is green. (This statement directly contradicts the statement we're trying to determine.)\n\nThere are no rules that could potentially change the color of the tiger. The statement \"The tiger is green\" is a direct statement, and there's no information that contradicts or modifies this statement.\n\nTherefore, the statement \"The tiger is not green\" is false, as it contradicts the direct statement that the tiger is green.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. The tiger is green. (From the statement \"The tiger is green.\")\n\nSince this statement directly contradicts the given information, we can immediately conclude that:\n\nThe statement \"The tiger is not green\" is **false** because the tiger is indeed green.\n\nHowever, to provide a complete analysis, let's check if any other statements might affect our conclusion:\n\n2. The mouse is green. (From the statement \"The mouse is green.\")\n\nThis does not affect the conclusion about the tiger.\n\n3. If something is green and it chases the rabbit then the rabbit does not eat the mouse. (From the given conditions)\n\nThis does not affect the conclusion about the tiger.\n\n4. If something is green then it visits the dog. (From the given conditions)\n\nThis does not affect the conclusion about the tiger.\n\n5. If something eats the tiger then the tiger visits the mouse. (From the given conditions)\n\nThis does not affect the conclusion about the tiger.\n\n6. The rabbit does not eat the mouse. (From the statement \"The rabbit does not eat the mouse.\")\n\nThis does not affect the conclusion about the tiger.\n\n7. The dog does not eat the rabbit. (From the statement \"The dog does not eat the rabbit.\")\n\nThis does not affect the conclusion about the tiger.\n\n8. The mouse eats the tiger. (From the statement \"The mouse eats the tiger.\")\n\nThis statement is actually contradictory to the initial statement \"The tiger is green.\" However, we must consider that this statement might have been derived from the condition \"If something eats the tiger then the tiger visits the mouse.\" Since we know the tiger is green and we have a condition that says \"If something is green then it visits the dog,\" we can't conclude the mouse is green from the statement \"The mouse eats the tiger\" because the mouse could be visiting the tiger, not eating it.\n\nHowever, in this case, we have another condition that says \"If something eats the tiger then the tiger visits the mouse.\" This means the mouse eating the tiger implies that the tiger visits the mouse. Therefore, we can say the tiger is not green because it is visiting the mouse, and we have another condition that says \"If something is green then it visits the dog.\" This condition applies to the mouse, which is green, not the tiger.\n\nIn conclusion, we can conclude the statement \"The tiger is not green\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger is green. \nThis statement directly contradicts the statement we are trying to evaluate, suggesting that the tiger's color is indeed green.\n\n2. The mouse is green. \nThis information does not affect the color of the tiger, so it's irrelevant to our evaluation.\n\n3. The mouse eats the tiger. \nThis statement tells us about the relationship between the mouse and the tiger but does not provide any information about the tiger's color.\n\n4. The mouse is big. \nThis statement tells us about the mouse's size but does not affect our evaluation of the tiger's color.\n\n5. If something eats the tiger then the tiger visits the mouse. \nThis statement implies that the tiger visits the mouse, but it does not provide any information about the tiger's color.\n\n6. The rabbit does not chase the tiger. \nThis statement tells us about the relationship between the rabbit and the tiger but does not affect our evaluation of the tiger's color.\n\n7. The rabbit eats the dog. \nThis statement tells us about the relationship between the rabbit and the dog but does not affect our evaluation of the tiger's color.\n\n8. The rabbit is young. \nThis statement tells us about the rabbit's age but does not affect our evaluation of the tiger's color.\n\n9. If something is green and it chases the rabbit then the rabbit does not eat the mouse. \nThis statement implies that a green entity chases the rabbit, but it does not provide any information about the tiger's color.\n\n10. If something is green then it visits the dog. \nThis statement implies that green entities visit the dog, but it does not provide any information about the tiger's color.\n\n11. If something visits the rabbit and the rabbit is young then it is round. \nThis statement tells us about the relationship between entities and the rabbit, but it does not affect our evaluation of the tiger's color.\n\n12. If something is round and it visits the dog then it chases the tiger. \nThis statement tells us about the relationship between round entities and the tiger but does not affect our evaluation of the tiger's color.\n\n13. If something is big then it visits the rabbit. \nThis statement tells us about the relationship between big entities and the rabbit but does not affect our evaluation of the tiger's color.\n\nHowever, from point 1, we know that \"The tiger is green.\" This directly contradicts the statement we are trying to evaluate.\n\nSo, the statement \"The tiger is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'The tiger is not green' is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information, we know:\n- The mouse is green.\n- The tiger is green.\n\nNow, let's analyze the rules:\n1. If something visits the mouse then the mouse is big. (This rule doesn't provide any information about the tiger's color.)\n2. If something eats the tiger then the tiger visits the mouse. (This rule doesn't provide any information about the tiger's color.)\n3. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. (This rule doesn't provide any information about the tiger's color.)\n4. If something is green and it chases the rabbit then the rabbit does not eat the mouse. (This rule is relevant, but we don't have any information about the tiger chasing the rabbit.)\n5. If something is green then it visits the dog. (This rule is irrelevant to the tiger's color.)\n6. If something visits the rabbit and the rabbit is young then it is round. (This rule is irrelevant to the tiger's color.)\n7. If something is round and it visits the dog then it chases the tiger. (This rule is irrelevant to the tiger's color.)\n8. If something is big then it visits the rabbit. (This rule is irrelevant to the tiger's color.)\n\nBased on the given information, we know the tiger is green. \n\nSo, the statement 'The tiger is not green' is false.\n\nThe final answer is: \\boxed{false}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. (Given)\n2. The tiger is green. (Given)\n\nFrom the given information in statement 1 and 2, we can conclude that the tiger is indeed green.\n\nNow, let's analyze the conditions given in the problem:\n\n- If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. (This condition does not affect our conclusion)\n- If something eats the tiger then the tiger visits the mouse. (This condition does not affect our conclusion)\n- If something is green and it chases the rabbit then the rabbit does not eat the mouse. (This condition does not affect our conclusion)\n- If something is green then it visits the dog. (This condition does not affect our conclusion)\n- If something visits the rabbit and the rabbit is young then it is round. (This condition does not affect our conclusion)\n- If something is round and it visits the dog then it chases the tiger. (This condition does not affect our conclusion)\n- If something is big then it visits the rabbit. (This condition does not affect our conclusion)\n\nBased on the given information, the statement \"The tiger is not green\" is directly opposite to the given fact that the tiger is green.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\nGiven statements:\n\n1. The dog does not eat the rabbit.\n2. The mouse eats the tiger.\n3. The mouse is green.\n4. The rabbit does not chase the tiger.\n5. The rabbit eats the dog.\n6. The rabbit is young.\n7. The tiger is green.\n8. If something visits the mouse then the mouse is big.\n9. If something eats the tiger then the tiger visits the mouse.\n10. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit.\n11. If something is green and it chases the rabbit then the rabbit does not eat the mouse.\n12. If something is green then it visits the dog.\n13. If something visits the rabbit and the rabbit is young then it is round.\n14. If something is round and it visits the dog then it chases the tiger.\n15. If something is big then it visits the rabbit.\n\nWe need to determine whether the statement \"The tiger is not green\" is true, false, or unknown.\n\nFrom statement 3, we know that \"The mouse is green.\"\nFrom statement 7, we know that \"The tiger is green.\"\n\nNow, let's examine the given statements to see if they can be used to deduce anything about the tiger's color.\n\nStatement 9 says, \"If something eats the tiger then the tiger visits the mouse.\" We know from statement 2 that \"The mouse eats the tiger.\" However, this statement does not provide any information about the tiger's color.\n\nStatement 11 says, \"If something is green and it chases the rabbit then the rabbit does not eat the mouse.\" This statement does not provide any information about the tiger's color.\n\nStatement 12 says, \"If something is green then it visits the dog.\" This statement does not provide any information about the tiger's color.\n\nStatement 13 says, \"If something visits the rabbit and the rabbit is young then it is round.\" This statement does not provide any information about the tiger's color.\n\nStatement 14 says, \"If something is round and it visits the dog then it chases the tiger.\" This statement does not provide any information about the tiger's color.\n\nStatement 15 says, \"If something is big then it visits the rabbit.\" This statement does not provide any information about the tiger's color.\n\nHowever, statement 9 also says, \"If something eats the tiger then the tiger visits the mouse.\" Statement 2 says, \"The mouse eats the tiger.\" Therefore, the tiger visits the mouse.\n\nFrom statement 8, if something visits the mouse then the mouse is big. We know the tiger visits the mouse. Therefore, the tiger implies the mouse is big. We also know the mouse is green.\n\nStatement 10 says, \"If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit.\" Statement 5 says, \"The rabbit eats the dog.\" We can imply the dog is not young because if the dog was young, the rabbit would eat the dog and the mouse would visit the rabbit because the mouse is big. However, the mouse does not visit the rabbit if the dog is young and does not visit the mouse. This implies that the dog is not young because if the dog was young, the mouse would not visit the rabbit and the rabbit would eat the dog, contradicting the fact that the mouse is big.\n\nNow, we need to determine whether the statement \"The tiger is not green\" is true, false, or unknown.\n\nFrom the given statements, we have determined that the tiger is green, which is stated in statement 7.\n\nTherefore, the statement \"The tiger is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The tiger is green. (Direct information)\n\nThis statement directly contradicts the statement we are trying to determine. If the tiger is indeed green, then the statement \"The tiger is not green\" would be false.\n\nSince we have found a direct statement about the tiger's color, we can conclude that the statement \"The tiger is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. \n   - This statement does not provide any information about the tiger.\n\n2. The tiger is green.\n   - This statement directly contradicts the information given in step 1, but we cannot conclude anything about the tiger's color yet because we have more information to consider.\n\n3. If something is green and it chases the rabbit then the rabbit does not eat the mouse.\n   - This statement does not provide any information about the tiger's color.\n\n4. If something is green then it visits the dog.\n   - This statement does not provide any information about the tiger's color.\n\n5. The tiger is green.\n   - This statement is repeated, which means we can conclude that the tiger is indeed green.\n\nBased on the given information, we have two conflicting statements: \n- The mouse is green (Statement 1), and \n- The tiger is green (Statement 2 and Statement 5).\n\nHowever, we know that the mouse is green, but we don't know anything about the tiger's color from the mouse's statement. We have to focus on the statements that directly relate to the tiger.\n\nThe statement \"The tiger is green\" (Statement 2 and Statement 5) is repeated, which means we can conclude that the tiger is indeed green.\n\nTherefore, the statement \"The tiger is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'The tiger is not green' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. (Given)\n2. The tiger is green. (Given)\n\nFrom statements 1 and 2, we can conclude that the tiger is indeed green.\n\nHowever, we also need to consider the possibility that there might be a contradictory statement that could change this conclusion. Let's examine the other statements:\n\n3. The mouse eats the tiger. (Given)\n4. If something eats the tiger then the tiger visits the mouse. (Given)\n\nFrom statements 3 and 4, we can conclude that the tiger visits the mouse, but this does not affect the color of the tiger.\n\n5. The rabbit does not chase the tiger. (Given)\n6. The rabbit is green. (This is not given, but we know the tiger is green)\n7. The rabbit eats the dog. (Given)\n8. The rabbit is young. (Given)\n\nSince the rabbit is not directly related to the color of the tiger, we can ignore this information for now.\n\n9. If something is green and it chases the rabbit then the rabbit does not eat the mouse. (Given)\n10. If something is green then it visits the dog. (Given)\n\nFrom statement 10, we know the tiger (which is green) visits the dog, but this does not affect the color of the tiger.\n\n11. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. (Given)\n\nThis statement does not provide any information about the color of the tiger.\n\n12. If something visits the mouse then the mouse is big. (Given)\n13. The mouse eats the tiger. (Given)\n\nFrom statement 13, we know the mouse eats the tiger, but this does not affect the color of the tiger.\n\n14. If something is round and it visits the dog then it chases the tiger. (Given)\n15. If something visits the rabbit and the rabbit is young then it is round. (Given)\n\nThis information is not relevant to the color of the tiger.\n\n16. If something is big then it visits the rabbit. (Given)\n\nThis statement does not provide any information about the color of the tiger.\n\nIn conclusion, based on the given information, we can determine that the tiger is indeed green. Therefore, the statement 'The tiger is not green' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. \n   The tiger is green. \n   These two statements tell us that both the mouse and the tiger are green.\n\n2. We need to see if there is any information that contradicts the statement \"The tiger is not green\". \n\n3. If something is green and it chases the rabbit then the rabbit does not eat the mouse. \n   This statement does not directly contradict the statement \"The tiger is not green\".\n\n4. If something is green then it visits the dog. \n   This statement does not directly contradict the statement \"The tiger is not green\".\n\n5. If something eats the tiger then the tiger visits the mouse. \n   We do not know if something has eaten the tiger yet.\n\n6. Since the tiger is green, we can conclude that the statement \"The tiger is not green\" is false.\n\nTherefore, the statement \"The tiger is not green\" is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is green. (Given)\n2. The tiger is green. (Given)\n\nFrom the above two points, we can conclude that the statement \"The mouse is green\" and \"The tiger is green\" are directly stated in the problem. \n\nNow, let's look at the statements that might affect this conclusion:\n\n3. If something is green then it visits the dog. (This statement is not relevant to our conclusion.)\n4. If something is green and it chases the rabbit then the rabbit does not eat the mouse. (This statement is not relevant to our conclusion.)\n5. If something eats the tiger then the tiger visits the mouse. (This statement is not relevant to our conclusion.)\n6. If something visits the mouse then the mouse is big. (This statement is not relevant to our conclusion.)\n7. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. (This statement is not relevant to our conclusion.)\n\nHowever, the statement \"The tiger is green\" is directly given in the problem, which implies that the tiger is indeed green.\n\nNow, let's look at the statements that might contradict this conclusion:\n\n8. The tiger is green. (Given)\n\nSince the statement \"The tiger is green\" is directly given in the problem and there is no other statement that contradicts this, we can conclude that the tiger is indeed green.\n\nTherefore, the statement \"The tiger is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> ~eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_tiger, chases_tiger_rabbit), ~eats_rabbit_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not green(tiger)",
+          "z3_formula": "~green_tiger == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not green(tiger)",
+          "z3_formula": "Not(green_tiger) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> green(X)",
+          "z3_formula": "Implies(green_tiger, green_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> ",
+          "z3_formula": "Implies(eats_mouse_tiger, ",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(eats_mouse_tiger, visits_mouse_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_chase(rabbit, tiger)",
+          "z3_formula": "does_not_chase_rabbit_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> does_not_eat(X, mouse)",
+          "z3_formula": "Implies(And(green_X, chases_X_rabbit), does_not_eat_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_X, visits_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & young(rabbit) -> round(X)",
+          "z3_formula": "Implies(And(visits_X_rabbit, young_rabbit), round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(round_X, visits_X_dog), chases_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(big_X, visits_X_rabbit)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> big(mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, big_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(eats_dog_tiger, visits_dog_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & ~visits(X, mouse) -> ~visits(mouse, rabbit)",
+          "z3_formula": "Implies(And(young_dog, ~visits_dog_mouse), ~visits_mouse_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> ~eats(mouse, rabbit)",
+          "z3_formula": "Implies(And(green_tiger, chases_tiger_rabbit), ~eats_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(visits_dog_rabbit, young_dog), round_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(round_dog, visits_dog_dog), chases_dog_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(big_tiger, visits_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "~green(tiger)",
+          "z3_formula": "Not(green_tiger) == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & ~visits(X, mouse) -> ~visits(mouse, rabbit)",
+          "z3_formula": "Implies(And(young_dog, Not(visits_dog, mouse)), Not(visits_mouse, rabbit))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(eats_X_tiger, visits_tiger_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> ~eats(mouse, rabbit)",
+          "z3_formula": "Implies(And(green_X, chases_X_rabbit), Not(eats_mouse_rabbit))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_X, visits_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & young(rabbit) -> round(X)",
+          "z3_formula": "Implies(And(visits_X_rabbit, young_rabbit), round_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(round_X, visits_X_dog), chases_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(big_X, visits_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(tiger)",
+          "z3_formula": "Not(green_tiger)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(eats_mouse_tiger, visits_tiger_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> big(mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, big_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & !visits(X, mouse) -> !visits(mouse, rabbit)",
+          "z3_formula": "Implies(And(young_dog, Not(visits_dog_mouse)), Not(visits_mouse_rabbit))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog) == False",
+          "z3_formula": "Not(young_dog) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger) == True",
+          "z3_formula": "green_tiger == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> not(eats(rabbit, mouse))",
+          "z3_formula": "Implies(And(green_tiger, chases_tiger_rabbit), Not(eats_rabbit_mouse))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(eats_mouse_tiger, visits_tiger_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, tiger))",
+          "z3_formula": "Not(chases_rabbit_tiger) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> not(eats(rabbit, mouse))",
+          "z3_formula": "Implies(And(green_rabbit, chases_rabbit_rabbit), Not(eats_rabbit_mouse))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> big(mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, big_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(round_fiona, visits_fiona_dog), chases_fiona_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & young(rabbit) -> round(X)",
+          "z3_formula": "Implies(And(visits_fiona_rabbit, young_rabbit), round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(big_mouse, visits_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_tiger, visits_tiger_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, rabbit) -> not(eats(mouse, rabbit))",
+          "z3_formula": "Implies(And(green_tiger, chases_tiger_rabbit), Not(eats_mouse_rabbit))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(eats_X_tiger, visits_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(tiger))",
+          "z3_formula": "Not(green_tiger) == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 88,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 1,
+      "total_weight": 84,
+      "solve_time_ms": 1.1917343363165855
+    },
+    "timing": {
+      "trace_gen_s": 9.328,
+      "extraction_s": 20.967,
+      "dedup_s": 0.664,
+      "maxsat_s": 0.003,
+      "total_s": 30.962
+    }
+  }
+}

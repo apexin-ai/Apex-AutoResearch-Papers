@@ -1,0 +1,47 @@
+{
+  "exp_id": "sica_proofwriter30_v2",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:19:01.325Z",
+    "updated_at": "2026-05-16T01:31:00.468Z",
+    "hypothesis": "逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12（v2: max_tokens=12288 修复）",
+    "parent": "sica_proofwriter30",
+    "spec": {
+      "command": "python eval_proofwriter.py --n-problems 30 --k 12 --max-tokens 12288 --seed 42 --save-intermediates --output results/proofwriter_30_v2.json",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "155077",
+      "log_path": "/root/runs/symb_invariant_consensus/proofwriter30_v2.log",
+      "submitted_at": "2026-05-15T22:19:16.529Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "method": "SICA",
+      "model_name": "QwQ-32B",
+      "data_path": "/root/symb_invariant_consensus/data/proofwriter_subset.json",
+      "data_count": 30,
+      "seed": 42,
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 12288,
+      "domain": "logic",
+      "extraction_prompt": "LOGIC_EXTRACTION_PROMPT",
+      "z3_timeout_s": 60,
+      "checkpoint_source": "N/A (new SICA logic domain experiment, retry of sica_proofwriter30 with fixed max_tokens)",
+      "eval_data": "ProofWriter D5 30 problems (T:10 F:10 U:10)",
+      "wall_clock_seconds": 11503.9,
+      "gpu_hours": 3.2
+    },
+    "notes": "16/30 中期检查(2026-05-16T01:23): D012 全部 FAIL。C0 多候选率 3/16=18.8% (FAIL≥20%), C1 约束提取率 93/192=48.4% (FAIL≥50%), C2 矛盾检测 0题 (FAIL≥1), C3 SICA-SC gap -6.2pp (FAIL>0)。SICA 87.5% vs SC 93.8%，MaxSAT 从未排除任何 trace。Problem RelNeg-498_Q8 SICA 被约束误导选错。趋势 strongly negative。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-16T01:31:00.468Z"
+  },
+  "timestamp": "2026-05-16T01:31:00.496359+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-528_Q6",
+    "problem": "Charlie is big. Dave is nice. Dave is round. Erin is big. Erin is nice. Fiona is red. Fiona is rough. If someone is red and big then they are nice. If Dave is round and Dave is rough then Dave is big. If someone is round and young then they are big. All nice people are young. If Charlie is round and Charlie is big then Charlie is young. If someone is red then they are big. All rough, green people are round. If someone is big then they are red. Young people are green.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nNice(Dave, True) ::: Dave is nice.\nRound(Dave, True) ::: Dave is round.\nBig(Erin, True) ::: Erin is big.\nNice(Erin, True) ::: Erin is nice.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nRed($x, True) && Big($x, True) >>> Nice($x, True) ::: If someone is red and big then they are nice.\nRound(Dave, True) && Rough(Dave, True) >>> Big(Dave, True) ::: If Dave is round and Dave is rough then Dave is big.\nRound($x, True) && Young($x, True) >>> Big($x, True) ::: If someone is round and young then they are big.\nNice($x, True) >>> Young($x, True) ::: All nice people are young.\nRound(Charlie, True) && Big(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is round and Charlie is big then Charlie is young.\nRed($x, True) >>> Big($x, True) ::: If someone is red then they are big.\nRough($x, True) && Green($x, True) >>> Round($x, True) ::: All rough, green people are round.\nBig($x, True) >>> Red($x, True) ::: If someone is big then they are red.\nYoung($x, True) >>> Green($x, True) ::: Young people are green.\n\nQuery:\nNice(Fiona, False) ::: Fiona is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

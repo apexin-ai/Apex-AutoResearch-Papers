@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-187_Q3",
+    "problem": "Anne is big. Anne is rough. Dave is blue. Dave is cold. Dave is red. Dave is rough. Dave is round. Gary is round. Harry is cold. Harry is rough. All round things are blue. If something is cold then it is blue. Blue, red things are round. If something is rough then it is red. All big, red things are cold. All round things are green. Round, cold things are big. If something is green then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nRough(Anne, True) ::: Anne is rough.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nRed(Dave, True) ::: Dave is red.\nRough(Dave, True) ::: Dave is rough.\nRound(Dave, True) ::: Dave is round.\nRound(Gary, True) ::: Gary is round.\nCold(Harry, True) ::: Harry is cold.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nRound($x, True) >>> Blue($x, True) ::: All round things are blue.\nCold($x, True) >>> Blue($x, True) ::: If something is cold then it is blue.\nBlue($x, True) && Red($x, True) >>> Round($x, True) ::: Blue, red things are round.\nRough($x, True) >>> Red($x, True) ::: If something is rough then it is red.\nBig($x, True) && Red($x, True) >>> Cold($x, True) ::: All big, red things are cold.\nRound($x, True) >>> Green($x, True) ::: All round things are green.\nRound($x, True) && Cold($x, True) >>> Big($x, True) ::: Round, cold things are big.\nGreen($x, True) >>> Blue($x, True) ::: If something is green then it is blue.\n\nQuery:\nBig(Dave, True) ::: Dave is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

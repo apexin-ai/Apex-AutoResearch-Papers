@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp-wave3-dir-g-decoupling",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:20:09.909Z",
+    "updated_at": "2026-05-20T14:29:11.864Z",
+    "hypothesis": "Decoupling: 将 FOL 约束提取与答案生成解耦——先生成答案 trace，再独立提取 FOL 约束（不暴露答案给约束提取 prompt），可以打破 confirmation bias 因果链。Conservative 策略：截断 trace 中答案相关内容后再提取约束。",
+    "spec": {
+      "command": "python -u direction_g_decoupling.py --data data/folio_full.json --traces-dir results/exp033_mistral_folio204/ --output results/direction_g_decoupling/results.json",
+      "server": "westd-16639",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T14:29:12.608443+00:00",
+  "trigger": "update_registry"
+}

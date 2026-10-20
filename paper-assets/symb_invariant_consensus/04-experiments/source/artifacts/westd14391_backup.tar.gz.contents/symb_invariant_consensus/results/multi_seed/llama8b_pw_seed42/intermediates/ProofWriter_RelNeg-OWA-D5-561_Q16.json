@@ -1,0 +1,1112 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-561_Q16",
+    "problem": "The bald eagle is blue. The bald eagle does not need the squirrel. The bear chases the bald eagle. The bear is blue. The bear is round. The bear sees the bald eagle. The squirrel is nice. The squirrel is red. The tiger chases the bald eagle. The tiger sees the bald eagle. If someone chases the squirrel then they see the tiger. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. If someone is red then they see the bear. If someone needs the bear then they do not chase the squirrel. All blue people are round. If someone needs the tiger then they chase the bear. If someone is red and they need the tiger then the tiger is red. If someone sees the bear then they need the tiger. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger sees the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nNeed($x, $y, bool) ::: Does x need y?\nChase($x, $y, bool) ::: Does x chase y?\nRound($x, bool) ::: Is x round?\nSee($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nNeed(BaldEagle, Squirrel, False) ::: The bald eagle does not need the squirrel.\nChase(Bear, BaldEagle, True) ::: The bear chases the bald eagle.\nBlue(Bear, True) ::: The bear is blue.\nRound(Bear, True) ::: The bear is round.\nSee(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nNice(Squirrel, True) ::: The squirrel is nice.\nRed(Squirrel, True) ::: The squirrel is red.\nChase(Tiger, BaldEagle, True) ::: The tiger chases the bald eagle.\nSee(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\n\nRules:\nChase($x, Squirrel, True) >>> See($x, Tiger, True) ::: If someone chases the squirrel then they see the tiger.\nSee(BaldEagle, Tiger, True) && Chase(Tiger, BaldEagle, True) >>> Need(Tiger, Squirrel, True) ::: If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\nRed($x, True) >>> See($x, Bear, True) ::: If someone is red then they see the bear.\nNeed($x, Bear, True) >>> Chase($x, Squirrel, False) ::: If someone needs the bear then they do not chase the squirrel.\nBlue($x, True) >>> Round($x, True) ::: All blue people are round.\nNeed($x, Tiger, True) >>> Chase($x, Bear, True) ::: If someone needs the tiger then they chase the bear.\nRed($x, True) && Need($x, Tiger, True) >>> Red(Tiger, True) ::: If someone is red and they need the tiger then the tiger is red.\nSee($x, Bear, True) >>> Need($x, Tiger, True) ::: If someone sees the bear then they need the tiger.\nSee($x, Tiger, True) && See(Tiger, Bear, False) >>> Chase($x, Tiger, False) ::: If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nQuery:\nSee(Tiger, Tiger, True) ::: The tiger sees the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 63.5,
+      "Unknown": 152.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we need to follow the given statements and deduce the information about the tiger and the statement \"The tiger sees the tiger.\"\n\n1. The tiger chases the bald eagle.\n2. The tiger sees the bald eagle.\n\nFrom these two statements, we cannot directly determine if the tiger sees the tiger. However, we need to analyze other statements to deduce more information.\n\n3. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\nThis statement does not provide direct information about the tiger seeing the tiger.\n\n4. If someone sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\nThis statement also does not provide direct information about the tiger seeing the tiger.\n\n5. If someone needs the tiger then they chase the bear.\nThis statement does not provide direct information about the tiger seeing the tiger.\n\n6. If someone sees the bear then they need the tiger.\nThis statement also does not provide direct information about the tiger seeing the tiger.\n\n7. The bear chases the bald eagle.\n8. The bear is blue.\n9. The bear is round.\n\nFrom these statements, we can conclude that the bear is blue and round.\n\n10. The bald eagle is blue.\nSince all blue people are round, we can conclude that the bald eagle is also round.\n\n11. The squirrel is nice.\n12. The squirrel is red.\n\nSince the squirrel is red, and from statement 6, \"If someone is red then they see the bear,\" we can conclude that the squirrel sees the bear.\n\n13. If the squirrel sees the bear, then the squirrel needs the tiger.\n14. If someone sees the bear then they need the tiger.\nThis statement confirms that the squirrel needs the tiger.\n\n15. If someone needs the tiger then they chase the bear.\nFrom statement 14, the squirrel sees the bear, so the squirrel needs the tiger and chases the bear.\n\n16. The tiger chases the bald eagle.\nSince the squirrel chases the bear, and the tiger chases the bald eagle, we can conclude that the tiger does not need the bear.\n\n17. The tiger sees the bald eagle.\nFrom statement 1, the tiger chases the bald eagle, so the tiger sees the bald eagle.\n\nNow, let's analyze the statement \"The tiger sees the tiger.\"\n\nFrom statement 3, \"If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\" However, we cannot conclude that the tiger does not see the bear.\n\nFrom statement 4, \"If someone sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\" We can conclude that the tiger sees the squirrel.\n\nHowever, statement 5 and 6 do not provide direct information about the tiger seeing the tiger.\n\nFrom statement 7, \"The bear chases the bald eagle.\" We cannot conclude that the tiger sees the bear.\n\nNow, let's analyze the statement \"The tiger sees the tiger\" with statement 1, \"The tiger chases the bald eagle.\" Statement 2, \"The tiger sees the bald eagle.\"\n\nThere is no information available to determine if the tiger sees the tiger.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The tiger chases the bald eagle. (Given)\n2. The tiger sees the bald eagle. (Given)\n\nFrom these two statements, we cannot directly conclude whether the tiger sees the tiger. However, we need to find a relationship that might help us determine the statement.\n\n3. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger. (Given)\n\nThis statement implies that if someone sees the tiger and it does not see the bear, then they do not chase the tiger. But this does not directly help us with the statement \"The tiger sees the tiger.\"\n\n4. The tiger chases the bald eagle. (Given)\n5. The bear chases the bald eagle. (Given)\n6. The bear is blue. (Given)\n7. All blue people are round. (Given)\n\nFrom these statements, we can conclude that the bear is round.\n\n8. The bear sees the bald eagle. (Given)\n\nNow, let's look at the statement: If someone sees the bear then they need the tiger. (Given)\n\n9. The bear sees the bald eagle. (Given)\n10. If someone sees the bear then they need the tiger. (Given)\n\nFrom these two statements, we can conclude that the bald eagle needs the tiger.\n\n11. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. (Given)\n\nHowever, we already concluded that the bald eagle needs the tiger. Therefore, the condition of the tiger chasing the bald eagle is not met. So, we cannot conclude that the tiger needs the squirrel.\n\n12. The tiger chases the bald eagle. (Given)\n13. The tiger sees the bald eagle. (Given)\n\nNow, let's look at the statement: If someone sees the bear then they need the tiger. (Given)\n\n14. The bear chases the bald eagle. (Given)\n15. The bear sees the bald eagle. (Given)\n16. If someone sees the bear then they need the tiger. (Given)\n\nFrom these four statements, we can conclude that the bald eagle needs the tiger.\n\n17. If someone needs the tiger then they chase the bear. (Given)\n18. The bald eagle needs the tiger. (Concluded in step 14)\n\nFrom these two statements, we can conclude that the bald eagle chases the bear.\n\nHowever, this does not directly help us with the statement \"The tiger sees the tiger.\"\n\n19. The tiger is blue. (Given)\n20. The bear is blue. (Given)\n21. All blue people are round. (Given)\n\nFrom these statements, we can conclude that the tiger is round.\n\n22. The bear is round. (Concluded in step 7)\n23. The tiger is round. (Concluded in step 19)\n\nNow, let's look at the statement: If someone is round then they see the bald eagle. This is not given, but we can infer from the statement: The bear chases the bald eagle. (Given) and The bear is round. (Given)\n\nHowever, we cannot conclude that the tiger sees the bald eagle.\n\n24. The tiger sees the bald eagle. (Given)\n\nNow, let's look at the statement: If someone is red then they see the bear. (Given)\n25. The squirrel is red. (Given)\n\nFrom these two statements, we can conclude that the squirrel sees the bear.\n\n26. The bear is blue. (Given)\n27. The bear sees the bald eagle. (Given)\n\nNow, let's look at the statement: If someone sees the tiger then they chase the squirrel. This is not given, but we can infer from the statement: If someone chases the squirrel then they see the tiger. (Given)\n\nHowever, we cannot conclude that the squirrel chases the tiger.\n\n28. The tiger is blue. (Given)\n29. The squirrel is red. (Given)\n\nNow, let's look at the statement: If someone is red and they need the tiger then the tiger is red. (Given)\n\nHowever, we cannot conclude that the tiger is red.\n\n30. The squirrel is red. (Given)\n31. The squirrel sees the bear. (Concluded in step 25)\n\nNow, let's look at the statement: If someone sees the bear then they need the tiger. (Given)\n\n32. The squirrel sees the bear. (Concluded in step 31)\n33. If someone sees the bear then they need the tiger. (Given)\n\nFrom these two statements, we can conclude that the squirrel needs the tiger.\n\n34. The tiger is blue. (Given)\n35. The squirrel needs the tiger. (Concluded in step 33)\n\nNow, let's look at the statement: If someone is blue then they see the bald eagle. This is not given, but we can infer from the statement: The bear chases the bald eagle. (Given) and The bear is blue. (Given)\n\nHowever, we cannot conclude that the squirrel sees the bald eagle.\n\n36. The squirrel sees the bear. (Concluded in step 31)\n\nNow, let's look at the statement: If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger. (Given)\n\nHowever, we cannot conclude that the squirrel does not chase the tiger.\n\n37. The squirrel is red. (Given)\n38. The squirrel needs the tiger. (Concluded in step 33)\n\nNow, let's look at the statement: If someone is red and they need the tiger then the tiger is red. (Given)\n\nFrom these two statements, we can conclude that the tiger is red.\n\nHowever, this does not directly help us with the statement \"The tiger sees the tiger.\"\n\n39. The tiger is red. (Concluded in step 38)\n\nNow, let's look at the statement: If someone is red then they see the bear. (Given)\n\nFrom these two statements, we can conclude that the tiger sees the bear.\n\n40. The tiger sees the bear. (Concluded in step 39)\n41. The tiger chases the bald eagle. (Given)\n42. The tiger sees the bald eagle. (Given)\n\nNow, let's look at the statement: If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger. (Given)\n\nHowever, we cannot conclude that the tiger does not chase the tiger.\n\n43. The tiger is red. (Concluded in step 38)\n\nNow, let's look at the statement: If someone is red then they see the bear. (Given)\n\nFrom these two statements, we can conclude that the tiger sees the bear.\n\n44. The tiger sees the bear. (Concluded in step 43)\n\nNow, let's look at the statement: If someone sees the bear then they need the tiger. (Given)\n\nFrom these two statements, we can conclude that the tiger needs the tiger.\n\nHowever, this is a paradox, and we cannot conclude that the tiger sees the tiger.\n\nTherefore, the statement \"The tiger sees the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n- The bald eagle is blue.\n- The bald eagle does not need the squirrel.\n- The bear chases the bald eagle.\n- The bear is blue.\n- The bear is round.\n- The bear sees the bald eagle.\n- The squirrel is nice.\n- The squirrel is red.\n- The tiger chases the bald eagle.\n- The tiger sees the bald eagle.\n- If someone chases the squirrel then they see the tiger.\n- If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\n- If someone is red then they see the bear.\n- If someone needs the bear then they do not chase the squirrel.\n- All blue people are round.\n- If someone needs the tiger then they chase the bear.\n- If someone is red and they need the tiger then the tiger is red.\n- If someone sees the bear then they need the tiger.\n- If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nThe given statement is:\nThe tiger sees the tiger.\n\nFrom the given information:\n- The tiger sees the bald eagle.\n- The tiger chases the bald eagle.\n\nHowever, we need to determine if the tiger sees the tiger.\n\nLet's analyze the information:\n- There is no direct statement that the tiger sees the tiger.\n- The information given only mentions the tiger seeing the bald eagle.\n- There is no indirect information that leads to the tiger seeing itself.\n\nTherefore, the given statement is unknown because we do not have enough information to determine if the tiger sees the tiger.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The tiger chases the bald eagle. (Statement 8)\n2. The bear chases the bald eagle. (Statement 3)\n   Since the tiger chases the bald eagle and the bear chases the bald eagle, the tiger and the bear are chasing the same thing (the bald eagle).\n\n3. The bear sees the bald eagle. (Statement 5)\n   Since the bear sees the bald eagle and the tiger is chasing the bald eagle, the tiger does not necessarily see the bald eagle. But since the tiger and the bear are chasing the same thing (the bald eagle) and the bear sees the bald eagle, we can infer that the tiger also sees the bald eagle.\n\n4. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. (Statement 10)\n   We don't have information that the bald eagle sees the tiger. However, we do have information that the tiger sees the bald eagle (Step 3). \n\n5. If the tiger sees the bald eagle, then we need to check the statement \"The bald eagle sees the tiger.\" We don't have any information that the bald eagle sees the tiger.\n\n6. Since we don't have information that the bald eagle sees the tiger, we cannot use this statement to determine if the tiger needs the squirrel.\n\n7. The tiger chases the bald eagle. (Statement 8)\n   Since the tiger chases the bald eagle, we cannot directly determine if the tiger sees the tiger.\n\n8. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. (Statement 10)\n   We cannot use this statement since we don't have information that the bald eagle sees the tiger.\n\n9. If the tiger sees the bald eagle and the bald eagle chases the bear then the tiger sees the bear. (This is not a given statement, but based on given statements we can infer that the tiger sees the bear)\n\n10. The tiger chases the bald eagle. (Statement 8)\n    Since the tiger chases the bald eagle, we cannot directly determine if the tiger sees the tiger.\n\n11. The tiger sees the bald eagle. (Step 3)\n    Since the tiger sees the bald eagle and the bear chases the bald eagle, we can infer that the tiger sees the bear (Step 9).\n\n12. If someone sees the bear then they need the tiger. (Statement 14)\n    Since the tiger sees the bear and the tiger sees the bald eagle, the tiger sees the bear, so the tiger needs the tiger.\n\nHowever, the information that the tiger needs the tiger is based on the inference that the tiger sees the bear. But the statement \"The tiger sees the bear\" is based on the fact that the tiger chases the bald eagle and the bear chases the bald eagle. This information does not directly tell us that the tiger sees the tiger.\n\n13. The statement \"The tiger sees the tiger\" is unknown because it can't be determined from the given information.\n\nTherefore, the final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information into logical statements and analyze them step by step.\n\n1. The bald eagle is blue. \n2. The bald eagle does not need the squirrel. \n3. The bear chases the bald eagle. \n4. The bear is blue. \n5. The bear is round. \n6. The bear sees the bald eagle. \n7. The squirrel is nice. \n8. The squirrel is red. \n9. The tiger chases the bald eagle. \n10. The tiger sees the bald eagle. \n11. If someone chases the squirrel then they see the tiger. \n12. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. \n13. If someone is red then they see the bear. \n14. If someone needs the bear then they do not chase the squirrel. \n15. All blue people are round. \n16. If someone needs the tiger then they chase the bear. \n17. If someone is red and they need the tiger then the tiger is red. \n18. If someone sees the bear then they need the tiger. \n19. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nWe are trying to determine if the statement \"The tiger sees the tiger\" is true, false, or unknown.\n\nFrom statement 10, we know that the tiger sees the bald eagle.\n\nNow, let's analyze the statement \"The tiger sees the tiger\" using the given information.\n\nStatement 20: The tiger sees the tiger.\n- This is the statement we are trying to determine.\n\nTo see if the tiger sees the tiger, we need to look for any statements that relate to seeing the tiger.\n\nStatement 19: If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nStatement 10: The tiger sees the bald eagle. This doesn't directly tell us if the tiger sees the tiger or not.\n\nHowever, from statement 4, we know that the bear is blue. \n\nFrom statement 1, we know that the bald eagle is blue.\n\nFrom statement 15, we know that all blue people are round.\n\nSo, the bald eagle and the bear are both blue and therefore round.\n\nFrom statement 6, we know that the bear sees the bald eagle.\n\nFrom statement 18, if someone sees the bear, then they need the tiger.\n\nSo, the bald eagle needs the tiger.\n\nFrom statement 16, if someone needs the tiger then they chase the bear.\n\nSo, the bald eagle chases the bear.\n\nFrom statement 3, the bear chases the bald eagle.\n\nThis creates a loop, but the loop doesn't directly help us with the statement \"The tiger sees the tiger\".\n\nHowever, we do know from statement 9 that the tiger chases the bald eagle.\n\nFrom statement 10, the tiger sees the bald eagle.\n\nWe are trying to find a connection between the tiger seeing the tiger and the given information.\n\nFrom statement 18, if someone sees the bear, then they need the tiger.\n\nThe bear sees the bald eagle (statement 6).\n\nSo, the bald eagle needs the tiger.\n\nFrom statement 16, if someone needs the tiger then they chase the bear.\n\nSo, the bald eagle chases the bear.\n\nWe already know the bear sees the bald eagle (statement 6).\n\nNow, let's use statement 13: If someone is red then they see the bear.\n\nThe squirrel is red (statement 8).\n\nFrom statement 13, the squirrel sees the bear.\n\nThe bear sees the bald eagle (statement 6).\n\nFrom statement 18, the squirrel needs the tiger.\n\nFrom statement 16, the squirrel chases the bear.\n\nThe squirrel sees the bear (statement 13).\n\nThe bear sees the bald eagle (statement 6).\n\nFrom statement 19, the squirrel does not chase the tiger.\n\nThe squirrel sees the tiger (statement 11).\n\nThe tiger sees the bald eagle (statement 10).\n\nHowever, we cannot directly determine if the tiger sees the tiger or not.\n\nBut, we can use statement 11: If someone chases the squirrel then they see the tiger.\n\nThe bear chases the squirrel (statement 16).\n\nThe squirrel sees the tiger (statement 11).\n\nThe tiger sees the bald eagle (statement 10).\n\nHowever, this doesn't directly help us with the statement \"The tiger sees the tiger\".\n\nNow, let's use statement 17: If someone is red and they need the tiger then the tiger is red.\n\nThe squirrel is red (statement 8).\n\nThe squirrel needs the tiger (statement 18).\n\nFrom statement 17, the tiger is red.\n\nThe squirrel is red (statement 8).\n\nFrom statement 13, the squirrel sees the bear.\n\nThe bear is blue (statement 4).\n\nHowever, we don't know if the bear sees the tiger or not.\n\nFrom statement 19, if someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nHowever, we don't know if the tiger sees the bear or not.\n\nFrom statement 10, the tiger sees the bald eagle.\n\nHowever, this doesn't directly help us with the statement \"The tiger sees the tiger\".\n\nFrom statement 12, if the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\n\nHowever, we don't know if the bald eagle sees the tiger or not.\n\nFrom statement 10, the tiger sees the bald eagle.\n\nHowever, this doesn't directly help us with the statement \"The tiger sees the tiger\".\n\nNow, let's summarize what we know about the tiger:\n\n* The tiger chases the bald eagle (statement 9).\n* The tiger sees the bald eagle (statement 10).\n* The squirrel sees the tiger (statement 11).\n* The squirrel does not chase the tiger (statement 19).\n* The tiger is red (statement 17).\n\nHowever, we still cannot directly determine if the tiger sees the tiger or not.\n\nUnfortunately, we have reached a point where we cannot determine if the statement \"The tiger sees the tiger\" is true, false, or unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. The tiger chases the bald eagle. (Given)\n2. The bear chases the bald eagle. (Given)\n3. The bear is blue. (Given)\n4. All blue people are round. (Given)\n   Therefore, the bear is round. (Inference)\n\n5. The bear sees the bald eagle. (Given)\n6. If someone sees the bear, then they need the tiger. (Given)\n   Therefore, the bald eagle needs the tiger. (Inference)\n\n7. If the bald eagle sees the tiger and the tiger chases the bald eagle, then the tiger needs the squirrel. (Given)\n   We know the bald eagle sees the tiger (from step 6), but we don't know if the tiger chases the bald eagle yet. We'll come back to this later.\n\n8. The tiger chases the bald eagle. (Given from step 1)\n   Therefore, the tiger needs the squirrel. (Inference from step 7)\n\n9. If someone sees the tiger and the tiger does not see the bear, then they do not chase the tiger. (Given)\n   We don't know if the tiger sees the bear yet. We'll come back to this later.\n\n10. The tiger sees the bald eagle. (From step 5, inference 6)\n    However, we need to determine if the tiger sees the bear.\n\n11. The bear chases the bald eagle. (Given from step 2)\n    We don't know if the tiger sees the bear yet.\n\n12. If someone is red then they see the bear. (Given)\n    We don't know if anyone is red yet.\n\n13. The squirrel is red. (Given)\n    If the squirrel is red, then they see the bear. (Inference from step 12)\n\n14. The squirrel is nice. (Given)\n    We don't have any information about the squirrel seeing the bear yet.\n\n15. If someone chases the squirrel, then they see the tiger. (Given)\n    We don't know if anyone chases the squirrel yet.\n\n16. The tiger sees the tiger. (Statement we are evaluating)\n\nSince the statement \"The tiger sees the tiger\" is the one we are evaluating, we need to determine if there is any information that can help us decide if this is true or false.\n\nFrom step 9, we know that if someone sees the tiger and the tiger does not see the bear, then they do not chase the tiger. However, this does not directly help us with the statement \"The tiger sees the tiger.\"\n\nFrom step 13, we know that if the squirrel is red, then they see the bear. However, we do not know if the squirrel sees the bear yet.\n\nFrom step 15, we know that if someone chases the squirrel, then they see the tiger. However, we do not know if anyone chases the squirrel yet.\n\nThe only statement that directly involves the tiger seeing itself is the one we are trying to evaluate.\n\nSince we cannot determine if the tiger sees the bear (step 11), and we cannot determine if the squirrel sees the bear (step 13), we cannot determine if the statement \"The tiger sees the tiger\" is true or false. The information given does not provide enough detail to make this determination.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger chases the bald eagle. (Given)\n2. If someone chases the bald eagle, they see the tiger. (Given)\n   Since the tiger chases the bald eagle, we can conclude that the tiger sees the tiger (because the tiger sees the bald eagle and the bald eagle sees the tiger).\n3. However, this conclusion may not be correct because we need to check the implications of other statements.\n\nNow, let's analyze other statements related to the tiger:\n- The bear chases the bald eagle. (Given)\n- If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. (Given)\n  We don't have enough information to determine if the tiger needs the squirrel or not.\n- If the tiger sees the tiger and the tiger does not see the bear then they do not chase the tiger. (Given)\n  We already know the tiger sees the tiger, but we need to check if the tiger sees the bear.\n\nWe know the bear chases the bald eagle. (Given) \n- The bear is blue. (Given)\n- All blue people are round. (Given)\n- The bear is round. (Given)\n\nSince the bear is round, it must be blue. Now, let's find out if the tiger sees the bear:\n- If the tiger sees the tiger and the tiger sees the bear, then the tiger does not see the tiger (because they do not chase the tiger).\n- But we already know the tiger sees the tiger, so the tiger does not see the bear.\n\nNow, we can conclude that the tiger does not see the bear, and according to the statement, if the tiger sees the tiger and the tiger does not see the bear, then the tiger does not chase the tiger.\n\nHowever, we are not interested in the fact that the tiger does not chase the tiger. We are interested in the fact that the tiger sees the tiger. \n\nSince we know that the tiger chases the bald eagle and the tiger sees the bald eagle, we can conclude that the tiger sees the tiger.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. The bald eagle is blue.\n2. The bald eagle does not need the squirrel.\n3. The bear chases the bald eagle.\n4. The bear is blue.\n5. The bear is round.\n6. The bear sees the bald eagle.\n7. The squirrel is nice.\n8. The squirrel is red.\n9. The tiger chases the bald eagle.\n10. The tiger sees the bald eagle.\n11. If someone chases the squirrel then they see the tiger.\n12. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\n13. If someone is red then they see the bear.\n14. If someone needs the bear then they do not chase the squirrel.\n15. All blue people are round.\n16. If someone needs the tiger then they chase the bear.\n17. If someone is red and they need the tiger then the tiger is red.\n18. If someone sees the bear then they need the tiger.\n19. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\nNow, let's analyze the statement: \"The tiger sees the tiger.\"\n\nFrom statement 10: The tiger sees the bald eagle.\nHowever, we need to find out if the tiger sees itself.\n\nFrom statement 18: If someone sees the bear then they need the tiger.\nSince we do not have any information that the tiger sees the bear, we cannot conclude that the tiger needs the tiger.\n\nHowever, we can conclude that the tiger sees the bald eagle from statement 10, and from statement 9, the tiger chases the bald eagle. Therefore, from statement 12, the tiger needs the squirrel.\n\nFrom statement 13: If someone is red then they see the bear.\nSince the squirrel is red (statement 8), the squirrel sees the bear (statement 13).\n\nFrom statement 11: If someone chases the squirrel then they see the tiger.\nThe tiger does not chase the squirrel; the tiger chases the bald eagle (statement 9). However, since the squirrel sees the bear and the tiger sees the bald eagle, we cannot conclude that the squirrel sees the tiger.\n\nNow, let's analyze the statement: \"The tiger sees the tiger.\"\n\nThe given information does not provide any information about the tiger seeing itself. We have information about the tiger seeing the bald eagle (statement 10), but we do not have any information about the tiger seeing itself.\n\nTherefore, the statement \"The tiger sees the tiger\" is unknown because we do not have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The tiger sees the tiger\" can be broken down into two conditions: \n   - The tiger sees the tiger.\n   - The tiger is the same entity that sees the tiger.\n\n2. The tiger chases the bald eagle (given information). We do not have any information about the tiger seeing itself. However, we can derive the following from the given information:\n   - The tiger sees the bald eagle (given information).\n   - If the tiger sees the bald eagle and the bald eagle does not see the tiger, then the tiger does not see itself because it is implied that the bald eagle sees the tiger if the tiger sees the bald eagle. However, there is no information that the bald eagle sees the tiger.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'The tiger sees the tiger' is true, false, or unknown, we need to break down the given information and apply it step by step.\n\n1. The tiger chases the bald eagle. \n   We know that the tiger chases the bald eagle, but this statement alone does not tell us anything about the tiger seeing the tiger.\n\n2. The tiger sees the bald eagle.\n   This statement also doesn't tell us anything about the tiger seeing the tiger.\n\n3. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n   This statement is irrelevant to our current situation as we are trying to determine if the tiger sees the tiger, not if someone chases the tiger.\n\n4. If someone sees the bear then they need the tiger.\n   We have no information that the tiger sees the bear, so this statement does not apply.\n\n5. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\n   We do not have any information that the bald eagle sees the tiger.\n\n6. If someone is red then they see the bear.\n   The statement that the tiger is red is not explicitly stated. However, if we assume it is, we cannot directly apply this statement to determine if the tiger sees the tiger.\n\n7. If the tiger is red and they need the tiger then the tiger is red.\n   This is a circular statement and doesn't give us any new information.\n\n8. If someone needs the bear then they do not chase the squirrel.\n   We have no information that the tiger needs the bear.\n\n9. If someone chases the squirrel then they see the tiger.\n   This is irrelevant to the current situation as we are trying to determine if the tiger sees the tiger.\n\n10. The bear chases the bald eagle and the bear is blue.\n    All blue people are round. \n    This tells us that the bear is round.\n\n11. The bear is round and the bear sees the bald eagle.\n    We know the bear sees the bald eagle but this doesn't tell us anything about the tiger seeing the tiger.\n\nNow we need to consider the case when the tiger is red. If the tiger is red, then according to the information, 'If someone is red then they see the bear.' This means that the tiger sees the bear. However, we have no information about the tiger seeing the tiger based on it being red or otherwise.\n\nThe only information we have that is directly related to the tiger seeing the tiger is: \n- The tiger chases the bald eagle.\n- The tiger sees the bald eagle.\n\nWe don't have any information that directly states the tiger sees the tiger or does not see the tiger.\n\nHowever, the statement \"The tiger sees the tiger\" can be interpreted as the tiger having self-awareness which is not a property we can deduce from the given statements.\n\nSo, based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, let's break it down step by step:\n\n1. We are given the following statements:\n   - The bald eagle is blue.\n   - The bear chases the bald eagle.\n   - The bear is blue.\n   - The bear is round.\n   - The squirrel is nice.\n   - The squirrel is red.\n   - The tiger chases the bald eagle.\n   - The tiger sees the bald eagle.\n   - If someone chases the squirrel then they see the tiger.\n   - If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel.\n   - If someone is red then they see the bear.\n   - If someone needs the bear then they do not chase the squirrel.\n   - All blue people are round.\n   - If someone needs the tiger then they chase the bear.\n   - If someone is red and they need the tiger then the tiger is red.\n   - If someone sees the bear then they need the tiger.\n   - If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger.\n\n2. We need to determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown.\n\nFrom the given statements, we can deduce the following:\n\n- The tiger sees the bald eagle. (Given)\n- The bald eagle does not need the squirrel. (Given)\n- The tiger chases the bald eagle. (Given)\n- The tiger needs the squirrel if it sees the bald eagle and chases it. (Given)\n- The tiger does not need the squirrel since it chases the bald eagle but does not need the squirrel. (From the above point)\n- If someone sees the bear then they need the tiger. (Given)\n- The bear is blue. (Given)\n- All blue people are round. (Given)\n- The bear is round. (Given)\n- The squirrel is red. (Given)\n- If someone is red then they see the bear. (Given)\n- The squirrel sees the bear. (From the above point)\n- The squirrel needs the tiger. (From the above point)\n- The squirrel chases the bear. (Given that if someone needs the tiger then they chase the bear)\n- If someone chases the squirrel then they see the tiger. (Given)\n- The tiger sees the squirrel. (From the above point)\n\nHowever, this does not tell us whether the tiger sees the tiger. \n\nWe cannot deduce whether the tiger sees the tiger from the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger sees the tiger\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. The tiger chases the bald eagle. (Given)\n2. If someone chases the squirrel then they see the tiger. (Given)\n   - We cannot conclude that the tiger sees the squirrel because the given information does not state this.\n\n3. If the bald eagle sees the tiger and the tiger chases the bald eagle then the tiger needs the squirrel. (Given)\n   - We do not have enough information to determine whether the bald eagle sees the tiger or not. \n   - The given information does not state that the tiger needs the squirrel.\n\n4. If someone is red then they see the bear. (Given)\n   - We do not have enough information to determine whether the tiger is red or not.\n\n5. If someone sees the bear then they need the tiger. (Given)\n   - We do not have enough information to determine whether the tiger sees the bear or not.\n\n6. If someone sees the tiger and the tiger does not see the bear then they do not chase the tiger. (Given)\n   - We do not have enough information to determine whether the tiger sees the bear or not.\n\nHowever, we can analyze the information given about the tiger's color and roundness.\n\nThe bear is blue and round. (Given)\nAll blue people are round. (Given)\nThe bear is blue. (Given)\nThe bear is round. (Given)\nThe bear chases the bald eagle. (Given)\nThe tiger chases the bald eagle. (Given)\nThe bear sees the bald eagle. (Given)\nThe tiger sees the bald eagle. (Given)\n\nWe cannot conclude from this information that the tiger is blue or round. We also cannot conclude that the tiger sees the tiger from the given statements.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not sees(tiger, bear) -> not chases(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_tiger_bear)), Not(chases_X_tiger))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, bear)",
+          "z3_formula": "chases_bald_eagle_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> chases(X, bear)",
+          "z3_formula": "Implies(needs_X_tiger, chases_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_X, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(round_X, sees_X_bald_eagle)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_X, sees_X_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not sees(tiger, bear) -> not chases(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_tiger_bear)), Not(chases_X_tiger))",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 37
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 38
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(And(red_X, needs_X_tiger), red_tiger)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 39
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_X, sees_X_bear)",
+          "source_step": 40
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 44
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 44
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 45
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(bald_eagle, squirrel)",
+          "z3_formula": "Not(needs_bald_eagle_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, sees_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & chases(tiger, X) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, chases_tiger_X), needs_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_X, sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> not chases(X, squirrel)",
+          "z3_formula": "Implies(needs_X_bear, Not(chases_X_squirrel))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_X, round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> chases(X, bear)",
+          "z3_formula": "Implies(needs_X_tiger, chases_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(And(red_X, needs_X_tiger), red_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not sees(tiger, X) -> not chases(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_tiger_X)), Not(chases_X_tiger))",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(Z, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(chases_tiger_bald_eagle, sees_bear_bald_eagle), sees_tiger_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & chases(Z, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(sees_tiger_bald_eagle, chases_bear_bald_eagle), sees_tiger_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(sees_tiger_bear, needs_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, tiger)",
+          "z3_formula": "sees_tiger_tiger == Unknown",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bear, round_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bald_eagle_bear, needs_bald_eagle_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & chases(X, bald_eagle) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_tiger, chases_X_bald_eagle), needs_X_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not(sees(X, bear)) -> not(chases(X, tiger))",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_X_bear)), Not(chases_X_tiger))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_squirrel, sees_squirrel_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, sees_X_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, tiger)",
+          "z3_formula": "sees_tiger_tiger == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_bald_eagle, sees_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, tiger)",
+          "z3_formula": "sees_tiger_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & chases(X, bald_eagle) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_tiger_tiger, chases_bear_bald_eagle), needs_bear_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & Not(sees(X, bear)) -> Not(chases(X, tiger))",
+          "z3_formula": "Implies(And(sees_tiger_tiger, Not(sees_tiger_bear)), Not(chases_tiger_tiger))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bear, round_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & sees(X, bear) -> Not(chases(X, tiger))",
+          "z3_formula": "Implies(And(sees_tiger_tiger, sees_tiger_bear), Not(chases_tiger_tiger))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(tiger, bear))",
+          "z3_formula": "Not(sees_tiger_bear) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(tiger, tiger))",
+          "z3_formula": "Not(chases_tiger_tiger) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, tiger)",
+          "z3_formula": "sees_tiger_tiger == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(bald_eagle, squirrel)",
+          "z3_formula": "does_not_need_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, sees_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & sees(tiger, X) & sees(tiger, bald_eagle) & chases(tiger, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, sees_tiger_X, sees_tiger_bald_eagle, chases_tiger_bald_eagle), needs_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_squirrel, sees_squirrel_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> does_not_chase(X, squirrel)",
+          "z3_formula": "Implies(needs_X_bear, does_not_chase_X_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bald_eagle, round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> chases(X, bear)",
+          "z3_formula": "Implies(needs_X_tiger, chases_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(And(red_squirrel, needs_squirrel_tiger), red_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & does_not_see(tiger, bear) -> does_not_chase(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_tiger_bear)), does_not_chase_X_tiger)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, tiger)",
+          "z3_formula": "sees_tiger_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, eagle)",
+          "z3_formula": "sees_tiger_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) & Not(see(eagle, X)) -> Not(sees(X, X))",
+          "z3_formula": "Implies(And(sees_tiger_eagle, Not(see_eagle_tiger)), Not(sees_tiger_tiger))",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not sees(tiger, bear) -> not chases(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, Not(sees_tiger_bear)), Not(chases_X_tiger))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, tiger) & chases(tiger, bald_eagle) -> needs(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(sees_bald_eagle_tiger, chases_tiger_bald_eagle), needs_bald_eagle_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_tiger, sees_tiger_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(And(red_tiger, needs_tiger_tiger), red_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> not chases(X, squirrel)",
+          "z3_formula": "Implies(needs_X_bear, Not(chases_X_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, sees_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bear, round_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_bear, sees_bear_bald_eagle), sees_bear_bald_eagle)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, sees_squirrel_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & chases(X, bald_eagle) & sees(tiger, bald_eagle) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_tiger_bald_eagle, chases_tiger_bald_eagle, sees_tiger_bald_eagle), needs_tiger_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> not(chases(X, squirrel))",
+          "z3_formula": "Implies(needs_tiger_squirrel, not(chases_tiger_squirrel))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bear, needs_bear_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bear, round_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_squirrel, sees_squirrel_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> not(chases(X, squirrel))",
+          "z3_formula": "Implies(needs_bear_tiger, not(chases_tiger_squirrel))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> chases(X, bear)",
+          "z3_formula": "Implies(needs_bear_tiger, chases_bear_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(And(red_squirrel, needs_bear_tiger), red_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bear, needs_bear_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not(sees(tiger, bear)) -> not(chases(X, tiger))",
+          "z3_formula": "Implies(And(sees_squirrel_tiger, not(sees_tiger_bear)), not(chases_squirrel_tiger))",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, sees_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & chases(X, bald_eagle) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_bald_eagle_tiger, chases_bald_eagle), needs_bald_eagle_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, bear)",
+          "z3_formula": "Implies(red_tiger, sees_tiger_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_tiger_bear, needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & not(sees(X, bear)) -> not(chases(X, tiger))",
+          "z3_formula": "Implies(And(sees_tiger_tiger, Not(sees_tiger_bear)), Not(chases_tiger_tiger))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_bear, round_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 164,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 66
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 2,
+      "total_weight": 159,
+      "solve_time_ms": 2.0114853978157043
+    },
+    "timing": {
+      "trace_gen_s": 17.947,
+      "extraction_s": 44.16,
+      "dedup_s": 2.048,
+      "maxsat_s": 0.006,
+      "total_s": 64.161
+    }
+  }
+}

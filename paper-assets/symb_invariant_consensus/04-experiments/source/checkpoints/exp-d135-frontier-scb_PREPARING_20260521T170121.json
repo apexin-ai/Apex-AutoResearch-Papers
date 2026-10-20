@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp-d135-frontier-scb",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:52:18.586Z",
+    "updated_at": "2026-05-21T17:01:21.360Z",
+    "hypothesis": "2026 frontier closed-source models (Claude/GPT/Gemini via OpenRouter) also exhibit SCB: self-extracted constraints will show BR≥2× with SICA≈SC, extending the scale-invariance finding from open-source 7B-72B to frontier closed-source models.",
+    "notes": "D135 frontier SCB: gpt-4.1 120/204 (westd-16639, PID 444433), gpt-5.5 30/204 (PID 444813), o3 30/204 (PID 444814). gemini-2.5-pro 2/204 (westd-25068, PID 19972, yield 83-100%, ETA ~11.5h). gpt-4o BR computed: mean=2.94x, weighted=3.07x.",
+    "metrics": {
+      "gpt4o_folio": {
+        "completed": 161,
+        "total": 204,
+        "sc_accuracy": 0.7391,
+        "sica_accuracy": 0.7205,
+        "delta_pp": -1.86,
+        "n_sica_wrong": 45,
+        "mean_br": 2.94,
+        "median_br": 1.91,
+        "weighted_br": 3.07,
+        "n_br_finite": 25,
+        "n_br_infinite": 20,
+        "process_kappa_tfidf": 0.7884,
+        "answer_fleiss_kappa": 0.8009
+      },
+      "gpt41_folio": {
+        "completed": 204,
+        "total": 204,
+        "sc_accuracy": 0.8284,
+        "sica_accuracy": 0.8137,
+        "delta_pp": -1.47,
+        "n_sica_wrong": 38,
+        "mean_br": 2.697,
+        "median_br": 1.534,
+        "weighted_br": 3.2099,
+        "n_br_finite": 16,
+        "n_br_infinite": 22,
+        "extraction_rate": 1,
+        "process_kappa_tfidf": 0.7916,
+        "answer_fleiss_kappa": 0.862,
+        "extractor": "Mistral-7B",
+        "extraction_wall_time_min": 60.2
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T17:01:20.072Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T17:01:21.646972+00:00",
+  "trigger": "update_registry"
+}

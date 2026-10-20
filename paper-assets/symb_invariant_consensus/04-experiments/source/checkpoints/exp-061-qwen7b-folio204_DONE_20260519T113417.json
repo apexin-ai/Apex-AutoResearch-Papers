@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-061-qwen7b-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:18:30.356Z",
+    "updated_at": "2026-05-19T11:34:17.303Z",
+    "hypothesis": "Qwen2.5-7B-Instruct 在 FOLIO-204 上 SICA vs SC。SC 预计 55-65%（介于 Mistral-7B ~55% 和 Qwen2.5-14B ~75% 之间），可能在 Goldilocks zone。",
+    "parent": "exp-033",
+    "spec": {
+      "server": "westd-25068",
+      "command": "python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp061_qwen25_7b_folio204/exp061_results.json --save-intermediates",
+      "gpu": "cuda:2",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_count": 204,
+      "seed": 42,
+      "data_path": "data/folio_full.json",
+      "checkpoint_source": "pretrained:/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+      "eval_data": "data/folio_full.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n": 204,
+      "sc_accuracy": 0.7598,
+      "sica_accuracy": 0.7647,
+      "delta_pp": 0.49
+    },
+    "checkpoint_path": "results/exp061_qwen25_7b_folio204/exp061_results.json",
+    "log_path": "results/exp061_qwen25_7b_folio204/",
+    "completed_at": "2026-05-19T11:18:36.357Z"
+  },
+  "timestamp": "2026-05-19T11:34:17.482591+00:00",
+  "trigger": "update_registry"
+}

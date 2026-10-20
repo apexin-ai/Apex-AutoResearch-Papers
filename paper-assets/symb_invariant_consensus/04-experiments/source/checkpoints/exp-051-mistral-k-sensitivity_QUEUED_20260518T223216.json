@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-051-mistral-k-sensitivity",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:32:12.672Z",
+    "updated_at": "2026-05-18T22:32:16.494Z",
+    "hypothesis": "Mistral-7B K sensitivity on FOLIO-204: 测试 K=4,8,16,24（K=12 已有 exp-033 delta=+4.90pp）。如果多个 K 值都显示正向 delta，则 Claim 1 (regime-dependent benefit) 对 K 选择稳健，非 cherry-pick。Reviewer 必问的 ablation。parent=exp-033"
+  },
+  "timestamp": "2026-05-18T22:32:16.689167+00:00",
+  "trigger": "update_registry"
+}

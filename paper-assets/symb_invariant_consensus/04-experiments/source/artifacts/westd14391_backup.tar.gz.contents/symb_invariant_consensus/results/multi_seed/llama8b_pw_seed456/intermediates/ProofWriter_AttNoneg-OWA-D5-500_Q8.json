@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-500_Q8",
+    "problem": "Anne is blue. Anne is cold. Anne is furry. Anne is red. Anne is round. Anne is white. Bob is big. Dave is round. Dave is white. Harry is big. Harry is red. Harry is white. All blue things are white. If something is cold then it is red. Furry, blue things are red. If something is round and big then it is blue. If Anne is cold and Anne is red then Anne is big. All red things are round. If something is big then it is cold. If something is cold and furry then it is white.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nRed(Anne, True) ::: Anne is red.\nRound(Anne, True) ::: Anne is round.\nWhite(Anne, True) ::: Anne is white.\nBig(Bob, True) ::: Bob is big.\nRound(Dave, True) ::: Dave is round.\nWhite(Dave, True) ::: Dave is white.\nBig(Harry, True) ::: Harry is big.\nRed(Harry, True) ::: Harry is red.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> White($x, True) ::: All blue things are white.\nCold($x, True) >>> Red($x, True) ::: If something is cold then it is red.\nFurry($x, True) && Blue($x, True) >>> Red($x, True) ::: Furry, blue things are red.\nRound($x, True) && Big($x, True) >>> Blue($x, True) ::: If something is round and big then it is blue.\nCold(Anne, True) && Red(Anne, True) >>> Big(Anne, True) ::: If Anne is cold and Anne is red then Anne is big.\nRed($x, True) >>> Round($x, True) ::: All red things are round.\nBig($x, True) >>> Cold($x, True) ::: If something is big then it is cold.\nCold($x, True) && Furry($x, True) >>> White($x, True) ::: If something is cold and furry then it is white.\n\nQuery:\nRound(Bob, False) ::: Bob is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

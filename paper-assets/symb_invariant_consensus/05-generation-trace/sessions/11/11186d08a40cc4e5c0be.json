@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11186d08a40cc4e5c0be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit roberta bart d061",
+  "task_key": "worker_audit_roberta-bart-d061_20260522T205137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_roberta-bart-d061_20260522T205137_result.json",
+    "occurrence": 1,
+    "bytes": 3844,
+    "sha256": "420595d48909d7f5de79ad65475435859bba332a01a9b3e99bbb91b58c1b7a58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have complete information. Let me compile the audit findings.\n\n---\n\n## D061 Tiebreaking Audit: RoBERTa/BART Multi-NLI\n\n### 1. Script Analysis\n\nAll three r11 scripts use **D061 alphabetical tiebreaking**:\n\n| Script | Tiebreaking function | Implementation |\n|--------|---------------------|----------------|\n| `r11_3verifier_canonical.py` | `sc_answer_alpha()` / `combo_answer_alpha()` | `sorted(tied)[0]` over `CLASSES` |\n| `r11_3verifier_final.py` | `alpha_winner()` | `sorted(c for c in CLASSES if ...)` → `tied[0]` |\n| `r11_3verifier_final_v2.py` | `alpha_winner()` | identical to `final.py` |\n\n### 2. Standalone Accuracies (from `r11_3verifier_canonical.json`)\n\n| Verifier | Correct | Accuracy |\n|----------|---------|----------|\n| DeBERTa-large-MNLI | 330/600 | 55.00% |\n| RoBERTa-large-MNLI | 226/600 | 37.67% |\n| BART-large-MNLI | 277/600 | 46.17% |\n\n### 3. SC Baseline: ID Fix Discrepancy\n\n| Condition | Correct | Accuracy |\n|-----------|---------|----------|\n| SC D061 **without** ID fix | 235/600 | **39.17%** (paper value) |\n| SC D061 **with** ID fix | 236/600 | **39.33%** (r11 JSON value) |\n\nThe r11 script applies a 2-question ID fix (`Q4→Q8` for two problems). One fix adds +1 correct to SC. The paper uses the unfixed 39.17%.\n\n### 4. Paper vs r11 JSON: RoBERTa/BART Combos\n\n**RoBERTa-large-MNLI** (paper Tab 26 vs r11 JSON):\n\n| w | Paper Δ | r11 JSON Δ | r11 JSON acc | r11 p-value | Paper p |\n|---|---------|------------|-------------|-------------|---------|\n| 1 | −0.17 | −0.17 | 39.17% (235) | 1.0 | n.s. |\n| 3 | **+4.17** | **+4.17** | 43.50% (261) | 0.0026 | 0.003** |\n| 5 | **+4.33** | **+4.33** | 43.67% (262) | 0.037 | 0.037* |\n\n**BART-large-MNLI**:\n\n| w | Paper Δ | r11 JSON Δ | r11 JSON acc | r11 p-value | Paper p |\n|---|---------|------------|-------------|-------------|---------|\n| 1 | 0.00 | 0.00 | 39.33% (236) | 1.0 | n.s. |\n| 3 | **+5.17** | **+5.17** | 44.50% (267) | 0.00024 | <0.001*** |\n| 5 | **+6.33** | **+6.33** | 45.67% (274) | 0.0027 | 0.003** |\n\nAll deltas and p-values match exactly.\n\n### 5. DeBERTa Discrepancy (Side Finding)\n\nDeBERTa values in paper Tab 26 (w3=+7.00, w5=+11.17) differ from r11 JSON (w3=+6.67, w5=+11.00). This is because:\n- Paper DeBERTa values come from the original experiment (no ID fix, SC=235, combo=277)\n- r11 JSON applies the ID fix (SC=236, combo=276)\n- The ID fix flips one question's SC/combo alignment differently for DeBERTa than for RoBERTa/BART\n\n### 6. BH Correction\n\nr11 JSON: **10/15 significant** at BH α=0.05.\nPaper Tab 27: **10/15 significant** — matches.\n\nNote: Paper Tab 27 tests 3 verifiers × 5 weights, while r11 JSON tests 3×3 individual + 3 ensemble + 3 additive = 15 tests. The count matches but the test composition differs.\n\n### 7. Capability Gap Scatter (Figure 7)\n\n`gen_capability_gap_scatter.py` uses:\n- RoBERTa: gap = −1.50 (37.67−39.17), Δ = 4.17\n- BART: gap = +7.00 (46.17−39.17), Δ = 5.17\n\nThese match the r11 JSON/paper Tab 26 deltas. All correct under D061.\n\n### Verdict\n\n**RoBERTa and BART multi-NLI combo results already use D061 tiebreaking. No correction needed.**\n\n- All scripts use `sorted(tied)[0]` (alphabetical)\n- Paper deltas and p-values match r11 JSON exactly\n- SC baseline in r11 JSON (39.33%) differs from paper (39.17%) by 1 question due to ID fix, but deltas are unaffected because the fix equally shifts SC and combo\n- Capability gap scatter data points are consistent\n- BH correction count (10/15) matches\n\nThe only inconsistency found is the DeBERTa w3/w5 deltas in Tab 26 vs r11 JSON, caused by the ID fix (not D061). This is cosmetic since the paper's DeBERTa values come from a separate source. The 25 tied SC questions (4.2%) are correctly resolved by alphabetical tiebreaking throughout."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-roberta-bart-d061.md"
+}

@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp-026-folio204-trace-regen",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T11:41:13.054Z",
+    "updated_at": "2026-05-18T12:15:06.989Z",
+    "hypothesis": "FOLIO 204 全量 trace 重生成（Qwen2.5-14B, K=12, T=0.7 trace gen, T_ext=0.3 extraction）：在 westd-25068 上生成 FOLIO traces，用于 cross-model extraction 和 case study 选取。归一化 bug 已修复（startswith 方案），温度双参数已正确分离。",
+    "parent": "sica_expanded_14b",
+    "reproduce": {
+      "finished_at": "2026-05-18T12:07:33.628Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-18T12:07:34.444Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T12:07:37.428043+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash scripts/run_folio_trace_regen.sh",
+      "server": "westd-25068",
+      "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 27245,
+      "log_path": "/root/symb_invariant_consensus/logs/folio_regen_v3_20260518_201127.log",
+      "output_path": "/root/symb_invariant_consensus/results/folio_204_14b/folio_204_results.json",
+      "temperature_trace": 0.7,
+      "temperature_extraction": 0.3,
+      "K": 12,
+      "checkpoint_source": "Qwen/Qwen2.5-14B-Instruct (HuggingFace)",
+      "eval_data": "FOLIO-204 validation set"
+    }
+  },
+  "timestamp": "2026-05-18T12:15:07.128860+00:00",
+  "trigger": "update_registry"
+}

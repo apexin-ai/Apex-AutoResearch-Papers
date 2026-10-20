@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-816_Q7",
+    "problem": "The cat is rough. The cat sees the rabbit. The mouse eats the cat. The mouse eats the squirrel. The mouse is kind. The mouse visits the cat. The mouse visits the rabbit. The rabbit eats the cat. The rabbit eats the mouse. The rabbit sees the cat. The squirrel is round. The squirrel sees the rabbit. If something sees the squirrel then it is kind. If something visits the mouse then the mouse sees the squirrel. If something eats the cat then the cat visits the squirrel. If something is blue then it sees the squirrel. If something is kind then it visits the rabbit. If something is rough then it sees the cat. If something is rough and it sees the cat then the cat is blue. If something visits the rabbit and it sees the squirrel then the squirrel is rough. If something eats the mouse then it is rough.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat sees the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, Rabbit, True) ::: The cat sees the rabbit.\nEats(Mouse, Cat, True) ::: The mouse eats the cat.\nEats(Mouse, Squirrel, True) ::: The mouse eats the squirrel.\nKind(Mouse, True) ::: The mouse is kind.\nVisits(Mouse, Cat, True) ::: The mouse visits the cat.\nVisits(Mouse, Rabbit, True) ::: The mouse visits the rabbit.\nEats(Rabbit, Cat, True) ::: The rabbit eats the cat.\nEats(Rabbit, Mouse, True) ::: The rabbit eats the mouse.\nSees(Rabbit, Cat, True) ::: The rabbit sees the cat.\nRound(Squirrel, True) ::: The squirrel is round.\nSees(Squirrel, Rabbit, True) ::: The squirrel sees the rabbit.\n\nRules:\nSees($x, Squirrel, True) >>> Kind($x, True) ::: If something sees the squirrel then it is kind.\nVisits($x, Mouse, True) >>> Sees(Mouse, Squirrel, True) ::: If something visits the mouse then the mouse sees the squirrel.\nEats($x, Cat, True) >>> Visits(Cat, Squirrel, True) ::: If something eats the cat then the cat visits the squirrel.\nBlue($x, True) >>> Sees($x, Squirrel, True) ::: If something is blue then it sees the squirrel.\nKind($x, True) >>> Visits($x, Rabbit, True) ::: If something is kind then it visits the rabbit.\nRough($x, True) >>> Sees($x, Cat, True) ::: If something is rough then it sees the cat.\nRough($x, True) && Sees($x, Cat, True) >>> Blue(Cat, True) ::: If something is rough and it sees the cat then the cat is blue.\nVisits($x, Rabbit, True) && Sees($x, Squirrel, True) >>> Rough(Squirrel, True) ::: If something visits the rabbit and it sees the squirrel then the squirrel is rough.\nEats($x, Mouse, True) >>> Rough($x, True) ::: If something eats the mouse then it is rough.\n\nQuery:\nSees(Cat, Squirrel, True) ::: The cat sees the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

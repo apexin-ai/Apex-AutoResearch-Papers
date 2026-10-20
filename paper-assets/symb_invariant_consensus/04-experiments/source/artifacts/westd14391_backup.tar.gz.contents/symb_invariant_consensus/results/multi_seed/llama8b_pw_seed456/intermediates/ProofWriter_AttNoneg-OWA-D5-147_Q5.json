@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-147_Q5",
+    "problem": "Charlie is nice. Charlie is rough. Charlie is smart. Charlie is young. Fiona is cold. Fiona is kind. Fiona is rough. Gary is cold. Gary is young. Harry is nice. If something is young then it is smart. If something is cold and round then it is kind. If Gary is kind and Gary is cold then Gary is rough. If Harry is round then Harry is smart. If Fiona is round and Fiona is kind then Fiona is young. If Charlie is cold then Charlie is round. All smart, young things are nice. If something is nice and smart then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\n\nFacts:\nNice(Charlie, True) ::: Charlie is nice.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Fiona, True) ::: Fiona is cold.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nCold(Gary, True) ::: Gary is cold.\nYoung(Gary, True) ::: Gary is young.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nYoung($x, True) >>> Smart($x, True) ::: If something is young then it is smart.\nCold($x, True) && Round($x, True) >>> Kind($x, True) ::: If something is cold and round then it is kind.\nKind(Gary, True) && Cold(Gary, True) >>> Rough(Gary, True) ::: If Gary is kind and Gary is cold then Gary is rough.\nRound(Harry, True) >>> Smart(Harry, True) ::: If Harry is round then Harry is smart.\nRound(Fiona, True) && Kind(Fiona, True) >>> Young(Fiona, True) ::: If Fiona is round and Fiona is kind then Fiona is young.\nCold(Charlie, True) >>> Round(Charlie, True) ::: If Charlie is cold then Charlie is round.\nSmart($x, True) && Young($x, True) >>> Nice($x, True) ::: All smart, young things are nice.\nNice($x, True) && Smart($x, True) >>> Round($x, True) ::: If something is nice and smart then it is round.\n\nQuery:\nNice(Gary, True) ::: Gary is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

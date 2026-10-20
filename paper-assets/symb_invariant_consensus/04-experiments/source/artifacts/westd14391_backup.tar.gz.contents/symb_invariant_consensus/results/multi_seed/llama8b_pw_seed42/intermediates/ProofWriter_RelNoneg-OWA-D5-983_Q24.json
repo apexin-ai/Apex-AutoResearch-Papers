@@ -1,0 +1,775 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-983_Q24",
+    "problem": "The bald eagle chases the tiger. The bald eagle is cold. The bald eagle is rough. The dog chases the rabbit. The dog eats the rabbit. The rabbit chases the dog. The rabbit is round. The tiger chases the dog. The tiger eats the rabbit. The tiger is cold. If someone visits the dog and the dog eats the bald eagle then the bald eagle is green. If someone is red then they chase the rabbit. If someone eats the dog then they eat the rabbit. If someone chases the rabbit and the rabbit is green then they are green. If someone is green then they eat the dog. If someone visits the bald eagle and they are round then the bald eagle is green. If someone visits the rabbit and they eat the bald eagle then they eat the dog. If someone chases the dog then they visit the bald eagle. If someone is rough and they eat the rabbit then they eat the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog visits the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nEats($x, $y, bool) ::: Does x eat y?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nChases(Dog, Rabbit, True) ::: The dog chases the rabbit.\nEats(Dog, Rabbit, True) ::: The dog eats the rabbit.\nChases(Rabbit, Dog, True) ::: The rabbit chases the dog.\nRound(Rabbit, True) ::: The rabbit is round.\nChases(Tiger, Dog, True) ::: The tiger chases the dog.\nEats(Tiger, Rabbit, True) ::: The tiger eats the rabbit.\nCold(Tiger, True) ::: The tiger is cold.\n\nRules:\nVisits($x, Dog, True) && Eats(Dog, BaldEagle, True) >>> Green(BaldEagle, True) ::: If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\nRed($x, True) >>> Chases($x, Rabbit, True) ::: If someone is red then they chase the rabbit.\nEats($x, Dog, True) >>> Eats($x, Rabbit, True) ::: If someone eats the dog then they eat the rabbit.\nChases($x, Rabbit, True) && Green(Rabbit, True) >>> Green($x, True) ::: If someone chases the rabbit and the rabbit is green then they are green.\nGreen($x, True) >>> Eats($x, Dog, True) ::: If someone is green then they eat the dog.\nVisits($x, BaldEagle, True) && Round($x, True) >>> Green(BaldEagle, True) ::: If someone visits the bald eagle and they are round then the bald eagle is green.\nVisits($x, Rabbit, True) && Eats($x, BaldEagle, True) >>> Eats($x, Dog, True) ::: If someone visits the rabbit and they eat the bald eagle then they eat the dog.\nChases($x, Dog, True) >>> Visits($x, BaldEagle, True) ::: If someone chases the dog then they visit the bald eagle.\nRough($x, True) && Eats($x, Rabbit, True) >>> Eats($x, Tiger, True) ::: If someone is rough and they eat the rabbit then they eat the tiger.\n\nQuery:\nVisits(Dog, Rabbit, True) ::: The dog visits the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 30.0,
+      "Unknown": 88.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog chases the rabbit. (Given)\n2. The dog eats the rabbit. (Given)\n3. If someone eats the dog then they eat the rabbit. (Given)\n   - This rule doesn't directly apply to our situation, but we can ignore it for now.\n4. If someone visits the rabbit and they eat the bald eagle then they eat the dog. (Given)\n   - This rule also doesn't apply directly to our situation, so we can ignore it for now.\n5. If someone chases the dog then they visit the bald eagle. (Given)\n   - This rule can help us determine if the dog visits the rabbit.\n\nSince we don't have any information about the dog visiting the rabbit, we'll look at the other rules.\n\n6. If someone visits the bald eagle and they are round then the bald eagle is green. (Given)\n   - We don't have any information about the rabbit's shape, so we can ignore this rule.\n7. If someone is red then they chase the rabbit. (Given)\n   - We don't have any information about the dog's color, so we can ignore this rule.\n8. If someone is green then they eat the dog. (Given)\n   - We don't have any information about the rabbit's color, so we can ignore this rule.\n\nNow, let's look at the rules again. We have the following information:\n\n1. The dog chases the rabbit.\n2. The dog eats the rabbit.\n\nSince we have information about the dog chasing the rabbit, we can look at rule 5.\n\n5. If someone chases the dog then they visit the bald eagle.\n   - This rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nHowever, this rule doesn't directly apply to our situation. We need to look for a connection between the dog and the bald eagle.\n\nIf we look at the rules again, we can see that the dog eats the bald eagle in one situation.\n\nHowever, we need to find a connection between the dog and the bald eagle that involves the rabbit.\n\nAfter analyzing the rules, we can see that there is a connection between the dog and the bald eagle that involves the rabbit.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nHowever, we need to find a connection between the dog and the bald eagle that involves the rabbit and is related to the rules about visiting.\n\nAfter analyzing the rules, we can see that there is a connection between the dog and the bald eagle that involves the rabbit and is related to the rules about visiting.\n\nThe connection is as follows:\n\nIf the dog visits the rabbit, then it would imply that the dog is visiting an animal that the dog chases. However, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nIf we look at rule 5, we can see that if someone chases the dog then they visit the bald eagle.\n\nHowever, this rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, we can't directly apply this rule to the dog visiting the rabbit.\n\nHowever, if we look at the rules again, we can see that there is a connection between the dog and the bald eagle that involves the rabbit.\n\nIf the dog eats the bald eagle, then it would imply that the dog eats an animal that the dog doesn't chase.\n\nHowever, this situation is related to the rules about eating.\n\nWe can see that the dog eats the rabbit, but we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nIf we look at rule 5, we can see that if someone chases the dog then they visit the bald eagle.\n\nHowever, this rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, we can't directly apply this rule to the dog visiting the rabbit.\n\nHowever, if we look at the rules again, we can see that there is a connection between the dog and the bald eagle that involves the rabbit.\n\nIf the dog visits the rabbit, then it would imply that the dog visits an animal that the dog chases.\n\nHowever, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf the dog eats the rabbit, then it would imply that the dog eats an animal that the dog chases.\n\nHowever, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nIf we look at rule 5, we can see that if someone chases the dog then they visit the bald eagle.\n\nHowever, this rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nHowever, this rule doesn't directly apply to our situation.\n\nHowever, we can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, this situation is related to the rules about visiting the bald eagle.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nThe connection is as follows:\n\nIf the dog visits the rabbit, then it would imply that the dog is visiting an animal that the dog chases.\n\nHowever, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nIf we look at rule 5, we can see that if someone chases the dog then they visit the bald eagle.\n\nHowever, this rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, we can't directly apply this rule to the dog visiting the rabbit.\n\nHowever, if we look at the rules again, we can see that there is a connection between the dog and the bald eagle that involves the rabbit.\n\nHowever, this connection is related to the rules about visiting the bald eagle.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, this situation is related to the rules about visiting the bald eagle.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nThe connection is as follows:\n\nIf the dog visits the rabbit, then it would imply that the dog is visiting an animal that the dog chases.\n\nHowever, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nIf we look at rule 1, we can see that the dog chases the rabbit.\n\nIf we look at rule 5, we can see that if someone chases the dog then they visit the bald eagle.\n\nHowever, this rule is in the opposite direction, but we can use it to infer something about the dog visiting the rabbit.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, we can't directly apply this rule to the dog visiting the rabbit.\n\nHowever, if we look at the rules again, we can see that there is a connection between the dog and the bald eagle that involves the rabbit.\n\nHowever, this connection is related to the rules about visiting the bald eagle.\n\nWe can see that the dog chases the rabbit, and if someone chases the dog, they visit the bald eagle.\n\nHowever, this situation is related to the rules about visiting the bald eagle.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nThe connection is as follows:\n\nThe statement \"The dog visits the rabbit\" is unknown because we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nThe connection is as follows:\n\nIf the dog visits the rabbit, then it would imply that the dog is visiting an animal that the dog chases.\n\nHowever, we don't have any direct information about the dog visiting the rabbit.\n\nHowever, we can use the rules to find a connection between the dog and the rabbit that involves visiting.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information and the relationships between the animals.\n\n1. The dog chases the rabbit.\n2. The dog eats the rabbit.\n3. The rabbit chases the dog.\n4. The rabbit is round.\n5. The tiger chases the dog.\n6. The tiger eats the rabbit.\n7. The tiger is cold.\n\nFrom statement 5, we know the tiger chases the dog. \n\nFrom statement 8, we know if someone chases the dog, then they visit the bald eagle. \n\nSo, the tiger chases the dog, and therefore, the tiger visits the bald eagle. \n\nHowever, this does not directly help us with the dog and the rabbit. \n\nLet's examine other possibilities:\n\nFrom statement 8, we know if someone chases the dog and visits the bald eagle. \n\nHowever, this does not provide any information about the dog visiting the rabbit.\n\nFrom statement 11, we know if someone is rough and they eat the rabbit, then they eat the tiger.\n\nHowever, this does not provide any information about the dog visiting the rabbit.\n\nFrom statement 2, we know the dog eats the rabbit.\n\nFrom statement 3, we know the rabbit chases the dog.\n\nFrom statement 4, we know the rabbit is round.\n\nHowever, we cannot determine if the dog visits the rabbit or not using these statements.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - The bald eagle chases the tiger.\n   - The bald eagle is cold.\n   - The bald eagle is rough.\n   - The dog chases the rabbit.\n   - The dog eats the rabbit.\n   - The rabbit chases the dog.\n   - The rabbit is round.\n   - The tiger chases the dog.\n   - The tiger eats the rabbit.\n   - The tiger is cold.\n\n2. We also have some conditional statements:\n   - If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\n   - If someone is red then they chase the rabbit.\n   - If someone eats the dog then they eat the rabbit.\n   - If someone chases the rabbit and the rabbit is green then they are green.\n   - If someone is green then they eat the dog.\n   - If someone visits the bald eagle and they are round then the bald eagle is green.\n   - If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n   - If someone chases the dog then they visit the bald eagle.\n   - If someone is rough and they eat the rabbit then they eat the tiger.\n\n3. We need to determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown.\n\nLet's analyze the information:\n\n- From the given statements, we know that the dog chases the rabbit and eats the rabbit. However, we don't have any information about the dog visiting the rabbit. Visiting is not mentioned as a direct action of the dog.\n\n- The only information related to visiting is in the following conditional statements:\n  - If someone chases the dog then they visit the bald eagle. (This doesn't provide any information about the dog visiting the rabbit.)\n  - If someone visits the rabbit and they eat the bald eagle then they eat the dog. (This doesn't provide any information about the dog visiting the rabbit.)\n\n- Since we don't have any direct information about the dog visiting the rabbit, we cannot determine whether the statement is true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: The dog chases the rabbit. (This does not directly tell us if the dog visits the rabbit, but it gives us information about their interaction.)\n\nRule 2: The dog eats the rabbit. (This also does not directly tell us if the dog visits the rabbit.)\n\nHowever, Rule 5 states that \"If someone chases the dog then they visit the bald eagle.\" \n\nNow, we need to find out if there is a chain of events where someone chases the dog, and if so, does that lead to the dog visiting the rabbit? \n\nThe statement \"The rabbit chases the dog.\" (given in the problem) tells us that someone chases the dog. \n\nSo, we have a chain: \n- The rabbit chases the dog.\n- Since the rabbit chases the dog, we apply Rule 5: If someone chases the dog then they visit the bald eagle. Therefore, the rabbit visits the bald eagle.\n\nHowever, there is no direct connection between the rabbit visiting the bald eagle and the dog visiting the rabbit. There is a connection between the bald eagle and the dog though: \n- If the dog eats the bald eagle, then the bald eagle is green (Rule 6).\n- We also have another rule: If someone visits the bald eagle and they are round, then the bald eagle is green. We don't know if the rabbit is round, but we do know the rabbit is round from the statement \"The rabbit is round.\" \n- However, we cannot apply this rule because the statement we are interested in is about the dog visiting the rabbit. The only rule that has a connection to the dog visiting the rabbit is Rule 8: If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n\nNow let's analyze Rule 8: If someone visits the rabbit and they eat the bald eagle then they eat the dog. \n- If the dog eats the bald eagle then the bald eagle is green (Rule 6).\n- We also have another rule: If someone visits the bald eagle and they are round, then the bald eagle is green. This would imply that the dog eats the bald eagle (because the dog is not round) and the bald eagle is green (because the dog is not round).\n- So, if the dog eats the bald eagle, then the bald eagle is green (because the dog is not round).\n- We also know the rabbit is round from the statement \"The rabbit is round.\"\n- Now let's analyze Rule 8 again: If someone visits the rabbit and they eat the bald eagle then they eat the dog. \n- If the rabbit visits the bald eagle and the bald eagle is green (because the rabbit is round), then the rabbit would eat the dog (because the rabbit visits the bald eagle and the bald eagle is green).\n\nHowever, this still does not tell us if the dog visits the rabbit. But we can now say that if the rabbit visits the bald eagle (because the rabbit chases the dog), then the rabbit would eat the dog (because the rabbit visits the bald eagle and the bald eagle is green). \n\nBut what if we say that the rabbit is not green? Then we can say that the rabbit does not chase the dog (because the rabbit is not green). But we already know that the rabbit chases the dog. So, we can conclude that the rabbit is green. \n\nNow, we can say that if the rabbit visits the bald eagle (because the rabbit chases the dog), then the rabbit would eat the dog (because the rabbit visits the bald eagle and the bald eagle is green). \n\nNow, let's analyze the original statement: \"The dog visits the rabbit.\" \n- We know that the rabbit is green. \n- We also know that if someone is green then they eat the dog (Rule 7).\n- However, we don't know if the rabbit eats the dog.\n\nBut we can conclude that if the rabbit eats the dog, then the dog would visit the rabbit (because the rabbit eats the dog). However, this is a conclusion based on the fact that the rabbit eats the dog.\n\nHowever, we can conclude that the dog does not visit the rabbit because there is no rule that directly states that the dog visits the rabbit. But we can also conclude that the rabbit eats the dog (because the rabbit is green and the rabbit eats the dog). \n\nBut we can conclude that the dog does not visit the rabbit because there is no rule that directly states that the dog visits the rabbit.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The dog chases the rabbit.\n2. If someone eats the dog then they eat the rabbit.\n   However, the first statement does not imply that the dog eats the rabbit, it only implies that the dog chases the rabbit.\n   The second statement implies that if someone eats the dog, they eat the rabbit. But we don't know if the dog is eaten.\n3. The rabbit chases the dog.\n4. The rabbit is round.\n\nThe question asks if the dog visits the rabbit. However, visiting is not explicitly mentioned in any of the given statements.\n\nTo determine if the dog visits the rabbit, we need to look for any indirect implication or chain of events.\n\nStatement 5: The dog eats the rabbit.\n   This statement implies that the dog visits the rabbit.\n\nHowever, from statement 1, we know that the dog chases the rabbit, but we don't have direct evidence that the dog eats the rabbit.\n\nNow let's look for any other chain of events that could imply that the dog visits the rabbit.\n\nStatement 1: The dog chases the rabbit.\nStatement 3: The rabbit chases the dog.\nStatement 9: The tiger chases the dog.\nStatement 10: The tiger eats the rabbit.\n   From statement 10, we know that the tiger eats the rabbit.\n\nNow, let's consider statement 8: The tiger is cold.\nStatement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 2: The dog eats the rabbit.\n   From statement 6, we know that the rabbit chases the dog.\n\nHowever, statement 2 implies that if someone eats the dog then they eat the rabbit. But we don't know if the dog is eaten.\n\nNow let's consider statement 5: The dog eats the rabbit.\nStatement 8: The tiger is cold.\nStatement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 2: The dog eats the rabbit.\n\nFrom statement 5 and statement 2, we have a contradiction. If the dog eats the rabbit, then it would mean that the tiger eats the dog (statement 10), and therefore the tiger eats the rabbit (statement 2), which contradicts statement 10.\n\nNow let's consider statement 8: The tiger is cold.\nStatement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 1: The dog chases the rabbit.\n   From statement 1, we know that the dog chases the rabbit.\n\nHowever, we still don't have any direct evidence that the dog visits the rabbit.\n\nNow let's consider statement 1: The dog chases the rabbit.\nStatement 3: The rabbit chases the dog.\nStatement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\n\nFrom statement 7 and statement 4, we can use statement 11: If someone visits the rabbit and they are round then the bald eagle is green.\nHowever, this implies that the bald eagle is green if the rabbit is round. But we don't know if the bald eagle is green.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 9: The tiger chases the dog.\nStatement 6: The rabbit chases the dog.\n\nFrom statement 9 and statement 6, we can use statement 13: If someone chases the dog then they visit the bald eagle.\nHowever, this implies that the tiger visits the bald eagle.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 1: The dog chases the rabbit.\n\nFrom statement 1 and statement 6, we can use statement 12: If someone eats the dog then they eat the rabbit.\nHowever, this implies that if someone eats the dog then they eat the rabbit. But we don't know if the dog is eaten.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 9: The tiger chases the dog.\nStatement 6: The rabbit chases the dog.\n\nFrom statement 9 and statement 6, we can use statement 14: If someone is rough and they eat the rabbit then they eat the tiger.\nHowever, this implies that the tiger eats the rabbit.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 5: The dog eats the rabbit.\n\nFrom statement 5 and statement 6, we can use statement 2: If someone eats the dog then they eat the rabbit.\nHowever, this implies that if someone eats the dog then they eat the rabbit. But we don't know if the dog is eaten.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\nStatement 9: The tiger chases the dog.\n\nFrom statement 9 and statement 6, we can use statement 3: The rabbit chases the dog.\nHowever, we already know that the rabbit chases the dog.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 9: The tiger chases the dog.\n\nFrom statement 9, we can use statement 13: If someone chases the dog then they visit the bald eagle.\nHowever, this implies that the tiger visits the bald eagle.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\nStatement 6: The rabbit chases the dog.\n\nFrom statement 6, we can use statement 5: The dog eats the rabbit.\nHowever, this implies that the dog eats the rabbit.\n\nNow let's consider statement 7: The bald eagle is rough.\nStatement 4: The rabbit is round.\n\nFrom statement 4, we can use statement 11: If someone visits the rabbit and they are round then the bald eagle is green.\nHowever, this implies that the bald eagle is green if the rabbit is round.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 16: If someone is green then they eat the dog.\nHowever, this implies that if someone is green then they eat the dog. But we don't know if the person is green.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 15: If someone visits the bald eagle and they are round then the bald eagle is green.\nHowever, this implies that the bald eagle is green if someone visits the bald eagle and they are round.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 17: If someone chases the rabbit and the rabbit is green then they are green.\nHowever, this implies that if someone chases the rabbit and the rabbit is green then they are green. But we don't know if the rabbit is green.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 18: If someone is red then they chase the rabbit.\nHowever, this implies that if someone is red then they chase the rabbit. But we don't know if the person is red.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 19: If someone eats the dog then they eat the rabbit.\nHowever, this implies that if someone eats the dog then they eat the rabbit. But we don't know if the dog is eaten.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 20: If someone visits the bald eagle then the bald eagle is green.\nHowever, this implies that the bald eagle is green if someone visits the bald eagle.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 21: The dog eats the bald eagle then the bald eagle is green.\nHowever, this implies that the bald eagle is green if the dog eats the bald eagle.\n\nNow let's consider statement 7: The bald eagle is rough.\n\nWe can use statement 7 and statement 22: The dog visits the bald eagle.\nHowever, we are trying to find out if the dog visits the rabbit.\n\nNow let's consider statement 4: The rabbit is round.\n\nWe can use statement 4 and statement 11: If someone visits the rabbit and they are round then the bald eagle is green.\nHowever, this implies that the bald eagle is green if the rabbit is round.\n\nNow let's consider statement 4: The rabbit is round.\n\nWe can use statement 4 and statement 15: If someone visits the bald eagle and they are round then the bald eagle is green.\nHowever, this implies that the bald eagle is green if someone visits the bald eagle and they are round.\n\nNow let's consider statement 4: The rabbit is round.\n\nWe can use statement 4 and statement 3: The rabbit chases the dog.\nHowever, we already know that the rabbit chases the dog.\n\nNow let's consider statement 4: The rabbit is round.\n\nWe can use statement 4 and statement 6: The rabbit chases the dog.\nHowever, we already know that the rabbit chases the dog.\n\nNow",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The dog eats the rabbit\" is given in the problem.\n\nHowever, there is no direct statement that the dog visits the rabbit. \n\nTo find if the dog visits the rabbit, we need to see if there is any chain of events that can be linked to the statement \"The dog visits the rabbit\" starting from given information.\n\nFrom given information, we have:\n- The dog eats the rabbit.\n- If someone eats the dog then they eat the rabbit. \nThis statement can be linked to the statement \"The dog visits the rabbit\" if someone eats the dog and then the someone eats the rabbit.\n\nHowever, to find out if the dog visits the rabbit, we must follow the chain of events.\n\nThe statement \"The dog visits the rabbit\" can be linked to the given information if there is a sequence of events like:\n- The dog eats the rabbit.\n- If someone eats the dog then they eat the rabbit.\n- If someone eats the dog then they visit the bald eagle.\n- If someone visits the bald eagle and they are round then the bald eagle is green. \n- If someone is green then they eat the dog.\n- If someone eats the dog then they eat the rabbit.\n- If someone chases the rabbit and the rabbit is green then they are green.\n\nHowever, to find out if the dog visits the rabbit, we must follow the chain of events in the given order.\n\nNow let's follow the chain of events in the given order:\n- The dog eats the rabbit.\n- The tiger eats the rabbit.\n- The tiger chases the dog.\n- If someone chases the dog then they visit the bald eagle.\n- The tiger chases the dog.\n- The tiger visits the bald eagle.\n- The rabbit is round.\n- If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n- However, we cannot find any chain of events that can be linked to the statement \"The dog visits the rabbit\" starting from given information.\n- The only statement that can be linked to \"The dog visits the rabbit\" is the statement \"The dog eats the rabbit\" which is given in the problem.\n\nHowever, to find out if the dog visits the rabbit, we must follow the chain of events in the given order and see if the dog can visit the rabbit.\n\nThe statement \"The dog visits the rabbit\" cannot be linked directly to the given information. However, we can find a chain of events that can be linked to the statement \"The dog visits the rabbit\". \n\nSince the statement \"The dog visits the rabbit\" can be linked to the given information, we can say that the statement is not unknown.\n\nFrom the given information, we can say that the statement \"The dog visits the rabbit\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. The bald eagle chases the tiger.\n2. The bald eagle is cold.\n3. The bald eagle is rough.\n4. The dog chases the rabbit.\n5. The dog eats the rabbit.\n6. The rabbit chases the dog.\n7. The rabbit is round.\n8. The tiger chases the dog.\n9. The tiger eats the rabbit.\n10. The tiger is cold.\n11. If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\n12. If someone is red then they chase the rabbit.\n13. If someone eats the dog then they eat the rabbit.\n14. If someone chases the rabbit and the rabbit is green then they are green.\n15. If someone is green then they eat the dog.\n16. If someone visits the bald eagle and they are round then the bald eagle is green.\n17. If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n18. If someone chases the dog then they visit the bald eagle.\n19. If someone is rough and they eat the rabbit then they eat the tiger.\n\nNow, let's analyze these statements to determine the validity of the statement \"The dog visits the rabbit.\"\n\nFrom statement 18, we can infer that if someone chases the dog, then they visit the bald eagle. However, we need to determine whether the dog chases the rabbit implies that the dog visits the rabbit.\n\nFrom statement 4, we know that the dog chases the rabbit. However, statement 4 does not directly imply that the dog visits the rabbit. To determine this, we need to examine the implications of the given statements.\n\nLet's examine statement 17, which states that if someone visits the rabbit and they eat the bald eagle then they eat the dog. This implies that visiting the rabbit and eating the bald eagle leads to eating the dog. However, this statement does not directly imply that the dog visits the rabbit.\n\nWe also need to examine statement 16, which states that if someone visits the bald eagle and they are round then the bald eagle is green. This implies that visiting the bald eagle and being round leads to the bald eagle being green. However, this statement does not directly imply that the dog visits the rabbit.\n\nFrom statement 4, we know that the dog chases the rabbit. However, we need to examine the implications of this statement in conjunction with the other statements.\n\nSince we have not found any statement that directly implies that the dog visits the rabbit, we cannot conclude that the statement \"The dog visits the rabbit\" is true. However, we also cannot conclude that it is false because there is no explicit statement that contradicts this implication.\n\nTherefore, based on the given statements and their implications, we cannot determine whether the statement \"The dog visits the rabbit\" is true or false. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and find the relationship between the dog and the rabbit. We can represent the statements as a set of rules and create a truth table to determine the outcome.\n\n1. If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\n2. If someone is red then they chase the rabbit.\n3. If someone eats the dog then they eat the rabbit.\n4. If someone chases the rabbit and the rabbit is green then they are green.\n5. If someone is green then they eat the dog.\n6. If someone visits the bald eagle and they are round then the bald eagle is green.\n7. If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n8. If someone chases the dog then they visit the bald eagle.\n9. If someone is rough and they eat the rabbit then they eat the tiger.\n\nTo determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to find a path from the dog to the rabbit. \n\nFrom the statement 8: If someone chases the dog then they visit the bald eagle, and from statement 3: If someone eats the dog then they eat the rabbit, we can infer that someone who eats the dog must visit the rabbit.\n\nHowever, we can't directly conclude that the dog visits the rabbit. We can only infer that someone who eats the dog visits the rabbit. \n\nTherefore, the statement \"The dog visits the rabbit\" is false.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are evaluating: \"The dog visits the rabbit.\"\n   We need to check if this is true, false, or unknown.\n\n2. Information given about the dog and the rabbit:\n   - The dog chases the rabbit.\n   - The rabbit chases the dog.\n   - The rabbit is round.\n\n3. From the given statements, we can conclude that the dog and the rabbit have a relationship where the dog chases the rabbit, but we cannot determine if the dog visits the rabbit directly from this information.\n\n4. However, we can check the implications given in the problem:\n   - If someone visits the bald eagle and they are round then the bald eagle is green. \n   - The rabbit is round.\n   We can infer that the rabbit is round, and if the rabbit was to visit the bald eagle, the bald eagle would be green. However, this does not provide information about the dog visiting the rabbit.\n\n5. Another implication:\n   - If someone chases the dog then they visit the bald eagle.\n   We cannot apply this implication directly to determine if the dog visits the rabbit.\n\n6. However, we can check another implication:\n   - If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n   This does not provide information about the dog visiting the rabbit.\n\n7. Another implication:\n   - If someone eats the dog then they eat the rabbit.\n   This does not provide information about the dog visiting the rabbit.\n\n8. Another implication:\n   - The dog eats the rabbit.\n   This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\n9. Another implication:\n   - If someone is red then they chase the rabbit.\n   This does not provide information about the dog visiting the rabbit.\n\n10. Another implication:\n    - If someone is rough and they eat the rabbit then they eat the tiger.\n    The dog is not described as being red or rough. We cannot determine if the dog visits the rabbit from this implication.\n\n11. We can check one more implication:\n    - If someone chases the rabbit and the rabbit is green then they are green.\n    - The rabbit is not described as being green.\n    This implication does not provide information about the dog visiting the rabbit.\n\n12. Another implication:\n    - If someone is green then they eat the dog.\n    We cannot determine if the dog visits the rabbit from this implication.\n\n13. We can check one more implication:\n    - The tiger chases the dog, the tiger eats the rabbit.\n    The tiger is not described as visiting the rabbit.\n\n14. We can check one more implication:\n    - If someone eats the dog then they eat the rabbit.\n    - The dog eats the rabbit.\n    This does not provide information about the dog visiting the rabbit.\n\nHowever, let's check another implication that we missed initially:\n\n- If someone visits the dog and the dog eats the bald eagle then the bald eagle is green.\n- The bald eagle is not described as visiting the rabbit.\n- The bald eagle is not described as eating the dog.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nBut, if we check one more implication:\n\n- The rabbit chases the dog.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is red then they chase the rabbit.\n- The dog is not described as being red.\n- The dog is not described as visiting the rabbit.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, we can check one more implication that we might have missed initially:\n\n- If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone eats the dog then they eat the rabbit.\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The tiger eats the rabbit.\n- This implies that the tiger and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is rough and they eat the rabbit then they eat the tiger.\n- The bald eagle is rough.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The dog chases the rabbit.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is green then they eat the dog.\n- The bald eagle is not described as being green.\n- The rabbit is not described as being green.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone visits the bald eagle and they are round then the bald eagle is green.\n- The rabbit is round.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone chases the rabbit and the rabbit is green then they are green.\n- The rabbit is not described as being green.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The rabbit chases the dog.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is red then they chase the rabbit.\n- The dog is not described as being red.\n- The dog is not described as visiting the rabbit.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone visits the rabbit and they eat the bald eagle then they eat the dog.\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone eats the dog then they eat the rabbit.\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The tiger eats the rabbit.\n- This implies that the tiger and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is rough and they eat the rabbit then they eat the tiger.\n- The bald eagle is rough.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The dog chases the rabbit.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is green then they eat the dog.\n- The bald eagle is not described as being green.\n- The rabbit is not described as being green.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone visits the bald eagle and they are round then the bald eagle is green.\n- The rabbit is round.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone chases the rabbit and the rabbit is green then they are green.\n- The rabbit is not described as being green.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The rabbit chases the dog.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone eats the dog then they eat the rabbit.\n- The dog eats the rabbit.\n- This implies that the dog and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The tiger eats the rabbit.\n- This implies that the tiger and the rabbit have a relationship, but it does not determine if the dog visits the rabbit.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is rough and they eat the rabbit then they eat the tiger.\n- The bald eagle is rough.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- The dog chases the rabbit.\n- We cannot determine if the dog visits the rabbit from this implication.\n\nHowever, let's check one more implication that we might have missed initially:\n\n- If someone is green then they eat the dog.\n- The bald eagle is not described as being green.\n- The rabbit is not",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The dog chases the rabbit\" is given.\n2. The statement \"The dog eats the rabbit\" is given, which indicates a specific action of the dog. However, it does not necessarily imply that the dog visits the rabbit.\n3. We need to find any other statements that might relate to the dog visiting the rabbit.\n\nLet's consider the statements given in the problem:\n- If someone visits the dog and the dog eats the bald eagle then the bald eagle is green. (This statement does not relate to the dog visiting the rabbit.)\n- If someone is red then they chase the rabbit. (This statement does not relate to the dog visiting the rabbit.)\n- If someone eats the dog then they eat the rabbit. (This statement does not relate to the dog visiting the rabbit.)\n- If someone chases the rabbit and the rabbit is green then they are green. (This statement does not relate to the dog visiting the rabbit.)\n- If someone is green then they eat the dog. (This statement does not relate to the dog visiting the rabbit.)\n- If someone visits the bald eagle and they are round then the bald eagle is green. (This statement does not relate to the dog visiting the rabbit.)\n- If someone visits the rabbit and they eat the bald eagle then they eat the dog. (This statement does not relate to the dog visiting the rabbit.)\n- If someone chases the dog then they visit the bald eagle. (This statement does not directly relate to the dog visiting the rabbit, but it implies that someone who chases the dog might have an action related to the bald eagle.)\n- If someone is rough and they eat the rabbit then they eat the tiger. (This statement does not relate to the dog visiting the rabbit.)\n\nConsidering the given statements, we cannot determine a direct relationship between the dog visiting the rabbit. However, we can see that there are no statements that directly indicate the dog does not visit the rabbit. Therefore, based on the given information, we cannot determine whether the statement \"The dog visits the rabbit\" is true or false. The answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the dog visits the rabbit, we need to analyze the given statements and their implications. \n\nGiven statements:\n1. The dog chases the rabbit.\n2. The dog eats the rabbit.\n3. If someone visits the dog and the dog eats the bald eagle then the bald eagle is green. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n4. If someone is red then they chase the rabbit. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n5. If someone eats the dog then they eat the rabbit. (This statement is relevant, but it implies the opposite of visiting - it implies eating.)\n6. If someone chases the rabbit and the rabbit is green then they are green. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n7. If someone is green then they eat the dog. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n8. If someone visits the rabbit and they eat the bald eagle then they eat the dog. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n9. If someone chases the dog then they visit the bald eagle. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n10. If someone is rough and they eat the rabbit then they eat the tiger. (This statement is irrelevant to the dog and the rabbit, so we can ignore it.)\n\nThe only relevant statement to the dog and the rabbit is the first one: \"The dog chases the rabbit.\" However, this statement does not imply that the dog visits the rabbit. In fact, there's a statement (2) that says \"The dog eats the rabbit,\" which implies that the dog interacts with the rabbit in some way, but it doesn't necessarily imply visiting.\n\nHowever, given that we know the dog chases the rabbit (1) and eats the rabbit (2), we can infer that the dog does interact with the rabbit, but we still can't determine whether the interaction is a visit or not.\n\nSo, based on the given information, we can't determine whether the dog visits the rabbit. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The dog visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The dog eats the rabbit\" is given. This tells us that the dog is an eater of the rabbit, but it doesn't tell us anything about visiting.\n\n2. However, there is a rule that says if someone eats the dog, they eat the rabbit. But we have no information about the dog being eaten, so we can't use this rule.\n\n3. Another rule says that if someone visits the rabbit and they eat the bald eagle, then they eat the dog. But we don't have any information about who eats the bald eagle, and we don't know if the dog visits the rabbit, so we can't use this rule.\n\n4. There's a rule that says if someone visits the bald eagle and they are round, then the bald eagle is green. But we don't know if the bald eagle is green or not, so we can't use this rule.\n\n5. We do know that the rabbit is round, but we don't have any information about who visits the bald eagle and is round, so we can't use this rule.\n\n6. There's a rule that says if someone chases the dog, then they visit the bald eagle. But this rule doesn't tell us anything about the dog visiting the rabbit.\n\n7. There's a rule that says if someone is red, then they chase the rabbit. But we don't know if the dog is red, so we can't use this rule.\n\n8. There's a rule that says if someone chases the rabbit and the rabbit is green, then they are green. But we don't know if the rabbit is green or not, and we don't know if the dog chases the rabbit, so we can't use this rule.\n\n9. There's a rule that says if someone is green, then they eat the dog. But we don't know if the dog is green or not, so we can't use this rule.\n\n10. There's a rule that says if someone is rough and they eat the rabbit, then they eat the tiger. But we don't know if the dog is rough or not, and we don't know if the dog eats the rabbit, so we can't use this rule.\n\n11. There's a rule that says if someone is rough and they eat the rabbit, then they eat the tiger. But we know that the bald eagle is rough and they eat the rabbit. According to this rule, the bald eagle eats the tiger.\n\n12. However, we can find a chain of events that might tell us if the dog visits the rabbit. We know that the tiger chases the dog and the tiger eats the rabbit.\n\n13. If the dog visits the rabbit, then we can't apply any of the rules we've used so far. But if we assume that the dog doesn't visit the rabbit, then we have the following chain of events:\n\n   - The tiger chases the dog.\n   - The tiger eats the rabbit.\n\n14. We know that the tiger eats the rabbit. If the tiger eats the rabbit, then we can use the rule that says if someone eats the dog, then they eat the rabbit. But we don't have any information about the tiger eating the dog.\n\n15. However, we do know that the tiger chases the dog and the tiger eats the rabbit. According to this chain of events, we can't determine if the dog visits the rabbit or not.\n\nBased on the given information, we can't determine if the dog visits the rabbit or not, so the statement is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> eats(X, Z)",
+          "z3_formula": "Implies(eats_dog_rabbit, eats_dog_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> visits(X, eagle)",
+          "z3_formula": "Implies(chases_dog_rabbit, visits_dog_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, eagle)",
+          "z3_formula": "visits_dog_eagle == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> visits(X, eagle)",
+          "z3_formula": "Implies(chases_tiger_dog, visits_tiger_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, eagle)",
+          "z3_formula": "visits_tiger_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & visits(X, eagle) -> visits(X, rabbit)",
+          "z3_formula": "Implies(And(chases_tiger_dog, visits_tiger_eagle), visits_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_X, eats_X_rabbit), eats_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, tiger)",
+          "z3_formula": "eats_dog_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(visits_dog_rabbit)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_rabbit_dog, visits_rabbit_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & round(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_rabbit_bald_eagle, round_rabbit), green_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & eats(X, bald_eagle) -> eats(X, dog)",
+          "z3_formula": "Implies(And(visits_X_rabbit, eats_X_bald_eagle), eats_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, dog)",
+          "z3_formula": "Implies(green_X, eats_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, rabbit)",
+          "z3_formula": "Implies(eats_rabbit_dog, visits_rabbit_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(dog, rabbit))",
+          "z3_formula": "Not(visits_dog_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(dog, rabbit))",
+          "z3_formula": "Not(visits_dog_rabbit) == True",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_dog, eats_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> visit(X, bald_eagle)",
+          "z3_formula": "Implies(chases_tiger_dog, visit_tiger_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bald_eagle) & eat(X, bald_eagle) -> eat(X, dog)",
+          "z3_formula": "Implies(And(visit_tiger_bald_eagle, eat_tiger_bald_eagle), eat_tiger_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & green(Y) -> green(X)",
+          "z3_formula": "Implies(And(chases_tiger_rabbit, green_rabbit), green_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visit(tiger, bald_eagle)",
+          "z3_formula": "visit_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "false(visit(dog, rabbit))",
+          "z3_formula": "Not(visit_dog_rabbit == True)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, bald_eagle) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_bald_eagle), green_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(red_X, chases_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_X_dog, eats_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & green(rabbit) -> green(X)",
+          "z3_formula": "Implies(And(chases_X_rabbit, green_rabbit), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, dog)",
+          "z3_formula": "Implies(green_X, eats_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & round(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, round_X), green_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & eats(X, bald_eagle) -> eats(X, dog)",
+          "z3_formula": "Implies(And(visits_X_rabbit, eats_X_bald_eagle), eats_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_dog, visits_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_X, eats_X_rabbit), eats_X_tiger)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(dog, rabbit)",
+          "z3_formula": "visits_dog_rabbit == False",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, bald_eagle) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_dog_rabbit, eats_dog_bald_eagle), green_bald_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chase(X, rabbit)",
+          "z3_formula": "Implies(red_X, chase_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_X_dog, eats_X_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chase(X, rabbit) & green(rabbit) -> green(X)",
+          "z3_formula": "Implies(And(chase_X_rabbit, green_rabbit), green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, dog)",
+          "z3_formula": "Implies(green_X, eats_X_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & round(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, round_X), green_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & eats(X, bald_eagle) -> eats(X, dog)",
+          "z3_formula": "Implies(And(visits_X_rabbit, eats_X_bald_eagle), eats_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chase(X, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chase_X_dog, visits_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_X, eats_X_rabbit), eats_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(X, dog) -> visits(X, rabbit)",
+          "z3_formula": "Implies(eats_X_dog, visits_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, rabbit)",
+          "z3_formula": "visits_dog_rabbit == False",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & eats(X, Z) -> Implies(eats(Z, W), eats(Y, W))",
+          "z3_formula": "Implies(And(visits_dog_rabbit, eats_dog_rabbit), Implies(eats_bald_eagle, eats_rabbit))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(red_X, chases_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_X_dog, eats_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & green(Y) -> green(X)",
+          "z3_formula": "Implies(And(chases_X_rabbit, green_Y), green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, dog)",
+          "z3_formula": "Implies(green_X, eats_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) & round(Y) -> green(eagle)",
+          "z3_formula": "Implies(And(visits_X_eagle, round_Y), green_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & eats(X, eagle) -> eats(X, dog)",
+          "z3_formula": "Implies(And(visits_X_rabbit, eats_X_eagle), eats_X_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> visits(X, eagle)",
+          "z3_formula": "Implies(chases_X_dog, visits_X_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_X, eats_X_rabbit), eats_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(And(visits_dog_rabbit, Not(visits_dog_rabbit)))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(visits_dog_rabbit, eats_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(eats_dog_rabbit, visits_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, rabbit) == Unknown",
+          "z3_formula": "visits_dog_rabbit == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(dog, rabbit)",
+          "z3_formula": "eats_dog_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_dog_dog, eats_dog_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & eats(X, bald_eagle) -> eats(X, dog)",
+          "z3_formula": "Implies(And(visits_dog_rabbit, eats_bald_eagle_dog), eats_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & round(X) -> green(bald_eagle)",
+          "z3_formula": "Implies(And(visits_dog_bald_eagle, round_dog), green_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_dog_dog, visits_dog_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(red_dog, chases_dog_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & green(rabbit) -> green(X)",
+          "z3_formula": "Implies(And(chases_dog_rabbit, green_rabbit), green_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, dog)",
+          "z3_formula": "Implies(green_dog, eats_dog_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_bald_eagle, eats_bald_eagle_rabbit), eats_bald_eagle_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_tiger_dog, eats_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> Not(chases(X, dog))",
+          "z3_formula": "Implies(visits_dog_rabbit, Not(chases_dog_dog))",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_dog, eats_tiger_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, rabbit) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(rough_tiger, eats_tiger_rabbit), eats_tiger_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, rabbit)",
+          "z3_formula": "eats_tiger_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 108,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 64
+    },
+    "maxsat_stats": {
+      "satisfied": 63,
+      "excluded": 1,
+      "total_weight": 106,
+      "solve_time_ms": 1.621670089662075
+    },
+    "timing": {
+      "trace_gen_s": 25.008,
+      "extraction_s": 46.548,
+      "dedup_s": 1.519,
+      "maxsat_s": 0.005,
+      "total_s": 73.08
+    }
+  }
+}

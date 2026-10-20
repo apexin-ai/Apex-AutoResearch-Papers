@@ -1,0 +1,1072 @@
+# diag westd16639 exp status
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/chats/worker_diag_westd16639-exp-status_20260518T180510.jsonl`
+- **Structured JSON:** [`915c568c52e2d6001e2b.json`](../../sessions/91/915c568c52e2d6001e2b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+35 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T18:06:34.721314+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T18:06:34.725389+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "ToolSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T18:06:34.725784+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "nvidia-smi"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T18:06:34.726061+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tmux ls 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tmux ls 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T18:06:34.726337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 02:05:35 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   56C    P0            343W /  600W |   88439MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   60C    P0            362W /  600W |   88445MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   58C    P0            351W /  600W |   88439MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   60C    P0            3
+…[truncated 1299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T18:06:34.726593+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps aux | grep vllm | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps aux | grep vllm | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T18:06:34.726796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp032: 1 windows (created Tue May 19 01:44:20 2026)\\nexp033: 1 windows (created Tue May 19 01:45:42 2026)\\nexp036: 1 windows (created Tue May 19 01:46:55 2026)\\nexp038: 1 windows (created Tue May 19 01:50:25 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T18:06:34.727240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root       6361  5.8  0.1 32842632 1549528 pts/1 Sl+ 01:44   1:14 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code\\nroot       7244  1.6  0.0 723460 141772 pts/1   Sl+  01:45   0:20 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --math-data data/empty.json --pw-data data/proofwriter_full.json --output results/exp032_qwen25_14b_pw600/results.json --save-intermediates --resume\\nroot       7345  5.8  0.1 32872612 1581060 pts/0 Sl+ 01:45   1:10 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen3-14B --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8001 --dtype auto --trust-remote-code --default-chat-template-kwargs {\\\"enable_thinking\\\": false}\\nroot       8432  1.8  0.0 723504 141976 pts/0   Sl+  01:46   0:21 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8001/v1 --model auto --math-data data/empty.json --pw-data data/proofwriter_full.json --output results/exp033_qwen3_14b_pw600_nonthinking/results.json --save-intermediates --resume\\nroot       8555  6.4  0.1 32845956 1552772 pts/2 Sl+ 01:46   1:11 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code\\nroot       9448  1.3  0.0 787716 140636 pts/2   Sl+  01:47   0:14 python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp036_qwen25_14b_folio204/results.json --save-intermediates --resume\\nroot      10987  7.3  0.1 3
+…[truncated 651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T18:06:34.727632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -la /root/symb_invariant_consensus/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T18:06:34.727823+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/autodl-tmp/models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -la /root/autodl-tmp/models/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T18:06:34.728040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  7 root root 4096 May 19 01:50 .\\ndrwxr-xr-x 10 root root 4096 May 19 01:43 ..\\ndrwxr-xr-x  3 root root   81 May 19 01:46 exp032_qwen25_14b_pw600\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp033_qwen3_14b_pw600_nonthinking\\ndrwxr-xr-x  3 root root   81 May 19 01:48 exp036_qwen25_14b_folio204\\ndrwxr-xr-x  2 root root   10 May 19 01:43 exp037_mistral7b_folio204\\ndrwxr-xr-x  3 root root   81 May 19 01:51 exp038_qwen25_14b_logiqa200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T18:06:34.728246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x 10 root root 4096 May 19 01:58 .\\ndrwxr-xr-x  5 root root  165 May 18 22:30 ..\\ndrwxr-xr-x  3 root root 4096 May 19 01:58 Mistral-7B-Instruct-v0.3\\ndrwxr-xr-x  3 root root 4096 May 18 23:04 Qwen2.5-14B-Instruct\\ndrwxr-xr-x  3 root root 4096 May 18 23:06 Qwen3-14B\\ndrwxr-xr-x  4 root root 4096 May 19 01:08 deepseek-r1-0528-qwen3-8b\\ndrwxr-xr-x  3 root root   49 May 19 01:08 gemma-3-27b-it\\ndrwxr-xr-x  3 root root   68 May 19 01:08 llama-4-scout\\ndrwxr-xr-x  3 root root 4096 May 19 01:39 phi-4-reasoning\\ndrwxr-xr-x  3 root root   54 May 18 22:12 test_hf_speed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T18:06:34.728496+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tmux capture-pane -t exp032 -p | tail -50",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tmux capture-pane -t exp032 -p | tail -50",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T18:06:34.728715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 02:05:33,424 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:36,740 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:40,917 INFO HTTP Request: POST http://localhost:8000/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:41,488 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (30/30)\\nalpha=0.50  threshold=0.20\\nSICA: True (V)\\n  Constraints: 142 extracted -> 30 unique\\n  MaxSAT: 30 sat, 0 excl, solve=0.8042380213737488ms\\n  Timing: trace=9.9s extract=39.4s total=49.9s\\nSC:   True (V) -- votes: 12/12\\nTime: 49.9s\\nETA: 624.2 min (581 remaining, avg 64.5s/prob)\\n\\n--- [20/600] (overall 20/600) ---\\nID: ProofWriter_AttNoneg-OWA-D5-296_Q13 | Dataset: proofwriter | Level: OWA-D5\\nQ: Anne is green. Charlie is big. Charlie is quiet. Charlie is round. Erin is gr\\neen. Erin is kind. Erin is nice. Erin is qu...\\nGT: Unknown\\n2026-05-19 02:05:41,490 INFO Retrying request to /chat/completions in 0.393360 s\\neconds\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T18:06:34.729181+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tmux capture-pane -t exp033 -p | tail -50",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tmux capture-pane -t exp033 -p | tail -50",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T18:06:34.729422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 02:05:36,408 INFO HTTP Request: POST http://localhost:8001/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:37,351 INFO HTTP Request: POST http://localhost:8001/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:38,638 INFO HTTP Request: POST http://localhost:8001/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:40,136 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (39/39)\\nalpha=0.50  threshold=0.20\\nSICA: Unknown (V)\\n  Constraints: 241 extracted -> 39 unique\\n  MaxSAT: 39 sat, 0 excl, solve=1.004055142402649ms\\n  Timing: trace=31.6s extract=62.6s total=95.7s\\nSC:   Unknown (V) -- votes: 12/12\\nTime: 95.7s\\nETA: 1013.1 min (589 remaining, avg 103.2s/prob)\\n\\n--- [12/600] (overall 12/600) ---\\nID: ProofWriter_AttNeg-OWA-D5-285_Q16 | Dataset: proofwriter | Level: OWA-D5\\nQ: Bob is big. Bob is cold. Bob is furry. Bob is smart. Fiona is cold. Fiona is\\nnot green. Fiona is white. Gary is smart. H...\\nGT: Unknown\\n2026-05-19 02:05:40,140 INFO Retrying request to /chat/completions in 0.459487 s\\neconds\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T18:06:34.729648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tmux capture-pane -t exp036 -p | tail -50",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tmux capture-pane -t exp036 -p | tail -50",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T18:06:34.729851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:31,857 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:32,052 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:32,224 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:32,440 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:39,610 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:39,798 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:39,910 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:39,955 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,064 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,085 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,386 INFO HTTP Request: POST http://localhost:8002/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T18:06:34.730062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tmux capture-pane -t exp038 -p | tail -50",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tmux capture-pane -t exp038 -p | tail -50",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T18:06:34.730309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:43,696 INFO HTTP Request: POST http://localhost:8003/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:46,441 INFO HTTP Request: POST http://localhost:8003/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,208 INFO HTTP Request: POST http://localhost:8003/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,752 INFO HTTP Request: POST http://localhost:8003/v1/chat/co\\nmpletions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,911 INFO Scorer mode=NORMAL  satisfied_ratio=0.957 (22/23)\\nalpha=0.50  threshold=0.20\\nSICA: D (V) -- constraints: 30 extracted, 23 unique\\nSC:   D (V) -- votes: 12/12\\nTime: 37.1s\\nETA: 113.3 min (177 remaining)\\n\\n--- [24/200] (overall 24/200) ---\\nID: logiqa_023\\nQ: Context: Psychologist: A study of 436 university students found that those wh\\no took short naps throughout the day suffer...\\nGT: A\\n2026-05-19 02:05:47,914 INFO Retrying request to /chat/completions in 0.441862 s\\neconds\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T18:06:34.730695+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/ && ls -la /root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/ && ls -la /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/ && ls -la /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/ && ls -la /root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/ && ls -la /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/ && ls -la /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T18:06:34.730868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 104\\ndrwxr-xr-x 3 root root    81 May 19 01:46 .\\ndrwxr-xr-x 7 root root  4096 May 19 01:50 ..\\n-rw-r--r-- 1 root root 63839 May 19 02:05 exp032.log\\ndrwxr-xr-x 2 root root  4096 May 19 02:05 intermediates\\n-rw-r--r-- 1 root root 31934 May 19 02:05 results.json\\ntotal 68\\ndrwxr-xr-x 3 root root    81 May 19 01:48 .\\ndrwxr-xr-x 7 root root  4096 May 19 01:50 ..\\n-rw-r--r-- 1 root root 37038 May 19 02:05 exp033.log\\ndrwxr-xr-x 2 root root  4096 May 19 02:05 intermediates\\n-rw-r--r-- 1 root root 18887 May 19 02:05 results.json\\ntotal 180\\ndrwxr-xr-x 3 root root    81 May 19 01:48 .\\ndrwxr-xr-x 7 root root  4096 May 19 01:50 ..\\n-rw-r--r-- 1 root root 90972 May 19 02:05 exp036.log\\ndrwxr-xr-x 2 root root  4096 May 19 02:05 intermediates\\n-rw-r--r-- 1 root root 41058 May 19 02:05 results.json\\ntotal 180\\ndrwxr-xr-x 3 root root    81 May 19 01:51 .\\ndrwxr-xr-x 7 root root  4096 May 19 01:50 ..\\n-rw-r--r-- 1 root root 71957 May 19 02:05 exp038.log\\ndrwxr-xr-x 2 root root  4096 May 19 02:05 intermediates\\n-rw-r--r-- 1 root root 41552 May 19 02:05 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T18:06:34.731409+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep HF_ENDPOINT /root/.bashrc 2>/dev/null; echo \"---\"; echo $HF_ENDPOINT",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep HF_ENDPOINT /root/.bashrc 2>/dev/null; echo \"---\"; echo $HF_ENDPOINT",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T18:06:34.731710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"export HF_ENDPOINT=https://hf-mirror.com\\nexport HF_ENDPOINT=https://hf-mirror.com\\n---\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T18:06:34.732041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -c \"^---\" /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/exp036.log | head -5; echo \"---\"; grep \"SICA\\|SC:\" /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/exp036.log | tail -10",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -c \"^---\" /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/exp036.log | head -5; echo \"---\"; grep \"SICA\\|SC:\" /root/symb_invariant_consensus/results/exp036_qwen25_14b_folio204/exp036.log | tail -10",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T18:06:34.732208+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"29\\n---\\nSICA: False (X)\\nSC:   False (X) -- votes: 12/12\\nSICA: True (V)\\nSC:   True (V) -- votes: 12/12\\nSICA: False (X)\\nSC:   False (X) -- votes: 12/12\\nSICA: False (X)\\nSC:   Unknown (V) -- votes: 10/12\\nSICA: True (X)\\nSC:   True (X) -- votes: 12/12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T18:06:34.732340+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -30 /root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/exp032.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -30 /root/symb_invariant_consensus/results/exp032_qwen25_14b_pw600/exp032.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T18:06:34.732501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 02:05:33,358 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:33,424 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:36,740 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:40,917 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:41,488 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (30/30)  alpha=0.50  threshold=0.20\\nSICA: True (V)\\n  Constraints: 142 extracted -> 30 unique\\n  MaxSAT: 30 sat, 0 excl, solve=0.8042380213737488ms\\n  Timing: trace=9.9s extract=39.4s total=49.9s\\nSC:   True (V) -- votes: 12/12\\nTime: 49.9s\\nETA: 624.2 min (581 remaining, avg 64.5s/prob)\\n\\n--- [20/600] (overall 20/600) ---\\nID: ProofWriter_AttNoneg-OWA-D5-296_Q13 | Dataset: proofwriter | Level: OWA-D5\\nQ: Anne is green. Charlie is big. Charlie is quiet. Charlie is round. Erin is green. Erin is kind. Erin is nice. Erin is qu...\\nGT: Unknown\\n2026-05-19 02:05:41,490 INFO Retrying request to /chat/completions in 0.393360 seconds\\n2026-05-19 02:05:50,445 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:51,673 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:52,592 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:52,771 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:52,882 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:54,277 INFO HTTP Request: POST http://localhost:8000/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:54,365 INFO HTTP Request: POST http://localho
+…[truncated 738 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T18:06:34.732650+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -30 /root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/exp033.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -30 /root/symb_invariant_consensus/results/exp033_qwen3_14b_pw600_nonthinking/exp033.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T18:06:34.732845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 02:05:17,387 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:17,799 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:35,903 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:36,408 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:37,351 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:38,638 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:40,136 INFO Scorer mode=NORMAL  satisfied_ratio=1.000 (39/39)  alpha=0.50  threshold=0.20\\nSICA: Unknown (V)\\n  Constraints: 241 extracted -> 39 unique\\n  MaxSAT: 39 sat, 0 excl, solve=1.004055142402649ms\\n  Timing: trace=31.6s extract=62.6s total=95.7s\\nSC:   Unknown (V) -- votes: 12/12\\nTime: 95.7s\\nETA: 1013.1 min (589 remaining, avg 103.2s/prob)\\n\\n--- [12/600] (overall 12/600) ---\\nID: ProofWriter_AttNeg-OWA-D5-285_Q16 | Dataset: proofwriter | Level: OWA-D5\\nQ: Bob is big. Bob is cold. Bob is furry. Bob is smart. Fiona is cold. Fiona is not green. Fiona is white. Gary is smart. H...\\nGT: Unknown\\n2026-05-19 02:05:40,140 INFO Retrying request to /chat/completions in 0.459487 seconds\\n2026-05-19 02:05:58,481 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:06:00,793 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:06:01,497 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:06:01,541 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:06:01,584 INFO HTTP Request: POST http://l
+…[truncated 744 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T18:06:34.733026+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -30 /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/exp038.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -30 /root/symb_invariant_consensus/results/exp038_qwen25_14b_logiqa200/exp038.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T18:06:34.733190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 02:05:40,674 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:43,696 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:46,441 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,208 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,752 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:47,911 INFO Scorer mode=NORMAL  satisfied_ratio=0.957 (22/23)  alpha=0.50  threshold=0.20\\nSICA: D (V) -- constraints: 30 extracted, 23 unique\\nSC:   D (V) -- votes: 12/12\\nTime: 37.1s\\nETA: 113.3 min (177 remaining)\\n\\n--- [24/200] (overall 24/200) ---\\nID: logiqa_023\\nQ: Context: Psychologist: A study of 436 university students found that those who took short naps throughout the day suffer...\\nGT: A\\n2026-05-19 02:05:47,914 INFO Retrying request to /chat/completions in 0.441862 seconds\\n2026-05-19 02:05:56,066 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:56,622 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,067 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,134 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,288 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,355 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,574 INFO HTTP Request: POST http://localhost:8003/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-19 02:05:57,925 INFO H
+…[truncated 886 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T18:06:34.733346+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"\nimport json\nfor name in ['exp032_qwen25_14b_pw600', 'exp033_qwen3_14b_pw600_nonthinking', 'exp036_qwen25_14b_folio204', 'exp038_qwen25_14b_logiqa200']:\n    path = f'/root/symb_invariant_consensus/results/{name}/results.json'\n    try:\n        d = json.load(open(path))\n        summary = d.get('summary', {})\n        print(f'{name}: completed={summary.get(\\\"total_completed\\\",\\\"?\\\")}, sica_acc={summary.get(\\\"sica_accuracy\\\",\\\"?\\\")}, sc_acc={summary.get(\\\"sc_accuracy\\\",\\\"?\\\")}, delta={summary.get(\\\"delta\\\",\\\"?\\\")}')\n    except Exception as e:\n        print(f'{name}: error reading - {e}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"\nimport json\nfor name in ['exp032_qwen25_14b_pw600', 'exp033_qwen3_14b_pw600_nonthinking', 'exp036_qwen25_14b_folio204', 'exp038_qwen25_14b_logiqa200']:\n    path = f'/root/symb_invariant_consensus/results/{name}/results.json'\n    try:\n        d = json.load(open(path))\n        summary = d.get('summary', {})\n        print(f'{name}: completed={summary.get(\\\"total_completed\\\",\\\"?\\\")}, sica_acc={summary.get(\\\"sica_accuracy\\\",\\\"?\\\")}, sc_acc={summary.get(\\\"sc_accuracy\\\",\\\"?\\\")}, delta={summary.get(\\\"delta\\\",\\\"?\\\")}')\n    except Exception as e:\n        print(f'{name}: error reading - {e}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T18:06:34.733497+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp032_qwen25_14b_pw600: completed=?, sica_acc=0.7894736842105263, sc_acc=0.7894736842105263, delta=?\\nexp033_qwen3_14b_pw600_nonthinking: completed=?, sica_acc=0.8181818181818182, sc_acc=0.8181818181818182, delta=?\\nexp036_qwen25_14b_folio204: completed=?, sica_acc=0.75, sc_acc=0.8214285714285714, delta=?\\nexp038_qwen25_14b_logiqa200: completed=?, sica_acc=0.6957, sc_acc=0.6957, delta=0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-18T18:06:34.734075+00:00_
+
+## 诊断报告：westd-16639
+
+### GPU 状态
+
+| GPU | 型号 | 利用率 | 显存 | 进程 |
+|-----|------|--------|------|------|
+| 0 | RTX PRO 6000 Black | 100% | 88.4/97.9 GB | vLLM (PID 6584) |
+| 1 | RTX PRO 6000 Black | 100% | 88.4/97.9 GB | vLLM (PID 7589) |
+| 2 | RTX PRO 6000 Black | 100% | 88.4/97.9 GB | vLLM (PID 8790) |
+| 3 | RTX PRO 6000 Black | 100% | 88.4/97.9 GB | vLLM (PID 11246) |
+
+### 4 个实验状态
+
+**注意：实际实验编号与预期不同（032/033/036/038，不是 039/040/041/038）。**
+
+| GPU | tmux | 实验 | 模型 | 数据集 | 端口 | 进度 | 状态 | ETA |
+|-----|------|------|------|--------|------|------|------|-----|
+| 0 | exp032 | Qwen2.5-14B PW-600 | Qwen2.5-14B-Instruct | proofwriter_full (600) | 8000 | **20/600** | RUNNING | ~624 min (~10.4h) |
+| 1 | exp033 | Qwen3-14B PW-600 | Qwen3-14B (thinking=off) | proofwriter_full (600) | 8001 | **12/600** | RUNNING | ~1013 min (~16.9h) |
+| 2 | exp036 | Qwen2.5-14B FOLIO-204 | Qwen2.5-14B-Instruct | folio_full (204) | 8002 | **~29/204** | RUNNING | (未显示 ETA) |
+| 3 | exp038 | Qwen2.5-14B LogiQA-200 | Qwen2.5-14B-Instruct | logiqa_200 (200) | 8003 | **24/200** | RUNNING | ~113 min (~1.9h) |
+
+### 中间指标（截至当前进度）
+
+| 实验 | sica_accuracy | sc_accuracy | delta |
+|------|--------------|-------------|-------|
+| exp032 (Qwen2.5-14B PW) | 0.789 | 0.789 | — |
+| exp033 (Qwen3-14B PW) | 0.818 | 0.818 | — |
+| exp036 (Qwen2.5-14B FOLIO) | 0.750 | 0.821 | — |
+| exp038 (Qwen2.5-14B LogiQA) | 0.696 | 0.696 | 0.0 |
+
+### vLLM 服务
+
+4 个 vLLM 实例全部正常运行：
+- `:8000` — Qwen2.5-14B-Instruct (GPU 0)
+- `:8001` — Qwen3-14B, `enable_thinking=false` (GPU 1)
+- `:8002` — Qwen2.5-14B-Instruct (GPU 2)
+- `:8003` — Qwen2.5-14B-Instruct (GPU 3)
+
+### 缓存模型
+
+`/root/autodl-tmp/models/` 下有：Qwen2.5-14B-Instruct, Qwen3-14B, Mistral-7B-Instruct-v0.3, deepseek-r1-0528-qwen3-8b, gemma-3-27b-it, llama-4-scout, phi-4-reasoning
+
+### 网络状态
+
+`HF_ENDPOINT=https://hf-mirror.com` 已在 `.bashrc` 中设置（重复两行），但当前 shell 环境变量为空（需 `source` 才生效，不影响已运行的实验）。
+
+### 总结
+
+4 个实验全部正常运行中，无失败。预计完成顺序：exp038 (LogiQA, ~2h) → exp036 (FOLIO, ~数小时) → exp032 (PW, ~10h) → exp033 (PW Qwen3, ~17h)。exp033 (Qwen3-14B) 速度最慢，约为 Qwen2.5 的 1.6 倍。另外还有个空目录 `exp037_mistral7b_folio204`，看起来是之前创建但未启动的实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_westd16639-exp-status_20260518T180510"
+}
+```
+
+</details>
+
+---

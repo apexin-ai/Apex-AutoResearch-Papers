@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1164_Q9",
+    "problem": "Bob is big. Bob is blue. Bob is cold. Bob is quiet. Bob is rough. Bob is smart. Bob is white. Dave is rough. Fiona is blue. Harry is big. Harry is cold. If someone is blue then they are cold. If someone is big then they are white. If Bob is rough and Bob is blue then Bob is big. All blue, smart people are big. If someone is blue and rough then they are quiet. All smart people are blue. Cold people are rough. If someone is quiet then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nQuiet(Bob, True) ::: Bob is quiet.\nRough(Bob, True) ::: Bob is rough.\nSmart(Bob, True) ::: Bob is smart.\nWhite(Bob, True) ::: Bob is white.\nRough(Dave, True) ::: Dave is rough.\nBlue(Fiona, True) ::: Fiona is blue.\nBig(Harry, True) ::: Harry is big.\nCold(Harry, True) ::: Harry is cold.\n\nRules:\nBlue($x, True) >>> Cold($x, True) ::: If someone is blue then they are cold.\nBig($x, True) >>> White($x, True) ::: If someone is big then they are white.\nRough(Bob, True) && Blue(Bob, True) >>> Big(Bob, True) ::: If Bob is rough and Bob is blue then Bob is big.\nBlue($x, True) && Smart($x, True) >>> Big($x, True) ::: All blue, smart people are big.\nBlue($x, True) && Rough($x, True) >>> Quiet($x, True) ::: If someone is blue and rough then they are quiet.\nSmart($x, True) >>> Blue($x, True) ::: All smart people are blue.\nCold($x, True) >>> Rough($x, True) ::: Cold people are rough.\nQuiet($x, True) >>> Big($x, True) ::: If someone is quiet then they are big.\n\nQuery:\nBig(Fiona, True) ::: Fiona is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

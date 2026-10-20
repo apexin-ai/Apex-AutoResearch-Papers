@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-multi-seed-qwen3-pw-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:14:48.152Z",
+    "updated_at": "2026-05-24T11:55:40.023Z",
+    "hypothesis": "Qwen3-14B non-thinking PW seed456 多种子复制。验证 SCB 在 ProofWriter 上跨 seed 稳定性（Δ(SICA-SC)≤0）。配合 seed42 组成多 seed 覆盖。",
+    "parent": "exp-027-qwen3-14b-non-thinking",
+    "spec": {
+      "command": "python run_full_mvp.py --mode vllm --k 12 --vllm-port 8021 --seed 456 --temperature 0.7 --max-tokens 4096 --output results/multi_seed/qwen3_pw_seed456/results.json"
+    },
+    "notes": "raw Δ=+2.33pp positive, contradicts Δ≤0 hypothesis. Tiebreaking worker confirmed 0 mismatch (already alphabetical). Pending unified conclusion update after 4-seed analysis. κ=0.7820, K_eff=1.25.",
+    "metrics": {
+      "n_problems": 600,
+      "sica_accuracy": 0.8683,
+      "sc_accuracy": 0.845,
+      "delta_sica_minus_sc": 0.0233,
+      "sica_correct": 521,
+      "sc_correct": 507,
+      "extraction_rate": 0.996,
+      "contradiction_rate": 0.0042,
+      "wall_time_s": 62280,
+      "kappa": 0.782,
+      "k_eff": 1.25,
+      "note": "Tiebreaking confirmed alphabetical (0 mismatch). Raw Δ=+2.33pp."
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-24T11:55:40.337639+00:00",
+  "trigger": "update_registry"
+}

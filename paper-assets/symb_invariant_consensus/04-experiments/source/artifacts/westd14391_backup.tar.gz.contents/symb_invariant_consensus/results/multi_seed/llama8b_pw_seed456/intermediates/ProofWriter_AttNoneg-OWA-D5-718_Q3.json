@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-718_Q3",
+    "problem": "Bob is round. Charlie is big. Charlie is furry. Charlie is green. Charlie is round. Charlie is white. Dave is big. Dave is quiet. Gary is green. Gary is quiet. All furry people are white. If someone is big then they are smart. All white, big people are round. If someone is quiet then they are smart. Smart people are big. All big, green people are furry. If someone is smart and round then they are quiet. Green people are smart. All smart, furry people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nBig(Charlie, True) ::: Charlie is big.\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nRound(Charlie, True) ::: Charlie is round.\nWhite(Charlie, True) ::: Charlie is white.\nBig(Dave, True) ::: Dave is big.\nQuiet(Dave, True) ::: Dave is quiet.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nFurry($x, True) >>> White($x, True) ::: All furry people are white.\nBig($x, True) >>> Smart($x, True) ::: If someone is big then they are smart.\nWhite($x, True) && Big($x, True) >>> Round($x, True) ::: All white, big people are round.\nQuiet($x, True) >>> Smart($x, True) ::: If someone is quiet then they are smart.\nSmart($x, True) >>> Big($x, True) ::: Smart people are big.\nBig($x, True) && Green($x, True) >>> Furry($x, True) ::: All big, green people are furry.\nSmart($x, True) && Round($x, True) >>> Quiet($x, True) ::: If someone is smart and round then they are quiet.\nGreen($x, True) >>> Smart($x, True) ::: Green people are smart.\nSmart($x, True) && Furry($x, True) >>> Big($x, True) ::: All smart, furry people are big.\n\nQuery:\nSmart(Charlie, True) ::: Charlie is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

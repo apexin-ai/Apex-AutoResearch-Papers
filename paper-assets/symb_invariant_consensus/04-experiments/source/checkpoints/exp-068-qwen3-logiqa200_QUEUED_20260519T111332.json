@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-068-qwen3-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:13:19.371Z",
+    "updated_at": "2026-05-19T11:13:32.486Z",
+    "hypothesis": "Qwen3-14B non-thinking 在 LogiQA-200 上 SICA vs SC。FOLIO SC=84.80%, PW SC=85.0%，LogiQA 预计也在 confirmation bias zone。验证跨数据集 Type A 一致性。parent=exp-040",
+    "parent": "exp-040"
+  },
+  "timestamp": "2026-05-19T11:13:32.676429+00:00",
+  "trigger": "update_registry"
+}

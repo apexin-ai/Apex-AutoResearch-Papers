@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-054-mistral-folio204-t10",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:17:52.972Z",
+    "updated_at": "2026-05-19T02:44:43.863Z",
+    "hypothesis": "T=1.0 增大 trace diversity，Adaptive SICA（high entropy 子集）delta 应 ≥ T=0.7 的 +4.9pp。更高温度 → 更多 high-entropy 问题 → SICA 在更大子集上有效 → overall delta 可能更大。同时测试 exp-033 (+4.9pp at T=0.7) 对温度的敏感性。parent=exp-033",
+    "parent": "exp-033",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 1.0 --max-tokens 4096 --api-base http://localhost:8002/v1 --model auto --seed 42 --folio-data data/folio_full.json --output results/exp054_mistral_folio204_t10/exp054_results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (pretrained, no fine-tuning)",
+      "eval_data": "data/folio_full.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T02:44:44.070075+00:00",
+  "trigger": "update_registry"
+}

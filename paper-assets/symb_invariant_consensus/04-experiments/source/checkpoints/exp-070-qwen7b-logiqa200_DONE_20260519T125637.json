@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-070-qwen7b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:40:18.453Z",
+    "updated_at": "2026-05-19T12:56:36.777Z",
+    "hypothesis": "Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC。FOLIO 上 SC=75.98% (Type A confirmation bias, Δ=+0.49pp)。LogiQA 可能更难，SC 可能降到 55-65% 进入 Goldilocks zone，或保持 >75% 继续 Type A。验证 regime 跨数据集一致性。parent=exp-061",
+    "parent": "exp-061",
+    "spec": {
+      "command": "python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8002/v1 --model auto --data data/logiqa_200.json --output results/exp070_qwen7b_logiqa200/exp070_results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": "cuda:2",
+      "pid": "213756",
+      "log_path": "~/runs/symb_invariant_consensus/exp-070-qwen7b-logiqa200.log",
+      "submitted_at": "2026-05-19T11:56:05.650Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "port": 8002,
+      "tmux_session": "exp-070-qwen7b-logiqa200",
+      "vllm_session": "exp070_vllm",
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+      "eval_data": "data/logiqa_200.json",
+      "wall_clock_seconds": 3630.6,
+      "gpu_hours": 1.01
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T12:56:34.965Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T12:56:36.273Z"
+  },
+  "timestamp": "2026-05-19T12:56:37.170497+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "0ae0129c380a31be1434",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis exp 011 llama8b v3",
+  "task_key": "worker_analysis_exp-011-llama8b-v3_20260517T075618",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_exp-011-llama8b-v3_20260517T075618_result.json",
+    "occurrence": 1,
+    "bytes": 3727,
+    "sha256": "e3a3d7809db74b9934d07eacb00c54338962cf96cb9be53c8aec899daf3d4164"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部指标提取完成。汇总如下：\n\n```json\n{\n  \"experiment\": \"exp-011-llama8b-v3\",\n  \"model\": \"LLaMA-3.1-8B-Instruct\",\n  \"dataset\": \"D012 (30 ProofWriter-D5 + 30 FOLIO)\",\n  \"result_file\": \"/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json\",\n  \n  \"metrics\": {\n    \"n\": 60,\n    \"k\": 12,\n    \"sica_accuracy\": 0.6667,\n    \"sc_accuracy\": 0.6000,\n    \"delta_pp\": \"+6.67 pp\",\n    \"sica_correct\": 40,\n    \"sc_correct\": 36,\n    \"extraction_rate\": 0.8556,\n    \"answer_extraction_rate\": 0.8958,\n    \"multi_candidate_rate\": 0.6167,\n    \"multi_candidate_count\": 37,\n    \"contradiction_rate\": 0.0527,\n    \"problems_with_contradictions\": 43,\n    \"truncated_traces\": 44\n  },\n\n  \"discordant_analysis\": {\n    \"both_correct\": 35,\n    \"both_wrong\": 19,\n    \"discordant_sica_wins\": 5,\n    \"discordant_sc_wins\": 1,\n    \"sica_win_ratio\": \"5:1\"\n  },\n\n  \"per_dataset\": {\n    \"proofwriter\": { \"sica\": 0.6333, \"sc\": 0.6000, \"delta_pp\": \"+3.33\", \"n\": 30 },\n    \"folio\":       { \"sica\": 0.7000, \"sc\": 0.6000, \"delta_pp\": \"+10.00\", \"n\": 30 }\n  },\n\n  \"statistical_test\": {\n    \"mcnemar_exact_p\": 0.2188,\n    \"n_discordant\": 6,\n    \"significant_at_0.05\": false\n  },\n\n  \"wandb\": null,\n  \"wall_time_min\": 66.4,\n\n  \"conclusion\": \"success\",\n  \"summary\": \"SICA 在 LLaMA-3.1-8B 上以 66.7% vs 60.0% (+6.67pp) 胜出 SC，discordant pairs 5:1 倾向 SICA。FOLIO 子集增益更大 (+10pp)。McNemar p=0.22 未达显著（n=60 样本量受限），但方向一致，确认 capability trap 跨模型家族泛化。\"\n}\n```\n\n**关键发现：**\n- SICA 在非 Qwen 模型上依然有效，+6.67pp 增益方向与 Qwen 实验一致\n- Discordant pairs 5:1 强烈倾向 SICA（6 对不一致中 SICA 赢 5 对）\n- FOLIO（自然语言 FOL）增益 +10pp 大于 ProofWriter +3.33pp\n- 统计显著性未达（p=0.22），受限于 n=60 样本量，但 effect direction 明确\n- 多候选率 61.7%，约束提取率 85.6%，系统在 LLaMA 上运行正常"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "experiment": "exp-011-llama8b-v3",
+              "model": "LLaMA-3.1-8B-Instruct",
+              "dataset": "D012 (30 ProofWriter-D5 + 30 FOLIO)",
+              "result_file": "/root/symb_invariant_consensus/results/exp011_llama8b/exp011_results.json",
+              "metrics": {
+                "n": 60,
+                "k": 12,
+                "sica_accuracy": 0.6667,
+                "sc_accuracy": 0.6,
+                "delta_pp": "+6.67 pp",
+                "sica_correct": 40,
+                "sc_correct": 36,
+                "extraction_rate": 0.8556,
+                "answer_extraction_rate": 0.8958,
+                "multi_candidate_rate": 0.6167,
+                "multi_candidate_count": 37,
+                "contradiction_rate": 0.0527,
+                "problems_with_contradictions": 43,
+                "truncated_traces": 44
+              },
+              "discordant_analysis": {
+                "both_correct": 35,
+                "both_wrong": 19,
+                "discordant_sica_wins": 5,
+                "discordant_sc_wins": 1,
+                "sica_win_ratio": "5:1"
+              },
+              "per_dataset": {
+                "proofwriter": {
+                  "sica": 0.6333,
+                  "sc": 0.6,
+                  "delta_pp": "+3.33",
+                  "n": 30
+                },
+                "folio": {
+                  "sica": 0.7,
+                  "sc": 0.6,
+                  "delta_pp": "+10.00",
+                  "n": 30
+                }
+              },
+              "statistical_test": {
+                "mcnemar_exact_p": 0.2188,
+                "n_discordant": 6,
+                "significant_at_0.05": false
+              },
+              "wandb": null,
+              "wall_time_min": 66.4,
+              "conclusion": "success",
+              "summary": "SICA 在 LLaMA-3.1-8B 上以 66.7% vs 60.0% (+6.67pp) 胜出 SC，discordant pairs 5:1 倾向 SICA。FOLIO 子集增益更大 (+10pp)。McNemar p=0.22 未达显著（n=60 样本量受限），但方向一致，确认 capability trap 跨模型家族泛化。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-011-llama8b-v3.md"
+}

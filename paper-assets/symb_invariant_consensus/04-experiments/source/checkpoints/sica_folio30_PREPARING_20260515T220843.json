@@ -1,0 +1,14 @@
+{
+  "exp_id": "sica_folio30",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:08:43.460Z",
+    "updated_at": "2026-05-15T22:08:43.460Z"
+  },
+  "timestamp": "2026-05-15T22:08:43.483334+00:00",
+  "trigger": "update_registry"
+}

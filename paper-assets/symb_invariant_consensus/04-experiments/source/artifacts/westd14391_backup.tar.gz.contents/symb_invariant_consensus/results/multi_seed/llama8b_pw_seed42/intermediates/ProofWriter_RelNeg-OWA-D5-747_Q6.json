@@ -1,0 +1,1388 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-747_Q6",
+    "problem": "The bear eats the tiger. The bear is not red. The bear likes the squirrel. The bear visits the squirrel. The mouse eats the tiger. The mouse is red. The mouse is rough. The mouse likes the bear. The mouse does not like the tiger. The squirrel likes the bear. The tiger eats the mouse. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. If someone visits the mouse then they like the squirrel. If someone is green then they visit the bear. If someone likes the bear and the bear visits the tiger then they visit the bear. If someone eats the bear and they do not like the tiger then they are green. If someone visits the mouse then the mouse eats the bear. If someone is red and they eat the tiger then the tiger visits the mouse. If someone visits the bear then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not like the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nEats(Bear, Tiger, True) ::: The bear eats the tiger.\nRed(Bear, False) ::: The bear is not red.\nLikes(Bear, Squirrel, True) ::: The bear likes the squirrel.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nLikes(Mouse, Bear, True) ::: The mouse likes the bear.\nLikes(Mouse, Tiger, False) ::: The mouse does not like the tiger.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\n\nRules:\nLikes(Mouse, Bear, True) && Likes(Bear, Mouse, True) >>> Kind(Mouse, False) ::: If the mouse likes the bear and the bear likes the mouse then the mouse is not kind.\nVisits($x, Mouse, True) >>> Likes($x, Squirrel, True) ::: If someone visits the mouse then they like the squirrel.\nGreen($x, True) >>> Visits($x, Bear, True) ::: If someone is green then they visit the bear.\nLikes($x, Bear, True) && Visits(Bear, Tiger, True) >>> Visits($x, Bear, True) ::: If someone likes the bear and the bear visits the tiger then they visit the bear.\nEats($x, Bear, True) && Likes($x, Tiger, False) >>> Green($x, True) ::: If someone eats the bear and they do not like the tiger then they are green.\nVisits($x, Mouse, True) >>> Eats(Mouse, Bear, True) ::: If someone visits the mouse then the mouse eats the bear.\nRed($x, True) && Eats($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If someone is red and they eat the tiger then the tiger visits the mouse.\nVisits($x, Bear, True) >>> Kind($x, True) ::: If someone visits the bear then they are kind.\n\nQuery:\nLikes(Tiger, Squirrel, False) ::: The tiger does not like the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 202.5
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, let's break down the information given and create a set of premises and conclusions based on the statements.\n\nPremise 1: The bear eats the tiger. \nPremise 2: The bear is not red. \nPremise 3: The bear likes the squirrel. \nPremise 4: The bear visits the squirrel. \nPremise 5: The mouse eats the tiger. \nPremise 6: The mouse is red. \nPremise 7: The mouse is rough. \nPremise 8: The mouse likes the bear. \nPremise 9: The mouse does not like the tiger. \nPremise 10: The squirrel likes the bear. \nPremise 11: The tiger eats the mouse. \nPremise 12: If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. \nPremise 13: If someone visits the mouse then they like the squirrel. \nPremise 14: If someone is green then they visit the bear. \nPremise 15: If someone likes the bear and the bear visits the tiger then they visit the bear. \nPremise 16: If someone eats the bear and they do not like the tiger then they are green. \nPremise 17: If someone visits the mouse then the mouse eats the bear. \nPremise 18: If someone is red and they eat the tiger then the tiger visits the mouse. \nPremise 19: If someone visits the bear then they are kind. \n\nWe can now analyze the statement \"The tiger does not like the squirrel.\"\n\nFrom Premise 9, we know that the mouse does not like the tiger. However, this information is about the mouse's feelings towards the tiger, not the tiger's feelings towards the squirrel.\n\nFrom Premise 11, we know that the tiger eats the mouse, but this information does not tell us anything about the tiger's feelings towards the squirrel.\n\nFrom Premise 10, we know that the squirrel likes the bear, but this information does not tell us anything about the tiger's feelings towards the squirrel.\n\nFrom Premise 3, we know that the bear likes the squirrel, but this information does not tell us anything about the tiger's feelings towards the squirrel.\n\nThe only information related to the tiger and the squirrel is not present in the premises. \n\nTherefore, the truth value of the statement \"The tiger does not like the squirrel\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given information into statements and analyze the relationships between the animals.\n\n1. The bear eats the tiger. (Statement 1)\n2. The bear is not red. (Statement 2)\n3. The bear likes the squirrel. (Statement 3)\n4. The bear visits the squirrel. (Statement 4)\n5. The mouse eats the tiger. (Statement 5)\n6. The mouse is red. (Statement 6)\n7. The mouse is rough. (Statement 7)\n8. The mouse likes the bear. (Statement 8)\n9. The mouse does not like the tiger. (Statement 9)\n10. The squirrel likes the bear. (Statement 10)\n11. The tiger eats the mouse. (Statement 11)\n12. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. (Rule 1)\n13. If someone visits the mouse then they like the squirrel. (Rule 2)\n14. If someone is green then they visit the bear. (Rule 3)\n15. If someone likes the bear and the bear visits the tiger then they visit the bear. (Rule 4)\n16. If someone eats the bear and they do not like the tiger then they are green. (Rule 5)\n17. If someone visits the mouse then the mouse eats the bear. (Rule 6)\n18. If someone is red and they eat the tiger then the tiger visits the mouse. (Rule 7)\n19. If someone visits the bear then they are kind. (Rule 8)\n\nNow, let's analyze the given statement: \"The tiger does not like the squirrel.\"\n\nFrom Statement 10, we know the squirrel likes the bear. However, we cannot directly determine the relationship between the tiger and the squirrel. We need to analyze the given rules.\n\nFrom Statement 1, we know the bear eats the tiger. However, we cannot determine the relationship between the bear and the tiger based on this information alone.\n\nFrom Statement 11, we know the tiger eats the mouse. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 1, we know that the mouse is not kind because it likes the bear and the bear likes the mouse. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 2, we know that if someone visits the mouse then they like the squirrel. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 3, we know that if someone is green then they visit the bear. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 4, we know that if someone likes the bear and the bear visits the tiger then they visit the bear. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 5, we know that if someone eats the bear and they do not like the tiger then they are green. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 6, we know that if someone visits the mouse then the mouse eats the bear. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 7, we know that if someone is red and they eat the tiger then the tiger visits the mouse. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nFrom Rule 8, we know that if someone visits the bear then they are kind. However, this information does not provide any direct relationship between the tiger and the squirrel.\n\nSince none of the given information directly relates the tiger and the squirrel, we cannot determine whether the tiger likes the squirrel or not. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. The squirrel likes the bear.\n2. The mouse likes the bear.\n3. The mouse visits the bear.\n4. The mouse eats the tiger.\n5. The bear visits the squirrel.\n6. The bear is not red.\n7. The bear likes the squirrel.\n8. The mouse is red.\n9. The mouse is rough.\n10. The mouse does not like the tiger.\n11. The tiger eats the mouse.\n12. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind.\n13. If someone visits the mouse then they like the squirrel.\n14. If someone is green then they visit the bear.\n15. If someone likes the bear and the bear visits the tiger then they visit the bear.\n16. If someone eats the bear and they do not like the tiger then they are green.\n17. If someone visits the mouse then the mouse eats the bear.\n18. If someone is red and they eat the tiger then the tiger visits the mouse.\n19. If someone visits the bear then they are kind.\n\nFrom statement 10, we know the mouse does not like the tiger. Now, let's consider the possible relationships between the tiger and the squirrel:\n\n- The tiger eats the mouse (statement 11), but we cannot directly conclude the tiger's relationship with the squirrel from this statement.\n- We do not have any information about the tiger's relationship with the squirrel, and we cannot derive it from the given statements.\n\nHowever, we can derive some information about the tiger's relationship with the squirrel indirectly.\n\nStatement 15 says that if someone likes the bear and the bear visits the tiger, then they visit the bear. The bear visits the tiger (statement 5), but we do not have any information about the tiger's relationship with the bear. However, statement 11 says that the tiger eats the mouse, which implies the tiger does not like the mouse.\n\nStatement 10 says that the mouse does not like the tiger, which implies the tiger and mouse do not have a positive relationship. Now, let's consider the relationship between the mouse and the squirrel. Statement 3 says the mouse visits the bear, and statement 7 says the bear likes the squirrel. Statement 13 says that if someone visits the mouse then they like the squirrel. Therefore, we can conclude that the mouse likes the squirrel (because the mouse visits the bear, and the bear likes the squirrel).\n\nNow, we have a positive relationship between the mouse and the squirrel (the mouse likes the squirrel). Since the tiger eats the mouse (statement 11), and the mouse does not like the tiger (statement 10), we can infer that the tiger does not like the mouse. This implies the tiger might not like the squirrel, but it is not a direct conclusion. However, we cannot derive a direct conclusion about the tiger's relationship with the squirrel from the given statements.\n\nSince we cannot derive a direct conclusion about the tiger's relationship with the squirrel, the statement \"The tiger does not like the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the conditions. Let's break down the given information into a series of logical statements and their implications.\n\n1. The bear eats the tiger. \n2. The bear is not red. \n3. The bear likes the squirrel. \n4. The bear visits the squirrel. \n5. The mouse eats the tiger. \n6. The mouse is red. \n7. The mouse is rough. \n8. The mouse likes the bear. \n9. The mouse does not like the tiger. \n10. The squirrel likes the bear. \n11. The tiger eats the mouse. \n12. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. \n13. If someone visits the mouse then they like the squirrel. \n14. If someone is green then they visit the bear. \n15. If someone likes the bear and the bear visits the tiger then they visit the bear. \n16. If someone eats the bear and they do not like the tiger then they are green. \n17. If someone visits the mouse then the mouse eats the bear. \n18. If someone is red and they eat the tiger then the tiger visits the mouse. \n19. If someone visits the bear then they are kind.\n\nFrom the information given in the statements, we know that the tiger eats the mouse (statement 11). However, we also know that the mouse eats the tiger (statement 5). This creates a contradiction because both statements cannot be true at the same time. Therefore, we cannot determine the truth value of the statement \"The tiger does not like the squirrel\" because the conditions that led to the contradiction do not provide a clear result.\n\nHowever, let's analyze the statement in question considering all the information given.\n\nFrom statements 1 and 11, we have that the bear eats the tiger and the tiger eats the mouse. We can't conclude anything about the tiger's feelings towards the squirrel yet.\n\nHowever, we can analyze the statement by applying the conditions given to us.\n\nFrom statement 13, we know that if someone visits the mouse, then they like the squirrel. However, statement 17 says that if someone visits the mouse, then the mouse eats the bear. Since statement 17 contradicts statement 13, we cannot determine the truth value of the statement \"The tiger does not like the squirrel\" because the conditions that led to the contradiction do not provide a clear result.\n\nHowever, we have a condition in statement 18 that if someone is red and they eat the tiger then the tiger visits the mouse. This can help us to determine the truth value of the statement.\n\nGiven that the mouse is red (statement 6) and it eats the tiger (statement 5), we can conclude that the tiger visits the mouse. But this does not directly affect the truth value of the statement \"The tiger does not like the squirrel.\"\n\nHowever, from statement 10, we know that the squirrel likes the bear. Also, from statement 4, we know that the bear visits the squirrel.\n\nNow, let's look at the conditions that could make the statement \"The tiger does not like the squirrel\" true or false.\n\nStatement 19 says that if someone visits the bear then they are kind. However, statement 4 says that the bear visits the squirrel. Therefore, the squirrel is kind.\n\nNow let's analyze the statement \"The tiger does not like the squirrel.\" Given that we have a condition in statement 20 which is missing from the given information, however we have statement 15 which says if someone likes the bear and the bear visits the tiger then they visit the bear. However, this does not help us determine the truth value of the statement.\n\nHowever, the condition in statement 16 says that if someone eats the bear and they do not like the tiger then they are green. However, this condition does not provide any information that can be used to determine the truth value of the statement.\n\nHowever, let's consider the condition in statement 14 which says that if someone is green then they visit the bear. But this does not help us determine the truth value of the statement.\n\nHowever, we can consider the condition in statement 11 which says the tiger eats the mouse. However, this condition does not provide any information that can be used to determine the truth value of the statement.\n\nHowever, we can analyze the statement by applying the conditions given to us.\n\nFrom statement 10, we know that the squirrel likes the bear. Also, from statement 4, we know that the bear visits the squirrel.\n\nAlso, we know from statement 11 that the tiger eats the mouse. However, this condition does not provide any information that can be used to determine the truth value of the statement.\n\nHowever, from statement 9, we know that the mouse does not like the tiger. Also, from statement 8, we know that the mouse likes the bear.\n\nGiven that we have the condition in statement 12 which says that if the mouse likes the bear and the bear likes the mouse then the mouse is not kind. However, this does not help us determine the truth value of the statement.\n\nHowever, we can analyze the statement by applying the conditions given to us.\n\nFrom statement 11, we know that the tiger eats the mouse. However, this condition does not provide any information that can be used to determine the truth value of the statement.\n\nHowever, let's analyze the statement by applying the conditions given to us.\n\nFrom statement 9, we know that the mouse does not like the tiger. \n\nFrom statement 11, we know that the tiger eats the mouse. However, this condition does not provide any information that can be used to determine the truth value of the statement.\n\nHowever, we can analyze the statement by applying the conditions given to us.\n\nFrom statement 11, we know that the tiger eats the mouse.\n\nHowever, let's look at the conditions that could make the statement \"The tiger does not like the squirrel\" true or false.\n\nFrom statement 9, we know that the mouse does not like the tiger.\n\nHowever, we can analyze the statement by applying the conditions given to us.\n\nFrom statement 10, we know that the squirrel likes the bear.\n\nFrom statement 4, we know that the bear visits the squirrel.\n\nHowever, we cannot determine the truth value of the statement \"The tiger does not like the squirrel\" because the conditions given do not provide a clear result.\n\nHowever, we can conclude that the statement \"The tiger does not like the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated: \"The tiger does not like the squirrel\"\n\nGiven Information:\n\n1. The bear eats the tiger. \n2. The bear is not red.\n3. The bear likes the squirrel.\n4. The bear visits the squirrel.\n5. The mouse eats the tiger.\n6. The mouse is red.\n7. The mouse is rough.\n8. The mouse likes the bear.\n9. The mouse does not like the tiger.\n10. The squirrel likes the bear.\n11. The tiger eats the mouse.\n\nFrom the information provided:\n\n- We can't directly infer the tiger's feelings towards the squirrel from the statements above, so we will proceed with analyzing the rules.\n\nRules:\n1. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. \n2. If someone visits the mouse then they like the squirrel.\n3. If someone is green then they visit the bear.\n4. If someone likes the bear and the bear visits the tiger then they visit the bear.\n5. If someone eats the bear and they do not like the tiger then they are green.\n6. If someone visits the mouse then the mouse eats the bear.\n7. If someone is red and they eat the tiger then the tiger visits the mouse.\n8. If someone visits the bear then they are kind.\n\nAnalysis:\n\n- Rule 2 can be rewritten as \"If someone likes the squirrel then they visit the mouse.\"\n- There is no information that links the tiger's feelings towards the squirrel directly, but we can try to use the given information to make a connection.\n\nLet's consider the statements that might be relevant to the tiger's feelings towards the squirrel:\n\n- Statement 3: \"The bear likes the squirrel.\"\n- Statement 10: \"The squirrel likes the bear.\"\n\nFrom Rule 4, we know that \"If someone likes the bear and the bear visits the tiger then they visit the bear.\" However, we don't have enough information to determine whether the bear visits the tiger. \n\nWe can, however, use Rule 8: \"If someone visits the bear then they are kind.\" This does not provide any direct information about the tiger's feelings towards the squirrel.\n\nGiven the lack of information, we cannot directly conclude whether the statement \"The tiger does not like the squirrel\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to find information about the tiger's feelings towards the squirrel. \n\n1. We know that the bear eats the tiger, but this information does not directly tell us about the tiger's feelings.\n2. The bear likes the squirrel. This information does not directly tell us about the tiger's feelings.\n3. The mouse eats the tiger. This information does not directly tell us about the tiger's feelings.\n4. The mouse is red, and the mouse does not like the tiger. This information does not directly tell us about the tiger's feelings.\n\nHowever, we can look for information that might be related to the tiger's feelings towards the squirrel:\n\n1. The mouse likes the bear and the mouse is red. The condition for someone liking the bear and the bear visiting the tiger is that they visit the bear. Since the bear visits the tiger, we can deduce that the mouse visits the bear. But we already know that if someone visits the mouse then they like the squirrel. This means that the mouse likes the squirrel.\n2. Since the mouse likes the squirrel, and the squirrel likes the bear, we can infer that the mouse likes the bear and the bear likes the mouse.\n\nHowever, the condition states that if the mouse likes the bear and the bear likes the mouse then the mouse is not kind. This condition is met, and we know the mouse is red. However, this information still does not tell us about the tiger's feelings.\n\nWe can analyze another condition: If someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nAnother condition states that if someone visits the bear then they are kind. Since the bear visits the tiger, the tiger is not necessarily kind, but this does not tell us about the tiger's feelings towards the squirrel.\n\nLooking at another condition: If someone is green then they visit the bear. We know that the mouse does not like the tiger, but we do not know if the mouse is green.\n\nHowever, we know that the mouse eats the tiger and the mouse does not like the tiger. We also know that if someone eats the bear and they do not like the tiger then they are green. But this condition is not met because the bear is not eaten by the mouse, the bear eats the tiger.\n\nNow we have to look at the information again. If the mouse visits the bear then the mouse eats the bear. But the condition states that if someone visits the mouse then they like the squirrel. This condition is met because the mouse does not like the tiger.\n\nNow, we can analyze the condition that states if the tiger eats the mouse, then this condition is not met because the mouse eats the tiger.\n\nHowever, we have to look at the condition that states if the mouse eats the tiger then the tiger visits the mouse. But this condition is not met because the mouse is red and the mouse eats the tiger.\n\nWe have to look at the condition that states if someone likes the bear and the bear visits the tiger then they visit the bear. This condition is met because the bear visits the tiger, but this does not tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if someone visits the mouse then they like the squirrel. We know that the bear visits the tiger, but we do not know if the bear likes the squirrel.\n\nNow we have to look at the condition that states if someone visits the bear then they are kind. Since the bear visits the tiger, the tiger is not necessarily kind, but this does not tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if someone eats the bear and they do not like the tiger then they are green. But this condition is not met because the bear is not eaten by the mouse.\n\nWe can analyze another condition: If someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nNow we have to look at the information again. We know that the mouse is red and the mouse eats the tiger. This condition tells us that the tiger visits the mouse. However, this does not tell us about the tiger's feelings towards the squirrel.\n\nNow we have to look at the information again. The condition states that if someone is red and they eat the tiger then the tiger visits the mouse. But this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nHowever, we can look at the condition that states if the mouse visits the mouse then the mouse eats the bear. But the condition states that if someone visits the mouse then they like the squirrel.\n\nNow we have to look at the condition that states if someone visits the mouse then they like the squirrel. We know that the bear visits the tiger, but we do not know if the bear likes the squirrel.\n\nHowever, we can look at the condition that states if someone likes the bear and the bear visits the tiger then they visit the bear. This condition is met because the bear visits the tiger, but this does not tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if someone is green then they visit the bear. We know that the mouse does not like the tiger, but we do not know if the mouse is green.\n\nNow we have to look at the information again. We know that the mouse eats the tiger. This information does not directly tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if the mouse visits the bear then the mouse eats the bear. But the condition states that if someone visits the mouse then they like the squirrel.\n\nHowever, we can look at the condition that states if someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nNow we have to look at the information again. We know that the mouse is red and the mouse eats the tiger. The condition states that if the mouse is red and they eat the tiger then the tiger visits the mouse.\n\nSince the condition is met, we can conclude that the tiger visits the mouse.\n\nHowever, this does not tell us about the tiger's feelings towards the squirrel.\n\nBut we can look at the condition that states if someone visits the mouse then they like the squirrel. We know that the bear visits the tiger, but we do not know if the bear likes the squirrel.\n\nHowever, we can look at the condition that states if someone likes the bear and the bear visits the tiger then they visit the bear. This condition is met because the bear visits the tiger, but this does not tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if someone is green then they visit the bear. We know that the mouse does not like the tiger, but we do not know if the mouse is green.\n\nNow we have to look at the information again. We know that the mouse eats the tiger. This information does not directly tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if the mouse visits the bear then the mouse eats the bear. But the condition states that if someone visits the mouse then they like the squirrel.\n\nHowever, we can look at the condition that states if someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nHowever, we can look at the condition that states if someone visits the bear then they are kind. Since the bear visits the tiger, the tiger is not necessarily kind, but this does not tell us about the tiger's feelings towards the squirrel.\n\nWe can analyze another condition: If someone eats the bear and they do not like the tiger then they are green. But this condition is not met because the bear is not eaten by the mouse.\n\nHowever, we can look at the condition that states if someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nHowever, we can look at the condition that states if someone visits the mouse then they like the squirrel. We know that the bear visits the tiger, but we do not know if the bear likes the squirrel.\n\nHowever, we can look at the condition that states if someone is green then they visit the bear. We know that the mouse does not like the tiger, but we do not know if the mouse is green.\n\nWe can analyze another condition: If someone likes the bear and the bear visits the tiger then they visit the bear. This condition is met because the bear visits the tiger, but this does not tell us about the tiger's feelings.\n\nNow we have to look at the information again. We know that the mouse eats the tiger. This information does not directly tell us about the tiger's feelings.\n\nHowever, we can look at the condition that states if the mouse visits the bear then the mouse eats the bear. But the condition states that if someone visits the mouse then they like the squirrel.\n\nHowever, we can look at the condition that states if someone is red and they eat the tiger then the tiger visits the mouse. However, this condition is not met because the mouse is the one who eats the tiger, not the bear.\n\nHowever, we can look at the condition that states if someone visits the bear then they are kind. Since the bear visits the tiger, the tiger is not necessarily kind, but this does not tell us about the tiger's feelings towards the squirrel.\n\nHowever, we can look at the condition that states if someone eats the bear and they do not like the tiger then they are green. But this condition is not met because the bear is not eaten by the mouse.\n\nHowever, we can look at the condition that states if someone is green then they visit the",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them step by step to determine the relationship between the tiger and the squirrel.\n\n1. The bear eats the tiger. \n   - We don't know the relationship between the bear and the squirrel yet, but we know the bear's relationship with the tiger.\n\n2. The bear is not red.\n   - This statement doesn't provide any direct information about the tiger or the squirrel.\n\n3. The bear likes the squirrel.\n   - Now we know the bear's relationship with the squirrel.\n\n4. The bear visits the squirrel.\n   - This statement confirms the bear's relationship with the squirrel.\n\n5. The mouse eats the tiger.\n   - We know the mouse's relationship with the tiger.\n\n6. The mouse is red.\n   - This statement tells us the mouse's color but doesn't provide any direct information about the squirrel.\n\n7. The mouse is rough.\n   - This statement doesn't provide any direct information about the tiger or the squirrel.\n\n8. The mouse likes the bear.\n   - We know the mouse's relationship with the bear.\n\n9. The mouse does not like the tiger.\n   - This statement tells us the mouse's relationship with the tiger.\n\n10. The squirrel likes the bear.\n    - This statement confirms the squirrel's relationship with the bear.\n\n11. The tiger eats the mouse.\n    - We know the tiger's relationship with the mouse.\n\nFrom the given statements, we can deduce the following information:\n- The bear likes the squirrel.\n- The bear visits the squirrel.\n- The mouse does not like the tiger.\n- The mouse eats the tiger.\n\nNow we need to determine the relationship between the tiger and the squirrel. \n\nThe statements that might be relevant to the tiger and the squirrel are:\n- If someone likes the bear and the bear visits the tiger then they visit the bear. (We don't know if this applies to the tiger yet.)\n- If someone is green then they visit the bear. (We don't know if the tiger is green yet.)\n- If someone visits the mouse then the mouse eats the bear. (We don't know if the tiger visits the mouse yet.)\n\nHowever, the statement that might directly tell us about the tiger's relationship with the squirrel is:\n- If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. (We don't know if this applies to the mouse yet.)\n\nThe statements that might help us determine the mouse's kindness are:\n- The mouse likes the bear.\n- The bear likes the mouse.\n- If someone visits the mouse then they like the squirrel. (We don't know if the tiger visits the mouse yet.)\n- If someone eats the bear and they do not like the tiger then they are green. (We don't know if the mouse eats the bear yet.)\n\nLet's analyze the mouse's relationship with the bear:\n- The mouse likes the bear.\n- The bear likes the mouse.\n- Therefore, the mouse is not kind.\n\nNow we can determine the relationship between the mouse and the squirrel:\n- If the mouse is not kind then the mouse does not like the squirrel. (Since the mouse likes the bear and the bear likes the squirrel, the mouse is not kind, and it doesn't like the squirrel.)\n\nNow we can determine the relationship between the tiger and the squirrel:\n- The tiger eats the mouse.\n- The mouse does not like the squirrel.\n- Therefore, the tiger does not like the squirrel (since the tiger eats the mouse, which does not like the squirrel).\n\nHowever, the given statements also tell us that:\n- If someone visits the mouse then the mouse eats the bear.\n- The mouse is red.\n- The mouse is rough.\n- The mouse likes the bear.\n- The mouse does not like the tiger.\n\nFrom these statements, we can deduce that the tiger visits the mouse (since the mouse eats the tiger and the mouse eats the bear when someone visits the mouse).\n\nHowever, the statement that might tell us about the tiger's color is:\n- If someone is red and they eat the tiger then the tiger visits the mouse. (We don't know if this applies to the mouse yet.)\n\nThe statements that might help us determine the mouse's color are:\n- The mouse is red.\n- If someone is red and they eat the tiger then the tiger visits the mouse. (We don't know if this applies to the mouse yet.)\n\nHowever, the statement that might tell us about the mouse's color is:\n- If someone visits the mouse then they like the squirrel. (We don't know if this applies to the tiger yet.)\n\nNow we can determine the relationship between the tiger and the squirrel:\n- The tiger visits the mouse.\n- Therefore, the tiger likes the squirrel (since the tiger visits the mouse and the mouse likes the squirrel).\n\nHowever, we already determined that the tiger does not like the squirrel.\n\nThe given statements are inconsistent, and we cannot determine the relationship between the tiger and the squirrel.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement in question.\n\n1. The bear eats the tiger.\n2. The bear is not red.\n3. The bear likes the squirrel.\n4. The bear visits the squirrel.\n5. The mouse eats the tiger.\n6. The mouse is red.\n7. The mouse is rough.\n8. The mouse likes the bear.\n9. The mouse does not like the tiger.\n10. The squirrel likes the bear.\n11. The tiger eats the mouse.\n12. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind.\n13. If someone visits the mouse then they like the squirrel.\n14. If someone is green then they visit the bear.\n15. If someone likes the bear and the bear visits the tiger then they visit the bear.\n16. If someone eats the bear and they do not like the tiger then they are green.\n17. If someone visits the mouse then the mouse eats the bear.\n18. If someone is red and they eat the tiger then the tiger visits the mouse.\n19. If someone visits the bear then they are kind.\n\nTo determine whether the tiger does not like the squirrel, we need to find evidence that contradicts this statement or supports it.\n\nFrom statement 3, we know that the bear likes the squirrel. However, we cannot directly determine the tiger's feelings about the squirrel yet.\n\nFrom statement 11, we know that the tiger eats the mouse. But this does not give us any information about the tiger's feelings towards the squirrel.\n\nNow, let's look for a connection between the tiger and the squirrel. We can see that the bear likes the squirrel (statement 3) and the mouse likes the bear (statement 8). However, statement 12 says that if the mouse likes the bear and the bear likes the mouse then the mouse is not kind. This implies that the bear's kindness towards the mouse might not necessarily imply kindness towards the squirrel.\n\nHowever, we can look at statement 10, which states that the squirrel likes the bear. This implies that the squirrel is kind towards the bear.\n\nNow, let's consider statement 19, which says that if someone visits the bear then they are kind. Since the squirrel likes the bear (statement 10), it implies that the squirrel visits the bear. Therefore, the squirrel is kind.\n\nNow, looking at statement 13, which says that if someone visits the mouse then they like the squirrel. We cannot conclude that the tiger does not like the squirrel from this statement.\n\nHowever, let's look at statement 1 and 5, which state that the bear and the mouse eat the tiger. This implies that the bear and the mouse have a conflict with the tiger.\n\nConsidering statement 11, the tiger eats the mouse. This shows that the tiger and the mouse have a conflict.\n\nNow, looking at statement 11, the tiger eats the mouse, and statement 9, the mouse does not like the tiger. This implies that the tiger and the mouse have a conflict.\n\nHowever, from statement 11, the tiger eats the mouse. This does not necessarily mean that the tiger does not like the squirrel.\n\nNow, let's look at the statements again.\n\nFrom statement 14, if someone is green then they visit the bear. However, we cannot conclude that the tiger does not like the squirrel from this statement.\n\nFrom statement 15, if someone likes the bear and the bear visits the tiger then they visit the bear. However, this does not directly relate to the tiger and the squirrel.\n\nFrom statement 16, if someone eats the bear and they do not like the tiger then they are green. However, this does not provide any information about the tiger and the squirrel.\n\nFrom statement 17, if someone visits the mouse then the mouse eats the bear. However, this does not give us any information about the tiger and the squirrel.\n\nFrom statement 18, if someone is red and they eat the tiger then the tiger visits the mouse. However, this does not imply that the tiger does not like the squirrel.\n\nNow, let's consider statement 20, which is the statement in question: \"The tiger does not like the squirrel.\"\n\nWe cannot directly determine whether the tiger does not like the squirrel from the given statements. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we want to evaluate: \"The tiger does not like the squirrel.\"\n2. We know that the squirrel likes the bear (Statement: The squirrel likes the bear).\n3. If someone likes the bear and the bear visits the tiger, then they visit the bear (Statement: If someone likes the bear and the bear visits the tiger then they visit the bear). This implies that the squirrel likes the bear and the bear visits the tiger, so the squirrel should visit the bear.\n4. However, the squirrel visits the bear is not the information we need to determine the like of the tiger towards the squirrel. Instead we look at statement 8 (The tiger eats the mouse.) \n5. The tiger eats the mouse (Statement: The tiger eats the mouse). \n6. The mouse does not like the tiger (Statement: The mouse does not like the tiger).\n7. But we are looking for the like of the tiger towards the squirrel and not the mouse. We do not have any direct information that says the tiger likes the squirrel. However, we do have information that the mouse likes the bear and the bear likes the mouse (Statement: The mouse likes the bear. Statement: The bear likes the mouse). \n8. But the statement \"If the mouse likes the bear and the bear likes the mouse then the mouse is not kind\" is not relevant to the problem of whether the tiger likes the squirrel or not.\n9. We do have information that the mouse eats the tiger (Statement: The mouse eats the tiger) but the tiger eating the mouse is irrelevant to the like of the tiger towards the squirrel.\n10. The only relevant information that we can use to determine whether the tiger likes the squirrel or not is the fact that the tiger eats the mouse and the mouse does not like the tiger. However, this information is not sufficient to determine the like of the tiger towards the squirrel.\n11. There is no other information that can help us to determine whether the tiger likes the squirrel or not.\n12. Therefore, the statement \"The tiger does not like the squirrel\" is unknown because we do not have enough information to determine whether the tiger likes the squirrel or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated is: The tiger does not like the squirrel.\n   To determine this, we need to look for any information that directly states the tiger's feelings towards the squirrel or any information that implies it.\n\n2. The given information states that:\n   - The bear likes the squirrel. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The tiger eats the mouse. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse likes the bear. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse does not like the tiger. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The squirrel likes the bear. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - If someone likes the bear and the bear visits the tiger then they visit the bear. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - If someone eats the bear and they do not like the tiger then they are green. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - If someone visits the mouse then the mouse eats the bear. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - If someone is red and they eat the tiger then the tiger visits the mouse. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse is red. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse is rough. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse likes the bear. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The mouse does not like the tiger. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The bear is not red. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The bear likes the squirrel. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The bear visits the squirrel. (This does not provide information about the tiger's feelings towards the squirrel.)\n   - The tiger visits the mouse. (This implies the tiger likes the mouse, but we still do not have information about the tiger's feelings towards the squirrel.)\n   - If someone visits the mouse then they like the squirrel. (This statement implies the tiger likes the squirrel because it visits the mouse. However, we need to be cautious as this is a conditional statement and we need to check the conditions that apply to the tiger.)\n\n3. The statement \"If someone visits the mouse then they like the squirrel\" has a condition that needs to be checked. Since the tiger visits the mouse, we need to check the conditions that apply to the tiger.\n\n   However, the information \"The tiger eats the mouse\" does not provide information about the tiger's feelings towards the squirrel. The tiger's eating of the mouse does not directly imply the tiger's feelings towards the squirrel.\n\n   The statement \"The tiger visits the mouse\" is a fact, but this fact does not directly imply the tiger's feelings towards the squirrel. It only implies the tiger likes the mouse.\n\n4. Since there is no direct information that states or implies the tiger's feelings towards the squirrel, we cannot determine whether the statement \"The tiger does not like the squirrel\" is true or false. Therefore, the answer is:\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear eats the tiger. \n   - This means the bear is the one that ate the tiger, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n2. The bear is not red. \n   - This statement is irrelevant to the problem at hand.\n\n3. The bear likes the squirrel. \n   - This statement implies that the bear has a positive feeling towards the squirrel.\n\n4. The bear visits the squirrel. \n   - This statement further supports the idea that the bear likes the squirrel.\n\n5. The mouse eats the tiger. \n   - Similar to the first statement, this implies that the mouse ate the tiger, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n6. The mouse is red. \n   - This statement is irrelevant to the problem at hand.\n\n7. The mouse is rough. \n   - This statement is also irrelevant to the problem at hand.\n\n8. The mouse likes the bear. \n   - This statement implies that the mouse has a positive feeling towards the bear.\n\n9. The mouse does not like the tiger. \n   - This statement provides some information about the mouse's feelings towards the tiger.\n\n10. The squirrel likes the bear. \n    - This statement is consistent with the information provided in statements 3 and 4.\n\n11. The tiger eats the mouse. \n    - Similar to the first two statements, this implies that the tiger ate the mouse, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n12. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. \n    - This statement provides some information about the mouse's kind nature, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n13. If someone visits the mouse then they like the squirrel. \n    - This statement is relevant, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n14. If someone is green then they visit the bear. \n    - This statement is irrelevant to the problem at hand.\n\n15. If someone likes the bear and the bear visits the tiger then they visit the bear. \n    - This statement is also irrelevant to the problem at hand.\n\n16. If someone eats the bear and they do not like the tiger then they are green. \n    - This statement is irrelevant to the problem at hand.\n\n17. If someone visits the mouse then the mouse eats the bear. \n    - This statement implies that the mouse eats the bear if someone visits the mouse, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n18. If someone is red and they eat the tiger then the tiger visits the mouse. \n    - This statement implies that the tiger visits the mouse if someone red eats the tiger, but it does not provide any information about the tiger's feelings towards the squirrel.\n\n19. If someone visits the bear then they are kind. \n    - This statement implies that the bear is liked by someone kind, but it does not provide any information about the tiger's feelings towards the squirrel.\n\nWe can see that statements 3, 4, and 10 imply that the bear likes the squirrel, but there is no information provided about the tiger's feelings towards the squirrel. \n\nSince there is no information provided about the tiger's feelings towards the squirrel, we cannot determine whether the statement \"The tiger does not like the squirrel\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not like the squirrel\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information, we have:\n- The bear likes the squirrel.\n- The mouse likes the bear.\n- The mouse does not like the tiger.\n- The tiger eats the mouse.\n- The squirrel likes the bear.\n\nNow, let's examine the given conditions:\n\n1. If someone likes the bear and the bear visits the tiger then they visit the bear. \n   - Since the bear visits the squirrel, and the squirrel likes the bear, the squirrel visits the bear.\n\n2. If someone visits the mouse then the mouse eats the bear. \n   - We cannot determine this condition directly, as we don't have enough information about who visits the mouse.\n\n3. If someone is green then they visit the bear. \n   - We cannot determine the color of the bear or the tiger from the given information.\n\n4. If someone eats the bear and they do not like the tiger then they are green. \n   - We don't have enough information about who eats the bear.\n\n5. If someone is red and they eat the tiger then the tiger visits the mouse. \n   - Since the mouse is red and the mouse eats the tiger, the tiger visits the mouse. \n\n6. If someone visits the bear then they are kind. \n   - The bear visits the squirrel, but we don't know if the bear is kind or not.\n\n7. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. \n   - Since the mouse likes the bear and the bear likes the mouse, the mouse is not kind.\n\nHowever, this does not directly relate to the statement \"The tiger does not like the squirrel.\"\n\nLet's examine the information about the tiger and the squirrel:\n- The tiger eats the mouse.\n- The squirrel likes the bear.\n\nWe can use the following condition:\n- If someone is red and they eat the tiger then the tiger visits the mouse. \n   - Since the mouse is red and the mouse eats the tiger, the tiger visits the mouse.\n\nHowever, there is no information that directly links the tiger's relationship with the squirrel.\n\nNow, we can try to analyze the given information using logical reasoning. We can see that the bear likes the squirrel and the squirrel likes the bear. However, we cannot determine the relationship between the tiger and the squirrel based on the given information.\n\nTherefore, the statement \"The tiger does not like the squirrel\" is unknown, as we don't have enough information to determine the tiger's relationship with the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), Not(kind_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "Not(likes_tiger_squirrel) == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), Not(kind_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), eats_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "Not(likes_tiger_squirrel) == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "not likes_mouse_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_X), not kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, not likes_X_tiger), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "not likes_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), not kind_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, not likes_X_tiger), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(the tiger does not like the squirrel)",
+          "z3_formula": "unknown_the_tiger_does_not_like_the_squirrel == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), Not(kind_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, bear) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_bear), visits_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, bear) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_bear), visits_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & visits(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(And(likes_X, visits_X_Y), visits_Y_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(mouse, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(Y, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_Y_tiger)), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_X), Not(kind_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(mouse)",
+          "z3_formula": "Not(kind_mouse) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(mouse, squirrel)",
+          "z3_formula": "Not(likes_mouse_squirrel) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "Not(likes_tiger_squirrel) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "Not(likes_tiger_squirrel) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), Not(kind_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(visits_mouse_squirrel, likes_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "Not(likes_tiger_squirrel) == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & bears_tiger_tiger(X) -> likes(X, bear)",
+          "z3_formula": "Implies(And(likes_squirrel_bear, bears_tiger_tiger), likes_squirrel_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "not likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, mouse)",
+          "z3_formula": "likes_bear_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "not likes_tiger_squirrel == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_tiger), visits_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & ~likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == False",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "Not(red(bear))",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(Y, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_mouse_bear, likes_bear_mouse), Not(kind_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(X, tiger) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_X_tiger), visits_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & not likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, Not(likes_X_tiger)), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_X_mouse, eats_mouse_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bear)",
+          "z3_formula": "likes_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger) == False",
+          "z3_formula": "likes_mouse_tiger == False",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, Y) -> visits(X, bear)",
+          "z3_formula": "Implies(And(likes_bear_squirrel, visits_bear_squirrel), visits_squirrel_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> eats(mouse, bear)",
+          "z3_formula": "Implies(visits_mouse_bear, eats_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, bear)",
+          "z3_formula": "Implies(green_X, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & likes(X, tiger) == False -> green(X)",
+          "z3_formula": "Implies(And(eats_X_bear, likes_X_tiger), green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & eats(X, tiger) -> visits(tiger, mouse)",
+          "z3_formula": "Implies(And(red_X, eats_X_tiger), visits_tiger_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> kind(X)",
+          "z3_formula": "Implies(visits_X_bear, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, X) -> not kind(X)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_X), not kind_X)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 210,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 204,
+      "solve_time_ms": 1.446257345378399
+    },
+    "timing": {
+      "trace_gen_s": 24.543,
+      "extraction_s": 37.976,
+      "dedup_s": 1.539,
+      "maxsat_s": 0.004,
+      "total_s": 64.063
+    }
+  }
+}

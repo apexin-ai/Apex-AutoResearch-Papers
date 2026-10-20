@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-078-debate-mistral-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:51:21.070Z",
+    "updated_at": "2026-05-19T18:51:34.275Z",
+    "hypothesis": "Debate-augmented extraction with MAX-SAT consensus (SICA) transfers cross-dataset from FOLIO (3-class) to LogiQA (4-choice multichoice), maintaining accuracy gains over self-consistency baseline on 200 LogiQA problems with Mistral-7B.",
+    "parent": "exp-076-debate-mistral-folio"
+  },
+  "timestamp": "2026-05-19T18:51:34.483739+00:00",
+  "trigger": "update_registry"
+}

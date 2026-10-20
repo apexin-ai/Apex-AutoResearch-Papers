@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-074c-icg-mistral-folio-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:06:50.097Z",
+    "updated_at": "2026-05-19T21:06:21.214Z",
+    "hypothesis": "ICG × Mistral-7B × FOLIO-204 seed=123 replication. exp-074 (seed=42) Δ=-2.0pp (negative). Multi-seed replication 确认 ICG 方法的 negative 结果是否跨 seed 稳定。如果 seed=123 也 negative，堵住 reviewer 单 seed 质疑。",
+    "parent": "exp-074-icg-mistral-folio",
+    "spec": {
+      "command": "python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/folio_full.json --output results/exp074c_icg_mistral_folio_seed123/results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 123,
+      "checkpoint_source": "vllm:/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+      "eval_data": "data/folio_full.json"
+    },
+    "metrics": {
+      "sc_accuracy": 0.5735,
+      "icg_accuracy": 0.5882,
+      "delta": 0.0147,
+      "n_samples": 204,
+      "wall_time_min": 56.5
+    },
+    "checkpoint_path": "results/exp074c_icg_mistral_folio_seed123/results.json",
+    "log_path": "results/exp074c_icg_mistral_folio_seed123/run.log",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T21:06:21.214Z"
+  },
+  "timestamp": "2026-05-19T21:06:21.420421+00:00",
+  "trigger": "update_registry"
+}

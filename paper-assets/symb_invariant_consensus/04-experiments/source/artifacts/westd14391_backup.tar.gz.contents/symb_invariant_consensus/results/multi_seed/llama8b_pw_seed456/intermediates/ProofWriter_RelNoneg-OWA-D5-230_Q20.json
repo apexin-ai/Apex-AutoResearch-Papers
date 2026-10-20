@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-230_Q20",
+    "problem": "The bear is big. The bear is cold. The bear likes the cat. The bear visits the cat. The bear visits the cow. The cat is green. The cat needs the bear. The cow needs the dog. The dog is blue. The dog likes the bear. The dog visits the cow. If something is blue then it is red. If something likes the cow then the cow is big. If the cow needs the cat then the cow likes the cat. If something is blue then it is cold. If something is big and it likes the dog then the dog likes the cow. If something needs the bear and the bear needs the dog then the bear is red. If something likes the bear and it is big then it needs the dog. If something is big then it needs the cat. If the bear is big then the bear likes the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBig(Bear, True) ::: The bear is big.\nCold(Bear, True) ::: The bear is cold.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nVisits(Bear, Cat, True) ::: The bear visits the cat.\nVisits(Bear, Cow, True) ::: The bear visits the cow.\nGreen(Cat, True) ::: The cat is green.\nNeeds(Cat, Bear, True) ::: The cat needs the bear.\nNeeds(Cow, Dog, True) ::: The cow needs the dog.\nBlue(Dog, True) ::: The dog is blue.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nVisits(Dog, Cow, True) ::: The dog visits the cow.\n\nRules:\nBlue($x, True) >>> Red($x, True) ::: If something is blue then it is red.\nLikes($x, Cow, True) >>> Big(Cow, True) ::: If something likes the cow then the cow is big.\nNeeds(Cow, Cat, True) >>> Likes(Cow, Cat, True) ::: If the cow needs the cat then the cow likes the cat.\nBlue($x, True) >>> Cold($x, True) ::: If something is blue then it is cold.\nBig($x, True) && Likes($x, Dog, True) >>> Likes(Dog, Cow, True) ::: If something is big and it likes the dog then the dog likes the cow.\nNeeds($x, Bear, True) && Needs(Bear, Dog, True) >>> Red(Bear, True) ::: If something needs the bear and the bear needs the dog then the bear is red.\nLikes($x, Bear, True) && Big($x, True) >>> Needs($x, Dog, True) ::: If something likes the bear and it is big then it needs the dog.\nBig($x, True) >>> Needs($x, Cat, True) ::: If something is big then it needs the cat.\nBig(Bear, True) >>> Likes(Bear, Dog, True) ::: If the bear is big then the bear likes the dog.\n\nQuery:\nBig(Dog, True) ::: The dog is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

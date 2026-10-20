@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-345_Q12",
+    "problem": "The cat is big. The cat is cold. The cat likes the cow. The cat visits the lion. The cow is blue. The cow likes the lion. The cow does not visit the lion. The lion chases the cat. The lion is not big. The lion is rough. The lion visits the cat. The squirrel likes the cow. If something visits the squirrel then it likes the cat. If something visits the cat then it likes the cat. If something likes the squirrel and it is big then the squirrel likes the lion. If something likes the cow and it visits the cow then the cow visits the cat. If something likes the cat then it chases the squirrel. If something chases the lion and the lion is not cold then it visits the cow. If something chases the lion then the lion chases the cow. If something chases the squirrel then the squirrel visits the cat. If the cow is rough then the cow chases the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not chase the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\nChases($x, $y, bool) ::: Does x chase y?\n\nFacts:\nBig(Cat, True) ::: The cat is big.\nCold(Cat, True) ::: The cat is cold.\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nBlue(Cow, True) ::: The cow is blue.\nLikes(Cow, Lion, True) ::: The cow likes the lion.\nVisits(Cow, Lion, False) ::: The cow does not visit the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nBig(Lion, False) ::: The lion is not big.\nRough(Lion, True) ::: The lion is rough.\nVisits(Lion, Cat, True) ::: The lion visits the cat.\nLikes(Squirrel, Cow, True) ::: The squirrel likes the cow.\n\nRules:\nVisits($x, Squirrel, True) >>> Likes($x, Cat, True) ::: If something visits the squirrel then it likes the cat.\nVisits($x, Cat, True) >>> Likes($x, Cat, True) ::: If something visits the cat then it likes the cat.\nLikes($x, Squirrel, True) && Big($x, True) >>> Likes(Squirrel, Lion, True) ::: If something likes the squirrel and it is big then the squirrel likes the lion.\nLikes($x, Cow, True) && Visits($x, Cow, True) >>> Visits(Cow, Cat, True) ::: If something likes the cow and it visits the cow then the cow visits the cat.\nLikes($x, Cat, True) >>> Chases($x, Squirrel, True) ::: If something likes the cat then it chases the squirrel.\nChases($x, Lion, True) && Cold(Lion, False) >>> Visits($x, Cow, True) ::: If something chases the lion and the lion is not cold then it visits the cow.\nChases($x, Lion, True) >>> Chases(Lion, Cow, True) ::: If something chases the lion then the lion chases the cow.\nChases($x, Squirrel, True) >>> Visits(Squirrel, Cat, True) ::: If something chases the squirrel then the squirrel visits the cat.\nRough(Cow, True) >>> Chases(Cow, Cat, True) ::: If the cow is rough then the cow chases the cat.\n\nQuery:\nChases(Squirrel, Squirrel, False) ::: The squirrel does not chase the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

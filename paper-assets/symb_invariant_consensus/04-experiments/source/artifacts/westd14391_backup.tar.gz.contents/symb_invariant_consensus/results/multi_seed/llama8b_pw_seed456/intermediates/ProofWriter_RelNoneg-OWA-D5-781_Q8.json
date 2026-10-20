@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-781_Q8",
+    "problem": "The bald eagle chases the rabbit. The bald eagle is red. The bald eagle is round. The bald eagle likes the squirrel. The lion chases the squirrel. The lion is round. The rabbit is green. The rabbit is nice. The rabbit likes the bald eagle. The rabbit sees the squirrel. The squirrel is round. The squirrel sees the bald eagle. If something likes the rabbit then the rabbit sees the lion. If something chases the squirrel and it likes the bald eagle then the squirrel is nice. If something is nice and it likes the squirrel then the squirrel chases the rabbit. If something likes the bald eagle and it sees the rabbit then it likes the squirrel. If something likes the squirrel and it likes the lion then the lion likes the bald eagle. If something is young then it sees the rabbit. Green things are round. All round things are young. If the squirrel is nice then the squirrel likes the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the rabbit.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nRed(BaldEagle, True) ::: The bald eagle is red.\nRound(BaldEagle, True) ::: The bald eagle is round.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nChases(Lion, Squirrel, True) ::: The lion chases the squirrel.\nRound(Lion, True) ::: The lion is round.\nGreen(Rabbit, True) ::: The rabbit is green.\nNice(Rabbit, True) ::: The rabbit is nice.\nLikes(Rabbit, BaldEagle, True) ::: The rabbit likes the bald eagle.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nRound(Squirrel, True) ::: The squirrel is round.\nSees(Squirrel, BaldEagle, True) ::: The squirrel sees the bald eagle.\n\nRules:\nLikes($x, Rabbit, True) >>> Sees(Rabbit, Lion, True) ::: If something likes the rabbit then the rabbit sees the lion.\nChases($x, Squirrel, True) && Likes($x, BaldEagle, True) >>> Nice(Squirrel, True) ::: If something chases the squirrel and it likes the bald eagle then the squirrel is nice.\nNice($x, True) && Likes($x, Squirrel, True) >>> Chases(Squirrel, Rabbit, True) ::: If something is nice and it likes the squirrel then the squirrel chases the rabbit.\nLikes($x, BaldEagle, True) && Sees($x, Rabbit, True) >>> Likes($x, Squirrel, True) ::: If something likes the bald eagle and it sees the rabbit then it likes the squirrel.\nLikes($x, Squirrel, True) && Likes($x, Lion, True) >>> Likes(Lion, BaldEagle, True) ::: If something likes the squirrel and it likes the lion then the lion likes the bald eagle.\nYoung($x, True) >>> Sees($x, Rabbit, True) ::: If something is young then it sees the rabbit.\nGreen($x, True) >>> Round($x, True) ::: Green things are round.\nRound($x, True) >>> Young($x, True) ::: All round things are young.\nNice(Squirrel, True) >>> Likes(Squirrel, Rabbit, True) ::: If the squirrel is nice then the squirrel likes the rabbit.\n\nQuery:\nSees(Rabbit, Rabbit, False) ::: The rabbit does not see the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

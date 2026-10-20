@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10b50d900c4a43539989",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "reviewer / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4051,
+    "sha256": "efa054a6f85adfa3a5c307b9c66104f9040e1d94fb0897264ecfa5b3197dbe56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-21T17:59:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-16639 GPU 白名单**：cuda:0 Mistral(8000), cuda:1 Qwen3(8001), cuda:2 70B-AWQ(8002), cuda:3 新Mistral(gpt-5.5 extraction)。不要动 cuda:2 上的 70B pipeline。\n- **westd-25068**：当前无活跃 GPU 进程，72B BF16 模型正在从 ModelScope 重新下载（20GB/100GB）。旧 safetensors 全部损坏已删。\n- **R1-Distill 自提取数据不可用**：BPE bug 导致 extraction_rate=1.28%，SC=32.35% 是假数据。只能用 cross-model (Mistral) 提取的数据。metrics.json 的 exp_id/model 字段被污染（写着 Qwen2.5-72B-Instruct-AWQ），不要信元数据。\n- **论文数据必须用 Reviewer 核实过的数字**：R1-Distill Δ=+2.45pp（不是 Worker 报的 +1.96pp），gpt-4.1 Δ=-1.47pp。Worker 有过数次误报。\n\n### 2. 🖥️ 基础设施快照\n- **westd-16639** `/root/symb_invariant_consensus/`\n  - vLLM PID 413036 (Mistral:8000, cuda:0), 413844 (Qwen3-14B:8001, cuda:1, 当前 0% util — Phase 2 只用 Mistral), 435354 (72B-AWQ:8002, cuda:2), 466621 (新Mistral:cuda:3, gpt-5.5 extraction)\n  - Cross-model SICA 2×2: PID 414515, run.log 在 results/exp_d126_crossmodel_sica/\n  - 70B pipeline: PID 436084, 18/204, ~16min/题\n- **westd-25068** `/root/symb_invariant_consensus/`\n  - 72B 模型下载中: `/root/autodl-tmp/models/Qwen2.5-72B-Instruct/._____temp/` 20GB/100GB\n  - Gemini 2.5 Pro SC: 运行中（API），~20/204\n  - 4× RTX PRO 6000 Blackwell 96GB 全空闲\n- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/`\n\n### 3. 📊 当前状态\n**刚完成**：\n- R1-Distill 全 204 题 cross-extraction 核实 — SC=152/204=74.51%, SICA=157/204=76.96%, Δ=+2.45pp ✓\n- gpt-5.5 SC=172/204=84.31% ✓, o3 SC=162/204=79.41% (8 题 n_valid=0) ✓\n- ROADMAP 审查 — PASS，已采纳 Reviewer 修正\n\n**RUNNING/PREPARING**:\n- `exp-d135-frontier-scb` PREPARING — gpt-5.5 extraction 刚部署(cuda:3), o3 待清洗, gemini ~20/204\n- `exp-d126-crossmodel-sica` PREPARING — Phase 2 活跃，ETA May 22 AM\n- `exp-d126-70b-sica` PREPARING — 18/204, ~50h ETA（太慢）\n- `exp-d126-r1-distill-sica` PREPARING — 204 题 cross-extraction 已完成，可改 DONE\n\n**等待中**：Worker 回调 gpt-5.5 extraction、o3 清洗、70B westd-25068 部署\n\n### 4. 📋 待办（条件触发式）\n- gpt-5.5 extraction worker 回调 → 核实 BR/κ 指标，对比 gpt-4.1 cross pattern (κ 高→Δ 负?)\n- o3 数据清洗 worker 回调 → 核实排除 0-trace 题后的 SC，检查 pipeline 对 0-trace 的 fallback 逻辑\n- Cross-model SICA 2×2 完成 (PID 414515) → 核实 Mistral↔Qwen3 双向 Δ、检查是否支持 D135 narrative\n- 70B westd-25068 vLLM 启动 → 核实 tp=4 配置、GPU 白名单、pipeline 参数\n- V16 Paper Agent Patch 启动 → 进入审查模式 B，读 paper-quality-lessons skill，按 §5 维度审\n\n### 5. 🎯 战略上下文\n**核心结论**：Self-extracted constraints project model bias (BR>1)。Cross-model escape 仅在 **低 Process-κ + 能力匹配** 时有效（R1-Distill κ=0.25 成功 +2.45pp, gpt-4.1 κ=0.79 失败 -1.47pp）。\n\n**关键决策链**：D126(三线并行) → D131(R1-Distill定位) → D133(BPE修正) → D134(gpt-4.1 SC) → D135(cross-model条件性escape, Process-κ双条件)\n\n**易踩的坑**：\n1. **Worker 数字不可信** — 本轮出现 3 次 Worker 误报（R1-Distill Δ差 0.49pp、93题baseline对不上、westd-25068 vs 16639 搞反）。所有 Worker 声称的指标必须 SSH 读原始文件验证。\n2. **o3 SC=79.41% 是伪值** — 8 题 n_valid_answers=0，真实 SC 更高。论文中报告 o3 必须注明有效 trace 数或排除 0-trace 题。\n3. **70B 数据大概率赶不上 V16** — westd-16639 上 18/204 需 50h，westd-25068 还在下模型。Paper Agent 可能需要在无 70B 数据下写 V16。\n4. **br_kappa_metrics.json 是自提取（坏的）**，crossmodel_metrics.json 是 cross-model（好的），不要搞混。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

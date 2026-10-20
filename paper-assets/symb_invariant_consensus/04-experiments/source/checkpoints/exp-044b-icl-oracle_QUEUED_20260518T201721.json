@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-044b-icl-oracle",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:16:44.204Z",
+    "updated_at": "2026-05-18T20:17:21.498Z",
+    "hypothesis": "ICL with Oracle Examples (v2, 正确模型 Qwen2.5-14B): 用 5 个 gold FOL annotations 作为 few-shot examples 教 LLM 提取高质量约束。如果 extraction quality 是 capability trap 瓶颈，oracle-guided extraction 应能产生更 discriminative 的约束，使 ICL-SICA > vanilla SICA (74.51%)。评测 199 题。v1 因使用错误模型 (Mistral-7B) 被 kill。"
+  },
+  "timestamp": "2026-05-18T20:17:21.690419+00:00",
+  "trigger": "update_registry"
+}

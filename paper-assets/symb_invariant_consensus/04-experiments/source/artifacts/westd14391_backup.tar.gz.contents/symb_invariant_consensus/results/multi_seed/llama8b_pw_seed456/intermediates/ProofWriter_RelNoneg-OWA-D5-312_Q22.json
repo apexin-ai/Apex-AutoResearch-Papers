@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-312_Q22",
+    "problem": "The dog chases the squirrel. The dog likes the tiger. The lion chases the squirrel. The lion is big. The lion is red. The lion likes the tiger. The lion visits the squirrel. The lion visits the tiger. The squirrel chases the lion. The squirrel is nice. The squirrel likes the lion. The tiger chases the dog. The tiger is kind. The tiger is red. The tiger likes the dog. The tiger likes the lion. If something chases the lion then the lion is blue. If something is kind then it chases the tiger. If something chases the tiger then it visits the dog. If something visits the lion then it likes the squirrel. If something is red and it chases the tiger then it likes the squirrel. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. If something visits the dog then the dog likes the lion. If something is kind and it visits the dog then the dog is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger chases the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nLikes(Dog, Tiger, True) ::: The dog likes the tiger.\nChases(Lion, Squirrel, True) ::: The lion chases the squirrel.\nBig(Lion, True) ::: The lion is big.\nRed(Lion, True) ::: The lion is red.\nLikes(Lion, Tiger, True) ::: The lion likes the tiger.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\nNice(Squirrel, True) ::: The squirrel is nice.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\nChases(Tiger, Dog, True) ::: The tiger chases the dog.\nKind(Tiger, True) ::: The tiger is kind.\nRed(Tiger, True) ::: The tiger is red.\nLikes(Tiger, Dog, True) ::: The tiger likes the dog.\nLikes(Tiger, Lion, True) ::: The tiger likes the lion.\n\nRules:\nChases($x, Lion, True) >>> Blue(Lion, True) ::: If something chases the lion then the lion is blue.\nKind($x, True) >>> Chases($x, Tiger, True) ::: If something is kind then it chases the tiger.\nChases($x, Tiger, True) >>> Visits($x, Dog, True) ::: If something chases the tiger then it visits the dog.\nVisits($x, Lion, True) >>> Likes($x, Squirrel, True) ::: If something visits the lion then it likes the squirrel.\nRed($x, True) && Chases($x, Tiger, True) >>> Likes($x, Squirrel, True) ::: If something is red and it chases the tiger then it likes the squirrel.\nChases($x, Tiger, True) && Visits($x, Squirrel, True) >>> Visits(Squirrel, Tiger, True) ::: If something chases the tiger and it visits the squirrel then the squirrel visits the tiger.\nVisits($x, Dog, True) >>> Likes(Dog, Lion, True) ::: If something visits the dog then the dog likes the lion.\nKind($x, True) && Visits($x, Dog, True) >>> Kind(Dog, True) ::: If something is kind and it visits the dog then the dog is kind.\n\nQuery:\nChases(Tiger, Lion, True) ::: The tiger chases the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

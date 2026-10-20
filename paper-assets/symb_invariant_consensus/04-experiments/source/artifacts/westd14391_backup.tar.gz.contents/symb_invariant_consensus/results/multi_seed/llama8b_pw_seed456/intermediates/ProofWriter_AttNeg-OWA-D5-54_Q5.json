@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-54_Q5",
+    "problem": "Anne is kind. Anne is nice. Anne is quiet. Anne is round. Bob is not round. Dave is furry. Erin is nice. If something is nice then it is quiet. All nice, kind things are not young. If something is furry then it is cold. Quiet, nice things are cold. If Erin is young then Erin is not kind. Furry, quiet things are kind. All cold things are kind. If Erin is young then Erin is not quiet. If something is kind and not young then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nNotRound($x, bool) ::: Is x not round?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, True) ::: Anne is round.\nNotRound(Bob, True) ::: Bob is not round.\nFurry(Dave, True) ::: Dave is furry.\nNice(Erin, True) ::: Erin is nice.\n\nRules:\nNice($x, True) >>> Quiet($x, True) ::: If something is nice then it is quiet.\nNice($x, True) && Kind($x, True) >>> Young($x, False) ::: All nice, kind things are not young.\nFurry($x, True) >>> Cold($x, True) ::: If something is furry then it is cold.\nQuiet($x, True) && Nice($x, True) >>> Cold($x, True) ::: Quiet, nice things are cold.\nYoung(Erin, True) >>> Kind(Erin, False) ::: If Erin is young then Erin is not kind.\nFurry($x, True) && Quiet($x, True) >>> Kind($x, True) ::: Furry, quiet things are kind.\nCold($x, True) >>> Kind($x, True) ::: All cold things are kind.\nYoung(Erin, True) >>> Quiet(Erin, False) ::: If Erin is young then Erin is not quiet.\nKind($x, True) && Young($x, False) >>> Round($x, True) ::: If something is kind and not young then it is round.\n\nQuery:\nCold(Erin, True) ::: Erin is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

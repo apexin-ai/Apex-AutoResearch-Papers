@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-qwen7b",
+  "project": "symb_invariant_consensus",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:09:36.912Z",
+    "updated_at": "2026-05-17T17:15:50.909Z",
+    "hypothesis": "Within-family scaling: Qwen2.5-7B-Instruct 在 D012 60 题上 SICA vs SC。弱模型预期 C0 > 14B（更多 diversity），但 constraint quality 预期更低，SICA-SC gap 预期≈0——验证 capability trap 的 scaling 维度。",
+    "parent": "sica_expanded_14b"
+  },
+  "timestamp": "2026-05-17T17:15:51.031051+00:00",
+  "trigger": "update_registry"
+}

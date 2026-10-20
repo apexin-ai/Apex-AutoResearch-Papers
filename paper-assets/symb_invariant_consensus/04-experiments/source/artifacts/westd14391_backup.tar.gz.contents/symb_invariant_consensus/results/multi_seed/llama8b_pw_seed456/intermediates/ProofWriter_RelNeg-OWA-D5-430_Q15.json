@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-430_Q15",
+    "problem": "The bear sees the squirrel. The bear visits the rabbit. The lion is not round. The lion does not like the rabbit. The lion visits the bear. The rabbit is not big. The rabbit is kind. The rabbit likes the squirrel. The rabbit sees the bear. The rabbit does not visit the bear. The squirrel visits the lion. If something is big and it visits the lion then the lion visits the rabbit. If something sees the lion then it does not like the lion. If something likes the squirrel then the squirrel visits the rabbit. If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion. If something visits the lion then the lion is not round. If something sees the lion and it does not see the bear then it sees the squirrel. If something visits the rabbit then it sees the lion. If something sees the lion then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nSees(Bear, Squirrel, True) ::: The bear sees the squirrel.\nVisits(Bear, Rabbit, True) ::: The bear visits the rabbit.\nRound(Lion, False) ::: The lion is not round.\nLikes(Lion, Rabbit, False) ::: The lion does not like the rabbit.\nVisits(Lion, Bear, True) ::: The lion visits the bear.\nBig(Rabbit, False) ::: The rabbit is not big.\nKind(Rabbit, True) ::: The rabbit is kind.\nLikes(Rabbit, Squirrel, True) ::: The rabbit likes the squirrel.\nSees(Rabbit, Bear, True) ::: The rabbit sees the bear.\nVisits(Rabbit, Bear, False) ::: The rabbit does not visit the bear.\nVisits(Squirrel, Lion, True) ::: The squirrel visits the lion.\n\nRules:\nBig($x, True) && Visits($x, Lion, True) >>> Visits(Lion, Rabbit, True) ::: If something is big and it visits the lion then the lion visits the rabbit.\nSees($x, Lion, True) >>> Likes($x, Lion, False) ::: If something sees the lion then it does not like the lion.\nLikes($x, Squirrel, True) >>> Visits(Squirrel, Rabbit, True) ::: If something likes the squirrel then the squirrel visits the rabbit.\nSees($x, Squirrel, True) && Visits($x, Squirrel, True) >>> Sees(Squirrel, Lion, False) ::: If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\nVisits($x, Lion, True) >>> Round(Lion, False) ::: If something visits the lion then the lion is not round.\nSees($x, Lion, True) && Sees($x, Bear, False) >>> Sees($x, Squirrel, True) ::: If something sees the lion and it does not see the bear then it sees the squirrel.\nVisits($x, Rabbit, True) >>> Sees($x, Lion, True) ::: If something visits the rabbit then it sees the lion.\nSees($x, Lion, True) >>> Big($x, True) ::: If something sees the lion then it is big.\n\nQuery:\nSees(Rabbit, Lion, False) ::: The rabbit does not see the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-131_Q1",
+    "problem": "The cat likes the cow. The cow is cold. The lion chases the tiger. The lion likes the cat. The lion needs the cow. The lion needs the tiger. The tiger likes the cow. If something likes the tiger then the tiger is cold. If something chases the lion and it needs the lion then it is green. If the cow chases the lion and the cow chases the cat then the lion needs the cow. If the tiger chases the cow then the tiger likes the cat. If something needs the lion then the lion needs the tiger. If something chases the cow then the cow likes the tiger. If something chases the cat then the cat chases the cow. If something is cold then it chases the cat. If something is cold and it chases the cat then it chases the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger likes the cow.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nCold($x, bool) ::: Is x cold?\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nCold(Cow, True) ::: The cow is cold.\nChases(Lion, Tiger, True) ::: The lion chases the tiger.\nLikes(Lion, Cat, True) ::: The lion likes the cat.\nNeeds(Lion, Cow, True) ::: The lion needs the cow.\nNeeds(Lion, Tiger, True) ::: The lion needs the tiger.\nLikes(Tiger, Cow, True) ::: The tiger likes the cow.\n\nRules:\nLikes($x, Tiger, True) >>> Cold(Tiger, True) ::: If something likes the tiger then the tiger is cold.\nChases($x, Lion, True) && Needs($x, Lion, True) >>> Green($x, True) ::: If something chases the lion and it needs the lion then it is green.\nChases(Cow, Lion, True) && Chases(Cow, Cat, True) >>> Needs(Lion, Cow, True) ::: If the cow chases the lion and the cow chases the cat then the lion needs the cow.\nChases(Tiger, Cow, True) >>> Likes(Tiger, Cat, True) ::: If the tiger chases the cow then the tiger likes the cat.\nNeeds($x, Lion, True) >>> Needs(Lion, Tiger, True) ::: If something needs the lion then the lion needs the tiger.\nChases($x, Cow, True) >>> Likes(Cow, Tiger, True) ::: If something chases the cow then the cow likes the tiger.\nChases($x, Cat, True) >>> Chases(Cat, Cow, True) ::: If something chases the cat then the cat chases the cow.\nCold($x, True) >>> Chases($x, Cat, True) ::: If something is cold then it chases the cat.\nCold($x, True) && Chases($x, Cat, True) >>> Chases($x, Cow, True) ::: If something is cold and it chases the cat then it chases the cow.\n\nQuery:\nLikes(Tiger, Cow, True) ::: The tiger likes the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

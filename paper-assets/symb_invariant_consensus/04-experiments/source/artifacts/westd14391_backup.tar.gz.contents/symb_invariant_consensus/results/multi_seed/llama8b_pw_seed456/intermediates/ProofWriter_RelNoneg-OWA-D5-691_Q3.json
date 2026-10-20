@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-691_Q3",
+    "problem": "The bald eagle sees the cat. The cat eats the dog. The cat is big. The cat is kind. The dog eats the bald eagle. The dog eats the cat. The dog is kind. The dog sees the lion. The lion eats the bald eagle. The lion is green. The lion is nice. The lion sees the dog. Cold things are green. If something sees the lion then it needs the dog. If something needs the bald eagle then it sees the lion. If something is nice then it sees the lion. If something is big then it sees the cat. If something is green and it needs the dog then it eats the cat. If something is green and it eats the cat then the cat needs the bald eagle. If something eats the bald eagle then the bald eagle is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion sees the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\n\nFacts:\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nBig(Cat, True) ::: The cat is big.\nKind(Cat, True) ::: The cat is kind.\nEats(Dog, BaldEagle, True) ::: The dog eats the bald eagle.\nEats(Dog, Cat, True) ::: The dog eats the cat.\nKind(Dog, True) ::: The dog is kind.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nEats(Lion, BaldEagle, True) ::: The lion eats the bald eagle.\nGreen(Lion, True) ::: The lion is green.\nNice(Lion, True) ::: The lion is nice.\nSees(Lion, Dog, True) ::: The lion sees the dog.\n\nRules:\nCold($x, True) >>> Green($x, True) ::: Cold things are green.\nSees($x, Lion, True) >>> Needs($x, Dog, True) ::: If something sees the lion then it needs the dog.\nNeeds($x, BaldEagle, True) >>> Sees($x, Lion, True) ::: If something needs the bald eagle then it sees the lion.\nNice($x, True) >>> Sees($x, Lion, True) ::: If something is nice then it sees the lion.\nBig($x, True) >>> Sees($x, Cat, True) ::: If something is big then it sees the cat.\nGreen($x, True) && Needs($x, Dog, True) >>> Eats($x, Cat, True) ::: If something is green and it needs the dog then it eats the cat.\nGreen($x, True) && Eats($x, Cat, True) >>> Needs(Cat, BaldEagle, True) ::: If something is green and it eats the cat then the cat needs the bald eagle.\nEats($x, BaldEagle, True) >>> Nice(BaldEagle, True) ::: If something eats the bald eagle then the bald eagle is nice.\n\nQuery:\nSees(Lion, Lion, True) ::: The lion sees the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

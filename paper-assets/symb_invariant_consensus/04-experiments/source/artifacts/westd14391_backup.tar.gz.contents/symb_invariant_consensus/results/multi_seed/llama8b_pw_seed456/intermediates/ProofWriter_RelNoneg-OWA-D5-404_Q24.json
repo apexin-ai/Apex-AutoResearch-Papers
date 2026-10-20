@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-404_Q24",
+    "problem": "The bear chases the lion. The bear is cold. The bear is nice. The bear visits the rabbit. The lion is red. The rabbit chases the bear. The rabbit is green. The squirrel chases the bear. The squirrel likes the bear. The squirrel visits the lion. If something chases the squirrel then the squirrel is red. If something likes the lion then it chases the squirrel. If something is red then it likes the lion. If something is nice and it chases the lion then it likes the rabbit. If something likes the bear and the bear likes the rabbit then the bear is green. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit likes the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nChases(Bear, Lion, True) ::: The bear chases the lion.\nCold(Bear, True) ::: The bear is cold.\nNice(Bear, True) ::: The bear is nice.\nVisits(Bear, Rabbit, True) ::: The bear visits the rabbit.\nRed(Lion, True) ::: The lion is red.\nChases(Rabbit, Bear, True) ::: The rabbit chases the bear.\nGreen(Rabbit, True) ::: The rabbit is green.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nVisits(Squirrel, Lion, True) ::: The squirrel visits the lion.\n\nRules:\nChases($x, Squirrel, True) >>> Red(Squirrel, True) ::: If something chases the squirrel then the squirrel is red.\nLikes($x, Lion, True) >>> Chases($x, Squirrel, True) ::: If something likes the lion then it chases the squirrel.\nRed($x, True) >>> Likes($x, Lion, True) ::: If something is red then it likes the lion.\nNice($x, True) && Chases($x, Lion, True) >>> Likes($x, Rabbit, True) ::: If something is nice and it chases the lion then it likes the rabbit.\nLikes($x, Bear, True) && Likes(Bear, Rabbit, True) >>> Green(Bear, True) ::: If something likes the bear and the bear likes the rabbit then the bear is green.\nVisits(Squirrel, Rabbit, True) && Likes(Rabbit, Bear, True) >>> Visits(Bear, Squirrel, True) ::: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nQuery:\nLikes(Rabbit, Bear, True) ::: The rabbit likes the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

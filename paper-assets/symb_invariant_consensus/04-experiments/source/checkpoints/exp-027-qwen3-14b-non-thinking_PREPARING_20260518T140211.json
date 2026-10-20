@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:02:11.425Z",
+    "updated_at": "2026-05-18T14:02:11.425Z"
+  },
+  "timestamp": "2026-05-18T14:02:11.565476+00:00",
+  "trigger": "update_registry"
+}

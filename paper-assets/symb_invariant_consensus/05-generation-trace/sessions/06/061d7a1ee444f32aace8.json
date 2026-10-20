@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "061d7a1ee444f32aace8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "paper fig2 scatter matplotlib",
+  "task_key": "worker_paper_fig2-scatter-matplotlib_20260525T053327",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_fig2-scatter-matplotlib_20260525T053327_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "fcde1016cc9f4e3b2432a98b0cd4acc5a3252f1661ca7882a851af8c6e0b2b24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证数据点：\n\n- **14 个点**（排除了无 κ 的 StrategyQA 和 FOLIO ICL）\n- **κ 值来源**：independence table（Mistral seeds/LogiQA/Qwen 系列）+ cross-model table（LLaMA κ=0.41, Qwen2.5-14B PW κ=0.62）\n- **注意**：task 中 Qwen2.5-14B PW κ=0.82 与 cross-model table 中 κ=0.62 不一致，使用了论文表格的权威值 0.62\n- **配色**：柔和粉/绿/天蓝/蓝灰/暖橙，与 Figure 3 风格统一\n- **标注**：4 处关键注释（Mistral PW, LLaMA, Qwen3 PW, Qwen3 think），全用深灰色文字\n- **3s-agg 误差条**：std=2.70，半透明同色\n\n改动：\n1. 新脚本 `docs/paper/figures/gen_f2_kappa_scatter_v2.py`\n2. 输出 `f2_regime_scatter_v2.pdf` + `.png`\n3. `experiments.tex` 第 45 行引用更新为 `f2_regime_scatter_v2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-scatter-matplotlib.md"
+}

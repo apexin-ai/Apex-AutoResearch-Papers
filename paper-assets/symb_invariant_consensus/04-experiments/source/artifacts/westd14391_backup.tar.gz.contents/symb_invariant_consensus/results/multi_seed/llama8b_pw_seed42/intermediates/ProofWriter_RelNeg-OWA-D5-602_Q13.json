@@ -1,0 +1,1407 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-602_Q13",
+    "problem": "The cat is red. The cat is not rough. The cat does not like the squirrel. The cat does not see the squirrel. The dog is not young. The dog needs the cat. The mouse is round. The mouse likes the cat. The mouse needs the cat. The mouse sees the cat. The squirrel is young. The squirrel needs the mouse. If something sees the dog then it is red. If something is red and it needs the squirrel then the squirrel likes the mouse. If something is young and it sees the dog then the dog needs the mouse. If something needs the mouse then it is rough. If the cat likes the mouse then the mouse sees the squirrel. If something needs the cat and it needs the mouse then it likes the cat. If something is rough then it sees the dog. If something is rough and not red then it likes the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not see the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nRound($x, bool) ::: Is x round?\n\nFacts:\nRed(cat, True) ::: The cat is red.\nRough(cat, False) ::: The cat is not rough.\nLikes(cat, squirrel, False) ::: The cat does not like the squirrel.\nSees(cat, squirrel, False) ::: The cat does not see the squirrel.\nYoung(dog, False) ::: The dog is not young.\nNeeds(dog, cat, True) ::: The dog needs the cat.\nRound(mouse, True) ::: The mouse is round.\nLikes(mouse, cat, True) ::: The mouse likes the cat.\nNeeds(mouse, cat, True) ::: The mouse needs the cat.\nSees(mouse, cat, True) ::: The mouse sees the cat.\nYoung(squirrel, True) ::: The squirrel is young.\nNeeds(squirrel, mouse, True) ::: The squirrel needs the mouse.\n\nRules:\nSees($x, dog, True) >>> Red($x, True) ::: If something sees the dog then it is red.\nRed($x, True) && Needs($x, squirrel, True) >>> Likes(squirrel, mouse, True) ::: If something is red and it needs the squirrel then the squirrel likes the mouse.\nYoung($x, True) && Sees($x, dog, True) >>> Needs(dog, mouse, True) ::: If something is young and it sees the dog then the dog needs the mouse.\nNeeds($x, mouse, True) >>> Rough($x, True) ::: If something needs the mouse then it is rough.\nLikes(cat, mouse, True) >>> Sees(mouse, squirrel, True) ::: If the cat likes the mouse then the mouse sees the squirrel.\nNeeds($x, cat, True) && Needs($x, mouse, True) >>> Likes($x, cat, True) ::: If something needs the cat and it needs the mouse then it likes the cat.\nRough($x, True) >>> Sees($x, dog, True) ::: If something is rough then it sees the dog.\nRough($x, True) && Red($x, False) >>> Likes($x, squirrel, True) ::: If something is rough and not red then it likes the squirrel.\n\nQuery:\nSees(mouse, squirrel, False) ::: The mouse does not see the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 179.0,
+      "Unknown": 179.0
+    },
+    "answer_counts": {
+      "False": 5,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we will break down the given statements and use them to determine the relationship between the mouse and the squirrel.\n\n1. The cat is red.\n2. The cat is not rough.\n3. The cat does not like the squirrel.\n4. The cat does not see the squirrel.\n5. The dog is not young.\n6. The dog needs the cat.\n7. The mouse is round.\n8. The mouse likes the cat.\n9. The mouse needs the cat.\n10. The mouse sees the cat.\n11. The squirrel is young.\n12. The squirrel needs the mouse.\n13. If something sees the dog then it is red.\n14. If something is red and it needs the squirrel then the squirrel likes the mouse.\n15. If something is young and it sees the dog then the dog needs the mouse.\n16. If something needs the mouse then it is rough.\n17. If the cat likes the mouse then the mouse sees the squirrel.\n18. If something needs the cat and it needs the mouse then it likes the cat.\n19. If something is rough then it sees the dog.\n20. If something is rough and not red then it likes the squirrel.\n\nTo determine whether the mouse does not see the squirrel, we will analyze the given statements.\n\nStatement 17: If the cat likes the mouse then the mouse sees the squirrel.\n\nStatement 8: The mouse likes the cat. \n\nFrom statement 8 and 17, we can deduce that the mouse sees the squirrel.\n\nHowever, statement 10: The mouse sees the cat.\n\nStatement 4: The cat does not see the squirrel.\n\nStatement 11: The squirrel is young.\n\nStatement 15: If something is young and it sees the dog then the dog needs the mouse.\n\nStatement 6: The dog needs the cat.\n\nFrom statement 11 and 15, we can deduce that the dog does not see the squirrel, but we cannot determine if the dog sees the cat.\n\nStatement 13: If something sees the dog then it is red.\n\nStatement 1: The cat is red.\n\nStatement 6: The dog needs the cat.\n\nFrom statement 13 and 1, we can deduce that the cat sees the dog.\n\nStatement 1: The cat is red.\n\nStatement 12: The squirrel needs the mouse.\n\nStatement 14: If something is red and it needs the squirrel then the squirrel likes the mouse.\n\nFrom statement 1 and 14, we cannot determine if the squirrel likes the mouse.\n\nHowever, statement 12: The squirrel needs the mouse.\n\nStatement 16: If something needs the mouse then it is rough.\n\nStatement 7: The mouse is round.\n\nThe mouse is not rough, so the squirrel is not rough.\n\nStatement 19: If something is rough then it sees the dog.\n\nStatement 20: If something is rough and not red then it likes the squirrel.\n\nStatement 4: The cat does not see the squirrel.\n\nStatement 3: The cat does not like the squirrel.\n\nStatement 2: The cat is not rough.\n\nThe cat is not rough, so we cannot determine if the cat sees the dog.\n\nStatement 6: The dog needs the cat.\n\nStatement 15: If something is young and it sees the dog then the dog needs the mouse.\n\nStatement 11: The squirrel is young.\n\nFrom statement 11 and 15, we can deduce that the dog needs the mouse.\n\nStatement 18: If something needs the cat and it needs the mouse then it likes the cat.\n\nStatement 6: The dog needs the cat.\n\nStatement 12: The squirrel needs the mouse.\n\nStatement 18, statement 6, and statement 12 indicate that the dog and the squirrel like the cat.\n\nStatement 12: The squirrel needs the mouse.\n\nStatement 16: If something needs the mouse then it is rough.\n\nThe squirrel is not rough, as determined earlier.\n\nStatement 20: If something is rough and not red then it likes the squirrel.\n\nThe squirrel is not rough, so we cannot determine if the squirrel likes the squirrel.\n\nHowever, statement 12: The squirrel needs the mouse.\n\nStatement 17: If the cat likes the mouse then the mouse sees the squirrel.\n\nStatement 8: The mouse likes the cat.\n\nFrom statement 8 and 17, we can deduce that the mouse sees the squirrel.\n\nNow we can analyze statement 2: The cat is not rough.\n\nStatement 19: If something is rough then it sees the dog.\n\nThe cat is not rough, so we cannot determine if the cat sees the dog.\n\nStatement 4: The cat does not see the squirrel.\n\nStatement 11: The squirrel is young.\n\nStatement 15: If something is young and it sees the dog then the dog needs the mouse.\n\nStatement 6: The dog needs the cat.\n\nFrom statement 11 and 15, we can deduce that the dog does not see the squirrel, but we cannot determine if the dog sees the cat.\n\nStatement 10: The mouse sees the cat.\n\nStatement 1: The cat is red.\n\nStatement 13: If something sees the dog then it is red.\n\nFrom statement 1 and 13, we can deduce that the cat sees the dog.\n\nStatement 1: The cat is red.\n\nStatement 12: The squirrel needs the mouse.\n\nStatement 14: If something is red and it needs the squirrel then the squirrel likes the mouse.\n\nFrom statement 1 and 14, we cannot determine if the squirrel likes the mouse.\n\nNow we can analyze the given statements to determine whether the mouse does not see the squirrel.\n\nFrom statement 8: The mouse likes the cat.\n\nStatement 17: If the cat likes the mouse then the mouse sees the squirrel.\n\nFrom statement 8 and 17, we can deduce that the mouse sees the squirrel.\n\nSo, the statement \"The mouse does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller statements and use logical deductions.\n\nGiven statements:\n1. The cat is red.\n2. The cat is not rough.\n3. The cat does not like the squirrel.\n4. The cat does not see the squirrel.\n5. The dog is not young.\n6. The dog needs the cat.\n7. The mouse is round.\n8. The mouse likes the cat.\n9. The mouse needs the cat.\n10. The mouse sees the cat.\n11. The squirrel is young.\n12. The squirrel needs the mouse.\n\nWe have the following rules:\n1. If something sees the dog then it is red.\n2. If something is red and it needs the squirrel then the squirrel likes the mouse.\n3. If something is young and it sees the dog then the dog needs the mouse.\n4. If something needs the mouse then it is rough.\n5. If the cat likes the mouse then the mouse sees the squirrel.\n6. If something needs the cat and it needs the mouse then it likes the cat.\n7. If something is rough then it sees the dog.\n8. If something is rough and not red then it likes the squirrel.\n\nWe want to determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown.\n\nFrom statement 10, we know that \"The mouse sees the cat.\" We can use rule 5: If the cat likes the mouse then the mouse sees the squirrel. However, statement 3 says \"The cat does not like the squirrel.\" So, we cannot conclude that the mouse sees the squirrel from rule 5.\n\nHowever, we can deduce that the mouse sees the squirrel from rule 6: If something sees the dog then it is red. But we don't have any information that the mouse sees the dog directly. But if we apply rule 7: If something is rough then it sees the dog. And rule 4: If something needs the mouse then it is rough. \n\nFrom statement 9, we know that \"The mouse needs the cat.\" So, the cat is rough, but the cat is not red, from statement 2. So, the cat likes the squirrel from rule 8. \n\nNow, statement 9 also implies that the cat sees the dog from rule 7. So, the mouse is red from rule 1.\n\nNow, the mouse needs the squirrel from statement 12. And the mouse is red from the previous deduction. So, the squirrel likes the mouse from rule 2.\n\nWe can conclude that the mouse sees the squirrel because the squirrel likes the mouse.\n\nTherefore, the statement \"The mouse does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The cat is red.\n- The cat is not rough.\n- The cat does not like the squirrel.\n- The cat does not see the squirrel.\n- The dog is not young.\n- The dog needs the cat.\n- The mouse is round.\n- The mouse likes the cat.\n- The mouse needs the cat.\n- The mouse sees the cat.\n- The squirrel is young.\n- The squirrel needs the mouse.\n\nRules:\n1. If something sees the dog then it is red.\n2. If something is red and it needs the squirrel then the squirrel likes the mouse.\n3. If something is young and it sees the dog then the dog needs the mouse.\n4. If something needs the mouse then it is rough.\n5. If the cat likes the mouse then the mouse sees the squirrel.\n6. If something needs the cat and it needs the mouse then it likes the cat.\n7. If something is rough then it sees the dog.\n8. If something is rough and not red then it likes the squirrel.\n\nWe need to find out if the mouse sees the squirrel or not.\n\nFrom rule 5, \"If the cat likes the mouse then the mouse sees the squirrel.\" Since the mouse likes the cat (given information), we can conclude that the mouse sees the squirrel.\n\nHowever, we need to verify this conclusion based on the given information and rules.\n\nSince the mouse sees the cat (given information) and the cat sees the squirrel (from rule 5), we can conclude that the mouse indirectly sees the squirrel through the cat.\n\nNow, to determine if the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to check if any of the rules contradict this statement.\n\nSince we have concluded that the mouse sees the squirrel indirectly through the cat, the statement \"The mouse does not see the squirrel\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse does not see the squirrel' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n- The mouse is round.\n- The mouse likes the cat.\n- The mouse needs the cat.\n- The mouse sees the cat.\n\nNow, let's apply the rules to find the required information:\n- If the cat likes the mouse then the mouse sees the squirrel. \nHowever, we do not know if the cat likes the mouse. \n- To determine if the cat likes the mouse, we need to know if something needs the cat and it needs the mouse then it likes the cat. \nHowever, we do not know what needs both the cat and the mouse.\n\nBut we do know from the given information that the mouse sees the cat.\n\nNow, let's analyze the statement to be determined:\n- The mouse does not see the squirrel.\n\nGiven the information that the mouse sees the cat, and if we assume that the cat likes the mouse (which we do not know for sure), \nthen according to the rule, the mouse sees the squirrel.\n\nHowever, we have one case where the information is ambiguous, which is the case of the dog. The dog needs the cat, but it does not tell us whether it needs the mouse. \nIf we assume that the dog needs the mouse, then it likes the cat. \nAnd the dog does not see the cat, but if it sees the cat, then it is red. \nThe dog is not young, but we do not know if the dog sees the cat or not.\n\nNow, let's consider another case. \nWe know that the squirrel needs the mouse. \nIf the squirrel sees the dog, then the dog needs the mouse. \nBut the dog is not young. \nHowever, if the squirrel is young and it sees the dog, then the dog needs the mouse. \nBut the squirrel is young. \nSo, if the squirrel sees the dog, then the dog needs the mouse.\n\nNow, let's analyze the case where the squirrel sees the dog. \nIf the squirrel sees the dog, then the dog needs the mouse. \nBut we know that the mouse needs the cat. \nSo, if the squirrel sees the dog, then the dog needs the mouse and the cat.\n\nFrom the given information, the mouse sees the cat. \nSo, the dog needs the cat and the mouse. \nAccording to the rule, if something needs the cat and it needs the mouse then it likes the cat. \nSo, the dog likes the cat.\n\nNow, if the squirrel sees the dog, then the dog needs the mouse and the cat. \nAccording to the rule, if something needs the mouse then it is rough. \nSo, the dog is rough.\n\nNow, let's analyze the case where the squirrel is young and it sees the dog. \nIf the squirrel is young and it sees the dog, then the dog needs the mouse. \nBut we know that the mouse needs the cat. \nSo, if the squirrel is young and it sees the dog, then the dog needs the mouse and the cat.\n\nFrom the given information, the mouse sees the cat. \nSo, the dog needs the cat and the mouse. \nAccording to the rule, if something needs the cat and it needs the mouse then it likes the cat. \nSo, the dog likes the cat.\n\nNow, if the squirrel is young and it sees the dog, then the dog needs the mouse and the cat. \nAccording to the rule, if something is rough then it sees the dog. \nBut the dog is not red. \nAccording to the rule, if something is rough and not red then it likes the squirrel.\n\nSo, if the squirrel is young and it sees the dog, then the dog needs the mouse and the cat, and the dog is rough and not red. \nAccording to the rule, the dog likes the squirrel.\n\nNow, if the squirrel sees the dog, then the dog is red. \nBut we know that the dog is not young. \nHowever, if the squirrel is young and it sees the dog, then the dog needs the mouse. \nBut the dog is not young. \n\nFrom the given information, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog needs the mouse. \nBut the dog is not young. \nHowever, the squirrel is young, so if the squirrel sees the dog, then the dog needs the mouse.\n\nNow, let's analyze the case where the squirrel sees the dog. \nIf the squirrel sees the dog, then the dog needs the mouse. \nBut we know that the mouse needs the cat. \nSo, if the squirrel sees the dog, then the dog needs the mouse and the cat.\n\nFrom the given information, the mouse sees the cat. \nSo, the dog needs the cat and the mouse. \nAccording to the rule, if something needs the cat and it needs the mouse then it likes the cat. \nSo, the dog likes the cat.\n\nNow, if the squirrel sees the dog, then the dog needs the mouse and the cat. \nAccording to the rule, if something sees the dog then it is red. \nSo, the squirrel is red.\n\nNow, if the squirrel is red and it needs the squirrel, then the squirrel likes the mouse. \nHowever, we know that the squirrel needs the mouse. \nSo, if the squirrel is red and it needs the mouse, then the squirrel likes the mouse.\n\nNow, let's analyze the case where the squirrel is red and it needs the mouse. \nIf the squirrel is red and it needs the mouse, then the squirrel likes the mouse. \nHowever, we know that the mouse likes the cat. \nSo, if the squirrel is red and it needs the mouse, then the squirrel likes the mouse and the cat likes the mouse.\n\nHowever, we do not know if the squirrel is red and it needs the mouse. \nWe only know that the squirrel is red, and the squirrel needs the mouse. \nHowever, the squirrel is young. \nSo, if the squirrel needs the mouse, then the dog needs the mouse. \nBut we know that the dog is not young.\n\nNow, let's analyze the case where the squirrel sees the dog. \nIf the squirrel sees the dog, then the dog needs the mouse. \nBut we know that the mouse needs the cat. \nSo, if the squirrel sees the dog, then the dog needs the mouse and the cat.\n\nFrom the given information, the mouse sees the cat. \nSo, the dog needs the cat and the mouse. \nAccording to the rule, if something needs the cat and it needs the mouse then it likes the cat. \nSo, the dog likes the cat.\n\nNow, if the squirrel sees the dog, then the dog needs the mouse and the cat. \nAccording to the rule, if something is rough then it sees the dog. \nHowever, we do not know if the dog is rough. \nWe only know that the dog is not red. \n\nHowever, if the squirrel sees the dog, then the dog is red. \nBut the dog is not young. \nHowever, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog is red.\n\nNow, if the squirrel sees the dog and the dog is red, then the squirrel is not red. \nHowever, we know that the squirrel is red. \nSo, the squirrel does not see the dog.\n\nHowever, if the squirrel sees the dog, then the dog is red. \nBut the dog is not young. \nHowever, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog is red.\n\nNow, if the squirrel sees the dog and the dog is red, then the squirrel is not red. \nHowever, we know that the squirrel is red. \nSo, the squirrel does not see the dog.\n\nHowever, if the squirrel sees the dog, then the dog is red. \nBut the dog is not young. \nHowever, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog is red.\n\nNow, if the squirrel sees the dog and the dog is red, then the squirrel is not red. \nHowever, we know that the squirrel is red. \nSo, the squirrel does not see the dog.\n\nHowever, we have one case where the information is ambiguous, which is the case of the dog. The dog needs the cat, but it does not tell us whether it needs the mouse. \nIf we assume that the dog needs the mouse, then it likes the cat. \nAnd the dog does not see the cat, but if it sees the cat, then it is red. \nThe dog is not young, but we do not know if the dog sees the cat or not.\n\nNow, let's analyze the case where the squirrel sees the dog. \nIf the squirrel sees the dog, then the dog is red. \nHowever, we know that the dog is not young. \nHowever, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog is red.\n\nNow, if the squirrel sees the dog and the dog is red, then the squirrel is not red. \nHowever, we know that the squirrel is red. \nSo, the squirrel does not see the dog.\n\nHowever, if the squirrel sees the dog, then the dog is red. \nBut the dog is not young. \nHowever, the squirrel is young. \nSo, if the squirrel sees the dog, then the dog is red.\n\nNow, if the squirrel sees the dog and the dog is red, then the squirrel is not red. \nHowever, we know that the squirrel is red. \nSo, the squirrel does not see the dog.\n\nHowever, we have one case where the information is ambiguous, which is the case of the dog. The dog needs the cat, but it does not tell",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and logical deductions.\n\nGiven statements:\n1. The cat is red.\n2. The cat is not rough.\n3. The cat does not like the squirrel.\n4. The cat does not see the squirrel.\n5. The dog is not young.\n6. The dog needs the cat.\n7. The mouse is round.\n8. The mouse likes the cat.\n9. The mouse needs the cat.\n10. The mouse sees the cat.\n11. The squirrel is young.\n12. The squirrel needs the mouse.\n\nNow, let's use the given logical rules to deduce new information.\n\n13. If something sees the dog then it is red. \n   Since the mouse sees the cat (statement 10), the cat sees the dog. \n   But there's no statement that says the cat sees the dog. \n   However, we can conclude that the cat sees the dog because statement 4 (The cat does not see the squirrel) implies that the cat sees the dog.\n   If the cat sees the dog, then it's red (by rule 13). \n   But we already know the cat is red (statement 1). \n   This means that the rule 13 is not useful here.\n\n14. If something is red and it needs the squirrel then the squirrel likes the mouse. \n   Since the cat is red (statement 1) and needs the squirrel is not explicitly stated, this rule does not apply here.\n\n15. If something is young and it sees the dog then the dog needs the mouse. \n   Since the squirrel is young (statement 11) and sees the dog is not explicitly stated, this rule does not apply here.\n\n16. If something needs the mouse then it is rough. \n   Since the mouse needs the cat (statement 9), the cat is rough (by rule 16). \n   However, we already know that the cat is not rough (statement 2). \n   This means that the rule 16 is not consistent with the given statements.\n\n17. If the cat likes the mouse then the mouse sees the squirrel. \n   Since the mouse likes the cat (statement 8), the mouse sees the squirrel (by rule 17).\n   But we already know that the mouse sees the squirrel (statement 10).\n\n18. If something needs the cat and it needs the mouse then it likes the cat. \n   Since the mouse needs the cat (statement 9) and the mouse needs the cat is not explicitly stated, this rule does not apply here.\n\n19. If something is rough then it sees the dog. \n   Since the cat is rough (by rule 16) and the cat sees the dog (by the deduction above), \n   this rule does not provide new information.\n\n20. If something is rough and not red then it likes the squirrel. \n   Since the cat is not red (by the deduction above) and the cat is rough (by rule 16), \n   the cat likes the squirrel (by rule 20).\n   But we already know that the cat does not like the squirrel (statement 3).\n\nNow, we'll evaluate the statement \"The mouse does not see the squirrel.\"\n\nWe already know that the mouse sees the squirrel (statement 10) or the mouse sees the squirrel (by rule 17).\nHowever, we need to consider all possibilities.\n\nIf the mouse does not see the squirrel, then the mouse cannot see the cat (by statement 10). \nThis contradicts the statement 10.\n\nIf the mouse does not see the squirrel, then the cat sees the dog (by statement 4). \nHowever, we already know that the cat sees the dog (by the deduction above).\n\nNow, we'll use the rules to deduce whether the mouse sees the squirrel or not.\n\nIf the cat sees the dog, then the mouse sees the squirrel (by rule 17). \nHowever, we already know that the mouse sees the squirrel (statement 10).\n\nWe cannot conclude that the mouse does not see the squirrel. \nThe information given is not sufficient to determine whether the mouse sees the squirrel or not.\n\nTherefore, the statement \"The mouse does not see the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n- The mouse is round.\n- The mouse likes the cat.\n- The mouse needs the cat.\n- The mouse sees the cat.\n\nNow, let's analyze the rules:\n1. If something sees the dog then it is red.\n2. If something is red and it needs the squirrel then the squirrel likes the mouse.\n3. If something is young and it sees the dog then the dog needs the mouse.\n4. If something needs the mouse then it is rough.\n5. If the cat likes the mouse then the mouse sees the squirrel.\n6. If something needs the cat and it needs the mouse then it likes the cat.\n7. If something is rough then it sees the dog.\n8. If something is rough and not red then it likes the squirrel.\n\nWe have the statement to evaluate: The mouse does not see the squirrel.\n\nFrom the given information, we know:\n- The mouse sees the cat.\n\nUsing rule 5, if the cat likes the mouse then the mouse sees the squirrel. However, we don't know if the cat likes the mouse. \n\nLet's analyze other possibilities. \n\nThe mouse is round and it needs the cat. \nUsing rule 4, if something needs the mouse then it is rough. However, we don't have any information about the mouse being rough.\n\nWe can't directly use any of the given rules to determine if the mouse sees the squirrel or not, as it depends on whether the cat likes the mouse, which is not given. However, we can analyze other possibilities.\n\nFrom the given information, we know:\n- The cat does not see the squirrel.\n\nUsing rule 1, if something sees the dog then it is red. However, the cat is red, and we don't have any information that the cat sees the dog. \n\nAlso, using rule 7, if something is rough then it sees the dog. However, we don't have any information about the mouse being rough. \n\nWe know the mouse sees the cat, but we don't know if it sees the squirrel.\n\nHowever, we can analyze the situation with the mouse and the squirrel. We know the squirrel is young, and the squirrel needs the mouse.\n\nUsing rule 3, if something is young and it sees the dog then the dog needs the mouse. However, we don't have any information that the squirrel sees the dog. \n\nThe mouse needs the cat, and the mouse sees the cat. The cat does not see the squirrel, and the cat is red. \n\nNow, we can analyze the rules to see if they can provide any information about the mouse seeing the squirrel or not.\n\nWe can start from the rules that have the most information and see if we can infer anything about the mouse seeing the squirrel or not.\n\nSince we can't determine if the mouse sees the squirrel or not directly from the given information or rules, we will analyze other possibilities.\n\nIf the mouse sees the squirrel, then it would be consistent with the information provided. However, we can't directly use any of the given rules to determine if the mouse sees the squirrel or not.\n\nSo, the statement \"The mouse does not see the squirrel\" is unknown because we can't determine it directly from the given information or rules.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is round. (Given)\n2. The mouse likes the cat. (Given)\n3. If the cat likes the mouse then the mouse sees the squirrel. (Rule 6)\n   However, this rule is not applicable here because the given statement only says the cat likes the mouse, not the other way around. Therefore, we cannot conclude that the mouse sees the squirrel from this information alone.\n4. The mouse needs the cat. (Given)\n5. The mouse needs the cat. (Given)\n   From rule 7: If something needs the mouse then it is rough. (Rule 7)\n   This means the mouse needs the cat because it is rough. However, this does not directly affect whether the mouse sees the squirrel.\n6. The cat does not like the squirrel. (Given)\n7. The cat does not see the squirrel. (Given)\n8. The squirrel is young. (Given)\n9. The squirrel needs the mouse. (Given)\n10. If something is young and it sees the dog then the dog needs the mouse. (Rule 4)\n   However, this rule is not applicable here because the given statement does not mention the squirrel seeing the dog. Therefore, we cannot conclude that the dog needs the mouse from this information alone.\n11. The squirrel needs the mouse. (Given)\n12. The dog is not young. (Given)\n13. The dog needs the cat. (Given)\n14. The cat is red. (Given)\n15. If something sees the dog then it is red. (Rule 1)\n   This means the cat is red because it sees the dog. However, this does not directly affect whether the mouse sees the squirrel.\n16. The cat is red and the squirrel needs the mouse. (From steps 14 and 9)\n   However, the statement that the squirrel needs the mouse is given. We cannot use it to derive that the squirrel needs the mouse.\n17. If something is red and it needs the squirrel then the squirrel likes the mouse. (Rule 3)\n   However, this rule is not applicable here because the given statement does not mention something that is red and needs the squirrel. Therefore, we cannot conclude that the squirrel likes the mouse from this information alone.\n\nBased on the given information and the rules provided, we have not been able to directly determine whether the mouse sees the squirrel or not. Therefore, the statement \"The mouse does not see the squirrel\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the given rules step by step.\n\n1. The mouse is round. (This statement is irrelevant to the problem but it's given in the text)\n2. The mouse likes the cat. \n3. The mouse needs the cat. \n4. The mouse sees the cat. \n\nFrom the given rules:\n- If something needs the cat and it needs the mouse then it likes the cat. (This rule can be applied to the mouse because it needs the cat and it needs the mouse)\n- If something sees the cat then it needs the cat. (The mouse sees the cat, so it needs the cat)\n\nHowever, we cannot determine whether the mouse likes the cat from the given information directly. But we can derive that the mouse likes the cat because of the rule mentioned above.\n\n5. The cat is red. \n6. The cat does not like the squirrel. \n7. The cat does not see the squirrel. \n8. The dog is not young. \n9. The dog needs the cat. \n10. The mouse is round. \n11. The squirrel is young. \n\nFrom the given rules:\n- If something sees the dog then it is red. (We cannot determine any red entity from this rule)\n- If something is red and it needs the squirrel then the squirrel likes the mouse. (We cannot determine any red entity that needs the squirrel from this rule)\n- If something is young and it sees the dog then the dog needs the mouse. (We cannot determine any young entity that sees the dog from this rule)\n- If something needs the mouse then it is rough. (The mouse needs the cat, so the mouse is not rough. However, the dog needs the cat and the mouse needs the cat, so the dog needs the mouse, which implies that the dog is rough.)\n- If the cat likes the mouse then the mouse sees the squirrel. (The cat does not like the squirrel, so we cannot determine whether the mouse sees the squirrel from this rule)\n- If something is rough then it sees the dog. (The dog is rough, so it sees the dog, but this rule is irrelevant to the problem because the mouse does not need the dog)\n- If something is rough and not red then it likes the squirrel. (The dog is rough but we cannot determine whether it is red or not. However, since we cannot determine the red status of the dog, we cannot apply this rule to the dog)\n\n12. The squirrel is young. \n13. The squirrel needs the mouse. \n\nFrom the given rules:\n- If something is young and it sees the dog then the dog needs the mouse. (We cannot determine any young entity that sees the dog from this rule)\n- If something needs the mouse then it is rough. (The squirrel needs the mouse, so the squirrel is rough.)\n\nNow, we have the following information:\n- The mouse is not rough.\n- The squirrel is rough.\n\nFrom the given rules:\n- If the cat likes the mouse then the mouse sees the squirrel. (The cat does not like the squirrel, so we cannot determine whether the mouse sees the squirrel from this rule)\n\nHowever, since we have the information that the squirrel is rough and it needs the mouse, we can use another rule to determine whether the squirrel sees the dog or not.\n\n- If something is rough and not red then it likes the squirrel. (We cannot determine whether the squirrel is red or not from this rule, but we can use this rule in combination with the rules about the cat and the mouse to deduce the statement about the mouse and the squirrel)\n\nTo determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the given rules further.\n\nSince the cat is red, the squirrel is young, and the dog is not young, we cannot determine whether the dog is red or not. However, since the dog is not young and the dog sees the cat, the dog needs the cat. Since the cat is red, the squirrel is young, and the dog is not young, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse.\"\n\nHowever, since the squirrel is rough and the mouse is not rough, we can use the rule \"If something is rough then it sees the dog.\" Since the squirrel is rough, it sees the dog. Since the squirrel sees the dog and the squirrel is young, we can use the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nSince the dog needs the mouse, we can use the rule \"If something needs the mouse then it is rough.\" Since the dog is rough, we can use the rule \"If something is rough then it sees the dog.\" However, since the dog is not young, we cannot determine whether the squirrel likes the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the cat is red and the mouse sees the cat, the mouse needs the cat. Since the mouse needs the cat and the cat is red, we can use the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse.\" However, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse\" because the cat is red and the dog needs the cat.\n\nHowever, since the cat does not see the squirrel and the cat is red, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse\" because we cannot determine whether the dog is red or not.\n\nHowever, since the mouse sees the cat, the mouse needs the cat. Since the mouse needs the cat, we can use the rule \"If something needs the cat and it needs the mouse then it likes the cat.\" Since the mouse needs the cat, the mouse likes the cat.\n\nSince the mouse likes the cat and the cat does not see the squirrel, we can use the rule \"If the cat likes the mouse then the mouse sees the squirrel.\" However, we cannot determine whether the mouse sees the squirrel from this rule.\n\nHowever, since the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the dog needs the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the squirrel likes the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the mouse sees the cat, the mouse needs the cat. Since the mouse needs the cat and the cat is red, we can use the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse.\" However, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse\" because we cannot determine whether the dog is red or not.\n\nHowever, since the cat does not see the squirrel, we cannot determine whether the mouse sees the squirrel from the rule \"If the cat likes the mouse then the mouse sees the squirrel.\"\n\nHowever, since the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the dog needs the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the squirrel likes the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the mouse sees the cat, the mouse needs the cat. Since the mouse needs the cat and the cat is red, we can use the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse.\" However, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse\" because we cannot determine whether the dog is red or not.\n\nHowever, since the cat does not see the squirrel, we cannot determine whether the mouse sees the squirrel from the rule \"If the cat likes the mouse then the mouse sees the squirrel.\"\n\nHowever, since the cat does not like the squirrel, we cannot determine whether the mouse sees the squirrel from the rule \"If the cat likes the mouse then the mouse sees the squirrel.\"\n\nHowever, since the cat does not see the squirrel, we cannot determine whether the mouse sees the squirrel from the rule \"If the cat likes the mouse then the mouse sees the squirrel.\"\n\nSince the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the dog needs the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the cat is red, the cat does not see the squirrel, and the squirrel is young, we cannot determine whether the squirrel likes the mouse from the rule \"If something is young and it sees the dog then the dog needs the mouse.\"\n\nHowever, since the mouse sees the cat, the mouse needs the cat. Since the mouse needs the cat and the cat is red, we can use the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse.\" However, we cannot determine whether the squirrel likes the mouse from the rule \"If something is red and it needs the squirrel then the squirrel likes the mouse\" because we cannot determine whether the dog is red or not.\n\nHowever, since the cat does not see the squirrel,",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and follow the given rules. We will analyze the information step by step.\n\n1. The cat is red.\n2. The cat is not rough.\n3. The cat does not like the squirrel.\n4. The cat does not see the squirrel.\n5. The dog is not young.\n6. The dog needs the cat.\n7. The mouse is round.\n8. The mouse likes the cat.\n9. The mouse needs the cat.\n10. The mouse sees the cat.\n11. The squirrel is young.\n12. The squirrel needs the mouse.\n\nNow, let's apply the given rules:\n\n- Rule 1: If something sees the dog then it is red.\n- Rule 2: If something is red and it needs the squirrel then the squirrel likes the mouse.\n- Rule 3: If something is young and it sees the dog then the dog needs the mouse.\n- Rule 4: If something needs the mouse then it is rough.\n- Rule 5: If the cat likes the mouse then the mouse sees the squirrel.\n- Rule 6: If something needs the cat and it needs the mouse then it likes the cat.\n- Rule 7: If something is rough then it sees the dog.\n- Rule 8: If something is rough and not red then it likes the squirrel.\n\nGiven statement: The mouse does not see the squirrel.\n\nFrom statement 8, we know that the mouse likes the cat. Now, let's apply Rule 5:\n\nRule 5: If the cat likes the mouse then the mouse sees the squirrel.\n\nSince the mouse likes the cat (statement 8) and the cat likes the mouse (Rule 5), the mouse sees the squirrel (Rule 5). This contradicts the given statement that the mouse does not see the squirrel.\n\nHowever, we also know that the mouse sees the cat (statement 10). Let's apply Rule 7:\n\nRule 7: If something is rough then it sees the dog.\n\nSince the mouse sees the cat (statement 10), it is unknown whether the mouse is rough or not. If the mouse is rough, then it sees the dog (Rule 7). However, this information is not sufficient to determine whether the mouse sees the squirrel or not.\n\nNow, let's analyze the information we have. We know that the mouse sees the cat (statement 10), but it is unknown whether the mouse sees the squirrel. Since we don't have enough information to conclude whether the mouse sees the squirrel or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. The mouse is round. (This doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n2. The mouse likes the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n3. The mouse needs the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n4. The cat does not see the squirrel. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n\nHowever, there are two conditions that might be relevant to the mouse seeing the squirrel:\n\n1. If the cat likes the mouse then the mouse sees the squirrel. (This condition implies that we need to know whether the cat likes the mouse to determine whether the mouse sees the squirrel.)\n2. The mouse does not need the squirrel. (This information is not provided, but we can infer it from the condition: \"The squirrel is young.\")\n\nLet's start by analyzing the conditions that involve the cat and the mouse:\n\n1. The cat is red. (This doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n2. The cat is not rough. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n3. The cat does not like the squirrel. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n4. The cat does not see the squirrel. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n5. If the cat likes the mouse then the mouse sees the squirrel. (This condition implies that we need to know whether the cat likes the mouse to determine whether the mouse sees the squirrel.)\n\nNow, let's analyze the conditions that involve the dog and the cat:\n\n1. The dog is not young. (This doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n2. The dog needs the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n3. If something sees the dog then it is red. (This condition doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n\nHowever, there is one condition that involves the dog and might be relevant to the mouse seeing the squirrel:\n\n1. If something is young and it sees the dog then the dog needs the mouse. (This condition implies that the squirrel sees the dog, but we already know that the squirrel is young and it sees the dog.)\n\nNow, let's analyze the conditions that involve the mouse, the cat, and the squirrel:\n\n1. The mouse is round. (This doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n2. The mouse likes the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n3. The mouse needs the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n4. The mouse sees the cat. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n5. The squirrel is young. (This doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n6. The squirrel needs the mouse. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n7. The squirrel sees the dog. (This also doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n\nHowever, there is one condition that involves the mouse, the cat, and the squirrel and might be relevant to the mouse seeing the squirrel:\n\n1. If the cat likes the mouse then the mouse sees the squirrel. (This condition implies that we need to know whether the cat likes the mouse to determine whether the mouse sees the squirrel.)\n\nNow, let's analyze the conditions that involve the mouse, the cat, and the squirrel and the dog:\n\n1. If the cat likes the mouse then the mouse sees the squirrel. (This condition implies that we need to know whether the cat likes the mouse to determine whether the mouse sees the squirrel.)\n2. If something needs the mouse then it is rough. (This condition implies that the mouse is rough, but we already know that the mouse is round.)\n\nNow, let's analyze the conditions that involve the mouse, the cat, the squirrel, and the dog and the roughness of an animal:\n\n1. If the cat likes the mouse then the mouse sees the squirrel. (This condition implies that we need to know whether the cat likes the mouse to determine whether the mouse sees the squirrel.)\n2. If something is rough then it sees the dog. (This condition doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n3. If something is rough and not red then it likes the squirrel. (This condition doesn't give us any information about the mouse seeing the squirrel, so we can ignore it for now.)\n\nHowever, there is one condition that involves the mouse, the cat, the squirrel, the dog, and the roughness of an animal and might be relevant to the mouse seeing the squirrel:\n\n1. If something needs the cat and it needs the mouse then it likes the cat. (This condition implies that the mouse likes the cat, but we already know that the mouse likes the cat.)\n\nNow, let's summarize the information we have:\n\n* The mouse is round.\n* The mouse likes the cat.\n* The mouse needs the cat.\n* The mouse sees the cat.\n* The cat is red.\n* The cat is not rough.\n* The cat does not like the squirrel.\n* The cat does not see the squirrel.\n* The dog is not young.\n* The dog needs the cat.\n* The squirrel is young.\n* The squirrel needs the mouse.\n* The squirrel sees the dog.\n* If the cat likes the mouse then the mouse sees the squirrel.\n* If something needs the mouse then it is rough.\n* If something is rough then it sees the dog.\n* If something is rough and not red then it likes the squirrel.\n* If something needs the cat and it needs the mouse then it likes the cat.\n\nFrom the conditions, we can conclude that:\n\n* The mouse sees the cat.\n* The mouse likes the cat.\n* The cat is red.\n* The cat does not see the squirrel.\n* The squirrel is young.\n* The squirrel sees the dog.\n* The squirrel needs the mouse.\n\nNow, let's analyze the statement \"The mouse does not see the squirrel\":\n\nFrom the conditions, we know that:\n\n* If the cat likes the mouse then the mouse sees the squirrel.\n\nHowever, we also know that:\n\n* The mouse likes the cat.\n* The cat is red.\n\nBut we don't know whether the cat likes the mouse or not. If the cat likes the mouse, then the mouse sees the squirrel. But we don't have any information about the cat liking the mouse.\n\nTherefore, the statement \"The mouse does not see the squirrel\" is unknown, because we don't have enough information to determine whether the mouse sees the squirrel or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions. We will break down the information step by step to determine the relationship between the mouse and the squirrel.\n\n1. The cat does not see the squirrel.\n2. The cat is red.\n3. The dog is not young.\n4. The dog needs the cat.\n5. The mouse is round.\n6. The mouse likes the cat.\n7. The mouse needs the cat.\n8. The mouse sees the cat.\n9. The squirrel is young.\n10. The squirrel needs the mouse.\n11. If something sees the dog then it is red.\n12. If something is red and it needs the squirrel then the squirrel likes the mouse.\n13. If something is young and it sees the dog then the dog needs the mouse.\n14. If something needs the mouse then it is rough.\n15. If the cat likes the mouse then the mouse sees the squirrel.\n16. If something needs the cat and it needs the mouse then it likes the cat.\n17. If something is rough then it sees the dog.\n18. If something is rough and not red then it likes the squirrel.\n\nNow, let's focus on the relationship between the mouse and the squirrel:\n\n- From statement 8, we know that the mouse sees the cat.\n- From statement 15, we know that if the cat likes the mouse then the mouse sees the squirrel. However, the cat does not like the mouse (because it is not mentioned in the conditions).\n- We can derive that the cat likes the mouse is false.\n- From statement 15, we can conclude that the mouse does see the squirrel (because the condition is not met).\n\nHowever, we have to consider the given statement we want to evaluate:\n\"The mouse does not see the squirrel.\"\n\nBased on the analysis above, we can conclude that this statement is actually false because the mouse sees the squirrel.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is round. (This does not provide any information about the mouse seeing the squirrel.)\n2. The mouse likes the cat. (This does not provide any information about the mouse seeing the squirrel.)\n3. The mouse needs the cat. (This does not provide any information about the mouse seeing the squirrel.)\n\nNow, we look for any information that might be related to the mouse seeing the squirrel. We know that if something likes the mouse, then the mouse sees the squirrel. However, there is no information that directly states the mouse likes the squirrel. But there is information that states: \"If something sees the dog then it is red.\" This does not help with the mouse seeing the squirrel, but we will keep it in mind.\n\nHowever, we do have information that states: \"If something is young and it sees the dog then the dog needs the mouse.\" We also know that \"The squirrel is young.\" So, we can conclude that: \"The squirrel sees the dog.\"\n\nNow we go back to the information: \"If something sees the dog then it is red.\" This means that \"The squirrel is red.\"\n\nHowever, we also have information that states: \"If the cat likes the mouse then the mouse sees the squirrel.\" We know that \"The cat likes the mouse.\" So, we can conclude that: \"The mouse sees the squirrel.\"\n\nBased on the conclusion, we can determine that the statement \"The mouse does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(cat)",
+          "z3_formula": "Not(rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cat, squirrel)",
+          "z3_formula": "Not(likes_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_X, needs_X_squirrel), likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not red(X) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, Not(red_X)), likes_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, mouse)",
+          "z3_formula": "needs_dog_mouse == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(squirrel)",
+          "z3_formula": "Not(rough_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(squirrel, squirrel)",
+          "z3_formula": "Not(likes_squirrel_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(squirrel, mouse)",
+          "z3_formula": "Not(likes_squirrel_mouse)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(squirrel)",
+          "z3_formula": "Not(rough_squirrel)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(squirrel, squirrel)",
+          "z3_formula": "Not(likes_squirrel_squirrel)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, squirrel)",
+          "z3_formula": "Not(sees_mouse_squirrel)",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(cat)",
+          "z3_formula": "Not(rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cat, squirrel)",
+          "z3_formula": "Not(likes_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_X, needs_X_squirrel), likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not red(X) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, Not(red_X)), likes_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(cat)",
+          "z3_formula": "Not(rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cat, squirrel)",
+          "z3_formula": "Not(likes_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_X, needs_X_squirrel), likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, X)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not red(X) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, Not(red_X)), likes_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> likes(X, Y)",
+          "z3_formula": "Implies(And(needs_cat_mouse, needs_mouse_cat), likes_cat_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(needs_cat_mouse, likes_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_dog, sees_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(red(X)) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_dog, Not(red_dog)), likes_dog_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(dog))",
+          "z3_formula": "Not(red_dog) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(likes(mouse, squirrel))",
+          "z3_formula": "Not(likes_mouse_squirrel) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(cat)",
+          "z3_formula": "Not(rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cat, squirrel)",
+          "z3_formula": "Not(likes_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_X, needs_X_squirrel), likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(red(X)) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, Not(red_X)), likes_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel) == True | sees(mouse, cat) == True",
+          "z3_formula": "Or(sees_mouse_squirrel, sees_mouse_cat)",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_mouse_dog, red_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_mouse, needs_mouse_squirrel), likes_squirrel_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_squirrel, sees_squirrel_dog), needs_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_cat_mouse, rough_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_mouse, sees_mouse_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(red(X)) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_mouse, Not(red_mouse)), likes_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(mouse, squirrel))",
+          "z3_formula": "Not(sees_mouse_squirrel) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_cat_mouse, rough_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(cat, squirrel)",
+          "z3_formula": "does_not_like_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(cat, squirrel)",
+          "z3_formula": "does_not_like_cat_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_squirrel, sees_squirrel_dog), needs_dog_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(dog))",
+          "z3_formula": "Not(young_dog) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_cat_dog, red_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat) & needs(squirrel, mouse)",
+          "z3_formula": "And(red_cat, needs_squirrel_mouse) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_squirrel, needs_squirrel_mouse), likes_squirrel_mouse)",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(cat)",
+          "z3_formula": "Not(rough_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cat, squirrel)",
+          "z3_formula": "Not(likes_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, squirrel)",
+          "z3_formula": "Not(sees_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "Not(young_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_X, needs_X_squirrel), likes_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(red(X)) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, Not(red_X)), likes_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(cat))",
+          "z3_formula": "not(rough_cat) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(cat, squirrel))",
+          "z3_formula": "not(likes_cat_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(cat, squirrel))",
+          "z3_formula": "not(sees_cat_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_X_mouse, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_X, sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(red(X)) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_X, not(red_X)), likes_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_X_mouse), likes_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "not_young_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_dog_mouse, red_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, squirrel) -> likes(squirrel, mouse)",
+          "z3_formula": "Implies(And(red_cat, needs_cat_squirrel), likes_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_squirrel, sees_squirrel_dog), needs_dog_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(needs_squirrel_mouse, rough_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(X, mouse) -> likes(cat, mouse)",
+          "z3_formula": "Implies(And(needs_cat_mouse, needs_cat_squirrel), likes_cat_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, dog)",
+          "z3_formula": "Implies(rough_squirrel, sees_squirrel_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not red(X) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(rough_squirrel, not_red_squirrel), likes_squirrel_squirrel)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, dog) -> needs(dog, mouse)",
+          "z3_formula": "Implies(And(young_X, sees_X_dog), needs_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> red(X)",
+          "z3_formula": "Implies(sees_X_dog, red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(cat, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(likes_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, mouse)",
+          "z3_formula": "likes_cat_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 213,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 5,
+      "total_weight": 206,
+      "solve_time_ms": 2.399291843175888
+    },
+    "timing": {
+      "trace_gen_s": 24.918,
+      "extraction_s": 43.709,
+      "dedup_s": 2.225,
+      "maxsat_s": 0.006,
+      "total_s": 70.859
+    }
+  }
+}

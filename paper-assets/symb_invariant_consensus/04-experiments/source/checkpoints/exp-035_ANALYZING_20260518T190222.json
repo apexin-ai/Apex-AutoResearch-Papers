@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp-035",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:02:20.251Z",
+    "updated_at": "2026-05-18T19:02:22.525Z",
+    "hypothesis": "Qwen2.5-7B-Instruct 在 FOLIO-204 上 SICA vs SC：within-family scaling 下界验证。弱模型 C0 更高（更多 diversity），但 constraint quality 更差，SICA 仍无法 outperform SC。与 exp-004-qwen7b (D012 delta=0) 在 full FOLIO 上的扩展验证。代替原 ARC-60 实验（exp-035 v1 因平台 kill 失败）。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && CUDA_VISIBLE_DEVICES=3 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8003 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp035.log 2>&1 & sleep 120 && python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8003/v1 --model auto --seed 42 --math-data data/empty.json --pw-data data/empty.json --folio-data data/folio_full.json --output results/exp035_qwen25_7b_folio204/exp035_results.json --save-intermediates 2>&1 | tee results/exp035_qwen25_7b_folio204/exp035.log\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "66133",
+      "log_path": "~/runs/symb_invariant_consensus/exp-035.log",
+      "submitted_at": "2026-05-18T17:42:16.264Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed",
+    "notes": "v2: westd-25068 cuda:3, Qwen2.5-7B FOLIO-204. v1 was ARC-60 on westd-16639 (failed: platform kill). 当前正在运行，ETA ~2-3h。",
+    "checkpoint_path": "N/A (platform kill, ~18/60 intermediates lost on instance reset)",
+    "reproduce": {
+      "finished_at": "2026-05-18T19:02:21.579Z"
+    }
+  },
+  "timestamp": "2026-05-18T19:02:22.787754+00:00",
+  "trigger": "update_registry"
+}

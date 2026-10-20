@@ -1,0 +1,1156 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-813_Q17",
+    "problem": "The cow likes the lion. The cow sees the dog. The dog is big. The dog is cold. The dog likes the lion. The lion is nice. The lion is rough. The lion does not need the dog. The rabbit is cold. The rabbit needs the cow. The rabbit needs the lion. The rabbit sees the dog. If someone likes the cow then they are big. If someone needs the lion then the lion needs the cow. If someone likes the lion then they like the rabbit. If someone sees the cow and they are not big then they do not like the lion. If someone is green then they see the rabbit. If someone is green and they like the cow then the cow needs the rabbit. If someone sees the rabbit then the rabbit likes the lion. If someone likes the lion and they do not see the dog then they need the lion. If someone likes the lion and they like the rabbit then the lion is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not like the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nLikes(cow, lion, True) ::: The cow likes the lion.\nSees(cow, dog, True) ::: The cow sees the dog.\nBig(dog, True) ::: The dog is big.\nCold(dog, True) ::: The dog is cold.\nLikes(dog, lion, True) ::: The dog likes the lion.\nNice(lion, True) ::: The lion is nice.\nRough(lion, True) ::: The lion is rough.\nNeeds(lion, dog, False) ::: The lion does not need the dog.\nCold(rabbit, True) ::: The rabbit is cold.\nNeeds(rabbit, cow, True) ::: The rabbit needs the cow.\nNeeds(rabbit, lion, True) ::: The rabbit needs the lion.\nSees(rabbit, dog, True) ::: The rabbit sees the dog.\n\nRules:\nLikes($x, cow, True) >>> Big($x, True) ::: If someone likes the cow then they are big.\nNeeds($x, lion, True) >>> Needs(lion, cow, True) ::: If someone needs the lion then the lion needs the cow.\nLikes($x, lion, True) >>> Likes($x, rabbit, True) ::: If someone likes the lion then they like the rabbit.\nSees($x, cow, True) && Big($x, False) >>> Likes($x, lion, False) ::: If someone sees the cow and they are not big then they do not like the lion.\nGreen($x, True) >>> Sees($x, rabbit, True) ::: If someone is green then they see the rabbit.\nGreen($x, True) && Likes($x, cow, True) >>> Needs(cow, rabbit, True) ::: If someone is green and they like the cow then the cow needs the rabbit.\nSees($x, rabbit, True) >>> Likes(rabbit, lion, True) ::: If someone sees the rabbit then the rabbit likes the lion.\nLikes($x, lion, True) && Sees($x, dog, False) >>> Needs($x, lion, True) ::: If someone likes the lion and they do not see the dog then they need the lion.\nLikes($x, lion, True) && Likes($x, rabbit, True) >>> Green(lion, True) ::: If someone likes the lion and they like the rabbit then the lion is green.\n\nQuery:\nLikes(lion, rabbit, False) ::: The lion does not like the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 130.0,
+      "Unknown": 120.0
+    },
+    "answer_counts": {
+      "False": 5,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use them to deduce information about the relationships between the animals. We will then use this information to determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown.\n\nGiven statements:\n1. The cow likes the lion.\n2. The cow sees the dog.\n3. The dog is big.\n4. The dog is cold.\n5. The dog likes the lion.\n6. The lion is nice.\n7. The lion is rough.\n8. The lion does not need the dog.\n9. The rabbit is cold.\n10. The rabbit needs the cow.\n11. The rabbit needs the lion.\n12. The rabbit sees the dog.\n13. If someone likes the cow then they are big.\n14. If someone needs the lion then the lion needs the cow.\n15. If someone likes the lion then they like the rabbit.\n16. If someone sees the cow and they are not big then they do not like the lion.\n17. If someone is green then they see the rabbit.\n18. If someone is green and they like the cow then the cow needs the rabbit.\n19. If someone sees the rabbit then the rabbit likes the lion.\n20. If someone likes the lion and they do not see the dog then they need the lion.\n21. If someone likes the lion and they like the rabbit then the lion is green.\n\nFrom statement 1, we know that the cow likes the lion.\nFrom statement 13, since the cow likes the lion, it implies that the lion is big.\n\nFrom statement 5, we know that the dog likes the lion. \nFrom statement 16, since the dog sees the cow and is big, it implies that the dog likes the lion.\n\nFrom statement 15, since the dog likes the lion, it implies that the dog likes the rabbit.\n\nFrom statement 19, since the rabbit sees the dog, it implies that the rabbit likes the lion.\n\nNow, we need to determine whether the lion likes the rabbit. \nFrom statement 15, since the dog likes the lion and the dog likes the rabbit, it implies that the lion likes the rabbit.\n\nTherefore, the statement \"The lion does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nFrom the information, we know:\n- The lion is nice.\n- The lion is rough.\n- The dog is big and cold.\n- The dog likes the lion.\n- The rabbit is cold.\n- The rabbit needs the cow and the lion.\n- The rabbit sees the dog.\n\nNow, let's apply the given rules:\n- If someone likes the cow then they are big. (Rule 1)\n- If someone needs the lion then the lion needs the cow. (Rule 2)\n- If someone likes the lion then they like the rabbit. (Rule 3)\n- If someone sees the cow and they are not big then they do not like the lion. (Rule 4)\n- If someone is green then they see the rabbit. (Rule 5)\n- If someone is green and they like the cow then the cow needs the rabbit. (Rule 6)\n- If someone sees the rabbit then the rabbit likes the lion. (Rule 7)\n- If someone likes the lion and they do not see the dog then they need the lion. (Rule 8)\n- If someone likes the lion and they like the rabbit then the lion is green. (Rule 9)\n\nFrom Rule 7, we know that if someone sees the rabbit then the rabbit likes the lion. Since the rabbit sees the dog (given information), the rabbit likes the lion (Rule 7).\n\nNow, let's consider the possible relationships between the lion and the rabbit based on the given rules. We know that the lion is nice and rough, and the rabbit likes the lion. However, we don't have any information about the lion's feelings towards the rabbit.\n\nLet's assume that the lion likes the rabbit. Then, based on Rule 3, someone who likes the lion likes the rabbit. This is consistent with the fact that the rabbit likes the lion.\n\nHowever, we still need to determine whether the lion likes the rabbit. Let's consider the statement \"The lion does not like the rabbit.\" If this statement is true, then it would contradict Rule 3, which states that if someone likes the lion then they like the rabbit.\n\nBased on the given rules and information, we cannot conclude that the lion does not like the rabbit. We have a possible interpretation that the lion likes the rabbit, but we cannot rule out the possibility that the lion does not like the rabbit.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nLet's break down the conditions:\n\n1. If someone likes the cow then they are big.\n2. If someone needs the lion then the lion needs the cow.\n3. If someone likes the lion then they like the rabbit.\n4. If someone sees the cow and they are not big then they do not like the lion.\n5. If someone is green then they see the rabbit.\n6. If someone is green and they like the cow then the cow needs the rabbit.\n7. If someone sees the rabbit then the rabbit likes the lion.\n8. If someone likes the lion and they do not see the dog then they need the lion.\n9. If someone likes the lion and they like the rabbit then the lion is green.\n\nNow, let's analyze the given information and the conditions to find a connection between the lion and the rabbit.\n\nFrom the given information:\n- The cow likes the lion.\n- The dog likes the lion.\n- The rabbit sees the dog.\n- The rabbit needs the cow and the lion.\n- The lion is nice and rough.\n\nBased on condition 3, if someone likes the lion, they like the rabbit. Since the dog likes the lion (condition 6), it implies that the dog likes the rabbit.\n\nBased on condition 7, if someone sees the rabbit, the rabbit likes the lion. The cow sees the dog (condition 3), but we don't know if the cow is big or not. However, since the dog is big (condition 4), the cow might not like the lion (condition 4). But the cow does like the lion (from the given information), so the cow is big (condition 1). The rabbit sees the dog, so the rabbit likes the lion (condition 7).\n\nHowever, we cannot conclude whether the lion likes the rabbit or not. The given information only shows that the dog, the cow, and the rabbit have a relationship with the lion, but it doesn't show a direct relationship between the lion and the rabbit.\n\nTherefore, based on the given information and conditions, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog likes the lion. (Statement 5)\n2. The lion is nice. (Statement 8)\n3. The lion is rough. (Statement 9)\n4. The lion does not need the dog. (Statement 10)\n5. The rabbit is cold. (Statement 11)\n6. The rabbit needs the cow. (Statement 12)\n7. The rabbit needs the lion. (Statement 13)\n8. The rabbit sees the dog. (Statement 14)\n\nFrom the given rules:\n\n1. If someone likes the cow then they are big. \n2. If someone needs the lion then the lion needs the cow.\n3. If someone likes the lion then they like the rabbit.\n4. If someone sees the cow and they are not big then they do not like the lion.\n5. If someone is green then they see the rabbit.\n6. If someone is green and they like the cow then the cow needs the rabbit.\n7. If someone sees the rabbit then the rabbit likes the lion.\n8. If someone likes the lion and they do not see the dog then they need the lion.\n9. If someone likes the lion and they like the rabbit then the lion is green.\n\nNow, we need to find out whether the lion likes the rabbit or not. \n\nFrom Rule 3, we know that if someone likes the lion, they like the rabbit. However, we cannot directly apply this rule to the lion. We need to find someone who likes the lion.\n\nFrom Rule 1, if someone likes the cow then they are big. This means that the cow likes the lion (Statement 1) and the cow is big. Since the cow is big, it is possible that the cow likes the lion.\n\nNow, let's apply Rule 3. If the cow likes the lion, then the cow likes the rabbit.\n\nHowever, this does not directly tell us whether the lion likes the rabbit or not. We need to find out the relationship between the lion and the rabbit.\n\nFrom Rule 7, if someone sees the rabbit then the rabbit likes the lion. This means that the rabbit sees the lion, and the rabbit likes the lion.\n\nNow, let's apply Rule 3. If the rabbit likes the lion, then the lion likes the rabbit.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is nice. \n2. The lion is rough.\n3. The lion does not need the dog.\n4. If someone likes the lion then they like the rabbit. \n   - Since the lion is nice, we can infer that the lion likes the rabbit.\n\nSo, from step 4, we know that the lion likes the rabbit. \n\nThis means that the statement \"The lion does not like the rabbit\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and apply them to the statement we want to evaluate. \n\n1. The cow likes the lion.\n2. The cow sees the dog.\n3. The dog is big.\n4. The dog is cold.\n5. The dog likes the lion.\n6. The lion is nice.\n7. The lion is rough.\n8. The lion does not need the dog.\n9. The rabbit is cold.\n10. The rabbit needs the cow.\n11. The rabbit needs the lion.\n12. The rabbit sees the dog.\n\nFrom statement 1, we know that the cow likes the lion. \n\nFrom statement 3, we know that the dog is big. \n\nFrom statement 7, we know that the lion is rough.\n\nFrom statement 9, we know that the rabbit is cold.\n\nFrom statement 10 and 11, we know that the rabbit needs both the cow and the lion.\n\nNow, let's evaluate the given conditions:\n\n- Condition 1: If someone likes the cow then they are big. (This condition does not apply to the lion directly, but we can use it to infer information later.)\n\n- Condition 2: If someone needs the lion then the lion needs the cow. (This condition does not apply to the rabbit directly, but we can use it to infer information later.)\n\n- Condition 3: If someone likes the lion then they like the rabbit. (We don't have enough information to determine if someone likes the lion, so this condition is unknown.)\n\n- Condition 4: If someone sees the cow and they are not big then they do not like the lion. (Since the cow likes the lion, this condition does not apply to the lion directly.)\n\n- Condition 5: If someone is green then they see the rabbit. (We don't have enough information to determine if anyone is green, so this condition is unknown.)\n\n- Condition 6: If someone is green and they like the cow then the cow needs the rabbit. (We don't have enough information to determine if anyone is green and likes the cow, so this condition is unknown.)\n\n- Condition 7: If someone sees the rabbit then the rabbit likes the lion. (We know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.)\n\n- Condition 8: If someone likes the lion and they do not see the dog then they need the lion. (This condition does not apply to the rabbit directly.)\n\n- Condition 9: If someone likes the lion and they like the rabbit then the lion is green. (We don't have enough information to determine if anyone likes the lion and the rabbit, so this condition is unknown.)\n\nNow, let's evaluate the given statement:\n\nThe lion does not like the rabbit.\n\nFrom statement 1, we know that the cow likes the lion. \n\nFrom statement 5, we don't know if the lion likes the rabbit, but we can use condition 3 to try to determine this:\n\nCondition 3: If someone likes the lion then they like the rabbit. \n\nWe don't know if someone likes the lion, but we can use the given conditions to try to determine this.\n\nFrom statement 11, we know that the rabbit needs the lion. \n\nFrom condition 2, we know that if someone needs the lion then the lion needs the cow. (This condition does not apply to the rabbit directly, but we can use it to infer information later.)\n\nFrom condition 7, we know that if someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nNow, let's try to use condition 3 to determine if someone likes the lion:\n\nCondition 3: If someone likes the lion then they like the rabbit. \n\nWe don't know if someone likes the lion, but we can use condition 9 to try to determine this:\n\nCondition 9: If someone likes the lion and they like the rabbit then the lion is green. \n\nWe don't know if someone likes the lion and the rabbit, but we can use condition 7 to try to determine this:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nFrom statement 5, we don't know if anyone sees the rabbit, but we can use condition 5 to try to determine this:\n\nCondition 5: If someone is green then they see the rabbit. \n\nWe don't know if anyone is green, so this condition is unknown.\n\nFrom condition 3, we know that if someone likes the lion then they like the rabbit. \n\nWe don't know if someone likes the lion, but we can use condition 7 to try to determine this:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nFrom condition 1, we know that if someone likes the cow then they are big. \n\nFrom statement 3, we know that the dog is big, and from statement 5, we know that the dog likes the lion. \n\nFrom condition 3, we know that if someone likes the lion then they like the rabbit. \n\nWe don't know if the dog likes the rabbit, but we can use condition 7 to try to determine this:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nNow, let's try to use condition 7 to determine if the rabbit likes the lion:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, and from condition 3, we know that if someone likes the lion then they like the rabbit. \n\nFrom statement 5, we don't know if the dog likes the lion, but we can use condition 3 to try to determine this:\n\nCondition 3: If someone likes the lion then they like the rabbit. \n\nWe don't know if the dog likes the lion, but we can use condition 9 to try to determine this:\n\nCondition 9: If someone likes the lion and they like the rabbit then the lion is green. \n\nWe don't know if the dog likes the lion and the rabbit, but we can use condition 5 to try to determine this:\n\nCondition 5: If someone is green then they see the rabbit. \n\nWe don't know if the dog is green, but we can use condition 6 to try to determine this:\n\nCondition 6: If someone is green and they like the cow then the cow needs the rabbit. \n\nWe don't know if the dog likes the cow, but we can use condition 1 to try to determine this:\n\nCondition 1: If someone likes the cow then they are big. \n\nWe know that the dog is big from statement 3, and from condition 1, we know that if someone likes the cow then they are big. \n\nNow, let's try to use condition 1 to determine if the dog likes the cow:\n\nCondition 1: If someone likes the cow then they are big. \n\nWe know that the dog is big from statement 3, and from condition 1, we know that if someone likes the cow then they are big. \n\nWe don't know if the dog likes the cow, but we can use condition 7 to try to determine this:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nFrom condition 3, we know that if someone likes the lion then they like the rabbit. \n\nWe don't know if the dog likes the lion, but we can use condition 9 to try to determine this:\n\nCondition 9: If someone likes the lion and they like the rabbit then the lion is green. \n\nWe don't know if the dog likes the lion and the rabbit, but we can use condition 5 to try to determine this:\n\nCondition 5: If someone is green then they see the rabbit. \n\nWe don't know if the dog is green, but we can use condition 6 to try to determine this:\n\nCondition 6: If someone is green and they like the cow then the cow needs the rabbit. \n\nWe don't know if the dog likes the cow, but we can use condition 1 to try to determine this:\n\nCondition 1: If someone likes the cow then they are big. \n\nWe know that the dog is big from statement 3, and from condition 1, we know that if someone likes the cow then they are big. \n\nNow, let's try to use condition 1 to determine if the dog likes the cow:\n\nCondition 1: If someone likes the cow then they are big. \n\nWe know that the dog is big from statement 3, and from condition 1, we know that if someone likes the cow then they are big. \n\nWe don't know if the dog likes the cow, but we can use condition 7 to try to determine this:\n\nCondition 7: If someone sees the rabbit then the rabbit likes the lion. \n\nWe know that the rabbit sees the dog from statement 12, but we don't know if the rabbit likes the lion yet.\n\nFrom condition 3, we know that if someone likes the lion then they like the rabbit. \n\nWe don't know if the dog likes the lion, but we can use condition 9 to try to determine this:\n\nCondition 9: If someone likes the lion and they like",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given statements and the conditions provided.\n\nFrom the given statements, we know the following:\n1. The lion is nice. \n2. The lion is rough.\n3. The dog likes the lion.\n4. The rabbit sees the dog.\n5. If someone likes the lion then they like the rabbit.\n\nFrom statement 5, we can infer that the dog likes the rabbit because the dog likes the lion.\n\nHowever, we don't have any information about the lion's feelings towards the rabbit. We can only infer that the dog likes the rabbit.\n\nSo, based on the given statements, we cannot conclude whether the lion likes the rabbit or not. Therefore, the statement \"The lion does not like the rabbit\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and apply the rules step by step.\n\n1. The dog is big, the dog is cold, and the dog likes the lion. (Initial Information)\n2. If someone likes the cow, then they are big. (Rule 1)\n   Since the dog likes the lion and not the cow, we cannot apply Rule 1 to the dog.\n3. The rabbit is cold, the rabbit needs the cow, and the rabbit needs the lion. (Initial Information)\n4. If someone likes the lion then they like the rabbit. (Rule 4)\n   From the dog's information, we know the dog likes the lion. Therefore, the dog likes the rabbit.\n5. If someone sees the cow and they are not big then they do not like the lion. (Rule 6)\n   We cannot apply this rule to the dog because the dog is big, not because it likes the cow.\n6. The rabbit sees the dog. (Initial Information)\n7. If someone sees the rabbit then the rabbit likes the lion. (Rule 8)\n   Since the rabbit sees the dog, the rabbit likes the lion (from Rule 8), and we already know the rabbit likes the lion (from Rule 4 and the dog's information), this rule is redundant.\n8. If someone likes the lion and they do not see the dog then they need the lion. (Rule 9)\n   We cannot apply this rule to the rabbit because the rabbit sees the dog.\n9. If someone likes the lion and they like the rabbit then the lion is green. (Rule 10)\n   Since the rabbit likes the lion (from Rule 4 and the dog's information), the lion is green.\n10. The lion is green. (Conclusion from Rule 10)\n11. If someone is green then they see the rabbit. (Rule 5)\n    Since the lion is green, the lion sees the rabbit.\n12. If someone sees the rabbit and they like the rabbit then they need the lion. (Rule 7)\n    Since the rabbit sees the dog and the rabbit likes the lion, the rabbit needs the lion (from Rule 7). We already know the rabbit needs the lion (from Initial Information).\n13. The rabbit needs the lion. (Conclusion from Initial Information and Rule 7)\n14. If someone needs the lion then the lion needs the cow. (Rule 2)\n    Since the rabbit needs the lion, the lion needs the cow.\n15. The lion needs the cow. (Conclusion from Rule 2 and Initial Information)\n16. The cow sees the dog. (Initial Information)\n17. The dog likes the lion. (Initial Information)\n18. The dog is big. (Initial Information)\n19. If someone sees the cow and they are not big then they do not like the lion. (Rule 6)\n    Since the dog is big and sees the cow, the dog likes the lion (from Rule 6).\n20. If someone likes the lion and they like the rabbit then the lion is green. (Rule 10)\n    We have already concluded that the lion is green (from Rule 10 and the dog's information).\n21. If someone likes the cow then they are big. (Rule 1)\n    Since the rabbit needs the lion and the lion needs the cow, we cannot apply Rule 1 to the rabbit.\n22. If someone sees the rabbit then the rabbit likes the lion. (Rule 8)\n    This rule is redundant because we already know the rabbit likes the lion.\n23. The lion is nice, the lion is rough, and the lion does not need the dog. (Initial Information)\n\nNow, let's apply the information to the question: \"The lion does not like the rabbit.\"\n\nFrom the initial information and the rules, we know the following:\n- The dog likes the lion.\n- The rabbit likes the lion.\n- If someone likes the lion then they like the rabbit. (Rule 4)\n- If someone sees the rabbit then the rabbit likes the lion. (Rule 8)\n- The lion is green.\n- If someone is green then they see the rabbit. (Rule 5)\n- Since the lion is green, the lion sees the rabbit.\n\nHowever, there is no rule that directly states the lion's feelings towards the rabbit. We can conclude the following:\n- The lion likes the rabbit because the rabbit sees the dog and the rabbit likes the lion (from Rule 8 and the dog's information).\n- The lion is not mentioned to dislike the rabbit anywhere in the rules or the initial information.\n\nTherefore, the statement \"The lion does not like the rabbit\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is nice. (This does not directly relate to the lion's feelings towards the rabbit, so we move on.)\n\n2. The lion likes the rabbit. (This statement directly contradicts the given statement. However, we need to find a valid conclusion from the given conditions.)\n\n3. The lion is rough. (This does not directly relate to the lion's feelings towards the rabbit.)\n\n4. The lion does not need the dog. (This does not directly relate to the lion's feelings towards the rabbit.)\n\n5. The rabbit is cold. (This does not directly relate to the lion's feelings towards the rabbit.)\n\n6. The rabbit needs the cow. (This does not directly relate to the lion's feelings towards the rabbit.)\n\n7. The rabbit needs the lion. (This does not directly relate to the lion's feelings towards the rabbit.)\n\n8. The rabbit sees the dog. (This does not directly relate to the lion's feelings towards the rabbit.)\n\nNow, let's analyze the conditions related to the lion's feelings towards the rabbit:\n\n- If someone likes the lion then they like the rabbit. (From the given information, we can see that the dog likes the lion. Therefore, the dog likes the rabbit.)\n\nHowever, we still need to analyze the conditions related to the lion's feelings towards the rabbit:\n\n- If someone sees the rabbit then the rabbit likes the lion. (The rabbit sees the dog, but this does not directly relate to the lion's feelings towards the rabbit.)\n\n- If someone likes the lion and they like the rabbit then the lion is green. (We do not have any information that someone likes both the lion and the rabbit.)\n\n- If someone likes the lion and they do not see the dog then they need the lion. (This condition is not related to the lion's feelings towards the rabbit.)\n\n- If someone is green then they see the rabbit. (This condition is not related to the lion's feelings towards the rabbit.)\n\n- If someone sees the rabbit and they like the lion then they like the rabbit. (This condition is not related to the lion's feelings towards the rabbit.)\n\n- If someone likes the lion then they like the rabbit. (From the given information, we can see that the dog likes the lion. Therefore, the dog likes the rabbit.)\n\n- The lion is nice and the dog likes the lion. We can now use the condition \"If someone sees the cow and they are not big then they do not like the lion.\" The cow is not mentioned to be big or not big in this problem so we can't conclude anything from this condition.\n\n- The statement \"The rabbit needs the lion\" is present. But \"The lion does not need the dog.\" \n\n- The rabbit is cold.\n\nFrom the given information, we have a conclusion that the dog likes the lion and the lion is nice. We also know that the rabbit is cold. We still do not have a valid conclusion to determine whether the lion likes the rabbit.\n\nHowever, we can see that the condition \"If someone likes the lion then they like the rabbit\" can be used. From the given information, the dog likes the lion. Therefore, the dog likes the rabbit.\n\nBut we need to check if the dog is big or not to see if the dog likes the lion. The condition \"If someone sees the cow and they are not big then they do not like the lion\" is used for this. \n\nThe cow is not mentioned to be big or not big in this problem so we can't conclude anything from this condition.\n\nBut we can see that the dog sees the cow and the dog is big. The condition \"If someone likes the cow then they are big\" is used for this.\n\nSo the dog likes the cow and the dog is big.\n\nBut we can see that the condition \"If someone sees the cow and they are not big then they do not like the lion\" is not used because the dog is big.\n\nTherefore, we can conclude that the dog likes the lion and the dog is big.\n\nNow, the condition \"If someone likes the lion then they like the rabbit\" can be used. From the given information, the dog likes the lion. Therefore, the dog likes the rabbit.\n\nFrom the given information, we have a conclusion that the dog likes the lion and the dog likes the rabbit. We still do not have a valid conclusion to determine whether the lion likes the rabbit.\n\nHowever, we can see that the condition \"If someone likes the lion and they like the rabbit then the lion is green\" can be used. From the given information, the dog likes the lion and the dog likes the rabbit. Therefore, the lion is green.\n\nNow we can see that the condition \"If someone is green then they see the rabbit\" can be used. From the given information, the lion is green. Therefore, the lion sees the rabbit.\n\nThe condition \"If someone sees the rabbit then the rabbit likes the lion\" can be used. From the given information, the lion sees the rabbit. Therefore, the rabbit likes the lion.\n\nTherefore, from the given information, we can conclude that the lion likes the rabbit.\n\nSince the lion likes the rabbit, the statement \"The lion does not like the rabbit\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow likes the lion. \n   There is no direct information about the lion's feelings towards the cow. This is just a statement of the cow's preference.\n\n2. The cow sees the dog. \n   This statement does not provide any information about the lion, the cow's feelings, or the dog's feelings towards the lion or the rabbit.\n\n3. The dog is big. \n   This statement does not provide any information about the lion, the cow's feelings, or the dog's feelings towards the lion or the rabbit.\n\n4. The dog is cold. \n   This statement does not provide any information about the lion, the cow's feelings, or the dog's feelings towards the lion or the rabbit.\n\n5. The dog likes the lion. \n   This statement does not provide any information about the lion's feelings towards the rabbit.\n\n6. The lion is nice. \n   This statement does not provide any information about the lion's feelings towards the rabbit.\n\n7. The lion is rough. \n   This statement does not provide any information about the lion's feelings towards the rabbit.\n\n8. The lion does not need the dog. \n   This statement does not provide any information about the lion's feelings towards the rabbit.\n\n9. The rabbit is cold. \n   This statement does not provide any information about the lion's feelings towards the rabbit.\n\n10. The rabbit needs the cow. \n    This statement does not provide any information about the lion's feelings towards the rabbit.\n\n11. The rabbit needs the lion. \n    This statement does not provide any information about the lion's feelings towards the rabbit.\n\n12. The rabbit sees the dog. \n    This statement does not provide any information about the lion's feelings towards the rabbit.\n\n13. If someone likes the cow then they are big. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n14. If someone needs the lion then the lion needs the cow. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n15. If someone likes the lion then they like the rabbit. \n    This is a general rule, so we can conclude that if the lion likes the rabbit, this rule will be true. However, we cannot determine the lion's feelings towards the rabbit yet.\n\n16. If someone sees the cow and they are not big then they do not like the lion. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n17. If someone is green then they see the rabbit. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n18. If someone is green and they like the cow then the cow needs the rabbit. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n19. If someone sees the rabbit then the rabbit likes the lion. \n    This is a general rule, so we can conclude that the rabbit likes the lion if someone sees the rabbit.\n\n20. If someone likes the lion and they do not see the dog then they need the lion. \n    This is a general rule but does not provide any information about the lion's feelings towards the rabbit.\n\n21. If someone likes the lion and they like the rabbit then the lion is green. \n    This is a general rule, so we can conclude that the lion is green if someone likes the lion and the rabbit.\n\nNow, let's analyze the rules that can help us determine whether the lion likes the rabbit. From rule 15, we know that if someone likes the lion then they like the rabbit. This means that if the lion likes the rabbit, this rule will be true.\n\nFrom rule 21, we know that if someone likes the lion and they like the rabbit then the lion is green. This means that if the lion likes the rabbit, it must be green.\n\nHowever, we do not have any information about the lion's feelings towards the rabbit. We can only make conclusions based on the given rules.\n\nSince we cannot determine the lion's feelings towards the rabbit, we cannot conclude whether the statement \"The lion does not like the rabbit\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will analyze each statement one by one and use the given information to determine the relationships between the animals.\n\n1. The cow likes the lion. \n   - No information from this statement.\n\n2. The cow sees the dog. \n   - No information from this statement.\n\n3. The dog is big. \n   - We now know that the dog is big.\n\n4. The dog is cold. \n   - No information from this statement.\n\n5. The dog likes the lion. \n   - We now know that the dog likes the lion.\n\n6. The lion is nice. \n   - No information from this statement.\n\n7. The lion is rough. \n   - No information from this statement.\n\n8. The lion does not need the dog. \n   - We now know that the lion does not need the dog.\n\n9. The rabbit is cold. \n   - No information from this statement.\n\n10. The rabbit needs the cow. \n    - The rabbit needs the cow.\n\n11. The rabbit needs the lion. \n    - The rabbit needs the lion.\n\n12. The rabbit sees the dog. \n    - We now know that the rabbit sees the dog.\n\n13. If someone likes the cow then they are big.\n   - We will use this information later.\n\n14. If someone needs the lion then the lion needs the cow. \n    - We will use this information later.\n\n15. If someone likes the lion then they like the rabbit. \n    - We will use this information later.\n\n16. If someone sees the cow and they are not big then they do not like the lion. \n   - We will use this information later.\n\n17. If someone is green then they see the rabbit. \n   - We will use this information later.\n\n18. If someone is green and they like the cow then the cow needs the rabbit. \n   - We will use this information later.\n\n19. If someone sees the rabbit then the rabbit likes the lion. \n    - We now know that if someone sees the rabbit, then the rabbit likes the lion.\n\n20. If someone likes the lion and they do not see the dog then they need the lion. \n   - We will use this information later.\n\n21. If someone likes the lion and they like the rabbit then the lion is green. \n   - We will use this information later.\n\nNow, let's analyze the given statement: \"The lion does not like the rabbit.\"\n\nFrom statement 15, we know that if someone likes the lion then they like the rabbit. However, we are trying to determine if the lion likes the rabbit. We can't use this statement to directly conclude the relationship between the lion and the rabbit.\n\nFrom statement 19, we know that if someone sees the rabbit then the rabbit likes the lion. However, we are trying to determine if the lion likes the rabbit. We can't use this statement to directly conclude the relationship between the lion and the rabbit.\n\nFrom statement 15, we know that if someone likes the lion then they like the rabbit. We can use this statement to test if the lion likes the rabbit by checking if there is someone who likes the lion and the rabbit. \n\nFrom statement 5, we know that the dog likes the lion. From statement 20, we know that if someone likes the lion and they do not see the dog then they need the lion. However, we don't have any information that the dog sees the rabbit. Therefore, we can't use the dog to test the relationship between the lion and the rabbit.\n\nFrom statement 11, we know that the rabbit needs the lion. Therefore, from statement 14, we know that the lion needs the cow.\n\nFrom statement 1, we know that the cow likes the lion. Therefore, from statement 13, we know that the cow is big.\n\nFrom statement 2, we know that the cow sees the dog. From statement 16, we know that if someone sees the cow and they are not big then they do not like the lion. Since the cow is big, we can't use this statement to determine the relationship between the lion and the rabbit.\n\nHowever, we can use statement 16 to test if there is someone who sees the cow and they are not big. From statement 12, we know that the rabbit sees the cow. From statement 3, we know that the dog is big. Therefore, from statement 16, we know that the rabbit does not like the lion.\n\nFrom statement 19, we know that if someone sees the rabbit then the rabbit likes the lion. However, we know that the rabbit does not like the lion. Therefore, the lion does not see the rabbit.\n\nWe can use statement 17 to test if the lion is green. From statement 11, we know that the rabbit sees the dog. Therefore, from statement 17, we know that the lion does not see the rabbit.\n\nHowever, we can use statement 21 to test if the lion is green. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. Therefore, from statement 21, we know that the lion is green.\n\nSince the lion is green, from statement 18, we know that the cow needs the rabbit.\n\nWe can use statement 18 to test if the cow likes the rabbit. From statement 1, we know that the cow likes the lion. However, we don't have any information that the cow likes the rabbit. We can use statement 13 to test if the cow likes the rabbit. From statement 13, we know that if someone likes the cow then they are big. However, we don't have any information that the cow likes the rabbit.\n\nHowever, we can use statement 15 to test if the lion likes the rabbit. From statement 1, we know that the cow likes the lion. From statement 21, we know that the lion is green. However, we don't have any information that the lion likes the rabbit. We can use statement 15 to test if there is someone who likes the lion and the rabbit. From statement 1, we know that the cow likes the lion. However, we don't have any information that the cow likes the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. Therefore, from statement 21, we know that the lion is green and someone likes the lion and the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. From statement 12, we know that the rabbit sees the dog. Therefore, from statement 21, we know that the lion is green and someone sees the dog and the rabbit. However, we don't have any information that the lion likes the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. From statement 12, we know that the rabbit sees the dog. However, we don't have any information that the dog likes the rabbit. We can use statement 15 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. However, we don't have any information that the dog likes the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. From statement 12, we know that the rabbit sees the dog. However, we don't have any information that the dog likes the rabbit. We can use statement 15 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. However, we don't have any information that the dog likes the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. From statement 12, we know that the rabbit sees the dog. However, we don't have any information that the dog likes the rabbit. We can use statement 15 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. However, we don't have any information that the dog likes the rabbit.\n\nHowever, we can use statement 21 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. From statement 11, we know that the rabbit needs the lion. From statement 12, we know that the rabbit sees the dog. However, we don't have any information that the dog likes the rabbit. We can use statement 15 to test if there is someone who likes the lion and the rabbit. From statement 5, we know that the dog likes the lion. However, we don't have any information that the dog likes the rabbit.\n\nFrom statement 5, we know that the dog likes the lion. From statement 12, we know that the rabbit sees the dog. Therefore, from statement 19, we know that the rabbit likes the lion.\n\nSince the rabbit likes the lion, from statement 15, we know that someone likes the lion and the rabbit.\n\nTherefore, from statement 21, we know",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the rabbit\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. The cow likes the lion.\n2. The cow sees the dog.\n3. The dog is big.\n4. The dog is cold.\n5. The dog likes the lion.\n6. The lion is nice.\n7. The lion is rough.\n8. The lion does not need the dog.\n9. The rabbit is cold.\n10. The rabbit needs the cow.\n11. The rabbit needs the lion.\n12. The rabbit sees the dog.\n\nRules:\n\n1. If someone likes the cow then they are big.\n2. If someone needs the lion then the lion needs the cow.\n3. If someone likes the lion then they like the rabbit.\n4. If someone sees the cow and they are not big then they do not like the lion.\n5. If someone is green then they see the rabbit.\n6. If someone is green and they like the cow then the cow needs the rabbit.\n7. If someone sees the rabbit then the rabbit likes the lion.\n8. If someone likes the lion and they do not see the dog then they need the lion.\n9. If someone likes the lion and they like the rabbit then the lion is green.\n\nFrom statement 5, we know the rabbit is cold (9), and statement 11 says the rabbit needs the lion. \n\nNow, let's use rule 3: If someone likes the lion then they like the rabbit. Since the lion needs the cow (rule 2) and the rabbit needs the lion (statement 11), and the rabbit sees the dog (statement 12), then the lion must like the rabbit (rule 3). \n\nThis implies the lion likes the rabbit, which directly contradicts the statement \"The lion does not like the rabbit.\" Therefore, based on the given information, the statement \"The lion does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(sees_cow_dog, big_dog), likes_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_X_cow, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_X_lion, needs_lion_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_X_rabbit, Not(big_X)), Not(likes_X_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_X_cow), needs_cow_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_X_rabbit, likes_rabbit_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(sees_X_dog)), needs_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_lion, likes_X_rabbit), green_X)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(Y, lion) -> needs(X, cow)",
+          "z3_formula": "Implies(needs_lion_lion, needs_cow_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_dog_dog, Not(big_cow)), Not(likes_cow_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_X_cow), needs_cow_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(sees_X_dog)), needs_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_lion, likes_X_rabbit), green_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_cow_lion, needs_lion_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_cow, Not(big_cow)), Not(likes_cow_lion))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_cow_cow), needs_cow_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_lion_lion, likes_lion_rabbit), green_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, dog)",
+          "z3_formula": "Not(likes_lion_dog) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_needs(X)",
+          "z3_formula": "Implies(needs_rabbit_lion, lion_needs_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_rabbit, likes_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & not big(X) -> not likes(X, lion)",
+          "z3_formula": "Implies(And(sees_cow_dog, not big_dog), not likes_dog_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_dog, sees_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> cow_needs(X, rabbit)",
+          "z3_formula": "Implies(And(green_dog, likes_dog_cow), cow_needs_dog_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_dog_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_rabbit_rabbit), green_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_rabbit_lion, likes_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & likes(X, lion) -> needs(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_dog, likes_rabbit_lion), needs_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_rabbit_lion, likes_rabbit_lion), green_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_dog_cow, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cow)",
+          "z3_formula": "sees_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(lion, rabbit))",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, X)",
+          "z3_formula": "Implies(sees_lion_rabbit, likes_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_rabbit_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_lion, likes_lion_rabbit), needs_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_lion_rabbit), green_lion)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_needs_cow",
+          "z3_formula": "Implies(needs_rabbit_lion, lion_needs_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> cow_needs_rabbit",
+          "z3_formula": "Implies(And(green_lion, likes_cow_lion), cow_needs_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, Not(sees_dog_lion)), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(likes(lion, rabbit))",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cow_needs_rabbit",
+          "z3_formula": "cow_needs_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(rabbit, X)",
+          "z3_formula": "Implies(green_lion, sees_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_lion, likes_cow_lion), needs_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, Not(sees_dog_dog)), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 171,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 69,
+      "excluded": 1,
+      "total_weight": 168,
+      "solve_time_ms": 1.6650250181555748
+    },
+    "timing": {
+      "trace_gen_s": 24.813,
+      "extraction_s": 33.938,
+      "dedup_s": 2.428,
+      "maxsat_s": 0.005,
+      "total_s": 61.184
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-019-llama8b-strategyqa-200",
+  "project": "symb_invariant_consensus",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:07:01.919Z",
+    "updated_at": "2026-05-17T08:09:12.685Z",
+    "hypothesis": "Powered test: SICA 在弱模型（LLaMA-3.1-8B）上的增益在 n=200 StrategyQA 题时达到统计显著（p<0.05）——验证 operating regime 假设（D031 + exp-011 directionally positive +6.67pp）",
+    "parent": "exp-011-llama8b-v3"
+  },
+  "timestamp": "2026-05-17T08:09:12.862407+00:00",
+  "trigger": "update_registry"
+}

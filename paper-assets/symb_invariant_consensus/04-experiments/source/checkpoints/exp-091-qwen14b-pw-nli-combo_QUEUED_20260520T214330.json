@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-091-qwen14b-pw-nli-combo",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:43:24.690Z",
+    "updated_at": "2026-05-20T21:43:29.878Z",
+    "hypothesis": "Qwen2.5-14B ProofWriter NLI combo: DeBERTa-large-MNLI standalone (55%) < SC (73.50%)，capability gap = -18.50pp。根据 Push A capability gap 单调关系，combo gain 应介于 Qwen3 (+1.83pp) 和 Mistral (+10.67pp) 之间。",
+    "parent": "exp-090-r-nli-proofwriter"
+  },
+  "timestamp": "2026-05-20T21:43:30.365089+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-413_Q22",
+    "problem": "The bear is green. The bear is kind. The mouse needs the bear. The mouse visits the bear. The mouse visits the squirrel. The mouse visits the tiger. The squirrel chases the bear. The squirrel is cold. The squirrel is nice. The tiger is green. The tiger needs the bear. If something needs the mouse then it is kind. If the mouse is young then the mouse needs the bear. If something chases the bear then it needs the tiger. If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. If something visits the squirrel then it needs the mouse. If something chases the squirrel and the squirrel is nice then it is young. If something visits the mouse and the mouse is green then it needs the tiger. If something is kind and it visits the tiger then the tiger visits the squirrel. If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel chases the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Bear, True) ::: The bear is green.\nKind(Bear, True) ::: The bear is kind.\nNeeds(Mouse, Bear, True) ::: The mouse needs the bear.\nVisits(Mouse, Bear, True) ::: The mouse visits the bear.\nVisits(Mouse, Squirrel, True) ::: The mouse visits the squirrel.\nVisits(Mouse, Tiger, True) ::: The mouse visits the tiger.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nCold(Squirrel, True) ::: The squirrel is cold.\nNice(Squirrel, True) ::: The squirrel is nice.\nGreen(Tiger, True) ::: The tiger is green.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\n\nRules:\nNeeds($x, Mouse, True) >>> Kind($x, True) ::: If something needs the mouse then it is kind.\nYoung(Mouse, True) >>> Needs(Mouse, Bear, True) ::: If the mouse is young then the mouse needs the bear.\nChases($x, Bear, True) >>> Needs($x, Tiger, True) ::: If something chases the bear then it needs the tiger.\nNeeds($x, Squirrel, True) && Visits($x, Mouse, True) >>> Needs(Mouse, Squirrel, True) ::: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\nVisits($x, Squirrel, True) >>> Needs($x, Mouse, True) ::: If something visits the squirrel then it needs the mouse.\nChases($x, Squirrel, True) && Nice(Squirrel, True) >>> Young($x, True) ::: If something chases the squirrel and the squirrel is nice then it is young.\nVisits($x, Mouse, True) && Green(Mouse, True) >>> Needs($x, Tiger, True) ::: If something visits the mouse and the mouse is green then it needs the tiger.\nKind($x, True) && Visits($x, Tiger, True) >>> Visits(Tiger, Squirrel, True) ::: If something is kind and it visits the tiger then the tiger visits the squirrel.\nNeeds(Bear, Squirrel, True) && Visits(Bear, Tiger, True) >>> Chases(Bear, Tiger, True) ::: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\nQuery:\nChases(Squirrel, Tiger, True) ::: The squirrel chases the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

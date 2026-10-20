@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-602_Q13",
+    "problem": "The cat is red. The cat is not rough. The cat does not like the squirrel. The cat does not see the squirrel. The dog is not young. The dog needs the cat. The mouse is round. The mouse likes the cat. The mouse needs the cat. The mouse sees the cat. The squirrel is young. The squirrel needs the mouse. If something sees the dog then it is red. If something is red and it needs the squirrel then the squirrel likes the mouse. If something is young and it sees the dog then the dog needs the mouse. If something needs the mouse then it is rough. If the cat likes the mouse then the mouse sees the squirrel. If something needs the cat and it needs the mouse then it likes the cat. If something is rough then it sees the dog. If something is rough and not red then it likes the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not see the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nRound($x, bool) ::: Is x round?\n\nFacts:\nRed(cat, True) ::: The cat is red.\nRough(cat, False) ::: The cat is not rough.\nLikes(cat, squirrel, False) ::: The cat does not like the squirrel.\nSees(cat, squirrel, False) ::: The cat does not see the squirrel.\nYoung(dog, False) ::: The dog is not young.\nNeeds(dog, cat, True) ::: The dog needs the cat.\nRound(mouse, True) ::: The mouse is round.\nLikes(mouse, cat, True) ::: The mouse likes the cat.\nNeeds(mouse, cat, True) ::: The mouse needs the cat.\nSees(mouse, cat, True) ::: The mouse sees the cat.\nYoung(squirrel, True) ::: The squirrel is young.\nNeeds(squirrel, mouse, True) ::: The squirrel needs the mouse.\n\nRules:\nSees($x, dog, True) >>> Red($x, True) ::: If something sees the dog then it is red.\nRed($x, True) && Needs($x, squirrel, True) >>> Likes(squirrel, mouse, True) ::: If something is red and it needs the squirrel then the squirrel likes the mouse.\nYoung($x, True) && Sees($x, dog, True) >>> Needs(dog, mouse, True) ::: If something is young and it sees the dog then the dog needs the mouse.\nNeeds($x, mouse, True) >>> Rough($x, True) ::: If something needs the mouse then it is rough.\nLikes(cat, mouse, True) >>> Sees(mouse, squirrel, True) ::: If the cat likes the mouse then the mouse sees the squirrel.\nNeeds($x, cat, True) && Needs($x, mouse, True) >>> Likes($x, cat, True) ::: If something needs the cat and it needs the mouse then it likes the cat.\nRough($x, True) >>> Sees($x, dog, True) ::: If something is rough then it sees the dog.\nRough($x, True) && Red($x, False) >>> Likes($x, squirrel, True) ::: If something is rough and not red then it likes the squirrel.\n\nQuery:\nSees(mouse, squirrel, False) ::: The mouse does not see the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

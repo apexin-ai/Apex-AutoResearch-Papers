@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1210_Q4",
+    "problem": "Bob is not kind. Bob is smart. Dave is not blue. Dave is cold. Dave is kind. Dave is not red. Dave is smart. Dave is white. Fiona is kind. Fiona is smart. Fiona is white. Harry is red. If someone is red then they are kind. If Harry is kind then Harry is blue. If Harry is kind and Harry is not red then Harry is not blue. If Fiona is not kind then Fiona is blue. All young people are smart. All red, blue people are smart. If Harry is young and Harry is smart then Harry is white. If someone is smart and blue then they are young. If someone is blue and not red then they are young.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nKind(Bob, False) ::: Bob is not kind.\nSmart(Bob, True) ::: Bob is smart.\nBlue(Dave, False) ::: Dave is not blue.\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nRed(Dave, False) ::: Dave is not red.\nSmart(Dave, True) ::: Dave is smart.\nWhite(Dave, True) ::: Dave is white.\nKind(Fiona, True) ::: Fiona is kind.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRed($x, True) >>> Kind($x, True) ::: If someone is red then they are kind.\nKind(Harry, True) >>> Blue(Harry, True) ::: If Harry is kind then Harry is blue.\nKind(Harry, True) && Red(Harry, False) >>> Blue(Harry, False) ::: If Harry is kind and Harry is not red then Harry is not blue.\nKind(Fiona, False) >>> Blue(Fiona, True) ::: If Fiona is not kind then Fiona is blue.\nYoung($x, True) >>> Smart($x, True) ::: All young people are smart.\nRed($x, True) && Blue($x, True) >>> Smart($x, True) ::: All red, blue people are smart.\nYoung(Harry, True) && Smart(Harry, True) >>> White(Harry, True) ::: If Harry is young and Harry is smart then Harry is white.\nSmart($x, True) && Blue($x, True) >>> Young($x, True) ::: If someone is smart and blue then they are young.\nBlue($x, True) && Red($x, False) >>> Young($x, True) ::: If someone is blue and not red then they are young.\n\nQuery:\nKind(Harry, False) ::: Harry is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

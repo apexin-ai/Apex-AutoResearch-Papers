@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-169_Q5",
+    "problem": "The bald eagle chases the rabbit. The bald eagle does not chase the tiger. The bald eagle is green. The bald eagle is red. The bald eagle is young. The bald eagle sees the rabbit. The bear sees the bald eagle. The rabbit is red. The rabbit needs the bald eagle. The tiger chases the bear. The tiger is green. The tiger sees the bald eagle. If something is young and red then it is green. If something sees the bear then it needs the tiger. If something needs the bald eagle then the bald eagle chases the rabbit. If something is big and it chases the rabbit then it sees the bear. If something sees the rabbit and it needs the tiger then the tiger is not blue. If something chases the rabbit then it sees the bald eagle. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear. If something is red and it needs the bear then it is big. If something is red then it needs the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nChases(BaldEagle, Tiger, False) ::: The bald eagle does not chase the tiger.\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRed(BaldEagle, True) ::: The bald eagle is red.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nRed(Rabbit, True) ::: The rabbit is red.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nGreen(Tiger, True) ::: The tiger is green.\nSees(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\n\nRules:\nYoung($x, True) && Red($x, True) >>> Green($x, True) ::: If something is young and red then it is green.\nSees($x, Bear, True) >>> Needs($x, Tiger, True) ::: If something sees the bear then it needs the tiger.\nNeeds($x, BaldEagle, True) >>> Chases(BaldEagle, Rabbit, True) ::: If something needs the bald eagle then the bald eagle chases the rabbit.\nBig($x, True) && Chases($x, Rabbit, True) >>> Sees($x, Bear, True) ::: If something is big and it chases the rabbit then it sees the bear.\nSees($x, Rabbit, True) && Needs($x, Tiger, True) >>> Blue(Tiger, False) ::: If something sees the rabbit and it needs the tiger then the tiger is not blue.\nChases($x, Rabbit, True) >>> Sees($x, BaldEagle, True) ::: If something chases the rabbit then it sees the bald eagle.\nYoung(Rabbit, False) && Needs(Rabbit, BaldEagle, False) >>> Sees(Rabbit, Bear, True) ::: If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\nRed($x, True) && Needs($x, Bear, True) >>> Big($x, True) ::: If something is red and it needs the bear then it is big.\nRed($x, True) >>> Needs($x, Bear, True) ::: If something is red then it needs the bear.\n\nQuery:\nBig(BaldEagle, True) ::: The bald eagle is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

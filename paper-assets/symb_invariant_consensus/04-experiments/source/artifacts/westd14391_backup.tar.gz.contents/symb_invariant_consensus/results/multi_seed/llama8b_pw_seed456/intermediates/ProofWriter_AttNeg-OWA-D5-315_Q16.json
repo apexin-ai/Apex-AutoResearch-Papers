@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-315_Q16",
+    "problem": "Bob is blue. Bob is cold. Bob is green. Dave is blue. Dave is cold. Dave is green. Dave is kind. Dave is smart. Dave is white. Erin is smart. Fiona is blue. Blue people are smart. If Fiona is green and Fiona is blue then Fiona is big. Smart people are cold. If Bob is kind and Bob is blue then Bob is not green. If someone is blue then they are white. Green people are white. All big people are kind. If someone is cold then they are green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nWhite(Dave, True) ::: Dave is white.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Fiona, True) ::: Fiona is blue.\n\nRules:\nBlue($x, True) >>> Smart($x, True) ::: Blue people are smart.\nGreen(Fiona, True) && Blue(Fiona, True) >>> Big(Fiona, True) ::: If Fiona is green and Fiona is blue then Fiona is big.\nSmart($x, True) >>> Cold($x, True) ::: Smart people are cold.\nKind(Bob, True) && Blue(Bob, True) >>> Green(Bob, False) ::: If Bob is kind and Bob is blue then Bob is not green.\nBlue($x, True) >>> White($x, True) ::: If someone is blue then they are white.\nGreen($x, True) >>> White($x, True) ::: Green people are white.\nBig($x, True) >>> Kind($x, True) ::: All big people are kind.\nCold($x, True) >>> Green($x, True) ::: If someone is cold then they are green.\n\nQuery:\nBig(Dave, True) ::: Dave is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

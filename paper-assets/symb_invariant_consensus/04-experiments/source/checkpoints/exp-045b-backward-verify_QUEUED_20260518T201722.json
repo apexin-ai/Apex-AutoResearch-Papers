@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-045b-backward-verify",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:16:45.453Z",
+    "updated_at": "2026-05-18T20:17:22.554Z",
+    "hypothesis": "Backward Verification v2 (正确模型 Qwen2.5-14B): 翻转验证方向，对每个候选答案反向推理 premises，用 Z3 检查一致性。v1 使用错误模型 (Qwen-7B) 得到 -21pp，需确认 Qwen-14B 上是否仍为强 negative（预期是，因为根因是 FOL quality 而非 model capacity）。"
+  },
+  "timestamp": "2026-05-18T20:17:22.734520+00:00",
+  "trigger": "update_registry"
+}

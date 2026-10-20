@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp-052-mistral-folio204-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:17:34.705Z",
+    "updated_at": "2026-05-19T15:21:07.037Z",
+    "hypothesis": "exp-033 replication (seed=123): Mistral-7B FOLIO-204 K=12 T=0.7，与 exp-033 (seed=42, delta=+4.90pp, p=0.013) 完全相同配置，仅 seed 不同。验证正向结果是否 seed-robust。parent=exp-033",
+    "conclusion": "killed",
+    "notes": "Stale duplicate. 实际实验已在 exp-052 (短 ID) 下完成 (DONE)。本条目是重复创建的长名称版本，清理。",
+    "completed_at": "2026-05-19T15:21:07.037Z"
+  },
+  "timestamp": "2026-05-19T15:21:07.243139+00:00",
+  "trigger": "update_registry"
+}

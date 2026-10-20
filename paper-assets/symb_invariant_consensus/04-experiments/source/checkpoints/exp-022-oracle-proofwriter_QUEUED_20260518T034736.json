@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-022-oracle-proofwriter",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:47:31.892Z",
+    "updated_at": "2026-05-18T03:47:35.872Z",
+    "hypothesis": "ProofWriter oracle: gold DSL (raw_logic_programs) 通过 Z3 consistency checking 加权 K=12 traces，Oracle-SICA 应显著超越 SC 和 SICA(self)，在 ProofWriter 600 题上复现 FOLIO oracle (+8.82pp) 的 extraction bottleneck 结论。",
+    "parent": "exp-021-oracle-folio"
+  },
+  "timestamp": "2026-05-18T03:47:36.044387+00:00",
+  "trigger": "update_registry"
+}

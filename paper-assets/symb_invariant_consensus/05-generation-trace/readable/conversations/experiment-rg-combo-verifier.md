@@ -1,0 +1,2096 @@
+# experiment rg combo verifier
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_experiment_rg-combo-verifier_20260520T113113.jsonl`
+- **Structured JSON:** [`eb3ab8b65673a7dd84b6.json`](../../sessions/eb/eb3ab8b65673a7dd84b6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T11:37:06.904338+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T11:37:06.904712+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T11:37:06.904927+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/direction_g* /root/symb_invariant_consensus/direction_r* 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/direction_g* /root/symb_invariant_consensus/direction_r* 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T11:37:06.905111+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T11:37:06.905247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_g* /root/symb_invariant_consensus/results/direction_r* 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_g* /root/symb_invariant_consensus/results/direction_r* 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T11:37:06.905376+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T11:37:06.905502+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T11:37:06.905628+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/symb_invariant_consensus/results/exp033_mistral_folio204/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T11:37:06.905782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T11:37:06.905971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalysis\\nanalysis_confirmation_bias.py\\nanalysis_confirmation_bias_crossmodel.py\\nanalysis_constraint_ablation_folio204.py\\nanalysis_constraint_precision.py\\nanalysis_deepconf_filter.py\\nanalysis_k_ablation_folio204.py\\nanalysis_max_unsat.py\\nanalysis_problem_perturbation.py\\nanalysis_process_kappa.py\\nanalysis_prove_verify.py\\nartifacts\\nauto_run_analysis.sh\\nbackward_verification.py\\nbaselines\\ncompute_fleiss_kappa.py\\nconstraint_ablation.py\\ncross_trace_unsat.py\\ndata\\ndiff_scorers.py\\ndirection_f_blind_fol.py\\ndirection_g_decoupling.py\\ndirection_g_fast.py\\ndirection_g_fast2.py\\ndirection_i_z3_filter.py\\ndirection_k_minority_report.py\\ndirection_r_deberta.py\\ndirection_r_nli_verifier.py\\nerror_categorization.py\\nexperiments\\nextract_constraints.py\\nextract_constraints_parallel.py\\nextract_fast.py\\nfigures\\nlogs\\nmcnemar_recompute.py\\npremise_formalization.py\\nprepare_data.py\\nprepare_proofwriter.py\\nreextract_failed.py\\nreextract_v2.py\\nreextract_v3.py\\nresults\\nrun_ablation_analysis.py\\nrun_after_extraction.sh\\nrun_case_study.py\\nrun_consistency_filtering.py\\nrun_contrastive.py\\nrun_contrastive.py.bak_pre080\\nrun_contrastive_folio.py\\nrun_cross_model.py\\nrun_debate.py\\nrun_debate.py.bak_pre_logiqa\\nrun_exp028b.sh\\nrun_full_mvp.py\\nrun_full_mvp.py.bak\\nrun_full_mvp.py.bak2\\nrun_icg.py\\nrun_icg.py.bak\\nrun_icl_oracle.py\\nrun_kappa_generalization.py\\nrun_logiqa.py\\nrun_multi_temp.py\\nrun_mvp.py\\nrun_z3_feedback_folio.py\\nsc_tiebreak_revalidation.py\\nscripts\\nsica\\nutils\\nwild6_combined.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T11:37:06.906139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/ -name \"direction_*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/ -name \"direction_*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T11:37:06.906287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T11:37:06.906441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/direction_e_abstention.py\\n/root/symb_invariant_consensus/results/direction_g_vllm.log\\n/root/symb_invariant_consensus/results/direction_g_dryrun.log\\n/root/symb_invariant_consensus/__pycache__/direction_f_blind_fol.cpython-312.pyc\\n/root/symb_invariant_consensus/direction_i_z3_filter.py\\n/root/symb_invariant_consensus/direction_g_decoupling.py\\n/root/symb_invariant_consensus/direction_f_blind_fol.py\\n/root/symb_invariant_consensus/direction_k_minority_report.py\\n/root/symb_invariant_consensus/direction_r_deberta.py\\n/root/symb_invariant_consensus/direction_g_fast.py\\n/root/symb_invariant_consensus/direction_g_fast2.py\\n/root/symb_invariant_consensus/direction_r_nli_verifier.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T11:37:06.906614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adaptive_sica_validation.json\\ncase_study_constraints.json\\ncase_study_normalized.json\\ncondorcet_independence_analysis.json\\nconfirmation_bias\\ncross_model_experiment\\ncross_model_kappa\\ncross_model_mistral_folio\\ndirection_a_prove\\ndirection_b_deepconf\\ndirection_e_abstention\\ndirection_f_blind_fol\\ndirection_g_decoupling\\ndirection_g_dryrun.log\\ndirection_g_vllm.log\\ndirection_i_z3_filter\\ndirection_r_deberta\\ndirection_r_nli_large\\ndirection_r_nli_small\\ndisc_filter_full.log\\ndisc_filter_test.log\\ndiscriminative_filter_exp033.json\\ndiscriminative_filter_exp033_test.json\\ndiscriminative_filter_exp044b.json\\ndiscriminative_filter_exp046.json\\ndiscriminative_filter_exp054.json\\nexp-007-qwen72b-awq\\nexp-029-contrastive-folio204\\nexp004_qwen7b_rerun\\nexp013_constraint_ablation\\nexp027_qwen3_14b_nonthinking\\nexp028_qwen3_14b_thinking\\nexp028b_discordant_tracking.json\\nexp028b_qwen3_thinking_folio204\\nexp033_mistral_7b_folio204\\nexp033_per_problem_analysis.json\\nexp033_per_problem_analysis_v2.json\\nexp034_llama31_8b_folio204\\nexp034_qwen25_14b_proofwriter\\nexp035_qwen25_7b_folio204\\nexp036_z3_feedback\\nexp036b_cross_trace_unsat.json\\nexp044b_icl_oracle_qwen14b\\nexp045b_backward_qwen14b\\nexp046_mistral_7b_pw600\\nexp047_qwen3_thinking_folio204\\nexp051_mistral_k_sensitivity\\nexp054_mistral_folio204_t10\\nexp057_mistral_folio204_t03\\nexp058_mistral_folio204_t05\\nexp059_cross_qwen3_extractor\\nexp05_backward_verification\\nexp060_cross_qwen25_14b_extractor\\nexp061_qwen25_7b_folio204\\nexp062_gemma27b_folio204\\nexp065_qwen7b_pw600\\nexp066_qwen14b_folio_seed123\\nexp066_vllm.log\\nexp067_mistral_folio_seed789\\nexp069_mistral_logiqa200\\nexp070_qwen7b_logiqa200\\nexp071_qwen7b_logiqa200_seed123\\nexp073_qwen7b_logiqa200_seed456\\nexp073b_qwen7b_logiqa200_seed456\\nexp074_icg_dryrun\\nexp074_icg_mistral_folio\\nexp074_icg_v2_dryrun\\nexp074c_icg_mistral_folio_seed123\\ne
+…[truncated 872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T11:37:06.906833+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_g_decoupling/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_g_decoupling/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T11:37:06.907035+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"per_problem_aggressive.json\\nper_problem_conservative.json\\nper_problem_standard.json\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T11:37:06.907173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_large/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_nli_large/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T11:37:06.907302+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T11:37:06.907424+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/direction_r_deberta/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/direction_r_deberta/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T11:37:06.907544+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T11:37:06.907667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T11:37:06.907797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"constraint_cache\\nexp033.log\\nexp033_results.json\\nintermediates\\nsc_answer_matrix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T11:37:06.907958+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T11:37:06.908083+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T11:37:06.908203+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check G and R result formats', 'status': 'in_progress', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'pending', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'pending', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Dry-run on server', 'status': 'pending', 'activeForm': 'Dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check G and R result formats', 'status': 'in_progress', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'pending', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'pending', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Dry-run on server', 'status': 'pending', 'activeForm': 'Dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T11:37:06.908341+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T11:37:06.908461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_g_decoupling/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/direction_g_decoupling/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T11:37:06.908684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_problems\\\": 5,\\n  \\\"baselines\\\": {\\n    \\\"sc_accuracy\\\": 0.8,\\n    \\\"sc_correct\\\": 4,\\n    \\\"sica_accuracy\\\": 0.8,\\n    \\\"sica_correct\\\": 4\\n  },\\n  \\\"strategies\\\": {\\n    \\\"conservative\\\": {\\n      \\\"accuracy\\\": 0.8,\\n      \\\"correct\\\": 4,\\n      \\\"avg_pct_removed\\\": 2.2,\\n      \\\"traces_with_match_pct\\\": 98.3,\\n      \\\"avg_constraints_per_problem\\\": 79.6\\n    },\\n    \\\"standard\\\": {\\n      \\\"accuracy\\\": 0.8,\\n      \\\"correct\\\": 4,\\n      \\\"avg_pct_removed\\\": 13.6,\\n      \\\"traces_with_match_pct\\\": 98.3,\\n      \\\"avg_constraints_per_problem\\\": 75.6\\n    },\\n    \\\"aggressive\\\": {\\n      \\\"accuracy\\\": 0.8,\\n      \\\"correct\\\": 4,\\n      \\\"avg_pct_removed\\\": 36.5,\\n      \\\"traces_with_match_pct\\\": 100.0,\\n      \\\"avg_constraints_per_problem\\\": 70.6\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T11:37:06.908841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/direction_r_nli_large/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T11:37:06.908989+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -100 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -100 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T11:37:06.909402+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_r1_deberta_standalone\\\": {\\n    \\\"accuracy\\\": 0.4951,\\n    \\\"correct\\\": 101,\\n    \\\"total\\\": 204,\\n    \\\"per_class\\\": {\\n      \\\"True\\\": {\\n        \\\"n\\\": 72,\\n        \\\"correct\\\": 43,\\n        \\\"accuracy\\\": 0.5972,\\n        \\\"precision\\\": 0.5181,\\n        \\\"recall\\\": 0.5972,\\n        \\\"f1\\\": 0.5548\\n      },\\n      \\\"False\\\": {\\n        \\\"n\\\": 63,\\n        \\\"correct\\\": 45,\\n        \\\"accuracy\\\": 0.7143,\\n        \\\"precision\\\": 0.4545,\\n        \\\"recall\\\": 0.7143,\\n        \\\"f1\\\": 0.5556\\n      },\\n      \\\"Unknown\\\": {\\n        \\\"n\\\": 69,\\n        \\\"correct\\\": 13,\\n        \\\"accuracy\\\": 0.1884,\\n        \\\"precision\\\": 0.5909,\\n        \\\"recall\\\": 0.1884,\\n        \\\"f1\\\": 0.2857\\n      }\\n    },\\n    \\\"gt_distribution\\\": {\\n      \\\"Unknown\\\": 69,\\n      \\\"True\\\": 72,\\n      \\\"False\\\": 63\\n    },\\n    \\\"pred_distribution\\\": {\\n      \\\"True\\\": 83,\\n      \\\"False\\\": 99,\\n      \\\"Unknown\\\": 22\\n    },\\n    \\\"inference_time_s\\\": 42.1,\\n    \\\"model\\\": \\\"/root/models/deberta-large-mnli\\\"\\n  },\\n  \\\"exp_r2_verifier\\\": {\\n    \\\"agreement_rate\\\": 0.451,\\n    \\\"agree_count\\\": 92,\\n    \\\"disagree_count\\\": 112,\\n    \\\"agree_accuracy\\\": 0.6848,\\n    \\\"disagree_breakdown\\\": {\\n      \\\"deberta_correct_sc_wrong\\\": 38,\\n      \\\"sc_correct_deberta_wrong\\\": 48,\\n      \\\"both_wrong\\\": 26\\n    },\\n    \\\"strategies\\\": {\\n      \\\"abstain\\\": {\\n        \\\"coverage\\\": 0.451,\\n        \\\"accuracy\\\": 0.6848\\n      },\\n      \\\"deberta_override\\\": {\\n        \\\"accuracy\\\": 0.4951\\n      },\\n      \\\"sc_baseline\\\": {\\n        \\\"accuracy\\\": 0.5441\\n      }\\n    },\\n    \\\"deberta_corrects_sc\\\": [\\n      \\\"folio_2\\\",\\n      \\\"folio_5\\\",\\n      \\\
+…[truncated 9202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T11:37:06.909666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 204,\\n    \\\"sica_accuracy\\\": 0.5931372549019608,\\n    \\\"sc_accuracy\\\": 0.5441176470588235,\\n    \\\"sica_correct\\\": 121,\\n    \\\"sc_correct\\\": 111,\\n    \\\"extraction_rate\\\": 0.9714052287581699,\\n    \\\"total_constraints_extracted\\\": 14042,\\n    \\\"total_unique_constraints\\\": 8021,\\n    \\\"contradiction_rate\\\": 0.03503303827452936,\\n    \\\"problems_with_contradictions\\\": 128,\\n    \\\"per_level_accuracy\\\": {\\n      \\\"validation\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"per_dataset_accuracy\\\": {\\n      \\\"folio\\\": {\\n        \\\"sica\\\": 0.5931372549019608,\\n        \\\"sc\\\": 0.5441176470588235,\\n        \\\"n\\\": 204\\n      }\\n    },\\n    \\\"k\\\": 12,\\n    \\\"mode\\\": \\\"vllm\\\",\\n    \\\"total_wall_time_s\\\": 4881.8\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"problem_idx\\\": 0,\\n      \\\"problem_id\\\": \\\"folio_0\\\",\\n      \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion
+…[truncated 3574 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T11:37:06.909891+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -50 /root/symb_invariant_consensus/results/direction_g_decoupling/per_problem_conservative.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -50 /root/symb_invariant_consensus/results/direction_g_decoupling/per_problem_conservative.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T11:37:06.910075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"pid\\\": \\\"folio_0\\\",\\n    \\\"gt\\\": \\\"Unknown\\\",\\n    \\\"strategy\\\": \\\"conservative\\\",\\n    \\\"sica_answer\\\": \\\"Unknown\\\",\\n    \\\"sica_correct\\\": true,\\n    \\\"scores\\\": {\\n      \\\"False\\\": 8.0,\\n      \\\"Unknown\\\": 57.0\\n    },\\n    \\\"constraints_stats\\\": {\\n      \\\"total_extracted\\\": 84,\\n      \\\"unique_after_dedup\\\": 68\\n    },\\n    \\\"maxsat_stats\\\": {\\n      \\\"satisfied\\\": 65,\\n      \\\"excluded\\\": 3,\\n      \\\"total_weight\\\": 74\\n    },\\n    \\\"truncation_stats\\\": [\\n      {\\n        \\\"trace_idx\\\": 0,\\n        \\\"lines_removed\\\": 1,\\n        \\\"chars_removed\\\": 19,\\n        \\\"pct_removed\\\": 0.8,\\n        \\\"matched\\\": true\\n      },\\n      {\\n        \\\"trace_idx\\\": 1,\\n        \\\"lines_removed\\\": 1,\\n        \\\"chars_removed\\\": 19,\\n        \\\"pct_removed\\\": 1.2,\\n        \\\"matched\\\": true\\n      },\\n      {\\n        \\\"trace_idx\\\": 2,\\n        \\\"lines_removed\\\": 1,\\n        \\\"chars_removed\\\": 19,\\n        \\\"pct_removed\\\": 1.1,\\n        \\\"matched\\\": true\\n      },\\n      {\\n        \\\"trace_idx\\\": 3,\\n        \\\"lines_removed\\\": 1,\\n        \\\"chars_removed\\\": 35,\\n        \\\"pct_removed\\\": 1.8,\\n        \\\"matched\\\": true\\n      },\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T11:37:06.910227+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "find /root/symb_invariant_consensus/results/ -name \"*fast*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "find /root/symb_invariant_consensus/results/ -name \"*fast*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T11:37:06.910458+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -20 /root/symb_invariant_consensus/direction_g_fast2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -20 /root/symb_invariant_consensus/direction_g_fast2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T11:37:06.910594+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T11:37:06.910733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nDirection G: Constraint-Answer Decoupling (dual-GPU parallel)\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nimport itertools\\nfrom collections import Counter\\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\\nimport httpx\\n\\nsys.path.insert(0, '/root/symb_invariant_consensus')\\nfrom sica.constraint_extractor import LOGIC_EXTRACTION_PROMPT\\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom sica.scorer import InvariantScorer\\n\\nAPI_BASES = ['http://localhost:8001/v1', 'http://localhost:8002/v1']\\nINTERMEDIATES_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T11:37:06.910930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "python3 -c \"import httpx; r = httpx.get('http://localhost:8012/v1/models', timeout=5); print(r.json())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "python3 -c \"import httpx; r = httpx.get('http://localhost:8012/v1/models', timeout=5); print(r.json())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T11:37:06.911077+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T11:37:06.911202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/direction_g_decoupling.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/direction_g_decoupling.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T11:37:06.911482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nDirection G: Constraint-Answer Decoupling\\nTruncate conclusion portions of CoT traces before FOL extraction to reduce confirmation bias.\\n\\\"\\\"\\\"\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nimport httpx\\n\\nsys.path.insert(0, '/root/symb_invariant_consensus')\\nfrom sica.constraint_extractor import LOGIC_EXTRACTION_PROMPT\\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom sica.scorer import InvariantScorer\\n\\nAPI_BASE = 'http://localhost:8001/v1'\\nINTERMEDIATES_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\\nRESULTS_FILE = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json'\\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/direction_g_decoupling'\\n\\nCONCLUSION_PATTERNS = [\\n    r'\\\\\\\\boxed\\\\{[^}]*\\\\}',\\n    r'\\\\bfinal\\\\s+answer\\\\s*[:.].*',\\n    r'\\\\bthe\\\\s+answer\\\\s+is\\\\b.*',\\n    r'\\\\btherefore\\\\b.*',\\n    r'\\\\bthus\\\\b[,.].*',\\n    r'\\\\bhence\\\\b[,.].*',\\n    r'\\\\bin\\\\s+conclusion\\\\b.*',\\n    r'\\\\bso\\\\s+the\\\\s+(statement|conclusion)\\\\b.*',\\n    r'\\\\bthis\\\\s+means\\\\s+the\\\\s+conclusion\\\\b.*',\\n    r'\\\\bwe\\\\s+can\\\\s+conclude\\\\b.*',\\n    r'\\\\b(True|False|Unknown|Uncertain)\\\\s*\\\\.?\\\\s*$',\\n]\\n\\nCONCLUSION_RE = re.compile('|'.join(CONCLUSION_PATTERNS), re.IGNORECASE)\\n\\n\\ndef normalize_answer(ans):\\n    ans = str(ans).strip().lower()\\n    if ans in ('true', 'yes', 't'):\\n        return 'True'\\n    elif ans in ('false', 'no', 'f'):\\n        return 'False'\\n    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):\\n        return 'Unknown'\\n    return ans.capitalize()\\n\\n\\ndef truncate_conservative(trace_text):\\n    \\\"\\\"\\\"Remove only the last sentence containing a conclusion marker.\\\"\\\"\\\"\\n    lines = trace_text.r
+…[truncated 6858 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T11:37:06.911682+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import httpx; r = httpx.get('http://localhost:8012/v1/models', timeout=5); print(r.json())\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import httpx; r = httpx.get('http://localhost:8012/v1/models', timeout=5); print(r.json())\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T11:37:06.911894+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", line 101, in map_httpcore_exceptions\\n    yield\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_transports/default.py\\\", line 250, in handle_request\\n    resp = self._pool.handle_request(req)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py\\\", line 256, in handle_request\\n    raise exc from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py\\\", line 236, in handle_request\\n    response = connection.handle_request(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_sync/connection.py\\\", line 101, in handle_request\\n    raise exc\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_sync/connection.py\\\", line 78, in handle_request\\n    stream = self._connect(request)\\n             ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_sync/connection.py\\\", line 124, in _connect\\n    stream = self._network_backend.connect_tcp(**kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_backends/sync.py\\\", line 207, in connect_tcp\\n    with map_exceptions(exc_map):\\n  File \\\"/root/miniconda3/lib/python3.12/contextlib.py\\\", line 158, in __exit__\\n    self.gen.throw(value)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpcore/_exceptions.py\\\", line 14, in map_exceptions\\n    raise to_exc(exc) from exc\\nhttpcore.ConnectError: [Errno 111] Connection refused\\n\\nThe above except
+…[truncated 2126 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T11:37:06.912097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/direction_r_nli_verifier.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/direction_r_nli_verifier.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T11:37:06.912423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Direction R: External NLI Verifier for FOLIO logical reasoning.\\n\\nUses an encoder-only NLI model (architecturally independent from decoder-only LLMs)\\nas an external verifier to break confirmation bias in self-consistency.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport torch\\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer\\n\\n\\ndef parse_problem(problem_text):\\n    \\\"\\\"\\\"Extract premises and hypothesis from FOLIO problem text.\\\"\\\"\\\"\\n    m = re.search(\\n        r\\\"Given the following premises:\\\\n(.+?)\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\n(.+)\\\",\\n        problem_text,\\n        re.DOTALL,\\n    )\\n    if m:\\n        return m.group(1).strip(), m.group(2).strip()\\n    parts = problem_text.split(\\\"Determine whether the following conclusion is true, false, or uncertain:\\\")\\n    if len(parts) == 2:\\n        premises = parts[0].replace(\\\"Given the following premises:\\\", \\\"\\\").strip()\\n        hypothesis = parts[1].strip()\\n        return premises, hypothesis\\n    return problem_text, \\\"\\\"\\n\\n\\ndef load_nli_model(model_name, device):\\n    \\\"\\\"\\\"Load NLI model and tokenizer.\\\"\\\"\\\"\\n    print(f\\\"Loading NLI model: {model_name}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\\n    model = AutoModelForSequenceClassification.from_pretrained(model_name)\\n    model.to(device)\\n    model.eval()\\n    id2label = model.config.id2label\\n    print(f\\\"  Labels: {id2label}\\\")\\n    return model, tokenizer, id2label\\n\\n\\ndef nli_predict(model, tokenizer, id2label, premise, hypothesis, device):\\n    \\\"\\\"\\\"Run NLI inference, return (label, probs_dict).\\\"\\\"\\\"\\n    inputs = tokenizer(\\n        premise
+…[truncated 7589 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T11:37:06.912631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ -1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ -1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-20T11:37:06.912768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T11:37:06.912962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T11:37:06.913431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"folio_0\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_1\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"True\\\",\\n      \\\"True\\\",\\n      \\\"False\\\",\\n      \\\"True\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"True\\\"\\n  },\\n  \\\"folio_2\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"False\\\"\\n  },\\n  \\\"folio_3\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\"\\n  },\\n  \\\"folio_4\\\": {\\n    \\\"answers\\\": [\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"False\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"Unknown\\\",\\n      \\\"\\\",\\n      \\\"Unknown\\\"\\n    ],\\n    \\\"ground_truth\\\": \\\"Unknown\\\
+…[truncated 10109 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T11:37:06.913653+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'in_progress', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Dry-run on server', 'status': 'pending', 'activeForm': 'Dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'in_progress', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Dry-run on server', 'status': 'pending', 'activeForm': 'Dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T11:37:06.913815+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T11:37:06.914084+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Direction R+G Combo: SICA + NLI external verifier combination strategies.\n\nCombines two architecturally independent signals:\n- SICA: symbolic constraint aggregation from CoT traces (MAX-SAT)\n- NLI: DeBERTa encoder-only model predicting entailment/contradiction/neutral\n\nSince full G (decoupling) results are unavailable (only 5 test problems),\nthis uses standard SICA results. When G results become available,\nswap in SICA-G per-problem answers.\n\"\"\"\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\n\n\ndef normalize_answer(ans):\n    ans = str(ans).strip().lower()\n    if ans in ('true', 'yes', 't'):\n        return 'True'\n    elif ans in ('false', 'no', 'f'):\n        return 'False'\n    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):\n        return 'Unknown'\n    return ans.capitalize()\n\n\ndef sc_majority(answers):\n    valid = [normalize_answer(a) for a in answers if normalize_answer(a) in ('True', 'False', 'Unknown')]\n    if not valid:\n        return 'Unknown'\n    c = Counter(valid)\n    return c.most_common(1)[0][0]\n\n\ndef mcnemar_test(correct_a, correct_b):\n    \"\"\"McNemar's test: are two classifiers significantly different?\"\"\"\n    n = len(correct_a)\n    b_count = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])\n    c_count = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])\n\n    if b_count + c_count == 0:\n        return {'chi2': 0.0, 'p_value': 1.0, 'b': b_count, 'c': c_count}\n\n    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)\n\n    from scipy.stats import chi2 as chi2_dist\n    p_value = 1 - chi2_dist.cdf(chi2, df=1)\n    return {'chi2': round(chi2, 4), 'p_value': round(p_value, 6), 'b': b_count, 'c': c_count}\n\n\ndef load_data(r_results_path, exp033_path, sc_matrix_path):\n    \"\"\"Load R NLI results and exp033 SICA results.\"\"\"\n    with open(r_results_path) as f:\n        r_data = json.load(f)\n\n    with open(exp033_path) as f:\n        exp033 = json.load(f)\n\n    with open(sc_matrix_path) as f:\n        sc_matrix = json.load(f)\n\n    per_q = r_data['per_question']\n\n    exp033_by_id = {}\n    for prob in exp033['results']:\n        exp033_by_id[prob['problem_id']] = prob\n\n    problems = []\n    for pid in sorted(per_q.keys(), key=lambda x: int(x.split('_')[1])):\n        q = per_q[pid]\n        e = exp033_by_id.get(pid, {})\n        sc_answers = sc_matrix.get(pid, {}).get('answers', [])\n\n        problems.append({\n            'pid': pid,\n            'gold': q['gold'],\n            'sc_answer': q['sc_answer'],\n            'sica_answer': q['sica_answer'],\n            'deberta_pred': q['deberta_pred'],\n            'deberta_probs': q['deberta_probs'],\n            'sc_correct': q['sc_correct'],\n            'sica_correct': q['sica_correct'],\n            'deberta_correct': q['deberta_correct'],\n            'sica_scores': e.get('sica_scores', {}),\n            'sc_vote_distribution': e.get('sc_vote_distribution', {}),\n            'sc_answers': sc_answers,\n        })\n\n    return problems\n\n\ndef strategy_intersection(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SC.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sc_answer']\n            source = 'fallback_sc'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_intersection_sica_fallback(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SICA.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sica_answer']\n            source = 'fallback_sica'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade(problems, threshold=0.7):\n    \"\"\"NLI high-confidence → use NLI, else → use SICA.\"\"\"\n    results = []\n    for p in problems:\n        probs = p['deberta_probs']\n        max_prob = max(probs.values())\n        if max_prob >= threshold:\n            answer = p['deberta_pred']\n            source = f'nli_conf_{max_prob:.2f}'\n        else:\n            answer = p['sica_answer']\n            source = f'sica_lowconf_{max_prob:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade_reverse(problems, threshold=0.7):\n    \"\"\"SICA high-confidence → use SICA, else → use NLI.\n\n    SICA confidence = margin between top two SICA scores normalized.\n    \"\"\"\n    results = []\n    for p in problems:\n        scores = p['sica_scores']\n        if scores:\n            sorted_scores = sorted(scores.values(), reverse=True)\n            total = sum(sorted_scores)\n            if total > 0:\n                top_frac = sorted_scores[0] / total\n            else:\n                top_frac = 0\n        else:\n            top_frac = 0\n\n        if top_frac >= threshold:\n            answer = p['sica_answer']\n            source = f'sica_conf_{top_frac:.2f}'\n        else:\n            answer = p['deberta_pred']\n            source = f'nli_lowconf_{top_frac:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_nli_weighted_vote(problems, nli_weight=1):\n    \"\"\"Add NLI prediction as extra vote(s) to SC vote distribution, then majority vote.\"\"\"\n    results = []\n    for p in problems:\n        votes = Counter()\n        for a in p['sc_answers']:\n            na = normalize_answer(a)\n            if na in ('True', 'False', 'Unknown'):\n                votes[na] += 1\n\n        votes[p['deberta_pred']] += nli_weight\n\n        answer = votes.most_common(1)[0][0]\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': 'weighted_vote'})\n    return results\n\n\ndef strategy_sica_nli_weighted_vote(problems, nli_weight=3):\n    \"\"\"Combine SICA MAX-SAT scores + NLI probability as weighted vote.\"\"\"\n    results = []\n    for p in problems:\n        combined = {'True': 0.0, 'False': 0.0, 'Unknown': 0.0}\n\n        for label, score in p['sica_scores'].items():\n            nl = normalize_answer(label)\n            if nl in combined:\n                combined[nl] += score\n\n        probs = p['deberta_probs']\n        combined['True'] += probs.get('True', 0) * nli_weight\n        combined['False'] += probs.get('False', 0) * nli_weight\n        combined['Unknown'] += probs.get('Unknown', 0) * nli_weight\n\n        answer = max(combined, key=combined.get)\n        correct = (answer == p['gold'])\n        results.append({\n            'pid': p['pid'], 'answer': answer, 'correct': correct,\n            'source': 'sica_nli_weighted', 'combined_scores': {k: round(v, 3) for k, v in combined.items()},\n        })\n    return results\n\n\ndef strategy_oracle(problems):\n    \"\"\"Upper bound: pick whichever signal is correct when they disagree.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        elif p['sica_correct']:\n            answer = p['sica_answer']\n            source = 'oracle_sica'\n        elif p['deberta_correct']:\n            answer = p['deberta_pred']\n            source = 'oracle_nli'\n        else:\n            answer = p['sica_answer']\n            source = 'both_wrong'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef compute_per_class(results, problems):\n    \"\"\"Compute per-class accuracy.\"\"\"\n    by_class = {}\n    for r, p in zip(results, problems):\n        gold = p['gold']\n        if gold not in by_class:\n            by_class[gold] = {'total': 0, 'correct': 0}\n        by_class[gold]['total'] += 1\n        if r['correct']:\n            by_class[gold]['correct'] += 1\n\n    for label in by_class:\n        s = by_class[label]\n        s['accuracy'] = round(s['correct'] / s['total'], 4) if s['total'] > 0 else 0\n    return by_class\n\n\ndef main():\n    parser = argparse.ArgumentParser(description='R+G Combo: SICA + NLI combination strategies')\n    parser.add_argument('--r-results', default='results/direction_r_nli_large/results.json')\n    parser.add_argument('--exp033', default='results/exp033_mistral_7b_folio204/exp033_results.json')\n    parser.add_argument('--sc-matrix', default='results/exp033_mistral_7b_folio204/sc_answer_matrix.json')\n    parser.add_argument('--output-dir', default='results/direction_rg_combo')\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    os.chdir('/root/symb_invariant_consensus')\n\n    if args.dry_run:\n        print('=== DRY RUN ===')\n        for path in [args.r_results, args.exp033, args.sc_matrix]:\n            exists = os.path.exists(path)\n            print(f'  {path}: {\"OK\" if exists else \"MISSING\"}')\n        try:\n            import scipy.stats\n            print('  scipy: OK')\n        except ImportError:\n            print('  scipy: MISSING (McNemar test will fail)')\n        try:\n            import numpy\n            print(f'  numpy: OK ({numpy.__version__})')\n        except ImportError:\n            print('  numpy: MISSING')\n        print('=== DRY RUN PASSED ===')\n        return\n\n    print('Loading data...', flush=True)\n    problems = load_data(args.r_results, args.exp033, args.sc_matrix)\n    n = len(problems)\n    print(f'  {n} problems loaded', flush=True)\n\n    sc_correct_list = [p['sc_correct'] for p in problems]\n    sica_correct_list = [p['sica_correct'] for p in problems]\n    nli_correct_list = [p['deberta_correct'] for p in problems]\n\n    sc_acc = sum(sc_correct_list) / n\n    sica_acc = sum(sica_correct_list) / n\n    nli_acc = sum(nli_correct_list) / n\n\n    strategies = {}\n\n    # 1. Intersection: agree → use, disagree → SC fallback\n    res = strategy_intersection(problems)\n    agree_count = sum(1 for r in res if r['source'] == 'agree')\n    strategies['intersection_sc_fallback'] = {\n        'results': res,\n        'description': 'SICA ∩ NLI agree → use, disagree → SC fallback',\n        'agree_count': agree_count,\n        'agree_pct': round(agree_count / n * 100, 1),\n    }\n\n    # 2. Intersection: agree → use, disagree → SICA fallback\n    res = strategy_intersection_sica_fallback(problems)\n    strategies['intersection_sica_fallback'] = {\n        'results': res,\n        'description': 'SICA ∩ NLI agree → use, disagree → SICA fallback',\n    }\n\n    # 3. Cascade NLI→SICA at various thresholds\n    for thresh in [0.6, 0.7, 0.8, 0.9]:\n        res = strategy_cascade(problems, threshold=thresh)\n        nli_used = sum(1 for r in res if r['source'].startswith('nli'))\n        strategies[f'cascade_nli_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'NLI conf≥{thresh} → use NLI, else → SICA',\n            'nli_used': nli_used,\n            'nli_used_pct': round(nli_used / n * 100, 1),\n        }\n\n    # 4. Cascade SICA→NLI (reverse) at various thresholds\n    for thresh in [0.6, 0.7, 0.8]:\n        res = strategy_cascade_reverse(problems, threshold=thresh)\n        sica_used = sum(1 for r in res if r['source'].startswith('sica'))\n        strategies[f'cascade_sica_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'SICA conf≥{thresh} → use SICA, else → NLI',\n            'sica_used': sica_used,\n            'sica_used_pct': round(sica_used / n * 100, 1),\n        }\n\n    # 5. NLI as extra vote in SC (w=1, w=3, w=5)\n    for w in [1, 3, 5]:\n        res = strategy_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'nli_sc_vote_w{w}'] = {\n            'results': res,\n            'description': f'SC votes + NLI as {w} extra vote(s)',\n        }\n\n    # 6. SICA scores + NLI probability weighted combination\n    for w in [5, 10, 20, 50]:\n        res = strategy_sica_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'sica_nli_weighted_w{w}'] = {\n            'results': res,\n            'description': f'SICA MAX-SAT scores + NLI probs × {w}',\n        }\n\n    # 7. Oracle upper bound\n    res = strategy_oracle(problems)\n    strategies['oracle'] = {\n        'results': res,\n        'description': 'Perfect arbitrator between SICA and NLI (upper bound)',\n    }\n\n    # Compute metrics\n    print(f'\\n{\"=\"*70}')\n    print(f'R+G COMBO RESULTS (n={n})')\n    print(f'{\"=\"*70}')\n    print(f'{\"Strategy\":<35} {\"Acc\":>7} {\"Correct\":>8} {\"Delta/SC\":>9} {\"Delta/SICA\":>11}')\n    print('-' * 70)\n    print(f'{\"SC baseline\":<35} {sc_acc:>6.2%} {sum(sc_correct_list):>8}')\n    print(f'{\"SICA baseline\":<35} {sica_acc:>6.2%} {sum(sica_correct_list):>8} {sica_acc-sc_acc:>+8.2%}')\n    print(f'{\"NLI standalone\":<35} {nli_acc:>6.2%} {sum(nli_correct_list):>8} {nli_acc-sc_acc:>+8.2%}')\n    print('-' * 70)\n\n    output_strategies = {}\n    best_acc = 0\n    best_name = ''\n\n    for name, strat in strategies.items():\n        res = strat['results']\n        correct_list = [r['correct'] for r in res]\n        acc = sum(correct_list) / n\n        correct_count = sum(correct_list)\n        delta_sc = acc - sc_acc\n        delta_sica = acc - sica_acc\n\n        if name != 'oracle' and acc > best_acc:\n            best_acc = acc\n            best_name = name\n\n        mcnemar_vs_sc = mcnemar_test(correct_list, sc_correct_list)\n        mcnemar_vs_sica = mcnemar_test(correct_list, sica_correct_list)\n\n        per_class = compute_per_class(res, problems)\n\n        label = name[:35]\n        sig_sc = '*' if mcnemar_vs_sc['p_value'] < 0.05 else ''\n        print(f'{label:<35} {acc:>6.2%} {correct_count:>8} {delta_sc:>+8.2%}{sig_sc} {delta_sica:>+10.2%}')\n\n        output_entry = {\n            'description': strat['description'],\n            'accuracy': round(acc, 4),\n            'correct': correct_count,\n            'delta_vs_sc': round(delta_sc, 4),\n            'delta_vs_sica': round(delta_sica, 4),\n            'mcnemar_vs_sc': mcnemar_vs_sc,\n            'mcnemar_vs_sica': mcnemar_vs_sica,\n            'per_class': per_class,\n        }\n\n        for k in ('agree_count', 'agree_pct', 'nli_used', 'nli_used_pct', 'sica_used', 'sica_used_pct'):\n            if k in strat:\n                output_entry[k] = strat[k]\n\n        output_strategies[name] = output_entry\n\n    print(f'{\"=\"*70}')\n    print(f'* = McNemar p<0.05 vs SC')\n    print(f'\\nBest non-oracle strategy: {best_name} ({best_acc:.2%})')\n\n    # Agreement analysis\n    agree_sica_nli = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'])\n    agree_correct = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'] and p['sica_correct'])\n    disagree_count = n - agree_sica_nli\n    disagree_sica_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['sica_correct'])\n    disagree_nli_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['deberta_correct'])\n    disagree_both_wrong = disagree_count - disagree_sica_right - disagree_nli_right\n\n    agreement_analysis = {\n        'agree': agree_sica_nli,\n        'agree_pct': round(agree_sica_nli / n * 100, 1),\n        'agree_accuracy': round(agree_correct / agree_sica_nli, 4) if agree_sica_nli > 0 else 0,\n        'disagree': disagree_count,\n        'disagree_sica_correct': disagree_sica_right,\n        'disagree_nli_correct': disagree_nli_right,\n        'disagree_both_wrong': disagree_both_wrong,\n    }\n\n    print(f'\\nAgreement analysis:')\n    print(f'  SICA ∩ NLI agree: {agree_sica_nli}/{n} ({agree_sica_nli/n:.1%}), '\n          f'accuracy when agree: {agree_correct}/{agree_sica_nli} ({agree_correct/agree_sica_nli:.2%})')\n    print(f'  Disagree: {disagree_count}/{n}')\n    print(f'    SICA correct: {disagree_sica_right}, NLI correct: {disagree_nli_right}, '\n          f'Both wrong: {disagree_both_wrong}')\n\n    # Correlation analysis: NLI confidence vs correctness\n    nli_confs = [max(p['deberta_probs'].values()) for p in problems]\n    nli_correct_when_high = sum(1 for p, c in zip(problems, nli_confs) if c >= 0.8 and p['deberta_correct'])\n    nli_total_high = sum(1 for c in nli_confs if c >= 0.8)\n    nli_correct_when_low = sum(1 for p, c in zip(problems, nli_confs) if c < 0.8 and p['deberta_correct'])\n    nli_total_low = sum(1 for c in nli_confs if c < 0.8)\n\n    confidence_analysis = {\n        'nli_high_conf_ge80': {\n            'count': nli_total_high,\n            'correct': nli_correct_when_high,\n            'accuracy': round(nli_correct_when_high / nli_total_high, 4) if nli_total_high > 0 else 0,\n        },\n        'nli_low_conf_lt80': {\n            'count': nli_total_low,\n            'correct': nli_correct_when_low,\n            'accuracy': round(nli_correct_when_low / nli_total_low, 4) if nli_total_low > 0 else 0,\n        },\n    }\n\n    print(f'\\nNLI confidence analysis:')\n    print(f'  High conf (≥0.8): {nli_total_high} problems, '\n          f'acc={nli_correct_when_high}/{nli_total_high} '\n          f'({nli_correct_when_high/nli_total_high:.2%})')\n    print(f'  Low conf (<0.8):  {nli_total_low} problems, '\n          f'acc={nli_correct_when_low}/{nli_total_low} '\n          f'({nli_correct_when_low/nli_total_low:.2%})')\n\n    # Per-question detail for best strategy\n    best_results = strategies[best_name]['results']\n    per_question_detail = {}\n    for r, p in zip(best_results, problems):\n        per_question_detail[p['pid']] = {\n            'gold': p['gold'],\n            'combo_answer': r['answer'],\n            'combo_correct': r['correct'],\n            'combo_source': r['source'],\n            'sica_answer': p['sica_answer'],\n            'sica_correct': p['sica_correct'],\n            'deberta_pred': p['deberta_pred'],\n            'deberta_correct': p['deberta_correct'],\n            'sc_answer': p['sc_answer'],\n            'sc_correct': p['sc_correct'],\n        }\n\n    # Save\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    output = {\n        'baselines': {\n            'sc': {'accuracy': round(sc_acc, 4), 'correct': sum(sc_correct_list)},\n            'sica': {'accuracy': round(sica_acc, 4), 'correct': sum(sica_correct_list)},\n            'nli_standalone': {'accuracy': round(nli_acc, 4), 'correct': sum(nli_correct_list)},\n        },\n        'n_problems': n,\n        'best_strategy': best_name,\n        'best_accuracy': round(best_acc, 4),\n        'strategies': output_strategies,\n        'agreement_analysis': agreement_analysis,\n        'confidence_analysis': confidence_analysis,\n        'note': 'Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. '\n                'When full G results are available, re-run with --g-results flag.',\n    }\n\n    out_file = os.path.join(args.output_dir, 'results.json')\n    with open(out_file, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f'\\nSummary saved to {out_file}')\n\n    detail_file = os.path.join(args.output_dir, 'per_question_best.json')\n    with open(detail_file, 'w') as f:\n        json.dump(per_question_detail, f, indent=2)\n    print(f'Per-question detail saved to {detail_file}')\n\n\nif __name__ == '__main__':\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Direction R+G Combo: SICA + NLI external verifier combination strategies.\n\nCombines two architecturally independent signals:\n- SICA: symbolic constraint aggregation from CoT traces (MAX-SAT)\n- NLI: DeBERTa encoder-only model predicting entailment/contradiction/neutral\n\nSince full G (decoupling) results are unavailable (only 5 test problems),\nthis uses standard SICA results. When G results become available,\nswap in SICA-G per-problem answers.\n\"\"\"\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\n\n\ndef normalize_answer(ans):\n    ans = str(ans).strip().lower()\n    if ans in ('true', 'yes', 't'):\n        return 'True'\n    elif ans in ('false', 'no', 'f'):\n        return 'False'\n    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):\n        return 'Unknown'\n    return ans.capitalize()\n\n\ndef sc_majority(answers):\n    valid = [normalize_answer(a) for a in answers if normalize_answer(a) in ('True', 'False', 'Unknown')]\n    if not valid:\n        return 'Unknown'\n    c = Counter(valid)\n    return c.most_common(1)[0][0]\n\n\ndef mcnemar_test(correct_a, correct_b):\n    \"\"\"McNemar's test: are two classifiers significantly different?\"\"\"\n    n = len(correct_a)\n    b_count = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])\n    c_count = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])\n\n    if b_count + c_count == 0:\n        return {'chi2': 0.0, 'p_value': 1.0, 'b': b_count, 'c': c_count}\n\n    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)\n\n    from scipy.stats import chi2 as chi2_dist\n    p_value = 1 - chi2_dist.cdf(chi2, df=1)\n    return {'chi2': round(chi2, 4), 'p_value': round(p_value, 6), 'b': b_count, 'c': c_count}\n\n\ndef load_data(r_results_path, exp033_path, sc_matrix_path):\n    \"\"\"Load R NLI results and exp033 SICA results.\"\"\"\n    with open(r_results_path) as f:\n        r_data = json.load(f)\n\n    with open(exp033_path) as f:\n        exp033 = json.load(f)\n\n    with open(sc_matrix_path) as f:\n        sc_matrix = json.load(f)\n\n    per_q = r_data['per_question']\n\n    exp033_by_id = {}\n    for prob in exp033['results']:\n        exp033_by_id[prob['problem_id']] = prob\n\n    problems = []\n    for pid in sorted(per_q.keys(), key=lambda x: int(x.split('_')[1])):\n        q = per_q[pid]\n        e = exp033_by_id.get(pid, {})\n        sc_answers = sc_matrix.get(pid, {}).get('answers', [])\n\n        problems.append({\n            'pid': pid,\n            'gold': q['gold'],\n            'sc_answer': q['sc_answer'],\n            'sica_answer': q['sica_answer'],\n            'deberta_pred': q['deberta_pred'],\n            'deberta_probs': q['deberta_probs'],\n            'sc_correct': q['sc_correct'],\n            'sica_correct': q['sica_correct'],\n            'deberta_correct': q['deberta_correct'],\n            'sica_scores': e.get('sica_scores', {}),\n            'sc_vote_distribution': e.get('sc_vote_distribution', {}),\n            'sc_answers': sc_answers,\n        })\n\n    return problems\n\n\ndef strategy_intersection(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SC.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sc_answer']\n            source = 'fallback_sc'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_intersection_sica_fallback(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SICA.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sica_answer']\n            source = 'fallback_sica'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade(problems, threshold=0.7):\n    \"\"\"NLI high-confidence → use NLI, else → use SICA.\"\"\"\n    results = []\n    for p in problems:\n        probs = p['deberta_probs']\n        max_prob = max(probs.values())\n        if max_prob >= threshold:\n            answer = p['deberta_pred']\n            source = f'nli_conf_{max_prob:.2f}'\n        else:\n            answer = p['sica_answer']\n            source = f'sica_lowconf_{max_prob:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade_reverse(problems, threshold=0.7):\n    \"\"\"SICA high-confidence → use SICA, else → use NLI.\n\n    SICA confidence = margin between top two SICA scores normalized.\n    \"\"\"\n    results = []\n    for p in problems:\n        scores = p['sica_scores']\n        if scores:\n            sorted_scores = sorted(scores.values(), reverse=True)\n            total = sum(sorted_scores)\n            if total > 0:\n                top_frac = sorted_scores[0] / total\n            else:\n                top_frac = 0\n        else:\n            top_frac = 0\n\n        if top_frac >= threshold:\n            answer = p['sica_answer']\n            source = f'sica_conf_{top_frac:.2f}'\n        else:\n            answer = p['deberta_pred']\n            source = f'nli_lowconf_{top_frac:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_nli_weighted_vote(problems, nli_weight=1):\n    \"\"\"Add NLI prediction as extra vote(s) to SC vote distribution, then majority vote.\"\"\"\n    results = []\n    for p in problems:\n        votes = Counter()\n        for a in p['sc_answers']:\n            na = normalize_answer(a)\n            if na in ('True', 'False', 'Unknown'):\n                votes[na] += 1\n\n        votes[p['deberta_pred']] += nli_weight\n\n        answer = votes.most_common(1)[0][0]\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': 'weighted_vote'})\n    return results\n\n\ndef strategy_sica_nli_weighted_vote(problems, nli_weight=3):\n    \"\"\"Combine SICA MAX-SAT scores + NLI probability as weighted vote.\"\"\"\n    results = []\n    for p in problems:\n        combined = {'True': 0.0, 'False': 0.0, 'Unknown': 0.0}\n\n        for label, score in p['sica_scores'].items():\n            nl = normalize_answer(label)\n            if nl in combined:\n                combined[nl] += score\n\n        probs = p['deberta_probs']\n        combined['True'] += probs.get('True', 0) * nli_weight\n        combined['False'] += probs.get('False', 0) * nli_weight\n        combined['Unknown'] += probs.get('Unknown', 0) * nli_weight\n\n        answer = max(combined, key=combined.get)\n        correct = (answer == p['gold'])\n        results.append({\n            'pid': p['pid'], 'answer': answer, 'correct': correct,\n            'source': 'sica_nli_weighted', 'combined_scores': {k: round(v, 3) for k, v in combined.items()},\n        })\n    return results\n\n\ndef strategy_oracle(problems):\n    \"\"\"Upper bound: pick whichever signal is correct when they disagree.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        elif p['sica_correct']:\n            answer = p['sica_answer']\n            source = 'oracle_sica'\n        elif p['deberta_correct']:\n            answer = p['deberta_pred']\n            source = 'oracle_nli'\n        else:\n            answer = p['sica_answer']\n            source = 'both_wrong'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef compute_per_class(results, problems):\n    \"\"\"Compute per-class accuracy.\"\"\"\n    by_class = {}\n    for r, p in zip(results, problems):\n        gold = p['gold']\n        if gold not in by_class:\n            by_class[gold] = {'total': 0, 'correct': 0}\n        by_class[gold]['total'] += 1\n        if r['correct']:\n            by_class[gold]['correct'] += 1\n\n    for label in by_class:\n        s = by_class[label]\n        s['accuracy'] = round(s['correct'] / s['total'], 4) if s['total'] > 0 else 0\n    return by_class\n\n\ndef main():\n    parser = argparse.ArgumentParser(description='R+G Combo: SICA + NLI combination strategies')\n    parser.add_argument('--r-results', default='results/direction_r_nli_large/results.json')\n    parser.add_argument('--exp033', default='results/exp033_mistral_7b_folio204/exp033_results.json')\n    parser.add_argument('--sc-matrix', default='results/exp033_mistral_7b_folio204/sc_answer_matrix.json')\n    parser.add_argument('--output-dir', default='results/direction_rg_combo')\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    os.chdir('/root/symb_invariant_consensus')\n\n    if args.dry_run:\n        print('=== DRY RUN ===')\n        for path in [args.r_results, args.exp033, args.sc_matrix]:\n            exists = os.path.exists(path)\n            print(f'  {path}: {\"OK\" if exists else \"MISSING\"}')\n        try:\n            import scipy.stats\n            print('  scipy: OK')\n        except ImportError:\n            print('  scipy: MISSING (McNemar test will fail)')\n        try:\n            import numpy\n            print(f'  numpy: OK ({numpy.__version__})')\n        except ImportError:\n            print('  numpy: MISSING')\n        print('=== DRY RUN PASSED ===')\n        return\n\n    print('Loading data...', flush=True)\n    problems = load_data(args.r_results, args.exp033, args.sc_matrix)\n    n = len(problems)\n    print(f'  {n} problems loaded', flush=True)\n\n    sc_correct_list = [p['sc_correct'] for p in problems]\n    sica_correct_list = [p['sica_correct'] for p in problems]\n    nli_correct_list = [p['deberta_correct'] for p in problems]\n\n    sc_acc = sum(sc_correct_list) / n\n    sica_acc = sum(sica_correct_list) / n\n    nli_acc = sum(nli_correct_list) / n\n\n    strategies = {}\n\n    # 1. Intersection: agree → use, disagree → SC fallback\n    res = strategy_intersection(problems)\n    agree_count = sum(1 for r in res if r['source'] == 'agree')\n    strategies['intersection_sc_fallback'] = {\n        'results': res,\n        'description': 'SICA ∩ NLI agree → use, disagree → SC fallback',\n        'agree_count': agree_count,\n        'agree_pct': round(agree_count / n * 100, 1),\n    }\n\n    # 2. Intersection: agree → use, disagree → SICA fallback\n    res = strategy_intersection_sica_fallback(problems)\n    strategies['intersection_sica_fallback'] = {\n        'results': res,\n        'description': 'SICA ∩ NLI agree → use, disagree → SICA fallback',\n    }\n\n    # 3. Cascade NLI→SICA at various thresholds\n    for thresh in [0.6, 0.7, 0.8, 0.9]:\n        res = strategy_cascade(problems, threshold=thresh)\n        nli_used = sum(1 for r in res if r['source'].startswith('nli'))\n        strategies[f'cascade_nli_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'NLI conf≥{thresh} → use NLI, else → SICA',\n            'nli_used': nli_used,\n            'nli_used_pct': round(nli_used / n * 100, 1),\n        }\n\n    # 4. Cascade SICA→NLI (reverse) at various thresholds\n    for thresh in [0.6, 0.7, 0.8]:\n        res = strategy_cascade_reverse(problems, threshold=thresh)\n        sica_used = sum(1 for r in res if r['source'].startswith('sica'))\n        strategies[f'cascade_sica_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'SICA conf≥{thresh} → use SICA, else → NLI',\n            'sica_used': sica_used,\n            'sica_used_pct': round(sica_used / n * 100, 1),\n        }\n\n    # 5. NLI as extra vote in SC (w=1, w=3, w=5)\n    for w in [1, 3, 5]:\n        res = strategy_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'nli_sc_vote_w{w}'] = {\n            'results': res,\n            'description': f'SC votes + NLI as {w} extra vote(s)',\n        }\n\n    # 6. SICA scores + NLI probability weighted combination\n    for w in [5, 10, 20, 50]:\n        res = strategy_sica_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'sica_nli_weighted_w{w}'] = {\n            'results': res,\n            'description': f'SICA MAX-SAT scores + NLI probs × {w}',\n        }\n\n    # 7. Oracle upper bound\n    res = strategy_oracle(problems)\n    strategies['oracle'] = {\n        'results': res,\n        'description': 'Perfect arbitrator between SICA and NLI (upper bound)',\n    }\n\n    # Compute metrics\n    print(f'\\n{\"=\"*70}')\n    print(f'R+G COMBO RESULTS (n={n})')\n    print(f'{\"=\"*70}')\n    print(f'{\"Strategy\":<35} {\"Acc\":>7} {\"Correct\":>8} {\"Delta/SC\":>9} {\"Delta/SICA\":>11}')\n    print('-' * 70)\n    print(f'{\"SC baseline\":<35} {sc_acc:>6.2%} {sum(sc_correct_list):>8}')\n    print(f'{\"SICA baseline\":<35} {sica_acc:>6.2%} {sum(sica_correct_list):>8} {sica_acc-sc_acc:>+8.2%}')\n    print(f'{\"NLI standalone\":<35} {nli_acc:>6.2%} {sum(nli_correct_list):>8} {nli_acc-sc_acc:>+8.2%}')\n    print('-' * 70)\n\n    output_strategies = {}\n    best_acc = 0\n    best_name = ''\n\n    for name, strat in strategies.items():\n        res = strat['results']\n        correct_list = [r['correct'] for r in res]\n        acc = sum(correct_list) / n\n        correct_count = sum(correct_list)\n        delta_sc = acc - sc_acc\n        delta_sica = acc - sica_acc\n\n        if name != 'oracle' and acc > best_acc:\n            best_acc = acc\n            best_name = name\n\n        mcnemar_vs_sc = mcnemar_test(correct_list, sc_correct_list)\n        mcnemar_vs_sica = mcnemar_test(correct_list, sica_correct_list)\n\n        per_class = compute_per_class(res, problems)\n\n        label = name[:35]\n        sig_sc = '*' if mcnemar_vs_sc['p_value'] < 0.05 else ''\n        print(f'{label:<35} {acc:>6.2%} {correct_count:>8} {delta_sc:>+8.2%}{sig_sc} {delta_sica:>+10.2%}')\n\n        output_entry = {\n            'description': strat['description'],\n            'accuracy': round(acc, 4),\n            'correct': correct_count,\n            'delta_vs_sc': round(delta_sc, 4),\n            'delta_vs_sica': round(delta_sica, 4),\n            'mcnemar_vs_sc': mcnemar_vs_sc,\n            'mcnemar_vs_sica': mcnemar_vs_sica,\n            'per_class': per_class,\n        }\n\n        for k in ('agree_count', 'agree_pct', 'nli_used', 'nli_used_pct', 'sica_used', 'sica_used_pct'):\n            if k in strat:\n                output_entry[k] = strat[k]\n\n        output_strategies[name] = output_entry\n\n    print(f'{\"=\"*70}')\n    print(f'* = McNemar p<0.05 vs SC')\n    print(f'\\nBest non-oracle strategy: {best_name} ({best_acc:.2%})')\n\n    # Agreement analysis\n    agree_sica_nli = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'])\n    agree_correct = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'] and p['sica_correct'])\n    disagree_count = n - agree_sica_nli\n    disagree_sica_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['sica_correct'])\n    disagree_nli_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['deberta_correct'])\n    disagree_both_wrong = disagree_count - disagree_sica_right - disagree_nli_right\n\n    agreement_analysis = {\n        'agree': agree_sica_nli,\n        'agree_pct': round(agree_sica_nli / n * 100, 1),\n        'agree_accuracy': round(agree_correct / agree_sica_nli, 4) if agree_sica_nli > 0 else 0,\n        'disagree': disagree_count,\n        'disagree_sica_correct': disagree_sica_right,\n        'disagree_nli_correct': disagree_nli_right,\n        'disagree_both_wrong': disagree_both_wrong,\n    }\n\n    print(f'\\nAgreement analysis:')\n    print(f'  SICA ∩ NLI agree: {agree_sica_nli}/{n} ({agree_sica_nli/n:.1%}), '\n          f'accuracy when agree: {agree_correct}/{agree_sica_nli} ({agree_correct/agree_sica_nli:.2%})')\n    print(f'  Disagree: {disagree_count}/{n}')\n    print(f'    SICA correct: {disagree_sica_right}, NLI correct: {disagree_nli_right}, '\n          f'Both wrong: {disagree_both_wrong}')\n\n    # Correlation analysis: NLI confidence vs correctness\n    nli_confs = [max(p['deberta_probs'].values()) for p in problems]\n    nli_correct_when_high = sum(1 for p, c in zip(problems, nli_confs) if c >= 0.8 and p['deberta_correct'])\n    nli_total_high = sum(1 for c in nli_confs if c >= 0.8)\n    nli_correct_when_low = sum(1 for p, c in zip(problems, nli_confs) if c < 0.8 and p['deberta_correct'])\n    nli_total_low = sum(1 for c in nli_confs if c < 0.8)\n\n    confidence_analysis = {\n        'nli_high_conf_ge80': {\n            'count': nli_total_high,\n            'correct': nli_correct_when_high,\n            'accuracy': round(nli_correct_when_high / nli_total_high, 4) if nli_total_high > 0 else 0,\n        },\n        'nli_low_conf_lt80': {\n            'count': nli_total_low,\n            'correct': nli_correct_when_low,\n            'accuracy': round(nli_correct_when_low / nli_total_low, 4) if nli_total_low > 0 else 0,\n        },\n    }\n\n    print(f'\\nNLI confidence analysis:')\n    print(f'  High conf (≥0.8): {nli_total_high} problems, '\n          f'acc={nli_correct_when_high}/{nli_total_high} '\n          f'({nli_correct_when_high/nli_total_high:.2%})')\n    print(f'  Low conf (<0.8):  {nli_total_low} problems, '\n          f'acc={nli_correct_when_low}/{nli_total_low} '\n          f'({nli_correct_when_low/nli_total_low:.2%})')\n\n    # Per-question detail for best strategy\n    best_results = strategies[best_name]['results']\n    per_question_detail = {}\n    for r, p in zip(best_results, problems):\n        per_question_detail[p['pid']] = {\n            'gold': p['gold'],\n            'combo_answer': r['answer'],\n            'combo_correct': r['correct'],\n            'combo_source': r['source'],\n            'sica_answer': p['sica_answer'],\n            'sica_correct': p['sica_correct'],\n            'deberta_pred': p['deberta_pred'],\n            'deberta_correct': p['deberta_correct'],\n            'sc_answer': p['sc_answer'],\n            'sc_correct': p['sc_correct'],\n        }\n\n    # Save\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    output = {\n        'baselines': {\n            'sc': {'accuracy': round(sc_acc, 4), 'correct': sum(sc_correct_list)},\n            'sica': {'accuracy': round(sica_acc, 4), 'correct': sum(sica_correct_list)},\n            'nli_standalone': {'accuracy': round(nli_acc, 4), 'correct': sum(nli_correct_list)},\n        },\n        'n_problems': n,\n        'best_strategy': best_name,\n        'best_accuracy': round(best_acc, 4),\n        'strategies': output_strategies,\n        'agreement_analysis': agreement_analysis,\n        'confidence_analysis': confidence_analysis,\n        'note': 'Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. '\n                'When full G results are available, re-run with --g-results flag.',\n    }\n\n    out_file = os.path.join(args.output_dir, 'results.json')\n    with open(out_file, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f'\\nSummary saved to {out_file}')\n\n    detail_file = os.path.join(args.output_dir, 'per_question_best.json')\n    with open(detail_file, 'w') as f:\n        json.dump(per_question_detail, f, indent=2)\n    print(f'Per-question detail saved to {detail_file}')\n\n\nif __name__ == '__main__':\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T11:37:06.914575+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T11:37:06.914736+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'in_progress', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'in_progress', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'pending', 'activeForm': 'Running experiment'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T11:37:06.914914+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T11:37:06.915068+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py westd-25068:/root/symb_invariant_consensus/direction_rg_combo.py",
+  "description": "Copy script to server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py westd-25068:/root/symb_invariant_consensus/direction_rg_combo.py",
+    "description": "Copy script to server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T11:37:06.915247+00:00_
+
+Exit code 255
+Warning: Permanently added '[connect.westd.seetacloud.com]:25068' (ED25519) to the list of known hosts.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+root@connect.westd.seetacloud.com: Permission denied (publickey,password).
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T11:37:06.915398+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/direction_rg_combo.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T11:37:06.915697+00:00_
+
+1	#!/usr/bin/env python3
+2	"""Direction R+G Combo: SICA + NLI external verifier combination strategies.
+3	
+4	Combines two architecturally independent signals:
+5	- SICA: symbolic constraint aggregation from CoT traces (MAX-SAT)
+6	- NLI: DeBERTa encoder-only model predicting entailment/contradiction/neutral
+7	
+8	Since full G (decoupling) results are unavailable (only 5 test problems),
+9	this uses standard SICA results. When G results become available,
+10	swap in SICA-G per-problem answers.
+11	"""
+12	import argparse
+13	import json
+14	import os
+15	import sys
+16	from collections import Counter
+17	
+18	import numpy as np
+19	
+20	
+21	def normalize_answer(ans):
+22	    ans = str(ans).strip().lower()
+23	    if ans in ('true', 'yes', 't'):
+24	        return 'True'
+25	    elif ans in ('false', 'no', 'f'):
+26	        return 'False'
+27	    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):
+28	        return 'Unknown'
+29	    return ans.capitalize()
+30	
+31	
+32	def sc_majority(answers):
+33	    valid = [normalize_answer(a) for a in answers if normalize_answer(a) in ('True', 'False', 'Unknown')]
+34	    if not valid:
+35	        return 'Unknown'
+36	    c = Counter(valid)
+37	    return c.most_common(1)[0][0]
+38	
+39	
+40	def mcnemar_test(correct_a, correct_b):
+41	    """McNemar's test: are two classifiers significantly different?"""
+42	    n = len(correct_a)
+43	    b_count = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])
+44	    c_count = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])
+45	
+46	    if b_count + c_count == 0:
+47	        return {'chi2': 0.0, 'p_value': 1.0, 'b': b_count, 'c': c_count}
+48	
+49	    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)
+50	
+51	    from scipy.stats import chi2 as chi2_dist
+52	    p_value = 1 - chi2_dist.cdf(chi2, df=1)
+53	    return {'chi2': round(chi2, 4), 'p_value': round(p_value, 6), 'b': b_count, 'c': c_count}
+54	
+55	
+56	def load_data(r_results_path, exp033_path, sc_matrix_path):
+57	    """Load R NLI re
+…[truncated 19401 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T11:37:06.915998+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/direction_rg_combo.py\n#!/usr/bin/env python3\n\"\"\"Direction R+G Combo: SICA + NLI external verifier combination strategies.\n\nCombines two architecturally independent signals:\n- SICA: symbolic constraint aggregation from CoT traces (MAX-SAT)\n- NLI: DeBERTa encoder-only model predicting entailment/contradiction/neutral\n\nSince full G (decoupling) results are unavailable (only 5 test problems),\nthis uses standard SICA results. When G results become available,\nswap in SICA-G per-problem answers.\n\"\"\"\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\n\n\ndef normalize_answer(ans):\n    ans = str(ans).strip().lower()\n    if ans in ('true', 'yes', 't'):\n        return 'True'\n    elif ans in ('false', 'no', 'f'):\n        return 'False'\n    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):\n        return 'Unknown'\n    return ans.capitalize()\n\n\ndef sc_majority(answers):\n    valid = [normalize_answer(a) for a in answers if normalize_answer(a) in ('True', 'False', 'Unknown')]\n    if not valid:\n        return 'Unknown'\n    c = Counter(valid)\n    return c.most_common(1)[0][0]\n\n\ndef mcnemar_test(correct_a, correct_b):\n    \"\"\"McNemar's test: are two classifiers significantly different?\"\"\"\n    n = len(correct_a)\n    b_count = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])\n    c_count = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])\n\n    if b_count + c_count == 0:\n        return {'chi2': 0.0, 'p_value': 1.0, 'b': b_count, 'c': c_count}\n\n    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)\n\n    from scipy.stats import chi2 as chi2_dist\n    p_value = 1 - chi2_dist.cdf(chi2, df=1)\n    return {'chi2': round(chi2, 4), 'p_value': round(p_value, 6), 'b': b_count, 'c': c_count}\n\n\ndef load_data(r_results_path, exp033_path, sc_matrix_path):\n    \"\"\"Load R NLI results and exp033 SICA results.\"\"\"\n    with open(r_results_path) as f:\n        r_data = json.load(f)\n\n    with open(exp033_path) as f:\n        exp033 = json.load(f)\n\n    with open(sc_matrix_path) as f:\n        sc_matrix = json.load(f)\n\n    per_q = r_data['per_question']\n\n    exp033_by_id = {}\n    for prob in exp033['results']:\n        exp033_by_id[prob['problem_id']] = prob\n\n    problems = []\n    for pid in sorted(per_q.keys(), key=lambda x: int(x.split('_')[1])):\n        q = per_q[pid]\n        e = exp033_by_id.get(pid, {})\n        sc_answers = sc_matrix.get(pid, {}).get('answers', [])\n\n        problems.append({\n            'pid': pid,\n            'gold': q['gold'],\n            'sc_answer': q['sc_answer'],\n            'sica_answer': q['sica_answer'],\n            'deberta_pred': q['deberta_pred'],\n            'deberta_probs': q['deberta_probs'],\n            'sc_correct': q['sc_correct'],\n            'sica_correct': q['sica_correct'],\n            'deberta_correct': q['deberta_correct'],\n            'sica_scores': e.get('sica_scores', {}),\n            'sc_vote_distribution': e.get('sc_vote_distribution', {}),\n            'sc_answers': sc_answers,\n        })\n\n    return problems\n\n\ndef strategy_intersection(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SC.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sc_answer']\n            source = 'fallback_sc'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_intersection_sica_fallback(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SICA.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sica_answer']\n            source = 'fallback_sica'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade(problems, threshold=0.7):\n    \"\"\"NLI high-confidence -> use NLI, else -> use SICA.\"\"\"\n    results = []\n    for p in problems:\n        probs = p['deberta_probs']\n        max_prob = max(probs.values())\n        if max_prob >= threshold:\n            answer = p['deberta_pred']\n            source = f'nli_conf_{max_prob:.2f}'\n        else:\n            answer = p['sica_answer']\n            source = f'sica_lowconf_{max_prob:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade_reverse(problems, threshold=0.7):\n    \"\"\"SICA high-confidence -> use SICA, else -> use NLI.\n\n    SICA confidence = margin between top two SICA scores normalized.\n    \"\"\"\n    results = []\n    for p in problems:\n        scores = p['sica_scores']\n        if scores:\n            sorted_scores = sorted(scores.values(), reverse=True)\n            total = sum(sorted_scores)\n            if total > 0:\n                top_frac = sorted_scores[0] / total\n            else:\n                top_frac = 0\n        else:\n            top_frac = 0\n\n        if top_frac >= threshold:\n            answer = p['sica_answer']\n            source = f'sica_conf_{top_frac:.2f}'\n        else:\n            answer = p['deberta_pred']\n            source = f'nli_lowconf_{top_frac:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_nli_weighted_vote(problems, nli_weight=1):\n    \"\"\"Add NLI prediction as extra vote(s) to SC vote distribution, then majority vote.\"\"\"\n    results = []\n    for p in problems:\n        votes = Counter()\n        for a in p['sc_answers']:\n            na = normalize_answer(a)\n            if na in ('True', 'False', 'Unknown'):\n                votes[na] += 1\n\n        votes[p['deberta_pred']] += nli_weight\n\n        answer = votes.most_common(1)[0][0]\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': 'weighted_vote'})\n    return results\n\n\ndef strategy_sica_nli_weighted_vote(problems, nli_weight=3):\n    \"\"\"Combine SICA MAX-SAT scores + NLI probability as weighted vote.\"\"\"\n    results = []\n    for p in problems:\n        combined = {'True': 0.0, 'False': 0.0, 'Unknown': 0.0}\n\n        for label, score in p['sica_scores'].items():\n            nl = normalize_answer(label)\n            if nl in combined:\n                combined[nl] += score\n\n        probs = p['deberta_probs']\n        combined['True'] += probs.get('True', 0) * nli_weight\n        combined['False'] += probs.get('False', 0) * nli_weight\n        combined['Unknown'] += probs.get('Unknown', 0) * nli_weight\n\n        answer = max(combined, key=combined.get)\n        correct = (answer == p['gold'])\n        results.append({\n            'pid': p['pid'], 'answer': answer, 'correct': correct,\n            'source': 'sica_nli_weighted', 'combined_scores': {k: round(v, 3) for k, v in combined.items()},\n        })\n    return results\n\n\ndef strategy_oracle(problems):\n    \"\"\"Upper bound: pick whichever signal is correct when they disagree.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        elif p['sica_correct']:\n            answer = p['sica_answer']\n            source = 'oracle_sica'\n        elif p['deberta_correct']:\n            answer = p['deberta_pred']\n            source = 'oracle_nli'\n        else:\n            answer = p['sica_answer']\n            source = 'both_wrong'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef compute_per_class(results, problems):\n    \"\"\"Compute per-class accuracy.\"\"\"\n    by_class = {}\n    for r, p in zip(results, problems):\n        gold = p['gold']\n        if gold not in by_class:\n            by_class[gold] = {'total': 0, 'correct': 0}\n        by_class[gold]['total'] += 1\n        if r['correct']:\n            by_class[gold]['correct'] += 1\n\n    for label in by_class:\n        s = by_class[label]\n        s['accuracy'] = round(s['correct'] / s['total'], 4) if s['total'] > 0 else 0\n    return by_class\n\n\ndef main():\n    parser = argparse.ArgumentParser(description='R+G Combo: SICA + NLI combination strategies')\n    parser.add_argument('--r-results', default='results/direction_r_nli_large/results.json')\n    parser.add_argument('--exp033', default='results/exp033_mistral_7b_folio204/exp033_results.json')\n    parser.add_argument('--sc-matrix', default='results/exp033_mistral_7b_folio204/sc_answer_matrix.json')\n    parser.add_argument('--output-dir', default='results/direction_rg_combo')\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    os.chdir('/root/symb_invariant_consensus')\n\n    if args.dry_run:\n        print('=== DRY RUN ===')\n        for path in [args.r_results, args.exp033, args.sc_matrix]:\n            exists = os.path.exists(path)\n            print(f'  {path}: {\"OK\" if exists else \"MISSING\"}')\n        try:\n            import scipy.stats\n            print('  scipy: OK')\n        except ImportError:\n            print('  scipy: MISSING (McNemar test will fail)')\n        try:\n            import numpy\n            print(f'  numpy: OK ({numpy.__version__})')\n        except ImportError:\n            print('  numpy: MISSING')\n        print('=== DRY RUN PASSED ===')\n        return\n\n    print('Loading data...', flush=True)\n    problems = load_data(args.r_results, args.exp033, args.sc_matrix)\n    n = len(problems)\n    print(f'  {n} problems loaded', flush=True)\n\n    sc_correct_list = [p['sc_correct'] for p in problems]\n    sica_correct_list = [p['sica_correct'] for p in problems]\n    nli_correct_list = [p['deberta_correct'] for p in problems]\n\n    sc_acc = sum(sc_correct_list) / n\n    sica_acc = sum(sica_correct_list) / n\n    nli_acc = sum(nli_correct_list) / n\n\n    strategies = {}\n\n    # 1. Intersection: agree -> use, disagree -> SC fallback\n    res = strategy_intersection(problems)\n    agree_count = sum(1 for r in res if r['source'] == 'agree')\n    strategies['intersection_sc_fallback'] = {\n        'results': res,\n        'description': 'SICA and NLI agree -> use, disagree -> SC fallback',\n        'agree_count': agree_count,\n        'agree_pct': round(agree_count / n * 100, 1),\n    }\n\n    # 2. Intersection: agree -> use, disagree -> SICA fallback\n    res = strategy_intersection_sica_fallback(problems)\n    strategies['intersection_sica_fallback'] = {\n        'results': res,\n        'description': 'SICA and NLI agree -> use, disagree -> SICA fallback',\n    }\n\n    # 3. Cascade NLI->SICA at various thresholds\n    for thresh in [0.6, 0.7, 0.8, 0.9]:\n        res = strategy_cascade(problems, threshold=thresh)\n        nli_used = sum(1 for r in res if r['source'].startswith('nli'))\n        strategies[f'cascade_nli_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'NLI conf>={thresh} -> use NLI, else -> SICA',\n            'nli_used': nli_used,\n            'nli_used_pct': round(nli_used / n * 100, 1),\n        }\n\n    # 4. Cascade SICA->NLI (reverse) at various thresholds\n    for thresh in [0.6, 0.7, 0.8]:\n        res = strategy_cascade_reverse(problems, threshold=thresh)\n        sica_used = sum(1 for r in res if r['source'].startswith('sica'))\n        strategies[f'cascade_sica_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'SICA conf>={thresh} -> use SICA, else -> NLI',\n            'sica_used': sica_used,\n            'sica_used_pct': round(sica_used / n * 100, 1),\n        }\n\n    # 5. NLI as extra vote in SC (w=1, w=3, w=5)\n    for w in [1, 3, 5]:\n        res = strategy_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'nli_sc_vote_w{w}'] = {\n            'results': res,\n            'description': f'SC votes + NLI as {w} extra vote(s)',\n        }\n\n    # 6. SICA scores + NLI probability weighted combination\n    for w in [5, 10, 20, 50]:\n        res = strategy_sica_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'sica_nli_weighted_w{w}'] = {\n            'results': res,\n            'description': f'SICA MAX-SAT scores + NLI probs x {w}',\n        }\n\n    # 7. Oracle upper bound\n    res = strategy_oracle(problems)\n    strategies['oracle'] = {\n        'results': res,\n        'description': 'Perfect arbitrator between SICA and NLI (upper bound)',\n    }\n\n    # Compute metrics\n    print(f'\\n{\"=\"*70}')\n    print(f'R+G COMBO RESULTS (n={n})')\n    print(f'{\"=\"*70}')\n    print(f'{\"Strategy\":<35} {\"Acc\":>7} {\"Correct\":>8} {\"Delta/SC\":>9} {\"Delta/SICA\":>11}')\n    print('-' * 70)\n    print(f'{\"SC baseline\":<35} {sc_acc:>6.2%} {sum(sc_correct_list):>8}')\n    print(f'{\"SICA baseline\":<35} {sica_acc:>6.2%} {sum(sica_correct_list):>8} {sica_acc-sc_acc:>+8.2%}')\n    print(f'{\"NLI standalone\":<35} {nli_acc:>6.2%} {sum(nli_correct_list):>8} {nli_acc-sc_acc:>+8.2%}')\n    print('-' * 70)\n\n    output_strategies = {}\n    best_acc = 0\n    best_name = ''\n\n    for name, strat in strategies.items():\n        res = strat['results']\n        correct_list = [r['correct'] for r in res]\n        acc = sum(correct_list) / n\n        correct_count = sum(correct_list)\n        delta_sc = acc - sc_acc\n        delta_sica = acc - sica_acc\n\n        if name != 'oracle' and acc > best_acc:\n            best_acc = acc\n            best_name = name\n\n        mcnemar_vs_sc = mcnemar_test(correct_list, sc_correct_list)\n        mcnemar_vs_sica = mcnemar_test(correct_list, sica_correct_list)\n\n        per_class = compute_per_class(res, problems)\n\n        label = name[:35]\n        sig_sc = '*' if mcnemar_vs_sc['p_value'] < 0.05 else ''\n        print(f'{label:<35} {acc:>6.2%} {correct_count:>8} {delta_sc:>+8.2%}{sig_sc} {delta_sica:>+10.2%}')\n\n        output_entry = {\n            'description': strat['description'],\n            'accuracy': round(acc, 4),\n            'correct': correct_count,\n            'delta_vs_sc': round(delta_sc, 4),\n            'delta_vs_sica': round(delta_sica, 4),\n            'mcnemar_vs_sc': mcnemar_vs_sc,\n            'mcnemar_vs_sica': mcnemar_vs_sica,\n            'per_class': per_class,\n        }\n\n        for k in ('agree_count', 'agree_pct', 'nli_used', 'nli_used_pct', 'sica_used', 'sica_used_pct'):\n            if k in strat:\n                output_entry[k] = strat[k]\n\n        output_strategies[name] = output_entry\n\n    print(f'{\"=\"*70}')\n    print(f'* = McNemar p<0.05 vs SC')\n    print(f'\\nBest non-oracle strategy: {best_name} ({best_acc:.2%})')\n\n    # Agreement analysis\n    agree_sica_nli = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'])\n    agree_correct = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'] and p['sica_correct'])\n    disagree_count = n - agree_sica_nli\n    disagree_sica_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['sica_correct'])\n    disagree_nli_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['deberta_correct'])\n    disagree_both_wrong = disagree_count - disagree_sica_right - disagree_nli_right\n\n    agreement_analysis = {\n        'agree': agree_sica_nli,\n        'agree_pct': round(agree_sica_nli / n * 100, 1),\n        'agree_accuracy': round(agree_correct / agree_sica_nli, 4) if agree_sica_nli > 0 else 0,\n        'disagree': disagree_count,\n        'disagree_sica_correct': disagree_sica_right,\n        'disagree_nli_correct': disagree_nli_right,\n        'disagree_both_wrong': disagree_both_wrong,\n    }\n\n    print(f'\\nAgreement analysis:')\n    print(f'  SICA and NLI agree: {agree_sica_nli}/{n} ({agree_sica_nli/n:.1%}), '\n          f'accuracy when agree: {agree_correct}/{agree_sica_nli} ({agree_correct/agree_sica_nli:.2%})')\n    print(f'  Disagree: {disagree_count}/{n}')\n    print(f'    SICA correct: {disagree_sica_right}, NLI correct: {disagree_nli_right}, '\n          f'Both wrong: {disagree_both_wrong}')\n\n    # Correlation analysis: NLI confidence vs correctness\n    nli_confs = [max(p['deberta_probs'].values()) for p in problems]\n    nli_correct_when_high = sum(1 for p, c in zip(problems, nli_confs) if c >= 0.8 and p['deberta_correct'])\n    nli_total_high = sum(1 for c in nli_confs if c >= 0.8)\n    nli_correct_when_low = sum(1 for p, c in zip(problems, nli_confs) if c < 0.8 and p['deberta_correct'])\n    nli_total_low = sum(1 for c in nli_confs if c < 0.8)\n\n    confidence_analysis = {\n        'nli_high_conf_ge80': {\n            'count': nli_total_high,\n            'correct': nli_correct_when_high,\n            'accuracy': round(nli_correct_when_high / nli_total_high, 4) if nli_total_high > 0 else 0,\n        },\n        'nli_low_conf_lt80': {\n            'count': nli_total_low,\n            'correct': nli_correct_when_low,\n            'accuracy': round(nli_correct_when_low / nli_total_low, 4) if nli_total_low > 0 else 0,\n        },\n    }\n\n    print(f'\\nNLI confidence analysis:')\n    print(f'  High conf (>=0.8): {nli_total_high} problems, '\n          f'acc={nli_correct_when_high}/{nli_total_high} '\n          f'({nli_correct_when_high/nli_total_high:.2%})')\n    print(f'  Low conf (<0.8):  {nli_total_low} problems, '\n          f'acc={nli_correct_when_low}/{nli_total_low} '\n          f'({nli_correct_when_low/nli_total_low:.2%})')\n\n    # Per-question detail for best strategy\n    best_results = strategies[best_name]['results']\n    per_question_detail = {}\n    for r, p in zip(best_results, problems):\n        per_question_detail[p['pid']] = {\n            'gold': p['gold'],\n            'combo_answer': r['answer'],\n            'combo_correct': r['correct'],\n            'combo_source': r['source'],\n            'sica_answer': p['sica_answer'],\n            'sica_correct': p['sica_correct'],\n            'deberta_pred': p['deberta_pred'],\n            'deberta_correct': p['deberta_correct'],\n            'sc_answer': p['sc_answer'],\n            'sc_correct': p['sc_correct'],\n        }\n\n    # Save\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    output = {\n        'baselines': {\n            'sc': {'accuracy': round(sc_acc, 4), 'correct': sum(sc_correct_list)},\n            'sica': {'accuracy': round(sica_acc, 4), 'correct': sum(sica_correct_list)},\n            'nli_standalone': {'accuracy': round(nli_acc, 4), 'correct': sum(nli_correct_list)},\n        },\n        'n_problems': n,\n        'best_strategy': best_name,\n        'best_accuracy': round(best_acc, 4),\n        'strategies': output_strategies,\n        'agreement_analysis': agreement_analysis,\n        'confidence_analysis': confidence_analysis,\n        'note': 'Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. '\n                'When full G results are available, re-run with --g-results flag.',\n    }\n\n    out_file = os.path.join(args.output_dir, 'results.json')\n    with open(out_file, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f'\\nSummary saved to {out_file}')\n\n    detail_file = os.path.join(args.output_dir, 'per_question_best.json')\n    with open(detail_file, 'w') as f:\n        json.dump(per_question_detail, f, indent=2)\n    print(f'Per-question detail saved to {detail_file}')\n\n\nif __name__ == '__main__':\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat << 'PYEOF' > /root/symb_invariant_consensus/direction_rg_combo.py\n#!/usr/bin/env python3\n\"\"\"Direction R+G Combo: SICA + NLI external verifier combination strategies.\n\nCombines two architecturally independent signals:\n- SICA: symbolic constraint aggregation from CoT traces (MAX-SAT)\n- NLI: DeBERTa encoder-only model predicting entailment/contradiction/neutral\n\nSince full G (decoupling) results are unavailable (only 5 test problems),\nthis uses standard SICA results. When G results become available,\nswap in SICA-G per-problem answers.\n\"\"\"\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter\n\nimport numpy as np\n\n\ndef normalize_answer(ans):\n    ans = str(ans).strip().lower()\n    if ans in ('true', 'yes', 't'):\n        return 'True'\n    elif ans in ('false', 'no', 'f'):\n        return 'False'\n    elif ans in ('unknown', 'uncertain', 'u', 'undetermined'):\n        return 'Unknown'\n    return ans.capitalize()\n\n\ndef sc_majority(answers):\n    valid = [normalize_answer(a) for a in answers if normalize_answer(a) in ('True', 'False', 'Unknown')]\n    if not valid:\n        return 'Unknown'\n    c = Counter(valid)\n    return c.most_common(1)[0][0]\n\n\ndef mcnemar_test(correct_a, correct_b):\n    \"\"\"McNemar's test: are two classifiers significantly different?\"\"\"\n    n = len(correct_a)\n    b_count = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])\n    c_count = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])\n\n    if b_count + c_count == 0:\n        return {'chi2': 0.0, 'p_value': 1.0, 'b': b_count, 'c': c_count}\n\n    chi2 = (abs(b_count - c_count) - 1) ** 2 / (b_count + c_count)\n\n    from scipy.stats import chi2 as chi2_dist\n    p_value = 1 - chi2_dist.cdf(chi2, df=1)\n    return {'chi2': round(chi2, 4), 'p_value': round(p_value, 6), 'b': b_count, 'c': c_count}\n\n\ndef load_data(r_results_path, exp033_path, sc_matrix_path):\n    \"\"\"Load R NLI results and exp033 SICA results.\"\"\"\n    with open(r_results_path) as f:\n        r_data = json.load(f)\n\n    with open(exp033_path) as f:\n        exp033 = json.load(f)\n\n    with open(sc_matrix_path) as f:\n        sc_matrix = json.load(f)\n\n    per_q = r_data['per_question']\n\n    exp033_by_id = {}\n    for prob in exp033['results']:\n        exp033_by_id[prob['problem_id']] = prob\n\n    problems = []\n    for pid in sorted(per_q.keys(), key=lambda x: int(x.split('_')[1])):\n        q = per_q[pid]\n        e = exp033_by_id.get(pid, {})\n        sc_answers = sc_matrix.get(pid, {}).get('answers', [])\n\n        problems.append({\n            'pid': pid,\n            'gold': q['gold'],\n            'sc_answer': q['sc_answer'],\n            'sica_answer': q['sica_answer'],\n            'deberta_pred': q['deberta_pred'],\n            'deberta_probs': q['deberta_probs'],\n            'sc_correct': q['sc_correct'],\n            'sica_correct': q['sica_correct'],\n            'deberta_correct': q['deberta_correct'],\n            'sica_scores': e.get('sica_scores', {}),\n            'sc_vote_distribution': e.get('sc_vote_distribution', {}),\n            'sc_answers': sc_answers,\n        })\n\n    return problems\n\n\ndef strategy_intersection(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SC.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sc_answer']\n            source = 'fallback_sc'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_intersection_sica_fallback(problems):\n    \"\"\"When SICA and NLI agree, use that. When they disagree, fall back to SICA.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        else:\n            answer = p['sica_answer']\n            source = 'fallback_sica'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade(problems, threshold=0.7):\n    \"\"\"NLI high-confidence -> use NLI, else -> use SICA.\"\"\"\n    results = []\n    for p in problems:\n        probs = p['deberta_probs']\n        max_prob = max(probs.values())\n        if max_prob >= threshold:\n            answer = p['deberta_pred']\n            source = f'nli_conf_{max_prob:.2f}'\n        else:\n            answer = p['sica_answer']\n            source = f'sica_lowconf_{max_prob:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_cascade_reverse(problems, threshold=0.7):\n    \"\"\"SICA high-confidence -> use SICA, else -> use NLI.\n\n    SICA confidence = margin between top two SICA scores normalized.\n    \"\"\"\n    results = []\n    for p in problems:\n        scores = p['sica_scores']\n        if scores:\n            sorted_scores = sorted(scores.values(), reverse=True)\n            total = sum(sorted_scores)\n            if total > 0:\n                top_frac = sorted_scores[0] / total\n            else:\n                top_frac = 0\n        else:\n            top_frac = 0\n\n        if top_frac >= threshold:\n            answer = p['sica_answer']\n            source = f'sica_conf_{top_frac:.2f}'\n        else:\n            answer = p['deberta_pred']\n            source = f'nli_lowconf_{top_frac:.2f}'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef strategy_nli_weighted_vote(problems, nli_weight=1):\n    \"\"\"Add NLI prediction as extra vote(s) to SC vote distribution, then majority vote.\"\"\"\n    results = []\n    for p in problems:\n        votes = Counter()\n        for a in p['sc_answers']:\n            na = normalize_answer(a)\n            if na in ('True', 'False', 'Unknown'):\n                votes[na] += 1\n\n        votes[p['deberta_pred']] += nli_weight\n\n        answer = votes.most_common(1)[0][0]\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': 'weighted_vote'})\n    return results\n\n\ndef strategy_sica_nli_weighted_vote(problems, nli_weight=3):\n    \"\"\"Combine SICA MAX-SAT scores + NLI probability as weighted vote.\"\"\"\n    results = []\n    for p in problems:\n        combined = {'True': 0.0, 'False': 0.0, 'Unknown': 0.0}\n\n        for label, score in p['sica_scores'].items():\n            nl = normalize_answer(label)\n            if nl in combined:\n                combined[nl] += score\n\n        probs = p['deberta_probs']\n        combined['True'] += probs.get('True', 0) * nli_weight\n        combined['False'] += probs.get('False', 0) * nli_weight\n        combined['Unknown'] += probs.get('Unknown', 0) * nli_weight\n\n        answer = max(combined, key=combined.get)\n        correct = (answer == p['gold'])\n        results.append({\n            'pid': p['pid'], 'answer': answer, 'correct': correct,\n            'source': 'sica_nli_weighted', 'combined_scores': {k: round(v, 3) for k, v in combined.items()},\n        })\n    return results\n\n\ndef strategy_oracle(problems):\n    \"\"\"Upper bound: pick whichever signal is correct when they disagree.\"\"\"\n    results = []\n    for p in problems:\n        if p['sica_answer'] == p['deberta_pred']:\n            answer = p['sica_answer']\n            source = 'agree'\n        elif p['sica_correct']:\n            answer = p['sica_answer']\n            source = 'oracle_sica'\n        elif p['deberta_correct']:\n            answer = p['deberta_pred']\n            source = 'oracle_nli'\n        else:\n            answer = p['sica_answer']\n            source = 'both_wrong'\n        correct = (answer == p['gold'])\n        results.append({'pid': p['pid'], 'answer': answer, 'correct': correct, 'source': source})\n    return results\n\n\ndef compute_per_class(results, problems):\n    \"\"\"Compute per-class accuracy.\"\"\"\n    by_class = {}\n    for r, p in zip(results, problems):\n        gold = p['gold']\n        if gold not in by_class:\n            by_class[gold] = {'total': 0, 'correct': 0}\n        by_class[gold]['total'] += 1\n        if r['correct']:\n            by_class[gold]['correct'] += 1\n\n    for label in by_class:\n        s = by_class[label]\n        s['accuracy'] = round(s['correct'] / s['total'], 4) if s['total'] > 0 else 0\n    return by_class\n\n\ndef main():\n    parser = argparse.ArgumentParser(description='R+G Combo: SICA + NLI combination strategies')\n    parser.add_argument('--r-results', default='results/direction_r_nli_large/results.json')\n    parser.add_argument('--exp033', default='results/exp033_mistral_7b_folio204/exp033_results.json')\n    parser.add_argument('--sc-matrix', default='results/exp033_mistral_7b_folio204/sc_answer_matrix.json')\n    parser.add_argument('--output-dir', default='results/direction_rg_combo')\n    parser.add_argument('--dry-run', action='store_true')\n    args = parser.parse_args()\n\n    os.chdir('/root/symb_invariant_consensus')\n\n    if args.dry_run:\n        print('=== DRY RUN ===')\n        for path in [args.r_results, args.exp033, args.sc_matrix]:\n            exists = os.path.exists(path)\n            print(f'  {path}: {\"OK\" if exists else \"MISSING\"}')\n        try:\n            import scipy.stats\n            print('  scipy: OK')\n        except ImportError:\n            print('  scipy: MISSING (McNemar test will fail)')\n        try:\n            import numpy\n            print(f'  numpy: OK ({numpy.__version__})')\n        except ImportError:\n            print('  numpy: MISSING')\n        print('=== DRY RUN PASSED ===')\n        return\n\n    print('Loading data...', flush=True)\n    problems = load_data(args.r_results, args.exp033, args.sc_matrix)\n    n = len(problems)\n    print(f'  {n} problems loaded', flush=True)\n\n    sc_correct_list = [p['sc_correct'] for p in problems]\n    sica_correct_list = [p['sica_correct'] for p in problems]\n    nli_correct_list = [p['deberta_correct'] for p in problems]\n\n    sc_acc = sum(sc_correct_list) / n\n    sica_acc = sum(sica_correct_list) / n\n    nli_acc = sum(nli_correct_list) / n\n\n    strategies = {}\n\n    # 1. Intersection: agree -> use, disagree -> SC fallback\n    res = strategy_intersection(problems)\n    agree_count = sum(1 for r in res if r['source'] == 'agree')\n    strategies['intersection_sc_fallback'] = {\n        'results': res,\n        'description': 'SICA and NLI agree -> use, disagree -> SC fallback',\n        'agree_count': agree_count,\n        'agree_pct': round(agree_count / n * 100, 1),\n    }\n\n    # 2. Intersection: agree -> use, disagree -> SICA fallback\n    res = strategy_intersection_sica_fallback(problems)\n    strategies['intersection_sica_fallback'] = {\n        'results': res,\n        'description': 'SICA and NLI agree -> use, disagree -> SICA fallback',\n    }\n\n    # 3. Cascade NLI->SICA at various thresholds\n    for thresh in [0.6, 0.7, 0.8, 0.9]:\n        res = strategy_cascade(problems, threshold=thresh)\n        nli_used = sum(1 for r in res if r['source'].startswith('nli'))\n        strategies[f'cascade_nli_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'NLI conf>={thresh} -> use NLI, else -> SICA',\n            'nli_used': nli_used,\n            'nli_used_pct': round(nli_used / n * 100, 1),\n        }\n\n    # 4. Cascade SICA->NLI (reverse) at various thresholds\n    for thresh in [0.6, 0.7, 0.8]:\n        res = strategy_cascade_reverse(problems, threshold=thresh)\n        sica_used = sum(1 for r in res if r['source'].startswith('sica'))\n        strategies[f'cascade_sica_t{int(thresh*100)}'] = {\n            'results': res,\n            'description': f'SICA conf>={thresh} -> use SICA, else -> NLI',\n            'sica_used': sica_used,\n            'sica_used_pct': round(sica_used / n * 100, 1),\n        }\n\n    # 5. NLI as extra vote in SC (w=1, w=3, w=5)\n    for w in [1, 3, 5]:\n        res = strategy_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'nli_sc_vote_w{w}'] = {\n            'results': res,\n            'description': f'SC votes + NLI as {w} extra vote(s)',\n        }\n\n    # 6. SICA scores + NLI probability weighted combination\n    for w in [5, 10, 20, 50]:\n        res = strategy_sica_nli_weighted_vote(problems, nli_weight=w)\n        strategies[f'sica_nli_weighted_w{w}'] = {\n            'results': res,\n            'description': f'SICA MAX-SAT scores + NLI probs x {w}',\n        }\n\n    # 7. Oracle upper bound\n    res = strategy_oracle(problems)\n    strategies['oracle'] = {\n        'results': res,\n        'description': 'Perfect arbitrator between SICA and NLI (upper bound)',\n    }\n\n    # Compute metrics\n    print(f'\\n{\"=\"*70}')\n    print(f'R+G COMBO RESULTS (n={n})')\n    print(f'{\"=\"*70}')\n    print(f'{\"Strategy\":<35} {\"Acc\":>7} {\"Correct\":>8} {\"Delta/SC\":>9} {\"Delta/SICA\":>11}')\n    print('-' * 70)\n    print(f'{\"SC baseline\":<35} {sc_acc:>6.2%} {sum(sc_correct_list):>8}')\n    print(f'{\"SICA baseline\":<35} {sica_acc:>6.2%} {sum(sica_correct_list):>8} {sica_acc-sc_acc:>+8.2%}')\n    print(f'{\"NLI standalone\":<35} {nli_acc:>6.2%} {sum(nli_correct_list):>8} {nli_acc-sc_acc:>+8.2%}')\n    print('-' * 70)\n\n    output_strategies = {}\n    best_acc = 0\n    best_name = ''\n\n    for name, strat in strategies.items():\n        res = strat['results']\n        correct_list = [r['correct'] for r in res]\n        acc = sum(correct_list) / n\n        correct_count = sum(correct_list)\n        delta_sc = acc - sc_acc\n        delta_sica = acc - sica_acc\n\n        if name != 'oracle' and acc > best_acc:\n            best_acc = acc\n            best_name = name\n\n        mcnemar_vs_sc = mcnemar_test(correct_list, sc_correct_list)\n        mcnemar_vs_sica = mcnemar_test(correct_list, sica_correct_list)\n\n        per_class = compute_per_class(res, problems)\n\n        label = name[:35]\n        sig_sc = '*' if mcnemar_vs_sc['p_value'] < 0.05 else ''\n        print(f'{label:<35} {acc:>6.2%} {correct_count:>8} {delta_sc:>+8.2%}{sig_sc} {delta_sica:>+10.2%}')\n\n        output_entry = {\n            'description': strat['description'],\n            'accuracy': round(acc, 4),\n            'correct': correct_count,\n            'delta_vs_sc': round(delta_sc, 4),\n            'delta_vs_sica': round(delta_sica, 4),\n            'mcnemar_vs_sc': mcnemar_vs_sc,\n            'mcnemar_vs_sica': mcnemar_vs_sica,\n            'per_class': per_class,\n        }\n\n        for k in ('agree_count', 'agree_pct', 'nli_used', 'nli_used_pct', 'sica_used', 'sica_used_pct'):\n            if k in strat:\n                output_entry[k] = strat[k]\n\n        output_strategies[name] = output_entry\n\n    print(f'{\"=\"*70}')\n    print(f'* = McNemar p<0.05 vs SC')\n    print(f'\\nBest non-oracle strategy: {best_name} ({best_acc:.2%})')\n\n    # Agreement analysis\n    agree_sica_nli = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'])\n    agree_correct = sum(1 for p in problems if p['sica_answer'] == p['deberta_pred'] and p['sica_correct'])\n    disagree_count = n - agree_sica_nli\n    disagree_sica_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['sica_correct'])\n    disagree_nli_right = sum(1 for p in problems if p['sica_answer'] != p['deberta_pred'] and p['deberta_correct'])\n    disagree_both_wrong = disagree_count - disagree_sica_right - disagree_nli_right\n\n    agreement_analysis = {\n        'agree': agree_sica_nli,\n        'agree_pct': round(agree_sica_nli / n * 100, 1),\n        'agree_accuracy': round(agree_correct / agree_sica_nli, 4) if agree_sica_nli > 0 else 0,\n        'disagree': disagree_count,\n        'disagree_sica_correct': disagree_sica_right,\n        'disagree_nli_correct': disagree_nli_right,\n        'disagree_both_wrong': disagree_both_wrong,\n    }\n\n    print(f'\\nAgreement analysis:')\n    print(f'  SICA and NLI agree: {agree_sica_nli}/{n} ({agree_sica_nli/n:.1%}), '\n          f'accuracy when agree: {agree_correct}/{agree_sica_nli} ({agree_correct/agree_sica_nli:.2%})')\n    print(f'  Disagree: {disagree_count}/{n}')\n    print(f'    SICA correct: {disagree_sica_right}, NLI correct: {disagree_nli_right}, '\n          f'Both wrong: {disagree_both_wrong}')\n\n    # Correlation analysis: NLI confidence vs correctness\n    nli_confs = [max(p['deberta_probs'].values()) for p in problems]\n    nli_correct_when_high = sum(1 for p, c in zip(problems, nli_confs) if c >= 0.8 and p['deberta_correct'])\n    nli_total_high = sum(1 for c in nli_confs if c >= 0.8)\n    nli_correct_when_low = sum(1 for p, c in zip(problems, nli_confs) if c < 0.8 and p['deberta_correct'])\n    nli_total_low = sum(1 for c in nli_confs if c < 0.8)\n\n    confidence_analysis = {\n        'nli_high_conf_ge80': {\n            'count': nli_total_high,\n            'correct': nli_correct_when_high,\n            'accuracy': round(nli_correct_when_high / nli_total_high, 4) if nli_total_high > 0 else 0,\n        },\n        'nli_low_conf_lt80': {\n            'count': nli_total_low,\n            'correct': nli_correct_when_low,\n            'accuracy': round(nli_correct_when_low / nli_total_low, 4) if nli_total_low > 0 else 0,\n        },\n    }\n\n    print(f'\\nNLI confidence analysis:')\n    print(f'  High conf (>=0.8): {nli_total_high} problems, '\n          f'acc={nli_correct_when_high}/{nli_total_high} '\n          f'({nli_correct_when_high/nli_total_high:.2%})')\n    print(f'  Low conf (<0.8):  {nli_total_low} problems, '\n          f'acc={nli_correct_when_low}/{nli_total_low} '\n          f'({nli_correct_when_low/nli_total_low:.2%})')\n\n    # Per-question detail for best strategy\n    best_results = strategies[best_name]['results']\n    per_question_detail = {}\n    for r, p in zip(best_results, problems):\n        per_question_detail[p['pid']] = {\n            'gold': p['gold'],\n            'combo_answer': r['answer'],\n            'combo_correct': r['correct'],\n            'combo_source': r['source'],\n            'sica_answer': p['sica_answer'],\n            'sica_correct': p['sica_correct'],\n            'deberta_pred': p['deberta_pred'],\n            'deberta_correct': p['deberta_correct'],\n            'sc_answer': p['sc_answer'],\n            'sc_correct': p['sc_correct'],\n        }\n\n    # Save\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    output = {\n        'baselines': {\n            'sc': {'accuracy': round(sc_acc, 4), 'correct': sum(sc_correct_list)},\n            'sica': {'accuracy': round(sica_acc, 4), 'correct': sum(sica_correct_list)},\n            'nli_standalone': {'accuracy': round(nli_acc, 4), 'correct': sum(nli_correct_list)},\n        },\n        'n_problems': n,\n        'best_strategy': best_name,\n        'best_accuracy': round(best_acc, 4),\n        'strategies': output_strategies,\n        'agreement_analysis': agreement_analysis,\n        'confidence_analysis': confidence_analysis,\n        'note': 'Using standard SICA (not SICA-G decoupling) since G only has 5 test problems. '\n                'When full G results are available, re-run with --g-results flag.',\n    }\n\n    out_file = os.path.join(args.output_dir, 'results.json')\n    with open(out_file, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f'\\nSummary saved to {out_file}')\n\n    detail_file = os.path.join(args.output_dir, 'per_question_best.json')\n    with open(detail_file, 'w') as f:\n        json.dump(per_question_detail, f, indent=2)\n    print(f'Per-question detail saved to {detail_file}')\n\n\nif __name__ == '__main__':\n    main()\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T11:37:06.916328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T11:37:06.916482+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python direction_rg_combo.py --dry-run"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python direction_rg_combo.py --dry-run"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T11:37:06.916622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== DRY RUN ===\\n  results/direction_r_nli_large/results.json: OK\\n  results/exp033_mistral_7b_folio204/exp033_results.json: OK\\n  results/exp033_mistral_7b_folio204/sc_answer_matrix.json: OK\\n  scipy: OK\\n  numpy: OK (2.3.2)\\n=== DRY RUN PASSED ===\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T11:37:06.916754+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'completed', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'in_progress', 'activeForm': 'Running experiment'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'completed', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'in_progress', 'activeForm': 'Running experiment'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T11:37:06.916919+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T11:37:06.917068+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python direction_rg_combo.py 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python direction_rg_combo.py 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T11:37:06.917231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n  204 problems loaded\\n\\n======================================================================\\nR+G COMBO RESULTS (n=204)\\n======================================================================\\nStrategy                                Acc  Correct  Delta/SC  Delta/SICA\\n----------------------------------------------------------------------\\nSC baseline                         54.41%      111\\nSICA baseline                       59.31%      121   +4.90%\\nNLI standalone                      49.51%      101   -4.90%\\n----------------------------------------------------------------------\\nintersection_sc_fallback            57.35%      117   +2.94%*     -1.96%\\nintersection_sica_fallback          59.31%      121   +4.90%*     +0.00%\\ncascade_nli_t60                     50.49%      103   -3.92%     -8.82%\\ncascade_nli_t70                     52.45%      107   -1.96%     -6.86%\\ncascade_nli_t80                     52.45%      107   -1.96%     -6.86%\\ncascade_nli_t90                     56.86%      116   +2.45%     -2.45%\\ncascade_sica_t60                    56.37%      115   +1.96%     -2.94%\\ncascade_sica_t70                    56.37%      115   +1.96%     -2.94%\\ncascade_sica_t80                    55.39%      113   +0.98%     -3.92%\\nnli_sc_vote_w1                      57.84%      118   +3.43%*     -1.47%\\nnli_sc_vote_w3                      58.82%      120   +4.41%     -0.49%\\nnli_sc_vote_w5                      60.29%      123   +5.88%*     +0.98%\\nsica_nli_weighted_w5                58.82%      120   +4.41%     -0.49%\\nsica_nli_weighted_w10               56.86%      116   +2.45%     -2.45%\\nsica_nli_weighted_w20               57.84%      118   +3.43%     -1.47%\\nsica_nli_weighted_w50               58.33%      119   +3.92%     -0.98%\\noracle                              75.49%      154  +21.08%*    +16.18%\\n===========================================================
+…[truncated 779 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T11:37:06.917389+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'completed', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'completed', 'activeForm': 'Running experiment'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check G and R result formats', 'status': 'completed', 'activeForm': 'Checking G and R result formats'}, {'content': 'Check SC result format and existing scripts', 'status': 'completed', 'activeForm': 'Checking SC result format and existing scripts'}, {'content': 'Write direction_rg_combo.py', 'status': 'completed', 'activeForm': 'Writing direction_rg_combo.py'}, {'content': 'Deploy and dry-run on server', 'status': 'completed', 'activeForm': 'Deploying and dry-running on server'}, {'content': 'Run experiment', 'status': 'completed', 'activeForm': 'Running experiment'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T11:37:06.917536+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-20T11:37:06.917702+00:00_
+
+实验完成。结果汇报：
+
+## Baselines
+| Method | Acc | Correct/204 |
+|--------|-----|-------------|
+| SC | 54.41% | 111 |
+| SICA | 59.31% | 121 |
+| NLI standalone | 49.51% | 101 |
+
+## Combo 策略结果
+
+**最佳策略: `nli_sc_vote_w5`** — NLI 作为 5 票加入 SC 投票 → **60.29%** (123/204), +5.88% vs SC (p<0.05), +0.98% vs SICA
+
+| 策略 | Acc | Delta/SC | Delta/SICA |
+|------|-----|----------|------------|
+| **nli_sc_vote_w5** | **60.29%** | **+5.88%*** | **+0.98%** |
+| nli_sc_vote_w3 | 58.82% | +4.41% | -0.49% |
+| intersection_sica_fallback | 59.31% | +4.90%* | +0.00% |
+| intersection_sc_fallback | 57.35% | +2.94%* | -1.96% |
+| cascade_nli (所有阈值) | 50-57% | 负 | 负 |
+| cascade_sica (所有阈值) | 55-56% | 微正 | 负 |
+| sica_nli_weighted | 57-59% | +2~4% | 负 |
+| **Oracle 上限** | **75.49%** | +21.08% | +16.18% |
+
+## 关键发现
+
+1. **SICA-NLI 一致率仅 47.5%** (97/204)，但一致时准确率 70.10% — 远高于任一单独方法
+2. **不一致时 SICA 显著强于 NLI**: 53 vs 33 correct (21 both wrong)
+3. **NLI 高置信度不可靠**: conf≥0.8 时仅 56.35% — cascade 策略因此全面失败
+4. **Oracle 上限 75.49%** 说明两个信号互补性很强，但当前没有好的仲裁器
+5. NLI 作为 SC 额外投票 (w=5) 是唯一超过 SICA 的策略，但提升微弱 (+0.98%, 不显著 vs SICA)
+
+**结论**: NLI 单独太弱 (49.51%)，直接信任 NLI 的策略（cascade）全部失败。只有当 NLI 作为轻量投票融入 SC 时才有微弱正向效果。等 G decoupling 全量结果就绪后，用 SICA-G 替换 SICA 可能有更好的互补效果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_rg-combo-verifier_20260520T113113"
+}
+```
+
+</details>
+
+---

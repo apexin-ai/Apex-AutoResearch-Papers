@@ -1,0 +1,1538 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-230_Q19",
+    "problem": "The bear is big. The bear is cold. The bear likes the cat. The bear visits the cat. The bear visits the cow. The cat is green. The cat needs the bear. The cow needs the dog. The dog is blue. The dog likes the bear. The dog visits the cow. If something is blue then it is red. If something likes the cow then the cow is big. If the cow needs the cat then the cow likes the cat. If something is blue then it is cold. If something is big and it likes the dog then the dog likes the cow. If something needs the bear and the bear needs the dog then the bear is red. If something likes the bear and it is big then it needs the dog. If something is big then it needs the cat. If the bear is big then the bear likes the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not like the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBig(Bear, True) ::: The bear is big.\nCold(Bear, True) ::: The bear is cold.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nVisits(Bear, Cat, True) ::: The bear visits the cat.\nVisits(Bear, Cow, True) ::: The bear visits the cow.\nGreen(Cat, True) ::: The cat is green.\nNeeds(Cat, Bear, True) ::: The cat needs the bear.\nNeeds(Cow, Dog, True) ::: The cow needs the dog.\nBlue(Dog, True) ::: The dog is blue.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nVisits(Dog, Cow, True) ::: The dog visits the cow.\n\nRules:\nBlue($x, True) >>> Red($x, True) ::: If something is blue then it is red.\nLikes($x, Cow, True) >>> Big(Cow, True) ::: If something likes the cow then the cow is big.\nNeeds(Cow, Cat, True) >>> Likes(Cow, Cat, True) ::: If the cow needs the cat then the cow likes the cat.\nBlue($x, True) >>> Cold($x, True) ::: If something is blue then it is cold.\nBig($x, True) && Likes($x, Dog, True) >>> Likes(Dog, Cow, True) ::: If something is big and it likes the dog then the dog likes the cow.\nNeeds($x, Bear, True) && Needs(Bear, Dog, True) >>> Red(Bear, True) ::: If something needs the bear and the bear needs the dog then the bear is red.\nLikes($x, Bear, True) && Big($x, True) >>> Needs($x, Dog, True) ::: If something likes the bear and it is big then it needs the dog.\nBig($x, True) >>> Needs($x, Cat, True) ::: If something is big then it needs the cat.\nBig(Bear, True) >>> Likes(Bear, Dog, True) ::: If the bear is big then the bear likes the dog.\n\nQuery:\nLikes(Cat, Dog, False) ::: The cat does not like the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 0.0,
+      "Unknown": 228.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements:\n   - The bear is big.\n   - The bear is cold.\n   - The bear likes the cat.\n   - The bear visits the cat.\n   - The bear visits the cow.\n   - The cat is green.\n   - The cat needs the bear.\n   - The cow needs the dog.\n   - The dog is blue.\n   - The dog likes the bear.\n   - The dog visits the cow.\n   - If something is blue then it is red.\n   - If something likes the cow then the cow is big.\n   - If the cow needs the cat then the cow likes the cat.\n   - If something is blue then it is cold.\n   - If something is big and it likes the dog then the dog likes the cow.\n   - If something needs the bear and the bear needs the dog then the bear is red.\n   - If something likes the bear and it is big then it needs the dog.\n   - If something is big then it needs the cat.\n   - If the bear is big then the bear likes the dog.\n\n2. Analyzing the information about the cat and the dog:\n   - From the statement \"The cat is green\" and \"If something is blue then it is red,\" we cannot directly apply this because the cat is green not blue.\n   - From the statement \"The dog is blue,\" and \"If something is blue then it is red,\" we can infer that the dog is red.\n   - From the statement \"The dog is red,\" and \"If something needs the bear and the bear needs the dog then the bear is red,\" we cannot infer this because there is no statement saying that the bear needs the dog.\n   - From the statement \"The dog likes the bear,\" we cannot infer that the dog likes the cat because there is no direct relationship between the dog's liking for the bear and its liking for the cat.\n\n3. Analyzing the information about the cat's relationship with the dog:\n   - From the statement \"The cat needs the bear,\" and \"The bear likes the cat,\" we cannot directly infer that the cat likes the dog because there is no statement connecting the cat's liking for the bear to its liking for the dog.\n\n4. Conclusion:\n   - Since there is no information provided that directly connects the cat's liking for the bear to its liking for the dog, we cannot accurately determine whether the cat likes the dog.\n   - Therefore, the statement \"The cat does not like the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to find the information related to the cat and the dog.\n\nGiven statements:\n1. The bear is big.\n2. The bear is cold.\n3. The bear likes the cat.\n4. The bear visits the cat.\n5. The bear visits the cow.\n6. The cat is green.\n7. The cat needs the bear.\n8. The cow needs the dog.\n9. The dog is blue.\n10. The dog likes the bear.\n11. The dog visits the cow.\n\nRules:\n1. If something is blue then it is red.\n2. If something likes the cow then the cow is big.\n3. If the cow needs the cat then the cow likes the cat.\n4. If something is blue then it is cold.\n5. If something is big and it likes the dog then the dog likes the cow.\n6. If something needs the bear and the bear needs the dog then the bear is red.\n7. If something likes the bear and it is big then it needs the dog.\n8. If something is big then it needs the cat.\n9. If the bear is big then the bear likes the dog.\n\nFrom the given statements:\n- The dog is blue (statement 9).\n- If something is blue then it is red (rule 1).\n- Therefore, the dog is red.\n\nNow, let's use the rules to find the information related to the cat and the dog.\n- The cat is green (statement 6).\n- There is no rule that directly states something is green, so we can't determine if the cat is big or small based on its color.\n- The cat needs the bear (statement 7).\n- The bear likes the dog (statement 10).\n- The dog is red (found earlier).\n- If something needs the bear and the bear needs the dog then the bear is red (rule 6).\n- Therefore, the bear is red.\n- The bear is big (statement 1).\n- If the bear is big then the bear likes the dog (rule 9).\n- Therefore, the bear likes the dog.\n- Since the bear likes the dog and it is big, the bear needs the dog (rule 7).\n- The bear needs the dog, and the bear is red (found earlier).\n- If something needs the bear and the bear needs the dog then the bear is red (rule 6), but this rule already applies to the bear being red. However, we do have the following rule:\n- If something is big and it likes the dog then the dog likes the cow (rule 5).\n- The bear is big (statement 1).\n- The bear likes the dog (found earlier).\n- Therefore, the dog likes the cow.\n- The cow needs the dog (statement 8).\n- If the cow needs the cat then the cow likes the cat (rule 3).\n- There is no statement that says the cow needs the cat, but we can use rule 8: If something is big then it needs the cat.\n- The bear is big (statement 1).\n- Therefore, the bear needs the cat.\n- The cat needs the bear (statement 7).\n- The bear needs the cat, and the cat needs the bear.\n- This doesn't give us any information about the cat's relationship with the dog, but we can use rule 7: If something likes the bear and it is big then it needs the dog.\n- The cat likes the bear (statement 3).\n- The bear is big (statement 1).\n- Therefore, the cat needs the dog.\n- The cat needs the dog, but we don't have any information about the cat's relationship with the dog.\n\nTo determine if the cat does not like the dog, we need to find out if the cat likes the dog. We have the following information:\n- The cat needs the dog.\n- However, needing something doesn't necessarily mean that the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The dog likes the bear (statement 10).\n- The bear is big (statement 1).\n- If the bear is big then the bear likes the dog (rule 9).\n- Therefore, the bear likes the dog.\n- The cat likes the bear (statement 3).\n- The bear likes the dog (found earlier).\n- However, there is no rule that states if the cat likes the bear then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The cat is green (statement 6).\n- There is no rule that directly states something is green, so we can't determine if the cat likes the dog based on its color.\n\nWe can use the following statement to find out if the cat likes the dog: The dog is blue (statement 9).\n- If something is blue then it is red (rule 1).\n- Therefore, the dog is red (found earlier).\n- There is no rule that states if the dog is red then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The dog likes the cow (found earlier).\n- However, there is no rule that states if the dog likes the cow then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The cat needs the bear (statement 7).\n- The bear needs the dog (found earlier).\n- However, there is no rule that states if the cat needs the bear then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The cow needs the dog (statement 8).\n- However, there is no rule that states if the cow needs the dog then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The bear is big (statement 1).\n- If something is big then it needs the cat (rule 8).\n- The bear needs the cat (found earlier).\n- However, there is no rule that states if the bear is big then the cat likes the dog.\n\nWe can use the following statement to find out if the cat likes the dog: The cat is green (statement 6).\n- There is no rule that directly states something is green, so we can't determine if the cat likes the dog based on its color.\n\nWe can use the following statement to find out if the cat likes the dog: The cat needs the dog (found earlier).\n- However, there is no rule that states if the cat needs the dog then the cat likes the dog.\n\nSince we can't determine if the cat likes the dog using the given statements and rules, the statement \"The cat does not like the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules to the statements and deduce the relationships between the entities.\n\nGiven statements:\n1. The bear is big.\n2. The bear is cold.\n3. The bear likes the cat.\n4. The bear visits the cat.\n5. The bear visits the cow.\n6. The cat is green.\n7. The cat needs the bear.\n8. The cow needs the dog.\n9. The dog is blue.\n10. The dog likes the bear.\n11. The dog visits the cow.\n12. If something is blue then it is red.\n13. If something likes the cow then the cow is big.\n14. If the cow needs the cat then the cow likes the cat.\n15. If something is blue then it is cold.\n16. If something is big and it likes the dog then the dog likes the cow.\n17. If something needs the bear and the bear needs the dog then the bear is red.\n18. If something likes the bear and it is big then it needs the dog.\n19. If something is big then it needs the cat.\n20. If the bear is big then the bear likes the dog.\n\nTo determine if the cat does not like the dog, we need to find the relationship between the cat and the dog.\n\nFrom rule 3, we know the bear likes the cat.\nFrom rule 4, we know the bear visits the cat.\nFrom rule 10, we know the dog likes the bear.\nFrom rule 20, we can conclude that the bear is big because the bear likes the dog.\nFrom rule 1, we know the bear is big.\nUsing rule 19, we can conclude that the bear needs the cat because the bear is big.\nFrom rule 7, we know the cat needs the bear.\nFrom rule 17, we can conclude that the bear is red because the bear needs the dog and the bear needs the dog is not directly stated but from rule 5 we can conclude the bear needs the dog.\n\nFrom rule 12, we can conclude that the dog is red because the dog is blue.\nFrom rule 15, we can conclude that the dog is cold because the dog is blue.\n\nFrom rule 11, we know the dog visits the cow.\nFrom rule 8, we know the cow needs the dog.\nFrom rule 14, we can conclude that the cow likes the cat because the cow needs the cat.\n\nFrom rule 13, we can conclude that the cow is big because the cow likes the dog.\n\nFrom rule 9, we know the dog is blue.\nFrom rule 16, we can conclude that the dog likes the cow because the dog is big and the dog likes the dog is not stated but we can conclude this from rule 11 and rule 10.\n\nNow, we need to find the relationship between the cat and the dog.\nFrom rule 6, we know the cat is green.\nFrom rule 3, we know the bear likes the cat.\nFrom rule 10, we know the dog likes the bear.\nFrom rule 18, we can conclude that the dog needs the bear because the dog likes the bear and the dog is big.\nFrom rule 5, we know the bear visits the cow.\nFrom rule 8, we know the cow needs the dog.\nFrom rule 14, we can conclude that the cow likes the cat because the cow needs the cat.\nFrom rule 13, we can conclude that the cow is big because the cow likes the dog.\nFrom rule 19, we can conclude that the cow needs the cat because the cow is big.\nFrom rule 7, we know the cat needs the bear.\n\nNow we can conclude that the cat does not need the dog because the cat needs the bear.\n\nHowever, we cannot conclude if the cat likes the dog or not. \n\nTherefore, the statement \"The cat does not like the dog\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the given information:\n- The cat is green.\n- The dog is blue.\n- If something is blue then it is red. (So, the dog is red.)\n- If something is blue then it is cold. (So, the dog is cold.)\n- The dog likes the bear.\n- The cat needs the bear.\n\nNow, let's consider the conditions:\n- If something is big and it likes the dog then the dog likes the cow. (This doesn't apply to the cat.)\n- If something likes the bear and it is big then it needs the dog. (The cat likes the bear, but it is not given if the cat is big or not.)\n- If the cat is big then it needs the cat. (This doesn't apply to our situation.)\n- If something is big then it needs the cat. (We don't know if the cat is big or not.)\n- If the bear is big then the bear likes the dog. (We don't know if the bear is big or not.)\n\nWe need to find a connection between the cat, dog, and the conditions. \n\nFrom the given information:\n- The bear is cold.\n- The bear needs the dog.\n- If something needs the bear and the bear needs the dog then the bear is red. (So, the bear is red.)\n- If something is blue then it is red. (So, the dog is red.)\n- If something is blue then it is cold. (So, the dog is cold.)\n- The dog likes the bear.\n\nNow, let's consider the conditions:\n- If something is big and it likes the dog then the dog likes the cow. (This doesn't apply to the cat.)\n- If something likes the bear and it is big then it needs the dog. (We don't know if the cat is big or not.)\n- If the bear is big then the bear likes the dog. (We don't know if the bear is big or not.)\n\nHowever, we know the bear is red, and the dog is also red, but the condition \"If something is blue then it is red\" doesn't apply to the cat. Therefore, we don't have enough information to determine if the cat likes the dog or not.\n\nThe statement \"The cat does not like the dog\" is unknown because we don't have enough information to make a conclusion.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. The cat is green. (Given)\n2. If something is blue then it is red. (Given)\n3. If something is big and it likes the dog then the dog likes the cow. (Given)\n4. The dog is blue. (Given)\n5. If something is blue then it is cold. (Given)\n6. The cat needs the bear. (Given)\n7. The bear likes the cat. (Given)\n8. The bear visits the cow. (Given)\n9. The cow needs the dog. (Given)\n10. If the cow needs the cat then the cow likes the cat. (Given)\n11. The dog is blue. (Given) => The dog is red (from 2)\n12. If something needs the bear and the bear needs the dog then the bear is red. (Given)\n   The bear needs the dog is not given, but we can infer from 6 and 7 that the bear needs the dog because the cat needs the bear, the bear likes the cat, and the bear visits the cow. So, the bear needs the dog.\n13. The bear is red (from 12)\n14. If something is big and it likes the dog then the dog likes the cow. (Given)\n   We can infer from 7 that the bear likes the dog.\n15. The bear is big (from 14)\n16. The bear likes the dog (from 7)\n17. The bear likes the dog => The dog likes the cow (from 14)\n18. The dog likes the cow (from 17)\n19. The dog is red (from 11)\n20. If something is red then it is cold (from 2 is not correct, from 5 is correct, we can use 5 instead)\n21. The dog is cold (from 20)\n22. The cow needs the dog. (Given)\n23. If something needs the cat then it is big. (Implicit from 1 and 10)\n   We can infer from 6 that the cat needs the bear.\n24. The cat is big (from 23)\n25. The bear likes the dog (from 7)\n26. The bear is big (from 15)\n27. The bear is big => The bear needs the cat (from 23)\n28. The bear needs the cat (from 27)\n29. The cat is green (from 1)\n30. The cat is big (from 24)\n31. The cat is big => The cat needs the dog (from 25 and 26)\n32. The cat needs the dog (from 31)\n\nNow, we can analyze the statement \"The cat does not like the dog\". \n\nFrom 6, we know that the cat needs the bear. \nFrom 7, we know that the bear likes the cat. \nFrom 8, we know that the bear visits the cow. \nFrom 9, we know that the cow needs the dog. \nFrom 31, we know that the cat needs the dog. \n\nWe can infer from 31 that the cat needs the dog because the cat is big, and the cat needs the dog because the cat likes the bear, and the bear is big, and the bear needs the cat. \n\nHowever, we cannot directly infer from the given conditions that the cat likes the dog or not. \n\nSince we cannot determine whether the cat likes the dog or not, we cannot determine whether the statement \"The cat does not like the dog\" is true or false. \n\nTherefore, the statement \"The cat does not like the dog\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is green. (Given)\n2. If something is blue then it is red. (Given)\n3. If something is blue then it is cold. (Given)\nFrom these two given statements, we cannot conclude anything about the color of the cat, so the color information does not help us directly.\n\n4. The dog is blue. (Given)\n5. If something is blue then it is red. (Given)\nFrom this, we can conclude that the dog is red (not blue).\n6. If something is blue then it is cold. (Given)\nFrom this, we can conclude that the dog is cold.\n\n7. The cat needs the bear. (Given)\n8. The bear is big. (Given)\n9. If something is big and it likes the dog then the dog likes the cow. (Given)\nWe do not have enough information to conclude anything about the dog liking the cow from these statements.\n10. If the bear is big then the bear likes the dog. (Given)\nFrom this, we can conclude that the bear likes the dog.\n11. The bear is cold. (From the information that the bear is big and the dog is cold, and the statement \"If the bear visits the cow then the bear is cold\" is not present, but we can see that the dog is cold and the bear is big and the bear visits the dog; therefore, the bear is cold)\n12. The bear needs the dog. (From the information that the bear likes the dog, and the statement \"If something needs the bear and the bear needs the dog then the bear is red\" is not applicable in this scenario, because the bear is not red, but we can see that the bear needs the dog)\n13. If something is big and it likes the dog then it needs the dog. (Given)\nFrom this, we can conclude that the bear needs the dog (which we already concluded), but it does not directly tell us that the bear is big.\n\n14. The bear likes the cat. (Given)\n15. The bear is big. (Given)\n16. If something is big then it needs the cat. (Given)\nFrom this, we can conclude that the bear needs the cat.\n\n17. The cat is green. (Given)\n18. If something is big then it needs the cat. (Given)\nFrom this, we cannot conclude anything about the cat liking the dog.\n19. The bear visits the cat. (Given)\n20. The cat needs the bear. (Given)\n21. The cow needs the dog. (Given)\n22. The dog is blue. (Given)\n23. If something likes the cow then the cow is big. (Given)\nWe do not have enough information to conclude anything about the cow being big.\n24. If something needs the cat then the cow likes the cat. (Given)\nFrom this, we can conclude that the cow likes the cat.\n\n25. The dog likes the bear. (Given)\n26. The dog is red. (From the given statements)\n27. The bear is big. (Given)\n28. The bear likes the dog. (Given)\n29. If the bear is big then the bear likes the dog. (Given)\nWe already concluded that the bear likes the dog.\n\n30. The dog visits the cow. (Given)\n31. The cow needs the dog. (Given)\n32. The cow likes the cat. (From the given statements)\n33. The cat is green. (Given)\n34. The cow is big. (From the statement \"If something likes the cow then the cow is big\", and the statement \"The dog likes the cow\" is not directly given, but we can see that the dog is red and the dog likes the cow)\n\nNow, let's analyze the statement \"The cat does not like the dog\".\n\n35. The bear likes the cat. (Given)\n36. The bear is big. (Given)\n37. The dog likes the bear. (Given)\n38. The dog is red. (From the given statements)\n39. The cat needs the bear. (Given)\n40. The bear needs the dog. (From the given statements)\n41. If something likes the bear and it is big then it needs the dog. (Given)\nFrom this, we can conclude that the bear needs the dog (which we already concluded).\n\n42. The bear is big. (Given)\n43. The bear likes the dog. (Given)\n44. The dog is red. (From the given statements)\n45. The dog likes the cow. (From the statement \"If the dog likes the bear and the bear likes the dog then the dog likes the cow\", and the statement \"The bear likes the dog\" is given)\n46. The cow is big. (From the statement \"If something likes the cow then the cow is big\", and the statement \"The dog likes the cow\" is given)\n47. The cat is green. (Given)\n48. The cow needs the dog. (Given)\n49. The cow likes the cat. (Given)\n\nWe cannot conclude anything about the cat liking the dog from the given statements.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the objects. \n\n1. The bear is big. \n2. The bear is cold. \n3. The bear likes the cat. \n4. The bear visits the cat. \n5. The bear visits the cow. \n6. The cat is green. \n7. The cat needs the bear. \n8. The cow needs the dog. \n9. The dog is blue. \n10. The dog likes the bear. \n11. The dog visits the cow. \n12. If something is blue then it is red. \n13. If something likes the cow then the cow is big. \n14. If the cow needs the cat then the cow likes the cat. \n15. If something is blue then it is cold. \n16. If something is big and it likes the dog then the dog likes the cow. \n17. If something needs the bear and the bear needs the dog then the bear is red. \n18. If something likes the bear and it is big then it needs the dog. \n19. If something is big then it needs the cat. \n20. If the bear is big then the bear likes the dog.\n\nFrom statement 12, we can infer that the dog is red, not blue, because it contradicts the statement that something blue is red.\n\nFrom statement 13, we cannot determine if the cow is big because it depends on whether something likes the cow.\n\nFrom statement 14, we cannot determine if the cow likes the cat because it depends on whether the cow needs the cat.\n\nFrom statement 15, we know that the dog is cold because it is blue.\n\nFrom statement 16, we cannot determine if the dog likes the cow because it depends on whether something is big and likes the dog.\n\nFrom statement 17, we cannot determine if the bear is red because it depends on whether something needs the bear and the bear needs the dog.\n\nFrom statement 18, we cannot determine if the cat needs the dog because it depends on whether the cat likes the bear and it is big.\n\nFrom statement 19, we cannot determine if the cat needs the dog because it depends on whether something is big.\n\nFrom statement 20, we know that the bear likes the dog because the bear is big.\n\nNow, let's determine the relationships between the objects.\n\n- The bear is big and likes the cat (statement 3).\n- The bear is big and likes the dog (statement 20).\n- The bear is cold (statement 2).\n- The cat is green (statement 6) and needs the bear (statement 7).\n- The cow needs the dog (statement 8) and is visited by the dog (statement 11).\n- The dog is red (from statement 12), cold (from statement 15), and likes the bear (statement 10).\n\nWe cannot directly determine if the cat likes the dog from the given statements. However, we can infer the following:\n\n- If the cat likes the dog, then the cat is big (from statement 18), which is unknown.\n- If the cat is big, then the cat needs the dog (from statement 19), which is unknown.\n- The bear likes the dog (statement 20), and the dog likes the bear (statement 10).\n\nSince we cannot determine if the cat is big or not, we cannot determine if the cat likes the dog or not.\n\nTherefore, the statement \"The cat does not like the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - The bear is big.\n   - The bear is cold.\n   - The bear likes the cat.\n   - The bear visits the cat.\n   - The bear visits the cow.\n   - The cat is green.\n   - The cat needs the bear.\n   - The cow needs the dog.\n   - The dog is blue.\n   - The dog likes the bear.\n   - The dog visits the cow.\n\n2. Analyze the given rules:\n   - If something is blue then it is red. (Rule 1)\n   - If something likes the cow then the cow is big. (Rule 2)\n   - If the cow needs the cat then the cow likes the cat. (Rule 3)\n   - If something is blue then it is cold. (Rule 4)\n   - If something is big and it likes the dog then the dog likes the cow. (Rule 5)\n   - If something needs the bear and the bear needs the dog then the bear is red. (Rule 6)\n   - If something likes the bear and it is big then it needs the dog. (Rule 7)\n   - If something is big then it needs the cat. (Rule 8)\n   - If the bear is big then the bear likes the dog. (Rule 9)\n\n3. Apply the given rules to the statements:\n   - Since the dog is blue (Rule 1), the dog is red.\n   - The cat is green, but it does not affect the statement \"The cat does not like the dog.\"\n   - The cow needs the dog (Rule 2 does not directly apply to this case), but it does not affect the statement \"The cat does not like the dog.\"\n   - The bear likes the dog (Rule 7 does not directly apply to this case), but it does not affect the statement \"The cat does not like the dog.\"\n\n4. Analyze the given statements:\n   - The bear likes the cat.\n   - The bear visits the cat.\n   - The cat needs the bear.\n\n5. Apply the given rules to the statements:\n   - Since the bear is big (Rule 9), the bear likes the dog (Rule 7 does not apply directly, but Rule 8 is more relevant).\n   - Since the bear is big (Rule 8), the bear needs the cat.\n   - Since the cat needs the bear (Rule 8 is more relevant), the bear needs the dog (Rule 6).\n   - Since the bear needs the dog (Rule 6), the bear is not red (Rule 6).\n\n6. Analyze the relationship between the cat and the dog:\n   - Since the cat needs the bear and the bear needs the dog (Rule 6), we cannot conclude that the cat likes the dog.\n\n7. Determine the truth of the statement \"The cat does not like the dog\":\n   - We have not found any information that directly states or implies that the cat likes the dog.\n   - We have not found any information that directly states or implies that the cat does not like the dog.\n   - The statement \"The cat does not like the dog\" is unknown.\n\nHowever, if we analyze the information given we can determine that the statement is false because if the cat likes the dog then the bear would not be big (because then the bear would not need the cat) and the statement \"the bear is big\" is given.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, let's analyze the given statements and their implications step by step:\n\n1. The bear is big.\n   - No new information from this statement.\n\n2. The bear is cold.\n   - No new information from this statement.\n\n3. The bear likes the cat.\n   - No new information from this statement.\n\n4. The bear visits the cat.\n   - No new information from this statement.\n\n5. The bear visits the cow.\n   - No new information from this statement.\n\n6. The cat is green.\n   - No new information from this statement.\n\n7. The cat needs the bear.\n   - No new information from this statement.\n\n8. The cow needs the dog.\n   - No new information from this statement.\n\n9. The dog is blue.\n   - From statement 8, since the cow needs the dog, it implies that the cow is not big, because if the cow were big then it would like the dog (from statement 14).\n\n10. The dog likes the bear.\n    - No new information from this statement.\n\n11. The dog visits the cow.\n    - No new information from this statement.\n\n12. If something is blue then it is red.\n    - This statement has implications, but we need more information to apply it.\n\n13. If something likes the cow then the cow is big.\n    - From statement 10, since the dog likes the bear and the bear visits the cow, we can imply that the dog likes the cow (from statement 10), but this would make the cow big, which is not true (from statement 9). However, the bear visits the cow (from statement 5) and the bear likes the cow (from statement 10), so we can imply that the bear likes the cow.\n\n14. If the cow needs the cat then the cow likes the cat.\n    - From statement 13, since the cow is not big, we know that the bear does not like the cow, but the bear likes the cat (from statement 3), so we can imply that the cow needs the cat.\n\n15. If something is blue then it is cold.\n    - Since the dog is blue (from statement 9), this implies that the dog is cold.\n\n16. If something is big and it likes the dog then the dog likes the cow.\n    - This statement has implications, but we need more information to apply it.\n\n17. If something needs the bear and the bear needs the dog then the bear is red.\n    - From statement 17, since the cat needs the bear (from statement 7) and the bear needs the dog (from statement 21), we can imply that the bear is red.\n\n18. If something likes the bear and it is big then it needs the dog.\n    - This statement has implications, but we need more information to apply it.\n\n19. If something is big then it needs the cat.\n    - This statement has implications, but we need more information to apply it.\n\n20. If the bear is big then the bear likes the dog.\n    - From statement 1, since the bear is big, this implies that the bear likes the dog.\n\n21. The bear needs the dog.\n    - From statement 20, since the bear is big and likes the dog, this implies that the bear needs the dog.\n\n22. The cat does not like the dog.\n   - To determine whether this statement is true, false, or unknown, let's analyze the implications from the previous statements.\n\nFrom statement 3, the bear likes the cat. From statement 20, since the bear is big, this implies that the bear likes the dog (from statement 10). However, from statement 17, since the cat needs the bear (from statement 7) and the bear needs the dog (from statement 21), we can imply that the bear is red. From statement 12, since the bear is red (from statement 17), this implies that the bear is blue (because if something is blue then it is red, and if something is red then it is blue). From statement 15, since the bear is blue, this implies that the bear is cold. However, from statement 1, since the bear is big, this implies that the bear likes the dog. Since the cat needs the bear (from statement 7) and the bear is big, this implies that the cat is big (from statement 19). From statement 13, since the cat is big and likes the bear (from statement 3), this implies that the cat needs the dog (from statement 18). Since the cat needs the dog and the dog is blue, this implies that the dog is red (from statement 12). However, from statement 15, since the dog is red, this implies that the dog is cold. Since the cat likes the bear (from statement 3) and the bear is big, this implies that the cat needs the dog (from statement 18). Since the cat needs the dog and the dog is red (from statement 17), this implies that the cat likes the dog. However, we also know that the cat is big (from statement 19), and from statement 13, since the cat is big and likes the dog, this implies that the cat needs the dog (from statement 18). But we already know that the cat likes the dog, so this implies that the cat needs the dog, which means that the cat does not like the dog is false.\n\nHowever, upon re-examining the statements, it seems that there's an inconsistency in the reasoning. Let's correct that.\n\nFrom statement 3, the bear likes the cat. From statement 20, since the bear is big, this implies that the bear likes the dog. However, from statement 17, since the cat needs the bear (from statement 7) and the bear needs the dog (from statement 21), we can imply that the bear is red.\n\nFrom statement 12, since the bear is red, this implies that the bear is blue (because if something is blue then it is red, and if something is red then it is blue). However, this contradicts the fact that the bear is big (from statement 1) and likes the dog (from statement 20). \n\nFrom statement 9, the dog is blue. From statement 15, since the dog is blue, this implies that the dog is cold.\n\nFrom statement 7, the cat needs the bear. From statement 13, since the cow needs the cat (from statement 14), this implies that the cow likes the cat. However, since the cat needs the bear (from statement 7) and the bear visits the cow (from statement 5), we can imply that the cat needs the bear. This means that the cat is not necessarily big (from statement 19).\n\nFrom statement 1, the bear is big. From statement 20, since the bear is big, this implies that the bear likes the dog.\n\nFrom statement 10, the dog likes the bear. From statement 14, since the cow needs the dog (from statement 8), this implies that the cow likes the dog. However, since the cat needs the bear (from statement 7) and the bear visits the cow (from statement 5), we can imply that the cat needs the bear. This means that the cat is not necessarily big (from statement 19).\n\nSince the bear is big (from statement 1) and likes the dog (from statement 20), this implies that the bear needs the dog (from statement 18). However, since the cat needs the bear (from statement 7) and the bear visits the cow (from statement 5), we can imply that the cat needs the bear. This means that the cat is not necessarily big (from statement 19).\n\nFrom statement 7, the cat needs the bear. From statement 3, the bear likes the cat. From statement 20, since the bear is big, this implies that the bear likes the dog. However, from statement 17, since the cat needs the bear (from statement 7) and the bear needs the dog (from statement 21), we can imply that the bear is red.\n\nHowever, since the bear is red (from statement 17), this implies that the bear is blue (from statement 12). However, this contradicts the fact that the bear is big (from statement 1) and likes the dog (from statement 20).\n\nSince the bear is big (from statement 1) and likes the dog (from statement 20), this implies that the bear needs the dog (from statement 18). However, since the cat needs the bear (from statement 7) and the bear visits the cow (from statement 5), we can imply that the cat needs the bear. This means that the cat is not necessarily big (from statement 19).\n\nHowever, since the bear is big (from statement 1) and likes the dog (from statement 20), this implies that the cat is big (from statement 19). From statement 13, since the cat is big and likes the bear (from statement 3), this implies that the cat needs the dog (from statement 18).\n\nHowever, this means that the cat does not like the dog.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to the information about the cat and the dog. \n\n1. The cat is green. (Given)\n2. If something is blue then it is red. (Given) \n   Since the cat is green, not blue, we cannot conclude anything about the color of the cat from this statement.\n3. The dog is blue. (Given)\n   From statement 2, we can conclude that the dog is red, not blue. This statement is false.\n4. If something likes the cow then the cow is big. (Given)\n   We do not have information about whether the cat or the dog likes the cow, so we cannot conclude anything about the cow's size from this statement.\n5. The cow needs the dog. (Given)\n   Since the cow needs the dog, we can infer from statement 4 that the cow is big.\n6. The dog likes the bear. (Given)\n   From statement 5, we know that the cow is big. We can now apply statement 13 to this information: \n   If the bear is big then the bear likes the dog.\n   We know the bear is big from statement 7. Thus we can conclude that the bear likes the dog.\n7. The bear is big. (Given)\n   From statement 13, we can conclude that the bear likes the dog.\n8. The cat needs the bear. (Given)\n   From statement 9, we can infer that the bear needs the dog.\n   Applying statement 10 to this information: \n   If something needs the bear and the bear needs the dog then the bear is red.\n   This is false because the bear is not red, it's big.\n9. The bear likes the dog. (From statement 6 and statement 7)\n   From statement 8, we know that the bear needs the dog. Applying statement 11 to this information: \n   If something is big and it likes the dog then the dog likes the cow.\n   We know the bear is big, so the bear likes the cow, but we don't know if the dog likes the cow from this statement alone.\n10. If something needs the bear and the bear needs the dog then the bear is red. (Given)\n    This statement is false because the bear is big, not red.\n11. If something is big and it likes the dog then the dog likes the cow. (Given)\n    We know the bear is big and likes the dog, but we cannot conclude from this that the dog likes the cow.\n12. The dog visits the cow. (Given)\n    We cannot conclude anything from this statement about whether the cat likes the dog.\n13. If the bear is big then the bear likes the dog. (Given)\n    We know the bear is big, so we can conclude that the bear likes the dog.\n\nNow, we need to determine whether the cat likes the dog. \nIf something likes the bear and it is big then it needs the dog. (Statement 12)\nWe know that the cat is big from statement 7 (if something is big then it needs the cat) and statement 5 (the cow is big and the cow needs the dog is not relevant to this conclusion, but the statement says it), but we don't know if the bear is big from this statement alone. \nHowever, we know the bear is big from statement 7.\nSo the cat is big and the cat likes the bear. We can conclude from statement 12 that the cat needs the dog.\n\nHowever, we cannot conclude from the information given that the cat likes the dog. \nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is green. (Given)\n2. If something is blue then it is red. (Given) \n   We don't have any information about the cat being blue, so this statement doesn't affect the cat directly.\n3. If something likes the cow then the cow is big. (Given)\n   We don't have any information about the cat liking the cow, so this statement doesn't affect the cat directly.\n4. The cow needs the cat. (Given)\n   We don't have any information about the cat liking the cow, so this statement doesn't affect the cat directly.\n5. If the cow needs the cat then the cow likes the cat. (Given)\n   Since the cow needs the cat, the cow likes the cat. (From step 4 and this step)\n6. The cat needs the bear. (Given)\n   We don't have any information about the cat liking the dog yet, so let's continue.\n7. If the bear is big then the bear likes the dog. (Given)\n   We don't know if the bear is big yet, so let's continue.\n8. The bear is big. (Given)\n   From step 7, since the bear is big, the bear likes the dog.\n9. If the bear likes the dog then the dog likes the bear. (Given)\n   This statement is not directly related to our problem, so let's continue.\n10. The dog is blue. (Given)\n    From step 2, if something is blue then it is red. So, the dog is red.\n11. If something needs the bear and the bear needs the dog then the bear is red. (Given)\n    This statement is not directly related to our problem, so let's continue.\n12. The dog likes the bear. (From step 8 and step 9)\n    Since the dog likes the bear, it means the dog is not a direct subject of our problem, \"The cat does not like the dog.\"\n13. The cat needs the bear. (From step 6)\n    We already know the bear is big (From step 8), so let's continue.\n14. If something is big then it needs the cat. (Given)\n    Since the bear is big (From step 8), the bear needs the cat.\n15. The bear needs the cat. (From step 14)\n    Since the bear needs the cat and the cat needs the bear, this is a loop and we can't determine anything from this.\n16. The cow needs the dog. (Given)\n    We already know the dog is red (From step 10), so let's continue.\n17. If something is big and it likes the dog then the dog likes the cow. (Given)\n    We don't have any information about the cat being big, so this statement doesn't affect the cat directly.\n18. The cow likes the dog. (From step 17)\n    Since the cow likes the dog, it means the cow is big (From step 3).\n19. If the cat is green then we can't determine anything about the cat liking the dog.\n   Since we have green information for the cat, let's analyze the statement \"The cat does not like the dog.\"\n20. If something is big and it likes the dog then the dog likes the cow. (Given)\n    We already know the cow is big (From step 18), so let's continue.\n21. The dog likes the cow. (From step 20)\n    Since the dog likes the cow, it doesn't necessarily mean the cat likes the dog.\n22. The cat is green. (From step 1)\n   We don't have any information about green being related to liking or not liking.\n23. If the cat likes the cow then the cow is big. (Given)\n   We already know the cow is big (From step 18), so let's continue.\n24. The cow is big. (From step 23)\n   This statement is true, but it doesn't affect the cat liking the dog.\n\nWe don't have any information that directly states the cat likes or dislikes the dog. However, we have information that the cat needs the bear, and the bear likes the dog. This means the cat and the dog have a connection through the bear, but we can't determine if the cat likes the dog or not.\n\nTherefore, the statement \"The cat does not like the dog\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The cat does not like the dog,\" we need to analyze the given information and apply the rules.\n\nFrom the given information:\n\n1. The bear likes the cat.\n2. The bear is big.\n3. The bear visits the cow.\n4. The cat is green.\n5. The cat needs the bear.\n6. The cow needs the dog.\n7. The dog is blue.\n8. The dog likes the bear.\n9. The dog visits the cow.\n\nFrom the rules:\n\n1. If something is blue then it is red.\n2. If something likes the cow then the cow is big.\n3. If the cow needs the cat then the cow likes the cat.\n4. If something is blue then it is cold.\n5. If something is big and it likes the dog then the dog likes the cow.\n6. If something needs the bear and the bear needs the dog then the bear is red.\n7. If something likes the bear and it is big then it needs the dog.\n8. If something is big then it needs the cat.\n9. If the bear is big then the bear likes the dog.\n\nWe can apply these rules to derive the following conclusions:\n\nFrom (8) and (9), since the bear is big and likes the dog, the dog likes the cow (rule 5).\n\nSince the dog is blue, it is red (rule 1). But this rule can be disregarded since it contradicts rule 4, which states that if something is blue then it is cold.\n\nFrom (6), since the cow needs the dog, the dog likes the cow (rule 5). This is already given.\n\nFrom (7), since the cat needs the bear and the bear is big, the cat needs the dog.\n\nFrom (3) and (7), the bear visits the cow, and the cow needs the cat, so the cow likes the cat (rule 3).\n\nFrom (2) and (8), the bear is big and likes the cat, so the cat needs the dog (rule 7).\n\nSince the cat needs the dog, the cat does not like the dog.\n\nHowever, the cat needs the dog is a conclusion drawn from the fact that the cat is green. Since green is not mentioned as one of the properties of the bear or the cat, we cannot be certain that the cat needs the dog. This means we do not know for certain if the cat likes the dog or not.\n\nHowever, given the information that the cat needs the dog is based on the cat being green and no information provided about the cat being green or needing the dog, we can only conclude that the cat does not like the dog is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & likes(X, cat) -> likes(X, dog)",
+          "z3_formula": "Implies(And(needs_cow_cat, likes_cow_cat), likes_cow_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(And(big_dog, likes_dog_dog), likes_dog_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, Y) -> red(X)",
+          "z3_formula": "Implies(And(needs_dog_bear, needs_bear_dog), red_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_dog_bear, big_dog), needs_dog_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_dog_cow, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_cow_cat, likes_cow_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(bear, X) -> red(bear)",
+          "z3_formula": "Implies(And(needs_squirrel_bear, needs_bear_squirrel), red_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_bear_dog, big_dog), needs_dog_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_dog_cow, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(cow, cat)",
+          "z3_formula": "Implies(needs_cow_cat, likes_cow_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(dog, cow)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), likes_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & needs(dog, X) -> red(X)",
+          "z3_formula": "Implies(And(needs_bear_dog, needs_dog_bear), red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_dog_bear, big_dog), needs_dog_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(And(big_X, likes_X_dog), likes_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_X_bear, big_X), needs_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_X, needs_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, Y) -> red(X)",
+          "z3_formula": "Implies(And(needs_X_bear, needs_bear_dog), red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_cat, red_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(cow, dog)",
+          "z3_formula": "Implies(And(big_dog, likes_dog_dog), likes_cow_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(needs_cat_bear, needs_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & likes(Y, Z) -> red(X)",
+          "z3_formula": "Implies(And(needs_bear_dog, likes_bear_cat), red_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, dog) -> likes(cow, dog)",
+          "z3_formula": "Implies(likes_bear_dog, likes_cow_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, dog)",
+          "z3_formula": "likes_cow_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_dog, cold_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> big(X)",
+          "z3_formula": "Implies(needs_cat_bear, big_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "cat is green",
+          "z3_formula": "green_cat == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(big_cat, likes_cat_bear), needs_cat_dog)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_cat, red_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_cat, cold_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), likes_bear_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), needs_bear_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog_cow)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_cow_cat, likes_cow_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, cat)",
+          "z3_formula": "likes_cow_cat == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog_cow)",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 37
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 38
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 39
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 40
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 41
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 42
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog_cow)",
+          "source_step": 43
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 44
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 45
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, cat)",
+          "z3_formula": "likes_cow_cat == True",
+          "source_step": 46
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_dog_cow, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(cow, cat)",
+          "z3_formula": "Implies(needs_cow_cat, likes_cow_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(cow, dog)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), likes_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, dog) -> red(bear)",
+          "z3_formula": "Implies(And(needs_cat_bear, needs_bear_dog), red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_cat_bear, big_cat), needs_cat_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_cat, needs_cat_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(cat, dog)",
+          "z3_formula": "Not(likes_cat_dog)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_dog_cow, big_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_cow_cat, likes_cow_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dog, cold_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), likes_bear_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, Y) -> red(X)",
+          "z3_formula": "Implies(And(needs_cat_bear, needs_bear_dog), red_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_dog_bear, big_bear), needs_dog_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(cat, dog)",
+          "z3_formula": "Not(likes_cat_dog) == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_cat, red_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_cat_cow, big_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(likes_bear_dog, big_bear), likes_bear_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, dog) -> red(bear)",
+          "z3_formula": "Implies(And(needs_cat_bear, needs_bear_dog), red_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(And(big_bear, likes_bear_dog), likes_bear_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_cat_bear, big_cat), needs_cat_dog)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cow)",
+          "z3_formula": "visits_bear_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, dog)",
+          "z3_formula": "needs_cow_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dog, red_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(cow)",
+          "z3_formula": "Implies(likes_dog_cow, big_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(bear, dog) -> red(bear)",
+          "z3_formula": "Implies(And(needs_cat_bear, needs_bear_dog), red_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(And(likes_dog_bear, big_bear), needs_dog_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, cat)",
+          "z3_formula": "Implies(big_bear, needs_bear_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(bear) -> likes(bear, dog)",
+          "z3_formula": "Implies(big_bear, likes_bear_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, cat)",
+          "z3_formula": "likes_cow_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(cat, dog)",
+          "z3_formula": "Not(likes_cat_dog)",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 235,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 62
+    },
+    "maxsat_stats": {
+      "satisfied": 61,
+      "excluded": 1,
+      "total_weight": 234,
+      "solve_time_ms": 1.4227302744984627
+    },
+    "timing": {
+      "trace_gen_s": 23.28,
+      "extraction_s": 54.137,
+      "dedup_s": 2.645,
+      "maxsat_s": 0.005,
+      "total_s": 80.067
+    }
+  }
+}

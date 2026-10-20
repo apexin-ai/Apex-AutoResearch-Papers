@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ce12973b43e3fd0e729",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 065 qwen7b pw600 v2",
+  "task_key": "worker_gpu_exp-065-qwen7b-pw600-v2_20260519T084936",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-065-qwen7b-pw600-v2_20260519T084936_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "d054b94e0bf7cde6e4ef53644e47a44212b83a554dc172dbbe0df11408bde9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-065 全量运行已启动并注册。\n\n**执行摘要：**\n- GPU 0 空闲，端口 8010 空闲，无需清理旧进程\n- vLLM (Qwen2.5-7B-Instruct) 在 cuda:0 port 8010 启动成功\n- Dry-run 3/3 通过：SICA 100%, SC 100%（avg 21.8s/prob）\n- 全量运行 600 题已在 `tmux exp065_run` 启动，预计 ~3.6 小时完成\n- Registry 已注册为 RUNNING (`exp-065-qwen7b-pw600`)\n- 未影响 GPU 3 上的 exp062"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-065-qwen7b-pw600-v2.md"
+}

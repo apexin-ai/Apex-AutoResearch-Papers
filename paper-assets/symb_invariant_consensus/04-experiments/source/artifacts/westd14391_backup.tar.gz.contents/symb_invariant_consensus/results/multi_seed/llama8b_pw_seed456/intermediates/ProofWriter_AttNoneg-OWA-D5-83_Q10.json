@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-83_Q10",
+    "problem": "Dave is cold. Dave is rough. Erin is cold. Erin is rough. Fiona is blue. Fiona is smart. Gary is blue. All smart, rough people are young. If someone is cold and white then they are quiet. All cold people are white. If someone is quiet and young then they are blue. White, quiet people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not young.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Dave, True) ::: Dave is cold.\nRough(Dave, True) ::: Dave is rough.\nCold(Erin, True) ::: Erin is cold.\nRough(Erin, True) ::: Erin is rough.\nBlue(Fiona, True) ::: Fiona is blue.\nSmart(Fiona, True) ::: Fiona is smart.\nBlue(Gary, True) ::: Gary is blue.\n\nRules:\nSmart($x, True) && Rough($x, True) >>> Young($x, True) ::: All smart, rough people are young.\nCold($x, True) && White($x, True) >>> Quiet($x, True) ::: If someone is cold and white then they are quiet.\nCold($x, True) >>> White($x, True) ::: All cold people are white.\nQuiet($x, True) && Young($x, True) >>> Blue($x, True) ::: If someone is quiet and young then they are blue.\nWhite($x, True) && Quiet($x, True) >>> Smart($x, True) ::: White, quiet people are smart.\n\nQuery:\nYoung(Erin, False) ::: Erin is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

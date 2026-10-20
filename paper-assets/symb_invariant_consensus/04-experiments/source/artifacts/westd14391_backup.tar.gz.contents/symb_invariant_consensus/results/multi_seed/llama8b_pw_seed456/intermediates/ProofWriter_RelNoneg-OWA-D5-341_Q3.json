@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-341_Q3",
+    "problem": "The bald eagle is cold. The bald eagle is nice. The bald eagle likes the cow. The bald eagle likes the tiger. The bald eagle sees the cow. The bald eagle sees the dog. The bald eagle sees the tiger. The bald eagle visits the cow. The cow is young. The cow visits the bald eagle. The dog sees the bald eagle. The dog visits the tiger. The tiger is blue. The tiger is cold. The tiger is young. The tiger visits the cow. If something is big and it visits the bald eagle then it visits the cow. If something likes the tiger and the tiger is big then it is big. If something visits the cow and the cow is young then it is big. If something visits the tiger then it is young. If the tiger likes the dog then the tiger visits the bald eagle. If something is big then it visits the dog. If something visits the dog then it is cold. If something is young then it likes the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nNice(BaldEagle, True) ::: The bald eagle is nice.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nLikes(BaldEagle, Tiger, True) ::: The bald eagle likes the tiger.\nSees(BaldEagle, Cow, True) ::: The bald eagle sees the cow.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nSees(BaldEagle, Tiger, True) ::: The bald eagle sees the tiger.\nVisits(BaldEagle, Cow, True) ::: The bald eagle visits the cow.\nYoung(Cow, True) ::: The cow is young.\nVisits(Cow, BaldEagle, True) ::: The cow visits the bald eagle.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nVisits(Dog, Tiger, True) ::: The dog visits the tiger.\nBlue(Tiger, True) ::: The tiger is blue.\nCold(Tiger, True) ::: The tiger is cold.\nYoung(Tiger, True) ::: The tiger is young.\nVisits(Tiger, Cow, True) ::: The tiger visits the cow.\n\nRules:\nBig($x, True) && Visits($x, BaldEagle, True) >>> Visits($x, Cow, True) ::: If something is big and it visits the bald eagle then it visits the cow.\nLikes($x, Tiger, True) && Big(Tiger, True) >>> Big($x, True) ::: If something likes the tiger and the tiger is big then it is big.\nVisits($x, Cow, True) && Young(Cow, True) >>> Big($x, True) ::: If something visits the cow and the cow is young then it is big.\nVisits($x, Tiger, True) >>> Young($x, True) ::: If something visits the tiger then it is young.\nLikes(Tiger, Dog, True) >>> Visits(Tiger, BaldEagle, True) ::: If the tiger likes the dog then the tiger visits the bald eagle.\nBig($x, True) >>> Visits($x, Dog, True) ::: If something is big then it visits the dog.\nVisits($x, Dog, True) >>> Cold($x, True) ::: If something visits the dog then it is cold.\nYoung($x, True) >>> Likes($x, Tiger, True) ::: If something is young then it likes the tiger.\n\nQuery:\nYoung(Dog, True) ::: The dog is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

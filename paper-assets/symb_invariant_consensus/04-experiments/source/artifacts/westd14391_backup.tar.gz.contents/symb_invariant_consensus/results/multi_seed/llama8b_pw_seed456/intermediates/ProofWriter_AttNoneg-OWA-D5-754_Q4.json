@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-754_Q4",
+    "problem": "Anne is big. Anne is furry. Anne is rough. Anne is round. Anne is young. Charlie is big. Charlie is cold. Dave is furry. Dave is young. Harry is furry. Harry is nice. Harry is young. All round things are cold. Cold, furry things are rough. If something is furry and rough then it is round. If Charlie is round and Charlie is furry then Charlie is nice. All round, nice things are rough. Big, cold things are furry. Furry, round things are cold. Nice, round things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nRound(Anne, True) ::: Anne is round.\nYoung(Anne, True) ::: Anne is young.\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Dave, True) ::: Dave is furry.\nYoung(Dave, True) ::: Dave is young.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRound($x, True) >>> Cold($x, True) ::: All round things are cold.\nCold($x, True) && Furry($x, True) >>> Rough($x, True) ::: Cold, furry things are rough.\nFurry($x, True) && Rough($x, True) >>> Round($x, True) ::: If something is furry and rough then it is round.\nRound(Charlie, True) && Furry(Charlie, True) >>> Nice(Charlie, True) ::: If Charlie is round and Charlie is furry then Charlie is nice.\nRound($x, True) && Nice($x, True) >>> Rough($x, True) ::: All round, nice things are rough.\nBig($x, True) && Cold($x, True) >>> Furry($x, True) ::: Big, cold things are furry.\nFurry($x, True) && Round($x, True) >>> Cold($x, True) ::: Furry, round things are cold.\nNice($x, True) && Round($x, True) >>> Young($x, True) ::: Nice, round things are young.\n\nQuery:\nCold(Anne, False) ::: Anne is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

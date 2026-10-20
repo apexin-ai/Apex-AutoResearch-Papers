@@ -1,0 +1,1127 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-856_Q19",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, big_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_squirrel_squirrel, green_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, green_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(lion))",
+          "z3_formula": "Not(cold_lion) == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, tiger))",
+          "z3_formula": "Not(likes_lion_tiger) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not(likes(X, tiger)) -> not(big(tiger))",
+          "z3_formula": "Implies(And(big_squirrel, Not(likes_squirrel_tiger)), Not(big_tiger))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_X_lion), needs_X_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), needs_lion_squirrel)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "not cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, tiger)",
+          "z3_formula": "not likes_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "not needs_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_X_lion), needs_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "not cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, tiger)",
+          "z3_formula": "not likes_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "not needs_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, eagle)",
+          "z3_formula": "visits_tiger_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_eagle, big_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(squirrel, squirrel)",
+          "z3_formula": "not needs_squirrel_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_X_lion), needs_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(X, squirrel)",
+          "z3_formula": "not needs_X_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_X_squirrel, green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(X)",
+          "z3_formula": "green_X == Unknown",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(X)",
+          "z3_formula": "young_X == Unknown",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_X, needs_X_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not likes(X, tiger) -> not big(tiger)",
+          "z3_formula": "Implies(And(big_squirrel, not likes_squirrel_tiger), not big_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == Unknown",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "Not(needs_squirrel_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not young(X) & not green(X)",
+          "z3_formula": "Implies(needs_squirrel_lion, And(Not(young_squirrel), Not(green_squirrel)))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel) & not likes(squirrel, tiger)",
+          "z3_formula": "And(big_squirrel, Not(likes_squirrel_tiger)) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not likes(X, tiger) -> not big(tiger)",
+          "z3_formula": "Implies(And(big_squirrel, Not(likes_squirrel_tiger)), Not(big_tiger))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "Not(needs_squirrel_lion) == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "not needs_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_bald_eagle_squirrel, big_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_lion_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, X)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), needs_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not likes(X, tiger) -> not big(tiger)",
+          "z3_formula": "Implies(And(big_squirrel, not likes_squirrel_tiger), not big_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_lion_squirrel, green_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(squirrel, lion)",
+          "z3_formula": "not visits_squirrel_lion == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, big_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), needs_lion_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not(likes(X, tiger)) -> not(big(tiger))",
+          "z3_formula": "Implies(And(big_squirrel, Not(likes_squirrel_tiger)), Not(big_tiger))",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(lion))",
+          "z3_formula": "not(cold_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, tiger))",
+          "z3_formula": "not(likes_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(squirrel, lion))",
+          "z3_formula": "not(needs_squirrel_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_lion, needs_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, visits_squirrel_lion), needs_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_lion_squirrel, green_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_lion, visits_lion_lion), needs_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(squirrel) & not(likes(squirrel, tiger)) -> not(big(tiger))",
+          "z3_formula": "Implies(And(big_squirrel, not(likes_squirrel_tiger)), not(big_tiger))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(squirrel, lion))",
+          "z3_formula": "not(visits_squirrel_lion) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not likes(lion, tiger)",
+          "z3_formula": "Not(likes_lion_tiger) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "Not(needs_squirrel_lion) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_eagle, big_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, visits_squirrel_lion), needs_squirrel_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_squirrel_squirrel, green_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), needs_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not likes(X, tiger) -> not big(X)",
+          "z3_formula": "Implies(And(big_squirrel, Not(likes_squirrel_tiger)), Not(big_squirrel))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, big_squirrel)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_squirrel_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(lion, tiger)",
+          "z3_formula": "does_not_like_lion_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & does_not_like(X, tiger) -> not big(tiger)",
+          "z3_formula": "Implies(And(big_squirrel, does_not_like_squirrel_tiger), not big_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "not cold_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(lion, tiger)",
+          "z3_formula": "does_not_like_lion_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "Not(needs_squirrel_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_eagle, big_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(squirrel, lion)",
+          "z3_formula": "does_not_need_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, big_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_X_lion), needs_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_X_squirrel, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), needs_lion_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not(likes(X, tiger)) -> not(big(tiger))",
+          "z3_formula": "Implies(And(big_squirrel, Not(likes_squirrel_tiger)), Not(big_tiger))",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-365_Q1",
+    "problem": "The cat likes the squirrel. The mouse visits the squirrel. The mouse visits the tiger. The squirrel likes the tiger. The squirrel needs the tiger. The squirrel visits the tiger. The tiger needs the cat. If something is red and it visits the squirrel then the squirrel is big. If something is red then it needs the squirrel. If the mouse needs the cat then the mouse is blue. If something is cold and it visits the tiger then it needs the mouse. If something needs the tiger and it visits the tiger then the tiger likes the mouse. If something needs the squirrel then the squirrel needs the cat. If something likes the mouse then it needs the cat. If something needs the cat then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel needs the tiger.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nLikes(Cat, Squirrel, True) ::: The cat likes the squirrel.\nVisits(Mouse, Squirrel, True) ::: The mouse visits the squirrel.\nVisits(Mouse, Tiger, True) ::: The mouse visits the tiger.\nLikes(Squirrel, Tiger, True) ::: The squirrel likes the tiger.\nNeeds(Squirrel, Tiger, True) ::: The squirrel needs the tiger.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nNeeds(Tiger, Cat, True) ::: The tiger needs the cat.\n\nRules:\nRed($x, True) && Visits($x, Squirrel, True) >>> Big(Squirrel, True) ::: If something is red and it visits the squirrel then the squirrel is big.\nRed($x, True) >>> Needs($x, Squirrel, True) ::: If something is red then it needs the squirrel.\nNeeds(Mouse, Cat, True) >>> Blue(Mouse, True) ::: If the mouse needs the cat then the mouse is blue.\nCold($x, True) && Visits($x, Tiger, True) >>> Needs($x, Mouse, True) ::: If something is cold and it visits the tiger then it needs the mouse.\nNeeds($x, Tiger, True) && Visits($x, Tiger, True) >>> Likes(Tiger, Mouse, True) ::: If something needs the tiger and it visits the tiger then the tiger likes the mouse.\nNeeds($x, Squirrel, True) >>> Needs(Squirrel, Cat, True) ::: If something needs the squirrel then the squirrel needs the cat.\nLikes($x, Mouse, True) >>> Needs($x, Cat, True) ::: If something likes the mouse then it needs the cat.\nNeeds($x, Cat, True) >>> Red($x, True) ::: If something needs the cat then it is red.\n\nQuery:\nNeeds(Squirrel, Tiger, True) ::: The squirrel needs the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

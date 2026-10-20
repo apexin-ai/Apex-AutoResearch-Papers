@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1489dc2bbbf2373842cd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "check all experiment gpu status",
+  "task_key": "worker_check_all-experiment-gpu-status_20260523T172210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all-experiment-gpu-status_20260523T172210_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "518a9225b4f47a08f6d199d2f5e174f31684d593266b1c0c969ffff7fd8dfa24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 活跃实验（westd-30973 GPU 2，共享 vLLM）\n\n| 实验 | 进度 | 状态 |\n|------|------|------|\n| llama8b_pw_seed456_v2 | **496/600** (82.7%) | 🟢 运行中 |\n| llama8b_pw_seed789_v2 | **330/600** (55.0%) | 🟢 运行中（01:18 恢复） |\n\n### 需要关注\n\n1. **qwen25_pw_seed789_v3** 在 339/600 处被 SIGTERM 杀掉（May 23 12:40 UTC），无运行进程。原始版本（westd-16639）已有 600/600 完整结果。\n2. **westd-16639 上 3 个 vLLM 服务器空转**（GPU 0/2/3），占 ~260 GB VRAM，无实验在用。\n3. 两个活跃实验共享一个 GPU，吞吐减半。\n\n### 空闲 GPU：5 张\n\n- westd-16639: GPU 1 完全空闲；GPU 0/2/3 可杀 vLLM 回收\n- westd-30973: GPU 0/1 完全空闲\n\n报告已写入 `experiment_status_20260524.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-experiment-gpu-status.md"
+}

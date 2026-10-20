@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-713_Q9",
+    "problem": "The cat needs the cow. The cow eats the cat. The cow is blue. The mouse eats the rabbit. The mouse is cold. The mouse is young. The mouse needs the cow. The rabbit is cold. The rabbit is young. The rabbit needs the cat. If someone is cold and they see the rabbit then the rabbit is young. If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit. If someone eats the cow then they eat the mouse. If someone is nice and young then they see the rabbit. If someone eats the rabbit then they need the cat. If someone sees the rabbit then they are not green. If someone sees the cat and they are cold then they are nice. If someone needs the cat and they are young then they see the cat. If the cow is not young then the cow is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse sees the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nBlue(Cow, True) ::: The cow is blue.\nEats(Mouse, Rabbit, True) ::: The mouse eats the rabbit.\nCold(Mouse, True) ::: The mouse is cold.\nYoung(Mouse, True) ::: The mouse is young.\nNeeds(Mouse, Cow, True) ::: The mouse needs the cow.\nCold(Rabbit, True) ::: The rabbit is cold.\nYoung(Rabbit, True) ::: The rabbit is young.\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat.\n\nRules:\nCold($x, True) && Sees($x, Rabbit, True) >>> Young(Rabbit, True) ::: If someone is cold and they see the rabbit then the rabbit is young.\nSees(Mouse, Cat, True) && Needs(Cow, Mouse, False) >>> Eats(Cat, Rabbit, True) ::: If the mouse sees the cat and the cow does not need the mouse then the cat eats the rabbit.\nEats($x, Cow, True) >>> Eats($x, Mouse, True) ::: If someone eats the cow then they eat the mouse.\nNice($x, True) && Young($x, True) >>> Sees($x, Rabbit, True) ::: If someone is nice and young then they see the rabbit.\nEats($x, Rabbit, True) >>> Needs($x, Cat, True) ::: If someone eats the rabbit then they need the cat.\nSees($x, Rabbit, True) >>> Green($x, False) ::: If someone sees the rabbit then they are not green.\nSees($x, Cat, True) && Cold($x, True) >>> Nice($x, True) ::: If someone sees the cat and they are cold then they are nice.\nNeeds($x, Cat, True) && Young($x, True) >>> Sees($x, Cat, True) ::: If someone needs the cat and they are young then they see the cat.\nYoung(Cow, False) >>> Green(Cow, True) ::: If the cow is not young then the cow is green.\n\nQuery:\nSees(Mouse, Rabbit, True) ::: The mouse sees the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

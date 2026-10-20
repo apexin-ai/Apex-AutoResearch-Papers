@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-620_Q19",
+    "problem": "Anne is red. Bob is big. Bob is green. Bob is red. Charlie is furry. Dave is big. Dave is blue. If something is big then it is smart. If something is blue then it is green. All furry things are big. Smart things are blue. If something is green then it is furry. Green things are smart. All green things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nRed(Anne, True) ::: Anne is red.\nBig(Bob, True) ::: Bob is big.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nFurry(Charlie, True) ::: Charlie is furry.\nBig(Dave, True) ::: Dave is big.\nBlue(Dave, True) ::: Dave is blue.\n\nRules:\nBig($x, True) >>> Smart($x, True) ::: If something is big then it is smart.\nBlue($x, True) >>> Green($x, True) ::: If something is blue then it is green.\nFurry($x, True) >>> Big($x, True) ::: All furry things are big.\nSmart($x, True) >>> Blue($x, True) ::: Smart things are blue.\nGreen($x, True) >>> Furry($x, True) ::: If something is green then it is furry.\nGreen($x, True) >>> Smart($x, True) ::: Green things are smart.\nGreen($x, True) >>> Quiet($x, True) ::: All green things are quiet.\n\nQuery:\nRed(Dave, False) ::: Dave is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

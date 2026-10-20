@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-658_Q4",
+    "problem": "Anne is rough. Charlie is quiet. Charlie is smart. Charlie is white. Erin is quiet. Erin is red. Fiona is quiet. Fiona is red. Fiona is round. Fiona is smart. Fiona is white. If someone is furry and round then they are smart. All round, red people are furry. All smart, furry people are rough. If Erin is red then Erin is white. All smart, rough people are furry. All furry, rough people are round. If someone is white then they are rough. If someone is red and rough then they are smart. All red, rough people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\n\nFacts:\nRough(Anne, True) ::: Anne is rough.\nQuiet(Charlie, True) ::: Charlie is quiet.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nRound(Fiona, True) ::: Fiona is round.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\n\nRules:\nFurry($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is furry and round then they are smart.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red people are furry.\nSmart($x, True) && Furry($x, True) >>> Rough($x, True) ::: All smart, furry people are rough.\nRed(Erin, True) >>> White(Erin, True) ::: If Erin is red then Erin is white.\nSmart($x, True) && Rough($x, True) >>> Furry($x, True) ::: All smart, rough people are furry.\nFurry($x, True) && Rough($x, True) >>> Round($x, True) ::: All furry, rough people are round.\nWhite($x, True) >>> Rough($x, True) ::: If someone is white then they are rough.\nRed($x, True) && Rough($x, True) >>> Smart($x, True) ::: If someone is red and rough then they are smart.\nRed($x, True) && Rough($x, True) >>> White($x, True) ::: All red, rough people are white.\n\nQuery:\nFurry(Fiona, False) ::: Fiona is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

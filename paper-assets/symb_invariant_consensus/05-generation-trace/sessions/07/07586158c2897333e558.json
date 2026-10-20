@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "07586158c2897333e558",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "precheck folio c0",
+  "task_key": "worker_precheck_folio_c0_20260516T020031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_precheck_folio_c0_20260516T020031.log",
+    "occurrence": 1,
+    "bytes": 1954533,
+    "sha256": "e1d681a79f59be4458a57ce75b8e9f73971d92d0e1ed1058770eccdc80342cfe"
+  },
+  "statistics": {
+    "messages": 1389,
+    "user_turns": 2,
+    "tool_calls": 608,
+    "roles": {
+      "log": 1,
+      "system": 69,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 608,
+      "user": 2,
+      "tool_result": 608,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "07586158c2897333e558-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1063,
+      "chunks": [
+        {
+          "path": "07586158c2897333e558-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "07586158c2897333e558-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "07586158c2897333e558-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "07586158c2897333e558-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "07586158c2897333e558-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "07586158c2897333e558-part-0006.json",
+          "message_count": 169
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 320,
+      "chunks": [
+        {
+          "path": "07586158c2897333e558-part-0006.json",
+          "message_count": 11
+        },
+        {
+          "path": "07586158c2897333e558-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "07586158c2897333e558-part-0008.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/precheck-folio-c0.md"
+}

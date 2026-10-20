@@ -1,0 +1,915 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-314_Q13",
+    "problem": "The bear chases the cow. The bear eats the squirrel. The bear is cold. The bear visits the mouse. The bear visits the squirrel. The cow eats the mouse. The cow is cold. The cow visits the bear. The cow visits the squirrel. The mouse chases the cow. The squirrel eats the bear. If something eats the cow then the cow chases the squirrel. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. If something eats the mouse then it visits the cow. If something eats the mouse then it chases the bear. If something visits the bear and it visits the mouse then the bear is blue. If something eats the bear then the bear is cold. If something is blue and it eats the squirrel then it eats the cow. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. If something chases the bear then the bear is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not chase the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nEats(Bear, Squirrel, True) ::: The bear eats the squirrel.\nCold(Bear, True) ::: The bear is cold.\nVisits(Bear, Mouse, True) ::: The bear visits the mouse.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nCold(Cow, True) ::: The cow is cold.\nVisits(Cow, Bear, True) ::: The cow visits the bear.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nChases(Mouse, Cow, True) ::: The mouse chases the cow.\nEats(Squirrel, Bear, True) ::: The squirrel eats the bear.\n\nRules:\nEats($x, Cow, True) >>> Chases(Cow, Squirrel, True) ::: If something eats the cow then the cow chases the squirrel.\nEats($x, Squirrel, True) && Eats(Squirrel, Mouse, True) >>> Chases(Mouse, Cow, True) ::: If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\nEats($x, Mouse, True) >>> Visits($x, Cow, True) ::: If something eats the mouse then it visits the cow.\nEats($x, Mouse, True) >>> Chases($x, Bear, True) ::: If something eats the mouse then it chases the bear.\nVisits($x, Bear, True) && Visits($x, Mouse, True) >>> Blue(Bear, True) ::: If something visits the bear and it visits the mouse then the bear is blue.\nEats($x, Bear, True) >>> Cold(Bear, True) ::: If something eats the bear then the bear is cold.\nBlue($x, True) && Eats($x, Squirrel, True) >>> Eats($x, Cow, True) ::: If something is blue and it eats the squirrel then it eats the cow.\nChases(Mouse, Cow, True) && Chases(Cow, Squirrel, True) >>> Visits(Mouse, Bear, True) ::: If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\nChases($x, Bear, True) >>> Blue(Bear, True) ::: If something chases the bear then the bear is blue.\n\nQuery:\nChases(Mouse, Bear, False) ::: The mouse does not chase the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 77.0,
+      "True": 30.0,
+      "Unknown": 110.5
+    },
+    "answer_counts": {
+      "False": 3,
+      "Unknown": 7,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse chases the cow. (Given)\n2. If something eats the mouse then it chases the bear. (Given)\n3. There is no information that the mouse eats the mouse. (Not given)\n4. We cannot conclude that the mouse chases the bear from the given information.\n\nHowever, we have another piece of information that might be relevant:\n\n5. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. (Given)\n6. The squirrel eats the bear. (Given)\n7. Therefore, the squirrel eats the mouse. (From 5 and 6)\n8. The mouse chases the cow. (From 1)\n\nNow, we need to analyze the situation again:\n\n1. The mouse chases the cow. (From 1)\n2. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. (Given)\n3. The cow chases the squirrel. (From 8, using the rule: If something eats the cow then the cow chases the squirrel)\n4. The mouse visits the bear. (From 2 and 3)\n\nNow, we have another piece of information that might be relevant:\n\n5. If something eats the mouse then it chases the bear. (Given)\n6. There is no information that the mouse eats the mouse. (Not given)\n7. We cannot conclude that the mouse chases the bear from the given information.\n\nHowever, we have another piece of information that might be relevant:\n\n8. If something visits the bear and it visits the mouse then the bear is blue. (Given)\n9. The mouse visits the bear. (From 4)\n10. Therefore, the bear is blue. (From 8 and 9)\n\nNow, we have another piece of information that might be relevant:\n\n11. If something chases the bear then the bear is blue. (Given)\n12. There is no information that the mouse chases the bear. (Not given)\n\nHowever, we have another piece of information that might be relevant:\n\n13. The mouse chases the cow. (From 1)\n14. The cow eats the mouse. (From 8, using the rule: If something eats the squirrel then the squirrel eats the mouse, and the squirrel eats the bear, and the bear is cold, and the bear visits the mouse, and the bear visits the squirrel, and the cow visits the bear, and the cow visits the squirrel, and the mouse chases the cow))\n15. Therefore, the mouse eats the mouse. (From 14)\n16. The mouse chases the bear. (From 2 and 15)\n\nNow, we have a conclusion:\n\nThe mouse does chase the bear. (From 16)\n\nTherefore, the statement \"The mouse does not chase the bear\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the bear\" is true, false, or unknown, we need to analyze the given information and rules.\n\nGiven information:\n- The bear eats the squirrel.\n- The bear is cold.\n- The bear visits the mouse.\n- The bear visits the squirrel.\n- The cow eats the mouse.\n- The cow is cold.\n- The cow visits the bear.\n- The cow visits the squirrel.\n- The mouse chases the cow.\n- The squirrel eats the bear.\n\nRules:\n1. If something eats the cow then the cow chases the squirrel.\n   - The cow does not eat the cow.\n   - The mouse does not eat the cow.\n   - The squirrel does not eat the cow.\n   - The bear eats the cow, but the cow chases the squirrel is not mentioned, it is mentioned that the cow chases the squirrel when something eats the cow. Since the bear eats the cow, this rule applies.\n   - The cow chases the squirrel.\n\n2. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\n   - The bear eats the squirrel and the squirrel eats the mouse.\n   - This rule applies.\n\n3. If something eats the mouse then it visits the cow.\n   - The cow eats the mouse.\n   - This rule applies.\n\n4. If something eats the mouse then it chases the bear.\n   - The cow eats the mouse.\n   - This rule applies.\n\n5. If something visits the bear and it visits the mouse then the bear is blue.\n   - The bear visits the mouse and the bear visits the squirrel. This rule does not apply because it is not specified that the bear visits the squirrel and the squirrel visits the mouse.\n\n6. If something eats the bear then the bear is cold.\n   - The squirrel eats the bear.\n   - The bear is cold.\n\n7. If something is blue and it eats the squirrel then it eats the cow.\n   - The bear is blue is not specified.\n   - This rule does not apply.\n\n8. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\n   - The mouse chases the cow and the cow chases the squirrel.\n   - This rule applies.\n\n9. If something chases the bear then the bear is blue.\n   - The squirrel chases the bear.\n   - The bear is blue.\n\nNow, let's analyze the given statement \"The mouse does not chase the bear.\" Based on the given information, we have:\n- The mouse chases the cow.\n- The squirrel eats the bear.\n- The cow eats the mouse.\n- The cow chases the squirrel.\n- The mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear.\n- The squirrel chases the bear and the bear is blue.\n\nFrom rule 4: If something eats the mouse then it chases the bear. The cow eats the mouse and the cow chases the bear. But the statement we are analyzing is \"The mouse does not chase the bear.\" To determine if this statement is true or false, we need to check if there is any rule or given information that indicates the mouse chases the bear. There is no such information. So, the statement \"The mouse does not chase the bear\" is unknown because there is no information to confirm whether the mouse chases the bear or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\nFrom the statements, we can deduce the following:\n\n1. The bear eats the squirrel. \n2. The squirrel eats the bear. \n3. This means that the bear and the squirrel have a contradictory relationship, where the bear eats the squirrel but the squirrel also eats the bear.\n\n4. If the bear is cold, then it is not necessarily true that it visits the mouse or the squirrel, so we cannot conclude anything about the bear's actions from this statement.\n\n5. The cow eats the mouse. \n6. The cow visits the bear.\n7. The cow visits the squirrel.\n\n8. If something eats the cow then the cow chases the squirrel. \n   Since the bear eats the cow (from statement 1), the cow chases the squirrel. \n   This means that the squirrel is chased by the cow and the bear.\n\n9. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. \n   Since the bear eats the squirrel (from statement 1) and the squirrel eats the mouse (from statement 5), the mouse chases the cow.\n\n10. If something eats the mouse then it visits the cow. \n    Since the cow eats the mouse (from statement 5), the cow visits the cow, which is a contradiction. \n    However, we can infer that the bear visits the cow since the bear eats the mouse (from statement 1).\n\n11. If something eats the mouse then it chases the bear. \n    Since the bear eats the mouse (from statement 1), the bear chases the bear, which is a contradiction.\n\n12. If something visits the bear and it visits the mouse then the bear is blue. \n    Since the cow visits the bear (from statement 6) and the bear visits the mouse (from statement 10), we cannot conclude anything about the bear's color from this statement.\n\n13. If something eats the bear then the bear is cold. \n    Since the squirrel eats the bear (from statement 2), the bear is cold.\n\n14. If something is blue and it eats the squirrel then it eats the cow. \n    We cannot conclude that the bear is blue from the given statements.\n\n15. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. \n    Since the mouse chases the cow (from statement 9) and the cow chases the squirrel (from statement 8), the mouse visits the bear.\n\n16. If something chases the bear then the bear is blue. \n    Since the mouse chases the bear (from statement 15), the bear is blue.\n\nNow, let's analyze the statement \"The mouse does not chase the bear.\"\n\nFrom the given statements, we can see that the mouse chases the bear (statement 15). However, we also know that the bear eats the mouse (statement 1) and the mouse eats the bear (statement 2), which means that the bear and the mouse have a contradictory relationship. \n\nSince the bear is blue (statement 16), we can infer that the bear is the one that chases the bear (statement 16), which is a contradiction. However, this does not necessarily mean that the mouse does not chase the bear.\n\nTherefore, the statement \"The mouse does not chase the bear\" is unknown because we cannot conclude anything about the mouse's actions from the given statements.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not chase the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The mouse chases the cow.\n2. If the mouse chases the cow then the mouse does not directly chase the bear, but we need to consider the other statements to check if the mouse chases the bear indirectly.\n\nLet's consider statement 5: The bear visits the squirrel. This does not directly relate to the mouse, so we will ignore it for now.\n\nFrom statement 3: The bear eats the squirrel. \nFrom statement 6: The cow eats the mouse.\nFrom statement 8: The cow visits the bear.\n\nWe can see that there is no direct or indirect relationship between the mouse and the bear in the given statements.\n\nHowever, we also have the following statement:\n\"If something eats the mouse then it chases the bear.\"\n\nSo, let's check if there is something that eats the mouse. \nFrom statement 6: The cow eats the mouse.\n\nNow, we have the following statement:\n\"If something eats the mouse then it chases the bear.\"\n\nSince the cow eats the mouse, according to this statement, the cow should chase the bear. \nHowever, we also have the following statement:\n\"If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\"\n\nFrom statement 1: The mouse chases the cow.\nFrom statement 2: The cow chases the squirrel.\n\nSo, the conditions are met. Therefore, the mouse visits the bear.\n\nWe also have the following statement:\n\"If something visits the bear and it visits the mouse then the bear is blue.\"\n\nFrom the given statements, we can see that the mouse visits the bear (from the previous conclusion) and the bear visits the mouse (from statement 4).\n\nTherefore, the bear is blue.\n\nWe also have the following statement:\n\"If something chases the bear then the bear is blue.\"\n\nFrom the given statements, we can see that the mouse chases the bear (from the previous conclusion).\n\nHowever, we have the following statement:\n\"If something eats the bear then the bear is cold.\"\n\nFrom statement 3: The bear eats the squirrel.\nFrom statement 8: The cow visits the bear.\n\nWe can see that the cow eats the bear indirectly by visiting the bear, but this is not the case here. We only know that the bear eats the squirrel.\n\nSo, the bear is cold due to eating the squirrel.\n\nWe also have the following statement:\n\"If something eats the bear then the bear is cold.\"\n\nHowever, we also have the following statement:\n\"If something is blue and it eats the squirrel then it eats the cow.\"\n\nThe mouse is blue (from the previous conclusion), and the mouse eats the squirrel (from the previous conclusion).\n\nTherefore, the mouse eats the cow.\n\nWe also have the following statement:\n\"If something eats the cow then the cow chases the squirrel.\"\n\nFrom statement 6: The mouse eats the cow.\n\nHowever, the mouse does not chase the squirrel. Instead, the mouse chases the cow (from statement 1), and the cow chases the squirrel (from statement 2).\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\nFrom the statements, we know:\n1. The bear eats the squirrel.\n2. The bear is cold.\n3. The bear visits the mouse.\n4. The bear visits the squirrel.\n5. The cow eats the mouse.\n6. The cow is cold.\n7. The cow visits the bear.\n8. The cow visits the squirrel.\n9. The mouse chases the cow.\n10. The squirrel eats the bear.\n11. If something eats the cow, then the cow chases the squirrel. (From statement 10 and implication)\n12. If something eats the squirrel and the squirrel eats the mouse, then the mouse chases the cow. (From statement 9 and implication)\n13. If something eats the mouse, then it visits the cow. (No direct statement supports this, but based on implication)\n14. If something eats the mouse, then it chases the bear. (No direct statement supports this, but based on implication)\n15. If something visits the bear and it visits the mouse, then the bear is blue. (No direct statement supports this, but based on implication)\n16. If something eats the bear, then the bear is cold. (From statement 2 and implication)\n17. If something is blue and it eats the squirrel, then it eats the cow. (No direct statement supports this, but based on implication)\n18. If the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear. (From statement 18 and implication)\n19. If something chases the bear, then the bear is blue. (From statement 19 and implication)\n\nNow, let's analyze the given statement:\n\"The mouse does not chase the bear.\"\n\nFrom the statements:\n- We know the squirrel eats the bear (statement 10).\n- This implies the bear is cold (statement 2).\n\nHowever, we cannot conclude anything about the mouse chasing the bear directly from the given statements.\n\nBut, we know:\n- If the squirrel eats the mouse, then the mouse chases the cow (from implication 12).\n- However, we cannot find any statement where the squirrel eats the mouse.\n\nHowever, we also know:\n- If the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear (from implication 18).\n- This implies the bear visits the mouse.\n\nHowever, we also know:\n- If something visits the bear and it visits the mouse, then the bear is blue (from implication 15).\n- This implies the bear is blue.\n\nHowever, we cannot conclude anything about the mouse chasing the bear from the given implications.\n\nHowever, we can conclude that the mouse does chase the bear from the fact that the mouse visits the bear.\n\nFrom the implication 18, we know that the mouse chases the cow and the cow chases the squirrel.\n\nWe also know that the squirrel eats the bear (from statement 10).\n\nFrom the implication 19, if something chases the bear, then the bear is blue.\n\nSince we know the squirrel eats the bear, and this implies the bear is blue, then we know the mouse chases the bear.\n\nTherefore, the statement \"The mouse does not chase the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given information and the conditions provided step by step.\n\nGiven statements:\n1. The bear chases the cow.\n2. The bear eats the squirrel.\n3. The bear is cold.\n4. The bear visits the mouse.\n5. The bear visits the squirrel.\n6. The cow eats the mouse.\n7. The cow is cold.\n8. The cow visits the bear.\n9. The cow visits the squirrel.\n10. The mouse chases the cow.\n11. The squirrel eats the bear.\n12. If something eats the cow then the cow chases the squirrel.\n13. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\n14. If something eats the mouse then it visits the cow.\n15. If something eats the mouse then it chases the bear.\n16. If something visits the bear and it visits the mouse then the bear is blue.\n17. If something eats the bear then the bear is cold.\n18. If something is blue and it eats the squirrel then it eats the cow.\n19. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\n20. If something chases the bear then the bear is blue.\n\nNow, we need to determine whether the statement \"The mouse does not chase the bear\" is true, false, or unknown.\n\nAnalyzing the given information and conditions:\n\n- From statement 11, we know that the squirrel eats the bear.\n- From statement 2, we know that the bear eats the squirrel.\n- From statement 12, we know that if something eats the cow, then the cow chases the squirrel.\n- From statement 13, we know that if something eats the squirrel and the squirrel eats the mouse, then the mouse chases the cow.\n- We do not have any information that directly affects the mouse chasing the bear.\n\nHowever, from statements 3 and 17, we know that the bear is cold because it eats the squirrel or the squirrel eats the bear. This means the bear eats the squirrel.\n\nFrom statements 11 and 2, we have a cycle of the bear eating the squirrel and the squirrel eating the bear.\n\nNow, let's check the conditions related to the mouse:\n- From statement 10, we know that the mouse chases the cow.\n- From statement 6, we know that the cow eats the mouse.\n- This situation matches condition 13, which states that if something eats the squirrel and the squirrel eats the mouse, then the mouse chases the cow.\n\nWe now have the squirrel eating the mouse and the mouse chasing the cow.\n\nFrom statement 15, if something eats the mouse then it chases the bear. However, we already have a cycle involving the bear and the squirrel. We need to check if the mouse eats the squirrel.\n\nSince the squirrel eats the bear (statement 11), and the bear eats the squirrel (statement 2), the squirrel eats the mouse is not a necessary condition for the mouse chasing the bear, but rather the mouse chases the cow and the cow chases the squirrel.\n\nFrom statement 19, if the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear.\n\nAlso, since the mouse chases the cow (statement 10) and the cow chases the squirrel (statement 12), the mouse visits the bear.\n\nFrom statement 20, if something chases the bear then the bear is blue.\n\nHowever, the mouse visiting the bear is not enough to make the bear blue. We need to check the conditions again.\n\nFrom statement 4, the bear visits the mouse. And from statement 5, the bear visits the squirrel.\n\nThis matches condition 16, which states that if something visits the bear and it visits the mouse, then the bear is blue.\n\nThe bear is blue because it visits the mouse and it visits the squirrel.\n\nFrom statement 18, if something is blue and it eats the squirrel, then it eats the cow.\n\nSince the bear is blue (from statement 16), and it eats the squirrel (from statement 2), the bear eats the cow.\n\nThe bear eating the cow is not a direct effect of the mouse chasing the bear, but rather a consequence of the bear being blue and eating the squirrel.\n\nHowever, we still need to check if the mouse chases the bear.\n\nFrom statement 10, we know that the mouse chases the cow.\n\nFrom statement 12, if something eats the cow, then the cow chases the squirrel.\n\nWe do not have any information that directly affects the mouse chasing the bear.\n\nHowever, from statements 15 and 20, we know that if something eats the mouse then it chases the bear.\n\nWe do not have any information that directly affects the mouse eating the bear.\n\nHowever, from statements 10 and 12, we know that the mouse chases the cow and the cow chases the squirrel.\n\nFrom statement 19, if the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear.\n\nFrom statement 20, if something chases the bear then the bear is blue.\n\nFrom statement 16, if something visits the bear and it visits the mouse, then the bear is blue.\n\nWe already know that the bear is blue because it visits the mouse and it visits the squirrel.\n\nFrom statement 15, if something eats the mouse then it chases the bear.\n\nHowever, we do not have any information that directly affects the mouse eating the bear.\n\nBut we do have information that the bear eats the squirrel, and the squirrel eats the bear.\n\nThis cycle can be extended to other animals that eat the bear or the squirrel, but it does not provide any direct information that the mouse chases the bear.\n\nHowever, from statement 20, if something chases the bear then the bear is blue.\n\nAnd from statement 16, if something visits the bear and it visits the mouse, then the bear is blue.\n\nThe bear is blue because it visits the mouse and it visits the squirrel.\n\nFrom statement 18, if something is blue and it eats the squirrel, then it eats the cow.\n\nSince the bear is blue (from statement 16), and it eats the squirrel (from statement 2), the bear eats the cow.\n\nHowever, we still need to check if the mouse chases the bear.\n\nFrom statement 10, we know that the mouse chases the cow.\n\nFrom statement 12, if something eats the cow, then the cow chases the squirrel.\n\nWe do not have any information that directly affects the mouse chasing the bear.\n\nHowever, from statements 15 and 20, we know that if something eats the mouse then it chases the bear.\n\nWe do not have any information that directly affects the mouse eating the bear.\n\nHowever, from statements 10 and 12, we know that the mouse chases the cow and the cow chases the squirrel.\n\nFrom statement 19, if the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear.\n\nHowever, we already know that the mouse visits the bear (from statement 19).\n\nFrom statement 20, if something chases the bear then the bear is blue.\n\nWe already know that the bear is blue because it visits the mouse and it visits the squirrel.\n\nFrom statement 15, if something eats the mouse then it chases the bear.\n\nHowever, we do not have any information that directly affects the mouse eating the bear.\n\nHowever, the conditions related to the mouse are as follows:\n\n- The mouse chases the cow (from statement 10).\n- The mouse eats the squirrel is not a necessary condition for the mouse chasing the bear, but rather the mouse chases the cow and the cow chases the squirrel.\n- The mouse visits the bear (from statement 19).\n\nSince the mouse visits the bear and chases the cow, and the cow chases the squirrel, it is possible that the mouse chases the bear indirectly.\n\nHowever, the conditions do not provide any direct information that the mouse chases the bear.\n\nBut we can analyze the conditions further.\n\nFrom statements 10 and 12, we know that the mouse chases the cow and the cow chases the squirrel.\n\nFrom statement 19, if the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear.\n\nHowever, we already know that the mouse visits the bear (from statement 19).\n\nThe bear is blue because it visits the mouse and it visits the squirrel (from statement 16).\n\nFrom statement 15, if something eats the mouse then it chases the bear.\n\nHowever, we do not have any information that directly affects the mouse eating the bear.\n\nHowever, the conditions do not provide any direct information that the mouse chases the bear.\n\nWe can conclude that the statement \"The mouse does not chase the bear\" is unknown.\n\nThe conditions do not provide any direct information that the mouse chases the bear.\n\nHowever, it is possible that the mouse chases the bear indirectly.\n\nTherefore, the final answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and the conditions stated in the problem.\n\nFrom the information given:\n\n1. The mouse chases the cow. \n2. If something eats the mouse then it chases the bear. \n3. The squirrel eats the bear. \n4. The squirrel eats the mouse. \n\nNow, let's analyze the conditions stated in the problem:\n\n1. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. \n2. If something eats the mouse then it visits the cow. \n3. If something eats the mouse then it chases the bear. \n4. If something visits the bear and it visits the mouse then the bear is blue. \n5. If something eats the bear then the bear is cold. \n6. If something is blue and it eats the squirrel then it eats the cow. \n7. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. \n8. If something chases the bear then the bear is blue.\n\nFrom the conditions given, we have a few combinations to consider:\n\n1. The mouse chases the cow and the cow chases the squirrel: This leads to the mouse visiting the bear (condition 7).\n\n2. The mouse eats the mouse: This does not directly lead to any condition, so we cannot conclude anything about the mouse chasing the bear from this.\n\n3. The squirrel eats the mouse: This leads to the mouse chases the cow (condition 1).\n\n4. The squirrel eats the mouse and the squirrel eats the bear: This leads to the mouse chases the cow (condition 1).\n\n5. The squirrel eats the mouse and the squirrel does not eat the bear: This does not lead to any condition that involves the mouse chasing the bear.\n\nSince we cannot derive any condition that leads to the mouse chasing the bear directly from the given information, we cannot conclude whether the mouse chases the bear or not.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the mouse does not chase the bear, we need to analyze the given information and the conditions that lead to the mouse chasing the bear.\n\nFrom the given information:\n1. The squirrel eats the bear.\n2. If something eats the mouse then it chases the bear.\n3. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\n4. The mouse does not eat the squirrel, but we don't have any information about the mouse eating the squirrel.\n5. The mouse does not eat the bear.\n\nHowever, we do not have any information that the mouse does not chase the bear. \n\nThe only condition that could lead to the mouse chasing the bear is if the mouse eats the squirrel and the squirrel eats the mouse, which is not the case here.\n\nOn the other hand, the conditions that lead to the mouse chasing the bear are:\n- The mouse does not eat the squirrel (which is true).\n- The mouse does not eat the bear (which is true).\n\nHowever, we have another condition to consider:\n- If something eats the mouse then it chases the bear.\n\nWe do not have any information about something eating the mouse. Therefore, we cannot determine if the mouse chases the bear or not.\n\nSince we cannot determine whether the mouse chases the bear or not, we cannot conclude whether the statement \"The mouse does not chase the bear\" is true, false, or unknown.\n\nHowever, since we do not have any information that directly leads to the mouse chasing the bear, we can say that the statement \"The mouse does not chase the bear\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we'll analyze the given information step by step:\n\n1. The mouse chases the cow. \n   - We know this from the initial statements.\n\n2. The squirrel eats the mouse. \n   - We know this from the initial statements.\n\n3. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow.\n   - We know the squirrel eats the mouse from step 2.\n   - We don't know if the squirrel eats the squirrel, but we do know that it eats the squirrel because it is mentioned in the statement that it eats the squirrel. Therefore, the condition is met.\n\n4. Therefore, from the information given in step 3, the mouse chases the cow, and we already know this from step 1.\n\n5. Now let's look at the statement that the mouse does not chase the bear.\n\n6. If something eats the mouse then it chases the bear.\n   - We know the squirrel eats the mouse from step 2.\n   - Therefore, the squirrel should chase the bear.\n\n7. Now let's look at the statement that the bear is blue.\n   - If something visits the bear and it visits the mouse then the bear is blue.\n   - The bear visits the mouse (from the initial statements).\n   - The squirrel visits the bear (from the initial statements).\n   - The squirrel also visits the mouse (from the initial statements), so the condition is met.\n\n8. Since the squirrel visits the bear and the squirrel visits the mouse, the bear is blue.\n\n9. Now let's look at the statement that if the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\n   - We already know the mouse chases the cow from step 1.\n   - We also know the cow chases the squirrel from the initial statements.\n\n10. Since the conditions are met, the mouse visits the bear.\n\n11. Now let's look at the statement that if something chases the bear then the bear is blue.\n    - The squirrel chases the bear (from the initial statements).\n    - The condition is met, so the bear is blue.\n\n12. From step 8, we know the bear is blue.\n\n13. Now let's look at the statement that if something is blue and it eats the squirrel then it eats the cow.\n    - The bear is blue (from step 8).\n    - The bear eats the squirrel (from the initial statements).\n    - The condition is met, so the bear eats the cow.\n\n14. However, from the initial statements, the squirrel eats the bear, not the other way around.\n\n15. Since the statement that the bear eats the squirrel is true, and the statement that the squirrel eats the bear is also true, the statement that if something is blue and it eats the squirrel then it eats the cow is false.\n\n16. Now let's go back to step 13 and see if we can find any other possible conclusions.\n    - We know the squirrel is blue (because it visits the bear and the bear visits the mouse).\n    - The squirrel eats the bear (from the initial statements).\n    - However, we already know the squirrel does not eat the cow, because the cow eats the mouse, and the squirrel eats the mouse (from the initial statements).\n    - Therefore, the statement that if something is blue and it eats the squirrel then it eats the cow is false.\n\n17. Now let's go back to step 8 and see if we can find any other possible conclusions.\n    - We know the squirrel is blue (because it visits the bear and the bear visits the mouse).\n    - The squirrel does not eat the cow (because the cow eats the mouse, and the squirrel eats the mouse).\n    - However, we already know the squirrel eats the bear, but that does not affect the conclusion.\n    - Therefore, the statement that if something is blue and it eats the squirrel then it eats the cow is false.\n\n18. Now let's look at the statement that the squirrel does not chase the bear.\n    - From the initial statements, the squirrel eats the bear.\n    - Therefore, the squirrel chases the bear.\n    - This means that the statement that the squirrel does not chase the bear is false.\n\n19. Now let's go back to step 1 and see if we can find any other possible conclusions.\n    - We know the mouse chases the cow.\n    - We also know the squirrel eats the mouse.\n    - However, we already know the mouse does not chase the bear, because if it did, then the bear would be blue.\n\n20. Since we have already determined that the statement that the bear is blue is true, we can conclude that the statement that the mouse does not chase the bear is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel eats the bear.\n   - From this statement, we can conclude that the bear is cold.\n\n2. The mouse chases the cow.\n   - There is no information provided about the mouse chasing the bear, so we cannot make any conclusions about the mouse chasing the bear from this statement.\n\n3. If something eats the mouse then it chases the bear.\n   - However, there is no information about the mouse being eaten by something, so we cannot use this rule to determine whether the mouse chases the bear.\n\n4. If something eats the mouse then it visits the cow.\n   - Again, there is no information about the mouse being eaten by something, so we cannot use this rule to determine whether the mouse chases the bear.\n\n5. If something visits the bear and it visits the mouse then the bear is blue.\n   - There is no information about something visiting both the bear and the mouse, so we cannot use this rule to determine whether the mouse chases the bear.\n\n6. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear.\n   - This statement does not provide any information about the mouse chasing the bear.\n\n7. If something chases the bear then the bear is blue.\n   - However, this rule does not provide any information about the mouse chasing the bear.\n\nHowever, we have to use a process of elimination. If the mouse does not chase the bear, the following rules will not apply:\n- If something eats the mouse then it chases the bear. (Because the mouse does not eat the mouse.)\n- If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. (Because the mouse does not chase the bear, and therefore cannot chase the cow.)\n\nHowever, the following rules still apply:\n- The squirrel eats the bear. \n- The mouse chases the cow.\n\nSince there is no information about the mouse chasing the bear, we cannot determine whether the mouse does not chase the bear is true or false. However, using a process of elimination, we can say that the statement is unknown, because there is a possibility that the mouse chases the bear (which is not given in the information provided), and this possibility makes the statement unknown.\n\nTherefore, the statement is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse chases the cow. (Given)\n2. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. (This rule does not apply here because we don't know if the squirrel eats the mouse yet.)\n3. If something eats the mouse then it chases the bear. (This rule does not apply here because we don't know if something eats the mouse yet.)\n4. The squirrel eats the bear. (Given)\n5. The squirrel eats the mouse. (From rule 2, if something eats the squirrel and the squirrel eats the mouse, then the mouse chases the cow, which means the squirrel must eat the mouse. However, this statement contradicts with another statement from the problem - The squirrel eats the bear, which was given. Therefore, we can deduce that this is the reason that we know that the squirrel eats the mouse.)\n6. Since the squirrel eats the mouse, then from rule 1, the mouse chases the cow.\n7. If the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear. (This rule does not apply here because we don't know if the cow chases the squirrel yet.)\n8. The cow chases the squirrel. (From rule 1, if something eats the cow, then the cow chases the squirrel, which means the squirrel must eat the cow. However, this statement contradicts with another statement from the problem - The squirrel eats the bear, which was given. Therefore, we can deduce that this is the reason that we know that the cow chases the squirrel.)\n9. Since the mouse chases the cow and the cow chases the squirrel, then from rule 7, the mouse visits the bear.\n10. If something chases the bear then the bear is blue. (This rule does not apply here because we don't know if something chases the bear yet.)\n\nFrom the above analysis, we have the following sequence of events:\n- The squirrel eats the bear.\n- The squirrel eats the mouse.\n- The mouse chases the cow.\n- The cow chases the squirrel.\n- The mouse visits the bear.\n\nHowever, there is no direct statement that says something chases the bear, which means we cannot determine if the bear is blue or not.\n\nSince we do not have any information that the mouse chases the bear, we can conclude that the statement \"The mouse does not chase the bear\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the mouse does not chase the bear, we need to examine the given conditions and their implications. \n\n1. The mouse chases the cow. (Statement given in the problem)\n2. If something eats the mouse then it chases the bear. (Condition)\n   - This does not directly tell us about the mouse, but it implies that if the mouse is eaten, it will chase the bear. However, we don't know who eats the mouse.\n\n3. The squirrel eats the bear. (Statement given in the problem)\n   - Since the squirrel eats the bear, it satisfies the condition that something eats the mouse (which is not directly related but gives an idea that a third party might be involved).\n\n4. The mouse chases the cow. (Statement given in the problem)\n   - This does not directly tell us about the mouse's relation with the bear.\n\n5. The bear is cold. (Statement given in the problem)\n   - This condition tells us that the bear is cold but does not directly relate to the mouse and the bear.\n\n6. The squirrel eats the bear. (Statement given in the problem)\n   - This condition tells us that the squirrel eats the bear, which makes the bear cold.\n\n7. The bear visits the mouse. (Statement given in the problem)\n   - This does not directly tell us about the mouse's relation with the bear.\n\n8. The bear visits the squirrel. (Statement given in the problem)\n   - This does not directly tell us about the mouse's relation with the bear.\n\n9. The cow eats the mouse. (Statement given in the problem)\n   - If the cow eats the mouse, then it visits the squirrel (Condition). \n   - However, the given condition is about something eating the mouse, and if that happens, it chases the bear, not the case here.\n\n10. If something eats the mouse then it visits the cow. (Condition)\n    - The mouse does not eat any other animal; however, the cow eats the mouse.\n\n11. The mouse chases the cow. (Statement given in the problem)\n    - This does not directly tell us about the mouse's relation with the bear.\n\n12. The squirrel eats the bear. (Statement given in the problem)\n    - Since the squirrel eats the bear, it implies that the bear's condition is met.\n\n13. The squirrel is the one who eats the bear and is related to the mouse through another condition.\n\n14. If something eats the squirrel and the squirrel eats the mouse then the mouse chases the cow. (Condition)\n    - This condition does not directly tell us about the mouse and the bear.\n\n15. The bear is blue. (Condition)\n    - This condition is related to the bear's state of being blue.\n\n16. If something visits the bear and it visits the mouse then the bear is blue. (Condition)\n    - The bear visits the mouse, and it is possible that it visits the bear, but the given information does not explicitly state this.\n\n17. The mouse chases the cow. (Statement given in the problem)\n    - This does not directly tell us about the mouse's relation with the bear.\n\n18. The squirrel eats the bear. (Statement given in the problem)\n    - Since the squirrel eats the bear, the bear is cold.\n\n19. If the mouse chases the cow and the cow chases the squirrel then the mouse visits the bear. (Condition)\n    - This condition does not directly tell us about the mouse's relation with the bear.\n\n20. If something chases the bear then the bear is blue. (Condition)\n    - We do not have any information that the mouse chases the bear.\n\nSince we have the condition that if something eats the mouse then it chases the bear, and the cow eats the mouse, it implies that the cow chases the bear. However, this is not directly related to the mouse and the bear.\n\nHowever, we also have another condition: if the mouse chases the cow and the cow chases the squirrel, then the mouse visits the bear. Since the mouse chases the cow, and the cow chases the squirrel, and the squirrel eats the bear, it implies that the mouse visits the bear.\n\nSince the mouse visits the bear, it implies that the bear is blue.\n\nWe have a condition that if something visits the bear and it visits the mouse then the bear is blue. Since the mouse visits the bear and the bear visits the mouse, it implies that the bear is blue.\n\nWe have a condition that if something eats the bear then the bear is cold. Since the squirrel eats the bear, it implies that the bear is cold.\n\nHowever, we have another condition that if something is blue and it eats the squirrel then it eats the cow. Since the bear is blue, and the bear does not eat the squirrel, it implies that this condition does not apply.\n\nWe also have a condition that if something eats the bear then the bear is cold. Since the squirrel eats the bear, it implies that the bear is cold.\n\nHowever, we have another condition that if something chases the bear then the bear is blue. Since the mouse does not chase the bear but visits the bear, it implies that this condition does not apply.\n\nGiven all these conditions, we cannot directly conclude that the mouse does not chase the bear from the given information. \n\nSince we have a condition that says if something eats the mouse then it chases the bear, and the cow eats the mouse, it implies that the cow chases the bear. However, we do not have any information that the mouse eats the mouse or that the mouse is eaten by any other animal.\n\nWe only know that the mouse chases the cow, and the cow eats the mouse. \n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, mouse)",
+          "z3_formula": "eats_mouse_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_cow_cow, chases_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(squirrel, X) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(eats_cow_cow, eats_squirrel_cow), chases_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_cow_mouse, visits_cow_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_cow_mouse, chases_cow_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_bear_mouse, visits_bear_squirrel), blue_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_squirrel_bear, cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_bear, eats_squirrel_bear), eats_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_squirrel_bear, blue_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, X) -> contradictory(X, Y)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_bear), contradictory_bear_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(eats_bear_squirrel, chases_bear_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, Z) -> chases(X, Z)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_mouse), chases_bear_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(eats_cow_mouse, visits_cow_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(eats_bear_mouse, chases_bear_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & visits(X, Z) -> blue(Y)",
+          "z3_formula": "Implies(And(visits_cow_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> cold(Y)",
+          "z3_formula": "Implies(eats_squirrel_bear, cold_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, Y) -> eats(X, Z)",
+          "z3_formula": "Implies(And(blue_bear, eats_bear_squirrel), eats_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & chases(Y, Z) -> visits(X, Z)",
+          "z3_formula": "Implies(And(chases_mouse_bear, chases_bear_squirrel), visits_mouse_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(chases_mouse_bear, blue_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(mouse, bear)",
+          "z3_formula": "Not(chases_mouse_bear)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> not(chases(X, bear))",
+          "z3_formula": "Implies(chases_mouse_cow, Not(chases_mouse_bear))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & chases(Y, Z) -> visits(X, Z)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_mouse_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_mouse_bear, blue_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_bear_squirrel, cold_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_mouse, eats_mouse_squirrel), eats_mouse_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cow, chases_mouse_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, squirrel)",
+          "z3_formula": "chases_mouse_squirrel == False",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_cow_squirrel, chases_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, mouse) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(eats_squirrel_mouse, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, visits_mouse_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_bear_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_bear_bear, cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_bear, eats_squirrel_bear), eats_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_cow_bear, chases_cow_squirrel), visits_bear_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_bear_bear, blue_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 20
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, mouse)",
+          "z3_formula": "eats_bear_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, mouse)",
+          "z3_formula": "eats_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_squirrel_bear, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, visits_mouse_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(And(visits_bear_mouse, visits_mouse_bear), blue_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(Y)",
+          "z3_formula": "Implies(eats_bear_bear, cold_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_something, eats_something_squirrel), eats_something_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, Y) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_something_bear, blue_something)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, mouse) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_mouse_squirrel, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, squirrel)",
+          "z3_formula": "Not(eats_mouse_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, bear)",
+          "z3_formula": "Not(eats_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(mouse, bear)",
+          "z3_formula": "Not(chases_mouse_bear) == Unknown",
+          "source_step": 6
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_squirrel_cow, chases_cow_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, mouse)",
+          "z3_formula": "eats_squirrel_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(X, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_X_cow, chases_X_squirrel), visits_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_X_bear, visits_X_mouse), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_X, eats_X_squirrel), eats_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(bear, squirrel))",
+          "z3_formula": "Not(eats_bear_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bear, cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bear))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bear))",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(mouse, bear))",
+          "z3_formula": "Not(chases_mouse_bear)",
+          "source_step": 24
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 131,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 71
+    },
+    "maxsat_stats": {
+      "satisfied": 68,
+      "excluded": 3,
+      "total_weight": 126,
+      "solve_time_ms": 1.965428702533245
+    },
+    "timing": {
+      "trace_gen_s": 22.306,
+      "extraction_s": 43.443,
+      "dedup_s": 2.015,
+      "maxsat_s": 0.006,
+      "total_s": 67.77
+    }
+  }
+}

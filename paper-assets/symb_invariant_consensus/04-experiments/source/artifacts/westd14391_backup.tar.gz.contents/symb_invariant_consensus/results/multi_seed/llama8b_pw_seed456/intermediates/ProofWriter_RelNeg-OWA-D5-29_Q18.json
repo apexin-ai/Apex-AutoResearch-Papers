@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-29_Q18",
+    "problem": "The bald eagle is big. The bald eagle is red. The bald eagle sees the tiger. The bald eagle visits the bear. The bear needs the bald eagle. The bear sees the bald eagle. The bear does not see the tiger. The rabbit is big. The rabbit needs the bald eagle. The rabbit needs the bear. The rabbit visits the tiger. The tiger needs the bald eagle. The tiger needs the rabbit. The tiger visits the bear. If something is big then it needs the tiger. If something needs the tiger and it sees the bald eagle then the tiger is big. If something needs the tiger and it visits the bear then the tiger needs the rabbit. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. If something needs the tiger then it is red. If the bear sees the rabbit then the rabbit sees the tiger. If something is blue then it visits the bear. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nRed(BaldEagle, True) ::: The bald eagle is red.\nSees(BaldEagle, Tiger, True) ::: The bald eagle sees the tiger.\nVisits(BaldEagle, Bear, True) ::: The bald eagle visits the bear.\nNeeds(Bear, BaldEagle, True) ::: The bear needs the bald eagle.\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nSees(Bear, Tiger, False) ::: The bear does not see the tiger.\nBig(Rabbit, True) ::: The rabbit is big.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Bear, True) ::: The rabbit needs the bear.\nVisits(Rabbit, Tiger, True) ::: The rabbit visits the tiger.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Rabbit, True) ::: The tiger needs the rabbit.\nVisits(Tiger, Bear, True) ::: The tiger visits the bear.\n\nRules:\nBig($x, True) >>> Needs($x, Tiger, True) ::: If something is big then it needs the tiger.\nNeeds($x, Tiger, True) && Sees($x, BaldEagle, True) >>> Big(Tiger, True) ::: If something needs the tiger and it sees the bald eagle then the tiger is big.\nNeeds($x, Tiger, True) && Visits($x, Bear, True) >>> Needs(Tiger, Rabbit, True) ::: If something needs the tiger and it visits the bear then the tiger needs the rabbit.\nVisits(BaldEagle, Bear, True) && Needs(BaldEagle, Tiger, True) >>> Needs(Bear, Tiger, True) ::: If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\nNeeds($x, Tiger, True) >>> Red($x, True) ::: If something needs the tiger then it is red.\nSees(Bear, Rabbit, True) >>> Sees(Rabbit, Tiger, True) ::: If the bear sees the rabbit then the rabbit sees the tiger.\nBlue($x, True) >>> Visits($x, Bear, True) ::: If something is blue then it visits the bear.\nBlue($x, True) && Needs($x, Tiger, True) >>> Visits($x, BaldEagle, False) ::: If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nQuery:\nBlue(Tiger, True) ::: The tiger is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

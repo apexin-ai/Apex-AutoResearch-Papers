@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-268_Q3",
+    "problem": "Anne is green. Charlie is blue. Charlie is not green. Charlie is nice. Erin is young. Harry is kind. Harry is white. If something is blue then it is nice. If something is blue and not quiet then it is nice. If something is nice then it is kind. If Erin is green then Erin is white. All green things are blue. If something is young then it is white. If Harry is white then Harry is young. If Erin is nice and Erin is blue then Erin is young. All white things are green.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBlue(Charlie, True) ::: Charlie is blue.\nGreen(Charlie, False) ::: Charlie is not green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Erin, True) ::: Erin is young.\nKind(Harry, True) ::: Harry is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> Nice($x, True) ::: If something is blue then it is nice.\nBlue($x, True) && Quiet($x, False) >>> Nice($x, True) ::: If something is blue and not quiet then it is nice.\nNice($x, True) >>> Kind($x, True) ::: If something is nice then it is kind.\nGreen(Erin, True) >>> White(Erin, True) ::: If Erin is green then Erin is white.\nGreen($x, True) >>> Blue($x, True) ::: All green things are blue.\nYoung($x, True) >>> White($x, True) ::: If something is young then it is white.\nWhite(Harry, True) >>> Young(Harry, True) ::: If Harry is white then Harry is young.\nNice(Erin, True) && Blue(Erin, True) >>> Young(Erin, True) ::: If Erin is nice and Erin is blue then Erin is young.\nWhite($x, True) >>> Green($x, True) ::: All white things are green.\n\nQuery:\nYoung(Harry, True) ::: Harry is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

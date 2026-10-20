@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-115_Q3",
+    "problem": "The bald eagle is blue. The bald eagle is red. The bald eagle likes the lion. The bald eagle needs the bear. The bald eagle needs the dog. The bear is not blue. The bear is nice. The bear needs the dog. The dog chases the bald eagle. The dog is red. The dog does not need the bear. The lion does not like the bear. If something likes the lion and it is not red then it chases the lion. If something is red and it needs the bald eagle then the bald eagle needs the lion. If something is round then it does not like the dog. If the bald eagle needs the dog then the dog is round. If something likes the dog then it likes the bald eagle. If something chases the lion and the lion likes the dog then the dog does not like the lion. If the bear likes the lion then the lion likes the dog. If something likes the bear then the bear likes the lion. If something is round then it likes the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nChases($x, $y, bool) ::: Does x chase y?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nRed(BaldEagle, True) ::: The bald eagle is red.\nLikes(BaldEagle, Lion, True) ::: The bald eagle likes the lion.\nNeeds(BaldEagle, Bear, True) ::: The bald eagle needs the bear.\nNeeds(BaldEagle, Dog, True) ::: The bald eagle needs the dog.\nBlue(Bear, False) ::: The bear is not blue.\nNice(Bear, True) ::: The bear is nice.\nNeeds(Bear, Dog, True) ::: The bear needs the dog.\nChases(Dog, BaldEagle, True) ::: The dog chases the bald eagle.\nRed(Dog, True) ::: The dog is red.\nNeeds(Dog, Bear, False) ::: The dog does not need the bear.\nLikes(Lion, Bear, False) ::: The lion does not like the bear.\n\nRules:\nLikes($x, Lion, True) && Red($x, False) >>> Chases($x, Lion, True) ::: If something likes the lion and it is not red then it chases the lion.\nRed($x, True) && Needs($x, BaldEagle, True) >>> Needs(BaldEagle, Lion, True) ::: If something is red and it needs the bald eagle then the bald eagle needs the lion.\nRound($x, True) >>> Likes($x, Dog, False) ::: If something is round then it does not like the dog.\nNeeds(BaldEagle, Dog, True) >>> Round(Dog, True) ::: If the bald eagle needs the dog then the dog is round.\nLikes($x, Dog, True) >>> Likes($x, BaldEagle, True) ::: If something likes the dog then it likes the bald eagle.\nChases($x, Lion, True) && Likes(Lion, Dog, True) >>> Likes(Dog, Lion, False) ::: If something chases the lion and the lion likes the dog then the dog does not like the lion.\nLikes(Bear, Lion, True) >>> Likes(Lion, Dog, True) ::: If the bear likes the lion then the lion likes the dog.\nLikes($x, Bear, True) >>> Likes(Bear, Lion, True) ::: If something likes the bear then the bear likes the lion.\nRound($x, True) >>> Likes($x, Bear, True) ::: If something is round then it likes the bear.\n\nQuery:\nRound(Dog, True) ::: The dog is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

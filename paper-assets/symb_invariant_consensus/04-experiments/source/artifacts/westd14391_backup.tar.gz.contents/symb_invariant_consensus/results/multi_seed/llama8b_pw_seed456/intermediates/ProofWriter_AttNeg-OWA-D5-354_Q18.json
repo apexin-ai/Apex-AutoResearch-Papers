@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-354_Q18",
+    "problem": "Anne is not blue. Anne is green. Anne is kind. Charlie is white. Gary is green. Gary is kind. Gary is rough. Gary is round. Gary is not white. Harry is kind. Harry is quiet. Harry is white. White people are green. If someone is green and white then they are quiet. Blue, quiet people are round. All quiet people are blue. If someone is blue and not round then they are kind. If someone is quiet and round then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBlue(Anne, False) ::: Anne is not blue.\nGreen(Anne, True) ::: Anne is green.\nKind(Anne, True) ::: Anne is kind.\nWhite(Charlie, True) ::: Charlie is white.\nGreen(Gary, True) ::: Gary is green.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nWhite(Gary, False) ::: Gary is not white.\nKind(Harry, True) ::: Harry is kind.\nQuiet(Harry, True) ::: Harry is quiet.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nWhite($x, True) >>> Green($x, True) ::: White people are green.\nGreen($x, True) && White($x, True) >>> Quiet($x, True) ::: If someone is green and white then they are quiet.\nBlue($x, True) && Quiet($x, True) >>> Round($x, True) ::: Blue, quiet people are round.\nQuiet($x, True) >>> Blue($x, True) ::: All quiet people are blue.\nBlue($x, True) && Round($x, False) >>> Kind($x, True) ::: If someone is blue and not round then they are kind.\nQuiet($x, True) && Round($x, True) >>> Kind($x, True) ::: If someone is quiet and round then they are kind.\n\nQuery:\nRough(Harry, True) ::: Harry is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

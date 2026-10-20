@@ -1,0 +1,988 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-281_Q15",
+    "problem": "The bear eats the cow. The cat chases the bear. The cat eats the bear. The cat eats the tiger. The cat is green. The cat is kind. The cat is rough. The cat sees the bear. The cat sees the tiger. The cow eats the bear. The cow eats the tiger. The cow is green. The cow sees the cat. The tiger chases the bear. The tiger chases the cat. The tiger chases the cow. If someone chases the bear and the bear is cold then they eat the cat. If someone chases the bear and the bear chases the tiger then the bear sees the tiger. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger. If someone chases the tiger and they are green then the tiger chases the cow. Nice, kind people are cold. If someone chases the bear then the bear chases the cat. If someone chases the cat then they are nice. If someone is nice then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is not cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nEats(Bear, Cow, True) ::: The bear eats the cow.\nChases(Cat, Bear, True) ::: The cat chases the bear.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nEats(Cat, Tiger, True) ::: The cat eats the tiger.\nGreen(Cat, True) ::: The cat is green.\nKind(Cat, True) ::: The cat is kind.\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Tiger, True) ::: The cat sees the tiger.\nEats(Cow, Bear, True) ::: The cow eats the bear.\nEats(Cow, Tiger, True) ::: The cow eats the tiger.\nGreen(Cow, True) ::: The cow is green.\nSees(Cow, Cat, True) ::: The cow sees the cat.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nChases(Tiger, Cow, True) ::: The tiger chases the cow.\n\nRules:\nChases($x, Bear, True) && Cold(Bear, True) >>> Eats($x, Cat, True) ::: If someone chases the bear and the bear is cold then they eat the cat.\nChases($x, Bear, True) && Chases(Bear, Tiger, True) >>> Sees(Bear, Tiger, True) ::: If someone chases the bear and the bear chases the tiger then the bear sees the tiger.\nChases(Cat, Bear, True) && Sees(Cat, Tiger, True) >>> Chases(Bear, Tiger, True) ::: If the cat chases the bear and the cat sees the tiger then the bear chases the tiger.\nChases($x, Tiger, True) && Green($x, True) >>> Chases(Tiger, Cow, True) ::: If someone chases the tiger and they are green then the tiger chases the cow.\nNice($x, True) && Kind($x, True) >>> Cold($x, True) ::: Nice, kind people are cold.\nChases($x, Bear, True) >>> Chases(Bear, Cat, True) ::: If someone chases the bear then the bear chases the cat.\nChases($x, Cat, True) >>> Nice($x, True) ::: If someone chases the cat then they are nice.\nNice($x, True) >>> Kind($x, True) ::: If someone is nice then they are kind.\n\nQuery:\nCold(Cat, False) ::: The cat is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 89.5,
+      "Unknown": 119.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 7
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the rules provided.\n\nFirst, let's list all the given statements:\n\n1. The bear eats the cow.\n2. The cat chases the bear.\n3. The cat eats the bear.\n4. The cat eats the tiger.\n5. The cat is green.\n6. The cat is kind.\n7. The cat is rough.\n8. The cat sees the bear.\n9. The cat sees the tiger.\n10. The cow eats the bear.\n11. The cow eats the tiger.\n12. The cow is green.\n13. The cow sees the cat.\n14. The tiger chases the bear.\n15. The tiger chases the cat.\n16. The tiger chases the cow.\n17. If someone chases the bear and the bear is cold then they eat the cat.\n18. If someone chases the bear and the bear chases the tiger then the bear sees the tiger.\n19. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger.\n20. If someone chases the tiger and they are green then the tiger chases the cow.\n21. Nice, kind people are cold.\n22. If someone chases the bear then the bear chases the cat.\n23. If someone chases the cat then they are nice.\n24. If someone is nice then they are kind.\n\nNow, let's analyze the statement \"The cat is not cold.\"\n\nFrom statement 21, we know that nice, kind people are cold.\n\nFrom statement 24, we know that if someone is nice, then they are kind.\n\nHowever, we don't know if the cat is nice or not. We only know that the cat is kind (statement 6), but we don't have any information about the cat being nice.\n\nTherefore, we cannot determine if the cat is cold or not based on the given information. The statement \"The cat is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is green.\n2. The cat is kind.\n3. The cat is rough.\n4. The cat sees the bear.\n5. The cat sees the tiger.\n6. The cat eats the bear.\n7. The cat eats the tiger.\n8. The cow eats the bear.\n9. The cow eats the tiger.\n10. The cow is green.\n11. The cow sees the cat.\n12. The tiger chases the bear.\n13. The tiger chases the cat.\n14. The tiger chases the cow.\n15. If someone chases the bear and the bear is cold then they eat the cat.\n   Since there is no information about the cat being cold or someone chasing the bear and the bear being cold, this rule doesn't help.\n16. If someone chases the bear and the bear chases the tiger then the bear sees the tiger.\n   There is no information about the bear chasing the tiger.\n17. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger.\n   From rule 6, we know the cat chases the bear, but there is no information about the cat seeing the tiger.\n18. If someone chases the tiger and they are green then the tiger chases the cow.\n   From rule 10, we know the cow is green, but there is no information about someone chasing the tiger and being green.\n19. Nice, kind people are cold.\n   We know the cat is kind (rule 2), but we don't know if it's cold.\n20. If someone chases the bear then the bear chases the cat.\n   There is no information about someone chasing the bear.\n21. If someone chases the cat then they are nice.\n   We don't have any information about someone chasing the cat.\n22. If someone is nice then they are kind.\n   We know the cat is kind (rule 2), and from rule 21, if someone chases the cat, they are nice, and from rule 22, if they are nice, they are kind, but this rule doesn't help in determining if the cat is cold or not.\n\nNow, to determine if the cat is cold, we need to find a connection between the cat and the given rules. From rule 19, \"Nice, kind people are cold.\" We know the cat is kind (rule 2), but we need to determine if the cat is nice or not. \n\nFrom rule 21, \"If someone chases the cat then they are nice.\" But we don't have any information about someone chasing the cat. However, if we can find a connection between someone chasing the cat and the cat being nice, we might be able to determine if the cat is cold.\n\nFrom rule 20, \"If someone chases the bear then the bear chases the cat.\" There is no information about someone chasing the bear, but if someone does, it implies they are nice (rule 21), and they are kind (rule 22).\n\nNow, from rule 5, \"The cat sees the tiger,\" and rule 17, \"If the cat chases the bear and the cat sees the tiger then the bear chases the tiger.\" If the cat chases the bear, then the bear chases the tiger, which means someone is chasing the bear. \n\nFrom rule 20, if someone chases the bear, then the bear chases the cat. This implies someone is nice (rule 21), and they are kind (rule 22).\n\nSince we know the cat is kind (rule 2), and we found a connection between someone chasing the bear and being nice, and from rule 19, \"Nice, kind people are cold,\" we can conclude that the cat is cold.\n\nHowever, the statement we need to evaluate is \"The cat is not cold.\" \n\nGiven the information, we know the cat is cold, which means the statement \"The cat is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to find out if the cat is cold or not based on the given information.\n\n1. The cat is green. (No information about coldness)\n2. The cat is kind. (No information about coldness)\n3. The cat is rough. (No information about coldness)\n4. The cat sees the bear. (No information about coldness)\n5. The cat sees the tiger. (No information about coldness)\n6. The cat eats the bear. (No information about coldness)\n7. The cat eats the tiger. (No information about coldness)\n\nNow, let's look at the conditions related to coldness:\n\n8. If someone chases the bear and the bear is cold then they eat the cat. \n   - This means that if the bear is cold, then someone eating the cat is a consequence of chasing the bear.\n   - We still don't have information about the cat being cold.\n\n9. If someone chases the bear and the bear chases the tiger then the bear sees the tiger. \n   - This has no relation to the cat's coldness.\n10. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger. \n    - This has no relation to the cat's coldness.\n11. If someone chases the tiger and they are green then the tiger chases the cow. \n    - This has no relation to the cat's coldness.\n12. Nice, kind people are cold. \n    - Since the cat is kind (point 2), it means the cat is cold.\n    - Therefore, the statement \"The cat is not cold\" is false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information.\n\n1. The cat is kind. (From statement 7)\n2. Nice people are cold. (From statement 11)\n3. If someone is nice, then they are kind. (From statement 14)\nFrom steps 2 and 3, we can conclude that kind people are cold. \n\nHowever, we also know that the cat is kind (step 1). Since kind people are cold (step 2), we can conclude that the cat is cold.\n\nTherefore, the statement \"The cat is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The statement \"The cat is kind\" is given. We know from the information that \"Nice, kind people are cold.\" This means that since the cat is kind, it is cold.\n\n2. From the first point, we have determined that the cat is cold. This directly contradicts the statement \"The cat is not cold.\" Therefore, based on the given information, the statement \"The cat is not cold\" must be false.\n\nSo, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their relationships to the statement we are trying to determine: \"The cat is not cold.\"\n\nFrom the given statements:\n\n1. The cat is green.\n2. Nice, kind people are cold.\n3. If someone is nice then they are kind.\n\nFrom (3), if someone is nice, then they are kind. However, we cannot directly infer that the cat is nice from the given statements. But, we can use the statement \"The cat is kind\" to conclude that the cat is nice.\n\n4. If someone chases the cat then they are nice.\n\nFrom (4), if someone chases the cat, then they are nice. However, we cannot directly infer that the cat chases someone, but we can see the statement \"The cat chases the bear\" which implies the cat is capable of chasing. \n\nHowever, we have no information that directly states the cat is chasing someone in this case.\n\n5. If someone chases the bear and the bear is cold then they eat the cat. \n\nSince the cat is green, and from (2), nice and kind people are cold, and we have concluded that the cat is kind, it means the cat is cold.\n\nGiven that the cat is cold, we can directly apply the statement in (5): If someone chases the bear and the bear is cold then they eat the cat. But in this case, there is no information that states that the cat is chasing the bear. However, the cat is being eaten by the bear and the cow in the given statements.\n\n6. The cat is eaten by the bear and the cow.\n\nGiven that the cat is eaten by the bear and the cow, it can be said that the cat is being chased by the bear and the cow. Since the bear and the cow are eating the cat, it implies they are chasing the cat.\n\nNow, given that the cat is being chased by the bear and the cow, and the bear is cold, then they eat the cat. This implies the cat is being eaten, and therefore the cat is being chased.\n\nFrom the statement \"The cat is kind\" and \"If someone chases the cat then they are nice,\" we can say that the cat is being chased by someone who is nice.\n\nSince the cat is being chased by someone who is nice, it implies that the person is kind from the statement \"If someone is nice then they are kind.\"\n\nNow, from the statement \"Nice, kind people are cold,\" we can say that the cat's chaser is cold.\n\nSince the cat's chaser is cold, and the cat is being chased by the bear and the cow, it implies the cat is being eaten by the bear and the cow who are cold.\n\nFrom (5), if someone chases the bear and the bear is cold then they eat the cat. Since the cat is eaten by the bear and the cow, and the bear and the cow are cold, it implies the cat's chaser is cold.\n\nNow we have the following relationships:\n\n1. The cat is kind.\n2. If someone chases the cat then they are nice.\n3. If someone is nice then they are kind.\n4. The cat's chaser is nice.\n5. The cat's chaser is kind.\n6. The cat's chaser is cold.\n\nGiven that the cat's chaser is cold, we can directly apply the statement \"The cat is green\" and \"If someone is cold then they are nice and kind.\" This implies that the cat's chaser is green.\n\nHowever, we are trying to determine if \"The cat is not cold\" is true, false, or unknown.\n\nFrom the statements above, we can conclude that the cat's chaser is cold, but we cannot determine the cat's temperature directly from the statements.\n\nHowever, since the cat's chaser is cold, and we have concluded that the cat's chaser is green, it implies the cat's chaser is nice and kind from (2) and (3).\n\nFrom (2), nice and kind people are cold. Given that the cat's chaser is cold, and we have concluded that the cat's chaser is green, it implies the cat's chaser is nice and kind.\n\nFrom (3), if someone is nice then they are kind. Given that the cat's chaser is kind, it implies the cat's chaser is nice.\n\nFrom (2), nice and kind people are cold. Given that the cat's chaser is nice, it implies the cat's chaser is cold.\n\nHowever, we cannot determine if the cat is cold from the given statements. \n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cat is green. (Given)\n2. The cow is green. (Given)\n   However, no information is provided about the cat's temperature based on its color. \n3. The cow eats the bear. (Given)\n   This information does not relate to the cat's temperature.\n4. The cat sees the tiger. (Given)\n   This information does not relate to the cat's temperature.\n5. The cat is kind. (Given)\n   The rules state that nice people are cold. (Rule 7)\n   However, there is no direct information about the cat being nice.\n6. The cat is rough. (Given)\n   This information does not relate to the cat's temperature.\n7. The cat eats the bear. (Given)\n   This information does not relate to the cat's temperature.\n8. The cat eats the tiger. (Given)\n   This information does not relate to the cat's temperature.\n\nNow, let's analyze the given rules to see if there's any connection between the cat's color and its temperature or if there's any information that can be used to infer the cat's temperature.\n\n1. If someone chases the bear and the bear is cold then they eat the cat. (Rule 1)\n   This rule does not provide any information about the cat's temperature.\n2. If someone chases the bear and the bear chases the tiger then the bear sees the tiger. (Rule 2)\n   This rule does not provide any information about the cat's temperature.\n3. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger. (Rule 3)\n   This rule does not provide any information about the cat's temperature.\n4. If someone chases the tiger and they are green then the tiger chases the cow. (Rule 4)\n   This rule does not provide any information about the cat's temperature.\n5. Nice, kind people are cold. (Rule 7)\n   This rule implies that kind people are cold, but there is no direct information about the cat being kind.\n6. If someone chases the bear then the bear chases the cat. (Rule 5)\n   This rule does not provide any information about the cat's temperature.\n7. If someone chases the cat then they are nice. (Rule 6)\n   This rule does not provide any information about the cat's temperature.\n8. If someone is nice then they are kind. (Rule 8)\n   This rule implies that nice people are kind, but there is no direct information about the cat being nice.\n\nSince there is no direct information about the cat being kind or nice, we cannot infer the cat's temperature based on the given rules.\n\nTherefore, the statement \"The cat is not cold\" is unknown because we do not have enough information to determine whether the cat is cold or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information.\n\n1. The cat is green. \n2. Nice, kind people are cold.\n3. If someone chases the cat then they are nice.\n4. If someone is nice then they are kind.\n5. The cat is kind.\n\nFrom (3) and (4), if someone chases the cat then they are kind. However, it doesn't directly tell us if the cat is kind or not, but we already know from (5) that the cat is indeed kind.\n\nFrom (2) and (4), if someone is nice then they are kind. And we know the cat is kind, so it could be nice as well. \n\nNow, if someone chases the cat and they are kind, then they are nice from (4). But since the cat is kind, it might be nice as well. However, since it is kind, it might not be nice. \n\nHowever, from (4) and (5), we can conclude that the cat is nice. And from (2) and (4), we can conclude that nice people are cold.\n\nTherefore, the statement \"The cat is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The cat is not cold' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cat is green. (Given)\n2. Nice, kind people are cold. (Given)\n3. The cat is kind. (Given)\n   From (2) and (3), we can conclude that the cat is cold.\n\nHowever, we also need to consider the possibility of the cat being cold due to another reason.\n\n4. If someone chases the bear and the bear is cold then they eat the cat. (Given)\n   This statement implies that if someone is chasing the bear and the bear is cold, they might eat the cat, but it doesn't directly relate to the cat's temperature.\n\n5. If someone chases the bear and the bear chases the tiger then the bear sees the tiger. (Given)\n   This statement also doesn't directly relate to the cat's temperature.\n\n6. If the cat chases the bear and the cat sees the tiger then the bear chases the tiger. (Given)\n   This statement also doesn't directly relate to the cat's temperature.\n\n7. If someone chases the tiger and they are green then the tiger chases the cow. (Given)\n   This statement also doesn't directly relate to the cat's temperature.\n\n8. If someone chases the bear then the bear chases the cat. (Given)\n   This statement also doesn't directly relate to the cat's temperature.\n\n9. If someone chases the cat then they are nice. (Given)\n   This statement also doesn't directly relate to the cat's temperature.\n\n10. If someone is nice then they are kind. (Given)\n    This statement also doesn't directly relate to the cat's temperature.\n\nConsidering all the given statements and using logical deductions, we can conclude that the cat is cold due to being kind (Statement 3) and nice people being cold (Statement 2).\n\nTherefore, the statement 'The cat is not cold' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is kind. (Given)\n2. Nice, kind people are cold. (Given)\n\nFrom the second point, we can conclude that kind people are cold. Since the cat is kind, we can deduce that the cat is cold.\n\nNow, let's analyze the statement \"The cat is not cold.\" Based on our previous conclusion, we know that the cat is cold. Therefore, the statement \"The cat is not cold\" is false.\n\nSo, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information.\n\n1. The cat is kind. (Given)\n2. Nice, kind people are cold. (Given)\n3. If someone is nice then they are kind. (Given)\n\nFrom (1), we know the cat is kind. \nFrom (3), if someone is nice, then they are kind. This implies that if the cat is nice, it will be kind.\n\nNow, let's consider the following:\n- If the cat is nice (from (3)), then it must be kind (from (1)). \n- Since kind people are cold (from (2)), the cat being kind means the cat is cold.\n\nHowever, there's another statement:\n- If someone chases the bear and the bear is cold then they eat the cat. (Given)\n\nThis implies that if the bear is cold, then the person chasing the bear will eat the cat. But we cannot directly relate this to the cat being cold or not. We cannot conclude the cat being cold from this statement.\n\nWe still have another statement:\n- The cat is green. (Given)\n\nThis statement does not give us any information about the cat being cold or not. \n\nConsidering all the given information, we cannot conclude that the cat is not cold. We can only conclude that the cat is cold because it's kind, but we cannot rule out other possibilities.\n\nTherefore, the statement \"The cat is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not cold\" is true, false, or unknown, we need to analyze the given information.\n\n1. The cat is green. (This statement does not provide any information about the cat's temperature.)\n2. The cat is kind. (This statement does not provide any information about the cat's temperature.)\n3. The cat is rough. (This statement does not provide any information about the cat's temperature.)\n4. The cat sees the bear. (This statement does not provide any information about the cat's temperature.)\n5. The cat sees the tiger. (This statement does not provide any information about the cat's temperature.)\n6. The cat eats the bear. (This statement does not provide any information about the cat's temperature.)\n7. The cat eats the tiger. (This statement does not provide any information about the cat's temperature.)\n\nHowever, we do have some information related to the cat's temperature:\n\n8. If someone chases the bear and the bear is cold then they eat the cat. (This statement implies that being cold is a condition for eating the cat, but it does not provide any information about the cat itself.)\n9. Nice, kind people are cold. (This statement implies that being kind and cold are related, but it does not provide any information about the cat's temperature directly.)\n\nWe also know that the cat is kind:\n\n10. The cat is kind. (This statement implies that the cat is nice, as being nice is a consequence of being kind.)\n\nFrom statement 10 and statement 11 (If someone is nice then they are kind), we can conclude that the cat is nice.\n\nFrom statement 12 (If someone chases the cat then they are nice), we can conclude that the cat is being chased by someone who is nice.\n\nHowever, we do not have enough information to directly determine whether the cat is cold or not. Therefore, we cannot conclude that the statement \"The cat is not cold\" is true or false based on the given information.\n\nThe answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, bear)",
+          "z3_formula": "chases_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & cold(bear) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_cat_bear, cold_bear), eats_someone_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & chases(bear, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(chases_cat_bear, chases_bear_tiger), sees_cat_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & sees(X, Y) -> chases(bear, Y)",
+          "z3_formula": "Implies(And(chases_cat_bear, sees_cat_tiger), chases_bear_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & green(X) -> chases(tiger, cow)",
+          "z3_formula": "Implies(And(chases_someone_tiger, green_someone), chases_tiger_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_someone, kind_someone)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_someone, cold_someone)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(cat))",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, tiger)",
+          "z3_formula": "eats_cat_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, bear)",
+          "z3_formula": "eats_cow_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, tiger)",
+          "z3_formula": "eats_cow_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow)",
+          "z3_formula": "chases_tiger_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & cold(bear) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_X_bear, cold_bear), eats_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & chases(bear, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(chases_X_bear, chases_bear_Y), chases_X_Y)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & chases(bear, cat) -> chases(X, cat)",
+          "z3_formula": "Implies(And(chases_X_bear, chases_bear_cat), chases_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & green(X) -> chases(tiger, cow)",
+          "z3_formula": "Implies(And(chases_X_tiger, green_X), chases_tiger_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_X, nice_X), cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> chases(bear, cat)",
+          "z3_formula": "Implies(chases_X_bear, chases_bear_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> nice(X)",
+          "z3_formula": "Implies(chases_X_cat, nice_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(cat)",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, tiger)",
+          "z3_formula": "eats_cat_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & cold(bear) -> eats(Y, cat)",
+          "z3_formula": "Implies(And(chases_X_bear, cold_bear), eats_Y_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & chases(bear, tiger) -> sees(bear, tiger)",
+          "z3_formula": "Implies(And(chases_X_bear, chases_bear_tiger), sees_bear_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cat, bear) & sees(cat, tiger) -> chases(bear, tiger)",
+          "z3_formula": "Implies(And(chases_cat_bear, sees_cat_tiger), chases_bear_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & green(X) -> chases(tiger, cow)",
+          "z3_formula": "Implies(And(chases_X_tiger, green_X), chases_tiger_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_cat, cold_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_cat, nice_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_cat, kind_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(cat)",
+          "z3_formula": "Not(cold_cat)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(cat)",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(cat)",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> nice(X)",
+          "z3_formula": "Implies(chases_cat_cat, nice_cat_chaser)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_cat_chaser, kind_cat_chaser)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_cat, nice_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> nice(X)",
+          "z3_formula": "Implies(chases_cat_cat, nice_cat_chaser)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & cold(bear) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_cat_bear, cold_bear), eats_cat_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, bear) | chases(cat, cow)",
+          "z3_formula": "Or(chases_cat_bear, chases_cat_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, bear) | chases(cat, cow) -> cold(cat)",
+          "z3_formula": "Implies(Or(chases_cat_bear, chases_cat_cow), cold_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat) -> nice(cat)",
+          "z3_formula": "Implies(kind_cat, nice_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat_chaser) -> kind(cat_chaser)",
+          "z3_formula": "Implies(nice_cat_chaser, kind_cat_chaser)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat_chaser) -> nice(cat_chaser)",
+          "z3_formula": "Implies(kind_cat_chaser, nice_cat_chaser)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat_chaser) -> cold(cat_chaser)",
+          "z3_formula": "Implies(kind_cat_chaser, cold_cat_chaser)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat_chaser) -> green(cat_chaser)",
+          "z3_formula": "Implies(kind_cat_chaser, green_cat_chaser)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat_chaser) -> nice(cat_chaser) & kind(cat_chaser)",
+          "z3_formula": "Implies(cold_cat_chaser, And(nice_cat_chaser, kind_cat_chaser))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat_chaser) -> nice(cat_chaser)",
+          "z3_formula": "Implies(cold_cat_chaser, nice_cat_chaser)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat_chaser) -> nice(cat_chaser)",
+          "z3_formula": "Implies(kind_cat_chaser, nice_cat_chaser)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat_chaser) -> cold(cat_chaser)",
+          "z3_formula": "Implies(kind_cat_chaser, cold_cat_chaser)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat_chaser) -> nice(cat_chaser)",
+          "z3_formula": "Implies(cold_cat_chaser, nice_cat_chaser)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & cold(bear) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_X_bear, cold_bear), eats_X_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & bears(X, tiger) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_X_bear, bears_X_tiger), sees_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cat, bear) & sees(cat, tiger) -> bears(bear, tiger)",
+          "z3_formula": "Implies(And(chases_cat_bear, sees_cat_tiger), bears_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & green(X) -> chases(tiger, cow)",
+          "z3_formula": "Implies(And(chases_X_tiger, green_X), chases_tiger_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> nice(X)",
+          "z3_formula": "Implies(chases_X_cat, nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, bear)",
+          "z3_formula": "chases_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow)",
+          "z3_formula": "chases_tiger_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, cat)",
+          "z3_formula": "chases_bear_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cat)",
+          "z3_formula": "eats_bear_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, tiger)",
+          "z3_formula": "eats_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, tiger)",
+          "z3_formula": "sees_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bears(bear, tiger)",
+          "z3_formula": "bears_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == False",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> nice(X)",
+          "z3_formula": "Implies(chases_X_cat, nice_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(cat))",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_cat, kind_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_cat, cold_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(X, bear) & cold(bear) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_X_bear, cold_bear), eats_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cat == green",
+          "z3_formula": "cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_cat, nice_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(Y, cat) -> nice(Y)",
+          "z3_formula": "Implies(chases_someone_cat, nice_someone)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & cold(X) -> eats(X, cat)",
+          "z3_formula": "Implies(And(chases_someone_cat, cold_someone), eats_someone_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, tiger)",
+          "z3_formula": "eats_cat_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_cat, kind_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases_someone_cat",
+          "z3_formula": "chases_someone_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold_someone",
+          "z3_formula": "cold_someone == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats_someone_cat",
+          "z3_formula": "eats_someone_cat == Unknown",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 143,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 68
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 1,
+      "total_weight": 136,
+      "solve_time_ms": 1.3663917779922485
+    },
+    "timing": {
+      "trace_gen_s": 11.511,
+      "extraction_s": 24.607,
+      "dedup_s": 2.109,
+      "maxsat_s": 0.005,
+      "total_s": 38.231
+    }
+  }
+}

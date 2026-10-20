@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-108_Q15",
+    "problem": "Anne is green. Bob is big. Bob is furry. Dave is green. Erin is furry. Erin is green. Erin is round. If Anne is white and Anne is big then Anne is not furry. Furry people are kind. If someone is kind then they are white. If someone is white then they are big. If someone is rough then they are green. If someone is kind and not big then they are not rough. Furry, white people are rough. Green, kind people are round. If someone is white and not green then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBig(Bob, True) ::: Bob is big.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Dave, True) ::: Dave is green.\nFurry(Erin, True) ::: Erin is furry.\nGreen(Erin, True) ::: Erin is green.\nRound(Erin, True) ::: Erin is round.\n\nRules:\nWhite(Anne, True) && Big(Anne, True) >>> Furry(Anne, False) ::: If Anne is white and Anne is big then Anne is not furry.\nFurry($x, True) >>> Kind($x, True) ::: Furry people are kind.\nKind($x, True) >>> White($x, True) ::: If someone is kind then they are white.\nWhite($x, True) >>> Big($x, True) ::: If someone is white then they are big.\nRough($x, True) >>> Green($x, True) ::: If someone is rough then they are green.\nKind($x, True) && Big($x, False) >>> Rough($x, False) ::: If someone is kind and not big then they are not rough.\nFurry($x, True) && White($x, True) >>> Rough($x, True) ::: Furry, white people are rough.\nGreen($x, True) && Kind($x, True) >>> Round($x, True) ::: Green, kind people are round.\nWhite($x, True) && Green($x, False) >>> Round($x, True) ::: If someone is white and not green then they are round.\n\nQuery:\nWhite(Dave, False) ::: Dave is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

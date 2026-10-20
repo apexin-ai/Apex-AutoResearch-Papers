@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-78_Q12",
+    "problem": "The lion eats the mouse. The lion is green. The mouse is kind. The squirrel is green. The squirrel is round. The squirrel likes the lion. The squirrel visits the mouse. The squirrel visits the tiger. The tiger is kind. The tiger is nice. If someone visits the mouse then the mouse is nice. If someone eats the mouse and they visit the tiger then the mouse is green. Big, nice people are round. If the mouse is green then the mouse is big. If the lion is nice then the lion does not visit the tiger. If someone is round and big then they like the lion. If someone is green then they visit the tiger. If someone eats the tiger and they are not nice then the tiger likes the lion. If someone likes the tiger and they do not eat the squirrel then the tiger likes the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not like the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(Lion, Mouse, True) ::: The lion eats the mouse.\nGreen(Lion, True) ::: The lion is green.\nKind(Mouse, True) ::: The mouse is kind.\nGreen(Squirrel, True) ::: The squirrel is green.\nRound(Squirrel, True) ::: The squirrel is round.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\nVisits(Squirrel, Mouse, True) ::: The squirrel visits the mouse.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nKind(Tiger, True) ::: The tiger is kind.\nNice(Tiger, True) ::: The tiger is nice.\n\nRules:\nVisits($x, Mouse, True) >>> Nice(Mouse, True) ::: If someone visits the mouse then the mouse is nice.\nEats($x, Mouse, True) && Visits($x, Tiger, True) >>> Green(Mouse, True) ::: If someone eats the mouse and they visit the tiger then the mouse is green.\nBig($x, True) && Nice($x, True) >>> Round($x, True) ::: Big, nice people are round.\nGreen(Mouse, True) >>> Big(Mouse, True) ::: If the mouse is green then the mouse is big.\nNice(Lion, True) >>> Visits(Lion, Tiger, False) ::: If the lion is nice then the lion does not visit the tiger.\nRound($x, True) && Big($x, True) >>> Likes($x, Lion, True) ::: If someone is round and big then they like the lion.\nGreen($x, True) >>> Visits($x, Tiger, True) ::: If someone is green then they visit the tiger.\nEats($x, Tiger, True) && Nice($x, False) >>> Likes(Tiger, Lion, True) ::: If someone eats the tiger and they are not nice then the tiger likes the lion.\nLikes($x, Tiger, True) && Eats($x, Squirrel, False) >>> Likes(Tiger, Lion, True) ::: If someone likes the tiger and they do not eat the squirrel then the tiger likes the lion.\n\nQuery:\nLikes(Mouse, Lion, False) ::: The mouse does not like the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

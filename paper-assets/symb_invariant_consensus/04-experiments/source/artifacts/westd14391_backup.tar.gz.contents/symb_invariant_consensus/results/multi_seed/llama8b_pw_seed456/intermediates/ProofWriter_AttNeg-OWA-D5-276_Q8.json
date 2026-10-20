@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-276_Q8",
+    "problem": "Bob is kind. Bob is round. Charlie is rough. Erin is green. Erin is rough. Erin is round. Gary is cold. All rough people are green. If someone is green then they are white. If someone is white then they are not big. If someone is green and not big then they are kind. If someone is kind and not big then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nRound(Bob, True) ::: Bob is round.\nRough(Charlie, True) ::: Charlie is rough.\nGreen(Erin, True) ::: Erin is green.\nRough(Erin, True) ::: Erin is rough.\nRound(Erin, True) ::: Erin is round.\nCold(Gary, True) ::: Gary is cold.\n\nRules:\nRough($x, True) >>> Green($x, True) ::: All rough people are green.\nGreen($x, True) >>> White($x, True) ::: If someone is green then they are white.\nWhite($x, True) >>> Big($x, False) ::: If someone is white then they are not big.\nGreen($x, True) && Big($x, False) >>> Kind($x, True) ::: If someone is green and not big then they are kind.\nKind($x, True) && Big($x, False) >>> Round($x, True) ::: If someone is kind and not big then they are round.\n\nQuery:\nKind(Erin, False) ::: Erin is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

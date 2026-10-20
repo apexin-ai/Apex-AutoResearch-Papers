@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-630_Q10",
+    "problem": "Bob is big. Bob is nice. Bob is quiet. Dave is green. Dave is quiet. Gary is green. Gary is red. Gary is round. Harry is green. Harry is red. Harry is round. Nice, quiet people are big. If someone is red and round then they are smart. All quiet people are round. If someone is big and nice then they are quiet. If someone is big and red then they are nice. If someone is quiet and round then they are red. If someone is red and round then they are smart. If Bob is green then Bob is big. All quiet, smart people are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nQuiet(Bob, True) ::: Bob is quiet.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nGreen(Gary, True) ::: Gary is green.\nRed(Gary, True) ::: Gary is red.\nRound(Gary, True) ::: Gary is round.\nGreen(Harry, True) ::: Harry is green.\nRed(Harry, True) ::: Harry is red.\nRound(Harry, True) ::: Harry is round.\n\nRules:\nNice($x, True) && Quiet($x, True) >>> Big($x, True) ::: Nice, quiet people are big.\nRed($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is red and round then they are smart.\nQuiet($x, True) >>> Round($x, True) ::: All quiet people are round.\nBig($x, True) && Nice($x, True) >>> Quiet($x, True) ::: If someone is big and nice then they are quiet.\nBig($x, True) && Red($x, True) >>> Nice($x, True) ::: If someone is big and red then they are nice.\nQuiet($x, True) && Round($x, True) >>> Red($x, True) ::: If someone is quiet and round then they are red.\nRed($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is red and round then they are smart.\nGreen(Bob, True) >>> Big(Bob, True) ::: If Bob is green then Bob is big.\nQuiet($x, True) && Smart($x, True) >>> Nice($x, True) ::: All quiet, smart people are nice.\n\nQuery:\nNice(Dave, False) ::: Dave is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

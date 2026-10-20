@@ -1,0 +1,982 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-169_Q6",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle) & red(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True & red_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_bear, sees_bear_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_rabbit_bald_eagle, sees_rabbit_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> chases(Y, X)",
+          "z3_formula": "Implies(needs_bald_eagle_rabbit, chases_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, sees_rabbit_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_rabbit, red_rabbit), green_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, chases_rabbit_rabbit), sees_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> Not(blue(X))",
+          "z3_formula": "Implies(And(sees_tiger_bald_eagle, needs_bald_eagle_tiger), Not(blue_tiger))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(young(X)) & Not(needs(X, bald_eagle)) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(bald_eagle, tiger))",
+          "z3_formula": "Not(chases_bald_eagle_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, chases_rabbit_rabbit), sees_bear_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not(blue(X))",
+          "z3_formula": "Implies(And(sees_rabbit_rabbit, needs_rabbit_tiger), Not(blue_rabbit))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(X)) & not(needs(X, bald_eagle)) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_bear_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> bald_eagle_chases_rabbit",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, bald_eagle_chases_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "bald_eagle_chases_rabbit",
+          "z3_formula": "bald_eagle_chases_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "bald_eagle_chases_rabbit -> rabbit_sees_bald_eagle",
+          "z3_formula": "Implies(bald_eagle_chases_rabbit, rabbit_sees_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit_sees_bald_eagle",
+          "z3_formula": "rabbit_sees_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs_rabbit_bear",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_tiger, chases_tiger_rabbit), sees_tiger_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_tiger_rabbit, sees_tiger_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_chases(bald_eagle, tiger)",
+          "z3_formula": "not_chases_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(bald_eagle, tiger)",
+          "z3_formula": "not chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_X, chases_X_rabbit), sees_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not blue(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, needs_X_tiger), Not(blue_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_rabbit, sees_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_X), Not(needs_X_bald_eagle)), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_X, needs_X_bear), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_X, needs_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> bald_eagle_chases_rabbit",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, bald_eagle_chases_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & bald_eagle_chases_rabbit -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, bald_eagle_chases_rabbit), sees_rabbit_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not blue(X)",
+          "z3_formula": "Implies(And(sees_rabbit_tiger, needs_tiger_bald_eagle), not blue_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_rabbit_bald_eagle, sees_bald_eagle_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 21
+        }
+      ]
+    }
+  ]
+}

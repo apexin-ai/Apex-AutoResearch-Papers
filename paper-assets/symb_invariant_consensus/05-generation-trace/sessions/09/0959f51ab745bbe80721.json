@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0959f51ab745bbe80721",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g q progress t60",
+  "task_key": "worker_analysis_g-q-progress-t60_20260520T122318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-q-progress-t60_20260520T122318_result.json",
+    "occurrence": 1,
+    "bytes": 1728,
+    "sha256": "51d2b987d2ccd3d61a0b4b6396440422f750e148ac3ffdef09f7f46492a901ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Q 实验的日志没有 progress 行，进度只能从 results.json 中已有的 56 个 problem 和运行时间推算。\n\n---\n\n## 实验进度报告\n\n### 1. G Decoupling (PID 307169)\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | alive, 运行 2h08m |\n| **已完成** | **120 / 204** (58.8%) |\n| **当前 accuracy** | 57.5% (69/120) |\n| **avg_trunc** | 4.2%, matched 98% |\n| **速度** | ~0.02 prob/s (~50s/问题) |\n| **ETA** | 日志报 5250s ≈ **~1h27m** (约 21:50 UTC 完成) |\n\n注：results.json 只写了 3 个问题（可能是 pilot 写入），实时进度以日志为准。\n\n### 2. Q Premise Mutation (PID 314817)\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | alive, 运行 1h08m |\n| **已完成** | **56 / 204** (27.5%) |\n| **SC accuracy (original)** | 60.7% (34/56) |\n| **SICA accuracy (original)** | 64.3% (36/56) |\n| **速度** | ~0.82 prob/min (68s 运行 56 问题 → ~73s/问题) |\n| **ETA** | 剩 148 问题 × 73s ≈ **~3h00m** (约 23:25 UTC 完成) |\n\n**Mutation flip rates (56 问题):**\n\n| Mutation | SC acc | SICA acc | SC flip rate | SICA flip rate |\n|----------|--------|----------|-------------|---------------|\n| original | 60.7% | 64.3% | — | — |\n| synonym | 66.1% | 60.7% | 12.5% | 12.5% |\n| reorder | 67.9% | 60.7% | 21.4% | 25.0% |\n| inject | 57.1% | 57.1% | 7.1% | 12.5% |\n| combined | 58.9% | 57.1% | 21.4% | 19.6% |\n\n初步观察：reorder 和 combined 的 flip rate 最高 (~20-25%)，说明前提顺序扰动对 SC 和 SICA 都有明显影响。SICA 在 mutation 下并未显著优于 SC（甚至 original 上 SICA 略高但 mutation 后两者差距缩小），后续 204 题全量数据会更有统计意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-q-progress-t60.md"
+}

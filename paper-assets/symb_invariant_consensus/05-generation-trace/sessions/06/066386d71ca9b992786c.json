@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "066386d71ca9b992786c",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "review appendix xref audit",
+  "task_key": "worker_review_appendix-xref-audit_20260518T052112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_review_appendix-xref-audit_20260518T052112_result.json",
+    "occurrence": 1,
+    "bytes": 3191,
+    "sha256": "8cd11ff6665149982c0482bd6d12e8bc80a1c6e1e312b949d20ee0c7309be31e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix references `sec:diagnostics` (L195) and `tab:main_results` (L225) — both exist in experiments.tex. Reverse check clean.\n\n## 附录交叉引用审计\n\n### 未被正文引用的附录 labels:\n\n| Label | 位置 | 类型 | 状态 |\n|---|---|---|---|\n| `\\label{app:diagnostics}` | appendix.tex:L193 | section | 未被任何文件引用（正文用 `\\ref{tab:capability_trap}` 直接引表，跳过了 section label） |\n| `\\label{app:power}` | appendix.tex:L223 | section | 未被任何文件引用（正文 limitations_content.tex 用 `\\ref{tab:power}` 直接引表，跳过了 section label） |\n| `\\label{app:bootstrap}` | appendix.tex:L247 | section | 未被任何文件引用（正文 discussion.tex 用 `\\ref{tab:bootstrap}` 直接引表，跳过了 section label） |\n| `\\label{alg:maxsat}` | appendix.tex:L157 | algorithm | 仅附录内部自引用（appendix.tex:L151） |\n| `\\label{alg:scorer}` | appendix.tex:L177 | algorithm | 仅附录内部自引用（appendix.tex:L151）；正文 method.tex:L73 用文字 \"Algorithm~2\" + `\\ref{app:z3-pseudocode}` 间接引用，未用 `\\ref{alg:scorer}` |\n\n### 已被正文引用的附录 labels:\n\n| Label | 位置 | 类型 | 引用位置 |\n|---|---|---|---|\n| `\\label{app:prompts}` | appendix.tex:L3 | section | method.tex:L52, experiments.tex:L13, limitations_content.tex:L1 |\n| `\\label{app:z3-pseudocode}` | appendix.tex:L149 | section | method.tex:L73 |\n| `\\label{tab:capability_trap}` | appendix.tex:L218 | table | experiments.tex:L67, appendix.tex:L195（自引） |\n| `\\label{tab:power}` | appendix.tex:L240 | table | limitations_content.tex:L1, appendix.tex:L225（自引） |\n| `\\label{tab:bootstrap}` | appendix.tex:L264 | table | discussion.tex:L8, appendix.tex:L249（自引） |\n\n### 反向检查（附录引用正文 label）:\n\n| 附录引用 | 目标 | 正文中是否存在 |\n|---|---|---|\n| `\\ref{sec:diagnostics}` (L195) | experiments.tex:L65 | 存在 |\n| `\\ref{tab:main_results}` (L225) | experiments.tex:L27 | 存在 |\n| `\\ref{alg:maxsat}` (L151) | appendix.tex:L157 | 存在（自引） |\n| `\\ref{alg:scorer}` (L151) | appendix.tex:L177 | 存在（自引） |\n| `\\ref{tab:capability_trap}` (L195) | appendix.tex:L218 | 存在（自引） |\n| `\\ref{tab:power}` (L225) | appendix.tex:L240 | 存在（自引） |\n| `\\ref{tab:bootstrap}` (L249) | appendix.tex:L264 | 存在（自引） |\n\n反向检查全部通过，无悬空引用。\n\n### 总结\n\n**10 个附录 labels 中，5 个被正文引用，5 个未被正文引用。**\n\n- 3 个 section labels（`app:diagnostics`、`app:power`、`app:bootstrap`）完全无人引用——正文绕过 section label 直接引用了其中的 table label，导致这些 section label 成为孤儿。虽然不影响编译，但如果审稿人想跳转到附录对应 section，正文缺少 section 级引导。\n- 2 个 algorithm labels（`alg:maxsat`、`alg:scorer`）仅在附录内部互引，正文未直接使用 `\\ref{alg:...}`。`alg:scorer` 的情况尤其值得注意：method.tex 用硬编码 \"Algorithm~2\" 而非 `\\ref{alg:scorer}`，如果 algorithm 编号变化会导致不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-appendix-xref-audit.md"
+}

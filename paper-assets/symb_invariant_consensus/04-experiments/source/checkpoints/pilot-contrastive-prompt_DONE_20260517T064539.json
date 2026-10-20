@@ -1,0 +1,58 @@
+{
+  "exp_id": "pilot-contrastive-prompt",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:18:22.559Z",
+    "updated_at": "2026-05-17T06:45:39.749Z",
+    "hypothesis": "Contrastive Prompt Extraction: 将 prompt 改为\"列出支持答案X/反对答案Y的证据\"能否将 discriminative ratio 从 37.2% 提升至 >70%，并使 SICA(contrastive) > SC ≥3pp——验证 answer-conditioned 约束是否解决 SICA 机制 vacuous 问题",
+    "parent": "pilot-constraint-filtering",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T06:42:48.028Z",
+      "command": "cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T06:43:15.557Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python scripts/pilot_contrastive_constraints.py",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/symb_invariant_consensus/pilot-contrastive-prompt.log",
+      "submitted_at": "2026-05-17T06:42:49.646Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 26.8,
+      "gpu_hours": 0.01
+    },
+    "pid": "unknown",
+    "log_path": "~/runs/symb_invariant_consensus/pilot-contrastive-prompt.log",
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T06:43:16.479Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T06:43:18.090519+00:00"
+        }
+      ]
+    },
+    "notes": "EXIT_CODE=127: 命令缺少 conda 环境激活。原始命令直接用 `python` 但 tmux session 中 PATH 不含 conda。修复：加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前缀。Worker 诊断中，确认后重新提交。"
+  },
+  "timestamp": "2026-05-17T06:45:39.812972+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07116a93da7a02d41313",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "ops kill zombie vllm 25068",
+  "task_key": "worker_ops_kill-zombie-vllm-25068_20260520T001337",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-zombie-vllm-25068_20260520T001337_result.json",
+    "occurrence": 1,
+    "bytes": 328,
+    "sha256": "e3604defdcc90b696a9da6facc7c5ae59f70df64ef4c1dd4a55197dbaa088393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理完毕：\n\n- **GPU 0**: 0 MiB，已释放（原 port 8000）\n- **GPU 3**: 0 MiB，已释放（原 port 8003）\n- **GPU 1**: 90677 MiB，exp-084 正常运行（port 8001）\n- **GPU 2**: 89733 MiB，exp-085 正常运行（port 8002）\n\n两个 zombie vLLM 进程已 kill，活跃实验未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-vllm-25068.md"
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-465_Q1",
+    "problem": "Anne is big. Anne is furry. Anne is green. Anne is not kind. Bob is furry. Bob is green. Bob is red. Bob is round. Erin is not blue. Erin is red. Gary is not furry. Big people are round. All blue people are not round. If someone is big and round then they are green. If Bob is not red then Bob is not big. If Bob is round then Bob is big. Red people are kind. If Gary is not blue then Gary is furry. If someone is kind and green then they are furry. Kind people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nGreen(Anne, True) ::: Anne is green.\nKind(Anne, False) ::: Anne is not kind.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nRound(Bob, True) ::: Bob is round.\nBlue(Erin, False) ::: Erin is not blue.\nRed(Erin, True) ::: Erin is red.\nFurry(Gary, False) ::: Gary is not furry.\n\nRules:\nBig($x, True) >>> Round($x, True) ::: Big people are round.\nBlue($x, True) >>> Round($x, False) ::: All blue people are not round.\nBig($x, True) && Round($x, True) >>> Green($x, True) ::: If someone is big and round then they are green.\nRed(Bob, False) >>> Big(Bob, False) ::: If Bob is not red then Bob is not big.\nRound(Bob, True) >>> Big(Bob, True) ::: If Bob is round then Bob is big.\nRed($x, True) >>> Kind($x, True) ::: Red people are kind.\nBlue(Gary, False) >>> Furry(Gary, True) ::: If Gary is not blue then Gary is furry.\nKind($x, True) && Green($x, True) >>> Furry($x, True) ::: If someone is kind and green then they are furry.\nKind($x, True) >>> Big($x, True) ::: Kind people are big.\n\nQuery:\nRound(Bob, True) ::: Bob is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

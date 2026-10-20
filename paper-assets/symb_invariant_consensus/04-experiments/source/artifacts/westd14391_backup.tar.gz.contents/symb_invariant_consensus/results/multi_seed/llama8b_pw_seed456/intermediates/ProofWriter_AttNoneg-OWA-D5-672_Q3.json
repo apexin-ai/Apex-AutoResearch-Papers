@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-672_Q3",
+    "problem": "Anne is cold. Anne is kind. Anne is round. Anne is smart. Anne is young. Erin is cold. Erin is round. Erin is smart. Gary is cold. Gary is kind. Gary is rough. Gary is round. Gary is smart. Gary is white. Gary is young. Harry is cold. If someone is kind then they are round. Young, cold people are white. All white people are young. All cold people are white. All round people are smart. If someone is young and cold then they are kind. All round people are kind. All young people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nKind(Anne, True) ::: Anne is kind.\nRound(Anne, True) ::: Anne is round.\nSmart(Anne, True) ::: Anne is smart.\nYoung(Anne, True) ::: Anne is young.\nCold(Erin, True) ::: Erin is cold.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\nYoung(Gary, True) ::: Gary is young.\nCold(Harry, True) ::: Harry is cold.\n\nRules:\nKind($x, True) >>> Round($x, True) ::: If someone is kind then they are round.\nYoung($x, True) && Cold($x, True) >>> White($x, True) ::: Young, cold people are white.\nWhite($x, True) >>> Young($x, True) ::: All white people are young.\nCold($x, True) >>> White($x, True) ::: All cold people are white.\nRound($x, True) >>> Smart($x, True) ::: All round people are smart.\nYoung($x, True) && Cold($x, True) >>> Kind($x, True) ::: If someone is young and cold then they are kind.\nRound($x, True) >>> Kind($x, True) ::: All round people are kind.\nYoung($x, True) >>> Rough($x, True) ::: All young people are rough.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

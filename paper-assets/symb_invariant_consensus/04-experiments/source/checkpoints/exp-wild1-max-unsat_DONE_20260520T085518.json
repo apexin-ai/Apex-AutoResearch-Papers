@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-wild1-max-unsat",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:55.446Z",
+    "updated_at": "2026-05-20T08:55:17.946Z",
+    "hypothesis": "MAX-UNSAT: Penalizing constraints in the unsatisfiable set (MIN-UNSAT variant) will improve SICA by actively downweighting contradictory constraints rather than only rewarding satisfiable ones.",
+    "spec": {
+      "command": "python wild1_max_unsat.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 traces (Mistral-7B FOLIO-204)",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "min_unsat_delta_pp": -6.5,
+      "mean_excluded_constraints": 1.3
+    },
+    "checkpoint_path": "N/A (analysis experiment)",
+    "log_path": "worker_analysis_wild1-max-unsat_20260520T072215",
+    "completed_at": "2026-05-20T08:55:17.946Z"
+  },
+  "timestamp": "2026-05-20T08:55:18.222819+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,898 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-1009_Q18",
+    "problem": "The cat is red. The cat likes the squirrel. The lion eats the squirrel. The mouse is cold. The mouse visits the lion. The squirrel is red. The squirrel visits the cat. If someone is cold and they like the squirrel then the squirrel is cold. If someone is cold then they visit the squirrel. If someone visits the lion and they like the cat then they visit the squirrel. If someone visits the mouse then the mouse is red. If someone is cold then they like the mouse. If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion likes the mouse.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nRed(cat, True) ::: The cat is red.\nLikes(cat, squirrel, True) ::: The cat likes the squirrel.\nEats(lion, squirrel, True) ::: The lion eats the squirrel.\nCold(mouse, True) ::: The mouse is cold.\nVisits(mouse, lion, True) ::: The mouse visits the lion.\nRed(squirrel, True) ::: The squirrel is red.\nVisits(squirrel, cat, True) ::: The squirrel visits the cat.\n\nRules:\nCold($x, True) && Likes($x, squirrel, True) >>> Cold(squirrel, True) ::: If someone is cold and they like the squirrel then the squirrel is cold.\nCold($x, True) >>> Visits($x, squirrel, True) ::: If someone is cold then they visit the squirrel.\nVisits($x, lion, True) && Likes($x, cat, True) >>> Visits($x, squirrel, True) ::: If someone visits the lion and they like the cat then they visit the squirrel.\nVisits($x, mouse, True) >>> Red(mouse, True) ::: If someone visits the mouse then the mouse is red.\nCold($x, True) >>> Likes($x, mouse, True) ::: If someone is cold then they like the mouse.\nLikes($x, mouse, True) && Visits(mouse, lion, True) >>> Likes($x, squirrel, True) ::: If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nQuery:\nLikes(lion, mouse, True) ::: The lion likes the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 92.0,
+      "Unknown": 114.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion likes the mouse\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The cat is red.\n2. The cat likes the squirrel.\n3. The lion eats the squirrel.\n4. The mouse is cold.\n5. The mouse visits the lion.\n6. The squirrel is red.\n7. The squirrel visits the cat.\n8. If someone is cold and they like the squirrel then the squirrel is cold.\n9. If someone is cold then they visit the squirrel.\n10. If someone visits the lion and they like the cat then they visit the squirrel.\n11. If someone visits the mouse then the mouse is red.\n12. If someone is cold then they like the mouse.\n13. If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nFrom statement 3, we know the lion eats the squirrel. This implies that the lion does not like the squirrel.\n\nFrom statement 10, if someone visits the lion and they like the cat then they visit the squirrel. However, we do not know if the lion likes the cat or not. So, we cannot conclude if the lion visits the squirrel or not.\n\nFrom statement 12, if someone is cold then they like the mouse. We know from statement 4 that the mouse is cold. Therefore, the mouse likes the mouse (by transitivity).\n\nFrom statement 5, the mouse visits the lion. We know from statement 13 that if someone likes the mouse and the mouse visits the lion then they like the squirrel. However, we cannot conclude if the lion likes the mouse or not.\n\nFrom statement 11, if someone visits the mouse then the mouse is red. We know the mouse is cold (statement 4), and if someone is cold, then they visit the squirrel (statement 9). However, we cannot conclude if the lion is cold or not.\n\nWe cannot conclude that the lion likes the mouse based on the given statements. There is not enough information to determine whether the statement \"The lion likes the mouse\" is true or false.\n\nTherefore, the final answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion likes the mouse\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. The lion eats the squirrel. \nThis information doesn't tell us anything about the lion's relationship with the mouse, so we'll keep it in mind but move on.\n\n2. The mouse is cold. \nThis information tells us the state of the mouse but doesn't provide any direct information about the lion.\n\n3. The mouse visits the lion. \nThis tells us about the interaction between the mouse and the lion but doesn't tell us about their relationship.\n\n4. The squirrel is red. \nThis information is about the squirrel and doesn't provide any information about the lion.\n\n5. The squirrel visits the cat. \nThis tells us about the interaction between the squirrel and the cat but doesn't tell us about the lion.\n\n6. If someone is cold and they like the squirrel then the squirrel is cold. \nThis rule can be used to analyze the relationship between the mouse and the squirrel but doesn't tell us about the lion.\n\n7. If someone is cold then they visit the squirrel. \nThis rule tells us that the mouse visiting the squirrel could be due to the mouse being cold, but we don't know if the mouse is cold due to being cold or not.\n\n8. If someone visits the lion and they like the cat then they visit the squirrel. \nWe don't have any information about someone visiting the lion and liking the cat, so we can't apply this rule.\n\n9. If someone visits the mouse then the mouse is red. \nThis rule tells us about the color of the mouse when someone visits it but we don't have any information about the lion visiting the mouse.\n\n10. If someone is cold then they like the mouse. \nThis tells us that the mouse being cold might imply that someone likes the mouse, but we don't know if the lion is cold.\n\n11. If someone likes the mouse and the mouse visits the lion then they like the squirrel. \nThis rule can be used if we know the lion likes the mouse (which is what we're trying to find out).\n\nFrom the given rules and information, we can see that we have a circular dependency between the statements. To solve this, we need to try to create a chain of rules that lead to the conclusion that the lion likes the mouse.\n\nGiven that the mouse visits the lion and we don't have any information that directly tells us about the lion liking the mouse, we can start from the information that the mouse is cold.\n\nFrom rule 2, we know that the mouse is cold.\n\nFrom rule 10, we know that if someone is cold, they like the mouse. But we don't know if the lion is cold.\n\nFrom rule 11, if someone likes the mouse and the mouse visits the lion, then they like the squirrel. However, this rule cannot be applied directly to the lion, as we don't know if the lion likes the mouse.\n\nHowever, from rule 6, if someone is cold and they like the squirrel, then the squirrel is cold. But this doesn't tell us anything about the lion liking the mouse.\n\nFrom rule 5, the squirrel visits the cat. But we don't know if the squirrel is cold.\n\nFrom rule 7, if someone is cold then they visit the squirrel. We know the mouse is cold and the mouse visits the squirrel.\n\nBut we still can't directly determine if the lion likes the mouse. However, we can use the rules to try to find a connection.\n\nFrom rule 9, if someone visits the mouse then the mouse is red. But we don't know if the lion visits the mouse.\n\nFrom rule 3, the mouse visits the lion. This means that according to rule 9, the mouse is red when the lion visits it.\n\nBut we still can't determine if the lion likes the mouse.\n\nHowever, we can see that rule 1 tells us that the lion eats the squirrel, which means that the lion has some kind of relationship with the squirrel.\n\nFrom rule 6, if someone is cold and they like the squirrel, then the squirrel is cold. We know the mouse is cold and the mouse likes the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at rule 11 again: if someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nHowever, we can use this rule in reverse: if someone likes the squirrel, then they might like the mouse if they visit the mouse and the mouse visits the lion.\n\nBut we don't have any information that directly tells us that the lion likes the squirrel.\n\nHowever, we can see that the lion eats the squirrel (rule 1), which means that the lion might have some kind of relationship with the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at the information we have so far:\n\n* The lion eats the squirrel (rule 1).\n* The mouse is cold (rule 2).\n* The mouse visits the lion (rule 3).\n* The squirrel visits the cat (rule 5).\n* If someone is cold and they like the squirrel then the squirrel is cold (rule 6).\n* If someone is cold then they visit the squirrel (rule 7).\n* If someone visits the lion and they like the cat then they visit the squirrel (rule 8).\n* If someone visits the mouse then the mouse is red (rule 9).\n* If someone is cold then they like the mouse (rule 10).\n* If someone likes the mouse and the mouse visits the lion then they like the squirrel (rule 11).\n\nWe still can't determine if the lion likes the mouse.\n\nHowever, let's look at rule 1 again: the lion eats the squirrel. This means that the lion has some kind of relationship with the squirrel.\n\nNow, let's look at rule 6: if someone is cold and they like the squirrel then the squirrel is cold. We know the mouse is cold and the mouse likes the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nHowever, we can see that the mouse is cold (rule 2) and the mouse visits the lion (rule 3). This means that the mouse might be cold because it likes the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at rule 11 again: if someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nHowever, we can use this rule in reverse: if someone likes the squirrel, then they might like the mouse if they visit the mouse and the mouse visits the lion.\n\nBut we don't have any information that directly tells us that the lion likes the squirrel.\n\nHowever, we can see that the lion eats the squirrel (rule 1), which means that the lion might have some kind of relationship with the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at the information we have so far:\n\n* The lion eats the squirrel (rule 1).\n* The mouse is cold (rule 2).\n* The mouse visits the lion (rule 3).\n* The squirrel visits the cat (rule 5).\n* If someone is cold and they like the squirrel then the squirrel is cold (rule 6).\n* If someone is cold then they visit the squirrel (rule 7).\n* If someone visits the lion and they like the cat then they visit the squirrel (rule 8).\n* If someone visits the mouse then the mouse is red (rule 9).\n* If someone is cold then they like the mouse (rule 10).\n* If someone likes the mouse and the mouse visits the lion then they like the squirrel (rule 11).\n\nWe still can't determine if the lion likes the mouse.\n\nHowever, let's look at rule 10 again: if someone is cold then they like the mouse. We know the mouse is cold (rule 2).\n\nThis means that the mouse likes the mouse.\n\nHowever, we don't have any information that directly tells us that the lion likes the mouse.\n\nHowever, we can see that the lion eats the squirrel (rule 1), which means that the lion might have some kind of relationship with the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at rule 11 again: if someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nHowever, we can use this rule in reverse: if someone likes the squirrel, then they might like the mouse if they visit the mouse and the mouse visits the lion.\n\nBut we don't have any information that directly tells us that the lion likes the squirrel.\n\nHowever, we can see that the lion eats the squirrel (rule 1), which means that the lion might have some kind of relationship with the squirrel.\n\nBut we still can't determine if the lion likes the mouse.\n\nNow, let's look at the information we have so far:\n\n* The lion eats the squirrel (rule 1).\n* The mouse is cold (rule 2).\n* The mouse visits the lion (rule 3).\n* The squirrel visits the cat (rule 5).\n* If someone is cold and they like the squirrel then the squirrel is cold (rule 6).\n* If someone is cold then they visit the squirrel (rule 7).\n* If someone visits the lion and they like the cat then they visit the squirrel (rule 8).\n* If someone visits the mouse then the mouse is red (rule 9).\n* If someone is cold then they like the mouse (rule 10).\n* If someone likes the mouse and the mouse visits the lion then they like the squirrel (rule 11).\n\nWe still can't determine if the lion likes the mouse.\n\nHowever, let's look at rule 10 again: if someone is cold then they like the mouse. We know the mouse is cold (rule",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given statements and rules.\n\nFrom the given statements:\n1. The cat is red.\n2. The cat likes the squirrel.\n3. The lion eats the squirrel.\n4. The mouse is cold.\n5. The mouse visits the lion.\n6. The squirrel is red.\n7. The squirrel visits the cat.\n8. If someone is cold and they like the squirrel then the squirrel is cold. (Rule 1)\n9. If someone is cold then they visit the squirrel. (Rule 2)\n10. If someone visits the lion and they like the cat then they visit the squirrel. (Rule 3)\n11. If someone visits the mouse then the mouse is red. (Rule 4)\n12. If someone is cold then they like the mouse. (Rule 5)\n13. If someone likes the mouse and the mouse visits the lion then they like the squirrel. (Rule 6)\n\nNow, let's analyze the statement we need to determine: \"The lion likes the mouse.\"\n\nTo determine this, we can start from the statement \"The mouse is cold\" (Statement 4). From Rule 5, we know that if someone is cold then they like the mouse. This means the lion is cold because it eats the squirrel (Statement 3), and if the squirrel is red (Statement 6), we can't determine the color of the squirrel from the given rules, but we can conclude that the lion eats the squirrel.\n\nHowever, to solve the problem we don't need the color of the squirrel. Since the lion eats the squirrel, the lion is cold. And since the lion is cold, from Rule 5, the lion likes the mouse.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps using the given statements and the rules.\n\nStep 1:\nThe statements given are:\n- The cat is red. (1)\n- The cat likes the squirrel. (2)\n- The lion eats the squirrel. (3)\n- The mouse is cold. (4)\n- The mouse visits the lion. (5)\n- The squirrel is red. (6)\n- The squirrel visits the cat. (7)\n- If someone is cold and they like the squirrel then the squirrel is cold. (Rule 1)\n- If someone is cold then they visit the squirrel. (Rule 2)\n- If someone visits the lion and they like the cat then they visit the squirrel. (Rule 3)\n- If someone visits the mouse then the mouse is red. (Rule 4)\n- If someone is cold then they like the mouse. (Rule 5)\n- If someone likes the mouse and the mouse visits the lion then they like the squirrel. (Rule 6)\n\nStep 2:\nWe need to determine whether the lion likes the mouse. Let's start from the statements given and the rules.\n\nFrom statement (3), the lion eats the squirrel. However, there is no direct statement about the lion liking the squirrel or the mouse. \n\nFrom statement (4), the mouse is cold. According to Rule 2, if someone is cold, then they visit the squirrel. Therefore, the mouse visits the squirrel.\n\nFrom statement (7), the squirrel visits the cat. According to Rule 2, if someone is cold, then they visit the squirrel. However, there is no statement that the cat is cold.\n\nFrom statement (5), the mouse visits the lion. According to Rule 4, if someone visits the mouse then the mouse is red. Since the mouse is cold (statement (4)), it implies that the mouse visits the squirrel (Rule 2), and then the squirrel visits the cat (statement (7)). However, this sequence does not provide any information about the lion liking the mouse.\n\nHowever, let's analyze further. We know the mouse visits the lion. According to Rule 5, if someone is cold then they like the mouse. Since the mouse is cold (statement (4)), it implies that the mouse likes the cat (Rule 1, the squirrel is red, and the cat likes the squirrel, statement (2)). However, this does not provide any information about the lion liking the mouse.\n\nNow, from statement (5), the mouse visits the lion. According to Rule 6, if someone likes the mouse and the mouse visits the lion then they like the squirrel. Since the mouse is cold (statement (4)), it implies that the mouse likes the cat (Rule 1, the squirrel is red, and the cat likes the squirrel, statement (2)). However, we cannot directly conclude that the lion likes the mouse from this statement.\n\nSince we cannot directly determine whether the lion likes the mouse from the given statements and rules, we will analyze further. \n\nFrom statement (5), the mouse visits the lion. According to Rule 4, if someone visits the mouse then the mouse is red. However, this does not provide any information about the lion liking the mouse.\n\nHowever, if someone visits the lion and they like the cat, then they visit the squirrel (Rule 3). Since the mouse visits the lion (statement (5)), we cannot conclude that the mouse likes the cat.\n\nHowever, the statement that if someone likes the mouse and the mouse visits the lion then they like the squirrel (Rule 6) does not imply that the lion likes the mouse.\n\nSince the lion is not mentioned in any of the rules that directly relate to the lion liking the mouse, we cannot determine whether the lion likes the mouse based on the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given information and the rules provided.\n\nGiven Information:\n1. The cat is red.\n2. The cat likes the squirrel.\n3. The lion eats the squirrel.\n4. The mouse is cold.\n5. The mouse visits the lion.\n6. The squirrel is red.\n7. The squirrel visits the cat.\n8. If someone is cold and they like the squirrel then the squirrel is cold. (Rule 1)\n9. If someone is cold then they visit the squirrel. (Rule 2)\n10. If someone visits the lion and they like the cat then they visit the squirrel. (Rule 3)\n11. If someone visits the mouse then the mouse is red. (Rule 4)\n12. If someone is cold then they like the mouse. (Rule 5)\n13. If someone likes the mouse and the mouse visits the lion then they like the squirrel. (Rule 6)\n\nWe need to find a connection between the lion and the mouse. \n\nFrom statement 5, we know that the mouse visits the lion. \nFrom Rule 4, if someone visits the mouse then the mouse is red. \nHowever, we don't have any information about the mouse's color, but we do know that the mouse is cold from statement 4. \nFrom Rule 5, if someone is cold then they like the mouse. \nSo, since the mouse is cold, the lion must like the mouse.\n\nTherefore, the statement \"The lion likes the mouse\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given statements and use logical deductions.\n\nGiven Statements:\n1. The cat is red.\n2. The cat likes the squirrel.\n3. The lion eats the squirrel.\n4. The mouse is cold.\n5. The mouse visits the lion.\n6. The squirrel is red.\n7. The squirrel visits the cat.\n8. If someone is cold and they like the squirrel then the squirrel is cold. (From statement 8, we can infer that if someone likes the squirrel and is cold, then the squirrel must be cold. However, we cannot infer that if the squirrel is cold then someone likes it, because the statement is about the condition of being cold and liking the squirrel, not the other way around.)\n9. If someone is cold then they visit the squirrel. (From statement 9, we can infer that if someone is cold, then they will visit the squirrel. However, we cannot infer that if someone visits the squirrel then they are cold.)\n10. If someone visits the lion and they like the cat then they visit the squirrel. (We don't have any information that the lion likes the cat, so we cannot use this statement directly.)\n11. If someone visits the mouse then the mouse is red. (From statement 11, we can infer that if someone visits the mouse, then the mouse will be red. However, we cannot infer that if the mouse is red then someone visited it.)\n12. If someone is cold then they like the mouse. (From statement 12, we can infer that if someone is cold, then they will like the mouse. However, we cannot infer that if someone likes the mouse then they are cold.)\n13. If someone likes the mouse and the mouse visits the lion then they like the squirrel. (We can use this statement to find the relationship between the mouse and the lion.)\n\nNow, let's analyze the statements again, focusing on the lion and the mouse. We have the following:\n- The lion eats the squirrel (statement 3).\n- The mouse visits the lion (statement 5).\n- The mouse is cold (statement 4).\n\nWe can use statements 12 and 5 to find the relationship between the mouse and the lion:\n- The mouse is cold (statement 4), and from statement 12, we can infer that the mouse likes the mouse. \n- We know that the mouse visits the lion (statement 5).\n- We can use statement 13: \"If someone likes the mouse and the mouse visits the lion then they like the squirrel.\"\n- Since the mouse likes the mouse (from statement 12) and the mouse visits the lion (statement 5), we can use statement 13 to infer that the lion likes the squirrel.\n\nHowever, we still don't have enough information to determine if the lion likes the mouse. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given statements and their implications. We will break down the statements into the following groups:\n\n1. Statements about the cat and the squirrel:\n   - The cat is red.\n   - The cat likes the squirrel.\n   - The squirrel is red.\n   - The squirrel visits the cat.\n\n2. Statements about the lion and the squirrel:\n   - The lion eats the squirrel.\n\n3. Statements about the mouse:\n   - The mouse is cold.\n   - The mouse visits the lion.\n   - If someone is cold and they like the squirrel then the squirrel is cold. (This statement does not apply directly to the mouse.)\n   - If someone is cold then they visit the squirrel. (This statement does not apply directly to the mouse.)\n   - If someone visits the mouse then the mouse is red. (This statement implies that the mouse is red if someone visits them.)\n   - If someone is cold then they like the mouse. (This statement implies that the mouse might be liked by the lion, but we need to establish the lion's temperature.)\n\n4. Statements about visiting and liking:\n   - If someone visits the lion and they like the cat then they visit the squirrel.\n   - If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nNow, let's analyze the statement about the lion and the mouse. We want to determine whether the lion likes the mouse. The given statements do not directly imply the lion's liking for the mouse.\n\nHowever, the statements about the mouse being cold and the lion visiting the mouse provide a clue. We know that the mouse is cold, and we can infer that the lion is not cold since there is no statement indicating that the lion is cold.\n\nGiven the statement \"If someone is cold then they like the mouse,\" and knowing the mouse is cold, we can infer that the lion might like the mouse. However, we need more information to determine whether the lion actually likes the mouse.\n\nNow let's examine the remaining statements about the lion and the mouse. The statement \"If someone likes the mouse and the mouse visits the lion then they like the squirrel\" does not directly apply to the lion, since we are trying to determine whether the lion likes the mouse, not the other way around.\n\nHowever, the statement \"If someone visits the mouse then the mouse is red\" implies that the mouse is red, but we already know the mouse is cold. This does not provide any new information about the lion's liking for the mouse.\n\nThe final statement about visiting the lion and liking the cat is also not directly applicable to our situation.\n\nHowever, there is one more thing we can try: analyzing the statement about the lion eating the squirrel. The fact that the lion eats the squirrel does not directly imply the lion's liking for the mouse.\n\nBut, what if we consider the statement \"If someone is cold then they visit the squirrel\" in a different way? This statement implies that if someone is cold, they might visit the squirrel. However, we know the lion eats the squirrel, and if the lion visited the squirrel, then the lion would have eaten the squirrel already.\n\nHowever, the lion visits the mouse. So, when the lion visits the mouse, we can apply the statement \"If someone visits the mouse then the mouse is red.\" However, we already know the mouse is cold, so this statement does not provide any new information about the lion's liking for the mouse.\n\nHowever, we can apply the statement \"If someone is cold then they like the mouse\" when the lion visits the mouse. The lion is not cold, but we cannot conclude that the lion likes the mouse based on this statement alone.\n\nHowever, we know that the lion is not cold. We can infer that the lion might not like the mouse, based on the statement \"If someone is cold then they like the mouse.\"\n\nHowever, the lion's liking for the mouse is still unknown. Since we cannot conclude that the lion likes the mouse with certainty, we cannot determine the statement's truth value directly.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion likes the mouse\" is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\n1. The cat is red. (This statement does not provide any relevant information about the lion and the mouse.)\n2. The cat likes the squirrel. (This statement does not provide any relevant information about the lion and the mouse.)\n3. The lion eats the squirrel. (This statement does not provide any relevant information about the lion and the mouse.)\n4. The mouse is cold. (This statement does not provide any relevant information about the lion and the mouse.)\n5. The mouse visits the lion. (This statement is crucial. We will come back to it later.)\n6. The squirrel is red. (This statement does not provide any relevant information about the lion and the mouse.)\n7. The squirrel visits the cat. (This statement does not provide any relevant information about the lion and the mouse.)\n\nNow, let's apply the given rules:\n\nRule 1: If someone is cold and they like the squirrel then the squirrel is cold. (We do not have enough information to apply this rule.)\nRule 2: If someone is cold then they visit the squirrel. (We do not have enough information to apply this rule.)\nRule 3: If someone visits the lion and they like the cat then they visit the squirrel. (We do not have enough information to apply this rule.)\nRule 4: If someone visits the mouse then the mouse is red. (This rule is not applicable because the lion visits the mouse, not the other way around.)\nRule 5: If someone is cold then they like the mouse. (We do not have enough information to apply this rule.)\nRule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule is crucial. We will come back to it later.)\n\nNow, let's analyze the given statements again:\n\nStatement 5: The mouse visits the lion.\n\nApplying Rule 6, if someone likes the mouse and the mouse visits the lion, then they like the squirrel. However, we do not have any information about the lion liking the mouse. Therefore, we cannot directly apply Rule 6.\n\nHowever, if we assume that the lion likes the mouse, then we can apply Rule 6. But we are trying to determine whether the lion likes the mouse or not. This creates a loop.\n\nThe key insight here is that Rule 6 can be applied in the reverse direction. If the lion likes the squirrel, then it implies that the lion likes the mouse because the mouse visits the lion.\n\nHowever, we do not have any information about the lion liking the squirrel. But we can apply Rule 3 in the reverse direction. Rule 3 states that if someone visits the lion and they like the cat, then they visit the squirrel. This rule can be applied in the reverse direction as follows:\n\n* If the lion likes the mouse, then the mouse visits the lion. (This is given in statement 5.)\n* If the mouse visits the lion, then the mouse likes the cat. (This is not given directly, but we can infer it using Rule 5. Rule 5 states that if someone is cold then they like the mouse. However, we do not have any information about the mouse being cold. But we can use this rule in the reverse direction. If someone likes the mouse, then they are cold. However, we do not have any information about someone liking the mouse. But we can use this rule in the reverse direction again. If someone likes the mouse, then they visit the squirrel. However, we do not have any information about someone liking the mouse. But we can use this rule in the reverse direction again. If someone visits the squirrel, then they like the cat. This is given in statement 2.)\n\nHowever, this creates a loop again. We are trying to determine whether the lion likes the mouse or not. This creates a loop because we are using the rules in a circular manner.\n\nThe key insight here is that the problem has a unique solution. The rules are consistent, and the problem can be solved using a simple logic.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n* Rule 3: If someone visits the lion and they like the cat then they visit the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the squirrel. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe given rules are consistent, and the problem can be solved using a simple logic. The solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 4: If someone visits the mouse then the mouse is red. (This rule is not applicable because the lion visits the mouse, not the other way around.)\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the mouse. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the mouse. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 4: If someone visits the mouse then the mouse is red. (This rule is not applicable because the lion visits the mouse, not the other way around.)\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the mouse. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the mouse. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 4: If someone visits the mouse then the mouse is red. (This rule is not applicable because the lion visits the mouse, not the other way around.)\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the lion liking the mouse. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 4: If someone visits the mouse then the mouse is red. (This rule is not applicable because the lion visits the mouse, not the other way around.)\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 5: If someone is cold then they like the mouse. (This rule can be applied in the reverse direction.)\n\nHowever, we do not have any information about the mouse being cold. But we can use the given rules to determine whether the lion likes the mouse or not.\n\nThe solution is as follows:\n\n* Statement 5: The mouse visits the lion.\n* Rule 6: If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule can be applied in the reverse direction.)\n\nHowever, we do not",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion likes the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is cold.\n   This statement is given in the problem.\n\n2. If someone is cold and they like the squirrel, then the squirrel is cold.\n   This statement can be used later to determine the color of the squirrel.\n\n3. The squirrel visits the cat.\n   This statement is given in the problem.\n\n4. The cat likes the squirrel.\n   This statement is given in the problem.\n\n5. If someone is cold, then they visit the squirrel.\n   This statement can be used to determine the relationship between the mouse and the squirrel.\n\n6. The squirrel is red.\n   This statement is given in the problem.\n\n7. The squirrel is cold.\n   We can derive this statement from statement 2 and statement 1. Since the mouse is cold and it likes the squirrel, then the squirrel is cold.\n\n8. The mouse visits the lion.\n   This statement is given in the problem.\n\n9. If someone visits the mouse, then the mouse is red.\n   This statement can be used later to determine the color of the mouse.\n\n10. If someone is cold, then they like the mouse.\n    This statement can be used later to determine the relationship between the mouse and the lion.\n\n11. If someone likes the mouse and the mouse visits the lion, then they like the squirrel.\n    This statement can be used to determine the relationship between the lion and the squirrel.\n\nNow, let's analyze the given information about the lion:\n\n* The lion eats the squirrel (given).\n* The lion is not mentioned in any of the statements that imply a relationship with the mouse.\n* The lion is not mentioned in any of the statements that imply a relationship with the cat, except that the lion eats the squirrel, but this does not necessarily mean the lion likes the squirrel.\n\nFrom the given statements, we cannot directly determine whether the lion likes the mouse or not. However, we can analyze the relationships:\n\n* The mouse visits the lion (given).\n* The mouse is cold (given).\n* The lion is not mentioned in any of the statements that imply a relationship with the mouse, except that the mouse visits the lion.\n\nSince the lion is not mentioned in any of the statements that imply a relationship with the mouse, we cannot determine whether the lion likes the mouse or not based on the given information.\n\nTherefore, the statement \"The lion likes the mouse\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion likes the mouse\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. The cat is red. (This statement doesn't provide any information about the lion or the mouse, so we can ignore it for now.)\n\n2. The cat likes the squirrel. (Again, this statement doesn't provide any information about the lion or the mouse.)\n\n3. The lion eats the squirrel. (This statement doesn't provide any information about the lion's feelings towards the mouse.)\n\n4. The mouse is cold. (This statement provides information about the mouse, but we don't know whether the lion likes the mouse yet.)\n\n5. The mouse visits the lion. (This statement provides information about the mouse's actions, but we still don't know whether the lion likes the mouse.)\n\n6. The squirrel is red. (This statement doesn't provide any information about the lion's feelings towards the mouse.)\n\n7. The squirrel visits the cat. (This statement doesn't provide any information about the lion's feelings towards the mouse.)\n\nNow, let's analyze the rules:\n\n1. If someone is cold and they like the squirrel then the squirrel is cold. (This rule doesn't provide any information about the lion or the mouse.)\n\n2. If someone is cold then they visit the squirrel. (This rule doesn't provide any information about the lion's feelings towards the mouse.)\n\n3. If someone visits the lion and they like the cat then they visit the squirrel. (This rule doesn't provide any information about the lion's feelings towards the mouse.)\n\n4. If someone visits the mouse then the mouse is red. (This rule doesn't provide any information about the lion's feelings towards the mouse.)\n\n5. If someone is cold then they like the mouse. (This rule could be relevant if we know the mouse is cold and someone likes it.)\n\n6. If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This rule could be relevant if we know the mouse visits the lion and someone likes it.)\n\nNow, let's re-examine the statements and the rules. We know that the mouse is cold (statement 4) and the mouse visits the lion (statement 5). Using rule 5, since the mouse is cold, it implies that the lion likes the mouse. \n\nTherefore, the statement \"The lion likes the mouse\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given statements and use logical deductions.\n\nFrom the given statements:\n\n1. The cat likes the squirrel.\n2. The lion eats the squirrel.\n3. The mouse is cold.\n4. The mouse visits the lion.\n5. The squirrel is red.\n6. The squirrel visits the cat.\n7. If someone is cold and they like the squirrel then the squirrel is cold. (This statement is irrelevant to our problem.)\n8. If someone is cold then they visit the squirrel. (This statement is irrelevant to our problem.)\n9. If someone visits the lion and they like the cat then they visit the squirrel.\n10. If someone visits the mouse then the mouse is red.\n11. If someone is cold then they like the mouse.\n12. If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nWe can now try to find a path from the lion to the mouse.\n\nFrom statement 2, we know that the lion eats the squirrel. This implies that the lion does not like the squirrel.\n\nNow, let's analyze the statements related to the lion:\n\n- Statement 4 says the mouse visits the lion. However, it doesn't tell us whether the lion likes the mouse or not.\n- Statement 9 says if someone visits the lion and they like the cat then they visit the squirrel. However, it doesn't tell us whether the lion likes the mouse or not.\n- Statement 12 says if someone likes the mouse and the mouse visits the lion then they like the squirrel. However, it doesn't tell us whether the lion likes the mouse or not.\n\nHowever, statement 12 indirectly implies that if someone likes the mouse and the mouse visits the lion, then they like the squirrel. This means that there is a possibility that someone might like the mouse if they like the squirrel.\n\nSince we don't have any direct statement that says the lion likes the mouse, we cannot conclude whether the lion likes the mouse or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the lion likes the mouse, we need to analyze the given statements and their implications. Let's break down the statements and their relationships:\n\n1. The cat is red.\n2. The cat likes the squirrel.\n3. The lion eats the squirrel.\n4. The mouse is cold.\n5. The mouse visits the lion.\n6. The squirrel is red.\n7. The squirrel visits the cat.\n8. If someone is cold and they like the squirrel then the squirrel is cold. (This statement can be ignored as it's already given that the squirrel is red in statement 6.)\n9. If someone is cold then they visit the squirrel. (This can be ignored as the mouse is cold but we don't know if it visits the squirrel or not.)\n10. If someone visits the lion and they like the cat then they visit the squirrel. (This can be ignored as we don't know the relationship between the lion and the cat.)\n11. If someone visits the mouse then the mouse is red. (This can be ignored as it's already given that the mouse is cold in statement 4.)\n12. If someone is cold then they like the mouse. (This implies that the mouse is liked by someone who is cold.)\n13. If someone likes the mouse and the mouse visits the lion then they like the squirrel. (This is the key statement to analyze the relationship between the lion and the mouse.)\n\nFrom statement 4, we know the mouse is cold. This implies that from statement 12, someone who is cold likes the mouse. Now, let's consider the statement 13: If someone likes the mouse and the mouse visits the lion then they like the squirrel. However, we cannot directly apply this statement as we don't know if the mouse visits the lion or not.\n\nHowever, we do know that the mouse visits the lion (statement 5). If the lion likes the mouse, then from statement 13, the lion would like the squirrel. But the lion eats the squirrel (statement 3), which means the lion and the squirrel have a conflicting relationship (one likes and the other is eaten).\n\nConsidering this, we cannot directly conclude that the lion likes the mouse. The statements do not provide a clear implication that the lion likes the mouse. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_cold_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_cold_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_lion_cat, likes_lion_cat), visits_lion_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_lion_mouse, red_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_mouse, visits_lion_mouse), likes_lion_squirrel)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_cold_X_squirrel), cold_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_cold_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_mouse_lion, likes_mouse_cat), visits_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_lion_mouse, red_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_mouse, visits_lion_mouse), likes_lion_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), red_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_lion, likes_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_lion, visits_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_lion_mouse, red_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(mouse, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_mouse, visits_mouse_lion), likes_lion_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "Or(Not(likes_lion_mouse), Not(Not(likes_lion_mouse)))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": "inferred"
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": "inferred"
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, visits_mouse_lion), likes_mouse_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": "inferred"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> cold(X)",
+          "z3_formula": "Implies(visits_mouse_squirrel, cold_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_lion_mouse, red_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_lion, likes_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_mouse, visits_lion_mouse), likes_lion_squirrel)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), cold_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(mouse, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_mouse_lion), likes_X_squirrel)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_mouse_lion, likes_mouse_cat), visits_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_X_mouse, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 128,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 1,
+      "total_weight": 127,
+      "solve_time_ms": 1.1563608422875404
+    },
+    "timing": {
+      "trace_gen_s": 24.741,
+      "extraction_s": 24.026,
+      "dedup_s": 0.905,
+      "maxsat_s": 0.003,
+      "total_s": 49.675
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-709_Q11",
+    "problem": "The bald eagle is green. The bald eagle is rough. The bald eagle is young. The bald eagle needs the squirrel. The bald eagle sees the squirrel. The cat is round. The cat needs the bald eagle. The cat needs the dog. The cat visits the bald eagle. The dog needs the bald eagle. The dog sees the bald eagle. The dog visits the cat. The squirrel needs the cat. The squirrel visits the bald eagle. If something sees the dog then it sees the cat. If something needs the dog and it is round then it needs the cat. If something visits the squirrel then the squirrel visits the dog. If something is nice then it sees the dog. If something needs the cat then it is nice. If something sees the cat then it is green. If something needs the cat then it is rough. If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nNeeds(BaldEagle, Squirrel, True) ::: The bald eagle needs the squirrel.\nSees(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nRound(Cat, True) ::: The cat is round.\nNeeds(Cat, BaldEagle, True) ::: The cat needs the bald eagle.\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nVisits(Cat, BaldEagle, True) ::: The cat visits the bald eagle.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\nSees(Dog, BaldEagle, True) ::: The dog sees the bald eagle.\nVisits(Dog, Cat, True) ::: The dog visits the cat.\nNeeds(Squirrel, Cat, True) ::: The squirrel needs the cat.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nSees($x, Dog, True) >>> Sees($x, Cat, True) ::: If something sees the dog then it sees the cat.\nNeeds($x, Dog, True) && Round($x, True) >>> Needs($x, Cat, True) ::: If something needs the dog and it is round then it needs the cat.\nVisits($x, Squirrel, True) >>> Visits(Squirrel, Dog, True) ::: If something visits the squirrel then the squirrel visits the dog.\nNice($x, True) >>> Sees($x, Dog, True) ::: If something is nice then it sees the dog.\nNeeds($x, Cat, True) >>> Nice($x, True) ::: If something needs the cat then it is nice.\nSees($x, Cat, True) >>> Green($x, True) ::: If something sees the cat then it is green.\nNeeds($x, Cat, True) >>> Rough($x, True) ::: If something needs the cat then it is rough.\nVisits($x, Squirrel, True) && Visits(Squirrel, Dog, True) >>> Visits(Squirrel, BaldEagle, True) ::: If something visits the squirrel and the squirrel visits the dog then the squirrel visits the bald eagle.\n\nQuery:\nGreen(Cat, True) ::: The cat is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

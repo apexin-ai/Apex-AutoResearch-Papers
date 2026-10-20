@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-028b-qwen3-thinking-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:30:30.635Z",
+    "updated_at": "2026-05-19T03:19:45.280Z",
+    "hypothesis": "Qwen3-14B thinking mode (enable_thinking=True, 32K context) 在 FOLIO-204 上 SICA vs SC。D028 pilot (35/204, delta=+2.86pp) 被 kill。thinking mode 产生更 diverse+higher-quality reasoning traces，如果同时提升 trace quality 和 diversity，可能打破 14B 级别的 capability trap。parent=exp-028",
+    "spec": {
+      "command": "bash run_exp028b.sh (tmux session: exp028b)",
+      "server": "westd-25068",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "port": 8003,
+      "max_model_len": 32768,
+      "max_tokens": 16384,
+      "temperature": 0.7,
+      "k": 12,
+      "mode": "thinking"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T03:19:42.424Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T03:19:44.303Z"
+  },
+  "timestamp": "2026-05-19T03:19:45.802078+00:00",
+  "trigger": "update_registry"
+}

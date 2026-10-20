@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-1009_Q18",
+    "problem": "The cat is red. The cat likes the squirrel. The lion eats the squirrel. The mouse is cold. The mouse visits the lion. The squirrel is red. The squirrel visits the cat. If someone is cold and they like the squirrel then the squirrel is cold. If someone is cold then they visit the squirrel. If someone visits the lion and they like the cat then they visit the squirrel. If someone visits the mouse then the mouse is red. If someone is cold then they like the mouse. If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion likes the mouse.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nRed(cat, True) ::: The cat is red.\nLikes(cat, squirrel, True) ::: The cat likes the squirrel.\nEats(lion, squirrel, True) ::: The lion eats the squirrel.\nCold(mouse, True) ::: The mouse is cold.\nVisits(mouse, lion, True) ::: The mouse visits the lion.\nRed(squirrel, True) ::: The squirrel is red.\nVisits(squirrel, cat, True) ::: The squirrel visits the cat.\n\nRules:\nCold($x, True) && Likes($x, squirrel, True) >>> Cold(squirrel, True) ::: If someone is cold and they like the squirrel then the squirrel is cold.\nCold($x, True) >>> Visits($x, squirrel, True) ::: If someone is cold then they visit the squirrel.\nVisits($x, lion, True) && Likes($x, cat, True) >>> Visits($x, squirrel, True) ::: If someone visits the lion and they like the cat then they visit the squirrel.\nVisits($x, mouse, True) >>> Red(mouse, True) ::: If someone visits the mouse then the mouse is red.\nCold($x, True) >>> Likes($x, mouse, True) ::: If someone is cold then they like the mouse.\nLikes($x, mouse, True) && Visits(mouse, lion, True) >>> Likes($x, squirrel, True) ::: If someone likes the mouse and the mouse visits the lion then they like the squirrel.\n\nQuery:\nLikes(lion, mouse, True) ::: The lion likes the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,590 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-68_Q2",
+    "problem": "The cat chases the rabbit. The cat likes the mouse. The dog is blue. The dog is not cold. The dog likes the cat. The dog likes the mouse. The mouse is cold. The mouse does not like the cat. The rabbit chases the mouse. The rabbit is nice. If someone chases the dog then the dog likes the cat. If someone is nice and they eat the mouse then the mouse chases the dog. If someone likes the mouse then they are blue. If someone eats the cat and they chase the rabbit then the rabbit likes the mouse. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. If the cat chases the rabbit then the cat chases the dog. If someone eats the rabbit then they like the rabbit. If someone is blue then they eat the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nChases(Cat, Rabbit, True) ::: The cat chases the rabbit.\nLikes(Cat, Mouse, True) ::: The cat likes the mouse.\nBlue(Dog, True) ::: The dog is blue.\nCold(Dog, False) ::: The dog is not cold.\nLikes(Dog, Cat, True) ::: The dog likes the cat.\nLikes(Dog, Mouse, True) ::: The dog likes the mouse.\nCold(Mouse, True) ::: The mouse is cold.\nLikes(Mouse, Cat, False) ::: The mouse does not like the cat.\nChases(Rabbit, Mouse, True) ::: The rabbit chases the mouse.\nNice(Rabbit, True) ::: The rabbit is nice.\n\nRules:\nChases($x, Dog, True) >>> Likes(Dog, Cat, True) ::: If someone chases the dog then the dog likes the cat.\nNice($x, True) && Eats($x, Mouse, True) >>> Chases(Mouse, Dog, True) ::: If someone is nice and they eat the mouse then the mouse chases the dog.\nLikes($x, Mouse, True) >>> Blue($x, True) ::: If someone likes the mouse then they are blue.\nEats($x, Cat, True) && Chases($x, Rabbit, True) >>> Likes(Rabbit, Mouse, True) ::: If someone eats the cat and they chase the rabbit then the rabbit likes the mouse.\nEats(Dog, Rabbit, True) && Likes(Rabbit, Mouse, True) >>> Likes(Dog, Mouse, True) ::: If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\nChases(Cat, Rabbit, True) >>> Chases(Cat, Dog, True) ::: If the cat chases the rabbit then the cat chases the dog.\nEats($x, Rabbit, True) >>> Likes($x, Rabbit, True) ::: If someone eats the rabbit then they like the rabbit.\nBlue($x, True) >>> Eats($x, Cat, True) ::: If someone is blue then they eat the cat.\n\nQuery:\nBlue(Dog, False) ::: The dog is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 75.5
+    },
+    "answer_counts": {
+      "False": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (Given statement)\n\nNow, let's analyze the given conditions:\n\n2. If someone likes the mouse then they are blue. \nHowever, we do not have any information about the dog liking the mouse, so this condition does not directly apply.\n\n3. If someone is blue then they eat the cat. \nHowever, we do not have any information about the dog eating the cat, so this condition does not directly apply.\n\nThe only relevant given statement about the dog is that it is blue. We cannot directly apply any of the other conditions to the dog.\n\nTherefore, based on the given information, the statement \"The dog is not blue\" is false because we have a direct statement that the dog is blue.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n1. The dog is blue.\n   - This statement directly tells us that the dog is blue.\n\nNow, we need to analyze the information to see if there's any contradiction or additional information that might affect this statement.\n\nFrom the given information:\n2. If someone is blue then they eat the cat.\n   - This statement does not affect our current conclusion that the dog is blue.\n3. The dog is not cold.\n   - This statement is irrelevant to the question of whether the dog is blue or not.\n4. The dog likes the cat.\n   - This statement does not affect our conclusion that the dog is blue.\n5. The dog likes the mouse.\n   - This statement also does not affect our conclusion that the dog is blue.\n6. If someone chases the dog then the dog likes the cat.\n   - This statement does not affect our conclusion that the dog is blue.\n7. If someone eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\n   - This statement does not affect our conclusion that the dog is blue.\n8. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\n   - This statement also does not affect our conclusion that the dog is blue.\n9. If someone is nice and they eat the mouse then the mouse chases the dog.\n   - This statement does not affect our conclusion that the dog is blue.\n10. The rabbit chases the mouse.\n   - This statement does not affect our conclusion that the dog is blue.\n11. The rabbit is nice.\n   - This statement does not affect our conclusion that the dog is blue.\n12. The cat chases the rabbit.\n   - This statement leads to the conclusion that the cat chases the dog.\n   - This statement does not affect our conclusion that the dog is blue.\n13. The mouse is cold.\n   - This statement does not affect our conclusion that the dog is blue.\n14. The mouse does not like the cat.\n   - This statement does not affect our conclusion that the dog is blue.\n15. The cat likes the mouse.\n   - This statement does not affect our conclusion that the dog is blue.\n16. The dog likes the mouse.\n   - This statement does not affect our conclusion that the dog is blue.\n\nBased on the given information, the statement \"The dog is blue\" is directly stated. Therefore, the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (From the statement \"The dog is blue.\")\n\nThis statement directly tells us that the dog is blue. \n\n2. If someone is blue then they eat the cat. (From the given information)\n   We know the dog is blue, so we can apply this rule to the dog.\n   However, this statement is not relevant to the current problem.\n\n3. The dog is not cold. (From the given information)\n   This statement is not relevant to the current problem.\n\n4. The dog likes the cat. (From the given information)\n   This statement is not relevant to the current problem.\n\n5. The dog likes the mouse. (From the given information)\n   This statement is not relevant to the current problem.\n\n6. If someone chases the dog then the dog likes the cat. (From the given information)\n   We do not have any information about someone chasing the dog.\n\n7. If someone is nice and they eat the mouse then the mouse chases the dog. (From the given information)\n   We do not have any information about someone being nice and eating the mouse.\n\n8. If someone likes the mouse then they are blue. (From the given information)\n   We do not have any information about someone liking the mouse.\n\n9. The rabbit is nice. (From the given information)\n   This statement is not relevant to the current problem.\n\n10. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. (From the given information)\n    We do not have any information about the rabbit liking the mouse.\n\n11. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. (From the given information)\n    We do not have any information about the dog eating the rabbit.\n\n12. If someone eats the rabbit then they like the rabbit. (From the given information)\n    We do not have any information about someone eating the rabbit.\n\n13. The rabbit chases the mouse. (From the given information)\n    This statement is not relevant to the current problem.\n\n14. The rabbit is nice. (From the given information)\n    This statement is not relevant to the current problem.\n\n15. The cat chases the rabbit. (From the given information)\n    This statement is not relevant to the current problem.\n\n16. The cat likes the mouse. (From the given information)\n    This statement is not relevant to the current problem.\n\n17. The mouse is cold. (From the given information)\n    This statement is not relevant to the current problem.\n\n18. The mouse does not like the cat. (From the given information)\n    This statement is not relevant to the current problem.\n\n19. The dog is blue. (From statement 1)\n   This is the most relevant statement to the problem.\n\nBased on the given information, we know that the dog is blue. Therefore, the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information.\n\n1. The dog is blue. \n   This statement directly tells us that the dog is blue.\n\n2. If someone is blue then they eat the cat.\n   This statement doesn't directly tell us about the dog's color, but it's related to someone being blue. However, we already know the dog is blue.\n\n3. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\n   This statement is also not related to the dog's color.\n\n4. If the cat chases the rabbit then the cat chases the dog.\n   This statement is also not related to the dog's color.\n\n5. The dog likes the cat. The dog likes the mouse.\n   This statement is also not related to the dog's color.\n\n6. The dog is not cold.\n   This statement is also not related to the dog's color.\n\nHowever, we already know from the first statement that the dog is blue. So, the statement \"The dog is not blue\" cannot be true.\n\nSince the first statement directly tells us that the dog is blue, we don't need to consider other statements that might make it true or false. The dog is indeed blue.\n\nTherefore, the statement \"The dog is not blue\" is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. \nFrom this statement, we already know the color of the dog.\n\n2. If someone is blue then they eat the cat.\nThis statement does not apply to the dog directly, as we already know the dog's color.\n\n3. The dog likes the mouse.\nThis statement does not affect our conclusion about the dog's color.\n\n4. The dog is not cold.\nThis statement is irrelevant to our conclusion about the dog's color.\n\n5. The dog likes the cat.\nThis statement also does not affect our conclusion about the dog's color.\n\n6. If someone chases the dog then the dog likes the cat.\nThis statement does not affect our conclusion about the dog's color.\n\n7. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\nThis statement does not affect our conclusion about the dog's color.\n\n8. The dog likes the cat.\nThis statement is a repetition of the one in step 5 and does not affect our conclusion.\n\n9. The dog is blue.\nWe already concluded this from step 1.\n\nSince we have established that the dog is indeed blue, the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (Given statement)\n2. If someone likes the mouse then they are blue. \n   We know the dog likes the mouse (from the statement \"The dog likes the mouse\"). \n   So, the dog is blue (by rule 2).\n\nNow, let's look at the initial statement that we concluded: The dog is blue. \nThis means that our initial statement and the conclusion from the rules both point to the same answer: The dog is blue.\n\nSince we have determined that the dog is indeed blue, we can conclude the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (Given statement)\n\nFrom this statement, we can conclude that the dog is indeed blue.\n\nHowever, we need to consider other statements that might contradict this information or provide additional context.\n\n2. If someone is blue then they eat the cat. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n3. If someone likes the mouse then they are blue. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n4. The dog likes the cat and the dog likes the mouse. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n5. If someone chases the dog then the dog likes the cat. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n6. The dog is not cold. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n7. If someone eats the rabbit then they like the rabbit. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n8. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n9. If the cat chases the rabbit then the cat chases the dog. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\n10. If the rabbit chases the mouse then the mouse does not like the cat. (This statement does not directly affect our conclusion, but it's worth noting for future reference.)\n\nFrom our analysis, we have concluded that the statement \"The dog is blue\" is true.\n\nTherefore, the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. \nThis statement directly tells us that the dog is blue.\n\n2. If someone is blue then they eat the cat.\nWe can use this information to find out more about the dog, but we already know the dog is blue, so we can skip this one for now.\n\n3. If the cat chases the rabbit then the cat chases the dog.\nWe are not given any information about the cat chasing the rabbit, so we cannot use this statement to determine the color of the dog.\n\n4. If someone eats the rabbit then they like the rabbit.\nWe are not given any information about the dog eating the rabbit, so we cannot use this statement to determine the color of the dog.\n\n5. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\nWe are not given any information about the dog eating the rabbit, so we cannot use this statement to determine the color of the dog.\n\n6. If someone chases the dog then the dog likes the cat.\nWe are not given any information about someone chasing the dog, so we cannot use this statement to determine the color of the dog.\n\n7. The dog is blue.\nWe already know this statement, and it directly tells us that the dog is blue.\n\nNow, let's analyze the original question: \"The dog is not blue.\"\nSince we know the dog is blue from statement 1 and 7, the answer to this question is:\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (Given information)\n\nThis statement directly tells us that the dog is indeed blue.\n\n2. If someone is blue then they eat the cat. (Given information)\n\nAlthough this statement is relevant to the color blue, it does not affect the fact that the dog is blue.\n\n3. If someone likes the mouse then they are blue. (Given information)\n\nThis statement might seem relevant, but we already know the dog is blue, and it is not explicitly stated that the dog likes the mouse.\n\nHowever, we can analyze further by looking at the other information given:\n\n4. The dog likes the cat. (Given information)\n5. The dog likes the mouse. (Given information)\n\nThe dog's likes do not change its color.\n\n6. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. (Given information)\n\nThis statement is also irrelevant to the dog's color.\n\n7. If the dog eats the rabbit then they like the rabbit. (Given information)\n\nThis statement is also irrelevant to the dog's color.\n\n8. The dog is not cold. (Given information)\n\nThis statement is also irrelevant to the dog's color.\n\nConsidering all the given information, the fact that the dog is blue remains unchanged. Therefore, the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to find a chain of statements that leads to a conclusion about the dog's color. \n\nFrom the given statements, we have the following:\n\n1. The dog is blue. \n2. If someone is blue then they eat the cat.\n3. The dog is not cold.\n\nHowever, we can ignore statement 3 as it is not relevant to determining the dog's color.\n\nFrom statement 1, we know the dog is blue. \n\nFrom statement 2, if someone is blue, then they eat the cat. But since the dog is blue, we can't directly conclude anything from this statement.\n\nHowever, there is no other statement that contradicts the fact that the dog is blue. \n\nTherefore, we can conclude that the dog is indeed blue.\n\nThe statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not blue\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. The dog is blue. (Given information)\n\nThis directly states that the dog is blue. However, we need to check if there is any other rule that contradicts this information.\n\n2. If someone is blue then they eat the cat. (Rule)\n\nThis rule implies that being blue is not necessarily a characteristic of the dog, but it could be a characteristic of someone else who eats the cat.\n\n3. The dog is not cold. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n4. The dog likes the cat. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n5. The dog likes the mouse. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\nSince none of these rules contradict the statement \"The dog is blue\" and the given information directly states that the dog is blue, the statement \"The dog is not blue\" is false.\n\nHowever, we need to check if there is any other rule that could contradict this information.\n\n6. If someone likes the mouse then they are blue. (Rule)\n\nThis rule implies that the mouse's characteristics could be related to the dog's color, but we don't have any information that the mouse likes the dog.\n\n7. The dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse. (Rule)\n\nThis rule does not provide any information about the dog's color.\n\n8. The rabbit chases the mouse. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n9. The rabbit is nice. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n10. If someone chases the dog then the dog likes the cat. (Rule)\n\nThis rule does not provide any information about the dog's color.\n\n11. If the cat chases the rabbit then the cat chases the dog. (Rule)\n\nThis rule does not provide any information about the dog's color.\n\n12. If someone eats the rabbit then they like the rabbit. (Rule)\n\nThis rule does not provide any information about the dog's color.\n\n13. The mouse is cold. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n14. The mouse does not like the cat. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\n15. The cat likes the mouse. (Given information)\n\nThis rule does not provide any information about the dog's color.\n\nAfter analyzing all the given information and rules, we can conclude that the statement \"The dog is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\n1. The dog is blue.\n   - This statement implies that the dog has a property 'blue'.\n\n2. The dog is not cold.\n   - This statement gives information about the dog's temperature but does not affect its color.\n\n3. The dog likes the cat.\n   - This statement gives information about the dog's preference but does not affect its color.\n\n4. The dog likes the mouse.\n   - This statement gives information about the dog's preference but does not affect its color.\n\nFrom the given statements, we can infer that the dog is indeed blue. \n\nHowever, we need to check if there are any statements that contradict this. \n\n1. If the dog is blue then they eat the cat.\n   - This statement does not directly affect the dog's color but gives information about its action.\n\n2. If someone eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\n   - This statement does not directly affect the dog's color but gives information about its preference.\n\n3. If the dog eats the rabbit and the rabbit likes the mouse then the dog likes the mouse.\n   - This statement does not directly affect the dog's color but gives information about its preference.\n\n4. If someone likes the mouse then they are blue.\n   - This statement implies that if someone likes the mouse, they are blue, but it does not imply that the dog is not blue.\n\n5. If someone chases the dog then the dog likes the cat.\n   - This statement gives information about the dog's preference but does not affect its color.\n\n6. If the cat chases the rabbit then the cat chases the dog.\n   - This statement gives information about the cat's action but does not affect the dog's color.\n\n7. If someone is nice and they eat the mouse then the mouse chases the dog.\n   - This statement gives information about the mouse's action but does not affect the dog's color.\n\n8. If someone eats the cat and they chase the rabbit then the rabbit likes the mouse.\n   - This statement gives information about the rabbit's preference but does not affect the dog's color.\n\n9. The rabbit is nice.\n   - This statement gives information about the rabbit's personality but does not affect the dog's color.\n\n10. The rabbit chases the mouse.\n    - This statement gives information about the rabbit's action but does not affect the dog's color.\n\n11. The mouse is cold.\n    - This statement gives information about the mouse's temperature but does not affect the dog's color.\n\n12. The mouse does not like the cat.\n    - This statement gives information about the mouse's preference but does not affect the dog's color.\n\n13. The rabbit likes the mouse.\n    - This statement gives information about the rabbit's preference but does not affect the dog's color.\n\n14. The cat likes the mouse.\n    - This statement gives information about the cat's preference but does not affect the dog's color.\n\n15. The cat chases the rabbit.\n    - This statement implies that the cat chases the rabbit, which in turn implies that the cat chases the dog (from statement 6).\n\nSince statement 1 directly states that the dog is blue and no other statement contradicts it, we can conclude that the dog is indeed blue.\n\nThe final answer is \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> chases(X, dog)",
+          "z3_formula": "Implies(chases_cat_rabbit, chases_cat_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(dog)",
+          "z3_formula": "Not(blue_dog) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_cat_dog, chases_cat_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_dog_rabbit, likes_dog_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_dog, likes_dog_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_dog_rabbit, likes_dog_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(dog))",
+          "z3_formula": "Not(blue_dog) == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(dog)",
+          "z3_formula": "Not(blue_dog) == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(dog)",
+          "z3_formula": "not cold_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, mouse)",
+          "z3_formula": "chases_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> chases(X, dog)",
+          "z3_formula": "Implies(chases_X_rabbit, chases_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_X_rabbit, likes_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, mouse)",
+          "z3_formula": "likes_cat_mouse == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_X_mouse, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_cat_dog, likes_cat_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> chases(X, dog)",
+          "z3_formula": "Implies(chases_cat_rabbit, chases_cat_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, mouse) -> chases(X, dog)",
+          "z3_formula": "Implies(And(nice_rabbit, eats_rabbit_mouse), chases_rabbit_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & chases(X, rabbit) -> likes(rabbit, mouse)",
+          "z3_formula": "Implies(And(eats_X_cat, chases_X_rabbit), likes_rabbit_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, mouse)",
+          "z3_formula": "chases_rabbit_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, mouse)",
+          "z3_formula": "likes_rabbit_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, mouse)",
+          "z3_formula": "likes_cat_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 77,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 25
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 1,
+      "total_weight": 76,
+      "solve_time_ms": 0.849870964884758
+    },
+    "timing": {
+      "trace_gen_s": 8.367,
+      "extraction_s": 16.186,
+      "dedup_s": 0.373,
+      "maxsat_s": 0.002,
+      "total_s": 24.929
+    }
+  }
+}

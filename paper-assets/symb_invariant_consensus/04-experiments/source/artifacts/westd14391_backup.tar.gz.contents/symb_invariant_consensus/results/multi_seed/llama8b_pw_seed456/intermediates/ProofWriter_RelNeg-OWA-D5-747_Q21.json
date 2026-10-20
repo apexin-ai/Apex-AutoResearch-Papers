@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-747_Q21",
+    "problem": "The bear eats the tiger. The bear is not red. The bear likes the squirrel. The bear visits the squirrel. The mouse eats the tiger. The mouse is red. The mouse is rough. The mouse likes the bear. The mouse does not like the tiger. The squirrel likes the bear. The tiger eats the mouse. If the mouse likes the bear and the bear likes the mouse then the mouse is not kind. If someone visits the mouse then they like the squirrel. If someone is green then they visit the bear. If someone likes the bear and the bear visits the tiger then they visit the bear. If someone eats the bear and they do not like the tiger then they are green. If someone visits the mouse then the mouse eats the bear. If someone is red and they eat the tiger then the tiger visits the mouse. If someone visits the bear then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not visit the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nEats(Bear, Tiger, True) ::: The bear eats the tiger.\nRed(Bear, False) ::: The bear is not red.\nLikes(Bear, Squirrel, True) ::: The bear likes the squirrel.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nRed(Mouse, True) ::: The mouse is red.\nRough(Mouse, True) ::: The mouse is rough.\nLikes(Mouse, Bear, True) ::: The mouse likes the bear.\nLikes(Mouse, Tiger, False) ::: The mouse does not like the tiger.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\n\nRules:\nLikes(Mouse, Bear, True) && Likes(Bear, Mouse, True) >>> Kind(Mouse, False) ::: If the mouse likes the bear and the bear likes the mouse then the mouse is not kind.\nVisits($x, Mouse, True) >>> Likes($x, Squirrel, True) ::: If someone visits the mouse then they like the squirrel.\nGreen($x, True) >>> Visits($x, Bear, True) ::: If someone is green then they visit the bear.\nLikes($x, Bear, True) && Visits(Bear, Tiger, True) >>> Visits($x, Bear, True) ::: If someone likes the bear and the bear visits the tiger then they visit the bear.\nEats($x, Bear, True) && Likes($x, Tiger, False) >>> Green($x, True) ::: If someone eats the bear and they do not like the tiger then they are green.\nVisits($x, Mouse, True) >>> Eats(Mouse, Bear, True) ::: If someone visits the mouse then the mouse eats the bear.\nRed($x, True) && Eats($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If someone is red and they eat the tiger then the tiger visits the mouse.\nVisits($x, Bear, True) >>> Kind($x, True) ::: If someone visits the bear then they are kind.\n\nQuery:\nVisits(Mouse, Squirrel, False) ::: The mouse does not visit the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

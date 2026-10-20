@@ -1,0 +1,1145 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-430_Q15",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "Not(visits_rabbit_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_lion_rabbit, Not(likes_lion_rabbit))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, Not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_lion_rabbit, big_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_visit(rabbit, bear)",
+          "z3_formula": "does_not_visit_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(lion, rabbit)",
+          "z3_formula": "does_not_like_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "is_not_big(rabbit)",
+          "z3_formula": "is_not_big_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "is_kind(rabbit)",
+          "z3_formula": "is_kind_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & visits(X, Y) -> does_not_see(Y, X)",
+          "z3_formula": "Implies(And(sees_squirrel_lion, visits_squirrel_lion), does_not_see_lion_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & does_not_see(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, does_not_see_rabbit_bear), sees_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> is_not_round(lion)",
+          "z3_formula": "Implies(visits_squirrel_lion, is_not_round_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & is_big(X) -> visits(lion, X)",
+          "z3_formula": "Implies(And(visits_squirrel_lion, is_big_squirrel), visits_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> is_big(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, is_big_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "is_big(X) -> is_round(X)",
+          "z3_formula": "Implies(is_big_squirrel, is_round_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_rabbit_lion, sees_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> is_big(X)",
+          "z3_formula": "Implies(sees_squirrel_lion, is_big_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == False",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == False",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(rabbit, bear))",
+          "z3_formula": "not_visit_rabbit_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(lion, X)",
+          "z3_formula": "Implies(visits_rabbit_lion, sees_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees_rabbit_lion == Unknown",
+          "z3_formula": "visits_rabbit_lion == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, rabbit))",
+          "z3_formula": "not_likes_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not_round_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_lion_X, not_round_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_round_lion == True",
+          "z3_formula": "not_round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits_lion_rabbit == Unknown",
+          "z3_formula": "visits_lion_rabbit == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(rabbit))",
+          "z3_formula": "not_big_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(big_lion)",
+          "z3_formula": "not_big_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(rabbit, lion))",
+          "z3_formula": "not_sees_rabbit_lion == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_squirrel_rabbit, sees_squirrel_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_squirrel_lion, big_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), visits_lion_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_lion, not likes_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, lion)",
+          "z3_formula": "not sees_rabbit_lion == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "not big_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_X_lion, not likes_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(squirrel, lion)",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), not sees_squirrel_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_X_lion, not round_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, not sees_X_bear), sees_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, lion)",
+          "z3_formula": "sees_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bear, lion)",
+          "z3_formula": "not likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "Not(visits_rabbit_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_X_lion, Not(likes_X_lion))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(squirrel, lion)",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), Not(sees_squirrel_lion))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_X_lion, Not(round_lion))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(sees_X_bear)), sees_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, Not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(squirrel, X) -> Not(sees(squirrel, lion))",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, visits_squirrel_rabbit), Not(sees_squirrel_lion))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(rabbit, lion))",
+          "z3_formula": "Not(sees_rabbit_lion) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, rabbit))",
+          "z3_formula": "not(likes_lion_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(rabbit))",
+          "z3_formula": "not(big_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(rabbit, bear))",
+          "z3_formula": "not(visits_rabbit_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not(likes(X, lion))",
+          "z3_formula": "Implies(sees_X_lion, not(likes_X_lion))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, rabbit)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not(sees(X, lion))",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), not(sees_X_lion))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_X_lion, not(round_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, not(sees_X_bear)), sees_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(lion, X)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_lion_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits_squirrel(X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits_squirrel(X) -> !sees_squirrel(lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, visits_squirrel_rabbit), !sees_squirrel_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "not big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_lion_bear, not round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> !sees(X, bear)",
+          "z3_formula": "Implies(sees_rabbit_lion, !sees_rabbit_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "!sees(rabbit, lion)",
+          "z3_formula": "!sees_rabbit_lion == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_squirrel_lion, not(round_lion))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(rabbit, bear))",
+          "z3_formula": "not(visits_rabbit_bear) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not(likes(X, lion))",
+          "z3_formula": "Implies(sees_lion_rabbit, not(likes_rabbit_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(rabbit, lion))",
+          "z3_formula": "not(likes_rabbit_lion) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_rabbit, visits_rabbit_lion), visits_lion_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(rabbit, lion))",
+          "z3_formula": "not(likes_rabbit_lion) == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_lion_rabbit, not likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, not sees_bear_rabbit), sees_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(X, squirrel)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(X)",
+          "z3_formula": "Implies(visits_lion_rabbit, not round_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, not sees_bear_rabbit), sees_rabbit_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, visits_rabbit_squirrel), not sees_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(visits_squirrel_lion, visits_lion_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 17
+        }
+      ]
+    }
+  ]
+}

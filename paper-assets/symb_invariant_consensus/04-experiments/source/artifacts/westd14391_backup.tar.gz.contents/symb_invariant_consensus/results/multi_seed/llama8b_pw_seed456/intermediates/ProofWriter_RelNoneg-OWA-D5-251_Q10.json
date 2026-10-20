@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-251_Q10",
+    "problem": "The cat is nice. The cat needs the lion. The cat visits the lion. The cow is nice. The cow needs the cat. The lion is nice. The lion is red. The lion is young. The lion needs the cow. The lion needs the squirrel. The squirrel is young. If the cow needs the lion then the lion visits the squirrel. If something needs the squirrel then it visits the cat. If something needs the cow and it chases the squirrel then the cow is rough. If something chases the squirrel and it is young then the squirrel needs the cat. If something visits the cow then it is rough. If the squirrel visits the cat and the cat is red then the squirrel chases the cow. All nice things are big. If something is big then it visits the squirrel. If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nChases($x, $y, bool) ::: Does x chase y?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(cat, True) ::: The cat is nice.\nNeeds(cat, lion, True) ::: The cat needs the lion.\nVisits(cat, lion, True) ::: The cat visits the lion.\nNice(cow, True) ::: The cow is nice.\nNeeds(cow, cat, True) ::: The cow needs the cat.\nNice(lion, True) ::: The lion is nice.\nRed(lion, True) ::: The lion is red.\nYoung(lion, True) ::: The lion is young.\nNeeds(lion, cow, True) ::: The lion needs the cow.\nNeeds(lion, squirrel, True) ::: The lion needs the squirrel.\nYoung(squirrel, True) ::: The squirrel is young.\n\nRules:\nNeeds(cow, lion, True) >>> Visits(lion, squirrel, True) ::: If the cow needs the lion then the lion visits the squirrel.\nNeeds($x, squirrel, True) >>> Visits($x, cat, True) ::: If something needs the squirrel then it visits the cat.\nNeeds($x, cow, True) && Chases($x, squirrel, True) >>> Rough(cow, True) ::: If something needs the cow and it chases the squirrel then the cow is rough.\nChases($x, squirrel, True) && Young($x, True) >>> Needs(squirrel, cat, True) ::: If something chases the squirrel and it is young then the squirrel needs the cat.\nVisits($x, cow, True) >>> Rough($x, True) ::: If something visits the cow then it is rough.\nVisits(squirrel, cat, True) && Red(cat, True) >>> Chases(squirrel, cow, True) ::: If the squirrel visits the cat and the cat is red then the squirrel chases the cow.\nNice($x, True) >>> Big($x, True) ::: All nice things are big.\nBig($x, True) >>> Visits($x, squirrel, True) ::: If something is big then it visits the squirrel.\nVisits($x, cat, True) && Visits(cat, squirrel, True) >>> Nice(squirrel, True) ::: If something visits the cat and the cat visits the squirrel then the squirrel is nice.\n\nQuery:\nBig(squirrel, False) ::: The squirrel is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-572_Q18",
+    "problem": "Charlie is green. Charlie is kind. Charlie is nice. Charlie is rough. Erin is kind. Erin is nice. Erin is quiet. Fiona is quiet. Fiona is rough. Harry is smart. All rough, green people are quiet. If someone is green and rough then they are nice. All kind, smart people are green. If Erin is green and Erin is blue then Erin is quiet. All quiet people are smart. All kind people are green. If someone is smart then they are kind. All rough, nice people are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(Charlie, True) ::: Charlie is green.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nRough(Charlie, True) ::: Charlie is rough.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Fiona, True) ::: Fiona is rough.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRough($x, True) && Green($x, True) >>> Quiet($x, True) ::: All rough, green people are quiet.\nGreen($x, True) && Rough($x, True) >>> Nice($x, True) ::: If someone is green and rough then they are nice.\nKind($x, True) && Smart($x, True) >>> Green($x, True) ::: All kind, smart people are green.\nGreen(Erin, True) && Blue(Erin, True) >>> Quiet(Erin, True) ::: If Erin is green and Erin is blue then Erin is quiet.\nQuiet($x, True) >>> Smart($x, True) ::: All quiet people are smart.\nKind($x, True) >>> Green($x, True) ::: All kind people are green.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nRough($x, True) && Nice($x, True) >>> Blue($x, True) ::: All rough, nice people are blue.\n\nQuery:\nRough(Erin, True) ::: Erin is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

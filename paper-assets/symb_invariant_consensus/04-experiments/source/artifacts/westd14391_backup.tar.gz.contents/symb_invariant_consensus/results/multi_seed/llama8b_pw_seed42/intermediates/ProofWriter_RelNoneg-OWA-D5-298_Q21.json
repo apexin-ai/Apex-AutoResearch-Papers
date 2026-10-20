@@ -1,0 +1,1077 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-298_Q21",
+    "problem": "The bald eagle eats the tiger. The bald eagle is young. The bald eagle likes the mouse. The bald eagle needs the rabbit. The mouse is kind. The mouse needs the bald eagle. The rabbit is young. The rabbit needs the mouse. The tiger is round. The tiger likes the bald eagle. The tiger needs the mouse. If something likes the rabbit then it eats the mouse. If something needs the rabbit then it likes the rabbit. All kind things are round. If the mouse eats the rabbit then the mouse eats the bald eagle. If something eats the mouse then the mouse needs the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Tiger, True) ::: The bald eagle eats the tiger.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nLikes(BaldEagle, Mouse, True) ::: The bald eagle likes the mouse.\nNeeds(BaldEagle, Rabbit, True) ::: The bald eagle needs the rabbit.\nKind(Mouse, True) ::: The mouse is kind.\nNeeds(Mouse, BaldEagle, True) ::: The mouse needs the bald eagle.\nYoung(Rabbit, True) ::: The rabbit is young.\nNeeds(Rabbit, Mouse, True) ::: The rabbit needs the mouse.\nRound(Tiger, True) ::: The tiger is round.\nLikes(Tiger, BaldEagle, True) ::: The tiger likes the bald eagle.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\n\nRules:\nLikes($x, Rabbit, True) >>> Eats($x, Mouse, True) ::: If something likes the rabbit then it eats the mouse.\nNeeds($x, Rabbit, True) >>> Likes($x, Rabbit, True) ::: If something needs the rabbit then it likes the rabbit.\nKind($x, True) >>> Round($x, True) ::: All kind things are round.\nEats(Mouse, Rabbit, True) >>> Eats(Mouse, BaldEagle, True) ::: If the mouse eats the rabbit then the mouse eats the bald eagle.\nEats($x, Mouse, True) >>> Needs(Mouse, Rabbit, True) ::: If something eats the mouse then the mouse needs the rabbit.\n\nQuery:\nRed(Tiger, False) ::: The tiger is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 23.0,
+      "Unknown": 148.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger is not red\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given information, we know that the tiger is round. There's no information about the tiger being red or not. However, there's no direct information about the tiger's color. \n\nBut we can use the information about the mouse being kind and the mouse being round. Since the mouse is round, it must be kind (from the given information \"All kind things are round\").\n\nNow, we can use the fact that the tiger likes the bald eagle and the tiger needs the mouse. We can infer that the tiger is kind because it needs the mouse and the mouse is kind. However, being kind doesn't tell us anything about the tiger's color.\n\nNext, we can use the fact that the rabbit is young and the rabbit needs the mouse. We can infer that something likes the rabbit because the rabbit needs the mouse. We can also infer that the mouse likes the rabbit because the rabbit needs the mouse. Since the mouse likes the rabbit, it must eat the mouse (from the given information \"If something likes the rabbit then it eats the mouse\").\n\nHowever, we can't use this information to determine the tiger's color because we don't know if the mouse eats the rabbit or not. We only know that something might eat the mouse (the bald eagle or the tiger), but we don't know which one.\n\nFinally, we can use the fact that the mouse eats the bald eagle if it eats the rabbit (from the given information \"If the mouse eats the rabbit then the mouse eats the bald eagle\"). However, this information doesn't help us determine the tiger's color.\n\nSince we can't determine the tiger's color, the statement \"The tiger is not red\" is unknown because we don't have enough information to determine if the tiger is red or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\n1. The bald eagle eats the tiger. \n- We don't know anything about the tiger's color yet, but we know that the bald eagle eats the tiger.\n\n2. The tiger is round.\n- From this statement, we can conclude that the tiger is indeed round, but we still don't know its color.\n\n3. The tiger likes the bald eagle.\n- This statement doesn't give us any information about the tiger's color.\n\n4. The tiger is not red.\n- To determine whether this statement is true or false, we need to consider the given information about the tiger and the relationship between the tiger and the other animals.\n\nNow, let's try to find any information that might relate to the tiger's color.\n\n1. If something likes the rabbit then it eats the mouse. \n- This statement doesn't give us any information about the tiger's color.\n\n2. If something needs the rabbit then it likes the rabbit. \n- This statement also doesn't give us any information about the tiger's color.\n\n3. The mouse is kind.\n- Since all kind things are round, we can conclude that the mouse is round.\n\n4. The mouse needs the bald eagle.\n- This statement doesn't give us any information about the tiger's color.\n\n5. The rabbit is young.\n- This statement doesn't give us any information about the tiger's color.\n\n6. The rabbit needs the mouse.\n- This statement also doesn't give us any information about the bald eagle's color.\n\n7. If the mouse eats the rabbit then the mouse eats the bald eagle.\n- This statement doesn't give us any information about the tiger's color.\n\n8. If something eats the mouse then the mouse needs the rabbit.\n- This statement also doesn't give us any information about the tiger's color.\n\nSince we can't find any information that directly or indirectly relates to the tiger's color, we can't determine whether the statement \"The tiger is not red\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not red\" is true, false, or unknown, we need to deduce the color of the tiger based on the given information.\n\n1. The tiger is round. (Given)\n2. All kind things are round. (Given)\n3. The mouse is kind. (Given)\n4. The mouse needs the bald eagle. (Given)\n5. If something needs the rabbit then it likes the rabbit. (Given)\n6. The rabbit needs the mouse. (Given)\n7. The rabbit is young. (Given)\n8. If something likes the rabbit then it eats the mouse. (Given)\n9. The bald eagle is young. (Given)\n10. The bald eagle likes the mouse. (Given)\n11. The bald eagle needs the rabbit. (Given)\n12. The tiger likes the bald eagle. (Given)\n13. The tiger is round. (From statement 1)\n14. The tiger is kind. (From statement 2 and 13)\n\nSince the tiger is kind, it is round (from statement 2). However, we have no information about the color of the tiger. We can only conclude that the tiger is round but cannot determine its color.\n\nSo, the statement \"The tiger is not red\" is unknown because we don't have enough information to determine whether the tiger is red or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and deduce the properties of the entities involved.\n\nFrom the statements:\n- The tiger is round. (1)\n- All kind things are round. (2)\n- The mouse is kind. (3)\n- The mouse is not mentioned as being round. (4)\n\nFrom (3) and (2), we can infer that the mouse is round because it is kind. However, this contradicts our earlier observation in (4) that the mouse is not mentioned as being round. This leads to a conclusion that statement (1) cannot be true as it describes the tiger as round and statement (4) cannot be true as it describes the mouse as not round.\n\nHowever, from (3) and (2), we know that the mouse is round because it is kind. The tiger likes the bald eagle. However, the statement that if something likes the rabbit then it eats the mouse is not satisfied. As the tiger does not eat the mouse, we can conclude that the tiger does not like the rabbit.\n\nHowever, the statement that if something needs the rabbit then it likes the rabbit is satisfied by the mouse and the bald eagle.\n\nFrom the statement: \"If something eats the mouse then the mouse needs the rabbit,\" we can deduce that the tiger does not eat the mouse because if it did, the mouse would need the rabbit. However, this would contradict the statement \"The mouse is kind\" as it would imply that the mouse is not kind. Therefore, the tiger does not eat the mouse.\n\nFrom the statement: \"If the mouse eats the rabbit then the mouse eats the bald eagle,\" we can deduce that the mouse does not eat the rabbit because if it did, the mouse would eat the bald eagle. This would imply that the mouse is aggressive towards the bald eagle, which contradicts the statement that the mouse is kind.\n\nTherefore, the tiger does not eat the mouse and the mouse does not eat the rabbit. However, the statement that if something eats the mouse then the mouse needs the rabbit is satisfied by the fact that the tiger needs the mouse, which implies that the tiger does not eat the mouse.\n\nThe statement \"The tiger is not red\" is a property of the tiger that we have not been able to deduce from the given statements.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions provided. \n\n1. The bald eagle eats the tiger. \n   - From this, we cannot determine the color of the tiger.\n\n2. The bald eagle is young.\n   - This statement does not provide any information about the tiger.\n\n3. The bald eagle likes the mouse.\n   - This statement also does not provide any information about the tiger.\n\n4. The bald eagle needs the rabbit.\n   - This statement does not provide any information about the tiger.\n\n5. The mouse is kind.\n   - Since all kind things are round, the mouse is round.\n\n6. The mouse needs the bald eagle.\n   - This statement does not provide any information about the tiger.\n\n7. The rabbit is young.\n   - This statement does not provide any information about the tiger.\n\n8. The rabbit needs the mouse.\n   - Since something needs the rabbit, it likes the rabbit. However, we don't have any information about the relationship between the rabbit and the tiger.\n\n9. The tiger is round.\n   - This statement is true because the mouse is kind, and all kind things are round.\n\n10. The tiger likes the bald eagle.\n    - This statement does not provide any information about the color of the tiger.\n\n11. The tiger needs the mouse.\n    - This statement does not provide any information about the color of the tiger.\n\n12. If something likes the rabbit then it eats the mouse.\n    - However, the tiger likes the bald eagle, not the rabbit. Therefore, we cannot conclude that the tiger eats the mouse.\n\n13. If something needs the rabbit then it likes the rabbit.\n    - As stated in statement 8, the rabbit needs the mouse. Since the tiger likes the bald eagle (not the rabbit), we cannot conclude that the tiger likes the rabbit.\n\n14. If the mouse eats the rabbit then the mouse eats the bald eagle.\n    - However, we don't have any information about the mouse eating the rabbit.\n\n15. If something eats the mouse then the mouse needs the rabbit.\n    - Since we don't have any information about the tiger eating the mouse, we cannot conclude that the mouse needs the rabbit.\n\nFrom the given statements, we can conclude that the tiger is round, but we cannot determine the color of the tiger based on the information provided. Therefore, the statement \"The tiger is not red\" is unknown because we do not have enough information to determine the color of the tiger.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to understand the given information and the relationships between the entities (bald eagle, tiger, mouse, rabbit).\n\nFrom the given information:\n\n1. The tiger is round.\n2. All kind things are round.\n3. The mouse is kind.\n\nFrom (2) and (3), we can conclude that the mouse is round.\n\nNow, let's analyze the statement: \"The tiger is not red.\"\n\nTo determine whether this statement is true, false, or unknown, we need to gather more information.\n\n1. If something likes the rabbit then it eats the mouse. \n   - We don't know if the tiger likes the rabbit.\n\n2. If something needs the rabbit then it likes the rabbit.\n   - We don't know if the tiger needs the rabbit.\n\n3. The tiger is round.\n   - This information does not directly relate to the statement \"The tiger is not red.\"\n\n4. The mouse is round.\n   - This information does not directly relate to the statement \"The tiger is not red.\"\n\n5. The tiger likes the bald eagle.\n   - We don't know if the tiger likes the rabbit.\n\n6. The tiger needs the mouse.\n   - This statement is relevant because we know that if something needs the mouse then it eats the mouse, but we don't know if the tiger likes the rabbit.\n\n7. If the mouse eats the rabbit then the mouse eats the bald eagle.\n   - We don't know if the mouse eats the rabbit.\n\n8. If something eats the mouse then the mouse needs the rabbit.\n   - We don't know if the tiger eats the mouse.\n\nFrom the information, we can conclude that the statement \"The tiger is not red\" is unknown because we don't have enough information to determine whether the tiger is red or not. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the given rules to deduce information about the tiger.\n\n1. The bald eagle eats the tiger. \n   - We don't know anything about the tiger yet.\n\n2. The bald eagle is young.\n   - This statement doesn't provide any information about the tiger.\n\n3. The bald eagle likes the mouse.\n   - This statement doesn't provide any information about the tiger.\n\n4. The bald eagle needs the rabbit.\n   - This statement doesn't provide any information about the tiger.\n\n5. The mouse is kind.\n   - Since all kind things are round, we can conclude that the mouse is round.\n\n6. The mouse needs the bald eagle.\n   - This statement doesn't provide any information about the tiger.\n\n7. The rabbit is young.\n   - This statement doesn't provide any information about the tiger.\n\n8. The rabbit needs the mouse.\n   - If the rabbit needs the mouse, it implies that the rabbit likes the mouse, but we don't know if the tiger likes the rabbit.\n\n9. The tiger is round.\n   - Since the tiger is round and all kind things are round, we can conclude that the tiger is kind.\n\n10. The tiger likes the bald eagle.\n    - This statement doesn't provide any information about the tiger being red or not.\n\n11. The tiger needs the mouse.\n    - We already know that the mouse is round and the tiger is round, so the tiger and the mouse are kind. Since the tiger needs the mouse, we can conclude that the tiger likes the mouse.\n\nNow, let's analyze the rules:\n- If something likes the rabbit then it eats the mouse.\n- We know the tiger likes the mouse, but we don't know if it likes the rabbit.\n- If the mouse eats the rabbit then the mouse eats the bald eagle.\n- If something eats the mouse then the mouse needs the rabbit.\n- If the tiger needs the rabbit, then it likes the rabbit.\n\nGiven that the tiger likes the mouse and the mouse is round, we can conclude that the tiger is not eating the mouse. \n\nHowever, since the tiger needs the mouse, we know the tiger likes the mouse. But we still don't know if the tiger likes the rabbit. \n\nIf we assume that the tiger likes the rabbit, then it would eat the mouse according to the first rule. However, since we know the mouse needs the rabbit, it implies that the tiger needs the rabbit. \n\nIf the tiger needs the rabbit, then it likes the rabbit. This would imply that the tiger eats the mouse, which is a contradiction to our previous conclusion that the tiger is not eating the mouse.\n\nTherefore, the statement that the tiger likes the rabbit is false. \n\nHowever, we still don't know if the tiger is red or not.\n\nSo, the answer is unknown because we cannot determine the color of the tiger based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the given statements.\n\n1. The bald eagle eats the tiger. \n   - We don't know the color of the tiger yet, so we'll keep it as unknown for now.\n\n2. The bald eagle is young.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n3. The bald eagle likes the mouse.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n4. The bald eagle needs the rabbit.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n5. The mouse is kind.\n   - Since the mouse is kind, we can infer that it is round, based on the rule that all kind things are round.\n\n6. The mouse needs the bald eagle.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n7. The rabbit is young.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n8. The rabbit needs the mouse.\n   - Since the rabbit needs the mouse, the rabbit must like the mouse.\n\n9. The tiger is round.\n   - Based on this statement, we can infer that the tiger is kind, since it is round.\n\n10. The tiger likes the bald eagle.\n   - This statement doesn't provide any useful information for the problem at hand.\n\n11. The tiger needs the mouse.\n   - Since the tiger needs the mouse, the tiger must eat the mouse.\n\nHowever, we also know that if the mouse eats the rabbit, it eats the bald eagle, and if the mouse eats the bald eagle, it needs the rabbit. Since the tiger eats the mouse, the mouse must need the rabbit, which means the tiger must like the rabbit.\n\nGiven that the mouse likes the rabbit and the tiger likes the rabbit, if something likes the rabbit then it eats the mouse, the tiger must eat the mouse. However, we already know the tiger eats the mouse. This is a contradiction, so our current information is inconsistent.\n\nWe still don't have enough information to determine the color of the tiger, so the answer to whether the tiger is not red is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. The tiger is round. (Given)\n2. All kind things are round. (Given)\n3. The mouse is kind. (Given)\n4. Since the mouse is kind, the mouse is round. (From 2 and 3)\n\nHowever, we have no information about the tiger's color or the mouse's color. We can only conclude that the mouse is round.\n\nThe statement \"The tiger is not red\" is not directly related to the given information. Therefore, we cannot determine whether it is true or false.\n\nHowever, let's continue analyzing the information to see if we can derive any additional information.\n\n5. The tiger likes the bald eagle. (Given)\n6. If something likes the rabbit then it eats the mouse. (Given)\n7. The rabbit is young. (Given)\n8. The rabbit needs the mouse. (Given)\n9. If something needs the rabbit then it likes the rabbit. (Given)\n10. The bald eagle needs the rabbit. (Given)\n11. The bald eagle is young. (Given)\n12. The bald eagle likes the mouse. (Given)\n13. The mouse needs the bald eagle. (Given)\n\nFrom 9, we can conclude that the bald eagle likes the rabbit.\n\nHowever, we still have no information about the tiger's color.\n\nTo determine whether the statement \"The tiger is not red\" is true, false, or unknown, we need to look for any information that might be related to the tiger's color. Let's analyze the given information again.\n\n14. The mouse eats the tiger. (This is a possible conclusion, but it is not given)\n\nIf the mouse eats the tiger, then the mouse needs the rabbit (From 6). However, we already know that the mouse needs the bald eagle (From 13).\n\nLet's assume the mouse eats the tiger. Then:\n\n15. If the mouse eats the rabbit then the mouse eats the bald eagle. (Given)\n16. The mouse eats the bald eagle (From 15)\n17. The mouse needs the rabbit (From 13)\n\nThis conclusion is possible, but it is not given.\n\nNow, let's analyze the information again.\n\n18. If something eats the mouse then the mouse needs the rabbit. (Given)\n19. The tiger is round. (Given)\n20. The tiger needs the mouse. (This is a possible conclusion, but it is not given)\n\nHowever, we have no information about the tiger eating the mouse.\n\nSince we cannot derive any information about the tiger's color, we cannot determine whether the statement \"The tiger is not red\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and the rules provided to determine the properties of each animal. We'll start by analyzing the statements given:\n\n1. The bald eagle eats the tiger.\n2. The bald eagle is young.\n3. The bald eagle likes the mouse.\n4. The bald eagle needs the rabbit.\n5. The mouse is kind.\n6. The mouse needs the bald eagle.\n7. The rabbit is young.\n8. The rabbit needs the mouse.\n9. The tiger is round.\n10. The tiger likes the bald eagle.\n11. The tiger needs the mouse.\n12. If something likes the rabbit then it eats the mouse.\n13. If something needs the rabbit then it likes the rabbit.\n14. All kind things are round.\n15. If the mouse eats the rabbit then the mouse eats the bald eagle.\n16. If something eats the mouse then the mouse needs the rabbit.\n\nWe are asked to determine whether the statement \"The tiger is not red\" is true, false, or unknown.\n\nSince we have no direct information about the tiger being red or not, we will analyze the properties of the tiger:\n\nFrom statement 9, we know the tiger is round. This information alone does not tell us about the color.\n\nFrom statement 11, we know the tiger needs the mouse.\n\nFrom statement 12, we have a rule that if something likes the rabbit then it eats the mouse. We need to determine if the tiger likes the rabbit.\n\nFrom statement 13, if something needs the rabbit, then it likes the rabbit. However, we don't know if the tiger needs the rabbit.\n\nFrom statement 14, all kind things are round. We know the tiger is round (statement 9), but we don't know if the tiger is kind.\n\nFrom statement 10, we know the tiger likes the bald eagle. However, this does not provide any information about the tiger's color.\n\nNow, let's analyze the statements related to the mouse and the rabbit:\n\nFrom statement 5, we know the mouse is kind. Since the tiger is round (statement 9) and all kind things are round (statement 14), the tiger is also kind.\n\nSince the tiger is kind and all kind things are round (statement 14), we can conclude that the tiger is round, which we already knew.\n\nNow, we know the tiger is kind. From statement 8, we know the rabbit needs the mouse. From statement 13, if something needs the rabbit then it likes the rabbit. However, the tiger needs the mouse (statement 11), not the rabbit.\n\nFrom statement 11, we know the tiger needs the mouse. From statement 12, we have a rule that if something likes the rabbit then it eats the mouse. Since the tiger does not need the rabbit (it needs the mouse), we cannot conclude that the tiger likes the rabbit.\n\nFrom statement 8, we know the rabbit needs the mouse. From statement 7, we know the rabbit is young. From statement 1, we know the bald eagle eats the tiger. From statement 3, we know the bald eagle likes the mouse. From statement 4, we know the bald eagle needs the rabbit.\n\nSince the bald eagle needs the rabbit (statement 4) and the rabbit is young (statement 7), the bald eagle likes the rabbit (from statement 13). From statement 12, if something likes the rabbit then it eats the mouse. Therefore, the bald eagle eats the mouse (from statement 12).\n\nFrom statement 15, if the mouse eats the rabbit then the mouse eats the bald eagle. However, we don't know if the mouse eats the rabbit.\n\nFrom statement 16, if something eats the mouse then the mouse needs the rabbit. However, we don't know if something eats the mouse.\n\nNow, let's analyze the relationships between the animals:\n\nFrom statement 1, we know the bald eagle eats the tiger.\n\nFrom statement 3, we know the bald eagle likes the mouse.\n\nFrom statement 4, we know the bald eagle needs the rabbit.\n\nFrom statement 6, we know the mouse needs the bald eagle.\n\nFrom statement 8, we know the rabbit needs the mouse.\n\nFrom statement 11, we know the tiger needs the mouse.\n\nWe don't have any direct information about the mouse eating the rabbit or the tiger eating the mouse. Therefore, we cannot conclude that the mouse needs the rabbit (from statement 16) or that the mouse eats the rabbit (from statement 15).\n\nSince we don't have enough information to determine the properties of the tiger (such as its color), we cannot conclude whether the statement \"The tiger is not red\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the tiger is red or not, we need to analyze the given information and apply logical reasoning.\n\n1. The tiger is round. \nSince all kind things are round, this does not necessarily imply that the tiger is kind.\n\n2. The mouse is kind. \nWe already know the mouse is kind. However, this does not tell us anything about the tiger.\n\n3. The tiger needs the mouse.\nThis tells us the tiger depends on the mouse, but it doesn't tell us anything about the color of the tiger.\n\n4. The mouse needs the bald eagle.\nThis information does not provide any insight into the tiger's color.\n\n5. The rabbit needs the mouse.\nThis information also doesn't provide any insight into the tiger's color.\n\n6. The tiger likes the bald eagle.\nThis tells us the tiger has a liking for the bald eagle, but it doesn't tell us anything about the tiger's color.\n\n7. The tiger is round.\nAs mentioned earlier, being round doesn't necessarily mean the tiger is kind.\n\n8. If the mouse eats the rabbit then the mouse eats the bald eagle.\nSince we don't have any information that the mouse eats the rabbit, we can't conclude anything about the mouse eating the bald eagle.\n\n9. If something eats the mouse then the mouse needs the rabbit.\nThis tells us that if the tiger eats the mouse, the mouse would need the rabbit. However, this information doesn't provide any insight into the tiger's color.\n\n10. The bald eagle is young.\nThis information does not provide any insight into the tiger's color.\n\n11. The mouse likes the bald eagle.\nThis information does not provide any insight into the tiger's color.\n\n12. The rabbit is young.\nThis information does not provide any insight into the tiger's color.\n\n13. The rabbit needs the mouse.\nThis information does not provide any insight into the tiger's color.\n\nFrom the given statements, we can't find any information that contradicts the statement \"The tiger is not red.\" There is no information that directly states the tiger is red or provides a color for the tiger. Since we don't have enough information to determine whether the tiger is red or not, we cannot conclude that the statement is true or false.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. The tiger is round. (Given information)\n2. All kind things are round. (Given information)\n3. The mouse is kind. (Given information)\n4. The mouse needs the bald eagle. (Given information)\n5. If something likes the bald eagle, then it eats the tiger. (Given information)\n6. The bald eagle likes the mouse. (Given information)\n7. If something eats the tiger then it eats the bald eagle. (Given information)\n8. If something eats the mouse then the mouse needs the rabbit. (Given information)\n9. The rabbit is young. (Given information)\n10. The rabbit needs the mouse. (Given information)\n11. The mouse is kind. (Given information)\n12. If something is kind, then it is round. (Inference from steps 2 and 11)\n13. The tiger is round. (Inference from steps 1 and 12)\n14. The mouse is not red. (Inference from steps 11 and 12)\n15. The tiger is not red, as it is round. (Inference from steps 13 and 14)\n\nHowever, to determine the statement's validity, we need to consider another statement that has not been directly mentioned - \"The tiger is red\". To know whether the tiger is red or not, we should find out the color of the tiger.\n\nThe given statement \"If something likes the rabbit then it eats the mouse\" can be used to infer that the tiger does not like the rabbit because there is no statement that suggests the tiger likes the rabbit. Therefore, we can conclude that the tiger does not eat the mouse.\n\nAlso, we can infer that the tiger does not eat the bald eagle because there is no statement that suggests the tiger eats the bald eagle.\n\nNow, let's consider the statement \"The tiger needs the mouse.\" (Given information) \nSince the tiger does not eat the mouse and the tiger does not eat the bald eagle, we can infer that the tiger needs the mouse because there is no other statement that suggests the tiger needs the bald eagle.\n\nNow, since the tiger needs the mouse, it is a kind thing. (Inference from steps 2 and 16)\nNow, we know the tiger is round and the tiger is kind. \n\nNow, let's consider the statement \"If something is kind, then it is round.\" (Inference from steps 2 and 11)\nSince the tiger is kind and round, we can conclude that the tiger is indeed round.\n\nNow, let's consider the statement \"The tiger is round.\" (Given information and Inference from steps 1 and 12)\nNow, we know the tiger is round and the tiger is not mentioned to be red in the given statements. Therefore, we can conclude that the statement \"The tiger is not red\" is true.\n\nHowever, there is another possible interpretation - \"The tiger is red\" is not mentioned in the problem and the tiger is only mentioned as round. However, since \"The tiger is red\" is not mentioned, we cannot say it is false or true.\n\nTherefore, the final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & kind(Y) -> kind(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, kind_mouse), kind_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(X, rabbit)",
+          "z3_formula": "Or(likes_tiger_rabbit, likes_mouse_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_mouse_rabbit, eats_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, mouse)",
+          "z3_formula": "eats_mouse_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit) -> eats(mouse, bald_eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "Or(eats_tiger_rabbit, eats_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "Or(eats_tiger_bald_eagle, eats_mouse_bald_eagle)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(tiger))",
+          "z3_formula": "not(red_tiger) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_tiger_mouse, eats_tiger_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_X_rabbit, eats_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_tiger_eagle, likes_tiger_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(mouse, rabbit)",
+          "z3_formula": "Not(eats_mouse_rabbit) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(tiger)",
+          "z3_formula": "not_red_tiger == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, Not(likes_tiger_rabbit)), likes_rabbit_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(likes_tiger_bald_eagle, Not(eats_tiger_mouse)), eats_tiger_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_animal, round_animal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, eagle)",
+          "z3_formula": "likes_tiger_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, rabbit) -> eats(mouse, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(Not(round_tiger), Not(round_tiger)))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & round(Y) -> kind(X)",
+          "z3_formula": "Implies(And(round_tiger, round_mouse), kind_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_mouse, eats_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_tiger_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_rabbit, eats_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, rabbit)",
+          "z3_formula": "Not(likes_tiger_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_tiger_mouse, likes_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown red(tiger)",
+          "z3_formula": "Unknown(red_tiger)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, tiger)",
+          "z3_formula": "eats_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, mouse)",
+          "z3_formula": "likes_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(likes_rabbit_mouse, likes_tiger_rabbit), eats_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not eats_tiger_mouse",
+          "z3_formula": "Not(eats_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_mouse, round_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bald_eagle)",
+          "z3_formula": "likes_tiger_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(likes_X_rabbit, eats_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_rabbit, likes_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, rabbit)",
+          "z3_formula": "needs_bald_eagle_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_rabbit, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, rabbit)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, eagle)",
+          "z3_formula": "needs_mouse_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, eagle)",
+          "z3_formula": "likes_tiger_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> eats(X, eagle)",
+          "z3_formula": "Implies(eats_mouse_rabbit, eats_mouse_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(eats_tiger_mouse, needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(eagle)",
+          "z3_formula": "young_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, eagle)",
+          "z3_formula": "likes_mouse_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_tiger, round_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 158,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 5,
+      "total_weight": 152,
+      "solve_time_ms": 2.527504228055477
+    },
+    "timing": {
+      "trace_gen_s": 11.587,
+      "extraction_s": 40.592,
+      "dedup_s": 1.658,
+      "maxsat_s": 0.006,
+      "total_s": 53.843
+    }
+  }
+}

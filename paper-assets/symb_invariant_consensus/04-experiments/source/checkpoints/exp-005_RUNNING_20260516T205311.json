@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-005",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:52:36.217Z",
+    "updated_at": "2026-05-16T20:53:11.650Z",
+    "hypothesis": "QwQ-32B 作为 reasoning model 展示 SICA 的 operating regime boundary: 模型过强→diversity 消失→SICA≡SC",
+    "parent": "sica_aime30_v3",
+    "spec": {
+      "command": "CPU-only data analysis: aggregate QwQ-32B negative results",
+      "server": "westd-32608",
+      "data_path": "results/aime30_v2.json + results/proofwriter_30_v2.json + results/folio_livetest.json + results/diversity_diagnosis.json",
+      "data_count": 46,
+      "model_name": "QwQ-32B (analysis target) vs Qwen2.5-14B-Instruct (comparison)",
+      "seed": "N/A",
+      "checkpoint_source": "N/A (CPU-only analysis, no model checkpoint)",
+      "eval_data": "Aggregated outputs from sica_aime30_v3 (22q), sica_proofwriter30_v2 (17q), sica_folio30 (2q), sica_temp_diversity (5q)"
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "artifacts/exp-005/data/operating_regime_data.json + artifacts/exp-005/report/operating_regime_report.md",
+    "metrics": {
+      "qwq_aggregate_c0_nominal_pct": 10.3,
+      "qwq_aggregate_c0_effective_pct": 2.6,
+      "qwen14b_c0_pct": 46,
+      "diversity_ratio_effective": 17.7,
+      "aime_delta_pp": 0,
+      "proofwriter_delta_pp": -5.9,
+      "aime_n": 22,
+      "proofwriter_n": 17,
+      "temp_diversity_n": 5,
+      "folio_n": 2,
+      "total_problems": 46,
+      "c0_threshold": 20,
+      "qwq_below_threshold": true
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T20:53:11.693150+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-074c-icg-mistral-folio-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:06:50.097Z",
+    "updated_at": "2026-05-19T20:07:15.126Z",
+    "hypothesis": "ICG × Mistral-7B × FOLIO-204 seed=123 replication. exp-074 (seed=42) Δ=-2.0pp (negative). Multi-seed replication 确认 ICG 方法的 negative 结果是否跨 seed 稳定。如果 seed=123 也 negative，堵住 reviewer 单 seed 质疑。",
+    "parent": "exp-074-icg-mistral-folio"
+  },
+  "timestamp": "2026-05-19T20:07:15.345305+00:00",
+  "trigger": "update_registry"
+}

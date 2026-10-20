@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0620b87bfd9d11f1d9cd",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 065 qwen7b pw600",
+  "task_key": "worker_gpu_exp-065-qwen7b-pw600_20260519T084846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-065-qwen7b-pw600_20260519T084846_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "87136eedd5d273b41565d2a1dd96fbb8ad3cd3fcf3a555ed6837f4ae943e3145"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-065 全量运行已在进行中，由另一个 agent 启动。\n\n**当前状态**:\n- **vLLM**: Qwen2.5-7B-Instruct on GPU 0, port 8010, tmux `exp065_vllm`\n- **全量运行**: 600 ProofWriter-D5 问题, K=12, T=0.7, seed=42, tmux `exp065_run`\n- **进度**: 2/600 完成，ETA ~271 min（约 4.5 小时）\n- **参数**: 无 `--save-intermediates`（节省磁盘，19G 可用）\n- **self_consistency.py**: alphabetical tie-breaking 已确认正确（`max(sorted(groups.keys()), key=...)`）\n- **Registry**: RUNNING\n\n**注意事项**:\n- GPU 0 = exp-065 (Qwen-7B), GPU 1 = exp-066 (Qwen-14B), GPU 3 = exp-062 (Gemma) — 都不冲突\n- 端口用了 8010 而非任务指定的 8000（8000 空闲但另一个 agent 选了 8010）\n- `data/proofwriter_full.json` 即 600 条 D5 验证集（由 prepare 脚本从原始 JSONL 转换而来）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-065-qwen7b-pw600.md"
+}

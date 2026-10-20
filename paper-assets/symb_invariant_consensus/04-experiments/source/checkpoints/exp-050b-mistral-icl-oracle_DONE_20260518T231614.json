@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-050b-mistral-icl-oracle",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:31:50.554Z",
+    "updated_at": "2026-05-18T23:16:14.227Z",
+    "hypothesis": "Increasing vLLM max_model_len from 8192 to 16384 will resolve the context length overflow (input ~4400 + max_tokens 4096 > 8192) that caused 86% failure in exp-050, allowing Mistral-7B ICL Oracle with 5 gold FOL examples to complete evaluation on all 199 FOLIO problems.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3 --max-model-len 16384 --gpu-memory-utilization 0.90 --port 8002 --dtype auto --trust-remote-code --enforce-eager && python -u run_icl_oracle.py --api-base http://localhost:8002/v1 --model auto --k 12 --data data/folio_full.json --output results/exp050b_mistral_icl_oracle/exp050b_results.json --seed 42 --save-intermediates --temperature 0.7 --max-tokens 4096",
+      "server": "westd-16639",
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "data_path": "data/folio_full.json",
+      "data_count": 199,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+      "eval_data": "data/folio_full.json"
+    },
+    "log_path": "/root/symb_invariant_consensus/results/exp050b_mistral_icl_oracle/exp050b.log",
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp050b_mistral_icl_oracle/",
+    "metrics": {
+      "n": 199,
+      "sc_accuracy": 57.79,
+      "sica_accuracy": 54.27,
+      "delta_pp": -3.52,
+      "sc_correct": 115,
+      "sica_correct": 108,
+      "discordant_b": 6,
+      "discordant_c": 13,
+      "mcnemar_p": 0.167,
+      "significant": false,
+      "wall_time_min": 93.8,
+      "extraction_success": 2333,
+      "extraction_fail": 55,
+      "per_answer": {
+        "True": {
+          "n": 70,
+          "sica_acc": 50,
+          "sc_acc": 54.29
+        },
+        "False": {
+          "n": 61,
+          "sica_acc": 36.07,
+          "sc_acc": 44.26
+        },
+        "Unknown": {
+          "n": 68,
+          "sica_acc": 75,
+          "sc_acc": 73.53
+        }
+      }
+    },
+    "conclusion": "negative",
+    "notes": "ICL Oracle (5 gold FOL examples) on Mistral-7B FOLIO-199: SICA=54.27% vs SC=57.79%, delta=-3.52pp (p=0.167, ns). ICL boosted SC from vanilla 54.41% (exp-033) to 57.79% (+3.38pp), but SICA did not benefit. ICL improves individual trace quality enough to boost majority vote, but the resulting constraints become less diverse/discriminative for MaxSAT weighting. Confirms capability trap: better extraction quality does not translate to SICA gains when it also reduces beneficial disagreement.",
+    "completed_at": "2026-05-18T23:16:14.227Z"
+  },
+  "timestamp": "2026-05-18T23:16:14.394555+00:00",
+  "trigger": "update_registry"
+}

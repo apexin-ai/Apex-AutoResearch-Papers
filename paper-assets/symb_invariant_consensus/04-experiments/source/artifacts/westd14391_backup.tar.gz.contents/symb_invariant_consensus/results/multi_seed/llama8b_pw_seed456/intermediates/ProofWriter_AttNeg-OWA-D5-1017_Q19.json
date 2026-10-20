@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1017_Q19",
+    "problem": "Dave is big. Dave is furry. Erin is blue. Erin is cold. Erin is round. Fiona is quiet. Gary is rough. If something is rough and cold then it is furry. Quiet, big things are not round. If Dave is blue then Dave is furry. All quiet, blue things are big. If Fiona is furry then Fiona is blue. If something is quiet then it is cold. All big things are cold. All blue, round things are not quiet. Cold things are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Dave, True) ::: Dave is big.\nFurry(Dave, True) ::: Dave is furry.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nRound(Erin, True) ::: Erin is round.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Gary, True) ::: Gary is rough.\n\nRules:\nRough($x, True) && Cold($x, True) >>> Furry($x, True) ::: If something is rough and cold then it is furry.\nQuiet($x, True) && Big($x, True) >>> Round($x, False) ::: Quiet, big things are not round.\nBlue(Dave, True) >>> Furry(Dave, True) ::: If Dave is blue then Dave is furry.\nQuiet($x, True) && Blue($x, True) >>> Big($x, True) ::: All quiet, blue things are big.\nFurry(Fiona, True) >>> Blue(Fiona, True) ::: If Fiona is furry then Fiona is blue.\nQuiet($x, True) >>> Cold($x, True) ::: If something is quiet then it is cold.\nBig($x, True) >>> Cold($x, True) ::: All big things are cold.\nBlue($x, True) && Round($x, True) >>> Quiet($x, False) ::: All blue, round things are not quiet.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\n\nQuery:\nBlue(Dave, False) ::: Dave is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

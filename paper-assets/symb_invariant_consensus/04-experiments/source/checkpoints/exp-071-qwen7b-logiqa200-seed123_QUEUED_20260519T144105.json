@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-071-qwen7b-logiqa200-seed123",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:36:32.407Z",
+    "updated_at": "2026-05-19T14:41:04.912Z",
+    "hypothesis": "exp-070 seed replication: Qwen2.5-7B-Instruct 在 LogiQA-200 上 SICA vs SC, seed=123。exp-070 (seed=42) SC=68.5% Δ=+2.5pp p=0.125, 7 个 discordant pairs 统计功效不足。seed replication 加固 Goldilocks zone claim。如果 seed=123 也给出正向 Δ 且方向一致，则累积证据支持 Qwen2.5-7B 在 LogiQA 上处于 Goldilocks regime。",
+    "parent": "exp-070-qwen7b-logiqa200"
+  },
+  "timestamp": "2026-05-19T14:41:05.131057+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1036 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-428_Q12",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & sees(Y, X) -> young(Y)",
+          "z3_formula": "Implies(And(green_rabbit, sees_Y_rabbit), young_Y)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_squirrel_rabbit, red_squirrel), young_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & sees(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(sees_squirrel_mouse, sees_rabbit_mouse), likes_squirrel_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, mouse)",
+          "z3_formula": "sees_mouse_mouse == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(squirrel) & likes(squirrel, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(red_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_squirrel), sees_squirrel_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(mouse, mouse)",
+          "z3_formula": "Implies(young_X, sees_mouse_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(mouse, X) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_mouse_X), red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_X, eats_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, green_rabbit), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & sees(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(green_rabbit, sees_X_rabbit), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_X_mouse), red_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_X, eats_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, mouse)",
+          "z3_formula": "sees_mouse_mouse == Unknown",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, sees_squirrel_mouse), red_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, likes_rabbit_squirrel), sees_squirrel_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(red(X))",
+          "z3_formula": "young_red_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_mouse_cat, likes_mouse_squirrel), sees_squirrel_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_mouse_rabbit, green_rabbit), young_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_mouse_squirrel, red_mouse), young_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_squirrel, sees_squirrel_mouse), likes_mouse_rabbit)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, likes_squirrel_squirrel), sees_squirrel_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_squirrel_mouse, sees_squirrel_mouse), likes_squirrel_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, likes_squirrel_squirrel), sees_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_rabbit_mouse, green_rabbit), young_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_squirrel_squirrel, red_squirrel), young_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_squirrel_mouse, sees_squirrel_mouse), likes_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, squirrel)",
+          "z3_formula": "likes_squirrel_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, mouse)",
+          "z3_formula": "Not(sees_mouse_mouse)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(squirrel) & likes(squirrel, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(red_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_squirrel), sees_squirrel_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(mouse, X)",
+          "z3_formula": "Implies(young_X, sees_mouse_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_X_mouse), red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_X, eats_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, green_rabbit), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_Y), likes_X_rabbit)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(mouse, X)",
+          "z3_formula": "Implies(green_squirrel, sees_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(mouse, X)",
+          "z3_formula": "Implies(green_squirrel, sees_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_squirrel, sees_squirrel_mouse), likes_mouse_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_mouse_rabbit, sees_mouse_squirrel), red_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_mouse_rabbit, green_rabbit), young_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_mouse_squirrel, red_mouse), young_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_mouse_squirrel, sees_squirrel_mouse), likes_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(mouse_sees_mouse)",
+          "z3_formula": "Not(Or(sees_mouse_mouse, Not(sees_mouse_mouse)))",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(mouse_sees_mouse)",
+          "z3_formula": "Not(Or(sees_mouse_mouse, Not(sees_mouse_mouse)))",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse_rabbit, sees_mouse_squirrel, sees_squirrel_mouse), likes_mouse_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & sees(rabbit, squirrel) & sees(squirrel, mouse) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, sees_rabbit_squirrel, sees_squirrel_mouse), sees_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, sees_squirrel_mouse), red_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_rabbit_mouse, green_rabbit), young_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_mouse, sees_mouse_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, mouse)",
+          "z3_formula": "sees_mouse_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & sees(rabbit, squirrel) & sees(squirrel, mouse) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, sees_rabbit_squirrel, sees_squirrel_mouse), sees_rabbit_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & likes(X, rabbit) -> sees(X, X)",
+          "z3_formula": "Implies(And(sees_mouse_rabbit, likes_mouse_rabbit), sees_mouse_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, mouse)",
+          "z3_formula": "sees_mouse_mouse == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, rabbit) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_squirrel_rabbit), eats_squirrel_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_squirrel), sees_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_X_mouse), red_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_X, eats_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, green_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(X, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_X_mouse), likes_X_rabbit)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": []
+    }
+  ]
+}

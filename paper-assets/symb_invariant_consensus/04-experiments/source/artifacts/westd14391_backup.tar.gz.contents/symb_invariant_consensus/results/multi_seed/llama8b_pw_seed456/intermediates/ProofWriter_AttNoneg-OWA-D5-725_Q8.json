@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-725_Q8",
+    "problem": "Anne is cold. Anne is smart. Bob is big. Bob is rough. Erin is big. Erin is cold. Erin is kind. Erin is rough. Erin is smart. Erin is white. Erin is young. Harry is cold. Harry is kind. Harry is rough. Smart things are cold. If Erin is kind then Erin is young. White things are kind. If something is rough and kind then it is smart. If Anne is smart then Anne is white. All smart, cold things are kind. Big, cold things are young. If Bob is rough then Bob is white.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nSmart(Anne, True) ::: Anne is smart.\nBig(Bob, True) ::: Bob is big.\nRough(Bob, True) ::: Bob is rough.\nBig(Erin, True) ::: Erin is big.\nCold(Erin, True) ::: Erin is cold.\nKind(Erin, True) ::: Erin is kind.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nCold(Harry, True) ::: Harry is cold.\nKind(Harry, True) ::: Harry is kind.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nSmart($x, True) >>> Cold($x, True) ::: Smart things are cold.\nKind(Erin, True) >>> Young(Erin, True) ::: If Erin is kind then Erin is young.\nWhite($x, True) >>> Kind($x, True) ::: White things are kind.\nRough($x, True) && Kind($x, True) >>> Smart($x, True) ::: If something is rough and kind then it is smart.\nSmart(Anne, True) >>> White(Anne, True) ::: If Anne is smart then Anne is white.\nSmart($x, True) && Cold($x, True) >>> Kind($x, True) ::: All smart, cold things are kind.\nBig($x, True) && Cold($x, True) >>> Young($x, True) ::: Big, cold things are young.\nRough(Bob, True) >>> White(Bob, True) ::: If Bob is rough then Bob is white.\n\nQuery:\nSmart(Bob, False) ::: Bob is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

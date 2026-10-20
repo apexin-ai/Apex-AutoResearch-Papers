@@ -1,0 +1,1169 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-587_Q11",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases_squirrel(X)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases_bald_eagle(X)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases_lion(bald_eagle)",
+          "z3_formula": "Implies(round_bald_eagle, chases_lion_bald_eagle)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(eats_squirrel, Not(visits_squirrel_bald_eagle))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(eats_squirrel, Not(visits_squirrel_bald_eagle))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(bear, lion))",
+          "z3_formula": "Not(eats_bear_lion) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(lion, bald_eagle))",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats_squirrel",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats_squirrel",
+          "z3_formula": "eats_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) & green(X) -> chases_bald_eagle",
+          "z3_formula": "Implies(And(round_squirrel, blue_squirrel, green_squirrel), chases_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & chases_squirrel -> round(X) | green(X)",
+          "z3_formula": "Implies(And(blue_squirrel, chases_squirrel), Or(round_squirrel, green_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel) | green(squirrel)",
+          "z3_formula": "Or(round_squirrel, green_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> chases_bald_eagle",
+          "z3_formula": "Implies(And(round_squirrel, blue_squirrel), chases_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases_bald_eagle",
+          "z3_formula": "chases_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, lion)",
+          "z3_formula": "Not(visits_squirrel_lion) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not round(squirrel)",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & not round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(squirrel, lion)",
+          "z3_formula": "Not(visits_squirrel_lion) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel) | not round(squirrel)",
+          "z3_formula": "Or(round_squirrel, Not(round_squirrel)) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_X, chases_X_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_visits_bald_eagle",
+          "z3_formula": "squirrel_visits_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(green_X, eats_X_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_X, eats_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> blue(X)",
+          "z3_formula": "Implies(chases_X_squirrel, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_chases_bald_eagle",
+          "z3_formula": "squirrel_chases_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_visits_bald_eagle",
+          "z3_formula": "squirrel_visits_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel) & red(squirrel) -> round(squirrel)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases(bald_eagle, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(blue_squirrel, round_squirrel), chases_squirrel_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, squirrel)",
+          "z3_formula": "Not(chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_something_squirrel, green_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(X)",
+          "z3_formula": "Implies(visits_squirrel_lion, Not(round_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, chases_squirrel_lion), round_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_squirrel_lion, blue_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, round_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(bald_eagle) -> chases(bald_eagle, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(round_squirrel, chases_squirrel_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_something_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & Not(round(Y)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_bald_eagle)), visits_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(bald_eagle))",
+          "z3_formula": "Not(round_bald_eagle) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats_bald_eagle_squirrel)",
+          "z3_formula": "Not(eats_bald_eagle_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_bald_eagle_squirrel, green_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green_squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel) -> blue(squirrel)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(lion, bald_eagle))",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases_squirrel_bald_eagle == Unknown",
+          "z3_formula": "chases_squirrel_bald_eagle == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(bald_eagle))",
+          "z3_formula": "Not(round_bald_eagle) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_something_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_bald_eagle, eats_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_something_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_something_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(something, squirrel)",
+          "z3_formula": "eats_something_squirrel == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_squirrel_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(round(bald_eagle))",
+          "z3_formula": "Not(round_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_something_squirrel, green_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(bear, lion))",
+          "z3_formula": "Not(eats_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(lion, bald_eagle))",
+          "z3_formula": "Not(eats_lion_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == Unknown",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

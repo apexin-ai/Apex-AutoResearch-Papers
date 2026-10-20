@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-813_Q17",
+    "problem": "The cow likes the lion. The cow sees the dog. The dog is big. The dog is cold. The dog likes the lion. The lion is nice. The lion is rough. The lion does not need the dog. The rabbit is cold. The rabbit needs the cow. The rabbit needs the lion. The rabbit sees the dog. If someone likes the cow then they are big. If someone needs the lion then the lion needs the cow. If someone likes the lion then they like the rabbit. If someone sees the cow and they are not big then they do not like the lion. If someone is green then they see the rabbit. If someone is green and they like the cow then the cow needs the rabbit. If someone sees the rabbit then the rabbit likes the lion. If someone likes the lion and they do not see the dog then they need the lion. If someone likes the lion and they like the rabbit then the lion is green.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not like the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nLikes(cow, lion, True) ::: The cow likes the lion.\nSees(cow, dog, True) ::: The cow sees the dog.\nBig(dog, True) ::: The dog is big.\nCold(dog, True) ::: The dog is cold.\nLikes(dog, lion, True) ::: The dog likes the lion.\nNice(lion, True) ::: The lion is nice.\nRough(lion, True) ::: The lion is rough.\nNeeds(lion, dog, False) ::: The lion does not need the dog.\nCold(rabbit, True) ::: The rabbit is cold.\nNeeds(rabbit, cow, True) ::: The rabbit needs the cow.\nNeeds(rabbit, lion, True) ::: The rabbit needs the lion.\nSees(rabbit, dog, True) ::: The rabbit sees the dog.\n\nRules:\nLikes($x, cow, True) >>> Big($x, True) ::: If someone likes the cow then they are big.\nNeeds($x, lion, True) >>> Needs(lion, cow, True) ::: If someone needs the lion then the lion needs the cow.\nLikes($x, lion, True) >>> Likes($x, rabbit, True) ::: If someone likes the lion then they like the rabbit.\nSees($x, cow, True) && Big($x, False) >>> Likes($x, lion, False) ::: If someone sees the cow and they are not big then they do not like the lion.\nGreen($x, True) >>> Sees($x, rabbit, True) ::: If someone is green then they see the rabbit.\nGreen($x, True) && Likes($x, cow, True) >>> Needs(cow, rabbit, True) ::: If someone is green and they like the cow then the cow needs the rabbit.\nSees($x, rabbit, True) >>> Likes(rabbit, lion, True) ::: If someone sees the rabbit then the rabbit likes the lion.\nLikes($x, lion, True) && Sees($x, dog, False) >>> Needs($x, lion, True) ::: If someone likes the lion and they do not see the dog then they need the lion.\nLikes($x, lion, True) && Likes($x, rabbit, True) >>> Green(lion, True) ::: If someone likes the lion and they like the rabbit then the lion is green.\n\nQuery:\nLikes(lion, rabbit, False) ::: The lion does not like the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

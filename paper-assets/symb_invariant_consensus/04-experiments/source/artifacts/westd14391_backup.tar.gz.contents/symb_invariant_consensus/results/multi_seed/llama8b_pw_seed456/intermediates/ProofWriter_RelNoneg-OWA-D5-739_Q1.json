@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-739_Q1",
+    "problem": "The bald eagle eats the dog. The bald eagle sees the dog. The dog is cold. The dog likes the squirrel. The dog sees the rabbit. The rabbit eats the dog. The rabbit eats the squirrel. The rabbit likes the dog. The rabbit sees the squirrel. The squirrel likes the bald eagle. If someone is cold and they like the bald eagle then they eat the rabbit. If someone likes the dog and they see the squirrel then the dog likes the bald eagle. If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog. If someone likes the rabbit then they are young. If someone likes the dog and the dog likes the squirrel then they like the bald eagle. If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit. If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold. If someone sees the bald eagle then the bald eagle is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit likes the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Dog, True) ::: The bald eagle eats the dog.\nSees(BaldEagle, Dog, True) ::: The bald eagle sees the dog.\nCold(Dog, True) ::: The dog is cold.\nLikes(Dog, Squirrel, True) ::: The dog likes the squirrel.\nSees(Dog, Rabbit, True) ::: The dog sees the rabbit.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nEats(Rabbit, Squirrel, True) ::: The rabbit eats the squirrel.\nLikes(Rabbit, Dog, True) ::: The rabbit likes the dog.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nLikes(Squirrel, BaldEagle, True) ::: The squirrel likes the bald eagle.\n\nRules:\nCold($x, True) && Likes($x, BaldEagle, True) >>> Eats($x, Rabbit, True) ::: If someone is cold and they like the bald eagle then they eat the rabbit.\nLikes($x, Dog, True) && Sees($x, Squirrel, True) >>> Likes(Dog, BaldEagle, True) ::: If someone likes the dog and they see the squirrel then the dog likes the bald eagle.\nSees(BaldEagle, Dog, True) && Cold(BaldEagle, True) >>> Likes(BaldEagle, Dog, True) ::: If the bald eagle sees the dog and the bald eagle is cold then the bald eagle likes the dog.\nLikes($x, Rabbit, True) >>> Young($x, True) ::: If someone likes the rabbit then they are young.\nLikes($x, Dog, True) && Likes(Dog, Squirrel, True) >>> Likes($x, BaldEagle, True) ::: If someone likes the dog and the dog likes the squirrel then they like the bald eagle.\nRed(BaldEagle, True) && Likes(BaldEagle, Squirrel, True) >>> Eats(Squirrel, Rabbit, True) ::: If the bald eagle is red and the bald eagle likes the squirrel then the squirrel eats the rabbit.\nLikes(Dog, BaldEagle, True) && Sees(BaldEagle, Dog, True) >>> Cold(BaldEagle, True) ::: If the dog likes the bald eagle and the bald eagle sees the dog then the bald eagle is cold.\nSees($x, BaldEagle, True) >>> Young(BaldEagle, True) ::: If someone sees the bald eagle then the bald eagle is young.\n\nQuery:\nLikes(Rabbit, Dog, True) ::: The rabbit likes the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

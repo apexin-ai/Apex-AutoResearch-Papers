@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-165_Q13",
+    "problem": "Anne is furry. Anne is nice. Anne is rough. Anne is white. Erin is furry. Erin is rough. Erin is white. Fiona is big. Fiona is nice. Fiona is round. Harry is nice. Harry is rough. All furry things are white. If Harry is red then Harry is round. All round, red things are furry. If Harry is rough then Harry is round. Nice, red things are big. Round, red things are white. All nice, white things are red. If something is round then it is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nFurry(Erin, True) ::: Erin is furry.\nRough(Erin, True) ::: Erin is rough.\nWhite(Erin, True) ::: Erin is white.\nBig(Fiona, True) ::: Fiona is big.\nNice(Fiona, True) ::: Fiona is nice.\nRound(Fiona, True) ::: Fiona is round.\nNice(Harry, True) ::: Harry is nice.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nFurry($x, True) >>> White($x, True) ::: All furry things are white.\nRed(Harry, True) >>> Round(Harry, True) ::: If Harry is red then Harry is round.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red things are furry.\nRough(Harry, True) >>> Round(Harry, True) ::: If Harry is rough then Harry is round.\nNice($x, True) && Red($x, True) >>> Big($x, True) ::: Nice, red things are big.\nRound($x, True) && Red($x, True) >>> White($x, True) ::: Round, red things are white.\nNice($x, True) && White($x, True) >>> Red($x, True) ::: All nice, white things are red.\nRound($x, True) >>> Furry($x, True) ::: If something is round then it is furry.\n\nQuery:\nBig(Erin, False) ::: Erin is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

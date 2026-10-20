@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0cda69aef750d869bbe7",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code proofwriter prompt adapt",
+  "task_key": "worker_code_proofwriter-prompt-adapt_20260515T184126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_proofwriter-prompt-adapt_20260515T184126.log",
+    "occurrence": 1,
+    "bytes": 783621,
+    "sha256": "070cc8cf970e1ed1e9c8a8ca887c1d89c01d37d520cd256cf6d742e5027881b6"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 37,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 86,
+      "user": 1,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "0cda69aef750d869bbe7-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "0cda69aef750d869bbe7-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "0cda69aef750d869bbe7-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-proofwriter-prompt-adapt.md"
+}

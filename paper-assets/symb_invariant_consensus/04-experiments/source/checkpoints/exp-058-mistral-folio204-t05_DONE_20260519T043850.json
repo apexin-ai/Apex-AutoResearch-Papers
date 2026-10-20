@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-058-mistral-folio204-t05",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:10:13.574Z",
+    "updated_at": "2026-05-19T04:38:50.593Z",
+    "hypothesis": "T=0.5 delta 介于 T=0.3 和 T=0.7 之间，形成温度-SICA delta 曲线。与 exp-033 (T=0.7, +4.90pp) 和 exp-054 (T=1.0, +0.49pp) 共同构成 4 点 T sensitivity ablation。parent=exp-033, D060 analysis paper",
+    "parent": "exp-033",
+    "spec": {
+      "command": "python -u run_full_mvp.py --mode vllm --k 12 --temperature 0.5 --max-tokens 4096 --api-base http://localhost:8003/v1 --model auto --seed 42 --folio-data data/folio_full.json --math-data data/empty.json --pw-data data/empty.json --output results/exp058_mistral_folio204_t05/exp058_results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "Mistral-7B-Instruct-v0.3 (base, no finetune)",
+      "eval_data": "FOLIO-204 (data/folio_full.json)"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 57.84,
+      "sica_accuracy": 57.35,
+      "delta_pp": -0.49,
+      "mcnemar_p": 1,
+      "discordant_b": 3,
+      "discordant_c": 2,
+      "n_problems": 204,
+      "n_completed": 204,
+      "extraction_rate": 97,
+      "wall_time_min": 80
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058_results.json",
+    "log_path": "/root/symb_invariant_consensus/results/exp058_mistral_folio204_t05/exp058.log",
+    "completed_at": "2026-05-19T04:38:50.593Z"
+  },
+  "timestamp": "2026-05-19T04:38:50.771021+00:00",
+  "trigger": "update_registry"
+}

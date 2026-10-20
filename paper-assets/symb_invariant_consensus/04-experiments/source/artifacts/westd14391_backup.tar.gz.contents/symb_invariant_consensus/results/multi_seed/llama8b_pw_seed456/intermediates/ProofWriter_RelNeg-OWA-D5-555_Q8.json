@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-555_Q8",
+    "problem": "The bald eagle is green. The bald eagle is round. The bald eagle is young. The bald eagle needs the lion. The cat is green. The cat is kind. The cat does not need the bald eagle. The lion chases the bald eagle. The lion chases the tiger. The lion is round. The lion needs the bald eagle. The lion visits the bald eagle. The lion visits the cat. The tiger is not blue. The tiger is not green. The tiger is young. If someone visits the tiger then the tiger visits the lion. If someone is kind and blue then they visit the cat. If someone is green then they visit the bald eagle. If someone needs the tiger then they visit the tiger. If someone needs the tiger and the tiger needs the cat then the tiger needs the lion. If someone visits the lion then they need the tiger. If the tiger chases the bald eagle then the bald eagle is green. If the bald eagle is young then the bald eagle needs the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not visit the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRound(BaldEagle, True) ::: The bald eagle is round.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nGreen(Cat, True) ::: The cat is green.\nKind(Cat, True) ::: The cat is kind.\nNeeds(Cat, BaldEagle, False) ::: The cat does not need the bald eagle.\nChases(Lion, BaldEagle, True) ::: The lion chases the bald eagle.\nChases(Lion, Tiger, True) ::: The lion chases the tiger.\nRound(Lion, True) ::: The lion is round.\nNeeds(Lion, BaldEagle, True) ::: The lion needs the bald eagle.\nVisits(Lion, BaldEagle, True) ::: The lion visits the bald eagle.\nVisits(Lion, Cat, True) ::: The lion visits the cat.\nBlue(Tiger, False) ::: The tiger is not blue.\nGreen(Tiger, False) ::: The tiger is not green.\nYoung(Tiger, True) ::: The tiger is young.\n\nRules:\nVisits($x, Tiger, True) >>> Visits(Tiger, Lion, True) ::: If someone visits the tiger then the tiger visits the lion.\nKind($x, True) && Blue($x, True) >>> Visits($x, Cat, True) ::: If someone is kind and blue then they visit the cat.\nGreen($x, True) >>> Visits($x, BaldEagle, True) ::: If someone is green then they visit the bald eagle.\nNeeds($x, Tiger, True) >>> Visits($x, Tiger, True) ::: If someone needs the tiger then they visit the tiger.\nNeeds($x, Tiger, True) && Needs(Tiger, Cat, True) >>> Needs(Tiger, Lion, True) ::: If someone needs the tiger and the tiger needs the cat then the tiger needs the lion.\nVisits($x, Lion, True) >>> Needs($x, Tiger, True) ::: If someone visits the lion then they need the tiger.\nChases(Tiger, BaldEagle, True) >>> Green(BaldEagle, True) ::: If the tiger chases the bald eagle then the bald eagle is green.\nYoung(BaldEagle, True) >>> Needs(BaldEagle, Tiger, True) ::: If the bald eagle is young then the bald eagle needs the tiger.\n\nQuery:\nVisits(Tiger, Lion, False) ::: The tiger does not visit the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

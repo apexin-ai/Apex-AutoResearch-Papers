@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-856_Q12",
+    "problem": "The bald eagle needs the lion. The bald eagle visits the lion. The lion is not cold. The lion does not like the tiger. The lion visits the tiger. The squirrel is kind. The squirrel is young. The squirrel likes the tiger. The squirrel does not need the lion. The squirrel visits the bald eagle. The tiger is cold. The tiger visits the bald eagle. If something visits the bald eagle then it is big. If something is big then it needs the squirrel. If something visits the squirrel and it visits the lion then it needs the squirrel. If something needs the squirrel then it is green. If something is young then it needs the tiger. Green things are young. If something is big and it visits the lion then the lion needs the squirrel. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not need the tiger.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nVisits(BaldEagle, Lion, True) ::: The bald eagle visits the lion.\nCold(Lion, False) ::: The lion is not cold.\nLikes(Lion, Tiger, False) ::: The lion does not like the tiger.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nKind(Squirrel, True) ::: The squirrel is kind.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Tiger, True) ::: The squirrel likes the tiger.\nNeeds(Squirrel, Lion, False) ::: The squirrel does not need the lion.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\nCold(Tiger, True) ::: The tiger is cold.\nVisits(Tiger, BaldEagle, True) ::: The tiger visits the bald eagle.\n\nRules:\nVisits($x, BaldEagle, True) >>> Big($x, True) ::: If something visits the bald eagle then it is big.\nBig($x, True) >>> Needs($x, Squirrel, True) ::: If something is big then it needs the squirrel.\nVisits($x, Squirrel, True) && Visits($x, Lion, True) >>> Needs($x, Squirrel, True) ::: If something visits the squirrel and it visits the lion then it needs the squirrel.\nNeeds($x, Squirrel, True) >>> Green($x, True) ::: If something needs the squirrel then it is green.\nYoung($x, True) >>> Needs($x, Tiger, True) ::: If something is young then it needs the tiger.\nGreen($x, True) >>> Young($x, True) ::: Green things are young.\nBig($x, True) && Visits($x, Lion, True) >>> Needs(Lion, Squirrel, True) ::: If something is big and it visits the lion then the lion needs the squirrel.\nBig(Squirrel, True) && Likes(Squirrel, Tiger, False) >>> Big(Tiger, False) ::: If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nQuery:\nNeeds(Tiger, Tiger, False) ::: The tiger does not need the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

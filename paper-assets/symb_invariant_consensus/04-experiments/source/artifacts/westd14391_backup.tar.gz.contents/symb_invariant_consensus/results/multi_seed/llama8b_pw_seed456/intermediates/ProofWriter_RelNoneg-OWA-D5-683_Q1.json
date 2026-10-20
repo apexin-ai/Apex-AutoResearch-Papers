@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-683_Q1",
+    "problem": "The bear chases the cat. The bear chases the cow. The bear likes the cat. The bear likes the lion. The bear visits the cat. The cat is red. The cat visits the bear. The cat visits the cow. The cow visits the lion. The lion chases the cat. The lion is nice. If something likes the bear and it visits the lion then it is green. If something likes the lion and the lion is nice then it chases the lion. If something is green and it chases the cow then the cow is cold. Cold things are green. If something chases the lion and the lion chases the cat then it is cold. If the lion likes the cat and the cat chases the lion then the lion is nice. If something likes the cat then it likes the lion. If something likes the cat then it likes the lion. If something chases the lion then the lion visits the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear chases the cat.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nChases(Bear, Cat, True) ::: The bear chases the cat.\nChases(Bear, Cow, True) ::: The bear chases the cow.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Bear, Lion, True) ::: The bear likes the lion.\nVisits(Bear, Cat, True) ::: The bear visits the cat.\nRed(Cat, True) ::: The cat is red.\nVisits(Cat, Bear, True) ::: The cat visits the bear.\nVisits(Cat, Cow, True) ::: The cat visits the cow.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nNice(Lion, True) ::: The lion is nice.\n\nRules:\nLikes($x, Bear, True) && Visits($x, Lion, True) >>> Green($x, True) ::: If something likes the bear and it visits the lion then it is green.\nLikes($x, Lion, True) && Nice(Lion, True) >>> Chases($x, Lion, True) ::: If something likes the lion and the lion is nice then it chases the lion.\nGreen($x, True) && Chases($x, Cow, True) >>> Cold(Cow, True) ::: If something is green and it chases the cow then the cow is cold.\nCold($x, True) >>> Green($x, True) ::: Cold things are green.\nChases($x, Lion, True) && Chases(Lion, Cat, True) >>> Cold($x, True) ::: If something chases the lion and the lion chases the cat then it is cold.\nLikes(Lion, Cat, True) && Chases(Cat, Lion, True) >>> Nice(Lion, True) ::: If the lion likes the cat and the cat chases the lion then the lion is nice.\nLikes($x, Cat, True) >>> Likes($x, Lion, True) ::: If something likes the cat then it likes the lion.\nChases($x, Lion, True) >>> Visits(Lion, Bear, True) ::: If something chases the lion then the lion visits the bear.\n\nQuery:\nChases(Bear, Cat, True) ::: The bear chases the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

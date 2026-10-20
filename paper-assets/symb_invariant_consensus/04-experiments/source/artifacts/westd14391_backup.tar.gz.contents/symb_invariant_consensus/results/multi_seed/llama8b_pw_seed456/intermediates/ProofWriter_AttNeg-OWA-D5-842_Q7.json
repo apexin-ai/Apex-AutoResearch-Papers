@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-842_Q7",
+    "problem": "Anne is big. Anne is cold. Anne is young. Dave is round. Dave is white. Erin is cold. Erin is white. Erin is young. Gary is cold. Gary is young. If something is big then it is cold. Round things are big. Furry, round things are big. All cold things are furry. If Erin is round then Erin is young. All furry, big things are young. White things are round. If Gary is cold then Gary is white. All white, young things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nCold(Anne, True) ::: Anne is cold.\nYoung(Anne, True) ::: Anne is young.\nRound(Dave, True) ::: Dave is round.\nWhite(Dave, True) ::: Dave is white.\nCold(Erin, True) ::: Erin is cold.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nCold(Gary, True) ::: Gary is cold.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nBig($x, True) >>> Cold($x, True) ::: If something is big then it is cold.\nRound($x, True) >>> Big($x, True) ::: Round things are big.\nFurry($x, True) && Round($x, True) >>> Big($x, True) ::: Furry, round things are big.\nCold($x, True) >>> Furry($x, True) ::: All cold things are furry.\nRound(Erin, True) >>> Young(Erin, True) ::: If Erin is round then Erin is young.\nFurry($x, True) && Big($x, True) >>> Young($x, True) ::: All furry, big things are young.\nWhite($x, True) >>> Round($x, True) ::: White things are round.\nCold(Gary, True) >>> White(Gary, True) ::: If Gary is cold then Gary is white.\nWhite($x, True) && Young($x, True) >>> Nice($x, True) ::: All white, young things are nice.\n\nQuery:\nFurry(Dave, True) ::: Dave is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

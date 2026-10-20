@@ -1,0 +1,43 @@
+{
+  "exp_id": "pilot-constraint-filtering",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:47:05.171Z",
+    "updated_at": "2026-05-17T05:28:15.484Z",
+    "hypothesis": "Constraint Consistency Filtering: 只保留在≥T条traces中重复出现的约束能否提升SICA accuracy超过SC——验证约束质量过滤是否解决capability trap",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T04:47:13.762Z",
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T05:28:15.355Z",
+      "training_hours": 0.68
+    },
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_pilot_constraint_filtering.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "282213",
+      "log_path": "~/runs/symb_invariant_consensus/pilot-constraint-filtering.log",
+      "submitted_at": "2026-05-17T04:47:15.480Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "282213",
+    "log_path": "~/runs/symb_invariant_consensus/pilot-constraint-filtering.log"
+  },
+  "timestamp": "2026-05-17T05:28:15.550058+00:00",
+  "trigger": "update_registry"
+}

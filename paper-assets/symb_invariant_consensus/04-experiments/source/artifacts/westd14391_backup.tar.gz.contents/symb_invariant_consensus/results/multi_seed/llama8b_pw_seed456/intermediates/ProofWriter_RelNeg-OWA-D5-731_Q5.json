@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-731_Q5",
+    "problem": "The bald eagle eats the cat. The bald eagle needs the cow. The bald eagle visits the squirrel. The cat does not eat the squirrel. The cat is green. The cat needs the cow. The cow is young. The squirrel eats the cat. The squirrel is blue. The squirrel needs the bald eagle. The squirrel needs the cow. If someone needs the cow and they are not nice then they eat the squirrel. If someone eats the cow and the cow needs the bald eagle then they eat the squirrel. If someone needs the cat then they need the bald eagle. If someone eats the squirrel and they visit the squirrel then the squirrel eats the bald eagle. If someone needs the squirrel then the squirrel does not need the bald eagle. If someone needs the cat then the cat does not eat the cow. If someone needs the cat and they need the bald eagle then the bald eagle is young. If someone is young then they need the cat. If the squirrel does not eat the bald eagle then the squirrel visits the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow needs the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nEats(BaldEagle, Cat, True) ::: The bald eagle eats the cat.\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nVisits(BaldEagle, Squirrel, True) ::: The bald eagle visits the squirrel.\nEats(Cat, Squirrel, False) ::: The cat does not eat the squirrel.\nGreen(Cat, True) ::: The cat is green.\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nYoung(Cow, True) ::: The cow is young.\nEats(Squirrel, Cat, True) ::: The squirrel eats the cat.\nBlue(Squirrel, True) ::: The squirrel is blue.\nNeeds(Squirrel, BaldEagle, True) ::: The squirrel needs the bald eagle.\nNeeds(Squirrel, Cow, True) ::: The squirrel needs the cow.\n\nRules:\nNeeds($x, Cow, True) && Nice($x, False) >>> Eats($x, Squirrel, True) ::: If someone needs the cow and they are not nice then they eat the squirrel.\nEats($x, Cow, True) && Needs(Cow, BaldEagle, True) >>> Eats($x, Squirrel, True) ::: If someone eats the cow and the cow needs the bald eagle then they eat the squirrel.\nNeeds($x, Cat, True) >>> Needs($x, BaldEagle, True) ::: If someone needs the cat then they need the bald eagle.\nEats($x, Squirrel, True) && Visits($x, Squirrel, True) >>> Eats(Squirrel, BaldEagle, True) ::: If someone eats the squirrel and they visit the squirrel then the squirrel eats the bald eagle.\nNeeds($x, Squirrel, True) >>> Needs(Squirrel, BaldEagle, False) ::: If someone needs the squirrel then the squirrel does not need the bald eagle.\nNeeds($x, Cat, True) >>> Eats(Cat, Cow, False) ::: If someone needs the cat then the cat does not eat the cow.\nNeeds($x, Cat, True) && Needs($x, BaldEagle, True) >>> Young(BaldEagle, True) ::: If someone needs the cat and they need the bald eagle then the bald eagle is young.\nYoung($x, True) >>> Needs($x, Cat, True) ::: If someone is young then they need the cat.\nEats(Squirrel, BaldEagle, False) >>> Visits(Squirrel, Cow, True) ::: If the squirrel does not eat the bald eagle then the squirrel visits the cow.\n\nQuery:\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

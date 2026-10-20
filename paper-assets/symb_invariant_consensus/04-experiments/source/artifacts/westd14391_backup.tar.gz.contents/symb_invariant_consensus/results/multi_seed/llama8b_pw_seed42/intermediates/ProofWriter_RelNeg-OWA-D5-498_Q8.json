@@ -1,0 +1,1140 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-498_Q8",
+    "problem": "The cow eats the dog. The cow eats the mouse. The cow is blue. The cow is nice. The cow does not like the mouse. The cow sees the mouse. The dog eats the cow. The dog is blue. The dog is round. The dog sees the tiger. The mouse is kind. The mouse likes the cow. The mouse sees the cow. The tiger is not nice. The tiger does not like the mouse. The tiger sees the mouse. If someone is round then they are nice. If someone is green then they like the tiger. If someone likes the tiger then the tiger sees the cow. If someone sees the mouse and they do not like the mouse then the mouse is blue. If someone is nice then they eat the dog. If the tiger is nice then the tiger does not like the cow. If someone is round and they eat the dog then they are green. If someone eats the cow then they like the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nEats(Cow, Dog, True) ::: The cow eats the dog.\nEats(Cow, Mouse, True) ::: The cow eats the mouse.\nBlue(Cow, True) ::: The cow is blue.\nNice(Cow, True) ::: The cow is nice.\nLikes(Cow, Mouse, False) ::: The cow does not like the mouse.\nSees(Cow, Mouse, True) ::: The cow sees the mouse.\nEats(Dog, Cow, True) ::: The dog eats the cow.\nBlue(Dog, True) ::: The dog is blue.\nRound(Dog, True) ::: The dog is round.\nSees(Dog, Tiger, True) ::: The dog sees the tiger.\nKind(Mouse, True) ::: The mouse is kind.\nLikes(Mouse, Cow, True) ::: The mouse likes the cow.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\nNice(Tiger, False) ::: The tiger is not nice.\nLikes(Tiger, Mouse, False) ::: The tiger does not like the mouse.\nSees(Tiger, Mouse, True) ::: The tiger sees the mouse.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: If someone is round then they are nice.\nGreen($x, True) >>> Likes($x, Tiger, True) ::: If someone is green then they like the tiger.\nLikes($x, Tiger, True) >>> Sees(Tiger, Cow, True) ::: If someone likes the tiger then the tiger sees the cow.\nSees($x, Mouse, True) && Likes($x, Mouse, False) >>> Blue(Mouse, True) ::: If someone sees the mouse and they do not like the mouse then the mouse is blue.\nNice($x, True) >>> Eats($x, Dog, True) ::: If someone is nice then they eat the dog.\nNice(Tiger, True) >>> Likes(Tiger, Cow, False) ::: If the tiger is nice then the tiger does not like the cow.\nRound($x, True) && Eats($x, Dog, True) >>> Green($x, True) ::: If someone is round and they eat the dog then they are green.\nEats($x, Cow, True) >>> Likes($x, Cow, True) ::: If someone eats the cow then they like the cow.\n\nQuery:\nGreen(Dog, False) ::: The dog is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 112.5,
+      "True": 114.5,
+      "Unknown": 92.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "True": 3,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we'll break it down step by step based on the given information.\n\n1. The cow eats the dog. \n   - The cow is blue.\n   - The cow is nice.\n   - The cow does not like the mouse.\n   - The cow sees the mouse.\n   - The dog eats the cow.\n   - The dog is blue.\n   - The dog is round.\n   - The dog sees the tiger.\n   - The mouse is kind.\n   - The mouse likes the cow.\n   - The mouse sees the cow.\n   - The tiger is not nice.\n   - The tiger does not like the mouse.\n   - The tiger sees the mouse.\n\n2. Determine the condition related to the color of the dog:\n   - If someone is round then they are nice. (Condition 1)\n   - If someone is green then they like the tiger. (Condition 2)\n   - If someone likes the tiger then the tiger sees the cow. (Condition 3)\n   - If someone sees the mouse and they do not like the mouse then the mouse is blue. (Condition 4)\n   - If someone is nice then they eat the dog. (Condition 5)\n   - If the tiger is nice then the tiger does not like the cow. (Condition 6)\n   - If someone is round and they eat the dog then they are green. (Condition 7)\n   - If someone eats the cow then they like the cow. (Condition 8)\n\nNow, let's use the given information to deduce the color of the dog:\n- The dog is round (Given)\n- According to Condition 1, if someone is round then they are nice. Therefore, the dog is nice.\n- According to Condition 5, if someone is nice then they eat the dog. This implies that the dog was eaten by the cow (Given).\n- According to Condition 8, if someone eats the cow then they like the cow. Therefore, the dog likes the cow.\n\nNow, let's check the possibilities of the dog's color based on the given information and the conditions:\n- If someone eats the dog, then we need to check the conditions that involve the dog eating something. \n- The dog eats the cow (Given). Now let's check the conditions related to the color of the dog based on what we know:\n  - If someone is round and they eat the dog then they are green (Condition 7).\n  - If someone is round then they are nice (Condition 1).\n- Since the dog is round and nice, we can infer that the dog is green based on Condition 7.\n\nHowever, we have a problem here. The dog is also nice based on Condition 1. Now let's see if we can resolve this contradiction:\n- The dog is round (Given)\n- The dog is nice (Based on Condition 1)\n- The dog sees the tiger (Given)\n- The dog eats the cow (Given)\n\nNow let's check the possibilities of the dog's color:\n- If someone is round and they eat the dog then they are green (Condition 7).\n- If someone is round then they are nice (Condition 1).\n- Since the dog is round and nice, we can infer that the dog is green based on Condition 7.\n\nBased on the above analysis, we can conclude that the dog is green.\n\nTherefore, the statement \"The dog is not green\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. The dog is round. (Given)\n2. If someone is round then they are nice. (Rule)\n   - Therefore, the dog is nice. (From rule 2 and statement 1)\n\n3. If someone is nice then they eat the dog. (Rule)\n   - Therefore, the dog eats the dog. (From rule 3 and statement 2)\n\n4. If someone eats the cow then they like the cow. (Rule)\n   - Since the dog eats the dog (from statement 3), it implies that the dog eats the cow is false, and therefore the dog does not like the cow.\n\n5. If someone is round and they eat the dog then they are green. (Rule)\n   - Since the dog is round (from statement 1) and it eats the dog (from statement 3), it implies that the dog is green. \n\nHowever, the statement given in the question asks whether the dog is not green, which we will determine by evaluating the statement \"The dog is green\" first.\n\n6. The dog is green. (From rule 5 and statements 1 and 3)\n\nSince the dog is green (from statement 6), the statement \"The dog is not green\" is false.\n\nSo, the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that define the characteristics of the animals.\n\n1. The dog is round. (Given statement)\n2. If someone is round then they are nice. (Given condition)\n   Therefore, the dog is nice.\n\n3. If someone is round and they eat the dog then they are green. (Given condition)\n   However, we do not have any information about the dog eating the dog or any other animal eating the dog. \n   But we do know that the dog eats the cow. (Given statement)\n   So we can use the condition \"If someone is round and they eat the dog then they are green\" to analyze the cow.\n   But, the condition does not apply to the dog directly.\n   Since we know that the dog is round, we can use another condition: \"If someone is round then they are nice.\"\n   But we can use another condition: \"If someone is nice then they eat the dog.\" (Given condition)\n   We know that the cow is nice (From the statement \"The cow is nice.\") and the cow eats the dog. (Given statement)\n   Now, we can apply the condition \"If someone is round and they eat the dog then they are green\" to the cow.\n   Since the cow eats the dog, the condition applies to the cow. \n   But, we do not have any information about the cow being round. \n   However, we do know that the dog is round. (Given statement)\n   If the dog is round and the cow eats the dog, then the cow is round. \n   Therefore, the cow is round and it eats the dog. \n   So, the cow is green. \n   But we already know that the dog eats the cow. (Given statement)\n   Now, we can apply the condition \"If someone eats the cow then they like the cow.\" (Given condition)\n   So, the dog likes the cow.\n\n4. If someone likes the cow then they do not like the tiger. (We can derive this from the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\")\n   But, we do not have any information about the dog seeing the mouse or not seeing the mouse.\n   However, we do know that the dog sees the tiger. (Given statement)\n   Now, we can apply the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the dog seeing the mouse. \n   However, we do know that the dog sees the tiger. (Given statement)\n   Now, we can apply the condition \"If someone likes the tiger then the tiger sees the cow.\"\n   But, we do not have any information about the dog liking the tiger or not liking the tiger.\n   However, we do know that the dog sees the tiger. (Given statement)\n   Now, we can apply the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the dog seeing the mouse or not seeing the mouse.\n   However, we do know that the dog sees the tiger. (Given statement)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   But, we do not have any information about the dog being green or not being green.\n   However, we do know that the cow is green. (We derived this in the previous step)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   So, the cow likes the tiger.\n\n5. We can derive the following statement from the condition \"If someone likes the tiger then the tiger sees the cow.\"\n   So, the tiger sees the cow.\n\n6. We can derive the following statement from the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the tiger seeing the mouse or not seeing the mouse.\n   However, we do know that the tiger sees the mouse. (Given statement)\n   Now, we can apply the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the tiger seeing the mouse or not seeing the mouse.\n   However, we do know that the tiger sees the mouse. (Given statement)\n   Now, we can apply the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the tiger seeing the mouse or not seeing the mouse.\n   However, we do know that the tiger sees the mouse. (Given statement)\n   Now, we can apply the condition \"If someone is nice then they eat the dog.\"\n   But, we do not have any information about the tiger being nice or not being nice.\n   However, we do know that the tiger is not nice. (Given statement)\n   We can derive the following statement from the condition \"If the tiger is nice then the tiger does not like the cow.\"\n   So, the tiger likes the cow.\n\n7. We can derive the following statement from the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the mouse seeing the mouse or not seeing the mouse.\n   However, we do know that the mouse sees the cow. (Given statement)\n   Now, we can apply the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the mouse seeing the mouse or not seeing the mouse.\n   However, we do know that the mouse sees the cow. (Given statement)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   But, we do not have any information about the mouse being green or not being green.\n   However, we do know that the cow is green. (We derived this in the previous step)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   So, the cow likes the tiger.\n\n8. We can derive the following statement from the condition \"If someone likes the tiger then the tiger sees the cow.\"\n   But, we do not have any information about the mouse liking the tiger or not liking the tiger.\n   However, we do know that the mouse likes the cow. (Given statement)\n   We can derive the following statement from the condition \"If someone sees the mouse and they do not like the mouse then the mouse is blue.\"\n   But, we do not have any information about the mouse seeing the mouse or not seeing the mouse.\n   However, we do know that the mouse sees the cow. (Given statement)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   But, we do not have any information about the mouse being green or not being green.\n   However, we do know that the cow is green. (We derived this in the previous step)\n   Now, we can apply the condition \"If someone is green then they like the tiger.\"\n   So, the cow likes the tiger.\n\nNow, let's summarize the information we have about the dog and the given statement.\n\n1. The dog is round. (Given statement)\n2. If someone is round then they are nice. (Given condition)\n   Therefore, the dog is nice.\n\n3. If someone is round and they eat the dog then they are green. (Given condition)\n   However, we do know that the dog eats the cow. (Given statement)\n   If the dog is round and the cow eats the dog, then the cow is round. \n   Therefore, the cow is round and it eats the dog. \n   So, the cow is green.\n\n4. We can derive the following statement from the condition \"If someone is round then they are nice.\"\n   So, the dog is nice.\n\n5. We can derive the following statement from the condition \"If someone is round and they eat the dog then they are green.\"\n   However, we do not have any information about the dog eating the dog or any other animal eating the dog. \n   But we do know that the dog eats the cow. (Given statement)\n   However, we do not have any information about the cow eating the dog or not eating the dog.\n   However, we do know that the cow eats the dog. (Given statement)\n   Now, we can apply the condition \"If someone eats the cow then they like the cow.\" (Given condition)\n   So, the dog likes the cow.\n\nNow, let's analyze the statement \"The dog is not green.\"\n\nWe can derive the following statement from the condition \"If someone is round and they eat the dog then they are green.\"\nHowever, we do not have any information about the dog eating the dog or any other animal eating the dog. \nBut we do know that the dog eats the cow. (Given statement)\nIf the dog is round and the cow eats the dog, then the cow is round. \nTherefore, the cow is round and it eats the dog. \nSo, the cow is green.\n\nNow, let's analyze the statement \"The dog is not green.\"\n\nSince we do not have any information about the dog eating the dog or any other animal eating the dog, \nwe can derive the following statement from the condition \"If someone eats the cow then they like the cow.\"\nSo, the dog likes the cow.\n\nNow, let's analyze the statement \"The dog is not green.\"\n\nWe can derive the following statement from the condition \"If someone is green then they like the tiger.\"\nHowever, we do not have any information about the dog being green or not being green.\nHowever, we do know that the cow is green",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The dog is round. (Given)\n2. If someone is round then they are nice. (Rule)\n3. If someone is round and they eat the dog then they are green. (Rule)\n   However, we don't know if the cow is round, so we cannot conclude that the cow is green.\n   Since the dog is round, then the dog is nice. (From rule 2)\n\n4. The cow eats the dog. (Given)\n   Since the cow is nice (From rule 2 and statement 1), then the cow eats the dog. (From rule 5)\n\n5. The dog is blue. (Given)\n   We cannot conclude that the dog is green because we don't know if the cow is round and if the cow eats the dog. \n\n   From rule 3, if the dog is round and it eats the dog then the dog is green. However, we don't know if the dog eats the dog.\n\n6. The dog eats the cow. (Given)\n   This statement cannot be true because the cow eats the dog (Statement 4).\n\n7. The mouse eats the cow. (Given)\n   However, we don't know the relationship between the mouse and the cow.\n\nNow, let's analyze the other statements related to the color of the dog.\n\n8. The dog is not green if the cow is not round. However, we cannot conclude that the cow is not round.\n\n9. The dog is not green if the cow does not eat the dog. However, we know that the cow eats the dog (Statement 4).\n\n10. The dog is not green if the dog does not eat the dog. However, we know that the dog eats the cow (Statement 6), but we cannot conclude that the dog eats the dog.\n\n11. The dog is not green if the dog does not see the tiger. However, we don't know if the dog sees the tiger.\n\n12. The dog is not green if the tiger is not nice. However, we don't know if the tiger is nice.\n\n13. The dog is not green if the tiger does not see the mouse. However, we don't know if the tiger sees the mouse.\n\n14. The dog is not green if the mouse is not blue. However, we don't know if the mouse is blue.\n\n15. The dog is not green if the mouse does not see the cow. However, we don't know if the mouse sees the cow.\n\nHowever, we can conclude the following:\n\nThe dog eats the cow (Statement 6) but the cow eats the dog (Statement 4). This is a contradiction.\n\nWe cannot conclude the color of the dog from the given statements because of the contradiction between statements 4 and 6.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is round. (Given)\n2. If someone is round then they are nice. (Given)\n   So, the dog is nice. (Conclusion 1)\n\n3. If someone is round and they eat the dog then they are green. (Given)\n   We don't know if the dog eats the dog, so we cannot conclude that the dog is green based on this rule.\n\n4. The dog eats the cow. (Given)\n5. If someone eats the cow then they like the cow. (Given)\n   So, the dog likes the cow. (Conclusion 2)\n\n6. The mouse likes the cow. (Given)\n7. The cow does not like the mouse. (Given)\n8. If someone sees the mouse and they do not like the mouse then the mouse is blue. (Given)\n   Since the cow sees the mouse and does not like the mouse, we cannot conclude that the mouse is blue. However, we can conclude that the mouse is not blue because there is no other information given about the mouse being blue.\n\nHowever, we are still unsure whether the dog is green or not. So, let's continue analyzing the information.\n\n9. If the tiger is nice then the tiger does not like the cow. (Given)\n   We do not know if the tiger is nice, so we cannot conclude anything about the tiger's likes or dislikes.\n\n10. The tiger is not nice. (Given)\n11. The tiger does not like the mouse. (Given)\n12. The tiger sees the mouse. (Given)\n13. The mouse is kind. (Given)\n14. The mouse likes the cow. (Given)\n15. The cow is blue. (Given)\n16. The dog is blue. (Given)\n17. The dog is round. (Given)\n18. If someone is green then they like the tiger. (Given)\n   We cannot conclude that the dog is green because there is no information that the dog likes the tiger.\n\n19. The dog sees the tiger. (Not given, but we can infer it from the information given. The dog and the tiger are present in the same statement, implying that the dog sees the tiger)\n20. The dog likes the cow (Conclusion 2) and the cow is blue (Given), so we cannot conclude that the dog likes the tiger.\n\nBased on the above analysis, we cannot conclude that the dog is green or not. However, we can conclude that the statement \"The dog is not green\" is true based on the fact that we cannot find any information that the dog is green.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine if the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is round. \nThis statement does not directly relate to the color of the dog. \n\n2. If someone is round then they are nice.\nThis statement does not directly relate to the color of the dog.\n\n3. If someone is round and they eat the dog then they are green.\nSince the dog is round, and we know that the dog eats the cow (from statement 7), we can use this information. However, this statement does not directly tell us about the dog's color, but rather about the color of the one who eats the dog. \n\n4. The dog is blue. \nThis statement directly tells us that the dog is blue, not green.\n\nBased on the given information, we can conclude that the statement \"The dog is not green\" is false because we have a more specific statement (4) that the dog is blue.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is round. \nFrom this, we can conclude that the dog is nice, as given in the statement: \"If someone is round then they are nice.\"\n\n2. The dog is nice. \nNow, we can conclude that the dog eats the cow, as given in the statement: \"If someone is nice then they eat the dog.\" This contradicts the initial statement that the dog eats the cow.\n\n3. The dog eats the cow. \nFrom this, we can conclude that the dog likes the cow, as given in the statement: \"If someone eats the cow then they like the cow.\"\n\n4. The dog likes the cow. \nHowever, we cannot conclude that the dog is green from the given statements.\n\nTherefore, based on the given statements, we cannot determine if the dog is green or not. Hence, the statement \"The dog is not green\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The dog is round. \n   From the rule \"If someone is round then they are nice,\" we can deduce that the dog is nice.\n\n2. The dog eats the cow. \n   From the rule \"If someone is nice then they eat the dog\" does not directly apply because this rule states that the nice person eats the dog. But this rule is not applicable here because it is the other way around, the dog eats the cow. However, this does not affect our next step in determining if the dog is green or not.\n\n3. The dog is round. \n   From the rule \"If someone is round and they eat the dog then they are green,\" we can see that the dog eating the dog part is not applicable here. The rule is about the round person eating the dog. However, we know that the dog is round but this does not tell us about the dog eating the dog. This rule is about someone being round and eating the dog. Since the dog is round, we need to look for another rule that applies to the dog being round. \n\n4. The dog is round. \n   From the rule \"If someone is round then they are nice,\" we already know the dog is nice.\n\n5. The dog eats the cow. \n   From the rule \"If someone eats the cow then they like the cow,\" we can deduce that the dog likes the cow.\n\n6. The dog is blue. \n   This directly tells us that the dog is blue.\n\nNow, considering all the information about the dog, we know that the dog is round, nice, eats the cow, likes the cow, is blue, but we don't know if the dog is green or not.\n\nTo determine if the dog is green, we need to look at the rules related to green and the information given about the dog.\n\n7. If someone is green then they like the tiger.\n   We know that the dog likes the cow, but we do not have any information about the dog liking the tiger.\n\n8. If someone likes the tiger then the tiger sees the cow.\n   This rule does not apply to the dog because we do not have any information about the dog liking the tiger.\n\n9. If someone sees the mouse and they do not like the mouse then the mouse is blue.\n   This rule does not apply to the dog.\n\n10. If someone is nice then they eat the dog.\n   This rule does not apply to the dog because it is the other way around, the dog eats the cow.\n\n11. If the tiger is nice then the tiger does not like the cow.\n   This rule does not apply to the dog.\n\n12. If someone is round and they eat the dog then they are green.\n   We already know that the dog is round and eats the cow, but this rule does not tell us about the dog being green. However, we also know that the dog is nice and we do not have any information about the dog eating the dog. But this rule does not apply to the dog being round and eating the dog. However, we need to look for another rule that applies to the dog being round.\n\n13. The dog is round.\n   From the rule \"If someone is round then they are nice,\" we already know that the dog is nice.\n\n14. The dog is round.\n   From the rule \"If someone is round and they eat the dog then they are green,\" we know that the dog is round. However, we do not have any information about the dog eating the dog. But we know that the dog eats the cow. We need to look for another rule that applies to the dog being round.\n\n15. If someone is round then they are nice.\n   We already know that the dog is round and nice.\n\n16. The dog sees the tiger.\n   This rule does not apply to the dog being green.\n\n17. The mouse is kind.\n   This rule does not apply to the dog.\n\n18. The mouse likes the cow.\n   This rule does not apply to the dog.\n\n19. The mouse sees the cow.\n   This rule does not apply to the dog.\n\n20. The tiger is not nice.\n   This rule does not apply to the dog.\n\n21. The tiger does not like the mouse.\n   This rule does not apply to the dog.\n\n22. The tiger sees the mouse.\n   This rule does not apply to the dog.\n\n23. The mouse is kind.\n   This rule does not apply to the dog.\n\n24. The mouse likes the cow.\n   This rule does not apply to the dog.\n\n25. The mouse sees the cow.\n   This rule does not apply to the dog.\n\nSince we have exhausted all the rules and the information provided about the dog, and we still do not know if the dog is green or not, the statement \"The dog is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If someone is round then they are nice. \n   The dog is round, so the dog is nice.\n\n2. The dog is nice.\n   If someone is nice then they eat the dog. \n   This means that the dog eats the dog. However, this statement is contradictory because if the dog eats the dog, then the dog cannot be alive to eat itself. We will ignore this statement for now and continue analyzing the information.\n\n3. If someone is round and they eat the dog then they are green.\n   Since we know the dog is round and eats the dog, we can conclude that the dog is green.\n\nHowever, we already know the dog is blue from the statement \"The dog is blue.\" We have a contradiction between the dog being green and the dog being blue. \n\nSince there is a contradiction between the given statements, we cannot determine the color of the dog with certainty. The statement \"The dog is not green\" could be true or false depending on which information is considered correct.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nFrom the given information:\n1. The dog is round.\n2. If someone is round then they are nice.\n3. If someone is round and they eat the dog then they are green.\n4. The dog is blue.\n5. If someone eats the cow then they like the cow.\n\nNow, let's examine each piece of information:\n\nFrom (1) and (2), we know that the dog is nice because it is round.\n\nNow, let's consider (3): If someone is round and they eat the dog, then they are green. However, (4) states that the dog is blue, not that it eats the dog. So, we cannot directly apply this rule.\n\nNow, let's look at (5): If someone eats the cow, then they like the cow. But, we do not know if the dog eats the cow or not. However, we do know that the dog sees the tiger (statement 8), but there is no direct connection between the dog seeing the tiger and the dog eating the cow.\n\nFrom (4), we know the dog is blue.\n\nNow, let's examine the rule \"If someone is green then they like the tiger\" (rule 2). However, we have no information that the dog is green. The only information we have about the dog's color is that it is blue.\n\nFrom the information we have, we cannot determine whether the dog is green or not. Therefore, the statement \"The dog is not green\" is unknown because we do not have enough information to confirm or deny it.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is:\n   - The dog is round.\n   - If someone is round then they are nice.\n   - If someone is round and they eat the dog then they are green.\n   - The dog eats the cow.\n\n2. From the given information, we know that the dog is round. \n\n3. Using the rule \"If someone is round then they are nice,\" we can conclude that the dog is nice.\n\n4. However, we don't have any direct information about the dog eating the dog. The statement \"The dog eats the cow\" does not provide enough information about the dog eating the dog.\n\n5. Using the rule \"If someone is round and they eat the dog then they are green,\" we can conclude that since the dog is round and nice, and it eats the cow (not the dog), we cannot apply this rule to the dog. \n\n6. Since the dog is not green and it does not eat the dog, we cannot conclude anything about the dog being green from the given rules.\n\n7. However, we do not have enough information to determine if the dog is green or not from the given rules, but we can determine that the dog is not green from the given rules by finding the rule \"If someone is round then they are nice.\" then \"The dog is round,\" then \"The dog is nice.\" and \"If the dog is round and the dog is nice, then the dog does not eat the dog. So we cannot apply \"If someone is round and they eat the dog then they are green.\" then \"The dog is not green.\"\n\nHowever, we do have enough information to conclude that the dog is not green using the rules and the statements that are given. Therefore, we can conclude that the dog is not green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is round. (From the given statements)\n\n2. If someone is round then they are nice. (From the given statements)\n   So, the dog is nice.\n\n3. If someone is nice then they eat the dog. (From the given statements)\n   So, the dog eats the dog.\n\n4. However, we also know that The cow eats the dog. (From the given statements)\n\n5. Since we have two different statements saying the dog is eaten by the cow and also by the dog itself, we can conclude that the dog is eaten by the cow.\n\n6. If someone eats the cow then they like the cow. (From the given statements)\n   So, the dog likes the cow.\n\n7. The dog is blue. (From the given statements)\n\nNow, let's check if the dog is green or not:\n\n8. If someone sees the mouse and they do not like the mouse then the mouse is blue. (From the given statements)\n   This does not directly relate to the dog.\n\n9. If someone is green then they like the tiger. (From the given statements)\n   We do not have any information about the dog liking the tiger.\n\n10. If someone is round and they eat the dog then they are green. (From the given statements)\n    Since we know the dog is round and is eaten by the cow, we need to check if the cow is green.\n\n11. We know the cow is blue. (From the given statements)\n\nHowever, we have not directly established that the dog is green or not. We can conclude the dog's color based on its relation to the other animals.\n\nFrom the given statements, we have:\n\n- The cow is blue.\n- The dog is blue.\n\nSince the cow and the dog have the same color and the dog is eaten by the cow, we can infer that the dog is blue but not necessarily green.\n\nHence, we can conclude that the statement \"The dog is not green\" is true because the dog is blue, not green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "not likes_tiger_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_cow_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_cow, eats_cow_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not likes(X, cow)",
+          "z3_formula": "Implies(nice_tiger, not likes_tiger_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_dog, eats_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(dog, cow)",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(Y, X) -> green(Y)",
+          "z3_formula": "Implies(And(round_dog, eats_cow_dog), green_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(Y, X) -> green(Y)",
+          "z3_formula": "Implies(And(round_dog, eats_cow_dog), green_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(Y, X) -> green(Y)",
+          "z3_formula": "Implies(And(round_dog, eats_cow_dog), green_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_cow, likes_cow_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, tiger)",
+          "z3_formula": "likes_cow_tiger == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_cow_dog), green_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "Not(likes_cow_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & not likes(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(And(sees_cow_mouse, Not(likes_cow_mouse)), blue_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(mouse)",
+          "z3_formula": "Not(blue_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "Not(nice_tiger) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "Not(likes_tiger_mouse) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_tiger, likes_tiger_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, Y) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_eater)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, cow)",
+          "z3_formula": "Implies(nice_dog, eats_dog_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_dog, likes_dog_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> tiger_sees(X, cow)",
+          "z3_formula": "Implies(likes_dog_tiger, tiger_sees_dog_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "tiger_sees(dog, cow)",
+          "z3_formula": "tiger_sees_dog_cow == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & ~likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_dog_mouse, ~likes_dog_mouse), blue_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_dog, eats_dog_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(tiger) -> ~likes(tiger, cow)",
+          "z3_formula": "Implies(nice_tiger, ~likes_tiger_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_someone_dog), green_someone)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats_cow_someone == False",
+          "z3_formula": "Not(eats_cow_someone) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_someone_cow, likes_someone_cow)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dog)",
+          "z3_formula": "Not(green_dog) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_dog, eats_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_cow_dog, likes_dog_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & ~likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_mouse, ~likes_mouse), blue_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_dog, likes_dog_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == False",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 168,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 3,
+      "total_weight": 157,
+      "solve_time_ms": 1.958915963768959
+    },
+    "timing": {
+      "trace_gen_s": 24.361,
+      "extraction_s": 29.154,
+      "dedup_s": 1.919,
+      "maxsat_s": 0.005,
+      "total_s": 55.439
+    }
+  }
+}

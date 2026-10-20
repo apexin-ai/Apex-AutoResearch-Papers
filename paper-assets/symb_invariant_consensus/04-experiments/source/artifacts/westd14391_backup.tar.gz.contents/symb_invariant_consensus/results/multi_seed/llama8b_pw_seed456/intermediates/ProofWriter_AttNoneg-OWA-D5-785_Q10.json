@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-785_Q10",
+    "problem": "Anne is rough. Anne is young. Bob is nice. Bob is red. Bob is young. Charlie is cold. Charlie is quiet. Charlie is red. Charlie is rough. Charlie is smart. Fiona is cold. Fiona is quiet. Cold people are young. Rough, young people are nice. Cold, red people are smart. Red people are smart. If someone is smart and quiet then they are cold. All rough, nice people are red. All red, quiet people are cold. All smart people are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nNice(Bob, True) ::: Bob is nice.\nRed(Bob, True) ::: Bob is red.\nYoung(Bob, True) ::: Bob is young.\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nCold(Fiona, True) ::: Fiona is cold.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nCold($x, True) >>> Young($x, True) ::: Cold people are young.\nRough($x, True) && Young($x, True) >>> Nice($x, True) ::: Rough, young people are nice.\nCold($x, True) && Red($x, True) >>> Smart($x, True) ::: Cold, red people are smart.\nRed($x, True) >>> Smart($x, True) ::: Red people are smart.\nSmart($x, True) && Quiet($x, True) >>> Cold($x, True) ::: If someone is smart and quiet then they are cold.\nRough($x, True) && Nice($x, True) >>> Red($x, True) ::: All rough, nice people are red.\nRed($x, True) && Quiet($x, True) >>> Cold($x, True) ::: All red, quiet people are cold.\nSmart($x, True) >>> Quiet($x, True) ::: All smart people are quiet.\n\nQuery:\nQuiet(Anne, False) ::: Anne is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

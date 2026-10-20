@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-033-qwen3-pw600-nonthinking",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:01:55.209Z",
+    "updated_at": "2026-05-18T16:02:07.093Z",
+    "hypothesis": "Qwen3-14B in non-thinking mode on ProofWriter 600 will show whether SICA's constraint-based consensus improves over SC@K for a model without chain-of-thought reasoning overhead, providing a controlled comparison against thinking-mode results."
+  },
+  "timestamp": "2026-05-18T16:02:07.251147+00:00",
+  "trigger": "update_registry"
+}

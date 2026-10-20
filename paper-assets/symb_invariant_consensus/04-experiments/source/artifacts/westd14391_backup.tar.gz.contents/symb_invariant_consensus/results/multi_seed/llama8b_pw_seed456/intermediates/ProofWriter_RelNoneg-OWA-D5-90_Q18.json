@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-90_Q18",
+    "problem": "The bear is kind. The mouse chases the bear. The mouse chases the rabbit. The mouse visits the rabbit. The rabbit is blue. The rabbit needs the mouse. The squirrel chases the mouse. The squirrel chases the rabbit. The squirrel is blue. The squirrel is green. The squirrel is young. If the squirrel is young and the squirrel needs the rabbit then the squirrel visits the rabbit. If something is cold then it needs the squirrel. If something visits the mouse and the mouse needs the squirrel then it needs the rabbit. If something chases the bear then it is cold. If something visits the bear and the bear visits the squirrel then the squirrel visits the rabbit. If something needs the squirrel then the squirrel visits the mouse. If the mouse visits the bear and the mouse visits the squirrel then the squirrel visits the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear needs the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nKind(Bear, True) ::: The bear is kind.\nChases(Mouse, Bear, True) ::: The mouse chases the bear.\nChases(Mouse, Rabbit, True) ::: The mouse chases the rabbit.\nVisits(Mouse, Rabbit, True) ::: The mouse visits the rabbit.\nBlue(Rabbit, True) ::: The rabbit is blue.\nNeeds(Rabbit, Mouse, True) ::: The rabbit needs the mouse.\nChases(Squirrel, Mouse, True) ::: The squirrel chases the mouse.\nChases(Squirrel, Rabbit, True) ::: The squirrel chases the rabbit.\nBlue(Squirrel, True) ::: The squirrel is blue.\nGreen(Squirrel, True) ::: The squirrel is green.\nYoung(Squirrel, True) ::: The squirrel is young.\n\nRules:\nYoung(Squirrel, True) && Needs(Squirrel, Rabbit, True) >>> Visits(Squirrel, Rabbit, True) ::: If the squirrel is young and the squirrel needs the rabbit then the squirrel visits the rabbit.\nCold($x, True) >>> Needs($x, Squirrel, True) ::: If something is cold then it needs the squirrel.\nVisits($x, Mouse, True) && Needs(Mouse, Squirrel, True) >>> Needs($x, Rabbit, True) ::: If something visits the mouse and the mouse needs the squirrel then it needs the rabbit.\nChases($x, Bear, True) >>> Cold($x, True) ::: If something chases the bear then it is cold.\nVisits($x, Bear, True) && Visits(Bear, Squirrel, True) >>> Visits(Squirrel, Rabbit, True) ::: If something visits the bear and the bear visits the squirrel then the squirrel visits the rabbit.\nNeeds($x, Squirrel, True) >>> Visits(Squirrel, Mouse, True) ::: If something needs the squirrel then the squirrel visits the mouse.\nVisits(Mouse, Bear, True) && Visits(Mouse, Squirrel, True) >>> Visits(Squirrel, Bear, True) ::: If the mouse visits the bear and the mouse visits the squirrel then the squirrel visits the bear.\n\nQuery:\nNeeds(Bear, Rabbit, True) ::: The bear needs the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

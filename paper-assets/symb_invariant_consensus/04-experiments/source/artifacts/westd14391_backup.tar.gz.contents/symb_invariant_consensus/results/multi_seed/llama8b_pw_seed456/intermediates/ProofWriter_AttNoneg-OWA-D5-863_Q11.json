@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-863_Q11",
+    "problem": "Anne is furry. Anne is kind. Anne is nice. Anne is young. Bob is big. Bob is furry. Charlie is nice. Charlie is young. Dave is cold. Dave is kind. Dave is young. All cold, big people are furry. All big people are rough. All kind, big people are rough. If someone is nice and rough then they are kind. If Charlie is kind then Charlie is big. If someone is rough and kind then they are cold. Nice people are big. All rough, furry people are cold. Cold, nice people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nYoung(Anne, True) ::: Anne is young.\nBig(Bob, True) ::: Bob is big.\nFurry(Bob, True) ::: Bob is furry.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nYoung(Dave, True) ::: Dave is young.\n\nRules:\nCold($x, True) && Big($x, True) >>> Furry($x, True) ::: All cold, big people are furry.\nBig($x, True) >>> Rough($x, True) ::: All big people are rough.\nKind($x, True) && Big($x, True) >>> Rough($x, True) ::: All kind, big people are rough.\nNice($x, True) && Rough($x, True) >>> Kind($x, True) ::: If someone is nice and rough then they are kind.\nKind(Charlie, True) >>> Big(Charlie, True) ::: If Charlie is kind then Charlie is big.\nRough($x, True) && Kind($x, True) >>> Cold($x, True) ::: If someone is rough and kind then they are cold.\nNice($x, True) >>> Big($x, True) ::: Nice people are big.\nRough($x, True) && Furry($x, True) >>> Cold($x, True) ::: All rough, furry people are cold.\nCold($x, True) && Nice($x, True) >>> Big($x, True) ::: Cold, nice people are big.\n\nQuery:\nFurry(Charlie, True) ::: Charlie is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

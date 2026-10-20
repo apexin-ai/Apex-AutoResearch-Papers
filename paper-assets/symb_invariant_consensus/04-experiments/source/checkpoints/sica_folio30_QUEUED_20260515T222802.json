@@ -1,0 +1,39 @@
+{
+  "exp_id": "sica_folio30",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:08:43.460Z",
+    "updated_at": "2026-05-15T22:28:02.340Z",
+    "hypothesis": "逻辑域（FOLIO）上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12——FOLIO 有天然 FOL 标注，是 SICA 约束提取的理想场景",
+    "parent": "sica_aime30_v3",
+    "spec": {
+      "hypothesis": "FOLIO 逻辑域上 SICA 能否利用 FOL 标注检测跨路径矛盾并超越 SC@K=12",
+      "dataset": "FOLIO (yale-nlp/FOLIO validation subset)",
+      "data_path": "/root/symb_invariant_consensus/data/folio_subset.json",
+      "data_count": 30,
+      "label_distribution": {
+        "True": 10,
+        "False": 10,
+        "Unknown": 10
+      },
+      "has_fol_annotations": true,
+      "model_name": "QwQ-32B",
+      "server": "westd-32608",
+      "command": "python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 16384 --seed 42 --save-intermediates --output results/folio_eval.json",
+      "k": 12,
+      "temperature": 0.7,
+      "max_tokens": 16384,
+      "seed": 42,
+      "eval_script": "/root/symb_invariant_consensus/eval_folio.py",
+      "dry_run_passed": true,
+      "live_test_passed": true,
+      "live_test_result": "2/2 correct (SICA=100%, SC=100%), pipeline all stages functional"
+    }
+  },
+  "timestamp": "2026-05-15T22:28:02.423218+00:00",
+  "trigger": "update_registry"
+}

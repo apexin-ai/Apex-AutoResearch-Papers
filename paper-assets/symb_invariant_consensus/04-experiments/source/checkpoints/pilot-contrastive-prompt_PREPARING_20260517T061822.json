@@ -1,0 +1,14 @@
+{
+  "exp_id": "pilot-contrastive-prompt",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:18:22.559Z",
+    "updated_at": "2026-05-17T06:18:22.559Z"
+  },
+  "timestamp": "2026-05-17T06:18:22.636227+00:00",
+  "trigger": "update_registry"
+}

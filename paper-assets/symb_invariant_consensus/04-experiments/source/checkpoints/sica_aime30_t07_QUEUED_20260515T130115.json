@@ -1,0 +1,28 @@
+{
+  "exp_id": "sica_aime30_t07",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:38:16.330Z",
+    "updated_at": "2026-05-15T13:01:15.515Z",
+    "spec": {
+      "command": "bash -c \"cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 10240 --math-data data/aime2024_subset.json --output results/aime30_t07.json --no-proofwriter 2>&1 | tee /tmp/sica_aime30_t07.log\"",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "119338",
+      "log_path": "~/runs/symb_invariant_consensus/sica_aime30_t07.log",
+      "submitted_at": "2026-05-15T13:01:07.184Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "AIME 2024（QwQ-32B 弱项，~79.5% acc）上 SICA 能否检测更多跨路径矛盾并超越 SC@K=12——验证\"SICA 价值随问题难度递增\"假设"
+  },
+  "timestamp": "2026-05-15T13:01:15.553327+00:00",
+  "trigger": "update_registry"
+}

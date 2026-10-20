@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-028-qwen3-14b-thinking",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:02:12.168Z",
+    "updated_at": "2026-05-18T15:36:34.998Z",
+    "hypothesis": "Qwen3-14B thinking mode 在 FOLIO 204 上 SICA vs SC：原生推理能力（内置 CoT）是否改变 capability trap？两种可能：(a) thinking mode 使 traces 更确定性（类似 QwQ-32B），C0 极低→SICA≡SC；(b) thinking mode 提升 constraint extraction 质量，打破 capability trap。预期 (a) 更可能。",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash -c \"export VLLM_USE_FLASHINFER_SAMPLER=0 && source /root/miniconda3/bin/activate && cd /root/symb_invariant_consensus && bash scripts/run_qwen3_14b_thinking.sh\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "40990",
+      "log_path": "~/runs/symb_invariant_consensus/exp-028-qwen3-14b-thinking.log",
+      "submitted_at": "2026-05-18T14:21:40.871Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T15:36:35.121523+00:00",
+  "trigger": "update_registry"
+}

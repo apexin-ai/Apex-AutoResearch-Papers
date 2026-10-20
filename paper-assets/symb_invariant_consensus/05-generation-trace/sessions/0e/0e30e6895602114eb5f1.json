@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e30e6895602114eb5f1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix oracle doc trace source",
+  "task_key": "worker_fix_oracle-doc-trace-source_20260517T171013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_oracle-doc-trace-source_20260517T171013_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "3353d60159b3a038ca4afbe7f29cff0f4548bc9e1e83160599ad6c435a8f2b2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个修复完成，汇总：\n\n### 修复 1: 设计文档 trace 来源\n- `results/exp020_folio_200/exp020_results.json` → `results/sica_expanded_14b.json`\n- 明确标注 \"Qwen2.5-14B-Instruct traces from exp-001, FOLIO subset\"\n- 三方对比表的 Source 列同步更新为 `exp-001 (sica_expanded_14b)`\n- SC=79.41% 与 sica_expanded_14b folio_sc=0.7941 一致 ✓\n\n### 修复 2: 答案解析 LaTeX 残留\n- **受影响问题**: `folio_141`（非 folio_142），traces 4 和 8 的 answer 为 `\\text{True}`\n- **Bug 机制**: `check_consistency_for_answer` 的 else 分支返回 -1，maxsat 给 0.5 权重，导致 `\\text{True}` 以 1.0 总权重赢过 \"Unknown\"(权重 0.0)\n- **修复**: 在 `run_exp021_oracle_folio.py` 添加 `normalize_answer()` 函数，用 `re.sub` 清理 `\\text{...}` 包装\n- **重跑结果**: solver_errors 从 2 → 0，folio_141 的 oracle_answer 从 `\\text{True}` → `Unknown`\n- **Accuracy 不变**: 仍为 **180/204 = 88.24%**。原因：folio_141 的 gold 是 \"False\"，修复后 oracle 答 \"Unknown\" 仍是错的，不产生 +1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-oracle-doc-trace-source.md"
+}

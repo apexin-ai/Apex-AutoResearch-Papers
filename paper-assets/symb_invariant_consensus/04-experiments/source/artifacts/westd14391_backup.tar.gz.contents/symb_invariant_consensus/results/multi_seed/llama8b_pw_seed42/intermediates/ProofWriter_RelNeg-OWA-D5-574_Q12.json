@@ -1,0 +1,1157 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-574_Q12",
+    "problem": "The bald eagle is not green. The bald eagle likes the cow. The bald eagle needs the cat. The cat is cold. The cat likes the cow. The cat needs the bald eagle. The cow eats the cat. The dog does not eat the cow. The dog is green. The dog likes the cow. The dog needs the bald eagle. All cold things are green. If something is cold then it needs the cow. If something is young then it needs the bald eagle. If something is young and cold then it eats the dog. If the bald eagle does not need the cat then the bald eagle likes the dog. If something eats the dog then the dog is cold. If something is cold then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not eat the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(BaldEagle, False) ::: The bald eagle is not green.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nNeeds(BaldEagle, Cat, True) ::: The bald eagle needs the cat.\nCold(Cat, True) ::: The cat is cold.\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nNeeds(Cat, BaldEagle, True) ::: The cat needs the bald eagle.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nEats(Dog, Cow, False) ::: The dog does not eat the cow.\nGreen(Dog, True) ::: The dog is green.\nLikes(Dog, Cow, True) ::: The dog likes the cow.\nNeeds(Dog, BaldEagle, True) ::: The dog needs the bald eagle.\n\nRules:\nCold($x, True) >>> Green($x, True) ::: All cold things are green.\nCold($x, True) >>> Needs($x, Cow, True) ::: If something is cold then it needs the cow.\nYoung($x, True) >>> Needs($x, BaldEagle, True) ::: If something is young then it needs the bald eagle.\nYoung($x, True) && Cold($x, True) >>> Eats($x, Dog, True) ::: If something is young and cold then it eats the dog.\nNeeds(BaldEagle, Cat, False) >>> Likes(BaldEagle, Dog, True) ::: If the bald eagle does not need the cat then the bald eagle likes the dog.\nEats($x, Dog, True) >>> Cold(Dog, True) ::: If something eats the dog then the dog is cold.\nCold($x, True) >>> Young($x, True) ::: If something is cold then it is young.\n\nQuery:\nEats(Dog, Dog, False) ::: The dog does not eat the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 0.0,
+      "True": 66.5,
+      "Unknown": 155.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 2,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is green. (Given)\n2. All cold things are green. (Given)\n3. If something eats the dog then the dog is cold. (Given)\n4. We do not have any information that directly states something eats the dog, but we will examine the other options and see if it leads to a conclusion.\n5. The dog likes the cow. (Given)\n6. The cow eats the cat. (Given)\n7. The cat is cold. (From step 2 and the fact that the cat is young, as it needs the bald eagle)\n8. The cat needs the bald eagle. (Given)\n9. The cat likes the cow. (Given)\n10. The bald eagle likes the cow. (Given)\n11. The bald eagle needs the cat. (Given)\n12. The bald eagle is not green. (Given)\n13. If something is cold then it needs the cow. (Given)\n14. If something is young then it needs the bald eagle. (Given)\n15. If something is young and cold then it eats the dog. (Given)\n16. The cat is young and cold (from steps 7 and 14). Since it eats the dog, the dog is cold (from step 3).\n\nNow that we know the dog is cold, and from step 2, we can conclude that the dog is green. \n\nHowever, we are given the statement that if something is cold then it needs the cow. Since the dog is cold, the dog needs the cow.\n\n17. If the bald eagle does not need the cat then the bald eagle likes the dog. (Given)\n18. From step 11, the bald eagle needs the cat, so the bald eagle does not like the dog.\n\nNow, let's examine the statement \"The dog does not eat the dog.\" We have the fact that if something is young and cold then it eats the dog (from step 15). However, we also know that the dog is cold and needs the cow (from steps 16 and 17). But we cannot conclude that the dog is young because it is only stated that something that is young and cold eats the dog. The dog could be young, but it could also be old and cold.\n\nSince we do not have enough information to conclude whether the dog is young, the statement \"The dog does not eat the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical deduction and reasoning. We will analyze the given statements and apply them to determine the validity of the statement.\n\nGiven statements:\n1. The bald eagle is not green.\n2. The bald eagle likes the cow.\n3. The bald eagle needs the cat.\n4. The cat is cold.\n5. The cat likes the cow.\n6. The cat needs the bald eagle.\n7. The cow eats the cat.\n8. The dog does not eat the cow.\n9. The dog is green.\n10. The dog likes the cow.\n11. The dog needs the bald eagle.\n12. If something is cold then it is green.\n13. If something is cold then it needs the cow.\n14. If something is young then it needs the bald eagle.\n15. If something is young and cold then it eats the dog.\n16. If the bald eagle does not need the cat then the bald eagle likes the dog.\n17. If something eats the dog then the dog is cold.\n18. If something is cold then it is young.\n\nWe need to determine whether the statement \"The dog does not eat the dog\" is true, false, or unknown.\n\nTo do this, let's start by analyzing the given statements and see if we can derive any information about the dog eating the dog.\n\nFrom statement 9, we know that the dog is green.\n\nFrom statement 17, we know that if something eats the dog then the dog is cold.\n\nIf the dog eats the dog, then the dog would be cold, which means it would be green according to statement 12.\n\nHowever, statement 9 already tells us that the dog is green, so this does not provide any new information.\n\nFrom statement 17, we also know that if something eats the dog then the dog is cold.\n\nBut we cannot conclude that the dog eats the dog, because if the dog eats the dog, then we have a self-referential statement, and we cannot determine the truth value of this statement from the given premises.\n\nHowever, we can derive some information about the relationship between the dog and the cat.\n\nFrom statement 4, we know that the cat is cold.\n\nFrom statement 7, we know that the cat needs the bald eagle.\n\nHowever, statement 6 also tells us that the cat needs the bald eagle. \n\nWe cannot conclude that the bald eagle needs the cat, because the cat needs the bald eagle, but the bald eagle might need the cat for a different reason.\n\nFrom statement 3, we know that the bald eagle needs the cat.\n\nNow, let's analyze statement 16. It says that if the bald eagle does not need the cat, then the bald eagle likes the dog.\n\nWe cannot conclude that the bald eagle likes the dog, because we do not know whether the bald eagle needs the cat or not.\n\nHowever, we can analyze the statement \"The dog does not eat the dog\" in the context of the given statements.\n\nIf the dog eats the dog, then the dog would be cold, which means it would be green according to statement 12.\n\nHowever, statement 9 already tells us that the dog is green, so this does not provide any new information.\n\nWe still cannot determine the truth value of the statement \"The dog does not eat the dog\" from the given premises.\n\nHowever, we can derive some information about the relationship between the dog and the cow.\n\nFrom statement 11, we know that the dog needs the bald eagle.\n\nFrom statement 2, we know that the bald eagle likes the cow.\n\nFrom statement 10, we know that the dog likes the cow.\n\nNow, let's analyze the statement \"The dog does not eat the dog\" in the context of the given statements.\n\nWe cannot determine the truth value of the statement \"The dog does not eat the dog\" from the given premises.\n\nSince we cannot determine the truth value of the statement \"The dog does not eat the dog\" from the given premises, we have to conclude that the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is green. (Given)\n2. All cold things are green. (Given)\n3. If something is cold then it needs the cow. (Given)\n4. If something is cold then it is young. (Given)\n5. If something is young and cold then it eats the dog. (Given)\n6. The dog does not eat the cow. (Given)\n7. The cat is cold. (Given)\n8. The cat likes the cow. (Given)\n9. The cat needs the bald eagle. (Given)\n10. The bald eagle likes the cow. (Given)\n11. The bald eagle needs the cat. (Given)\n12. If something eats the dog then the dog is cold. (Given)\n13. The cow eats the cat. (Given)\n14. The cat is cold. (From 7 and 13)\n15. The cat needs the bald eagle. (From 9)\n16. The cat is young. (From 7 and 14)\n17. Since the cat is young and cold, it eats the dog. (From 5 and 16)\n\nHowever, the statement \"The dog does not eat the dog\" is unrelated to the information given above. To determine whether the statement is true or false, we need to examine the given statements again.\n\nFrom the given statements, we have no direct information about whether the dog eats the dog or not. However, we have the following statements:\n- The dog does not eat the cow. (Given)\n- If something eats the dog then the dog is cold. (Given)\nSince there is no information about the dog eating another dog, we cannot determine the truth value of the statement based on the given information.\n\nTherefore, the statement \"The dog does not eat the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The dog does not eat the dog' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that 'If something eats the dog then the dog is cold.' This implies that if the dog eats the dog, then the dog is cold.\n\n2. We also know that 'If something is cold then it is young.' This implies that if the dog is cold, then the dog is young.\n\n3. From the information given, we have 'The dog is green.' This is a direct statement.\n\n4. From the information given, we have 'The dog likes the cow' and 'The dog needs the bald eagle.' These are direct statements.\n\nNow, let's analyze the given statements about the dog eating itself:\n\n- If the dog eats the dog, then the dog is cold.\n- If the dog is cold, then the dog is young.\n- The dog is young and young things need the bald eagle.\n- If the dog eats the dog, then the dog is cold and thus young. This means the cat, which is young, does not need the bald eagle because the dog is young, not the cat.\n- If the dog does not need the cat, then the dog likes the dog (because the bald eagle does not need the cat and it likes the dog). \n\nHowever, we have a contradiction in the statement. If the dog eats the dog, it cannot like the dog because it has to like the dog if it does not need the cat. So, we can conclude that the statement 'The dog does not eat the dog' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the information given and apply it step by step.\n\n1. The cat is cold. (Given)\n   Since the cat is cold, it must be green. (All cold things are green)\n\n2. The cat needs the bald eagle. (Given)\n   But we also know that if something is cold, then it needs the cow. (If something is cold then it needs the cow)\n   However, we cannot conclude anything from this statement yet.\n\n3. The cat likes the cow. (Given)\n   We cannot conclude anything from this statement yet.\n\n4. The cat eats the dog. (Given)\n   This statement cannot be true because if something eats the dog, then the dog must be cold. (If something eats the dog then the dog is cold)\n   But we already know that the dog is green. (The dog is green)\n   So, this statement must be false.\n\n5. The dog is green. (Given)\n   Since the dog is green, it must be cold. (All cold things are green)\n\n6. The dog likes the cow. (Given)\n   We cannot conclude anything from this statement yet.\n\n7. The dog needs the bald eagle. (Given)\n   But we also know that if the bald eagle does not need the cat, then the bald eagle likes the dog. (If the bald eagle does not need the cat then the bald eagle likes the dog)\n   Since the cat needs the bald eagle, the bald eagle must need the cat. (The cat needs the bald eagle)\n   Therefore, this condition is not met, and we cannot conclude anything from this statement.\n\n8. The cow eats the cat. (Given)\n   Since the cat is cold, it must be young. (If something is cold then it is young)\n   This means that the cat needs the bald eagle. (If something is young then it needs the bald eagle)\n   But the cat already needs the bald eagle. (The cat needs the bald eagle)\n   So, this statement is consistent with the given information.\n\n9. The dog does not eat the dog. (Statement to be determined)\n   We already know that the dog is green. (The dog is green)\n   This means that the dog must be cold. (All cold things are green)\n   Since the dog is cold, it must be young. (If something is cold then it is young)\n   The dog needs the bald eagle because it is young. (If something is young then it needs the bald eagle)\n   However, there is no rule that states a dog cannot eat itself.\n   There is no rule that states a dog cannot eat a cold thing.\n   Therefore, we cannot conclude that the dog does not eat the dog.\n\nHowever, we can conclude that if the dog eats the dog, then the dog must be young and cold. (If something eats the dog then the dog is cold)\nThis means that the dog must be young. (If something is cold then it is young)\nBut we already know that the dog needs the bald eagle because it is young. (If something is young then it needs the bald eagle)\nSince the cat also needs the bald eagle, it means that both the cat and the dog are young. (The cat needs the bald eagle)\nHowever, there is a rule that states if something is young and cold, then it eats the dog. (If something is young and cold then it eats the dog)\nBut we already know that the cat is cold. (The cat is cold)\nThis means that the cat must eat the dog. (If something is young and cold then it eats the dog)\nHowever, we already know that the cat eats the dog. (The cat eats the dog)\nThis statement is consistent with the given information.\n\nBut we know that the cat eats the dog. (The cat eats the dog)\nThis means that the dog must be cold. (If something eats the dog then the dog is cold)\nSince the dog is cold, it must be young. (If something is cold then it is young)\nThis means that the dog must need the bald eagle. (If something is young then it needs the bald eagle)\nHowever, we already know that the dog needs the bald eagle. (The dog needs the bald eagle)\nThis means that the cat and the dog are both young and need the bald eagle. (The cat needs the bald eagle, The dog needs the bald eagle)\nHowever, there is a rule that states if something is young and cold, then it eats the dog. (If something is young and cold then it eats the dog)\nSince the cat is cold, it must eat the dog. (If something is young and cold then it eats the dog)\nHowever, we already know that the cat eats the dog. (The cat eats the dog)\nThis statement is consistent with the given information.\n\nHowever, there is a rule that states if the bald eagle does not need the cat, then the bald eagle likes the dog. (If the bald eagle does not need the cat then the bald eagle likes the dog)\nSince the cat needs the bald eagle, the bald eagle must need the cat. (The cat needs the bald eagle)\nThis means that the condition is not met, and we cannot conclude anything from this statement.\n\nHowever, we can conclude that the statement \"The dog does not eat the dog\" is true if the dog is not young and cold.\n\nHowever, we can conclude that the statement \"The dog does not eat the dog\" is false if the dog is young and cold.\n\nHowever, we know that the dog is cold. (The dog is green)\nThis means that the dog must be young. (If something is cold then it is young)\nThis means that the dog must need the bald eagle. (If something is young then it needs the bald eagle)\nHowever, we already know that the dog needs the bald eagle. (The dog needs the bald eagle)\nThis means that the dog is indeed young and cold.\n\nTherefore, the statement \"The dog does not eat the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into steps and use the given information to determine the truth of the statement.\n\n1. The bald eagle is not green. (Given)\n2. The bald eagle likes the cow. (Given)\n3. The bald eagle needs the cat. (Given)\n4. The cat is cold. (Given)\n5. The cat likes the cow. (Given)\n6. The cat needs the bald eagle. (Given)\n7. The cow eats the cat. (Given)\n8. The dog does not eat the cow. (Given)\n9. The dog is green. (Given)\n10. The dog likes the cow. (Given)\n11. The dog needs the bald eagle. (Given)\n12. All cold things are green. (Given)\n13. If something is cold then it needs the cow. (Given)\n14. If something is young then it needs the bald eagle. (Given)\n15. If something is young and cold then it eats the dog. (Given)\n16. If the bald eagle does not need the cat then the bald eagle likes the dog. (Given)\n17. If something eats the dog then the dog is cold. (Given)\n18. If something is cold then it is young. (Given)\n\nNow, let's analyze the statement: The dog does not eat the dog.\n\nFrom the given information, we know that:\n- If something eats the dog then the dog is cold (Statement 17).\n- If something is cold then it is young (Statement 18).\n- If something is young and cold then it eats the dog (Statement 15).\n\nThis creates a cycle, but to determine if the dog is cold, we need to figure out if the dog eats the dog. Since there's no direct information stating that the dog eats the dog, we need to use the given information to find a contradiction.\n\nFrom Statement 17, if the dog eats the dog, then the dog is cold. However, Statement 18 says that if the dog is cold, then it is young. \n\nNow, using Statement 15, if the dog is young and cold, then it eats the dog. This creates a contradiction because it implies the dog eats itself, which is not explicitly stated but can be derived from the given information.\n\nHowever, there's another path to consider. From Statement 16, if the bald eagle does not need the cat, then the bald eagle likes the dog. However, Statement 3 says the bald eagle needs the cat. But Statement 10 says the dog likes the cow, which we know from Statement 7 that the cow eats the cat. \n\nSince the cat needs the bald eagle (Statement 6) and the bald eagle needs the cat (Statement 3), it implies that the cat is young (Statement 18). If the cat is young and cold (Statement 4 and Statement 18), then it eats the dog (Statement 15).\n\nHowever, we know from Statement 12 that all cold things are green, and the cat is cold (Statement 4). Since the cat is green, the dog cannot be cold (Statement 12), and it cannot eat the dog (Statement 17).\n\nNow, looking back at Statement 15, if the cat eats the dog, then the cat is young and cold. This implies that the cat is young (Statement 18). Since the cat needs the bald eagle (Statement 6) and the bald eagle needs the cat (Statement 3), it implies that the cat is indeed young.\n\nNow, using the given information that the dog likes the cow (Statement 10) and the cow eats the cat (Statement 7), we can infer that the cat is cold (Statement 4) and the cat is young (Statement 18).\n\nSince the cat is young and cold, it eats the dog (Statement 15). This implies that the dog cannot eat the dog (Statement 17).\n\nHowever, we need to verify if the cat eating the dog creates a contradiction. From Statement 15, the cat is young and cold, and it eats the dog. This implies that the dog is cold (Statement 17).\n\nHowever, from Statement 12, all cold things are green, and the cat is cold (Statement 4). This implies that the dog cannot be cold (Statement 12).\n\nSince the cat is cold and the dog is not cold, it creates a contradiction because the cat eating the dog implies that the dog is cold.\n\nHowever, we can resolve this contradiction by analyzing Statement 16. If the bald eagle does not need the cat, then the bald eagle likes the dog. However, Statement 3 says the bald eagle needs the cat. This creates a condition where we need to analyze the given information to find a contradiction.\n\nSince the cat is young (Statement 18) and cold (Statement 4), it eats the dog (Statement 15). This implies that the dog is cold (Statement 17). However, from Statement 12, all cold things are green, and the cat is cold (Statement 4). This implies that the dog cannot be cold (Statement 12).\n\nThis creates a contradiction because the cat eating the dog implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by re-examining the given information. \n\nFrom Statement 18, if something is cold, then it is young. Since the cat is young and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information to find a path where the dog eats the dog.\n\nFrom Statement 17, if something eats the dog, then the dog is cold. However, Statement 12 says all cold things are green, and the cat is cold (Statement 4). This implies that the dog cannot be cold (Statement 12).\n\nSince the dog is not cold, it cannot eat the dog (Statement 17). \n\nHowever, we can resolve this contradiction by re-examining the given information.\n\nFrom Statement 14, if something is young, then it needs the bald eagle. Since the cat is young (Statement 18) and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information.\n\nFrom Statement 18, if something is cold, then it is young. Since the cat is young and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information to find a path where the dog eats the dog.\n\nFrom Statement 17, if something eats the dog, then the dog is cold. However, Statement 12 says all cold things are green, and the cat is cold (Statement 4). This implies that the dog cannot be cold (Statement 12).\n\nSince the dog is not cold, it cannot eat the dog (Statement 17).\n\nHowever, we can resolve this contradiction by re-examining the given information.\n\nFrom Statement 14, if something is young, then it needs the bald eagle. Since the cat is young (Statement 18) and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information.\n\nFrom Statement 18, if something is cold, then it is young. Since the cat is young and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information to find a path where the dog eats the dog.\n\nFrom Statement 17, if something eats the dog, then the dog is cold. However, Statement 12 says all cold things are green, and the cat is cold (Statement 4). This implies that the dog cannot be cold (Statement 12).\n\nSince the dog is not cold, it cannot eat the dog (Statement 17).\n\nHowever, we can resolve this contradiction by re-examining the given information.\n\nFrom Statement 14, if something is young, then it needs the bald eagle. Since the cat is young (Statement 18) and cold (Statement 4), it eats the dog (Statement 15). However, from Statement 17, if something eats the dog, then the dog is cold.\n\nThis creates a contradiction because it implies that the dog is cold, but the cat is also cold, and it cannot be that both the cat and the dog are cold.\n\nHowever, we can resolve this contradiction by analyzing the given information.\n\nFrom Statement 18, if something is cold, then it is young. Since the cat is young and cold",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is green. (Statement)\n2. All cold things are green. (Statement)\n   Therefore, the dog is cold. (Conclusion from 1 and 2)\n\n3. If something is cold then it needs the cow. (Statement)\n   Therefore, the dog needs the cow. (Conclusion from 2 and 3)\n\n4. If something eats the dog then the dog is cold. (Statement)\n   We cannot conclude that the dog is cold because it eats something. We only know that the dog is cold from statement 2. However, the statement 4 is not relevant to our problem since we have already established that the dog is cold from statement 2.\n\n5. The cow eats the cat. (Statement)\n   The cat is cold. (Statement)\n   Therefore, the cat is young. (Conclusion from the statement \"If something is cold then it is young.\")\n\n6. The cat needs the bald eagle. (Statement)\n   The cat likes the cow. (Statement)\n   The bald eagle needs the cat. (Statement)\n   The bald eagle likes the cow. (Statement)\n   The bald eagle is not green. (Statement)\n\n7. The dog likes the cow. (Statement)\n   The dog needs the bald eagle. (Statement)\n   If the bald eagle does not need the cat then the bald eagle likes the dog. (Statement)\n   We don't know if the bald eagle needs the cat or not. However, we can analyze the situation from another perspective.\n\n8. If something is young then it needs the bald eagle. (Statement)\n   The cat is young. (Conclusion from statement 5)\n   Therefore, the cat needs the bald eagle. (Statement 6 is correct, and we have another reason to conclude that the cat needs the bald eagle)\n\n9. Now let's analyze statement 7 again. Since we know that the cat needs the bald eagle, the condition \"If the bald eagle does not need the cat then the bald eagle likes the dog\" is met. Therefore, we can conclude that the bald eagle likes the dog.\n\n10. The statement we want to determine is \"The dog does not eat the dog.\" Since we have not found any information that directly states that the dog eats the dog or the dog does not eat the dog, we will analyze another piece of information that might help us make a conclusion.\n\n11. If something is young and cold then it eats the dog. (Statement)\n    The cat is young and cold. (Conclusion from statements 5 and 5)\n    However, this statement does not tell us if the dog eats the dog or not. It only tells us what happens when something is young and cold.\n\n12. We still cannot conclude that the dog eats the dog or the dog does not eat the dog. Since we do not have enough information to make a conclusion, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is green. (Given)\n\n2. All cold things are green. (Given)\n   From this, we can infer that if the dog is green, it must be cold. So, the dog is cold.\n\n3. If the dog is cold then it is young. (Given)\n   From the previous step, we know that the dog is cold. So, the dog is young.\n\n4. If something is young and cold then it eats the dog. (Given)\n   However, this statement only applies when something is both young and cold, and then it eats the dog. We know the dog is young and cold, but the statement does not say that the dog eats itself. So, we cannot conclude that the dog eats the dog based on this statement alone.\n\n5. If something eats the dog then the dog is cold. (Given)\n   However, we already know that the dog is cold (from step 2). So, this statement does not provide any new information.\n\n6. The dog likes the cow. (Given)\n   This statement does not provide any information about whether the dog eats the dog or not.\n\n7. The dog needs the bald eagle. (Given)\n   This statement does not provide any information about whether the dog eats the dog or not.\n\n8. The dog does not eat the cat. (Implicitly given, as the problem states the cow eats the cat)\n   However, this statement does not provide any information about whether the dog eats the dog or not.\n\n9. The dog is green. (Given)\n   We already know this from step 1.\n\n10. The dog is young and cold. (From steps 3 and 2)\n    However, this does not provide any new information about whether the dog eats the dog or not.\n\nSince the given statements do not directly state that the dog eats the dog, and we cannot logically conclude that the dog eats the dog based on the provided information, we cannot determine the truth of the statement \"The dog does not eat the dog.\"\n\nHowever, since we cannot prove that the dog eats the dog either, the statement remains unknown, but based on the information given, we can say that the statement is not necessarily true or false.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All cold things are green. (This statement gives us a condition about color, but we don't know if the dog is cold yet.)\n\n2. The dog is green. (This statement tells us the color of the dog, but we still don't know if it's cold.)\n\n3. If something eats the dog then the dog is cold. (This statement tells us that if something eats the dog, the dog is cold. However, this doesn't necessarily mean the dog is cold if it doesn't eat anything.)\n\n4. The dog does not eat the cow. (This statement tells us that the dog doesn't eat the cow, but we still don't know if the dog eats anything else.)\n\n5. The cat likes the cow. (This statement is irrelevant to the problem, so we can ignore it.)\n\n6. The cat is cold. (This statement tells us that the cat is cold, which means the cat is green, but we don't know if the dog is cold or not.)\n\n7. The cat needs the bald eagle. (This statement tells us that the cat needs the bald eagle, but we still don't know if the dog needs the bald eagle or not.)\n\n8. The dog likes the cow. (This statement tells us that the dog likes the cow, but we still don't know if the dog eats the cow or not.)\n\n9. The dog needs the bald eagle. (This statement tells us that the dog needs the bald eagle, which means the dog is young.)\n\n10. If something is young then it needs the bald eagle. (This statement confirms that the dog is young because it needs the bald eagle.)\n\n11. If something is young and cold then it eats the dog. (This statement tells us that if something is young and cold, it eats the dog. However, we already know that the cat is cold and needs the bald eagle, which makes it unlikely that the cat is young and cold.)\n\n12. The cat likes the cow. (This statement is irrelevant to the problem, so we can ignore it.)\n\n13. The cat needs the bald eagle. (This statement tells us that the cat needs the bald eagle, but we still don't know if the cat is young or not.)\n\n14. The cat is cold. (This statement tells us that the cat is cold, which means the cat is green, but we still don't know if the cat is young or not.)\n\n15. If the bald eagle does not need the cat then the bald eagle likes the dog. (This statement tells us that if the bald eagle doesn't need the cat, it likes the dog. However, we don't know if the bald eagle needs the cat or not.)\n\n16. The bald eagle needs the cat. (This statement tells us that the bald eagle needs the cat, which means the statement in step 15 is false.)\n\n17. The cat needs the bald eagle. (This statement tells us that the cat needs the bald eagle, which means the cat is young, but this contradicts the fact that the cat is cold in step 6.)\n\nSince the cat is cold (step 6), we can conclude that the cat is young (if something is cold, then it is young, step 11), but this contradicts the fact that the cat needs the bald eagle (step 7), which means the cat is not young (if something is young, then it needs the bald eagle, step 10).\n\nThis contradiction means we can't conclude that the dog eats the dog or not. However, we can conclude that the statement \"The dog eats the dog\" is false because if something eats the dog, then the dog is cold (step 3), and if the dog is cold, then it is green (step 1), but we already know that the dog is green (step 2), which means the dog is not eating itself (if the dog eats itself, then it would be cold, and since it's already green, this would be a contradiction).\n\nHowever, we can't conclude that the statement \"The dog does not eat the dog\" is true because we can't rule out the possibility that the dog is eating itself.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'The dog does not eat the dog' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is green. (Given)\n2. All cold things are green. (Given)\n3. If something is cold then it needs the cow. (Given)\n4. If something eats the dog then the dog is cold. (Given)\n5. We don't have any information that directly states 'The dog eats the dog.' However, we can use the information from steps 4 and 5 to infer that if the dog is cold, then it needs the cow, but we don't have any information that says 'The dog needs the cow' or 'The dog does not need the cow.' However, since the dog is green, we know that it must be cold (from step 2). \n\nNow, let's infer that since the dog is cold, it must be young (from step 3 says 'If something is cold then it needs the cow,' and we can infer that 'If something is cold then it is young,' from the information given that 'If something is cold then it is young,' which is not directly stated, but can be inferred from 'If something is young then it needs the bald eagle,' and 'If something is young and cold then it eats the dog.').\n\n6. If something is young and cold then it eats the dog. (Given)\n7. Since the dog is young and cold, we can infer that it eats the dog (from step 6).\n\nFrom steps 6 and 7, we can see that it is possible that the dog eats the dog. Therefore, we cannot determine that the statement is true or false based on the given information.\n\nHowever, from the information given that 'The dog eats the dog,' and 'If something eats the dog then the dog is cold,' we can infer that the dog is cold, and from the information given that 'The dog is green,' we can infer that 'The dog is cold,' from step 2, 'All cold things are green,' and from the information given that 'The dog does not eat the cow,' we can infer that 'The dog eats the dog' is true.\n\nSo the final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and use logical reasoning. Let's break down the problem step by step.\n\n1. The given information states that the dog is green. (From statement 8)\n2. All cold things are green. (From statement 11)\n3. If something is cold then it needs the cow. (From statement 5)\n4. If something is young then it needs the bald eagle. (From statement 7)\n5. If something is young and cold then it eats the dog. (From statement 9)\n6. The statement we're evaluating is \"The dog does not eat the dog.\"\n\nLet's examine the possibilities:\n\n- If the dog is young and cold, it would need the bald eagle and eat the dog. However, this would imply the dog is also cold, which contradicts the initial statement that the dog is green (since all cold things are green). Therefore, the dog cannot be both young and cold.\n- If the dog is cold, it would need the cow (statement 3), but this would imply the dog is green (statement 2), which contradicts the statement that the dog is green if it eats the dog (statement 9). However, since the dog is green and the dog does not eat the dog (according to the statement to be evaluated), we have no contradiction here.\n- If the dog is not cold, it would not need the cow (statement 3) and would not eat the dog (statement 9). However, we still don't know if the dog eats the dog or not, so this option is inconclusive.\n\nFrom the above analysis, we see that the only possibility that contradicts the initial information is the dog being young and cold. However, the given statement that the dog is green does not allow this scenario. \n\nWe cannot prove the statement \"The dog does not eat the dog\" to be false because there are other possibilities where the dog does not eat the dog and is not young and cold.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and rules to determine if the statement \"The dog does not eat the dog\" is true, false, or unknown.\n\nFrom the given information:\n- The cat is cold.\n- All cold things are green.\n- The dog is green.\n- If something eats the dog then the dog is cold.\n- If something is cold then it is young.\n\nNow let's analyze each piece of information:\n\n1. The dog is green: This statement alone does not tell us much, but we can use it to compare with other information.\n2. The cat is cold: From this, we can infer that the cat is green because all cold things are green.\n3. The dog is green: We already know this from the given information.\n4. If something eats the dog then the dog is cold: This rule tells us that if something eats the dog, it must be a cold thing, but it does not directly state that the dog is cold if it eats something.\n5. If something is cold then it is young: This rule tells us that the cat is young because it is cold.\n\nNow let's analyze the statement \"The dog does not eat the dog\" in terms of the rules and information we've found:\n\n- We know the dog is green, and cold things are green.\n- We know the cat is young and cold, and if something is cold then it is young.\n- If something eats the dog then the dog is cold: This rule does not tell us directly whether the dog eats something, but it tells us what happens if the dog is eaten.\n\nWe need to consider other statements to determine the truth of the original statement.\n\nFrom the given information:\n- The cat likes the cow.\n- The cat needs the bald eagle.\n- The cow eats the cat.\n- The dog does not eat the cow.\n- The dog likes the cow.\n- The dog needs the bald eagle.\n- All cold things are green.\n\nNow let's analyze each piece of information:\n\n1. The cat needs the bald eagle: This tells us nothing about the dog eating the dog.\n2. The cat likes the cow: This tells us nothing about the dog eating the dog.\n3. The cow eats the cat: This tells us that the cat is cold because it is eaten by the cow.\n4. The dog does not eat the cow: This tells us nothing about the dog eating the dog.\n5. The dog likes the cow: This tells us nothing about the dog eating the dog.\n6. The dog needs the bald eagle: This tells us nothing about the dog eating the dog.\n7. All cold things are green: This tells us that the cat is green because it is cold.\n\nWe still haven't found any information that directly relates to the dog eating the dog. However, we can deduce some information from the given rules.\n\nFrom the given rules:\n- If something is young then it needs the bald eagle.\n- If something is young and cold then it eats the dog.\n- If the bald eagle does not need the cat then the bald eagle likes the dog.\n\nNow let's analyze each piece of information:\n\n1. If something is young then it needs the bald eagle: This tells us that the cat needs the bald eagle because it is young.\n2. If something is young and cold then it eats the dog: This tells us that the cat eats the dog because it is young and cold.\n3. If the bald eagle does not need the cat then the bald eagle likes the dog: This tells us nothing about the dog eating the dog.\n\nFrom the above analysis, we can see that the cat is young and cold, and if something is young and cold then it eats the dog. However, this rule does not tell us whether the dog eats the dog or not.\n\nSince we can't determine the truth of the statement \"The dog does not eat the dog\" using the given information and rules, the answer is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(dog)",
+          "z3_formula": "Implies(eats_something_dog, cold_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, eagle)",
+          "z3_formula": "needs_cat_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(eagle, cow)",
+          "z3_formula": "likes_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, cat)",
+          "z3_formula": "needs_eagle_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(eagle)",
+          "z3_formula": "green_eagle == False",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_X, needs_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, eagle)",
+          "z3_formula": "Implies(young_X, needs_X_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, cold_X), eats_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, cow)",
+          "z3_formula": "needs_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "Not(needs(X, cat)) -> likes(X, dog)",
+          "z3_formula": "Implies(Not(needs_eagle_cat), likes_eagle_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(needs(eagle, cat))",
+          "z3_formula": "Not(needs_eagle_cat) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(likes(eagle, dog))",
+          "z3_formula": "Not(likes_eagle_dog) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog) | Not(young(dog))",
+          "z3_formula": "Or(young_dog, Not(young_dog))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog) & cold(dog) -> eats(dog, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(dog, dog))",
+          "z3_formula": "Not(eats_dog_dog) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(dog, cow)",
+          "z3_formula": "not eats_dog_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_cat, green_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_cat, needs_cat_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, needs_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_cat, cold_cat), eats_cat_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not needs(bald_eagle, cat) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(Not(needs_bald_eagle_cat), likes_bald_eagle_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_X_dog, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_cat, young_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_dog, needs_dog_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_dog, young_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(dog, cow)",
+          "z3_formula": "Not(eats_dog_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_dog_dog, cold_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_dog_dog, cold_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_dog, young_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, bald_eagle) -> needs(X, cat)",
+          "z3_formula": "Implies(And(young_dog, needs_dog_bald_eagle), needs_dog_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> likes(X, dog)",
+          "z3_formula": "Implies(needs_dog_cat, likes_dog_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, dog)",
+          "z3_formula": "likes_dog_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(dog, dog)",
+          "z3_formula": "Not(likes_dog_dog) == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "not_green(bald_eagle)",
+          "z3_formula": "not_green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cow))",
+          "z3_formula": "not_eats_dog_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_cat, green_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_cat, needs_cat_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_cat, needs_cat_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_cat, cold_cat), eats_cat_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not(needs(bald_eagle, cat)) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(Not(needs_bald_eagle_cat), likes_bald_eagle_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_dog_dog, cold_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_cat, young_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_dog, needs_dog_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, cow)",
+          "z3_formula": "needs_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_cat, young_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "not needs(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(Not(needs_bald_eagle_cat), likes_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_cat, needs_cat_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, bald_eagle)",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_cat, cold_cat), eats_cat_dog)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat) & cold(cat)",
+          "z3_formula": "And(young_cat, cold_cat) == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_dog, young_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_something_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_something_dog, cold_something)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cat))",
+          "z3_formula": "Not(eats_dog_cat) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog) & cold(dog)",
+          "z3_formula": "And(young_dog, cold_dog) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(dog)",
+          "z3_formula": "Implies(eats_dog_dog, cold_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(dog, cow)",
+          "z3_formula": "Not(eats_dog_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, eagle)",
+          "z3_formula": "Implies(young_dog, needs_dog_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, eagle)",
+          "z3_formula": "needs_dog_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not needs(eagle, cat) -> likes(eagle, dog)",
+          "z3_formula": "Implies(Not(needs_eagle_cat), likes_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, cat)",
+          "z3_formula": "needs_eagle_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(dog, dog)",
+          "z3_formula": "Not(eats_dog_dog)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_dog, needs_dog_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(X, dog) -> cold(X)",
+          "z3_formula": "Implies(eats_dog_dog, cold_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog)",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(dog) -> cold(dog)",
+          "z3_formula": "Implies(green_dog, cold_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, cow) == False",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, dog) == True",
+          "z3_formula": "eats_dog_dog == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dog, green_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, cow)",
+          "z3_formula": "Implies(cold_dog, needs_dog_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, eagle)",
+          "z3_formula": "Implies(young_dog, needs_dog_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_dog, cold_dog), eats_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(dog, dog)",
+          "z3_formula": "Not(eats_dog_dog)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_cat, green_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> cold(dog)",
+          "z3_formula": "Implies(eats_X_dog, cold_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_cat, young_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat) & young(cat) -> eats(cat, dog)",
+          "z3_formula": "Implies(And(cold_cat, young_cat), eats_cat_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cat likes cow",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cat needs bald eagle",
+          "z3_formula": "needs_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cow eats cat",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "dog does not eat cow",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "dog likes cow",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "dog needs bald eagle",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald eagle)",
+          "z3_formula": "Implies(young_cat, needs_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_cat, cold_cat), eats_cat_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "Not(needs(bald eagle, cat)) -> likes(bald eagle, dog)",
+          "z3_formula": "Implies(Not(needs_bald_eagle_cat), likes_bald_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 171,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 3,
+      "total_weight": 166,
+      "solve_time_ms": 1.8707523122429848
+    },
+    "timing": {
+      "trace_gen_s": 24.466,
+      "extraction_s": 37.874,
+      "dedup_s": 2.188,
+      "maxsat_s": 0.005,
+      "total_s": 64.535
+    }
+  }
+}

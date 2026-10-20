@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp-013-constraint-ablation",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-20T00:08:40.394Z",
+    "updated_at": "2026-05-21T23:03:34.208Z",
+    "hypothesis": "MaxSAT satisfiability checking contributes minimal accuracy gains over naive constraint counting, because extracted constraints are too homogeneous (trace co-sourcing) to provide discriminative satisfiability signals. If SICA-MaxSAT ≈ SICA-count-only, the SAT solver is not the bottleneck — constraint quality is.",
+    "completed_at": "2026-05-20T00:09:26.321Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "maxsat_acc": 0.4229,
+          "count_only_acc": 0.4216,
+          "random_weight_acc": "0.4206±0.0042",
+          "sc_acc": 0.4316,
+          "delta_maxsat_vs_countonly_pp": 0.12,
+          "delta_maxsat_vs_sc_pp": -0.87,
+          "agreement_maxsat_countonly": 0.944,
+          "n_problems": 804,
+          "folio_maxsat": 0.5931,
+          "folio_count": 0.5686,
+          "folio_sc": 0.5441,
+          "pw_maxsat": 0.365,
+          "pw_count": 0.3717,
+          "pw_sc": 0.3933
+        }
+      }
+    },
+    "metrics": {
+      "qwen25_14b": {
+        "maxsat_acc": 0.7251,
+        "count_only_acc": 0.745,
+        "folio_maxsat": 0.7549,
+        "folio_count": 0.7598,
+        "pw_maxsat": 0.715,
+        "pw_count": 0.74,
+        "agreement_folio": 0.9804,
+        "agreement_pw": 0.9383
+      },
+      "r1_distill_8b": {
+        "maxsat_acc": 0.7451,
+        "count_only_acc": 0.7451,
+        "random_weight_acc": 0.6814,
+        "agreement_maxsat_count": 1,
+        "agreement_maxsat_random": 0.8333
+      },
+      "key_finding": "MaxSAT provides no benefit over count-only (count-only +2pp on 14B, 100% agreement on 8B). Random-weight -6.4pp shows count structure matters but SAT solving does not."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T23:03:34.530278+00:00",
+  "trigger": "update_registry"
+}

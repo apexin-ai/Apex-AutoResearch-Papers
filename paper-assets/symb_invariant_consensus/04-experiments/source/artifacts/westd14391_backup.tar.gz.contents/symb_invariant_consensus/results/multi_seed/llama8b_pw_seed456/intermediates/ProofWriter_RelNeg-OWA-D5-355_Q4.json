@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-355_Q4",
+    "problem": "The cow does not chase the mouse. The cow chases the squirrel. The cow eats the mouse. The cow likes the squirrel. The lion chases the squirrel. The lion eats the cow. The lion eats the squirrel. The lion is cold. The lion likes the cow. The mouse eats the cow. The mouse is not nice. The squirrel chases the lion. If someone is big then they chase the lion. If someone chases the lion then they eat the lion. If someone is nice then they do not eat the lion. If the lion is cold and the lion is not rough then the lion is nice. If the cow chases the lion and the cow likes the lion then the cow eats the lion. If someone eats the lion then the lion is big. If someone is big and they chase the mouse then the mouse does not chase the cow. If someone is rough then they like the lion. If someone eats the lion then they like the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not eat the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChase($x, $y, bool) ::: Does x chase y?\nEat($x, $y, bool) ::: Does x eat y?\nLike($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChase(cow, mouse, False) ::: The cow does not chase the mouse.\nChase(cow, squirrel, True) ::: The cow chases the squirrel.\nEat(cow, mouse, True) ::: The cow eats the mouse.\nLike(cow, squirrel, True) ::: The cow likes the squirrel.\nChase(lion, squirrel, True) ::: The lion chases the squirrel.\nEat(lion, cow, True) ::: The lion eats the cow.\nEat(lion, squirrel, True) ::: The lion eats the squirrel.\nCold(lion, True) ::: The lion is cold.\nLike(lion, cow, True) ::: The lion likes the cow.\nEat(mouse, cow, True) ::: The mouse eats the cow.\nNice(mouse, False) ::: The mouse is not nice.\nChase(squirrel, lion, True) ::: The squirrel chases the lion.\n\nRules:\nBig($x, True) >>> Chase($x, lion, True) ::: If someone is big then they chase the lion.\nChase($x, lion, True) >>> Eat($x, lion, True) ::: If someone chases the lion then they eat the lion.\nNice($x, True) >>> Eat($x, lion, False) ::: If someone is nice then they do not eat the lion.\nCold(lion, True) && Rough(lion, False) >>> Nice(lion, True) ::: If the lion is cold and the lion is not rough then the lion is nice.\nChase(cow, lion, True) && Like(cow, lion, True) >>> Eat(cow, lion, True) ::: If the cow chases the lion and the cow likes the lion then the cow eats the lion.\nEat($x, lion, True) >>> Big(lion, True) ::: If someone eats the lion then the lion is big.\nBig($x, True) && Chase($x, mouse, True) >>> Chase(mouse, cow, False) ::: If someone is big and they chase the mouse then the mouse does not chase the cow.\nRough($x, True) >>> Like($x, lion, True) ::: If someone is rough then they like the lion.\nEat($x, lion, True) >>> Like($x, squirrel, True) ::: If someone eats the lion then they like the squirrel.\n\nQuery:\nEat(squirrel, lion, False) ::: The squirrel does not eat the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

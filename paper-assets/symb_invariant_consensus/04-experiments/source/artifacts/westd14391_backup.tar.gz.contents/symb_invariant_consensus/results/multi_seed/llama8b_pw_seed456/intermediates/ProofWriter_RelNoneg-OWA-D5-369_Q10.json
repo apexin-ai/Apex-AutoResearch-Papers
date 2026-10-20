@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-369_Q10",
+    "problem": "The cow chases the lion. The cow chases the squirrel. The cow eats the rabbit. The cow is nice. The cow likes the rabbit. The cow likes the squirrel. The lion chases the rabbit. The lion eats the rabbit. The lion likes the squirrel. The rabbit chases the squirrel. The rabbit is blue. The rabbit is nice. The rabbit likes the lion. The squirrel eats the cow. The squirrel eats the lion. The squirrel is rough. If something is nice and it eats the cow then it is kind. If something chases the squirrel then it eats the lion. If something likes the lion and it likes the rabbit then the lion chases the squirrel. If something chases the squirrel and the squirrel is nice then the squirrel is kind. If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel. If something eats the lion then it likes the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not eat the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(cow, lion, True) ::: The cow chases the lion.\nChases(cow, squirrel, True) ::: The cow chases the squirrel.\nEats(cow, rabbit, True) ::: The cow eats the rabbit.\nNice(cow, True) ::: The cow is nice.\nLikes(cow, rabbit, True) ::: The cow likes the rabbit.\nLikes(cow, squirrel, True) ::: The cow likes the squirrel.\nChases(lion, rabbit, True) ::: The lion chases the rabbit.\nEats(lion, rabbit, True) ::: The lion eats the rabbit.\nLikes(lion, squirrel, True) ::: The lion likes the squirrel.\nChases(rabbit, squirrel, True) ::: The rabbit chases the squirrel.\nBlue(rabbit, True) ::: The rabbit is blue.\nNice(rabbit, True) ::: The rabbit is nice.\nLikes(rabbit, lion, True) ::: The rabbit likes the lion.\nEats(squirrel, cow, True) ::: The squirrel eats the cow.\nEats(squirrel, lion, True) ::: The squirrel eats the lion.\nRough(squirrel, True) ::: The squirrel is rough.\n\nRules:\nNice($x, True) && Eats($x, cow, True) >>> Kind($x, True) ::: If something is nice and it eats the cow then it is kind.\nChases($x, squirrel, True) >>> Eats($x, lion, True) ::: If something chases the squirrel then it eats the lion.\nLikes($x, lion, True) && Likes($x, rabbit, True) >>> Chases(lion, squirrel, True) ::: If something likes the lion and it likes the rabbit then the lion chases the squirrel.\nChases($x, squirrel, True) && Nice(squirrel, True) >>> Kind(squirrel, True) ::: If something chases the squirrel and the squirrel is nice then the squirrel is kind.\nLikes($x, squirrel, True) && Likes(squirrel, cow, True) >>> Likes(cow, squirrel, True) ::: If something likes the squirrel and the squirrel likes the cow then the cow likes the squirrel.\nEats($x, lion, True) >>> Likes($x, rabbit, True) ::: If something eats the lion then it likes the rabbit.\n\nQuery:\nEats(lion, lion, False) ::: The lion does not eat the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

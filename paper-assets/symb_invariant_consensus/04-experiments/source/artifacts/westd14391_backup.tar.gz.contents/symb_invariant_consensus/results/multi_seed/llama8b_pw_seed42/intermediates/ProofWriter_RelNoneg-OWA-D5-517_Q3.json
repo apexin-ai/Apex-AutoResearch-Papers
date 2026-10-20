@@ -1,0 +1,777 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-517_Q3",
+    "problem": "The bald eagle is green. The bald eagle is red. The cat chases the lion. The cat sees the tiger. The cat visits the bald eagle. The cat visits the lion. The lion chases the cat. The lion is red. The lion sees the bald eagle. The lion sees the cat. The tiger chases the cat. The tiger sees the cat. The tiger visits the bald eagle. The tiger visits the lion. If something sees the lion and it sees the bald eagle then it chases the cat. If something chases the cat then it is young. If something visits the tiger and the tiger sees the cat then it sees the lion. If something visits the tiger and the tiger visits the lion then it sees the bald eagle. If the lion sees the bald eagle then the bald eagle visits the tiger. If something is young then it visits the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRed(BaldEagle, True) ::: The bald eagle is red.\nChases(Cat, Lion, True) ::: The cat chases the lion.\nSees(Cat, Tiger, True) ::: The cat sees the tiger.\nVisits(Cat, BaldEagle, True) ::: The cat visits the bald eagle.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nRed(Lion, True) ::: The lion is red.\nSees(Lion, BaldEagle, True) ::: The lion sees the bald eagle.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nSees(Tiger, Cat, True) ::: The tiger sees the cat.\nVisits(Tiger, BaldEagle, True) ::: The tiger visits the bald eagle.\nVisits(Tiger, Lion, True) ::: The tiger visits the lion.\n\nRules:\nSees($x, Lion, True) && Sees($x, BaldEagle, True) >>> Chases($x, Cat, True) ::: If something sees the lion and it sees the bald eagle then it chases the cat.\nChases($x, Cat, True) >>> Young($x, True) ::: If something chases the cat then it is young.\nVisits($x, Tiger, True) && Sees(Tiger, Cat, True) >>> Sees($x, Lion, True) ::: If something visits the tiger and the tiger sees the cat then it sees the lion.\nVisits($x, Tiger, True) && Visits(Tiger, Lion, True) >>> Sees($x, BaldEagle, True) ::: If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\nSees(Lion, BaldEagle, True) >>> Visits(BaldEagle, Tiger, True) ::: If the lion sees the bald eagle then the bald eagle visits the tiger.\nYoung($x, True) >>> Visits($x, Lion, True) ::: If something is young then it visits the lion.\n\nQuery:\nYoung(Tiger, True) ::: The tiger is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 58.0,
+      "Unknown": 98.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the tiger is young, we need to follow the given rules and find the relationship between the tiger and the cat.\n\nGiven rules:\n1. If something sees the lion and it sees the bald eagle then it chases the cat.\n2. If something chases the cat then it is young.\n3. If something visits the tiger and the tiger sees the cat then it sees the lion.\n4. If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\n5. If the lion sees the bald eagle then the bald eagle visits the tiger.\n6. If something is young then it visits the lion.\n\nFrom the given statements:\n- The tiger visits the lion.\n- The tiger sees the cat.\n\nUsing rule 3:\n- The tiger visits the tiger (Itself) and the tiger sees the cat, so it sees the lion.\n\nUsing rule 4:\n- The tiger visits the tiger (Itself) and the tiger visits the lion, so it sees the bald eagle.\n\nThere is no direct information that the tiger chases the cat or sees the lion and the bald eagle at the same time. \n\nHowever, we can infer that the tiger sees the lion and the tiger sees the bald eagle, but we don't have any information that it sees the lion and the bald eagle at the same time. \n\nSo we need to check if the tiger sees the lion and the lion sees the bald eagle. \n\nFrom the given statements:\n- The lion sees the bald eagle.\n\nUsing rule 1:\n- The lion sees the lion and the lion sees the bald eagle, so it chases the cat.\n\nUsing rule 2:\n- The lion chases the cat, so it is young.\n\nSince we know the lion is young and it visits the lion, we can use rule 6:\n- The lion is young, so it visits the lion.\n\nHowever, we are not interested in the lion. We are interested in the tiger.\n\nFrom the given statements:\n- The tiger sees the lion.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nWe know the lion is young, but we don't have any information about the tiger being young.\n\nThe statement \"The tiger chases the cat\" is not present in the given statements. \n\nHowever, we can infer that the tiger sees the lion and the lion is young. \n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe tiger sees the lion, which is young, but it does not visit the lion. \n\nSo we can infer that the tiger sees the lion, which is young.\n\nUsing rule 2:\n- The lion chases the cat, so it is young.\n\nThe lion chases the cat, but we don't have any information that the tiger chases the cat.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nNow we need to check if the tiger visits the lion or not.\n\nFrom the given statements:\n- The tiger visits the lion.\n\nThe tiger visits the lion, but we don't have any information that it is young.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nThe statement \"The tiger is young\" is still unknown.\n\nHowever, we can infer that the tiger does not visit the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe tiger is not young, so it does not visit the lion.\n\nHowever, we know that the tiger sees the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe lion is young, so it visits the lion.\n\nHowever, we know that the tiger sees the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe lion is young, so it visits the lion.\n\nNow we can check the relationship between the tiger and the lion.\n\nFrom the given statements:\n- The tiger sees the lion.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion.\n\nThe lion is young, but we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the lion is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 2:\n- The lion chases the cat, so it is young.\n\nThe lion is young, but we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nThe statement \"The tiger is young\" is still unknown.\n\nHowever, we can infer that the tiger does not visit the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe tiger is not young, so it does not visit the lion.\n\nHowever, we know that the tiger sees the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe lion is young, so it visits the lion.\n\nHowever, we know that the tiger sees the lion.\n\nUsing rule 6:\n- If something is young then it visits the lion.\n\nThe lion is young, so it visits the lion.\n\nNow we can check the relationship between the tiger and the lion.\n\nFrom the given statements:\n- The tiger sees the lion.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion.\n\nThe lion is young, but we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the lion is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 2:\n- The lion chases the cat, so it is young.\n\nThe lion is young, but we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nHowever, we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nUsing rule 6:\n- The lion is young, so it visits the lion.\n\nThe lion visits the lion, but we don't have any information that the tiger visits the lion.\n\nHowever, we can infer that the tiger sees the lion, which is young.\n\nNow we can check the relationship between the tiger and the cat.\n\nFrom the given statements:\n- The tiger sees the cat.\n\nThe tiger sees the cat, but we don't have any information that the tiger is young or not.\n\nHowever, we can infer that the tiger sees the cat.\n\nThe cat is not mentioned in the rules as being young or not.\n\nHowever, we can infer that the tiger sees the cat.\n\nThe statement \"The tiger is young\" is still unknown.\n\nWe need more information to determine if the tiger is young or not.\n\nSince we don't have enough information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that lead to the conclusion that an animal is young.\n\nFrom the statements:\n\n1. The lion sees the bald eagle.\n2. If something sees the lion and it sees the bald eagle then it chases the cat.\n3. The lion chases the cat.\n\nHowever, to determine if the tiger is young, we need to find a connection between the tiger and the conditions that lead to being young.\n\nFrom the statements:\n\n1. The tiger sees the cat.\n2. If something visits the tiger and the tiger sees the cat then it sees the lion.\n\nHowever, we still don't have any direct connection to the condition for being young. We need to find a connection between the tiger and the conditions for being young.\n\nFrom the statements:\n\n1. The tiger visits the lion.\n2. If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\n\nHowever, we still don't have any direct connection to the condition for being young. We need to find a connection between the tiger and the conditions for being young.\n\nFrom the statements:\n\n1. The tiger chases the cat.\n2. If something chases the cat then it is young.\n\nNow we have a direct connection between the tiger and the condition for being young. Since the tiger chases the cat, the tiger is young.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If something chases the cat then it is young\" implies that if a subject chases the cat, we can conclude that the subject is young.\n\n2. From the information given, we have \"The lion chases the cat.\" Using the implication from step 1, we can conclude that the lion is young.\n\n3. However, the statement \"The lion is red\" is also given. \n\n4. If \"something sees the lion and it sees the bald eagle then it chases the cat.\" This means we can't conclude the age of the subject from this rule.\n\n5. There is also no information that links the tiger and the lion directly in the rules given. \n\n6. However, we can link the tiger and the lion through the following rule: \"If something visits the tiger and the tiger sees the cat then it sees the lion\" or \"If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\" \n\n7. Using rule 6, we know that the tiger visits the lion because \"The tiger visits the lion.\" From rule 6, we can conclude that the subject that visits the tiger and the tiger visits the lion sees the bald eagle.\n\n8. However, there is no information provided that directly links the tiger's actions with the statement \"If something sees the lion and it sees the bald eagle then it chases the cat.\"\n\n9. Considering all the information provided, we cannot directly conclude the age of the tiger using the given rules. \n\n10. However, we can use the rule \"If something is young then it visits the lion.\" \n\nSince we can't find any direct information about the tiger visiting the lion, we can't conclude that the tiger is young using the rules given.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is young\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements, we can deduce the following:\n\n1. If something sees the lion and it sees the bald eagle then it chases the cat.\n   - From this statement, we cannot directly conclude anything about the tiger's age.\n\n2. If something chases the cat then it is young.\n   - We don't know if the tiger chases the cat, so we cannot conclude the tiger's age from this statement.\n\n3. If something visits the tiger and the tiger sees the cat then it sees the lion.\n   - The tiger sees the cat, so the cat sees the lion. We don't know if this implies the tiger is young.\n\n4. If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\n   - The tiger visits the lion, so it sees the bald eagle. We don't know if this implies the tiger is young.\n\n5. If the lion sees the bald eagle then the bald eagle visits the tiger.\n   - The lion sees the bald eagle, but it does not directly imply the tiger's age.\n\n6. If something is young then it visits the lion.\n   - We need to check if the tiger is young to apply this rule.\n\nNow, let's analyze the statements about the tiger:\n- The tiger sees the cat.\n- The tiger visits the lion.\n- The tiger visits the bald eagle.\n- The tiger chases the cat.\n\nSince we don't know if the tiger is young or not, we cannot apply rule 2 to conclude the tiger's age. However, we can deduce the following:\n- The tiger visits the lion and the tiger sees the cat, which implies it sees the lion (rule 3).\n- The tiger visits the lion, which implies it sees the bald eagle (rule 4).\n\nHowever, there is no information about the tiger's age. We cannot conclude the tiger's age from the given statements, so the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that lead to the conclusion that an animal is young. \n\nFrom the given statements, we know:\n1. The lion sees the bald eagle.\n2. If something sees the lion and it sees the bald eagle then it chases the cat.\n3. If something chases the cat then it is young.\n\nNow, let's examine the statements related to the tiger:\n1. The tiger sees the cat.\n2. The tiger visits the lion.\n\nHowever, we don't have any direct information about the tiger's age from the given statements. We know that the tiger visits the lion, but we don't know if this implies that the tiger sees the bald eagle. If it did, then it would chase the cat, and since it chases the cat, it would be young. However, we are not sure if this condition is met.\n\nNow, let's examine the statement: \n\"If something visits the tiger and the tiger sees the cat then it sees the lion.\" \nThis implies that if the tiger sees the cat, then the tiger must be the one that sees the lion, but we don't have any information about what the tiger sees when it visits the lion. \n\nHowever, there is another statement that might be helpful: \n\"If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\" \nBut we are not given information that the tiger visits the lion. So, we cannot use this statement.\n\nFrom the given statements, we can conclude that the lion sees the bald eagle, so the lion chases the cat, and the lion is young. However, this does not provide any information about the tiger's age.\n\nWe also know that the tiger visits the lion, but we cannot conclude that the tiger is young based on this information alone.\n\nTherefore, the final answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the tiger is young, we need to analyze the given statements and their implications. \n\nFrom the given statements:\n\n1. If something sees the lion and it sees the bald eagle then it chases the cat.\n2. If something chases the cat then it is young.\n3. The tiger sees the cat. (From statement 8, \"The tiger chases the cat.\")\n4. The tiger sees the cat. (From statement 9, \"The tiger sees the cat.\")\n5. The tiger visits the lion. (From statement 11, \"The tiger visits the lion.\")\n6. The tiger visits the lion. (From statement 12, \"The tiger visits the lion.\")\n7. The tiger visits the bald eagle. (From statement 10, \"The tiger visits the bald eagle.\")\n8. The tiger visits the lion. (From statement 11, \"The tiger visits the lion.\")\n\nWe can use these statements to derive the following information:\n\n* The tiger sees the lion and the tiger sees the bald eagle (from statements 3, 4, and 7).\n* Therefore, the tiger chases the cat (from statement 1).\n* Since the tiger chases the cat, the tiger is young (from statement 2).\n\nHowever, we have an issue. The statement about the tiger chases the cat was derived from statement 1, but we also need the tiger to see the lion to chase the cat. Statement 8 says \"The cat sees the tiger,\" which is a different order than the requirement in statement 1. We cannot assume that the tiger chases the cat based on statement 1 alone.\n\nLooking closer at our previous analysis, we realized that the initial analysis of statement 1 was incorrect. The correct interpretation is that if something sees the lion AND it sees the bald eagle THEN it chases the cat. This means we cannot directly apply this rule to the tiger because we do not know if the tiger sees the bald eagle first.\n\nWe need to continue analyzing the information given to us to derive more information. \n\nThe statement \"If something is young then it visits the lion.\" (Statement 7) also indicates that something being young does not directly imply that it sees the lion.\n\nTo accurately solve this problem, we need to find a different way to use the information given. Let's re-evaluate the statements and look for a connection between the statements that indicate the tiger's age.\n\nFrom the given statements, we have:\n- The tiger sees the cat (from statement 8).\n- The tiger visits the lion (from statements 10 and 11).\n- The tiger visits the bald eagle (from statement 10).\n\nHowever, to directly determine the tiger's age, we need to find a connection to one of the rules about age.\n\nThe rule about the tiger's age is linked to visiting the tiger. From the given statements:\n- If something visits the tiger and the tiger sees the cat then it sees the lion. (Statement 5)\n- If something visits the tiger and the tiger visits the lion then it sees the bald eagle. (Statement 6)\nHowever, there are no statements that link the tiger to being young or not young based on the information given.\n\nSince we cannot derive any information that links the tiger's actions or observations to any of the rules about age, the information is incomplete to make a determination about the tiger's age. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the tiger is young, we need to analyze the given statements and the conditions that make something young.\n\nFrom the problem statement, we have the following conditions that make something young:\n- If something chases the cat then it is young.\n\nWe also have the following statements about the tiger:\n- The tiger chases the cat.\n- The tiger sees the cat.\n- The tiger visits the bald eagle.\n- The tiger visits the lion.\n- The tiger sees the cat.\n\nNow, we can see that the tiger chases the cat. Since the condition that makes something young is met, we can conclude that the tiger is young.\n\nTherefore, the statement \"The tiger is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps and use the given conditions.\n\nStep 1:  We are given the statement: \"The tiger is young.\"\nFrom the conditions, if something chases the cat then it is young. However, we do not have any information about the tiger chasing the cat yet. Therefore, we cannot determine the age of the tiger directly from this condition.\n\nStep 2:  We need to find any relationship between the tiger and the cat that might help us determine the tiger's age.\nFrom the conditions, if something sees the lion and it sees the bald eagle then it chases the cat. However, we do not have any information about the tiger seeing the lion or the bald eagle yet.\n\nStep 3:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, if something visits the tiger and the tiger sees the cat then it sees the lion. We have this condition because the tiger sees the cat, but we cannot conclude that the tiger is young from this condition.\n\nStep 4:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, if something visits the tiger and the tiger visits the lion then it sees the bald eagle. However, we cannot use this condition to determine the tiger's age.\n\nStep 5:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, if the lion sees the bald eagle then the bald eagle visits the tiger. We know that the lion sees the bald eagle, so the bald eagle visits the tiger. But we cannot conclude that the tiger is young from this condition.\n\nStep 6:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, if something is young then it visits the lion. We have not found any information that shows the tiger is young.\n\nStep 7:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, the tiger sees the cat. The tiger visits the lion. The lion sees the cat. This does not give us any information about the tiger's age.\n\nStep 8:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, the tiger visits the bald eagle. This does not give us any information about the tiger's age.\n\nStep 9:  We need to find any other information that might help us determine the tiger's age.\nFrom the conditions, the tiger chases the cat. This means that the tiger is young because if something chases the cat then it is young.\n\nStep 10:  We can now conclude that the tiger is young.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n\n1. The lion sees the bald eagle. (Statement 8)\n2. The lion chases the cat. (Statement 6)\n3. If something sees the lion and it sees the bald eagle then it chases the cat. (Rule 1)\n   Since the lion sees the bald eagle, we can apply this rule to conclude that the lion chases the cat. However, this rule doesn't directly tell us about the age of the lion. It only tells us about the action it performs.\n\n4. The lion is red. (Statement 10)\n5. The lion sees the cat. (Statement 9)\n6. The lion chases the cat. (Statement 6)\n7. If something chases the cat then it is young. (Rule 2)\n   Since the lion chases the cat, we can apply this rule to conclude that the lion is young.\n\nHowever, we are asked about the tiger, not the lion. \n\n8. The tiger sees the cat. (Statement 10)\n9. The tiger visits the lion. (Statement 11)\n10. If something visits the tiger and the tiger sees the cat then it sees the lion. (Rule 3)\n    Since the tiger sees the cat, we can apply this rule to conclude that the tiger sees the lion. However, this rule doesn't directly tell us about the age of the tiger. It only tells us about its action and the relationship between the tiger and the lion.\n\n11. The tiger visits the bald eagle. (Statement 12)\n12. The tiger visits the lion. (Statement 11)\n13. If something visits the tiger and the tiger visits the lion then it sees the bald eagle. (Rule 4)\n    Since the tiger visits the lion, we can apply this rule to conclude that the tiger sees the bald eagle. However, this rule doesn't directly tell us about the age of the tiger. It only tells us about its action and the relationship between the tiger and the bald eagle.\n\n14. The lion sees the bald eagle. (Statement 8)\n15. The lion is red. (Statement 10)\n16. If the lion sees the bald eagle then the bald eagle visits the tiger. (Rule 5)\n    Since the lion sees the bald eagle, we can apply this rule to conclude that the bald eagle visits the tiger. However, this rule doesn't directly tell us about the age of the tiger. It only tells us about the action of the bald eagle.\n\n17. The cat visits the lion. (Statement 7)\n18. The cat sees the tiger. (Statement 4)\n19. If something is young then it visits the lion. (Rule 6)\n   Since the lion is young (from statement 7), we can apply this rule to conclude that the lion visits the lion. However, this statement is the same as statement 7.\n\nWe are asked about the tiger. However, none of the given rules directly tell us about the age of the tiger based on the information provided.\n\nSince we cannot directly apply any of the given rules to conclude the age of the tiger, the statement \"The tiger is young\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the tiger is young, we need to analyze the given statements and the conditions for \"young\" and the statements related to the tiger.\n\n1. The tiger chases the cat. (Statement)\n2. The tiger sees the cat. (Statement)\n3. If something sees the cat then it chases the cat. (Rule)\n   Since the tiger chases the cat, it does not fulfill this rule.\n4. If something visits the tiger and the tiger sees the cat then it sees the lion. (Rule)\n   The tiger sees the cat, but there is no statement about something visiting the tiger and the tiger seeing the cat. Therefore, we cannot conclude that the tiger sees the lion.\n5. If something visits the tiger and the tiger visits the lion then it sees the bald eagle. (Rule)\n   The tiger visits the lion, but there is no statement about something visiting the tiger and the tiger visiting the lion. Therefore, we cannot conclude that it sees the bald eagle.\n6. If the lion sees the bald eagle then the bald eagle visits the tiger. (Rule)\n   The lion sees the bald eagle, but this does not provide information about the tiger.\n7. If something is young then it visits the lion. (Rule)\n   To determine if the tiger is young, we need to analyze the conditions for \"young\" which is being mentioned as \"If something chases the cat then it is young\" in the problem.\n\nNow, let's analyze the statements related to the conditions for \"young\". \n- The lion chases the cat. (Statement)\n- The cat sees the tiger. (Statement)\n- The lion sees the tiger. (Statement)\n- The lion sees the bald eagle. (Statement)\n\nHowever, there is no statement that links the tiger to chasing the cat. So we cannot determine if the tiger is young.\n\nTherefore, the statement \"The tiger is young\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the tiger is young, we need to analyze the given statements and find a path that leads to the conclusion.\n\nFrom the given statements, we know that:\n1. The lion sees the bald eagle.\n2. If something sees the lion and it sees the bald eagle then it chases the cat.\n3. The lion chases the cat.\n4. If something chases the cat then it is young.\n\nNow, we can see that the lion chases the cat, so from statement 4, the lion is young. However, we cannot conclude the tiger's age directly from these statements.\n\nHowever, let's analyze the second path:\n1. The tiger visits the lion.\n2. The lion visits the bald eagle.\n3. The lion sees the bald eagle.\n4. If the lion sees the bald eagle then the bald eagle visits the tiger.\n5. The bald eagle visits the tiger.\n\nBut this does not give us any information about the tiger's age.\n\nNow, let's analyze the third path:\n1. The tiger sees the cat.\n2. The tiger chases the cat.\n\nHowever, from the statements, we cannot conclude that the tiger chases the cat. We only know that the tiger sees the cat.\n\nNow, let's analyze the fourth path:\n1. The tiger visits the bald eagle.\n2. The bald eagle is red.\n3. The lion is red.\n4. The lion sees the tiger.\n\nThis path does not provide any information about the tiger's age.\n\nNow, let's analyze the fifth path:\n1. The tiger visits the lion.\n2. The lion sees the bald eagle.\n3. The tiger sees the cat.\n4. If something sees the cat and it sees the lion then it is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the sixth path:\n1. The tiger sees the cat.\n2. The cat visits the bald eagle.\n3. The lion sees the cat.\n4. The lion chases the cat.\n5. The lion is young.\n6. If something is young then it visits the lion.\n7. The lion visits the tiger.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the seventh path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. The lion sees the tiger.\n6. If something sees the cat and it sees the lion then it is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the eighth path:\n1. The tiger visits the lion.\n2. The lion sees the bald eagle.\n3. The lion sees the cat.\n4. If something sees the lion and it sees the bald eagle then it chases the cat.\n5. The lion chases the cat.\n6. If something chases the cat then it is young.\n7. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the ninth path:\n1. The tiger visits the tiger.\n2. The tiger is not a new entity here so the statement is a tautology.\n\nHowever, this path also does not provide any information about the tiger's age.\n\nNow, let's analyze the tenth path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. If something is young then it visits the lion.\n6. The lion visits the tiger.\n7. The tiger is red.\n8. The lion is red.\n9. The lion sees the tiger.\n10. The lion sees the bald eagle.\n11. If something sees the lion and it sees the bald eagle then it chases the cat.\n12. The lion chases the cat.\n13. If something chases the cat then it is young.\n14. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the eleventh path:\n1. The tiger visits the lion.\n2. The lion sees the bald eagle.\n3. The lion sees the cat.\n4. The cat visits the bald eagle.\n5. The lion chases the cat.\n6. The lion is young.\n7. The lion sees the tiger.\n8. If something sees the cat and it sees the lion then it is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the twelfth path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. The cat sees the tiger.\n6. If something visits the tiger and the tiger sees the cat then it sees the lion.\n7. The cat sees the lion.\n8. The lion is young.\n9. If something is young then it visits the lion.\n10. The lion visits the tiger.\n11. The tiger is red.\n12. The lion is red.\n13. The lion sees the tiger.\n14. The lion sees the bald eagle.\n15. If something sees the lion and it sees the bald eagle then it chases the cat.\n16. The lion chases the cat.\n17. If something chases the cat then it is young.\n18. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the thirteenth path:\n1. The tiger visits the tiger.\n2. The tiger is not a new entity here so the statement is a tautology.\n\nHowever, this path also does not provide any information about the tiger's age.\n\nNow, let's analyze the fourteenth path:\n1. The tiger sees the cat.\n2. The cat visits the tiger.\n3. The tiger visits the lion.\n4. The lion is red.\n5. The lion sees the tiger.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the fifteenth path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. If something visits the tiger and the tiger sees the cat then it sees the lion.\n6. The cat sees the lion.\n7. The lion is young.\n8. If something is young then it visits the lion.\n9. The lion visits the tiger.\n10. The tiger is red.\n11. The lion is red.\n12. The lion sees the tiger.\n13. The lion sees the bald eagle.\n14. If something sees the lion and it sees the bald eagle then it chases the cat.\n15. The lion chases the cat.\n16. If something chases the cat then it is young.\n17. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the sixteenth path:\n1. The tiger visits the tiger.\n2. The tiger is not a new entity here so the statement is a tautology.\n\nHowever, this path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the seventeenth path:\n1. The tiger sees the cat.\n2. The cat visits the bald eagle.\n3. The lion sees the cat.\n4. The lion chases the cat.\n5. The lion is young.\n6. If something visits the tiger and the tiger sees the cat then it sees the lion.\n7. The cat sees the lion.\n8. The lion is young.\n9. If something is young then it visits the lion.\n10. The lion visits the tiger.\n11. The tiger is red.\n12. The lion is red.\n13. The lion sees the tiger.\n14. The lion sees the bald eagle.\n15. If something sees the lion and it sees the bald eagle then it chases the cat.\n16. The lion chases the cat.\n17. If something chases the cat then it is young.\n18. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the eighteenth path:\n1. The tiger visits the lion.\n2. The lion is red.\n3. The lion sees the tiger.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the nineteenth path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. The lion sees the tiger.\n6. The lion sees the bald eagle.\n7. If something sees the lion and it sees the bald eagle then it chases the cat.\n8. The lion chases the cat.\n9. If something chases the cat then it is young.\n10. The lion is young.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the twentieth path:\n1. The tiger sees the cat.\n2. The cat visits the lion.\n3. The lion chases the cat.\n4. The lion is young.\n5. The lion sees the tiger.\n6. The lion sees the bald eagle.\n7. The lion is young.\n8. If something is young then it visits the lion.\n9. The lion visits the tiger.\n\nThis path also does not provide any information about the tiger's age.\n\nHowever, let's analyze the twenty-first path:\n1. The tiger visits the bald eagle.\n2. The bald eagle is green.\n3. The bald eagle is red.\n4. The lion is red.\n5. The lion sees the tiger.\n\nThis path also does not provide any information about the cat's age.\n\nHowever, let's analyze the twenty-second path:\n1. The tiger visits the lion.\n2. The lion sees",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is young\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. If something sees the lion and it sees the bald eagle then it chases the cat.\n   - No information about the tiger in this statement.\n\n2. If something chases the cat then it is young.\n   - No information about the tiger in this statement.\n\n3. If something visits the tiger and the tiger sees the cat then it sees the lion.\n   - This statement implies that the tiger sees the cat, but it doesn't provide any information about the tiger's age.\n\n4. If something visits the tiger and the tiger visits the lion then it sees the bald eagle.\n   - This statement implies that the tiger visits the lion, but it doesn't provide any information about the tiger's age.\n\n5. If the lion sees the bald eagle then the bald eagle visits the tiger.\n   - This statement implies that the lion sees the bald eagle, but it doesn't provide any information about the tiger's age.\n\n6. If something is young then it visits the lion.\n   - We need to determine if the tiger is young to apply this statement.\n\nNow, we have to find any information about the tiger's age. Let's analyze the statements again.\n\nWe know that the lion sees the bald eagle. From statement 5, if the lion sees the bald eagle then the bald eagle visits the tiger. However, this doesn't provide any information about the tiger's age.\n\nThe key statement here is statement 6: \"If something is young then it visits the lion.\" We need to find any statement that implies the tiger is young.\n\nWe can start by analyzing the statements that imply something is young: statements 2 and 6.\n\nStatement 2 implies that if something chases the cat then it is young. There is no information about the tiger chasing the cat, so we cannot use this statement to conclude the tiger's age.\n\nStatement 6 implies that if something is young then it visits the lion. To determine if the tiger is young, we need to find a statement that implies the tiger visits the lion.\n\nFrom statement 4, we know that if something visits the tiger and the tiger visits the lion then it sees the bald eagle. We also know that the tiger visits the lion (from statement 4), but this doesn't provide any information about the tiger's age.\n\nHowever, statement 4 implies that if the tiger visits the lion, then it sees the bald eagle. We can use statement 6 to conclude that if the tiger sees the bald eagle, then it must be young because it visits the lion.\n\nBut we still need to find a statement that implies the tiger sees the bald eagle. From statement 3, if something visits the tiger and the tiger sees the cat then it sees the lion. We know that the tiger sees the cat (from statement 3), and from statement 4, if something visits the tiger and the tiger visits the lion then it sees the bald eagle. However, this statement implies that the tiger visits the lion, but it doesn't provide any information about the tiger's age.\n\nLet's analyze the statements again.\n\nFrom statement 3, if something visits the tiger and the tiger sees the cat then it sees the lion. We know that the tiger sees the cat. From statement 1, if something sees the lion and it sees the bald eagle then it chases the cat. However, this statement implies that the tiger sees the lion and sees the bald eagle, but it doesn't provide any information about the tiger's age.\n\nHowever, we can use statement 5: If the lion sees the bald eagle then the bald eagle visits the tiger. We know that the lion sees the bald eagle. This implies that the bald eagle visits the tiger. \n\nHowever, this doesn't provide any information about the tiger's age.\n\nNow, let's analyze the statements again.\n\nWe know that the lion sees the bald eagle. From statement 5, if the lion sees the bald eagle then the bald eagle visits the tiger. We also know that the tiger visits the lion (from statement 4).\n\nFrom statement 1, if something sees the lion and it sees the bald eagle then it chases the cat. We know that the tiger sees the lion and sees the bald eagle. However, this statement implies that the tiger chases the cat, but this doesn't provide any information about the tiger's age.\n\nHowever, statement 1 implies that if the tiger sees the lion and sees the bald eagle, then it chases the cat. Statement 2 implies that if something chases the cat then it is young. \n\nTherefore, we can conclude that the tiger is young.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_tiger_lion, sees_tiger_bald_eagle), chases_tiger_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_tiger_tiger, sees_tiger_cat), sees_tiger_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(tiger, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_tiger, visits_tiger_lion), sees_tiger_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(lion, bald_eagle) -> visits(bald_eagle, tiger)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, visits_bald_eagle_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> visits(X, lion)",
+          "z3_formula": "Implies(young_tiger, visits_tiger_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_lion_bald_eagle, sees_X_lion), chases_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_X_tiger, sees_tiger_cat), sees_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(tiger, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_tiger_lion), sees_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_lion_cat, young_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_X_lion, sees_X_bald_eagle), chases_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_X_tiger, sees_tiger_cat), sees_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(tiger, Y) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_tiger_Y), sees_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> visits(X, lion)",
+          "z3_formula": "Implies(young_tiger, visits_tiger_lion)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_tiger_lion, sees_tiger_bald_eagle), chases_tiger_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(X, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_tiger_lion, sees_tiger_cat), sees_tiger_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_lion, visits_tiger_lion), sees_tiger_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(lion, bald_eagle) -> visits(bald_eagle, tiger)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, visits_bald_eagle_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> visits(X, lion)",
+          "z3_formula": "Implies(young_tiger, visits_tiger_lion)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_lion_bald_eagle, sees_X_bald_eagle), chases_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_X_cat, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_X_tiger, sees_tiger_cat), sees_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(tiger, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_tiger_lion), sees_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_tiger_lion, sees_tiger_bald_eagle), chases_tiger_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_tiger_lion, sees_tiger_cat), sees_tiger_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(tiger, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_lion, visits_tiger_lion), sees_tiger_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_lion_bald_eagle, sees_lion_bald_eagle), chases_lion_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_lion_cat, young_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(X, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_tiger_lion, sees_tiger_cat), sees_tiger_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_lion, visits_tiger_lion), sees_tiger_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, tiger)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, visits_bald_eagle_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> visits(X, lion)",
+          "z3_formula": "Implies(young_lion, visits_lion_lion)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cat)",
+          "z3_formula": "sees_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> chases(X, cat)",
+          "z3_formula": "Implies(sees_tiger_cat, chases_tiger_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases_tiger_cat)",
+          "z3_formula": "Not(chases_tiger_cat) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(And(visits_X_tiger, sees_tiger_cat), sees_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees_X_lion)",
+          "z3_formula": "Not(sees_X_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & sees(tiger, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, sees_tiger_lion), sees_X_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees_X_bald_eagle)",
+          "z3_formula": "Not(sees_X_bald_eagle) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> visits(X, lion)",
+          "z3_formula": "Implies(young_tiger, visits_tiger_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(young_tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_X_lion, sees_X_bald_eagle), chases_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_lion_cat, young_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, visits_bald_eagle_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_tiger_lion, sees_tiger_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & sees(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(And(sees_tiger_lion, sees_tiger_bald_eagle), chases_tiger_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(chases_tiger_cat, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 108,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 2,
+      "total_weight": 105,
+      "solve_time_ms": 1.0965513065457344
+    },
+    "timing": {
+      "trace_gen_s": 24.693,
+      "extraction_s": 32.702,
+      "dedup_s": 1.045,
+      "maxsat_s": 0.004,
+      "total_s": 58.444
+    }
+  }
+}

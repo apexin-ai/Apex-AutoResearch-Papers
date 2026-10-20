@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-multi-seed-llama-folio",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:09:17.058Z",
+    "updated_at": "2026-05-22T17:43:03.326Z",
+    "hypothesis": "Multi-seed replication (seeds 123,456,789) of LLaMA-3.1-8B × FOLIO-204 shows consistent Δ(SICA-SC) direction across seeds, adding a third model family (beyond Qwen2.5 and Mistral) for cross-family consistency evidence. Addresses W4 reviewer concern.",
+    "notes": "PID 596151 on westd-16639 cuda:1 port 8002. vLLM PID 595261 (max-model-len=8192, max_tokens=2048). Previous attempt failed: max-model-len=4096 caused HTTP 400 on all requests. Fixed by increasing to 8192 + reducing max_tokens to 2048. ~70s/prob, 3 seeds sequential, ETA ~12h (~23:00 UTC May 22). Output: results/multi_seed/llama8b_folio_seed{123,456,789}/",
+    "metrics": {
+      "seed123": {
+        "sc_acc": 67.16,
+        "sica_acc": 63.73,
+        "delta": -3.43,
+        "n": 204,
+        "extraction_rate": 0.959,
+        "status": "COMPLETE"
+      },
+      "seed456": {
+        "status": "running",
+        "progress": "125/204"
+      },
+      "seed789": {
+        "status": "pending"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T17:43:01.884Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T17:43:03.635922+00:00",
+  "trigger": "update_registry"
+}

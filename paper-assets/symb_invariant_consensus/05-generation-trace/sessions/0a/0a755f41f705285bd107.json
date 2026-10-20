@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a755f41f705285bd107",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code proofwriter prompt",
+  "task_key": "worker_code_proofwriter-prompt_20260515T110657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_proofwriter-prompt_20260515T110657_result.json",
+    "occurrence": 1,
+    "bytes": 2007,
+    "sha256": "8806a8ae356e7ade847cd7548f53e611560d5cce96af09dff2ad58ea36f22987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tests pass. Here's the summary:\n\n### 1. 逻辑域 Prompt 内容摘要\n\n`LOGIC_EXTRACTION_PROMPT`（3229 chars）包含：\n- 变量命名规范：一元属性 `property_entity`，二元关系 `relation_subject_object`\n- 三种约束类型：`fact`（事实）、`rule`（规则/蕴含）、`derived`（推导结论）\n- Z3 运算符：`Implies(a, b)`、`And(a, b, ...)`、`Or(a, b, ...)`、`Not(a)`、`== True/False`\n- 3 个 few-shot 示例：简单推理（kind→nice）、二元关系（eats→red）、多条件规则（And+Implies）+ Unknown 答案\n\n### 2. z3_maxsat.py 布尔/FOL 支持改动\n\n- `parse_z3_formula` 新增 `var_type` 参数（默认 `\"auto\"`）\n- 自动检测布尔公式：正则匹配 `Implies(`、`== True`、`== False`、`Not(`、`And(`、`Or(`\n- 布尔模式下变量声明为 `z3.Bool`，算术模式保持 `z3.Real`\n- 命名空间增加 `Bool`、`Real` 构造函数支持显式声明\n- 验证：`kind_anne == True` + `Implies(kind_anne, nice_anne)` + `Not(nice_anne == True)` → **unsat** ✓\n\n### 3. Domain 自动选择实现\n\n- **pipeline.py** `run_single()`：`domain = \"logic\" if problem.get(\"dataset\") == \"proofwriter\" else \"math\"`，自动设置 `self.constraint_extractor.domain`\n- **pipeline.py**：逻辑域使用 `_group_logic_answers()`（大小写不敏感精确匹配），数学域保持 `group_equivalent_answers()`\n- **run_mvp.py**：`_check_answer()` 函数根据 `dataset` 选择比较方式（ProofWriter 用字符串比较，数学题用 `is_equiv`）\n\n### 4. 验证结果\n\n| 测试 | 结果 |\n|------|------|\n| Z3 布尔解析（Fact/Rule/Derived/And/Or/Not） | ✓ |\n| Z3 一致性检查（kind+Implies+¬nice → unsat） | ✓ |\n| 数学公式自动识别（x+y==14 → Real） | ✓ |\n| 逻辑域 Prompt 加载（含 Implies/fact/rule/derived） | ✓ |\n| MockLLM 逻辑域 mock 提取 3 条约束 | ✓ |\n| 数学域 MockLLM 仍正常工作 | ✓ |\n| Pipeline domain 自动检测 | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-proofwriter-prompt.md"
+}

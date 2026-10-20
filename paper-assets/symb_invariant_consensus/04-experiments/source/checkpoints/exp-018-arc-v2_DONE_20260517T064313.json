@@ -1,0 +1,67 @@
+{
+  "exp_id": "exp-018-arc-v2",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:13:27.054Z",
+    "updated_at": "2026-05-17T06:43:13.130Z",
+    "hypothesis": "Cross-domain validation: Qwen2.5-14B-Instruct 在 ARC-Challenge (科学多选, ABCD) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v2: build_generator bug 已修复）",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T06:19:18.377Z",
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T06:39:42.063Z",
+      "training_hours": 0.34
+    },
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && bash scripts/run_exp018_arc.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "289541",
+      "log_path": "~/runs/symb_invariant_consensus/exp-018-arc-v2.log",
+      "submitted_at": "2026-05-17T06:19:19.350Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1433.8,
+      "gpu_hours": 0.4
+    },
+    "pid": "289541",
+    "log_path": "~/runs/symb_invariant_consensus/exp-018-arc-v2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T06:39:44.088518+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.95,
+      "sc_accuracy": 0.9667,
+      "delta_pp": -1.67,
+      "dataset": "ARC-Challenge",
+      "model": "Qwen2.5-14B-Instruct"
+    },
+    "notes": "ARC-Challenge cross-domain: SICA 95.00% vs SC 96.67%, gap=-1.67pp. SICA 略逊于 SC。模型在 ARC 上 baseline 极高(96.67%)，接近天花板——高准确率区间多样性低，SICA 无操作空间。与 StrategyQA (+3.33pp n.s.) 对比：简单任务（高 baseline）SICA 无效或有害，中等难度任务有微弱正向趋势但不显著。整体支持 capability trap：模型能力越强/任务越简单 → SC 已近最优 → SICA 无增量。",
+    "checkpoint_path": "N/A (evaluation experiment)",
+    "completed_at": "2026-05-17T06:43:13.130Z"
+  },
+  "timestamp": "2026-05-17T06:43:13.192726+00:00",
+  "trigger": "update_registry"
+}

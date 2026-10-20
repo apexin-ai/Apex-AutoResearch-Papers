@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "0052fbf46be7e8c81d96",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "download qwen3 14b westd16639",
+  "task_key": "worker_download_qwen3-14b-westd16639_20260518T140600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_download_qwen3-14b-westd16639_20260518T140600.log",
+    "occurrence": 1,
+    "bytes": 862638,
+    "sha256": "5582bd19e8b09c8dde6655a3baa2487cd89e5bfe2d32850058aa05fe0b80a6f9"
+  },
+  "statistics": {
+    "messages": 655,
+    "user_turns": 0,
+    "tool_calls": 274,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 274,
+      "tool_result": 274,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 655,
+      "chunks": [
+        {
+          "path": "0052fbf46be7e8c81d96-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0052fbf46be7e8c81d96-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0052fbf46be7e8c81d96-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0052fbf46be7e8c81d96-part-0004.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-qwen3-14b-westd16639.md"
+}

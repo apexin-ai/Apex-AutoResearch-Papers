@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-992_Q11",
+    "problem": "The bear is nice. The bear likes the cat. The bear sees the dog. The cat eats the bear. The cat is cold. The cat sees the bear. The dog eats the bear. The dog eats the lion. The dog is blue. The dog sees the cat. The lion eats the cat. The lion is cold. The lion likes the bear. The lion likes the cat. If someone is big then they eat the dog. If someone is cold then they are nice. If someone is blue and they see the bear then they see the dog. If someone eats the dog then the dog is nice. If someone is blue and they see the dog then they are big. If someone eats the bear and they are nice then they are blue. If someone eats the bear and they see the dog then the dog is big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat eats the dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(bear, True) ::: The bear is nice.\nLikes(bear, cat, True) ::: The bear likes the cat.\nSees(bear, dog, True) ::: The bear sees the dog.\nEats(cat, bear, True) ::: The cat eats the bear.\nCold(cat, True) ::: The cat is cold.\nSees(cat, bear, True) ::: The cat sees the bear.\nEats(dog, bear, True) ::: The dog eats the bear.\nEats(dog, lion, True) ::: The dog eats the lion.\nBlue(dog, True) ::: The dog is blue.\nSees(dog, cat, True) ::: The dog sees the cat.\nEats(lion, cat, True) ::: The lion eats the cat.\nCold(lion, True) ::: The lion is cold.\nLikes(lion, bear, True) ::: The lion likes the bear.\nLikes(lion, cat, True) ::: The lion likes the cat.\n\nRules:\nBig($x, True) >>> Eats($x, dog, True) ::: If someone is big then they eat the dog.\nCold($x, True) >>> Nice($x, True) ::: If someone is cold then they are nice.\nBlue($x, True) && Sees($x, bear, True) >>> Sees($x, dog, True) ::: If someone is blue and they see the bear then they see the dog.\nEats($x, dog, True) >>> Nice(dog, True) ::: If someone eats the dog then the dog is nice.\nBlue($x, True) && Sees($x, dog, True) >>> Big($x, True) ::: If someone is blue and they see the dog then they are big.\nEats($x, bear, True) && Nice($x, True) >>> Blue($x, True) ::: If someone eats the bear and they are nice then they are blue.\nEats($x, bear, True) && Sees($x, dog, True) >>> Big(dog, True) ::: If someone eats the bear and they see the dog then the dog is big.\n\nQuery:\nEats(cat, dog, True) ::: The cat eats the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

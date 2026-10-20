@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-781_Q5",
+    "problem": "Anne is big. Anne is cold. Anne is round. Charlie is cold. Charlie is furry. Charlie is kind. Charlie is nice. Charlie is round. Erin is big. Gary is furry. Gary is kind. Gary is nice. Gary is quiet. Gary is round. Big things are quiet. If something is quiet and big then it is kind. If something is cold then it is round. Nice things are cold. All cold things are kind. If something is kind then it is nice. If something is nice and furry then it is quiet. All kind things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nCold(Anne, True) ::: Anne is cold.\nRound(Anne, True) ::: Anne is round.\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nRound(Charlie, True) ::: Charlie is round.\nBig(Erin, True) ::: Erin is big.\nFurry(Gary, True) ::: Gary is furry.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nBig($x, True) >>> Quiet($x, True) ::: Big things are quiet.\nQuiet($x, True) && Big($x, True) >>> Kind($x, True) ::: If something is quiet and big then it is kind.\nCold($x, True) >>> Round($x, True) ::: If something is cold then it is round.\nNice($x, True) >>> Cold($x, True) ::: Nice things are cold.\nCold($x, True) >>> Kind($x, True) ::: All cold things are kind.\nKind($x, True) >>> Nice($x, True) ::: If something is kind then it is nice.\nNice($x, True) && Furry($x, True) >>> Quiet($x, True) ::: If something is nice and furry then it is quiet.\nKind($x, True) >>> Nice($x, True) ::: All kind things are nice.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

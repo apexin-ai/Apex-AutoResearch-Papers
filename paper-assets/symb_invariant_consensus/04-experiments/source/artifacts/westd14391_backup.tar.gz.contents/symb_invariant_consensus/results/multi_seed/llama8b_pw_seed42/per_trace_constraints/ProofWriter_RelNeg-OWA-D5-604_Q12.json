@@ -1,0 +1,1134 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-604_Q12",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_tiger, eats_tiger_tiger), eats_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, eats_tiger_mouse), sees_mouse_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_tiger_mouse, big_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(dog, cat)",
+          "z3_formula": "Implies(chases_tiger_dog, chases_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_tiger_dog, chases_tiger_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_tiger_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_tiger_dog, chases_tiger_tiger), chases_tiger_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_tiger_cat, sees_tiger_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_tiger, eats_tiger), eats_tiger_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_mouse_mouse, eats_mouse_mouse), sees_mouse_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_mouse, big_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(cat, dog)",
+          "z3_formula": "Implies(chases_dog, chases_cat_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_dog, chases_dog_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(X, dog)",
+          "z3_formula": "Implies(And(sees_dog_tiger, chases_tiger), chases_tiger_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, cat)",
+          "z3_formula": "not eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, tiger)",
+          "z3_formula": "not sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(X, tiger) -> not chases(X, tiger)",
+          "z3_formula": "Implies(And(chases_cat_tiger, eats_tiger_cat), not chases_cat_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_cat_dog, sees_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, tiger)",
+          "z3_formula": "not chases_cat_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(dog, cat)",
+          "z3_formula": "not chases_dog_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(dog, tiger)",
+          "z3_formula": "not chases_dog_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(tiger, dog)",
+          "z3_formula": "not chases_tiger_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, dog)",
+          "z3_formula": "sees_tiger_dog == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_tiger, eats_tiger_dog), eats_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, eats_tiger_mouse), sees_mouse_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_tiger_mouse, big_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases_dog_cat",
+          "z3_formula": "Implies(chases_tiger_dog, chases_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_tiger_dog, chases_tiger_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_tiger_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases_tiger_dog",
+          "z3_formula": "Implies(And(sees_tiger_dog, chases_tiger_tiger), chases_tiger_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_tiger_cat, sees_tiger_dog)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger) & big(tiger) -> sees(tiger, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, cat)",
+          "z3_formula": "chases_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat) -> chases(dog, cat)",
+          "z3_formula": "Implies(sees_dog_cat, chases_dog_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mouse(eats, tiger)",
+          "z3_formula": "mouse_eats_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse) & mouse(eats, tiger) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_cat_mouse, mouse_eats_tiger), sees_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mouse(eats, cat)",
+          "z3_formula": "mouse_eats_cat == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mouse(eats, tiger) -> mouse(eats, cat)",
+          "z3_formula": "Implies(mouse_eats_tiger, mouse_eats_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger) -> big(X)",
+          "z3_formula": "Implies(sees_mouse_tiger, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & X(eats, tiger) -> X(eats, dog)",
+          "z3_formula": "Implies(And(young_X, X_eats_tiger), X_eats_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "X(eats, dog) -> X(eats, tiger)",
+          "z3_formula": "Implies(X_eats_dog, X_eats_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "tiger(eats, dog)",
+          "z3_formula": "tiger_eats_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tiger(eats, dog) -> not young(tiger)",
+          "z3_formula": "Implies(tiger_eats_dog, not_young_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not_young_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(tiger, dog)",
+          "z3_formula": "not_sees_tiger_dog == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, dog)",
+          "z3_formula": "sees_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == False",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_tiger, eats_tiger_tiger), eats_tiger_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, eats_tiger_mouse), sees_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_tiger_mouse, big_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_tiger_dog, chases_tiger_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_tiger_dog, chases_tiger_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(chases_tiger_tiger, eats_tiger_cat), sees_tiger_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(X, dog)",
+          "z3_formula": "Implies(And(sees_tiger_dog, chases_tiger_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_tiger, big_tiger), sees_tiger_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_tiger_cat, sees_tiger_dog)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(tiger, dog))",
+          "z3_formula": "not_sees_tiger_dog == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(chases_tiger_dog, sees_tiger_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, dog)",
+          "z3_formula": "sees_tiger_dog == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, mouse)",
+          "z3_formula": "chases_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(mouse, cat))",
+          "z3_formula": "not_eats_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, tiger)",
+          "z3_formula": "eats_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(mouse, tiger))",
+          "z3_formula": "not_sees_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(And(young_X, eats_X_tiger), eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & eats(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, eats_X_mouse), sees_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> big(X)",
+          "z3_formula": "Implies(sees_X_mouse, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & eats(tiger, cat) -> sees(cat, mouse)",
+          "z3_formula": "Implies(And(chases_X_tiger, eats_tiger_cat), sees_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & chases(X, tiger) -> chases(tiger, dog)",
+          "z3_formula": "Implies(And(sees_X_dog, chases_X_tiger), chases_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> sees(X, dog)",
+          "z3_formula": "Implies(And(green_X, big_X), sees_X_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, dog)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(tiger, dog))",
+          "z3_formula": "not_sees_tiger_dog == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "If sees(X, mouse) then big(X)",
+          "z3_formula": "Implies(sees_tiger_mouse, big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "If eats(X, tiger) then eats(X, dog)",
+          "z3_formula": "Implies(eats_tiger_tiger, eats_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "If eats(X, dog) then sees(X, dog)",
+          "z3_formula": "Implies(eats_tiger_dog, sees_tiger_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, dog)",
+          "z3_formula": "sees_tiger_dog == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

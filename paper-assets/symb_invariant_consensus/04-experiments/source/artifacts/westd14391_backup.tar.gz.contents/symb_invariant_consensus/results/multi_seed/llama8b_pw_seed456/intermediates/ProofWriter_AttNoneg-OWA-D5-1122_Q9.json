@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1122_Q9",
+    "problem": "Bob is nice. Bob is round. Bob is white. Charlie is blue. Charlie is nice. Fiona is blue. Harry is white. If someone is blue then they are furry. All furry, nice people are smart. If someone is furry and white then they are nice. All white people are blue. Nice, smart people are quiet. Round people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is quiet.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nWhite(Bob, True) ::: Bob is white.\nBlue(Charlie, True) ::: Charlie is blue.\nNice(Charlie, True) ::: Charlie is nice.\nBlue(Fiona, True) ::: Fiona is blue.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> Furry($x, True) ::: If someone is blue then they are furry.\nFurry($x, True) && Nice($x, True) >>> Smart($x, True) ::: All furry, nice people are smart.\nFurry($x, True) && White($x, True) >>> Nice($x, True) ::: If someone is furry and white then they are nice.\nWhite($x, True) >>> Blue($x, True) ::: All white people are blue.\nNice($x, True) && Smart($x, True) >>> Quiet($x, True) ::: Nice, smart people are quiet.\nRound($x, True) >>> White($x, True) ::: Round people are white.\n\nQuery:\nQuiet(Bob, True) ::: Bob is quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

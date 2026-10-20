@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "133f4b9e83033605d2f5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis wild4 process kappa",
+  "task_key": "worker_analysis_wild4-process-kappa_20260520T080636",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_wild4-process-kappa_20260520T080636_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "43d00c140ff4510572cf3f5dcc2d8a95002878952eade56e0148e4d7bb1736bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| 指标 | 值 |\n|------|-----|\n| **Fleiss' κ (3-cat, empty→Unknown)** | **0.4093** |\n| Fleiss' κ (4-cat) | 0.3294 |\n| Fleiss' κ (3-cat, empty excluded) | 0.5006 |\n| Mean answer agreement (P_i) | 0.51 ± 0.22 |\n| **Mean process cosine similarity** | **0.6902 ± 0.10** |\n| Pearson r(agreement, similarity) | -0.064 (p=0.36, **不显著**) |\n| Spearman ρ | -0.047 (p=0.51, **不显著**) |\n| **Same answer, different process (cos<0.5)** | **9.3%** (616/6605 pairs) |\n\n关键发现：\n- Answer-level κ ≈ 0.41（与预期 0.44 基本一致，差异来自空答案处理方式）\n- Process similarity (0.69) 远高于 answer agreement (0.51)——CoT 文本的表面相似度高于答案一致性\n- **答案一致性与过程相似度之间几乎没有相关性**（r=-0.06, p=0.36），说明过程相似不等于答案一致\n- 9.3% 的同答案 pair 实际推理路径差异大（cosine<0.5），即\"殊途同归\"现象存在但不算很普遍\n\n文件位置：\n- 服务器完整结果：`/root/symb_invariant_consensus/results/wild4_process_kappa/results.json`\n- 本地摘要：`artifacts/wild4_process_kappa_results.json`\n- 脚本：`/root/symb_invariant_consensus/analysis_process_kappa.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wild4-process-kappa.md"
+}

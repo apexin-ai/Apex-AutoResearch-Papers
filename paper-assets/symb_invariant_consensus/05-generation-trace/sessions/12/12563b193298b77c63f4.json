@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12563b193298b77c63f4",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra cuda2 qwen14b pw seed789",
+  "task_key": "worker_infra_cuda2-qwen14b-pw-seed789_20260523T040551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cuda2-qwen14b-pw-seed789_20260523T040551_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "03692be932f1df38b8c60288a34c0d560786c5ec4e1c08eab99d41a2a466de1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证通过。以下是完整实验的准备报告：\n\n---\n\n**vLLM 状态**\n- PID: 739626 (APIServer PID: 739631)\n- Port: 8007\n- Model: Qwen2.5-14B-Instruct, max_model_len=16384\n- GPU: cuda:2, RTX PRO 6000 Blackwell\n\n**实验脚本**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/symb_invariant_consensus && \\\npython run_cross_dataset_replication.py \\\n  --dataset proofwriter \\\n  --data-path data/proofwriter_full.json \\\n  --k 12 \\\n  --vllm-port 8007 \\\n  --seed 789 \\\n  --temperature 0.7 \\\n  --max-tokens 2048 \\\n  --output results/multi_seed/qwen25_pw_seed789/results.json\n```\n\n**输出路径**: `results/multi_seed/qwen25_pw_seed789/results.json`\n\n**预估时间**: ~52s/问题 × 600 = ~8.7 小时\n\n**注意**: port 8001 上有一个排队的 seed789（在 seed456 之后），会写同一输出路径。如果那边也跑到 seed789，可能冲突。建议确认是否需要 kill 那个队列中的 seed789，或改本次输出路径。\n\n需要我通过 `submit_training_job` 提交吗？还是先处理 port 8001 队列的冲突？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cuda2-qwen14b-pw-seed789.md"
+}

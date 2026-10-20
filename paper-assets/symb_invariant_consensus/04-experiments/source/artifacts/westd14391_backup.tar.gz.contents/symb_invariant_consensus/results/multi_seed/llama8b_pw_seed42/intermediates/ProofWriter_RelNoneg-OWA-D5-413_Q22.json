@@ -1,0 +1,1503 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-413_Q22",
+    "problem": "The bear is green. The bear is kind. The mouse needs the bear. The mouse visits the bear. The mouse visits the squirrel. The mouse visits the tiger. The squirrel chases the bear. The squirrel is cold. The squirrel is nice. The tiger is green. The tiger needs the bear. If something needs the mouse then it is kind. If the mouse is young then the mouse needs the bear. If something chases the bear then it needs the tiger. If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. If something visits the squirrel then it needs the mouse. If something chases the squirrel and the squirrel is nice then it is young. If something visits the mouse and the mouse is green then it needs the tiger. If something is kind and it visits the tiger then the tiger visits the squirrel. If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel chases the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Bear, True) ::: The bear is green.\nKind(Bear, True) ::: The bear is kind.\nNeeds(Mouse, Bear, True) ::: The mouse needs the bear.\nVisits(Mouse, Bear, True) ::: The mouse visits the bear.\nVisits(Mouse, Squirrel, True) ::: The mouse visits the squirrel.\nVisits(Mouse, Tiger, True) ::: The mouse visits the tiger.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nCold(Squirrel, True) ::: The squirrel is cold.\nNice(Squirrel, True) ::: The squirrel is nice.\nGreen(Tiger, True) ::: The tiger is green.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\n\nRules:\nNeeds($x, Mouse, True) >>> Kind($x, True) ::: If something needs the mouse then it is kind.\nYoung(Mouse, True) >>> Needs(Mouse, Bear, True) ::: If the mouse is young then the mouse needs the bear.\nChases($x, Bear, True) >>> Needs($x, Tiger, True) ::: If something chases the bear then it needs the tiger.\nNeeds($x, Squirrel, True) && Visits($x, Mouse, True) >>> Needs(Mouse, Squirrel, True) ::: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\nVisits($x, Squirrel, True) >>> Needs($x, Mouse, True) ::: If something visits the squirrel then it needs the mouse.\nChases($x, Squirrel, True) && Nice(Squirrel, True) >>> Young($x, True) ::: If something chases the squirrel and the squirrel is nice then it is young.\nVisits($x, Mouse, True) && Green(Mouse, True) >>> Needs($x, Tiger, True) ::: If something visits the mouse and the mouse is green then it needs the tiger.\nKind($x, True) && Visits($x, Tiger, True) >>> Visits(Tiger, Squirrel, True) ::: If something is kind and it visits the tiger then the tiger visits the squirrel.\nNeeds(Bear, Squirrel, True) && Visits(Bear, Tiger, True) >>> Chases(Bear, Tiger, True) ::: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\nQuery:\nChases(Squirrel, Tiger, True) ::: The squirrel chases the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 116.0,
+      "Unknown": 196.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The tiger is green.\n   - The tiger needs the bear.\n\n2. Let's analyze the given statements with rules:\n   - If something needs the mouse then it is kind. (Rule 1)\n   - If the mouse is young then the mouse needs the bear. (Rule 2)\n   - If something chases the bear then it needs the tiger. (Rule 3)\n   - If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Rule 4)\n   - If something visits the squirrel then it needs the mouse. (Rule 5)\n   - If something chases the squirrel and the squirrel is nice then it is young. (Rule 6)\n   - If something visits the mouse and the mouse is green then it needs the tiger. (Rule 7)\n   - If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 8)\n   - If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 9)\n\n3. We need to determine whether the squirrel chases the tiger. We can start by using the given information and the rules.\n\nFrom Rule 1, we can't directly determine if the squirrel needs the mouse or not, so we will analyze other information.\n\nFrom Rule 3, if something chases the bear, then it needs the tiger. However, we know the squirrel chases the bear. So, from this rule, we can't directly conclude that the squirrel needs the tiger.\n\nFrom Rule 5, if something visits the squirrel, then it needs the mouse. The mouse visits the squirrel, so the mouse needs the squirrel. However, we can't directly conclude that the squirrel chases the tiger.\n\nFrom Rule 6, if something chases the squirrel and the squirrel is nice, then it is young. However, we don't have any information that the squirrel is chased by something else.\n\nFrom Rule 7, if something visits the mouse and the mouse is green, then it needs the tiger. The mouse is green, but we don't have any information about the mouse visiting the tiger.\n\nFrom Rule 8, if something is kind and it visits the tiger, then the tiger visits the squirrel. We know the tiger is green and the mouse is green. We also know the bear is kind and the bear visits the tiger, so from this rule, we can't directly conclude that the squirrel chases the tiger.\n\nFrom Rule 9, if the bear needs the squirrel and the bear visits the tiger, then the bear chases the tiger. The bear needs the squirrel and the bear visits the tiger, but we don't have any information that the bear chases the tiger.\n\n4. Now, let's analyze the given statements again. We have:\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The tiger is green.\n   - The tiger needs the bear.\n\nWe also have:\n- From Rule 3, the squirrel chases the bear, so the squirrel needs the tiger.\n- From Rule 5, the mouse visits the squirrel, so the mouse needs the squirrel.\n- From Rule 2, the mouse is young, so the mouse needs the bear.\n\nWe have the following relationships:\n- The mouse needs the bear.\n- The mouse needs the squirrel.\n- The squirrel needs the tiger.\n- The bear needs the squirrel.\n\nNow, we can analyze the relationships. The mouse needs the bear, and the bear needs the squirrel, so the mouse needs the squirrel through the bear.\n\nHowever, we don't have any direct relationship between the squirrel and the tiger. We only know that the squirrel needs the tiger from Rule 3.\n\n5. Now, let's analyze the statement \"The squirrel chases the tiger.\" We have:\n   - The squirrel needs the tiger.\n   - The squirrel chases the bear.\n\nWe can use Rule 3: If something chases the bear then it needs the tiger. The squirrel chases the bear, so the squirrel needs the tiger.\n\nHowever, we can't directly conclude that the squirrel chases the tiger. We only know that the squirrel needs the tiger.\n\n6. Now, let's analyze the given statements again. We have:\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The tiger is green.\n   - The tiger needs the bear.\n\nWe also have:\n- From Rule 3, the squirrel chases the bear, so the squirrel needs the tiger.\n- From Rule 5, the mouse visits the squirrel, so the mouse needs the squirrel.\n- From Rule 2, the mouse is young, so the mouse needs the bear.\n\nWe have the following relationships:\n- The mouse needs the bear.\n- The mouse needs the squirrel.\n- The squirrel needs the tiger.\n- The bear needs the squirrel.\n\nNow, we can analyze the relationships. The mouse needs the bear, and the bear needs the squirrel, so the mouse needs the squirrel through the bear.\n\nHowever, we don't have any direct relationship between the squirrel and the tiger. We only know that the squirrel needs the tiger from Rule 3.\n\nNow, we have a new relationship: \n- If something chases the squirrel and the squirrel is nice then it is young. (Rule 6)\n\nThe squirrel is nice, so from this rule, if something chases the squirrel, then it is young. \n\nNow, let's analyze the relationships again. We have:\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The tiger is green.\n   - The tiger needs the bear.\n\nWe also have:\n- From Rule 3, the squirrel chases the bear, so the squirrel needs the tiger.\n- From Rule 5, the mouse visits the squirrel, so the mouse needs the squirrel.\n- From Rule 2, the mouse is young, so the mouse needs the bear.\n\nWe have the following relationships:\n- The mouse needs the bear.\n- The mouse needs the squirrel.\n- The squirrel needs the tiger.\n- The bear needs the squirrel.\n\nNow, we can analyze the relationships. The mouse needs the bear, and the bear needs the squirrel, so the mouse needs the squirrel through the bear.\n\nHowever, we don't have any direct relationship between the squirrel and the tiger. We only know that the squirrel needs the tiger from Rule 3.\n\nNow, let's analyze the statement \"The squirrel chases the tiger.\" We have:\n   - The squirrel needs the tiger.\n   - The squirrel chases the bear.\n\nWe can use Rule 3: If something chases the bear then it needs the tiger. The squirrel chases the bear, so the squirrel needs the tiger.\n\nHowever, we can't directly conclude that the squirrel chases the tiger. We only know that the squirrel needs the tiger.\n\nNow, we have a new relationship: \n- The squirrel is cold.\n\nWe also have a new relationship: \n- The squirrel chases the bear.\n\nWe can use Rule 6: If something chases the squirrel and the squirrel is nice then it is young. The squirrel is nice, so from this rule, if something chases the squirrel, then it is young.\n\nHowever, we don't have any information about something chasing the squirrel.\n\nNow, let's analyze the statement \"The squirrel chases the tiger.\" We have:\n   - The squirrel needs the tiger.\n   - The squirrel chases the bear.\n\nWe can use Rule 3: If something chases the bear then it needs the tiger. The squirrel chases the bear, so the squirrel needs the tiger.\n\nHowever, we can't directly conclude that the squirrel chases the tiger. We only know that the squirrel needs the tiger.\n\nNow, let's analyze the given statements again. We have:\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The tiger is green.\n   - The tiger needs the bear.\n\nWe also have:\n- From Rule 3, the squirrel chases the bear, so the squirrel needs the tiger.\n- From Rule 5, the mouse visits the squirrel, so the mouse needs the squirrel.\n- From Rule 2, the mouse is young, so the mouse needs the bear.\n\nWe have the following relationships:\n- The mouse needs the bear.\n- The mouse needs the squirrel.\n- The squirrel needs the tiger.\n- The bear needs",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the problem, we need to apply the given rules and conditions to the statements provided.\n\n1. The bear is green. \n2. The bear is kind.\n3. The mouse needs the bear.\n4. The mouse visits the bear.\n5. The mouse visits the squirrel.\n6. The mouse visits the tiger.\n7. The squirrel chases the bear.\n8. The squirrel is cold.\n9. The squirrel is nice.\n10. The tiger is green.\n11. The tiger needs the bear.\n\nWe are asked to determine if the following statement is true, false, or unknown:\nThe squirrel chases the tiger.\n\nFrom statement 7, we know that the squirrel chases the bear.\n\nNow, we need to apply the given rules:\n\nRule 3: If something needs the mouse then it is kind. (Not applicable here)\nRule 4: If the mouse is young then the mouse needs the bear. (Not applicable here)\nRule 5: If something chases the bear then it needs the tiger. (Applicable here)\nFrom statement 7, the squirrel chases the bear. So, the squirrel needs the tiger.\n\nRule 6: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Not applicable here)\nRule 7: If something visits the squirrel then it needs the mouse. (Not applicable here)\nRule 8: If something chases the squirrel and the squirrel is nice then it is young. (Not applicable here)\nRule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nRule 10: If something is kind and it visits the tiger then the tiger visits the squirrel. (Not applicable here)\nRule 11: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Not applicable here)\n\nHowever, we can use Rule 5: If something chases the bear then it needs the tiger. (Applicable here)\nFrom statement 7, the squirrel chases the bear. So, the squirrel needs the tiger.\n\nWe also know from statement 9 that the squirrel is nice.\n\nNow we can apply Rule 8: If something chases the squirrel and the squirrel is nice then it is young. (Applicable here)\nFrom statement 7, the squirrel chases the bear. However, we are looking for something that chases the squirrel. So, there is no information about something chasing the squirrel in the given statements.\n\nHowever, we can use the information from statement 5: The mouse visits the squirrel.\n\nNow we can apply Rule 7: If something visits the squirrel then it needs the mouse. (Applicable here)\nFrom statement 5, the mouse visits the squirrel. So, the mouse needs the squirrel.\n\nNow we can apply Rule 6: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Applicable here)\nFrom the previous conclusion, the mouse needs the squirrel. So, the mouse visits the squirrel. \n\nNow we can apply Rule 6: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Applicable here)\nFrom the previous conclusion, the mouse needs the squirrel. So, the mouse visits the squirrel.\n\nHowever, we are looking for a conclusion that the squirrel chases the tiger. We already know that the squirrel needs the tiger.\n\nNow we can use the information from statement 10: The tiger is green.\n\nHowever, we can use the information from statement 3: The mouse needs the bear.\n\nNow we can apply Rule 4: If the mouse is young then the mouse needs the bear. (Applicable here)\nFrom statement 3, the mouse needs the bear. So, the mouse is young.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Applicable here)\nFrom statement 4, the mouse visits the bear. However, we are looking for something that visits the mouse. So, there is no information about something visiting the mouse in the given statements.\n\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Applicable here)\nFrom statement 6, the mouse visits the tiger. However, we are looking for something that visits the mouse. So, there is no information about something visiting the mouse in the given statements.\n\nHowever, we can use the information from statement 4: The mouse visits the bear.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Applicable here)\nFrom statement 4, the mouse visits the bear. However, we are looking for something that visits the mouse. So, there is no information about something visiting the mouse in the given statements.\n\nHowever, we can use the information from statement 5: The mouse visits the squirrel.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Applicable here)\nFrom statement 5, the mouse visits the squirrel. However, we are looking for something that visits the mouse. So, there is no information about something visiting the mouse in the given statements.\n\nHowever, we can use the information from statement 5: The mouse visits the squirrel.\n\nNow we can apply Rule 6: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Applicable here)\nFrom statement 3, the mouse needs the bear. However, we are looking for something that needs the squirrel. So, there is no information about something that needs the squirrel in the given statements.\n\nHowever, we can use the information from statement 9: The squirrel is nice.\n\nNow we can apply Rule 8: If something chases the squirrel and the squirrel is nice then it is young. (Applicable here)\nFrom statement 7, the squirrel chases the bear. However, we are looking for something that chases the squirrel. So, there is no information about something chasing the squirrel in the given statements.\n\nHowever, we can use the information from statement 7: The squirrel chases the bear.\n\nNow we can apply Rule 5: If something chases the bear then it needs the tiger. (Applicable here)\nFrom statement 7, the squirrel chases the bear. So, the squirrel needs the tiger.\n\nHowever, we are looking for a conclusion that the squirrel chases the tiger. We already know that the squirrel needs the tiger.\n\nNow we can apply Rule 11: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Applicable here)\nHowever, this rule is not applicable here.\n\nHowever, we can use the information from statement 2: The bear is kind.\n\nNow we can apply Rule 10: If something is kind and it visits the tiger then the tiger visits the squirrel. (Applicable here)\nHowever, this rule is not applicable here.\n\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nNow we can apply Rule 9: If something visits the mouse and the mouse is green then it needs the tiger. (Not applicable here)\nHowever, we can use the information from statement 6: The mouse visits the tiger.\n\nHowever, we can use the information from statement 11: The tiger needs the bear.\n\nHowever, we are looking for a conclusion that the squirrel chases the tiger. We already know that the squirrel needs the tiger.\n\nWe can't determine if the squirrel chases the tiger from the given information.\n\nThe final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given information and apply the provided rules.\n\n1. From the statement \"The squirrel is cold. The squirrel is nice.\" we can infer that the squirrel is nice.\n2. The statement \"The squirrel chases the bear\" is given, which means the squirrel needs the tiger (rule: if something chases the bear then it needs the tiger).\n3. Since the squirrel needs the tiger and the tiger is green, we can infer that the tiger needs the bear (rule: if something is green then it needs the bear).\n4. We also know that the mouse visits the squirrel, and the mouse visits the tiger, but we don't have enough information about the mouse's age or the mouse's color to determine if the mouse needs the bear.\n5. The statement \"The bear is green\" is given, so we can infer that the bear needs the squirrel (rule: if something is green then it needs the squirrel).\n6. We can also infer that the bear needs the tiger (rule: if something is green then it needs the bear).\n7. From the statement \"The bear visits the tiger\" we can infer that the tiger visits the squirrel (rule: if something is kind and it visits the tiger then the tiger visits the squirrel).\n8. However, we are given the statement \"The bear visits the tiger,\" but we don't know if the bear is kind or not. If the bear is kind, then the tiger visits the squirrel. If the bear is not kind, then we can't determine the relationship between the bear and the tiger.\n9. We also know that the mouse needs the bear, but we don't know if the mouse is green or not.\n10. From the statement \"The tiger is green\" we can infer that the tiger is green.\n\nNow let's look at the statement \"The bear is kind.\" If the bear is kind, then the tiger visits the squirrel (rule: if something is kind and it visits the tiger then the tiger visits the squirrel).\n\nHowever, we also know that the bear chases the tiger (rule: if the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger).\n\nSince the squirrel chases the bear (given statement), and the squirrel is nice (inferred from \"The squirrel is cold. The squirrel is nice.\"), we can infer that the squirrel is young (rule: if something chases the squirrel and the squirrel is nice then it is young).\n\nThe statement \"The mouse visits the squirrel\" and \"The mouse visits the tiger\" are given, but we don't know if the mouse is green or not.\n\nNow let's analyze the statement \"The mouse needs the bear\" and \"The bear is green.\" Since the bear is green, we can infer that the bear needs the squirrel (rule: if something is green then it needs the squirrel).\n\nWe also know that the squirrel chases the bear, so the squirrel needs the tiger (rule: if something chases the bear then it needs the tiger).\n\nWe also know that the tiger is green, so the tiger needs the bear (rule: if something is green then it needs the bear).\n\nWe also know that the mouse visits the squirrel, but we don't know if the mouse needs the squirrel or not.\n\nSince the squirrel chases the bear (given statement) and the bear needs the squirrel (inferred from \"The bear is green\"), we can infer that the bear visits the tiger (rule: if the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger).\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and rules. \n\nFrom the rules:\n1. If something needs the mouse then it is kind. \n2. If the mouse is young then the mouse needs the bear. \n3. If something chases the bear then it needs the tiger.\n4. If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\n5. If something visits the squirrel then it needs the mouse.\n6. If something chases the squirrel and the squirrel is nice then it is young.\n7. If something visits the mouse and the mouse is green then it needs the tiger.\n8. If something is kind and it visits the tiger then the tiger visits the squirrel.\n9. If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\nWe are asked to determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown.\n\nFrom statement 1, we don't have enough information to determine whether the squirrel is kind or not, so we cannot use rule 1.\n\nFrom statement 2, we don't have enough information to determine whether the mouse is young or not, so we cannot use rule 2.\n\nFrom statement 3, if the squirrel chases the bear, then it needs the tiger. However, the statement does not tell us whether the squirrel chases the bear or not.\n\nFrom statement 4, if something needs the squirrel and it visits the mouse, then the mouse needs the squirrel. We don't have enough information to determine whether the mouse needs the squirrel or not.\n\nFrom statement 5, if something visits the squirrel, then it needs the mouse. This statement alone does not tell us whether the squirrel chases the tiger.\n\nFrom statement 6, if something chases the squirrel and the squirrel is nice, then it is young. The statement does not tell us whether the squirrel is nice or young.\n\nFrom statement 7, if something visits the mouse and the mouse is green, then it needs the tiger. The statement does not tell us whether the mouse is green or not.\n\nFrom statement 8, if something is kind and it visits the tiger, then the tiger visits the squirrel. We don't have enough information to determine whether the squirrel chases the tiger.\n\nFrom statement 9, if the bear needs the squirrel and the bear visits the tiger, then the bear chases the tiger. The statement does not tell us whether the bear needs the squirrel or visits the tiger.\n\nHowever, from statement 8, we can derive that the tiger visits the squirrel. Since the tiger is green (from statement 10), the mouse needs the tiger (from statement 7), so the mouse visits the tiger. \n\nBut then the statement \"The mouse visits the tiger. The mouse visits the squirrel\" means the mouse needs the squirrel. Since the squirrel is nice, the statement \"The squirrel chases the bear. The squirrel is cold. The squirrel is nice\" means the squirrel is young. \n\nSince the squirrel is young, the statement \"The mouse is young\" is true. This means the mouse needs the bear.\n\nHowever, from statement 1, if something needs the mouse, then it is kind. But we cannot find any statement that needs the mouse, so we cannot use rule 1.\n\nHowever, from statement 6, if something chases the squirrel and the squirrel is nice, then it is young. The statement does not tell us whether the squirrel is nice or young, but it does tell us that the squirrel is young if something chases the squirrel and the squirrel is nice.\n\nFrom statement 6, if the squirrel is nice, then it is young. However, if the squirrel is young, then it is nice (from statement 6). This is a contradiction, and we cannot determine whether the squirrel is nice or young.\n\nSince we cannot determine whether the squirrel is nice or young, we cannot determine whether the squirrel chases the tiger or not.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the information, we know:\n- The squirrel chases the bear.\n- The squirrel is cold.\n- The squirrel is nice.\n\nWe can use the rules to analyze the situation:\n- If something chases the bear then it needs the tiger. (Rule 3)\n  Since the squirrel chases the bear, this means the squirrel needs the tiger.\n\n- If the squirrel needs the tiger, then we don't have any information about the tiger chasing the squirrel, but we do have information about the tiger being green. (Rule 8)\n\n- There is no rule that directly states \"If the squirrel needs the tiger then the squirrel chases the tiger.\" However, we do have another rule that might help: If the mouse visits the squirrel then the mouse needs the squirrel. (Rule 5) But we also have this information: \"The mouse visits the squirrel.\" (Given information) \n  However, we do not have any information that the mouse needs the squirrel.\n\n- There is also the information that the tiger is green and the tiger needs the bear. (Given information) However, we cannot use this information directly to determine whether the squirrel chases the tiger.\n\nHowever, we can use another piece of information: \"The squirrel is nice.\" (Given information) And the rule: If something chases the squirrel and the squirrel is nice then it is young. (Rule 7)\n  This means that if the squirrel chases the tiger and the squirrel is nice, then it must be young.\n\nBut we also have this information: The mouse needs the bear. (Given information) And the rule: If the mouse is young then the mouse needs the bear. (Rule 2)\n  This means that if the mouse is young, then it must be true that the mouse needs the bear.\n\nNow, we also have this information: The mouse visits the squirrel. (Given information) And the rule: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Rule 5)\n  However, we also have the information that the mouse needs the bear. (Given information) We don't know whether the mouse needs the squirrel.\n\nWe can use another piece of information: The bear is green. (Given information) And the rule: If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 9) However, we also have the information that the bear is kind. (Given information) \n  This means that the bear visits the tiger. And the information that the bear needs the squirrel. (Given information) And the rule: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 10) However, we also have the information that the bear is green. (Given information) But we don't have the information that the bear is young. We can use the information that the bear is green and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use another piece of information: The tiger is green. (Given information) And the rule: If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 9) However, we also have the information that the bear is kind. (Given information) And the rule: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 10) However, we also have the information that the bear is green. (Given information) But we don't have the information that the bear is young. We can use the information that the bear is green and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use another piece of information: The mouse is green. (Implicit information from the rule: If the mouse is young then the mouse needs the bear. (Rule 2)) And the rule: If something visits the mouse and the mouse is green then it needs the tiger. (Rule 6) However, we also have the information that the bear is green. (Given information) And the rule: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 10) However, we also have the information that the bear is green. (Given information) But we don't have the information that the bear is young. We can use the information that the bear is green and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use another piece of information: The squirrel chases the bear. (Given information) And the rule: If something chases the bear then it needs the tiger. (Rule 3) This means that the squirrel needs the tiger.\n\nFrom the information that the squirrel needs the tiger, we can use the rule: If the squirrel needs the tiger then the squirrel is young. (Implicit information from the rule: If the squirrel chases the squirrel and the squirrel is nice then it is young. (Rule 7)) However, we don't have the information that the squirrel chases the squirrel.\n\nHowever, we can use the information that the squirrel is nice and the rule: If something chases the squirrel and the squirrel is nice then it is young. (Rule 7) However, we don't have any information that the squirrel chases the tiger.\n\nHowever, we can use the information that the squirrel chases the bear and the rule: If something chases the bear then it needs the tiger. (Rule 3) However, we don't have any information that the squirrel chases the tiger.\n\nHowever, we can use the information that the bear is green and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use the information that the tiger is green and the rule: If something visits the mouse and the mouse is green then it needs the tiger. (Rule 6) However, we don't have any information that the mouse is green.\n\nHowever, we can use the information that the mouse visits the squirrel and the rule: If something visits the squirrel then it needs the mouse. (Implicit information from the rule: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Rule 5)) However, we also have the information that the mouse visits the squirrel. (Given information) However, we don't have any information that the mouse needs the squirrel.\n\nHowever, we can use the information that the mouse needs the bear and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use the information that the bear visits the tiger and the rule: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 10) However, we don't have any information that the bear needs the squirrel.\n\nHowever, we can use the information that the squirrel is nice and the rule: If something chases the squirrel and the squirrel is nice then it is young. (Rule 7) However, we don't have any information that the squirrel chases the tiger.\n\nHowever, we can use the information that the squirrel chases the bear and the rule: If something chases the bear then it needs the tiger. (Rule 3) However, we don't have any information that the squirrel chases the tiger.\n\nHowever, we can use the information that the bear is kind and the rule: If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 9) However, we also have the information that the bear is green. (Given information) However, we don't have any information that the bear visits the tiger.\n\nHowever, we can use the information that the bear visits the tiger and the rule: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 10) However, we don't have any information that the bear needs the squirrel.\n\nHowever, we can use the information that the bear is green and the rule: If the mouse is young then the mouse needs the bear. (Rule 2) However, we don't have any information that the mouse is young.\n\nHowever, we can use the information that the mouse visits the squirrel and the rule: If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Rule 5) However, we also have the information that the mouse visits the squirrel. (Given information) However, we don't have any information that the mouse needs the squirrel.\n\nHowever, we can use the information that the bear needs the tiger and the rule: If something chases the squirrel and the squirrel is nice then it is young. (Rule 7) However, we don't have any information that the squirrel chases the tiger.\n\nHowever, we can use the information that the squirrel needs the tiger and the rule: If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 9) However, we don't have any information that the squirrel is kind.\n\nHowever, we can use the information that the bear is green and the rule: If something is kind and it visits the tiger then the tiger visits the squirrel. (Rule 9) However, we also have the information that the bear is kind. (Given information) However, we don't have any information that",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table and analyze the given statements step by step.\n\nFrom the given statements, we have:\n1. The bear is green.\n2. The bear is kind.\n3. The mouse needs the bear.\n4. The mouse visits the bear.\n5. The mouse visits the squirrel.\n6. The mouse visits the tiger.\n7. The squirrel chases the bear.\n8. The squirrel is cold.\n9. The squirrel is nice.\n10. The tiger is green.\n11. The tiger needs the bear.\n\nWe need to determine if the statement \"The squirrel chases the tiger\" is true, false, or unknown.\n\nFrom statement 7, we know that the squirrel chases the bear.\n\nUsing the given statements, we have the following:\n- If something chases the bear then it needs the tiger. (Statement 12)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel needs the tiger.\n\nHowever, we don't have any information about the tiger's behavior towards the squirrel. To find out if the squirrel chases the tiger, we need to check if the conditions for the squirrel chases the tiger are met.\n\nChecking the given statements, we see:\n- If something chases the squirrel and the squirrel is nice then it is young. (Statement 14)\n- The squirrel is nice. (Statement 9)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel is young. (From statement 14)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nNow, we check if the conditions for the squirrel chases the tiger are met:\n- If something visits the mouse and the mouse is green then it needs the tiger. (Statement 16)\n- The mouse is green. (From statement 1 and statement 6)\n- The mouse visits the tiger. (Statement 6)\n- Therefore, the mouse needs the tiger.\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nWe check the statement \"If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\" (Statement 17)\n- The bear needs the squirrel. (From statement 3 and statement 5)\n- The bear visits the tiger. (Statement 6)\n- Therefore, the bear chases the tiger.\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nNow, let's analyze statement 15:\n- If something is kind and it visits the tiger then the tiger visits the squirrel.\n- The bear is kind. (Statement 2)\n- The bear visits the tiger. (Statement 6)\n- Therefore, the tiger visits the squirrel.\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nNow, we analyze statement 13:\n- If something visits the squirrel then it needs the mouse.\n- The squirrel visits the mouse. (Statement 5)\n- The squirrel needs the mouse. (From statement 13)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have another statement:\n- If something chases the squirrel and the squirrel is nice then it is young. (Statement 14)\n- The squirrel is nice. (Statement 9)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel is young. (From statement 14)\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If the mouse visits the squirrel then the squirrel needs the mouse.\" (From statement 5 and statement 13)\n- The mouse visits the squirrel. (Statement 5)\n- The squirrel needs the mouse. (From statement 13)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nNow, we analyze the statement \"If the tiger is green then it needs the bear.\" (From statement 10 and statement 11)\n- The tiger is green. (Statement 10)\n- The tiger needs the bear. (From statement 11)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nFrom the statement \"If something is kind and it visits the tiger then the tiger visits the squirrel.\" (Statement 15)\n- The bear is kind. (Statement 2)\n- The bear visits the tiger. (Statement 6)\n- Therefore, the tiger visits the squirrel.\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nNow, let's analyze the statement \"If something chases the squirrel then it needs the squirrel.\" (From statement 7 and statement 9)\n- The squirrel chases the bear. (Statement 7)\n- The squirrel is nice. (Statement 9)\n- Therefore, the squirrel is young. (From statement 14)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nWe analyze the statement \"If the mouse visits the squirrel then the squirrel needs the mouse.\" (From statement 5 and statement 13)\n- The mouse visits the squirrel. (Statement 5)\n- The squirrel needs the mouse. (From statement 13)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If the squirrel chases the bear then the squirrel needs the tiger.\" (From statement 7 and statement 12)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel needs the tiger. (From statement 12)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nWe check if the conditions for the squirrel chases the tiger are met:\n- If the squirrel is young then the squirrel needs the bear. (Statement 8)\n- The squirrel is young. (From statement 14 and statement 9)\n- However, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nWe analyze the statement \"If the tiger needs the bear and the bear visits the tiger then the bear chases the tiger.\" (From statement 11 and statement 6)\n- The tiger needs the bear. (Statement 11)\n- The bear visits the tiger. (Statement 6)\n- Therefore, the bear chases the tiger.\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If something visits the mouse then it needs the bear.\" (From statement 4 and statement 3)\n- The mouse visits the bear. (Statement 4)\n- The mouse needs the bear. (From statement 3)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If the squirrel is cold then the squirrel chases the bear.\" (From statement 8 and statement 7)\n- The squirrel is cold. (Statement 8)\n- The squirrel chases the bear. (From statement 7)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If something is kind then it needs the mouse.\" (From statement 2 and statement 3)\n- The bear is kind. (Statement 2)\n- The bear needs the mouse. (From statement 3)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If something needs the mouse then it is kind.\" (From statement 3 and statement 2)\n- The mouse needs the bear. (Statement 3)\n- However, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nFrom statement 14:\n- If something chases the squirrel and the squirrel is nice then it is young.\n- The squirrel is nice. (Statement 9)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel is young. (From statement 14)\n\nNow, from statement 8:\n- If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\n- However, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If something needs the bear then it is kind.\" (From statement 3 and statement 2)\n- The mouse needs the bear. (Statement 3)\n- However, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nNow, let's analyze the statement \"If the squirrel chases the bear then the squirrel needs the tiger.\" (From statement 7 and statement 12)\n- The squirrel chases the bear. (Statement 7)\n- Therefore, the squirrel needs the tiger. (From statement 12)\n\nHowever, this does not directly tell us if the squirrel chases the tiger.\n\nHowever, we have not yet checked if the conditions for the squirrel chases the tiger are met.\n\nWe check if the conditions",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to deduce the relationship between the squirrel and the tiger.\n\nFrom the statement \"The squirrel chases the bear,\" we can apply the rule: \"If something chases the bear then it needs the tiger.\" Therefore, the squirrel needs the tiger.\n\nFrom the statement \"The squirrel is nice,\" we can apply the rule: \"If something chases the squirrel and the squirrel is nice then it is young.\" Since we know that the squirrel chases the bear, we can conclude that the squirrel is not young. However, the squirrel being nice does not provide any direct information about its age.\n\nFrom the statement \"The squirrel is cold,\" we do not have any information that directly relates to the age or the relationship between the squirrel and the tiger.\n\nNow, we need to analyze the statement \"The tiger is green.\" From the statement \"The bear is green,\" we can conclude that the tiger is not the one that is green.\n\nFrom the statement \"The tiger needs the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The mouse needs the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The mouse visits the squirrel,\" we can apply the rule: \"If something visits the squirrel then it needs the mouse.\" Therefore, the squirrel needs the mouse.\n\nFrom the statement \"The squirrel needs the tiger,\" we can apply the rule: \"If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\" However, we already know that the squirrel needs the mouse, so this statement does not provide any new information.\n\nFrom the statement \"The mouse visits the tiger,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The tiger is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nNow, we need to analyze the statement \"The tiger needs the bear.\" From the statement \"The bear is green,\" we can conclude that the tiger is not the one that is green.\n\nFrom the statement \"The mouse needs the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The mouse visits the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The mouse is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nFrom the statement \"The tiger visits the squirrel,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we know that the squirrel needs the tiger and the tiger needs the bear. We also know that the bear is kind and the mouse needs the bear. From the statement \"The bear is kind,\" we can apply the rule: \"If the bear is kind then the mouse is young.\" However, we do not have any information that directly relates to the age of the mouse.\n\nFrom the statement \"The squirrel is nice,\" we can apply the rule: \"If something chases the squirrel and the squirrel is nice then it is young.\" However, we do not have any information that directly relates to the squirrel chasing the tiger.\n\nHowever, we have one more rule that we can apply. From the statement \"The bear is kind,\" we can apply the rule: \"If something is kind and it visits the tiger then the tiger visits the squirrel.\" However, we do not have any information that directly relates to the bear visiting the tiger.\n\nHowever, we have one more rule that we can apply. From the statement \"The bear needs the squirrel,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we have one more rule that we can apply. From the statement \"The bear visits the tiger,\" we can apply the rule: \"If the bear visits the tiger then the bear chases the tiger.\" However, this statement is not given.\n\nWe can apply one more rule. From the statement \"The tiger is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we have one more rule that we can apply. From the statement \"The tiger needs the bear,\" we can apply the rule: \"The tiger visits the squirrel.\" However, this statement is not given.\n\nWe can apply one more rule. From the statement \"The squirrel is nice,\" we can apply the rule: \"If the squirrel is nice then the squirrel is young.\" However, this statement is not given.\n\nHowever, we have one more rule that we can apply. From the statement \"The squirrel chases the bear,\" we can apply the rule: \"The squirrel needs the tiger.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The mouse needs the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we can apply one more rule. From the statement \"The bear is kind,\" we can apply the rule: \"The bear visits the tiger.\" However, this statement is not given.\n\nWe can apply one more rule. From the statement \"The mouse visits the squirrel,\" we can apply the rule: \"The squirrel needs the mouse.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The squirrel is nice,\" we can apply the rule: \"The squirrel is young.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The squirrel is cold,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we have one more rule that we can apply. From the statement \"The squirrel needs the tiger,\" we can apply the rule: \"The squirrel visits the mouse.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The mouse is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we can apply one more rule. From the statement \"The tiger needs the bear,\" we can apply the rule: \"The mouse needs the tiger.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The bear is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we can apply one more rule. From the statement \"The squirrel needs the tiger,\" we can apply the rule: \"The squirrel is young.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The tiger is green,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we can apply one more rule. From the statement \"The squirrel chases the bear,\" we can apply the rule: \"The squirrel needs the tiger.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The mouse needs the bear,\" we cannot conclude anything about the relationship between the squirrel and the tiger.\n\nHowever, we can apply one more rule. From the statement \"The mouse visits the squirrel,\" we can apply the rule: \"The squirrel needs the mouse.\" However, this statement is not given.\n\nHowever, we can apply one more rule. From the statement \"The squirrel is nice,\" we can apply the rule: \"The squirrel is young.\" However, this statement is not given.\n\nWe have analyzed all the rules and statements, but we still cannot determine whether the squirrel chases the tiger.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether \"The squirrel chases the tiger\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. Given information:\n   - The bear is green.\n   - The bear is kind.\n   - The mouse needs the bear.\n   - The mouse visits the bear.\n   - The mouse visits the squirrel.\n   - The mouse visits the tiger.\n   - The squirrel chases the bear.\n   - The squirrel is cold.\n   - The squirrel is nice.\n   - The tiger is green.\n   - The tiger needs the bear.\n\n2. Rules:\n   - If something needs the mouse then it is kind.\n   - If the mouse is young then the mouse needs the bear.\n   - If something chases the bear then it needs the tiger.\n   - If something needs the squirrel and it visits the mouse then the mouse needs the squirrel.\n   - If something visits the squirrel then it needs the mouse.\n   - If something chases the squirrel and the squirrel is nice then it is young.\n   - If something visits the mouse and the mouse is green then it needs the tiger.\n   - If something is kind and it visits the tiger then the tiger visits the squirrel.\n   - If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger.\n\n3. Analyzing the given information:\n   - The squirrel chases the bear.\n   - This implies that the squirrel needs the tiger (Rule 3).\n\n4. Further analysis:\n   - Since the squirrel needs the tiger, we need to find a connection between the squirrel and the tiger that would make this statement true or false.\n\n5. Looking at the rules:\n   - We see that if something chases the bear, then it needs the tiger (Rule 3).\n   - We also see that if something is kind and it visits the tiger, then the tiger visits the squirrel (Rule 8).\n   - However, we do not see any information about the bear being young or the bear needing the squirrel, which would lead to the bear chasing the tiger (Rule 9).\n\n6. Considering the initial information:\n   - The squirrel chases the bear.\n   - This is given as a fact, but we still need to determine if the squirrel chases the tiger.\n\n7. We cannot directly determine if the squirrel chases the tiger from the given information. However, we can infer that the squirrel needs the tiger (Step 3). \n\n8. To determine if the squirrel chases the tiger, we need to see if there is any rule that implies the squirrel chases the tiger when it needs the tiger.\n\n9. After examining the rules, we find that there is no direct connection between needing the tiger and chasing the tiger.\n\n10. Since there is no information that directly implies the squirrel chases the tiger when it needs the tiger, we cannot determine whether the statement \"The squirrel chases the tiger\" is true or false based on the given information.\n\n11. Therefore, the final answer is that the statement is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given premises and apply the given rules.\n\n1. The squirrel is cold. (Premise)\n2. The squirrel is nice. (Premise)\n3. If something chases the squirrel and the squirrel is nice then it is young. (Rule)\n   - Since the squirrel is nice, we can apply this rule. \n   - This rule implies that the squirrel is young.\n4. If the mouse is young then the mouse needs the bear. (Rule)\n   - We don't have any information about the mouse's age, so we cannot apply this rule.\n5. The mouse needs the bear. (Premise)\n   - This premise does not provide any information about the mouse's age.\n6. The squirrel chases the bear. (Premise)\n   - We will use this premise later.\n7. If something needs the squirrel and it visits the mouse then the mouse needs the squirrel. (Rule)\n   - We don't have enough information to apply this rule.\n8. If something visits the squirrel then it needs the mouse. (Rule)\n   - We don't have enough information to apply this rule.\n9. The mouse visits the squirrel. (Premise)\n   - We will use this premise later.\n10. The mouse visits the bear. (Premise)\n    - We will use this premise later.\n11. The mouse needs the squirrel. (Derived from premise 9 and rule 7)\n    - Since the mouse visits the squirrel and the mouse needs the squirrel, we can apply rule 7.\n12. The squirrel needs the mouse. (Derived from premise 9 and rule 8)\n    - Since the mouse visits the squirrel, we can apply rule 8.\n13. The squirrel is young. (Derived from premise 2 and rule 3)\n    - Since the squirrel is nice, we can apply rule 3.\n14. If something chases the bear then it needs the tiger. (Rule)\n    - Since the squirrel chases the bear, we can apply this rule.\n    - This rule implies that the squirrel needs the tiger.\n15. The squirrel needs the tiger. (Derived from premise 6 and rule 14)\n    - Since the squirrel chases the bear, we can apply rule 14.\n16. The tiger is green. (Premise)\n17. If the bear visits the tiger then the bear chases the tiger. (Rule)\n    - We don't have enough information to apply this rule.\n18. The bear visits the tiger. (Derived from premise 10, 11, 12, 13, and 15)\n    - Since the mouse needs the squirrel (premise 11), we can derive that the mouse needs the squirrel. \n    - Since the mouse visits the bear (premise 10), we can derive that the mouse visits the bear.\n    - Since the squirrel needs the mouse (premise 12), we can derive that the squirrel visits the mouse.\n    - Since the squirrel is young (premise 13), we can derive that the squirrel is young.\n    - Since the squirrel is young and the squirrel needs the mouse, we can apply rule 4 and derive that the mouse needs the bear.\n    - Since the mouse needs the bear, we can apply premise 10 and derive that the bear visits the mouse.\n    - Since the bear is green (premise 1), we can derive that the bear is green.\n    - Since the bear is green, we can apply rule 1 and derive that the bear needs the tiger.\n    - Since the bear needs the tiger, we can apply premise 10 and derive that the bear visits the tiger.\n    - Finally, since the bear visits the tiger, we can apply rule 17 and derive that the bear chases the tiger.\n19. The bear chases the tiger. (Derived from premise 18 and rule 17)\n    - Since the bear visits the tiger, we can apply rule 17 and derive that the bear chases the tiger.\n\nNow, we can analyze the original problem and apply the rules.\n\nSince the squirrel chases the bear (premise 6), we can apply rule 14 and derive that the squirrel needs the tiger. \n\nThe statement \"The squirrel chases the tiger\" is true if the squirrel needs the tiger. However, the statement is also true if the squirrel does not need the tiger.\n\nWe have already derived that the squirrel needs the tiger (premise 15). \n\nHowever, we also have a premise that the squirrel is cold (premise 1). We can apply this premise and rule 6 to derive that the squirrel needs the bear. \n\nIf the squirrel needs the bear, then it does not need the tiger. \n\nTherefore, the statement \"The squirrel chases the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given premises and rules. \n\n1. From the given premises, we know that the squirrel chases the bear. (Premise 7)\n\n2. There is a rule: If something chases the bear then it needs the tiger. (Rule 4)\n\n   Since the squirrel chases the bear, it needs the tiger.\n\n3. However, we need to find out if the squirrel needs the tiger because it chases the bear, or for some other reason.\n\n4. Another rule states: If something chases the squirrel and the squirrel is nice then it is young. (Rule 9)\n\n   Since the squirrel is nice (Premise 8) and this rule doesn't apply to the squirrel because it's not chasing the squirrel, this rule doesn't help us.\n\n5. We have another rule: If something visits the mouse and the mouse is green then it needs the tiger. (Rule 11)\n\n   However, this rule does not apply to the squirrel because the mouse is not green, and there is no information that the mouse is green.\n\n6. There is also a rule: If something visits the squirrel then it needs the mouse. (Rule 10)\n\n   This rule implies that the squirrel visits the mouse, but we have no information about that.\n\n7. The last rule states: If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 12)\n\n   Since we do not have any information about the bear needing the squirrel, this rule does not apply.\n\n8. Considering all the given information and rules, we cannot determine that the squirrel chases the tiger based on the provided premises and rules. The only information we have about the squirrel and the tiger is that the tiger is green (Premise 10) and the tiger needs the bear (Premise 11).\n\nGiven the above analysis, we cannot confirm whether the squirrel chases the tiger based on the information provided. Therefore, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the tiger\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the information given, we know:\n\n1. The squirrel chases the bear.\n2. The squirrel is cold.\n3. The squirrel is nice.\n\nNow, let's analyze the rules:\n\n1. If something chases the bear then it needs the tiger. (Rule 1)\n2. If something chases the squirrel and the squirrel is nice then it is young. (Rule 6)\n3. If the bear needs the squirrel and the bear visits the tiger then the bear chases the tiger. (Rule 8)\n4. If something visits the squirrel then it needs the mouse. (Rule 5)\n\nHowever, we need to find a rule that directly relates to \"The squirrel chases the tiger\". \n\nBut we have rule 1 which states \"If something chases the bear then it needs the tiger\" and we know from the information that the squirrel chases the bear. Therefore, according to rule 1, the squirrel needs the tiger.\n\nHowever, we cannot determine directly from the given information whether the squirrel chases the tiger or not. But we can use rule 1 and the fact that squirrel chases the bear to conclude that squirrel needs the tiger.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and apply them to the statement we're trying to determine. We'll start with the given statements and the statement we're trying to determine:\n\n1. The bear is green.\n2. The bear is kind.\n3. The mouse needs the bear.\n4. The mouse visits the bear.\n5. The mouse visits the squirrel.\n6. The mouse visits the tiger.\n7. The squirrel chases the bear.\n8. The squirrel is cold.\n9. The squirrel is nice.\n10. The tiger is green.\n11. The tiger needs the bear.\n\nFrom the given statements, we have the following conclusions:\n\n* The mouse is young because it needs the bear (from statement 3 and rule 2).\n* The squirrel needs the mouse because it visits the mouse (from statement 5 and rule 4).\n* The mouse is green because the tiger is green and the mouse visits the tiger (from statement 6, 10, and rule 7).\n* The squirrel is young because it chases the bear and the squirrel is nice (from statement 7, 9, and rule 5).\n* The tiger visits the squirrel because the squirrel is kind and the squirrel visits the tiger (from statement 9, 6, and rule 6).\n\nNow, let's examine the statement we're trying to determine: The squirrel chases the tiger.\n\nFrom the given statements and conclusions, we have the following:\n\n* The squirrel needs the mouse (from statement 5 and rule 4).\n* The mouse needs the bear (from statement 3 and rule 2).\n* The bear is green (from statement 1).\n* The bear is kind (from statement 2).\n* The tiger needs the bear (from statement 11).\n\nWe can't directly conclude that the squirrel chases the tiger from the given statements and conclusions. However, we can infer that the squirrel needs the mouse and the mouse needs the bear. The bear is green and kind, but there is no information that links the bear to the tiger or the squirrel to the tiger. The only information we have about the tiger is that it needs the bear and it is green.\n\nThe statement \"The squirrel chases the tiger\" cannot be directly proven or disproven from the given statements and conclusions. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_X_mouse, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(mouse) -> needs(mouse, bear)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_X_bear, needs_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, mouse) -> needs(mouse, squirrel)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_mouse), needs_mouse_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_X_squirrel, needs_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_X_squirrel, nice_squirrel), young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_X_mouse, green_mouse), needs_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, squirrel)",
+          "z3_formula": "Implies(And(kind_X, visits_X_tiger), visits_tiger_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, squirrel) & visits(bear, tiger) -> chases(bear, tiger)",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, tiger)",
+          "z3_formula": "needs_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, mouse) -> needs(mouse, squirrel)",
+          "z3_formula": "Implies(And(needs_mouse_squirrel, visits_mouse_squirrel), needs_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_squirrel_mouse, needs_squirrel_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_tiger, green_mouse), needs_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, squirrel)",
+          "z3_formula": "Implies(And(kind_bear, visits_tiger_bear), visits_tiger_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "bear needs squirrel & bear visits tiger -> bear chases tiger",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, bear)",
+          "z3_formula": "Implies(green_tiger, needs_tiger_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_bear, needs_bear_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, bear)",
+          "z3_formula": "Implies(green_tiger, needs_tiger_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, Y)",
+          "z3_formula": "Implies(And(kind_bear, visits_bear_tiger), visits_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, Y)",
+          "z3_formula": "Implies(And(kind_bear, visits_bear_tiger), visits_tiger_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_bear, needs_bear_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_squirrel_tiger, needs_squirrel_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, bear)",
+          "z3_formula": "Implies(green_tiger, needs_tiger_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, squirrel)",
+          "z3_formula": "chases_bear_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> visits(X, Y)",
+          "z3_formula": "Implies(needs_bear_squirrel, visits_bear_tiger)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse_X, kind_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(mouse) -> needs(X, bear)",
+          "z3_formula": "Implies(young_mouse, needs_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_X_bear, needs_X_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, mouse) -> needs(mouse, squirrel)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_mouse), needs_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_X_squirrel, needs_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_X_squirrel, nice_squirrel), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_X_mouse, green_mouse), needs_X_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, squirrel)",
+          "z3_formula": "Implies(And(kind_X, visits_X_tiger), visits_tiger_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, squirrel) & visits(bear, tiger) -> chases(bear, tiger)",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger) & visits(mouse, squirrel)",
+          "z3_formula": "And(visits_mouse_tiger, visits_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == Unknown",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == Unknown",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel) == nice(squirrel)",
+          "z3_formula": "young_squirrel == nice_squirrel",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, tiger) == Unknown",
+          "z3_formula": "chases_squirrel_tiger == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> young(X)",
+          "z3_formula": "Implies(needs_squirrel_tiger, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_squirrel, green_mouse), needs_X_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_squirrel, green_mouse), needs_X_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_squirrel, green_mouse), needs_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_squirrel, green_mouse), needs_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_squirrel, green_mouse), needs_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_squirrel_mouse, needs_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, X)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bear)",
+          "z3_formula": "Implies(young_X, needs_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, squirrel)",
+          "z3_formula": "Implies(And(kind_bear, visits_bear_tiger), visits_tiger_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_tiger), chases_X_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_tiger), chases_X_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_tiger), chases_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_squirrel, visits_X_tiger), chases_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_X_squirrel, nice_squirrel), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, bear)",
+          "z3_formula": "Implies(visits_mouse_bear, needs_mouse_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_tiger, green_mouse), needs_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, X)",
+          "z3_formula": "Implies(And(kind_bear, visits_bear_tiger), visits_tiger_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_mouse_squirrel, needs_mouse_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse_bear, kind_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bear)",
+          "z3_formula": "needs_squirrel_bear == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == Unknown",
+          "source_step": 27
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse_bear, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(mouse) -> needs(mouse, bear)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, mouse) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(needs_squirrel_squirrel, visits_mouse_squirrel), needs_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_squirrel_mouse, needs_mouse_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_squirrel, nice_squirrel), young_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_mouse_tiger, green_mouse), needs_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, tiger) -> visits(tiger, squirrel)",
+          "z3_formula": "Implies(And(kind_tiger, visits_tiger_squirrel), visits_tiger_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bear, squirrel) & visits(bear, tiger) -> chases(bear, tiger)",
+          "z3_formula": "Implies(And(needs_bear_squirrel, visits_bear_tiger), chases_bear_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(mouse) -> needs(mouse, bear)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(And(needs_squirrel_mouse, visits_mouse_squirrel), needs_mouse_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_mouse_squirrel, needs_mouse_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, tiger)",
+          "z3_formula": "needs_bear_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(green_bear, needs_bear_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, tiger)",
+          "z3_formula": "needs_bear_tiger == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_squirrel, nice_squirrel), young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(mouse)",
+          "z3_formula": "green_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) & green(mouse) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(visits_X_mouse, green_mouse), needs_X_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_X_squirrel, needs_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_bear, needs_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & nice(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & visits(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(And(needs_squirrel_tiger, visits_X_tiger), chases_X_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_X_squirrel, needs_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> young(X)",
+          "z3_formula": "Implies(needs_mouse_bear, young_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(visits_squirrel_mouse, needs_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & green(Y) -> green(X)",
+          "z3_formula": "Implies(And(visits_mouse_tiger, green_tiger), green_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_squirrel_bear, nice_squirrel), young_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(And(kind_squirrel, visits_squirrel_tiger), visits_tiger_squirrel)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 229,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 72
+    },
+    "maxsat_stats": {
+      "satisfied": 72,
+      "excluded": 0,
+      "total_weight": 229,
+      "solve_time_ms": 2.1883193403482437
+    },
+    "timing": {
+      "trace_gen_s": 25.504,
+      "extraction_s": 47.274,
+      "dedup_s": 3.037,
+      "maxsat_s": 0.006,
+      "total_s": 75.822
+    }
+  }
+}

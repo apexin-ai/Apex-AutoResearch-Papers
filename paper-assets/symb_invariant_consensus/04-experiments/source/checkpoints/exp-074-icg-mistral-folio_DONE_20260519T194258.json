@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-074-icg-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:06:33.965Z",
+    "updated_at": "2026-05-19T19:42:58.267Z",
+    "hypothesis": "ICG (Independent Constraint Generation): 独立于 reasoning traces 生成 FOL 约束，绕过 trace-sourced confirmation bias。直接从问题 premises 提取逻辑约束（不解题），用独立约束 + MAX-SAT 评分候选答案。在 Mistral-7B FOLIO-204 上测试，与标准 SICA (同源约束) 对比。预期：如果独立约束有效，delta(ICG vs SC) > delta(SICA vs SC)。",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 42 --api-base http://localhost:8000/v1 --model auto --data data/folio_full.json --output results/exp074_icg_mistral_folio/results.json --save-intermediates",
+      "server": "westd-25068",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "checkpoint_path": "results/exp074_icg_mistral_folio/results.json",
+    "log_path": "results/exp074_icg_mistral_folio/",
+    "metrics": {
+      "sc_accuracy": 0.5392,
+      "icg_accuracy": 0.5196,
+      "delta": -0.0196,
+      "n_samples": 204,
+      "k": 12,
+      "k_icg": 10,
+      "wall_time_s": 3368
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T19:42:58.267Z"
+  },
+  "timestamp": "2026-05-19T19:42:58.462381+00:00",
+  "trigger": "update_registry"
+}

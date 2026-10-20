@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-264_Q5",
+    "problem": "The bald eagle likes the cat. The bald eagle visits the rabbit. The cat needs the bald eagle. The cat needs the cow. The cat visits the rabbit. The cow likes the bald eagle. The cow likes the rabbit. The cow visits the bald eagle. The rabbit is green. The rabbit is red. The rabbit needs the cat. If someone needs the bald eagle and they are red then they visit the cow. If someone needs the bald eagle then the bald eagle needs the rabbit. If someone needs the cat then they like the bald eagle. If someone needs the bald eagle then they are red. If someone is green then they need the bald eagle. If someone likes the bald eagle and they need the bald eagle then the bald eagle visits the rabbit. If the cat likes the bald eagle then the bald eagle visits the cow. If someone visits the cow then they need the cat. If the cow is rough and the cow is nice then the cow is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit visits the cow.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nLikes(BaldEagle, Cat, True) ::: The bald eagle likes the cat.\nVisits(BaldEagle, Rabbit, True) ::: The bald eagle visits the rabbit.\nNeeds(Cat, BaldEagle, True) ::: The cat needs the bald eagle.\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nVisits(Cat, Rabbit, True) ::: The cat visits the rabbit.\nLikes(Cow, BaldEagle, True) ::: The cow likes the bald eagle.\nLikes(Cow, Rabbit, True) ::: The cow likes the rabbit.\nVisits(Cow, BaldEagle, True) ::: The cow visits the bald eagle.\nGreen(Rabbit, True) ::: The rabbit is green.\nRed(Rabbit, True) ::: The rabbit is red.\nNeeds(Rabbit, Cat, True) ::: The rabbit needs the cat.\n\nRules:\nNeeds($x, BaldEagle, True) && Red($x, True) >>> Visits($x, Cow, True) ::: If someone needs the bald eagle and they are red then they visit the cow.\nNeeds($x, BaldEagle, True) >>> Needs(BaldEagle, Rabbit, True) ::: If someone needs the bald eagle then the bald eagle needs the rabbit.\nNeeds($x, Cat, True) >>> Likes($x, BaldEagle, True) ::: If someone needs the cat then they like the bald eagle.\nNeeds($x, BaldEagle, True) >>> Red($x, True) ::: If someone needs the bald eagle then they are red.\nGreen($x, True) >>> Needs($x, BaldEagle, True) ::: If someone is green then they need the bald eagle.\nLikes($x, BaldEagle, True) && Needs($x, BaldEagle, True) >>> Visits(BaldEagle, Rabbit, True) ::: If someone likes the bald eagle and they need the bald eagle then the bald eagle visits the rabbit.\nLikes(Cat, BaldEagle, True) >>> Visits(BaldEagle, Cow, True) ::: If the cat likes the bald eagle then the bald eagle visits the cow.\nVisits($x, Cow, True) >>> Needs($x, Cat, True) ::: If someone visits the cow then they need the cat.\nRough(Cow, True) && Nice(Cow, True) >>> Red(Cow, True) ::: If the cow is rough and the cow is nice then the cow is red.\n\nQuery:\nVisits(Rabbit, Cow, True) ::: The rabbit visits the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

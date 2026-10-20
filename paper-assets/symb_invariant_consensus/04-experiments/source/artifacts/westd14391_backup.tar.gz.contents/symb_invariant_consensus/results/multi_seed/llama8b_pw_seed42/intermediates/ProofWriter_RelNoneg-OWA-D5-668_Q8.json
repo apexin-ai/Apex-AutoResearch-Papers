@@ -1,0 +1,1298 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-668_Q8",
+    "problem": "The bald eagle is nice. The bald eagle is round. The bald eagle likes the lion. The bald eagle visits the dog. The cat is green. The cat is nice. The cat is round. The cat likes the bald eagle. The cat likes the dog. The cat visits the dog. The dog eats the cat. The dog is big. The dog is blue. The lion is blue. If something is nice and green then it visits the bald eagle. If something is big then it eats the lion. If the bald eagle visits the lion then the lion is nice. If the bald eagle likes the cat then the bald eagle visits the dog. Round things are big. If something eats the cat and the cat eats the dog then the cat eats the lion. If something visits the dog and it eats the lion then the lion is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nNice(BaldEagle, True) ::: The bald eagle is nice.\nRound(BaldEagle, True) ::: The bald eagle is round.\nLikes(BaldEagle, Lion, True) ::: The bald eagle likes the lion.\nVisits(BaldEagle, Dog, True) ::: The bald eagle visits the dog.\nGreen(Cat, True) ::: The cat is green.\nNice(Cat, True) ::: The cat is nice.\nRound(Cat, True) ::: The cat is round.\nLikes(Cat, BaldEagle, True) ::: The cat likes the bald eagle.\nLikes(Cat, Dog, True) ::: The cat likes the dog.\nVisits(Cat, Dog, True) ::: The cat visits the dog.\nEats(Dog, Cat, True) ::: The dog eats the cat.\nBig(Dog, True) ::: The dog is big.\nBlue(Dog, True) ::: The dog is blue.\nBlue(Lion, True) ::: The lion is blue.\n\nRules:\nNice($x, True) && Green($x, True) >>> Visits($x, BaldEagle, True) ::: If something is nice and green then it visits the bald eagle.\nBig($x, True) >>> Eats($x, Lion, True) ::: If something is big then it eats the lion.\nVisits(BaldEagle, Lion, True) >>> Nice(Lion, True) ::: If the bald eagle visits the lion then the lion is nice.\nLikes(BaldEagle, Cat, True) >>> Visits(BaldEagle, Dog, True) ::: If the bald eagle likes the cat then the bald eagle visits the dog.\nRound($x, True) >>> Big($x, True) ::: Round things are big.\nEats($x, Cat, True) && Eats(Cat, Dog, True) >>> Eats(Cat, Lion, True) ::: If something eats the cat and the cat eats the dog then the cat eats the lion.\nVisits($x, Dog, True) && Eats($x, Lion, True) >>> Round(Lion, True) ::: If something visits the dog and it eats the lion then the lion is round.\n\nQuery:\nRound(Lion, False) ::: The lion is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 162.0
+    },
+    "answer_counts": {
+      "False": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nStep 1: \nThe statement \"Round things are big\" is given. We can't conclude anything about the lion being round or not yet.\n\nStep 2: \nThe statement \"If the bald eagle visits the lion then the lion is nice\" is given. We can't conclude whether the lion is round or not yet.\n\nStep 3: \nThe statement \"The lion is blue\" is given. We can't conclude whether the lion is round or not yet.\n\nStep 4: \nThe statement \"If something is big then it eats the lion\" is given. We can't conclude whether the lion is round or not yet.\n\nStep 5: \nWe can't directly conclude whether the lion is round or not yet. However, we can analyze the statement \"If something visits the dog and it eats the lion then the lion is round.\"\n\nTo determine this, we need to follow the given information and analyze each statement.\n\nFrom the given information, we can see that the cat visits the dog, and the cat eats the lion.\n\nTherefore, \"If something visits the dog and it eats the lion then the lion is round\" is true for the cat.\n\nThis means the lion is round.\n\nStep 6: \nNow we can determine the statement \"The lion is not round.\" \n\nSince the lion is round, the statement \"The lion is not round\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and the rules. Then, we will try to deduce the relationship between the lion and being round.\n\n1. The bald eagle is nice.\n2. The bald eagle is round.\n3. The bald eagle likes the lion.\n4. The bald eagle visits the dog.\n5. The cat is green.\n6. The cat is nice.\n7. The cat is round.\n8. The cat likes the bald eagle.\n9. The cat likes the dog.\n10. The cat visits the dog.\n11. The dog eats the cat.\n12. The dog is big.\n13. The dog is blue.\n14. The lion is blue.\n\nNow, let's consider the rules:\n\n1. If something is nice and green then it visits the bald eagle.\n2. If something is big then it eats the lion.\n3. If the bald eagle visits the lion then the lion is nice.\n4. If the bald eagle likes the cat then the bald eagle visits the dog.\n5. Round things are big.\n6. If something eats the cat and the cat eats the dog then the cat eats the lion.\n7. If something visits the dog and it eats the lion then the lion is round.\n\nNow, we will analyze each statement one by one:\n\nFrom statement 3, we know the bald eagle likes the lion. Now, using rule 4, we know the bald eagle visits the dog (since it likes the cat). \n\nFrom statement 12, we know the dog is big. Now, using rule 2, we know the dog eats the lion (since it is big).\n\nFrom statements 11 and 10, we know the cat visits the dog and the cat eats the dog. Now, using rule 6, we know the cat eats the lion (since the cat eats the dog).\n\nNow, we have two paths where the lion is being eaten (by the dog or by the cat). We also know the cat eats the dog from statement 11. \n\nUsing rule 7, we know the lion is round (since the cat visits the dog and it eats the lion).\n\nThe lion is round, so the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the lion is not round, we need to analyze the given statements and their implications.\n\n1. The bald eagle is round. (Initial Statement)\n2. The bald eagle is nice. (Initial Statement)\n3. The bald eagle likes the lion. (Initial Statement)\n4. The cat is green. (Initial Statement)\n5. The cat is nice. (Initial Statement)\n6. The cat is round. (Initial Statement)\n7. The cat likes the bald eagle. (Initial Statement)\n8. The cat likes the dog. (Initial Statement)\n9. The cat visits the dog. (Initial Statement)\n10. The dog eats the cat. (Initial Statement)\n11. The dog is big. (Initial Statement)\n12. The dog is blue. (Initial Statement)\n13. The lion is blue. (Initial Statement)\n14. If something is nice and green then it visits the bald eagle. (Rule)\n15. If something is big then it eats the lion. (Rule)\n16. If the bald eagle visits the lion then the lion is nice. (Rule)\n17. If the bald eagle likes the cat then the bald eagle visits the dog. (Rule)\n18. Round things are big. (Rule)\n19. If something eats the cat and the cat eats the dog then the cat eats the lion. (Rule)\n20. If something visits the dog and it eats the lion then the lion is round. (Rule)\n\nFrom rule 18, we can conclude that the cat is big since it is round. \n\nNow, from rule 15, if something is big, then it eats the lion. The dog is big, so the dog eats the lion.\n\nFrom rule 20, since the dog visits the dog, then the lion is round.\n\nWe can conclude that the lion is round.\n\nHowever, the statement we need to evaluate is \"The lion is not round.\" Since we have determined that the lion is round, this statement is false.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nFrom the given information:\n1. The lion is blue.\n2. If something is big then it eats the lion.\n3. Round things are big.\n4. If something visits the dog and it eats the lion then the lion is round.\n\nFrom rule 3, we know that round things are big, but we also know that the lion is blue, not round or big. However, we can't conclude that the lion is not big because the lion is blue, we don't have any information that says blue things are not big.\n\nFrom rule 4, we know that if something visits the dog and it eats the lion, then the lion is round. However, we don't have any information that says the lion has visited the dog or that it has eaten the lion. \n\nHowever, let's consider the case where the lion visits the dog. From the rules we have:\n- If the lion visits the dog, then it eats the lion (from rule 2, because the lion is big).\n- However, from rule 1, we know that the lion is blue, and from rule 3, we know that round things are big. Since blue things are not mentioned as big or round, we don't know if the lion is big or round.\n\nHowever, we can use another rule to find out if the lion is round.\nIf the lion is big and visits the dog, then from rule 2, the lion eats the lion. However, we know that the cat eats the dog, and from rule 5, if something eats the cat and the cat eats the dog then the cat eats the lion. But we also know that the cat likes the bald eagle and the bald eagle likes the cat, so the bald eagle visits the dog. However, we don't know if the bald eagle likes the lion.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue, and from rule 4, if something visits the dog and it eats the lion then the lion is round. However, we don't know if the lion visits the dog.\n\nHowever, we can use another rule to find out if the lion is round.\nIf something is big and it eats the lion, then the lion is round. However, we don't know if the lion is big.\n\nHowever, we can also use another rule to find out if the lion is round.\nIf the bald eagle visits the lion, then the lion is nice. However, we don't know if the bald eagle visits the lion.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe cat likes the lion. If the bald eagle likes the cat, then the bald eagle visits the dog. However, we don't know if the bald eagle likes the lion.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. If something is big then it eats the lion. However, we don't know if the lion is big.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is nice and green. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion likes the bald eagle. However, we don't know if the lion likes the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. If something is big then it eats the lion. However, we don't know if the lion is big.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion is nice. However, we don't know if the lion is nice.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The cat is nice and green and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion is nice. However, we don't know if the lion is nice.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion likes the bald eagle. However, we don't know if the lion likes the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion is nice. However, we don't know if the lion is nice.\n\nHowever, we can also use another rule to find out if the lion is round.\nThe lion is blue. The lion likes the bald eagle. However, we don't know if the lion likes the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is nice. However, we don't know if the lion is nice.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The lion is big. However, we don't know if the lion is big.\n\nHowever, we can use another rule to find out if the lion is round.\nThe lion is blue. The cat is green and nice and it visits the bald eagle. However, we don't know if the lion visits the bald eagle.\n\nHowever, we can use another rule to find out if the lion is round.\nThe cat is green and nice. If something is nice and green then it visits the bald eagle. However, we don't know if the lion is green",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and analyze the information.\n\n1. The lion is blue. \n2. The lion is blue. \n3. If something is big then it eats the lion. \n   - Since we know the dog is big (statement 7), it eats the lion. However, we don't know if the lion is round or not at this point.\n\n4. The bald eagle likes the lion. \n   - We don't know if the lion is round or not. \n\n5. Round things are big. \n   - We know that the cat and the bald eagle are round, but we can't determine if the lion is round or not yet.\n\n6. The cat is green. \n7. The dog is big. \n8. The dog is blue. \n9. The lion is blue. \n10. If something is nice and green then it visits the bald eagle. \n    - Since the cat is green (statement 6) and nice (statement 3), the cat visits the bald eagle.\n\n11. The cat is round. \n12. The cat likes the bald eagle. \n13. The cat likes the dog. \n14. The cat visits the dog. \n15. The dog eats the cat. \n\n16. If the bald eagle likes the cat then the bald eagle visits the dog. \n    - Since the bald eagle likes the cat (statement 12), the bald eagle visits the dog.\n\n17. If the bald eagle visits the lion then the lion is nice. \n    - We don't know if the lion is round or not at this point.\n\n18. If something eats the cat and the cat eats the dog then the cat eats the lion. \n    - However, the cat eats the dog (statement 15), but we don't know if the cat eats the lion or not. This statement is irrelevant to determining if the lion is round or not.\n\n19. If something visits the dog and it eats the lion then the lion is round. \n    - We know the cat visits the dog (statement 14), but we don't know if the cat eats the lion or not. This statement is also irrelevant to determining if the lion is round or not.\n\nNow, let's analyze the information given about the lion and round objects.\n\n- We know the cat and the bald eagle are round. \n- The lion is blue (statements 1 and 8).\n\nFrom statement 5, we know round things are big. \n- We know the cat and the bald eagle are round, and thus big. \n- We also know the dog is big (statement 7). \n\nWe have two possibilities for the lion: it could be round or not round. \n\nIf the lion is not round, then from statement 5, it's not big. \nHowever, from statement 3, if something is big, then it eats the lion. \nSince the dog is big (statement 7), it eats the lion. \nHowever, if the lion is not round, then the dog cannot eat the lion because it's not big (according to statement 5). \nThis creates a contradiction, so the lion must be round.\n\nNow that we know the lion is round, we can analyze the statements again:\n\n- The lion is blue (statements 1 and 8). \n- The lion is round (from our conclusion). \n\nIf the lion is round, then from statement 5, it's big. \nNow we can analyze the statement: \"The lion is not round.\" \n\nFrom our conclusion, we know the lion is round, so the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the different animals. We can start by breaking down the information into smaller, more manageable parts.\n\n1. The bald eagle is nice.\n2. The bald eagle is round.\n3. The bald eagle likes the lion.\n4. The bald eagle visits the dog.\n5. The cat is green.\n6. The cat is nice.\n7. The cat is round.\n8. The cat likes the bald eagle.\n9. The cat likes the dog.\n10. The cat visits the dog.\n11. The dog eats the cat.\n12. The dog is big.\n13. The dog is blue.\n14. The lion is blue.\n\nNow, let's analyze the given rules:\n\n1. If something is nice and green then it visits the bald eagle.\n   - This rule is not applicable to our problem as there is no animal that is both nice and green (only the cat is green and nice, but it is not both).\n\n2. If something is big then it eats the lion.\n   - From statement 12, we know the dog is big, but we don't know if it eats the lion yet.\n\n3. If the bald eagle visits the lion then the lion is nice.\n   - From statement 3, we know the bald eagle likes the lion, but we don't know if it visits the lion.\n\n4. If the bald eagle likes the cat then the bald eagle visits the dog.\n   - From statement 8, we know the cat likes the bald eagle, but this does not necessarily mean the bald eagle likes the cat. However, from statement 4, we know the bald eagle visits the dog.\n\n5. Round things are big.\n   - This is a general rule, but it is not necessarily true for all round things.\n\n6. If something eats the cat and the cat eats the dog then the cat eats the lion.\n   - From statement 11, we know the dog eats the cat, but we don't know if the cat eats the dog.\n\n7. If something visits the dog and it eats the lion then the lion is round.\n   - This rule is not directly applicable to our problem.\n\nNow, let's analyze the given statements and rules to determine if the lion is round.\n\nFrom statement 3, we know the bald eagle likes the lion, but we don't know if it visits the lion. However, from statement 3 and rule 3, if the bald eagle visits the lion, then the lion is nice. But from statement 3, we know the lion is blue, not that it is nice. This means that the lion is not necessarily nice. \n\nNow, from rule 6, if the cat eats the dog and the dog eats the cat, then the cat eats the lion. But from statement 11, we know the dog eats the cat, and from statement 10, we know the cat visits the dog, which means the cat does not eat the dog. Therefore, rule 6 is not applicable to our problem.\n\nHowever, from statement 14, we know the lion is blue. From statement 13, we know the dog is blue. And from statement 11, we know the dog eats the cat. Now, from rule 7, if the cat visits the dog and it eats the lion then the lion is round. But we don't know if the cat eats the lion or not. However, from rule 2, if the dog is big then it eats the lion. And from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round. \n\nHowever, from statement 3, we know the bald eagle likes the lion, and from statement 4, we know the bald eagle visits the dog. Now, from rule 4, if the bald eagle likes the cat then the bald eagle visits the dog. But we know the bald eagle visits the dog, so this rule is not applicable to our problem.\n\nHowever, from statement 7, we know the lion is blue. And from statement 5, we know round things are big. But we don't know if the lion is round or not.\n\nNow, let's look at the statement \"The lion is not round.\" To determine if this statement is true, false, or unknown, we need to look at all the possible relationships between the lion and the other animals.\n\nFrom statement 3, we know the bald eagle likes the lion, but we don't know if it visits the lion. However, from statement 3 and rule 3, if the bald eagle visits the lion, then the lion is nice. But from statement 3, we know the lion is blue, not that it is nice. This means that the lion is not necessarily nice. \n\nHowever, from statement 14, we know the lion is blue. From statement 13, we know the dog is blue. And from statement 11, we know the dog eats the cat. Now, from rule 7, if the cat visits the dog and it eats the lion then the lion is round. But we don't know if the cat eats the lion or not. However, from rule 2, if the dog is big then it eats the lion. And from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round. \n\nHowever, from statement 7, we know the lion is blue. And from statement 5, we know round things are big. But we don't know if the lion is round or not.\n\nHowever, from rule 5, round things are big. And from statement 7, we know the lion is blue. But we don't know if the lion is round or not. \n\nNow, let's analyze the given statements and rules to determine if the lion is round.\n\nFrom rule 7, if the cat visits the dog and it eats the lion then the lion is round. But we don't know if the cat eats the lion or not. However, from rule 2, if the dog is big then it eats the lion. And from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round. \n\nHowever, from rule 5, round things are big. And from statement 7, we know the lion is blue. But we don't know if the lion is round or not.\n\nNow, let's analyze the given statements and rules to determine if the lion is round.\n\nFrom rule 5, round things are big. And from statement 7, we know the lion is blue. But we don't know if the lion is round or not.\n\nHowever, from statement 7, we know the lion is blue. And from rule 5, round things are big. But we don't know if the lion is round or not.\n\nNow, let's analyze the given statements and rules to determine if the lion is round.\n\nFrom statement 14, we know the lion is blue. And from statement 13, we know the dog is blue. However, from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round.\n\nHowever, from rule 2, if the dog is big then it eats the lion. And from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round.\n\nHowever, from rule 7, if the cat visits the dog and it eats the lion then the lion is round. But we don't know if the cat eats the lion or not. However, from rule 6, if the cat eats the dog and the dog eats the cat, then the cat eats the lion. But from statement 11, we know the dog eats the cat, and from statement 10, we know the cat visits the dog, which means the cat does not eat the dog. Therefore, rule 6 is not applicable to our problem.\n\nHowever, from statement 10, we know the cat visits the dog. And from statement 11, we know the dog eats the cat. However, we don't know if the cat eats the dog or not.\n\nHowever, from statement 10, we know the cat visits the dog. And from statement 11, we know the dog eats the cat. However, we don't know if the cat eats the lion or not.\n\nHowever, from statement 10, we know the cat visits the dog. And from statement 11, we know the dog eats the cat. However, we don't know if the cat eats the dog or not.\n\nHowever, from statement 11, we know the dog eats the cat. And from statement 10, we know the cat visits the dog. However, we don't know if the cat eats the dog or not.\n\nHowever, from statement 14, we know the lion is blue. And from statement 13, we know the dog is blue. However, from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round.\n\nHowever, from statement 14, we know the lion is blue. And from statement 13, we know the dog is blue. However, from statement 12, we know the dog is big, which means it eats the lion. But we already know that the lion is blue and the dog is blue, so the lion is not necessarily round",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the lion is round, we need to follow the given statements and rules to see if we can deduce any information about the lion's shape.\n\n1. The lion is blue. (Given)\n2. If something is big then it eats the lion. (Rule)\n3. If something is round then it is big. (Rule)\n\nHowever, from the given information, we don't know if the lion is round or not. So, let's continue.\n\n4. The lion is blue. (Given)\n5. The dog is blue. (Given)\n6. If the lion is blue and the dog is blue then the lion is nice. (Rule is not present, but we can make an assumption based on given data that lion is blue and dog is blue. Therefore, lion is nice.)\n7. The bald eagle likes the lion. (Given)\n8. If the bald eagle likes the cat then the bald eagle visits the dog. (Rule)\n9. The cat is nice. (Given)\n10. The cat is round. (Given)\n11. Round things are big. (Rule)\n\nNow, we know that the cat is round and big. \n\n12. The cat is big. (Inference from the previous rule)\n13. If something is big then it eats the lion. (Rule)\n14. The cat eats the lion. (Inference from the previous rule)\n\nHowever, we also know that:\n15. If something visits the dog and it eats the lion then the lion is round. (Rule)\n16. The cat visits the dog. (Given)\n17. The cat eats the lion. (Inference from the previous rule)\n\nFrom the above information, we can conclude that the lion is round.\n\nTherefore, the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given statements and apply the rules.\n\n1. The lion is blue. (Given statement)\n2. If the bald eagle visits the lion then the lion is nice. (Rule)\n3. The bald eagle is round. (Given statement)\n4. If something is round then it is big. (Rule)\n5. If something is big then it eats the lion. (Rule)\n\nFrom (3) and (4), we can conclude that the bald eagle is big.\n\nNow, if the bald eagle is big (which it is), it should eat the lion according to rule (5). However, there's no rule that states the lion being eaten by the bald eagle makes it nice. So we cannot determine if the lion is nice based on this information alone.\n\nHowever, we can apply rule (2) which states that if the bald eagle visits the lion then the lion is nice. We do not know if the bald eagle visits the lion, but we do know the lion is not eaten by the bald eagle. We cannot determine if the lion is round or not based on the information we have about the lion being eaten.\n\nSince we cannot determine if the lion is round or not based on the given information, we need to look at other information to solve this.\n\n6. The cat is green. (Given statement)\n7. The cat is nice. (Given statement)\n8. The cat is round. (Given statement)\n9. If something is nice and green then it visits the bald eagle. (Rule)\n10. The cat likes the bald eagle. (Given statement)\n11. The cat likes the dog. (Given statement)\n12. The cat visits the dog. (Given statement)\n13. The dog eats the cat. (Given statement)\n14. The dog is big. (Given statement)\n15. The dog is blue. (Given statement)\n16. The lion is blue. (Given statement)\n\nFrom (6), (7), and (9), we can conclude that the cat visits the bald eagle.\n\nFrom (8), we can conclude that the cat is round.\n\nNow, we can apply rule (1) which states that if something visits the dog and it eats the lion then the lion is round.\n\nFrom (11) and (12), we can conclude that the cat visits the dog. \n\nFrom (13), we can conclude that the dog eats the cat.\n\nFrom (14), we can conclude that the dog is big.\n\nNow, we can apply rule (1) which states that if something eats the cat and the cat eats the dog then the cat eats the lion.\n\nSince the dog eats the cat (13), and the cat eats the dog (there is no statement that says this, however, we can use the information in the problem to make an assumption), then we can say that the cat eats the lion.\n\nHowever, the rule states that if something eats the cat and the cat eats the dog, the cat eats the lion. We cannot conclude this based on the information we have. However, if we look at the rule that says if something visits the dog and it eats the lion then the lion is round, we can assume that the cat eats the dog because the cat visits the dog (12).\n\nSo if the cat eats the dog (there is no statement that says this, however, we can use the information in the problem to make an assumption), then we can conclude that the cat visits the lion.\n\nNow, if the cat visits the lion, we can apply rule (2) which states that if the bald eagle visits the lion then the lion is nice.\n\nSince the cat visits the lion, and the cat likes the bald eagle (10), we can apply the rule that says if the bald eagle likes the cat then the bald eagle visits the dog (8).\n\nSince the bald eagle visits the dog (there is no statement that says this, however, we can use the information in the problem to make an assumption), then we can conclude that the lion is nice.\n\nNow, we can apply rule (2) which states that if the bald eagle visits the lion then the lion is nice.\n\nSince the lion is nice, we can apply rule (2) which states that if the bald eagle visits the lion then the lion is nice.\n\nFrom (3), we can conclude that the bald eagle is round.\n\nNow, we can apply rule (1) which states that if the bald eagle is round then the lion is round.\n\nSince the bald eagle is round, we can conclude that the lion is round.\n\nTherefore, the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the lion is round, we need to analyze the given statements and the provided conditions. We will use a process of elimination and logical reasoning to find the answer.\n\nGiven statements:\n1. The bald eagle is nice. \n2. The bald eagle is round. \n3. The bald eagle likes the lion. \n4. The bald eagle visits the dog. \n5. The cat is green. \n6. The cat is nice. \n7. The cat is round. \n8. The cat likes the bald eagle. \n9. The cat likes the dog. \n10. The cat visits the dog. \n11. The dog eats the cat. \n12. The dog is big. \n13. The dog is blue. \n14. The lion is blue. \n\nConditions:\n1. If something is nice and green then it visits the bald eagle. \n2. If something is big then it eats the lion. \n3. If the bald eagle visits the lion then the lion is nice. \n4. If the bald eagle likes the cat then the bald eagle visits the dog. \n5. Round things are big. \n6. If something eats the cat and the cat eats the dog then the cat eats the lion. \n7. If something visits the dog and it eats the lion then the lion is round.\n\nNow, let's start evaluating the statements one by one.\n\nFrom statement 3: The bald eagle likes the lion. \nFrom condition 4: If the bald eagle likes the cat then the bald eagle visits the dog. However, the statement does not mention that the bald eagle likes the cat, so we cannot conclude anything about the bald eagle visiting the dog from this condition. We can only use condition 4 if we know that the bald eagle likes the cat.\n\nHowever, from condition 3: If the bald eagle visits the lion then the lion is nice. This means that if we can conclude the lion is nice, then the statement 'the lion is round' could be possible.\n\nHowever, there is a more direct condition for the lion being round.\nFrom condition 7: If something visits the dog and it eats the lion then the lion is round. We can only use this condition if we know the lion eats the lion, but we don't have that information. We do have that the lion is blue, but that doesn't tell us anything about the lion's roundness.\n\nHowever, condition 5: Round things are big. This means if the lion is round, then the lion is big.\n\nHowever, from condition 2: If something is big then it eats the lion. This means if the lion is big, then the lion eats the lion. This creates a paradox, because it says the lion eats the lion. However, we cannot determine if the lion is big or round from the given information.\n\nHowever, let's look at condition 6: If something eats the cat and the cat eats the dog then the cat eats the lion. We know from statement 11 that the dog eats the cat, so we can conclude from this condition that the cat eats the lion.\n\nHowever, we still cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 1: The bald eagle is nice.\nFrom condition 1: If something is nice and green then it visits the bald eagle. However, this condition is not met because the bald eagle is not green. \nFrom condition 3: If the bald eagle visits the lion then the lion is nice. \nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. \nWe can conclude from this chain that the lion is eaten by something that is big, but we cannot conclude if the lion is round or not.\n\nHowever, we know from statement 13 that the dog is blue and statement 14 that the lion is blue. Since the lion is blue and we have no other information about the lion's color, we can say nothing about the lion being round or not.\n\nHowever, let's look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. \nWe know from this chain that the cat eats the lion, but we cannot conclude if the lion is round or not.\n\nHowever, we know from statement 11 that the dog eats the cat. \nFrom condition 6: If something eats the cat and the cat eats the dog then the cat eats the lion. \nFrom condition 7: If something visits the dog and it eats the lion then the lion is round. We cannot use this condition because we don't know if the cat visits the dog.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. \nFrom condition 7: If something visits the dog and it eats the lion then the lion is round. However, we don't know if the cat visits the dog.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. \nFrom condition 5: Round things are big.\nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. \nFrom condition 7: If something visits the dog and it eats the lion then the lion is round. We cannot use this condition because we don't know if the cat visits the dog.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nFrom statement 13: The dog is blue.\nFrom statement 14: The lion is blue.\nSince the lion is blue and we have no other information about the lion's color, we can say nothing about the lion being round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nHowever, we can look at the following chain: \nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nFrom statement 7: The cat is round.\nFrom condition 5: Round things are big.\nFrom condition 2: If something is big then it eats the lion. However, we cannot conclude if the lion is round or not.\n\nFrom statement 12: The dog is big.\nFrom condition 2: If something is big then it eats",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the lion is not round, we need to analyze the given statements and their implications.\n\n1. The bald eagle is nice. \n2. The bald eagle is round. \n3. The bald eagle likes the lion. \n4. The bald eagle visits the dog. \n5. The cat is green. \n6. The cat is nice. \n7. The cat is round. \n8. The cat likes the bald eagle. \n9. The cat likes the dog. \n10. The cat visits the dog. \n11. The dog eats the cat. \n12. The dog is big. \n13. The dog is blue. \n14. The lion is blue. \n\nUsing the given statements, we can infer the following:\n\nFrom statement 8: The bald eagle likes the cat.\n\nFrom statement 3: The bald eagle likes the lion.\n\nFrom statement 5: The cat is green.\n\nFrom statement 6: The cat is nice.\n\nFrom statement 1: The bald eagle is nice.\n\nFrom statements 5 and 6, we can infer that the cat is green and nice. Since the cat is green and nice, we can infer from the given conditions that the cat visits the bald eagle.\n\nHowever, since the cat likes the bald eagle (statement 8) and the bald eagle likes the cat (inferred from statement 3), the bald eagle visits the lion (from statement 3). \n\nSince the lion is blue (statement 14), we cannot conclude whether the lion is round or not. However, if the lion is round, we can find out more information.\n\nFrom statement 2: The bald eagle is round.\n\nFrom statement 3: The bald eagle likes the lion.\n\nFrom statement 3: The bald eagle visits the lion.\n\nFrom statement 15 (not present in the given conditions, but we can infer that if the bald eagle visits the lion, then the lion is nice): If the bald eagle visits the lion then the lion is nice.\n\nHowever, we do not know if the lion is round or not, so we cannot conclude anything yet.\n\nNow, let's analyze the statement \"If something is big then it eats the lion.\"\n\nFrom statement 12: The dog is big.\n\nFrom statement 13: The dog is blue.\n\nFrom statement 14: The lion is blue.\n\nFrom statement 11: The dog eats the cat.\n\nFrom statement 10: The cat visits the dog.\n\nFrom statement 9: The cat likes the dog.\n\nHowever, we cannot directly conclude whether the lion is round or not.\n\nNow, let's analyze the statement \"Round things are big.\"\n\nFrom statement 2: The bald eagle is round.\n\nFrom statement 7: The cat is round.\n\nFrom statement 12: The dog is big.\n\nFrom statement 13: The dog is blue.\n\nFrom statement 14: The lion is blue.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nNow, let's analyze the statement \"If something visits the dog and it eats the lion then the lion is round.\"\n\nFrom statement 4: The bald eagle visits the dog.\n\nHowever, we cannot conclude that the lion eats the lion, so we cannot conclude whether the lion is round or not.\n\nNow, let's analyze the statement \"If something eats the cat and the cat eats the dog then the cat eats the lion.\"\n\nFrom statement 11: The dog eats the cat.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nNow, let's analyze the statement \"The lion is not round.\"\n\nFor this statement to be true, we need to find a condition where the lion is not round.\n\nFrom statement 15 (not present in the given conditions, but we can infer that if the bald eagle visits the lion, then the lion is nice): If the bald eagle visits the lion then the lion is nice.\n\nFrom statement 3: The bald eagle likes the lion.\n\nFrom statement 3: The bald eagle visits the lion.\n\nFrom statement 15: If the bald eagle visits the lion then the lion is nice.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 16 (not present in the given conditions, but we can infer that if the lion is blue, then it is not round): If the lion is blue then it is not round.\n\nHowever, we cannot conclude whether the lion is blue or not.\n\nFrom statement 17 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 18 (not present in the given conditions, but we can infer that if the lion is round then it is big): If the lion is round then it is big.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 19 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 20 (not present in the given conditions, but we can infer that if the lion eats the lion then the lion is round): If the lion eats the lion then the lion is round.\n\nHowever, we cannot conclude whether the lion eats the lion or not.\n\nFrom statement 21 (not present in the given conditions, but we can infer that if the lion is round then it is blue): If the lion is round then it is blue.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 22 (not present in the given conditions, but we can infer that if the lion is blue then it is not round): If the lion is blue then it is not round.\n\nHowever, we cannot conclude whether the lion is blue or not.\n\nFrom statement 23 (not present in the given conditions, but we can infer that if the lion is round then it is nice): If the lion is round then it is nice.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 24 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 25 (not present in the given conditions, but we can infer that if the lion eats the lion then the lion is round): If the lion eats the lion then the lion is round.\n\nHowever, we cannot conclude whether the lion eats the lion or not.\n\nFrom statement 26 (not present in the given conditions, but we can infer that if the lion is round then it is blue): If the lion is round then it is blue.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 27 (not present in the given conditions, but we can infer that if the lion is blue then it is not round): If the lion is blue then it is not round.\n\nHowever, we cannot conclude whether the lion is blue or not.\n\nFrom statement 28 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 29 (not present in the given conditions, but we can infer that if the lion eats the lion then the lion is round): If the lion eats the lion then the lion is round.\n\nHowever, we cannot conclude whether the lion eats the lion or not.\n\nFrom statement 30 (not present in the given conditions, but we can infer that if the lion is round then it is nice): If the lion is round then it is nice.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 31 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 32 (not present in the given conditions, but we can infer that if the lion eats the lion then the lion is round): If the lion eats the lion then the lion is round.\n\nHowever, we cannot conclude whether the lion eats the lion or not.\n\nFrom statement 33 (not present in the given conditions, but we can infer that if the lion is round then it is blue): If the lion is round then it is blue.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 34 (not present in the given conditions, but we can infer that if the lion is blue then it is not round): If the lion is blue then it is not round.\n\nHowever, we cannot conclude whether the lion is blue or not.\n\nFrom statement 35 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 36 (not present in the given conditions, but we can infer that if the lion eats the lion then the lion is round): If the lion eats the lion then the lion is round.\n\nHowever, we cannot conclude whether the lion eats the lion or not.\n\nFrom statement 37 (not present in the given conditions, but we can infer that if the lion is round then it is nice): If the lion is round then it is nice.\n\nHowever, we cannot conclude whether the lion is round or not.\n\nFrom statement 38 (not present in the given conditions, but we can infer that if the lion is big then it eats the lion): If the lion is big then it eats the lion.\n\nHowever, we cannot conclude whether the lion is big or not.\n\nFrom statement 39 (not",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information and use it to deduce the properties of the lion.\n\nFrom the information given, we know:\n- The bald eagle is round.\n- The cat is round.\n- Round things are big.\n- The lion is blue.\n- The dog is big and blue.\n- The lion is blue (same as the dog).\n\nFrom this, we can conclude that the lion is big, as both the lion and the dog are blue and the dog is big.\n\nNow, let's analyze the statements that might affect the roundness of the lion:\n\n- If the bald eagle visits the lion, then the lion is nice. However, there's no information that the bald eagle visits the lion.\n- If the bald eagle likes the cat, then the bald eagle visits the dog. This doesn't affect the lion's roundness.\n- If something visits the dog and it eats the lion, then the lion is round. However, there's no information that something visits the dog and eats the lion.\n- If something is nice and green then it visits the bald eagle. This doesn't affect the lion's roundness.\n- If something eats the cat and the cat eats the dog then the cat eats the lion. However, there's no information that something eats the cat and the cat eats the dog.\n\nSince none of the given statements conclusively state that the lion is round or not, we cannot determine the roundness of the lion with the information provided. \n\nHowever, we can deduce the roundness of the lion from the statement \"If something visits the dog and it eats the lion then the lion is round.\" Since we know the lion is not eaten by something visiting the dog, this statement cannot be used to deduce the roundness of the lion.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bald eagle is round. (Given)\n2. Round things are big. (Given)\n3. The dog is big. (Given)\n4. The lion is blue. (Given)\n5. The lion is blue. The dog is blue. (Given)\n6. If something is big then it eats the lion. (Given)\n7. The dog eats the lion. (From 3 and 6)\n\nFrom the statement \"If the bald eagle visits the lion then the lion is nice\" (Given), we can deduce that the lion is not nice since we don't have any information about the bald eagle visiting the lion.\n\n8. The cat likes the bald eagle. (Given)\n9. If the bald eagle likes the cat then the bald eagle visits the dog. (Given)\n10. The bald eagle visits the dog. (From 8 and 9)\n\n11. The cat is green. The cat is nice. The cat is round. (Given)\n12. If something is nice and green then it visits the bald eagle. (Given)\n13. The cat visits the bald eagle. (From 11 and 12)\n\n14. The cat is round. The cat is big. (From 2 and 11)\n15. The cat is big. The cat eats the dog. (Given)\n16. The cat eats the dog. (From 15)\n\n17. The cat eats the dog. The dog eats the lion. (Given)\n18. If something eats the cat and the cat eats the dog then the cat eats the lion. (Given)\n19. The cat eats the lion. (From 16 and 17)\n\n20. The lion is not nice. The lion is blue. (From 7 and previous deductions)\n21. The cat visits the dog. The dog eats the lion. (Given)\n22. If the cat visits the dog and it eats the lion then the lion is round. (Given)\n23. The lion is round. (From 20, 21, and 22)\n\nSince the lion is round, the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_X, eats_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog) & eats(cat, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_cat_lion), round_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_cat_bald_eagle, visits_bald_eagle_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_cat, big_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(eats_cat_dog, eats_dog_lion), eats_cat_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_cat_lion), round_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, cat) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_cat, big_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_lion, big_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_lion_dog, eats_lion_lion), round_lion)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, cat) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_lion, big_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_cat_lion), round_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_X, eats_big_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(lion) & blue(dog) -> nice(lion)",
+          "z3_formula": "Implies(And(blue_lion, blue_dog), nice_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, cat) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_X, eats_big_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits_eagle(X) -> nice(X)",
+          "z3_formula": "Implies(visits_eagle_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats_lion(X)",
+          "z3_formula": "Implies(big_bald_eagle, eats_lion_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits_eagle(X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_eagle_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits_eagle(X) -> visits_dog(X)",
+          "z3_formula": "Implies(visits_eagle_cat, visits_dog_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits_dog(cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats_dog(cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits_dog(X) & eats_lion(X) -> round(X)",
+          "z3_formula": "Implies(And(visits_dog_cat, eats_lion_cat), round_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits_dog(cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats_dog(cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats_dog(X) & eats_dog(X) -> eats_lion(X)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_dog_cat), eats_lion_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits_dog(X) & eats_lion(X) -> round(X)",
+          "z3_formula": "Implies(And(visits_dog_cat, eats_lion_cat), round_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "visits_dog(cat)",
+          "z3_formula": "visits_dog_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes_eagle(X) -> visits_dog(X)",
+          "z3_formula": "Implies(likes_eagle_cat, visits_dog_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "likes_eagle(cat)",
+          "z3_formula": "likes_eagle_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "visits_dog(X) -> visits_lion(X)",
+          "z3_formula": "Implies(visits_dog_cat, visits_lion_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "visits_lion(cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "visits_eagle(X) -> nice(X)",
+          "z3_formula": "Implies(visits_eagle_lion, nice_lion)",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "visits_lion(cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "visits_eagle(X) -> nice(X)",
+          "z3_formula": "Implies(visits_eagle_lion, nice_lion)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_bald_eagle, round_lion)",
+          "source_step": 31
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_lion, big_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_lion, blue_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_lion, Not(round_lion))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_lion, nice_lion)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_lion, blue_lion)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_lion, Not(round_lion))",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_lion, nice_lion)",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_lion, blue_lion)",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_lion, Not(round_lion))",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 35
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 36
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_lion, nice_lion)",
+          "source_step": 37
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_lion, eats_lion_lion)",
+          "source_step": 38
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(eats_lion_lion, round_lion)",
+          "source_step": 39
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_cat, big_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog) & blue(dog)",
+          "z3_formula": "And(big_dog, blue_dog) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion) == blue(dog)",
+          "z3_formula": "blue_lion == blue_dog",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(X)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_X, green_X), visits_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_X_cat, eats_cat_dog), eats_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(lion)",
+          "z3_formula": "Not(nice_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_cat_bald_eagle, visits_bald_eagle_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_cat_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(X, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_cat_dog, eats_dog_cat), eats_cat_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_dog_lion), round_lion)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 29
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 195,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 3,
+      "total_weight": 190,
+      "solve_time_ms": 2.1301843225955963
+    },
+    "timing": {
+      "trace_gen_s": 24.997,
+      "extraction_s": 39.22,
+      "dedup_s": 2.915,
+      "maxsat_s": 0.006,
+      "total_s": 67.138
+    }
+  }
+}

@@ -1,0 +1,972 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-890_Q2",
+    "problem": "The bald eagle needs the cow. The bald eagle needs the mouse. The cow is round. The mouse does not visit the rabbit. The rabbit is green. The rabbit needs the bald eagle. The rabbit visits the bald eagle. If someone visits the mouse then they like the cow. If someone likes the mouse and they are blue then the mouse needs the rabbit. If someone needs the bald eagle then the bald eagle likes the rabbit. If someone needs the bald eagle then the bald eagle likes the mouse. If someone likes the cow then they are blue. If someone is red and they visit the cow then the cow is green. If someone visits the mouse then they do not visit the bald eagle. If someone is round and they need the bald eagle then the bald eagle is round. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not visit the bald eagle.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\n\nFacts:\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nNeeds(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nRound(Cow, True) ::: The cow is round.\nVisits(Mouse, Rabbit, False) ::: The mouse does not visit the rabbit.\nGreen(Rabbit, True) ::: The rabbit is green.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nVisits($x, Mouse, True) >>> Likes($x, Cow, True) ::: If someone visits the mouse then they like the cow.\nLikes($x, Mouse, True) && Blue($x, True) >>> Needs(Mouse, Rabbit, True) ::: If someone likes the mouse and they are blue then the mouse needs the rabbit.\nNeeds($x, BaldEagle, True) >>> Likes(BaldEagle, Rabbit, True) ::: If someone needs the bald eagle then the bald eagle likes the rabbit.\nNeeds($x, BaldEagle, True) >>> Likes(BaldEagle, Mouse, True) ::: If someone needs the bald eagle then the bald eagle likes the mouse.\nLikes($x, Cow, True) >>> Blue($x, True) ::: If someone likes the cow then they are blue.\nRed($x, True) && Visits($x, Cow, True) >>> Green(Cow, True) ::: If someone is red and they visit the cow then the cow is green.\nVisits($x, Mouse, True) >>> Visits($x, BaldEagle, False) ::: If someone visits the mouse then they do not visit the bald eagle.\nRound($x, True) && Needs($x, BaldEagle, True) >>> Round(BaldEagle, True) ::: If someone is round and they need the bald eagle then the bald eagle is round.\nVisits($x, BaldEagle, True) && Likes(BaldEagle, Rabbit, True) >>> Visits(BaldEagle, Mouse, True) ::: If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nQuery:\nVisits(Rabbit, BaldEagle, False) ::: The rabbit does not visit the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 117.0,
+      "True": 59.0,
+      "Unknown": 57.5
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 2,
+      "False": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, let's analyze the given information step by step:\n\n1. The rabbit visits the bald eagle. (Given)\n2. If someone visits the mouse then they do not visit the bald eagle. \n   However, we cannot conclude anything yet because we do not have enough information about the mouse.\n\n3. The mouse does not visit the rabbit. (Given)\n4. If someone visits the mouse then they like the cow. (Given)\n   This does not give us any information about the rabbit and the bald eagle.\n\n5. The rabbit is green. (Given)\n   This does not give us any information about the rabbit and the bald eagle.\n\n6. If someone is blue then the mouse needs the rabbit. \n   However, we cannot conclude anything yet because we do not have enough information about the color.\n\n7. If someone likes the mouse and they are blue then the mouse needs the rabbit. \n   However, we cannot conclude anything yet because we do not have enough information about the mouse.\n\n8. The cow is round. (Given)\n   This does not give us any information about the rabbit and the bald eagle.\n\n9. The rabbit needs the bald eagle. (Given)\n   This is a crucial piece of information.\n\n10. If someone needs the bald eagle then the bald eagle likes the mouse. (Given)\n   Since the rabbit needs the bald eagle, the bald eagle likes the mouse.\n\n11. If someone needs the bald eagle then the bald eagle likes the rabbit. (Given)\n   Since the rabbit needs the bald eagle, the bald eagle likes the rabbit.\n\n12. The rabbit visits the bald eagle. (Given)\n   This directly contradicts the statement we are trying to evaluate.\n\nHowever, we must consider the last piece of information: \n13. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n   Since the rabbit visits the bald eagle, the bald eagle likes the rabbit. Then, the bald eagle visits the mouse.\n\nNow we have a problem: the bald eagle visits the mouse and the mouse does not visit the rabbit (Given). This means that the rabbit does not visit the bald eagle.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the given problem, we need to determine the relationship between the characters and their properties. Let's start by breaking down the given statements:\n\n1. The bald eagle needs the cow.\n2. The bald eagle needs the mouse.\n3. The cow is round.\n4. The mouse does not visit the rabbit.\n5. The rabbit is green.\n6. The rabbit needs the bald eagle.\n7. The rabbit visits the bald eagle.\n8. If someone visits the mouse then they like the cow.\n9. If someone likes the mouse and they are blue then the mouse needs the rabbit.\n10. If someone needs the bald eagle then the bald eagle likes the rabbit.\n11. If someone needs the bald eagle then the bald eagle likes the mouse.\n12. If someone likes the cow then they are blue.\n13. If someone is red and they visit the cow then the cow is green.\n14. If someone visits the mouse then they do not visit the bald eagle.\n15. If someone is round and they need the bald eagle then the bald eagle is round.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nWe need to determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown.\n\nFrom statement 7, we know that the rabbit visits the bald eagle. \n\nHowever, we also need to consider statement 16, which says that if someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse. This statement implies that the order of the visit is important. \n\nSince the rabbit visits the bald eagle (statement 7), the bald eagle likes the rabbit (statement 10), and the bald eagle likes the mouse (statement 11), the bald eagle visits the mouse (statement 16).\n\nNow, we need to determine if this order affects the original statement. The original statement says \"The rabbit does not visit the bald eagle.\" We know that the rabbit visits the bald eagle (statement 7), but we also know that the bald eagle visits the mouse (statement 16). \n\nTherefore, we cannot conclude that the rabbit does not visit the bald eagle, because the order of the visits is important. We cannot determine whether the statement is true or false based on the given information.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, let's break down the given information and analyze the relationships between the entities.\n\n1. The rabbit is green. \n2. The rabbit visits the bald eagle. \n3. The rabbit needs the bald eagle. \n4. The rabbit does not visit the mouse. (Implicit from the statement that \"The mouse does not visit the rabbit.\")\n\nFrom the given statements, we can infer the following:\n\n- The rabbit visits the bald eagle (Statement 2).\n- The rabbit needs the bald eagle (Statement 3).\n- If someone needs the bald eagle, then the bald eagle likes the rabbit (Implicit from the statement that \"If someone needs the bald eagle then the bald eagle likes the rabbit.\").\n- If someone visits the bald eagle and the bald eagle likes the rabbit, then the bald eagle visits the mouse (Implicit from the statement that \"If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\").\n\nNow, we know that the rabbit visits the bald eagle (Statement 2), and the bald eagle likes the rabbit (Implicit from Statement 3 and the relationship that \"If someone needs the bald eagle then the bald eagle likes the rabbit.\").\n\nSince the bald eagle likes the rabbit and the bald eagle visits the mouse (Implicit from Statement 2 and the relationship that \"If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\"), we can conclude that the rabbit does visit the bald eagle.\n\nTherefore, the statement \"The rabbit does not visit the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n1. The bald eagle needs the cow.\n2. The bald eagle needs the mouse.\n3. The cow is round.\n4. The mouse does not visit the rabbit.\n5. The rabbit is green.\n6. The rabbit needs the bald eagle.\n7. The rabbit visits the bald eagle.\n8. If someone visits the mouse then they like the cow.\n9. If someone likes the mouse and they are blue then the mouse needs the rabbit.\n10. If someone needs the bald eagle then the bald eagle likes the rabbit.\n11. If someone needs the bald eagle then the bald eagle likes the mouse.\n12. If someone likes the cow then they are blue.\n13. If someone is red and they visit the cow then the cow is green.\n14. If someone visits the mouse then they do not visit the bald eagle.\n15. If someone is round and they need the bald eagle then the bald eagle is round.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nDeductions:\n- From statement 7, we know the rabbit visits the bald eagle.\n- Statement 16 is triggered because the rabbit visits the bald eagle and we know that the bald eagle likes the rabbit from statement 10. Therefore, the bald eagle visits the mouse (statement 16).\n- From statement 4, we know the mouse does not visit the rabbit.\n\nHowever, we need to determine whether the rabbit visits the bald eagle. We already know this from statement 7: the rabbit visits the bald eagle.\n\nStatement 7 directly states that the rabbit visits the bald eagle. \n\nTherefore, the statement \"The rabbit does not visit the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find the relationship between the rabbit and the bald eagle.\n\n1. The rabbit is green.\n2. The rabbit needs the bald eagle.\n3. The rabbit visits the bald eagle.\n\nFrom statement 2, we know that the rabbit needs the bald eagle. This implies that the bald eagle likes the rabbit, according to statement 7: If someone needs the bald eagle then the bald eagle likes the rabbit.\n\nHowever, statement 3 directly states that the rabbit visits the bald eagle. This means that the relationship is not just that the rabbit needs the bald eagle, but it also visits the bald eagle.\n\nGiven the rabbit's need for the bald eagle and the bald eagle's liking for the rabbit, we have a more complex relationship.\n\nWe are tasked with determining whether the following statement is true, false, or unknown:\nThe rabbit does not visit the bald eagle.\n\nBased on the information provided, we can conclude that this statement is false because statement 3 directly states that the rabbit visits the bald eagle.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is green.\n2. The rabbit needs the bald eagle.\n3. The rabbit visits the bald eagle.\n\nFrom statement 3, we directly know that the rabbit does visit the bald eagle. However, statement 3 is given in the problem, and we need to rely on the problem's information to support this conclusion. \n\nHowever, looking at statement 2, it says the rabbit needs the bald eagle, and then looking at the information that \"If someone needs the bald eagle then the bald eagle likes the rabbit\", which supports that the bald eagle likes the rabbit, but it does not give us information that the rabbit visits the bald eagle. However, we see that the rabbit does need the bald eagle in statement 2, and it is given in statement 3 that the rabbit does visit the bald eagle.\n\nTherefore, since we have the information that the rabbit does visit the bald eagle in statement 3, we can determine the answer to the problem. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements step by step.\n\n1. The bald eagle needs the cow.\n2. The bald eagle needs the mouse.\n3. The cow is round.\n4. The mouse does not visit the rabbit.\n5. The rabbit is green.\n6. The rabbit needs the bald eagle.\n7. The rabbit visits the bald eagle.\n\nFrom statement 7, we can infer that the rabbit does visit the bald eagle. This directly contradicts the statement we are trying to evaluate: \"The rabbit does not visit the bald eagle.\"\n\nHowever, to ensure we are not missing any information, we will continue analyzing the remaining statements.\n\n8. If someone visits the mouse then they like the cow.\n9. If someone likes the mouse and they are blue then the mouse needs the rabbit.\n10. If someone needs the bald eagle then the bald eagle likes the rabbit.\n11. If someone needs the bald eagle then the bald eagle likes the mouse.\n12. If someone likes the cow then they are blue.\n13. If someone is red and they visit the cow then the cow is green.\n14. If someone visits the mouse then they do not visit the bald eagle.\n15. If someone is round and they need the bald eagle then the bald eagle is round.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nSince we already found a direct contradiction in statement 7, we do not need to evaluate the remaining statements.\n\nTherefore, based on statement 7, we can conclude that the statement \"The rabbit does not visit the bald eagle\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and use it to determine the relationships between the different entities.\n\n1. The bald eagle needs the cow.\n2. The bald eagle needs the mouse.\n3. The cow is round.\n4. The mouse does not visit the rabbit.\n5. The rabbit is green.\n6. The rabbit needs the bald eagle.\n7. The rabbit visits the bald eagle.\n8. If someone visits the mouse then they like the cow.\n9. If someone likes the mouse and they are blue then the mouse needs the rabbit.\n10. If someone needs the bald eagle then the bald eagle likes the rabbit.\n11. If someone needs the bald eagle then the bald eagle likes the mouse.\n12. If someone likes the cow then they are blue.\n13. If someone is red and they visit the cow then the cow is green.\n14. If someone visits the mouse then they do not visit the bald eagle.\n15. If someone is round and they need the bald eagle then the bald eagle is round.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nFrom statement 7, we know that the rabbit visits the bald eagle.\n\nNow, let's analyze the options for the final statement:\n\nThe rabbit does not visit the bald eagle.\n\nHowever, from statement 7, we have evidence that the rabbit visits the bald eagle. Therefore, the final statement is:\n\nThe rabbit does visit the bald eagle.\n\nGiven the evidence from statement 7, we can confidently say that the statement is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is green. (Statement 3)\n2. The rabbit needs the bald eagle. (Statement 5)\n3. The rabbit visits the bald eagle. (From Statement 6)\n\nHowever, we have to analyze the information in a logical order and not just accept what we are told at first glance. Let's continue with the logical deductions:\n\n4. The rabbit needs the bald eagle. (Statement 5)\n5. If someone needs the bald eagle, then the bald eagle likes the mouse. (Statement 8)\n   - This means the rabbit likes the mouse since the rabbit needs the bald eagle.\n6. The rabbit likes the mouse and the rabbit is green. \n7. The rabbit is not blue since it is not explicitly stated that the rabbit is blue and it is not an essential part of the problem.\n8. If someone likes the mouse and they are blue, then the mouse needs the rabbit. (Statement 9)\n   - Since the rabbit is not blue, this statement does not apply to the rabbit.\n9. If someone likes the mouse and they are not blue, we need to check for other statements that involve the color or the relationship between the mouse and the rabbit.\n10. The mouse does not visit the rabbit. (Statement 4)\n11. The rabbit visits the bald eagle. (From Statement 6)\n12. If someone visits the mouse then they do not visit the bald eagle. (Statement 11)\n    - This means that the rabbit cannot visit the mouse if the rabbit visits the bald eagle.\n13. Since the rabbit needs the bald eagle and the bald eagle likes the mouse, we can conclude that the rabbit likes the mouse.\n14. If someone likes the mouse and they are blue then the mouse needs the rabbit. (Statement 9)\n    - Since the rabbit is not blue, we have to check if there is any other condition where the rabbit needs the mouse.\n15. If someone is round and they need the bald eagle, then the bald eagle is round. (Statement 13)\n    - The cow is round (Statement 2) and the cow needs the bald eagle (From Statement 1).\n    - This does not apply to the rabbit directly.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit, then the bald eagle visits the mouse. (Statement 10)\n    - Since the rabbit visits the bald eagle (From Statement 6), the bald eagle likes the rabbit, and the bald eagle likes the mouse (From Statement 5), we can conclude that the bald eagle visits the mouse.\n\nNow, we can determine the relationship between the rabbit and the bald eagle.\n\nWe know that the rabbit needs the bald eagle and visits the bald eagle. \n\nHowever, the statement \"If someone visits the mouse then they do not visit the bald eagle\" (Statement 11) is crucial in determining the relationship between the rabbit and the bald eagle.\n\nSince the rabbit visits the mouse (From Statement 6) and the rabbit does not visit the mouse (From Statement 4), this is a contradiction.\n\nHowever, we should be careful with the analysis and not jump to conclusions. The contradiction arises from the statements that the rabbit visits the mouse and the rabbit does not visit the mouse.\n\nUpon closer inspection, we see that the statement \"The mouse does not visit the rabbit\" (Statement 4) is a clue. If the rabbit visits the mouse and the mouse does not visit the rabbit, then the rabbit visits the mouse, but the mouse does not visit the rabbit.\n\nThe correct analysis should be that the rabbit visits the mouse and the mouse does not visit the rabbit. This is not a contradiction, but rather a logical deduction.\n\nThe statement \"If someone visits the mouse then they do not visit the bald eagle\" (Statement 11) means that if someone visits the mouse, they cannot visit the bald eagle. However, this does not mean that the rabbit cannot visit the bald eagle. The rabbit visits the mouse, but the mouse does not visit the rabbit.\n\nHowever, we have to analyze the given information again.\n\nThe statement \"The rabbit visits the mouse\" is not explicitly mentioned in the problem. However, the statement \"The mouse does not visit the rabbit\" is mentioned.\n\nThe statement \"The rabbit visits the mouse\" is a conclusion that we drew from the information that the rabbit needs the bald eagle and the bald eagle likes the mouse. However, this is not a direct conclusion from the given information.\n\nThe correct analysis is that the rabbit needs the bald eagle and the bald eagle likes the mouse. However, this does not necessarily mean that the rabbit visits the mouse.\n\nThe statement \"If someone likes the mouse and they are blue then the mouse needs the rabbit\" (Statement 9) does not apply to the rabbit because the rabbit is not blue.\n\nThe statement \"The rabbit is green\" (Statement 3) is a clue. The statement \"If someone is red and they visit the cow then the cow is green\" (Statement 7) does not apply to the rabbit because the rabbit is green, not red.\n\nHowever, the statement \"The rabbit is green\" is not directly related to the statement \"The rabbit visits the bald eagle.\" \n\nThe statement \"The rabbit visits the bald eagle\" (From Statement 6) is a direct statement, but it is not necessarily true.\n\nUpon closer inspection, we see that the statement \"The rabbit needs the bald eagle\" (Statement 5) is a clue. If the rabbit needs the bald eagle, then the bald eagle likes the mouse (From Statement 8).\n\nThe statement \"The rabbit is green\" (Statement 3) is a clue. The statement \"If someone is red and they visit the cow then the cow is green\" (Statement 7) does not apply to the rabbit because the rabbit is green, not red.\n\nHowever, the statement \"The rabbit is green\" is not directly related to the statement \"The rabbit visits the bald eagle.\"\n\nThe statement \"The rabbit visits the bald eagle\" (From Statement 6) is a direct statement, but it is not necessarily true.\n\nUpon closer inspection, we see that the statement \"The rabbit needs the bald eagle\" (Statement 5) is a clue. If the rabbit needs the bald eagle, then the bald eagle likes the rabbit (From Statement 7).\n\nHowever, we are asked to determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown.\n\nThe statement \"The rabbit needs the bald eagle\" (Statement 5) is a clue. If the rabbit needs the bald eagle, then the bald eagle likes the rabbit (From Statement 7).\n\nHowever, the statement \"The rabbit needs the bald eagle\" does not necessarily mean that the rabbit visits the bald eagle.\n\nThe statement \"The rabbit is green\" (Statement 3) is a clue. The statement \"If someone is red and they visit the cow then the cow is green\" (Statement 7) does not apply to the rabbit because the rabbit is green, not red.\n\nHowever, the statement \"The rabbit is green\" is not directly related to the statement \"The rabbit visits the bald eagle.\"\n\nThe statement \"The rabbit visits the bald eagle\" (From Statement 6) is a direct statement, but it is not necessarily true.\n\nHowever, we can conclude that the statement \"The rabbit needs the bald eagle\" is true, and the statement \"The rabbit likes the mouse\" is true.\n\nSince the statement \"The rabbit needs the bald eagle\" is true, we can conclude that the bald eagle likes the rabbit (From Statement 7).\n\nHowever, the statement \"The rabbit visits the bald eagle\" (From Statement 6) is a direct statement, but it is not necessarily true.\n\nThe statement \"The rabbit needs the bald eagle\" (Statement 5) is a clue. If the rabbit needs the bald eagle, then the bald eagle likes the rabbit (From Statement 7).\n\nHowever, we are asked to determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown.\n\nThe statement \"The rabbit needs the bald eagle\" (Statement 5) is a clue. If the rabbit needs the bald eagle, then the bald eagle likes the rabbit (From Statement 7).\n\nHowever, the statement \"The rabbit needs the bald eagle\" does not necessarily mean that the rabbit visits the bald eagle.\n\nThe statement \"The rabbit is green\" (Statement 3) is a clue. The statement \"If someone is red and they visit the cow then the cow is green\" (Statement 7) does not apply to the rabbit because the rabbit is green, not red.\n\nHowever, the statement \"The rabbit is green\" is not directly related to the statement \"The rabbit visits the bald eagle.\"\n\nThe statement \"The rabbit visits the bald eagle\" (From Statement 6) is a direct statement, but it is not necessarily true.\n\nHowever, we can conclude that the statement \"The rabbit needs the bald eagle\" is true, and the statement \"The rabbit likes the mouse\" is true.\n\nSince the statement \"The rabbit needs the bald eagle\" is true, we can conclude that the bald eagle likes the rabbit (From Statement 7).\n\nThe final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given information and break it down into smaller, more manageable pieces.\n\n1. The rabbit is green. \n   The rabbit visits the bald eagle. \n   Therefore, the rabbit is green and visits the bald eagle.\n\n2. The rabbit needs the bald eagle. \n   The rabbit visits the bald eagle. \n   Since the rabbit visits the bald eagle, it must need the bald eagle.\n\n3. The bald eagle needs the rabbit. \n   The rabbit visits the bald eagle. \n   Therefore, the bald eagle needs the rabbit.\n\n4. The rabbit does not visit the mouse. \n   The rabbit visits the bald eagle. \n   Since the rabbit visits the bald eagle, it must not visit the mouse.\n\n5. The rabbit does not visit the mouse. \n   The mouse does not visit the rabbit. \n   This statement is true, but we already know this from statement 4.\n\n6. The cow is round. \n   If someone needs the bald eagle and they are round then the bald eagle is round. \n   Since the rabbit needs the bald eagle, but we do not know if the rabbit is round, this statement is unknown.\n\n7. The rabbit is green. \n   If someone is red and they visit the cow then the cow is green. \n   Since the rabbit is green, but we do not know if the rabbit is red, this statement is unknown.\n\n8. If someone visits the mouse then they do not visit the bald eagle. \n   The rabbit visits the bald eagle. \n   Since the rabbit visits the bald eagle, it must not visit the mouse.\n\nNow, we need to determine whether the statement \"The rabbit does not visit the bald eagle\" is true, false, or unknown. From the information above, we know that the statement \"The rabbit visits the bald eagle\" is true. Therefore, the statement \"The rabbit does not visit the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will break down the given statements into individual pieces of information and then analyze the relationships between the different entities (cow, mouse, rabbit, and bald eagle).\n\n1. The bald eagle needs the cow.\n2. The bald eagle needs the mouse.\n3. The cow is round.\n4. The mouse does not visit the rabbit.\n5. The rabbit is green.\n6. The rabbit needs the bald eagle.\n7. The rabbit visits the bald eagle.\n8. If someone visits the mouse then they like the cow.\n9. If someone likes the mouse and they are blue then the mouse needs the rabbit.\n10. If someone needs the bald eagle then the bald eagle likes the rabbit.\n11. If someone needs the bald eagle then the bald eagle likes the mouse.\n12. If someone likes the cow then they are blue.\n13. If someone is red and they visit the cow then the cow is green.\n14. If someone visits the mouse then they do not visit the bald eagle.\n15. If someone is round and they need the bald eagle then the bald eagle is round.\n16. If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse.\n\nFrom statement 7, we know that the rabbit visits the bald eagle. \n\nNow we will analyze the statement \"The rabbit does not visit the bald eagle.\"\n\nIf we assume this statement is true, then it contradicts statement 7, which states that the rabbit visits the bald eagle. However, we need to consider all possible scenarios based on the given statements.\n\nLet's examine the given statements that involve visiting or needing the bald eagle:\n\n- Statements 1, 2, 6, and 7 indicate a relationship between the bald eagle and the cow, mouse, or rabbit.\n- Statement 7 is crucial because it directly states that the rabbit visits the bald eagle.\n\nNow, let's analyze the statements that provide information about the color or shape of the entities:\n\n- Statement 3: The cow is round.\n- Statement 5: The rabbit is green.\n- Statement 13: If someone is red and they visit the cow then the cow is green. This implies that the cow is not round if it is green.\n- Statement 15: If someone is round and they need the bald eagle then the bald eagle is round.\n\nFrom statement 3 and 15, we can infer that the cow is round because it needs the bald eagle, and from statement 5 and 13, we cannot conclude the color of the cow because there is no direct information that links the color of the rabbit to the cow.\n\nNow we will consider the implications of statement 7. If the rabbit visits the bald eagle, then statement 16 is triggered: If someone visits the bald eagle and the bald eagle likes the rabbit then the bald eagle visits the mouse. This implies that the bald eagle likes the rabbit, and thus the bald eagle likes the mouse (statement 10).\n\nFrom statement 11, we know that if someone needs the bald eagle then the bald eagle likes the mouse. This is consistent with the previous conclusion.\n\nConsidering all the given statements, we cannot directly determine whether the rabbit visits the bald eagle or not. However, we can infer that if the rabbit does not visit the bald eagle, then it contradicts statement 7. \n\nSince we cannot determine the truth value of the statement \"The rabbit does not visit the bald eagle\" with absolute certainty based on the given information, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any information that directly or indirectly relates to the statement \"The rabbit does not visit the bald eagle.\"\n\nFrom the given statements:\n\n1. The rabbit is green.\n2. The rabbit needs the bald eagle.\n3. The rabbit visits the bald eagle.\n\nStatement 3 directly contradicts the statement we are trying to evaluate, \"The rabbit does not visit the bald eagle.\" However, to ensure that this statement is indeed true, we need to consider other relevant information.\n\nFrom the given statements:\n\n4. If someone needs the bald eagle then the bald eagle likes the rabbit.\n5. If someone visits the mouse then they do not visit the bald eagle.\n\nWe know that the rabbit needs the bald eagle (statement 2), but we do not know if the rabbit visits the mouse. If the rabbit visits the mouse, then it would not visit the bald eagle (statement 5). However, statement 3 explicitly states that the rabbit visits the bald eagle. \n\nTherefore, we cannot conclude that the rabbit does not visit the bald eagle because statement 3 directly contradicts this claim. \n\nSo, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_rabbit_mouse, not visits_rabbit_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not visits_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse_cow, likes_mouse_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(blue_X, needs_X_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, X) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_rabbit_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_rabbit_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> does_not_visit(X, bald_eagle)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, does_not_visit_rabbit_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_visit(rabbit, bald_eagle)",
+          "z3_formula": "does_not_visit_rabbit_bald_eagle == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not visits_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, X) -> visits(bald_eagle, Y)",
+          "z3_formula": "Implies(And(visits_rabbit_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "not(visits_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse, likes_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_mouse, not(visits_X_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(rabbit, bald_eagle))",
+          "z3_formula": "Not(visits_rabbit_bald_eagle) == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "not(visits_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse, likes_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_mouse, not(visits_X_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, mouse)",
+          "z3_formula": "not visits_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse, likes_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_mouse, not visits_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(eagle, rabbit)",
+          "z3_formula": "visits_eagle_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) -> likes(eagle, Y)",
+          "z3_formula": "Implies(needs_rabbit_eagle, likes_eagle_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(likes_rabbit_mouse, green_rabbit), likes_rabbit_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, eagle)",
+          "z3_formula": "Implies(visits_rabbit_mouse, not visits_rabbit_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, mouse)",
+          "z3_formula": "likes_rabbit_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(rabbit, eagle)",
+          "z3_formula": "not visits_rabbit_eagle == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit) & visits(rabbit, eagle)",
+          "z3_formula": "And(green_rabbit, visits_rabbit_eagle) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> needs(X, eagle)",
+          "z3_formula": "Implies(visits_rabbit_eagle, needs_rabbit_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, rabbit)",
+          "z3_formula": "needs_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> needs(eagle, X)",
+          "z3_formula": "Implies(visits_rabbit_eagle, needs_eagle_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(eagle, rabbit)",
+          "z3_formula": "needs_eagle_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> not visits(X, mouse)",
+          "z3_formula": "Implies(visits_rabbit_eagle, Not(visits_rabbit_mouse))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(rabbit, mouse)",
+          "z3_formula": "Not(visits_rabbit_mouse) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, mouse)",
+          "z3_formula": "Not(visits_rabbit_mouse) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, eagle)",
+          "z3_formula": "Implies(visits_rabbit_mouse, Not(visits_rabbit_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(rabbit, mouse)",
+          "z3_formula": "Not(visits_rabbit_mouse) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) & round(X) -> round(eagle)",
+          "z3_formula": "Implies(And(needs_rabbit_eagle, round_rabbit), round_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(eagle)",
+          "z3_formula": "round_eagle == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_rabbit, visits_rabbit_cow), green_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == Unknown",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, eagle)",
+          "z3_formula": "Implies(visits_rabbit_mouse, Not(visits_rabbit_eagle))",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(rabbit, mouse)",
+          "z3_formula": "Not(visits_rabbit_mouse) == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, eagle)",
+          "z3_formula": "Not(visits_rabbit_eagle) == False",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, mouse)",
+          "z3_formula": "eats_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle) == False",
+          "z3_formula": "Not(visits_rabbit_bald_eagle) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse, likes_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue_X), needs_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_bald_eagle, likes_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_bald_eagle, likes_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_cow), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_mouse, Not(visits_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_bald_eagle, likes_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_rabbit_mouse, Not(visits_rabbit_bald_eagle))",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 140,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 1,
+      "total_weight": 134,
+      "solve_time_ms": 1.2642880901694298
+    },
+    "timing": {
+      "trace_gen_s": 22.728,
+      "extraction_s": 27.431,
+      "dedup_s": 1.476,
+      "maxsat_s": 0.004,
+      "total_s": 51.639
+    }
+  }
+}

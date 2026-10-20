@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-multi-seed-mistral-folio",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:44:11.464Z",
+    "updated_at": "2026-05-22T10:44:11.464Z"
+  },
+  "timestamp": "2026-05-22T10:44:11.749166+00:00",
+  "trigger": "update_registry"
+}

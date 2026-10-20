@@ -1,0 +1,1288 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-582_Q12",
+    "problem": "The dog chases the squirrel. The lion chases the rabbit. The lion needs the dog. The lion visits the dog. The lion visits the rabbit. The rabbit is cold. The squirrel visits the dog. If something is rough and it chases the rabbit then the rabbit is rough. If something chases the squirrel then it visits the dog. If something chases the lion then it is rough. If something is green then it needs the dog. If something is green then it needs the lion. If something visits the dog then it is green. If something needs the lion then it chases the lion. All cold things are green. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog is not rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nChases(Lion, Rabbit, True) ::: The lion chases the rabbit.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nVisits(Lion, Dog, True) ::: The lion visits the dog.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nCold(Rabbit, True) ::: The rabbit is cold.\nVisits(Squirrel, Dog, True) ::: The squirrel visits the dog.\n\nRules:\nRough($x, True) && Chases($x, Rabbit, True) >>> Rough(Rabbit, True) ::: If something is rough and it chases the rabbit then the rabbit is rough.\nChases($x, Squirrel, True) >>> Visits($x, Dog, True) ::: If something chases the squirrel then it visits the dog.\nChases($x, Lion, True) >>> Rough($x, True) ::: If something chases the lion then it is rough.\nGreen($x, True) >>> Needs($x, Dog, True) ::: If something is green then it needs the dog.\nGreen($x, True) >>> Needs($x, Lion, True) ::: If something is green then it needs the lion.\nVisits($x, Dog, True) >>> Green($x, True) ::: If something visits the dog then it is green.\nNeeds($x, Lion, True) >>> Chases($x, Lion, True) ::: If something needs the lion then it chases the lion.\nCold($x, True) >>> Green($x, True) ::: All cold things are green.\nNeeds(Rabbit, Lion, True) && Cold(Lion, True) >>> Visits(Lion, Squirrel, True) ::: If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nQuery:\nRough(Dog, False) ::: The dog is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 69.0,
+      "True": 0.0,
+      "Unknown": 165.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the rabbit.\n   - We do not know if the lion is rough or not.\n\n2. The lion needs the dog.\n   - We do not know if the lion is rough or not.\n\n3. The lion visits the dog.\n   - We do not know if the lion is rough or not.\n\n4. The lion visits the rabbit.\n   - We do not know if the lion is rough or not.\n\n5. The rabbit is cold.\n   - This statement does not provide any information about the dog being rough or not.\n\n6. The squirrel visits the dog.\n   - We do not know if the squirrel is rough or not.\n\n7. If something is rough and it chases the rabbit then the rabbit is rough.\n   - We do not have enough information about the lion being rough or not.\n\n8. If something chases the squirrel then it visits the dog.\n   - We do not know if the squirrel is rough or not.\n\n9. If something chases the lion then it is rough.\n   - We do not know if the lion is rough or not.\n\n10. If something is green then it needs the dog.\n    - We do not know if the lion is green or not.\n\n11. If something is green then it needs the lion.\n    - We do not know if the lion is green or not.\n\n12. If something visits the dog then it is green.\n    - We do not know if the lion is green or not.\n\n13. If something needs the lion then it chases the lion.\n    - We do not know if the rabbit is green or not.\n\n14. All cold things are green.\n    - Since the rabbit is cold and green, and the rabbit needs the lion, it implies that the lion is green.\n\n15. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n    - We can conclude that the lion is cold, and since all cold things are green, the lion is green.\n\nNow, considering the statement \"The dog is not rough,\" we need to find a rule that mentions the dog being rough or not. We can see that if something is green, it needs the dog. And the lion is green (because it is cold and all cold things are green). Therefore, the lion needs the dog, which we already know. However, there is no direct information about the dog being rough or not.\n\nBut we can use the rule \"If something is rough and it chases the rabbit then the rabbit is rough.\" We do not have any information that the dog chases the rabbit, but we can use the rule \"If something chases the squirrel then it visits the dog.\" Since the lion does not chase the squirrel (the lion visits the rabbit), we can conclude that the lion does not chase the squirrel, and the lion is rough (because if the lion chases the lion then it is rough). However, we have no information that the lion chases the dog or the rabbit. But since the lion is rough, we can use the rule \"If something is rough and it chases the rabbit then the rabbit is rough.\" This rule does not provide any information about the dog being rough or not.\n\nHowever, we can use the rule \"If something visits the dog then it is green.\" Since the squirrel visits the dog, the squirrel is green. But we do not know if the squirrel chases the rabbit or not.\n\nNow, we can use the rule \"If something is rough and it chases the rabbit then the rabbit is rough.\" We do not have any information that the dog chases the rabbit, but we can use the rule \"If something chases the squirrel then it visits the dog.\" We do not have any information that the lion chases the squirrel, but since the lion is rough, we can conclude that the lion chases the rabbit is not true (because if the lion chases the rabbit then the rabbit is rough). However, we have no information that the dog chases the rabbit or the squirrel.\n\nSince we cannot conclude if the dog is rough or not, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If something chases the rabbit then the rabbit is rough.\" \n   - The lion chases the rabbit, so the rabbit is rough.\n\n2. The statement \"If something chases the squirrel then it visits the dog.\" \n   - The dog chases the squirrel, so this statement doesn't give any information about the dog being rough.\n\n3. The statement \"If something chases the lion then it is rough.\" \n   - The lion is being chased by the rabbit (since the lion chases the rabbit), so the rabbit is rough, not the thing that chases the lion. This statement doesn't give any information about the dog being rough.\n\n4. The statement \"If something is green then it needs the dog.\" \n   - We don't have any information about the dog being rough from this statement.\n\n5. The statement \"If something is green then it needs the lion.\" \n   - We don't have any information about the dog being rough from this statement.\n\n6. The statement \"If something visits the dog then it is green.\" \n   - The squirrel visits the dog, so the squirrel is green.\n\n7. The statement \"If something needs the lion then it chases the lion.\" \n   - We don't have any information about the dog being rough from this statement.\n\n8. The statement \"All cold things are green.\" \n   - We don't have any information about the dog being rough from this statement.\n\n9. The statement \"If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\" \n   - We know the rabbit is rough (from step 1), the lion is cold (since the lion chases the rabbit, and cold things are green, and green things visit the dog, and the squirrel is green, so the lion is cold), and the lion needs the rabbit (since the rabbit is rough and the lion chases the rough). The lion visits the squirrel.\n\n10. From steps 2 and 9, we can deduce that the squirrel chases the lion, so the squirrel is rough.\n\n11. From step 6, the squirrel is green. Since the squirrel is green and cold, we can conclude that the squirrel needs the lion.\n\n12. From step 1, the lion chases the rabbit, so the lion is rough.\n\n13. From step 1, the rabbit is rough.\n\n14. From step 6, the squirrel is green. The squirrel is not rough.\n\n15. From step 7, the lion needs the squirrel. The lion chases the squirrel.\n\n16. From step 3, the lion is rough.\n\n17. The lion is not green since it is not cold (since it chases the rabbit), and green things are cold.\n\n18. The rabbit is not green since it is rough and needs the lion.\n\n19. The squirrel is green and not rough.\n\n20. From step 4, if something is green then it needs the dog. The squirrel is green and needs the lion, not the dog.\n\n21. From step 5, if something is green then it needs the lion. The squirrel is green and needs the lion.\n\n22. The squirrel visits the dog, and the dog is not mentioned as rough in any of the previous steps.\n\n23. The dog is not mentioned as green in any of the previous steps.\n\n24. The dog chases the squirrel, so it visits the dog (from step 2), and the dog is green.\n\n25. From step 4, if something is green then it needs the dog. The dog is green and needs itself.\n\n26. From step 7, if something needs the lion then it chases the lion. The lion is not green, so it needs the dog.\n\n27. The dog is green, so the lion needs the dog.\n\n28. The lion chases the rabbit, so the lion is rough.\n\n29. The lion visits the rabbit.\n\n30. The rabbit is rough.\n\n31. The lion is cold.\n\n32. From step 9, the lion visits the squirrel.\n\n33. The lion needs the squirrel.\n\n34. The squirrel is green and not rough.\n\n35. From step 7, if something needs the lion then it chases the lion. The lion needs the squirrel, so the squirrel chases the lion.\n\n36. The dog is green, so it visits the squirrel (from step 2).\n\n37. The squirrel is green, so it is cold.\n\n38. The lion is cold.\n\n39. The dog is not mentioned as rough in any of the previous steps.\n\n40. The lion is rough.\n\n41. The dog is green, so it is not rough.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If something is rough and it chases the rabbit then the rabbit is rough. (This rule doesn't provide information about the dog being rough, so we can ignore it for now.)\n\n2. If something chases the squirrel then it visits the dog. \n   - Since the dog chases the squirrel, the dog visits the dog. However, this statement is irrelevant to determining whether the dog is rough.\n\n3. If something chases the lion then it is rough. \n   - We don't have any information that the dog chases the lion, so we can't determine if the dog is rough from this rule.\n\n4. If something is green then it needs the dog. \n   - This rule is irrelevant to determining whether the dog is rough.\n\n5. If something is green then it needs the lion. \n   - This rule is also irrelevant to determining whether the dog is rough.\n\n6. If something visits the dog then it is green. \n   - Since the lion visits the dog and the rabbit visits the dog, both the lion and the rabbit are green. \n   - However, we still can't determine if the dog is rough.\n\n7. If something needs the lion then it chases the lion. \n   - We don't have any information that the dog needs the lion, so we can't determine if the dog is rough.\n\n8. All cold things are green. \n   - This rule is also irrelevant to determining whether the dog is rough.\n\n9. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel. \n   - Since the rabbit is cold, the rabbit needs the lion. However, we don't have any information that the lion is cold or that the rabbit needs the lion.\n\n10. The lion visits the rabbit. The rabbit is cold. \n    - Since the rabbit is cold, the rabbit is green. However, we still can't determine if the dog is rough.\n\nFrom the above analysis, we can see that we have not been able to determine whether the dog is rough or not. We have not found any information that directly relates to the dog being rough. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If something is rough and it chases the rabbit then the rabbit is rough.\n   - This statement doesn't directly relate to the dog, so we can move on to the next one.\n\n2. If something chases the squirrel then it visits the dog.\n   - This statement implies that the dog is not the one chasing the squirrel, but rather the dog is the one being visited. However, it doesn't directly relate to the roughness of the dog.\n\n3. If something chases the lion then it is rough.\n   - This statement doesn't directly relate to the dog, so we can move on to the next one.\n\n4. If something is green then it needs the dog.\n   - This statement doesn't directly relate to the roughness of the dog.\n\n5. If something is green then it needs the lion.\n   - This statement doesn't directly relate to the roughness of the dog.\n\n6. If something visits the dog then it is green.\n   - This statement implies that the dog is the one being visited. However, it doesn't directly relate to the roughness of the dog.\n\n7. If something needs the lion then it chases the lion.\n   - This statement doesn't directly relate to the roughness of the dog.\n\n8. All cold things are green.\n   - This statement implies that if something is green, then it is cold. However, it doesn't directly relate to the roughness of the dog.\n\n9. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n   - This statement implies that the lion is cold, which means the lion is green. However, it doesn't directly relate to the roughness of the dog.\n\nNow, let's analyze the given statements:\n- The lion needs the dog.\n- The lion visits the dog.\n- The lion visits the rabbit.\n- The rabbit is cold.\n- The squirrel visits the dog.\n\nBased on the statements, we can conclude that:\n- The lion needs the dog (Statement 4).\n- The lion visits the dog (Statement 2).\n- The rabbit is cold (Statement 7).\n- The squirrel visits the dog (Statement 5).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2). Also, based on Statement 4, if something is green, then it needs the dog. Since the lion needs the dog (Statement 2), it means the lion is green (Statement 4).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion needs the lion (Statement 7).\n- The rabbit is cold (Statement 7).\n- The lion is cold (Statement 7).\n\nBased on the statements, we can conclude that:\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 4, if something is green, then it needs the dog. Since the lion is green, it means the lion needs the dog (Statement 2). Also, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nBased on the statements, we can conclude that:\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 4, if something is green, then it needs the dog. Since the lion is green, it means the lion needs the dog (Statement 2). Also, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nBased on the statements, we can conclude that:\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 4, if something is green, then it needs the dog. Since the lion is green, it means the lion needs the dog (Statement 2). Also, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nBased on the statements, we can conclude that:\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 4, if something is green, then it needs the dog. Since the lion is green, it means the lion needs the dog (Statement 2). Also, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nBased on the statements, we can conclude that:\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4).\n- If something is green, then it needs the lion (Statement 5).\n- If something is green, then it visits the dog (Statement 6).\n- The lion is cold (Statement 7).\n- The rabbit is cold (Statement 7).\n\nSince the lion is cold (Statement 7), it means the lion is green (Statement 8). Now, based on Statement 4, if something is green, then it needs the dog. Since the lion is green, it means the lion needs the dog (Statement 2). Also, based on Statement 6, if something is green, then it visits the dog. Since the lion is green, it means the lion visits the dog (Statement 2).\n\nNow, let's analyze the relationships between the statements:\n- The lion needs the dog (Statement 4).\n- The lion is green (Statement 4).\n- If something is green, then it needs the dog (Statement 4",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion needs the dog.\n2. The lion visits the dog.\n3. The rabbit is cold.\n4. The squirrel visits the dog.\n5. If something is rough and it chases the rabbit then the rabbit is rough. (This implies that if something is rough, it can chase the rabbit, but it does not necessarily mean the rabbit is rough if it is chased by something else.)\n6. If something chases the squirrel then it visits the dog. (This implies that the squirrel visits the dog because it chases the squirrel, which is not directly related to the dog being rough or not.)\n7. If something chases the lion then it is rough. (We don't have any information about something chasing the lion yet.)\n8. If something is green then it needs the dog. (This implies that something can be green, and it needs the dog.)\n9. If something is green then it needs the lion. (This implies that something can be green, and it needs the lion.)\n10. If something visits the dog then it is green. (This implies that the squirrel is green because it visits the dog.)\n11. If something needs the lion then it chases the lion. (We don't have any information about something needing the lion yet.)\n12. All cold things are green. (This implies that the rabbit is green because it is cold.)\n13. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nNow, let's analyze the given information to find out whether the dog is rough or not.\n\n- From point 1, we know that the lion needs the dog.\n- From point 2, we know that the lion visits the dog.\n- From point 6, we know that if something chases the squirrel then it visits the dog. Since the squirrel visits the dog, it implies that the squirrel chases the squirrel (itself), but we don't have any information about the dog chasing the squirrel.\n- From point 7, we know that if something chases the lion then it is rough. However, we don't have any information about something chasing the lion yet.\n- From point 8 and point 10, we know that the squirrel is green because it visits the dog. And from point 12, we know that the rabbit is green because it is cold.\n- From point 11, we know that if something needs the lion then it chases the lion. However, we don't have any information about something needing the lion yet.\n\nNow, let's assume that the statement \"The dog is not rough\" is true.\n\nIf the dog is not rough, it implies that it does not chase the lion (from point 7). However, we know that the lion needs the dog (from point 1). This information creates a paradox, as if the dog is not rough, it does not chase the lion, but the lion needs the dog.\n\nHowever, we cannot conclude that the dog is rough or not. We can only conclude that if the dog is not rough, it creates a paradox.\n\nTherefore, the statement \"The dog is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that the rabbit is cold (Statement 7).\n   - Since all cold things are green (Statement 12), the rabbit is green.\n\n2. We are given that the rabbit is green (From Step 1).\n   - If something is green, then it needs the lion (Statement 8).\n   - If something is green, then it needs the dog (Statement 9).\n   - Therefore, the rabbit needs the lion and the rabbit needs the dog.\n\n3. We are given that the lion is cold (From Statement 7).\n   - Since the lion is cold, the lion is green (From Statement 12).\n\n4. We are given that the lion is green (From Step 3).\n   - If something is green, then it needs the lion (Statement 8).\n   - If something is green, then it needs the dog (Statement 9).\n   - Therefore, the lion needs the dog.\n\n5. We are given that the lion needs the dog (From Step 4).\n   - If something needs the dog, then it is not rough (Implicit from the fact that we are trying to determine whether the dog is rough).\n\n6. We are given that the lion needs the dog (From Step 4).\n   - Since the lion needs the dog, the lion chases the dog (From Statement 5).\n\n7. We are given that the lion chases the dog (From Step 6).\n   - If something chases the lion, then it is rough (Statement 4).\n   - Therefore, the dog is rough.\n\nBased on the analysis, we can conclude that the statement \"The dog is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information and the relationships between the entities (dog, lion, rabbit, squirrel).\n\n1. The lion chases the rabbit. \n2. The lion needs the dog.\n3. The lion visits the dog.\n4. The lion visits the rabbit.\n5. The rabbit is cold.\n6. The squirrel visits the dog.\n7. If something is rough and it chases the rabbit then the rabbit is rough.\n   - This statement is not directly applicable to the problem. We can ignore it for now.\n8. If something chases the squirrel then it visits the dog.\n   - From statement 6, we know the squirrel visits the dog. So, the dog does not chase the squirrel.\n9. If something chases the lion then it is rough.\n   - We don't have enough information to conclude whether the lion is rough or not.\n10. If something is green then it needs the dog.\n    - We know the lion needs the dog (statement 2). So, the lion is green.\n11. If something is green then it needs the lion.\n    - Since the lion is green, it needs the lion (statement 11 contradicts statement 2).\n    - This statement is contradictory. However, we will continue to analyze the information.\n12. If something visits the dog then it is green.\n    - From statement 6, we know the squirrel visits the dog. So, the squirrel is green.\n13. If something needs the lion then it chases the lion.\n    - We know the lion needs the dog (statement 2). However, this does not imply that the dog chases the lion.\n14. All cold things are green.\n    - We know the rabbit is cold (statement 5) and green (statement 12).\n\nFrom statements 10 and 12, we can conclude that the lion is green because it needs the dog (statement 2) and visits the dog (statement 3).\n\nNow, let's analyze the final statement: \"The lion is cold\" (statement 5) and \"The lion is green\" (from our analysis). \n\nStatement 15: If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n   - We know the rabbit needs the lion (from statement 4), the lion is cold (statement 5), and the lion visits the squirrel (statement 15).\n\nNow, we have a contradiction. Statement 15 implies that the lion visits the squirrel when the rabbit needs the lion and the lion is cold. However, statement 4 states that the lion visits the rabbit when the lion needs the rabbit. \n\nThis means that we cannot conclude the relationships between the lion and the rabbit. We cannot determine whether the lion is rough or not.\n\nThe statement \"The dog is not rough\" is unknown because we cannot determine the roughness of the dog based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. If something chases the rabbit then the rabbit is rough. However, this does not tell us anything about the dog.\n\n2. The lion chases the rabbit. From the previous statement, we know the rabbit is rough. However, this does not tell us anything about the dog.\n\n3. The lion needs the dog. This does not tell us anything about the dog's roughness.\n\n4. The lion visits the dog. This also does not tell us anything about the dog's roughness.\n\n5. The rabbit is cold. \n\n6. The squirrel visits the dog. From statement 5, we know the rabbit is cold. Since cold things are green (statement 11), we can conclude that the rabbit is green.\n\n7. If something is rough and it chases the rabbit then the rabbit is rough. However, we already concluded that the rabbit is green (statement 6), so it does not necessarily follow that something is rough.\n\n8. If something chases the squirrel then it visits the dog. The lion chases the rabbit, not the squirrel, so this statement does not apply to the lion or the rabbit.\n\n9. If something chases the lion then it is rough. This does not tell us anything about the dog's roughness.\n\n10. If something is green then it needs the dog. If something is green then it needs the lion. Since we concluded that the rabbit is green (statement 6), we can infer that the rabbit needs the dog and the rabbit needs the lion.\n\n11. If something visits the dog then it is green. We already concluded that the squirrel visits the dog (statement 6), so the squirrel is green.\n\n12. If something needs the lion then it chases the lion. Since the rabbit needs the lion (statement 10), we can conclude that the rabbit chases the lion.\n\n13. The lion is cold. We know the lion is cold and needs the rabbit (statement 10), so we can conclude that the lion visits the squirrel (statement 1).\n\nFrom the statements above, we can conclude the following:\n- The lion is cold.\n- The rabbit is green and chases the lion.\n- The lion visits the squirrel.\n- The lion needs the dog.\n\nHowever, we still do not know whether the dog is rough or not. We can conclude that the lion is rough (statement 9), but we do not have any information about the dog.\n\nTherefore, the statement \"The dog is not rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog chases the squirrel. \n   - This statement does not provide any information about the dog's roughness.\n\n2. If something is rough and it chases the rabbit then the rabbit is rough.\n   - This statement does not provide any information about the dog's roughness.\n\n3. If something chases the squirrel then it visits the dog.\n   - Since the dog chases the squirrel, the dog visits the dog, but this statement does not provide any information about the dog's roughness.\n\n4. If something chases the lion then it is rough.\n   - This statement does not provide any information about the dog's roughness.\n\n5. If something is green then it needs the dog.\n   - We do not know if the dog is green or not, so we cannot determine its roughness from this statement.\n\n6. If something is green then it needs the lion.\n   - We do not know if the dog is green or not, so we cannot determine its roughness from this statement.\n\n7. If something visits the dog then it is green.\n   - Since the dog chases the squirrel and the squirrel visits the dog, the squirrel is green. However, this statement does not provide any information about the dog's roughness.\n\n8. If something needs the lion then it chases the lion.\n   - This statement does not provide any information about the dog's roughness.\n\n9. All cold things are green.\n   - We do not know if the dog is cold or not, so we cannot determine its roughness from this statement.\n\n10. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n    - This statement does not provide any information about the dog's roughness.\n\nFrom the given statements, we cannot determine the dog's roughness directly. However, we can make an indirect inference:\n\n- The rabbit is cold (Statement 9) and the lion is cold (Statement 10), and the lion needs the rabbit (Statement 8). \n- The lion is green because it is cold (Statement 9). \n- The lion needs the dog (Statement 6). \n- The lion visits the dog (Statement 3). \n- The lion is rough because it chases the lion (Statement 4).\n\nHowever, since we are trying to determine whether the dog is rough, and we found that the lion is rough, we cannot conclude that the dog is not rough.\n\n- The lion needs the dog (Statement 6).\n- If something is green then it needs the dog (Statement 5).\n- The lion is green (indirect inference).\n- If something is green then it needs the dog (Statement 5).\n\nSince the lion is green and needs the dog, it means the lion is not the only thing that needs the dog, and the dog's roughness is still unknown.\n\nTo conclude, we cannot determine whether the statement \"The dog is not rough\" is true or false based on the given information.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller statements and use the given information to deduce the truth of each statement.\n\n1. The lion chases the rabbit. (Given)\n2. The lion needs the dog. (Given)\n3. The lion visits the dog. (Given)\n4. The lion visits the rabbit. (Given)\n5. The rabbit is cold. (Given)\n6. The squirrel visits the dog. (Given)\n\nFrom the given information:\n\n- If something chases the squirrel then it visits the dog. \n- If something visits the dog then it is green.\n\nTherefore, since the squirrel visits the dog, the squirrel is green.\n\n- If something is green then it needs the dog. \n- If something is green then it needs the lion.\n\nSo, the squirrel needs both the dog and the lion.\n\n- All cold things are green.\n- The rabbit is cold.\n- The squirrel is green.\n\nTherefore, the rabbit and the squirrel are both green.\n\n- If something is green then it needs the lion.\n- The rabbit is green.\n- The rabbit needs the lion.\n\nTherefore, the rabbit chases the lion, since something that needs the lion chases the lion.\n\n- If something chases the lion then it is rough.\n- The rabbit chases the lion.\n- The rabbit is rough.\n\nNow, let's examine the original statement: The dog is not rough.\n\nWe know the following:\n\n- If something is rough and it chases the rabbit then the rabbit is rough. \n- The rabbit is rough.\n- Therefore, we cannot determine if the dog is rough or not based on this statement alone.\n\n- If something chases the squirrel then it visits the dog. \n- The squirrel visits the dog.\n- We do not have enough information to determine if the squirrel is rough or not.\n\n- The dog visits the rabbit. (Implicit from the lion visiting the rabbit)\n- We do not have enough information to determine if the dog is rough or not.\n\nHowever, we can use the following statement:\n\n- If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n- The rabbit needs the lion.\n- The lion is cold (since the lion visits the rabbit and the rabbit is cold).\n- The lion visits the squirrel.\n\nFrom the given information:\n\n- If something is green then it needs the lion.\n- The lion is green (since the lion needs the dog and the lion visits the dog).\n- The lion needs the dog.\n\nTherefore, the lion chases the dog, since something that needs the dog chases the dog.\n\n- If something chases the lion then it is rough.\n- The lion chases the dog.\n- The dog is rough.\n\nHowever, this contradicts our original statement. \n\nTherefore, the statement \"The dog is not rough\" is false.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will use the process of elimination and deduction to determine whether the statement is true, false, or unknown.\n\n1. The dog chases the squirrel.\n2. The lion chases the rabbit.\n3. The lion needs the dog.\n4. The lion visits the dog.\n5. The lion visits the rabbit.\n6. The rabbit is cold.\n7. The squirrel visits the dog.\n8. If something is rough and it chases the rabbit then the rabbit is rough.\n9. If something chases the squirrel then it visits the dog.\n10. If something chases the lion then it is rough.\n11. If something is green then it needs the dog.\n12. If something is green then it needs the lion.\n13. If something visits the dog then it is green.\n14. If something needs the lion then it chases the lion.\n15. All cold things are green.\n16. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nFrom statement 11, we know that if something is green, then it needs the dog. From statement 13, we know that if something visits the dog, then it is green. \n\nThe lion visits the dog (statement 4), so the lion is green (from statement 13). The rabbit is cold (statement 6), so the rabbit is green (from statement 15). The lion is green (from the previous conclusion), and the rabbit is green (from the previous conclusion), so the lion and the rabbit both need the dog (from statement 11).\n\nThe lion needs the dog (statement 3), so the lion chases the dog (from statement 14). The lion chases the dog (from the previous conclusion), so the lion is rough (from statement 10). The lion is rough (from the previous conclusion), and the lion chases the rabbit (statement 2), so the rabbit is rough (from statement 8).\n\nThe rabbit is rough (from the previous conclusion), and the rabbit is cold (statement 6), so we have two possible conclusions: the rabbit is green (from statement 15) or the rabbit is rough (from the previous conclusion). We already concluded that the rabbit is green (from the previous conclusion), so we will proceed with this conclusion.\n\nThe lion is green (from the previous conclusion), the lion is cold (from statement 6), the rabbit needs the lion (from statement 12), and the lion is cold (from the previous conclusion), so the lion visits the squirrel (from statement 16).\n\nThe squirrel visits the dog (statement 7), so the squirrel is green (from statement 13). The squirrel is green (from the previous conclusion), so the squirrel needs the dog (from statement 11).\n\nThe lion chases the rabbit (statement 2), and the rabbit is green (from the previous conclusion), so the lion chases the rabbit because it needs the lion (from statement 12) and the rabbit is green (from the previous conclusion).\n\nNow we will analyze the statement: The dog is not rough.\n\nFrom statement 10, we know that if something chases the lion, then it is rough. The lion chases the rabbit (statement 2), so the rabbit does not chase the lion. However, we know that the lion chases the rabbit, and we do not have any information that the dog chases the lion. \n\nIf the dog chases the lion, then the dog would be rough (from statement 10), but we cannot conclude that the dog is not rough. \n\nHowever, we do know that the lion needs the dog (statement 3) and the lion visits the dog (statement 4). The lion needs the dog (from statement 3), and the lion chases the rabbit (statement 2), so the lion is not rough (from statement 10), but we cannot conclude that the lion is not rough. \n\nHowever, we do know that the lion is green (from the previous conclusion), and the lion is cold (from statement 6), so the lion needs the dog (from statement 11). The lion needs the dog (from the previous conclusion), and the lion chases the rabbit (statement 2), so the lion is not rough (from statement 10). However, we cannot conclude that the lion is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), and the lion visits the squirrel (from statement 16), so the lion is not rough (from statement 10).\n\nNow we will analyze the statement: The dog is not rough.\n\nFrom statement 9, we know that if something chases the squirrel, then it visits the dog. The squirrel visits the dog (statement 7), so the squirrel chases the dog (from statement 9). The squirrel chases the dog (from the previous conclusion), so the squirrel is rough (from statement 10).\n\nHowever, the squirrel is green (from the previous conclusion), so the squirrel is not rough (from statement 10).\n\nHowever, the statement that the squirrel is rough (from the previous conclusion) and the statement that the squirrel is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the dog chases the squirrel (statement 1), so the dog visits the squirrel (from statement 9). The dog visits the squirrel (from the previous conclusion), so the dog is green (from statement 13).\n\nHowever, the statement that the dog is green (from the previous conclusion) is true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the squirrel is green (from the previous conclusion), and the squirrel visits the dog (statement 7), so the squirrel is not rough (from statement 10).\n\nHowever, the statement that the squirrel is rough (from the previous conclusion) and the statement that the squirrel is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), and the lion visits the squirrel (from statement 16), so the lion is not rough (from statement 10).\n\nHowever, the statement that the lion is rough (from the previous conclusion) and the statement that the lion is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the rabbit needs the lion (from statement 12), so the lion visits the squirrel (from statement 16).\n\nHowever, the statement that the lion visits the squirrel (from the previous conclusion) is true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the squirrel is green (from the previous conclusion), and the squirrel visits the dog (statement 7), so the squirrel is not rough (from statement 10).\n\nHowever, the statement that the squirrel is rough (from the previous conclusion) and the statement that the squirrel is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the rabbit needs the lion (from statement 12), so the lion visits the squirrel (from statement 16).\n\nHowever, the statement that the lion visits the squirrel (from the previous conclusion) is true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the lion needs the dog (from statement 3), so the lion is not rough (from statement 10).\n\nHowever, the statement that the lion is rough (from the previous conclusion) and the statement that the lion is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the lion visits the squirrel (from statement 16), so the lion is not rough (from statement 10).\n\nHowever, the statement that the lion is rough (from the previous conclusion) and the statement that the lion is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the rabbit needs the lion (from statement 12), so the lion visits the squirrel (from statement 16).\n\nHowever, the statement that the lion visits the squirrel (from the previous conclusion) is true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the lion needs the dog (from statement 3), so the lion is not rough (from statement 10).\n\nHowever, the statement that the lion is rough (from the previous conclusion) and the statement that the lion is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is green (from the previous conclusion), the lion is cold (from statement 6), and the lion visits the squirrel (from statement 16), so the lion is not rough (from statement 10).\n\nHowever, the statement that the lion is rough (from the previous conclusion) and the statement that the lion is green (from the previous conclusion) are both true, so we cannot conclude that the dog is not rough.\n\nHowever, we do know that the lion is",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, let's break it down step by step.\n\nGiven statements:\n\n1. If something is rough and it chases the rabbit then the rabbit is rough.\n2. If something chases the squirrel then it visits the dog.\n3. If something chases the lion then it is rough.\n4. If something is green then it needs the dog.\n5. If something is green then it needs the lion.\n6. If something visits the dog then it is green.\n7. If something needs the lion then it chases the lion.\n8. All cold things are green.\n9. If the rabbit needs the lion and the lion is cold then the lion visits the squirrel.\n\nNow, let's analyze the given statements to find information about the dog.\n\nFrom statement 4, we know that if something is green then it needs the dog.\n\nFrom statement 6, we know that if something visits the dog then it is green.\n\nFrom statement 8, we know that all cold things are green.\n\nGiven the statement \"The rabbit is cold\" from the problem, we can conclude that the rabbit is green because all cold things are green (statement 8).\n\nFrom statement 4, since the rabbit is green, it needs the dog.\n\nThe rabbit needs the dog, which means that the lion needs the dog (statement 7).\n\nNow, since the lion needs the dog, from statement 3, the lion chases the dog.\n\nFrom statement 1, since the lion chases the rabbit and the lion is rough, the rabbit is rough.\n\nNow, let's analyze the statement \"The dog is not rough.\" We want to determine whether this statement is true, false, or unknown.\n\nFrom statement 3, we know that if something chases the lion then it is rough. The lion chases the dog, but we cannot conclude that the lion is rough from this statement. However, we can conclude that something is rough because it chases the lion. Since the lion chases the dog, the dog chases the lion. Therefore, the dog is rough.\n\nHowever, there is a problem with this conclusion. The statements do not explicitly state that the dog chases the lion. The statements only state that the lion chases the dog. Since the lion is not given as rough, we cannot conclude that the dog is rough from statement 3.\n\nLet's look at statement 2. If something chases the squirrel then it visits the dog. We know that the squirrel visits the dog (given statement), so the squirrel chases the squirrel is not true. However, we can conclude that the squirrel does not chase the squirrel because it would visit the dog, which it does. This means that the squirrel does not chase the squirrel, which means the squirrel does not chase the lion. We do not have any information that the lion chases the squirrel, so we cannot conclude that the lion is rough from statement 3.\n\nSince the lion is not given as rough, we cannot conclude that the dog is rough from statement 3.\n\nThe statements only tell us that the lion chases the dog and that the lion is not given as rough. We cannot conclude that the dog is rough or not rough from the statements. Therefore, we cannot determine whether the statement \"The dog is not rough\" is true, false, or unknown.\n\nHowever, based on the information that the dog chases the squirrel, which is not given in the statements, we can conclude that the squirrel visits the dog. Therefore, the squirrel is green because it visits the dog (statement 6).\n\nSince the squirrel is green, it needs the dog (statement 4).\n\nThe lion needs the dog (statement 7).\n\nThe lion is cold (given statement).\n\nIf the rabbit needs the lion and the lion is cold then the lion visits the squirrel (statement 9). Since the lion is cold, it is green (statement 8), and the rabbit needs the lion, we can conclude that the lion visits the squirrel.\n\nSince the lion is cold and it visits the squirrel, the squirrel is not green because the lion is green (statement 5). This means that the squirrel is not cold.\n\nHowever, the squirrel is green (statement 6), which means it is cold (statement 8).\n\nThis is a contradiction because we concluded earlier that the squirrel is not cold.\n\nHowever, the lion is cold, and it is green (statement 5). The lion needs the dog (statement 7). The dog chases the squirrel. The squirrel visits the dog. The squirrel is green. This means that the lion is not cold.\n\nHowever, the lion is cold.\n\nThis is another contradiction.\n\nNow, since the rabbit needs the dog (statement 4), the lion needs the dog (statement 7).\n\nThe lion is cold (given statement).\n\nIf the rabbit needs the lion and the lion is cold then the lion visits the squirrel (statement 9). Since the lion is cold, it is green (statement 8), and the rabbit needs the lion, we can conclude that the lion visits the squirrel.\n\nSince the lion is cold, it is green (statement 8).\n\nThe lion needs the dog (statement 7).\n\nThe rabbit is green (statement 8), and it needs the dog (statement 4).\n\nThe lion needs the dog, which means the lion is green (statement 5).\n\nHowever, we concluded earlier that the lion is not green.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The lion is cold.\" Since the lion is cold, it is green (statement 8).\n\nThe lion needs the dog (statement 7).\n\nThe rabbit is green (statement 8), and it needs the dog (statement 4).\n\nThe lion needs the dog, which means the lion is green (statement 5).\n\nHowever, we concluded earlier that the lion is not green.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The lion is not cold.\" Since the lion is not cold, it is not green (statement 8).\n\nThe lion needs the dog (statement 7).\n\nThe rabbit is green (statement 8), and it needs the dog (statement 4).\n\nThe lion needs the dog, which means the lion is green (statement 5).\n\nHowever, we concluded earlier that the lion is not green.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The lion is not green.\" Since the lion is not green, it does not need the dog (statement 5).\n\nThe lion does not need the dog, which means the lion does not need the rabbit (statement 4).\n\nHowever, we concluded earlier that the lion needs the rabbit.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The lion is green.\" Since the lion is green, it needs the dog (statement 5).\n\nThe lion needs the dog, which means the lion is cold (statement 8).\n\nHowever, we concluded earlier that the lion is not cold.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The lion is rough.\" Since the lion is rough, it chases the rabbit (statement 3).\n\nHowever, we concluded earlier that the lion does not chase the rabbit.\n\nThis is another contradiction.\n\nSince all the possible conclusions about the lion are contradictions, we cannot determine whether the lion is rough or not rough.\n\nHowever, we know that the lion is not cold.\n\nSince the lion is not cold, it is not green (statement 8).\n\nThe lion is not green, which means it does not need the dog (statement 5).\n\nThe lion does not need the dog, which means the lion does not need the rabbit (statement 4).\n\nHowever, we concluded earlier that the lion needs the rabbit.\n\nThis is another contradiction.\n\nHowever, the lion needs the dog (statement 7), and the lion is not green (statement 8). This means that the lion is not cold (statement 8), but we know that the lion is cold.\n\nThis is another contradiction.\n\nHowever, the lion is not cold, and it is not green (statement 8).\n\nThe lion is not green, which means it does not need the dog (statement 5).\n\nThe lion does not need the dog, which means the lion does not need the rabbit (statement 4).\n\nHowever, we concluded earlier that the lion needs the rabbit.\n\nThis is another contradiction.\n\nNow, let's go back to the statement \"The dog is not rough.\" We want to determine whether this statement is true, false, or unknown.\n\nFrom statement 2, we know that if something chases the squirrel then it visits the dog. However, this statement does not tell us anything about the dog.\n\nHowever, the statements only tell us that the lion chases the dog. We do not have any information that the dog chases the lion.\n\nNow, let's analyze the statement \"The dog chases the squirrel.\" We know that the squirrel visits the dog (given statement).\n\nFrom statement 2, if something chases the squirrel then it visits the dog. We know that the squirrel visits the dog, but we do not know whether the squirrel chases the squirrel. However, we can conclude that the squirrel does not chase the squirrel because it would visit the dog, which it does.\n\nTherefore, we can conclude that the squirrel does not chase the squirrel, which means the squirrel does not chase the lion. We do not have any information that the lion chases the squirrel, so we cannot conclude that the lion is rough from statement 3.\n\nSince the lion is not given as rough, we cannot conclude that the dog is rough from statement 3.\n\nThe statements only tell us that the lion chases the dog. We do not have any information that the dog chases the lion.\n\nThe dog chases the squirrel, which is not given in the statements.\n\nHowever, the squirrel is green (statement 6), which means it is cold (statement 8).\n\nThe dog chases the squirrel, which means the dog",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_lion, chases_lion_rabbit), rough_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_dog, visits_squirrel_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_lion_something, rough_something)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_lion, needs_lion_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_lion_dog, green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_rabbit_lion, chases_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_rabbit, green_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_lion, chases_lion_rabbit), rough_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_dog, visits_squirrel_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, lion)",
+          "z3_formula": "Implies(rough_lion, chases_lion_something)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_squirrel_dog, green_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_rabbit, green_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_rabbit_lion, chases_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(And(rough_lion, chases_lion_lion), rough_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> rough(X)",
+          "z3_formula": "Implies(rough_lion, rough_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == Unknown",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_dog, chases_dog_rabbit), rough_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_dog_squirrel, visits_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_dog_lion, rough_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_dog, needs_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_dog, needs_dog_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_dog_lion, green_lion) | Implies(visits_dog_rabbit, green_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_dog_lion, chases_dog_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_rabbit, green_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, squirrel)",
+          "z3_formula": "visits_dog_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & cold(lion) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(needs_dog_lion, cold_lion), visits_dog_squirrel)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_lion, needs_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, dog)",
+          "z3_formula": "Implies(green_lion, visits_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> cold(Y)",
+          "z3_formula": "Implies(cold_lion, cold_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & cold(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(And(needs_lion_lion, cold_lion), visits_lion_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_X, chases_X_rabbit), rough_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_X_lion, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(lion, X)",
+          "z3_formula": "Implies(green_X, needs_lion_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(lion, X)",
+          "z3_formula": "Implies(green_X, needs_lion_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_X_dog, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & cold(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(And(needs_X_lion, cold_lion), visits_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(dog))",
+          "z3_formula": "Not(rough_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(dog)) -> not(chases(dog, lion))",
+          "z3_formula": "Implies(Not(rough_dog), Not(chases_dog_lion))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog) & not(chases(dog, lion))",
+          "z3_formula": "And(needs_lion_dog, Not(chases_dog_lion))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_rabbit, green_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, lion) & needs(rabbit, dog)",
+          "z3_formula": "And(needs_rabbit_lion, needs_rabbit_dog) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_lion, needs_lion_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> not rough(X)",
+          "z3_formula": "Implies(needs_lion_dog, not_rough_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(dog)",
+          "z3_formula": "not_rough_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_dog_lion, rough_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_X, chases_X_rabbit), rough_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_X_lion, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_X, needs_X_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_X, needs_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_X_dog, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_X_lion, chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_dog, chases_dog_rabbit), rough_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_dog_squirrel, visits_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_dog_lion, rough_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_dog, needs_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_dog, needs_dog_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_dog_dog, green_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_dog_lion, chases_dog_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_squirrel_dog, green_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_squirrel, needs_squirrel_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_squirrel, needs_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_rabbit, green_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & cold(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, cold_lion), visits_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_lion_dog, rough_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, lion)",
+          "z3_formula": "needs_squirrel_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(dog))",
+          "z3_formula": "Not(rough_dog) == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_dog, chases_dog_rabbit), rough_rabbit)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_squirrel_dog, green_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_squirrel, needs_squirrel_lion)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "visits(lion, rabbit) -> visits(dog, rabbit)",
+          "z3_formula": "Implies(visits_lion_rabbit, visits_dog_rabbit)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(dog))",
+          "z3_formula": "Not(rough_dog) == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(Not(rough_dog)) == False",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, dog)",
+          "z3_formula": "visits_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(rabbit)",
+          "z3_formula": "Implies(And(rough_X, chases_X_rabbit), rough_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_X_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> rough(X)",
+          "z3_formula": "Implies(chases_X_lion, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_X, needs_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_X, needs_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_X_dog, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_X_lion, chases_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_X, green_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(lion, lion) & cold(lion) & needs(rabbit, lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(And(needs_lion_lion, cold_lion, needs_rabbit_lion), visits_lion_squirrel)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == False",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, dog)",
+          "z3_formula": "visits_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(rough_lion, chases_lion_rabbit), rough_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, visits_squirrel_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_squirrel, green_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, lion)",
+          "z3_formula": "Implies(green_rabbit, needs_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> green(X)",
+          "z3_formula": "Implies(visits_squirrel_dog, green_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> chases(X, lion)",
+          "z3_formula": "Implies(needs_rabbit_lion, chases_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & cold(lion) -> visits(lion, squirrel)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, cold_lion), visits_lion_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == Unknown",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 193,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 73
+    },
+    "maxsat_stats": {
+      "satisfied": 72,
+      "excluded": 1,
+      "total_weight": 189,
+      "solve_time_ms": 1.4632269740104675
+    },
+    "timing": {
+      "trace_gen_s": 25.055,
+      "extraction_s": 46.14,
+      "dedup_s": 2.975,
+      "maxsat_s": 0.005,
+      "total_s": 74.176
+    }
+  }
+}

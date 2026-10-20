@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-904_Q14",
+    "problem": "Charlie is cold. Charlie is round. Erin is big. Erin is kind. Erin is nice. Erin is round. Gary is not big. Gary is not cold. Harry is blue. Harry is kind. Harry is nice. If someone is blue then they are round. All smart people are round. All nice people are round. If Harry is cold then Harry is not kind. If someone is smart then they are kind. If someone is cold and round then they are smart. If someone is kind and blue then they are big. All kind people are blue. If someone is big then they are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nRound(Charlie, True) ::: Charlie is round.\nBig(Erin, True) ::: Erin is big.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nBig(Gary, False) ::: Gary is not big.\nCold(Gary, False) ::: Gary is not cold.\nBlue(Harry, True) ::: Harry is blue.\nKind(Harry, True) ::: Harry is kind.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nBlue($x, True) >>> Round($x, True) ::: If someone is blue then they are round.\nSmart($x, True) >>> Round($x, True) ::: All smart people are round.\nNice($x, True) >>> Round($x, True) ::: All nice people are round.\nCold(Harry, True) >>> Kind(Harry, False) ::: If Harry is cold then Harry is not kind.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nCold($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is cold and round then they are smart.\nKind($x, True) && Blue($x, True) >>> Big($x, True) ::: If someone is kind and blue then they are big.\nKind($x, True) >>> Blue($x, True) ::: All kind people are blue.\nBig($x, True) >>> Nice($x, True) ::: If someone is big then they are nice.\n\nQuery:\nSmart(Gary, True) ::: Gary is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

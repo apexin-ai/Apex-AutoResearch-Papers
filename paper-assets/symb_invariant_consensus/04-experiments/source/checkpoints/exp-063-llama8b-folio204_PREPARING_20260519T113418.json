@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-063-llama8b-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:34:18.492Z",
+    "updated_at": "2026-05-19T11:34:18.492Z",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T11:34:18.684600+00:00",
+  "trigger": "update_registry"
+}

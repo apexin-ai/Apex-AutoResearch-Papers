@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-wave3-dir-r-nli-verifier",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:54:26.690Z",
+    "updated_at": "2026-05-20T10:54:42.296Z",
+    "hypothesis": "DeBERTa External Verifier: encoder-only NLI 模型 (cross-encoder/nli-deberta-v3-base) 与 decoder-only LLM 架构独立，作为额外 vote 加入 SC traces 可打破 confirmation bias。NLI 擅长 contradiction 检测（False label），LLM 擅长 Unknown 推理，两者互补。"
+  },
+  "timestamp": "2026-05-20T10:54:42.592054+00:00",
+  "trigger": "update_registry"
+}

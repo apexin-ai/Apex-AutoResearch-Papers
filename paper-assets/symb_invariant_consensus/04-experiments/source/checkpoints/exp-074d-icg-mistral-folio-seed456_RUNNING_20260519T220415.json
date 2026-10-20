@@ -1,0 +1,77 @@
+{
+  "exp_id": "exp-074d-icg-mistral-folio-seed456",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:43:16.073Z",
+    "updated_at": "2026-05-19T22:04:15.356Z",
+    "hypothesis": "ICG × Mistral-7B × FOLIO-204 seed=456 第三组 seed replication。exp-074 (seed=42) Δ=-2.0pp, exp-074c (seed=123) 运行中。3-seed 数据确认 ICG 方法的 negative 结果跨 seed 稳定性，堵住 reviewer 单 seed 质疑。ICG 是三方法中 Δ 最接近零的，3-seed 数据最有论文价值。",
+    "parent": "exp-074-icg-mistral-folio",
+    "spec": {
+      "command": "python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 456 --api-base http://localhost:8003/v1 --model auto --data data/folio_full.json --output results/exp074d_icg_mistral_folio_seed456/results.json --save-intermediates",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "283283",
+      "log_path": "~/runs/symb_invariant_consensus/exp-074d-icg-mistral-folio-seed456.log",
+      "submitted_at": "2026-05-19T20:44:18.642Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Mistral-7B",
+      "seed": 456,
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp074d_icg_mistral_folio_seed456/",
+      "checkpoint_source": "exp-074-icg-mistral-folio",
+      "eval_data": "data/folio_full.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T21:43:02.856Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T21:43:04.997464+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.5588,
+      "icg_accuracy": 0.549,
+      "delta": -0.0098,
+      "n_samples": 204,
+      "wall_time_min": 57.3,
+      "three_seed_mean_sc": 0.5572,
+      "three_seed_mean_icg": 0.5523,
+      "three_seed_mean_delta": -0.0049,
+      "three_seed_std_delta": 0.0177,
+      "three_seed_details": {
+        "seed_42": {
+          "sc": 0.5392,
+          "icg": 0.5196,
+          "delta": -0.0196
+        },
+        "seed_123": {
+          "sc": 0.5735,
+          "icg": 0.5882,
+          "delta": 0.0147
+        },
+        "seed_456": {
+          "sc": 0.5588,
+          "icg": 0.549,
+          "delta": -0.0098
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-19T22:04:15.607041+00:00",
+  "trigger": "update_registry"
+}

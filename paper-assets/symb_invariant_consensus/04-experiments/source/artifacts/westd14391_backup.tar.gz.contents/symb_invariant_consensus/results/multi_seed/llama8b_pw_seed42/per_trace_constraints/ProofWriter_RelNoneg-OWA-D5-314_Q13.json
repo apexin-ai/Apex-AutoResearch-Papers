@@ -1,0 +1,861 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-314_Q13",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, mouse)",
+          "z3_formula": "eats_mouse_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_cow_cow, chases_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(squirrel, X) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(eats_cow_cow, eats_squirrel_cow), chases_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_cow_mouse, visits_cow_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_cow_mouse, chases_cow_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_bear_mouse, visits_bear_squirrel), blue_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_squirrel_bear, cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_bear, eats_squirrel_bear), eats_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_squirrel_bear, blue_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == Unknown",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, X) -> contradictory(X, Y)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_bear), contradictory_bear_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(eats_bear_squirrel, chases_bear_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, Z) -> chases(X, Z)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_mouse), chases_bear_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(eats_cow_mouse, visits_cow_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(eats_bear_mouse, chases_bear_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & visits(X, Z) -> blue(Y)",
+          "z3_formula": "Implies(And(visits_cow_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> cold(Y)",
+          "z3_formula": "Implies(eats_squirrel_bear, cold_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, Y) -> eats(X, Z)",
+          "z3_formula": "Implies(And(blue_bear, eats_bear_squirrel), eats_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & chases(Y, Z) -> visits(X, Z)",
+          "z3_formula": "Implies(And(chases_mouse_bear, chases_bear_squirrel), visits_mouse_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(chases_mouse_bear, blue_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(mouse, bear)",
+          "z3_formula": "Not(chases_mouse_bear)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> not(chases(X, bear))",
+          "z3_formula": "Implies(chases_mouse_cow, Not(chases_mouse_bear))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & chases(Y, Z) -> visits(X, Z)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_mouse_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_mouse_bear, blue_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_bear_squirrel, cold_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_mouse, eats_mouse_squirrel), eats_mouse_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cow, chases_mouse_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, squirrel)",
+          "z3_formula": "chases_mouse_squirrel == False",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, bear)",
+          "z3_formula": "visits_cow_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_cow_squirrel, chases_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, mouse) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(eats_squirrel_mouse, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, visits_mouse_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_bear_bear, visits_bear_mouse), blue_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_bear_bear, cold_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_bear, eats_squirrel_bear), eats_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_cow_bear, chases_cow_squirrel), visits_bear_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_bear_bear, blue_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, bear)",
+          "z3_formula": "chases_mouse_bear == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, mouse)",
+          "z3_formula": "eats_bear_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, mouse)",
+          "z3_formula": "eats_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_squirrel_bear, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, visits_mouse_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(And(visits_bear_mouse, visits_mouse_bear), blue_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(Y)",
+          "z3_formula": "Implies(eats_bear_bear, cold_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_something, eats_something_squirrel), eats_something_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, Y) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> blue(X)",
+          "z3_formula": "Implies(chases_something_bear, blue_something)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_mouse_bear, chases_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, mouse) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_mouse_squirrel, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, squirrel)",
+          "z3_formula": "Not(eats_mouse_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, bear)",
+          "z3_formula": "Not(eats_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(mouse, bear)",
+          "z3_formula": "Not(chases_mouse_bear) == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> chases(X, cow)",
+          "z3_formula": "Implies(And(eats_bear_squirrel, eats_squirrel_mouse), chases_mouse_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> chases(cow, squirrel)",
+          "z3_formula": "Implies(eats_squirrel_cow, chases_cow_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(And(chases_mouse_cow, chases_cow_squirrel), visits_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, mouse)",
+          "z3_formula": "eats_squirrel_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, bear)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(X, squirrel) -> visits(X, bear)",
+          "z3_formula": "Implies(And(chases_X_cow, chases_X_squirrel), visits_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(visits_X_bear, visits_X_mouse), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & eats(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(And(blue_X, eats_X_squirrel), eats_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, squirrel)",
+          "z3_formula": "eats_bear_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(bear, squirrel))",
+          "z3_formula": "Not(eats_bear_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> cold(X)",
+          "z3_formula": "Implies(eats_X_bear, cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(chases(X, bear))",
+          "z3_formula": "Implies(blue_X, Not(chases_X_bear))",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(mouse, bear))",
+          "z3_formula": "Not(chases_mouse_bear)",
+          "source_step": 24
+        }
+      ]
+    }
+  ]
+}

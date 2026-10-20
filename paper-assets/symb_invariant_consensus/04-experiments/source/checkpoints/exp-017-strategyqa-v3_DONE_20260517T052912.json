@@ -1,0 +1,78 @@
+{
+  "exp_id": "exp-017-strategyqa-v3",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:17:54.931Z",
+    "updated_at": "2026-05-17T05:29:12.136Z",
+    "hypothesis": "Cross-domain validation: Qwen2.5-14B-Instruct 在 StrategyQA (常识推理, Yes/No) 上 SICA vs SC——验证 capability trap 是否跨任务类型泛化（v3: 修复 True/False→Yes/No 提取 bug）",
+    "parent": "sica_expanded_14b",
+    "server": "westd-32608",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32608",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T04:18:02.638Z",
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh",
+      "code_commit": "97aeaa572a6b6571b4bfea9c6ec6bcf915780425",
+      "finished_at": "2026-05-17T04:26:23.412Z",
+      "training_hours": 0.14
+    },
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp017_strategyqa.sh",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "278827",
+      "log_path": "~/runs/symb_invariant_consensus/exp-017-strategyqa-v3.log",
+      "submitted_at": "2026-05-17T04:18:04.451Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4267.7,
+      "gpu_hours": 1.19
+    },
+    "pid": "278827",
+    "log_path": "~/runs/symb_invariant_consensus/exp-017-strategyqa-v3.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T04:26:25.041303+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.5667,
+      "sc_accuracy": 0.5333,
+      "delta_pp": 3.33,
+      "mcnemar_chi2": 0.5,
+      "mcnemar_p": "n.s.",
+      "bootstrap_ci_95": [
+        0,
+        8.33
+      ],
+      "bootstrap_p_delta_le_0": 0.1346,
+      "multi_candidate_rate": 0.1,
+      "contradiction_detected": 5,
+      "extraction_rate_problem": 1,
+      "extraction_rate_trace": 0.704,
+      "discordant_sica_wins": 2,
+      "discordant_sc_wins": 0
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp017_strategyqa/exp017_results.json",
+    "notes": "StrategyQA跨域验证: SICA 56.67% vs SC 53.33%, +3.33pp n.s. (p=0.13), 支持capability trap跨任务泛化; v3修复提取bug确认成功(100%问题级提取率); 2个discordant pairs均SICA胜出",
+    "completed_at": "2026-05-17T05:29:12.136Z"
+  },
+  "timestamp": "2026-05-17T05:29:12.243682+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "049f4d629d7b210f06b9",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix table3 tiebreak recompute",
+  "task_key": "worker_fix_table3-tiebreak-recompute_20260523T111613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_table3-tiebreak-recompute_20260523T111613_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "085779a679a879604036b8e9fb1f777ba512ffff4ca0a7ea8e5f236741f30591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有残留旧值。\n\n**总结**：Table 3 tiebreaking 修复全部完成。\n\n- **solutions.tex**: Table 3 数据 + 正文两段已更新\n- **appendix.tex**: Table 28 全部 12 行 + caption + 正文已更新（\"three\"→\"two\"）\n- **Figure 7**: 3 个 PW 数据点修正，图已重新生成\n- **核心结论不受影响**: capability gap 单调递减保持（Spearman ρ=1.0），仅 LLaMA w=1 失去 BH 显著性（3→2 significant conditions）\n- **Fix report** 已注册为 artifact (`art_20260523_121749`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-table3-tiebreak-recompute.md"
+}

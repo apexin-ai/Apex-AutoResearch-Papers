@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-036b-cross-trace-unsat",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:04:24.962Z",
+    "updated_at": "2026-05-18T19:04:28.783Z",
+    "hypothesis": "Cross-trace UNSAT: 合并不同候选答案的 constraints，检查 answer_A 与 answer_B 的约束是否 UNSAT（矛盾）。预期 cross-answer 对比的 UNSAT rate 远高于 within-trace 检查，因为不同答案的约束应该矛盾。如果 UNSAT 信号强，可用于增强 SICA 打分的 discriminative power。"
+  },
+  "timestamp": "2026-05-18T19:04:28.983479+00:00",
+  "trigger": "update_registry"
+}

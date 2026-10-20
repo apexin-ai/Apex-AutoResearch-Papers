@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15de8601c5751e457710",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "launch llama pw seed456 14391",
+  "task_key": "worker_launch_llama-pw-seed456-14391_20260523T051353",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_launch_llama-pw-seed456-14391_20260523T051353_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "a486d73711aae7d4891c25fb5822e1d2f984d6c89eab7935b57ef2a43c67de4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**冲突：cuda:0 上有正在运行的 seed42 实验，不能启动 seed456。**\n\n当前 westd-14391 cuda:0 状态：\n- **vLLM** 在运行：port 8000，模型 `/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`（PID 9284）\n- **seed42 实验仍在运行**：`run_full_mvp.py --seed 42 --pw-data data/proofwriter_full.json`（PID 17674，启动于 03:58，已运行约 9 小时）\n- GPU 利用率 100%，显存 88GB/97GB\n\nseed42 还没完成，不能在同一 GPU 上启动 seed456。需要等 seed42 跑完后再启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-llama-pw-seed456-14391.md"
+}

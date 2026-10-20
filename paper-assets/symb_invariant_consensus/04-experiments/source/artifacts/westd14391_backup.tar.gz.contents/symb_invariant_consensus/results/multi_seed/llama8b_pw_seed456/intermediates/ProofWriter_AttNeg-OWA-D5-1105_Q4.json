@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1105_Q4",
+    "problem": "Bob is cold. Bob is furry. Bob is kind. Bob is not nice. Bob is white. Charlie is cold. Charlie is not furry. Charlie is kind. Charlie is red. Gary is kind. Gary is nice. Gary is red. Harry is cold. Harry is furry. Kind things are cold. If something is blue then it is kind. Red, furry things are kind. If something is white and nice then it is red. All cold things are red. All nice, cold things are red. If Harry is red and Harry is kind then Harry is blue. If something is red and blue then it is white. If something is blue and white then it is not nice.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nCold(Bob, True) ::: Bob is cold.\nFurry(Bob, True) ::: Bob is furry.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, False) ::: Bob is not nice.\nWhite(Bob, True) ::: Bob is white.\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Charlie, False) ::: Charlie is not furry.\nKind(Charlie, True) ::: Charlie is kind.\nRed(Charlie, True) ::: Charlie is red.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nRed(Gary, True) ::: Gary is red.\nCold(Harry, True) ::: Harry is cold.\nFurry(Harry, True) ::: Harry is furry.\n\nRules:\nKind($x, True) >>> Cold($x, True) ::: Kind things are cold.\nBlue($x, True) >>> Kind($x, True) ::: If something is blue then it is kind.\nRed($x, True) && Furry($x, True) >>> Kind($x, True) ::: Red, furry things are kind.\nWhite($x, True) && Nice($x, True) >>> Red($x, True) ::: If something is white and nice then it is red.\nCold($x, True) >>> Red($x, True) ::: All cold things are red.\nNice($x, True) && Cold($x, True) >>> Red($x, True) ::: All nice, cold things are red.\nRed(Harry, True) && Kind(Harry, True) >>> Blue(Harry, True) ::: If Harry is red and Harry is kind then Harry is blue.\nRed($x, True) && Blue($x, True) >>> White($x, True) ::: If something is red and blue then it is white.\nBlue($x, True) && White($x, True) >>> Nice($x, False) ::: If something is blue and white then it is not nice.\n\nQuery:\nCold(Gary, False) ::: Gary is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

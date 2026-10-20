@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10c459149738866234a5",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "audit paper d061 changelist",
+  "task_key": "worker_audit_paper-d061-changelist_20260522T210842",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_paper-d061-changelist_20260522T210842_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "d750129e02de40cbea2f6e97fbccfc42567c07c7997f447f911975f756ea7715"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 changelist，写入 `artifacts/d061_changelist.json`。\n\n核心发现：\n\n**已完成（无需修改）：** A（75.49→75.98 SC列）、B（Oracle Δ +14.22→+13.73）、C（sign test）、F（LLaMA bridge case）均已修正。\n\n**需修改（21处确认）：**\n- **D: 39.17→39.33**（9处）— appendix.tex 7处 + solutions.tex 2处。Mistral PW-D5 SC 在主表已改为 39.33，但 appendix 的 trace independence 表、DRC 表、Multi-NLI caption、BH combo 表、fine-tuned NLI 表以及 solutions.tex 叙事/表格中仍为 39.17\n- **E: DeBERTa Δ 更新**（6处）— Multi-NLI 表 +1.17→+0.83, +7.00→+6.67, +11.17→+11.00；BH combo 表同步更新（含 combo 绝对值）\n- **+7.00→+6.67 叙事**（4处）— abstract.tex、introduction.tex、solutions.tex 正文中引用 +7.00pp 的位置\n- **G: scatter plot**（2处）— gap 15.83→15.67, gain 7.00→6.67\n\n**潜在级联变更（17处，目标值待确认）：** RoBERTa/BART Δ 值（6处表格+1处叙事）、DRC combo 精确值（2处）、fine-tuned NLI Δ（4处含叙事）、BH p-values（3处）、scatter plot 其余数据点（3处）。这些需要 D061 重算输出确定具体目标值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-d061-changelist.md"
+}

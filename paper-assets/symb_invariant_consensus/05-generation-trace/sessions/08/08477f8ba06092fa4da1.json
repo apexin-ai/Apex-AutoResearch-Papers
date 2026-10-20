@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08477f8ba06092fa4da1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "exp alpha ablation qwen25",
+  "task_key": "worker_exp_alpha-ablation-qwen25_20260523T194840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exp_alpha-ablation-qwen25_20260523T194840_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "fa27e10bc1b511a3680610a004de9059d2867aad9ff3991b706141e2120fbf8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. 28 problems have different scores between α=0 and α=1, but the score differences (1-4 points) never change the winning answer. This confirms α is robust.\n\n## Qwen2.5-14B FOLIO (n=204, seed=123)\n\n| α | SICA (%) | SC (%) | Δ (pp) | McNemar p | count-only (%) | SICA=SC agree (%) |\n|---|----------|--------|--------|-----------|----------------|-------------------|\n| 0.0 | 73.04 | 74.51 | -1.47 | 0.3750 | 74.51 | 97.5 |\n| 1.0 | 73.04 | 74.51 | -1.47 | 0.3750 | 74.51 | 97.5 |\n\n**Key findings:**\n- α=0 and α=1 produce **identical** final answers for all 204 problems\n- 176/204 problems have 0 excluded constraints (α irrelevant by definition)\n- 28 problems have 1-5 excluded constraints, but the score perturbation (1-4 pts) never flips the winner\n- No division-by-zero or anomalous behavior at α=0\n- SICA≠SC on 5 problems (all gt=Unknown): folio_7 SICA correct, folio_{30,96,130,151} SC correct\n- McNemar discordant pair: b=1, c=4 → p=0.375 (not significant)\n\nResults saved to `/root/symb_invariant_consensus/results/alpha_ablation/Qwen25-14B_FOLIO_alpha_endpoints.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alpha-ablation-qwen25.md"
+}

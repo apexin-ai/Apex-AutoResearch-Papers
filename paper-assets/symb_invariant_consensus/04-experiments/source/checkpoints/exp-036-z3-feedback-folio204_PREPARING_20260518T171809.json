@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-036-z3-feedback-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:18:09.052Z",
+    "updated_at": "2026-05-18T17:18:09.052Z"
+  },
+  "timestamp": "2026-05-18T17:18:09.194685+00:00",
+  "trigger": "update_registry"
+}

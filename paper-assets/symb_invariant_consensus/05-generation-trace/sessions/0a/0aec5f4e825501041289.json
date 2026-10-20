@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aec5f4e825501041289",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis check server experiments status",
+  "task_key": "worker_analysis_check-server-experiments-status_20260520T103116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_check-server-experiments-status_20260520T103116_result.json",
+    "occurrence": 1,
+    "bytes": 2393,
+    "sha256": "1abf4acf1b96a0e5e71b745dc66afd294751ed802de40c4244810a34b9c1e81c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Direction F is still running (PID alive, 53/204). Here's the full report:\n\n---\n\n## 实验状态汇总\n\n### westd-25068\n\n| # | 实验 | 状态 | 详情 |\n|---|------|------|------|\n| 1 | **Direction F (Blind FOL)** | **RUNNING** | 53/204, PID 378776 alive |\n| 2 | **Direction H (Adversarial)** | **MISSING** | 无任何文件/日志/进程 |\n| 3 | **exp-075b-contrastive-mistral-folio** | **COMPLETED** | 204/204 |\n| 4 | **exp-066-qwen14b-folio-seed123** | **COMPLETED** | 204/204 |\n\n### westd-16639\n\n| # | 实验 | 状态 | 详情 |\n|---|------|------|------|\n| 5 | **Direction G (Decoupling)** | **RUNNING** | 10/204 (conservative), PID 307164 alive |\n\n---\n\n### 1. Direction F (Blind FOL) — RUNNING\n\n- **进度**: 53/204, 运行中 accuracy 39.6%\n- **50题 checkpoint**: 42.0% (21/50)\n- SC baseline: 54.41%, SICA: 59.31%\n- **Per-label (at 50)**:\n  - True: 16.67% (3/18)\n  - False: 25.0% (3/12)\n  - Unknown: **75.0%** (15/20) — 严重偏向 Unknown\n- Extraction: premise 96.67%, conclusion 90.5%, Z3 compilation 90.5%\n- **趋势**: 随着问题数增加，accuracy 在下降 (42.0% → 39.6%)\n\n### 2. Direction H (Adversarial) — MISSING\n\n服务器上无任何痕迹：无结果目录、无日志文件、无 nohup.out、无匹配进程。可能从未启动或已被清理。\n\n### 3. exp-075b-contrastive-mistral-folio — COMPLETED\n\n- **Contrastive accuracy: 47.55%**\n- **SC accuracy: 56.86%**\n- **Delta: -9.31pp** (contrastive 大幅低于 SC)\n- Degenerate cases: 41/204 (20.1%)\n- Wall time: 11613s (~3.2h)\n- 结论：contrastive 方法在 Mistral-7B + FOLIO 上失败，比 SC 差近 10 个点\n\n### 4. exp-066-qwen14b-folio-seed123 — COMPLETED\n\n- **SICA accuracy: 75.0%** (153/204)\n- **SC accuracy: 74.51%** (152/204)\n- **Delta: +0.49pp**\n- Extraction rate: 98.57%\n- Contradiction rate: 0.80% (31 problems)\n- Total constraints: 13570, unique: 6110\n- Wall time: 8853s (~2.5h)\n- 结论：Qwen-14B seed123 上 SICA 微幅领先 SC，delta 不显著\n\n### 5. Direction G (Decoupling) — RUNNING\n\n- **进度**: conservative 策略 10/204\n- 当前 accuracy: 70.0% (7/10)\n- avg_trunc: 3.2%, matched: 99%\n- 速度: ~0.01 prob/s, 仅 conservative 预计还需 ~3.7h\n- 尚需跑 standard 和 aggressive 两个策略，总时间可能 10h+\n- results.json 当前仅有之前测试的 3 题结果 (standard: 66.67%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-server-experiments-status.md"
+}

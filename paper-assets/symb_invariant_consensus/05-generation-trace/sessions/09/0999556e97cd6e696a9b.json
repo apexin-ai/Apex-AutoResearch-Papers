@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0999556e97cd6e696a9b",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_7_1779006614.md",
+  "task_key": "loop_7_1779006614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1779006614.md",
+    "occurrence": 1,
+    "bytes": 3369,
+    "sha256": "9bb50cb2ef9b2b4ca9f4e9dd40b9f19770f02379033be3ec83d0e096c80f25a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-17T08:19:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608:cuda:0（gpu_ids=[0]，唯一分配卡）\n- 账号 root，submit_training_job 命令必须自带 `source /root/miniconda3/bin/activate`（服务器无 .venv）\n- exp-010-mistral 排在 exp-011 之后，exp-011 修复前不要跳过（cross-family validation 顺序依赖）\n- sica_k_sensitivity_14b 结论是 negative（SICA≤SC for all K），已汇报 Director 并记录 artifact——不要重跑或质疑，结论已锁定\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32608，工作目录 /root/symb_invariant_consensus\n- Python：/root/miniconda3/bin/python（conda base env）\n- 模型路径：LLaMA-3.1-8B-Instruct 位置未确认（诊断 Worker 正在查），Qwen2.5-14B 在 /root/autodl-tmp/models/Qwen2.5-14B-Instruct，Mistral-7B 已下载（3 shards + consolidated，具体路径见 exp-010 notes）\n- 数据集：/root/symb_invariant_consensus/data/（proofwriter_30.json, folio_30.json, proofwriter_full.json, folio_full.json）\n- 结果：/root/symb_invariant_consensus/results/\n- 脚本：/root/symb_invariant_consensus/scripts/run_exp011_llama8b.sh\n- 活跃进程：无（GPU 空闲）\n- Cron：reconcile 完毕，无活跃 cron\n\n### 3. 📊 当前状态\n- **刚发生**：exp-011-llama8b 运行 154 秒后 EXIT_CODE=1 崩溃\n- **正在做**：已派 Worker `worker_diagnose_exp-011-llama8b_20260517T025952` SSH 读日志诊断根因，尚未回调\n- **已汇报 Director**：初步失败通知（GPU 空闲 + 诊断中）\n- **Registry 状态**：\n  - exp-011-llama8b: DONE/failed（待修复重跑）\n  - exp-010-mistral: QUEUED（需准备启动脚本）\n  - 其余 18 个实验均 DONE\n- **等待中**：Worker 诊断回调\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 读诊断结果 → 根据根因修复（模型路径/依赖/脚本）→ 重新 submit_training_job\n- exp-011 修复成功跑完 → 处理结果 → 立即准备并提交 exp-010-mistral（参照 exp-011 脚本模式改 Mistral 路径）\n- exp-010-mistral 完成 → cross-family validation 数据齐全 → 汇报 Director，支撑 C2 (operating regime boundary) claim\n- GPU 空闲超过 30 min 且诊断未完 → 考虑先跑 exp-010-mistral 或其他 CPU 分析任务\n\n### 5. 🎯 战略上下文\n- **核心结论**：SICA ≈ SC（+0.25pp, n=804, n.s.）。项目已 pivot 到 \"Capability Trap Analysis Paper\"——论证**为什么**symbolic consensus 不 work，而非证明它 work\n- **三大 Claims**：C1(mechanism vacuous, 已有 exp-013+exp-016+K-ablation 支撑), C2(operating regime boundary, 需 cross-family data), C3(C0 predictor, 需 multi-model)\n- **cross-family 是当前瓶颈**：exp-011(LLaMA)+exp-010(Mistral) 提供非 Qwen 数据点。如果 LLaMA/Mistral 也显示 SICA≈SC，则 C2 从 \"Qwen-specific\" 升级为 \"model-family-invariant\"\n- **易错点**：\n  - 154 秒崩溃大概率是模型加载问题（路径/显存/tokenizer），不是逻辑 bug——修复后直接重跑即可，不需要改 hypothesis\n  - EXIT_CODE=129 在本项目经常是 SIGHUP 伪失败（进程正常完成后收到信号），但 EXIT_CODE=1 是真失败\n  - exp-010-mistral 的模型已下载但之前 3 次从 ModelScope 下载截断，后来 HF 直下成功——启动前要验证 model shard 完整性\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779006614.md"
+}

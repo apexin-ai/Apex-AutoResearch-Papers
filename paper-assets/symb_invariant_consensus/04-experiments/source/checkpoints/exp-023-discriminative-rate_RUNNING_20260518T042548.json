@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp-023-discriminative-rate",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:50:26.792Z",
+    "updated_at": "2026-05-18T04:25:48.697Z",
+    "hypothesis": "Full-dataset discriminative rate analysis (W1+W3 合并): Qwen2.5-14B 在 804 题上 self-extracted constraints 的 source-trace discriminativeness 和 Z3 semantic discriminativeness 均低于 15%，证明即使用 Z3 per-answer evaluation，self-extracted constraints 仍无判别力，封堵 oracle scoring confound。",
+    "parent": "sica_constraint_ablation_013",
+    "spec": {
+      "command": "python scripts/analyze_discriminative_rate.py",
+      "server": "westd-32608",
+      "data_path": "/root/symb_invariant_consensus/results/sica_expanded_14b.json",
+      "data_count": 804,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": "N/A",
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "/root/symb_invariant_consensus/results/discriminative_rate_analysis.json",
+      "checkpoint_source": "sica_expanded_14b traces",
+      "eval_data": "FOLIO 204 + ProofWriter 600 = 804"
+    },
+    "metrics": {
+      "n_total": 804,
+      "n_multi_candidate": 307,
+      "source_disc_rate_weight": 0.386,
+      "source_disc_rate_weight_ci95": [
+        0.38,
+        0.391
+      ],
+      "z3_semantic_disc_rate": 0.082,
+      "z3_semantic_disc_ci95": [
+        0.076,
+        0.088
+      ],
+      "problems_with_disc": 284,
+      "problems_with_disc_rate": 0.925,
+      "pw_source_disc_weight": 0.358,
+      "folio_source_disc_weight": 0.531,
+      "pw_n_multi": 235,
+      "folio_n_multi": 72,
+      "pilot_rate_reported": 0.372,
+      "pilot_rate_reproduced": 0.37,
+      "pilot_delta": 0.002,
+      "z3_answer_assertions": 642,
+      "z3_total_unique_constraints": 7844,
+      "model": "Qwen2.5-14B-Instruct",
+      "dataset": "FOLIO+ProofWriter-804"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T04:25:48.814516+00:00",
+  "trigger": "update_registry"
+}

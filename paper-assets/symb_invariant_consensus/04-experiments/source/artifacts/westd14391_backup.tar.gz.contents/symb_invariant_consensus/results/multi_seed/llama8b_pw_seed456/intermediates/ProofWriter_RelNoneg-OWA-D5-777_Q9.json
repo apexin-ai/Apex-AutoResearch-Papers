@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-777_Q9",
+    "problem": "The bear is kind. The bear likes the cat. The cat likes the bear. The cat needs the cow. The cat sees the bear. The cat sees the cow. The cow is rough. The mouse likes the cat. The mouse needs the bear. The mouse sees the cow. If someone sees the bear then they need the mouse. If someone needs the bear and the bear needs the cow then the bear needs the cat. If someone likes the cow then the cow sees the bear. If the bear is red and the bear needs the cow then the cow needs the bear. If someone needs the mouse then they are big. If someone sees the bear and they are big then they like the cow. If the cat needs the mouse then the mouse needs the cow. If someone is kind then they see the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow sees the bear.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\n\nFacts:\nKind(Bear, True) ::: The bear is kind.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Cat, Bear, True) ::: The cat likes the bear.\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Cow, True) ::: The cat sees the cow.\nRough(Cow, True) ::: The cow is rough.\nLikes(Mouse, Cat, True) ::: The mouse likes the cat.\nNeeds(Mouse, Bear, True) ::: The mouse needs the bear.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\n\nRules:\nSees($x, Bear, True) >>> Needs($x, Mouse, True) ::: If someone sees the bear then they need the mouse.\nNeeds($x, Bear, True) && Needs(Bear, Cow, True) >>> Needs(Bear, Cat, True) ::: If someone needs the bear and the bear needs the cow then the bear needs the cat.\nLikes($x, Cow, True) >>> Sees(Cow, Bear, True) ::: If someone likes the cow then the cow sees the bear.\nRed(Bear, True) && Needs(Bear, Cow, True) >>> Needs(Cow, Bear, True) ::: If the bear is red and the bear needs the cow then the cow needs the bear.\nNeeds($x, Mouse, True) >>> Big($x, True) ::: If someone needs the mouse then they are big.\nSees($x, Bear, True) && Big($x, True) >>> Likes($x, Cow, True) ::: If someone sees the bear and they are big then they like the cow.\nNeeds(Cat, Mouse, True) >>> Needs(Mouse, Cow, True) ::: If the cat needs the mouse then the mouse needs the cow.\nKind($x, True) >>> Sees($x, Cat, True) ::: If someone is kind then they see the cat.\n\nQuery:\nSees(Cow, Bear, True) ::: The cow sees the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

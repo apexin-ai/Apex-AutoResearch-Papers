@@ -1,0 +1,14 @@
+{
+  "exp_id": "sica_temp_diversity",
+  "project": "symb_invariant_consensus",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:14:34.555Z",
+    "updated_at": "2026-05-15T12:14:42.066Z"
+  },
+  "timestamp": "2026-05-15T12:14:42.076372+00:00",
+  "trigger": "update_registry"
+}

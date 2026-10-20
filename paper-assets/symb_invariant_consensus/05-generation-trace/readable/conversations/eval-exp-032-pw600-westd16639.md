@@ -1,0 +1,1427 @@
+# eval exp 032 pw600 westd16639
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_eval_exp-032-pw600-westd16639_20260518T153636.jsonl`
+- **Structured JSON:** [`c8ef222cdf0a137099e1.json`](../../sessions/c8/c8ef222cdf0a137099e1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T15:40:51.474391+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T15:40:51.474903+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T15:40:51.475210+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-16639"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-16639"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T15:40:51.475406+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import vllm; print('vllm', vllm.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import vllm; print('vllm', vllm.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T15:40:51.475581+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import z3; print('z3', z3.get_version_string())\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import z3; print('z3', z3.get_version_string())\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T15:40:51.475747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/sica_project/symb_invariant_consensus/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/sica_project/symb_invariant_consensus/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T15:40:51.475935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/autodl-tmp/models/Qwen2.5-14B-Instruct/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/autodl-tmp/models/Qwen2.5-14B-Instruct/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T15:40:51.476112+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T15:40:51.476276+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T15:40:51.476449+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T15:40:51.476620+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T15:40:51.476786+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T15:40:51.476999+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T15:40:51.477179+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls /root/symb_invariant_consensus/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls /root/symb_invariant_consensus/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T15:40:51.477355+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\nbaselines\\ndata\\nlogs\\nprepare_data.py\\nprepare_proofwriter.py\\nresults\\nrun_case_study.py\\nrun_contrastive_folio.py\\nrun_full_mvp.py\\nrun_full_mvp.py.bak\\nrun_mvp.py\\nscripts\\nsica\\nutils\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T15:40:51.477528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_extract.py\\npostprocess_case_study.py\\nrun_case_study_extract.sh\\nrun_contrastive_folio.sh\\nrun_cross_model_mistral.sh\\nrun_exp024_llama70b.sh\\nrun_exp025_qwen72b.sh\\nrun_exp029_contrastive.sh\\nrun_exp030_crossmodel_mistral.sh\\nrun_folio_trace_regen.sh\\nrun_qwen3_14b_nonthinking.sh\\nrun_qwen3_14b_thinking.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T15:40:51.477743+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/scripts/run_exp025_qwen72b.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/scripts/run_exp025_qwen72b.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T15:40:51.477945+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/scripts/run_exp024_llama70b.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/scripts/run_exp024_llama70b.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T15:40:51.478120+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"nvidia-smi --query-gpu=name,memory.total --format=csv,noheader 2>/dev/null; python3 -c 'import vllm; print(\\\"vllm\\\", vllm.__version__)' 2>&1; python3 -c 'import z3; print(\\\"z3\\\", z3.get_version_string())' 2>&1; python3 -c 'import torch; print(\\\"torch\\\", torch.__version__, \\\"cuda\\\", torch.cuda.is_available())' 2>&1; ls /root/autodl-tmp/sica_project/ 2>/dev/null || echo 'NO sica_project'; ls /root/autodl-tmp/models/ 2>/dev/null || echo 'NO models dir'\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"nvidia-smi --query-gpu=name,memory.total --format=csv,noheader 2>/dev/null; python3 -c 'import vllm; print(\\\"vllm\\\", vllm.__version__)' 2>&1; python3 -c 'import z3; print(\\\"z3\\\", z3.get_version_string())' 2>&1; python3 -c 'import torch; print(\\\"torch\\\", torch.__version__, \\\"cuda\\\", torch.cuda.is_available())' 2>&1; ls /root/autodl-tmp/sica_project/ 2>/dev/null || echo 'NO sica_project'; ls /root/autodl-tmp/models/ 2>/dev/null || echo 'NO models dir'\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T15:40:51.478443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# exp-025: Qwen2.5-72B-Instruct SICA vs SC on FOLIO(204) + ProofWriter(600)\\n# Server: westd-25068, 4×GPU, tensor parallel size 4\\n# K=12, T=0.7, T_ext=0.1 (hardcoded in VLLMBackend), seed=42\\n# 804 problems total, estimated 3-5h\\n#\\n# Prerequisites:\\n#   1. 4 GPUs available (nvidia-smi shows 4 GPUs)\\n#   2. Model downloaded to /root/autodl-tmp/models/Qwen2.5-72B-Instruct/\\n#      Download: huggingface-cli download Qwen/Qwen2.5-72B-Instruct \\\\\\n#               --local-dir /root/autodl-tmp/models/Qwen2.5-72B-Instruct\\n#      (~140GB BF16, ensure sufficient disk on autodl-tmp)\\n#   3. No other vLLM process on port 8000\\n\\nset -e\\ncd /root/symb_invariant_consensus\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n\\n# ── Config ──────────────────────────────────────────────────────\\n# Model: check common local paths\\nif [ -d \\\"/root/autodl-tmp/models/Qwen2.5-72B-Instruct\\\" ]; then\\n    MODEL=\\\"/root/autodl-tmp/models/Qwen2.5-72B-Instruct\\\"\\nelse\\n    # Fallback: HuggingFace ID (will trigger download on first vLLM start)\\n    MODEL=\\\"Qwen/Qwen2.5-72B-Instruct\\\"\\n    echo \\\"WARNING: No local model found. vLLM will download from HuggingFace.\\\"\\n    echo \\\"  Recommended: download first with huggingface-cli\\\"\\nfi\\n\\nPORT=8000\\nK=12\\nTEMPERATURE=0.7\\nMAX_TOKENS=4096\\nSEED=42\\nRESULTS_DIR=\\\"results/exp025_qwen72b\\\"\\nmkdir -p \\\"$RESULTS_DIR\\\"\\n\\necho \\\"=== [$(date)] exp-025: Qwen2.5-72B-Instruct SICA vs SC ===\\\"\\necho \\\"Model: $MODEL\\\"\\necho \\\"K=$K, T=$TEMPERATURE, max_tokens=$MAX_TOKENS, seed=$SEED\\\"\\necho \\\"Data: folio_full.json (204) + proofwriter_full.json (600) = 804 problems\\\"\\n\\n# ── Pre-flight checks ──────────────────────────────────────────\\necho \\\"\\\"\\necho \\\"=== Pre-flight checks ===\\\"\\n\\nGPU_COUNT=$(nvidia-smi -L 2>/dev/null | wc -l)\\necho \\\"GPUs detected: $GPU_COUNT\\\"\\nif
+…[truncated 3339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T15:40:51.478788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# exp-024: LLaMA-3.1-70B-Instruct SICA vs SC on FOLIO(204) + ProofWriter(600)\\n# Server: westd-25068, 4×GPU, tensor parallel size 4\\n# K=12, T=0.7, T_ext=0.1 (hardcoded in VLLMBackend), seed=42\\n# 804 problems total, estimated 3-5h\\n#\\n# Prerequisites:\\n#   1. 4 GPUs available (nvidia-smi shows 4 GPUs)\\n#   2. Model downloaded to /root/autodl-tmp/models/Llama-3.1-70B-Instruct/\\n#      Download: huggingface-cli download meta-llama/Llama-3.1-70B-Instruct \\\\\\n#               --local-dir /root/autodl-tmp/models/Llama-3.1-70B-Instruct\\n#      (~140GB FP16, ensure sufficient disk on autodl-tmp)\\n#   3. No other vLLM process on port 8000\\n\\nset -e\\ncd /root/symb_invariant_consensus\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n\\n# ── Config ──────────────────────────────────────────────────────\\n# Model: check common local paths\\nif [ -d \\\"/root/autodl-tmp/models/Llama-3.1-70B-Instruct\\\" ]; then\\n    MODEL=\\\"/root/autodl-tmp/models/Llama-3.1-70B-Instruct\\\"\\nelif [ -d \\\"/root/autodl-tmp/models/Meta-Llama-3.1-70B-Instruct\\\" ]; then\\n    MODEL=\\\"/root/autodl-tmp/models/Meta-Llama-3.1-70B-Instruct\\\"\\nelse\\n    # Fallback: HuggingFace ID (will trigger download on first vLLM start)\\n    MODEL=\\\"meta-llama/Llama-3.1-70B-Instruct\\\"\\n    echo \\\"WARNING: No local model found. vLLM will download from HuggingFace.\\\"\\n    echo \\\"  Recommended: download first with huggingface-cli\\\"\\nfi\\n\\nPORT=8000\\nK=12\\nTEMPERATURE=0.7\\nMAX_TOKENS=4096\\nSEED=42\\nRESULTS_DIR=\\\"results/exp024_llama70b\\\"\\nmkdir -p \\\"$RESULTS_DIR\\\"\\n\\necho \\\"=== [$(date)] exp-024: LLaMA-3.1-70B-Instruct SICA vs SC ===\\\"\\necho \\\"Model: $MODEL\\\"\\necho \\\"K=$K, T=$TEMPERATURE, max_tokens=$MAX_TOKENS, seed=$SEED\\\"\\necho \\\"Data: folio_full.json (204) + proofwriter_full.json (600) = 804 problems\\\"\\n\\n# ── Pre-flight checks ────────────────
+…[truncated 3527 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T15:40:51.479065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB\\nbash: line 1: python3: command not found\\nbash: line 1: python3: command not found\\nbash: line 1: python3: command not found\\ndata\\nsymb_invariant_consensus\\nMistral-7B-Instruct-v0.3\\nQwen2.5-14B-Instruct\\nQwen3-14B\\ntest_hf_speed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T15:40:51.479302+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"which python 2>/dev/null; which python3 2>/dev/null; ls /root/miniconda3/bin/python 2>/dev/null; ls /usr/bin/python* 2>/dev/null; ls /root/miniconda3/envs/ 2>/dev/null; conda --version 2>/dev/null; ls /root/miniconda3/ 2>/dev/null || echo 'NO miniconda3'\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"which python 2>/dev/null; which python3 2>/dev/null; ls /root/miniconda3/bin/python 2>/dev/null; ls /usr/bin/python* 2>/dev/null; ls /root/miniconda3/envs/ 2>/dev/null; conda --version 2>/dev/null; ls /root/miniconda3/ 2>/dev/null || echo 'NO miniconda3'\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T15:40:51.479490+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/ | head -15\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/ | head -15\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T15:40:51.479677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\nLICENSE.txt\\n_conda\\nbin\\ncmake\\ncompiler_compat\\nconda-meta\\ncondabin\\nenvs\\netc\\ninclude\\nlib\\nman\\npkgs\\nsbin\\nshare\\nshell\\nssl\\nx86_64-conda-linux-gnu\\nx86_64-conda_cos7-linux-gnu\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T15:40:51.479852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\nbaselines\\ndata\\nlogs\\nprepare_data.py\\nprepare_proofwriter.py\\nresults\\nrun_case_study.py\\nrun_full_mvp.py\\nrun_full_mvp.py.bak\\nrun_mvp.py\\nscripts\\nsica\\nutils\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T15:40:51.480127+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"/root/miniconda3/bin/python -c 'import vllm; print(\\\"vllm\\\", vllm.__version__)' 2>&1; /root/miniconda3/bin/python -c 'import z3; print(\\\"z3\\\", z3.get_version_string())' 2>&1; /root/miniconda3/bin/python -c 'import torch; print(\\\"torch\\\", torch.__version__, \\\"cuda\\\", torch.cuda.is_available())' 2>&1; /root/miniconda3/bin/python -c 'import transformers; print(\\\"transformers\\\", transformers.__version__)' 2>&1\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"/root/miniconda3/bin/python -c 'import vllm; print(\\\"vllm\\\", vllm.__version__)' 2>&1; /root/miniconda3/bin/python -c 'import z3; print(\\\"z3\\\", z3.get_version_string())' 2>&1; /root/miniconda3/bin/python -c 'import torch; print(\\\"torch\\\", torch.__version__, \\\"cuda\\\", torch.cuda.is_available())' 2>&1; /root/miniconda3/bin/python -c 'import transformers; print(\\\"transformers\\\", transformers.__version__)' 2>&1\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T15:40:51.480330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/data/\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/data/\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T15:40:51.480505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"vllm 0.21.0\\nz3 4.15.4\\ntorch 2.11.0+cu130 cuda True\\ntransformers 5.8.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 45.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T15:40:51.480689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"case_study_3problems.json\\nempty.json\\nexplore_proofwriter.py\\nexplore_pw.py\\nexplore_pw2.py\\nexplore_pw3.py\\nfolio_full.json\\nprepare_folio.py\\nprepare_proofwriter.py\\nproofwriter-OWA-D5-validation.jsonl\\nproofwriter_full.json\\npw_explore.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T15:40:51.481034+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"cd /root/autodl-tmp/sica_project/symb_invariant_consensus && /root/miniconda3/bin/python run_full_mvp.py --help 2>&1 | head -50\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@connect.westd.seetacloud.com \"cd /root/autodl-tmp/sica_project/symb_invariant_consensus && /root/miniconda3/bin/python run_full_mvp.py --help 2>&1 | head -50\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T15:40:51.481253+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T15:40:51.481469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: run_full_mvp.py [-h] [--mode {mock,vllm,api}] [--k K] [--model MODEL]\\n                       [--api-base API_BASE] [--api-key API_KEY]\\n                       [--math-data MATH_DATA] [--pw-data PW_DATA]\\n                       [--output OUTPUT] [--resume]\\n                       [--temperature TEMPERATURE] [--max-tokens MAX_TOKENS]\\n                       [--seed SEED] [--folio-data FOLIO_DATA]\\n                       [--save-intermediates]\\n\\nSICA Full MVP Experiment (60 problems)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --mode {mock,vllm,api}\\n  --k K\\n  --model MODEL\\n  --api-base API_BASE\\n  --api-key API_KEY\\n  --math-data MATH_DATA\\n  --pw-data PW_DATA\\n  --output OUTPUT\\n  --resume              Resume from checkpoint\\n  --temperature TEMPERATURE\\n  --max-tokens MAX_TOKENS\\n  --seed SEED\\n  --folio-data FOLIO_DATA\\n  --save-intermediates\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T15:40:51.481792+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# exp-027: Qwen3-14B (non-thinking) SICA vs SC on FOLIO(204)\\n# Generational comparison with exp-026 (Qwen2.5-14B)\\n# Server: westd-25068, GPU 1, K=12, T=0.7, T_ext=0.3, seed=42\\n#\\n# Purpose: Test whether capability trap persists on next-gen Qwen3-14B\\n# Non-thinking mode: disable Qwen3 native reasoning for fair comparison with Qwen2.5-14B\\n\\nset -e\\ncd /root/symb_invariant_consensus\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n\\n# ── Config ──────────────────────────────────────────────────────\\nMODEL=\\\"/root/autodl-tmp/models/Qwen3-14B\\\"\\nPORT=8001\\nGPU_ID=1\\nK=12\\nTEMPERATURE=0.7\\nMAX_TOKENS=4096\\nSEED=42\\nRESULTS_DIR=\\\"results/exp027_qwen3_14b_nonthinking\\\"\\nmkdir -p \\\"$RESULTS_DIR\\\"\\n\\necho \\\"=== [$(date)] exp-027: Qwen3-14B (non-thinking) SICA vs SC ===\\\"\\necho \\\"Model: $MODEL\\\"\\necho \\\"GPU: $GPU_ID, Port: $PORT\\\"\\necho \\\"K=$K, T=$TEMPERATURE, max_tokens=$MAX_TOKENS, seed=$SEED\\\"\\necho \\\"Data: folio_full.json (204 problems)\\\"\\n\\n# ── Pre-flight checks ──────────────────────────────────────────\\necho \\\"\\\"\\necho \\\"=== Pre-flight checks ===\\\"\\n\\nif [ ! -d \\\"$MODEL\\\" ]; then\\n    echo \\\"ERROR: Model not found: $MODEL\\\"\\n    exit 1\\nfi\\necho \\\"Model dir: OK\\\"\\n\\nSHARD_COUNT=$(ls \\\"$MODEL\\\"/model-*.safetensors 2>/dev/null | wc -l)\\necho \\\"Model shards: $SHARD_COUNT\\\"\\nif [ \\\"$SHARD_COUNT\\\" -lt 8 ]; then\\n    echo \\\"ERROR: Expected 8 safetensor shards, found $SHARD_COUNT. Download may be incomplete.\\\"\\n    exit 1\\nfi\\n\\nfor f in data/folio_full.json data/empty.json; do\\n    if [ ! -f \\\"$f\\\" ]; then\\n        echo \\\"ERROR: Data file not found: $f\\\"\\n        exit 1\\n    fi\\ndone\\necho \\\"Data files: OK\\\"\\n\\nGPU_MEM=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i $GPU_ID 2>/dev/null | tr -d ' ')\\necho \\\"GPU $GPU_ID memor
+…[truncated 3016 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T15:40:51.482090+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/data/empty.json /root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json 2>&1; wc -l /root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json 2>&1; /root/miniconda3/bin/python -c 'import json; d=json.load(open(\\\"/root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json\\\")); print(\\\"PW problems:\\\", len(d))' 2>&1; curl -s http://localhost:8000/v1/models 2>&1 | head -5; nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 0 2>&1\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"ls /root/autodl-tmp/sica_project/symb_invariant_consensus/data/empty.json /root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json 2>&1; wc -l /root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json 2>&1; /root/miniconda3/bin/python -c 'import json; d=json.load(open(\\\"/root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json\\\")); print(\\\"PW problems:\\\", len(d))' 2>&1; curl -s http://localhost:8000/v1/models 2>&1 | head -5; nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 0 2>&1\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T15:40:51.482301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/sica_project/symb_invariant_consensus/data/empty.json\\n/root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json\\n6001 /root/autodl-tmp/sica_project/symb_invariant_consensus/data/proofwriter_full.json\\nPW problems: 600\\n0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T15:40:51.482562+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"mkdir -p /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts && cat > /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh << 'SCRIPTEOF'\n#!/bin/bash\n# exp-032: Qwen2.5-14B-Instruct SICA vs SC on ProofWriter(600)\n# Server: westd-16639, GPU 0, K=12, T=0.7, seed=42\n# 600 problems, estimated 2-4h\n\nset -e\ncd /root/autodl-tmp/sica_project/symb_invariant_consensus\nexport PATH=/root/miniconda3/bin:\\$PATH\n\n# ── Config ──────────────────────────────────────────────────────\nMODEL=\\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\"\nPORT=8000\nGPU_ID=0\nK=12\nTEMPERATURE=0.7\nMAX_TOKENS=4096\nSEED=42\nRESULTS_DIR=\\\"results/exp032_qwen25_14b_pw600\\\"\nmkdir -p \\\"\\$RESULTS_DIR\\\"\n\necho \\\"=== [\\$(date)] exp-032: Qwen2.5-14B-Instruct SICA vs SC (PW600) ===\\\"\necho \\\"Model: \\$MODEL\\\"\necho \\\"GPU: \\$GPU_ID, Port: \\$PORT\\\"\necho \\\"K=\\$K, T=\\$TEMPERATURE, max_tokens=\\$MAX_TOKENS, seed=\\$SEED\\\"\necho \\\"Data: proofwriter_full.json (600 problems)\\\"\n\n# ── Pre-flight checks ──────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== Pre-flight checks ===\\\"\n\nif [ ! -d \\\"\\$MODEL\\\" ]; then\n    echo \\\"ERROR: Model not found: \\$MODEL\\\"\n    exit 1\nfi\necho \\\"Model dir: OK\\\"\n\nfor f in data/proofwriter_full.json data/empty.json; do\n    if [ ! -f \\\"\\$f\\\" ]; then\n        echo \\\"ERROR: Data file not found: \\$f\\\"\n        exit 1\n    fi\ndone\necho \\\"Data files: OK\\\"\n\nGPU_MEM=\\$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i \\$GPU_ID 2>/dev/null | tr -d ' ')\necho \\\"GPU \\$GPU_ID memory used: \\${GPU_MEM} MiB\\\"\nif [ \\\"\\$GPU_MEM\\\" -gt 1000 ]; then\n    echo \\\"WARNING: GPU \\$GPU_ID has \\${GPU_MEM} MiB in use.\\\"\nfi\n\nif curl -s http://localhost:\\$PORT/v1/models > /dev/null 2>&1; then\n    echo \\\"ERROR: Port \\$PORT already in use.\\\"\n    exit 1\nfi\necho \\\"Port \\$PORT: free\\\"\n\n# ── Step 1: Start vLLM ────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Starting vLLM on GPU \\$GPU_ID, port \\$PORT ===\\\"\n\nVLLM_USE_FLASHINFER_SAMPLER=0 CUDA_VISIBLE_DEVICES=\\$GPU_ID python -m vllm.entrypoints.openai.api_server \\\n    --model \\\"\\$MODEL\\\" \\\n    --max-model-len 8192 \\\n    --gpu-memory-utilization 0.90 \\\n    --port \\$PORT \\\n    --dtype auto \\\n    --trust-remote-code \\\n    --enforce-eager \\\n    > /tmp/vllm_exp032.log 2>&1 &\nVLLM_PID=\\$!\necho \\\"vLLM PID: \\$VLLM_PID\\\"\n\necho \\\"Waiting for vLLM to be ready...\\\"\nREADY=0\nfor i in \\$(seq 1 300); do\n    if curl -s http://localhost:\\$PORT/v1/models > /dev/null 2>&1; then\n        echo \\\"vLLM ready after \\${i}s\\\"\n        READY=1\n        break\n    fi\n    if ! kill -0 \\$VLLM_PID 2>/dev/null; then\n        echo \\\"ERROR: vLLM process died. Check /tmp/vllm_exp032.log\\\"\n        tail -30 /tmp/vllm_exp032.log\n        exit 1\n    fi\n    sleep 1\ndone\n\nif [ \\$READY -eq 0 ]; then\n    echo \\\"ERROR: vLLM did not start within 300s.\\\"\n    tail -30 /tmp/vllm_exp032.log\n    kill \\$VLLM_PID 2>/dev/null || true\n    exit 1\nfi\n\n# ── Step 2: Run SICA pipeline ─────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Running SICA pipeline: PW 600, K=\\$K ===\\\"\nPYTHONUNBUFFERED=1 python -u run_full_mvp.py \\\n    --mode vllm \\\n    --k \\$K \\\n    --temperature \\$TEMPERATURE \\\n    --max-tokens \\$MAX_TOKENS \\\n    --api-base \\\"http://localhost:\\$PORT/v1\\\" \\\n    --model auto \\\n    --seed \\$SEED \\\n    --math-data data/empty.json \\\n    --pw-data data/proofwriter_full.json \\\n    --folio-data data/empty.json \\\n    --output \\\"\\$RESULTS_DIR/exp032_results.json\\\" \\\n    --save-intermediates \\\n    --resume \\\n    2>&1 | tee \\\"\\$RESULTS_DIR/exp032_qwen25_14b_pw600.log\\\"\n\nEXIT_CODE=\\$?\n\n# ── Step 3: Cleanup ───────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Stopping vLLM ===\\\"\nkill \\$VLLM_PID 2>/dev/null || true\nwait \\$VLLM_PID 2>/dev/null || true\n\necho \\\"\\\"\necho \\\"Results: \\$RESULTS_DIR/exp032_results.json\\\"\necho \\\"Log: \\$RESULTS_DIR/exp032_qwen25_14b_pw600.log\\\"\necho \\\"vLLM log: /tmp/vllm_exp032.log\\\"\necho \\\"EXIT_CODE=\\$EXIT_CODE\\\"\necho \\\"EXP032_DONE\\\"\nSCRIPTEOF\nchmod +x /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh && echo 'Script created OK'\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"mkdir -p /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts && cat > /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh << 'SCRIPTEOF'\n#!/bin/bash\n# exp-032: Qwen2.5-14B-Instruct SICA vs SC on ProofWriter(600)\n# Server: westd-16639, GPU 0, K=12, T=0.7, seed=42\n# 600 problems, estimated 2-4h\n\nset -e\ncd /root/autodl-tmp/sica_project/symb_invariant_consensus\nexport PATH=/root/miniconda3/bin:\\$PATH\n\n# ── Config ──────────────────────────────────────────────────────\nMODEL=\\\"/root/autodl-tmp/models/Qwen2.5-14B-Instruct\\\"\nPORT=8000\nGPU_ID=0\nK=12\nTEMPERATURE=0.7\nMAX_TOKENS=4096\nSEED=42\nRESULTS_DIR=\\\"results/exp032_qwen25_14b_pw600\\\"\nmkdir -p \\\"\\$RESULTS_DIR\\\"\n\necho \\\"=== [\\$(date)] exp-032: Qwen2.5-14B-Instruct SICA vs SC (PW600) ===\\\"\necho \\\"Model: \\$MODEL\\\"\necho \\\"GPU: \\$GPU_ID, Port: \\$PORT\\\"\necho \\\"K=\\$K, T=\\$TEMPERATURE, max_tokens=\\$MAX_TOKENS, seed=\\$SEED\\\"\necho \\\"Data: proofwriter_full.json (600 problems)\\\"\n\n# ── Pre-flight checks ──────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== Pre-flight checks ===\\\"\n\nif [ ! -d \\\"\\$MODEL\\\" ]; then\n    echo \\\"ERROR: Model not found: \\$MODEL\\\"\n    exit 1\nfi\necho \\\"Model dir: OK\\\"\n\nfor f in data/proofwriter_full.json data/empty.json; do\n    if [ ! -f \\\"\\$f\\\" ]; then\n        echo \\\"ERROR: Data file not found: \\$f\\\"\n        exit 1\n    fi\ndone\necho \\\"Data files: OK\\\"\n\nGPU_MEM=\\$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i \\$GPU_ID 2>/dev/null | tr -d ' ')\necho \\\"GPU \\$GPU_ID memory used: \\${GPU_MEM} MiB\\\"\nif [ \\\"\\$GPU_MEM\\\" -gt 1000 ]; then\n    echo \\\"WARNING: GPU \\$GPU_ID has \\${GPU_MEM} MiB in use.\\\"\nfi\n\nif curl -s http://localhost:\\$PORT/v1/models > /dev/null 2>&1; then\n    echo \\\"ERROR: Port \\$PORT already in use.\\\"\n    exit 1\nfi\necho \\\"Port \\$PORT: free\\\"\n\n# ── Step 1: Start vLLM ────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Starting vLLM on GPU \\$GPU_ID, port \\$PORT ===\\\"\n\nVLLM_USE_FLASHINFER_SAMPLER=0 CUDA_VISIBLE_DEVICES=\\$GPU_ID python -m vllm.entrypoints.openai.api_server \\\n    --model \\\"\\$MODEL\\\" \\\n    --max-model-len 8192 \\\n    --gpu-memory-utilization 0.90 \\\n    --port \\$PORT \\\n    --dtype auto \\\n    --trust-remote-code \\\n    --enforce-eager \\\n    > /tmp/vllm_exp032.log 2>&1 &\nVLLM_PID=\\$!\necho \\\"vLLM PID: \\$VLLM_PID\\\"\n\necho \\\"Waiting for vLLM to be ready...\\\"\nREADY=0\nfor i in \\$(seq 1 300); do\n    if curl -s http://localhost:\\$PORT/v1/models > /dev/null 2>&1; then\n        echo \\\"vLLM ready after \\${i}s\\\"\n        READY=1\n        break\n    fi\n    if ! kill -0 \\$VLLM_PID 2>/dev/null; then\n        echo \\\"ERROR: vLLM process died. Check /tmp/vllm_exp032.log\\\"\n        tail -30 /tmp/vllm_exp032.log\n        exit 1\n    fi\n    sleep 1\ndone\n\nif [ \\$READY -eq 0 ]; then\n    echo \\\"ERROR: vLLM did not start within 300s.\\\"\n    tail -30 /tmp/vllm_exp032.log\n    kill \\$VLLM_PID 2>/dev/null || true\n    exit 1\nfi\n\n# ── Step 2: Run SICA pipeline ─────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Running SICA pipeline: PW 600, K=\\$K ===\\\"\nPYTHONUNBUFFERED=1 python -u run_full_mvp.py \\\n    --mode vllm \\\n    --k \\$K \\\n    --temperature \\$TEMPERATURE \\\n    --max-tokens \\$MAX_TOKENS \\\n    --api-base \\\"http://localhost:\\$PORT/v1\\\" \\\n    --model auto \\\n    --seed \\$SEED \\\n    --math-data data/empty.json \\\n    --pw-data data/proofwriter_full.json \\\n    --folio-data data/empty.json \\\n    --output \\\"\\$RESULTS_DIR/exp032_results.json\\\" \\\n    --save-intermediates \\\n    --resume \\\n    2>&1 | tee \\\"\\$RESULTS_DIR/exp032_qwen25_14b_pw600.log\\\"\n\nEXIT_CODE=\\$?\n\n# ── Step 3: Cleanup ───────────────────────────────────────────\necho \\\"\\\"\necho \\\"=== [\\$(date)] Stopping vLLM ===\\\"\nkill \\$VLLM_PID 2>/dev/null || true\nwait \\$VLLM_PID 2>/dev/null || true\n\necho \\\"\\\"\necho \\\"Results: \\$RESULTS_DIR/exp032_results.json\\\"\necho \\\"Log: \\$RESULTS_DIR/exp032_qwen25_14b_pw600.log\\\"\necho \\\"vLLM log: /tmp/vllm_exp032.log\\\"\necho \\\"EXIT_CODE=\\$EXIT_CODE\\\"\necho \\\"EXP032_DONE\\\"\nSCRIPTEOF\nchmod +x /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh && echo 'Script created OK'\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T15:40:51.482820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script created OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T15:40:51.483062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tmux new-session -d -s exp032 'bash /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh 2>&1 | tee /tmp/exp032_tmux.log' && echo 'tmux session exp032 started' && tmux ls\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tmux new-session -d -s exp032 'bash /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh 2>&1 | tee /tmp/exp032_tmux.log' && echo 'tmux session exp032 started' && tmux ls\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T15:40:51.483257+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: tmux: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 3.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T15:40:51.483464+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"which screen 2>/dev/null; which nohup 2>/dev/null; apt list --installed 2>/dev/null | grep -E 'tmux|screen' | head -5\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"which screen 2>/dev/null; which nohup 2>/dev/null; apt list --installed 2>/dev/null | grep -E 'tmux|screen' | head -5\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T15:40:51.483654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/screen\\n/usr/bin/nohup\\nscreen/now 4.9.0-1 amd64 [installed,local]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T15:40:51.483853+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"screen -dmS exp032 bash -c 'bash /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh 2>&1 | tee /tmp/exp032_screen.log; exec bash' && echo 'screen session exp032 started' && screen -ls\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"screen -dmS exp032 bash -c 'bash /root/autodl-tmp/sica_project/symb_invariant_consensus/scripts/run_exp032_pw600.sh 2>&1 | tee /tmp/exp032_screen.log; exec bash' && echo 'screen session exp032 started' && screen -ls\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T15:40:51.484066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"screen session exp032 started\\nThere is a screen on:\\r\\n\\t15925.exp032\\t(05/18/26 23:39:52)\\t(Detached)\\n1 Socket in /run/screen/S-root.\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T15:40:51.484260+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "sleep 30 && ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tail -20 /tmp/exp032_screen.log 2>/dev/null; echo '---'; tail -20 /tmp/vllm_exp032.log 2>/dev/null; echo '---'; nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0 2>/dev/null\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "sleep 30 && ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tail -20 /tmp/exp032_screen.log 2>/dev/null; echo '---'; tail -20 /tmp/vllm_exp032.log 2>/dev/null; echo '---'; nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0 2>/dev/null\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T15:40:51.484440+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \\\"tail -20 /tmp/exp032_screen.log 2>/dev/null; echo \\\\'---\\\\'; tail -20 /tmp/vllm_exp032.log 2>/dev/null; echo \\\\'---\\\\'; nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0 2>/dev/null\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 32.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T15:40:51.484628+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tail -30 /tmp/exp032_screen.log 2>/dev/null; echo '===VLLM==='; tail -15 /tmp/vllm_exp032.log 2>/dev/null; echo '===GPU==='; nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0 2>/dev/null\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ssh -p 16639 -o StrictHostKeyChecking=no root@connect.westd.seetacloud.com \"tail -30 /tmp/exp032_screen.log 2>/dev/null; echo '===VLLM==='; tail -15 /tmp/vllm_exp032.log 2>/dev/null; echo '===GPU==='; nvidia-smi --query-gpu=memory.used --format=csv,noheader -i 0 2>/dev/null\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T15:40:51.484855+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GPU: 0, Port: 8000\\nK=12, T=0.7, max_tokens=4096, seed=42\\nData: proofwriter_full.json (600 problems)\\n\\n=== Pre-flight checks ===\\nModel dir: OK\\nData files: OK\\nGPU 0 memory used: 0 MiB\\nPort 8000: free\\n\\n=== [Mon May 18 23:39:52 CST 2026] Starting vLLM on GPU 0, port 8000 ===\\nvLLM PID: 15937\\nWaiting for vLLM to be ready...\\nvLLM ready after 46s\\n\\n=== [Mon May 18 23:40:38 CST 2026] Running SICA pipeline: PW 600, K=12 ===\\n2026-05-18 23:40:38,411 INFO SICA Full MVP | mode=vllm k=12 resume=True temperature=0.70 max_tokens=4096\\n2026-05-18 23:40:38,411 INFO Loaded 0 MATH problems\\n2026-05-18 23:40:38,416 INFO Loaded 600 ProofWriter problems\\n2026-05-18 23:40:38,416 INFO Loaded 0 FOLIO problems\\n2026-05-18 23:40:38,416 INFO Total: 600 problems\\n2026-05-18 23:40:38,927 INFO HTTP Request: GET http://localhost:8000/v1/models \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:40:38,929 INFO Auto-detected model: /root/autodl-tmp/models/Qwen2.5-14B-Instruct\\n2026-05-18 23:40:38,948 INFO HTTP Request: GET http://localhost:8000/v1/models \\\"HTTP/1.1 200 OK\\\"\\n2026-05-18 23:40:38,949 INFO Running 600 remaining problems (skipped 0)\\n\\n--- [1/600] (overall 1/600) ---\\nID: ProofWriter_AttNoneg-OWA-D5-1041_Q1 | Dataset: proofwriter | Level: OWA-D5\\nQ: Bob is cold. Bob is quiet. Bob is red. Bob is smart. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough...\\nGT: True\\n===VLLM===\\n(APIServer pid=15937) INFO 05-18 23:40:37 [launcher.py:46] Route: /v1/messages, Methods: POST\\n(APIServer pid=15937) INFO 05-18 23:40:37 [launcher.py:46] Route: /v1/messages/count_tokens, Methods: POST\\n(APIServer pid=15937) INFO 05-18 23:40:37 [launcher.py:46] Route: /inference/v1/generate, Methods: POST\\n(APIServer pid=15937) INFO 05-18 23:40:37 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST\\n(APIServer pid=15937) INFO 05-18 23:40:37 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POS
+…[truncated 1151 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-18T15:40:51.485153+00:00_
+
+实验已在运行中。
+
+**状态汇总:**
+- **服务器**: westd-16639, GPU 0 (RTX PRO 6000 Blackwell 98GB)
+- **vLLM**: 46秒启动完成, PID 15937, GPU 占用 88233 MiB
+- **SICA pipeline**: 已开始处理 600 个 ProofWriter 问题 (K=12, T=0.7, seed=42)
+- **Screen session**: `exp032` (PID 15925), detached
+- **进度**: 1/600 正在处理
+- **日志**: `/tmp/exp032_screen.log`, `/tmp/vllm_exp032.log`
+- **结果输出**: `results/exp032_qwen25_14b_pw600/exp032_results.json`
+- **预计时间**: 2-4 小时
+
+监控命令（通过 westd-25068 代理）:
+```bash
+ssh -p 16639 root@connect.westd.seetacloud.com "tail -5 /tmp/exp032_screen.log"
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_exp-032-pw600-westd16639_20260518T153636"
+}
+```
+
+</details>
+
+---

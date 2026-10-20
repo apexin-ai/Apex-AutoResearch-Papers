@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-30_Q5",
+    "problem": "The bald eagle does not chase the mouse. The bald eagle chases the squirrel. The bald eagle needs the mouse. The bald eagle does not see the dog. The bald eagle sees the squirrel. The dog is not red. The dog needs the squirrel. The mouse does not chase the squirrel. The mouse is red. The mouse needs the dog. The mouse does not need the squirrel. The mouse sees the bald eagle. The mouse sees the dog. The squirrel is cold. The squirrel is red. The squirrel is round. If something is round and red then it chases the dog. If something chases the bald eagle then it sees the mouse. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel. If something needs the mouse then the mouse does not see the squirrel. If something is blue and it needs the dog then it is cold. If something chases the dog then it chases the bald eagle. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle. If something sees the squirrel and the squirrel is cold then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel chases the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChase($x, $y, bool) ::: Does x chase y?\nNeed($x, $y, bool) ::: Does x need y?\nSee($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChase(BaldEagle, Mouse, False) ::: The bald eagle does not chase the mouse.\nChase(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nNeed(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nSee(BaldEagle, Dog, False) ::: The bald eagle does not see the dog.\nSee(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nRed(Dog, False) ::: The dog is not red.\nNeed(Dog, Squirrel, True) ::: The dog needs the squirrel.\nChase(Mouse, Squirrel, False) ::: The mouse does not chase the squirrel.\nRed(Mouse, True) ::: The mouse is red.\nNeed(Mouse, Dog, True) ::: The mouse needs the dog.\nNeed(Mouse, Squirrel, False) ::: The mouse does not need the squirrel.\nSee(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSee(Mouse, Dog, True) ::: The mouse sees the dog.\nCold(Squirrel, True) ::: The squirrel is cold.\nRed(Squirrel, True) ::: The squirrel is red.\nRound(Squirrel, True) ::: The squirrel is round.\n\nRules:\nRound($x, True) && Red($x, True) >>> Chase($x, Dog, True) ::: If something is round and red then it chases the dog.\nChase($x, BaldEagle, True) >>> See($x, Mouse, True) ::: If something chases the bald eagle then it sees the mouse.\nNeed($x, Mouse, True) && Need(Mouse, BaldEagle, True) >>> See($x, Squirrel, False) ::: If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel.\nNeed($x, Mouse, True) >>> See(Mouse, Squirrel, False) ::: If something needs the mouse then the mouse does not see the squirrel.\nBlue($x, True) && Need($x, Dog, True) >>> Cold($x, True) ::: If something is blue and it needs the dog then it is cold.\nChase($x, Dog, True) >>> Chase($x, BaldEagle, True) ::: If something chases the dog then it chases the bald eagle.\nChase(BaldEagle, Squirrel, True) && See(BaldEagle, Squirrel, True) >>> Red(Squirrel, True) ::: If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red.\nSee($x, Mouse, True) && Need(Mouse, Dog, True) >>> Chase(Dog, BaldEagle, True) ::: If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle.\nSee($x, Squirrel, True) && Cold(Squirrel, True) >>> Blue($x, True) ::: If something sees the squirrel and the squirrel is cold then it is blue.\n\nQuery:\nChase(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

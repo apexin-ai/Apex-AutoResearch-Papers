@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06f5580fc2d7082ec9a1",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "infra kill vllm 16639 cuda1",
+  "task_key": "worker_infra_kill-vllm-16639-cuda1_20260519T110318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_kill-vllm-16639-cuda1_20260519T110318_result.json",
+    "occurrence": 1,
+    "bytes": 147,
+    "sha256": "b62b476a585258e3844aafd0ff53fabe4aecaa8a9ba02a5274796757d3af5438"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 已经空闲（0MiB），vLLM 进程不存在。tmux session `exp033` 也不存在。无需额外操作，cuda:1 已可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-vllm-16639-cuda1.md"
+}

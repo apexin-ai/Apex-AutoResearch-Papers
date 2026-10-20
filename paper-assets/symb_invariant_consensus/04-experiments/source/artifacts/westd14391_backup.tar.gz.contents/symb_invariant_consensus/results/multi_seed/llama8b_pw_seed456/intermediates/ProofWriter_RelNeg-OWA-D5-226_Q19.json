@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-226_Q19",
+    "problem": "The bear is not big. The bear needs the squirrel. The dog is nice. The dog sees the tiger. The squirrel sees the bear. The squirrel sees the tiger. The tiger eats the dog. The tiger is green. The tiger needs the bear. The tiger sees the squirrel. If someone eats the dog then the dog needs the bear. If someone eats the bear then they eat the tiger. If someone needs the tiger and they see the dog then they eat the tiger. If someone is nice and they need the bear then they eat the bear. If someone sees the dog then they eat the squirrel. If someone needs the tiger and the tiger eats the bear then they eat the squirrel. If someone eats the tiger then the tiger eats the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not see the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Bear, False) ::: The bear is not big.\nNeeds(Bear, Squirrel, True) ::: The bear needs the squirrel.\nNice(Dog, True) ::: The dog is nice.\nSees(Dog, Tiger, True) ::: The dog sees the tiger.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\nSees(Squirrel, Tiger, True) ::: The squirrel sees the tiger.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nGreen(Tiger, True) ::: The tiger is green.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nSees(Tiger, Squirrel, True) ::: The tiger sees the squirrel.\n\nRules:\nEats($x, Dog, True) >>> Needs(Dog, Bear, True) ::: If someone eats the dog then the dog needs the bear.\nEats($x, Bear, True) >>> Eats($x, Tiger, True) ::: If someone eats the bear then they eat the tiger.\nNeeds($x, Tiger, True) && Sees($x, Dog, True) >>> Eats($x, Tiger, True) ::: If someone needs the tiger and they see the dog then they eat the tiger.\nNice($x, True) && Needs($x, Bear, True) >>> Eats($x, Bear, True) ::: If someone is nice and they need the bear then they eat the bear.\nSees($x, Dog, True) >>> Eats($x, Squirrel, True) ::: If someone sees the dog then they eat the squirrel.\nNeeds($x, Tiger, True) && Eats(Tiger, Bear, True) >>> Eats($x, Squirrel, True) ::: If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\nEats($x, Tiger, True) >>> Eats(Tiger, Bear, True) ::: If someone eats the tiger then the tiger eats the bear.\n\nQuery:\nSees(Dog, Bear, False) ::: The dog does not see the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

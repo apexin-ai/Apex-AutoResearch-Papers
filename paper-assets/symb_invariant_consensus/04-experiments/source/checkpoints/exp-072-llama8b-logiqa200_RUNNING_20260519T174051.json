@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-072-llama8b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:21:53.401Z",
+    "updated_at": "2026-05-19T17:40:50.799Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct on LogiQA-200 with canonical SICA code (k=12, seed=42) will produce valid comparable SICA scores, replacing exp-069 which used outdated code.",
+    "parent": "",
+    "spec": {
+      "command": "cd /root/symb_invariant_consensus && python -u run_logiqa.py --mode vllm --k 12 --temperature 0.7 --seed 42 --api-base http://localhost:8011/v1 --model auto --data data/logiqa_200.json --output results/exp072_llama8b_logiqa200/exp072_results.json --save-intermediates",
+      "server": "westd-16639",
+      "gpu": "cuda:1",
+      "data_path": "data/logiqa_200.json",
+      "data_count": 200,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "port": 8011
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T17:40:51.049654+00:00",
+  "trigger": "update_registry"
+}

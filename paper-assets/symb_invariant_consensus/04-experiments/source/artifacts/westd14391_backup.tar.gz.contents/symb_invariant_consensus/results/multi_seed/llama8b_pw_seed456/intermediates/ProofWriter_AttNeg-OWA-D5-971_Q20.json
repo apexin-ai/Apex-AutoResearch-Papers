@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-971_Q20",
+    "problem": "Anne is cold. Anne is red. Anne is rough. Anne is not white. Dave is quiet. Dave is white. Fiona is not quiet. Gary is cold. Gary is quiet. Gary is red. Gary is rough. Gary is white. If Fiona is white and Fiona is green then Fiona is not quiet. All rough things are young. If something is cold then it is red. Young things are cold. If something is quiet and green then it is rough. All quiet things are green.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nRed(Anne, True) ::: Anne is red.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, False) ::: Anne is not white.\nQuiet(Dave, True) ::: Dave is quiet.\nWhite(Dave, True) ::: Dave is white.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nRough(Gary, True) ::: Gary is rough.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nWhite(Fiona, True) && Green(Fiona, True) >>> Quiet(Fiona, False) ::: If Fiona is white and Fiona is green then Fiona is not quiet.\nRough($x, True) >>> Young($x, True) ::: All rough things are young.\nCold($x, True) >>> Red($x, True) ::: If something is cold then it is red.\nYoung($x, True) >>> Cold($x, True) ::: Young things are cold.\nQuiet($x, True) && Green($x, True) >>> Rough($x, True) ::: If something is quiet and green then it is rough.\nQuiet($x, True) >>> Green($x, True) ::: All quiet things are green.\n\nQuery:\nWhite(Fiona, True) ::: Fiona is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

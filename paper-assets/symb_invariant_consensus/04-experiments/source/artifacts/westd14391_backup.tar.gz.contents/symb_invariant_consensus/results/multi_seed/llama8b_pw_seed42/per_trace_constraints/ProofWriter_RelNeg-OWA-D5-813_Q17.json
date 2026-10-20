@@ -1,0 +1,1104 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-813_Q17",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & big(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(sees_cow_dog, big_dog), likes_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_X_cow, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_X_lion, needs_lion_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_X_rabbit, Not(big_X)), Not(likes_X_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_X_cow), needs_cow_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_X_rabbit, likes_rabbit_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(sees_X_dog)), needs_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_lion, likes_X_rabbit), green_X)",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(Y, lion) -> needs(X, cow)",
+          "z3_formula": "Implies(needs_lion_lion, needs_cow_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_dog_dog, Not(big_cow)), Not(likes_cow_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_X_cow), needs_cow_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(sees_X_dog)), needs_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_lion, likes_X_rabbit), green_X)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_cow_lion, needs_lion_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_cow, Not(big_cow)), Not(likes_cow_lion))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_X, sees_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_X, likes_cow_cow), needs_cow_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_rabbit, likes_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_lion_lion, likes_lion_rabbit), green_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, dog)",
+          "z3_formula": "Not(likes_lion_dog) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, likes_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_needs(X)",
+          "z3_formula": "Implies(needs_rabbit_lion, lion_needs_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_rabbit, likes_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & not big(X) -> not likes(X, lion)",
+          "z3_formula": "Implies(And(sees_cow_dog, not big_dog), not likes_dog_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_dog, sees_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> cow_needs(X, rabbit)",
+          "z3_formula": "Implies(And(green_dog, likes_dog_cow), cow_needs_dog_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_dog_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_rabbit_rabbit), green_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_rabbit_lion, likes_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, rabbit)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & likes(X, lion) -> needs(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_dog, likes_rabbit_lion), needs_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_rabbit_lion, likes_rabbit_lion), green_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_dog_cow, big_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_dog_cow, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cow)",
+          "z3_formula": "sees_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(lion, rabbit))",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, X)",
+          "z3_formula": "Implies(sees_lion_rabbit, likes_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_rabbit, likes_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_rabbit_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_lion, likes_lion_rabbit), needs_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_lion_rabbit, likes_lion_rabbit), green_lion)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> lion_needs_cow",
+          "z3_formula": "Implies(needs_rabbit_lion, lion_needs_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(green_lion, sees_lion_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> cow_needs_rabbit",
+          "z3_formula": "Implies(And(green_lion, likes_cow_lion), cow_needs_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, Not(sees_dog_lion)), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(likes(lion, rabbit))",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cow_needs_rabbit",
+          "z3_formula": "cow_needs_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, lion)",
+          "z3_formula": "likes_rabbit_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 26
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, dog)",
+          "z3_formula": "does_not_need_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, dog)",
+          "z3_formula": "sees_rabbit_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> big(X)",
+          "z3_formula": "Implies(likes_cow_lion, big_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, cow)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(likes_dog_lion, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & Not(big(X)) -> Not(likes(X, lion))",
+          "z3_formula": "Implies(And(sees_cow_dog, Not(big_dog)), Not(likes_dog_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(rabbit, X)",
+          "z3_formula": "Implies(green_lion, sees_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, cow) -> needs(cow, rabbit)",
+          "z3_formula": "Implies(And(green_lion, likes_cow_lion), needs_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> likes(rabbit, lion)",
+          "z3_formula": "Implies(sees_rabbit_dog, likes_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(sees(X, dog)) -> needs(X, lion)",
+          "z3_formula": "Implies(And(likes_dog_lion, Not(sees_dog_dog)), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_dog_lion, likes_dog_rabbit), green_dog)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 22
+        }
+      ]
+    }
+  ]
+}

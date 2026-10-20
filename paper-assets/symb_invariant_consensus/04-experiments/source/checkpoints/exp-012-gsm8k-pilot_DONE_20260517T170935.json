@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp-012-gsm8k-pilot",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:47:20.559Z",
+    "updated_at": "2026-05-17T17:09:35.283Z",
+    "hypothesis": "Cross-domain validation: Qwen2.5-14B-Instruct 在 GSM8K (开放答案数学域) 30 题上 SICA vs SC。预期 C0<20%（14B 在 GSM8K 太强），验证 C0 作为 SICA 无效性预测指标。",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash scripts/run_exp012_gsm8k.sh",
+      "server": "westd-32608",
+      "data_path": "data/gsm8k_200.json",
+      "data_count": 30,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-14B-Instruct",
+      "eval_data": "data/gsm8k_200.json",
+      "gpu": [
+        "cuda:0"
+      ],
+      "checkpoint_path": "/root/symb_invariant_consensus/results/exp012_gsm8k/",
+      "log_path": "/root/symb_invariant_consensus/results/exp012_gsm8k/"
+    },
+    "metrics": {
+      "n": 30,
+      "k": 12,
+      "sica_accuracy": 0.9667,
+      "sc_accuracy": 0.9667,
+      "delta_pp": 0,
+      "multi_candidate_rate": 0.133,
+      "extraction_success_rate": 0.147,
+      "model": "Qwen2.5-14B-Instruct",
+      "dataset": "GSM8K",
+      "temperature": 0.7
+    },
+    "conclusion": "negative",
+    "notes": "GSM8K 30题：SICA=SC=96.67%，delta=0，C0=13.3%。开放答案数学域 baseline 极高（96.67%），几乎无 diversity（C0=13.3%），extraction_success_rate 仅 14.7%——数学域的 symbolic constraints 难以提取。支持 C0 作为 SICA 无效性预测指标。",
+    "completed_at": "2026-05-17T17:09:35.283Z"
+  },
+  "timestamp": "2026-05-17T17:09:35.493380+00:00",
+  "trigger": "update_registry"
+}

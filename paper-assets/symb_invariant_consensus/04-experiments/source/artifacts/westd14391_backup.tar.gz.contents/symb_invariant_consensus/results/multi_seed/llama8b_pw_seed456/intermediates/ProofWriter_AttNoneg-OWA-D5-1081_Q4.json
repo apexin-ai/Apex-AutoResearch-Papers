@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1081_Q4",
+    "problem": "Anne is big. Anne is furry. Anne is rough. Charlie is round. Erin is kind. Erin is smart. Fiona is furry. Fiona is kind. Fiona is rough. Fiona is smart. White, big people are smart. Rough, big people are kind. If Erin is kind and Erin is smart then Erin is furry. If Charlie is big and Charlie is kind then Charlie is white. Furry people are big. Round people are rough. If someone is rough then they are big. All white people are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not rough.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nRound(Charlie, True) ::: Charlie is round.\nKind(Erin, True) ::: Erin is kind.\nSmart(Erin, True) ::: Erin is smart.\nFurry(Fiona, True) ::: Fiona is furry.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nWhite($x, True) && Big($x, True) >>> Smart($x, True) ::: White, big people are smart.\nRough($x, True) && Big($x, True) >>> Kind($x, True) ::: Rough, big people are kind.\nKind(Erin, True) && Smart(Erin, True) >>> Furry(Erin, True) ::: If Erin is kind and Erin is smart then Erin is furry.\nBig(Charlie, True) && Kind(Charlie, True) >>> White(Charlie, True) ::: If Charlie is big and Charlie is kind then Charlie is white.\nFurry($x, True) >>> Big($x, True) ::: Furry people are big.\nRound($x, True) >>> Rough($x, True) ::: Round people are rough.\nRough($x, True) >>> Big($x, True) ::: If someone is rough then they are big.\nWhite($x, True) >>> Furry($x, True) ::: All white people are furry.\n\nQuery:\nRough(Charlie, False) ::: Charlie is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c2f07f8e41f8ea427be",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis br shuffle control",
+  "task_key": "worker_analysis_br-shuffle-control_20260522T012840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_br-shuffle-control_20260522T012840_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "169e392d1568d5ba19f8e3144ec94148ea7ff8fc5409e047f0579fcf17466c2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇报如下：\n\n---\n\n## BR Shuffle Control 分析结果\n\n### 数据结构\n`per_trace_constraints/folio_X.json` 每题包含 ~12 traces，每 trace 有 `answer` + `constraints`（逻辑规则列表，含 `expression`, `z3_formula`, `source_step`）。约束无独立 \"supported_answer\" 字段，归属由来源 trace 的 answer 决定。\n\n### 结果汇总\n\n| 指标 | Qwen3 (n=62) | GPT-4o (n=80) | Mistral-7B (n=189) |\n|------|-------------|---------------|-------------------|\n| **Original BR mean** | 5.70 | 6.32 | 3.16 |\n| **Trace count ratio** | 5.30 | 5.85 | 2.89 |\n| **Shuffle BR mean** | 6.16 ± 0.59 | 6.89 ± 0.61 | 3.31 ± 0.24 |\n| **p-value** | 0.783 | 0.822 | 0.706 |\n| **Cohen's d** | −0.78 | −0.93 | −0.62 |\n| **Aligned c/trace** | 6.57 | 6.23 | 5.62 |\n| **Unaligned c/trace** | 7.48 | 6.52 | 6.00 |\n\n### 结论\n\n**BR 不是约束提取设计的产物，而是多数投票的结构性副产品。**\n\n1. **p-value 全部 > 0.7**：原始 BR 甚至 *低于* 随机 shuffle 的期望值（Cohen's d 均为负）。约束提取没有向 SICA 答案倾斜。\n2. **BR ≈ trace count ratio**：BR 主要由 aligned vs unaligned trace 的数量比决定。SICA 选共识答案 → 多数 trace 天然 aligned → BR > 1 是同义反复。\n3. **Unaligned traces 产出更多约束**：三个模型一致显示 unaligned traces 的 constraints/trace 高于 aligned（7.48 vs 6.57, 6.52 vs 6.23, 6.00 vs 5.62），说明约束提取对少数派 trace 不存在压制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-br-shuffle-control.md"
+}

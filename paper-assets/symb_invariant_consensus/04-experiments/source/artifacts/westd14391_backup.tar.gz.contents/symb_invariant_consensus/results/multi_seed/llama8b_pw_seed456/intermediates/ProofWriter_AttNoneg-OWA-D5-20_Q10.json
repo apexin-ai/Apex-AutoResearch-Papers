@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-20_Q10",
+    "problem": "Bob is green. Bob is young. Charlie is big. Charlie is blue. Charlie is nice. Gary is green. Gary is nice. Gary is quiet. Gary is smart. Harry is blue. Harry is smart. All big things are smart. All green things are big. If something is nice then it is young. If something is green and blue then it is nice. If Bob is smart and Bob is green then Bob is quiet. If Charlie is blue then Charlie is nice. If something is quiet and smart then it is blue. Nice, blue things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nYoung(Bob, True) ::: Bob is young.\nBig(Charlie, True) ::: Charlie is big.\nBlue(Charlie, True) ::: Charlie is blue.\nNice(Charlie, True) ::: Charlie is nice.\nGreen(Gary, True) ::: Gary is green.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nSmart(Gary, True) ::: Gary is smart.\nBlue(Harry, True) ::: Harry is blue.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBig($x, True) >>> Smart($x, True) ::: All big things are smart.\nGreen($x, True) >>> Big($x, True) ::: All green things are big.\nNice($x, True) >>> Young($x, True) ::: If something is nice then it is young.\nGreen($x, True) && Blue($x, True) >>> Nice($x, True) ::: If something is green and blue then it is nice.\nSmart(Bob, True) && Green(Bob, True) >>> Quiet(Bob, True) ::: If Bob is smart and Bob is green then Bob is quiet.\nBlue(Charlie, True) >>> Nice(Charlie, True) ::: If Charlie is blue then Charlie is nice.\nQuiet($x, True) && Smart($x, True) >>> Blue($x, True) ::: If something is quiet and smart then it is blue.\nNice($x, True) && Blue($x, True) >>> Quiet($x, True) ::: Nice, blue things are quiet.\n\nQuery:\nBlue(Bob, False) ::: Bob is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

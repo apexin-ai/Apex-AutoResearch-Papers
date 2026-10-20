@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1_Q1",
+    "problem": "Anne is furry. Charlie is round. Charlie is smart. Charlie is white. Charlie is young. Erin is kind. Erin is nice. Erin is round. Erin is smart. Erin is white. Erin is young. Harry is furry. Harry is nice. Harry is round. Harry is smart. Harry is young. All round people are nice. Nice, furry people are kind. All kind, white people are round. All white, furry people are kind. If someone is round and white then they are kind. Nice people are smart. If Anne is nice and Anne is round then Anne is kind. If someone is furry then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRound(Charlie, True) ::: Charlie is round.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nYoung(Charlie, True) ::: Charlie is young.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round people are nice.\nNice($x, True) && Furry($x, True) >>> Kind($x, True) ::: Nice, furry people are kind.\nKind($x, True) && White($x, True) >>> Round($x, True) ::: All kind, white people are round.\nWhite($x, True) && Furry($x, True) >>> Kind($x, True) ::: All white, furry people are kind.\nRound($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is round and white then they are kind.\nNice($x, True) >>> Smart($x, True) ::: Nice people are smart.\nNice(Anne, True) && Round(Anne, True) >>> Kind(Anne, True) ::: If Anne is nice and Anne is round then Anne is kind.\nFurry($x, True) >>> White($x, True) ::: If someone is furry then they are white.\n\nQuery:\nNice(Erin, True) ::: Erin is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

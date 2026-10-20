@@ -1,0 +1,986 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-754_Q23",
+    "problem": "The cat is big. The cat is nice. The cat sees the dog. The cat visits the dog. The dog is big. The dog is nice. The mouse is nice. The mouse is red. The tiger eats the cat. The tiger eats the dog. The tiger visits the mouse. If someone visits the tiger then the tiger sees the mouse. If the cat eats the dog and the cat sees the dog then the cat is big. If someone eats the dog then they visit the cat. If the tiger is young and the tiger is nice then the tiger eats the mouse. If someone sees the mouse and the mouse is red then the mouse visits the tiger. If someone visits the tiger then they visit the cat. If someone visits the cat and the cat visits the dog then the dog visits the tiger. If the cat sees the tiger then the cat eats the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not eat the mouse.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(cat, True) ::: The cat is big.\nNice(cat, True) ::: The cat is nice.\nSees(cat, dog, True) ::: The cat sees the dog.\nVisits(cat, dog, True) ::: The cat visits the dog.\nBig(dog, True) ::: The dog is big.\nNice(dog, True) ::: The dog is nice.\nNice(mouse, True) ::: The mouse is nice.\nRed(mouse, True) ::: The mouse is red.\nEats(tiger, cat, True) ::: The tiger eats the cat.\nEats(tiger, dog, True) ::: The tiger eats the dog.\nVisits(tiger, mouse, True) ::: The tiger visits the mouse.\n\nRules:\nVisits($x, tiger, True) >>> Sees(tiger, mouse, True) ::: If someone visits the tiger then the tiger sees the mouse.\nEats(cat, dog, True) && Sees(cat, dog, True) >>> Big(cat, True) ::: If the cat eats the dog and the cat sees the dog then the cat is big.\nEats($x, dog, True) >>> Visits($x, cat, True) ::: If someone eats the dog then they visit the cat.\nYoung(tiger, True) && Nice(tiger, True) >>> Eats(tiger, mouse, True) ::: If the tiger is young and the tiger is nice then the tiger eats the mouse.\nSees($x, mouse, True) && Red(mouse, True) >>> Visits($x, tiger, True) ::: If someone sees the mouse and the mouse is red then the mouse visits the tiger.\nVisits($x, tiger, True) >>> Visits($x, cat, True) ::: If someone visits the tiger then they visit the cat.\nVisits($x, cat, True) && Visits(cat, dog, True) >>> Visits(dog, tiger, True) ::: If someone visits the cat and the cat visits the dog then the dog visits the tiger.\nSees(cat, tiger, True) >>> Eats(cat, dog, True) ::: If the cat sees the tiger then the cat eats the dog.\n\nQuery:\nEats(mouse, mouse, False) ::: The mouse does not eat the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 135.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the provided information step by step.\n\nFrom the given statements:\n\n1. The mouse is nice. (Statement 1)\n2. The mouse is red. (Statement 2)\n3. The tiger eats the cat. (Statement 5)\n4. The tiger eats the dog. (Statement 6)\n5. The tiger visits the mouse. (Statement 7)\n6. If someone visits the tiger then the tiger sees the mouse. (Statement 8)\n7. If the cat eats the dog and the cat sees the dog then the cat is big. (Statement 9)\n8. If someone eats the dog then they visit the cat. (Statement 10)\n9. If the tiger is young and the tiger is nice then the tiger eats the mouse. (Statement 11)\n10. If someone sees the mouse and the mouse is red then the mouse visits the tiger. (Statement 12)\n11. If someone visits the tiger then they visit the cat. (Statement 13)\n12. If someone visits the cat and the cat visits the dog then the dog visits the tiger. (Statement 14)\n13. If the cat sees the tiger then the cat eats the dog. (Statement 15)\n\nNow, let's analyze the given statement: \"The mouse does not eat the mouse.\"\n\nFor the mouse to eat the mouse, the following conditions should be met:\n\n- The mouse sees the mouse.\n- The mouse is nice (Statement 1).\n\nHowever, the given statement does not mention the mouse seeing the mouse, and we cannot directly conclude that the mouse sees the mouse from the provided information.\n\nSince we cannot determine whether the mouse sees the mouse, we cannot determine whether the mouse eats the mouse. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is nice. (Rule 1)\n2. The mouse is red. (Rule 2)\n3. The tiger eats the cat. (Rule 3)\n4. The tiger eats the dog. (Rule 4)\n5. The tiger visits the mouse. (Rule 5)\n6. If someone visits the tiger then the tiger sees the mouse. (Rule 6)\n7. If the cat eats the dog and the cat sees the dog then the cat is big. (Rule 7)\n8. If someone eats the dog then they visit the cat. (Rule 8)\n9. If the tiger is young and the tiger is nice then the tiger eats the mouse. (Rule 9)\n10. If someone sees the mouse and the mouse is red then the mouse visits the tiger. (Rule 10)\n11. If someone visits the tiger then they visit the cat. (Rule 11)\n12. If someone visits the cat and the cat visits the dog then the dog visits the tiger. (Rule 12)\n13. If the cat sees the tiger then the cat eats the dog. (Rule 13)\n\nNow, let's analyze the statement \"The mouse does not eat the mouse.\" To determine if this is true or false, we need to check if there's any rule that implies the mouse eats the mouse.\n\nLooking at the rules, we can see that:\n\n- Rule 9 mentions \"If the tiger is young and the tiger is nice then the tiger eats the mouse.\" However, it doesn't mention anything about the mouse eating the mouse.\n- Rule 10 mentions \"If someone sees the mouse and the mouse is red then the mouse visits the tiger.\" Again, it doesn't imply that the mouse eats the mouse.\n- The rules don't mention anything about the mouse eating the mouse directly.\n\nSince there's no rule that directly implies the mouse eats the mouse, we cannot conclude that the statement is true or false based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine whether they imply that the mouse does or does not eat the mouse.\n\n1. The cat is big. The cat is nice. The cat sees the dog. The cat visits the dog. The dog is big. The dog is nice. The mouse is nice. The mouse is red. The tiger eats the cat. The tiger eats the dog. The tiger visits the mouse.\n\nThese statements do not provide any information about the mouse eating the mouse. We can ignore these statements for now.\n\n2. If someone visits the tiger then the tiger sees the mouse.\n\nThis statement implies that if the mouse visits the tiger, then the tiger sees the mouse. However, it does not provide any information about the mouse eating the mouse.\n\n3. If the cat eats the dog and the cat sees the dog then the cat is big.\n\nThis statement implies that the cat is big, but it does not provide any information about the mouse eating the mouse.\n\n4. If someone eats the dog then they visit the cat.\n\nThis statement implies that if someone eats the dog, they must visit the cat, but it does not provide any information about the mouse eating the mouse.\n\n5. If the tiger is young and the tiger is nice then the tiger eats the mouse.\n\nThis statement implies that the tiger eats the mouse, but it is a condition that requires the tiger to be young and nice. We do not know whether the tiger is young and nice, so this statement does not provide any information about the mouse eating the mouse.\n\n6. If someone sees the mouse and the mouse is red then the mouse visits the tiger.\n\nThis statement implies that if someone sees the mouse and the mouse is red, then the mouse visits the tiger. However, it does not provide any information about the mouse eating the mouse.\n\n7. If someone visits the tiger then they visit the cat.\n\nThis statement implies that if someone visits the tiger, they must visit the cat, but it does not provide any information about the mouse eating the mouse.\n\n8. If someone visits the cat and the cat visits the dog then the dog visits the tiger.\n\nThis statement implies that if someone visits the cat and the cat visits the dog, then the dog visits the tiger. However, it does not provide any information about the mouse eating the mouse.\n\n9. If the cat sees the tiger then the cat eats the dog.\n\nThis statement implies that the cat eats the dog, but it does not provide any information about the mouse eating the mouse.\n\nNow, let's analyze the statement we are trying to evaluate: \"The mouse does not eat the mouse.\"\n\nWe need to find a chain of statements that implies the mouse does not eat the mouse. If we can find such a chain, then the statement is true. If we cannot find such a chain, then the statement is false. If there is not enough information to determine whether the statement is true or false, then the statement is unknown.\n\nLet's try to find a chain of statements that implies the mouse does not eat the mouse.\n\nFrom statement 6, we know that if someone sees the mouse and the mouse is red, then the mouse visits the tiger. \n\nFrom statement 7, we know that if someone visits the tiger, then they visit the cat.\n\nFrom statement 8, we know that if someone visits the cat and the cat visits the dog, then the dog visits the tiger.\n\nFrom statement 1, we know that the mouse is red.\n\nFrom statement 6, we know that the mouse visits the tiger.\n\nFrom statement 7, we know that the mouse visits the cat.\n\nFrom statement 8, we know that the cat visits the dog.\n\nFrom statement 4, we know that the dog eats the mouse.\n\nHowever, statement 4 implies that if someone eats the dog, they visit the cat, but it does not provide any information about the mouse eating the mouse.\n\nNow, let's try to find another chain of statements.\n\nFrom statement 5, we know that if the tiger is young and the tiger is nice, then the tiger eats the mouse.\n\nFrom statement 1, we know that the tiger eats the cat and the tiger eats the dog.\n\nFrom statement 9, we know that if the cat sees the tiger, then the cat eats the dog.\n\nHowever, statement 9 does not provide any information about the mouse eating the mouse.\n\nFrom statement 3, we know that if the cat eats the dog and the cat sees the dog, then the cat is big.\n\nHowever, statement 3 does not provide any information about the mouse eating the mouse.\n\nFrom statement 2, we know that if someone visits the tiger, then the tiger sees the mouse.\n\nHowever, statement 2 does not provide any information about the mouse eating the mouse.\n\nWe have tried all possible chains of statements, but we cannot find any chain that implies the mouse does not eat the mouse. \n\nTherefore, the statement \"The mouse does not eat the mouse\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The mouse is nice. (Statement 6)\n2. The mouse is red. (Statement 7)\n3. If someone sees the mouse and the mouse is red then the mouse visits the tiger. (Statement 9)\n\nFrom Statement 3, we can conclude that the mouse visits the tiger, but this does not imply that the mouse eats the mouse. However, we need to analyze the other given statements.\n\n4. The tiger eats the cat. (Statement 8)\n5. The tiger eats the dog. (Statement 9)\n6. If the tiger is young and the tiger is nice then the tiger eats the mouse. (Statement 10)\n\nStatement 10 does not imply that the tiger is young. Since we cannot conclude the age of the tiger, we cannot determine whether the tiger eats the mouse. However, we can conclude that the tiger eats the cat and the dog.\n\n7. If someone eats the dog then they visit the cat. (Statement 5)\n\nFrom Statement 5, we can conclude that the tiger visits the cat since the tiger eats the dog.\n\n8. If someone visits the tiger then the tiger sees the mouse. (Statement 1)\n\nFrom Statement 1, we can conclude that the tiger sees the mouse since the tiger visits the tiger (not directly, but through Statement 7).\n\n9. If the cat sees the tiger then the cat eats the dog. (Statement 8)\n\nFrom Statement 8, we can conclude that the cat eats the dog since the cat sees the tiger (through Statement 7).\n\nNow we have a new information that the cat eats the dog. The question asks whether the mouse eats the mouse, but we cannot find any information that the mouse eats the mouse. We can only conclude that the tiger eats the cat and the dog, but we cannot conclude anything about the mouse eating the mouse.\n\nTherefore, the statement \"The mouse does not eat the mouse\" is unknown since we cannot find any information that the mouse eats the mouse, and we cannot conclude that it does not eat the mouse.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The mouse is nice. (Given)\n2. The mouse is red. (Given)\n3. The tiger eats the cat. (Given)\n4. The tiger eats the dog. (Given)\n5. The tiger visits the mouse. (Given)\n\nFrom statement 5, we can infer that the tiger sees the mouse because if someone visits the tiger then the tiger sees the mouse.\n\nNow, let's examine the given rules:\n\nRule 1: If someone sees the mouse and the mouse is red, then the mouse visits the tiger.\nFrom the given statement 2, we know the mouse is red. However, we do not have any information that the mouse sees itself, so we cannot apply this rule to conclude that the mouse visits the tiger.\n\nRule 2: If the tiger is young and the tiger is nice, then the tiger eats the mouse.\nWe do not have any information that the tiger is young, so we cannot apply this rule.\n\nRule 3: If someone eats the dog then they visit the cat.\nThis rule does not provide any information about the mouse eating the mouse.\n\nRule 4: If someone visits the tiger then they visit the cat.\nThis rule does not provide any information about the mouse eating the mouse.\n\nRule 5: If someone visits the cat and the cat visits the dog, then the dog visits the tiger.\nThis rule does not provide any information about the mouse eating the mouse.\n\nRule 6: If the cat sees the tiger, then the cat eats the dog.\nWe do not have any information that the cat sees the tiger, so we cannot apply this rule.\n\nThere are no other rules that provide any information about the mouse eating the mouse. Therefore, we cannot conclude that the mouse does or does not eat the mouse based on the given statements and rules.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is nice.\n2. The mouse is red.\n\nFrom the given rules:\n\n- If someone sees the mouse and the mouse is red then the mouse visits the tiger. \nHowever, this does not tell us whether the mouse eats the mouse or not.\n\n- There is no rule that states if the mouse sees the mouse, then the mouse eats the mouse. \n\n- The only rule that involves the mouse eating something is: If the tiger is young and the tiger is nice then the tiger eats the mouse. However, this rule does not involve the mouse eating itself.\n\nSince there is no information that directly or indirectly implies that the mouse eats the mouse, we cannot determine whether the statement is true or false. \n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The mouse is nice. (Given)\n2. The mouse is red. (Given)\n3. The mouse visits the tiger. (Given)\n4. If someone sees the mouse and the mouse is red then the mouse visits the tiger. (Rule)\n   - From (3), we know the mouse visits the tiger. \n   - But we cannot directly conclude that the mouse sees the mouse from this rule.\n   - However, we can deduce that the mouse sees the tiger, not necessarily the mouse.\n5. If someone sees the mouse and the mouse is red then the mouse visits the tiger. (Rule)\n   - This rule does not imply that the mouse eats the mouse.\n6. We need to find a rule that implies the mouse eats the mouse.\n   - After analyzing all the rules, we find no rule that directly implies the mouse eats the mouse.\n\nSince there is no rule that directly implies the mouse eats the mouse, we cannot conclude that the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The statement to be evaluated is: The mouse does not eat the mouse.\n\n2. From the given information, we know that the mouse is nice and the mouse is red.\n\n3. There is no information provided that directly relates to the mouse eating itself. However, we need to analyze the rules to see if there is any connection.\n\n4. Rule 8 states: If someone sees the mouse and the mouse is red then the mouse visits the tiger. This rule does not provide any information about the mouse eating itself.\n\n5. Rule 1 states: The cat is big. Rule 2 states: The cat is nice. Rule 3 states: The cat sees the dog. Rule 4 states: The cat visits the dog. Rule 5 states: The dog is big. Rule 6 states: The dog is nice. Rule 7 states: The mouse is nice. Rule 8 states: The mouse is red. Rule 9 states: The tiger eats the cat. Rule 10 states: The tiger eats the dog. Rule 11 states: The tiger visits the mouse. However, none of these rules provide any information about the mouse eating itself.\n\n6. Rule 12 states: If someone eats the dog then they visit the cat. This rule does not provide any information about the mouse eating the dog.\n\n7. Rule 13 states: If the tiger is young and the tiger is nice then the tiger eats the mouse. This rule does not provide any information about the mouse eating itself.\n\n8. Rule 14 states: If someone sees the mouse and the mouse is red then the mouse visits the tiger. This rule does not provide any information about the mouse eating itself.\n\n9. Rule 15 states: If someone visits the tiger then they visit the cat. This rule does not provide any information about the mouse eating itself.\n\n10. Rule 16 states: If someone visits the cat and the cat visits the dog then the dog visits the tiger. This rule does not provide any information about the mouse eating itself.\n\n11. Rule 17 states: If the cat sees the tiger then the cat eats the dog. This rule does not provide any information about the mouse eating itself.\n\n12. Since there is no information provided that directly relates to the mouse eating itself, and none of the rules provide any indirect connection, we cannot determine the statement to be true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to determine the relationship between the mouse and eating itself.\n\nLet's break down the rules:\n\n1. If someone visits the tiger then the tiger sees the mouse.\n2. If the cat eats the dog and the cat sees the dog then the cat is big.\n3. If someone eats the dog then they visit the cat.\n4. If the tiger is young and the tiger is nice then the tiger eats the mouse.\n5. If someone sees the mouse and the mouse is red then the mouse visits the tiger.\n6. If someone visits the tiger then they visit the cat.\n7. If someone visits the cat and the cat visits the dog then the dog visits the tiger.\n8. If the cat sees the tiger then the cat eats the dog.\n\nFrom the given statements:\n\n- The mouse is nice.\n- The mouse is red.\n- The tiger eats the cat.\n- The tiger eats the dog.\n- The tiger visits the mouse.\n- The cat sees the dog.\n- The cat visits the dog.\n- The dog is big.\n- The dog is nice.\n\nWe can derive some conclusions from these rules:\n\nFrom rule 1, we can't conclude anything about the mouse yet.\n\nFrom rule 5, we can say that if someone sees the mouse and the mouse is red, then the mouse visits the tiger. However, we don't have any information about someone seeing the mouse, so we can't conclude that the mouse visits the tiger.\n\nFrom rule 3, we can say that if someone eats the dog, then they visit the cat. However, the mouse doesn't eat the dog, so we can't conclude anything about the mouse visiting the cat.\n\nFrom rule 4, we can say that if the tiger is young and the tiger is nice, then the tiger eats the mouse. However, we don't know if the tiger is young or not, so we can't conclude that the tiger eats the mouse.\n\nNow, let's analyze the statement: \"The mouse does not eat the mouse.\"\n\nWe need to find a contradiction or a conclusion that says the mouse eats the mouse. However, none of the given rules or statements directly relate to the mouse eating the mouse.\n\nTherefore, we cannot conclude that the mouse eats the mouse or does not eat the mouse based on the given information.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse is nice. \n2. The mouse is red.\n3. The mouse does not eat the mouse. We need to check if this statement is true, false, or unknown.\n\nLet's check the rules for eating and visiting:\n\n- If the tiger is young and the tiger is nice then the tiger eats the mouse. (This rule does not mention the mouse eating the mouse.)\n- If someone sees the mouse and the mouse is red then the mouse visits the tiger. (This rule does not mention the mouse eating the mouse.)\n- If someone eats the dog then they visit the cat. (This rule does not mention the mouse eating the mouse.)\n- If someone visits the tiger then they visit the cat. (This rule does not mention the mouse eating the mouse.)\n- If the cat sees the tiger then the cat eats the dog. (This rule does not mention the mouse eating the mouse.)\n\nThere is no rule that mentions the mouse eating the mouse. Therefore, we cannot determine whether the statement \"The mouse does not eat the mouse\" is true or false based on the given information.\n\nThe answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not eat the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated is: The mouse does not eat the mouse.\n2. The given information states: The mouse is nice. The mouse is red. The tiger eats the cat. The tiger eats the dog. The tiger visits the mouse. \n3. Since there's no direct information about the mouse eating the mouse, we need to analyze the given rules to see if they imply anything about the mouse eating the mouse.\n\nLet's analyze the rules:\n\n- Rule 1: If someone visits the tiger then the tiger sees the mouse. (This rule does not provide any information about the mouse eating the mouse.)\n- Rule 2: If the cat eats the dog and the cat sees the dog then the cat is big. (This rule does not provide any information about the mouse eating the mouse.)\n- Rule 3: If someone eats the dog then they visit the cat. (This rule does not provide any information about the mouse eating the mouse.)\n- Rule 4: If the tiger is young and the tiger is nice then the tiger eats the mouse. (This rule does not provide any information about the mouse eating the mouse. It talks about the tiger eating the mouse.)\n- Rule 5: If someone sees the mouse and the mouse is red then the mouse visits the tiger. (This rule does not provide any information about the mouse eating the mouse. It talks about the mouse visiting the tiger.)\n- Rule 6: If someone visits the tiger then they visit the cat. (This rule does not provide any information about the mouse eating the mouse.)\n- Rule 7: If someone visits the cat and the cat visits the dog then the dog visits the tiger. (This rule does not provide any information about the mouse eating the mouse.)\n- Rule 8: If the cat sees the tiger then the cat eats the dog. (This rule does not provide any information about the mouse eating the mouse.)\n\nAfter analyzing all the rules, we find that none of them directly or indirectly imply that the mouse eats the mouse.\n\nTherefore, since there's no information about the mouse eating the mouse, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements one by one and see if we can deduce the statement \"The mouse does not eat the mouse.\"\n\nGiven statements:\n\n1. The cat is big.\n2. The cat is nice.\n3. The cat sees the dog.\n4. The cat visits the dog.\n5. The dog is big.\n6. The dog is nice.\n7. The mouse is nice.\n8. The mouse is red.\n9. The tiger eats the cat.\n10. The tiger eats the dog.\n11. The tiger visits the mouse.\n12. If someone visits the tiger then the tiger sees the mouse.\n13. If the cat eats the dog and the cat sees the dog then the cat is big.\n14. If someone eats the dog then they visit the cat.\n15. If the tiger is young and the tiger is nice then the tiger eats the mouse.\n16. If someone sees the mouse and the mouse is red then the mouse visits the tiger.\n17. If someone visits the tiger then they visit the cat.\n18. If someone visits the cat and the cat visits the dog then the dog visits the tiger.\n19. If the cat sees the tiger then the cat eats the dog.\n\nNow, let's analyze the given statement: \"The mouse does not eat the mouse.\"\n\nWe need to see if we can deduce this statement using the given statements.\n\nFrom statement 7, we know that the mouse is nice. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 8, we know that the mouse is red. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 11, we know that the tiger visits the mouse. But we cannot conclude anything about the mouse eating itself from this statement.\n\nHowever, from statement 15, we have a condition that if the tiger is young and the tiger is nice then the tiger eats the mouse. But we do not have any information about the tiger being young. \n\nNow let's assume the tiger is young and nice. Then the tiger eats the mouse (from statement 15). But then the tiger sees the mouse (from statement 12). This implies that the mouse must visit the tiger (from statement 16). \n\nHowever, we cannot conclude anything about the mouse eating itself from this statement.\n\nWe also need to see if there is any other path through which we can deduce the statement \"The mouse does not eat the mouse.\"\n\nFrom statement 4, we know that the cat visits the dog. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 10, we know that the tiger eats the dog. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 17, we know that if someone visits the tiger then they visit the cat. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 18, we know that if someone visits the cat and the cat visits the dog then the dog visits the tiger. But we cannot conclude anything about the mouse eating itself from this statement.\n\nFrom statement 19, we know that if the cat sees the tiger then the cat eats the dog. But we cannot conclude anything about the mouse eating itself from this statement.\n\nWe have analyzed all the statements and have not found any path that can deduce the statement \"The mouse does not eat the mouse.\" However, we cannot deduce that the mouse eats the mouse either.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & sees(X, dog) -> big(cat)",
+          "z3_formula": "Implies(And(eats_tiger_dog, sees_tiger_dog), big_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_tiger_dog, visits_tiger_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(sees_mouse_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_tiger_tiger, visits_tiger_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(visits_tiger_cat, visits_cat_dog), visits_tiger_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_tiger_tiger, eats_tiger_dog)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & sees(X, dog) -> big(cat)",
+          "z3_formula": "Implies(And(eats_tiger_dog, sees_tiger_dog), big_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_tiger_dog, visits_tiger_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, red_mouse), visits_tiger_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_tiger_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(visits_tiger_cat, visits_cat_dog), visits_tiger_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_tiger_tiger, eats_tiger_dog)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_tiger_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, tiger)",
+          "z3_formula": "Implies(And(visits_cat_mouse, visits_cat_dog), visits_dog_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, mouse)",
+          "z3_formula": "eats_dog_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_dog_mouse, visits_cat_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger) & nice(tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat) & eats(tiger, dog)",
+          "z3_formula": "eats_tiger_cat == True & eats_tiger_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_tiger_cat, eats_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> big(X)",
+          "z3_formula": "Implies(eats_cat_dog, big_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(mouse, mouse)",
+          "z3_formula": "Not(eats_mouse_mouse)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & red(mouse) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_tiger_dog, visits_tiger_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_cat, sees_cat_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_cat_tiger, eats_cat_dog)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> visits(Y, X)",
+          "z3_formula": "Implies(And(sees_mouse_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, Y)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_tiger_dog, visits_tiger_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_tiger_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, tiger)",
+          "z3_formula": "Implies(And(visits_tiger_cat, visits_cat_dog), visits_dog_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(sees_tiger_cat, eats_tiger_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "tiger_is_young & tiger_is_nice -> tiger_eats(mouse)",
+          "z3_formula": "Implies(And(tiger_is_young, tiger_is_nice), tiger_eats_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mouse_does_not_eat_mouse",
+          "z3_formula": "Not(eats_mouse_mouse)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> visits(X, Y)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_mouse), visits_mouse_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> visits(X, Y)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_mouse), visits_mouse_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(mouse, mouse))",
+          "z3_formula": "Not(eats_mouse_mouse)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, red_mouse), visits_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, visits_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_X_tiger, visits_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, tiger)",
+          "z3_formula": "Implies(And(visits_X_cat, visits_cat_dog), visits_dog_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_X_tiger, eats_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(mouse, mouse)",
+          "z3_formula": "Not(eats_mouse_mouse)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_X_tiger, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_X_dog, sees_X_dog), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, visits_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_X, nice_X), eats_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(mouse, X)",
+          "z3_formula": "Implies(And(sees_X_mouse, red_mouse), visits_mouse_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_X_tiger, visits_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, X)",
+          "z3_formula": "Implies(And(visits_X_cat, visits_cat_dog), visits_dog_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_X_tiger, eats_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(mouse, mouse))",
+          "z3_formula": "Not(eats_mouse_mouse)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, mouse)",
+          "z3_formula": "Not(eats_mouse_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(tiger) & nice(tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(X, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, red_mouse), visits_X_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, visits_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_X_tiger, visits_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(cat, tiger) -> eats(cat, dog)",
+          "z3_formula": "Implies(sees_cat_tiger, eats_cat_dog)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_X_tiger, sees_X_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cat, dog) & sees(cat, dog) -> big(cat)",
+          "z3_formula": "Implies(And(eats_cat_dog, sees_cat_dog), big_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_X_dog, visits_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(tiger) & nice(tiger) -> eats(tiger, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(mouse, tiger)",
+          "z3_formula": "Implies(And(sees_X_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_X_tiger, visits_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, tiger)",
+          "z3_formula": "Implies(And(visits_X_cat, visits_cat_dog), visits_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(cat, tiger) -> eats(cat, dog)",
+          "z3_formula": "Implies(sees_cat_tiger, eats_cat_dog)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cat)",
+          "z3_formula": "eats_tiger_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, mouse)",
+          "z3_formula": "visits_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> sees(X, mouse)",
+          "z3_formula": "Implies(visits_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_cat_dog, sees_cat_dog), big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> visits(X, cat)",
+          "z3_formula": "Implies(eats_cat_dog, visits_cat_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> eats(X, mouse)",
+          "z3_formula": "Implies(And(young_tiger, nice_tiger), eats_tiger_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & red(mouse) -> visits(mouse, X)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, red_mouse), visits_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_tiger_cat, visits_cat_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & visits(cat, dog) -> visits(dog, X)",
+          "z3_formula": "Implies(And(visits_cat_dog, visits_cat_dog), visits_dog_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> eats(X, dog)",
+          "z3_formula": "Implies(sees_cat_tiger, eats_cat_dog)",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 143,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 0,
+      "total_weight": 142,
+      "solve_time_ms": 1.2060711160302162
+    },
+    "timing": {
+      "trace_gen_s": 12.166,
+      "extraction_s": 29.615,
+      "dedup_s": 1.522,
+      "maxsat_s": 0.004,
+      "total_s": 43.308
+    }
+  }
+}

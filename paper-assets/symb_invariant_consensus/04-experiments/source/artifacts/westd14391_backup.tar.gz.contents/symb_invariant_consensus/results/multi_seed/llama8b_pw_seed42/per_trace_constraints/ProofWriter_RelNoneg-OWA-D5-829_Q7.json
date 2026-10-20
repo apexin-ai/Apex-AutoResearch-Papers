@@ -1,0 +1,1229 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-829_Q7",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_rabbit), eats_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_rabbit, eats_rabbit_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_rabbit, blue_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion_rabbit, green_lion), blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(mouse, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, big_lion), visits_cow_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_lion, eats_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_lion, blue_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_cow_mouse, green_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_mouse_lion, green_lion), blue_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_mouse_cow, big_mouse), visits_cow_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_cow, green_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_cow, eats_rabbit), cold_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion, green_lion), blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_mouse_rabbit), needs_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cow, lion)",
+          "z3_formula": "eats_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_lion), blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(X)",
+          "z3_formula": "Implies(And(visits_X_cow, eats_X_rabbit), cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_mouse_rabbit), needs_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_cow, big_X), visits_X_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), eats_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 32
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), eats_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_X_cow, big_X), visits_cow_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & eats(lion, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, eats_lion_rabbit), eats_rabbit_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_X_cow, eats_X_rabbit), cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, lion) -> green(lion)",
+          "z3_formula": "Implies(visits_cow_lion, green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(lion) -> Not(blue(lion))",
+          "z3_formula": "Implies(green_lion, Not(blue_lion))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, mouse) & big(mouse) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_cow_mouse, big_mouse), visits_cow_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(mouse) -> visits(mouse, cow)",
+          "z3_formula": "Implies(big_mouse, visits_mouse_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, lion) -> cold(mouse)",
+          "z3_formula": "Implies(eats_mouse_lion, cold_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(mouse) -> blue(mouse)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(mouse) -> eats(mouse, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(eats_mouse_rabbit, cold_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(rabbit))",
+          "z3_formula": "Not(cold_rabbit) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == Unknown",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_mouse, cold_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_mouse, blue_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(X)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "lion_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_someone_lion, lion_green), blue_someone)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, rabbit)",
+          "z3_formula": "eats_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_mouse, cold_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_mouse_lion, cold_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, lion)",
+          "z3_formula": "eats_cow_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_someone_cow, eats_someone_rabbit), cold_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cow)",
+          "z3_formula": "visits_cow_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, rabbit)",
+          "z3_formula": "eats_cow_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, X)",
+          "z3_formula": "Implies(And(visits_mouse_cow, big_mouse), visits_cow_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_mouse_lion, green_lion), blue_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, cow) -> cold(X)",
+          "z3_formula": "Implies(And(visits_lion_cow, eats_lion_cow), cold_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_mouse, cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, rabbit) -> cold(rabbit)",
+          "z3_formula": "Implies(And(visits_mouse_cow, eats_mouse_rabbit), cold_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_mouse, eats_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_rabbit), eats_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, rabbit) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_rabbit), needs_rabbit_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & big(X) -> visits(cow, mouse)",
+          "z3_formula": "Implies(And(visits_cow_X, big_X), visits_cow_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(X)",
+          "z3_formula": "Implies(visits_cow_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_lion, green_lion), blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_X, eats_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_X_lion, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, Y) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, needs_mouse_cow), needs_rabbit_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, lion)",
+          "z3_formula": "visits_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & eats(X, Y) -> cold(Y)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, eats_rabbit_rabbit), cold_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, rabbit)",
+          "z3_formula": "eats_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(lion) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion_lion, green_lion), blue_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(blue_lion, eats_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_lion, cold_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(visits_rabbit_cow, green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_rabbit, cold_lion)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": []
+    }
+  ]
+}

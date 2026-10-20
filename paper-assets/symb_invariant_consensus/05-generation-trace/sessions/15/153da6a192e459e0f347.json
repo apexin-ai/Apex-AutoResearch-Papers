@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "153da6a192e459e0f347",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis g final check",
+  "task_key": "worker_analysis_g-final-check_20260520T132527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_g-final-check_20260520T132527_result.json",
+    "occurrence": 1,
+    "bytes": 546,
+    "sha256": "5eefa222143770fc47865c9f27f19ec399596eb884e2527ee89dc4c725d971fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，conservative 策略正在执行。**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **180/204** (88%) |\n| 当前 acc | **55.0%** (99/180) |\n| 速度 | 0.02 prob/s |\n| ETA | ~1500s (**约 25 分钟**) |\n| avg truncation | 4.2% |\n| trace match rate | 98% |\n\n注意：results.json 里现在只有 standard 策略的 3 题（看起来是 dry-run），conservative 的完整结果要等跑完才会写入。\n\n当前 55.0% vs SC baseline 54.41%，差距极小（+0.6pp），最终结果可能不显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-final-check.md"
+}

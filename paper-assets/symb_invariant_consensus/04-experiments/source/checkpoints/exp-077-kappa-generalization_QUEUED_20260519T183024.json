@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-077-kappa-generalization",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:30:19.744Z",
+    "updated_at": "2026-05-19T18:30:24.175Z",
+    "hypothesis": "High Fleiss kappa (low independence) is a general property of same-model aggregation, not specific to SC+SICA. LLM-Debate and Diverse-Prompt aggregation on Mistral-7B will also exhibit high kappa and low Effective K, confirming the independence bottleneck is fundamental to single-model ensembles regardless of aggregation method."
+  },
+  "timestamp": "2026-05-19T18:30:24.385434+00:00",
+  "trigger": "update_registry"
+}

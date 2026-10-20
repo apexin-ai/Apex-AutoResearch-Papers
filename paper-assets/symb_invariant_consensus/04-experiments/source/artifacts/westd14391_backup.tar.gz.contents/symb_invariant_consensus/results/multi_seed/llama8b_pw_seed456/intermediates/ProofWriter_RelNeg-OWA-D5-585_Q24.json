@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-585_Q24",
+    "problem": "The cow is not rough. The lion is green. The lion needs the cow. The lion needs the rabbit. The rabbit is not rough. The squirrel chases the rabbit. The squirrel is not rough. If something needs the squirrel then it likes the cow. If something needs the cow then it needs the squirrel. If something is round and young then it does not need the squirrel. If something is round then it does not need the rabbit. If something likes the rabbit then it chases the lion. If something needs the lion then it chases the squirrel. If the squirrel likes the cow then the cow does not need the rabbit. If the squirrel likes the cow and the squirrel is not green then the squirrel needs the rabbit. If something needs the squirrel then the squirrel needs the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow likes the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nRough(cow, False) ::: The cow is not rough.\nGreen(lion, True) ::: The lion is green.\nNeeds(lion, cow, True) ::: The lion needs the cow.\nNeeds(lion, rabbit, True) ::: The lion needs the rabbit.\nRough(rabbit, False) ::: The rabbit is not rough.\nChases(squirrel, rabbit, True) ::: The squirrel chases the rabbit.\nRough(squirrel, False) ::: The squirrel is not rough.\n\nRules:\nNeeds($x, squirrel, True) >>> Likes($x, cow, True) ::: If something needs the squirrel then it likes the cow.\nNeeds($x, cow, True) >>> Needs($x, squirrel, True) ::: If something needs the cow then it needs the squirrel.\nRound($x, True) && Young($x, True) >>> Needs($x, squirrel, False) ::: If something is round and young then it does not need the squirrel.\nRound($x, True) >>> Needs($x, rabbit, False) ::: If something is round then it does not need the rabbit.\nLikes($x, rabbit, True) >>> Chases($x, lion, True) ::: If something likes the rabbit then it chases the lion.\nNeeds($x, lion, True) >>> Chases($x, squirrel, True) ::: If something needs the lion then it chases the squirrel.\nLikes(squirrel, cow, True) >>> Needs(cow, rabbit, False) ::: If the squirrel likes the cow then the cow does not need the rabbit.\nLikes(squirrel, cow, True) && Green(squirrel, False) >>> Needs(squirrel, rabbit, True) ::: If the squirrel likes the cow and the squirrel is not green then the squirrel needs the rabbit.\nNeeds($x, squirrel, True) >>> Needs(squirrel, cow, True) ::: If something needs the squirrel then the squirrel needs the cow.\n\nQuery:\nLikes(cow, squirrel, True) ::: The cow likes the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

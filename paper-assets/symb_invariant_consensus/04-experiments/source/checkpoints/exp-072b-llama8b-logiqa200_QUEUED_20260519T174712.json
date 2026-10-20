@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-072b-llama8b-logiqa200",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:46:38.067Z",
+    "updated_at": "2026-05-19T17:47:12.288Z",
+    "hypothesis": "LLaMA-3.1-8B-Instruct on LogiQA-200 with canonical SICA code (k=12, seed=42)（重跑）。exp-072 因 session crash 失败。产出 valid comparable SICA scores，replacing exp-069 which used outdated code.",
+    "parent": "exp-072-llama8b-logiqa200"
+  },
+  "timestamp": "2026-05-19T17:47:12.804438+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp-030-crossmodel-mistral-folio204",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:47:46.451Z",
+    "updated_at": "2026-05-18T16:16:11.345Z",
+    "hypothesis": "Cross-model extraction: Mistral-7B 从 Qwen2.5-14B 的 FOLIO 204 traces 中提取 constraints，能否打破 same-model capability trap？不同模型有不同的 extraction bias，Mistral 可能提取出 Qwen self-extraction 遗漏的 discriminative constraints。目标 discriminative_rate >8.2%（baseline），recovery_rate >0%。",
+    "parent": "exp-026-folio204-trace-regen",
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_exp030_crossmodel_mistral.sh",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "46525",
+      "log_path": "~/runs/symb_invariant_consensus/exp-030-crossmodel-mistral-folio204.log",
+      "submitted_at": "2026-05-18T14:50:47.962Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/symb_invariant_consensus/results/folio_204_14b/intermediates/",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "exp-026-folio204-trace-regen",
+      "eval_data": "FOLIO-204",
+      "wall_clock_seconds": 5123.4,
+      "gpu_hours": 1.42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n": 204,
+      "k": 12,
+      "crossmodel_sica_accuracy": 0.75,
+      "sc_accuracy": 0.75,
+      "delta_pp": 0,
+      "discriminative_rate": 0,
+      "recovery_rate": 0,
+      "model_extraction": "Mistral-7B-Instruct-v0.3",
+      "model_traces": "Qwen2.5-14B-Instruct",
+      "dataset": "FOLIO-204"
+    },
+    "notes": "NEGATIVE. Cross-model extraction (Mistral-7B extracts constraints from Qwen2.5-14B traces) 完全无效：SICA = SC = 75.00%, discriminative_rate=0%, recovery_rate=0%. Mistral 虽然是不同模型家族，但提取的 constraints 同样缺乏判别力。这进一步强化 capability trap 结论：问题不在 same-model bias，而在 LLM extraction 本身的能力限制——无论哪个模型做 extraction，都无法从 CoT traces 中提取出对答案有判别力的 symbolic constraints。论文 claim: cross-model 不是 rescue path。",
+    "checkpoint_path": "/root/symb_invariant_consensus/results/cross_model_mistral_folio/",
+    "completed_at": "2026-05-18T16:16:11.345Z"
+  },
+  "timestamp": "2026-05-18T16:16:11.502897+00:00",
+  "trigger": "update_registry"
+}

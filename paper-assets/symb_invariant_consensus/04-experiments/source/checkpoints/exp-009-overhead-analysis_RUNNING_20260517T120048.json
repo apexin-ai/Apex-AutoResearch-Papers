@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp-009-overhead-analysis",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:51:43.293Z",
+    "updated_at": "2026-05-17T12:00:48.301Z",
+    "hypothesis": "SICA pipeline 的 wall-time overhead breakdown: trace generation vs constraint extraction vs MaxSAT solving 各占多少——量化 SICA 相对 SC 的额外计算成本",
+    "metrics": {
+      "n": 804,
+      "mean_total_wall_s": 61.6,
+      "mean_trace_gen_s": 31.6,
+      "trace_gen_pct": 51.3,
+      "mean_extract_s": 29,
+      "extract_pct": 47,
+      "mean_dedup_s": 1,
+      "dedup_pct": 1.6,
+      "mean_maxsat_s": 0.003,
+      "maxsat_pct": 0.005,
+      "sica_overhead_s": 30,
+      "sica_overhead_pct": 48.7,
+      "pw_overhead_pct": 51.3,
+      "folio_overhead_pct": 38.6,
+      "p50_overhead_pct": 48.9,
+      "p90_overhead_pct": 57.6
+    },
+    "conclusion": "success",
+    "notes": "SICA overhead 分析 (804题)：总时间 61.6s/题，其中 trace 生成 31.6s (51.3%)，约束提取 29.0s (47.0%)，去重 1.0s (1.6%)，MaxSAT 0.003s (≈0%)。SICA vs SC 多花 30.0s/题 (+48.7%)，开销几乎全部来自 constraint extraction LLM 调用。MaxSAT 求解可忽略。论文 insight：SICA 的计算瓶颈不在 formal reasoning (SAT) 而在 LLM extraction，且 extraction 产出的约束缺乏判别力——高成本低回报。",
+    "spec": {
+      "command": "CPU-only analysis of exp-001 timing data",
+      "server": "westd-32608",
+      "data_path": "/root/symb_invariant_consensus/results/",
+      "data_count": 804,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T12:00:48.390846+00:00",
+  "trigger": "update_registry"
+}

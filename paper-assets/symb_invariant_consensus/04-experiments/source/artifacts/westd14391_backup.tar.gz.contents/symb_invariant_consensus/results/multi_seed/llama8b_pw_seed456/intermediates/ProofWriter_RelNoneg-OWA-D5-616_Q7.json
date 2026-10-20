@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-616_Q7",
+    "problem": "The bald eagle is big. The bald eagle likes the cow. The bald eagle sees the rabbit. The cow is big. The cow sees the bald eagle. The dog is big. The dog is young. The dog likes the bald eagle. The rabbit sees the bald eagle. The rabbit visits the bald eagle. If the bald eagle sees the rabbit then the rabbit is big. If something likes the bald eagle then it is blue. If something likes the rabbit and the rabbit visits the cow then the cow is young. If something visits the rabbit then it is round. If something is round and it sees the cow then the cow sees the rabbit. If something is big then it visits the cow. If something sees the rabbit then the rabbit visits the bald eagle. If something is blue then it likes the rabbit. If something likes the cow and the cow is young then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nBig(Cow, True) ::: The cow is big.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nBig(Dog, True) ::: The dog is big.\nYoung(Dog, True) ::: The dog is young.\nLikes(Dog, BaldEagle, True) ::: The dog likes the bald eagle.\nSees(Rabbit, BaldEagle, True) ::: The rabbit sees the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nSees(BaldEagle, Rabbit, True) >>> Big(Rabbit, True) ::: If the bald eagle sees the rabbit then the rabbit is big.\nLikes($x, BaldEagle, True) >>> Blue($x, True) ::: If something likes the bald eagle then it is blue.\nLikes($x, Rabbit, True) && Visits(Rabbit, Cow, True) >>> Young(Cow, True) ::: If something likes the rabbit and the rabbit visits the cow then the cow is young.\nVisits($x, Rabbit, True) >>> Round($x, True) ::: If something visits the rabbit then it is round.\nRound($x, True) && Sees($x, Cow, True) >>> Sees(Cow, Rabbit, True) ::: If something is round and it sees the cow then the cow sees the rabbit.\nBig($x, True) >>> Visits($x, Cow, True) ::: If something is big then it visits the cow.\nSees($x, Rabbit, True) >>> Visits(Rabbit, BaldEagle, True) ::: If something sees the rabbit then the rabbit visits the bald eagle.\nBlue($x, True) >>> Likes($x, Rabbit, True) ::: If something is blue then it likes the rabbit.\nLikes($x, Cow, True) && Young(Cow, True) >>> Blue($x, True) ::: If something likes the cow and the cow is young then it is blue.\n\nQuery:\nYoung(Cow, True) ::: The cow is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

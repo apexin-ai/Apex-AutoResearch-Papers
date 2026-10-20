@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1187_Q7",
+    "problem": "Anne is kind. Anne is young. Bob is rough. Charlie is cold. Charlie is kind. Charlie is rough. Charlie is smart. Fiona is kind. Fiona is rough. Fiona is smart. Rough, cold things are smart. All young things are kind. All kind things are blue. Young things are cold. If something is rough then it is cold. All young, blue things are kind. If something is cold and smart then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nYoung(Anne, True) ::: Anne is young.\nRough(Bob, True) ::: Bob is rough.\nCold(Charlie, True) ::: Charlie is cold.\nKind(Charlie, True) ::: Charlie is kind.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nRough($x, True) && Cold($x, True) >>> Smart($x, True) ::: Rough, cold things are smart.\nYoung($x, True) >>> Kind($x, True) ::: All young things are kind.\nKind($x, True) >>> Blue($x, True) ::: All kind things are blue.\nYoung($x, True) >>> Cold($x, True) ::: Young things are cold.\nRough($x, True) >>> Cold($x, True) ::: If something is rough then it is cold.\nYoung($x, True) && Blue($x, True) >>> Kind($x, True) ::: All young, blue things are kind.\nCold($x, True) && Smart($x, True) >>> Young($x, True) ::: If something is cold and smart then it is young.\n\nQuery:\nYoung(Bob, True) ::: Bob is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,964 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-550_Q16",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(fiona))",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), Not(nice_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_fiona, nice_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), Not(green_fiona))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_X, round_X), not_nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_X, furry_X), not_green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "not_nice_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "not_furry_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "not_green_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not_blue_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), Not(nice_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), Not(green_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_X, round_X), not_nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_X, furry_X), not_green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), not nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), not green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne) | furry(bob) | furry(fiona)",
+          "z3_formula": "Or(furry_anne, furry_bob, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne) | green(bob) | green(fiona)",
+          "z3_formula": "Or(green_anne, green_bob, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_round_X, round_X), Not(nice_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_blue_X, blue_X), nice_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(nice(X)) | not(furry(X)) | green(X)",
+          "z3_formula": "Or(Not(nice_X), Not(furry_X), green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), Not(nice_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), Not(green_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all(nice(X), not(green(X)))",
+          "z3_formula": "Forall(X, Implies(nice_X, Not(green_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "all(furry(X), green(X))",
+          "z3_formula": "Forall(X, Implies(furry_X, green_X))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "all(nice(X), furry(X)) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(fiona))",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 14
+        }
+      ]
+    }
+  ]
+}

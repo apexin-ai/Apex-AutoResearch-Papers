@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-532_Q7",
+    "problem": "Anne is furry. Anne is rough. Bob is cold. Bob is green. Bob is red. Gary is cold. Gary is quiet. Gary is red. Harry is not cold. Harry is red. Red things are not kind. If something is cold and not furry then it is not kind. Green, rough things are quiet. If something is furry and cold then it is quiet. If Bob is furry then Bob is green. Rough things are green. If something is kind and not furry then it is green. All quiet things are cold. Cold things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nQuiet($x, bool) ::: Is x quiet?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nCold(Harry, False) ::: Harry is not cold.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRed($x, True) >>> Kind($x, False) ::: Red things are not kind.\nCold($x, True) && Furry($x, False) >>> Kind($x, False) ::: If something is cold and not furry then it is not kind.\nGreen($x, True) && Rough($x, True) >>> Quiet($x, True) ::: Green, rough things are quiet.\nFurry($x, True) && Cold($x, True) >>> Quiet($x, True) ::: If something is furry and cold then it is quiet.\nFurry(Bob, True) >>> Green(Bob, True) ::: If Bob is furry then Bob is green.\nRough($x, True) >>> Green($x, True) ::: Rough things are green.\nKind($x, True) && Furry($x, False) >>> Green($x, True) ::: If something is kind and not furry then it is green.\nQuiet($x, True) >>> Cold($x, True) ::: All quiet things are cold.\nCold($x, True) >>> Red($x, True) ::: Cold things are red.\n\nQuery:\nCold(Anne, True) ::: Anne is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

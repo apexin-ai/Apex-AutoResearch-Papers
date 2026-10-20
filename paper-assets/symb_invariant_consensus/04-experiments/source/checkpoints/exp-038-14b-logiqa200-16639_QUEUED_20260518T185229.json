@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-038-14b-logiqa200-16639",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:01:33.795Z",
+    "updated_at": "2026-05-18T18:52:29.630Z",
+    "hypothesis": "Qwen2.5-14B-Instruct 在 LogiQA 2.0 (200题) 上 SICA vs SC：跨数据集验证 capability trap。LogiQA 是多选逻辑推理（非二元分类），constraint extraction 和 Z3 formalization 需要适配不同推理类型。"
+  },
+  "timestamp": "2026-05-18T18:52:29.749860+00:00",
+  "trigger": "update_registry"
+}

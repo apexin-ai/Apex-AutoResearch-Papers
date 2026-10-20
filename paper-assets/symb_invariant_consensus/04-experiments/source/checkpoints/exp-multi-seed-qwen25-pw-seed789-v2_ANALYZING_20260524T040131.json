@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-multi-seed-qwen25-pw-seed789-v2",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:10:25.973Z",
+    "updated_at": "2026-05-24T04:01:31.277Z",
+    "hypothesis": "Qwen2.5-14B PW seed789 多种子复制（第三次尝试，独立 vLLM on cuda:2 port 8007）。验证 SCB 在 ProofWriter 上跨 seed 稳定性。前两次因 vLLM 配置问题失败。",
+    "parent": "exp-multi-seed-qwen25",
+    "spec": {
+      "command": "python run_cross_dataset_replication.py --dataset proofwriter --data-path data/proofwriter_full.json --k 12 --vllm-port 8007 --seed 789 --temperature 0.7 --max-tokens 2048 --output results/multi_seed/qwen25_pw_seed789/results.json",
+      "server": "westd-16639",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "740841",
+      "log_path": "~/runs/symb_invariant_consensus/exp-multi-seed-qwen25-pw-seed789-v2.log",
+      "submitted_at": "2026-05-23T04:10:47.302Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/proofwriter_full.json",
+      "data_count": 600,
+      "model_name": "Qwen2.5-14B-Instruct",
+      "seed": 789,
+      "checkpoint_source": "vllm-served:/root/autodl-tmp/models/Qwen2.5-14B-Instruct",
+      "eval_data": "data/proofwriter_full.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T04:01:30.322Z"
+    }
+  },
+  "timestamp": "2026-05-24T04:01:31.747128+00:00",
+  "trigger": "update_registry"
+}

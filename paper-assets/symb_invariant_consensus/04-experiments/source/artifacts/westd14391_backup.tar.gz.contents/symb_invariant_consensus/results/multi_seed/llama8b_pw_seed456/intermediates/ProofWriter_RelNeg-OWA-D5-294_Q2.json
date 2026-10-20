@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-294_Q2",
+    "problem": "The cat eats the squirrel. The cat is round. The cat needs the dog. The cat needs the squirrel. The dog likes the cat. The dog likes the tiger. The squirrel is blue. The squirrel is not round. The tiger is blue. The tiger is kind. The tiger is round. The tiger needs the squirrel. If something likes the tiger and the tiger needs the dog then it is round. If something eats the cat then it needs the dog. If something is big then it needs the dog. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel. If something is round then it eats the cat. If something needs the cat and it eats the tiger then the tiger needs the dog. If something needs the dog and it does not eat the tiger then it is blue. If the dog is round then the dog eats the squirrel. If something likes the tiger and it is kind then the tiger likes the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(Cat, Squirrel, True) ::: The cat eats the squirrel.\nRound(Cat, True) ::: The cat is round.\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nNeeds(Cat, Squirrel, True) ::: The cat needs the squirrel.\nLikes(Dog, Cat, True) ::: The dog likes the cat.\nLikes(Dog, Tiger, True) ::: The dog likes the tiger.\nBlue(Squirrel, True) ::: The squirrel is blue.\nRound(Squirrel, False) ::: The squirrel is not round.\nBlue(Tiger, True) ::: The tiger is blue.\nKind(Tiger, True) ::: The tiger is kind.\nRound(Tiger, True) ::: The tiger is round.\nNeeds(Tiger, Squirrel, True) ::: The tiger needs the squirrel.\n\nRules:\nLikes($x, Tiger, True) && Needs(Tiger, Dog, True) >>> Round($x, True) ::: If something likes the tiger and the tiger needs the dog then it is round.\nEats($x, Cat, True) >>> Needs($x, Dog, True) ::: If something eats the cat then it needs the dog.\nBig($x, True) >>> Needs($x, Dog, True) ::: If something is big then it needs the dog.\nLikes(Dog, Tiger, True) && Likes(Tiger, Dog, True) >>> Likes(Dog, Squirrel, False) ::: If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\nRound($x, True) >>> Eats($x, Cat, True) ::: If something is round then it eats the cat.\nNeeds($x, Cat, True) && Eats($x, Tiger, True) >>> Needs(Tiger, Dog, True) ::: If something needs the cat and it eats the tiger then the tiger needs the dog.\nNeeds($x, Dog, True) && Eats($x, Tiger, False) >>> Blue($x, True) ::: If something needs the dog and it does not eat the tiger then it is blue.\nRound(Dog, True) >>> Eats(Dog, Squirrel, True) ::: If the dog is round then the dog eats the squirrel.\nLikes($x, Tiger, True) && Kind($x, True) >>> Likes(Tiger, Cat, True) ::: If something likes the tiger and it is kind then the tiger likes the cat.\n\nQuery:\nBlue(Tiger, False) ::: The tiger is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

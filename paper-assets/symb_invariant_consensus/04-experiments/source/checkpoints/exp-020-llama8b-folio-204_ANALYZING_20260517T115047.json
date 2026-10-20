@@ -1,0 +1,73 @@
+{
+  "exp_id": "exp-020-llama8b-folio-204",
+  "project": "symb_invariant_consensus",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:12:49.897Z",
+    "updated_at": "2026-05-17T11:50:47.849Z",
+    "hypothesis": "Powered FOLIO test: SICA 在弱模型（LLaMA-3.1-8B）上 FOLIO 全量 204 题是否达到统计显著——FOLIO 在 exp-011 中信号最强（+10pp, bootstrap p≈0.04），n=204 几乎必然显著。保险实验：若 StrategyQA discordant rate 低导致 underpowered。",
+    "parent": "exp-011-llama8b-v3",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && bash scripts/run_exp020_folio_200.sh\"",
+      "server": "westd-32608",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "309318",
+      "log_path": "~/runs/symb_invariant_consensus/exp-020-llama8b-folio-204.log",
+      "submitted_at": "2026-05-17T09:12:58.789Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/symb_invariant_consensus/data/folio_204.jsonl",
+      "data_count": 204,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (inference-only, no checkpoint)",
+      "eval_data": "FOLIO full dataset 204 problems"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T11:27:04.546Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T11:27:06.717657+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n": 204,
+      "k": 12,
+      "sica_accuracy": 0.608,
+      "sc_accuracy": 0.632,
+      "delta_pp": -2.45,
+      "mcnemar_p": 0.2668,
+      "bootstrap_ci_95": [
+        -5.88,
+        0.98
+      ],
+      "bootstrap_p_sica_ge_sc": 0.1,
+      "discordant_sica_wins": 4,
+      "discordant_sc_wins": 9,
+      "discordant_total": 13,
+      "discordant_rate": 0.064,
+      "multi_candidate_rate": 0.618,
+      "extraction_rate": 0.942,
+      "answer_extraction_rate": 0.951,
+      "contradiction_rate": 0.062,
+      "both_wrong": 71,
+      "model": "LLaMA-3.1-8B-Instruct",
+      "dataset": "FOLIO-204",
+      "wall_time_min": 131.7
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T11:50:47.932369+00:00",
+  "trigger": "update_registry"
+}

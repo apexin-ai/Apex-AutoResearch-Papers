@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp-027-qwen3-14b-non-thinking",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:02:11.425Z",
+    "updated_at": "2026-05-18T17:58:11.787Z",
+    "hypothesis": "Qwen3-14B（代际升级）在 non-thinking mode 下 FOLIO 204 的 SICA vs SC：capability trap 是否在次世代模型持续？预期 Qwen3 基础能力提升使 SC baseline 更高，但 self-extraction 质量仍不足以产生 SICA 增益（delta≈0），证明 capability trap 是结构性的而非模型能力不足。",
+    "parent": "sica_expanded_14b",
+    "spec": {
+      "command": "bash /root/symb_invariant_consensus/scripts/run_qwen3_14b_nonthinking.sh",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "38106",
+      "log_path": "~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log",
+      "submitted_at": "2026-05-18T14:08:01.969Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/symb_invariant_consensus/data/folio_full.json",
+      "data_count": 204,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-14B (HuggingFace)",
+      "eval_data": "FOLIO-204",
+      "wall_clock_seconds": 13809.8,
+      "gpu_hours": 3.84
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n": 204,
+      "k": 12,
+      "sica_accuracy": 0.8431,
+      "sc_accuracy": 0.8382,
+      "delta_pp": 0.49,
+      "extraction_rate": 0.995,
+      "contradiction_rate": 0.0283,
+      "problems_with_contradictions": 69,
+      "total_constraints": 16153,
+      "unique_constraints": 7031,
+      "wall_time_s": 11017,
+      "model": "Qwen3-14B",
+      "dataset": "FOLIO-204",
+      "mode": "non-thinking"
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/qwen3_14b_folio204_nonthinking/",
+    "notes": "Qwen3-14B non-thinking FOLIO-204: SICA 84.31% vs SC 83.82%, delta=+0.49pp。Qwen3 SC baseline 83.82% 远高于 Qwen2.5-14B 的 75.00% (+8.82pp)，证明 Qwen3 基础能力显著提升。但 SICA-SC gap 仍≈0 (+0.49pp)，capability trap 在次世代模型上持续。Extraction rate 99.5% (vs 14B 98.5%)，contradiction rate 2.83%。论文价值：(1) 证明 capability trap 是结构性的，非模型能力不足；(2) 代际升级提升 SC 不提升 SICA delta。",
+    "completed_at": "2026-05-18T17:58:11.787Z"
+  },
+  "timestamp": "2026-05-18T17:58:11.931152+00:00",
+  "trigger": "update_registry"
+}

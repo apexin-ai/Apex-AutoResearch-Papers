@@ -1,0 +1,1602 @@
+# deploy exp 083 icg logiqa seed123 25068
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/chats/worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113.jsonl`
+- **Structured JSON:** [`7e21fc798b19edd4aaef.json`](../../sessions/7e/7e21fc798b19edd4aaef.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+55 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T21:16:05.740317+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T21:16:05.740614+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T21:16:05.740770+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "curl -s http://localhost:8001/health && echo \"8001_READY\" || echo \"8001_DOWN\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "curl -s http://localhost:8001/health && echo \"8001_READY\" || echo \"8001_DOWN\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T21:16:05.740937+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T21:16:05.741078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "nvidia-smi -i 1 --query-compute-apps=pid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "nvidia-smi -i 1 --query-compute-apps=pid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T21:16:05.741209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"278162, 89880 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T21:16:05.741356+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "curl -s http://localhost:8001/health; echo \"\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "curl -s http://localhost:8001/health; echo \"\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T21:16:05.741475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps -p 278162 -o pid,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ps -p 278162 -o pid,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T21:16:05.741611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T21:16:05.741731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"278162 VLLM::EngineCore\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T21:16:05.741892+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "curl -s http://localhost:8001/v1/models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "curl -s http://localhost:8001/v1/models"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T21:16:05.742062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"object\\\":\\\"list\\\",\\\"data\\\":[{\\\"id\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"object\\\":\\\"model\\\",\\\"created\\\":1779225111,\\\"owned_by\\\":\\\"vllm\\\",\\\"root\\\":\\\"/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\\",\\\"parent\\\":null,\\\"max_model_len\\\":8192,\\\"permission\\\":[{\\\"id\\\":\\\"modelperm-87cac7d4f0a0007b\\\",\\\"object\\\":\\\"model_permission\\\",\\\"created\\\":1779225111,\\\"allow_create_engine\\\":false,\\\"allow_sampling\\\":true,\\\"allow_logprobs\\\":true,\\\"allow_search_indices\\\":false,\\\"allow_view\\\":true,\\\"allow_fine_tuning\\\":false,\\\"organization\\\":\\\"*\\\",\\\"group\\\":null,\\\"is_blocking\\\":false}]}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T21:16:05.742210+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "hypothesis",
+  "value": "ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "hypothesis",
+    "value": "ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T21:16:05.742349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-083-icg-mistral-logiqa-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:11:59.619Z\", \"updated_at\": \"2026-05-19T21:11:59.619Z\", \"hypothesis\": \"ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5028}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T21:16:05.742474+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "parent",
+  "value": "exp-079-icg-mistral-logiqa200",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "parent",
+    "value": "exp-079-icg-mistral-logiqa200",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T21:16:05.742607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-083-icg-mistral-logiqa-seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:11:59.619Z\", \"updated_at\": \"2026-05-19T21:12:00.414Z\", \"hypothesis\": \"ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。\", \"parent\": \"exp-079-icg-mistral-logiqa200\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5609}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T21:16:05.742751+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cd /root/symb_invariant_consensus && mkdir -p results/exp083_icg_mistral_logiqa_seed123 && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --dataset logiqa --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates 2>&1 | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cd /root/symb_invariant_consensus && mkdir -p results/exp083_icg_mistral_logiqa_seed123 && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --dataset logiqa --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates 2>&1 | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T21:16:05.742897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: run_icg.py [-h] [--data DATA] [--output OUTPUT] [--mode {vllm}] [--k K]\\n                  [--k-icg K_ICG] [--temperature TEMPERATURE]\\n                  [--max-tokens MAX_TOKENS] [--api-base API_BASE]\\n                  [--api-key API_KEY] [--model MODEL] [--seed SEED]\\n                  [--maxsat-timeout MAXSAT_TIMEOUT]\\n                  [--max-retries MAX_RETRIES] [--resume]\\n                  [--save-intermediates] [--dry-run DRY_RUN]\\nrun_icg.py: error: unrecognized arguments: --dataset logiqa\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T21:16:05.743059+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"dataset\\|add_argument\" /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -n \"dataset\\|add_argument\" /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T21:16:05.743181+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T21:16:05.743297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"add_argument\\|dataset\" /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -n \"add_argument\\|dataset\" /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T21:16:05.743411+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T21:16:05.743526+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -n \"add_argument\" /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -n \"add_argument\" /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T21:16:05.743666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"266:    parser.add_argument(\\\"--data\\\", default=\\\"data/folio_full.json\\\")\\n267:    parser.add_argument(\\\"--output\\\", default=\\\"results/exp074_icg/results.json\\\")\\n268:    parser.add_argument(\\\"--mode\\\", choices=[\\\"vllm\\\"], default=\\\"vllm\\\")\\n269:    parser.add_argument(\\\"--k\\\", type=int, default=12, help=\\\"SC trace count\\\")\\n270:    parser.add_argument(\\\"--k-icg\\\", type=int, default=10, help=\\\"ICG sampling count\\\")\\n271:    parser.add_argument(\\\"--temperature\\\", type=float, default=0.7)\\n272:    parser.add_argument(\\\"--max-tokens\\\", type=int, default=4096)\\n273:    parser.add_argument(\\\"--api-base\\\", default=\\\"http://localhost:8000/v1\\\")\\n274:    parser.add_argument(\\\"--api-key\\\", default=\\\"EMPTY\\\")\\n275:    parser.add_argument(\\\"--model\\\", default=\\\"auto\\\")\\n276:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n277:    parser.add_argument(\\\"--maxsat-timeout\\\", type=int, default=10000)\\n278:    parser.add_argument(\\\"--max-retries\\\", type=int, default=3, help=\\\"Max retries per ICG sample\\\")\\n279:    parser.add_argument(\\\"--resume\\\", action=\\\"store_true\\\")\\n280:    parser.add_argument(\\\"--save-intermediates\\\", action=\\\"store_true\\\")\\n281:    parser.add_argument(\\\"--dry-run\\\", type=int, default=0, help=\\\"Only process N problems (0=all)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T21:16:05.743827+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/data/logiqa_200.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/data/logiqa_200.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T21:16:05.743967+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "grep -rn \"dataset\" /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "grep -rn \"dataset\" /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T21:16:05.744089+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 398032 May 19 01:33 /root/symb_invariant_consensus/data/logiqa_200.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T21:16:05.744207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13:Input:  FOLIO-204 dataset (data/folio_full.json)\\n255:        p.setdefault(\\\"dataset\\\", \\\"folio\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T21:16:05.744350+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -260 /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -260 /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T21:16:05.744600+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nICG (Independent Constraint Generation) Pipeline for FOLIO-204.\\n\\nCore idea: generate FOL constraints independently from the problem text\\n(not from reasoning traces), then use MAX-SAT scoring to rerank SC candidates.\\nThis ensures constraints are independent of the reasoning process.\\n\\nThree phases:\\n  Phase 1: SC trace generation (K traces) -> majority vote baseline\\n  Phase 2: Independent constraint generation from premises (K_icg samplings, no solving)\\n  Phase 3: MAX-SAT scoring of SC candidate answers using independent constraints\\n\\nInput:  FOLIO-204 dataset (data/folio_full.json)\\nOutput: JSON with per-problem sc_answer/icg_answer/ground_truth + summary metrics\\n\\nDependencies: sica.trace_generator, sica.z3_maxsat, sica.scorer,\\n              sica.pipeline (normalize_logic_answer, _group_logic_answers),\\n              baselines.self_consistency\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport asyncio\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\\n\\nimport openai\\n\\nfrom sica.trace_generator import VLLMGenerator, extract_boxed_answer\\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver, parse_z3_formula\\nfrom sica.scorer import InvariantScorer\\nfrom sica.pipeline import normalize_logic_answer, _group_logic_answers\\nfrom baselines.self_consistency import SelfConsistency\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(__name__)\\n\\n# ---------------------------------------------------------------------------\\n# ICG Prompt — few-shot examples improve Z3 format compliance on 7B models\\n# ------------------------------------------------------
+…[truncated 7181 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T21:16:05.744778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "head -5 /root/symb_invariant_consensus/data/logiqa_200.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "head -5 /root/symb_invariant_consensus/data/logiqa_200.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T21:16:05.744920+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "tail -30 /root/symb_invariant_consensus/run_icg.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "tail -30 /root/symb_invariant_consensus/run_icg.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T21:16:05.745058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"id\\\": \\\"logiqa_000\\\",\\n    \\\"problem\\\": \\\"Context: One seminar had 18 participants. It is known that :(1) At least 5 young teachers are female; (2) At least 6 female teachers are over middle age; (3) At least seven young women are teachers;\\\\n\\\\nQuestion: According to the above information, which of the following can be concluded about the participants?\\\\n\\\\nA. Some young teachers are not women\\\\nB. Some young women are not teachers\\\\nC. There are at least 11 young teachers\\\\nD. There are at least 13 female teachers\\\",\\n    \\\"answer\\\": \\\"D\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T21:16:05.745202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"delta\\\": round(icg_acc - sc_acc, 4),\\n            \\\"k\\\": args.k,\\n            \\\"k_icg\\\": args.k_icg,\\n            \\\"temperature\\\": args.temperature,\\n            \\\"seed\\\": args.seed,\\n            \\\"mode\\\": args.mode,\\n            \\\"total_wall_time_s\\\": round(time.time() - total_start, 1),\\n        }\\n        output = {\\\"summary\\\": summary, \\\"results\\\": all_results}\\n        with open(args.output, \\\"w\\\") as f:\\n            json.dump(output, f, indent=2, default=str)\\n\\n    # Final summary\\n    n = len(all_results)\\n    if n > 0:\\n        sc_acc = sum(1 for r in all_results if r[\\\"sc_correct\\\"]) / n\\n        icg_acc = sum(1 for r in all_results if r[\\\"icg_correct\\\"]) / n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"FINAL RESULTS ({n} FOLIO problems)\\\")\\n        print(f\\\"  SC:    {sc_acc:.4f} ({sum(1 for r in all_results if r['sc_correct'])}/{n})\\\")\\n        print(f\\\"  ICG:   {icg_acc:.4f} ({sum(1 for r in all_results if r['icg_correct'])}/{n})\\\")\\n        print(f\\\"  Delta: {icg_acc - sc_acc:+.4f}\\\")\\n        print(f\\\"  Wall:  {(time.time() - total_start)/60:.1f} min\\\")\\n        print(f\\\"Results saved to {args.output}\\\")\\n\\n    print(\\\"ICG_PIPELINE_DONE\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T21:16:05.745370+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 2>&1 | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 2>&1 | head -50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T21:16:05.745514+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 2>&1 | head -50'\\n\\nStdout:\\n\\n2026-05-20 05:13:37,506 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:13:38,728 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:13:38,738 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:13:38,740 INFO ICG sample 6 attempt 0: JSON ok but 0/6 constraints parsed\\n2026-05-20 05:13:39,621 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:13:39,623 INFO ICG sample 2 attempt 0: no valid JSON (raw= {\\\"constraints\\\": [\\n  {\\\"type\\\": \\\"fact\\\", \\\"expression\\\": \\\"Number of participants is 18\\\", \\\"z3_formula\\\": \\\"participant_count == 18\\\"},\\n  {\\\"type\\\": \\\"rule\\\", \\\"expression\\\": \\\"If a teacher is young and female, they a)\\n2026-05-20 05:13:41,013 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:13:42,627 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTT\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T21:16:05.745697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ls -la /root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123/dryrun.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ls -la /root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123/dryrun.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T21:16:05.745828+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/symb_invariant_consensus/results/exp083_icg_mistral_logiqa_seed123/dryrun.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T21:16:05.745979+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cd /root/symb_invariant_consensus && nohup python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 > /tmp/dryrun_083.log 2>&1 &"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cd /root/symb_invariant_consensus && nohup python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 > /tmp/dryrun_083.log 2>&1 &"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T21:16:05.746105+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/symb_invariant_consensus && nohup python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/dryrun.json --save-intermediates --dry-run 2 > /tmp/dryrun_083.log 2>&1 &'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T21:16:05.746234+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "ps aux --no-headers -C python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "ps aux --no-headers -C python"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T21:16:05.746432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3192 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\nroot       1216  2.7  0.0 719328 20456 ?        Sl   May18  64:49 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1238  0.0  0.0  15444  8364 ?        S    May18   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1239  0.0  0.0 2574324 18920 ?       Sl   May18   0:30 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1240  0.2  0.0 6894804 104244 ?      Sl   May18   4:46 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1241  0.0  0.0 2794752 20764 ?       Sl   May18   1:48 proxy -c /init/proxy/proxy.ini\\nroot       1244  0.0  0.0 4146692 76636 ?       Sl   May18   1:32 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1245  0.0  0.0 182296 94944 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1346  0.1  0.0 28341192 11196 ?      Sl   May18   2:22 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_miuiz7wm/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_miuiz7wm/startup_error\\nroot      38105  0.0  0.0  14456  9036 ?        Ss   May18   1:32 tmux new-session -d -s exp-027-qwen3-14b-non-thinking rm -f /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/symb_invariant_consensus/exp-027-qwen3-14b-non-thinking.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp-027-qwen3-14b-non-thinking.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/sym
+…[truncated 6379 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T21:16:05.746618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "command": "cat /tmp/dryrun_083.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-25068",
+    "command": "cat /tmp/dryrun_083.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T21:16:05.746861+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 05:14:24,990 INFO Loaded 200 FOLIO problems from data/logiqa_200.json\\n2026-05-20 05:14:24,990 INFO Dry-run: processing 2 problems\\n2026-05-20 05:14:25,195 INFO HTTP Request: GET http://localhost:8001/v1/models \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:25,197 INFO Auto-detected model: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\n2026-05-20 05:14:25,208 INFO HTTP Request: GET http://localhost:8001/v1/models \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:25,208 INFO ICG auto-detected model: /root/autodl-tmp/models/Mistral-7B-Instruct-v0.3\\n2026-05-20 05:14:25,208 INFO Remaining: 2 problems\\n\\n============================================================\\n[1/2] Problem logiqa_000\\n2026-05-20 05:14:29,978 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:30,268 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:30,424 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:30,938 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:31,334 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:31,490 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:31,573 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:31,917 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:32,036 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:32,596 INFO HTTP Request: POST http://localhost:8001/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-20 05:14:32,726 INFO HTTP Request: POST http://localhost:8001/v1/chat
+…[truncated 7026 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T21:16:05.747059+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westd-25068",
+  "gpu_ids": "['cuda:1']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates\"",
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "project": "symb_invariant_consensus",
+  "timeout_hours": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westd-25068",
+    "gpu_ids": "['cuda:1']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates\"",
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "project": "symb_invariant_consensus",
+    "timeout_hours": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T21:16:05.747203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"287652\", \"log_file\": \"~/runs/symb_invariant_consensus/exp-083-icg-mistral-logiqa-seed123.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-25068\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"exp-083-icg-mistral-logiqa-seed123\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T21:16:05.747328+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T21:16:05.747461+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2913}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T21:16:05.747581+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "symb_invariant_consensus"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T21:16:05.747721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-083-icg-mistral-logiqa-seed123\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:11:59.619Z\", \"updated_at\": \"2026-05-19T21:15:41.873Z\", \"hypothesis\": \"ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。\", \"parent\": \"exp-079-icg-mistral-logiqa200\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates\\\"\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"287652\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-083-icg-mistral-logiqa-seed123.log\", \"submitted_at\": \"2026-05-19T21:15:26.491Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0451}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T21:16:05.747858+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T21:16:05.748011+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.2946}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T21:16:05.748182+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "symb_invariant_consensus",
+  "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123, 'checkpoint_source': 'Mistral-7B-Instruct-v0.3 (base, no fine-tuning)', 'eval_data': 'data/logiqa_200.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-083-icg-mistral-logiqa-seed123",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "symb_invariant_consensus",
+    "spec": "{'command': 'python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates', 'server': 'westd-25068', 'data_path': 'data/logiqa_200.json', 'data_count': 200, 'model_name': 'Mistral-7B-Instruct-v0.3', 'seed': 123, 'checkpoint_source': 'Mistral-7B-Instruct-v0.3 (base, no fine-tuning)', 'eval_data': 'data/logiqa_200.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T21:16:05.748350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-083-icg-mistral-logiqa-seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T21:11:59.619Z\", \"updated_at\": \"2026-05-19T21:15:58.125Z\", \"hypothesis\": \"ICG × Mistral-7B × LogiQA-200 seed=123 multi-seed replication。exp-079 (seed=42) Δ=-0.5pp (negative)。跨数据集 multi-seed 确认 ICG 方法在 LogiQA 上的 negative 结果稳定性。\", \"parent\": \"exp-079-icg-mistral-logiqa200\", \"spec\": {\"command\": \"python -u run_icg.py --mode vllm --k 12 --k-icg 10 --temperature 0.7 --seed 123 --api-base http://localhost:8001/v1 --model auto --data data/logiqa_200.json --output results/exp083_icg_mistral_logiqa_seed123/results.json --save-intermediates\", \"server\": \"westd-25068\", \"gpu\": [\"cuda:1\"], \"pid\": \"287652\", \"log_path\": \"~/runs/symb_invariant_consensus/exp-083-icg-mistral-logiqa-seed123.log\", \"submitted_at\": \"2026-05-19T21:15:26.491Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/logiqa_200.json\", \"data_count\": 200, \"model_name\": \"Mistral-7B-Instruct-v0.3\", \"seed\": 123, \"checkpoint_source\": \"Mistral-7B-Instruct-v0.3 (base, no fine-tuning)\", \"eval_data\": \"data/logiqa_200.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0118}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-19T21:16:05.748521+00:00_
+
+部署完成。
+
+| 项目 | 状态 |
+|------|------|
+| **vLLM** | port 8001 运行中，Mistral-7B-Instruct-v0.3，GPU 1 占用 ~90GB |
+| **Dry-run** | 2 题通过，SC=50% ICG=50%，`ICG_PIPELINE_DONE` |
+| **全量任务** | PID 287652，tmux session `exp-083-icg-mistral-logiqa-seed123` |
+| **日志** | `~/runs/symb_invariant_consensus/exp-083-icg-mistral-logiqa-seed123.log` |
+| **输出** | `results/exp083_icg_mistral_logiqa_seed123/results.json` |
+| **注意** | 脚本无 `--dataset` 参数，已去掉（与 exp-079 行为一致） |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy_exp-083-icg-logiqa-seed123-25068_20260519T211113"
+}
+```
+
+</details>
+
+---

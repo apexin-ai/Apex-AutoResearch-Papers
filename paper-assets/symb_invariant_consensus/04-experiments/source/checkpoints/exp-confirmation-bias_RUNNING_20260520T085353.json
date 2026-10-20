@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp-confirmation-bias",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:53:05.574Z",
+    "updated_at": "2026-05-20T08:53:52.725Z",
+    "hypothesis": "Confirmation Bias quantification: Self-extracted constraints systematically point toward the majority answer even when it is wrong, creating a bias ratio significantly above 1.0 that explains SICA's failure mode.",
+    "spec": {
+      "command": "python confirmation_bias_analysis.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 SICA results",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-20T08:53:53.061765+00:00",
+  "trigger": "update_registry"
+}

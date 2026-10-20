@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-031-oracle-folio-regen",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:48:41.292Z",
+    "updated_at": "2026-05-18T15:49:10.731Z",
+    "hypothesis": "Oracle SICA with gold FOL annotations on exp-026 regenerated traces (post normalization-fix): if constraint quality is the bottleneck, replacing self-extracted constraints with gold FOL + Z3 entailment should significantly outperform SC and SICA(self), replicating exp-021's finding on fixed code."
+  },
+  "timestamp": "2026-05-18T15:49:10.845346+00:00",
+  "trigger": "update_registry"
+}

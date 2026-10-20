@@ -1,0 +1,955 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-76_Q8",
+    "problem": "The bear eats the cow. The bear is blue. The cow eats the squirrel. The cow is young. The cow visits the lion. The lion is red. The lion is young. The lion visits the cow. The squirrel sees the bear. The squirrel visits the bear. If something sees the cow and the cow eats the squirrel then the cow is red. If the cow eats the bear and the bear sees the cow then the bear is blue. If something is blue and it sees the squirrel then the squirrel is round. If something sees the squirrel then the squirrel eats the cow. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel. If something is red then it eats the lion. If the bear visits the squirrel and the bear is round then the bear sees the cow. If something eats the lion then it sees the cow. If something is young and cold then it eats the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(Bear, Cow, True) ::: The bear eats the cow.\nBlue(Bear, True) ::: The bear is blue.\nEats(Cow, Squirrel, True) ::: The cow eats the squirrel.\nYoung(Cow, True) ::: The cow is young.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nRed(Lion, True) ::: The lion is red.\nYoung(Lion, True) ::: The lion is young.\nVisits(Lion, Cow, True) ::: The lion visits the cow.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\nVisits(Squirrel, Bear, True) ::: The squirrel visits the bear.\n\nRules:\nSees($x, Cow, True) && Eats(Cow, Squirrel, True) >>> Red(Cow, True) ::: If something sees the cow and the cow eats the squirrel then the cow is red.\nEats(Cow, Bear, True) && Sees(Bear, Cow, True) >>> Blue(Bear, True) ::: If the cow eats the bear and the bear sees the cow then the bear is blue.\nBlue($x, True) && Sees($x, Squirrel, True) >>> Round(Squirrel, True) ::: If something is blue and it sees the squirrel then the squirrel is round.\nSees($x, Squirrel, True) >>> Eats(Squirrel, Cow, True) ::: If something sees the squirrel then the squirrel eats the cow.\nSees(Lion, Cow, True) && Visits(Cow, Squirrel, True) >>> Eats(Cow, Squirrel, True) ::: If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\nRed($x, True) >>> Eats($x, Lion, True) ::: If something is red then it eats the lion.\nVisits(Bear, Squirrel, True) && Round(Bear, True) >>> Sees(Bear, Cow, True) ::: If the bear visits the squirrel and the bear is round then the bear sees the cow.\nEats($x, Lion, True) >>> Sees($x, Cow, True) ::: If something eats the lion then it sees the cow.\nYoung($x, True) && Cold($x, True) >>> Eats($x, Cow, True) ::: If something is young and cold then it eats the cow.\n\nQuery:\nRed(Cow, False) ::: The cow is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 107.0,
+      "Unknown": 48.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve the given problem, we will analyze each statement and use the given conditions to determine the truth value of the statement \"The cow is not red.\"\n\n1. The bear eats the cow.\n   - We do not have enough information about the bear's color or the squirrel's color.\n\n2. The bear is blue.\n   - We know the bear is blue, but we do not know its color in relation to the statement about the cow.\n\n3. The cow eats the squirrel.\n   - We do not have enough information about the squirrel's color.\n\n4. The cow is young.\n   - We know the cow is young, but we do not know its color.\n\n5. The cow visits the lion.\n   - We do not have enough information about the lion's color.\n\n6. The lion is red.\n   - We know the lion is red, but we do not know its age or relation to the cow.\n\n7. The lion is young.\n   - We know the lion is young, but we do not know its color in relation to the statement about the cow.\n\n8. The lion visits the cow.\n   - We do not have enough information about the cow's color.\n\n9. The squirrel sees the bear.\n   - We do not have enough information about the squirrel's color or the bear's color.\n\n10. The squirrel visits the bear.\n    - We do not have enough information about the squirrel's color.\n\n11. If something sees the cow and the cow eats the squirrel then the cow is red.\n    - We do not have enough information about the squirrel's color.\n\n12. If the cow eats the bear and the bear sees the cow then the bear is blue.\n    - We know the bear is blue, but we do not know if it sees the cow.\n\n13. If something is blue and it sees the squirrel then the squirrel is round.\n    - We do not have enough information about the squirrel's color.\n\n14. If something sees the squirrel then the squirrel eats the cow.\n    - We do not have enough information about the squirrel's color.\n\n15. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\n    - We do not have enough information about the squirrel's color.\n\n16. If something is red then it eats the lion.\n    - We know the lion is red, but we do not know if it eats the lion.\n\n17. If the bear visits the squirrel and the bear is round then the bear sees the cow.\n    - We do not have enough information about the bear's color.\n\n18. If something eats the lion then it sees the cow.\n    - We know the lion is red, but we do not know if it eats the lion.\n\n19. If something is young and cold then it eats the cow.\n    - We know the cow is young, but we do not know its temperature.\n\nNow, let's try to determine the truth value of the statement \"The cow is not red.\"\n\nFrom statement 11, we know that if something sees the cow and the cow eats the squirrel then the cow is red. However, we do not have enough information about the squirrel's color.\n\nFrom statement 15, we know that if the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel. However, we do not have enough information about the squirrel's color.\n\nFrom statement 1, we know that the bear eats the cow. However, we do not know the bear's color or the squirrel's color.\n\nFrom statement 2, we know that the bear is blue. However, we do not know if it sees the cow.\n\nFrom statement 14, we know that if something sees the squirrel then the squirrel eats the cow. However, we do not have enough information about the squirrel's color.\n\nFrom statement 16, we know that if something is red then it eats the lion. However, we do not know if it eats the lion.\n\nFrom statement 18, we know that if something eats the lion then it sees the cow. However, we know the lion is red, but we do not know if it eats the lion.\n\nWe can use the information from statement 2 and statement 14 to determine the truth value of the statement \"The cow is not red.\"\n\nFrom statement 14, we know that if something sees the squirrel then the squirrel eats the cow. Since the bear sees the squirrel (statement 9), the squirrel eats the cow (statement 14). However, we do not know the squirrel's color.\n\nFrom statement 2, we know that the bear is blue. If the bear sees the squirrel (statement 9), then the squirrel is round (statement 13). However, we do not know the squirrel's color.\n\nSince the squirrel eats the cow (statement 14), we can use the information from statement 11 to determine the truth value of the statement \"The cow is not red.\"\n\nFrom statement 11, we know that if something sees the cow and the cow eats the squirrel then the cow is red. Since the bear sees the cow (statement 9), the bear eats the cow (statement 1), and the squirrel eats the cow (statement 14), the cow eats the squirrel (statement 3). Therefore, the cow is red.\n\nHowever, we also know that the lion is red (statement 6) and the lion is young (statement 7). We also know that the lion visits the cow (statement 8) and the lion sees the cow (statement 8). Since the lion sees the cow (statement 8) and the cow visits the squirrel (statement 5), the cow eats the squirrel (statement 15). Therefore, the cow is not red.\n\nSince we have a contradiction, we cannot determine the truth value of the statement \"The cow is not red.\" Therefore, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and deduce the information about the cow. \n\nLet's start with the given statements:\n\n1. The bear eats the cow.\n2. The bear is blue.\n3. The cow eats the squirrel.\n4. The cow is young.\n5. The cow visits the lion.\n6. The lion is red.\n7. The lion is young.\n8. The lion visits the cow.\n9. The squirrel sees the bear.\n10. The squirrel visits the bear.\n11. If something sees the cow and the cow eats the squirrel then the cow is red.\n12. If the cow eats the bear and the bear sees the cow then the bear is blue.\n13. If something is blue and it sees the squirrel then the squirrel is round.\n14. If something sees the squirrel then the squirrel eats the cow.\n15. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\n16. If something is red then it eats the lion.\n17. If the bear visits the squirrel and the bear is round then the bear sees the cow.\n18. If something eats the lion then it sees the cow.\n19. If something is young and cold then it eats the cow.\n\nWe need to find out whether the statement \"The cow is not red\" is true, false, or unknown.\n\nFrom statement 11, we know that if something sees the cow and the cow eats the squirrel, then the cow is red.\n\nNow, let's analyze the given statements again:\n\n- The squirrel visits the bear (statement 10), and the squirrel sees the bear (statement 9). \n- The squirrel sees the bear, so from statement 14, the squirrel eats the cow.\n- The cow eats the squirrel (statement 3).\n\nNow we can use statement 11: \nIf something sees the cow and the cow eats the squirrel then the cow is red.\n\nIn this case, the squirrel sees the cow, and the cow eats the squirrel. So, according to statement 11, the cow is red.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 3, the cow eats the squirrel.\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\n\nNow, let's analyze the statements again:\n- The bear eats the cow (statement 1).\n- The bear is blue (statement 2).\n- The bear sees the cow (statement 1).\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the bear eats the cow, and the bear sees the cow. So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\nFrom statement 1, the bear eats the cow.\n\nNow we can use statement 19: \nIf something is young and cold then it eats the cow.\n\nIn this case, the cow is young (statement 4), but there is no information about the cow being cold. So, we cannot conclude whether the cow is eaten by something young and cold or not.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 1, the bear eats the cow.\nFrom statement 2, the bear is blue.\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the bear eats the cow (statement 1), and the bear sees the cow (statement 1). So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\nFrom statement 1, the bear eats the cow.\n\nNow we can use statement 14: \nIf something sees the squirrel then the squirrel eats the cow.\n\nIn this case, the bear sees the squirrel (statement 9), and the squirrel eats the cow (statement 3).\n\nFrom statement 3, the cow eats the squirrel.\n\nFrom statement 1, the bear eats the cow.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the cow eats the bear (statement 1), and the bear sees the cow (statement 1). So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\nFrom statement 1, the bear eats the cow.\n\nNow we can use statement 14: \nIf something sees the squirrel then the squirrel eats the cow.\n\nIn this case, the bear sees the squirrel (statement 9), and the squirrel eats the cow (statement 3).\n\nFrom statement 3, the cow eats the squirrel.\n\nFrom statement 1, the bear eats the cow.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the cow eats the bear (statement 1), and the bear sees the cow (statement 1). So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\nFrom statement 1, the bear eats the cow.\n\nNow we can use statement 14: \nIf something sees the squirrel then the squirrel eats the cow.\n\nIn this case, the bear sees the squirrel (statement 9), and the squirrel eats the cow (statement 3).\n\nFrom statement 3, the cow eats the squirrel.\n\nFrom statement 1, the bear eats the cow.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the cow eats the bear (statement 1), and the bear sees the cow (statement 1). So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 10, the squirrel visits the bear.\nFrom statement 9, the squirrel sees the bear.\nFrom statement 1, the bear eats the cow.\n\nNow we can use statement 14: \nIf something sees the squirrel then the squirrel eats the cow.\n\nIn this case, the bear sees the squirrel (statement 9), and the squirrel eats the cow (statement 3).\n\nFrom statement 3, the cow eats the squirrel.\n\nFrom statement 1, the bear eats the cow.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 12: \nIf the cow eats the bear and the bear sees the cow then the bear is blue.\n\nIn this case, the cow eats the bear (statement 1), and the bear sees the cow (statement 1). So, according to statement 12, the bear is blue.\n\nHowever, we need to verify whether this conclusion is true or not.\n\nFrom statement 2, the bear is blue.\n\nNow we can use statement 13: \nIf something is blue and it sees the squirrel then the squirrel is round.\n\nIn this case, the bear is blue (statement 2), and the bear sees the squirrel (statement 10). So, according to statement 13, the squirrel is round",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow visits the lion. The lion is red. (This statement does not directly relate to the color of the cow, but we'll keep it in mind.)\n\n2. The lion is red and the lion is young. This statement tells us the color of the lion, but not the cow.\n\n3. The lion visits the cow. This statement doesn't give us any new information about the color of the cow.\n\n4. The squirrel sees the bear. The squirrel visits the bear. This statement doesn't directly relate to the color of the cow.\n\n5. If something sees the cow and the cow eats the squirrel then the cow is red. However, this statement alone doesn't tell us if the cow is red. We need more information.\n\n6. The cow eats the squirrel. (This statement is a combination of the previous information.)\n\n7. Since the cow eats the squirrel, and the squirrel sees the bear, then using statement 5, we can deduce that the cow is red.\n\nNow, let's analyze the other statements related to the color of the cow.\n\n8. The bear is blue. This statement doesn't directly relate to the color of the cow.\n\n9. The cow eats the bear and the bear sees the cow. Using statement 9, we can deduce that the bear is blue, but this doesn't tell us if the cow is red or not.\n\n10. The cow is young. This statement doesn't give us any information about the color of the cow.\n\n11. The cow is not explicitly mentioned as cold. \n\n12. The cow visits the lion, the lion is red, the cow visits the squirrel, and the lion sees the cow. Using statement 5, we can deduce that the cow is red.\n\nBased on our analysis, we have two different conclusions about the color of the cow:\n\n- The cow is red (from statement 5 and 12).\n- We do not have enough information to conclude that the cow is not red.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n1. The cow eats the squirrel.\n2. The squirrel sees the bear.\n3. The squirrel visits the bear.\n4. If something sees the cow and the cow eats the squirrel then the cow is red.\n5. The cow visits the lion.\n6. The lion is red.\n7. The lion is young.\n8. The lion visits the cow.\n9. If something sees the squirrel then the squirrel eats the cow.\n\nFrom (1) and (4), we can conclude that the cow is red. However, this contradicts the statement \"The cow is not red.\" Therefore, if the cow is red, the statement is false.\n\nHowever, let's explore other possibilities:\n- From (3), the squirrel visits the bear, and from (2), the squirrel sees the bear. This implies that the squirrel eats the cow (from (9)), but we don't have enough information to determine if the cow is red or not.\n\nLet's explore other conclusions:\n- The bear eats the cow (from (1)), and the bear is blue (from (3)). However, this does not directly relate to the color of the cow.\n\nHowever, we have a more promising lead:\n- If the bear eats the cow, and the bear sees the cow, then the bear is blue (from (4)). But what if the bear sees the cow before eating it? This would imply that the bear is not necessarily blue. But what if we can show that the bear is indeed blue?\n\nWe can use the following information:\n- The bear visits the squirrel (from (3)).\n- The bear is blue (from (3)).\n- If something is blue and it sees the squirrel then the squirrel is round (from (4)).\n- The squirrel sees the bear (from (2)).\n- The squirrel visits the bear (from (3)).\n\nHowever, we can't conclude that the squirrel is round from this information alone. We need more information.\n\nLet's explore another possibility:\n- The lion is red (from (5)).\n- If something is red then it eats the lion (from (5)).\n- The lion is young (from (5)).\n- The lion visits the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is young (from (5)).\n- The lion is red (from (5)).\n- If something is young and cold then it eats the cow (from (5)). However, we don't have enough information to determine if the lion is cold.\n\nHowever, let's explore another possibility:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion visits the cow (from (6)).\n- The cow is young (from (1)).\n- The cow visits the lion (from (5)).\n- The lion sees the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n- The cow visits the squirrel (from (1)).\n- The lion visits the cow (from (5)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n- The cow eats the squirrel (from (1)).\n- If something sees the squirrel then the squirrel eats the cow (from (5)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion visits the cow (from (5)).\n- The cow is young (from (1)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n- The cow is young (from (1)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (5)).\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is young (from (5)).\n- The lion sees the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion sees the cow (from (6)).\n\nFrom (7) and (8), we can conclude that the lion is young. However, this does not provide any information about the cow.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n- The lion sees the cow (from (6)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n\nThis does not provide any information about the cow.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n\nThis does not provide any information about the cow.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n- The lion visits the cow (from (8)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n- The lion visits the cow (from (8)).\n\nThis does not provide any information about the cow.\n\nHowever, we have the following:\n- The lion is young (from (7)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion visits the cow (from (8)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion visits the cow (from (8)).\n\nHowever, we can't conclude that the lion eats the cow from this information alone.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can conclude that the lion eats the lion. However, this is a contradiction.\n\nHowever, we have the following:\n- The lion is red (from (6)).\n\nFrom (5), we can",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the given statements:\n\n1. The cow eats the squirrel.\n2. The cow is young.\n\nStatement 1: If something sees the cow and the cow eats the squirrel then the cow is red.\nHowever, we don't know if anything sees the cow. So, we can't conclude the color of the cow based on this statement.\n\nStatement 2: If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\nWe know the cow visits the squirrel, but we don't know if the lion sees the cow. So, we can't conclude the color of the cow based on this statement.\n\nStatement 3: If the bear eats the cow and the bear sees the cow then the bear is blue.\nHowever, we don't know if the bear eats the cow or sees the cow. So, we can't conclude the color of the bear based on this statement.\n\nStatement 4: The lion is red.\nThis statement does not provide any information about the color of the cow.\n\nStatement 5: The cow is young.\nThis statement does not provide any information about the color of the cow.\n\nNow, let's analyze the statement \"The cow is not red.\" We need to find a scenario where the cow is not red.\n\nFrom the given statements, we can create the following scenarios:\n\n1. The bear sees the squirrel, and the bear is blue (Statement 3). This implies that the bear sees the squirrel.\n2. The squirrel sees the bear (Statement 8).\n3. The squirrel visits the bear (Statement 10).\n4. The squirrel sees the cow (Statement 8).\n5. The cow eats the squirrel (Statement 1).\n6. If something sees the cow and the cow eats the squirrel then the cow is red (Statement 1).\nSince the squirrel sees the cow, the cow eats the squirrel, and the squirrel sees the cow, we can conclude that the cow is red based on Statement 1.\n\nHowever, we are trying to find a scenario where the cow is not red.\n\nNow, let's consider another scenario:\n\n1. The bear visits the squirrel (Statement 10).\n2. The bear is round (Unknown).\n3. If the bear visits the squirrel and the bear is round then the bear sees the cow (Statement 7).\nHowever, we don't know if the bear is round. If the bear is not round, then we can't conclude that the bear sees the cow.\n\nLet's consider another scenario:\n\n1. The lion sees the cow (Unknown).\n2. The cow visits the squirrel (Statement 4).\n3. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel (Statement 2).\nHowever, we don't know if the lion sees the cow. If the lion sees the cow, then the cow eats the squirrel, and we can conclude that the cow is red based on Statement 1.\n\nNow, let's consider another scenario:\n\n1. The bear eats the cow (Unknown).\n2. The bear sees the cow (Unknown).\n3. If the bear eats the cow and the bear sees the cow then the bear is blue (Statement 3).\nHowever, we don't know if the bear eats the cow or sees the cow. If the bear eats the cow, then the bear is blue based on Statement 3.\n\nNow, let's consider another scenario:\n\n1. The lion is young (Statement 6).\n2. The lion is red (Statement 4).\n3. If something is red then it eats the lion (Statement 9).\nHowever, we don't know if the lion eats the bear or the bear eats the lion. If the lion eats the bear, then we can't conclude the color of the bear or the cow.\n\nNow, let's consider another scenario:\n\n1. The lion visits the cow (Statement 5).\n2. The cow is young (Statement 5).\n3. The lion is young (Statement 6).\n4. The lion is red (Statement 4).\n5. If something is young and cold then it eats the cow (Statement 11).\nHowever, we don't know if the lion is cold. If the lion is cold, then the lion eats the cow, and we can't conclude the color of the cow.\n\nNow, let's consider another scenario:\n\n1. The bear sees the squirrel (Statement 8).\n2. The squirrel is round (Unknown).\n3. If something is blue and it sees the squirrel then the squirrel is round (Statement 6).\nHowever, we don't know if the bear is blue. If the bear is blue, then the squirrel is round based on Statement 6.\n\nNow, let's consider another scenario:\n\n1. The cow eats the bear (Unknown).\n2. The bear sees the cow (Unknown).\n3. If the cow eats the bear and the bear sees the cow then the bear is blue (Statement 3).\nHowever, we don't know if the cow eats the bear or the bear sees the cow. If the cow eats the bear, then the bear is blue based on Statement 3.\n\nBased on the analysis, we can't conclude the color of the cow. Therefore, the statement \"The cow is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow visits the lion. (Initial information)\n2. The lion is red. (Initial information)\n3. If the lion sees the cow and the cow visits the squirrel, then the cow eats the squirrel. (Initial information)\n   Since the lion sees the cow and the cow visits the squirrel, we can conclude that the cow eats the squirrel.\n\n4. If something sees the cow and the cow eats the squirrel then the cow is red. (Initial information)\n   Since the cow eats the squirrel, we can conclude that the cow is red. (This directly contradicts the statement \"The cow is not red.\")\n\nHowever, to be thorough, let's check if there are any other conclusions that can be drawn that might affect the truth of the statement \"The cow is not red.\"\n\n5. The bear eats the cow. (Initial information)\n6. The bear is blue. (Initial information)\n7. If the cow eats the bear and the bear sees the cow then the bear is blue. (Initial information)\n   This statement does not directly affect the truth of \"The cow is not red\" since it is already concluded that the cow is red.\n\n8. If the bear sees the squirrel, then the squirrel is round. (Initial information)\n   We do not have enough information to determine if the bear sees the squirrel or not.\n\n9. The squirrel sees the bear. (Initial information)\n   This does not affect the truth of \"The cow is not red.\"\n\n10. The squirrel visits the bear. (Initial information)\n    This does not affect the truth of \"The cow is not red.\"\n\n11. If something sees the squirrel, then the squirrel eats the cow. (Initial information)\n    We already concluded that the cow eats the squirrel, so this does not affect the truth of \"The cow is not red.\"\n\n12. The lion is young. (Initial information)\n    This does not affect the truth of \"The cow is not red.\"\n\n13. The lion visits the cow. (Initial information)\n    This does not affect the truth of \"The cow is not red.\"\n\n14. If something eats the lion, then it sees the cow. (Initial information)\n    This does not affect the truth of \"The cow is not red.\"\n\n15. If something is young and cold, then it eats the cow. (Initial information)\n    This does not affect the truth of \"The cow is not red.\"\n\nSince we concluded that the cow is red in step 4, we can confidently say that the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow eats the squirrel. \n   The cow is young.\n\nFrom this information, we cannot directly determine if the cow is red or not.\n\n2. The cow visits the lion. \n   The lion is red. \n   The lion is young.\n\nThis information does not affect our current conclusion about the cow's color.\n\n3. The lion visits the cow.\n\nThis statement does not provide any new information about the cow's color.\n\n4. The squirrel sees the bear. \n   The squirrel visits the bear.\n\nFrom these statements, we cannot conclude anything about the cow's color.\n\n5. If something sees the cow and the cow eats the squirrel then the cow is red.\n\nThis statement implies that if the cow sees something and eats the squirrel, then it is red. However, we don't know if the cow sees something.\n\n6. If the cow eats the bear and the bear sees the cow then the bear is blue.\n\nThis statement implies that the bear is blue if it sees the cow and the cow eats it. However, we don't know if the cow eats the bear.\n\n7. If something is blue and it sees the squirrel then the squirrel is round.\n\nThis statement implies that if something is blue and sees the squirrel, then the squirrel is round. However, we don't know if the cow or bear is blue.\n\n8. If something sees the squirrel then the squirrel eats the cow.\n\nThis statement implies that the squirrel eats the cow if something sees it. However, we don't know if the squirrel eats the cow.\n\n9. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\n\nThis statement implies that the cow eats the squirrel if the lion sees it and the cow visits the squirrel. However, we don't know if the lion sees the cow.\n\n10. If something is red then it eats the lion.\n\nThis statement implies that if something is red, it eats the lion. However, we don't know if the cow is red.\n\n11. If the bear visits the squirrel and the bear is round then the bear sees the cow.\n\nThis statement implies that the bear sees the cow if it is round and visits the squirrel. However, we don't know if the bear is round.\n\n12. If something eats the lion then it sees the cow.\n\nThis statement implies that if something eats the lion, it sees the cow. However, we don't know if the cow eats the lion.\n\n13. If something is young and cold then it eats the cow.\n\nThis statement implies that if something is young and cold, it eats the cow. However, we don't know if the cow is cold.\n\nNow, let's look at the statements that directly involve the color of the cow:\n\n- The cow is young. (Statement 1)\n- The cow eats the squirrel. (Statement 1)\n- If something sees the cow and the cow eats the squirrel then the cow is red. (Statement 5)\n\nHowever, we cannot determine if the cow sees something. Therefore, we cannot conclude that the cow is red based on this statement.\n\nHowever, we can look at the following statements:\n\n- The cow is young. (Statement 1)\n- The cow eats the squirrel. (Statement 1)\n- The lion is red. (Statement 2)\n- The lion is young. (Statement 2)\n\nGiven that the cow is young and eats the squirrel, and that the lion is red and young, and the lion visits the cow, we can use statement 9 to conclude that the cow eats the squirrel.\n\nNow that we know the cow eats the squirrel, we can use statement 5 to conclude that the cow is red.\n\nTherefore, the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll use a truth table and logical deductions. \n\nFirst, let's analyze the given statements:\n\n1. The bear eats the cow. \n2. The bear is blue. \n3. The cow eats the squirrel. \n4. The cow is young. \n5. The cow visits the lion. \n6. The lion is red. \n7. The lion is young. \n8. The lion visits the cow. \n9. The squirrel sees the bear. \n10. The squirrel visits the bear. \n11. If something sees the cow and the cow eats the squirrel then the cow is red. \n12. If the cow eats the bear and the bear sees the cow then the bear is blue. \n13. If something is blue and it sees the squirrel then the squirrel is round. \n14. If something sees the squirrel then the squirrel eats the cow. \n15. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel. \n16. If something is red then it eats the lion. \n17. If the bear visits the squirrel and the bear is round then the bear sees the cow. \n18. If something eats the lion then it sees the cow. \n19. If something is young and cold then it eats the cow.\n\nNow, let's analyze the given statement:\nThe cow is not red.\n\nFor this statement to be true, we need to find a situation where the cow is not red.\n\nGiven statements 3 and 4, we know that the cow eats the squirrel and is young.\n\nFrom statement 9, we know that the squirrel sees the bear, and from statement 10, the squirrel visits the bear.\n\nNow, from statement 11, if the cow sees the squirrel and the cow eats the squirrel, then the cow is red. However, statement 3 indicates that the cow eats the squirrel, so statement 11 is satisfied.\n\nNow, we need to check if the cow is red. \n\nWe can create a truth table with the following variables:\n- A: The cow sees the squirrel.\n- B: The cow eats the squirrel.\n\nSince we know that the cow eats the squirrel from statement 3, B is true.\n\nFrom statement 9, we know that the squirrel sees the bear, and from statement 10, the squirrel visits the bear. \n\nSince the squirrel sees the bear and the bear is blue from statement 2, then from statement 13, the squirrel is round.\n\nHowever, we cannot conclude that the squirrel is round from the given statements. The given statements do not provide enough information about the color of the squirrel.\n\nSince the squirrel is round is not true, statement 13 is not satisfied. Therefore, the squirrel does not have to be round.\n\nWe can now check if the squirrel eats the cow from statement 14. We know that the squirrel sees the bear from statement 9. Therefore, the squirrel eats the cow from statement 14.\n\nHowever, statement 14 does not provide any information about the color of the cow.\n\nWe can now check if the lion sees the cow and the cow visits the squirrel from statements 5 and 8. \n\nFrom statement 5, we know that the cow visits the lion, and from statement 8, the lion visits the cow. \n\nTherefore, the lion sees the cow and the cow visits the squirrel. \n\nFrom statement 15, if the lion sees the cow and the cow visits the squirrel, then the cow eats the squirrel. However, we already know that the cow eats the squirrel from statement 3.\n\nFrom statement 15, if the lion sees the cow and the cow visits the squirrel, then the cow eats the squirrel. However, we already know that the cow eats the squirrel from statement 3.\n\nNow, we need to check if the cow is red.\n\nWe know that the lion sees the cow from statement 5, and the lion is red from statement 6.\n\nHowever, we cannot conclude that the cow is red from the given statements. The given statements do not provide enough information about the color of the cow.\n\nHowever, we can now check if the lion eats the cow from statement 16. \n\nSince the lion is red from statement 6, then from statement 16, the lion eats the cow.\n\nHowever, we already know that the cow eats the squirrel from statement 3.\n\nSince the lion eats the cow, then from statement 18, the lion sees the cow.\n\nHowever, we already know that the lion sees the cow from statement 5.\n\nNow, let's check if the bear visits the squirrel and the bear is round from statements 2 and 10.\n\nFrom statement 2, we know that the bear is blue. However, we cannot conclude that the bear is round from the given statements. The given statements do not provide enough information about the bear being round.\n\nSince we cannot conclude that the bear is round, then statement 17 is not satisfied. Therefore, the bear does not have to see the cow.\n\nWe can now check if the bear eats the lion from statement 2. \n\nHowever, we already know that the lion eats the cow from statement 16.\n\nSince the lion eats the cow, then from statement 18, the lion sees the cow.\n\nHowever, we already know that the lion sees the cow from statement 5.\n\nWe can now check if the bear eats the lion from statement 2. \n\nHowever, statement 2 does not provide any information about the bear eating the lion.\n\nWe can now check if the bear sees the squirrel from statement 9.\n\nHowever, statement 9 does not provide any information about the bear seeing the squirrel.\n\nWe can now check if the bear eats the squirrel from statement 10.\n\nHowever, statement 10 does not provide any information about the bear eating the squirrel.\n\nWe can now check if the bear is round from statement 2.\n\nHowever, statement 2 does not provide any information about the bear being round.\n\nWe can now check if the bear eats the lion from statement 2. \n\nHowever, statement 2 does not provide any information about the bear eating the lion.\n\nSince the bear is blue from statement 2, then from statement 12, the bear sees the cow.\n\nHowever, statement 12 does not provide any information about the cow being red.\n\nWe can now check if the cow eats the bear from statement 2.\n\nHowever, statement 2 does not provide any information about the cow eating the bear.\n\nWe can now check if the bear eats the cow from statement 1.\n\nHowever, statement 1 does not provide any information about the bear eating the cow.\n\nWe can now check if the lion eats the cow from statement 16.\n\nHowever, statement 16 does not provide any information about the lion eating the cow.\n\nWe can now check if the lion sees the cow from statement 5.\n\nHowever, statement 5 does not provide any information about the lion seeing the cow.\n\nWe can now check if the cow visits the lion from statement 5.\n\nHowever, statement 5 does not provide any information about the cow visiting the lion.\n\nWe can now check if the cow eats the squirrel from statement 3.\n\nHowever, statement 3 does not provide any information about the cow eating the squirrel.\n\nWe can now check if the bear is blue from statement 2.\n\nHowever, statement 2 does not provide any information about the bear being blue.\n\nSince the bear is blue from statement 2, then from statement 12, the bear sees the cow.\n\nHowever, statement 12 does not provide any information about the cow being red.\n\nWe can now check if the bear eats the lion from statement 2.\n\nHowever, statement 2 does not provide any information about the bear eating the lion.\n\nWe can now check if the lion eats the cow from statement 16.\n\nHowever, statement 16 does not provide any information about the lion eating the cow.\n\nWe can now check if the lion sees the cow from statement 5.\n\nHowever, statement 5 does not provide any information about the lion seeing the cow.\n\nWe can now check if the cow visits the lion from statement 5.\n\nHowever, statement 5 does not provide any information about the cow visiting the lion.\n\nWe can now check if the cow eats the squirrel from statement 3.\n\nHowever, statement 3 does not provide any information about the cow eating the squirrel.\n\nSince the bear eats the cow from statement 1, then from statement 12, the bear is blue.\n\nHowever, we already know that the bear is blue from statement 2.\n\nWe can now check if the bear eats the lion from statement 1.\n\nHowever, statement 1 does not provide any information about the bear eating the lion.\n\nWe can now check if the bear is round from statement 1.\n\nHowever, statement 1 does not provide any information about the bear being round.\n\nWe can now check if the bear sees the squirrel from statement 1.\n\nHowever, statement 1 does not provide any information about the bear seeing the squirrel.\n\nWe can now check if the bear eats the squirrel from statement 1.\n\nHowever, statement 1 does not provide any information about the bear eating the squirrel.\n\nWe can now check if the bear is blue from statement 1.\n\nHowever, statement 1 does not provide any information about the bear being blue.\n\nWe can now check if the lion eats the cow from statement 1.\n\nHowever, statement 1 does not provide any information about the lion eating the cow.\n\nWe can now check if the lion sees the cow from statement 1.\n\nHowever, statement 1 does not provide any information about the lion seeing the cow.\n\nWe can now check if the cow visits the lion from statement 1.\n\nHowever, statement 1 does not provide any information about the cow visiting the lion.\n\nWe can now check if the cow eats the squirrel from statement 1.\n\nHowever, statement 1 does not provide any information about the cow eating the squirrel.\n\nSince we cannot conclude that the bear is round from the given statements, then statement ",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given statements, we have the following:\n\n1. The cow eats the squirrel.\n2. The cow is young.\n3. The cow visits the lion.\n4. The lion is red.\n5. The lion is young.\n6. The lion visits the cow.\n\nFrom statements 1 and 4, we can conclude that the lion sees the cow because the lion visits the cow.\n\nUsing statement 5, we can conclude that the lion is young.\n\nFrom statement 6, we can conclude that the cow sees the lion.\n\nUsing statement 2, we can conclude that the cow is young.\n\nNow, we will examine the possible conclusions based on the given statements.\n\nFrom statement 3 and 6, we can conclude that the cow sees the lion and the lion sees the cow, but this does not tell us about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 7, we can conclude that the squirrel sees the cow because something sees the cow and the cow eats the squirrel.\n\nFrom statement 7, we can conclude that the squirrel sees the bear.\n\nUsing statement 10, we can conclude that the bear sees the cow because something sees the squirrel and the squirrel sees the bear.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 8, we can conclude that the cow eats the squirrel because the cow sees the lion and the cow visits the squirrel.\n\nFrom statement 9, we can conclude that the lion eats the cow because the lion is red.\n\nUsing statement 1, we can conclude that the cow eats the squirrel.\n\nFrom statement 2, we can conclude that the cow is young.\n\nUsing statement 1 and 11, we can conclude that the bear is blue because the cow eats the bear and the bear sees the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 12, we can conclude that the squirrel eats the cow because something sees the squirrel and the cow eats the squirrel.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 2 and 13, we can conclude that the cow is young and cold, but this does not tell us about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 2, we can conclude that the cow is young.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 14, we can conclude that the bear sees the cow because the bear visits the squirrel and the bear is round.\n\nHowever, we do not have any information about the color of the bear.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 2, we can conclude that the cow is young.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 16, we can conclude that the cow sees the bear because the cow eats the lion and the lion sees the cow.\n\nNow, we will analyze the possible conclusions based on the given statements.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 17, we can conclude that the squirrel is round because something is blue and it sees the squirrel.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 18, we can conclude that the cow eats the squirrel because the lion sees the cow and the cow visits the squirrel.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 2, we can conclude that the cow is young.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 20, we can conclude that the cow sees the lion because the cow eats the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 21, we can conclude that the cow sees the lion because the lion sees the cow and the cow eats the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 22, we can conclude that the cow sees the lion because the cow eats the lion and the lion sees the cow.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 23, we can conclude that the cow eats the squirrel because the lion is red.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 24, we can conclude that the cow sees the lion because the lion sees the cow.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 25, we can conclude that the cow eats the squirrel because something sees the squirrel.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 26, we can conclude that the cow sees the lion because the cow eats the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 27, we can conclude that the cow eats the squirrel because the bear sees the cow.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 28, we can conclude that the cow eats the squirrel because the cow is young.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 29, we can conclude that the cow eats the squirrel because the cow is young and cold.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 30, we can conclude that the cow eats the squirrel because something eats the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 31, we can conclude that the cow eats the squirrel because the cow is young and the cow eats the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 32, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 33, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 34, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 35, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 36, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 37, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 38, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 39, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 40, we can conclude that the cow eats the squirrel because the cow is young and the cow sees the lion.\n\nHowever, we do not have any information about the color of the cow.\n\nFrom statement 1, we can conclude that the cow eats the squirrel.\n\nUsing statement 1 and 41, we can conclude that the cow eats",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cow visits the lion. (Given)\n2. The lion is red. (Given)\n3. If the lion sees the cow and the cow visits the squirrel, then the cow eats the squirrel. (Given)\n   However, we have no information that the lion sees the cow. We only know that the cow visits the lion.\n\n4. If the lion sees the cow, then it is not explicitly mentioned that the cow visits the squirrel. So we cannot conclude the cow eats the squirrel from this information.\n\n5. The statement \"If something sees the cow and the cow eats the squirrel then the cow is red\" does not apply here because we do not have information that the cow eats the squirrel.\n\n6. We cannot conclude the color of the cow directly from the given information.\n\nHowever, we can analyze other information related to the cow:\n\n- The cow is young. (Given)\n- The cow eats the squirrel. (Given)\n\nNow, we have a new piece of information: The squirrel sees the bear. (Given) \nThe squirrel visits the bear. (Given)\nIf something sees the cow and the cow eats the squirrel then the cow is red. (Given)\n\nThe cow eats the squirrel, and the squirrel sees the cow. So we can conclude that the cow is red.\n\nSo the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical deductions and rules. Let's break down the information given:\n\n1. The bear eats the cow.\n2. The bear is blue.\n3. The cow eats the squirrel.\n4. The cow is young.\n5. The cow visits the lion.\n6. The lion is red.\n7. The lion is young.\n8. The lion visits the cow.\n9. The squirrel sees the bear.\n10. The squirrel visits the bear.\n11. If something sees the cow and the cow eats the squirrel then the cow is red.\n12. If the cow eats the bear and the bear sees the cow then the bear is blue.\n13. If something is blue and it sees the squirrel then the squirrel is round.\n14. If something sees the squirrel then the squirrel eats the cow.\n15. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\n16. If something is red then it eats the lion.\n17. If the bear visits the squirrel and the bear is round then the bear sees the cow.\n18. If something eats the lion then it sees the cow.\n19. If something is young and cold then it eats the cow.\n\nNow, let's analyze the given statement: \"The cow is not red.\"\n\nTo determine if this statement is true, false, or unknown, we need to find any information that can help us deduce the color of the cow.\n\nFrom rule 11, we know that if something sees the cow and the cow eats the squirrel then the cow is red. However, we don't have enough information to directly apply this rule.\n\nFrom rule 15, we know that if the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel. However, we don't have enough information to directly apply this rule.\n\nFrom rule 1, we know that the bear eats the cow. This doesn't give us any information about the color of the cow.\n\nFrom rule 2, we know that the bear is blue. This doesn't give us any information about the color of the cow.\n\nFrom rule 3, we know that the cow eats the squirrel. This doesn't give us any information about the color of the cow.\n\nFrom rule 5, we know that the cow visits the lion. This doesn't give us any information about the color of the cow.\n\nFrom rule 6, we know that the lion is red. This doesn't give us any information about the color of the cow.\n\nFrom rule 8, we know that the lion visits the cow. This doesn't give us any information about the color of the cow.\n\nFrom rule 9, we know that the squirrel sees the bear. This doesn't give us any information about the color of the cow.\n\nFrom rule 10, we know that the squirrel visits the bear. This doesn't give us any information about the color of the cow.\n\nFrom rule 14, we know that if something sees the squirrel then the squirrel eats the cow. We can substitute \"squirrel\" with the actual information given. From rule 10, we know that the squirrel visits the bear, which means the squirrel sees the bear. Therefore, the squirrel eats the cow.\n\nNow that we know the squirrel eats the cow, let's go back to rule 11: if something sees the cow and the cow eats the squirrel then the cow is red. However, we still don't have enough information to directly apply this rule.\n\nHowever, we can analyze the information from rule 17: If the bear visits the squirrel and the bear is round then the bear sees the cow. We don't have any information about the bear being round, so we can't apply this rule.\n\nFrom rule 18, we know that if something eats the lion then it sees the cow. We know that the lion is red (rule 6) and the bear eats the lion (rule 1). Therefore, the bear sees the cow.\n\nNow that we know the bear sees the cow and the cow eats the squirrel (rule 3), we can apply rule 11: if something sees the cow and the cow eats the squirrel then the cow is red.\n\nTherefore, based on the given rules and information, we can conclude that:\n\nThe cow is red.\n\nSo, the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given conditions and their implications.\n\n1. The cow eats the squirrel. The cow is young. \n   From this, we can't determine the color of the cow directly.\n\n2. The cow visits the lion. The lion is red. The lion is young.\n   This doesn't give us any information about the color of the cow.\n\n3. The lion visits the cow.\n   This is a redundant statement and doesn't provide any new information.\n\n4. The squirrel sees the bear. The squirrel visits the bear.\n   This doesn't provide any information about the color of the cow.\n\n5. If something sees the cow and the cow eats the squirrel then the cow is red.\n   We know the cow eats the squirrel (from statement 1), but we don't know if something sees the cow.\n\n6. If the cow eats the bear and the bear sees the cow then the bear is blue.\n   We know the bear eats the cow (from the initial statement \"The bear eats the cow\"), but we don't know if the bear sees the cow.\n\n7. If something is blue and it sees the squirrel then the squirrel is round.\n   We know the bear is blue (from the initial statement \"The bear is blue\"), but we don't know if it sees the squirrel.\n\n8. If something sees the squirrel then the squirrel eats the cow.\n   We know the squirrel eats the cow (from statement 1), but this doesn't provide any information about the color of the cow.\n\n9. If the lion sees the cow and the cow visits the squirrel then the cow eats the squirrel.\n   We know the cow visits the squirrel (from statement 2) and the lion sees the cow (from statement 2), but we don't know if the lion sees the cow in the context of the cow visiting the squirrel.\n\n10. If something is red then it eats the lion.\n    We know the lion is red (from statement 2), but this doesn't provide any information about the color of the cow.\n\n11. If the bear visits the squirrel and the bear is round then the bear sees the cow.\n    We know the bear eats the cow (from the initial statement), but we don't know if the bear is round.\n\n12. If something eats the lion then it sees the cow.\n    We know the lion is red (from statement 2) and eats the cow (from statement 1), but this doesn't provide any information about the color of the cow.\n\n13. If something is young and cold then it eats the cow.\n    We know the cow is young (from statement 1), but we don't know if it's cold.\n\nFrom the given statements, we can conclude that the following conditions are met:\n\n- The cow eats the squirrel (from statement 1).\n- The lion sees the cow (from statement 2).\n- The cow visits the squirrel (from statement 2).\n\nHowever, the condition that the cow is red can only be determined if something sees the cow. We don't have this information directly, but we can make an indirect conclusion.\n\nIf the lion sees the cow, then the cow is red because the lion is red and sees the cow, and the cow visits the squirrel. However, we don't know if the lion sees the cow in the context of the cow visiting the squirrel. Since the statement \"The lion sees the cow and the cow visits the squirrel\" doesn't guarantee that the lion sees the cow in the context of the cow visiting the squirrel, we can't conclude that the cow is red directly.\n\nHowever, we can make an indirect conclusion using statement 5 and statement 2. If the lion is red, then the cow is red because the lion sees the cow and the cow visits the squirrel.\n\nSince we can conclude that the cow is red, we can conclude that the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, squirrel) -> red(cow)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, eats_cow_squirrel), red_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(cow, squirrel) -> eats(cow, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, visits_cow_squirrel), eats_cow_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> eats(squirrel, cow)",
+          "z3_formula": "Implies(sees_squirrel_cow, eats_squirrel_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_bear, sees_bear_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, squirrel) -> round(squirrel)",
+          "z3_formula": "Implies(And(blue_bear, sees_bear_squirrel), round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_lion, eats_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_lion_lion, sees_lion_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cow)",
+          "z3_formula": "Not(red_cow) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, Y) -> red(X)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, eats_cow_squirrel), red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(bear, X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_bear_cow, sees_bear_cow), blue_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, Y) -> round(Y)",
+          "z3_formula": "Implies(And(blue_bear, sees_bear_squirrel), round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> eats(Y, cow)",
+          "z3_formula": "Implies(sees_bear_squirrel, eats_squirrel_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & visits(Y, Z) -> eats(X, Z)",
+          "z3_formula": "Implies(And(visits_cow_lion, visits_lion_squirrel), eats_cow_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_lion, eats_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & round(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(visits_bear_squirrel, round_bear), sees_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_lion_lion, sees_lion_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(young_cow, cold_cow), eats_cow_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, Y) -> red(X)",
+          "z3_formula": "Implies(And(sees_X_cow, eats_cow_Y), red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, bear)",
+          "z3_formula": "eats_cow_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cow)",
+          "z3_formula": "sees_bear_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(cow))",
+          "z3_formula": "Not(cold_cow) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, squirrel) -> red(cow)",
+          "z3_formula": "Implies(And(sees_X_cow, eats_cow_squirrel), red_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & visits(cow, squirrel) -> eats(cow, squirrel)",
+          "z3_formula": "Implies(And(sees_X_cow, visits_cow_squirrel), eats_cow_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bear, cow) & sees(bear, cow) -> blue(bear)",
+          "z3_formula": "Implies(And(eats_bear_cow, sees_bear_cow), blue_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_lion, eats_lion_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(young_lion, cold_lion), eats_lion_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, squirrel) -> round(squirrel)",
+          "z3_formula": "Implies(And(blue_bear, sees_bear_squirrel), round_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cow)",
+          "z3_formula": "Not(red_cow)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, squirrel) -> red(cow)",
+          "z3_formula": "Implies(And(sees_X_cow, eats_cow_squirrel), red_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) & eats(cow, squirrel) -> eats(cow, squirrel)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow, eats_cow_squirrel), eats_cow_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(X, squirrel) -> red(X)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, eats_squirrel_squirrel), red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, cow) -> blue(X)",
+          "z3_formula": "Implies(And(eats_bear_bear, sees_bear_cow), blue_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, squirrel) -> round(X)",
+          "z3_formula": "Implies(And(blue_bear, sees_bear_squirrel), round_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_squirrel_bear, eats_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & visits(X, squirrel) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_cow, visits_lion_squirrel), eats_lion_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_lion, eats_lion_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & round(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(visits_bear_squirrel, round_bear), sees_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_lion_bear, sees_bear_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(young_cow, cold_cow), eats_cow_cow)",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & sees(X, Z) & eats(Z, squirrel) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(visits_cow_lion, sees_lion_cow, eats_lion_squirrel), eats_cow_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cow)",
+          "z3_formula": "sees_squirrel_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & eats(Y, squirrel) -> red(X)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, eats_cow_squirrel), red_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & eats(cow, squirrel) -> red(cow)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, eats_cow_squirrel), red_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(bear, cow) -> blue(bear)",
+          "z3_formula": "Implies(And(eats_bear_cow, sees_bear_cow), blue_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & round(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(visits_bear_squirrel, round_bear), sees_bear_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_squirrel_bear, eats_bear_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, cow) & visits(cow, squirrel) -> eats(cow, squirrel)",
+          "z3_formula": "Implies(And(visits_bear_squirrel, visits_bear_cow, visits_cow_squirrel), eats_cow_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_lion, eats_lion_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & round(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(visits_bear_squirrel, round_bear), sees_bear_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_lion_bear, sees_bear_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(young_cow, cold_cow), eats_cow_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cow)",
+          "z3_formula": "visits_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & eats(X, squirrel) -> red(X)",
+          "z3_formula": "Implies(And(sees_X, eats_cow_squirrel), red_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, cow) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_bear, sees_X_cow), blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, squirrel) -> round(squirrel)",
+          "z3_formula": "Implies(And(blue_X, sees_X_squirrel), round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_squirrel, eats_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & visits(lion, cow) -> eats(cow, squirrel)",
+          "z3_formula": "Implies(And(visits_X_cow, visits_lion_cow), eats_cow_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, lion)",
+          "z3_formula": "Implies(red_X, eats_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & round(X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(visits_X_squirrel, round_X), sees_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(eats_X_lion, sees_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(And(young_X, cold_X), eats_X_cow)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 138,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 56,
+      "excluded": 1,
+      "total_weight": 135,
+      "solve_time_ms": 1.2887902557849884
+    },
+    "timing": {
+      "trace_gen_s": 25.158,
+      "extraction_s": 45.493,
+      "dedup_s": 1.374,
+      "maxsat_s": 0.004,
+      "total_s": 72.029
+    }
+  }
+}

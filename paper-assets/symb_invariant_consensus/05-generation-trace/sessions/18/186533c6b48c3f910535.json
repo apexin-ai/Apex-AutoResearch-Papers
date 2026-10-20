@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "186533c6b48c3f910535",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "code fix exp011 llama shard",
+  "task_key": "worker_code_fix-exp011-llama-shard_20260517T061354",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-exp011-llama-shard_20260517T061354_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "ee50994f78218a73b4d8f23d1a93299a2bc6b22d730304736240fde9965d612a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个 shard 验证通过，文件完整且可正常加载：\n\n- model-00001: 4.63 GB, 82 tensors ✓\n- model-00002: 4.66 GB, 104 tensors ✓\n- model-00003: 4.58 GB, 100 tensors ✓\n- model-00004: 1.09 GB, 5 tensors ✓\n\nshard 2 的时间戳是今天 11:38，说明已经被重新下载修复过了。模型现在完整可用，exp-011-llama8b 可以重新跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp011-llama-shard.md"
+}

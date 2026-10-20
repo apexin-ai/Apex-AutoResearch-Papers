@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c4b987a21f279001632",
+  "project": "symb_invariant_consensus",
+  "kind": "history",
+  "title": "agent / loop_4_1778903872.md",
+  "task_key": "loop_4_1778903872",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_4_1778903872.md",
+    "occurrence": 1,
+    "bytes": 3606,
+    "sha256": "b426525f4d9568b2d3e7f8ae65f6e6d8398a34fda745e0e0ed16e02fecea2379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T01:20:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-32608 的 cuda:0（gpu_ids 白名单只有这一块）\n- vLLM max_model_len=16384，**max_tokens 必须 ≤12288**（=16384 会导致 prompt 空间为 0，全量 400 错误，sica_proofwriter30 已踩坑）\n- vLLM 独占：实验运行期间禁止其他进程向 vLLM 发请求\n- **May 19 UTC 是硬 checkpoint**：逻辑域 MVP 未 pass → 放弃 EMNLP May 25，切 AAAI 2027\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-32608, root, 工作目录 `/root/symb_invariant_consensus/`\n- **Python**: `/root/miniconda3/bin/python` (conda base, Python 3.12.3)\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 1× NVIDIA RTX PRO 6000 Blackwell 98GB, cuda:0\n- **模型**: QwQ-32B @ `/root/autodl-tmp/models/QwQ-32B/Qwen/QwQ-32B/`, vLLM port 8000, bf16, max_model_len=16384\n- **关键包**: torch 2.11.0+cu130, vllm 0.20.2, z3-solver 4.15.4\n- **活跃进程**: sica_proofwriter30_v2 PID 155077, tmux session, cron 监控中\n- **数据**: ProofWriter `/root/symb_invariant_consensus/data/proofwriter_subset.json` (30题 T:10/F:10/U:10), FOLIO `/root/symb_invariant_consensus/data/folio_subset.json` (30题 T:10/F:10/U:10)\n\n### 3. 📊 当前状态\n- **sica_proofwriter30_v2** (RUNNING): 逻辑域 ProofWriter D5 30题，K=12，max_tokens=12288。cron 确认 PID 155077 存活。预计 ~2.5h 完成。\n- **sica_folio30** (QUEUED): 等 proofwriter 完成后启动（同一 GPU 不能并行）。dry-run + live-test 已通过。\n- 数学域已锁定结论：AIME 22题 + MATH 30题，multi-candidate=0%，SICA≡SC 结构性等价。\n- 无等待中的 Worker 回调。1 个 cron 监控 proofwriter30_v2。\n\n### 4. 📋 待办（条件触发式）\n- sica_proofwriter30_v2 cron 回调（完成/失败）→ 分析结果（multi-candidate rate / extraction rate / contradiction count / accuracy gap）→ 更新 registry → 汇报 Director\n- proofwriter30_v2 完成且非 failed → 立即提交 sica_folio30（命令: `python eval_folio.py --n-problems 30 --k 12 --temperature 0.7 --max-tokens 12288 --seed 42 --save-intermediates --output results/folio_eval.json`）\n- proofwriter30_v2 + folio30 都完成 → 合并 60 题按 D012 标准判定 MVP（C0≥20%, C1≥50%, C2≥5题, C3≥SC+2pp）\n- MVP PASS → 向 Director 汇报 + 推进论文写作\n- MVP FAIL → 按 red-section skill 产出 Framing 调整提案，向 Director 汇报，切 AAAI 2027 时间线\n- MVP INCONCLUSIVE (C3=+0~2pp) → 扩展到 100 题重测\n\n### 5. 🎯 战略上下文\n- **核心假设**: 逻辑域（ProofWriter/FOLIO）答案天然三选一(T/F/U)，multi-candidate rate 应远高于数学域，给 SICA 差异化空间\n- **决策链**: D003→D005→D006→D010→D011(数学域锁定)→D012(逻辑域 MVP 标准)\n- **最容易判断错的事**: proofwriter 结果即使 multi-candidate rate 高，如果约束提取率低（逻辑域 FOL extraction 比数学域 Z3 extraction 更难），C1/C2 可能 fail。不要只看 accuracy gap。\n- **易踩的坑**: (1) folio30 启动命令是 `eval_folio.py` 不是 `run_full_mvp.py`；(2) 逻辑域用 LOGIC_EXTRACTION_PROMPT 不是数学域 prompt；(3) z3_timeout_s=60 对逻辑域可能需要调整；(4) sica_proofwriter30 第一次用 max_tokens=16384 全挂，v2 已修为 12288，folio30 也必须 12288\n- **时间紧迫度**: 今天 5/16，checkpoint 5/19，proofwriter ~2.5h + folio ~2.5h = 最快 5h 出全部结果。如果需要重跑或扩展到 100 题，时间极紧。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778903872.md"
+}

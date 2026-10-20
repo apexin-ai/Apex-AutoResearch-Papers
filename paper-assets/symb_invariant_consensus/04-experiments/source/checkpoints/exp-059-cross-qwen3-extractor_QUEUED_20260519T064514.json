@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-059-cross-qwen3-extractor",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:45:04.278Z",
+    "updated_at": "2026-05-19T06:45:14.571Z",
+    "hypothesis": "Qwen3-14B cross-model extraction should produce higher quality FOL constraints than Mistral-7B self-extraction (breaking confirmation bias), leading to higher SICA discriminative rate and accuracy delta over SC baseline.",
+    "parent": "exp-033"
+  },
+  "timestamp": "2026-05-19T06:45:14.763304+00:00",
+  "trigger": "update_registry"
+}

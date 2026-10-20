@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009fc7c88ae67fba29a8",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "gpu exp 070 qwen7b logiqa200 dryrun",
+  "task_key": "worker_gpu_exp-070-qwen7b-logiqa200-dryrun_20260519T115213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu_exp-070-qwen7b-logiqa200-dryrun_20260519T115213_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "2cc9cd5d100ed8a2a1a4d318206fc96848a41b80d6295b9c4732832c92d8120a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 报告\n\n**状态: PASS**\n\n| 项目 | 结果 |\n|------|------|\n| dry-run 通过 | **Y** |\n| vLLM 启动 | 已有实例在 port 8002 运行（Qwen2.5-7B-Instruct, cuda:2, enforce-eager + FLASHINFER_SAMPLER=0） |\n| 处理速度 | 问题 0: 20.2s, 问题 1: 13.0s, 平均 ~16.6s/题 |\n| ETA (200题) | ~55 min |\n| 2/2 正确 | SICA=100%, SC=100% |\n| 报错/警告 | 无 |\n\n**注意事项:**\n- cuda:2 上已有 vLLM (port 8002) 运行 Qwen2.5-7B-Instruct，无需重新启动\n- `run_logiqa.py` 也存在（exp-069 用它跑 Mistral LogiQA），但 dry-run 用了你指定的 `run_full_mvp.py --strategyqa-data`\n- port 8002 的 vLLM 没设 `--max-model-len 8192`（默认 32768），不影响功能\n\n**建议的全量运行命令:**\n```bash\ncd /root/symb_invariant_consensus\npython -u run_full_mvp.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 \\\n  --api-base http://localhost:8002/v1 --model auto --seed 42 \\\n  --strategyqa-data data/logiqa_200.json \\\n  --folio-data data/empty.json --math-data data/empty.json --pw-data data/empty.json \\\n  --output results/exp070_qwen7b_logiqa200/exp070_results.json \\\n  --save-intermediates 2>&1 | tee results/exp070_qwen7b_logiqa200/exp070_run.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-070-qwen7b-logiqa200-dryrun.md"
+}

@@ -1,0 +1,2646 @@
+# experiment dir c premise only 204
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 93
+- **Recorded user turns:** 0
+- **Tool calls:** 46
+- **Original source:** `logs/chats/worker_experiment_dir-c-premise-only-204_20260520T155358.jsonl`
+- **Structured JSON:** [`375f63da1b0cc6987cf1.json`](../../sessions/37/375f63da1b0cc6987cf1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+93 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T16:07:14.817014+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T16:07:14.817360+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T16:07:14.817522+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T16:07:14.817663+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T16:07:14.817791+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/ | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T16:07:14.817942+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T16:07:14.818078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T16:07:14.818261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0.json\\nfolio_1.json\\nfolio_10.json\\nfolio_100.json\\nfolio_101.json\\nfolio_102.json\\nfolio_103.json\\nfolio_104.json\\nfolio_105.json\\nfolio_106.json\\nfolio_107.json\\nfolio_108.json\\nfolio_109.json\\nfolio_11.json\\nfolio_110.json\\nfolio_111.json\\nfolio_112.json\\nfolio_113.json\\nfolio_114.json\\nfolio_115.json\\nfolio_116.json\\nfolio_117.json\\nfolio_118.json\\nfolio_119.json\\nfolio_12.json\\nfolio_120.json\\nfolio_121.json\\nfolio_122.json\\nfolio_123.json\\nfolio_124.json\\nfolio_125.json\\nfolio_126.json\\nfolio_127.json\\nfolio_128.json\\nfolio_129.json\\nfolio_13.json\\nfolio_130.json\\nfolio_131.json\\nfolio_132.json\\nfolio_133.json\\nfolio_134.json\\nfolio_135.json\\nfolio_136.json\\nfolio_137.json\\nfolio_138.json\\nfolio_139.json\\nfolio_14.json\\nfolio_140.json\\nfolio_141.json\\nfolio_142.json\\nfolio_143.json\\nfolio_144.json\\nfolio_145.json\\nfolio_146.json\\nfolio_147.json\\nfolio_148.json\\nfolio_149.json\\nfolio_15.json\\nfolio_150.json\\nfolio_151.json\\nfolio_152.json\\nfolio_153.json\\nfolio_154.json\\nfolio_155.json\\nfolio_156.json\\nfolio_157.json\\nfolio_158.json\\nfolio_159.json\\nfolio_16.json\\nfolio_160.json\\nfolio_161.json\\nfolio_162.json\\nfolio_163.json\\nfolio_164.json\\nfolio_165.json\\nfolio_166.json\\nfolio_167.json\\nfolio_168.json\\nfolio_169.json\\nfolio_17.json\\nfolio_170.json\\nfolio_171.json\\nfolio_172.json\\nfolio_173.json\\nfolio_174.json\\nfolio_175.json\\nfolio_176.json\\nfolio_177.json\\nfolio_178.json\\nfolio_179.json\\nfolio_18.json\\nfolio_180.json\\nfolio_181.json\\nfolio_182.json\\nfolio_183.json\\nfolio_184.json\\nfolio_185.json\\nfolio_186.json\\nfolio_187.json\\nfolio_188.json\\nfolio_189.json\\nfolio_19.json\\nfolio_190.json\\nfolio_191.json\\nfolio_192.json\\nfolio_193.json\\nfolio_194.json\\nfolio_195.json\\nfolio_196.json\\nfolio_197.json\\nfolio_198.json\\nfolio_199.json\\nfolio_2.json\\nfolio_20.json\\nfolio_200.json\\nfolio_
+…[truncated 1518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T16:07:14.818477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T16:07:14.818608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -100 /root/symb_invariant_consensus/data/folio_full.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -100 /root/symb_invariant_consensus/data/folio_full.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T16:07:14.818843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"problem\\\": {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\",\\n    \\\"dataset\\\": \\\"folio\\\"\\n  },\\n  \\\"sica_result\\\": {\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"scores\\\": {\\n      \\\"False\\\": 3.5,\\n      \\\"Unknown\\\": 58.0\\n    },\\n    \\\"answer_counts\\\": {\\n    
+…[truncated 6880 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T16:07:14.819038+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"direction_c*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus -name \"direction_c*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T16:07:14.819298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"id\\\": \\\"folio_0\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\\\\n\\\\nDetermine whether the following conclusion is true, false, or uncertain:\\\\nBonnie performs in school talent shows often.\\\",\\n    \\\"solution\\\": \\\"\\\",\\n    \\\"answer\\\": \\\"Unknown\\\",\\n    \\\"level\\\": \\\"validation\\\",\\n    \\\"premises_fol\\\": [\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2192 Engaged(x))\\\",\\n      \\\"\\\\u2200x (TalentShows(x) \\\\u2228 Inactive(x))\\\",\\n      \\\"\\\\u2200x (Chaperone(x) \\\\u2192 \\\\u00acStudents(x))\\\",\\n      \\\"\\\\u2200x (Inactive(x) \\\\u2192 Chaperone(x))\\\",\\n      \\\"\\\\u2200x (AcademicCareer(x) \\\\u2192 Students(x))\\\",\\n      \\\"(Engaged(bonnie) \\\\u2227 Students(bonnie)) \\\\u2295 (\\\\u00acEngaged(bonnie) \\\\u2227 \\\\u00acStudents(bonnie))\\\"\\n    ],\\n    \\\"conclusion_fol\\\": \\\"Engaged(bonnie)\\\"\\n  },\\n  {\\n    \\\"id\\\": \\\"folio_1\\\",\\n    \\\"problem\\\": \\\"Given the following premises:\\\\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent sh
+…[truncated 7260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T16:07:14.819457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T16:07:14.819618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); print(list(d.keys())); print(list(d['sica_result'].keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); print(list(d.keys())); print(list(d['sica_result'].keys()))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T16:07:14.819755+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T16:07:14.819895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus -name \"*.py\" -path \"*/scripts/*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus -name \"*.py\" -path \"*/scripts/*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T16:07:14.820041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/scripts/extract_exp033_per_problem.py\\n/root/symb_invariant_consensus/scripts/track_discordant_pairs.py\\n/root/symb_invariant_consensus/scripts/analyze_k_diversity.py\\n/root/symb_invariant_consensus/scripts/analyze_extraction_errors.py\\n/root/symb_invariant_consensus/scripts/analyze_adaptive_sica.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa.py\\n/root/symb_invariant_consensus/scripts/entropy_breakdown.py\\n/root/symb_invariant_consensus/scripts/analyze_seed_replication.py\\n/root/symb_invariant_consensus/scripts/cross_model_extract.py\\n/root/symb_invariant_consensus/scripts/postprocess_case_study.py\\n/root/symb_invariant_consensus/scripts/run_exp031_oracle_folio_regen.py\\n/root/symb_invariant_consensus/scripts/summarize_k_sensitivity.py\\n/root/symb_invariant_consensus/scripts/analyze_condorcet_independence.py\\n/root/symb_invariant_consensus/scripts/discriminative_filter.py\\n/root/symb_invariant_consensus/scripts/compute_fleiss_kappa_unified.py\\n/root/symb_invariant_consensus/scripts/exp060_dryrun.py\\n/root/symb_invariant_consensus/scripts/run_exp089_oracle_folio_mistral7b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T16:07:14.820168+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); print(list(d['sica_result'].keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); print(list(d['sica_result'].keys()))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T16:07:14.820289+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T16:07:14.820406+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/scripts/discriminative_filter.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/scripts/discriminative_filter.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T16:07:14.820677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Discriminative Constraint Filtering for SICA pipeline.\\n\\nFilters out non-discriminative constraints before MAX-SAT scoring.\\nA constraint is non-discriminative if its source traces cover ALL candidate\\nanswers, meaning it adds equal weight to every candidate during scoring.\\n\\nInput:  SICA experiment results directory with intermediates/\\nOutput: JSON report comparing original vs filtered SICA accuracy\\n\\nDependencies: z3-solver, openai (for constraint re-extraction when not cached)\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom collections import Counter\\n\\nsys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))\\n\\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom sica.scorer import InvariantScorer\\nfrom sica.pipeline import normalize_logic_answer\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s %(levelname)s %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_intermediates(input_dir: str) -> list[dict]:\\n    \\\"\\\"\\\"Load all intermediate JSON files from the experiment directory.\\\"\\\"\\\"\\n    intermed_dir = os.path.join(input_dir, \\\"intermediates\\\")\\n    if not os.path.isdir(intermed_dir):\\n        raise FileNotFoundError(f\\\"No intermediates directory: {intermed_dir}\\\")\\n    problems = []\\n    for fname in sorted(os.listdir(intermed_dir)):\\n        if not fname.endswith(\\\".json\\\"):\\n            continue\\n        with open(os.path.join(intermed_dir, fname)) as f:\\n            problems.append(json.load(f))\\n    return problems\\n\\n\\ndef load_or_extract_constraints(problem_data, cache_dir, extractor):\\n    \\\"\\\"\\\"Return per-trace constraint lists. Use cache or sica_result; re-extract as fallback.\\\"\\\"\\\"\\n    pid = problem_data[\\\"problem\\\
+…[truncated 7389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T16:07:14.820889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); sr=d['sica_result']; print([k for k in sr.keys()])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json')); sr=d['sica_result']; print([k for k in sr.keys()])\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T16:07:14.821036+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T16:07:14.821161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204 -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T16:07:14.821286+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T16:07:14.821410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ls /root/symb_invariant_consensus/sica/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ls /root/symb_invariant_consensus/sica/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T16:07:14.821534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nconstraint_extractor.py\\npipeline.py\\nscorer.py\\ntrace_generator.py\\ntrace_generator.py.bak\\nz3_feedback.py\\nz3_maxsat.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T16:07:14.821667+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -80 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -80 /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T16:07:14.821847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pid\\\": \\\"folio_0\\\",\\n  \\\"gt\\\": \\\"Unknown\\\",\\n  \\\"per_trace\\\": [\\n    {\\n      \\\"trace_idx\\\": 0,\\n      \\\"answer\\\": \\\"Unknown\\\",\\n      \\\"constraints\\\": [\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"performs_in_school_talent_shows_often(X) -> attends_and_engaged_with_school_events(X) & student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(performs_in_school_talent_shows_often_X, And(attends_and_engaged_with_school_events_X, student_X))\\\",\\n          \\\"source_step\\\": 1\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"performs_in_school_talent_shows_often(X) | inactive_and_disinterested_member(X)\\\",\\n          \\\"z3_formula\\\": \\\"Or(performs_in_school_talent_shows_often_X, inactive_and_disinterested_member_X)\\\",\\n          \\\"source_step\\\": 4\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"chaperones_high_school_dances(X) -> !student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(chaperones_high_school_dances_X, Not(student_X))\\\",\\n          \\\"source_step\\\": 2\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"inactive_and_disinterested_member(X) -> chaperones_high_school_dances(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(inactive_and_disinterested_member_X, chaperones_high_school_dances_X)\\\",\\n          \\\"source_step\\\": 2\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"young_child_or_teenager(X) & wishes_to_further_academic_career(X) -> student(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(And(young_child_or_teenager_X, wishes_to_further_academic_career_X), student_X)\\\",\\n          \\\"source_step\\\": 3\\n        },\\n        {\\n          \\\"type\\\": \
+…[truncated 2428 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T16:07:14.822101+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/sica/z3_maxsat.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/sica/z3_maxsat.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T16:07:14.822236+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/sica/scorer.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/sica/scorer.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T16:07:14.822396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -n \"normalize_logic_answer\" /root/symb_invariant_consensus/sica/pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -n \"normalize_logic_answer\" /root/symb_invariant_consensus/sica/pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T16:07:14.822660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nZ3-based weighted partial MAX-SAT solver for constraint consensus.\\nInput: multi-trace constraint lists (list of list of dicts)\\nOutput: optimal satisfiable constraint subset, excluded contradictions, per-answer scores\\nDependencies: z3-solver\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nimport re\\nimport time\\nfrom dataclasses import dataclass, field\\n\\nimport z3\\n\\nz3.set_param('smt.random_seed', 42)\\nz3.set_param('sat.random_seed', 42)\\n\\nlogger = logging.getLogger(__name__)\\n\\n_BOOL_INDICATORS = re.compile(r'\\\\bImplies\\\\s*\\\\(|==\\\\s*True|==\\\\s*False|\\\\bNot\\\\s*\\\\(|\\\\bAnd\\\\s*\\\\(|\\\\bOr\\\\s*\\\\(')\\n\\n\\ndef _is_boolean_formula(formula_str: str) -> bool:\\n    \\\"\\\"\\\"Detect whether a formula uses boolean logic (vs arithmetic).\\\"\\\"\\\"\\n    return bool(_BOOL_INDICATORS.search(formula_str))\\n\\n\\ndef _preprocess_formula(formula_str: str) -> str:\\n    \\\"\\\"\\\"Normalize common LLM output patterns before z3 eval.\\\"\\\"\\\"\\n    s = formula_str.strip()\\n    # Sum -> sum\\n    s = re.sub(r'\\\\bSum\\\\b', 'sum', s)\\n    # sum([x1, x2, ...]) -> sum(x1, x2, ...)\\n    s = re.sub(r'\\\\bsum\\\\(\\\\[([^\\\\[\\\\]]*)\\\\]\\\\)', r'sum(\\\\1)', s)\\n    # pow(a, b) -> (a)**(b)\\n    s = re.sub(r'\\\\bpow\\\\(([^,]+),\\\\s*([^)]+)\\\\)', r'(\\\\1)**(\\\\2)', s)\\n    # Abs -> abs\\n    s = re.sub(r'\\\\bAbs\\\\b', 'abs', s)\\n    return s\\n\\n\\ndef parse_z3_formula(formula_str: str, var_type: str = \\\"auto\\\") -> z3.ExprRef | None:\\n    \\\"\\\"\\\"Safely parse a string into a z3 expression.\\n\\n    Supports:\\n      - Arithmetic: +, -, *, /, **, ==, !=, <, >, <=, >= (Real variables)\\n      - Boolean: Implies, And, Or, Not, == True/False (Bool variables)\\n      - Functions: sum, max, min, abs (z3-compatible wrappers)\\n    Auto-declares unknown variables as z3.Real or z3.Bool based on context.\\n    Returns None
+…[truncated 6994 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T16:07:14.822889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nInvariant consensus scorer with A+C improvement:\\n  A (normal mode): score = positive_weight - alpha * negative_weight\\n  C (fallback mode): when satisfied_ratio < threshold, score = -excluded_exposure\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nfrom collections import Counter\\n\\nfrom .z3_maxsat import MaxSATResult\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\nclass InvariantScorer:\\n\\n    def __init__(self, alpha: float = 0.5, fallback_threshold: float = 0.2):\\n        self.alpha = alpha\\n        self.fallback_threshold = fallback_threshold\\n\\n    def score(\\n        self,\\n        maxsat_result: MaxSATResult,\\n        traces: list[dict],\\n        candidates: list[str],\\n    ) -> dict[str, float]:\\n        \\\"\\\"\\\"Score each candidate answer using A+C strategy.\\n\\n        Normal mode (A): score = Σw(satisfied ∩ traces) - α·Σw(excluded ∩ traces)\\n        Fallback mode (C): score = -Σw(excluded ∩ traces)\\n        Switches to fallback when satisfied_ratio < fallback_threshold.\\n        \\\"\\\"\\\"\\n        answer_traces: dict[str, set[int]] = {}\\n        for t in traces:\\n            ans = str(t.get(\\\"answer\\\", \\\"\\\")).strip()\\n            idx = t.get(\\\"trace_idx\\\", 0)\\n            answer_traces.setdefault(ans, set()).add(idx)\\n\\n        n_satisfied = len(maxsat_result.satisfied)\\n        n_excluded = len(maxsat_result.excluded)\\n        n_total = n_satisfied + n_excluded\\n\\n        if n_total == 0:\\n            return {str(c).strip(): 0.0 for c in candidates}\\n\\n        satisfied_ratio = n_satisfied / n_total\\n        fallback = satisfied_ratio < self.fallback_threshold\\n\\n        logger.info(\\n            \\\"Scorer mode=%s  satisfied_ratio=%.3f (%d/%d)  alpha=%.2f  threshold=%.2f\\\",\\n            \\\"FALLBACK\\\" if fallback else \\\"NORMAL\\\",\\n            satisfied_ratio, n_satisfied, n_total,\\n      
+…[truncated 1826 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T16:07:14.823067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"70:                    t[\\\"answer\\\"] = normalize_logic_answer(t[\\\"answer\\\"])\\n125:def normalize_logic_answer(ans: str) -> str:\\n140:        key = normalize_logic_answer(ans)\\n243:                    t[\\\"answer\\\"] = normalize_logic_answer(t[\\\"answer\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T16:07:14.823199+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -150 /root/symb_invariant_consensus/sica/pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -150 /root/symb_invariant_consensus/sica/pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T16:07:14.823399+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSICA end-to-end pipeline: trace generation -> constraint extraction -> Z3 dedup -> MAX-SAT -> scoring -> answer selection.\\nInput: problem dict with \\\"problem\\\" and \\\"answer\\\" fields\\nOutput: result dict with answer, score, constraint stats, maxsat stats\\nDependencies: trace_generator, constraint_extractor, z3_maxsat, scorer\\n\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport logging\\nimport time\\nfrom collections import Counter\\n\\nfrom .trace_generator import TraceGenerator\\nfrom .constraint_extractor import ConstraintExtractor\\nfrom .z3_maxsat import ConstraintDeduplicator, MaxSATSolver\\nfrom .scorer import InvariantScorer\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\nclass SICAPipeline:\\n    def __init__(\\n        self,\\n        trace_generator: TraceGenerator,\\n        constraint_extractor: ConstraintExtractor,\\n        k: int = 12,\\n        maxsat_timeout_ms: int = 10000,\\n    ):\\n        self.trace_generator = trace_generator\\n        self.constraint_extractor = constraint_extractor\\n        self.k = k\\n        self.deduplicator = ConstraintDeduplicator()\\n        self.solver = MaxSATSolver()\\n        self.scorer = InvariantScorer()\\n        self.maxsat_timeout_ms = maxsat_timeout_ms\\n\\n    def run_single(self, problem: dict) -> dict:\\n        \\\"\\\"\\\"Run full SICA pipeline on a single problem.\\\"\\\"\\\"\\n        t_start = time.perf_counter()\\n\\n        # 1. Generate K traces\\n        t0 = time.perf_counter()\\n        traces = self.trace_generator.generate(problem[\\\"problem\\\"], k=self.k)\\n        trace_time = time.perf_counter() - t0\\n\\n        # 2. Extract constraints from each trace (batch for concurrency)\\n        t0 = time.perf_counter()\\n        all_constraints = self.constraint_extractor.extract_batch(\\n            [t[\\\"trace\\\"] for t in traces]\\n        )\\n        extract_time = time.perf_counter() - t0\\n\
+…[truncated 4385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T16:07:14.823564+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "pip3 list --format=freeze 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "pip3 list --format=freeze 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T16:07:14.823695+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T16:07:14.823817+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "pip3 list --format=freeze"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "pip3 list --format=freeze"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T16:07:14.823959+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pip3' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T16:07:14.824079+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip list --format=freeze 2>/dev/null | grep -iE \"z3|scipy\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip list --format=freeze 2>/dev/null | grep -iE \"z3|scipy\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T16:07:14.824198+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_3.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_3.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T16:07:14.824318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"scipy==1.17.1\\nz3-solver==4.15.4.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T16:07:14.824625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pid\\\": \\\"folio_3\\\",\\n  \\\"gt\\\": \\\"Unknown\\\",\\n  \\\"per_trace\\\": [\\n    {\\n      \\\"trace_idx\\\": 0,\\n      \\\"answer\\\": \\\"Unknown\\\",\\n      \\\"constraints\\\": [\\n        {\\n          \\\"type\\\": \\\"fact\\\",\\n          \\\"expression\\\": \\\"employee(james)\\\",\\n          \\\"z3_formula\\\": \\\"employee_james == True\\\",\\n          \\\"source_step\\\": 1\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"employee(X) & schedules_meeting(X, customer) -> in_company(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(And(employee_james, schedules_meeting_james_customer), in_company_james)\\\",\\n          \\\"source_step\\\": 2\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"in_company(X) -> schedules_meeting(X, customer)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(in_company_james, schedules_meeting_james_customer)\\\",\\n          \\\"source_step\\\": 3\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"in_company(X) | home_lunch(X)\\\",\\n          \\\"z3_formula\\\": \\\"Or(in_company_james, home_lunch_james)\\\",\\n          \\\"source_step\\\": 4\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"home_lunch(X) -> remote_work(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(home_lunch_james, remote_work_james)\\\",\\n          \\\"source_step\\\": 5\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"in_other_country(X) -> remote_work(X)\\\",\\n          \\\"z3_formula\\\": \\\"Implies(in_other_country_james, remote_work_james)\\\",\\n          \\\"source_step\\\": 6\\n        },\\n        {\\n          \\\"type\\\": \\\"rule\\\",\\n          \\\"expression\\\": \\\"manager(X) -> not(remote_work(X))\\
+…[truncated 8115 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T16:07:14.825027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/data/folio_full.json')); [print(p['id'], '|', p['problem'].split('true, false, or uncertain:\\n')[-1][:80]) for p in d[:10]]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "python3 -c \"import json; d=json.load(open('/root/symb_invariant_consensus/data/folio_full.json')); [print(p['id'], '|', p['problem'].split('true, false, or uncertain:\\n')[-1][:80]) for p in d[:10]]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T16:07:14.825191+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T16:07:14.825319+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "grep -c \"folio_\" /root/symb_invariant_consensus/data/folio_full.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "grep -c \"folio_\" /root/symb_invariant_consensus/data/folio_full.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T16:07:14.825451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"204\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T16:07:14.825571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "find /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "find /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache -name \"*.json\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T16:07:14.825763+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_1.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_10.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_100.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_101.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_102.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_103.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_104.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_105.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_106.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_107.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_108.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_109.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_11.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_110.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_111.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_112.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_113.json\\n/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_114.json\\n/root/symb_invariant_consensus/results/exp033_mist
+…[truncated 6366 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T16:07:14.825968+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_c_premise_only.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50%), re-runs Z3 MAX-SAT aggregation with remaining\npremise-only constraints. Reports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities, threshold=0.5):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    if not conclusion_kw:\n        return False\n    overlap = conclusion_kw & expr_content\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        # Original SICA answer\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        # SC baseline (dict insertion order tiebreaking)\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        # Conclusion keywords\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        # Filter constraints per trace\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        # Deduplicate + MAX-SAT + Score\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    # McNemar exact test (SC vs premise-only)\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_c_premise_only.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50%), re-runs Z3 MAX-SAT aggregation with remaining\npremise-only constraints. Reports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities, threshold=0.5):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    if not conclusion_kw:\n        return False\n    overlap = conclusion_kw & expr_content\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        # Original SICA answer\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        # SC baseline (dict insertion order tiebreaking)\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        # Conclusion keywords\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        # Filter constraints per trace\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        # Deduplicate + MAX-SAT + Score\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    # McNemar exact test (SC vs premise-only)\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T16:07:14.826201+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dir_c_premise_only.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T16:07:14.826406+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/dir_c_premise_only.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50%), re-runs Z3 MAX-SAT aggregation with remaining\npremise-only constraints. Reports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities, threshold=0.5):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    if not conclusion_kw:\n        return False\n    overlap = conclusion_kw & expr_content\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        # Original SICA answer\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        # SC baseline (dict insertion order tiebreaking)\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        # Conclusion keywords\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        # Filter constraints per trace\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        # Deduplicate + MAX-SAT + Score\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    # McNemar exact test (SC vs premise-only)\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nSCRIPT_EOF\necho \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/scripts/dir_c_premise_only.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50%), re-runs Z3 MAX-SAT aggregation with remaining\npremise-only constraints. Reports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities, threshold=0.5):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    if not conclusion_kw:\n        return False\n    overlap = conclusion_kw & expr_content\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        # Original SICA answer\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        # SC baseline (dict insertion order tiebreaking)\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        # Conclusion keywords\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        # Filter constraints per trace\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        # Deduplicate + MAX-SAT + Score\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    # McNemar exact test (SC vs premise-only)\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nSCRIPT_EOF\necho \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T16:07:14.826624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T16:07:14.826791+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 -c \"\nimport json, os, re, sys\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\nfrom scipy.stats import binomtest\nprint('imports OK')\n\n# Check paths\nfor p in ['/root/symb_invariant_consensus/data/folio_full.json',\n          '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json',\n          '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json']:\n    print(f'{os.path.exists(p)}: {p}')\n\n# Test conclusion extraction & keyword matching on first 3 problems\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\ndef extract_conclusion_text(problem_text):\n    marker = 'Determine whether the following conclusion is true, false, or uncertain:\\n'\n    idx = problem_text.find(marker)\n    if idx == -1: return ''\n    return problem_text[idx + len(marker):].strip()\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\nfolio = json.load(open('/root/symb_invariant_consensus/data/folio_full.json'))\nfor p in folio[:5]:\n    concl = extract_conclusion_text(p['problem'])\n    kw, ent = get_conclusion_keywords(concl)\n    print(f\\\"{p['id']}: entities={ent}, keywords={sorted(kw)}\\\")\n    print(f'  conclusion: {concl[:100]}')\n    \n    # Check first trace's constraints\n    cache_path = f\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/{p['id']}.json\\\"\n    cache = json.load(open(cache_path))\n    trace0 = cache['per_trace'][0]\n    for c in trace0['constraints'][:3]:\n        expr = c['expression']\n        z3f = c['z3_formula']\n        combined = expr + ' ' + z3f\n        expr_tokens = normalize_to_tokens(combined) - ent\n        overlap = kw & expr_tokens\n        ratio = len(overlap)/len(kw) if kw else 0\n        filt = 'FILTER' if ratio >= 0.5 else 'KEEP'\n        print(f'  [{filt} {ratio:.2f}] {expr[:80]}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 -c \"\nimport json, os, re, sys\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\nfrom scipy.stats import binomtest\nprint('imports OK')\n\n# Check paths\nfor p in ['/root/symb_invariant_consensus/data/folio_full.json',\n          '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json',\n          '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json']:\n    print(f'{os.path.exists(p)}: {p}')\n\n# Test conclusion extraction & keyword matching on first 3 problems\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\ndef extract_conclusion_text(problem_text):\n    marker = 'Determine whether the following conclusion is true, false, or uncertain:\\n'\n    idx = problem_text.find(marker)\n    if idx == -1: return ''\n    return problem_text[idx + len(marker):].strip()\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\nfolio = json.load(open('/root/symb_invariant_consensus/data/folio_full.json'))\nfor p in folio[:5]:\n    concl = extract_conclusion_text(p['problem'])\n    kw, ent = get_conclusion_keywords(concl)\n    print(f\\\"{p['id']}: entities={ent}, keywords={sorted(kw)}\\\")\n    print(f'  conclusion: {concl[:100]}')\n    \n    # Check first trace's constraints\n    cache_path = f\\\"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/{p['id']}.json\\\"\n    cache = json.load(open(cache_path))\n    trace0 = cache['per_trace'][0]\n    for c in trace0['constraints'][:3]:\n        expr = c['expression']\n        z3f = c['z3_formula']\n        combined = expr + ' ' + z3f\n        expr_tokens = normalize_to_tokens(combined) - ent\n        overlap = kw & expr_tokens\n        ratio = len(overlap)/len(kw) if kw else 0\n        filt = 'FILTER' if ratio >= 0.5 else 'KEEP'\n        print(f'  [{filt} {ratio:.2f}] {expr[:80]}')\n    print()\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T16:07:14.827045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"imports OK\\nTrue: /root/symb_invariant_consensus/data/folio_full.json\\nTrue: /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache/folio_0.json\\nTrue: /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates/folio_0.json\\nfolio_0: entities={'bonnie'}, keywords=['often', 'performs', 'school', 'shows', 'talent']\\n  conclusion: Bonnie performs in school talent shows often.\\n  [FILTER 1.00] performs_in_school_talent_shows_often(X) -> attends_and_engaged_with_school_even\\n  [FILTER 1.00] performs_in_school_talent_shows_often(X) | inactive_and_disinterested_member(X)\\n  [KEEP 0.20] chaperones_high_school_dances(X) -> !student(X)\\n\\nfolio_1: entities={'bonnie'}, keywords=['academic', 'attends', 'career', 'chaperones', 'child', 'community', 'dances', 'disinterested', 'educational', 'further', 'high', 'inactive', 'member', 'opportunities', 'school', 'student', 'teenager', 'wishes', 'young']\\n  conclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and edu\\n  [KEEP 0.05] performs_in_school_talent_shows_often(people)\\n  [KEEP 0.11] performs_in_school_talent_shows_often(X) -> attends_and_engaged_school_events(X)\\n  [KEEP 0.21] Or(performs_in_school_talent_shows_often(X), inactive_disinterested_community(X)\\n\\nfolio_2: entities={'bonnie'}, keywords=['academic', 'career', 'chaperones', 'child', 'community', 'dances', 'disinterested', 'educational', 'further', 'high', 'inactive', 'member', 'often', 'opportunities', 'performs', 'school', 'shows', 'talent', 'teenager', 'wishes', 'young']\\n  conclusion: If Bonnie either chaperones high school dances or, if she does not, she performs in school talent sh\\n  [KEEP 0.19] performs_often(school_talent_show, bonnie)\\n  [KEEP 0.19] performs_often(school_talent_show, X) -> attends_and_engaged(school_events, X)\\n  [KEEP 0.33] performs_often(school_talent_show, X) -> no
+…[truncated 737 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T16:07:14.827296+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat > /root/symb_invariant_consensus/scripts/dir_c_premise_only.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50% AND at least min(2, n_keywords) matches),\nre-runs Z3 MAX-SAT aggregation with remaining premise-only constraints.\nReports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities,\n                                     threshold=0.5, min_overlap=2):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    overlap = conclusion_kw & expr_content\n    required_min = min(min_overlap, len(conclusion_kw))\n    if len(overlap) < required_min:\n        return False\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nSCRIPT_EOF\necho \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat > /root/symb_invariant_consensus/scripts/dir_c_premise_only.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nDir-C Premise-Only Filtering: FOLIO 204\n\nFilters out constraints whose expression text references the conclusion\n(keyword overlap >= 50% AND at least min(2, n_keywords) matches),\nre-runs Z3 MAX-SAT aggregation with remaining premise-only constraints.\nReports accuracy + McNemar vs SC baseline.\n\"\"\"\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom collections import Counter\n\nfrom scipy.stats import binomtest\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\nfrom sica.z3_maxsat import ConstraintDeduplicator, MaxSATSolver\nfrom sica.scorer import InvariantScorer\nfrom sica.pipeline import normalize_logic_answer\n\nlogging.basicConfig(level=logging.WARNING)\n\nFOLIO_PATH = '/root/symb_invariant_consensus/data/folio_full.json'\nCACHE_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/constraint_cache'\nINTERMED_DIR = '/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/intermediates'\nOUTPUT_DIR = '/root/symb_invariant_consensus/results/dir_c_premise_only_204'\n\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\n\n\ndef extract_conclusion_text(problem_text):\n    marker = \"Determine whether the following conclusion is true, false, or uncertain:\\n\"\n    idx = problem_text.find(marker)\n    if idx == -1:\n        return \"\"\n    return problem_text[idx + len(marker):].strip()\n\n\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\n\n\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    content = tokens - entities\n    return content, entities\n\n\ndef constraint_references_conclusion(constraint, conclusion_kw, entities,\n                                     threshold=0.5, min_overlap=2):\n    if not conclusion_kw:\n        return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined)\n    expr_content = expr_tokens - entities\n    overlap = conclusion_kw & expr_content\n    required_min = min(min_overlap, len(conclusion_kw))\n    if len(overlap) < required_min:\n        return False\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\n\ndef main():\n    t_start = time.time()\n\n    with open(FOLIO_PATH) as f:\n        folio_data = json.load(f)\n    folio_by_id = {p['id']: p for p in folio_data}\n\n    deduplicator = ConstraintDeduplicator()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer()\n\n    per_problem = []\n    total_before = 0\n    total_after = 0\n    n_sc_correct = 0\n    n_po_correct = 0\n    n_sica_orig_correct = 0\n    pairs = []\n\n    pids = sorted(folio_by_id.keys(), key=lambda x: int(x.split('_')[1]))\n\n    for i, pid in enumerate(pids):\n        problem = folio_by_id[pid]\n        gt = normalize_logic_answer(problem['answer'])\n\n        cache_path = os.path.join(CACHE_DIR, f\"{pid}.json\")\n        if not os.path.exists(cache_path):\n            print(f\"SKIP {pid}: no cache\")\n            continue\n        with open(cache_path) as f:\n            cache = json.load(f)\n\n        intermed_path = os.path.join(INTERMED_DIR, f\"{pid}.json\")\n        with open(intermed_path) as f:\n            intermed = json.load(f)\n        traces = intermed['sica_result']['traces']\n        for t in traces:\n            if t.get('answer'):\n                t['answer'] = normalize_logic_answer(t['answer'])\n\n        sica_orig = normalize_logic_answer(intermed['sica_result'].get('answer', ''))\n        n_sica_orig_correct += (sica_orig == gt)\n\n        answer_counts = Counter(t['answer'] for t in traces if t.get('answer'))\n        if not answer_counts:\n            sc_answer = \"\"\n        else:\n            max_count = answer_counts.most_common(1)[0][1]\n            sc_answer = next(a for a, c in answer_counts.items() if c == max_count)\n        sc_ok = (sc_answer == gt)\n        n_sc_correct += sc_ok\n\n        conclusion_text = extract_conclusion_text(problem['problem'])\n        conclusion_kw, entities = get_conclusion_keywords(conclusion_text)\n\n        n_before = 0\n        n_after = 0\n        all_filtered = []\n        for trace_data in cache['per_trace']:\n            constraints = trace_data['constraints']\n            n_before += len(constraints)\n            filtered = [c for c in constraints\n                        if not constraint_references_conclusion(c, conclusion_kw, entities)]\n            n_after += len(filtered)\n            all_filtered.append(filtered)\n\n        total_before += n_before\n        total_after += n_after\n\n        unique = deduplicator.deduplicate(all_filtered)\n        maxsat_result = solver.solve(unique)\n        candidates = sorted(set(t['answer'] for t in traces if t.get('answer')))\n        scores = scorer.score(maxsat_result, traces, candidates)\n        po_answer = scorer.select_answer(scores, dict(answer_counts))\n        po_ok = (po_answer == gt)\n        n_po_correct += po_ok\n\n        pairs.append((sc_ok, po_ok))\n\n        per_problem.append({\n            'pid': pid,\n            'gt': gt,\n            'sc_answer': sc_answer,\n            'sica_orig_answer': sica_orig,\n            'po_answer': po_answer,\n            'sc_correct': sc_ok,\n            'po_correct': po_ok,\n            'constraints_before': n_before,\n            'constraints_after': n_after,\n            'n_unique_after_dedup': len(unique),\n            'conclusion_keywords': sorted(conclusion_kw),\n        })\n\n        if (i + 1) % 50 == 0:\n            print(f\"  processed {i+1}/{len(pids)}...\")\n\n    n = len(per_problem)\n\n    b = sum(1 for sc, po in pairs if sc and not po)\n    c = sum(1 for sc, po in pairs if not sc and po)\n    n_disc = b + c\n    mcnemar_p = binomtest(c, n_disc, 0.5).pvalue if n_disc > 0 else 1.0\n\n    kept_ratio = total_after / total_before if total_before > 0 else 0\n\n    output = {\n        'accuracy': round(n_po_correct / n, 4) if n else 0,\n        'n_correct': n_po_correct,\n        'n_total': n,\n        'sc_accuracy': round(n_sc_correct / n, 4) if n else 0,\n        'sc_n_correct': n_sc_correct,\n        'sica_orig_accuracy': round(n_sica_orig_correct / n, 4) if n else 0,\n        'sica_orig_n_correct': n_sica_orig_correct,\n        'constraints_kept_ratio': round(kept_ratio, 4),\n        'total_constraints_before': total_before,\n        'total_constraints_after': total_after,\n        'mcnemar_p': round(mcnemar_p, 6),\n        'discordant_pairs': {\n            'sc_right_po_wrong': b,\n            'sc_wrong_po_right': c,\n            'total': n_disc,\n        },\n        'per_problem': per_problem,\n    }\n\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\n    out_path = os.path.join(OUTPUT_DIR, 'results.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2)\n\n    elapsed = time.time() - t_start\n    print(f\"\\n{'='*60}\")\n    print(f\"DIR-C PREMISE-ONLY FILTERING (FOLIO 204)\")\n    print(f\"{'='*60}\")\n    print(f\"Problems:            {n}\")\n    print(f\"SC Accuracy:         {n_sc_correct}/{n} = {n_sc_correct/n:.4f}\")\n    print(f\"SICA Original:       {n_sica_orig_correct}/{n} = {n_sica_orig_correct/n:.4f}\")\n    print(f\"Premise-Only Acc:    {n_po_correct}/{n} = {n_po_correct/n:.4f}\")\n    print(f\"Delta PO vs SC:      {(n_po_correct - n_sc_correct)/n:+.4f}\")\n    print(f\"Constraints kept:    {total_after}/{total_before} = {kept_ratio:.2%}\")\n    print(f\"McNemar p-value:     {mcnemar_p:.6f}\")\n    print(f\"Discordant:          SC+/PO- = {b}, SC-/PO+ = {c}\")\n    print(f\"Time:                {elapsed:.1f}s\")\n    print(f\"Output:              {out_path}\")\n\n\nif __name__ == '__main__':\n    main()\nSCRIPT_EOF\necho \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T16:07:14.827512+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T16:07:14.827671+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 -c \"\nimport json, re\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\ndef extract_conclusion_text(problem_text):\n    marker = 'Determine whether the following conclusion is true, false, or uncertain:\\n'\n    idx = problem_text.find(marker)\n    if idx == -1: return ''\n    return problem_text[idx + len(marker):].strip()\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    return tokens - entities, entities\ndef check(constraint, conclusion_kw, entities, threshold=0.5, min_overlap=2):\n    if not conclusion_kw: return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined) - entities\n    overlap = conclusion_kw & expr_tokens\n    required_min = min(min_overlap, len(conclusion_kw))\n    if len(overlap) < required_min: return False\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\nfolio = json.load(open('data/folio_full.json'))\nfor p in folio[:5]:\n    concl = extract_conclusion_text(p['problem'])\n    kw, ent = get_conclusion_keywords(concl)\n    cache = json.load(open(f'results/exp033_mistral_7b_folio204/constraint_cache/{p[\\\"id\\\"]}.json'))\n    total = sum(len(t['constraints']) for t in cache['per_trace'])\n    kept = sum(1 for t in cache['per_trace'] for c in t['constraints'] if not check(c, kw, ent))\n    print(f'{p[\\\"id\\\"]}: kw={sorted(kw)} | {kept}/{total} kept ({kept/total:.0%})')\n    for c in cache['per_trace'][0]['constraints'][:4]:\n        expr = c['expression']\n        z3f = c['z3_formula']\n        combined = expr + ' ' + z3f\n        expr_tokens = normalize_to_tokens(combined) - ent\n        overlap = kw & expr_tokens\n        req = min(2, len(kw))\n        ratio = len(overlap)/len(kw) if kw else 0\n        filt = 'FILTER' if len(overlap) >= req and ratio >= 0.5 else 'KEEP'\n        print(f'  [{filt} {len(overlap)}/{len(kw)}={ratio:.2f}] {expr[:80]}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 -c \"\nimport json, re\nSTOP_WORDS = {\n    'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',\n    'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',\n    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for',\n    'on', 'with', 'at', 'by', 'from', 'up', 'about', 'into', 'over',\n    'after', 'that', 'this', 'which', 'who', 'whom', 'and', 'or', 'but',\n    'if', 'then', 'than', 'so', 'not', 'no', 'nor', 'as', 'both',\n    'either', 'neither', 'each', 'every', 'all', 'any', 'few', 'more',\n    'most', 'other', 'some', 'such', 'only', 'own', 'same', 'her', 'his',\n    'its', 'our', 'their', 'it', 'he', 'she', 'they', 'them', 'we',\n    'me', 'him', 'us', 'my', 'your',\n    'whether', 'determine', 'following', 'conclusion', 'true', 'false',\n    'uncertain', 'given', 'premises', 'case', 'also', 'still',\n}\ndef extract_conclusion_text(problem_text):\n    marker = 'Determine whether the following conclusion is true, false, or uncertain:\\n'\n    idx = problem_text.find(marker)\n    if idx == -1: return ''\n    return problem_text[idx + len(marker):].strip()\ndef normalize_to_tokens(text):\n    text = text.replace('_', ' ')\n    text = re.sub(r'([a-z])([A-Z])', r'\\1 \\2', text)\n    text = re.sub(r'[^a-zA-Z\\s]', ' ', text)\n    tokens = set(text.lower().split())\n    tokens -= STOP_WORDS\n    return {t for t in tokens if len(t) > 1}\ndef get_conclusion_keywords(conclusion_text):\n    words = conclusion_text.split()\n    entities = set()\n    for w in words:\n        clean = re.sub(r'[^a-zA-Z]', '', w)\n        if clean and clean[0].isupper() and clean.lower() not in STOP_WORDS:\n            entities.add(clean.lower())\n    tokens = normalize_to_tokens(conclusion_text)\n    return tokens - entities, entities\ndef check(constraint, conclusion_kw, entities, threshold=0.5, min_overlap=2):\n    if not conclusion_kw: return False\n    expr = constraint.get('expression', '')\n    z3f = constraint.get('z3_formula', '')\n    combined = expr + ' ' + z3f\n    expr_tokens = normalize_to_tokens(combined) - entities\n    overlap = conclusion_kw & expr_tokens\n    required_min = min(min_overlap, len(conclusion_kw))\n    if len(overlap) < required_min: return False\n    ratio = len(overlap) / len(conclusion_kw)\n    return ratio >= threshold\n\nfolio = json.load(open('data/folio_full.json'))\nfor p in folio[:5]:\n    concl = extract_conclusion_text(p['problem'])\n    kw, ent = get_conclusion_keywords(concl)\n    cache = json.load(open(f'results/exp033_mistral_7b_folio204/constraint_cache/{p[\\\"id\\\"]}.json'))\n    total = sum(len(t['constraints']) for t in cache['per_trace'])\n    kept = sum(1 for t in cache['per_trace'] for c in t['constraints'] if not check(c, kw, ent))\n    print(f'{p[\\\"id\\\"]}: kw={sorted(kw)} | {kept}/{total} kept ({kept/total:.0%})')\n    for c in cache['per_trace'][0]['constraints'][:4]:\n        expr = c['expression']\n        z3f = c['z3_formula']\n        combined = expr + ' ' + z3f\n        expr_tokens = normalize_to_tokens(combined) - ent\n        overlap = kw & expr_tokens\n        req = min(2, len(kw))\n        ratio = len(overlap)/len(kw) if kw else 0\n        filt = 'FILTER' if len(overlap) >= req and ratio >= 0.5 else 'KEEP'\n        print(f'  [{filt} {len(overlap)}/{len(kw)}={ratio:.2f}] {expr[:80]}')\n    print()\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T16:07:14.827851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"folio_0: kw=['often', 'performs', 'school', 'shows', 'talent'] | 52/80 kept (65%)\\n  [FILTER 5/5=1.00] performs_in_school_talent_shows_often(X) -> attends_and_engaged_with_school_even\\n  [FILTER 5/5=1.00] performs_in_school_talent_shows_often(X) | inactive_and_disinterested_member(X)\\n  [KEEP 1/5=0.20] chaperones_high_school_dances(X) -> !student(X)\\n  [KEEP 1/5=0.20] inactive_and_disinterested_member(X) -> chaperones_high_school_dances(X)\\n\\nfolio_1: kw=['academic', 'attends', 'career', 'chaperones', 'child', 'community', 'dances', 'disinterested', 'educational', 'further', 'high', 'inactive', 'member', 'opportunities', 'school', 'student', 'teenager', 'wishes', 'young'] | 74/82 kept (90%)\\n  [KEEP 1/19=0.05] performs_in_school_talent_shows_often(people)\\n  [KEEP 2/19=0.11] performs_in_school_talent_shows_often(X) -> attends_and_engaged_school_events(X)\\n  [KEEP 4/19=0.21] Or(performs_in_school_talent_shows_often(X), inactive_disinterested_community(X)\\n  [KEEP 6/19=0.32] chaperones_high_school_dances(X) -> Not(student_attends_school(X))\\n\\nfolio_2: kw=['academic', 'career', 'chaperones', 'child', 'community', 'dances', 'disinterested', 'educational', 'further', 'high', 'inactive', 'member', 'often', 'opportunities', 'performs', 'school', 'shows', 'talent', 'teenager', 'wishes', 'young'] | 81/84 kept (96%)\\n  [KEEP 4/21=0.19] performs_often(school_talent_show, bonnie)\\n  [KEEP 4/21=0.19] performs_often(school_talent_show, X) -> attends_and_engaged(school_events, X)\\n  [KEEP 7/21=0.33] performs_often(school_talent_show, X) -> not(inactive_community_member, X)\\n  [KEEP 7/21=0.33] Or(performs_often(school_talent_show, X), inactive_community_member(X))\\n\\nfolio_3: kw=['company', 'lunch'] | 66/91 kept (73%)\\n  [KEEP 0/2=0.00] employee(james)\\n  [KEEP 1/2=0.50] employee(X) & schedules_meeting(X, customer) -> in_company(X)\\n  [KEEP 1/2=0.50] in_company(X) -> schedules_meeting(X, customer)\\n  [FI
+…[truncated 456 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T16:07:14.828068+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 scripts/dir_c_premise_only.py",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 scripts/dir_c_premise_only.py",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T16:07:14.828210+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python3 scripts/dir_c_premise_only.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T16:07:14.828362+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup python3 scripts/dir_c_premise_only.py > /tmp/dir_c_premise_only.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup python3 scripts/dir_c_premise_only.py > /tmp/dir_c_premise_only.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T16:07:14.828493+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && nohup python3 scripts/dir_c_premise_only.py > /tmp/dir_c_premise_only.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=338943\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T16:07:14.828629+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -5 /tmp/dir_c_premise_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -5 /tmp/dir_c_premise_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-20T16:07:14.828750+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338943 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338943 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-20T16:07:14.828885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T16:07:14.829017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"338943\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T16:07:14.829161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/dir_c_premise_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/dir_c_premise_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-20T16:07:14.829286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338943 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338943 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-20T16:07:14.829406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T16:07:14.829522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"338943\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T16:07:14.829647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "tail -10 /tmp/dir_c_premise_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "tail -10 /tmp/dir_c_premise_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-20T16:07:14.829760+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338943 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338943 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T16:07:14.829890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T16:07:14.830013+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"338943\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T16:07:14.830141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "stat /tmp/dir_c_premise_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "stat /tmp/dir_c_premise_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T16:07:14.830282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /tmp/dir_c_premise_only.log\\n  Size: 0         \\tBlocks: 0          IO Block: 4096   regular empty file\\nDevice: 34h/52d\\tInode: 26854999062  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-21 00:06:06.644456593 +0800\\nModify: 2026-05-21 00:05:31.479733419 +0800\\nChange: 2026-05-21 00:05:31.479733419 +0800\\n Birth: 2026-05-21 00:05:31.479733419 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T16:07:14.830442+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338943 -o pid,etime,rss"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338943 -o pid,etime,rss"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T16:07:14.830573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED   RSS\\n338943       01:00  2124\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T16:07:14.830711+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps aux --forest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps aux --forest"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T16:07:14.830928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3380 ?        Ss   May19   0:01 bash /init/boot/boot.sh\\nroot        801  2.6  0.0 717984 23152 ?        Sl   May19  74:47 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        817  0.0  0.0  15444  9136 ?        S    May19   0:24  \\\\_ sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot     301253  0.0  0.0  16692 10684 ?        Ss   May20   0:02  |   \\\\_ sshd: root@notty\\nroot     336413  0.0  0.0  16696 10612 ?        Ss   May20   0:00  |   \\\\_ sshd: root@notty\\nroot     336466  0.0  0.0  16700 10944 ?        Ss   May20   0:00  |   \\\\_ sshd: root@notty\\nroot     337485  0.0  0.0  16692 10612 ?        Ss   May20   0:00  |   \\\\_ sshd: root@notty\\nroot     337763  0.0  0.0  16692 10792 ?        Ss   May20   0:00  |   \\\\_ sshd: root@notty\\nroot     337940  0.0  0.0  16692 10900 ?        Ss   May20   0:00  |   \\\\_ sshd: root@notty\\nroot     338250  0.0  0.0  16700 10628 ?        Ss   00:01   0:00  |   \\\\_ sshd: root@notty\\nroot     338931  0.0  0.0  16692 10496 ?        Ss   00:05   0:00  |   \\\\_ sshd: root@notty\\nroot     339242  0.0  0.0  16692 10708 ?        Ss   00:06   0:00  |   \\\\_ sshd: root@notty\\nroot     339351  0.0  0.0   7208  3104 ?        Rs   00:06   0:00  |   |   \\\\_ ps aux --forest\\nroot     339258  0.0  0.0  16692 10696 ?        Ss   00:06   0:00  |   \\\\_ sshd: root@notty\\nroot        821  0.0  0.0 4148168 79308 ?       Sl   May19   1:46  \\\\_ /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        927  0.1  0.0 28341192 12252 ?      Sl   May19   2:53  |   \\\\_ /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_de0qwios/port --
+…[truncated 6442 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T16:07:14.831120+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338948 -o pid,etime,rss,pcpu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338948 -o pid,etime,rss,pcpu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T16:07:14.831252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED   RSS %CPU\\n338948       01:15 140280 125\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T16:07:14.831380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "ps -p 338948 -o pid,etime,rss,pcpu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "ps -p 338948 -o pid,etime,rss,pcpu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T16:07:14.831502+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID     ELAPSED   RSS %CPU\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T16:07:14.831635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "cat /tmp/dir_c_premise_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "cat /tmp/dir_c_premise_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T16:07:14.831763+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  processed 50/204...\\n  processed 100/204...\\n  processed 150/204...\\n  processed 200/204...\\n\\n============================================================\\nDIR-C PREMISE-ONLY FILTERING (FOLIO 204)\\n============================================================\\nProblems:            204\\nSC Accuracy:         111/204 = 0.5441\\nSICA Original:       121/204 = 0.5931\\nPremise-Only Acc:    116/204 = 0.5686\\nDelta PO vs SC:      +0.0245\\nConstraints kept:    10829/14084 = 76.89%\\nMcNemar p-value:     0.359283\\nDiscordant:          SC+/PO- = 7, SC-/PO+ = 12\\nTime:                75.9s\\nOutput:              /root/symb_invariant_consensus/results/dir_c_premise_only_204/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T16:07:14.831935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-16639",
+  "command": "head -30 /root/symb_invariant_consensus/results/dir_c_premise_only_204/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-16639",
+    "command": "head -30 /root/symb_invariant_consensus/results/dir_c_premise_only_204/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T16:07:14.832091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"accuracy\\\": 0.5686,\\n  \\\"n_correct\\\": 116,\\n  \\\"n_total\\\": 204,\\n  \\\"sc_accuracy\\\": 0.5441,\\n  \\\"sc_n_correct\\\": 111,\\n  \\\"sica_orig_accuracy\\\": 0.5931,\\n  \\\"sica_orig_n_correct\\\": 121,\\n  \\\"constraints_kept_ratio\\\": 0.7689,\\n  \\\"total_constraints_before\\\": 14084,\\n  \\\"total_constraints_after\\\": 10829,\\n  \\\"mcnemar_p\\\": 0.359283,\\n  \\\"discordant_pairs\\\": {\\n    \\\"sc_right_po_wrong\\\": 7,\\n    \\\"sc_wrong_po_right\\\": 12,\\n    \\\"total\\\": 19\\n  },\\n  \\\"per_problem\\\": [\\n    {\\n      \\\"pid\\\": \\\"folio_0\\\",\\n      \\\"gt\\\": \\\"Unknown\\\",\\n      \\\"sc_answer\\\": \\\"Unknown\\\",\\n      \\\"sica_orig_answer\\\": \\\"Unknown\\\",\\n      \\\"po_answer\\\": \\\"Unknown\\\",\\n      \\\"sc_correct\\\": true,\\n      \\\"po_correct\\\": true,\\n      \\\"constraints_before\\\": 80,\\n      \\\"constraints_after\\\": 52,\\n      \\\"n_unique_after_dedup\\\": 41,\\n      \\\"conclusion_keywords\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-20T16:07:14.832269+00:00_
+
+完成。结果：
+
+| 方法 | Accuracy | N_correct/204 |
+|---|---|---|
+| SC Baseline | 54.41% | 111 |
+| **Premise-Only SICA** | **56.86%** | **116** |
+| SICA Original (参考) | 59.31% | 121 |
+
+**关键指标：**
+- Premise-only vs SC: +2.45%（discordant: SC+/PO- = 7, SC-/PO+ = 12）
+- McNemar p = 0.359（不显著）
+- Constraints 保留率: 76.89%（14084 → 10829，过滤掉 23.1%）
+
+**解读：** 过滤掉引用结论的 constraints 后，SICA 仍高于 SC baseline 2.45 个百分点，但差异不显著（p=0.36）。相比原始 SICA 的 +4.9% 提升，premise-only 保留了约一半的增益，说明 premise-derived constraints 确实贡献了部分真实推理能力，但结论信号也有相当影响。
+
+结果 JSON 已写入 `/root/symb_invariant_consensus/results/dir_c_premise_only_204/results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_dir-c-premise-only-204_20260520T155358"
+}
+```
+
+</details>
+
+---

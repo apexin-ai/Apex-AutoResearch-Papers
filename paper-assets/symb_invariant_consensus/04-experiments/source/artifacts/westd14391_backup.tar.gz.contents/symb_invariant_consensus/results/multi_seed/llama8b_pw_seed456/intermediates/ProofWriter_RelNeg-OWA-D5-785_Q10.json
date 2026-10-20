@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-785_Q10",
+    "problem": "The bald eagle is round. The bear needs the bald eagle. The cat eats the bear. The cat does not eat the lion. The cat is round. The lion needs the bear. The lion sees the bald eagle. If something is round then it sees the bald eagle. If something is red and not young then it needs the lion. If something sees the bald eagle then it needs the lion. If something needs the lion and it needs the bear then the bear is round. If the lion is round and the lion does not eat the cat then the cat eats the bald eagle. If something needs the lion and the lion sees the bald eagle then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not need the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nRound(BaldEagle, True) ::: The bald eagle is round.\nNeeds(Bear, BaldEagle, True) ::: The bear needs the bald eagle.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nEats(Cat, Lion, False) ::: The cat does not eat the lion.\nRound(Cat, True) ::: The cat is round.\nNeeds(Lion, Bear, True) ::: The lion needs the bear.\nSees(Lion, BaldEagle, True) ::: The lion sees the bald eagle.\n\nRules:\nRound($x, True) >>> Sees($x, BaldEagle, True) ::: If something is round then it sees the bald eagle.\nRed($x, True) && Young($x, False) >>> Needs($x, Lion, True) ::: If something is red and not young then it needs the lion.\nSees($x, BaldEagle, True) >>> Needs($x, Lion, True) ::: If something sees the bald eagle then it needs the lion.\nNeeds($x, Lion, True) && Needs($x, Bear, True) >>> Round(Bear, True) ::: If something needs the lion and it needs the bear then the bear is round.\nRound(Lion, True) && Eats(Lion, Cat, False) >>> Eats(Cat, BaldEagle, True) ::: If the lion is round and the lion does not eat the cat then the cat eats the bald eagle.\nNeeds($x, Lion, True) && Sees(Lion, BaldEagle, True) >>> Red($x, True) ::: If something needs the lion and the lion sees the bald eagle then it is red.\n\nQuery:\nNeeds(Bear, Lion, False) ::: The bear does not need the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

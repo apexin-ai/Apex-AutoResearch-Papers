@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "112b84848fdaed55e22b",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "fix kill 181997 urgent",
+  "task_key": "worker_fix_kill_181997_urgent_20260516T053546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill_181997_urgent_20260516T053546_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "d88f2fbc9e4c58df05a7ff681aef8ee0016b135e458265d3894e6bef6dd13a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Step 1: Kill 181997\n**KILLED_OK** ✓\n\n### Step 2: 181491 状态\n- **存活**，已运行 20m49s\n- 当前进度：**19/804**（ProofWriter D5），ETA ~919 min（~15.3h），avg 70.1s/prob\n- 输出文件：`sica_expanded_14b.json` = 73,319 bytes，type=dict，keys=`['summary', 'results']`\n\n### Step 3: 根因分析\n排查了所有自动重启机制，**全部为空**：\n- crontab: 无\n- systemd: 无\n- supervisor: 无\n- tmux sessions: 无\n- 守护/wrapper 脚本: 无\n\n**根因：181997 是一次重复的 `submit_training_job` 调用**，不是自动重启。进程树显示当前只有一条链：\n\n```\n181486 (bash wrapper, PPID=1) → 181490 (timeout 72000) → 181491 (python run_full_mvp.py)\n```\n\n这是 agent-ml-research 框架的标准 job wrapper。181997 大概率是另一个 agent 会话或重试逻辑发起的第二次提交。`/tmp/agent-ml-exit/` 中没有 `sica_expanded_14b.exit`，说明当前 wrapper 从未退出过——不存在\"退出后被重启\"的情况。\n\n### Step 4: 无需禁用\n没有自动重启机制，无需操作。\n\n### Step 5: 最终确认\n- 只有 181491 一个 python 进程在跑 SICA\n- vLLM 健康：**Qwen2.5-14B-Instruct** 正常服务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-181997-urgent.md"
+}

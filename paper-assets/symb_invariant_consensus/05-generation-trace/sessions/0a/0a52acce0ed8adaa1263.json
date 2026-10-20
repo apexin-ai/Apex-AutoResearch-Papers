@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0a52acce0ed8adaa1263",
+  "project": "symb_invariant_consensus",
+  "kind": "worker",
+  "title": "code finetune deberta pw",
+  "task_key": "worker_code_finetune-deberta-pw_20260522T141015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_finetune-deberta-pw_20260522T141015.log",
+    "occurrence": 1,
+    "bytes": 719725,
+    "sha256": "8e2d433e6e5967ec12bee2853c715218328d2388614026b70479cbe93e7ea304"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 237,
+      "chunks": [
+        {
+          "path": "0a52acce0ed8adaa1263-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "0a52acce0ed8adaa1263-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-finetune-deberta-pw.md"
+}

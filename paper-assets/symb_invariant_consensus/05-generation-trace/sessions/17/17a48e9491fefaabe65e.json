@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17a48e9491fefaabe65e",
+  "project": "symb_invariant_consensus",
+  "kind": "result",
+  "title": "analysis aggregate sign test",
+  "task_key": "worker_analysis_aggregate-sign-test_20260522T012901",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_aggregate-sign-test_20260522T012901_result.json",
+    "occurrence": 1,
+    "bytes": 2557,
+    "sha256": "109bc499051a3c4944aeff385ee0ab20532a43d1869677ebc2a82c8f24578871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总结果：\n\n## 全条件 Δ 表\n\n| Condition | N | SC% | SICA% | Δpp | Dir |\n|---|---|---|---|---|---|\n| gpt-4o self / FOLIO-204 | 204 | 76.96 | 75.00 | -1.96 | - |\n| Mistral-7B self / FOLIO-204 | 204 | 54.41 | 59.31 | +4.90 | + |\n| Mistral-7B seed123 / FOLIO-204 | 204 | 53.92 | 57.35 | +3.43 | + |\n| Mistral-7B seed456 / FOLIO-204 | 204 | 56.37 | 55.88 | -0.49 | - |\n| LLaMA-8B self / FOLIO-204 | 204 | 66.18 | 61.76 | -4.41 | - |\n| Qwen2.5-14B self / FOLIO-204 | 204 | 77.45 | 75.49 | -1.96 | - |\n| Qwen3 self / FOLIO-154 | 154 | 80.52 | 82.47 | +1.95 | + |\n| Qwen2.5-14B / PW-600 | 600 | 73.50 | 71.50 | -2.00 | - |\n| Qwen3-14B nonthink / PW-600 | 600 | 85.00 | 85.67 | +0.67 | + |\n| LLaMA-8B / PW-600 | 600 | 70.00 | 64.83 | -5.17 | - |\n| Qwen2.5-14B / LogiQA-200 | 200 | 78.50 | 78.00 | -0.50 | - |\n| Mistral-7B / LogiQA-200 | 200 | 51.00 | 51.50 | +0.50 | + |\n| LLaMA-8B / LogiQA-200 | 200 | 61.00 | 58.50 | -2.50 | - |\n| LLaMA-8B v2 / LogiQA-200 | 200 | 59.50 | 58.50 | -1.00 | - |\n| Mistral ICL-oracle / FOLIO-199 | 199 | 57.79 | 54.27 | -3.52 | - |\n| gpt-4.1→Mistral / FOLIO-204 | 204 | 82.84 | 81.37 | -1.47 | - |\n| gpt-5.5→Mistral / FOLIO-204 | 204 | 84.31 | 84.80 | +0.49 | + |\n| Gemini-2.5→Mistral / FOLIO-95 | 95 | 87.37 | 86.32 | -1.05 | - |\n| R1-Distill→Mistral / FOLIO-204 | 204 | 74.51 | 76.96 | +2.45 | + |\n| Mistral→Mistral / PW-2x2 | 204 | 40.20 | 34.31 | -5.88 | - |\n| Mistral→Qwen3 / PW-2x2 | 204 | 40.20 | 79.90 | +39.71 | + |\n| Qwen3→Mistral / PW-2x2 | 204 | 86.76 | 37.75 | -49.02 | - |\n| Qwen3→Qwen3 / PW-2x2 | 204 | 86.76 | 79.90 | -6.86 | - |\n\n**排除退化条件** (Δ=0): o3→Mistral, R1-Qwen3-8B self, Qwen3/LogiQA, Qwen2.5-72B partial\n\n## Sign Test 结果\n\n| 分析范围 | n | k+ | k- | p-value | Mean Δ | Median Δ |\n|---|---|---|---|---|---|---|\n| 全部非退化 | 23 | 8 | 15 | 0.2100 | -1.46pp | -1.05pp |\n| 排除极端 (\\|Δ\\|>10pp) | 21 | 7 | 14 | 0.1892 | -1.16pp | -1.05pp |\n| 仅 self-extraction | 15 | 5 | 10 | 0.3018 | -0.80pp | -1.00pp |\n\n## 结论\n\n**SICA 相对 SC 无显著系统性方向偏差**（所有 p > 0.05）。负方向略多（约 2:1），mean Δ 约 -1pp，但统计上不显著。SICA 既不系统性优于也不系统性劣于 SC——准确率差异主要由具体实验条件（模型能力、数据集、提取器匹配度）驱动，而非方法本身的固有偏差。\n\n结果已保存至服务器 `/root/symb_invariant_consensus/results/aggregate_sign_test/sign_test_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-aggregate-sign-test.md"
+}
